@@ -60,6 +60,10 @@ does not advance simulation. Unsupported paths stop with diagnostics.
   from entry with a recorded joystick stream and explicit incoming stack provider.
   Its destination setup injection is explicit; original hook/ascent/pixels/timing
   and a whole original mountain replay are not established.
+- Jungle foundation: three static map-loading cases compare all65536 DS bytes,
+  348 declared records and the three starting-platform scans against an
+  independent scanf-table oracle. Duplicate printed B labels and the extra
+  undeclared F row retain original behavior. No jungle gameplay/runtime claim.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
@@ -93,8 +97,10 @@ variant0. These checks do not establish a complete original campaign replay.
   animations are translated, but striped reveals and original movement/timing
   comparisons remain incomplete. Collected-location notices lack original pixel
   and timing comparisons; their state and explicit device boundaries are tested.
-- Jungle, photography, stock trading, campaign endings, normal
+- Jungle gameplay, photography, stock trading, campaign endings, normal
   Glomgold progression, atomic transport, save/load and high scores are absent.
+  Jungle map loading is implemented separately; actor/hazard initialization,
+  controls and rendering remain to translate. See `docs/jungle.md`.
   Mountain actions/hazards, scrolling and summit condition are translated;
   variant0 ascent/reward works through browser controls. Other variants/
   difficulties and original hook/ascent comparisons are still needed. Full
@@ -126,11 +132,13 @@ verifiers listed in package.json. Analysis: `npm run prepare:analysis`,
 `npm run prepare:flight-analysis`, `npm run prepare:cave-analysis`.
 Mountain foundation: `npm run prepare:mountain-analysis` and
 `npm run verify:mountain`; scope and evidence in `docs/mountain.md`.
+Jungle map foundation: `npm run prepare:jungle-analysis` and
+`npm run verify:jungle`; Python3 is required for the independent oracle.
 
 Next: expand jungle/photography while extending targeted original mountain
 hook/ascent comparisons, then trading and endings. Continue targeted original comparisons for cave movement,
 remaining outcomes and notice presentation/timing. Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
-`docs/flight.md`, `docs/expedition-departures.md`.
+`docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
 paused at mountain0e0c:145d after15 movement updates, DS/SS1403, BP9f48, stop75.

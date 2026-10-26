@@ -1,0 +1,100 @@
+{
+  "id": "jungle-static-maps-fb658562",
+  "buildManifest": "reference/build.json",
+  "sourceRevision": "2d1a3ca",
+  "evidence": "Static inference from original overlay8 loaders, raw disassembly/scanf formats and three JG.ARC resources. Expected whole-memory hashes independently constructed by a Python scanf-table oracle from the original resident image. No runtime or playable-jungle equivalence claimed.",
+  "environmentContract": "Original resident DS bytes then zero BSS, selected variant word, original ten map-table load operations. No prior-memory provider in these three cases; no input, clocks, RNG, audio or game state injection.",
+  "expectedCaseCount": 3,
+  "expectedInputCount": 0,
+  "inputEvents": [],
+  "injections": [],
+  "fittedInputs": [],
+  "cases": [
+    {
+      "variant": 0,
+      "counts": {
+        "L": 11,
+        "A": 22,
+        "B": 32,
+        "P": 3,
+        "S": 4,
+        "V": 5,
+        "J": 22,
+        "M": 3,
+        "X": 3,
+        "F": 16
+      },
+      "recordCount": 121,
+      "memorySha256": "c43de700015b2c8046aa2534ce73ae2ab1a3946d25502bbd26fca3cbae92e9e7",
+      "start": {
+        "column": 0,
+        "row": 0
+      }
+    },
+    {
+      "variant": 1,
+      "counts": {
+        "L": 11,
+        "A": 22,
+        "B": 27,
+        "P": 4,
+        "S": 3,
+        "V": 3,
+        "J": 22,
+        "M": 1,
+        "X": 3,
+        "F": 16
+      },
+      "recordCount": 112,
+      "memorySha256": "2981f87638b024e3d00b03b8d52798ab680af8b508b091146acd46425ebee227",
+      "start": {
+        "column": 0,
+        "row": 2
+      }
+    },
+    {
+      "variant": 2,
+      "counts": {
+        "L": 11,
+        "A": 22,
+        "B": 26,
+        "P": 4,
+        "S": 3,
+        "V": 5,
+        "J": 22,
+        "M": 4,
+        "X": 2,
+        "F": 16
+      },
+      "recordCount": 115,
+      "memorySha256": "c4c4d8c9d066fbd6e5c94dd611919ffa68580fac38e4b79a902e693e2482c5de",
+      "start": {
+        "column": 0,
+        "row": 1
+      }
+    }
+  ],
+  "comparisonRules": "Exact all65536 initialized DS bytes and declared record counts. Original L/A/B suppress printed row labels; indexed sections honor labels. Read exactly declared counts, retaining the unused trailing F16 row only as source material. All other sparse DS fields retain their incoming values. The first platform scan is column-major, limited to6 columns and3 rows.",
+  "exclusions": [
+    "Game entry actor/animation initialization, heap resources, RNG/hazard setup, rendering, gameplay, timing and runtime address mapping are outside this static map-loading check."
+  ],
+  "verify": "npm run verify:jungle",
+  "captureTool": "Ghidra MCP JUNGLE_CODE.EXE x86:LE:16:Real Mode; original ndisasm16 and resident scanf formats; static Python oracle scripts/verify-jungle-oracle.py",
+  "configuration": {
+    "execution": "static only; no emulator capture",
+    "resourceRoot": "game/",
+    "stackAndHeap": "not consumed",
+    "residentDataImageOffset": 73952
+  },
+  "artifacts": {
+    "executable": {
+      "path": "game/DUCKTALE.EXE",
+      "sha256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981"
+    },
+    "jungleArchive": {
+      "path": "game/JG.ARC",
+      "sha256": "5f8ff2a00a806b76cbef8a6f24b24befe2d9e594e38e645e845d031e78320878"
+    }
+  },
+  "startingRecipe": "Verify original hashes, unpack the supported resident image, copy its initial DS bytes at image120e0 and zero the remaining BSS. Load JG entries1/2/3 for variants0/1/2 using only the ten original map-table loaders, then scan the first6 columns/3 rows. Reproduce independent results with python3 scripts/verify-jungle-oracle.py. Ghidra analysis: npm run prepare:jungle-analysis; import .local/analysis/JUNGLE_CODE.EXE and create entry1c17:0000 if not discovered. No original process or machine restore is used."
+}

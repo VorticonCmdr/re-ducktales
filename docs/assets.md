@@ -125,3 +125,11 @@ The game runtime now reads Launchpad speech from a read-only EXEPACK image of
 `DUCKTALE.EXE`, alongside MAIN.ARC portrait30. No executable code runs in the
 browser. Image identity, string locations, and original pixel evidence are in
 [expedition departures](expedition-departures.md).
+
+
+JG.ARC entries1–3 are now consumed by the jungle map loader. Their ten ASCII
+sections initialize sparse16-bit DS records with original scanf addressing.
+Some printed row labels are suppressed, and declared counts can leave trailing
+source rows unused. See [jungle map contract](jungle.md) and
+`reference/jungle-maps.json`; this is static asset evidence, not playable-jungle
+or original runtime parity.

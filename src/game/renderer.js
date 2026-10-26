@@ -89,6 +89,54 @@ export class Renderer {
         this.draw("MAIN.ARC", asset, 0, x, y, -2);
       return;
     }
+    if (game.scene === "map") {
+      const c = game.campaign,
+        selected = c.locations[c.selected];
+      this.draw("MAIN.ARC", c.location === 35 ? 20 : 21, 0, 0, 0);
+      if (!c.info) {
+        this.draw("MAIN.ARC", 22, 0, 24, 20);
+        for (const l of c.locations) {
+          this.ctx.fillStyle = "#000";
+          this.ctx.fillRect(l.x - 1, l.y - 1, 5, 5);
+          this.ctx.fillStyle = "#0000aa";
+          this.ctx.fillRect(l.x, l.y, 3, 3);
+        }
+        this.draw("MAIN.ARC", 24, 0, 22, 115, -2);
+        if (c.selected !== 35) {
+          this.ctx.fillStyle = "#ffff55";
+          this.ctx.fillRect(selected.x - 1, selected.y - 1, 5, 5);
+          this.ctx.fillStyle = "#000";
+          this.ctx.fillRect(selected.x, selected.y, 3, 3);
+        }
+      } else {
+        selected.description.forEach((line, i) =>
+          this.text(line, 32, 22 + i * 8),
+        );
+        this.text(
+          `TRAVEL TIME: ${c.snapshot().travelDays} day${c.snapshot().travelDays === 1 ? "" : "s"}`,
+          32,
+          30 + selected.description.length * 8,
+        );
+        this.draw("MAIN.ARC", 26, 0, 192, 170, -2);
+        this.draw("MAIN.ARC", 27, 0, 248, 174, -2);
+        this.ctx.strokeStyle = "#fff";
+        this.ctx.strokeRect(
+          c.choice === 0 ? 191 : 247,
+          c.choice === 0 ? 169 : 173,
+          c.choice === 0 ? 53 : 34,
+          c.choice === 0 ? 28 : 19,
+        );
+      }
+      const title = c.selected === 35 ? "OFFICE" : selected.name;
+      this.text(title, 160 - title.length * 4, 6, c.info ? "#0000aa" : "#fff");
+      this.draw("MAIN.ARC", 25, 0, 8, 175, -2);
+      this.draw("MAIN.ARC", 23, 0, 40, 172, -2);
+      this.text(String(c.day), c.day < 10 ? 18 : 14, 182, "#0000aa");
+      this.text(String(game.money), 176 - String(game.money).length * 8, 175);
+      if (!c.info)
+        this.draw("MAIN.ARC", 28, 0, c.cursor.x - 8, c.cursor.y - 8, -2);
+      return;
+    }
     if (game.scene === "money-bin") {
       this.draw("MBIN.ARC", 0, 0, 0, 0);
       for (const s of game.bin.current.sprites)

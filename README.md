@@ -4,7 +4,8 @@ HTML, CSS, vanilla JavaScript and Vite, with original DOS assets loaded locally.
 
 The current playable milestone is **title → difficulty → office → money-bin
 dive → office**, including the timing-based rare coin and $1000 reward. The full
-campaign and expedition levels remain unimplemented. See [current status](docs/STATUS.md)
+campaign remains partial: world-map browsing, Macaroon deposits, and office return
+are supported; expedition levels remain unimplemented. See [current status](docs/STATUS.md)
 for supported behavior, evidence and limitations.
 
 ## Run
@@ -37,9 +38,10 @@ npx playwright install chromium
 npm run verify
 ```
 
-This checks all 22 original file identities, deterministic unit tests, 30 original
-segment checkpoints and negative controls, actual browser controls/rendering/audio,
-exact office and aligned failed-pose pixels, folder loading, corrupted-file rejection, and a production build.
+This checks all 22 original file identities, deterministic unit tests, 33 original
+checkpoints and 6 negative controls, actual browser controls/rendering/audio,
+exact office/map and aligned failed-pose pixels, folder loading, corrupted-file
+rejection, cash banking, and a production build.
 Original captures are local-only and required by strict checks; missing captures
 fail with setup errors. Reproduction: [original scenario](docs/original-scenario.md).
 
@@ -49,6 +51,7 @@ Focused commands:
 npm test
 npm run verify:build
 npm run verify:reference
+npm run verify:campaign
 npm run test:browser
 npm run audit:assets
 npm run prepare:analysis
@@ -71,3 +74,6 @@ exports and diagnostic dumps in `.local/` or outside the repository.
 
 `dist/` uses relative URLs for eventual GitHub Pages hosting. No remote, push,
 publication or deployment is configured by this milestone.
+
+Campaign travel: Right+Space in the office opens the map. Select Macaroon to bank
+cash, then select the office to return. See [campaign evidence and limits](docs/campaign-travel.md).

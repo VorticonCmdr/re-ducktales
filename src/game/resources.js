@@ -4,6 +4,7 @@ export const REQUIRED_FILES = [
   "DUCKTALE.EXE",
   "MAIN.ARC",
   "MBIN.ARC",
+  "LOC.ARC",
   "IT.DRV",
 ];
 export async function verifiedResources(readFile) {

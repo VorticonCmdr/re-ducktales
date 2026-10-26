@@ -112,3 +112,11 @@ ASCII plus TAB, CR, LF and DOS EOF (`0x1a`). DOS EOF is hidden only in the visua
 preview. Decoded export preserves the original bytes. Cave maps, stock values,
 location metadata and jungle tables are shown verbatim; a gameplay schema for
 all their columns is still to be established.
+
+## Campaign location use
+
+The runtime now consumes all 35 `LOC.ARC` text records through the same verified
+archive decoder as the viewer. Coordinates are screen positions; flags and treasure
+IDs are retained separately. Campaign order is a permutation of resource IDs, not
+the archive order. See [campaign travel](campaign-travel.md) for static sources,
+RNG scope, map colors, travel costs, and the local original capture recipe.

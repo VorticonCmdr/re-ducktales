@@ -35,6 +35,9 @@
         <button id="fire">Start / Fire</button><button id="up">Up</button
         ><button id="down">Down</button
         ><button id="money-bin">Enter money bin</button
+        ><button id="map">Control center</button><button id="left">Left</button
+        ><button id="right">Right</button
+        ><button id="back">Back / Office</button
         ><button id="restart">Restart</button
         ><label
           ><input id="audio" type="checkbox" /> Sound (reconstructed)</label
@@ -42,11 +45,15 @@
       </div>
       <p id="help">
         Space / Enter: fire · Arrow keys: select · In the office, press Up +
-        Space to enter the money bin.
+        Space to enter the money bin; Right + Space opens the map. Click the map
+        to place the cursor, then fire to inspect a destination. Left / Right
+        select Map or Travel; fire confirms. Escape returns to the map or
+        office.
       </p>
       <p class="scope">
-        Playable milestone: title → office → money-bin dive → office. Campaign
-        travel and expedition levels are still being translated.
+        Campaign travel: office → world map → Macaroon bank → office. All
+        destinations can be inspected. Expedition activities and flights are
+        still being translated; departing for them stops with a diagnostic.
       </p>
       <output id="diagnostic" role="alert" hidden></output>
       <audio id="sound" preload="auto" hidden></audio>

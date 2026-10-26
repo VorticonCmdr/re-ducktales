@@ -1,3 +1,4 @@
+import { parseLocations } from "./campaign.js";
 import { Game } from "./application.js";
 import { Scheduler } from "./scheduler.js";
 import { Renderer } from "./renderer.js";
@@ -36,7 +37,10 @@ async function load(read) {
   try {
     $("status").textContent = "Checking original files…";
     resources = await verifiedResources(read);
-    game = new Game({ biosSeed: 0 });
+    game = new Game({
+      biosSeed: 0,
+      locations: parseLocations(resources.archives.get("LOC.ARC")),
+    });
     renderer = new Renderer($("game"), resources);
     $("loader").hidden = true;
     $("actions").hidden = false;
@@ -71,8 +75,30 @@ $("folder").onchange = async (event) => {
 };
 $("fire").onclick = () =>
   dispatch({ type: "fire", direction: held.has("ArrowUp") ? "up" : null });
-$("up").onclick = () => dispatch({ type: "up" });
-$("down").onclick = () => dispatch({ type: "down" });
+$("map").onclick = () => dispatch({ type: "map" });
+$("left").onclick = () =>
+  dispatch(
+    game?.scene === "map" && !game.campaign.info
+      ? { type: "step", direction: "left" }
+      : { type: "left" },
+  );
+$("right").onclick = () =>
+  dispatch(
+    game?.scene === "map" && !game.campaign.info
+      ? { type: "step", direction: "right" }
+      : { type: "right" },
+  );
+$("back").onclick = () => dispatch({ type: "back" });
+$("up").onclick = () =>
+  dispatch(
+    game?.scene === "map" ? { type: "step", direction: "up" } : { type: "up" },
+  );
+$("down").onclick = () =>
+  dispatch(
+    game?.scene === "map"
+      ? { type: "step", direction: "down" }
+      : { type: "down" },
+  );
 $("money-bin").onclick = () => {
   if (game?.scene !== "office") return;
   dispatch({ type: "money-bin" });
@@ -117,15 +143,34 @@ window.addEventListener("keydown", (event) => {
     });
   else if (event.code === "ArrowUp") dispatch({ type: "up" });
   else if (event.code === "ArrowDown") dispatch({ type: "down" });
-  else if (
-    game?.scene === "office" &&
-    ["ArrowLeft", "ArrowRight"].includes(event.code)
-  )
-    $("status").textContent =
-      "This route is not translated yet. Up + Space enters the money bin.";
+  else if (event.code === "ArrowLeft") dispatch({ type: "left" });
+  else if (event.code === "ArrowRight") dispatch({ type: "right" });
+  else if (event.code === "Escape") dispatch({ type: "back" });
+  if (event.code.startsWith("Arrow"))
+    dispatch({
+      type: "direction",
+      direction: event.code.slice(5).toLowerCase(),
+    });
 });
-window.addEventListener("keyup", (event) => held.delete(event.code));
-window.addEventListener("blur", () => held.clear());
+window.addEventListener("keyup", (event) => {
+  held.delete(event.code);
+  if (event.code.startsWith("Arrow"))
+    dispatch({ type: "direction", direction: null });
+});
+$("game").addEventListener("pointerdown", (event) => {
+  if (game?.scene !== "map" || game.campaign.info) return;
+  const r = $("game").getBoundingClientRect();
+  dispatch({
+    type: "point",
+    x: ((event.clientX - r.left) * 320) / r.width,
+    y: ((event.clientY - r.top) * 200) / r.height,
+  });
+  $("game").focus();
+});
+window.addEventListener("blur", () => {
+  held.clear();
+  dispatch({ type: "direction", direction: null });
+});
 document.addEventListener("visibilitychange", () => {
   held.clear();
   const now = performance.now();
@@ -180,10 +225,13 @@ function frame() {
       effects();
       renderer.render(game);
       $("money-bin").disabled = game.scene !== "office";
+      $("map").disabled = game.scene !== "office";
       $("status").textContent =
         game.scene === "money-bin"
           ? `Money bin · ${game.bin.phase} · Fire to dive`
-          : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
+          : game.scene === "map"
+            ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
+            : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
       $("game").dataset.scene = game.scene;
       $("game").dataset.state = JSON.stringify(game.snapshot());
     }

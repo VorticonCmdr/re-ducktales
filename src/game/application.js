@@ -1,15 +1,19 @@
+import { Campaign, OFFICE, travelDays } from "./campaign.js";
 import { MoneyBin } from "./money-bin.js";
 import { u32, u16 } from "./integer.js";
 export const DRIVER_HZ = 1193182 / (1365 * 12);
 export const RETRACE_HZ = 70.086;
 
 export class Game {
-  constructor({ biosSeed = 0 } = {}) {
+  constructor({ biosSeed = 0, locations = null } = {}) {
+    this.locations = locations;
+    this.campaign = locations ? new Campaign(locations, biosSeed) : null;
     this.scene = "title";
     this.difficulty = 0;
     this.money = 0;
     this.rareCoinTaken = false;
-    this.seed = u16(biosSeed);
+    this.biosSeed = u16(biosSeed);
+    this.seed = this.campaign?.seed ?? this.biosSeed;
     this.tick = 0;
     this.bin = null;
     this.effects = [];
@@ -23,6 +27,10 @@ export class Game {
       this.tick = 0;
       this.bin = null;
       this.money = 0;
+      this.campaign = this.locations
+        ? new Campaign(this.locations, this.biosSeed)
+        : null;
+      this.seed = this.campaign?.seed ?? this.biosSeed;
       this.rareCoinTaken = false;
       this.effects.push({ type: "stopAudio" });
       return;
@@ -37,7 +45,66 @@ export class Game {
       if (event.type === "fire") this.scene = "office";
       return;
     }
+    if (this.scene === "map") {
+      const c = this.campaign;
+      if (event.type === "step" && !c.info) {
+        const v = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] }[
+          event.direction
+        ];
+        if (!v) throw Error("Invalid map step");
+        c.point(c.cursor.x + v[0], c.cursor.y + v[1]);
+        return;
+      }
+      if (event.type === "direction") {
+        c.direction = event.direction;
+        return;
+      }
+      if (event.type === "point" && !c.info) {
+        c.point(event.x, event.y);
+        return;
+      }
+      if (event.type === "back") {
+        if (c.info) c.info = false;
+        else this.travel(OFFICE);
+        return;
+      }
+      if (c.info && ["left", "right"].includes(event.type)) {
+        c.choice = 1 - c.choice;
+        return;
+      }
+      if (event.type === "fire") {
+        if (c.selected === OFFICE) {
+          this.travel(OFFICE);
+          return;
+        }
+        if (!c.info) {
+          if (c.location !== OFFICE) {
+            this.travel(c.selected);
+            return;
+          }
+          c.info = true;
+          c.choice = 0;
+          c.direction = null;
+          return;
+        }
+        if (c.choice === 0) {
+          c.info = false;
+          return;
+        }
+        this.travel(c.selected);
+      }
+      return;
+    }
     if (this.scene === "office") {
+      if (
+        event.type === "map" ||
+        (event.type === "fire" && event.direction === "right")
+      ) {
+        if (!this.campaign) throw Error("Campaign locations not loaded");
+        this.campaign.openMap();
+        this.scene = "map";
+        return;
+      }
       if (
         event.type === "money-bin" ||
         (event.type === "fire" && event.direction === "up")
@@ -48,20 +115,42 @@ export class Game {
         return;
       }
       if (event.type === "fire" && ["left", "right"].includes(event.direction))
-        throw Error(
-          `Untranslated route: ${event.direction === "left" ? "control center" : "stock market"}.`,
-        );
+        throw Error("Untranslated route: investments.");
       if (event.type === "unsupported")
         throw Error(
-          `Untranslated route: ${event.route}. Current playable route: office → money bin → office.`,
+          `Untranslated route: ${event.route}. Supported routes: money bin and campaign bank travel.`,
         );
       return;
     }
     if (this.scene === "money-bin" && event.type === "fire")
       this.bin.enqueueFire();
   }
+  travel(target) {
+    const c = this.campaign;
+    if (target !== OFFICE && target !== 0)
+      throw Error(
+        `Untranslated expedition: ${c.locations[target].name}. No campaign state was advanced.`,
+      );
+    const days = travelDays(c.locations, c.location, target);
+    if (c.day + days >= 30)
+      throw Error(
+        "Campaign ending is not translated; journey would reach day 30.",
+      );
+    c.day += days;
+    c.location = target;
+    if (target === 0) {
+      c.banked = u32(c.banked + this.money);
+      this.money = 0;
+      this.rareCoinTaken = false;
+      c.openMap();
+    } else {
+      this.scene = "office";
+      c.info = false;
+    }
+  }
   advanceTick() {
     this.tick++;
+    if (this.scene === "map") this.campaign.advanceTick();
     if (this.scene !== "money-bin") return;
     this.bin.advanceTick();
     this.collectEffects();
@@ -99,6 +188,7 @@ export class Game {
       seed: this.seed,
       tick: this.tick,
       bin: this.bin?.snapshot() ?? null,
+      campaign: this.campaign?.snapshot() ?? null,
       diagnostic: this.diagnostic,
     };
   }

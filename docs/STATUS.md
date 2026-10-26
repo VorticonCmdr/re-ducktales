@@ -9,11 +9,14 @@ Up+Space (or Enter money bin) → wait for Scrooge's idle poses → Space →
 complete dive → return to office. Restart returns to the title.
 
 A correctly timed first dive awards $1000; subsequent dives cannot award another
-coin until the game's latch is reset. The current slice has no campaign travel,
-so restart is currently the only available latch reset. Original money-bin
+coin until the game's latch is reset. Macaroon bank travel and restart reset the latch. Original money-bin
 sprite coordinates, frame bytes, branch condition, and explicit timer delays
 are translated from overlay 9. The office is rendered from original assets.
 The difficulty choice is retained but does not change this activity.
+
+Campaign route: office → Right+Space → map → select Macaroon (212,131) →
+fire → Right → fire → bank (day 4) → office icon → fire → office (day 7).
+All 35 destinations can be inspected. See `docs/campaign-travel.md`.
 
 ## Supported build
 
@@ -33,18 +36,23 @@ also ignored. Production loading uses the visitor's own folder.
   more exact checkpoints. Omitted-input and altered-output
   negative controls fail. Starting-state conditions are explicit in the manifest.
 - Browser acceptance: actual keyboard route, asset hash rejection, restart, and
-  pixel-exact office and aligned failed-ending comparisons against local DOSBox captures.
+  pixel-exact office, opening world map, and aligned failed-ending comparisons against local DOSBox captures.
 - Independent simulation: successful timing branch, one-time $1000 reward,
   failure branch, integer/RNG boundaries, and scheduler catch-up checks.
 - These checks do not establish a full original campaign replay or exact sound
   emulation. Both branches were observed in the original, including its $1000 cash
   update. Timing evidence remains narrower than full-game fidelity. See the scenario manifest and capture recipe.
 
+Campaign reference: 3 exact original state checkpoints (zero-cash bank and office
+return), 2 negative controls. Browser and simulation also verify carrying a $1000
+money-bin reward through deposit. Nonzero deposit has not been compared in DOSBox.
+
 ## Known limitations
 
-- No map, plane travel, climbing, jungle, photography, cave exploration,
+- No plane gameplay, climbing, jungle, photography, cave exploration,
   stock trading, Glomgold progression, campaign ending, save/load or high scores.
-- Office choices for untranslated routes stop with a diagnostic. There is no
+- Investments and expedition departures stop with a diagnostic. Journeys reaching
+  day 30 stop before the unsupported campaign ending. There is no
   fallback gameplay or silent replacement mechanic.
 - Title/difficulty/office transitions omit original cutscenes and door transition
   animations. Navigation buttons are an accessibility adapter, not DOS UI assets.
@@ -71,7 +79,7 @@ npm run verify
 ```
 
 `npm run verify` checks all 22 file hashes, unit tests, the local original trace,
-negative controls, automated browser scenarios, and a production build. Missing
+negative controls, three campaign state checkpoints, automated browser scenarios, and a production build. Missing
 local traces/captures fail with setup errors. It does not silently skip them.
 
 Focused commands: `npm test`, `npm run verify:build`,
@@ -80,7 +88,8 @@ Focused commands: `npm test`, `npm run verify:build`,
 
 ## Next milestone
 
-Translate the office → control center → world-map route, preserving the original
-location records and campaign state. Then implement one actual expedition level
+Implement one actual expedition level
 with success/failure and return to the office before expanding to other levels.
-The full-game request remains incomplete.
+The full-game request remains incomplete. Campaign travel currently supports only
+Macaroon deposits and office return; location detail screens and transition timing
+remain partial, and Glomgold/stock progression is absent.

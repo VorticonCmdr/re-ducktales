@@ -1,0 +1,71 @@
+{
+  "id": "campaign-bank-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 f6d9b",
+  "captureSourceRevision": "214599e",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "headless": true,
+    "mute": true,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 3,
+  "startingRecipe": "Fresh launch, N, Space through intro/Easy Money, Right+Space, fire twice through patched security screen; map day 1, cash 0. See docs/campaign-travel.md.",
+  "inputs": [
+    {
+      "type": "fire"
+    },
+    {
+      "type": "fire"
+    },
+    {
+      "type": "map"
+    },
+    {
+      "type": "point",
+      "x": 212,
+      "y": 131
+    },
+    {
+      "type": "fire"
+    },
+    {
+      "type": "right"
+    },
+    {
+      "type": "fire"
+    },
+    {
+      "type": "point",
+      "x": 46,
+      "y": 139
+    },
+    {
+      "type": "fire"
+    }
+  ],
+  "rules": {
+    "comparison": "Exact day, location, cash, banked cash, and coin latch. Map PNG exact RGBA.",
+    "level": "Original routine/state comparison; independent closed-loop browser scenario separately.",
+    "exclusions": [
+      "Zero cash reference does not prove nonzero deposit against the original.",
+      "No title/security/bank cutscene timing comparison or complete campaign replay.",
+      "Location permutation RNG was statically translated; original starting RNG seed was not captured."
+    ],
+    "injections": [],
+    "fittedInputs": []
+  },
+  "artifacts": {
+    "trace": {
+      "path": ".local/reference-campaign.json",
+      "sha256": "5324ae65db2209296e430d0327874227f3bfe5736973de8ed38dad142eb6c38c"
+    },
+    "map": {
+      "path": ".local/original-map.png",
+      "sha256": "de05e837012d12561531473162859238acc2a37a98bbb53148bee52f5b7b48cb"
+    }
+  },
+  "verify": "npm run verify:campaign"
+}

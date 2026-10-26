@@ -58,6 +58,42 @@ test("keyboard route loads originals, dives, returns and restarts", async ({
   await page.screenshot({
     path: ".local/browser-results/office-after-dive.png",
   });
+  await page.locator("#map").click();
+  await expect(canvas).toHaveAttribute("data-scene", "map");
+  const bounds = await canvas.boundingBox();
+  await canvas.click({
+    position: { x: (bounds.width * 212) / 320, y: (bounds.height * 131) / 200 },
+  });
+  await page.keyboard.press("Space");
+  await expect
+    .poll(
+      async () =>
+        JSON.parse(await canvas.getAttribute("data-state")).campaign.info,
+    )
+    .toBe(true);
+  await page.keyboard.press("ArrowRight");
+  await expect
+    .poll(
+      async () =>
+        JSON.parse(await canvas.getAttribute("data-state")).campaign.choice,
+    )
+    .toBe(1);
+  await page.keyboard.press("Space");
+  await expect
+    .poll(
+      async () =>
+        JSON.parse(await canvas.getAttribute("data-state")).campaign.banked,
+    )
+    .toBe(1000);
+  const banked = JSON.parse(await canvas.getAttribute("data-state"));
+  expect(banked.money).toBe(0);
+  expect(banked.rareCoinTaken).toBe(false);
+  expect(banked.campaign.day).toBe(4);
+  await page.keyboard.press("Escape");
+  await expect(canvas).toHaveAttribute("data-scene", "office");
+  expect(JSON.parse(await canvas.getAttribute("data-state")).campaign.day).toBe(
+    7,
+  );
   await page.getByRole("button", { name: "Restart", exact: true }).click();
   await expect(canvas).toHaveAttribute("data-scene", "title");
   expect(JSON.parse(await canvas.getAttribute("data-state")).money).toBe(0);
@@ -189,7 +225,7 @@ test("local folder loading works without the development asset endpoint and unsu
   await page.keyboard.press("Space");
   await page.keyboard.up("ArrowLeft");
   await expect(page.locator("#diagnostic")).toContainText(
-    "Untranslated route: control center",
+    "Untranslated route: investments",
   );
   await page.getByRole("button", { name: "Restart", exact: true }).click();
   await expect(canvas).toHaveAttribute("data-scene", "title");

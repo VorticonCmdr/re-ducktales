@@ -86,6 +86,10 @@ def prepare():
     struct.pack_into('<HH', analysis_overlay, 20, 0, 0)
     struct.pack_into('<H', analysis_overlay, 26, 0)
     (output / 'MBIN_ANALYSIS.EXE').write_bytes(analysis_overlay)
+    office_map = bytearray((output / 'OVERLAY_02.EXE').read_bytes())
+    struct.pack_into('<HH', office_map, 20, 0xcaa, 0)
+    struct.pack_into('<H', office_map, 26, 0)
+    (output / 'OFFICE_MAP.EXE').write_bytes(office_map)
     report = dict(executableSha256=EXPECTED, packedHeaderOffset=pack,
                   imageBytes=len(image), relocations=len(relocations),
                   originalEntry=dict(cs=info[1], ip=info[0]), overlays=overlays)

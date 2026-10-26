@@ -2,7 +2,8 @@
 
 Build: `reference/build.json`; overlay 4 SHA-256
 `cefab7184f72f605af90ddcf9b8cc8027870fdacb9922acdb68e8d6212db3ae9`.
-The physics and course-generation modules are implemented and have conditional routine comparisons.
+Physics, course generation, scene/object updates and collision rules are translated.
+The checks include conditional comparisons, a closed-loop segment, and exact pixels.
 **It is not connected to browser gameplay yet.** Departure preparation remains
 the last working browser boundary. No flight or arrival acceptance is claimed.
 
@@ -202,17 +203,98 @@ physical addresses, not separate copies. Capture CPU/full DS atomically at each.
 Finally capture the first physics entry0e0c:1330. The separate first-frame PNG
 under `.local/` is exploratory material, not a verified rendering comparison.
 
+## Scene, object updates and collisions
+
+`flight-scene.js` translates the scene pass at f78–132f and HUD at2ba0–2cf7.
+It emits immutable drawing commands while advancing the original state changes.
+`flight-objects.js` translates194b–22ed and22ee–2576: balloon following/release,
+falling objects, the airship, launcher, water creature, birds, foreground bonuses
+and flags. `flight-collisions.js` translates261f–2b9f, including bounding-box
+adjustments, duplicate-collision suppression, bonus cash, race loss, arrival,
+boost/tether flags, reflections and randomized responses. The spin animation is
+an explicit required generator interface; its main-loop provider is still pending.
+
+`flight-raster.js` consumes those commands and original images/font, without
+access to simulation memory, time, input or RNG. It uses original transparency,
+eight-pixel strip alignment, palette and clipping. It stops on unsupported image
+frames/crops; there is no silent image substitution. Original IT.DRV resource1
+code at035d (live2ed7:035d) was matched byte-for-byte for the EGA sprite path.
+Its03ad–03b8 instructions use the unsigned frame byte without a strip bounds
+check. In particular, the initial landing-flag variantff still needs investigation
+before a complete flight can satisfy strict rendering acceptance.
+
+`npm run verify:flight-scene` adds22 checks:
+
+- Sixteen **closed-loop segment** state checkpoints, carrying the port's own
+  state from a captured initial data segment. They cover throttle, lift, heading
+  changes, gravity, sprite state and collision checks. No checkpoint is copied
+  back into the port. Fifteen original control values drive the intervals between
+  these sixteen checkpoints, and every required input has a subsequent observed
+  output. The final native return value is outside this replay's endpoint.
+- Three **conditional** state checks: the first full frame; a later scene with
+  birds, a balloon, cloud and tether structure; and balloon release phase1→2.
+- Three exact320×200 RGBA image comparisons of those scenes. No tolerance,
+  pixel exclusion or fitted alignment is used. These are renderer comparisons,
+  not browser flight acceptance.
+
+The state comparisons cover RNG, plane/camera/bounds, frame/day/rival counters,
+cash and gameplay flags, complete terrain/object arrays, and sprite descriptors.
+Stack, software-FPU workspace, CPU/driver/hardware state, processing latency and
+audio output are excluded at this routine boundary. Collision responses beyond
+the no-hit paths of the sixteen-frame replay are statically translated; they
+do not yet have equivalent runtime comparisons. Balloon release and drawing are
+validated separately. These checks do not establish an independent complete flight.
+
+Inputs and expected memory are separate local files pinned by
+`reference/flight-scene.json`. Inputs originate at the original input-provider
+return,0e0c:02b3, before the main loop stores/applies AX. The retained raw capture
+contains sixteen return values; the replay uses the first fifteen, ending before
+applying the final one. The checker rejects an omitted throttle, altered pixels,
+missing checkpoints and an extra unconsumed event. It validates every replay
+drawing command and stops on unexpected crash, termination or animation paths.
+Missing or corrupt local artifacts fail setup. No injected memory or fitted input
+is used. The starting memory remains a conditional internal starting state.
+
+Capture recipe, continuing the second ordinary flight from the course scenario:
+
+1. From stop96,0e0c:1330, save CPU/full DS as the loop start. Schedule Space down
+   at native frame0, Down down70/up100, Space up10000. The long hold continues
+   beyond this segment and is cancelled later; it is a setup action, not the
+   regression input stream. Use a persistent breakpoint at0e0c:02b3. At each of
+   sixteen stops, save CPU/full DS; record debugger AX low byte separately as the
+   consumption-boundary input. Captured controls are c0 then c5. The final event
+   is retained for provenance but not required before this replay's endpoint.
+2. Remove that breakpoint. Stop atf78 when DS:0fb2>=21. Save CPU/full DS plus
+   SS:[SP] eight bytes for the actual plane argument. Stop again at132f and save
+   CPU/full DS. Continue to the next1330 so the displayed page has reached a
+   retrace, then capture the raw PNG. Address correspondence remains unchanged.
+3. Cancel the hold schedule; request Up for48 native frames while retaining fire.
+   Stop atf78 when DS:7a61==1 (the tile24 balloon's release phase). Capture the
+   same entry/return pair and PNG. Its phase becomes2 and its falling body is
+   visible. This is a conditional observation, not an event-only flight replay.
+4. Cancel pending input and release Up/Down/Space. Continue to the next physics
+   entry and verify the release sequence fully dispatched. No restoration or
+   machine checkpoint is used. One owner controls the session throughout.
+
+The first scene PNG is displayed only after the page flip has reached video
+retrace. Capturing immediately at2a7 can return the previous black page; the
+documented next-physics-entry stop resolves that capture alignment exactly.
+
 ## Remaining flight work
 
 Terrain and initial obstacle placement now match both tested flight setups.
 Object placement conditionally changes terrain11 to8 and the following tile to0
-(3a68–3a89); the stage captures verify that distinction. Object updates, collision responses, race
-movement, scenery rendering, crash animation, flight timing, day changes, and
-arrival dispatch remain to be integrated. The original render routine also
-mutates gameplay state, so a pure Canvas renderer cannot simply replace it.
+(3a68–3a89); the stage captures verify that distinction. The translated scene now
+includes rival movement, HUD day progression, object updates and rendering.
+The main flight loop still needs to bind physics, controls, presentation waits,
+spin/boost/tether/airship/crash/landing animations and final day advancement.
+Then connect the real browser route, campaign consequences and arrival dispatch.
+The full-game objective remains incomplete.
 
 The live session has advanced through the dry crash, Glomgold's message, and
-the second departure. It is paused at the second physics entry of that ordinary
-flight (stop96,0e0c:1330). No breakpoints or input schedules remain active.
+the second departure. It is paused at a physics entry of that ordinary flight
+after the balloon release (stop118,0e0c:1330). No breakpoints or input
+schedules remain active; all three release events dispatched. The local
+`flight-live-last.json` snapshot records its state for the next investigation.
 The completed flight returned AX0 at main0855, day8; this observation is saved
 locally but is not yet an acceptance check of campaign crash/race consequences.

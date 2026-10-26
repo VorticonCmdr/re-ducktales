@@ -1,0 +1,105 @@
+{
+  "id": "flight-scene-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "c77a7d5",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 f6d9b",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "headless": true,
+    "mute": true,
+    "readOnlyMount": "game/",
+    "protected_mode": false
+  },
+  "startingRecipe": "Continue flight-course second ordinary flight at physics entry, stop96. Capture 16 input-return checkpoints at 0e0c:02b3 while holding Space and scheduling Down at native frame70..100. Continue to firstTile>=21 for scene pair; request Up to trigger the balloon release. See docs/flight.md.",
+  "expectedCheckpointCount": 22,
+  "expectedInputCount": 15,
+  "artifacts": {
+    "firstStart": {
+      "path": ".local/flight-generation-initial.json",
+      "type": "json",
+      "sha256": "10018249700115118a3746dbeb2345181c65463088c22562bdd20b315ec74105"
+    },
+    "firstExpected": {
+      "path": ".local/flight-generation-first-present.json",
+      "type": "json",
+      "sha256": "1e7449cd46a33bca2dfec3c929c0d7d41285145e8bca9dc571feb9c80b288205"
+    },
+    "firstImage": {
+      "path": ".local/original-flight-first.png",
+      "type": "png",
+      "sha256": "4088154fdc2320683d0c2e9d4716934491ed3b4ad5fa4a4e18eb4cd65599ccb4"
+    },
+    "loopStart": {
+      "path": ".local/flight-loop-start.json",
+      "type": "json",
+      "sha256": "8e89ec89dab4fdc83c32b9bce7799f577b7eee1c2310efe7f5469917c05a6c27"
+    },
+    "inputs": {
+      "path": ".local/flight-loop-inputs.json",
+      "type": "json",
+      "sha256": "e411e2c564c00acd2282486dc7ab6c4dfebd7801b9b181be19b77eba176709f3"
+    },
+    "expected": {
+      "path": ".local/flight-loop-expected.json",
+      "type": "json",
+      "sha256": "72e9d84e67c8e0298ae0baecb1150c92bd0ebd4927627964cdb10e384ecd0d82"
+    },
+    "sceneBefore": {
+      "path": ".local/flight-scene-before.json",
+      "type": "json",
+      "sha256": "83ebee65aff08609459f9a905dcd780b0cd6a6e376d53b6c815d111216855334"
+    },
+    "sceneAfter": {
+      "path": ".local/flight-scene-after.json",
+      "type": "json",
+      "sha256": "e8594d8c426f1a3525f59f06de85a5cdeb4724bc8aaa58d2f8e5968a0d48f81f"
+    },
+    "sceneImage": {
+      "path": ".local/original-flight-course-scene.png",
+      "type": "png",
+      "sha256": "29d72815d4fa85f2d95ff446e6dd2ffc45696da4a64c160889f0253a2785f803"
+    },
+    "dropBefore": {
+      "path": ".local/flight-drop-before.json",
+      "type": "json",
+      "sha256": "d8a5693bafff78d20fd45b352ea117b012012ff71e6559e002b709c978184337"
+    },
+    "dropAfter": {
+      "path": ".local/flight-drop-after.json",
+      "type": "json",
+      "sha256": "fe04e4bdd8189923adb3a2aed560a255aaa3fa9c5b58db259d9c947be4f8ec59"
+    },
+    "dropImage": {
+      "path": ".local/original-flight-drop.png",
+      "type": "png",
+      "sha256": "3b78eae5e1fdac8b649da237e141d2d3ed32955b205160b5e594b0e122a4cb95"
+    },
+    "capturedInputs": {
+      "path": ".local/flight-loop-inputs-captured.json",
+      "type": "json",
+      "sha256": "366a637dbab19f32dca0c81a4b70bddf6cd187d2a013f13618a3705c90395c33"
+    }
+  },
+  "rules": {
+    "level": "Sixteen-frame closed-loop routine segment with independent consumption-boundary input stream; three conditional scene-state and three pixel comparisons. Not an independent full-flight runtime or browser acceptance.",
+    "comparison": "Exact bytes of game state written by translated physics, scene, objects and supported collision paths. Whole 320x200 RGBA PNGs, without tolerance or excluded pixels.",
+    "conditions": [
+      "Starting memory is captured internal state at original flight physics entry; no later expected memory is used as an input.",
+      "Input codes originate at the return of original input provider 1124:0002, before main 02b3 stores them. They are recorded separately from expected states.",
+      "Conditional scene comparisons use independently captured entry memory and actual plane argument on the original stack.",
+      "Sprite data and fonts come from hash-verified original PLANE.ARC and MAIN.ARC.",
+      "The final checkpoint is before applying the newly returned control value. Only the fifteen controls between the sixteen checkpoints belong to this replay; every required control has a subsequent observed output. The sixteen-record raw capture is retained locally as flight-loop-inputs-captured.json."
+    ],
+    "exclusions": [
+      "Stack, software-FPU workspace, CPU registers other than capture identity, hardware/driver fields, timer state and original CPU processing latency.",
+      "Sound requests and analog output are not compared.",
+      "The closed-loop segment stops at input consumption checkpoints; it does not validate meaningful wall-clock timing or full flight/campaign outcomes.",
+      "Sprite fetches beyond declared strips stop strictly and are not substituted. Special flight animations, final arrival and campaign consequences are not covered."
+    ],
+    "injections": [],
+    "fittedInputs": []
+  },
+  "verify": "npm run verify:flight-scene"
+}

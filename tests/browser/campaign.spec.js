@@ -21,6 +21,31 @@ async function point(canvas, x, y) {
     position: { x: (r.width * x) / 320, y: (r.height * y) / 200 },
   });
 }
+async function caveMove(page, canvas, key, target) {
+  await page.waitForFunction(
+    () => {
+      const s = JSON.parse(document.querySelector("#game").dataset.state);
+      return s.diagnostic || s.scene !== "cave" || s.cave.phase === "exploring";
+    },
+    undefined,
+    { timeout: 5000 },
+  );
+  expect((await state(canvas)).scene).toBe("cave");
+  await page.keyboard.down(key);
+  await page.keyboard.down("Space");
+  await page.waitForFunction(
+    (target) => {
+      const s = JSON.parse(document.querySelector("#game").dataset.state);
+      return s.diagnostic || s.scene !== "cave" || s.cave.room === target;
+    },
+    target,
+    { polling: "raf", timeout: 5000 },
+  );
+  await page.keyboard.up("Space");
+  await page.keyboard.up(key);
+  expect((await state(canvas)).diagnostic).toBeNull();
+  expect((await state(canvas)).cave.room).toBe(target);
+}
 test("original map pixels and keyboard bank round trip", async ({ page }) => {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
@@ -119,6 +144,35 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   expect(result.campaign.rival.money).toBe(4500);
   expect(result.campaign.rival.location).toBe(1);
   expect(result.money).toBe(0);
+  await page.locator("#audio").check();
+  await c.focus();
+  await page.keyboard.press("Space");
+  await expect(c).toHaveAttribute("data-scene", "visit-notice");
+  const denied = await state(c);
+  expect(denied.visitNotice.reason).toBe("rival");
+  expect(denied.visitNotice.busy).toBe(true);
+  expect([
+    denied.money,
+    denied.campaign.day,
+    denied.campaign.location,
+    denied.seed,
+  ]).toEqual([
+    result.money,
+    result.campaign.day,
+    result.campaign.location,
+    result.seed,
+  ]);
+  await expect
+    .poll(() => page.locator("#sound").evaluate((a) => a.currentTime))
+    .toBeGreaterThan(0);
+  await page.screenshot({
+    path: ".local/browser-results/rival-visit-notice.png",
+  });
+  // This return must come from the native audio completion event, without Fire.
+  await expect(c).toHaveAttribute("data-scene", "map", { timeout: 12000 });
+  expect(await page.locator("#sound").evaluate((a) => a.ended)).toBe(true);
+  expect((await state(c)).seed).toBe(result.seed);
+  await page.locator("#audio").uncheck();
   await expect(page.locator("#diagnostic")).toBeHidden();
   await page.locator("#restart").click();
   await expect(c).toHaveAttribute("data-scene", "title");
@@ -246,6 +300,36 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
     .toBe(result.cave.money + 50);
   await expect(page.locator("#diagnostic")).toBeHidden();
 
+  // Intentionally fail this expedition, then retry the current destination.
+  // The retry uses the real map/guide input route and must not create a flight.
+  await caveMove(page, c, "ArrowLeft", 17);
+  await caveMove(page, c, "ArrowUp", 9);
+  await caveMove(page, c, "ArrowUp", 1);
+  await expect(c).toHaveAttribute("data-scene", "expedition-result");
+  const failed = await state(c);
+  expect(failed.cave.outcome.status).toBe("pit");
+  expect(failed.expeditionResult.phase).toBe("failure");
+  const failedDay = failed.campaign.day;
+  await page.keyboard.press("Space");
+  await expect(c).toHaveAttribute("data-scene", "map");
+  const retryMap = await state(c);
+  expect(retryMap.campaign.day).toBe(failedDay + 1);
+  expect(retryMap.campaign.playerCollected).not.toContain(
+    retryMap.campaign.location,
+  );
+  await page.keyboard.press("Space");
+  await expect(c).toHaveAttribute("data-scene", "expedition-briefing");
+  const retry = await state(c);
+  expect(retry.flight).toBeNull();
+  expect(retry.departure).toBeNull();
+  expect([retry.money, retry.campaign.day, retry.campaign.location]).toEqual([
+    retryMap.money,
+    retryMap.campaign.day,
+    retryMap.campaign.location,
+  ]);
+  await page.keyboard.press("Space");
+  await expect(c).toHaveAttribute("data-scene", "cave");
+
   // Plan from the original map; drive only real held-key controls. No game
   // memory or expected final state is injected into the browser.
   const before = await state(c);
@@ -347,6 +431,27 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
     returned.campaign.location,
   );
   expect(returned.money).toBe(award.money);
+  await page.keyboard.press("Space");
+  await expect(c).toHaveAttribute("data-scene", "visit-notice");
+  const collected = await state(c);
+  expect(collected.visitNotice.reason).toBe("player");
+  expect([
+    collected.money,
+    collected.campaign.day,
+    collected.campaign.location,
+    collected.seed,
+  ]).toEqual([
+    returned.money,
+    returned.campaign.day,
+    returned.campaign.location,
+    returned.seed,
+  ]);
+  await page.screenshot({
+    path: ".local/browser-results/collected-notice.png",
+  });
+  await page.keyboard.press("Space");
+  await expect(c).toHaveAttribute("data-scene", "map");
+  expect((await state(c)).money).toBe(award.money);
   await expect(page.locator("#diagnostic")).toBeHidden();
   await page.locator("#restart").click();
   await expect(c).toHaveAttribute("data-scene", "title");

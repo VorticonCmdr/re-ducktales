@@ -18,14 +18,15 @@ Failure shows MAIN34, waits20 seven-tick polls and then spends a campaign day.
 Success spends a day, shows MAIN35, adds the location's signed16 LOOT value to
 uint32 carried cash, waits40 seven-tick polls and marks the destination collected.
 Both return to the map. ID9 unlocks the original atomic-transport explanation;
-using that transport and revisiting collected destinations remain unsupported.
+using that transport remains unsupported. Collected destinations show the
+original notice; failed current destinations can be retried without flight.
 
 `cave-scene.js` translates setup and normal EGA composition. `cave.js` supplies
 independent driver/retrace clocks, held-input sampling, room transitions, cash,
 lamp counters and pursuer movement. `expedition.js` translates main12bb:00fe/022a:
 chapter screen, one RNG draw for its CLUES.ARC group, and30 seven-tick input polls (210 driver ticks), shortened by Fire.
 Other activity chapters stop before their untranslated gameplay. Same-location
-campaign dispatch remains unsupported pending collected-location rules.
+retry and collected-location notices are documented in `campaign-visits.md`.
 
 Map bits:1 left,2 right,4 down,8 up,16 visited/start,32 goal,64 pit. All64 words
 are parsed exactly, accepting original map4's trailing spaces. Entry locates
@@ -169,9 +170,9 @@ the browser and new original-reference scenario use drive2. Movement coordinate
 paths are statically translated/browser exercised; original movement captures
 remain next work.
 
-Live original now pauses at overlay0e0c:0b9c, stop20, DS/SS1403, instance
-0719a1b0cdcede0b85c39577ff760639. No active input schedule or breakpoints remain.
+The later campaign-retry capture advances the original to cave entry0e0c:0000,
+stop23, DS/SS1403, instance0719a1b0cdcede0b85c39577ff760639. No active input schedule or breakpoints remain.
 No original memory/register injection or partial/full restore was used.
 
 Next: original comparisons for C-drive room moves, striped reveal timing,
-collected-location dispatch, then the other expedition games.
+remaining outcome comparisons alongside the other expedition games.

@@ -1,0 +1,41 @@
+{
+  "id": "campaign-same-location-retry-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "54789a4",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "currentDrive": 2,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "startingRecipe": "Continue reference/cave-runtime.json second cave at0e0c:0b9c with no input to failure and map return (day6). Stop main01f5:0439 when a hardware fire selects current Klondike slot15 again. Capture CPU+DS64K+32 original code bytes. Release fire; continue to main01f5:04ca and capture CPU+DS64K, then cave0e0c:0000 after the guide and capture CPU+DS64K+32 code bytes. Target15 and current location15, cash0, day6; initial RNG62370, cave-entry RNG20669, variant0. No original game memory/register writes or machine restores.",
+  "expectedCheckpointCount": 2,
+  "expectedInputCount": 1,
+  "inputEvents": [
+    {
+      "type": "fire",
+      "at": "conditional map state initialized only from the BEFORE snapshot"
+    }
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "comparisonRules": "Exact day/location/cash/RNG at direct dispatcher boundary; original zero travel cost AX and local word; target flags and all location resource identities/ownership reconstructed only from BEFORE memory and verified original LOC.ARC. Exact incoming cave seed/variant/caller state after guide. Original main and cave code signatures required. Allocation pointers, CPU/stack outside stated fields, audio status/duration, driver clocks and presentation/reveal duration excluded. This is conditional caller-segment evidence, not a complete original campaign replay; normal Glomgold progression before the map is not replayed.",
+  "artifacts": {
+    "before": {
+      "path": ".local/retry-before.json",
+      "sha256": "3f83308228e0d63d3a6a0cb1093d3213473867d0ef64950f82a7770561ee924e"
+    },
+    "dispatch": {
+      "path": ".local/retry-dispatch.json",
+      "sha256": "b3b6fafd5e5f3b6f069e256a86b61da31feb83c90bd3eed26d89e985f0eb1d3f"
+    },
+    "entry": {
+      "path": ".local/retry-cave-entry.json",
+      "sha256": "c91aa181dd40bacfea2230a1e0daad2481bf90b29a2630eff79b578ec5b1628a"
+    }
+  },
+  "verify": "npm run verify:visits"
+}

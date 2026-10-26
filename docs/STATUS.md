@@ -12,7 +12,10 @@ Updated2026-10-26. **The full game is not complete.**
 - Cave arrival → original Junior Woodchuck Guide → cave rooms. Arrow+Space follows
   an open passage; entering a new safe room awards $50. Restart returns to title.
   Treasure and all three failure animations now lead to original result screens
-  and campaign return. Original ending replay/pixel parity is not yet verified.
+  and campaign return. Failed current expeditions can be retried through the
+  guide without another flight. Collected locations show their original notice
+  and return to the map without spending days or cash. Capture has conditional
+  original state/pixel evidence; full expedition timing parity remains unproven.
 
 Controls: Space/Enter fires. Up+Space enters the money bin; Right+Space opens the
 map. Hold Space for flight throttle; Down raises the nose, Up lowers it. In caves,
@@ -32,11 +35,13 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 
 ## Verification scope
 
-- 23 unit tests and12 browser checks. Browser coverage includes real flight
+- 27 unit tests and12 browser checks. Browser coverage includes real flight
  controls, crash/race return, airport landing, cave entry, safe-room cash,
- treasure recovery/$4500 award, collection/calendar/map return, restart,
+ pit failure, direct retry, treasure recovery/$4500 award, collected-location
+ notices (including native audio completion), calendar/map return, restart,
  folder loading, corrupt-file rejection and the existing audio adapter.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
+ same-location retry:2 conditional dispatcher/cave-call checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
 - Flight:10 conditional physics/control,5 course setup,22 scene checkpoints
  (including16 closed-loop segment states with15 independent inputs and3 exact
@@ -66,8 +71,8 @@ variant0. These checks do not establish a complete original campaign replay.
 - Cave capture now matches an original segment and aligned PNG; treasure, pit
   and expiry endings have static/independent checks. Full C-drive entry/exit
   animations are translated, but striped reveals and original movement/timing
-  comparisons remain incomplete. Same-location and collected-location dispatch
-  remain incomplete in the browser and stop explicitly.
+  comparisons remain incomplete. Collected-location notices lack original pixel
+  and timing comparisons; their state and explicit device boundaries are tested.
 - Jungle, mountain, photography, stock trading, campaign endings, normal
   Glomgold progression, atomic transport, save/load and high scores are absent.
 - Flight spin/boost/tether/airship paths are statically translated with limited
@@ -91,16 +96,15 @@ npm run verify
 ```
 
 Focused: `npm test`, `npm run test:browser`, `npm run verify:loot`,
-`npm run verify:cave`, and the existing reference/campaign/departure/flight
+`npm run verify:cave`, `npm run verify:visits`, and the existing reference/campaign/departure/flight
 verifiers listed in package.json. Analysis: `npm run prepare:analysis`,
 `npm run prepare:flight-analysis`, `npm run prepare:cave-analysis`.
 
-Next: compare C-drive cave movement and remaining outcomes with the original,
-implement collected-location dispatch, then expand the other expeditions, trading and endings. Capture
-room transitions, lamp and pursuit at input-consumption boundaries. Full-game
-work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
+Next: deliver the next expedition game, then expand jungle/photography,
+trading and endings. Continue targeted original comparisons for cave movement,
+remaining outcomes and notice presentation/timing. Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-paused at cave0e0c:0b9c, DS/SS1403, stop20. No input schedule or breakpoints
-remain. No machine restore was used. Revalidate addresses after any relaunch.
+paused at cave0e0c:0000, DS/SS1403, stop23. No input schedule or breakpoints
+remain. No machine restore was used. Revalidate addresses after relaunch.

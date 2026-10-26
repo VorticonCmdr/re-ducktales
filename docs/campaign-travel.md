@@ -106,3 +106,8 @@ omitted-departure and altered-output negative controls. It rejects missing,
 corrupt, extra or unfinished checkpoints. `npm run test:browser` adds real input,
 original loading/rendering, exact map PNG comparison, cancellation, unsupported
 flight rejection, and restart. `npm run verify` runs all required checks.
+
+Retry/ownership dispatch now follows the original before flight: current failed
+expeditions restart via their guide; player/rival collected destinations show
+notices and return to the origin map. See [campaign visits](campaign-visits.md)
+for original checkpoints, timing/device boundaries and verification scope.

@@ -185,6 +185,12 @@ export class Renderer {
       );
       return;
     }
+    if (game.scene === "visit-notice") {
+      this.draw("MAIN.ARC", game.visitNotice.portrait, 0, 0, 0);
+      for (const { at, x, y } of game.visitNotice.rows)
+        this.text(executableText(this.resources.executable, at), x, y);
+      return;
+    }
     if (game.scene === "expedition-briefing") {
       this.draw("MAIN.ARC", 31, 0, 0, 0);
       this.text(

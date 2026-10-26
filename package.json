@@ -13,7 +13,7 @@
     "prepare:analysis": "python3 scripts/prepare-analysis.py",
     "verify:reference": "node scripts/verify-reference.js",
     "verify:build": "node scripts/verify-build.js",
-    "verify": "npm run verify:build && npm test && npm run verify:reference && npm run verify:campaign && npm run verify:loot && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run verify:flight-scene && npm run verify:flight-runtime && npm run verify:cave && npm run test:browser && npm run build",
+    "verify": "npm run verify:build && npm test && npm run verify:reference && npm run verify:campaign && npm run verify:visits && npm run verify:loot && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run verify:flight-scene && npm run verify:flight-runtime && npm run verify:cave && npm run test:browser && npm run build",
     "format": "prettier --write src/game scripts/verify-*.js tests/game.test.js tests/browser/*.js index.html playwright.config.js reference/*.json",
     "verify:campaign": "node scripts/verify-campaign.js",
     "verify:departure": "node scripts/verify-departure.js",
@@ -24,7 +24,8 @@
     "verify:flight-runtime": "node scripts/verify-flight-runtime.js",
     "verify:loot": "node scripts/verify-loot.js",
     "prepare:cave-analysis": "python3 scripts/prepare-cave-analysis.py",
-    "verify:cave": "node scripts/verify-cave.js"
+    "verify:cave": "node scripts/verify-cave.js",
+    "verify:visits": "node scripts/verify-visits.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

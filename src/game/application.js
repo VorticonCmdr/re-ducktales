@@ -4,6 +4,7 @@ import { MoneyBin } from "./money-bin.js";
 import { Flight } from "./flight.js";
 import { Cave } from "./cave.js";
 import { ExpeditionBriefing } from "./expedition.js";
+import { CampaignVisitNotice } from "./campaign-visit.js";
 import { nextRandom, u8, u32, u16 } from "./integer.js";
 export const DRIVER_HZ = 1193182 / (1365 * 12);
 export const RETRACE_HZ = 70.086;
@@ -20,6 +21,7 @@ export class Game {
     this.expeditionResources = expeditionResources;
     this.audioEnabled = audioEnabled;
     this.audioScope = 0;
+    this.visitNotice = null;
     this.cave = null;
     this.briefing = null;
     this.loot = loot;
@@ -48,10 +50,12 @@ export class Game {
         throw Error("Invalid audio setting");
       this.audioEnabled = event.enabled;
       this.cave?.setAudioEnabled(event.enabled);
+      this.visitNotice?.setAudioEnabled(event.enabled);
       return;
     }
     if (event.type === "audio-status") {
       this.cave?.setAudioStatus(event.token, event.busy);
+      this.visitNotice?.setAudioStatus(event.token, event.busy);
       return;
     }
     if (event.type === "restart") {
@@ -63,6 +67,7 @@ export class Game {
       this.flight = null;
       this.flightMemory = null;
       this.cave = null;
+      this.visitNotice = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
       this.money = 0;
@@ -202,6 +207,10 @@ export class Game {
       if (event.type === "fire") this.expeditionResult.skipRequested = true;
       return;
     }
+    if (this.scene === "visit-notice") {
+      if (event.type === "fire") this.visitNotice.skipRequested = true;
+      return;
+    }
     if (this.scene === "money-bin" && event.type === "fire")
       this.bin.enqueueFire();
   }
@@ -209,12 +218,33 @@ export class Game {
     const c = this.campaign;
     const days = travelDays(c.locations, c.location, target);
     if (target !== OFFICE && target !== 0) {
-      if (c.locations[target].playerCollected)
-        throw Error("Untranslated collected-location visit.");
-      if (days === 0)
-        throw Error(
-          `Untranslated expedition activity: ${c.locations[target].name}.`,
-        );
+      const destination = c.locations[target];
+      this.rareCoinTaken = false;
+      c.direction = null;
+      if (destination.playerCollected || destination.rivalCollected) {
+        this.visitNotice = new CampaignVisitNotice({
+          reason: destination.playerCollected ? "player" : "rival",
+          target,
+          audioEnabled: this.audioEnabled,
+          token: `visit:${++this.audioScope}`,
+        });
+        this.scene = "visit-notice";
+        this.effects.push({ type: "stopAudio" });
+        if (this.visitNotice.reason === "rival")
+          this.effects.push({
+            type: "sound",
+            id: 0x6e,
+            token: this.visitNotice.token,
+          });
+        return;
+      }
+      if (days === 0) {
+        this.flight = null;
+        this.departure = null;
+        this.effects.push({ type: "stopAudio" });
+        this.arrive(target, destination.flags);
+        return;
+      }
       const departure = new Departure({
         from: c.location,
         target,
@@ -251,6 +281,20 @@ export class Game {
   }
   advanceTick() {
     this.tick++;
+    if (this.scene === "visit-notice") {
+      if (this.visitNotice.advanceTick()) {
+        const fireClick =
+          this.audioEnabled &&
+          this.visitNotice.skipRequested &&
+          this.visitNotice.phase === "dialogue";
+        this.visitNotice = null;
+        this.campaign.openMap();
+        this.scene = "map";
+        this.effects.push({ type: "stopAudio" });
+        if (fireClick) this.effects.push({ type: "sound", id: 0x24 });
+      }
+      return;
+    }
     if (this.scene === "expedition-result") {
       if (this.advanceDialogue(this.expeditionResult))
         this.finishExpeditionResult();
@@ -431,16 +475,18 @@ export class Game {
     }
     this.arrive();
   }
-  arrive() {
-    this.campaign.location = this.departure.target;
+  arrive(target = this.departure?.target, flags = this.departure?.flags) {
+    if (!Number.isInteger(target) || target < 1 || target > 34)
+      throw Error("Missing expedition destination");
+    this.campaign.location = target;
     if (this.campaign.day > 30)
       throw Error("Untranslated campaign ending after flight.");
     if (!this.expeditionResources)
       throw Error(
-        `Untranslated expedition arrival: ${this.campaign.locations[this.departure.target].name}. Flight outcome is retained.`,
+        `Untranslated expedition arrival: ${this.campaign.locations[target].name}.`,
       );
     this.briefing = new ExpeditionBriefing({
-      flags: this.departure.flags,
+      flags,
       seed: this.seed,
       clues: this.expeditionResources.clues,
     });
@@ -510,6 +556,8 @@ export class Game {
         this.scene === "expedition-result"
           ? { ...this.expeditionResult }
           : null,
+      visitNotice:
+        this.scene === "visit-notice" ? this.visitNotice.snapshot() : null,
       diagnostic: this.diagnostic,
     };
   }

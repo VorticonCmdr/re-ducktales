@@ -1,0 +1,46 @@
+{
+  "id": "flight-crash-runtime-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "13a2bba",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 f6d9b",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "headless": true,
+    "mute": true,
+    "readOnlyMount": "game/",
+    "protected_mode": false
+  },
+  "startingRecipe": "From the previous second-flight map on day 12, move Down for 1000 ms and fire to enter another one-day ordinary flight. Same CS base 0e0c and DS/SS 1403 were checked against original bytes. Flight parameters at entry: day12, duration1, racing0, seed52740. Capture CPU and DS atomically at 0e0c:0b45 after the crash delay. The complete captured DS is the conditional initial state; earlier input history is not a regression input. Continue to 0b9a after 25 crash presentations, then 0ee6 after calendar update. No keys held during this segment. Continue main01f5:08f3 (repair day+2, before wait60), then01f5:0ae5 (wreckage loss, before wait100); CPU+DS captures validate the caller carrying cash50 through to cash25 and RNG46558.",
+  "evidenceLevel": "conditional animation segment with closed-loop state across two checkpoints; not complete-flight replay",
+  "expectedCheckpointCount": 4,
+  "requiredPresentationCount": 27,
+  "inputEvents": [],
+  "injections": [],
+  "fittedInputs": [],
+  "comparisonRules": "Exact game-state ranges in scripts/verify-flight-runtime.js: physics/scene/collision fields, terrain, objects, all sprite descriptors including their unchanged captured allocation pointers. CPU, stack, software-FPU scratch, clock, device buffers and allocator bookkeeping are outside this simulation boundary. No pixel comparison or clock alignment claimed. The port repeats its seven-driver-tick crash wait, which does not mutate compared state. Caller comparison adds exact day, unsigned32 cash and RNG at two repair boundaries. Synthetic target1 is unused by those rules; no destination/expedition behavior is claimed.",
+  "artifacts": {
+    "start": {
+      "path": ".local/flight-runtime-crash-start.json",
+      "sha256": "825b82355f3015765015f9512b2fe15865c8ff92865efe0312c88753910538be"
+    },
+    "end": {
+      "path": ".local/flight-runtime-crash-end.json",
+      "sha256": "08af0f422ae6a17dd4731e779cf058f103e9fe54e62da9b781ebaab5f437aa09"
+    },
+    "final": {
+      "path": ".local/flight-runtime-final.json",
+      "sha256": "8a3173566765f69d575c4dfb10741509f0d8ecfe99da1d9a6f476994cf8f99a1"
+    },
+    "repair": {
+      "path": ".local/flight-repair-start.json",
+      "sha256": "81f8cef541e63a624e99616aebb5781c60688d9729a1d2001a05cf950eae9afe"
+    },
+    "loss": {
+      "path": ".local/flight-repair-loss.json",
+      "sha256": "79d037037b2e42e4632cdbaf644821a4744934eadd0c07755cc7d275b2ab607b"
+    }
+  },
+  "verify": "npm run verify:flight-runtime"
+}

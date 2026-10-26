@@ -13,6 +13,34 @@ export function renderFlightPixels(commands, entries, font) {
       for (let y = Math.max(0, c.y); y < Math.min(200, c.y + c.height); y++)
         for (let x = Math.max(0, c.x); x < Math.min(320, c.x + c.width); x++)
           put(x, y, c.color);
+    } else if (c.op === "line") {
+      // Resident 140e:00b0 dispatches axis lines to inclusive routines.
+      // EGA 0589 uses major-axis count for diagonals, excluding the endpoint,
+      // and advances the minor axis only for an error strictly above zero.
+      if (!EGA[c.color] || ![c.x, c.y, c.x2, c.y2].every(Number.isInteger))
+        throw Error("Invalid flight line");
+      const dx = Math.abs(c.x2 - c.x),
+        dy = Math.abs(c.y2 - c.y);
+      const sx = Math.sign(c.x2 - c.x),
+        sy = Math.sign(c.y2 - c.y);
+      const horizontal = dx >= dy,
+        major = Math.max(dx, dy),
+        minor = Math.min(dx, dy);
+      let x = c.x,
+        y = c.y,
+        error = 2 * minor - major;
+      const count = major + (dx === 0 || dy === 0 ? 1 : 0);
+      for (let i = 0; i < count; i++) {
+        put(x, y, c.color);
+        if (error > 0) {
+          if (horizontal) y += sy;
+          else x += sx;
+          error -= 2 * major;
+        }
+        error += 2 * minor;
+        if (horizontal) x += sx;
+        else y += sy;
+      }
     } else if (c.op === "text") {
       if (!font || font.length !== 2056)
         throw Error("Missing original flight font");
@@ -29,6 +57,16 @@ export function renderFlightPixels(commands, entries, font) {
       if (!entry || ![1, 2].includes(entry.type))
         throw Error(`Missing flight image ${c.asset}`);
       const sprite = c.op === "sprite";
+      // EGA driver 035d clips scanlines/columns before dereferencing pixels.
+      // An offscreen flag may pass frame ff; it has no pixel or mask reads.
+      if (
+        sprite &&
+        (c.x >= 320 ||
+          c.y >= 200 ||
+          c.x + entry.width <= 0 ||
+          c.y + entry.height <= 0)
+      )
+        continue;
       if (
         sprite &&
         (!Number.isInteger(c.frame) || c.frame < 0 || c.frame >= entry.frames)

@@ -1,4 +1,4 @@
-import { parseLocations } from "./campaign.js";
+import { parseLocations, parseLoot } from "./campaign.js";
 import { Game } from "./application.js";
 import { Scheduler } from "./scheduler.js";
 import { Renderer } from "./renderer.js";
@@ -12,8 +12,24 @@ let game,
   scheduler,
   pausedAt = null;
 const held = new Set();
+function flightControls() {
+  dispatch({
+    type: "controls",
+    fire: held.has("Space") || held.has("Enter"),
+    direction:
+      ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
+        .filter((k) => held.has(k))
+        .at(-1)
+        ?.slice(5)
+        .toLowerCase() ?? null,
+  });
+}
 function fatal(error) {
   if (game) game.fail(error);
+  if (game) {
+    $("game").dataset.scene = game.scene;
+    $("game").dataset.state = JSON.stringify(game.snapshot());
+  }
   $("diagnostic").hidden = false;
   $("diagnostic").textContent =
     `Stopped: ${error.message}\nRestart after resolving this diagnostic.`;
@@ -40,6 +56,11 @@ async function load(read) {
     game = new Game({
       biosSeed: 0,
       locations: parseLocations(resources.archives.get("LOC.ARC")),
+      loot: parseLoot(resources.archives.get("LOOT.ARC")),
+      flightResources: {
+        image: resources.executable,
+        entries: resources.archives.get("PLANE.ARC"),
+      },
     });
     renderer = new Renderer($("game"), resources);
     $("loader").hidden = true;
@@ -129,6 +150,7 @@ window.addEventListener("keydown", (event) => {
   if (event.target instanceof HTMLInputElement) return;
   event.preventDefault();
   held.add(event.code);
+  flightControls();
   if (event.repeat) return;
   if (event.code === "Space" || event.code === "Enter")
     dispatch({
@@ -154,6 +176,7 @@ window.addEventListener("keydown", (event) => {
 });
 window.addEventListener("keyup", (event) => {
   held.delete(event.code);
+  flightControls();
   if (event.code.startsWith("Arrow"))
     dispatch({ type: "direction", direction: null });
 });
@@ -169,10 +192,12 @@ $("game").addEventListener("pointerdown", (event) => {
 });
 window.addEventListener("blur", () => {
   held.clear();
+  flightControls();
   dispatch({ type: "direction", direction: null });
 });
 document.addEventListener("visibilitychange", () => {
   held.clear();
+  flightControls();
   const now = performance.now();
   if (document.hidden) {
     pausedAt = now;
@@ -229,12 +254,16 @@ function frame() {
       $("back").disabled = game.scene === "departure";
       $("status").textContent =
         game.scene === "departure"
-          ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · ${game.departure.activity} expedition · Flight gameplay is not available yet. Restart to play again.`
-          : game.scene === "money-bin"
-            ? `Money bin · ${game.bin.phase} · Fire to dive`
-            : game.scene === "map"
-              ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
-              : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
+          ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · Fire to fly`
+          : game.scene === "flight"
+            ? `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
+            : game.scene === "rival-claim"
+              ? `Glomgold has taken the treasure · Fire to continue`
+              : game.scene === "money-bin"
+                ? `Money bin · ${game.bin.phase} · Fire to dive`
+                : game.scene === "map"
+                  ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
+                  : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
       $("game").dataset.scene = game.scene;
       $("game").dataset.state = JSON.stringify(game.snapshot());
     }

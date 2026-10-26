@@ -4,8 +4,10 @@ Build: `reference/build.json`; overlay 4 SHA-256
 `cefab7184f72f605af90ddcf9b8cc8027870fdacb9922acdb68e8d6212db3ae9`.
 Physics, course generation, scene/object updates and collision rules are translated.
 The checks include conditional comparisons, a closed-loop segment, and exact pixels.
-**It is not connected to browser gameplay yet.** Departure preparation remains
-the last working browser boundary. No flight or arrival acceptance is claimed.
+Flight is connected to the browser. Actual keyboard takeoff, crash, losing-race
+return and restart are covered by browser acceptance. Airport landing is also
+exercised through the keyboard adapter. Arrival then stops at the explicit
+untranslated expedition boundary; no level result is substituted.
 
 ## Implemented rules
 
@@ -38,8 +40,8 @@ signed 16-bit camera fields, and truncation toward zero are deliberate.
 
 The return value separates a sprite pointer, sound request, and required water
 splash retraces. The caller must gate sound using original sound-enable state.
-Water splash rendering is **not implemented or validated** by this routine;
-its three retraces must be supplied by the later flight effect adapter. No
+The Flight main loop now supplies the three water splash retraces; the water
+branch has not been original-capture validated. No
 device completion or wait is silently simulated here.
 
 ## Conditional reference scenario
@@ -286,15 +288,91 @@ Terrain and initial obstacle placement now match both tested flight setups.
 Object placement conditionally changes terrain11 to8 and the following tile to0
 (3a68–3a89); the stage captures verify that distinction. The translated scene now
 includes rival movement, HUD day progression, object updates and rendering.
-The main flight loop still needs to bind physics, controls, presentation waits,
-spin/boost/tether/airship/crash/landing animations and final day advancement.
-Then connect the real browser route, campaign consequences and arrival dispatch.
+The main loop and browser controls are now connected, including the normal
+race/crash outcome and airport landing. Expedition arrival dispatch is the next
+implementation boundary; special collisions need wider original-capture coverage.
 The full-game objective remains incomplete.
 
-The live session has advanced through the dry crash, Glomgold's message, and
-the second departure. It is paused at a physics entry of that ordinary flight
-after the balloon release (stop118,0e0c:1330). No breakpoints or input
-schedules remain active; all three release events dispatched. The local
-`flight-live-last.json` snapshot records its state for the next investigation.
-The completed flight returned AX0 at main0855, day8; this observation is saved
-locally but is not yet an acceptance check of campaign crash/race consequences.
+The earlier stop118/flight-live-last snapshot is historical, not the current
+live state. The session now pauses at main01f5:0ae5 after the third ordinary
+flight's repairs (day15,cash25). No keys, input schedules or breakpoints remain.
+The first losing-race return observed AX0/day8 at main0855; its broader campaign
+consequences remain static evidence rather than a captured full-campaign replay.
+
+## Browser flight runtime and conditional crash comparison
+
+`src/game/flight.js` supplies overlay4's main loop: six driver ticks between
+normal physics updates, explicit retrace presentation, input consumed after
+scene/collision processing, spin/boost/airship/tether providers, water splash,
+25 crash presentations, 52 airport-jitter presentations and the 219-driver-tick
+landing wait. Final day uses the saved departure day plus duration, adjusted -1
+for an arrival under tiles*5 frames or +1 above tiles*11. Rendering never advances
+simulation. Flight retains its data segment between journeys.
+
+Special animation translations are static evidence; they are not all validated
+against original execution. The engine sound is currently omitted; SFX use the
+existing optional reconstructed audio adapter. Forced rival claim presentation
+uses the sound-disabled 40-tick delay, without original speech audio. Browser
+instruction/render cost is not modeled, so total flight duration is not yet
+original-aligned. The browser sound option does not establish audio fidelity.
+
+Main0855..0b36 distinguishes race failure from ordinary crash. A race failure
+calls 126b:0008(1), consumes three RNG draws, credits the location treasure to
+Glomgold and returns to map at the destination. Further races for that claimed
+location are suppressed. An ordinary crash adds two repair days, waits60 ticks,
+and skips wreckage search/RNG entirely for signed cash<=0. Positive cash consumes
+one draw: rolls0/1 lose nothing,2..4 lose cash>>3,5..7 cash>>2,8/9 cash>>1. Only
+the low16 bits of that signed32-bit shift are subtracted from unsigned32 cash.
+The wreckage dialogue waits100 ticks; fire can shorten both waits. Both landing
+and repaired ordinary crash continue to expedition entry, which currently stops.
+The captured positive-cash repair case below validates day/cash/RNG. Other
+caller branches are statically translated, not full-campaign replay evidence.
+
+`npm run verify:flight-runtime` requires the local artifacts pinned in
+`reference/flight-runtime.json`. Capture CPU+DS atomically at 0e0c:0b45 (after
+crash delay),0b9a (after crash frames),0ee6 (after final calendar). Original code
+at1330 still starts `55 8b ec b8 12 00 9a 9e 1e 03 06 56 a1 18 6d 8b`;
+CS0e0c,DS/SS1403 and real mode were rechecked before capture. The third flight
+starts day12,duration1,racing0,seed52740. The regression explicitly begins at
+its captured crash boundary (frame132,cash50), with no subsequent inputs, and
+carries its own state through the next two checkpoints. It is **conditional**:
+no fitted earlier input history or whole-machine restore is used or claimed.
+The port repeats its seven-tick wait from that boundary; compared game state is
+unchanged by that wait. Clock alignment and framebuffer pixels are outside this
+check. All declared state ranges match exactly, including all sprite descriptors,
+objects, terrain, cash, frame counter, RNG and day13. Missing/corrupt fixtures,
+unfinished presentations and changed day fail. The omitted-frame, changed-day and
+missing-checkpoint negative controls are required.
+
+An earlier exploratory capture attempted to stop at0b95 after a crash. That
+address is the successful-landing branch, so it did not fire. Its running-state
+read is invalid for comparison and is not in any acceptance manifest. Subsequent
+capture uses0b9a and validates every stop. `input_key(pressed:true)` also behaved
+as a tap (two scheduled events); use a one-event `input_sequence` for held keys.
+Do not infer consumed inputs from resulting position or timers. Earlier throttle
+exploration is not accepted as an input replay.
+
+The goal flag starts with frameff. At initial presentation its rectangle is
+entirely offscreen, so EGA035d performs no pixel/mask reads. The rasterizer clips
+that case before frame validation. Once any portion is visible, an invalid frame
+still fails. Ordinary visible frames and original PNG comparisons remain exact.
+Tether lines use resident140e:00b0/IT.DRV1:0589 axis-inclusive/diagonal-exclusive
+Bresenham, with strictly-positive error tests. HUD selects global color4; text
+passes its own color directly and leaves that global line color intact. This
+line path remains static evidence pending an original tether capture.
+
+The same conditional outcome continues into main01f5:08f3 and0ae5: day13 becomes
+15, cash50 remains50 through the repair announcement, RNG7341 becomes46558
+(roll8), and cash becomes25 in the wreckage dialogue. The verifier carries its
+translated flight result into the actual application caller and matches day,
+cash and RNG at both stops. Target1 is a synthetic unused caller parameter; no
+expedition result, destination comparison or dialogue-pixel comparison is claimed.
+Four total conditional checkpoints are now required by this verifier.
+
+LOC's fourth number is a one-based treasure ID. Main18b4..1a30 resolves it
+through LOOT.ARC; it is never a cash value. Klondike ID26 selects resource25,
+whose first line is4500; original captured DS:6fe8+2 also contains4500 for that
+location. The browser loads/validates LOOT.ARC and credits4500 after a lost
+Klondike race. Zero IDs require original random assignment, which is still
+untranslated and stops explicitly. Campaign initialization therefore still omits
+those later loot RNG draws; this route is not whole-campaign RNG parity.

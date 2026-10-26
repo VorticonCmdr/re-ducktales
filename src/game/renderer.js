@@ -1,5 +1,6 @@
 import { executableText } from "./executable.js";
 import { imagePixels, EGA } from "../assets.js";
+import { renderFlightPixels } from "./flight-raster.js";
 export class Renderer {
   constructor(canvas, resources) {
     this.canvas = canvas;
@@ -59,6 +60,23 @@ export class Renderer {
     }
   }
   render(game) {
+    if (game.scene === "flight") {
+      if (game.flight.current)
+        this.ctx.putImageData(
+          new ImageData(
+            renderFlightPixels(
+              game.flight.current,
+              this.resources.archives.get("PLANE.ARC"),
+              this.font,
+            ),
+            320,
+            200,
+          ),
+          0,
+          0,
+        );
+      return;
+    }
     this.ctx.fillStyle = "#000";
     this.ctx.fillRect(0, 0, 320, 200);
     if (game.scene === "title") {
@@ -147,6 +165,51 @@ export class Renderer {
           60 + i * 16,
         ),
       );
+      return;
+    }
+    if (game.scene === "rival-claim") {
+      this.draw("MAIN.ARC", 33, 0, 0, 0);
+      const offsets = game.claim.variant ? [0x52c, 0x538] : [0x541, 0x552];
+      offsets.forEach((at, i) =>
+        this.text(
+          executableText(this.resources.executable, at),
+          168,
+          60 + i * 16,
+        ),
+      );
+      this.text(executableText(this.resources.executable, 0x562), 168, 100);
+      this.text(executableText(this.resources.executable, 0x571), 168, 116);
+      const name = game.campaign.locations[game.departure.target].name;
+      this.text(name, 224 - name.length * 4, 132);
+      this.text(
+        executableText(this.resources.executable, 0x57f),
+        224 + name.length * 4,
+        132,
+      );
+      return;
+    }
+    if (game.scene === "crash-repairs") {
+      const repair = game.repairs.phase === "repair";
+      this.draw("MAIN.ARC", repair ? 41 : 32, 0, 0, 0);
+      const offsets = repair
+        ? [0x1f5, 0x208, 0x219, 0x227]
+        : [
+            0x232,
+            0x244,
+            0x256,
+            ...(game.repairs.loss ? [0x285, 0x295] : [0x268, 0x278]),
+            0x29c,
+            0x2a8,
+          ];
+      offsets.forEach((at, i) =>
+        this.text(
+          executableText(this.resources.executable, at),
+          168,
+          (repair ? 60 : 44) + i * 16,
+        ),
+      );
+      if (!repair && game.repairs.loss)
+        this.text(String(game.repairs.loss), 216, 108);
       return;
     }
     if (game.scene === "money-bin") {

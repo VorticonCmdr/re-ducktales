@@ -1,6 +1,18 @@
 import { nextRandom, u16 } from "./integer.js";
 
 export const OFFICE = 35;
+export function parseLoot(entries) {
+  if (entries.length !== 37) throw Error("Expected 37 LOOT.ARC records");
+  return entries.map((entry, asset) => {
+    const lines = new TextDecoder("ascii")
+      .decode(entry.data)
+      .replace(/\x1a.*$/s, "")
+      .split(/\r?\n/);
+    if (!/^\d+$/.test(lines[0]) || !lines[1])
+      throw Error(`Invalid loot ${asset}`);
+    return { asset, value: (Number(lines[0]) << 16) >> 16, name: lines[1] };
+  });
+}
 export function parseLocations(entries) {
   if (entries.length !== 35) throw Error("Expected 35 LOC.ARC records");
   return entries.map((entry, asset) => {
@@ -53,7 +65,11 @@ export function travelDays(locations, from, to) {
 export class Campaign {
   constructor(locations, seed) {
     const ordered = orderLocations(locations, u16(seed));
-    this.locations = ordered.locations;
+    this.locations = ordered.locations.map((l) => ({
+      ...l,
+      rivalCollected: false,
+    }));
+    this.rival = { day: 1, money: 0, location: OFFICE };
     this.seed = ordered.seed;
     this.day = 1;
     this.location = OFFICE;
@@ -111,6 +127,7 @@ export class Campaign {
       day: this.day,
       location: this.location,
       banked: this.banked,
+      rival: { ...this.rival },
       cursor: { ...this.cursor },
       selected: this.selected,
       asset:

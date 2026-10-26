@@ -6,6 +6,8 @@ export const REQUIRED_FILES = [
   "MAIN.ARC",
   "MBIN.ARC",
   "LOC.ARC",
+  "PLANE.ARC",
+  "LOOT.ARC",
   "IT.DRV",
 ];
 export async function verifiedResources(readFile) {

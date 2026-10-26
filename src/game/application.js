@@ -1,12 +1,23 @@
 import { Departure } from "./departure.js";
 import { Campaign, OFFICE, travelDays } from "./campaign.js";
 import { MoneyBin } from "./money-bin.js";
-import { u32, u16 } from "./integer.js";
+import { Flight } from "./flight.js";
+import { nextRandom, u8, u32, u16 } from "./integer.js";
 export const DRIVER_HZ = 1193182 / (1365 * 12);
 export const RETRACE_HZ = 70.086;
 
 export class Game {
-  constructor({ biosSeed = 0, locations = null } = {}) {
+  constructor({
+    biosSeed = 0,
+    locations = null,
+    flightResources = null,
+    loot = null,
+  } = {}) {
+    this.loot = loot;
+    this.flightResources = flightResources;
+    this.flight = null;
+    this.flightMemory = null;
+    this.controls = { fire: false, direction: null };
     this.locations = locations;
     this.campaign = locations ? new Campaign(locations, biosSeed) : null;
     this.scene = "title";
@@ -29,6 +40,9 @@ export class Game {
       this.tick = 0;
       this.bin = null;
       this.departure = null;
+      this.flight = null;
+      this.flightMemory = null;
+      this.controls = { fire: false, direction: null };
       this.money = 0;
       this.campaign = this.locations
         ? new Campaign(this.locations, this.biosSeed)
@@ -36,6 +50,11 @@ export class Game {
       this.seed = this.campaign?.seed ?? this.biosSeed;
       this.rareCoinTaken = false;
       this.effects.push({ type: "stopAudio" });
+      return;
+    }
+    if (event.type === "controls") {
+      this.controls = { fire: event.fire, direction: event.direction };
+      this.flight?.setControls(this.controls);
       return;
     }
     if (this.scene === "title" && event.type === "fire") {
@@ -126,10 +145,30 @@ export class Game {
       return;
     }
     if (this.scene === "departure") {
-      if (event.type === "fire")
-        throw Error(
-          `Untranslated flight activity: Launchpad's ${this.departure.days}-day flight to ${this.campaign.locations[this.departure.target].name}. Departure is prepared; no arrival or flight outcome has been substituted.`,
+      if (event.type === "fire") {
+        if (!this.flightResources) throw Error("Flight resources not loaded");
+        this.flight = new Flight(
+          {
+            ...this.flightResources,
+            ...this.departure.flightRequest,
+            difficulty: this.difficulty,
+            seed: this.seed,
+            day: this.campaign.day,
+            money: this.money,
+          },
+          this.flightMemory,
         );
+        this.flight.setControls(this.controls);
+        this.scene = "flight";
+      }
+      return;
+    }
+    if (this.scene === "rival-claim") {
+      if (event.type === "fire") this.finishRivalClaim();
+      return;
+    }
+    if (this.scene === "crash-repairs") {
+      if (event.type === "fire") this.finishRepairs();
       return;
     }
     if (this.scene === "money-bin" && event.type === "fire")
@@ -150,6 +189,7 @@ export class Game {
         flags: c.locations[target].flags,
         difficulty: this.difficulty,
         seed: this.seed,
+        rivalCollected: !!c.locations[target].rivalCollected,
       });
       this.departure = departure;
       this.seed = departure.seed;
@@ -178,16 +218,107 @@ export class Game {
   }
   advanceTick() {
     this.tick++;
+    if (this.scene === "flight") {
+      this.flight.advanceTick();
+      this.collectFlight();
+      return;
+    }
+    if (this.scene === "rival-claim" && --this.claim.remaining === 0) {
+      this.finishRivalClaim();
+      return;
+    }
+    if (this.scene === "crash-repairs" && --this.repairs.remaining === 0) {
+      this.finishRepairs();
+      return;
+    }
     if (this.scene === "map") this.campaign.advanceTick();
     if (this.scene !== "money-bin") return;
     this.bin.advanceTick();
     this.collectEffects();
   }
   advanceRetrace() {
+    if (this.scene === "flight") {
+      this.flight.advanceRetrace();
+      this.collectFlight();
+      return;
+    }
     if (this.scene === "money-bin") {
       this.bin.advanceRetrace();
       this.collectEffects();
     }
+  }
+  collectFlight() {
+    this.effects.push(...this.flight.drainEvents());
+    if (!this.flight.outcome) return;
+    const result = this.flight.outcome,
+      c = this.campaign;
+    this.flightMemory = this.flight.memory;
+    this.money = result.money;
+    this.seed = c.seed = result.seed;
+    c.day = result.day;
+    if (result.code === 0 && this.departure.racing) {
+      // Main 0855..085e -> 126b:0008(1): forced rival claim, including
+      // all three RNG draws even when the ordinary parity test is bypassed.
+      const rival = c.rival;
+      rival.day = u8(
+        rival.day +
+          travelDays(c.locations, this.departure.from, this.departure.target),
+      );
+      this.seed = nextRandom(this.seed);
+      const roll = this.seed % 100;
+      if (roll < 25) rival.day = u8(rival.day - 1);
+      else if (roll < 50) rival.day = u8(rival.day + 1);
+      this.seed = nextRandom(this.seed);
+      const destination = c.locations[this.departure.target];
+      destination.rivalCollected = true;
+      // LOC's fourth number is a one-based LOOT resource ID, not its value.
+      const treasure = this.loot?.[destination.treasure - 1];
+      if (!treasure)
+        throw Error(
+          "Untranslated random treasure assignment for this destination.",
+        );
+      rival.money = u32(rival.money + treasure.value);
+      this.seed = nextRandom(this.seed);
+      c.seed = this.seed;
+      rival.location = this.departure.target;
+      this.claim = { variant: this.seed & 1, remaining: 40 };
+      this.scene = "rival-claim";
+      return;
+    }
+    if (result.code === 0) {
+      c.day = u8(c.day + 2);
+      this.repairs = { phase: "repair", remaining: 60, loss: 0 };
+      this.scene = "crash-repairs";
+      return;
+    }
+    this.arrive();
+  }
+  finishRepairs() {
+    if (this.repairs.phase === "repair" && (this.money | 0) > 0) {
+      this.seed = this.campaign.seed = nextRandom(this.seed);
+      const roll = this.seed % 10;
+      const shift = roll < 2 ? null : roll < 5 ? 3 : roll < 8 ? 2 : 1;
+      // Main 0967..0990 stores only AX from the signed 32-bit shift.
+      const loss = shift === null ? 0 : u16((this.money | 0) >> shift);
+      this.money = u32(this.money - loss);
+      this.repairs = { phase: "wreckage", remaining: 100, loss };
+      return;
+    }
+    this.arrive();
+  }
+  arrive() {
+    this.campaign.location = this.departure.target;
+    if (this.campaign.day > 30)
+      throw Error("Untranslated campaign ending after flight.");
+    throw Error(
+      `Untranslated expedition arrival: ${this.campaign.locations[this.departure.target].name}. Flight outcome is retained.`,
+    );
+  }
+  finishRivalClaim() {
+    this.campaign.location = this.departure.target;
+    this.campaign.openMap();
+    this.scene = "map";
+    this.effects.push({ type: "stopAudio" });
   }
   collectEffects() {
     for (const event of this.bin.drainEvents()) {
@@ -218,6 +349,8 @@ export class Game {
       bin: this.bin?.snapshot() ?? null,
       campaign: this.campaign?.snapshot() ?? null,
       departure: this.departure?.snapshot() ?? null,
+      flight: this.flight?.snapshot() ?? null,
+      repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
       diagnostic: this.diagnostic,
     };
   }

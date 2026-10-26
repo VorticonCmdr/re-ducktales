@@ -107,10 +107,7 @@ test("invalid resources and unsupported journeys fail explicitly", () => {
   g.input({ type: "right" });
   g.input({ type: "fire" });
   assert.equal(g.scene, "departure");
-  assert.throws(
-    () => g.input({ type: "fire" }),
-    /Untranslated flight activity/,
-  );
+  assert.throws(() => g.input({ type: "fire" }), /Flight resources not loaded/);
   assert.equal(g.campaign.day, 1);
   g.campaign.day = 28;
   assert.throws(() => g.travel(0), /ending/);

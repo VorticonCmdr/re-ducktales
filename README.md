@@ -6,7 +6,8 @@ The current playable milestone is **title → difficulty → office → money-bi
 dive → office**, including the timing-based rare coin and $1000 reward. The full
 campaign remains partial: world-map browsing, Macaroon deposits, and office return
 are supported; expedition confirmation reaches Launchpad’s original briefing.
-Flight gameplay and expedition levels remain unimplemented. See [current status](docs/STATUS.md)
+Flight controls, crashes, airport landings and losing-race map return are now
+connected. Expedition levels remain unimplemented. See [current status](docs/STATUS.md)
 for supported behavior, evidence and limitations.
 
 ## Run
@@ -39,8 +40,9 @@ npx playwright install chromium
 npm run verify
 ```
 
-This checks all 22 original file identities, deterministic unit tests, 33 original
-checkpoints, 2 conditional departure checkpoints, and 8 negative controls, actual browser controls/rendering/audio,
+This checks all 22 original file identities, deterministic unit tests, original
+money-bin/campaign/departure/flight checkpoints and required negative controls,
+actual browser flight controls, rendering and the existing audio adapter,
 exact office/map/departure and aligned failed-pose pixels, folder loading, corrupted-file
 rejection, cash banking, and a production build.
 Original captures are local-only and required by strict checks; missing captures
@@ -81,4 +83,5 @@ Campaign travel: Right+Space in the office opens the map. Select Macaroon to ban
 cash, then select the office to return. See [campaign evidence and limits](docs/campaign-travel.md).
 
 [Expedition departure evidence](docs/expedition-departures.md) records the flight
-handoff, conditional RNG comparisons, and the remaining flight boundary.
+handoff and conditional RNG comparisons. [Flight evidence](docs/flight.md) covers
+controls, outcomes, crash comparisons, and the remaining expedition boundary.

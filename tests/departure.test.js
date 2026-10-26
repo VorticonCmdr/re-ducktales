@@ -73,10 +73,7 @@ test("inspection and cancellation do not consume RNG; confirming preserves cash/
   assert.equal(g.campaign.location, 35);
   assert.equal(g.money, 0);
   const prepared = g.snapshot();
-  assert.throws(
-    () => g.input({ type: "fire" }),
-    /Untranslated flight activity/,
-  );
+  assert.throws(() => g.input({ type: "fire" }), /Flight resources not loaded/);
   assert.deepEqual(g.snapshot(), prepared);
   g.input({ type: "restart" });
   assert.equal(g.departure, null);

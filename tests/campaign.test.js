@@ -6,11 +6,32 @@ import {
   Campaign,
   parseLocations,
   orderLocations,
+  assignLoot,
   travelDays,
   OFFICE,
 } from "../src/game/campaign.js";
 import { Game } from "../src/game/application.js";
 const locations = parseLocations(parseArchive(readFileSync("game/LOC.ARC")));
+test("original random treasure probing reserves future fixed IDs and skips37 on wrap", () => {
+  const synthetic = Array.from({ length: 35 }, (_, i) => ({
+    treasure: i === 0 || i === 2 ? 0 : i === 1 ? 36 : i === 3 ? 1 : i - 1,
+  }));
+  const assigned = assignLoot(synthetic, 28368); // next RNG35 -> initial candidate36
+  assert.equal(assigned.draws, 1);
+  assert.equal(assigned.locations[2].treasure, 2);
+  assert.equal(assigned.seed, 35);
+  assert.equal(
+    synthetic[2].treasure,
+    0,
+    "input is authoritative and immutable",
+  );
+  assert.equal(
+    assignLoot(synthetic, 28376).locations[2].treasure,
+    37,
+    "initial draw can select37",
+  );
+  assert.throws(() => assignLoot([], 0), /35 locations/);
+});
 test("original location permutation and wrapped integer journey costs", () => {
   const c = new Campaign(locations, 0);
   assert.equal(new Set(c.locations.map((l) => l.asset)).size, 35);

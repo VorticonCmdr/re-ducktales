@@ -1,0 +1,31 @@
+{
+  "id": "cave-entry-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "0dc95e2",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "startingRecipe": "Continue flight-runtime repair capture at main01f5:0ae5. Stop at main04b0:0002, actual expedition target6. Continue through the cave guide to04b0:00c8 (INT3f0c), then overlay entry0e0c:0000. Original bytes begin558becb886009a9e1e030656c646f200; capture CPU+DS64K+32 code bytes. Argument is variant7, cash25; starting seed51460 is captured. Continue to0e0c:05ed after first party draw, before the second room-composition call. Capture CPU+DS64K. This is a conditional starting game-state snapshot, not a machine restore or an event-only campaign replay.",
+  "expectedCheckpointCount": 1,
+  "expectedInputCount": 0,
+  "inputEvents": [],
+  "fittedInputs": [],
+  "injections": [],
+  "comparisonRules": "Exact cave map words, player/goal/pursuer positions, RNG, torch selection and frame, time-limit fields, geometry/frame bytes of all cave descriptors. Dynamic allocation pointers, CPU, stack, clock, driver buffers excluded. Rendering is validated but no pixel-reference comparison is claimed. The first scene is still pending a retrace at this boundary.",
+  "artifacts": {
+    "entry": {
+      "path": ".local/cave-entry.json",
+      "sha256": "55d8842282a570d3bf7b8a3eba67b81f7189dd87aa391096c5577dffeb9715ee"
+    },
+    "scene": {
+      "path": ".local/cave-first-scene.json",
+      "sha256": "1c2cafd635a5e704da158dc9d12bee0326ed6623baeb8d1519d60b56af284ec6"
+    }
+  },
+  "verify": "npm run verify:cave"
+}

@@ -51,6 +51,40 @@ export function orderLocations(locations, seed) {
   }
   return { locations: order.map((asset) => locations[asset]), seed };
 }
+// Main 115a:0314 (resident image18b4..1a30). Reserve all fixed IDs,
+// including locations not processed yet. Only a zero ID consumes an RNG draw.
+export function assignLoot(locations, seed) {
+  if (locations.length !== 35)
+    throw Error("Loot assignment requires 35 locations");
+  const result = locations.map((l) => ({ ...l }));
+  if (
+    !result.every(
+      (l) =>
+        Number.isInteger(l.treasure) && l.treasure >= 0 && l.treasure <= 37,
+    )
+  )
+    throw Error("Invalid location treasure ID");
+  let draws = 0,
+    atomicLocation = null;
+  for (let i = 1; i < 35; i++) {
+    let id = result[i].treasure;
+    if (id === 0) {
+      seed = nextRandom(seed);
+      draws++;
+      id = (seed % 37) + 1;
+      let attempts = 0;
+      while (result.slice(1).some((l) => l.treasure === id)) {
+        // The assembly compares candidate+1 with37 before incrementing.
+        // A rejected36 wraps to1; only the initial RNG draw can choose37.
+        id = id + 1 < 37 ? id + 1 : 1;
+        if (++attempts > 37) throw Error("No available original treasure ID");
+      }
+      result[i].treasure = id;
+    }
+    if (id === 9) atomicLocation = i;
+  }
+  return { locations: result, seed: u16(seed), draws, atomicLocation };
+}
 export function travelDays(locations, from, to) {
   if (from === to) return 0;
   const a = from === OFFICE ? { x: 56, y: 64 } : locations[from];
@@ -65,12 +99,14 @@ export function travelDays(locations, from, to) {
 export class Campaign {
   constructor(locations, seed) {
     const ordered = orderLocations(locations, u16(seed));
-    this.locations = ordered.locations.map((l) => ({
+    const assigned = assignLoot(ordered.locations, ordered.seed);
+    this.locations = assigned.locations.map((l) => ({
       ...l,
       rivalCollected: false,
     }));
     this.rival = { day: 1, money: 0, location: OFFICE };
-    this.seed = ordered.seed;
+    this.seed = assigned.seed;
+    this.atomicLocation = assigned.atomicLocation;
     this.day = 1;
     this.location = OFFICE;
     this.banked = 0;

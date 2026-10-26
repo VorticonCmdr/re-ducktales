@@ -8,6 +8,9 @@ export const REQUIRED_FILES = [
   "LOC.ARC",
   "PLANE.ARC",
   "LOOT.ARC",
+  "EXP.ARC",
+  "CAVEMAPS.ARC",
+  "CLUES.ARC",
   "IT.DRV",
 ];
 export async function verifiedResources(readFile) {

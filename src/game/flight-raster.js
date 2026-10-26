@@ -1,7 +1,12 @@
 import { EGA, imagePixels } from "../assets.js";
 
 // Pure presentation. No game memory, input, time or RNG is consumed here.
-export function renderFlightPixels(commands, entries, font) {
+export function renderFlightPixels(
+  commands,
+  entries,
+  font,
+  archive = "PLANE.ARC",
+) {
   const result = new Uint8ClampedArray(320 * 200 * 4);
   const put = (x, y, color) => {
     if (x < 0 || y < 0 || x >= 320 || y >= 200) return;
@@ -72,7 +77,7 @@ export function renderFlightPixels(commands, entries, font) {
         (!Number.isInteger(c.frame) || c.frame < 0 || c.frame >= entry.frames)
       )
         throw Error(
-          `Unsupported flight animation frame ${c.frame} for PLANE.ARC resource ${c.asset}`,
+          `Unsupported flight animation frame ${c.frame} for ${archive} resource ${c.asset}`,
         );
       const pixels = imagePixels(
         entry,

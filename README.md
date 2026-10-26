@@ -7,7 +7,8 @@ dive → office**, including the timing-based rare coin and $1000 reward. The fu
 campaign remains partial: world-map browsing, Macaroon deposits, and office return
 are supported; expedition confirmation reaches Launchpad’s original briefing.
 Flight controls, crashes, airport landings and losing-race map return are now
-connected. Expedition levels remain unimplemented. See [current status](docs/STATUS.md)
+connected. Cave arrival and normal room navigation now work; cave terminal
+animations and results, other expedition games, trading and endings remain incomplete. See [current status](docs/STATUS.md)
 for supported behavior, evidence and limitations.
 
 ## Run
@@ -44,7 +45,8 @@ This checks all 22 original file identities, deterministic unit tests, original
 money-bin/campaign/departure/flight checkpoints and required negative controls,
 actual browser flight controls, rendering and the existing audio adapter,
 exact office/map/departure and aligned failed-pose pixels, folder loading, corrupted-file
-rejection, cash banking, and a production build.
+rejection, cash banking, random treasure assignment, cave entry/movement and a
+production build.
 Original captures are local-only and required by strict checks; missing captures
 fail with setup errors. Reproduction: [original scenario](docs/original-scenario.md).
 
@@ -56,6 +58,8 @@ npm run verify:build
 npm run verify:reference
 npm run verify:campaign
 npm run verify:departure
+npm run verify:loot
+npm run verify:cave
 npm run test:browser
 npm run audit:assets
 npm run prepare:analysis

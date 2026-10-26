@@ -6,8 +6,8 @@ Physics, course generation, scene/object updates and collision rules are transla
 The checks include conditional comparisons, a closed-loop segment, and exact pixels.
 Flight is connected to the browser. Actual keyboard takeoff, crash, losing-race
 return and restart are covered by browser acceptance. Airport landing is also
-exercised through the keyboard adapter. Arrival then stops at the explicit
-untranslated expedition boundary; no level result is substituted.
+exercised through the keyboard adapter. Arrival now continues through the original guide into the cave room slice.
+Cave terminal outcomes remain unsupported; no level result is substituted.
 
 ## Implemented rules
 
@@ -312,18 +312,18 @@ simulation. Flight retains its data segment between journeys.
 Special animation translations are static evidence; they are not all validated
 against original execution. The engine sound is currently omitted; SFX use the
 existing optional reconstructed audio adapter. Forced rival claim presentation
-uses the sound-disabled 40-tick delay, without original speech audio. Browser
+uses the sound-disabled40-poll delay (280 driver ticks), without original speech audio. Browser
 instruction/render cost is not modeled, so total flight duration is not yet
 original-aligned. The browser sound option does not establish audio fidelity.
 
 Main0855..0b36 distinguishes race failure from ordinary crash. A race failure
 calls 126b:0008(1), consumes three RNG draws, credits the location treasure to
 Glomgold and returns to map at the destination. Further races for that claimed
-location are suppressed. An ordinary crash adds two repair days, waits60 ticks,
+location are suppressed. An ordinary crash adds two repair days, waits60 seven-tick polls (420 driver ticks),
 and skips wreckage search/RNG entirely for signed cash<=0. Positive cash consumes
 one draw: rolls0/1 lose nothing,2..4 lose cash>>3,5..7 cash>>2,8/9 cash>>1. Only
 the low16 bits of that signed32-bit shift are subtracted from unsigned32 cash.
-The wreckage dialogue waits100 ticks; fire can shorten both waits. Both landing
+The wreckage dialogue waits100 seven-tick polls (700 driver ticks); fire can shorten both waits. Both landing
 and repaired ordinary crash continue to expedition entry, which currently stops.
 The captured positive-cash repair case below validates day/cash/RNG. Other
 caller branches are statically translated, not full-campaign replay evidence.
@@ -376,3 +376,9 @@ location. The browser loads/validates LOOT.ARC and credits4500 after a lost
 Klondike race. Zero IDs require original random assignment, which is still
 untranslated and stops explicitly. Campaign initialization therefore still omits
 those later loot RNG draws; this route is not whole-campaign RNG parity.
+
+The later treasure-initialization milestone now assigns zero IDs using the
+original routine and includes its RNG draws before departure. This supersedes
+the previous zero-ID limitation and partial startup RNG noted above. Cave
+arrivals now reach an interactive normal-room slice; see docs/cave.md for its
+strict terminal boundaries and limited evidence scope.

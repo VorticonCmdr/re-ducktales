@@ -2,13 +2,15 @@ import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
 const state = (canvas) => canvas.getAttribute("data-state").then(JSON.parse);
-async function office(page) {
+async function office(page, difficulty = 0) {
   await page.goto("/");
   const c = page.locator("#game");
   await expect(c).toHaveAttribute("data-scene", "title");
   await c.focus();
   await page.keyboard.press("Space");
   await expect(c).toHaveAttribute("data-scene", "difficulty");
+  if (difficulty === 2) await page.keyboard.press("ArrowUp");
+  else if (difficulty === 1) await page.keyboard.press("ArrowDown");
   await page.keyboard.press("Enter");
   await expect(c).toHaveAttribute("data-scene", "office");
   return c;
@@ -72,7 +74,7 @@ test("original map pixels and keyboard bank round trip", async ({ page }) => {
 test("expedition briefing, keyboard takeoff, crash, rival claim and campaign return", async ({
   page,
 }) => {
-  const c = await office(page);
+  const c = await office(page, 2);
   await page.locator("#map").click();
   await expect(c).toHaveAttribute("data-scene", "map");
   await point(c, 37, 33);
@@ -87,17 +89,8 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   const prepared = await state(c);
   expect(prepared.departure.flightRequest).toEqual({ days: 1, racing: 1 });
   expect(prepared.departure.activity).toBe("cave");
-  expect(prepared.seed).toBe(32100);
-  const expected = PNG.sync.read(
-    await readFile(".local/original-departure.png"),
-  );
-  const actual = PNG.sync.read(
-    Buffer.from(
-      (await c.evaluate((c) => c.toDataURL())).split(",")[1],
-      "base64",
-    ),
-  );
-  expect(actual.data).toEqual(expected.data);
+  expect(prepared.seed).toBe(18461);
+  expect(prepared.departure.variant).toBe(0);
   await c.evaluate((canvas) => {
     canvas.addEventListener("gamepresent", (event) => {
       if (event.detail.flight?.phase === "crash")
@@ -158,7 +151,7 @@ for (const [name, x, y, activity] of [
   });
 }
 
-test("keyboard flight reaches the airport and stops at the explicit expedition boundary", async ({
+test("keyboard flight lands, enters the cave and moves between rooms", async ({
   page,
 }) => {
   const errors = [];
@@ -189,7 +182,10 @@ test("keyboard flight reaches the airport and stops at the explicit expedition b
       await page.screenshot({
         path: ".local/browser-results/flight-landing.png",
       });
-      await expect(page.locator("#diagnostic")).toBeVisible({ timeout: 10000 });
+      if (heldDirection) await page.keyboard.up(heldDirection);
+      heldDirection = null;
+      await page.keyboard.up("Space");
+      await expect(c).toHaveAttribute("data-scene", "cave", { timeout: 10000 });
       break;
     }
     const f = current.flight;
@@ -219,13 +215,68 @@ test("keyboard flight reaches the airport and stops at the explicit expedition b
   await page.keyboard.up("Space");
   expect(steps).toBeLessThan(400);
   expect(landingSeen).toBe(true);
-  await expect(page.locator("#diagnostic")).toContainText(
-    "Untranslated expedition arrival: Klondike Mines",
-  );
+  await expect(page.locator("#diagnostic")).toBeHidden();
   const result = await state(c);
   expect(result.flight.outcome.status).toBe("arrived");
   expect(result.flight.outcome.code).toBe(1);
   expect(result.campaign.location).toBe(1);
-  expect(result.campaign.day).toBe(1);
+  // Real keyboard feedback can cross the original fast-arrival boundary.
+  // Check its exact calendar rule using the flight's actual simulation count;
+  // do not fit inputs or pretend this is a fixed-frame original replay.
+  const frames = result.flight.outcome.frames;
+  expect(result.campaign.day).toBe(
+    2 + (frames < 210 ? -1 : frames > 462 ? 1 : 0),
+  );
+  const firstRoom = result.cave.room;
+  expect(firstRoom).toBe(17);
+  await page.keyboard.down("ArrowRight");
+  await page.keyboard.down("Space");
+  await expect.poll(async () => (await state(c)).cave.room).toBe(18);
+  await page.keyboard.up("Space");
+  await page.keyboard.up("ArrowRight");
+  await expect
+    .poll(async () => (await state(c)).cave.money)
+    .toBe(result.cave.money + 50);
+  await expect(page.locator("#diagnostic")).toBeHidden();
+  await page.screenshot({
+    path: ".local/browser-results/cave-second-room.png",
+  });
+  await page.locator("#restart").click();
+  await expect(c).toHaveAttribute("data-scene", "title");
+  expect((await state(c)).cave).toBeNull();
   expect(errors).toEqual([]);
+});
+
+// Conditional presentation comparison: this seed is the captured departure
+// contract, independent of the browser's corrected complete initialization.
+test("conditional original departure portrait pixels", async ({ page }) => {
+  await office(page);
+  const actual = await page.evaluate(async () => {
+    const { verifiedResources } = await import("/src/game/resources.js");
+    const { Renderer } = await import("/src/game/renderer.js");
+    const { Departure } = await import("/src/game/departure.js");
+    const resources = await verifiedResources(async (n) =>
+      (await fetch("/game/" + n)).arrayBuffer(),
+    );
+    const canvas = document.createElement("canvas");
+    canvas.width = 320;
+    canvas.height = 200;
+    new Renderer(canvas, resources).render({
+      scene: "departure",
+      departure: new Departure({
+        from: 35,
+        target: 25,
+        days: 1,
+        flags: 8,
+        difficulty: 0,
+        seed: 41725,
+      }),
+    });
+    return canvas.toDataURL();
+  });
+  const image = PNG.sync.read(Buffer.from(actual.split(",")[1], "base64"));
+  const expected = PNG.sync.read(
+    await readFile(".local/original-departure.png"),
+  );
+  expect(image.data).toEqual(expected.data);
 });

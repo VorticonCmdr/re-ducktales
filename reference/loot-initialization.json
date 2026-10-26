@@ -1,0 +1,32 @@
+{
+  "id": "loot-initialization-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "0dc95e2",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "machine": "svga_s3",
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "startingRecipe": "Restart managed DOSBox, confirm actual new engine, mount game/ read-only. Submit C: separately, then DUCKTALE. Schedule N at1500ms, Space at6000/8000/10000 and Enter at12000 (100ms pulses). Pause/arm execute breakpoint main01f5:18b4 before launch. Capture CPU+DS64K+16 original code bytes at entry, then CPU+DS at01f5:1a30 return. Actual alias CS034f:0314/0490 has the same physical address. DS/SS1403, real mode and original signature checked. No injected game memory or restored checkpoint.",
+  "evidenceLevel": "conditional whole routine comparison; starting seed and loaded location IDs are captured inputs",
+  "expectedCheckpointCount": 1,
+  "expectedRandomDraws": 20,
+  "inputEvents": [],
+  "fittedInputs": [],
+  "injections": [],
+  "comparisonRules": "Exact 34 resulting location IDs, zero-based resource IDs, signed16 values, RNG and special ID9 location. Excludes bank record, allocator pointers, stack, clock and device state. Inputs read only from before artifact; no expected value derives an input.",
+  "artifacts": {
+    "before": {
+      "path": ".local/loot-before.json",
+      "sha256": "dba6a89e8603dfc2622c51eb4d6f24a25cb666a18214a73af747d3e5496f6c90"
+    },
+    "after": {
+      "path": ".local/loot-after.json",
+      "sha256": "c6667df2e214d83ad3cb57a922ec7a5e9d2fb1385df84dfcc86e853611f6df62"
+    }
+  },
+  "verify": "npm run verify:loot"
+}

@@ -3,7 +3,8 @@
 Supported build: `reference/build.json`, EXE SHA-256
 `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
 This milestone implements **departure preparation**, through the original flight
-call contract. Flight gameplay is now connected; expedition levels after arrival remain unimplemented.
+call contract. Flight is connected; cave arrival now reaches an interactive normal-room slice.
+Cave terminal outcomes and other expedition gameplay remain incomplete.
 
 ## Browser behavior
 
@@ -12,16 +13,16 @@ fire. Klondike Mines at (37,33) is a one-day cave journey. Confirming displays
 Launchpad's original portrait and randomly selected speech. Cash, banked money,
 current location, and campaign day are preserved. The rare-coin latch resets.
 
-The default seed-0 browser route produces briefing variant 1 and a Glomgold race
-flag. The preparation state contains destination, activity family, full location
+The complete seed-0 initialization now produces briefing variant0 and race
+roll61; only Hard difficulty races. The preparation state contains destination, activity family, full location
 flags, travel duration, updated RNG seed, race flag, and rival route. Fire after
 the briefing starts the translated flight with original assets and controls. Restart resets the campaign and departure state.
 
 The pause at this boundary is explicit: the original immediately enters its
 flight overlay while the speech remains visible during resource loading. The
 port lets the user inspect this briefing before requesting the next activity.
-The flight runs its own physics and determines its outcome; expedition gameplay
-is still an explicit unsupported boundary. Return-to-map is unavailable after this
+The flight determines its own outcome. A cave arrival now reaches the original
+guide and normal-room navigation; terminal cave results remain unsupported. Return-to-map is unavailable after this
 confirmation; Restart is available.
 
 ## Static rules and observations
@@ -90,7 +91,7 @@ normalized to 0; its decompiler currently truncates at software floating-point
 INT instructions. This program is actual game code, but that C is not a faithful
 flight translation. The new combined analysis copy described in `docs/flight.md`
 exposes those floating-point operations; its physics translation now has exact
-conditional routine comparisons. It is not yet integrated into browser gameplay.
+conditional routine comparisons. It is now integrated into browser gameplay.
 
 ## Verification levels and limits
 
@@ -104,15 +105,20 @@ runtime slot25 are explicit initial conditions. They are not external environmen
 events, and the check is not an independent whole-campaign replay. No input is
 fitted from the expected final state. The independent browser run uses its own
 seed0 provider, real map input, asset loading, and the port's location permutation;
-it reaches the same briefing variant by its own state.
+it now reaches variant0 after complete loot initialization. The original variant1
+image uses a separate explicit conditional renderer case.
 
 `npm run test:browser` compares that briefing image and exercises all four
-activity families, strict flight diagnostic, and restart. `npm test` additionally
+activity families, flight controls/outcomes, cave room navigation, and restart. `npm test` additionally
 checks cash/latch preservation, seed consumption, signed/width boundaries,
 classification, malformed executable input, and strict difficulty thresholds.
 `npm run verify` includes these checks and all previous regressions.
 
-Flight input/physics, terrain generation, racing, crash/cash consequences,
-arrival/expedition guides, expedition gameplay, atomic aircraft unlocks, and
-Glomgold/stock campaign progression are still unsupported. The flight overlay
-is the next required implementation; no journey completion is claimed here.
+Flight input, terrain, racing and crash/cash consequences are connected. Cave
+arrival and safe-room navigation work; terminal cave results, other expeditions,
+atomic aircraft and normal Glomgold/stock progression remain incomplete.
+
+Campaign startup now includes original random loot assignment. With BIOS seed0,
+first Klondike preparation is variant0/seed18461/race roll61, so only Hard races.
+The old variant1 pixel check is explicitly conditional; the browser default
+scenario uses its corrected initialization. See docs/treasure-assignment.md.

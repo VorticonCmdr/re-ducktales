@@ -60,6 +60,24 @@ export class Renderer {
     }
   }
   render(game) {
+    if (game.scene === "cave") {
+      if (game.cave.current)
+        this.ctx.putImageData(
+          new ImageData(
+            renderFlightPixels(
+              game.cave.current,
+              this.resources.archives.get("EXP.ARC"),
+              this.font,
+              "EXP.ARC",
+            ),
+            320,
+            200,
+          ),
+          0,
+          0,
+        );
+      return;
+    }
     if (game.scene === "flight") {
       if (game.flight.current)
         this.ctx.putImageData(
@@ -164,6 +182,25 @@ export class Renderer {
           168,
           60 + i * 16,
         ),
+      );
+      return;
+    }
+    if (game.scene === "expedition-briefing") {
+      this.draw("MAIN.ARC", 31, 0, 0, 0);
+      this.text(
+        executableText(this.resources.executable, 0x582),
+        24,
+        12,
+        "#000",
+      );
+      this.text(
+        executableText(this.resources.executable, game.briefing.chapter),
+        24,
+        24,
+        "#000",
+      );
+      game.briefing.lines.forEach((line, i) =>
+        this.text(line, 20, 40 + i * 12, "#0000aa"),
       );
       return;
     }

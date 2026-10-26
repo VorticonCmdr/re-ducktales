@@ -63,7 +63,10 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 - Jungle foundation: three static map-loading cases compare all65536 DS bytes,
   348 declared records and the three starting-platform scans against an
   independent scanf-table oracle. Duplicate printed B labels and the extra
-  undeclared F row retain original behavior. No jungle gameplay/runtime claim.
+  undeclared F row retain original behavior. Actor animation now adds12
+  conditional original routine checkpoints,7 carried animation checkpoints and
+  18 decoded actor poses, with complete24056-byte relocated overlay identity.
+  Jungle controls, full scene/hazards and browser gameplay remain unimplemented.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
@@ -99,8 +102,9 @@ variant0. These checks do not establish a complete original campaign replay.
   and timing comparisons; their state and explicit device boundaries are tested.
 - Jungle gameplay, photography, stock trading, campaign endings, normal
   Glomgold progression, atomic transport, save/load and high scores are absent.
-  Jungle map loading is implemented separately; actor/hazard initialization,
-  controls and rendering remain to translate. See `docs/jungle.md`.
+  Jungle maps and actor animation/presentation helpers are implemented
+  separately; complete actor/hazard initialization, controls and scene rendering
+  remain to translate. See `docs/jungle.md`.
   Mountain actions/hazards, scrolling and summit condition are translated;
   variant0 ascent/reward works through browser controls. Other variants/
   difficulties and original hook/ascent comparisons are still needed. Full
@@ -135,15 +139,16 @@ Mountain foundation: `npm run prepare:mountain-analysis` and
 Jungle map foundation: `npm run prepare:jungle-analysis` and
 `npm run verify:jungle`; Python3 is required for the independent oracle.
 
-Next: expand jungle/photography while extending targeted original mountain
-hook/ascent comparisons, then trading and endings. Continue targeted original comparisons for cave movement,
+Next: connect jungle actor controls, collisions, hazard initialization and scene
+scheduling to a playable browser route. Then expand photography, trading and
+endings, while extending targeted original mountain hook/ascent comparisons. Continue targeted original comparisons for cave movement,
 remaining outcomes and notice presentation/timing. Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-paused at mountain0e0c:145d after15 movement updates, DS/SS1403, BP9f48, stop75.
-Variant0, difficulty0, day13. Fifteen recorded joystick bytes:0, thirteen3s,0. No input
-schedule or breakpoints remain. One destination RAM byte was injected before
-travel; no machine restore was used. See `reference/mountain-entry.json` and
-`reference/mountain-movement.json`.
-Revalidate addresses after relaunch.
+paused at jungle0e0c:1223 after actor presentation, DS/SS1403, BP9e6c, stop106.
+Variant0, difficulty0, day17. No input schedule or breakpoints remain; controls
+are released. Setup includes one explicit target byte33→25 before travel, in
+addition to the earlier mountain setup. No machine restore was used. See
+`reference/jungle-animation.json` and `docs/jungle.md`. Revalidate bytes/addresses
+after relaunch.

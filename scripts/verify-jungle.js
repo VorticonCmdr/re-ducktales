@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import build from "../reference/build.json" with { type: "json" };
 import manifest from "../reference/jungle-maps.json" with { type: "json" };
 import { parseArchive } from "../src/assets.js";
+import { verifyJungleAnimation } from "./verify-jungle-animation.js";
 import { unpackImage } from "../src/game/executable.js";
 import {
   parseJungleMap,
@@ -13,7 +14,7 @@ import {
 
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const resources = {};
-for (const name of ["DUCKTALE.EXE", "JG.ARC"]) {
+for (const name of ["DUCKTALE.EXE", "JG.ARC", "MAIN.ARC"]) {
   const bytes = await readFile(`game/${name}`).catch(() => {
     throw Error(`SETUP: missing game/${name}; see docs/jungle.md`);
   });
@@ -127,3 +128,10 @@ assert.equal(ignored.memory.b(0x9000), 123);
 console.log(
   `Jungle maps: ${result.executed} exact static DS cases,${result.records} declared records,3 starting-platform scans; negative controls reject record corruption,missing cases/sections,invalid counts/widths/variants. Original duplicate B labels and unused F16 preserved. No gameplay/runtime parity claimed.`,
 );
+
+await verifyJungleAnimation({
+  image,
+  entries,
+  mainEntries: parseArchive(resources["MAIN.ARC"]),
+  executableRaw: resources["DUCKTALE.EXE"],
+});

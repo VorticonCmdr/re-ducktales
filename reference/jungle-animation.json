@@ -1,0 +1,213 @@
+{
+  "id": "jungle-animation-conditional-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "417a6b9",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "currentDrive": 2,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "startingRecipe": "Continue reference/mountain-movement.json stop75. Hold Right until natural three-life mountain failure at resident01f5:04e7 stop76. Release Right and hold Fire through map return; the cursor overshoots to Duckbill Island slot33. At01f5:0439 stop77 save CPU+DS64K+16 original code bytes and change only SS1403:9f5e from33 to25 (Okeefadokie Swamp), before travel calculation. Release Right/Fire; reach Flight0e0c:02b3 stop78 after joystick return. Hold Fire+Down, observed consumed bytec5; release both and allow natural stall/crash/repair. Stop resident01f5:04ca at79, then jungle entry0e0c:0000 at80 after the guide. Variant0, difficulty0, day17, seed40257. Save CPU+DS64K+full24056-byte code. Stop body173e at81 before actor frame-list writes, and1ef4 at82 after them, saving CPU+DS64K. Capture actor selector118c:06a9→09f8 at83/84 for idle5. Reach first joystick return0e0c:0680 stop85 with AL0. Hold Right and capture selector1 at86/87. Capture four advance calls118c:064e→06a7 at88..95. Queue Right release; resume so it actually dispatches before queuing Fire (the paused PIC chain otherwise remains pending). Use a conditional selector breakpoint DS1403:6882==18; hold Fire and capture selector18 at96/97, then three advance calls at98..103. Release Fire and stop joystick return0680 only when AL0, stop104. Capture presentation helper0e0c:11c5→1223 at105/106. Remove capture breakpoints. No machine restore, CPU-register injection, code/file write or fitted clock was used. Navigation and flight are conditional setup, not a verified replay.",
+  "expectedCaseCount": 12,
+  "expectedCheckpointCount": 12,
+  "expectedInputCount": 3,
+  "inputEvents": [
+    {
+      "case": "idle",
+      "action": 5
+    },
+    {
+      "case": "walk",
+      "action": 1
+    },
+    {
+      "case": "fire",
+      "action": 18
+    }
+  ],
+  "routineSchedule": [
+    {
+      "id": "initialization",
+      "kind": "initialize"
+    },
+    {
+      "id": "idle",
+      "kind": "select",
+      "action": 5
+    },
+    {
+      "id": "walk",
+      "kind": "select",
+      "action": 1
+    },
+    {
+      "id": "walk0",
+      "kind": "advance"
+    },
+    {
+      "id": "walk1",
+      "kind": "advance"
+    },
+    {
+      "id": "walk2",
+      "kind": "advance"
+    },
+    {
+      "id": "walk3",
+      "kind": "advance"
+    },
+    {
+      "id": "fire",
+      "kind": "select",
+      "action": 18
+    },
+    {
+      "id": "fire0",
+      "kind": "advance"
+    },
+    {
+      "id": "fire1",
+      "kind": "advance"
+    },
+    {
+      "id": "fire2",
+      "kind": "advance"
+    },
+    {
+      "id": "present",
+      "kind": "present"
+    }
+  ],
+  "expectedClosedLoopCheckpointCount": 7,
+  "injections": [
+    {
+      "at": "01f5:0439 before travel",
+      "segment": 5123,
+      "offset": 40798,
+      "width": 1,
+      "before": 33,
+      "after": 25,
+      "meaning": "requested jungle destination; does not alter animation mechanics"
+    }
+  ],
+  "fittedInputs": [],
+  "environmentContract": "Each routine comparison initializes only from its BEFORE capture; selector arguments are independently recorded from the incoming stack, not expected post-state. The two additional animation-only closed-loop sequences start only from walk0/fire0 BEFORE memory and carry all actor state across4/3 calls; no intermediate expected state is injected. Original heap resource pointers are retained as unsigned16-bit offsets. Device effects are explicit callbacks; no host time/randomness is consumed by these helpers. The complete joystick producer, physics, hazards and scheduling are outside this routine-level comparison.",
+  "comparisonRules": "Exact complete24056-byte live overlay identity after all436 original MZ relocations with load bias01f5. Initializer: exact all65536 DS bytes except the14-byte current loop/ISR stack scratch at SS:[BP-14,BP), pinned BP9e6a. Other routines and the two carried sequences: exact named actor counters, list/resource pointers, world X/Y, facing/action, riding flags, audio-enable byte and selected resource-frame byte. Presentation also compares all actor page-history fields and resource X/Y. Decode/render the resulting actor pose for all non-initializer cases. Require12 routine cases,3 consumed selector arguments,7 carried checkpoints and11 rendered poses.",
+  "exclusions": [
+    "CPU/registers and current call/interrupt stack are not translated. Initializer exclusion is only BP-14..BP at this capture boundary.",
+    "Non-actor DS fields during selector/advance/presentation comparisons: the surrounding unported game and device handlers are not replayed.",
+    "No original framebuffer pixels, full scene, audio waveforms, wall-clock or complete jungle gameplay parity is claimed.",
+    "Object animation helpers and other actor actions are statically translated but not established by these captured routine cases."
+  ],
+  "artifacts": {
+    "beforeTarget": {
+      "path": ".local/jungle-before-target.json",
+      "sha256": "7159ce8f1a3df9895882329c320b063263172f53a93f5f38e97556f4d6768b2b"
+    },
+    "entry": {
+      "path": ".local/jungle-entry.json",
+      "sha256": "c31b69de6250a6746d88007119fbc769b12b5c59012ff75c5252b190c5ed0499"
+    },
+    "initialization-before": {
+      "path": ".local/jungle-animation-before.json",
+      "sha256": "e307c1b24aeaadeafa846e90fec97664fbaf084d911448059fd3da037ea8da67"
+    },
+    "initialization-after": {
+      "path": ".local/jungle-animation-after.json",
+      "sha256": "0df10b84bab3861c251102fd72b1ef33132cd90cfc80d8510ac34baa4a09a5c6"
+    },
+    "idle-before": {
+      "path": ".local/jungle-actor-idle-before.json",
+      "sha256": "1fdbbf51d7d8232af2e241d8a4dbf88b4b3c5942e9f91f5be8b5edeff750d782"
+    },
+    "idle-after": {
+      "path": ".local/jungle-actor-idle-after.json",
+      "sha256": "6221f3cc3da567abc080204e219fa486c58b3025b0150469ea59612a85149378"
+    },
+    "walk-before": {
+      "path": ".local/jungle-actor-walk-before.json",
+      "sha256": "d1da695af08a1fa942700879c8aa2811bf1ecb3d720c26b8544d9a39f7df5c8b"
+    },
+    "walk-after": {
+      "path": ".local/jungle-actor-walk-after.json",
+      "sha256": "a632af9c866cae45029277fd59230a6e42f796b6e1b7339fcad37b4661423f40"
+    },
+    "walk0-before": {
+      "path": ".local/jungle-actor-step0-before.json",
+      "sha256": "0cae9a79819f8ac26da3a0f8d73ad1d608c81389d7acc927415bbcacc790b8ab"
+    },
+    "walk0-after": {
+      "path": ".local/jungle-actor-step0-after.json",
+      "sha256": "df47fb7f30593a7280caffa261d2a33712e323e0f805a6bf8850c818e5a8f29b"
+    },
+    "walk1-before": {
+      "path": ".local/jungle-actor-step1-before.json",
+      "sha256": "3af2b24296655f8a1d5cd8f3b43751c011eecd0301bc374a323aca0a2d15e84e"
+    },
+    "walk1-after": {
+      "path": ".local/jungle-actor-step1-after.json",
+      "sha256": "ec2f521f8300ab3fbea37d2e1bfe46b748114bab0d37c388c66fd53f145a5d63"
+    },
+    "walk2-before": {
+      "path": ".local/jungle-actor-step2-before.json",
+      "sha256": "43fe058c750da9e253f32e3f5d3916237d8168c7ce941d16f75aba97850ec922"
+    },
+    "walk2-after": {
+      "path": ".local/jungle-actor-step2-after.json",
+      "sha256": "c6b0312f18a333f46bc98ffda401c259222983f939bf73329a237f00ac687638"
+    },
+    "walk3-before": {
+      "path": ".local/jungle-actor-step3-before.json",
+      "sha256": "aa7c7b2a7498675f5f87709e437f10a9050901e9ce0a460811ef2f2ded0846d0"
+    },
+    "walk3-after": {
+      "path": ".local/jungle-actor-step3-after.json",
+      "sha256": "668d31a44afbdd398e64a670f6ff6fa670a83ccbd0e73de975184f4a8d2f03fa"
+    },
+    "fire-before": {
+      "path": ".local/jungle-actor-fire-before.json",
+      "sha256": "01ed5cc0c44511024b96f5c7eb622eee3a40478599a36441801fc69ebae392ca"
+    },
+    "fire-after": {
+      "path": ".local/jungle-actor-fire-after.json",
+      "sha256": "5ef87f5699aa644533b3a6a894831089409437f9ef7ebbf6e314fcf0c2b05d36"
+    },
+    "fire0-before": {
+      "path": ".local/jungle-fire-step0-before.json",
+      "sha256": "4d82ea4ad21fc644a6da62996f14effd944d1739d34570a434852541fddbadf5"
+    },
+    "fire0-after": {
+      "path": ".local/jungle-fire-step0-after.json",
+      "sha256": "ffbd6e069bd54511d11978abcc69d65b857f78617a3f15a102edcc65e3a914ba"
+    },
+    "fire1-before": {
+      "path": ".local/jungle-fire-step1-before.json",
+      "sha256": "c6eb145ce61b8a438a453b9070c643ffb0cb97e881c1e87e0cc09475b467f4c8"
+    },
+    "fire1-after": {
+      "path": ".local/jungle-fire-step1-after.json",
+      "sha256": "2b69b61b23c29021432c2ecbc878e10203c199e205ba859ab22a278ba6193eb0"
+    },
+    "fire2-before": {
+      "path": ".local/jungle-fire-step2-before.json",
+      "sha256": "0a591723bbe6c593ee9ebd53b0bb0e82ff77b6de4fcf5c31c7e9f15092fb63db"
+    },
+    "fire2-after": {
+      "path": ".local/jungle-fire-step2-after.json",
+      "sha256": "885d56f785d816c71f147f95ab73c32f6dfd59cbb84e3528e3fdba1b97f07afe"
+    },
+    "present-before": {
+      "path": ".local/jungle-actor-present-before.json",
+      "sha256": "b9cc22360402d1ac1ad6e5a62875de56744564c7b387576c81794de1ed13d4d3"
+    },
+    "present-after": {
+      "path": ".local/jungle-actor-present-after.json",
+      "sha256": "44a30a028a12025bd8e7c23a2c3358856b4d6a0313d3aea439e97a23667692d5"
+    }
+  },
+  "verify": "npm run verify:jungle"
+}

@@ -3,6 +3,7 @@ import { Campaign, OFFICE, travelDays } from "./campaign.js";
 import { MoneyBin } from "./money-bin.js";
 import { Flight } from "./flight.js";
 import { Cave } from "./cave.js";
+import { Mountain } from "./mountain.js";
 import { ExpeditionBriefing } from "./expedition.js";
 import { CampaignVisitNotice } from "./campaign-visit.js";
 import { nextRandom, u8, u32, u16 } from "./integer.js";
@@ -23,6 +24,7 @@ export class Game {
     this.audioScope = 0;
     this.visitNotice = null;
     this.cave = null;
+    this.mountain = null;
     this.briefing = null;
     this.loot = loot;
     this.flightResources = flightResources;
@@ -50,6 +52,7 @@ export class Game {
         throw Error("Invalid audio setting");
       this.audioEnabled = event.enabled;
       this.cave?.setAudioEnabled(event.enabled);
+      this.mountain?.setAudioEnabled(event.enabled);
       this.visitNotice?.setAudioEnabled(event.enabled);
       return;
     }
@@ -67,6 +70,7 @@ export class Game {
       this.flight = null;
       this.flightMemory = null;
       this.cave = null;
+      this.mountain = null;
       this.visitNotice = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
@@ -83,6 +87,7 @@ export class Game {
       this.controls = { fire: event.fire, direction: event.direction };
       this.flight?.setControls(this.controls);
       this.cave?.setControls(this.controls);
+      this.mountain?.setControls(this.controls);
       return;
     }
     if (this.scene === "title" && event.type === "fire") {
@@ -312,6 +317,11 @@ export class Game {
       this.collectCave();
       return;
     }
+    if (this.scene === "mountain") {
+      this.mountain.advanceTick();
+      this.collectMountain();
+      return;
+    }
     if (this.scene === "flight") {
       this.flight.advanceTick();
       this.collectFlight();
@@ -331,6 +341,11 @@ export class Game {
     this.collectEffects();
   }
   advanceRetrace() {
+    if (this.scene === "mountain") {
+      this.mountain.advanceRetrace();
+      this.collectMountain();
+      return;
+    }
     if (this.scene === "cave") {
       this.cave.advanceRetrace();
       this.collectCave();
@@ -434,6 +449,37 @@ export class Game {
     }
     this.scene = "expedition-result";
   }
+  collectMountain() {
+    const mountain = this.mountain;
+    this.effects.push(...mountain.drainEvents());
+    this.money = mountain.memory.view.getUint32(0x8cc0, true);
+    this.seed = this.campaign.seed = u16(mountain.memory.i(0x2229));
+    if (!mountain.outcome) return;
+    this.flightMemory = mountain.memory;
+    // Mountain returns directly on failure; Cave's internal failure portrait
+    // is not part of the mountain routine. Both callers then spend one day.
+    if (mountain.outcome.code === 0) {
+      this.campaign.day = u8(this.campaign.day + 1);
+      if (this.campaign.day > 30)
+        throw Error("Untranslated campaign ending after expedition.");
+      this.campaign.openMap();
+      this.scene = "map";
+      return;
+    }
+    this.campaign.day = u8(this.campaign.day + 1);
+    const id = this.campaign.locations[this.campaign.location].treasure;
+    const treasure = this.loot?.[id - 1];
+    if (!treasure) throw Error("Missing original expedition reward");
+    this.money = u32(this.money + treasure.value);
+    this.expeditionResult = {
+      phase: "award",
+      value: treasure.value,
+      remaining: 40 * 7,
+      skipRequested: false,
+    };
+    this.effects.push({ type: "sound", id: 0x49 });
+    this.scene = "expedition-result";
+  }
   finishExpeditionResult() {
     const c = this.campaign,
       result = this.expeditionResult;
@@ -494,6 +540,24 @@ export class Game {
     this.scene = "expedition-briefing";
   }
   startExpedition() {
+    if (this.briefing.activity === "mountain") {
+      this.mountain = new Mountain(
+        {
+          ...this.expeditionResources,
+          entries: this.expeditionResources.mountainEntries,
+          variant: this.briefing.variant,
+          difficulty: this.difficulty,
+          seed: this.seed,
+          money: this.money,
+          day: this.campaign.day,
+          audioEnabled: this.audioEnabled,
+        },
+        this.flightMemory,
+      );
+      this.mountain.setControls(this.controls);
+      this.scene = "mountain";
+      return;
+    }
     if (this.briefing.activity !== "cave")
       throw Error(
         `Untranslated ${this.briefing.activity} expedition gameplay.`,
@@ -550,6 +614,7 @@ export class Game {
       departure: this.departure?.snapshot() ?? null,
       flight: this.flight?.snapshot() ?? null,
       cave: this.cave?.snapshot() ?? null,
+      mountain: this.mountain?.snapshot() ?? null,
       briefing: this.briefing?.snapshot() ?? null,
       repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
       expeditionResult:

@@ -1,0 +1,54 @@
+{
+  "id": "mountain-conditional-entry-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "307806a",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "currentDrive": 2,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "startingRecipe": "Continue the original campaign from reference/campaign-retry.json. Three subsequent cave failures return to Klondike on day10. Navigation overshot to Duckbill Island slot33. Stop resident01f5:0439 (stop38, BP9f7c), capture CPU+DS64K+16 code bytes, and explicitly change SS1403:[BP-30]=9f5e from33 to24 (El Capitan) before travel cost calculation. Continue ordinary duration1/racing0 flight; after input initialization consume Fire+Down (c5 observed at0e0c:02b3, stop42) to take off and crash. Stop dispatcher01f5:04ca at stop43, release Space/Down, then enter mountain0e0c:0000 at stop44. Save CPU+DS64K+the full12002-byte overlay. Incoming variant0, difficulty0, seed43353, day13, money0. Continue with no input to0e0c:0317 (stop45), before its first joystick call; save CPU+DS64K. No restore was used. This is a conditional initialization segment; navigation/flight are setup, not a replay under verification.",
+  "expectedCaseCount": 1,
+  "expectedCheckpointCount": 1,
+  "expectedInputCount": 0,
+  "inputEvents": [],
+  "injections": [
+    {
+      "at": "01f5:0439 before travel",
+      "segment": 5123,
+      "offset": 40798,
+      "width": 1,
+      "before": 33,
+      "after": 24,
+      "meaning": "requested expedition target; does not alter mountain mechanics"
+    }
+  ],
+  "fittedInputs": [],
+  "comparisonRules": "Exact relocated bytes for the complete12002-byte original overlay using all68 original MZ relocation entries and load bias01f5. Exact named DS actor/lives/layout/RNG/page/hazard fields, full25-record selected hazard table, global cloud/rock records, and MT sprite geometry/frames at the pre-first-input boundary. Port initialization starts only from ENTRY bytes/arguments/resources. Compare after one port retrace has prepared its second initial page, before any input is consumed. No expected final state supplies inputs. No original pixel or timing comparison is asserted.",
+  "exclusions": [
+    "Driver epoch/deadline and retrace duration",
+    "Allocator pointers and planar storage descriptors",
+    "Unspecified stack-local bytes outside initialized controls",
+    "MAIN HUD and terrain scratch-descriptor mutations replaced by pure commands",
+    "Audio, palette and exact framebuffer residue"
+  ],
+  "artifacts": {
+    "beforeInjection": {
+      "path": ".local/mountain-before-target.json",
+      "sha256": "aaa6f8800a6802f75303a392aa7b6110da05b204aa0a22f46105caa5e21ed081"
+    },
+    "entry": {
+      "path": ".local/mountain-entry.json",
+      "sha256": "26a1703c83bd5bb115ba45318807e992eec0da35e60d8374e4b8f3ca1472aaee"
+    },
+    "scene": {
+      "path": ".local/mountain-initial-scene.json",
+      "sha256": "8d35d9e9ccd05ac9ac5e4ff44f94caa50d03f3f253a2a2b563410eb493918174"
+    }
+  },
+  "verify": "npm run verify:mountain"
+}

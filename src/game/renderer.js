@@ -7,6 +7,7 @@ export class Renderer {
     this.ctx = canvas.getContext("2d", { alpha: false });
     this.resources = resources;
     this.cache = new Map();
+    this.mountainRasterCache = new WeakMap();
     if (!this.ctx) throw Error("Canvas 2D is unavailable");
     this.font = resources.archives.get("MAIN.ARC")[42].data;
   }
@@ -60,6 +61,25 @@ export class Renderer {
     }
   }
   render(game) {
+    if (game.scene === "mountain") {
+      if (game.mountain.current)
+        this.ctx.putImageData(
+          new ImageData(
+            renderFlightPixels(
+              game.mountain.current,
+              game.mountain.entries,
+              this.font,
+              "MT.ARC / MAIN.ARC",
+              this.mountainRasterCache,
+            ),
+            320,
+            200,
+          ),
+          0,
+          0,
+        );
+      return;
+    }
     if (game.scene === "cave") {
       if (game.cave.current)
         this.ctx.putImageData(

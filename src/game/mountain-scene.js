@@ -23,14 +23,10 @@ export function mountainLayouts(image) {
   });
 }
 
-export function prepareMountain({
-  image,
-  entries,
-  variant,
-  difficulty,
-  seed,
-  money,
-}) {
+export function prepareMountain(
+  { image, entries, variant, difficulty, seed, money },
+  previousMemory,
+) {
   const layouts = mountainLayouts(image);
   if (
     !Number.isInteger(variant) ||
@@ -58,7 +54,7 @@ export function prepareMountain({
     throw Error("Missing supported MT.ARC resources");
   const bytes = new Uint8Array(65536);
   bytes.set(image.subarray(0x120e0));
-  const m = new FlightMemory(bytes);
+  const m = previousMemory ?? new FlightMemory(bytes);
   // Resident175c's observable descriptor fields. Allocator pointers stay
   // outside this terrain/initial-state boundary.
   for (const [asset, at] of [
@@ -128,11 +124,22 @@ export function prepareMountain({
 // buffer, copies them bottom-to-top, then copies only the top 168 pixels.
 // This terrain layer deliberately excludes actors, hazards and the HUD.
 export function composeMountainTerrain(m, firstRow = 0) {
+  return composeMountainViewport(m, firstRow, 0);
+}
+
+export function composeMountainViewport(m, firstRow, offset) {
   if (!Number.isInteger(firstRow) || firstRow < 0 || firstRow >= 25)
     throw Error("Invalid mountain scroll row");
+  if (!Number.isInteger(offset) || offset < -40 || offset > 40)
+    throw Error("Invalid mountain scroll displacement");
   const commands = [];
-  for (let strip = 0; strip < 5; strip++) {
-    const y = 160 - strip * 40;
+  for (let strip = offset < 0 ? -1 : 0; strip < (offset > 0 ? 6 : 5); strip++) {
+    const y = 160 - strip * 40 + offset;
+    const top = Math.max(0, y),
+      bottom = Math.min(168, y + 40);
+    if (top >= bottom) continue;
+    if (firstRow + strip < 0)
+      throw Error("Mountain camera scrolled below first row");
     const source = [
       {
         op: "copy",
@@ -164,11 +171,11 @@ export function composeMountainTerrain(m, firstRow = 0) {
       op: "restore",
       source,
       sourceX: 0,
-      sourceY: 0,
+      sourceY: top - y,
       x: 0,
-      y,
+      y: top,
       width: 320,
-      height: Math.min(40, 168 - y),
+      height: bottom - top,
     });
   }
   return commands;

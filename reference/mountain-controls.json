@@ -1,0 +1,125 @@
+{
+  "id": "mountain-independent-controls-fb658562",
+  "buildManifest": "reference/build.json",
+  "evidence": "independent port scenario and closed-loop regression; not original runtime comparison",
+  "initial": {
+    "variant": 0,
+    "difficulty": 0,
+    "day": 2,
+    "seed": 18461,
+    "money": 0
+  },
+  "environment": "One driver tick followed by one retrace per provider step. Input bytes are supplied in order at the game's next consumption boundary. Rendering never supplies state or inputs. Audio is disabled. This verifies deterministic logic, not original driver/retrace timing.",
+  "expectedInputCount": 148,
+  "expectedCheckpointCount": 10,
+  "expectedPresentationCount": 149,
+  "inputEvents": [
+    { "count": 24, "byte": 3 },
+    { "count": 1, "byte": 1 },
+    { "count": 8, "byte": 0 },
+    { "count": 12, "byte": 3 },
+    { "count": 17, "byte": 64 },
+    { "count": 1, "byte": 0 },
+    { "count": 1, "byte": 0 },
+    { "count": 30, "byte": 0 },
+    { "count": 24, "byte": 3 },
+    { "count": 30, "byte": 0 }
+  ],
+  "checkpoints": [
+    {
+      "inputCount": 24,
+      "x": 80,
+      "y": 131,
+      "row": 0,
+      "action": 0,
+      "frame": 9,
+      "money": 0
+    },
+    {
+      "inputCount": 25,
+      "x": 96,
+      "y": 131,
+      "row": 0,
+      "action": 3,
+      "frame": 22,
+      "money": 0
+    },
+    {
+      "inputCount": 33,
+      "x": 96,
+      "y": 91,
+      "row": 1,
+      "action": 0,
+      "frame": 20,
+      "money": 0
+    },
+    {
+      "inputCount": 45,
+      "x": 128,
+      "y": 91,
+      "row": 1,
+      "action": 0,
+      "frame": 9,
+      "money": 0
+    },
+    {
+      "inputCount": 62,
+      "x": 128,
+      "y": 91,
+      "row": 1,
+      "action": 4,
+      "frame": 21,
+      "money": 0
+    },
+    {
+      "inputCount": 63,
+      "x": 128,
+      "y": 91,
+      "row": 1,
+      "action": 5,
+      "frame": 21,
+      "money": 0
+    },
+    {
+      "inputCount": 64,
+      "x": 152,
+      "y": 91,
+      "row": 1,
+      "action": 6,
+      "frame": 24,
+      "money": 0
+    },
+    {
+      "inputCount": 94,
+      "x": 176,
+      "y": 51,
+      "row": 2,
+      "action": 0,
+      "frame": 20,
+      "money": 0
+    },
+    {
+      "inputCount": 118,
+      "x": 256,
+      "y": 91,
+      "row": 1,
+      "action": 0,
+      "frame": 22,
+      "money": 50
+    },
+    {
+      "inputCount": 148,
+      "x": 240,
+      "y": 91,
+      "row": 1,
+      "action": 0,
+      "frame": 20,
+      "money": 50
+    }
+  ],
+  "comparisonRules": "Exact named state fields at every checkpoint; three lives, facing0, scroll0 and seed47948 at all ten. Every presentation must render without unsupported frames or drawing errors. Inputs are independent of expected outputs. No skipped checkpoints or unconsumed inputs are allowed.",
+  "injections": [],
+  "fittedInputs": [],
+  "limitations": "Expected values are a port regression baseline supported by static translation, not DOSBox observations. Complete ascent, all variant outcomes, palette, framebuffer restore quirks and original timing/audio parity are unproven.",
+  "verify": "npm run verify:mountain"
+}

@@ -3,7 +3,8 @@
 Jungle gameplay is not yet connected to the browser. The current foundation
 loads the three original map resources, locates the starting platform and
 translates actor animation lists, selection, countdowns, control selection,
-ground/support queries, actor motion, hazard/life initialization and presentation history.
+ground/support queries, actor motion, hazard/life initialization, a pure
+full-scene compositor and presentation history.
 The actor routines now have conditional original-runtime comparisons. The next playable route is flight/guide →
 walking/jumping among the initial platforms → consequence → restart, followed
 by the complete expedition and campaign reward. No substitute mechanics are
@@ -103,8 +104,8 @@ selection is f97:06a9 (Ghidra currently fails to decompile it); camera movement
 is body0591. Actor world X/Y are DS5f46/6858, current action6882, facing3d12
 and platform column/row544c/5462. The animation helpers are now translated
 from raw disassembly and checked below. Translate hazard advancement and
-the scene next, then compare that scene with the
-original before claiming a playable jungle milestone. Existing cave and mountain browser routes
+scene scheduling next; extend full-scene rendering to scrolling/incremental
+comparisons before claiming a playable jungle milestone. Existing cave and mountain browser routes
 remain the working expedition routes.
 
 ## Actor animation and conditional original scenario
@@ -211,7 +212,7 @@ Those modified initial states are independent checks, not original captures.
 The command remains `npm run verify:jungle`; the original overlay identity is
 checked by the animation verifier before these control cases.
 
-Hazard advancement, full scene composition and browser scheduling
+Hazard advancement, scene scheduling and browser integration
 still remain before a playable jungle route. Ground, vine
 and moving-platform helpers have static evidence but no new runtime comparison
 in these seven cases. No full-scene, audio, original wall-clock or browser
@@ -391,11 +392,81 @@ renderer setup, not part of accepted initialization evidence or an established
 pixel/timing comparison. Front-buffer/VGA capture alignment still needs checking
 before using the PNG as an exact frame expectation.
 
-Current original: paused0e0c:049a stop248,variant0/day23. No breakpoints or pending
-input schedules remain. Revalidate code and address mapping again after a
-relaunch or another overlay load. Next scene work should follow raw main032b..049a:
+The first-frame pause248 was followed by the rendering checks below. Scene
+work follows raw main032b..049a:
 backgroundf97:0479/04ab, terrain1090:0528, monkey e7a:0318, fishf26:01f6,
 bird1036:0246, monkey projectile/overlaye7a:0912/09c0, vine118a:01f0,
 snake1149:0008 (only while actor action45), transport11d4:006b, actor main11c5,
 bonus main21ff and HUDe4c:0144. Ghidra function labels sometimes use equivalent
 segment aliases; raw far-call bytes decide the actual routine boundary.
+
+## Full-scene compositor and exact presentation comparisons
+
+`jungle-scene.js` reconstructs the complete viewport as pure drawing commands
+from a presentation-boundary DS snapshot. The renderer does not advance tuples,
+change dirty counters/page histories, consume input/RNG/time or write memory.
+It follows the original order: repeated background, static platforms/pickups,
+background snakes, moving platforms/monkeys, fish, section birds/projectiles/
+vines/transports, actor, bonus and HUD. Foreground visits three sections (four
+while scrolling); background snake coverage uses its separate inclusive range.
+Incremental two-page copying is not established by this full-redraw compositor.
+
+Backgroundf97:05bf first copies JG4, draws JG7 frame1 at48,0, then takes the
+104-pixel strip from source56..159. Background04ab repeats it with the original
+eight-pixel copy rounding. HUD cards use MAIN25/23, the font is MAIN42, but life
+icons use **MT12**: the original filename at DS1acf is `mt.arc`. All originals,
+including MT.ARC and IT.DRV, are hash checked before these comparisons.
+
+The supported EGA320x200 palette remains explicit and separate from the viewer.
+Life setup changes slots5/13 to red,blue,green; this milestone captures red and
+blue. Driver1 palette code008e..00e4 matches the live bytes at2ed7:008e. Its
+table pointer is DS2056 and its cached16 colors match original bytes masked3f.
+The low RGB bits/intensity bit4 projection is checked against every captured
+screen pixel. Without life palette application, the first frame differs in80
+Scrooge pixels; these differences are corrected, not excluded.
+
+`reference/jungle-scene.json` requires20 local artifacts and eight exact320x200
+RGBA comparisons: four idle frames, three downward-step frames and the initial
+two-life scene after natural drowning. The independently observed setup Down
+sample is AL5 at0680 stop253. Actual requested input timing drifted while paused,
+so that producer schedule is setup provenance, not a timing/gameplay replay.
+There are no new memory/register injections, restores or fitted timers. The
+earlier conditional target override before entry230 remains inherited.
+
+DOSBox raw capture returns the last completed VGA frame rather than guaranteeing
+the just-presented page. A single fixed offset of one presentation is required:
+state248→PNG249,249→250,250→251,251→252;254→255,255→256,256→257;260→261.
+The initial simultaneous248 capture also matched, but is not used to choose
+per-case alignment. Cross-frame experiments and the extra252 image confirm the
+fixed offset when fish pixels change. The verifier never searches for a best
+match. Zero tolerance, every RGBA byte, no image exclusions. This rule is scoped
+to this build and capture sequence; it does not establish wall-clock parity.
+A focused capture-tool improvement would expose the captured VGA frame/page
+identity alongside `screen_capture`, or offer current-front-page capture; its
+current `raw` description does not explain this cache alignment boundary.
+
+One separate life-reset routine258/259 consumes the independently recorded
+first=false argument (also checked against incoming stack). All DS bytes match
+except22 bytes of call/local/interrupt scratch9e56..9e6b; one palette output is
+required and life count becomes2. It does not use a post-state to initialize
+simulation. Seven negative controls reject a missing case, wrong blue-coat
+palette, omitted forest, wrong capture alignment, changed pixel, render-time
+memory mutation and wrong reset argument. An invalid visible sprite frame must
+stop explicitly. Error reporting compares every byte but prints only the first
+divergence; Node's large structural Buffer diff exhausted memory during the
+deliberate failures and is no longer used for image comparisons.
+
+Run `npm run verify:jungle`. Rendering is conditional on captured state; it is
+not a closed-loop simulation or independent browser acceptance. Other variants,
+camera scrolling, incremental page copies and active enemy/projectile/transport/
+bonus pixels still need targeted comparisons. A known boundary matters for
+projectile hits: original e7a:0912 draws the projectile before09c0 may deactivate
+it and change the actor. An arbitrary post-collision snapshot cannot reconstruct
+that already-drawn projectile from its now-cleared active flag. The production
+loop must retain drawing commands at those consumption boundaries; this snapshot
+compositor is not acceptance for hit frames. Hazard movement/collisions and the
+main scheduler remain before a playable browser route.
+
+Current original: paused0e0c:049a stop261,variant0/day23,life2. All controls released;
+no breakpoints or pending input schedules. Code identity remains entry230 until
+another overlay load or memory-layout change requires revalidation.

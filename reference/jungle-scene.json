@@ -1,0 +1,133 @@
+{
+  "id": "jungle-scene-conditional-fb658562",
+  "buildManifest": "reference/build.json",
+  "codeIdentityManifest": "reference/jungle-hazards.json",
+  "captureSourceRevision": "79c9e95",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "resourceRoot": "game/ mounted read-only as C:",
+    "captureMode": "raw PNG320x200"
+  },
+  "startingRecipe": "Continue entry230/initializer246 from reference/jungle-hazards.json. Neutral joystick return0680 is247; first post-presentation main049a is248. Capture CPU+DS and raw PNG. Repeated run-to049a captures idle states/images249..252. At252 queue Down press0/release300ms, stop AL5 at0680 stop253 and capture setup input; delete condition188. Capture post-presentation049a drop states/images254..257. Continue original to life setup12dd stop258 after natural drowning; capture BEFORE, then13d0 AFTER259. Continue reset and capture post-presentation049a life2 states/images260/261. At261 batch CPU plus graphics driver2ed7:008e..00e4 and0020..0038. No additional injections,register writes,restores or fitted timers. The requested Down timing had large pause-induced replay drift and is setup provenance only,not a timed gameplay replay. All releases dispatched,no breakpoints or pending timelines.",
+  "expectedCaseCount": 8,
+  "expectedCheckpointCount": 9,
+  "expectedPixelCheckpointCount": 8,
+  "expectedRoutineCaseCount": 1,
+  "expectedInputCount": 1,
+  "inputEvents": [
+    {
+      "case": "life-reset",
+      "first": false
+    }
+  ],
+  "sceneSchedule": [
+    ["idle0", "first-frame", "idle1", 248, 249],
+    ["idle1", "idle1", "idle2", 249, 250],
+    ["idle2", "idle2", "idle3", 250, 251],
+    ["idle3", "idle3", "idle4", 251, 252],
+    ["drop0", "drop0", "drop1", 254, 255],
+    ["drop1", "drop1", "drop2", 255, 256],
+    ["drop2", "drop2", "drop3", 256, 257],
+    ["life2", "life2-0", "life2-1", 260, 261]
+  ],
+  "capturePresentationOffset": 1,
+  "pixelTolerance": 0,
+  "injections": [],
+  "fittedInputs": [],
+  "inheritedSetup": "Conditional retry target22\u219225 at resident0439 before entry230 in reference/jungle-hazards.json; earlier captures inherit their explicitly recorded flight/repair setup. This manifest adds no injection.",
+  "environmentContract": "Each PNG comparison starts from its own original post-presentation DS snapshot. The compositor consumes original resource IDs,tuple/descriptor positions and frame numbers,palette bytes and campaign HUD fields; it cannot advance simulation or consume host time/RNG/input. No gameplay replay is claimed. Life reset separately consumes its own BEFORE DS and independent first=false argument,checked against incoming stack. Setup Down AL5 is recorded separately,not inferred from output.",
+  "comparisonRules": "All320x200 RGBA bytes exact,zero tolerance,no image exclusions. A fixed offset of one presentation maps state248\u2192PNG249,249\u2192250,250\u2192251,251\u2192252,254\u2192255,255\u2192256,256\u2192257,260\u2192261. The first simultaneous image248 also matched state248 but is not used to fit per-case alignment. Matrices showed capture cache returning the prior VGA presentation; the extra252 capture confirms the fixed offset on changed fish pixels. Wrong same-presentation alignment is a required negative control. Render must leave all65536 DS bytes unchanged. Life reset compares allDS except22-byte call/local/interrupt scratch9e56..9e6b,including exact palette/life/actor globals. Graphics driver1 palette code008e..00e4 must match decoded IT.DRV; its table pointer is2056 and cached16 colors equal source palette bytes AND3f. Original scene code identity230 is required earlier in verify:jungle.",
+  "exclusions": [
+    "Only life-reset22-byte call/local/interrupt stack scratch9e56..9e6b is excluded from state comparison; no pixel or palette exclusions. CPU registers/return values excluded except required CS/IP/DS/SS and stack shape.",
+    "Conditional initial viewport,idle,downward step and two-life palette coverage only. Full-redraw reconstruction does not establish incremental page-copy parity,scrolling,other variants/difficulties or active enemy/projectile/transport/bonus pixels.",
+    "The life reset routine comparison is independent of the renderer snapshots. No whole motion/hazard loop,closed-loop gameplay,audio/wall-clock timing or browser jungle acceptance is claimed.",
+    "Raw capture can lag game presentation; the fixed one-presentation rule is scoped to this build,capture path and sequence. Do not choose best matching image dynamically."
+  ],
+  "artifacts": {
+    "first-frame-state": {
+      "path": ".local/jungle-scene-first-frame.json",
+      "sha256": "cf9d2c1b03669b36564cea04b77318b1a7c69f7bacdeea184ab2b97687f104ea"
+    },
+    "idle1-png": {
+      "path": ".local/jungle-scene-idle1.png",
+      "sha256": "33abbb65720db2970df612c2e9db83972237d6e0acc238196a4adb8affcccdff"
+    },
+    "idle1-state": {
+      "path": ".local/jungle-scene-idle1.json",
+      "sha256": "b868465bf8c62377469a49ecd5c9e0de2a4e3f8ae4327c03a0716fe5e3e48e0a"
+    },
+    "idle2-png": {
+      "path": ".local/jungle-scene-idle2.png",
+      "sha256": "e3e7525cb88de91daf69b2bd5728756e1b00a34cd48b1ea5ce2a1a9038383a4c"
+    },
+    "idle2-state": {
+      "path": ".local/jungle-scene-idle2.json",
+      "sha256": "d5748a5bdb2ddbf8eb34fe1b8149b8cf36a7635c5132729c526312fef4469196"
+    },
+    "idle3-png": {
+      "path": ".local/jungle-scene-idle3.png",
+      "sha256": "e3e7525cb88de91daf69b2bd5728756e1b00a34cd48b1ea5ce2a1a9038383a4c"
+    },
+    "idle3-state": {
+      "path": ".local/jungle-scene-idle3.json",
+      "sha256": "be1d722ef3fd1d91bee4bab95d7f1d44678cbf659586edde130f8213449cd102"
+    },
+    "idle4-png": {
+      "path": ".local/jungle-scene-idle4.png",
+      "sha256": "6a77168ae69da76e3bb7de2ed89e99dce1a139d0bbd8dc3f17ed4243bde4e453"
+    },
+    "drop0-state": {
+      "path": ".local/jungle-scene-drop0.json",
+      "sha256": "ca6d15d88048608a652d7e02f437c05cf718a8ff7f90adaa0e28743ce9928645"
+    },
+    "drop1-png": {
+      "path": ".local/jungle-scene-drop1.png",
+      "sha256": "e4bc444a1c510d9817cd95edc61071c04f092c1b086bb386eaba498ead12001a"
+    },
+    "drop1-state": {
+      "path": ".local/jungle-scene-drop1.json",
+      "sha256": "afb1902705d9beb726ff4ce8ed32f8cd9f70ea5bef1d419ab5b1d3fef038181d"
+    },
+    "drop2-png": {
+      "path": ".local/jungle-scene-drop2.png",
+      "sha256": "f3fe73ed9181fd8f4ee975f6cfeb1c048eed719e77f56964e6228d5638d9cf93"
+    },
+    "drop2-state": {
+      "path": ".local/jungle-scene-drop2.json",
+      "sha256": "e5c4be1e23c70e68d26037f774defe075eec14927182079978b274be87d471a0"
+    },
+    "drop3-png": {
+      "path": ".local/jungle-scene-drop3.png",
+      "sha256": "bb51c106dfe4e0b0c1918d27f61a08420bfe4f4cd98d58c020b3164051c30d8a"
+    },
+    "life2-0-state": {
+      "path": ".local/jungle-scene-life2-0.json",
+      "sha256": "33925f1b0d9bfcfd18ad4d37260d89151ed2f2cf9871ecf26fa0b7af25f3244e"
+    },
+    "life2-1-png": {
+      "path": ".local/jungle-scene-life2-1.png",
+      "sha256": "30ae868d16c7a1acbabfc56ea0bccb6322f934968bb0d7007790c9f28edbafd8"
+    },
+    "life-reset-before": {
+      "path": ".local/jungle-scene-life-reset-before.json",
+      "sha256": "ace54300b8c1e606b736d8962fda2edea0f189ef2050e3905b1cdfadf9f7f2d1"
+    },
+    "life-reset-after": {
+      "path": ".local/jungle-scene-life-reset-after.json",
+      "sha256": "912c1209b9778e55747ca44ce704afec28d12b6ef4f4dddc78de94960821d321"
+    },
+    "down-input": {
+      "path": ".local/jungle-scene-down-input.json",
+      "sha256": "c6def6e6abeb8cc32c56973a09161b0b816dbe219805bfd975b4f1d5504c10f0"
+    },
+    "palette-driver": {
+      "path": ".local/jungle-scene-palette-driver.json",
+      "sha256": "6141f5e6015e3c61000755c057f61aad7271f4304d436ece3100afaaa07eef31"
+    }
+  },
+  "verifyCommand": "npm run verify:jungle"
+}

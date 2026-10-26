@@ -9,6 +9,7 @@ import { verifyJungleAnimation } from "./verify-jungle-animation.js";
 import { verifyJungleMotion } from "./verify-jungle-motion.js";
 import { verifyJungleInitialization } from "./verify-jungle-initialization.js";
 import { verifyJungleHazards } from "./verify-jungle-hazards.js";
+import { verifyJungleScene } from "./verify-jungle-scene.js";
 import { unpackImage } from "../src/game/executable.js";
 import {
   parseJungleMap,
@@ -18,7 +19,7 @@ import {
 
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const resources = {};
-for (const name of ["DUCKTALE.EXE", "JG.ARC", "MAIN.ARC", "IT.DRV"]) {
+for (const name of ["DUCKTALE.EXE", "JG.ARC", "MAIN.ARC", "IT.DRV", "MT.ARC"]) {
   const bytes = await readFile(`game/${name}`).catch(() => {
     throw Error(`SETUP: missing game/${name}; see docs/jungle.md`);
   });
@@ -156,5 +157,12 @@ await verifyJungleInitialization();
 
 await verifyJungleHazards({
   executableRaw: resources["DUCKTALE.EXE"],
+  driverEntries: parseArchive(resources["IT.DRV"]),
+});
+
+await verifyJungleScene({
+  entries,
+  mainEntries: parseArchive(resources["MAIN.ARC"]),
+  mountainEntries: parseArchive(resources["MT.ARC"]),
   driverEntries: parseArchive(resources["IT.DRV"]),
 });

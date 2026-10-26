@@ -70,14 +70,20 @@ does not advance simulation. Unsupported paths stop with diagnostics.
   selection and the128-byte keyboard matrix. Support/ground helpers are
   statically translated. Actor motion adds25 exact original routine cases,
   21 carried actor checkpoints and25 decoded poses covering walking,short step,
-  drop,fall and water death. Complete scene/hazards and browser gameplay remain
+  drop,fall and water death. Hazard advancement and browser gameplay remain
   unimplemented. Authored boundary checks are kept separate from runtime evidence.
   Fish/bonus reset adds2 conditional original checkpoints with exact DS outside
   their42/8-byte stack intervals and17 original fish RNG draws. Vine initialization
   has static checks. Additional hazard initialization now matches10 original
   routine cases and9 carried full-DS checkpoints, including initial actor/lives,
   all hazard slots and pickup RNG. Only documented stack scratch and the identified
-  four-byte IRQ8 clock are excluded. Scene/hazard advancement remains incomplete.
+  four-byte IRQ8 clock are excluded. A pure full-scene compositor adds8 exact
+  original320x200 PNG comparisons with fixed one-presentation VGA alignment,
+  including the downward step and two-life blue coat/HUD. A separate original
+  life-reset routine matches all DS except22 stack bytes. Seven negative controls
+  reject wrong alignment,palette,background,pixel,state mutation,case loss and
+  reset argument. Full incremental rendering/scrolling/enemy pixels and hazard
+  advancement remain incomplete.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
@@ -117,7 +123,9 @@ variant0. These checks do not establish a complete original campaign replay.
   separately; control selection and collision support are now translated too.
   Actor motion and support contributions are now translated separately.
   Hazard initializers and life setup are translated and compared separately;
-  hazard advancement and scene rendering remain to translate. See `docs/jungle.md`.
+  full-scene rendering now matches the captured initial viewport/drop/life reset.
+  Hazard advancement, incremental page behavior, scrolling and runtime/browser
+  integration remain. See `docs/jungle.md`.
   Mountain actions/hazards, scrolling and summit condition are translated;
   variant0 ascent/reward works through browser controls. Other variants/
   difficulties and original hook/ascent comparisons are still needed. Full
@@ -149,23 +157,23 @@ verifiers listed in package.json. Analysis: `npm run prepare:analysis`,
 `npm run prepare:flight-analysis`, `npm run prepare:cave-analysis`.
 Mountain foundation: `npm run prepare:mountain-analysis` and
 `npm run verify:mountain`; scope and evidence in `docs/mountain.md`.
-Jungle map foundation: `npm run prepare:jungle-analysis` and
+Jungle analysis/checks: `npm run prepare:jungle-analysis` and
 `npm run verify:jungle`; Python3 is required for the independent oracle.
 
 Next: translate jungle hazard advancement and scene
-scheduling/rendering, then connect the existing control/collision/animation pieces to a
+scheduling, extend scrolling/incremental rendering checks, then connect the existing pieces to a
 playable browser route. Then expand photography, trading and
 endings, while extending targeted original mountain hook/ascent comparisons. Continue targeted original comparisons for cave movement,
 remaining outcomes and notice presentation/timing. Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-jungle variant0/day23, paused0e0c:049a stop248 after the first presentation path.
+jungle variant0/day23, paused0e0c:049a stop261 after the second life begins.
 No breakpoints or pending schedules. Entry230 revalidates the complete relocated
 overlay. Its retry destination22→25 override at resident0439 is explicit conditional
 setup, separate from the earlier flight/repair override. Clock evidence pins
 decoded IT.DRV5 IRQ8 code and its DS1403:2225 destination. See
 `reference/jungle-hazards.json` and `docs/jungle.md`; older manifests remain pinned
-to their recorded stops. Exploratory scene captures at247 (first neutral joystick)
-and248 (post-presentation CPU/DS plus raw PNG) are local setup for the renderer,
-not yet accepted pixel/timing evidence.
+to their recorded stops. `reference/jungle-scene.json` pins20 local artifacts,
+eight exact PNG comparisons with a fixed one-presentation capture offset, and
+the life-reset258/259 boundary. No browser jungle or timing acceptance is claimed.

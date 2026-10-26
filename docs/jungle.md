@@ -2,11 +2,12 @@
 
 Jungle gameplay is not yet connected to the browser. The current foundation
 loads the three original map resources, locates the starting platform and
-translates actor animation lists, selection, countdowns and presentation history.
+translates actor animation lists, selection, countdowns, control selection,
+ground/support queries and presentation history.
 The actor routines now have conditional original-runtime comparisons. The next playable route is flight/guide →
 walking/jumping among the initial platforms → consequence → restart, followed
 by the complete expedition and campaign reward. No substitute mechanics are
-implemented while the action loop remains untranslated.
+implemented while motion, hazards and scene scheduling remain untranslated.
 
 ## Source identity and analysis
 
@@ -163,6 +164,76 @@ audio or wall-clock timing. The browser still stops at the unsupported jungle
 boundary. The local original screenshot `.local/jungle-original.png` is an
 exploratory capture at stop104, not a pixel expectation.
 
-Live original: instance0719a1b0cdcede0b85c39577ff760639, paused at jungle
-0e0c:1223, stop106, DS/SS1403, BP9e6c. No capture breakpoints or pending input
-schedules remain; Right/Fire/Down are released. Revalidate after relaunch.
+
+
+## Control selection and collision foundation
+
+`jungle-controls.js` translates main0651..0aad. A caller supplies the consumed
+joystick byte, then the routine selects actions from the current actor state,
+platform edges, moving-platform ownership, fish support and vine reach. It
+normalizes Fire's40 bit into80 but still compares complete byte values. A
+cooldown returns before clearing input. On other paths, resident040e:19a5
+clears exactly128 bytes at DS276c..27eb and copies BIOS queue tail to head.
+The DS clear is translated; the BIOS flush is an explicit provider callback.
+It must not fabricate the next consumed input byte. A browser keyboard provider
+must account for new key/repeat events after this clear; continuously replaying
+an old press would differ from the original keyboard-matrix behavior.
+
+`jungle-collision.js` translates the main0b1e pickup/ground test and these
+supporting boundaries: platform query1090:041c, edges0399/03db, moving-platform
+detach073d and dirty flags054c/02fe, snake dirty flag1149:024b, dirty rectangles
+f97:0357, fish supportf26:04de and vine reach118a:043f. No collision callback
+silently supplies a guessed result. These helpers use the original shared DS,
+signed16-bit arithmetic, truncating division, inclusive bounds and32-bit cash
+wrapping. Dirty rectangles retain the eight-pixel right overscan. Fish ID0 is
+a valid support-query result, but the original directional step decision tests
+for a result greater than0. The vine routine compares signed high words and
+unsigned low words of squared32-bit distance; the extreme signed-overflow quirk
+is retained and has a separate authored boundary check.
+
+`reference/jungle-controls.json` requires seven original routine cases, each
+starting only from its own BEFORE state at live0e0c:0680 (hardware joystick
+return) and comparing at0e0c:0aa9. The independent byte stream is
+0,3,7,1,5,c0,c3. Cases cover a busy neutral sample, idle Right/Left/Up/Down/Fire,
+and Fire+Right during busy action6. That last case does not establish the idle
+chord path. In between cases the original advances its own unported motion and
+hazards; this is a conditional routine comparison, not a full control replay.
+No additional memory/register injection or restore was used beyond the earlier
+explicit destination setup in the animation manifest.
+
+Each case checks exact actor/action/frame/countdown/grid/riding/input/counter
+fields, the entire128-byte key matrix, selected sprite-frame byte and required
+BIOS flush request. All seven poses decode/render. Four negative controls omit
+Right, corrupt an expected position, corrupt the cleared matrix and omit a case.
+Additional authored static-rule cases check cooldown/no-flush, idle Fire+Right,
+platform lookup, vine signed overflow,32-bit pickup wrap/revisit and fish0.
+Those modified initial states are independent checks, not original captures.
+The command remains `npm run verify:jungle`; the original overlay identity is
+checked by the animation verifier before these control cases.
+
+Motion at main0c98, complete hazard initialization, full scene composition and
+browser scheduling still remain before a playable jungle route. Ground, vine
+and moving-platform helpers have static evidence but no new runtime comparison
+in these seven cases. No full-scene, audio, original wall-clock or browser
+acceptance claim is made for jungle yet.
+
+### Capture-tool limits encountered
+
+`input_key` uses the same queued PIC timeline as `input_sequence`, even for a
+release. While paused, a queued release can remain pending and subsequent key
+calls return409. Thirty idle samples after a press consumed during an animation
+still read0 because the original matrix flush had discarded it. The capture
+recipe therefore waits for idle first, sends fresh presses, observes AL and
+batches releases into one sequence. Confirm `replay_status` completion; do not
+treat `events_scheduled` as delivery. Cancel stale pending schedules explicitly.
+A focused tool correction would document this behavior on `input_key` and add
+an atomic multi-key release operation, rather than requiring queued single-key
+calls that conflict with one another.
+
+After the seven cases, an uncaptured extra chord attempt continued through
+natural final life loss and returned to the map on day18. It is not a regression
+checkpoint. Live original is now the map, last requested pause158, no breakpoints
+or pending schedules; releases were dispatched together. Jungle's overlay has
+been replaced: re-enter it and revalidate live bytes/addresses before collecting
+more jungle evidence. Earlier stops and screenshot descriptions above refer
+to their recorded capture boundaries only.

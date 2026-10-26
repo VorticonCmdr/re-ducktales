@@ -1,0 +1,141 @@
+{
+  "id": "jungle-controls-conditional-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "34b9990",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "currentDrive": 2,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "codeIdentityManifest": "reference/jungle-animation.json",
+  "startingRecipe": "Continue original jungle at stop106 from reference/jungle-animation.json. Capture CPU+DS64K immediately after hardware joystick return at0e0c:0680 and before return at0e0c:0aa9. First neutral busy-action case is107/108. An initial held Right was consumed while busy and then cleared by original040e:19a5; thirty subsequent idle stops read0. At stop138 idle, release/repress Right and capture139/140 with byte3. For later keys, release previous controls and wait for action5 using a conditional breakpoint DS1403:6882==5. Only then issue fresh key presses and stop on the desired AL value. Left142/143, Up145/146, Down148/149, Fire151/152. Fire+Right154/155 supplies bytec3 while action6 is busy; this is not an idle-chord runtime comparison. Input values are recorded from BEFORE CPU AX, never inferred from the result. Movement/animation between routine cases is setup, not a closed-loop gameplay replay. No additional memory/register writes or machine restore. After capture, attempting another idle chord continued through natural life loss and map return on day18; that uncaptured attempt is not a test. Stop158 is a requested map pause; old jungle overlay mappings must be revalidated before further work.",
+  "expectedCaseCount": 7,
+  "expectedCheckpointCount": 7,
+  "expectedInputCount": 7,
+  "inputEvents": [
+    {
+      "case": "00",
+      "byte": 0,
+      "beforeStop": 107,
+      "afterStop": 108
+    },
+    {
+      "case": "01",
+      "byte": 3,
+      "beforeStop": 139,
+      "afterStop": 140
+    },
+    {
+      "case": "02",
+      "byte": 7,
+      "beforeStop": 142,
+      "afterStop": 143
+    },
+    {
+      "case": "03",
+      "byte": 1,
+      "beforeStop": 145,
+      "afterStop": 146
+    },
+    {
+      "case": "04",
+      "byte": 5,
+      "beforeStop": 148,
+      "afterStop": 149
+    },
+    {
+      "case": "05",
+      "byte": 192,
+      "beforeStop": 151,
+      "afterStop": 152
+    },
+    {
+      "case": "06",
+      "byte": 195,
+      "beforeStop": 154,
+      "afterStop": 155
+    }
+  ],
+  "injections": [
+    {
+      "at": "01f5:0439 before travel",
+      "segment": 5123,
+      "offset": 40798,
+      "width": 1,
+      "before": 33,
+      "after": 25,
+      "meaning": "requested jungle destination; does not alter animation mechanics"
+    }
+  ],
+  "fittedInputs": [],
+  "environmentContract": "Each routine starts only from its own BEFORE DS plus the separately recorded joystick byte. Compare exactly one control-routine invocation. Reuse original heap/resource pointers as unsigned offsets. Original key matrix276c..27eb is cleared at the routine end, except during its cooldown early return; the BIOS queue flush is an explicit callback. No host time/randomness, expected post-state inputs or timer fitting. Collision helpers are statically translated; this capture verifies control selection and its immediate effects, not the full physics/hazard loop.",
+  "comparisonRules": "Exact named actor/action/frame/countdown/grid/riding/input/counter fields, full128-byte key matrix and selected sprite-frame byte. Seven required cases and seven independently recorded AL bytes. Render every resulting actor pose from original JG resources. The full24056-byte relocated overlay identity is required earlier in the same verification command by verify-jungle-animation.js.",
+  "exclusions": [
+    "CPU/registers and call/interrupt stack; BIOS queue memory and whole original input producer schedule outside the routine boundary.",
+    "Non-control fields changed by device/clock handlers; full scene, hazards, motion scheduling, audio/pixel/wall-clock parity and independent browser gameplay.",
+    "Vine and moving-platform paths, fish support, dirty rectangles and ground collision are statically translated but not established by these seven runtime cases."
+  ],
+  "artifacts": {
+    "00-before": {
+      "path": ".local/jungle-controls-00-before.json",
+      "sha256": "50e041518ab07793c651f0c2d1e9ca0db6b6e1a0951e45beff7a950a0419517f"
+    },
+    "00-after": {
+      "path": ".local/jungle-controls-00-after.json",
+      "sha256": "9f80e20b53038373237a16d6c356ed134ed806e5dfa88701ef949621de4a61d0"
+    },
+    "01-before": {
+      "path": ".local/jungle-controls-01-before.json",
+      "sha256": "2fd74c8e1b15e1aefc7a8e3eafcf455c5d23cd9a8b25de5a5422261179306cb0"
+    },
+    "01-after": {
+      "path": ".local/jungle-controls-01-after.json",
+      "sha256": "a9d5f7bd231d108bf60719a7620bd48ffe68c087c9599aafafbae0e01c7e05a1"
+    },
+    "02-before": {
+      "path": ".local/jungle-controls-02-before.json",
+      "sha256": "52ffd3b30fb422bd1a5adcecb216931fb34f1cee87cfed84d4b7c9cff81d6756"
+    },
+    "02-after": {
+      "path": ".local/jungle-controls-02-after.json",
+      "sha256": "400e5dfb98017368e2064f35235efea9dbea1afaa1bd81dd227fc666e88f6c34"
+    },
+    "03-before": {
+      "path": ".local/jungle-controls-03-before.json",
+      "sha256": "b4ba83d265b0ea196c5c1f748283e3ad1430385191deb91f509f1e0a95293250"
+    },
+    "03-after": {
+      "path": ".local/jungle-controls-03-after.json",
+      "sha256": "c2ae9aaedd298415426fe115633dc7f54e963078389229f32c0b50744ed4c7a1"
+    },
+    "04-before": {
+      "path": ".local/jungle-controls-04-before.json",
+      "sha256": "f9b1f8fc562c1073c3df56e5aab6fa2fb6ce6d717a8d2456dbb976a1ec57746d"
+    },
+    "04-after": {
+      "path": ".local/jungle-controls-04-after.json",
+      "sha256": "1a13998f97f6368d60d36e2f7c109035a9ec362ce468693248b17657771ea42a"
+    },
+    "05-before": {
+      "path": ".local/jungle-controls-05-before.json",
+      "sha256": "155a205d0b4b74ab09e147c1be21cefc1658cf43d66e8bc8b5af1572dec74c9e"
+    },
+    "05-after": {
+      "path": ".local/jungle-controls-05-after.json",
+      "sha256": "737e986863cb5301789688b8bf0b4f36e7094ff39caee493f584dae312ae47b4"
+    },
+    "06-before": {
+      "path": ".local/jungle-controls-06-before.json",
+      "sha256": "0bf211560cd8c4904911cdf01bde8fe6c097c6557994c913b61e627a8c9ec9de"
+    },
+    "06-after": {
+      "path": ".local/jungle-controls-06-after.json",
+      "sha256": "4a5989ae0542bcac83d843fb710d52ef43a607c0fe25386d9093130f30ec35cf"
+    }
+  },
+  "verify": "npm run verify:jungle"
+}

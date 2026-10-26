@@ -69,7 +69,7 @@ test("original map pixels and keyboard bank round trip", async ({ page }) => {
   await expect(c).toHaveAttribute("data-scene", "title");
   expect((await state(c)).campaign.day).toBe(1);
 });
-test("expedition boundary rejects unsupported departure without changing campaign", async ({
+test("expedition prepares original briefing and stops at unsupported flight", async ({
   page,
 }) => {
   const c = await office(page);
@@ -81,9 +81,53 @@ test("expedition boundary rejects unsupported departure without changing campaig
   await page.keyboard.press("ArrowRight");
   await expect.poll(async () => (await state(c)).campaign.choice).toBe(1);
   await page.keyboard.press("Space");
+  await expect(c).toHaveAttribute("data-scene", "departure");
+  await expect(page.locator("#diagnostic")).toBeHidden();
+  await expect(page.locator("#status")).toContainText("Departure confirmed");
+  const prepared = await state(c);
+  expect(prepared.departure.flightRequest).toEqual({ days: 1, racing: 1 });
+  expect(prepared.departure.activity).toBe("cave");
+  expect(prepared.seed).toBe(32100);
+  const expected = PNG.sync.read(
+    await readFile(".local/original-departure.png"),
+  );
+  const actual = PNG.sync.read(
+    Buffer.from(
+      (await c.evaluate((c) => c.toDataURL())).split(",")[1],
+      "base64",
+    ),
+  );
+  expect(actual.data).toEqual(expected.data);
+  await page.keyboard.press("Space");
   await expect(page.locator("#diagnostic")).toContainText(
-    "Untranslated expedition: Klondike Mines",
+    "Untranslated flight activity",
   );
   expect((await state(c)).campaign.day).toBe(1);
   expect((await state(c)).campaign.location).toBe(35);
 });
+
+// Other activity families share the flight dispatcher; the terrain games remain separate.
+for (const [name, x, y, activity] of [
+  ["El Capitan", 36, 61, "mountain"],
+  ["Okeefadokie Swamp", 64, 73, "jungle"],
+  ["Yellerstone Park", 46, 56, "photography"],
+]) {
+  test(`departure dispatch classifies ${name}`, async ({ page }) => {
+    const c = await office(page);
+    await page.locator("#map").click();
+    await expect(c).toHaveAttribute("data-scene", "map");
+    await point(c, x, y);
+    await page.keyboard.press("Space");
+    await expect.poll(async () => (await state(c)).campaign.info).toBe(true);
+    await page.keyboard.press("ArrowRight");
+    await expect.poll(async () => (await state(c)).campaign.choice).toBe(1);
+    await page.keyboard.press("Space");
+    await expect(c).toHaveAttribute("data-scene", "departure");
+    expect((await state(c)).departure.activity).toBe(activity);
+    expect((await state(c)).campaign.location).toBe(35);
+    await expect(page.locator("#diagnostic")).toBeHidden();
+    await page.locator("#restart").click();
+    await expect(c).toHaveAttribute("data-scene", "title");
+    expect((await state(c)).departure).toBeNull();
+  });
+}

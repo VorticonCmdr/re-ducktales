@@ -16,7 +16,11 @@ The difficulty choice is retained but does not change this activity.
 
 Campaign route: office → Right+Space → map → select Macaroon (212,131) →
 fire → Right → fire → bank (day 4) → office icon → fire → office (day 7).
-All 35 destinations can be inspected. See `docs/campaign-travel.md`.
+All 35 destinations can be inspected. Confirming an expedition now reaches
+Launchpad's original departure briefing. Day/location and cash stay unchanged;
+the coin latch resets and the two departure RNG draws prepare the original
+flight arguments. Fire there stops at the untranslated flight activity.
+See `docs/campaign-travel.md` and `docs/expedition-departures.md`.
 
 ## Supported build
 
@@ -36,7 +40,7 @@ also ignored. Production loading uses the visitor's own folder.
   more exact checkpoints. Omitted-input and altered-output
   negative controls fail. Starting-state conditions are explicit in the manifest.
 - Browser acceptance: actual keyboard route, asset hash rejection, restart, and
-  pixel-exact office, opening world map, and aligned failed-ending comparisons against local DOSBox captures.
+  pixel-exact office, opening world map, departure briefing, and aligned failed-ending comparisons against local DOSBox captures.
 - Independent simulation: successful timing branch, one-time $1000 reward,
   failure branch, integer/RNG boundaries, and scheduler catch-up checks.
 - These checks do not establish a full original campaign replay or exact sound
@@ -47,13 +51,23 @@ Campaign reference: 3 exact original state checkpoints (zero-cash bank and offic
 return), 2 negative controls. Browser and simulation also verify carrying a $1000
 money-bin reward through deposit. Nonzero deposit has not been compared in DOSBox.
 
+Departure evidence: 2 **conditional** original output checkpoints (prepared RNG/
+race state and flight-entry arguments), 2 further negative controls, exact
+briefing pixels, and independent browser preparation for all four activity
+families. Captured internal seed/slot inputs are documented; this is not a
+whole-campaign RNG replay. Browser uses its own seed-0 provider.
+
 ## Known limitations
 
 - No plane gameplay, climbing, jungle, photography, cave exploration,
   stock trading, Glomgold progression, campaign ending, save/load or high scores.
-- Investments and expedition departures stop with a diagnostic. Journeys reaching
+- Investments, starting flight gameplay, and same-location expedition activities
+  stop with a diagnostic. Journeys reaching
   day 30 stop before the unsupported campaign ending. There is no
   fallback gameplay or silent replacement mechanic.
+- The port explicitly pauses on the departure briefing before the unsupported
+  flight boundary. Original resource loading proceeds directly into flight.
+  No travel result or arrival is substituted. The optional atomic aircraft is absent.
 - Title/difficulty/office transitions omit original cutscenes and door transition
   animations. Navigation buttons are an accessibility adapter, not DOS UI assets.
 - Original per-sprite transparency is keyed from the first decoded pixel, as
@@ -79,17 +93,21 @@ npm run verify
 ```
 
 `npm run verify` checks all 22 file hashes, unit tests, the local original trace,
-negative controls, three campaign state checkpoints, automated browser scenarios, and a production build. Missing
+negative controls, three campaign state checkpoints, two conditional departure
+output checkpoints, automated browser scenarios, and a production build. Missing
 local traces/captures fail with setup errors. It does not silently skip them.
 
 Focused commands: `npm test`, `npm run verify:build`,
-`npm run verify:reference`, `npm run test:browser`, `npm run audit:assets`.
+`npm run verify:reference`, `npm run verify:campaign`, `npm run verify:departure`,
+`npm run test:browser`, `npm run audit:assets`.
 `npm run prepare:analysis` reproduces local unpacked analysis copies.
 
 ## Next milestone
 
-Implement one actual expedition level
-with success/failure and return to the office before expanding to other levels.
-The full-game request remains incomplete. Campaign travel currently supports only
-Macaroon deposits and office return; location detail screens and transition timing
-remain partial, and Glomgold/stock progression is absent.
+Translate Launchpad's actual flight controls, terrain, race and crash outcomes,
+and day advancement. The original flight-entry address and stack contract are
+captured in `reference/expedition-departure.json`; DOSBox is paused there.
+Then connect a real expedition level with success/failure and campaign return.
+Departure preparation is verified; completing a departure and the full-game
+request remain incomplete. Location details, transition timing, atomic aircraft,
+and Glomgold/stock progression remain partial or absent.

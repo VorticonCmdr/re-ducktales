@@ -120,3 +120,8 @@ archive decoder as the viewer. Coordinates are screen positions; flags and treas
 IDs are retained separately. Campaign order is a permutation of resource IDs, not
 the archive order. See [campaign travel](campaign-travel.md) for static sources,
 RNG scope, map colors, travel costs, and the local original capture recipe.
+
+The game runtime now reads Launchpad speech from a read-only EXEPACK image of
+`DUCKTALE.EXE`, alongside MAIN.ARC portrait30. No executable code runs in the
+browser. Image identity, string locations, and original pixel evidence are in
+[expedition departures](expedition-departures.md).

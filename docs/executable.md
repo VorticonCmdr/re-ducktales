@@ -19,10 +19,10 @@ from 512-byte-aligned file offsets:
 
 | Overlay | File offset | Declared bytes | Role currently established     |
 | ------- | ----------- | -------------: | ------------------------------ |
-| 1       | 0xf200      |            526 | Unknown stub                   |
+| 1       | 0xf200      |            526 | Location/treasure setup thunk   |
 | 2       | 0xf600      |           9392 | Office selection / transitions |
 | 3       | 0x11c00     |           3830 | Not translated                 |
-| 4       | 0x12c00     |          18572 | Not translated                 |
+| 4       | 0x12c00     |          18572 | Launchpad flight (entry verified) |
 | 5       | 0x17600     |          12514 | Not translated                 |
 | 6       | 0x1a800     |          12078 | Not translated                 |
 | 7       | 0x1d800     |           8436 | Not translated                 |
@@ -94,3 +94,5 @@ and top-level segment/offset are the reliable mapping evidence.
 Original bytes, unpacked binaries, Ghidra databases, screenshots and raw traces
 are local-only. Committed manifests, translation code and recipes contain no
 proprietary binary payloads.
+
+Expedition preparation and flight-call mapping: [departure evidence](expedition-departures.md).

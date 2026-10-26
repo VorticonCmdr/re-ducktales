@@ -1,3 +1,4 @@
+import { Departure } from "./departure.js";
 import { Campaign, OFFICE, travelDays } from "./campaign.js";
 import { MoneyBin } from "./money-bin.js";
 import { u32, u16 } from "./integer.js";
@@ -16,6 +17,7 @@ export class Game {
     this.seed = this.campaign?.seed ?? this.biosSeed;
     this.tick = 0;
     this.bin = null;
+    this.departure = null;
     this.effects = [];
     this.diagnostic = null;
   }
@@ -26,6 +28,7 @@ export class Game {
       this.difficulty = 0;
       this.tick = 0;
       this.bin = null;
+      this.departure = null;
       this.money = 0;
       this.campaign = this.locations
         ? new Campaign(this.locations, this.biosSeed)
@@ -122,16 +125,41 @@ export class Game {
         );
       return;
     }
+    if (this.scene === "departure") {
+      if (event.type === "fire")
+        throw Error(
+          `Untranslated flight activity: Launchpad's ${this.departure.days}-day flight to ${this.campaign.locations[this.departure.target].name}. Departure is prepared; no arrival or flight outcome has been substituted.`,
+        );
+      return;
+    }
     if (this.scene === "money-bin" && event.type === "fire")
       this.bin.enqueueFire();
   }
   travel(target) {
     const c = this.campaign;
-    if (target !== OFFICE && target !== 0)
-      throw Error(
-        `Untranslated expedition: ${c.locations[target].name}. No campaign state was advanced.`,
-      );
     const days = travelDays(c.locations, c.location, target);
+    if (target !== OFFICE && target !== 0) {
+      if (days === 0)
+        throw Error(
+          `Untranslated expedition activity: ${c.locations[target].name}.`,
+        );
+      const departure = new Departure({
+        from: c.location,
+        target,
+        days,
+        flags: c.locations[target].flags,
+        difficulty: this.difficulty,
+        seed: this.seed,
+      });
+      this.departure = departure;
+      this.seed = departure.seed;
+      c.seed = this.seed;
+      this.rareCoinTaken = false;
+      c.direction = null;
+      this.scene = "departure";
+      this.effects.push({ type: "stopAudio" });
+      return;
+    }
     if (c.day + days >= 30)
       throw Error(
         "Campaign ending is not translated; journey would reach day 30.",
@@ -189,6 +217,7 @@ export class Game {
       tick: this.tick,
       bin: this.bin?.snapshot() ?? null,
       campaign: this.campaign?.snapshot() ?? null,
+      departure: this.departure?.snapshot() ?? null,
       diagnostic: this.diagnostic,
     };
   }

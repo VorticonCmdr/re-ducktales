@@ -17,9 +17,11 @@ the money-bin coin latch. The office keeps these values. Restart resets the
 campaign. The on-screen status distinguishes carried and banked money.
 
 All 35 location records and their descriptions load from verified `LOC.ARC`.
-Expedition departures and journeys reaching day 30 stop with diagnostics before
-changing campaign state. Expeditions, plane gameplay, Glomgold, stocks, campaign
-ending, and save/load remain unsupported.
+Confirming an expedition now prepares Launchpad's flight and displays the original
+briefing; starting the flight stops at an explicit unsupported boundary. See
+[departure evidence](expedition-departures.md). Journey completion, expeditions,
+plane gameplay, Glomgold, stocks, campaign ending, and save/load remain unsupported.
+Macaroon/office journeys reaching day 30 stop with a diagnostic.
 
 ## Evidence and scope
 
@@ -102,4 +104,4 @@ checkpoint counts, carries its own state through bank and return, and checks
 omitted-departure and altered-output negative controls. It rejects missing,
 corrupt, extra or unfinished checkpoints. `npm run test:browser` adds real input,
 original loading/rendering, exact map PNG comparison, cancellation, unsupported
-route rejection, and restart. `npm run verify` runs all required checks.
+flight rejection, and restart. `npm run verify` runs all required checks.

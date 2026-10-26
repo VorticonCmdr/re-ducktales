@@ -90,6 +90,10 @@ def prepare():
     struct.pack_into('<HH', office_map, 20, 0xcaa, 0)
     struct.pack_into('<H', office_map, 26, 0)
     (output / 'OFFICE_MAP.EXE').write_bytes(office_map)
+    flight = bytearray((output / 'OVERLAY_04.EXE').read_bytes())
+    struct.pack_into('<HH', flight, 20, 0, 0)
+    struct.pack_into('<H', flight, 26, 0)
+    (output / 'FLIGHT_ANALYSIS.EXE').write_bytes(flight)
     report = dict(executableSha256=EXPECTED, packedHeaderOffset=pack,
                   imageBytes=len(image), relocations=len(relocations),
                   originalEntry=dict(cs=info[1], ip=info[0]), overlays=overlays)

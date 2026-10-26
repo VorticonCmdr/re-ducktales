@@ -1,3 +1,4 @@
+import { executableText } from "./executable.js";
 import { imagePixels, EGA } from "../assets.js";
 export class Renderer {
   constructor(canvas, resources) {
@@ -135,6 +136,17 @@ export class Renderer {
       this.text(String(game.money), 176 - String(game.money).length * 8, 175);
       if (!c.info)
         this.draw("MAIN.ARC", 28, 0, c.cursor.x - 8, c.cursor.y - 8, -2);
+      return;
+    }
+    if (game.scene === "departure") {
+      this.draw("MAIN.ARC", 30, 0, 0, 0);
+      game.departure.speechOffsets.forEach((offset, i) =>
+        this.text(
+          executableText(this.resources.executable, offset),
+          168,
+          60 + i * 16,
+        ),
+      );
       return;
     }
     if (game.scene === "money-bin") {

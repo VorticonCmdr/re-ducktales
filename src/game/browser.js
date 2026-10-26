@@ -226,12 +226,15 @@ function frame() {
       renderer.render(game);
       $("money-bin").disabled = game.scene !== "office";
       $("map").disabled = game.scene !== "office";
+      $("back").disabled = game.scene === "departure";
       $("status").textContent =
-        game.scene === "money-bin"
-          ? `Money bin · ${game.bin.phase} · Fire to dive`
-          : game.scene === "map"
-            ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
-            : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
+        game.scene === "departure"
+          ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · ${game.departure.activity} expedition · Flight gameplay is not available yet. Restart to play again.`
+          : game.scene === "money-bin"
+            ? `Money bin · ${game.bin.phase} · Fire to dive`
+            : game.scene === "map"
+              ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
+              : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
       $("game").dataset.scene = game.scene;
       $("game").dataset.state = JSON.stringify(game.snapshot());
     }

@@ -1,3 +1,4 @@
+import { unpackImage } from "./executable.js";
 import { parseArchive } from "../assets.js";
 import build from "../../reference/build.json";
 export const REQUIRED_FILES = [
@@ -25,5 +26,5 @@ export async function verifiedResources(readFile) {
   const archives = new Map();
   for (const [name, bytes] of raw)
     if (name !== "DUCKTALE.EXE") archives.set(name, parseArchive(bytes, name));
-  return { raw, archives };
+  return { raw, archives, executable: unpackImage(raw.get("DUCKTALE.EXE")) };
 }

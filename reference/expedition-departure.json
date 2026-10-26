@@ -1,0 +1,77 @@
+{
+  "id": "departure-klondike-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "426729d",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 f6d9b",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "headless": true,
+    "mute": true,
+    "readOnlyMount": "game/"
+  },
+  "startingRecipe": "Continue campaign-bank reference at day 7 office, Right+Space, navigate map to Klondike, fire for details, Right then fire. See docs/expedition-departures.md.",
+  "expectedCheckpointCount": 2,
+  "expectedRngDrawCount": 2,
+  "routineInput": {
+    "from": 35,
+    "target": 25,
+    "days": 1,
+    "flags": 8,
+    "difficulty": 0,
+    "seed": 41725,
+    "rivalCollected": false
+  },
+  "browserInputs": [
+    {
+      "type": "fire"
+    },
+    {
+      "type": "fire"
+    },
+    {
+      "type": "map"
+    },
+    {
+      "type": "point",
+      "x": 37,
+      "y": 33
+    },
+    {
+      "type": "fire"
+    },
+    {
+      "type": "right"
+    },
+    {
+      "type": "fire"
+    }
+  ],
+  "rules": {
+    "level": "Conditional routine comparison, plus independent browser route and exact briefing pixels. Not a whole-campaign RNG replay.",
+    "comparison": "Exact RNG seed, race flag, flight stack arguments, unchanged day/location, and coin latch. Exact RGBA briefing PNG.",
+    "conditions": [
+      "Seed 41725 and runtime target slot 25 are captured internal state at main:06d9; they are explicit routine starting inputs, not independent environmental events.",
+      "Browser starts from its own seed 0 provider and permutation (Klondike slot 1), not from the captured original state.",
+      "The captured briefing variant 1 is also produced by browser seed 0."
+    ],
+    "exclusions": [
+      "No flight physics, travel completion, arrival outcomes or full campaign RNG replay.",
+      "Original resource-loading delay is replaced by an explicit preflight pause; Fire reaches a strict diagnostic."
+    ],
+    "injections": [],
+    "fittedInputs": []
+  },
+  "artifacts": {
+    "trace": {
+      "path": ".local/reference-departure.json",
+      "sha256": "6faf9f42404ca4f156ba61a301755994fa3974cc4780e9a1e2b18a655d417c69"
+    },
+    "briefing": {
+      "path": ".local/original-departure.png",
+      "sha256": "d6ec72f4297c069a64446310a8400696fc33eee1e267a2050271cab4f99c1d40"
+    }
+  },
+  "verify": "npm run verify:departure"
+}

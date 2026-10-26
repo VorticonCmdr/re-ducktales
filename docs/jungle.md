@@ -292,8 +292,40 @@ original audio/timing or jungle browser acceptance is claimed. Next: complete
 hazard initialization and scene scheduling, then integrate this actor loop.
 
 After the dispatched Down release and neutral AL0 at stop218, the original
-continued through natural life loss. Live original is now paused111b:01f1,
-stop220, after fish initialization on retry. Its BEFORE/AFTER captures are local
-investigation for the next hazard milestone, not part of this motion acceptance.
+continued through natural life loss and the reset boundaries recorded below.
 No owned breakpoints or pending input schedules remain. Current overlay bytes
 were revalidated on entry164; captures stay pinned to their recorded boundaries.
+
+## Initial hazard reset routines
+
+`jungle-initialization.js` translates fish initializationf26:00d4, vine
+initialization118a:0002 and bonus initializationda0:0783. These functions remain
+independent of the DOM, rendering and browser clock. Fish setup consumes one
+original RNG draw per declared fish plus one for phase selection (17 draws
+for variant0), retaining shared seed2229. Type17 preserves the loaded amplitude;
+type18 sets32. The original CWD/XOR/SUB/SAR/XOR/SUB quarter calculation is
+preserved even for the signed minimum overflow. Unknown fish counts/types stop
+with a diagnostic. Bonus initialization keeps sparse animation writes and
+the original difficulty waits350/200/100. Vine initialization visits all ten
+slots, copying anchor/endpoints and setting the original motion counters.
+
+`reference/jungle-initialization.json` pins four local captures from natural
+life loss after motion stop218. Fish BEFORE/AFTER219/220 compare the complete
+DS except42 bytes of call/local/interrupt scratch9e44..9e6d. Bonus221/222 compare
+all DS except8 stack bytes9e66..9e6d. Incoming SP9e6e and saved BP shape are
+required. No globals, resource descriptors or RNG fields are excluded. No new
+injection/restore/device input is used; the prior conditional destination setup
+remains inherited. Three negative controls omit a case, lose the internal RNG
+advance and corrupt the expected bonus wait. All local artifacts are required
+and hash checked by `npm run verify:jungle`, after complete entry164 code identity.
+
+Vines and other difficulty values have authored static-rule checks, not new
+original runtime coverage. These two conditional reset cases do not establish
+a complete life reset, scene, audio/timing or browser gameplay. Monkey, bird,
+snake, transport and platform initialization, hazard advancement and complete
+scene composition remain before integration. The original's da0:0783 is a
+physical alias of main2013: the live CPU reports0e0c:2013, not0f95:0783; the
+manifest records the actual CS/IP rather than assuming a unique segment alias.
+
+Current live original: paused0e0c:208f stop222 after bonus reset; no breakpoints
+or pending input schedules. No original resources or code were changed.

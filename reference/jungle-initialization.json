@@ -1,0 +1,68 @@
+{
+  "id": "jungle-initialization-conditional-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "3056773",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "codeIdentityManifest": "reference/jungle-motion.json",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "startingRecipe": "Continue original from stop218 in reference/jungle-motion.json with all controls released and no schedules. Original drowning animation completes and consumes a life, then executes ordinary reset. Run to originalf26:00d4 at live111b:00d4; capture CPU+DS64K stop219. Stop at111b:01f1 before epilogue and capture220. Run to originalda0:0783 physical alias0e0c:2013 (tool breakpoint segment0f95:0783, same linear address); capture221. Stop at0e0c:208f and capture222. No further injection, restore, device event or register write. Current code identity is the full entry164 in the motion manifest, same loaded overlay.",
+  "expectedCaseCount": 2,
+  "expectedCheckpointCount": 2,
+  "expectedInputCount": 0,
+  "inputEvents": [],
+  "expectedFishRngDraws": 17,
+  "cases": [
+    {
+      "id": "fish",
+      "cs": 4379,
+      "beforeIP": 212,
+      "afterIP": 497,
+      "beforeStop": 219,
+      "afterStop": 220,
+      "stackExclusion": [40516, 40558]
+    },
+    {
+      "id": "bonus",
+      "cs": 3596,
+      "beforeIP": 8211,
+      "afterIP": 8335,
+      "beforeStop": 221,
+      "afterStop": 222,
+      "stackExclusion": [40550, 40558]
+    }
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "inheritedSetup": "Destination22\u219225 after unrelated flight/repair in reference/jungle-motion.json; conditional setup, not an independent journey.",
+  "environmentContract": "Each routine starts only from its own BEFORE DS. No external input events, host RNG/clock or expected-derived values. RNG is internal nextRandom with shared seed DS2229, once per fish and once for phase. No carried whole reset/scene claim.",
+  "comparisonRules": "Exact all65536 DS bytes except the per-case documented call/local/interrupt scratch below incoming SP9e6e. Require CPU CS/IP/DS/SS and saved BP shape; no game globals or heap fields excluded. Entry164 full24056-byte relocated overlay identity is required earlier in the same verify:jungle command.",
+  "exclusions": [
+    "Fish42-byte scratch interval9e44..9e6d; bonus8-byte scratch interval9e66..9e6d. CPU return values and flags excluded.",
+    "No pixel/audio/timing, complete hazard initialization, whole-life replay or browser acceptance claimed. Vines have static-rule checks only."
+  ],
+  "artifacts": {
+    "bonus-after": {
+      "path": ".local/jungle-hazard-bonus-after.json",
+      "sha256": "1d6a2fed7f3a9af75b7f2fadeadc45b5323987af5a4e03eade16c27380752084"
+    },
+    "bonus-before": {
+      "path": ".local/jungle-hazard-bonus-before.json",
+      "sha256": "b5a1f9faed3969f65c8fae36697db133d331346a86acda06b97af9488de22e8c"
+    },
+    "fish-after": {
+      "path": ".local/jungle-hazard-fish-after.json",
+      "sha256": "38b7ff15cd698dea13b49c732926f28d8037c9df66a0d298da48c2558aec7b67"
+    },
+    "fish-before": {
+      "path": ".local/jungle-hazard-fish-before.json",
+      "sha256": "3f05cab579bb018c09bed5a6385e14f4025c8244b30e1f1f53058a139927da6e"
+    }
+  },
+  "verifyCommand": "npm run verify:jungle"
+}

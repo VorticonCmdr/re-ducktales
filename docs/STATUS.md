@@ -1,6 +1,6 @@
 # Current port status
 
-Updated2026-10-26. **The full game is not complete.**
+Updated2026-10-27. **The full game is not complete.**
 
 ## Working browser routes
 
@@ -72,6 +72,9 @@ does not advance simulation. Unsupported paths stop with diagnostics.
   21 carried actor checkpoints and25 decoded poses covering walking,short step,
   drop,fall and water death. Complete scene/hazards and browser gameplay remain
   unimplemented. Authored boundary checks are kept separate from runtime evidence.
+  Fish/bonus reset adds2 conditional original checkpoints with exact DS outside
+  their42/8-byte stack intervals and17 original fish RNG draws. Vine initialization
+  has static checks; remaining hazard initialization/advancement is incomplete.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
@@ -153,9 +156,10 @@ remaining outcomes and notice presentation/timing. Full-game work remains active
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-jungle variant0/day22, paused111b:01f1 stop220 after fish reset on natural life loss.
+jungle variant0/day22, paused0e0c:208f stop222 after bonus reset on natural life loss.
 Down release was dispatched and neutral AL0 observed at stop218; no breakpoints
 or pending schedules. New entry164 revalidates the complete
 relocated overlay. Its destination22→25 override after unrelated flight/repair
 is explicit conditional setup. See `reference/jungle-motion.json` and
-`docs/jungle.md`; older manifests remain pinned to their recorded stops.
+`docs/jungle.md` and `reference/jungle-initialization.json`; older manifests remain
+pinned to their recorded stops.

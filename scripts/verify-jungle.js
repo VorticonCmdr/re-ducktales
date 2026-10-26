@@ -7,6 +7,7 @@ import { parseArchive } from "../src/assets.js";
 import { verifyJungleControls } from "./verify-jungle-controls.js";
 import { verifyJungleAnimation } from "./verify-jungle-animation.js";
 import { verifyJungleMotion } from "./verify-jungle-motion.js";
+import { verifyJungleInitialization } from "./verify-jungle-initialization.js";
 import { unpackImage } from "../src/game/executable.js";
 import {
   parseJungleMap,
@@ -149,3 +150,5 @@ await verifyJungleMotion({
   mainEntries: parseArchive(resources["MAIN.ARC"]),
   executableRaw: resources["DUCKTALE.EXE"],
 });
+
+await verifyJungleInitialization();

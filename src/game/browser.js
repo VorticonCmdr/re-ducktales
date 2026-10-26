@@ -11,6 +11,7 @@ let game,
   resources,
   playing,
   scheduler,
+  resumeAudio = false,
   pausedAt = null;
 const held = new Set();
 function flightControls() {
@@ -56,6 +57,7 @@ async function load(read) {
     resources = await verifiedResources(read);
     game = new Game({
       biosSeed: 0,
+      audioEnabled: $("audio").checked,
       locations: parseLocations(resources.archives.get("LOC.ARC")),
       loot: parseLoot(resources.archives.get("LOOT.ARC")),
       expeditionResources: {
@@ -208,16 +210,30 @@ document.addEventListener("visibilitychange", () => {
   const now = performance.now();
   if (document.hidden) {
     pausedAt = now;
+    resumeAudio = !!playing && !playing.paused;
     playing?.pause();
   } else if (pausedAt !== null) {
     scheduler?.pauseDuration(now - pausedAt);
     pausedAt = null;
+    if (resumeAudio && $("audio").checked)
+      playing
+        ?.play()
+        .catch((e) => fatal(new Error(`Audio playback: ${e.message}`)));
+    resumeAudio = false;
   }
 });
 const sounds = new Map();
+let activeAudioToken = null;
+function stopSound() {
+  playing?.pause();
+  if (activeAudioToken !== null) {
+    dispatch({ type: "audio-status", token: activeAudioToken, busy: false });
+    activeAudioToken = null;
+  }
+}
 function effects() {
   for (const event of game.drainEffects()) {
-    if (event.type === "stopAudio") playing?.pause();
+    if (event.type === "stopAudio") stopSound();
     if (event.type === "sound" && $("audio").checked) {
       if (!sounds.has(event.id))
         sounds.set(
@@ -236,8 +252,16 @@ function effects() {
             ),
           ),
         );
-      playing?.pause();
+      stopSound();
       playing = $("sound");
+      activeAudioToken = event.token ?? null;
+      const token = activeAudioToken;
+      playing.onended = () => {
+        if (token !== null)
+          dispatch({ type: "audio-status", token, busy: false });
+        if (activeAudioToken === token) activeAudioToken = null;
+      };
+      playing.onerror = () => fatal(new Error("Audio playback failed"));
       playing.src = sounds.get(event.id);
       playing.volume = 0.35;
       playing
@@ -247,7 +271,8 @@ function effects() {
   }
 }
 $("audio").onchange = () => {
-  if (!$("audio").checked) playing?.pause();
+  dispatch({ type: "audio-enabled", enabled: $("audio").checked });
+  if (!$("audio").checked) stopSound();
 };
 function frame() {
   const now = performance.now();
@@ -263,18 +288,20 @@ function frame() {
         game.scene === "departure"
           ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · Fire to fly`
           : game.scene === "cave"
-            ? `Cave · Hold an arrow to point; press Space to move · Lamp ${game.cave.snapshot().torch}/${game.cave.snapshot().limit} · Cash $${game.cave.snapshot().money}`
-            : game.scene === "expedition-briefing"
-              ? "The Junior Woodchuck Guide"
-              : game.scene === "flight"
-                ? `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
-                : game.scene === "rival-claim"
-                  ? `Glomgold has taken the treasure · Fire to continue`
-                  : game.scene === "money-bin"
-                    ? `Money bin · ${game.bin.phase} · Fire to dive`
-                    : game.scene === "map"
-                      ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
-                      : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
+            ? `Cave · ${game.cave.phase === "exploring" ? "Hold an arrow to point; press Space to move" : game.cave.phase} · Lamp ${game.cave.snapshot().torch}/${game.cave.snapshot().limit} · Cash $${game.cave.snapshot().money}`
+            : game.scene === "expedition-result"
+              ? `Expedition ${game.expeditionResult.phase === "failure" ? "failed" : game.expeditionResult.phase === "award" ? "treasure recovered" : "atomic transport unlocked"} · Fire to continue · Cash $${game.money}`
+              : game.scene === "expedition-briefing"
+                ? "The Junior Woodchuck Guide"
+                : game.scene === "flight"
+                  ? `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
+                  : game.scene === "rival-claim"
+                    ? `Glomgold has taken the treasure · Fire to continue`
+                    : game.scene === "money-bin"
+                      ? `Money bin · ${game.bin.phase} · Fire to dive`
+                      : game.scene === "map"
+                        ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
+                        : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
       $("game").dataset.scene = game.scene;
       $("game").dataset.state = JSON.stringify(game.snapshot());
     }

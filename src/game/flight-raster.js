@@ -6,14 +6,45 @@ export function renderFlightPixels(
   entries,
   font,
   archive = "PLANE.ARC",
+  cache = new WeakMap(),
 ) {
+  if (cache.has(commands)) return cache.get(commands);
   const result = new Uint8ClampedArray(320 * 200 * 4);
   const put = (x, y, color) => {
     if (x < 0 || y < 0 || x >= 320 || y >= 200) return;
     result.set([...EGA[color], 255], (y * 320 + x) * 4);
   };
   for (const c of commands) {
-    if (c.op === "fill") {
+    if (c.op === "restore") {
+      if (
+        !Array.isArray(c.source) ||
+        ![c.x, c.y, c.sourceX, c.sourceY, c.width, c.height].every(
+          Number.isInteger,
+        ) ||
+        c.sourceX < 0 ||
+        c.sourceY < 0 ||
+        c.width < 0 ||
+        c.height < 0 ||
+        c.sourceX + c.width > 320 ||
+        c.sourceY + c.height > 200
+      )
+        throw Error("Invalid framebuffer copy");
+      const source = renderFlightPixels(
+        c.source,
+        entries,
+        font,
+        archive,
+        cache,
+      );
+      for (let y = Math.max(0, -c.y); y < Math.min(c.height, 200 - c.y); y++)
+        for (let x = Math.max(0, -c.x); x < Math.min(c.width, 320 - c.x); x++) {
+          const from = ((c.sourceY + y) * 320 + c.sourceX + x) * 4;
+          result.set(
+            source.subarray(from, from + 4),
+            ((c.y + y) * 320 + c.x + x) * 4,
+          );
+        }
+    } else if (c.op === "fill") {
       if (!EGA[c.color]) throw Error(`Invalid flight color ${c.color}`);
       for (let y = Math.max(0, c.y); y < Math.min(200, c.y + c.height); y++)
         for (let x = Math.max(0, c.x); x < Math.min(320, c.x + c.width); x++)
@@ -107,5 +138,6 @@ export function renderFlightPixels(
       }
     } else throw Error(`Unsupported flight drawing operation ${c.op}`);
   }
+  cache.set(commands, result);
   return result;
 }

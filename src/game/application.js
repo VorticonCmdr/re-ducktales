@@ -15,8 +15,11 @@ export class Game {
     flightResources = null,
     loot = null,
     expeditionResources = null,
+    audioEnabled = false,
   } = {}) {
     this.expeditionResources = expeditionResources;
+    this.audioEnabled = audioEnabled;
+    this.audioScope = 0;
     this.cave = null;
     this.briefing = null;
     this.loot = loot;
@@ -40,6 +43,17 @@ export class Game {
   }
   input(event) {
     if (this.diagnostic) throw Error(this.diagnostic);
+    if (event.type === "audio-enabled") {
+      if (typeof event.enabled !== "boolean")
+        throw Error("Invalid audio setting");
+      this.audioEnabled = event.enabled;
+      this.cave?.setAudioEnabled(event.enabled);
+      return;
+    }
+    if (event.type === "audio-status") {
+      this.cave?.setAudioStatus(event.token, event.busy);
+      return;
+    }
     if (event.type === "restart") {
       this.scene = "title";
       this.difficulty = 0;
@@ -184,6 +198,10 @@ export class Game {
       if (event.type === "fire") this.briefing.skipRequested = true;
       return;
     }
+    if (this.scene === "expedition-result") {
+      if (event.type === "fire") this.expeditionResult.skipRequested = true;
+      return;
+    }
     if (this.scene === "money-bin" && event.type === "fire")
       this.bin.enqueueFire();
   }
@@ -191,6 +209,8 @@ export class Game {
     const c = this.campaign;
     const days = travelDays(c.locations, c.location, target);
     if (target !== OFFICE && target !== 0) {
+      if (c.locations[target].playerCollected)
+        throw Error("Untranslated collected-location visit.");
       if (days === 0)
         throw Error(
           `Untranslated expedition activity: ${c.locations[target].name}.`,
@@ -231,6 +251,11 @@ export class Game {
   }
   advanceTick() {
     this.tick++;
+    if (this.scene === "expedition-result") {
+      if (this.advanceDialogue(this.expeditionResult))
+        this.finishExpeditionResult();
+      return;
+    }
     if (
       this.scene === "expedition-briefing" &&
       this.advanceDialogue(this.briefing)
@@ -340,6 +365,53 @@ export class Game {
     this.effects.push(...this.cave.drainEvents());
     this.money = this.cave.memory.view.getUint32(0x8cc0, true);
     this.seed = this.campaign.seed = u16(this.cave.memory.i(0x2229));
+    if (!this.cave.outcome) return;
+    this.flightMemory = this.cave.memory;
+    if (this.cave.outcome.code === 0) {
+      // Failure portrait is inside the cave call; the caller increments the day later.
+      this.expeditionResult = {
+        phase: "failure",
+        remaining: 20 * 7,
+        skipRequested: false,
+      };
+    } else {
+      this.campaign.day = u8(this.campaign.day + 1);
+      const id = this.campaign.locations[this.campaign.location].treasure;
+      const treasure = this.loot?.[id - 1];
+      if (!treasure) throw Error("Missing original expedition reward");
+      this.money = u32(this.money + treasure.value);
+      this.expeditionResult = {
+        phase: "award",
+        value: treasure.value,
+        remaining: 40 * 7,
+        skipRequested: false,
+      };
+      this.effects.push({ type: "sound", id: 0x49 });
+    }
+    this.scene = "expedition-result";
+  }
+  finishExpeditionResult() {
+    const c = this.campaign,
+      result = this.expeditionResult;
+    if (result.phase === "failure") c.day = u8(c.day + 1);
+    if (result.phase === "award") {
+      c.locations[c.location].playerCollected = true;
+      if (c.location === c.atomicLocation) {
+        c.atomicAvailable = true;
+        this.expeditionResult = {
+          phase: "atomic",
+          remaining: 100 * 7,
+          skipRequested: false,
+        };
+        this.effects.push({ type: "sound", id: 0x54 });
+        return;
+      }
+    }
+    if (c.day > 30)
+      throw Error("Untranslated campaign ending after expedition.");
+    c.openMap();
+    this.scene = "map";
+    this.effects.push({ type: "stopAudio" });
   }
   finishRepairs() {
     if (this.repairs.phase === "repair" && (this.money | 0) > 0) {
@@ -387,6 +459,8 @@ export class Game {
         difficulty: this.difficulty,
         seed: this.seed,
         money: this.money,
+        audioEnabled: this.audioEnabled,
+        audioScope: ++this.audioScope,
       },
       this.flightMemory,
     );
@@ -432,6 +506,10 @@ export class Game {
       cave: this.cave?.snapshot() ?? null,
       briefing: this.briefing?.snapshot() ?? null,
       repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
+      expeditionResult:
+        this.scene === "expedition-result"
+          ? { ...this.expeditionResult }
+          : null,
       diagnostic: this.diagnostic,
     };
   }

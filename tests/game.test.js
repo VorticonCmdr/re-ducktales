@@ -112,3 +112,57 @@ test("clock catch-up preserves event order and closed-loop state", async () => {
     run(Array.from({ length: 1000 }, (_, i) => (i + 1) * 10)),
   );
 });
+
+test("framebuffer copies preserve rectangle bounds, source coordinates and clipping", async () => {
+  const { renderFlightPixels } = await import("../src/game/flight-raster.js");
+  const fill = (color, x, y, width, height) => ({
+    op: "fill",
+    color,
+    x,
+    y,
+    width,
+    height,
+  });
+  const source = [fill(0, 0, 0, 320, 200), fill(4, 10, 10, 3, 3)];
+  const commands = [
+    fill(1, 0, 0, 320, 200),
+    {
+      op: "restore",
+      source,
+      sourceX: 10,
+      sourceY: 10,
+      x: 20,
+      y: 30,
+      width: 2,
+      height: 2,
+    },
+  ];
+  const pixels = renderFlightPixels(commands, []);
+  const at = (x, y) => [
+    ...pixels.slice((y * 320 + x) * 4, (y * 320 + x) * 4 + 4),
+  ];
+  for (const [x, y] of [
+    [20, 30],
+    [21, 30],
+    [20, 31],
+    [21, 31],
+  ])
+    assert.deepEqual(at(x, y), [170, 0, 0, 255]);
+  for (const [x, y] of [
+    [19, 30],
+    [22, 30],
+    [20, 29],
+    [20, 32],
+    [10, 10],
+  ])
+    assert.deepEqual(at(x, y), [0, 0, 170, 255]);
+  const clipped = renderFlightPixels([{ ...commands[1], x: -1, y: 199 }], []);
+  assert.deepEqual(
+    [...clipped.slice(199 * 320 * 4, 199 * 320 * 4 + 4)],
+    [170, 0, 0, 255],
+  );
+  assert.throws(
+    () => renderFlightPixels([{ ...commands[1], sourceX: 319, width: 2 }], []),
+    /Invalid framebuffer copy/,
+  );
+});

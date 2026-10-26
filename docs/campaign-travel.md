@@ -18,9 +18,10 @@ campaign. The on-screen status distinguishes carried and banked money.
 
 All 35 location records and their descriptions load from verified `LOC.ARC`.
 Confirming an expedition now prepares Launchpad's flight and displays the original
-briefing; starting the flight stops at an explicit unsupported boundary. See
-[departure evidence](expedition-departures.md). Journey completion, expeditions,
-plane gameplay, Glomgold, stocks, campaign ending, and save/load remain unsupported.
+briefing, followed by playable flight and cave arrival. Caves now return through
+reward/failure screens. See [departure evidence](expedition-departures.md) and
+[cave evidence](cave.md). Other expeditions, normal Glomgold progression, stocks,
+campaign ending, and save/load remain unsupported.
 Macaroon/office journeys reaching day 30 stop with a diagnostic.
 
 ## Evidence and scope

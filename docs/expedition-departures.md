@@ -3,8 +3,8 @@
 Supported build: `reference/build.json`, EXE SHA-256
 `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
 This milestone implements **departure preparation**, through the original flight
-call contract. Flight is connected; cave arrival now reaches an interactive normal-room slice.
-Cave terminal outcomes and other expedition gameplay remain incomplete.
+call contract. Flight is connected; cave arrival now reaches playable rooms, terminal animations, rewards/failure
+and campaign return. Other expedition gameplay remains incomplete.
 
 ## Browser behavior
 
@@ -22,8 +22,8 @@ The pause at this boundary is explicit: the original immediately enters its
 flight overlay while the speech remains visible during resource loading. The
 port lets the user inspect this briefing before requesting the next activity.
 The flight determines its own outcome. A cave arrival now reaches the original
-guide and normal-room navigation; terminal cave results remain unsupported. Return-to-map is unavailable after this
-confirmation; Restart is available.
+guide, cave gameplay and result screens returning to the map. A confirmed
+journey cannot be cancelled during flight; Restart is available.
 
 ## Static rules and observations
 
@@ -115,7 +115,7 @@ classification, malformed executable input, and strict difficulty thresholds.
 `npm run verify` includes these checks and all previous regressions.
 
 Flight input, terrain, racing and crash/cash consequences are connected. Cave
-arrival and safe-room navigation work; terminal cave results, other expeditions,
+arrival, cave navigation and terminal results work; original ending comparison, other expeditions,
 atomic aircraft and normal Glomgold/stock progression remain incomplete.
 
 Campaign startup now includes original random loot assignment. With BIOS seed0,

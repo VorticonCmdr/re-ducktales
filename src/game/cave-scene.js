@@ -46,6 +46,12 @@ export const CAVE_SPRITES = new Map([
   [7, 0x974e],
   [8, 0x7198],
   [9, 0x57da],
+  [27, 0x5496],
+  [28, 0x8cac],
+  ...Array.from({ length: 8 }, (_, i) => [29 + i, 0x8f06 + i * 20]),
+  [44, 0x8c1c],
+  [45, 0x5cfe],
+  [46, 0x716c],
 ]);
 export function caveRandom(m) {
   const seed = nextRandom(m.i(0x2229));
@@ -242,12 +248,10 @@ export function composeCaveRoom(m, entries) {
 // Overlay6:20b8, normal EGA party/torch drawing. RNG is consumed here exactly
 // once per original drawing call, even if the browser does not display the frame.
 export function drawCaveParty(m, commands, { asset = 17, pose = 0 } = {}) {
-  m.i(0x79de, 82);
-  m.i(0x79e0, 38);
   const party = CAVE_SPRITES.get(asset);
   if (party === undefined) throw Error(`Untranslated cave party ${asset}`);
-  m.i(party, 82);
-  m.i(party + 2, 38);
+  m.i(party, pose === 6 ? 85 : m.b(0x546a) === 2 ? 83 : 82);
+  m.i(party + 2, pose === 6 ? 48 : m.b(0x546a) === 2 ? 47 : 38);
   if (pose !== 5 && pose !== 6) draw(commands, m, asset);
   const torch =
     m.signedByte(0x8b54) < m.i(0x54ac) >> 1
@@ -258,10 +262,27 @@ export function drawCaveParty(m, commands, { asset = 17, pose = 0 } = {}) {
   const at = CAVE_SPRITES.get(torch),
     table = 0x19dc + pose * 4;
   m.b(at + 18, m.b(0x6d44));
-  m.i(at, 82 + m.i(table) + (torch === 14 ? -15 : torch === 15 ? -11 : -6));
+  m.i(
+    at,
+    (m.b(0x546a) === 2
+      ? torch === 14
+        ? 67
+        : torch === 15
+          ? 71
+          : 76
+      : m.i(party) + (torch === 14 ? -15 : torch === 15 ? -11 : -6)) +
+      m.i(table),
+  );
   m.i(
     at + 2,
-    38 + m.i(table + 2) + (torch === 14 ? -64 : torch === 15 ? -51 : -42),
+    (m.b(0x546a) === 2
+      ? torch === 14
+        ? -26
+        : torch === 15
+          ? -13
+          : -4
+      : m.i(party + 2) + (torch === 14 ? -64 : torch === 15 ? -51 : -42)) +
+      m.i(table + 2),
   );
   draw(commands, m, torch);
   if (pose === 5 || pose === 6) draw(commands, m, asset);

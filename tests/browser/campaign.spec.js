@@ -151,9 +151,10 @@ for (const [name, x, y, activity] of [
   });
 }
 
-test("keyboard flight lands, enters the cave and moves between rooms", async ({
+test("keyboard flight lands, explores a cave, collects treasure and returns to the map", async ({
   page,
 }) => {
+  test.setTimeout(90000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   const c = await office(page);
@@ -201,13 +202,13 @@ test("keyboard flight lands, enters the cave and moves between rooms", async ({
     }
     lastFrame = f.frames;
     await page.waitForFunction(
-      (frame) => {
+      ({ frame, phase }) => {
         const s = JSON.parse(document.querySelector("#game").dataset.state);
         return (
-          s.diagnostic || s.flight.frames > frame || s.flight.phase !== "flying"
+          s.diagnostic || s.flight.frames > frame || s.flight.phase !== phase
         );
       },
-      lastFrame,
+      { frame: lastFrame, phase: f.phase },
       { timeout: 3000 },
     );
   }
@@ -241,6 +242,92 @@ test("keyboard flight lands, enters the cave and moves between rooms", async ({
   await page.screenshot({
     path: ".local/browser-results/cave-second-room.png",
   });
+  // Plan from the original map; drive only real held-key controls. No game
+  // memory or expected final state is injected into the browser.
+  const before = await state(c);
+  let moves = 0;
+  while ((await state(c)).scene === "cave" && moves++ < 64) {
+    const current = await state(c);
+    if (["treasure", "complete"].includes(current.cave.phase)) break;
+    await page.waitForFunction(() => {
+      const s = JSON.parse(document.querySelector("#game").dataset.state);
+      return s.diagnostic || s.scene !== "cave" || s.cave.phase === "exploring";
+    });
+    const now = await state(c);
+    expect(now.diagnostic).toBeNull();
+    if (now.scene !== "cave") break;
+    const { room, goal, rooms } = now.cave;
+
+    const queue = [[room, []]],
+      seen = new Set([room]);
+    let route;
+    while (queue.length) {
+      const [at, path] = queue.shift();
+      if (at === goal) {
+        route = path;
+        break;
+      }
+      for (const [key, bit, delta] of [
+        ["ArrowUp", 8, -8],
+        ["ArrowRight", 2, 1],
+        ["ArrowDown", 4, 8],
+        ["ArrowLeft", 1, -1],
+      ]) {
+        const next = at + delta;
+        if (
+          !(rooms[at] & bit) ||
+          next < 0 ||
+          next >= 64 ||
+          rooms[next] & 64 ||
+          (next !== goal &&
+            [
+              now.cave.enemy,
+              now.cave.enemy - 8,
+              now.cave.enemy + 8,
+              now.cave.enemy - 1,
+              now.cave.enemy + 1,
+            ].includes(next)) ||
+          seen.has(next)
+        )
+          continue;
+        seen.add(next);
+        queue.push([next, [...path, key]]);
+      }
+    }
+    expect(route?.length, "safe path to the treasure").toBeGreaterThan(0);
+    await page.keyboard.down(route[0]);
+    await page.keyboard.down("Space");
+    await page.waitForFunction(
+      (room) => {
+        const s = JSON.parse(document.querySelector("#game").dataset.state);
+        return s.diagnostic || s.scene !== "cave" || s.cave.room !== room;
+      },
+      room,
+      { polling: "raf" },
+    );
+    await page.keyboard.up("Space");
+    await page.keyboard.up(route[0]);
+    expect((await state(c)).diagnostic).toBeNull();
+  }
+  expect(moves).toBeLessThan(64);
+  await expect(c).toHaveAttribute("data-scene", "expedition-result");
+  const award = await state(c);
+  expect(award.cave.outcome.status).toBe("treasure");
+  expect(award.expeditionResult.phase).toBe("award");
+  expect(award.expeditionResult.value).toBe(4500);
+  expect(award.money).toBe(award.cave.money + 4500);
+  expect(award.campaign.day).toBe(before.campaign.day + 1);
+  await page.screenshot({
+    path: ".local/browser-results/cave-treasure-award.png",
+  });
+  await page.keyboard.press("Space");
+  await expect(c).toHaveAttribute("data-scene", "map");
+  const returned = await state(c);
+  expect(returned.campaign.playerCollected).toContain(
+    returned.campaign.location,
+  );
+  expect(returned.money).toBe(award.money);
+  await expect(page.locator("#diagnostic")).toBeHidden();
   await page.locator("#restart").click();
   await expect(c).toHaveAttribute("data-scene", "title");
   expect((await state(c)).cave).toBeNull();

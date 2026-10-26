@@ -225,6 +225,38 @@ export class Renderer {
       );
       return;
     }
+    if (game.scene === "expedition-result") {
+      const r = game.expeditionResult;
+      if (r.phase === "failure") {
+        this.draw("MAIN.ARC", 34, 0, 0, 0);
+        this.text(executableText(this.resources.executable, 0x1820), 176, 60);
+        this.text(executableText(this.resources.executable, 0x1832), 188, 76);
+      } else if (r.phase === "award") {
+        this.draw("MAIN.ARC", 35, 0, 0, 0);
+        [0x2c5, 0x2d6, 0x2e8, 0x2f9].forEach((at, i) =>
+          this.text(
+            executableText(this.resources.executable, at),
+            168,
+            60 + i * 16,
+          ),
+        );
+        this.text(executableText(this.resources.executable, 0x306), 208, 128);
+        this.text(String(r.value), 216, 128);
+      } else if (r.phase === "atomic") {
+        this.draw("MAIN.ARC", 41, 0, 0, 0);
+        [
+          0x308, 0x315, 0x320, 0x32d, 0x33b, 0x350, 0x35c, 0x36d, 0x37b, 0x388,
+          0x398,
+        ].forEach((at, i) =>
+          this.text(
+            executableText(this.resources.executable, at),
+            160,
+            [16, 32, 48, 64, 80, 96, 112, 128, 146, 162, 180][i],
+          ),
+        );
+      } else throw Error(`Unsupported expedition report ${r.phase}`);
+      return;
+    }
     if (game.scene === "crash-repairs") {
       const repair = game.repairs.phase === "repair";
       this.draw("MAIN.ARC", repair ? 41 : 32, 0, 0, 0);

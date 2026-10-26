@@ -103,10 +103,12 @@ export class Campaign {
     this.locations = assigned.locations.map((l) => ({
       ...l,
       rivalCollected: false,
+      playerCollected: false,
     }));
     this.rival = { day: 1, money: 0, location: OFFICE };
     this.seed = assigned.seed;
     this.atomicLocation = assigned.atomicLocation;
+    this.atomicAvailable = false;
     this.day = 1;
     this.location = OFFICE;
     this.banked = 0;
@@ -164,6 +166,10 @@ export class Campaign {
       location: this.location,
       banked: this.banked,
       rival: { ...this.rival },
+      playerCollected: this.locations.flatMap((l, i) =>
+        l.playerCollected ? [i] : [],
+      ),
+      atomicAvailable: this.atomicAvailable,
       cursor: { ...this.cursor },
       selected: this.selected,
       asset:

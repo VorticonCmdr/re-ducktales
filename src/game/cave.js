@@ -7,7 +7,8 @@ import {
   drawCaveParty,
   CAVE_SPRITES,
 } from "./cave-scene.js";
-import { u8, u16 } from "./integer.js";
+import { u16 } from "./integer.js";
+import { caveEndings } from "./cave-endings.js";
 export class Cave {
   constructor(options, previousMemory) {
     this.options = options;
@@ -17,6 +18,12 @@ export class Cave {
     this.presentations = 0;
     this.phase = "entering";
     this.current = null;
+    this.background = [];
+    this.buffers = [[], []];
+    this.drawIndex = 0;
+    this.audioEnabled = options.audioEnabled === true;
+    this.audioToken = 0;
+    this.audioBusy = false;
     this.controls = { fire: false, direction: null };
     this.events = [];
     this.inputs = [];
@@ -38,7 +45,28 @@ export class Cave {
     this.controls = { ...controls };
   }
   sound(id) {
-    this.events.push({ type: "sound", id });
+    const token = `${this.options.audioScope ?? 0}:${++this.audioToken}`;
+    this.activeAudioToken = token;
+    this.audioBusy = this.audioEnabled;
+    this.events.push({ type: "sound", id, token });
+  }
+  setAudioEnabled(enabled) {
+    if (typeof enabled !== "boolean") throw Error("Invalid cave audio enable");
+    this.audioEnabled = enabled;
+    if (!enabled) this.audioBusy = false;
+  }
+  setAudioStatus(token, busy) {
+    if (typeof busy !== "boolean") throw Error("Invalid cave audio status");
+    if (token !== this.activeAudioToken) return;
+    this.inputs.push({
+      tick: this.tick,
+      retrace: this.retrace,
+      audio: { token, busy },
+    });
+    this.audioBusy = this.audioEnabled && busy;
+  }
+  *waitAudio() {
+    while (this.audioBusy) yield* this.delay(1);
   }
   drainEvents() {
     return this.events.splice(0);
@@ -78,8 +106,10 @@ export class Cave {
     this.resume();
   }
   *present(commands) {
+    this.buffers[this.drawIndex] = commands;
     this.pending = commands;
     yield { clock: "retrace", remaining: 1 };
+    this.drawIndex = 1 - this.drawIndex;
   }
   *delay(ticks) {
     yield { clock: "driver", remaining: ticks };
@@ -103,10 +133,37 @@ export class Cave {
     });
   }
   scene() {
-    return composeCaveRoom(this.memory, this.entries);
+    this.background = composeCaveRoom(this.memory, this.entries);
+    return this.restoreBackground();
   }
   party(commands, options) {
-    return drawCaveParty(this.memory, commands, options);
+    // Helper20b8 always restores the room buffer before drawing the party.
+    return drawCaveParty(this.memory, this.restoreBackground(), options);
+  }
+  load(id, x, y) {
+    const at = loadCaveSprite(this.memory, this.entries, id);
+    if (x !== undefined) this.memory.i(at, x);
+    if (y !== undefined) this.memory.i(at + 2, y);
+  }
+  back() {
+    return [...this.buffers[this.drawIndex]];
+  }
+  restoreBackground(region = { x: 0, y: 0, width: 320, height: 200 }) {
+    const { x, y, width, height } = region;
+    const c =
+      x === 0 && y === 0 && width === 320 && height === 200 ? [] : this.back();
+    c.push({
+      op: "restore",
+      source: this.background,
+      x,
+      y,
+      sourceX: x,
+      sourceY: y,
+      width,
+      height,
+    });
+    this.buffers[this.drawIndex] = c;
+    return c;
   }
   updateTorch() {
     const m = this.memory,
@@ -148,10 +205,7 @@ export class Cave {
     }
     m.b(0x5a42 + this.room * 2, this.cell | 16);
     m.i(0x8eb2, 0);
-    if (this.cell & 64)
-      throw Error(
-        "Untranslated cave pit animation: original pit outcome reached.",
-      );
+    return !!(this.cell & 64);
   }
   moveEnemy() {
     const m = this.memory,
@@ -169,9 +223,7 @@ export class Cave {
       if (player + 1 === enemy || enemy === player) m.i(0x6810, player - 8);
       else if (player + 8 === enemy) m.i(0x6810, player - 1);
       m.b(0x546a, 1);
-      throw Error(
-        "Untranslated cave pursuer capture animation: original capture outcome reached.",
-      );
+      return true;
     }
     let choice = this.progress;
     if (m.i(0x4e08) < 7) {
@@ -225,17 +277,14 @@ export class Cave {
     let deadline = 0;
     while (true) {
       if (this.room === m.i(0x97b0))
-        throw Error(
-          "Untranslated cave treasure collection animation: treasure room reached.",
-        );
+        return yield* caveEndings.finish.call(this, "treasure");
       if (this.tick < deadline) yield* this.delay(deadline - this.tick);
       deadline = this.tick + 6;
       m.i(0x4e08, caveDistance(m.i(0x97b0), this.room));
-      if (m.i(0x8eb2)) yield* this.enter();
+      if (m.i(0x8eb2) && (yield* this.enter()))
+        return yield* caveEndings.finish.call(this, "pit");
       if (m.signedByte(0x8b54) >= m.i(0x54ac))
-        throw Error(
-          "Untranslated cave torch-expiry animation: original time limit reached.",
-        );
+        return yield* caveEndings.finish.call(this, "torch-expired");
       this.phase = "exploring";
       const code =
         (this.controls.fire ? 192 : 0) |
@@ -275,7 +324,8 @@ export class Cave {
       }
       const previous = this.progress;
       this.progress = u16(this.progress + 1);
-      if (previous > this.enemyInterval) this.moveEnemy();
+      if (previous > this.enemyInterval && this.moveEnemy())
+        return yield* caveEndings.finish.call(this, "captured");
       this.idleCount = this.idleCount > 60000 ? 0 : u16(this.idleCount + 1);
       yield* this.present(commands);
       if (code & 192 && dir && this.cell & available[dir]) {

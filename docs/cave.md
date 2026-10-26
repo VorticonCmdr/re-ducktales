@@ -1,4 +1,4 @@
-# Cave expedition slice
+# Cave expeditions
 
 Build: `reference/build.json`. Overlay6 SHA-256:
 `b50b7f3163c516c298569ab3ec301f2d0e31f456a623bfafe294d6077344713d`;
@@ -11,9 +11,13 @@ Easy → office → map → Klondike → Launchpad → fly to airport → landin
 Junior Woodchuck Guide → cave. Hold an arrow to point and Space to move through
 an available passage. A new safe room after the first awards the original $50
 after73 driver ticks. Restart works. Maps, room/party/torch/passage art come from
-EXP.ARC/CAVEMAPS.ARC. This is **an interactive room slice, not a complete level**.
-Treasure collection, pit/capture/torch-expiry animations and campaign result
-handling still stop explicitly. No successful or failed outcome is substituted.
+EXP.ARC/CAVEMAPS.ARC. Treasure collection, falling into a pit, pursuer capture
+and torch expiry now play their statically translated terminal sequences.
+Failure shows MAIN34, waits20 seven-tick polls and then spends a campaign day.
+Success spends a day, shows MAIN35, adds the location's signed16 LOOT value to
+uint32 carried cash, waits40 seven-tick polls and marks the destination collected.
+Both return to the map. ID9 unlocks the original atomic-transport explanation;
+using that transport and revisiting collected destinations remain unsupported.
 
 `cave-scene.js` translates setup and normal EGA composition. `cave.js` supplies
 independent driver/retrace clocks, held-input sampling, room transitions, cash,
@@ -31,11 +35,10 @@ drawing consumes one RNG for torch-frame selection and prevents immediate
 repeats. Original memory offsets and integer widths are deliberate. Rendering
 observes commands and does not advance simulation.
 
-Movement, room cash, lamp and pursuer rules are statically inferred. Browser
-acceptance covers real controls, landing, cave entry, one safe-room move, $50
-and restart. This is not a complete original cave replay or a completed level.
-Minimap refresh order and later animations need runtime comparisons. Unsupported
-terminal paths stop before a substitute result could affect the campaign.
+Movement, room cash, lamp, pursuit, endings and campaign results are statically
+inferred. The browser exercises actual keyboard controls and rendering. These
+checks do not establish original timing, pixel or complete-level replay parity.
+Minimap refresh order and terminal animations still need original comparisons.
 
 ## Original comparison
 
@@ -68,5 +71,51 @@ Ghidra treating the cave as startup and flattening its stack into globals.
 Disassembly resolves missing register returns, including column/row helpers
 2390/23b1. Originals remain unchanged.
 
-Next: all terminal animations and campaign results; original input-boundary
-comparisons for room changes, lamp and pursuit.
+## Terminal animation evidence and environment
+
+`cave-endings.js` translates the branches in overlay6:0832 onward; torch expiry
+is helper1ea1:0071 (body2951), party drawing1e22:0008 (20b8). Ghidra CAVE_CODE.EXE
+was checked against disassembly when resolving signed bytes and return values.
+Resident main04e7 spends the level day after the cave call returns. Main0b39–0c86
+awards and marks ordinary treasure;0c89–0e0e unlocks atomic transport. The special
+97a8/97aa reward branch belongs to other activities and is not exercised by Cave.
+
+DS2038 is the video descriptor, DS203a the persistent room buffer. The EGA
+page-flip routine00e5 changes the video segment by xor0200. Party helper20b8
+copies the room buffer to the draw page before every party/torch draw. Capture
+adds its foreground prop to the persistent buffer; pit later restores only the
+specified rectangles. Capture also makes an unpresented party draw before its
+first displayed pose; its RNG draw is retained. The port retains two video pages and a separate room
+buffer with immutable drawing snapshots. The pure rasterizer resolves these
+copies without consuming clocks or RNG. The first treasure reveal uses a normal
+presentation in place of the original EGA striped reveal transition; that
+transition and its retrace duration remain unverified/omitted. No exact terminal
+pixel or full presentation timing claim is made.
+
+Audio is an explicit environment input. With Sound off, completion polls see
+idle. With Sound on, every cave sound gets a token and is pending immediately;
+the browser acknowledges completion or replacement through a timestamped event.
+Stale tokens cannot release a newer sound's wait. Disabling sound releases its
+wait. Hidden tabs pause the browser simulation and resume active sound on return.
+Reconstructed browser audio duration is not original device timing evidence.
+
+`npm run verify:cave` also runs four independent environment scenarios: capture
+(map0, seed0, idle), pit (map0, seed0, shortest pit controller), treasure (map0,
+seed0, safe-goal controller), and expiry (map3, seed0, idle), all Easy, cash0.
+The controller uses the original initial map and current room, never the expected
+outcome, enemy or RNG. Its external events are recorded, then replayed from the
+same initial contract and compared at every checkpoint. This harness advances
+one driver tick and one retrace per iteration: a synthetic environment, not a
+claim about original or browser clock alignment. Every presentation is rendered
+strictly. Static loop counts must match presentations/party RNG calls:
+capture18/3, pit35/10, treasure15/15, expiry21/4. Removing a presentation or
+capture's unpresented RNG call fails a negative control. All four must terminate
+before10000 iterations and consume every
+required replay event. Negative controls alter an outcome, remove movement and
+send stale audio completion. Enabled sound must hold capture open until the
+matching completion event. Conditional application-entry checks also verify
+success/failure reward, exact report waits, calendar and one-time collection.
+Original entry comparison remains a separate evidence level.
+
+Next: original input-boundary and screen comparisons for complete cave routes,
+then collected-location dispatch and the other expedition games.

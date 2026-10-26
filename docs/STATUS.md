@@ -11,7 +11,8 @@ Updated2026-10-26. **The full game is not complete.**
   landing. A lost race credits Glomgold's assigned treasure and returns to map.
 - Cave arrival → original Junior Woodchuck Guide → cave rooms. Arrow+Space follows
   an open passage; entering a new safe room awards $50. Restart returns to title.
-  **This is a room slice, not a complete cave level.**
+  Treasure and all three failure animations now lead to original result screens
+  and campaign return. Original ending replay/pixel parity is not yet verified.
 
 Controls: Space/Enter fires. Up+Space enters the money bin; Right+Space opens the
 map. Hold Space for flight throttle; Down raises the nose, Up lowers it. In caves,
@@ -31,9 +32,10 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 
 ## Verification scope
 
-- 22 unit tests and12 browser checks. Browser coverage includes real flight
- controls, crash/race return, airport landing, cave entry, a safe-room move/$50,
- restart, folder loading, corrupt-file rejection and existing audio adapter.
+- 23 unit tests and12 browser checks. Browser coverage includes real flight
+ controls, crash/race return, airport landing, cave entry, safe-room cash,
+ treasure recovery/$4500 award, collection/calendar/map return, restart,
+ folder loading, corrupt-file rejection and the existing audio adapter.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
 - Flight:10 conditional physics/control,5 course setup,22 scene checkpoints
@@ -45,7 +47,10 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 - Cave entry: one conditional original checkpoint matches64 map words, actor
  positions, torch/RNG/time fields and sprite geometry/frame bytes. Subsequent
  movement is statically translated and browser exercised, not original-replay
- compared. No exact cave pixels or complete-level acceptance is claimed.
+ compared. Four independent outcome scenarios replay every checkpoint exactly
+ and render every presentation; conditional application checks cover rewards,
+ calendar and report waits. No exact cave pixels or complete original-level
+ replay is claimed.
 
 All verifiers require their local artifacts and reject missing/corrupt files,
 wrong case/event counts and required negative controls. The old variant1 briefing
@@ -54,9 +59,9 @@ variant0. These checks do not establish a complete original campaign replay.
 
 ## Known limitations
 
-- Cave pit, pursuer capture, torch expiry and treasure collection stop before
-  their untranslated terminal animations. Cave campaign results/return and
-  same-location/collected-location dispatch remain incomplete.
+- Cave terminal animations/results are statically translated and independently
+  replayed, without an original ending comparison. Same-location and collected-
+  location dispatch remain incomplete and stop explicitly.
 - Jungle, mountain, photography, stock trading, campaign endings, normal
   Glomgold progression, atomic transport, save/load and high scores are absent.
 - Flight spin/boost/tether/airship paths are statically translated with limited
@@ -84,8 +89,8 @@ Focused: `npm test`, `npm run test:browser`, `npm run verify:loot`,
 verifiers listed in package.json. Analysis: `npm run prepare:analysis`,
 `npm run prepare:flight-analysis`, `npm run prepare:cave-analysis`.
 
-Next: finish cave terminal animations and complete reward/failure → campaign
-return, then expand the other expedition games, trading and endings. Capture
+Next: compare complete cave outcomes with the original, implement collected-
+location dispatch, then expand the other expeditions, trading and endings. Capture
 room transitions, lamp and pursuit at input-consumption boundaries. Full-game
 work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`.

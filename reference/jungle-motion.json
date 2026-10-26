@@ -1,0 +1,413 @@
+{
+  "id": "jungle-motion-conditional-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "fe0d317",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "currentDrive": 2,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "startingRecipe": "Continue map after natural jungle failure on day18 (stop158). Requested mouse warp64,73 did not update game selection: it retained TooPei22. Continue ordinary travel and flight; Fire+Down causes stall/crash and repair. At resident01f5:04ca stop163 after repair on day22, save CPU+DS+32 code bytes, then CAS SS1403:9f5e byte22 to25 before destination assignment/dispatcher. Capture new jungle entry0e0c:0000 stop164 CPU+DS+full24056 code bytes; variant0,day22,seed37850. This is conditional destination setup AFTER unrelated travel, not a normal jungle journey replay. No partial/machine restore, register writes, fitted timers or additional memory writes. Save idle motion165/166. Fresh Right produces AL3 at0680 stop167: save independent input provenance; motion01..06 spans168..179. Release Right, fresh Up yields AL1 stop180; motion07..10 spans181..188. Release Up, fresh Down yields AL5 stop189; motion11..24 spans190..217. Each motion pair stops before0c98 and at11c0. Final Down release dispatched, neutral AL0 observed at0680 stop218. No owned breakpoints or pending inputs remain; session paused at218. Original controls/ground/hazards run normally between cases. Capture setup is not a whole gameplay replay.",
+  "expectedCaseCount": 25,
+  "expectedCheckpointCount": 25,
+  "expectedCarriedCheckpointCount": 21,
+  "expectedInputCount": 0,
+  "inputEvents": [],
+  "setupInputProvenance": [
+    {
+      "artifact": "walk-input",
+      "al": 3,
+      "stop": 167
+    },
+    {
+      "artifact": "up-input",
+      "al": 1,
+      "stop": 180
+    },
+    {
+      "artifact": "down-input",
+      "al": 5,
+      "stop": 189
+    }
+  ],
+  "routineSchedule": [
+    {
+      "id": "00",
+      "beforeStop": 165,
+      "afterStop": 166
+    },
+    {
+      "id": "01",
+      "beforeStop": 168,
+      "afterStop": 169
+    },
+    {
+      "id": "02",
+      "beforeStop": 170,
+      "afterStop": 171
+    },
+    {
+      "id": "03",
+      "beforeStop": 172,
+      "afterStop": 173
+    },
+    {
+      "id": "04",
+      "beforeStop": 174,
+      "afterStop": 175
+    },
+    {
+      "id": "05",
+      "beforeStop": 176,
+      "afterStop": 177
+    },
+    {
+      "id": "06",
+      "beforeStop": 178,
+      "afterStop": 179
+    },
+    {
+      "id": "07",
+      "beforeStop": 181,
+      "afterStop": 182
+    },
+    {
+      "id": "08",
+      "beforeStop": 183,
+      "afterStop": 184
+    },
+    {
+      "id": "09",
+      "beforeStop": 185,
+      "afterStop": 186
+    },
+    {
+      "id": "10",
+      "beforeStop": 187,
+      "afterStop": 188
+    },
+    {
+      "id": "11",
+      "beforeStop": 190,
+      "afterStop": 191
+    },
+    {
+      "id": "12",
+      "beforeStop": 192,
+      "afterStop": 193
+    },
+    {
+      "id": "13",
+      "beforeStop": 194,
+      "afterStop": 195
+    },
+    {
+      "id": "14",
+      "beforeStop": 196,
+      "afterStop": 197
+    },
+    {
+      "id": "15",
+      "beforeStop": 198,
+      "afterStop": 199
+    },
+    {
+      "id": "16",
+      "beforeStop": 200,
+      "afterStop": 201
+    },
+    {
+      "id": "17",
+      "beforeStop": 202,
+      "afterStop": 203
+    },
+    {
+      "id": "18",
+      "beforeStop": 204,
+      "afterStop": 205
+    },
+    {
+      "id": "19",
+      "beforeStop": 206,
+      "afterStop": 207
+    },
+    {
+      "id": "20",
+      "beforeStop": 208,
+      "afterStop": 209
+    },
+    {
+      "id": "21",
+      "beforeStop": 210,
+      "afterStop": 211
+    },
+    {
+      "id": "22",
+      "beforeStop": 212,
+      "afterStop": 213
+    },
+    {
+      "id": "23",
+      "beforeStop": 214,
+      "afterStop": 215
+    },
+    {
+      "id": "24",
+      "beforeStop": 216,
+      "afterStop": 217
+    }
+  ],
+  "carriedSegments": [
+    [2, 6],
+    [8, 10],
+    [12, 24]
+  ],
+  "injections": [
+    {
+      "at": "01f5:04ca after unrelated flight/repair",
+      "segment": 5123,
+      "offset": 40798,
+      "width": 1,
+      "before": 22,
+      "after": 25
+    }
+  ],
+  "fittedInputs": [],
+  "environmentContract": "Motion consumes existing DS only; no joystick,clock,RNG or audio-completion inputs. Each conditional case starts from its own BEFORE. Separately stored AL snapshots document setup key consumption, never inferred from outcomes. Carried segments start once from the first BEFORE and retain their own actor state. Between carried calls reproduce unconditional main00fe fresh-selection latch clear to0; no expected intermediate state is injected. Other loop work is outside this segment; only actor fields/resource frame are compared there. No hidden hazard provider or expected-derived inputs.",
+  "comparisonRules": "Conditional cases compare every DS byte except the fixed52-byte call/local/interrupt scratch interval9e3a..9e6d. Exact CPU CS/IP/DS/SS and stack shape required; game globals/heap remain compared. Carried segments compare explicit actor/action/frame/countdown/grid/riding/support fields and sprite frame. Render all25 post poses from authoritative JG resources. Full relocated overlay byte identity revalidated for this entry,436 relocations,bias01f5.",
+  "stackExclusion": [40506, 40558],
+  "ftolOriginalSha256": "98b13011ccfeadfbacd4145a54b7c94781a4a32e34c97aa153f804c3dc4d813e",
+  "exclusions": [
+    "CPU return values/flags, call/local/interrupt stack9e3a..9e6d; no game table occupies this interval.",
+    "Carried segment compares actor state only: controls,ground,hazard evolution,scene/page history/device clocks outside these calls are not a full closed-loop replay.",
+    "Platform/fish riding,vine attach/detach and remaining action branches are statically translated, not runtime validated by these cases.",
+    "No original scene pixels,audio,wall-clock timing or jungle browser acceptance claimed."
+  ],
+  "artifacts": {
+    "00-after": {
+      "path": ".local/jungle-motion-00-after.json",
+      "sha256": "1cbe841bce05e3d1a46177b18f93a24e9dd72759d5640d792d2f80246d5ac639"
+    },
+    "00-before": {
+      "path": ".local/jungle-motion-00-before.json",
+      "sha256": "9183478cfbeb3ab79de1a4b038520a9be101fe70711a717cc223bce63bf9eca5"
+    },
+    "01-after": {
+      "path": ".local/jungle-motion-01-after.json",
+      "sha256": "27e1003b31db59d61c42e376580f56a0f2e8e87dae60ebc71ea88ccaca5425a3"
+    },
+    "01-before": {
+      "path": ".local/jungle-motion-01-before.json",
+      "sha256": "be8f0b9a39280941e9ab028ea5297d9f9126d1a82f025f90605313b477916ca4"
+    },
+    "02-after": {
+      "path": ".local/jungle-motion-02-after.json",
+      "sha256": "27cb56766ebb831433e5c08d4126e5f7f8e581105156cdb014c76c786808b41c"
+    },
+    "02-before": {
+      "path": ".local/jungle-motion-02-before.json",
+      "sha256": "54e364ab2e4bc43118dd23fc9cb48a8d69fbfd0b084f68292755c5e4f3372f08"
+    },
+    "03-after": {
+      "path": ".local/jungle-motion-03-after.json",
+      "sha256": "4f09ca2bd5fbb695958e6f3d92749423bc2df53c089fdb201e84502ee6721d9c"
+    },
+    "03-before": {
+      "path": ".local/jungle-motion-03-before.json",
+      "sha256": "612e0cc44b1fbe579e46a7b80fde5d1c9ab030fa1a6a077b6a69091ebfac280d"
+    },
+    "04-after": {
+      "path": ".local/jungle-motion-04-after.json",
+      "sha256": "1f9ef7435b541600457dd83beab49afe46b0571c4dfa3b75fd1317f9591f82e5"
+    },
+    "04-before": {
+      "path": ".local/jungle-motion-04-before.json",
+      "sha256": "858b4973b18599fd7ca8bbec50871b0dfe012757ca2af9a4c78c880f0f46094a"
+    },
+    "05-after": {
+      "path": ".local/jungle-motion-05-after.json",
+      "sha256": "b1144177baaf7c530833551712b4b6eaea0d10426361fa2354c41a55ea815fda"
+    },
+    "05-before": {
+      "path": ".local/jungle-motion-05-before.json",
+      "sha256": "1832dac16e1662de5b4e6e0f5e12e9808b378a3a73a23ba8a3883e77622863c4"
+    },
+    "06-after": {
+      "path": ".local/jungle-motion-06-after.json",
+      "sha256": "a45ae0fe5f5d1d131dcd35416a23664548dda808a2927417ea0ac125c89009d1"
+    },
+    "06-before": {
+      "path": ".local/jungle-motion-06-before.json",
+      "sha256": "ef5cb1e0c3c7508cc49e6b83e3771dd9ac73caf5ea7a7fc255973869ca329a34"
+    },
+    "07-after": {
+      "path": ".local/jungle-motion-07-after.json",
+      "sha256": "af9f25b12d95f2b1db434949b16c9fe97483044929ce6829107705c3cb6516ea"
+    },
+    "07-before": {
+      "path": ".local/jungle-motion-07-before.json",
+      "sha256": "e1c984d1e48185242fc437ac10f5edaa30b983557a3130b1aaf6b0b048c8e347"
+    },
+    "08-after": {
+      "path": ".local/jungle-motion-08-after.json",
+      "sha256": "04625e36a92742dfca29ca0e55501a82a751dbbd4b76671503837fcbc3e79490"
+    },
+    "08-before": {
+      "path": ".local/jungle-motion-08-before.json",
+      "sha256": "846e1cc25b1340ae33d2b1880167db1dd232c6904ff11eb08c773ee44dd009e0"
+    },
+    "09-after": {
+      "path": ".local/jungle-motion-09-after.json",
+      "sha256": "77301c2eb25e85382bb9acbab9af3e349ca0291717be51dd5b75bbffde2bbb1b"
+    },
+    "09-before": {
+      "path": ".local/jungle-motion-09-before.json",
+      "sha256": "27baa33e0c9a8273b543bf266eab8bfd8ecf3e40318c0e439557ca614923d9ed"
+    },
+    "10-after": {
+      "path": ".local/jungle-motion-10-after.json",
+      "sha256": "fd85067a096f71b70d73f198af054004b197086f8ef487e5d074c72bafa19869"
+    },
+    "10-before": {
+      "path": ".local/jungle-motion-10-before.json",
+      "sha256": "b4d573b289a0aa4a000b62a9e558702c152a4af1e6c302c8726f0e356de3c034"
+    },
+    "11-after": {
+      "path": ".local/jungle-motion-11-after.json",
+      "sha256": "e20742bf00ad3d5a8b35f27508c38ab8fa5a93fa06e3b0f4785e809cfaf7566d"
+    },
+    "11-before": {
+      "path": ".local/jungle-motion-11-before.json",
+      "sha256": "9926a5838338c11af9265330501b08fbff5ffec1ad1989e3c1af841f949eecf7"
+    },
+    "12-after": {
+      "path": ".local/jungle-motion-12-after.json",
+      "sha256": "16d0b3a68684e33995c593f1eec6c381de8d856f1d65f2950cb32ef7abc54c77"
+    },
+    "12-before": {
+      "path": ".local/jungle-motion-12-before.json",
+      "sha256": "72dff9789c8535fb2b0920c4118388da412676c5eac26223d967cf44db8ace67"
+    },
+    "13-after": {
+      "path": ".local/jungle-motion-13-after.json",
+      "sha256": "f3d66d73402b6f3de02e9374235a3d716b95d51a73c8b52bce06b640a99a306d"
+    },
+    "13-before": {
+      "path": ".local/jungle-motion-13-before.json",
+      "sha256": "b861ea1c302f06f2f8aa336fd0b55594e5931aa35abbbb7211f0a9b4f5c08269"
+    },
+    "14-after": {
+      "path": ".local/jungle-motion-14-after.json",
+      "sha256": "c4154f279733ea60fb22669243526853d181d375885d77ec16ab258c208e063d"
+    },
+    "14-before": {
+      "path": ".local/jungle-motion-14-before.json",
+      "sha256": "88051443665209dad9cb0d88b1374498e5e118778bf3e167810738e927e18be5"
+    },
+    "15-after": {
+      "path": ".local/jungle-motion-15-after.json",
+      "sha256": "76deba2287facce1728d8b961677c4b8f9ce0e1c6748f4538a11aa08c66d0a71"
+    },
+    "15-before": {
+      "path": ".local/jungle-motion-15-before.json",
+      "sha256": "cbd334b164d75cd9bfb893775840a5d494eb300406ca19d78b5870604d6cad8e"
+    },
+    "16-after": {
+      "path": ".local/jungle-motion-16-after.json",
+      "sha256": "6e2278e81d035e62139294ba7c75a30badd252461b7ff434a112e5a431200fdb"
+    },
+    "16-before": {
+      "path": ".local/jungle-motion-16-before.json",
+      "sha256": "d2b3468bb9c1f02601185f5ff895b9a926d26767616973b1c0bc2429eb48ed8a"
+    },
+    "17-after": {
+      "path": ".local/jungle-motion-17-after.json",
+      "sha256": "fbd9cd1ca737739ae880f700eead497faf6c94cd5cbc683db044af8eca164953"
+    },
+    "17-before": {
+      "path": ".local/jungle-motion-17-before.json",
+      "sha256": "ea3fe0b9b1ba1003c30e5236dba09d2cd214c6ceef2ae7cd6ab1a76783ed6ca4"
+    },
+    "18-after": {
+      "path": ".local/jungle-motion-18-after.json",
+      "sha256": "083a731022e1022455201f6bcff463d2dad55d8b75ed001b15e89010e9548794"
+    },
+    "18-before": {
+      "path": ".local/jungle-motion-18-before.json",
+      "sha256": "f5d70a9e4f6be4649c51ab1a38e83fb92f878afb77be39f428e48d51c94056a4"
+    },
+    "19-after": {
+      "path": ".local/jungle-motion-19-after.json",
+      "sha256": "3a20213a4576a8a4c2654b043154d73a6e3accbdee5fd164f053ce1ed1f9d7dd"
+    },
+    "19-before": {
+      "path": ".local/jungle-motion-19-before.json",
+      "sha256": "046027057882345d1108823b077a92335f27c3f5418c0b25c570d59cf3734d12"
+    },
+    "20-after": {
+      "path": ".local/jungle-motion-20-after.json",
+      "sha256": "a5fb82c286d477be6e317d303252073ee63f5cfe12cb8f1c782eef8dbaf210e0"
+    },
+    "20-before": {
+      "path": ".local/jungle-motion-20-before.json",
+      "sha256": "62922f4c44fab322167721c675c45ac3fd62154c62c5fe7bfe3a0ab1b043156c"
+    },
+    "21-after": {
+      "path": ".local/jungle-motion-21-after.json",
+      "sha256": "0fc25eafacc0c777c9361b34ba02a36b2a7c57a14b9393af2000d6a59b968841"
+    },
+    "21-before": {
+      "path": ".local/jungle-motion-21-before.json",
+      "sha256": "14494789dba6c4f7c3aee24ae2171c3b2b9bd82083b04d68ba33a04ca6ff8708"
+    },
+    "22-after": {
+      "path": ".local/jungle-motion-22-after.json",
+      "sha256": "dea644fcc64ead148e7c63cffc98397b9391d15490ef8c93779d10350434ee74"
+    },
+    "22-before": {
+      "path": ".local/jungle-motion-22-before.json",
+      "sha256": "284733088845b2d7517de991d8375d4f80616fec6712c2fb11c11a6e124be8f9"
+    },
+    "23-after": {
+      "path": ".local/jungle-motion-23-after.json",
+      "sha256": "ecee5d7d1b727382a75464fcc3ccdc959709b68387283091b19875513c828224"
+    },
+    "23-before": {
+      "path": ".local/jungle-motion-23-before.json",
+      "sha256": "9a16ee4d82b2a737281fd48f5689035b811774abe94e34ade5c38da1a0385e05"
+    },
+    "24-after": {
+      "path": ".local/jungle-motion-24-after.json",
+      "sha256": "d834d71a26ca3df82a7f82454b68baa7d60595cf08f860d9290dd76509987ec1"
+    },
+    "24-before": {
+      "path": ".local/jungle-motion-24-before.json",
+      "sha256": "ef85f7bb122f92c2246e0b967c882e631df4a5335f8116ff09268ff67df23eaa"
+    },
+    "before-target": {
+      "path": ".local/jungle-motion-before-target.json",
+      "sha256": "570481542cd3a5b2a853b2d8c1c41b199fa2d635f8b9cc2a430e1be396fe5695"
+    },
+    "down-input": {
+      "path": ".local/jungle-motion-down-input.json",
+      "sha256": "b660cfca95f3da426d58c064a015dbb472d5ad3c2e8c1b22f97a9c450efab500"
+    },
+    "entry": {
+      "path": ".local/jungle-motion-entry.json",
+      "sha256": "adfc6d024cbc4bd4faff5ffe5150097eeeb0a9c106716c32e60312c3b306aa36"
+    },
+    "up-input": {
+      "path": ".local/jungle-motion-up-input.json",
+      "sha256": "a63c7ccc3f283c71e7295bd7d9d654f3abea511834f9afab84acd0ab7d3a6d89"
+    },
+    "walk-input": {
+      "path": ".local/jungle-motion-walk-input.json",
+      "sha256": "43bb40baaf7908eeb0fae637492cf25545039de470b2e617518e22deabf83245"
+    }
+  },
+  "verifyCommand": "npm run verify:jungle"
+}

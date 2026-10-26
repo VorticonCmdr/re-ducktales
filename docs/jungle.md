@@ -3,11 +3,11 @@
 Jungle gameplay is not yet connected to the browser. The current foundation
 loads the three original map resources, locates the starting platform and
 translates actor animation lists, selection, countdowns, control selection,
-ground/support queries and presentation history.
+ground/support queries, actor motion and presentation history.
 The actor routines now have conditional original-runtime comparisons. The next playable route is flight/guide →
 walking/jumping among the initial platforms → consequence → restart, followed
 by the complete expedition and campaign reward. No substitute mechanics are
-implemented while motion, hazards and scene scheduling remain untranslated.
+implemented while hazards and scene scheduling remain untranslated.
 
 ## Source identity and analysis
 
@@ -102,8 +102,8 @@ polls joystick input at body0651 before collision/scene passes. Actor action
 selection is f97:06a9 (Ghidra currently fails to decompile it); camera movement
 is body0591. Actor world X/Y are DS5f46/6858, current action6882, facing3d12
 and platform column/row544c/5462. The animation helpers are now translated
-from raw disassembly and checked below. Translate controls, collision/hazard
-initialization and the complete scene next, then compare that scene with the
+from raw disassembly and checked below. Complete hazard initialization and
+the scene next, then compare that scene with the
 original before claiming a playable jungle milestone. Existing cave and mountain browser routes
 remain the working expedition routes.
 
@@ -211,8 +211,8 @@ Those modified initial states are independent checks, not original captures.
 The command remains `npm run verify:jungle`; the original overlay identity is
 checked by the animation verifier before these control cases.
 
-Motion at main0c98, complete hazard initialization, full scene composition and
-browser scheduling still remain before a playable jungle route. Ground, vine
+Complete hazard initialization, full scene composition and browser scheduling
+still remain before a playable jungle route. Ground, vine
 and moving-platform helpers have static evidence but no new runtime comparison
 in these seven cases. No full-scene, audio, original wall-clock or browser
 acceptance claim is made for jungle yet.
@@ -230,10 +230,70 @@ A focused tool correction would document this behavior on `input_key` and add
 an atomic multi-key release operation, rather than requiring queued single-key
 calls that conflict with one another.
 
-After the seven cases, an uncaptured extra chord attempt continued through
-natural final life loss and returned to the map on day18. It is not a regression
-checkpoint. Live original is now the map, last requested pause158, no breakpoints
-or pending schedules; releases were dispatched together. Jungle's overlay has
-been replaced: re-enter it and revalidate live bytes/addresses before collecting
-more jungle evidence. Earlier stops and screenshot descriptions above refer
-to their recorded capture boundaries only.
+After the seven control cases, an uncaptured extra chord attempt continued
+through natural final life loss and returned to the map on day18. That attempt
+is not a regression checkpoint. The subsequent entry and current live state
+are recorded below; earlier stops refer only to their own capture boundaries.
+
+## Actor movement and support contributions
+
+`jungle-motion.js` translates main0c98..11c4 from the original21-entry dispatch
+table and raw disassembly. Ghidra follows overlapping invalid flow in this
+function, so its combined decompilation is not authoritative. Walking alternates
+the low byte at8e26, falls advance by16 pixels until the fish/water boundary,
+and action completion uses index+1 against count independently of frame delay.
+Fresh selections skip the routine; main00fe clears that latch before each
+outer loop's controls. Platform step completion retains the original1001→1007
+quirk: the no-fish drowning choice is overwritten by idle.
+
+Supporting translations include main0aae rider maintenance, f26:0684 fish
+movement,1090:0824 moving-platform contribution and118a:03b3 vine endpoint
+lookup. Vine projection is owned by the separate hazard update; this getter
+reads the existing endpoint and anchor without host trigonometry. Platform
+motion uses the original104 divisor. Resident040e:52c2 sets x87 rounding bits
+to0c before FISTP qword and restores the control word, so conversion truncates
+toward zero before the16-bit AX store. The verifier pins all51 original helper
+bytes. No translated motion routine consumes host randomness or wall time.
+
+`reference/jungle-motion.json` records a new entry, not a reuse of the old
+live mapping. After the map pause158, a mouse warp did not change the game's
+selected TooPei destination22. Ordinary travel, flight stall/crash and repair
+advanced to day22. At resident01f5:04ca stop163, the destination stack byte
+SS1403:9f5e was explicitly changed22→25 before assignment/dispatch. This is
+conditional setup after unrelated travel; it does not establish a normal jungle
+journey. No machine restore, register writes, fitted timer or later memory
+injections were used. Entry164 is variant0/day22/seed37850. All24056 overlay
+bytes, including436 relocations with01f5 load bias, match again.
+
+Twenty-five conditional routine cases cover idle, walking, the short upward
+step, downward drop, falling and the water-death transition. Each starts only
+from its own BEFORE DS at live0e0c:0c98 and compares at11c0. Every DS byte is
+compared except9e3a..9e6d: a52-byte interval occupied by the routine's saved
+registers, locals and nested-call/interrupt scratch, below the incoming SP9e6e.
+No game table is excluded. Three independent AL snapshots document the actual
+setup Right/Up/Down samples3/1/5. Motion itself has no external input events;
+the producer schedules are setup evidence rather than an input replay.
+
+Three carried actor segments add21 checkpoints, starting once from the first
+BEFORE and keeping their own state through subsequent calls. Between calls,
+the fixed main00fe clear of8b56 is reproduced from static code, never fitted
+from expected output. These comparisons cover named actor/action/frame/grid/
+riding/support fields and sprite frame; hazards, controls, ground checks and
+page histories outside these calls are not a whole-loop replay. All25 post
+poses decode/render. Five required negative controls reject a changed code
+byte, omitted case, omitted movement update, altered expected result and omitted
+scheduler clear. Authored platform truncation/constant rejection and vine-data
+checks remain separate from original runtime evidence. Platform/fish riding,
+vine attach/detach and remaining branches currently have static evidence only.
+
+Run `npm run verify:jungle`. All55 local capture artifacts are required and
+hash checked; missing/corrupt captures fail explicitly. No full scene pixels,
+original audio/timing or jungle browser acceptance is claimed. Next: complete
+hazard initialization and scene scheduling, then integrate this actor loop.
+
+After the dispatched Down release and neutral AL0 at stop218, the original
+continued through natural life loss. Live original is now paused111b:01f1,
+stop220, after fish initialization on retry. Its BEFORE/AFTER captures are local
+investigation for the next hazard milestone, not part of this motion acceptance.
+No owned breakpoints or pending input schedules remain. Current overlay bytes
+were revalidated on entry164; captures stay pinned to their recorded boundaries.

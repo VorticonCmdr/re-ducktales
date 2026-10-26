@@ -13,12 +13,13 @@
     "prepare:analysis": "python3 scripts/prepare-analysis.py",
     "verify:reference": "node scripts/verify-reference.js",
     "verify:build": "node scripts/verify-build.js",
-    "verify": "npm run verify:build && npm test && npm run verify:reference && npm run verify:campaign && npm run verify:departure && npm run verify:flight && npm run test:browser && npm run build",
+    "verify": "npm run verify:build && npm test && npm run verify:reference && npm run verify:campaign && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run test:browser && npm run build",
     "format": "prettier --write src/game scripts/verify-*.js tests/game.test.js tests/browser/*.js index.html playwright.config.js reference/*.json",
     "verify:campaign": "node scripts/verify-campaign.js",
     "verify:departure": "node scripts/verify-departure.js",
     "verify:flight": "node scripts/verify-flight.js",
-    "prepare:flight-analysis": "python3 scripts/prepare-flight-analysis.py"
+    "prepare:flight-analysis": "python3 scripts/prepare-flight-analysis.py",
+    "verify:flight-course": "node scripts/verify-flight-course.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

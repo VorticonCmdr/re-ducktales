@@ -1,0 +1,101 @@
+{
+  "id": "flight-course-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "0bb7cd4",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 f6d9b",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "headless": true,
+    "mute": true,
+    "readOnlyMount": "game/"
+  },
+  "startingRecipe": "Continue first racing flight after dry crash, acknowledge Glomgold message, then move map cursor Right200 emulated frames; fire; Right; fire, with release gaps. Capture second flight entry, post-terrain, pre/post objects, and first physics. See docs/flight.md.",
+  "expectedCheckpointCount": 5,
+  "cases": [
+    {
+      "id": "racing-first-flight",
+      "expected": "firstInitial",
+      "input": {
+        "days": 1,
+        "racing": true,
+        "difficulty": 0,
+        "seed": 1822,
+        "day": 7
+      },
+      "draws": 212,
+      "objectCount": 10,
+      "scenery": {
+        "picture": 39,
+        "optional": [59, 60],
+        "draws": 1
+      }
+    },
+    {
+      "id": "ordinary-second-flight",
+      "expected": "secondInitial",
+      "input": {
+        "days": 1,
+        "racing": false,
+        "difficulty": 0,
+        "seed": 1185,
+        "day": 8
+      },
+      "draws": 213,
+      "objectCount": 16,
+      "scenery": {
+        "picture": 28,
+        "optional": [40, 41, 42, 43],
+        "draws": 2
+      }
+    }
+  ],
+  "rules": {
+    "level": "Conditional routine stage comparisons plus complete course setup from original executable constants and PLANE.ARC metadata. Course stages carry their computed seed; not an event-only campaign or full flight replay.",
+    "comparison": "Exact RNG seed, terrain type/index arrays, allocated object fields, initialization sentinels, loaded sprite geometry/frame bytes, gravity vectors and plane initial state.",
+    "conditions": [
+      "Initial day/difficulty/race/seed are explicit internal starting contracts captured independently at flight entry.",
+      "The isolated object-stage check receives captured pre-object memory, including original sprite descriptors.",
+      "The two complete setup cases obtain resource dimensions from original PLANE.ARC and constants from DUCKTALE.EXE, without expected-output-derived inputs."
+    ],
+    "exclusions": [
+      "Whole setup compares only fields the initialization writes; stale x/state/padding and unused object fields are outside its write footprint. The isolated object-stage comparison covers the full arrays, preserving those values from the before snapshot.",
+      "Allocator and driver pointers, stack, software-FPU scratch, hardware state and timing are outside this semantic setup boundary.",
+      "No flight rendering, obstacle update, collision or arrival acceptance is claimed."
+    ],
+    "injections": [],
+    "fittedInputs": []
+  },
+  "artifacts": {
+    "entry": {
+      "path": ".local/flight-generation-entry.json",
+      "sha256": "c26206678fb70bf6ebe19c93a443e057d5de84e610d6777272cb8cdb4a73471b"
+    },
+    "terrain": {
+      "path": ".local/flight-generation-terrain.json",
+      "sha256": "ef4d6b566430a58388df382d16ebdfb734986d0d4dc294240c1639e6e51b4157"
+    },
+    "beforeObjects": {
+      "path": ".local/flight-generation-before-objects.json",
+      "sha256": "8da7ea9da29d8489d4464beb22bdf87230dc80a2c55948189df24a412cd8bd83"
+    },
+    "afterObjects": {
+      "path": ".local/flight-generation-after-objects.json",
+      "sha256": "68cfa1782c4c721aa12f00699a6a25a4f9d3221bca1cece1d55c8655ae90f237"
+    },
+    "firstInitial": {
+      "path": ".local/flight-initial.json",
+      "sha256": "774d9259afad68461a0fd6d3a3ecc79566b4c0c14d9e64957fc61d233d0ee7b0"
+    },
+    "secondInitial": {
+      "path": ".local/flight-generation-initial.json",
+      "sha256": "10018249700115118a3746dbeb2345181c65463088c22562bdd20b315ec74105"
+    },
+    "firstDeparture": {
+      "path": ".local/reference-departure.json",
+      "sha256": "6faf9f42404ca4f156ba61a301755994fa3974cc4780e9a1e2b18a655d417c69"
+    }
+  },
+  "verify": "npm run verify:flight-course"
+}

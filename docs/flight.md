@@ -2,7 +2,7 @@
 
 Build: `reference/build.json`; overlay 4 SHA-256
 `cefab7184f72f605af90ddcf9b8cc8027870fdacb9922acdb68e8d6212db3ae9`.
-The physics module is implemented and has conditional routine comparisons.
+The physics and course-generation modules are implemented and have conditional routine comparisons.
 **It is not connected to browser gameplay yet.** Departure preparation remains
 the last working browser boundary. No flight or arrival acceptance is claimed.
 
@@ -126,17 +126,93 @@ continue from original disassembly rather than building a general translator.
 A focused Ghidra MCP improvement would report this failure with the decompiler
 log and retain a bounded instruction listing for the failed routine.
 
+## Course generation
+
+`flight-terrain.js` translates the four terrain sections at 2da8–2f4a and
+3498–36c8. Duration1/2/3 yields 42/84/126 tiles. Section lengths truncate the
+division by4, retaining the original uncovered tail. Terrain continuation,
+water/shore transitions, branch order and otherwise-unused RNG draws are
+preserved. The mixed-theme branch at 31f8 compares the existing theme rather
+than the new random roll; this original behavior is intentional.
+
+`flight-course.js` translates object placement at 36c9–43f8 and its helpers.
+Each tile has a type word and first-object index; objects use fourteen-byte
+records. Placement probability changes at tile2 and halfway through the route,
+by difficulty. Conditional RNG draws, byte/signed-word comparisons, cloud
+altitude separation and adjacency flags are explicit. The building's falling
+object has **type0** and stores resource20/22/24/25 in its variant byte, as shown
+by the original push order at 4261–426d. The helper leaves x, state, padding and
+unallocated-record fields unchanged. Its start-of-tile count limit can permit
+more than260 records including the two landing records; no invented per-record
+260 limit is imposed.
+
+`flight-setup.js` reads constants from the original unpacked EXE and geometry
+from all68 PLANE.ARC entries. It initializes terrain, selects scenery and optional
+obstacles, loads sprite geometry/frame bytes, creates objects and gravity vectors,
+and sets the plane's initial state. No snapshot is needed to run this setup.
+Asset references replace dynamic mask/pixel allocator pointers, which do not
+participate in these placement rules. Original raw-picture dimensions come from
+the same PLANE.ARC resources, without creating a synthetic DOS allocator.
+Passing a previous FlightMemory preserves otherwise untouched fields between
+flights; this is simulation state, never a claimed machine checkpoint.
+
+`npm run verify:flight-course` checks five outputs:
+
+1. Terrain arrays, object initialization sentinels and RNG seed immediately after
+   terrain generation, using a captured entry contract.
+2. Scenery flags and seed at the pre-object boundary.
+3. The complete terrain/object arrays and seed across the isolated object routine,
+   using its captured before memory, including stale object fields.
+4. Complete asset-backed setup for the first racing flight: seed1822, day7,
+   Easy Money, duration1, picture39, rival assets59/60. Exactly212 RNG draws and
+   ten objects, matched against the first physics entry.
+5. Complete asset-backed setup for the second ordinary flight: seed1185, day8,
+   Easy Money, duration1, picture28, optional assets40–43. Exactly213 RNG draws
+   and sixteen objects, matched against the first physics entry.
+
+The last two run their own initialization, RNG and resource providers throughout
+setup. They compare all fields setup writes, including loaded descriptor positions,
+geometry/frame bytes, gravity vectors, day/difficulty/race and initial plane state.
+They exclude allocator pointers and untouched stale fields. This exclusion is
+scoped to setup's write footprint; the isolated routine check also compares the
+untouched bytes over the full arrays. Initial seeds are captured **internal**
+starting contracts, so these are not independent campaign input-only replays.
+Medium/hard, multi-day and other random courses remain statically translated,
+without equivalent original captures yet.
+
+The manifest `reference/flight-course.json` pins all local data and the exact
+checkpoint count. Both EXE and PLANE.ARC identities are checked before decoding.
+Omitting an RNG update, changing an object position and removing the cases all
+fail negative controls. Missing/corrupt captures fail setup explicitly. No
+injected memory, fitted input or expected-output-derived resource dimension is
+used. These checks do not include flight drawing, collisions or arrivals.
+
+To reproduce the second capture, acknowledge Glomgold's post-crash message and
+return to the map at Klondike, day8. Schedule Right down at frame0/up200,
+Space down300/up330, Right down440/up470, Space down580/up610. Stop at main
+01f5:06d9 then0845, and at flight entry0e0c:0000. The selected runtime slot is14;
+the flight stack contains duration1/racing0. Capture CPU/full DS at entry;
+also capture SS:[SP] eight bytes and the first sixteen code bytes. The entry
+bytes match the previous relocated flight image and protected mode remains false.
+
+Stop after terrain at physical0e0c:2f4a (actual CS:IP10e6:01aa), before objects
+at0e0c:36c9 (actual10e6:0929), and after objects at0e0c:43f8
+(actual10e6:1658). The overlay's far aliases are important: these are the same
+physical addresses, not separate copies. Capture CPU/full DS atomically at each.
+Finally capture the first physics entry0e0c:1330. The separate first-frame PNG
+under `.local/` is exploratory material, not a verified rendering comparison.
+
 ## Remaining flight work
 
-Terrain generation is statically understood but still needs a capture immediately
-before object placement. That later routine conditionally changes terrain11 to8
-and the following tile to0 (3a68–3a89); comparing the earlier generator directly
-to the first displayed frame is invalid. Objects, collision responses, race
+Terrain and initial obstacle placement now match both tested flight setups.
+Object placement conditionally changes terrain11 to8 and the following tile to0
+(3a68–3a89); the stage captures verify that distinction. Object updates, collision responses, race
 movement, scenery rendering, crash animation, flight timing, day changes, and
 arrival dispatch remain to be integrated. The original render routine also
 mutates gameplay state, so a pure Canvas renderer cannot simply replace it.
 
-The live session has advanced through the dry crash to the campaign map and
-Glomgold's treasure message. It is no longer at the departure-entry checkpoint.
+The live session has advanced through the dry crash, Glomgold's message, and
+the second departure. It is paused at the second physics entry of that ordinary
+flight (stop96,0e0c:1330). No breakpoints or input schedules remain active.
 The completed flight returned AX0 at main0855, day8; this observation is saved
 locally but is not yet an acceptance check of campaign crash/race consequences.

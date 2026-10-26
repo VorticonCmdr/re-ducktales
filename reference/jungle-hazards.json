@@ -1,0 +1,179 @@
+{
+  "id": "jungle-hazards-conditional-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "f660a05",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "startingRecipe": "Continue bonus reset stop222 from reference/jungle-initialization.json. Send Down press0/release300ms and run to monkey106f:0006. First15s observation timed out; polling the same run reached223 on natural life loss. Capture CPU+DS64K223/224 and platform reset225/226,argument0. Wait joystick AL0 at0680 stop227, delete condition, send Down press0/release300ms; natural final life loss reaches main0e0c:01d7 stop228. Run resident01f5:0439, Space press1000/release1250ms: map selection retained22 despite current location25,stop229. Save CPU+DS+32 original code bytes then CAS target SS1403:9f5e22\u219225 before journey calculation (conditional retry setup). Same-location dispatch skips flight, opens guide and reaches jungle entry230,variant0/day23/seed2725. Capture CPU+DS+all24056 code bytes and revalidate436 relocations,bias01f5. Capture each routine at the before/after addresses and stops in routineSchedule. No later injection or restore. At final stop246 capture CPU and driver2f7b:0288..03c0, pinning clock code/destination pointer. No breakpoints or pending schedules remain.",
+  "expectedCaseCount": 10,
+  "expectedCheckpointCount": 10,
+  "expectedCarriedCheckpointCount": 9,
+  "expectedInputCount": 2,
+  "inputEvents": [
+    {
+      "case": "platform-reset",
+      "first": false
+    },
+    {
+      "case": "platform-entry",
+      "first": true
+    }
+  ],
+  "routineSchedule": [
+    ["monkey", "Monkeys", 4207, 6, 555, 223, 224, 40516, 40558],
+    [
+      "platform-reset",
+      "Platforms",
+      4741,
+      2671,
+      2962,
+      225,
+      226,
+      40512,
+      40556,
+      false
+    ],
+    ["monkey-entry", "Monkeys", 4207, 6, 555, 231, 232, 40516, 40558],
+    ["bird", "Birds", 4651, 14, 338, 233, 234, 40510, 40558],
+    ["vine", "Vines", 4991, 2, 92, 235, 236, 40548, 40558],
+    ["fish-entry", "Fish", 4379, 212, 497, 237, 238, 40516, 40558],
+    ["bonus-entry", "Bonus", 3596, 8211, 8335, 239, 240, 40544, 40558],
+    ["snake", "Snakes", 4926, 842, 1036, 241, 242, 40530, 40558],
+    ["transport", "Transports", 5065, 14, 102, 243, 244, 40536, 40558],
+    [
+      "platform-entry",
+      "Platforms",
+      4741,
+      2671,
+      2962,
+      245,
+      246,
+      40512,
+      40556,
+      true
+    ]
+  ],
+  "deviceClockExclusion": [8741, 8745],
+  "carriedStackExclusion": [40510, 40562],
+  "injections": [
+    {
+      "at": "01f5:0439 before retry journey calculation",
+      "segment": 5123,
+      "offset": 40798,
+      "width": 1,
+      "before": 22,
+      "after": 25
+    }
+  ],
+  "fittedInputs": [],
+  "inheritedSetup": "Reset cases223..226 inherit the destination override in reference/jungle-motion.json and natural life loss in reference/jungle-initialization.json. Entry230 adds only the retry target override recorded here. No independent campaign journey replay claim.",
+  "environmentContract": "Each routine begins only from its own BEFORE DS and independent first/reset argument where applicable; arguments must match incoming stack. RNG is internal shared DS2229. Carried sequence begins once from monkey-entry BEFORE231 after original allocation,map loading and actor-list preparation, then retains all state through seven hazard initializers,actor/life setup and platform initialization. No expected intermediate state, fitted timers or allocator values are supplied. IRQ8 clock is outside these initializer consumption boundaries and excluded,not injected. Palette output is an explicit required outgoing event.",
+  "comparisonRules": "Exact entire64K DS except per-case stack interval in routineSchedule, plus four-byte asynchronous clock for bird only. Carried sequence excludes only helper call/argument/interrupt scratch union9e3e..9e71 and that clock. Driver5 IRQ8 code02a8..03c0 must match decoded IT.DRV and installed pointer028c must be1403:2225. ADD word[BX],1;ADC word[BX+2],0 advances the clock. Resident040e:0cfa passes AX2225 to initializer037b;040e:0dc4 reads this counter and0dcc waits against it. Full new overlay identity required.",
+  "exclusions": [
+    "Only documented per-case stack scratch; no game table or descriptor omitted. Carried union includes caller argument storage through9e71 because helper SP varies with argument count.",
+    "Only bird conditional case and carried checkpoints exclude DS2225..2228, the identified IRQ8 clock. Other conditional cases compare it exactly. Adjacent RNG2229 remains exact,with a required corruption negative control.",
+    "CPU registers/flags/return values,actual palette pixels,hazard advancement,whole-loop timing,audio,scene composition and jungle browser acceptance are outside this milestone.",
+    "Carried initial state includes original allocation/resource/map/actor-list setup. This is conditional initialization evidence,not independent startup or gameplay replay."
+  ],
+  "artifacts": {
+    "monkey-before": {
+      "path": ".local/jungle-initial-monkey-before.json",
+      "sha256": "32657b5449ca57e5dc0978da5997bf2acbac7a0adeab7a014b8f8af4475cfc50"
+    },
+    "monkey-after": {
+      "path": ".local/jungle-initial-monkey-after.json",
+      "sha256": "bdd18774bc3b461d590e98d7b8023d86931731e275570a6a3d1f6d34e894d972"
+    },
+    "platform-reset-before": {
+      "path": ".local/jungle-initial-platform-reset-before.json",
+      "sha256": "b8a9cafa9db1b60eb95a2227f5d2af87b3b87ab71cb0f5663d793e0153de5fc5"
+    },
+    "platform-reset-after": {
+      "path": ".local/jungle-initial-platform-reset-after.json",
+      "sha256": "60a37c1f18bd98a5c9d281a0251ee5f2fe750909c21f6f5d69c66e5564b61973"
+    },
+    "monkey-entry-before": {
+      "path": ".local/jungle-initial-monkey-entry-before.json",
+      "sha256": "21b428e56f8f88500c92a3998e97bda3cd994d18ad58da69b016f681e69a5e3d"
+    },
+    "monkey-entry-after": {
+      "path": ".local/jungle-initial-monkey-entry-after.json",
+      "sha256": "3c9a253829c21af1cc6bcc5a880075069e90907e7b21e0512df311880b2c54d2"
+    },
+    "bird-before": {
+      "path": ".local/jungle-initial-bird-before.json",
+      "sha256": "bc3cbef3a70b3ce9eb36f460be42bd4003cd99cf9abf47cf94deb931fa62c738"
+    },
+    "bird-after": {
+      "path": ".local/jungle-initial-bird-after.json",
+      "sha256": "aa13d3409887a5ed2b881998c8e209ca032406aa64abb3914dcd790a99693e6a"
+    },
+    "vine-before": {
+      "path": ".local/jungle-initial-vine-before.json",
+      "sha256": "981fba735a0c78bafff40854d3535a5b5d9f7ef4c4c7b9db56c366e598abb67c"
+    },
+    "vine-after": {
+      "path": ".local/jungle-initial-vine-after.json",
+      "sha256": "c7ca1d377ee752263f37e017cfe7366f38abf261842d53b54f8f48e6fd645dcc"
+    },
+    "fish-entry-before": {
+      "path": ".local/jungle-initial-fish-entry-before.json",
+      "sha256": "3d45dd418fbf10e72cdef1e93bbe003f3376304087ef9e3a1ff082a18f4df10a"
+    },
+    "fish-entry-after": {
+      "path": ".local/jungle-initial-fish-entry-after.json",
+      "sha256": "2fefaf5a443e123270b1c36a9fac27aeab76497f5285501118fac61dfd39914f"
+    },
+    "bonus-entry-before": {
+      "path": ".local/jungle-initial-bonus-entry-before.json",
+      "sha256": "148fa72f658f195edbcc8473f78c13d1353cf88204d34c4fb5f35c3774d05afe"
+    },
+    "bonus-entry-after": {
+      "path": ".local/jungle-initial-bonus-entry-after.json",
+      "sha256": "19c35a6ab29629bf5d48ca5ef7bbe26a386d0d6e3e8c9283f75280d5ed006061"
+    },
+    "snake-before": {
+      "path": ".local/jungle-initial-snake-before.json",
+      "sha256": "cc7748d18caf4e1e9176c2634764f6813fcdb5f7d73f092f71f39101980bbdbc"
+    },
+    "snake-after": {
+      "path": ".local/jungle-initial-snake-after.json",
+      "sha256": "75c960a661e92f6fde968b721a6a1f2eefaf24f82ac06e44159eb7ba23de6d9a"
+    },
+    "transport-before": {
+      "path": ".local/jungle-initial-transport-before.json",
+      "sha256": "0522c57e81d1cd118427b7143b38f6ce6479d6cd6e83600c086c0e06ad13297b"
+    },
+    "transport-after": {
+      "path": ".local/jungle-initial-transport-after.json",
+      "sha256": "a0aadf5aa0189a53c916276c64154078f80edc43a4dbb9ab1133f687b9df563f"
+    },
+    "platform-entry-before": {
+      "path": ".local/jungle-initial-platform-entry-before.json",
+      "sha256": "24165e6a54c1613f8620545ef320e786ab12be7a9cdfeb00525e973c7fe70d13"
+    },
+    "platform-entry-after": {
+      "path": ".local/jungle-initial-platform-entry-after.json",
+      "sha256": "820c39cee33b7adfb4af4065bf9fd68b4fa7e94404b9744c46bbba5257d0e967"
+    },
+    "before-target": {
+      "path": ".local/jungle-initial-before-target.json",
+      "sha256": "4781b0a4f376b8bd37ee3cc7c1d609e324e4f91b2001db2a8c593aa4b393591d"
+    },
+    "entry": {
+      "path": ".local/jungle-initial-entry.json",
+      "sha256": "381dd4e936c12cde2ce013e811b53f84c20da8abb5b24fcb883f412ba956b260"
+    },
+    "clock-driver": {
+      "path": ".local/jungle-initial-clock-driver.json",
+      "sha256": "583cbaa612fa841d60f3abbf405dfdf8b19d619c2577c6dcbe90ece98fd3539b"
+    }
+  },
+  "verifyCommand": "npm run verify:jungle"
+}

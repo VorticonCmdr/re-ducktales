@@ -3,11 +3,11 @@
 Jungle gameplay is not yet connected to the browser. The current foundation
 loads the three original map resources, locates the starting platform and
 translates actor animation lists, selection, countdowns, control selection,
-ground/support queries, actor motion and presentation history.
+ground/support queries, actor motion, hazard/life initialization and presentation history.
 The actor routines now have conditional original-runtime comparisons. The next playable route is flight/guide →
 walking/jumping among the initial platforms → consequence → restart, followed
 by the complete expedition and campaign reward. No substitute mechanics are
-implemented while hazards and scene scheduling remain untranslated.
+implemented while hazard advancement and scene scheduling remain untranslated.
 
 ## Source identity and analysis
 
@@ -102,7 +102,7 @@ polls joystick input at body0651 before collision/scene passes. Actor action
 selection is f97:06a9 (Ghidra currently fails to decompile it); camera movement
 is body0591. Actor world X/Y are DS5f46/6858, current action6882, facing3d12
 and platform column/row544c/5462. The animation helpers are now translated
-from raw disassembly and checked below. Complete hazard initialization and
+from raw disassembly and checked below. Translate hazard advancement and
 the scene next, then compare that scene with the
 original before claiming a playable jungle milestone. Existing cave and mountain browser routes
 remain the working expedition routes.
@@ -211,7 +211,7 @@ Those modified initial states are independent checks, not original captures.
 The command remains `npm run verify:jungle`; the original overlay identity is
 checked by the animation verifier before these control cases.
 
-Complete hazard initialization, full scene composition and browser scheduling
+Hazard advancement, full scene composition and browser scheduling
 still remain before a playable jungle route. Ground, vine
 and moving-platform helpers have static evidence but no new runtime comparison
 in these seven cases. No full-scene, audio, original wall-clock or browser
@@ -289,7 +289,7 @@ vine attach/detach and remaining branches currently have static evidence only.
 Run `npm run verify:jungle`. All55 local capture artifacts are required and
 hash checked; missing/corrupt captures fail explicitly. No full scene pixels,
 original audio/timing or jungle browser acceptance is claimed. Next: complete
-hazard initialization and scene scheduling, then integrate this actor loop.
+hazard advancement and scene scheduling, then integrate this actor loop.
 
 After the dispatched Down release and neutral AL0 at stop218, the original
 continued through natural life loss and the reset boundaries recorded below.
@@ -321,11 +321,81 @@ and hash checked by `npm run verify:jungle`, after complete entry164 code identi
 
 Vines and other difficulty values have authored static-rule checks, not new
 original runtime coverage. These two conditional reset cases do not establish
-a complete life reset, scene, audio/timing or browser gameplay. Monkey, bird,
-snake, transport and platform initialization, hazard advancement and complete
-scene composition remain before integration. The original's da0:0783 is a
+a complete life reset, scene, audio/timing or browser gameplay. Additional
+initializer evidence follows below; hazard advancement and complete scene
+composition remain before integration. The original's da0:0783 is a
 physical alias of main2013: the live CPU reports0e0c:2013, not0f95:0783; the
 manifest records the actual CS/IP rather than assuming a unique segment alias.
 
-Current live original: paused0e0c:208f stop222 after bonus reset; no breakpoints
-or pending input schedules. No original resources or code were changed.
+The stop222 pause was followed by the setup below. No original resources or
+code were changed.
+
+## Remaining hazard initializers and carried entry
+
+`jungle-initialization.js` now also translates monkeyse7a:0006, birds1036:000e,
+snakes1149:034a, transports11d4:000e, platforms1090:0a6f and life setupmain12dd.
+The dirty/dependency flags fromea1:00f5 and1036:050f are shared collision helpers.
+All six monkey/five bird slots are visited, including inactive entries; snake
+reset deliberately starts at slot1. Transport coordinates are written to slots0/1
+while its dirty helper receives1/2. Sparse animation fields retain their incoming
+contents. Platform pickup rolls run only on first entry; retry preserves pickups
+and consumes no platform RNG. The raw routine sets an unused difficulty local
+35/25/15 but its actual pickup comparison remains the constant25. Life setup
+resets position, action, facing and support flags, initializes page history and
+emits the original palette request through an explicit output callback.
+
+`reference/jungle-hazards.json` requires23 local artifacts,10 conditional routine
+cases, two independently recorded first/reset arguments and9 carried initialization
+checkpoints. After stop222, Down press/release causes another natural loss and
+monkey/platform reset223..226. A second Down after neutral227 causes final loss
+and jungle exit228. Map Fire reaches resident0439 stop229 with selected22 but
+current location25. A separately recorded target stack-byte22→25 override makes
+this a same-location retry; it skips flight, opens the guide and enters jungle
+at230 (variant0/day23/seed2725). No later memory/register injection, partial
+restore or machine checkpoint is used. All24056 code bytes match after436
+relocations at load bias01f5. Reset cases still refer to the prior entry164;
+fresh-entry cases231..246 refer to230.
+
+Every conditional routine compares all DS bytes except its fixed documented
+call/local/interrupt scratch interval. Only the bird routine additionally
+excludes DS2225..2228: the asynchronous IRQ8 clock advanced during that call.
+This exclusion is based on pinned original driver evidence, not a fitted timer.
+Resident040e:0cfa passes AX2225 and DS to the driver initialization pointer2010;
+the captured pointer is2f7b:037b. Decoded IT.DRV entry5 code02a8..03c0 matches
+live code exactly. Its initializer saves1403:2225 at driver028c, installs IRQ8,
+and its handler0351..0358 increments word[BX] with carry into[BX+2]. The counter
+is read by resident0dc4 and used by wait0dcc. Adjacent RNG2229 remains compared
+exactly. Other conditional initializer cases do not exclude the clock.
+
+The carried run starts once from BEFORE231 after original allocation, map
+loading and actor-list preparation. It retains all state through seven hazard
+initializers, life setup and platform initialization, comparing nine complete DS
+checkpoints without inserting expected intermediate state. Its exclusions are
+only that four-byte device clock and the union of helper call/argument/interrupt
+scratch9e3e..9e71. Argument slots extend above the first helper SP because calls
+have different argument counts. One outgoing life palette event is required.
+This establishes conditional initialization through all hazards/lives/pickups;
+it is not an independent resource allocation/startup or gameplay replay.
+
+Five negative controls reject changed live code, an omitted routine, corruption
+of the RNG adjacent to the clock, treating first entry as a retry and omitting
+the carried bird initializer. Run `npm run verify:jungle`; missing/corrupt
+artifacts and incomplete cases/arguments fail. Scene pixels, palette appearance,
+hazard advancement, audio/timing and browser acceptance remain unproven.
+
+After initializer246, run to main0680 stop247, observing neutral AL0, then049a
+stop248 after the first presentation path. CPU/DS captures are local
+`.local/jungle-scene-initial.json` and `.local/jungle-scene-first-frame.json`;
+the raw screenshot is `.local/jungle-scene-first-frame.png`. They are exploratory
+renderer setup, not part of accepted initialization evidence or an established
+pixel/timing comparison. Front-buffer/VGA capture alignment still needs checking
+before using the PNG as an exact frame expectation.
+
+Current original: paused0e0c:049a stop248,variant0/day23. No breakpoints or pending
+input schedules remain. Revalidate code and address mapping again after a
+relaunch or another overlay load. Next scene work should follow raw main032b..049a:
+backgroundf97:0479/04ab, terrain1090:0528, monkey e7a:0318, fishf26:01f6,
+bird1036:0246, monkey projectile/overlaye7a:0912/09c0, vine118a:01f0,
+snake1149:0008 (only while actor action45), transport11d4:006b, actor main11c5,
+bonus main21ff and HUDe4c:0144. Ghidra function labels sometimes use equivalent
+segment aliases; raw far-call bytes decide the actual routine boundary.

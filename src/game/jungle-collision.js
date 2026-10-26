@@ -114,6 +114,28 @@ function invalidatePlatform(m, id, kind) {
         flagJunglePlatformDirty(m, m.i(at + offset), 2);
   }
 }
+export { invalidatePlatform as flagJungleMovingPlatformDirty };
+
+// ea1:00f5 and1036:050f. Initialization and later hazard updates share these
+// redraw/dependency flags; requesting a redraw does not render or advance time.
+export function flagJungleMonkeyDirty(m, id, kind) {
+  const at = id * 62;
+  m.i(at + 0x58da, 2);
+  if (m.i(at + 0x58dc) === 0 || kind === 7) m.i(at + 0x58dc, kind);
+  if (kind !== 7) return;
+  markJungleDirty(m, m.i(at + 0x58f0), m.i(at + 0x58f4), 64, 74, id + 1);
+  for (const off of [0x58e2, 0x58e4, 0x58e6])
+    if (m.i(at + off) !== 0) flagJunglePlatformDirty(m, m.i(at + off), 7);
+}
+export function flagJungleBirdDirty(m, id, kind) {
+  const at = id * 38;
+  m.i(at + 0x398a, 2);
+  if (m.i(at + 0x398c) === 0 || kind === 5) m.i(at + 0x398c, kind);
+  if (kind !== 5) return;
+  markJungleDirty(m, m.i(at + 0x3996), m.i(at + 0x3998), 64, 48, 11);
+  for (const off of [0x399e, 0x39a0, 0x39a2])
+    if (m.i(at + off) !== 0) flagJunglePlatformDirty(m, m.i(at + off), 5);
+}
 export function flagJunglePlatformDirty(m, id, kind) {
   const at = id * 50;
   m.i(at + 0x6066, 2);

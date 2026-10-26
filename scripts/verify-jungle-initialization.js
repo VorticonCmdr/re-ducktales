@@ -149,6 +149,6 @@ export async function verifyJungleInitialization() {
     assert.equal(vines.i(at + 16), saved.readInt16LE(at + 16));
   }
   console.log(
-    "Jungle initialization: 2 exact conditional original fish/bonus reset cases; complete DS except42/8 stack bytes,17 original RNG draws retained; three negative controls. Vines/difficulty boundaries have static checks. Complete hazard/scene initialization remains unfinished.",
+    "Jungle initialization: 2 exact conditional original fish/bonus reset cases; complete DS except42/8 stack bytes,17 original RNG draws retained; three negative controls. Vines/difficulty boundaries have static checks; additional initializer evidence follows separately.",
   );
 }

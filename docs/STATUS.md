@@ -74,7 +74,10 @@ does not advance simulation. Unsupported paths stop with diagnostics.
   unimplemented. Authored boundary checks are kept separate from runtime evidence.
   Fish/bonus reset adds2 conditional original checkpoints with exact DS outside
   their42/8-byte stack intervals and17 original fish RNG draws. Vine initialization
-  has static checks; remaining hazard initialization/advancement is incomplete.
+  has static checks. Additional hazard initialization now matches10 original
+  routine cases and9 carried full-DS checkpoints, including initial actor/lives,
+  all hazard slots and pickup RNG. Only documented stack scratch and the identified
+  four-byte IRQ8 clock are excluded. Scene/hazard advancement remains incomplete.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
@@ -113,7 +116,8 @@ variant0. These checks do not establish a complete original campaign replay.
   Jungle maps and actor animation/presentation helpers are implemented
   separately; control selection and collision support are now translated too.
   Actor motion and support contributions are now translated separately.
-  Complete hazard initialization and scene rendering remain to translate. See `docs/jungle.md`.
+  Hazard initializers and life setup are translated and compared separately;
+  hazard advancement and scene rendering remain to translate. See `docs/jungle.md`.
   Mountain actions/hazards, scrolling and summit condition are translated;
   variant0 ascent/reward works through browser controls. Other variants/
   difficulties and original hook/ascent comparisons are still needed. Full
@@ -148,18 +152,20 @@ Mountain foundation: `npm run prepare:mountain-analysis` and
 Jungle map foundation: `npm run prepare:jungle-analysis` and
 `npm run verify:jungle`; Python3 is required for the independent oracle.
 
-Next: complete jungle hazard initialization and scene
-scheduling, then connect the existing control/collision/animation pieces to a
+Next: translate jungle hazard advancement and scene
+scheduling/rendering, then connect the existing control/collision/animation pieces to a
 playable browser route. Then expand photography, trading and
 endings, while extending targeted original mountain hook/ascent comparisons. Continue targeted original comparisons for cave movement,
 remaining outcomes and notice presentation/timing. Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-jungle variant0/day22, paused0e0c:208f stop222 after bonus reset on natural life loss.
-Down release was dispatched and neutral AL0 observed at stop218; no breakpoints
-or pending schedules. New entry164 revalidates the complete
-relocated overlay. Its destination22→25 override after unrelated flight/repair
-is explicit conditional setup. See `reference/jungle-motion.json` and
-`docs/jungle.md` and `reference/jungle-initialization.json`; older manifests remain
-pinned to their recorded stops.
+jungle variant0/day23, paused0e0c:049a stop248 after the first presentation path.
+No breakpoints or pending schedules. Entry230 revalidates the complete relocated
+overlay. Its retry destination22→25 override at resident0439 is explicit conditional
+setup, separate from the earlier flight/repair override. Clock evidence pins
+decoded IT.DRV5 IRQ8 code and its DS1403:2225 destination. See
+`reference/jungle-hazards.json` and `docs/jungle.md`; older manifests remain pinned
+to their recorded stops. Exploratory scene captures at247 (first neutral joystick)
+and248 (post-presentation CPU/DS plus raw PNG) are local setup for the renderer,
+not yet accepted pixel/timing evidence.

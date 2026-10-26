@@ -75,6 +75,9 @@ variant0. These checks do not establish a complete original campaign replay.
   and timing comparisons; their state and explicit device boundaries are tested.
 - Jungle, mountain, photography, stock trading, campaign endings, normal
   Glomgold progression, atomic transport, save/load and high scores are absent.
+  Mountain terrain and initial actor/table state are now translated separately;
+  all 75 layout/scroll combinations pass static asset-composition checks. This
+  module is not connected to browser gameplay and has no runtime comparison yet.
 - Flight spin/boost/tether/airship paths are statically translated with limited
   original captures. Complete original landing/flight timing parity is unproven.
 - Dialogue helper09f5 uses seven driver ticks per poll: guide210 ticks, repair420,
@@ -99,8 +102,10 @@ Focused: `npm test`, `npm run test:browser`, `npm run verify:loot`,
 `npm run verify:cave`, `npm run verify:visits`, and the existing reference/campaign/departure/flight
 verifiers listed in package.json. Analysis: `npm run prepare:analysis`,
 `npm run prepare:flight-analysis`, `npm run prepare:cave-analysis`.
+Mountain foundation: `npm run prepare:mountain-analysis` and
+`npm run verify:mountain-terrain`; scope and evidence in `docs/mountain.md`.
 
-Next: deliver the next expedition game, then expand jungle/photography,
+Next: finish mountain actions/hazards and connect its browser route, then expand jungle/photography,
 trading and endings. Continue targeted original comparisons for cave movement,
 remaining outcomes and notice presentation/timing. Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`.

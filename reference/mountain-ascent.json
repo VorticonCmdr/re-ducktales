@@ -1,0 +1,611 @@
+{
+  "id": "mountain-independent-ascent-variant0",
+  "buildManifest": "reference/build.json",
+  "evidence": "Independent closed-loop regression from static translation. Authored controls discovered by exploratory route search at4a13afd. Expected states are regression values from the port, not original captures; no original ascent parity is claimed.",
+  "environmentContract": "Zero-filled initial stack allocation, original resident image/resources, explicit initial seed/day/money/variant/difficulty. One joystick byte consumed per action update. Driver and retrace each advance once per loop; presentation-only scrolling consumes no new input. No state injection, fitted inputs or expected-output-derived events.",
+  "initial": {
+    "variant": 0,
+    "difficulty": 0,
+    "day": 4,
+    "seed": 11324,
+    "money": 0
+  },
+  "inputEvents": [
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 64,
+      "count": 17
+    },
+    {
+      "byte": 0,
+      "count": 46
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 64,
+      "count": 15
+    },
+    {
+      "byte": 0,
+      "count": 82
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 7,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 64,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 28
+    },
+    {
+      "byte": 7,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 64,
+      "count": 26
+    },
+    {
+      "byte": 0,
+      "count": 48
+    },
+    {
+      "byte": 64,
+      "count": 20
+    },
+    {
+      "byte": 0,
+      "count": 38
+    },
+    {
+      "byte": 64,
+      "count": 16
+    },
+    {
+      "byte": 0,
+      "count": 69
+    },
+    {
+      "byte": 3,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 64,
+      "count": 17
+    },
+    {
+      "byte": 0,
+      "count": 17
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 64,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 28
+    },
+    {
+      "byte": 3,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 9
+    },
+    {
+      "byte": 64,
+      "count": 19
+    },
+    {
+      "byte": 0,
+      "count": 41
+    },
+    {
+      "byte": 64,
+      "count": 20
+    },
+    {
+      "byte": 0,
+      "count": 27
+    },
+    {
+      "byte": 3,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 7,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 64,
+      "count": 22
+    },
+    {
+      "byte": 0,
+      "count": 18
+    },
+    {
+      "byte": 64,
+      "count": 19
+    },
+    {
+      "byte": 0,
+      "count": 31
+    }
+  ],
+  "expectedInputCount": 764,
+  "expectedCheckpointCount": 26,
+  "expectedPresentationCount": 870,
+  "expectedFinal": {
+    "phase": "complete",
+    "x": 80,
+    "y": 51,
+    "row": 24,
+    "column": 6,
+    "scroll": 22,
+    "action": 0,
+    "frame": 20,
+    "facing": 0,
+    "lives": 3,
+    "hook": {
+      "x": 85,
+      "y": 80,
+      "angle": 12
+    },
+    "money": 100,
+    "seed": 1347,
+    "tick": 870,
+    "frames": 764,
+    "presentations": 870,
+    "outcome": {
+      "code": 1,
+      "money": 100,
+      "seed": 1347
+    }
+  },
+  "checkpoints": [
+    {
+      "inputCount": 1,
+      "x": 16,
+      "y": 131,
+      "row": 0,
+      "column": 2,
+      "scroll": 0,
+      "action": 0,
+      "frame": 20,
+      "facing": 0,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 39,
+      "x": 48,
+      "y": 100,
+      "row": 1,
+      "column": 4,
+      "scroll": 0,
+      "action": 7,
+      "frame": 25,
+      "facing": 0,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 51,
+      "x": 48,
+      "y": 64,
+      "row": 2,
+      "column": 4,
+      "scroll": 0,
+      "action": 7,
+      "frame": 24,
+      "facing": 0,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 56,
+      "x": 48,
+      "y": 34,
+      "row": 3,
+      "column": 4,
+      "scroll": 0,
+      "action": 7,
+      "frame": 1,
+      "facing": 0,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 74,
+      "x": 80,
+      "y": 21,
+      "row": 4,
+      "column": 6,
+      "scroll": 1,
+      "action": 0,
+      "frame": 20,
+      "facing": 0,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 162,
+      "x": 208,
+      "y": 34,
+      "row": 5,
+      "column": 14,
+      "scroll": 2,
+      "action": 7,
+      "frame": 1,
+      "facing": 0,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 185,
+      "x": 256,
+      "y": 21,
+      "row": 6,
+      "column": 16,
+      "scroll": 3,
+      "action": 0,
+      "frame": 26,
+      "facing": 1,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 217,
+      "x": 224,
+      "y": 33,
+      "row": 7,
+      "column": 15,
+      "scroll": 4,
+      "action": 7,
+      "frame": 24,
+      "facing": 0,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 222,
+      "x": 224,
+      "y": 34,
+      "row": 8,
+      "column": 15,
+      "scroll": 5,
+      "action": 7,
+      "frame": 1,
+      "facing": 0,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 298,
+      "x": 176,
+      "y": 34,
+      "row": 9,
+      "column": 12,
+      "scroll": 6,
+      "action": 7,
+      "frame": 1,
+      "facing": 0,
+      "lives": 3,
+      "money": 0,
+      "seed": 38864
+    },
+    {
+      "inputCount": 351,
+      "x": 144,
+      "y": 28,
+      "row": 10,
+      "column": 9,
+      "scroll": 7,
+      "action": 7,
+      "frame": 31,
+      "facing": 1,
+      "lives": 3,
+      "money": 50,
+      "seed": 38864
+    },
+    {
+      "inputCount": 356,
+      "x": 144,
+      "y": 34,
+      "row": 11,
+      "column": 9,
+      "scroll": 8,
+      "action": 7,
+      "frame": 7,
+      "facing": 1,
+      "lives": 3,
+      "money": 50,
+      "seed": 38864
+    },
+    {
+      "inputCount": 434,
+      "x": 32,
+      "y": 34,
+      "row": 12,
+      "column": 2,
+      "scroll": 9,
+      "action": 7,
+      "frame": 31,
+      "facing": 1,
+      "lives": 3,
+      "money": 100,
+      "seed": 38864
+    },
+    {
+      "inputCount": 441,
+      "x": 32,
+      "y": 34,
+      "row": 13,
+      "column": 2,
+      "scroll": 10,
+      "action": 7,
+      "frame": 7,
+      "facing": 1,
+      "lives": 3,
+      "money": 100,
+      "seed": 38864
+    },
+    {
+      "inputCount": 461,
+      "x": 32,
+      "y": 21,
+      "row": 14,
+      "column": 3,
+      "scroll": 11,
+      "action": 0,
+      "frame": 20,
+      "facing": 0,
+      "lives": 3,
+      "money": 100,
+      "seed": 38864
+    },
+    {
+      "inputCount": 486,
+      "x": 80,
+      "y": 34,
+      "row": 15,
+      "column": 5,
+      "scroll": 12,
+      "action": 7,
+      "frame": 7,
+      "facing": 1,
+      "lives": 3,
+      "money": 100,
+      "seed": 38864
+    },
+    {
+      "inputCount": 530,
+      "x": 32,
+      "y": 29,
+      "row": 16,
+      "column": 2,
+      "scroll": 13,
+      "action": 7,
+      "frame": 30,
+      "facing": 1,
+      "lives": 3,
+      "money": 100,
+      "seed": 38864
+    },
+    {
+      "inputCount": 535,
+      "x": 32,
+      "y": 34,
+      "row": 17,
+      "column": 2,
+      "scroll": 14,
+      "action": 7,
+      "frame": 7,
+      "facing": 1,
+      "lives": 3,
+      "money": 100,
+      "seed": 1347
+    },
+    {
+      "inputCount": 605,
+      "x": 32,
+      "y": 34,
+      "row": 18,
+      "column": 3,
+      "scroll": 15,
+      "action": 7,
+      "frame": 1,
+      "facing": 0,
+      "lives": 3,
+      "money": 100,
+      "seed": 1347
+    },
+    {
+      "inputCount": 647,
+      "x": 32,
+      "y": 29,
+      "row": 19,
+      "column": 2,
+      "scroll": 16,
+      "action": 7,
+      "frame": 30,
+      "facing": 1,
+      "lives": 3,
+      "money": 100,
+      "seed": 1347
+    },
+    {
+      "inputCount": 652,
+      "x": 32,
+      "y": 34,
+      "row": 20,
+      "column": 2,
+      "scroll": 17,
+      "action": 7,
+      "frame": 7,
+      "facing": 1,
+      "lives": 3,
+      "money": 100,
+      "seed": 1347
+    },
+    {
+      "inputCount": 672,
+      "x": 32,
+      "y": 21,
+      "row": 21,
+      "column": 3,
+      "scroll": 18,
+      "action": 0,
+      "frame": 20,
+      "facing": 0,
+      "lives": 3,
+      "money": 100,
+      "seed": 1347
+    },
+    {
+      "inputCount": 705,
+      "x": 96,
+      "y": 34,
+      "row": 22,
+      "column": 7,
+      "scroll": 19,
+      "action": 7,
+      "frame": 1,
+      "facing": 0,
+      "lives": 3,
+      "money": 100,
+      "seed": 1347
+    },
+    {
+      "inputCount": 750,
+      "x": 64,
+      "y": 33,
+      "row": 23,
+      "column": 5,
+      "scroll": 20,
+      "action": 7,
+      "frame": 24,
+      "facing": 0,
+      "lives": 3,
+      "money": 100,
+      "seed": 1347
+    },
+    {
+      "inputCount": 755,
+      "x": 64,
+      "y": 34,
+      "row": 24,
+      "column": 5,
+      "scroll": 21,
+      "action": 7,
+      "frame": 1,
+      "facing": 0,
+      "lives": 3,
+      "money": 100,
+      "seed": 1347
+    },
+    {
+      "inputCount": 764,
+      "x": 80,
+      "y": 51,
+      "row": 24,
+      "column": 6,
+      "scroll": 22,
+      "action": 0,
+      "frame": 20,
+      "facing": 0,
+      "lives": 3,
+      "money": 100,
+      "seed": 1347
+    }
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "comparisonRules": "Exact every named checkpoint field and final state; require every authored input consumed, summit success and three lives. Decode/render every presented scene. Negative controls omit Fire, alter summit money, and remove a checkpoint.",
+  "verify": "npm run verify:mountain"
+}

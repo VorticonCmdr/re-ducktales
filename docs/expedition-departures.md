@@ -4,7 +4,8 @@ Supported build: `reference/build.json`, EXE SHA-256
 `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
 This milestone implements **departure preparation**, through the original flight
 call contract. Flight is connected; cave arrival now reaches playable rooms, terminal animations, rewards/failure
-and campaign return. Other expedition gameplay remains incomplete.
+and campaign return. Mountain arrival now supports a complete variant0 ascent,
+reward and return, plus failure/retry. Jungle and photography remain incomplete.
 
 ## Browser behavior
 
@@ -115,8 +116,10 @@ classification, malformed executable input, and strict difficulty thresholds.
 `npm run verify` includes these checks and all previous regressions.
 
 Flight input, terrain, racing and crash/cash consequences are connected. Cave
-arrival, cave navigation and terminal results work; original ending comparison, other expeditions,
-atomic aircraft and normal Glomgold/stock progression remain incomplete.
+arrival, cave navigation and terminal results work. Mountain variant0 ascent,
+reward and retries also work; see `docs/mountain.md`. Original ending comparison,
+jungle/photography, atomic aircraft and normal Glomgold/stock progression remain
+incomplete.
 
 Campaign startup now includes original random loot assignment. With BIOS seed0,
 first Klondike preparation is variant0/seed18461/race roll61, so only Hard races.

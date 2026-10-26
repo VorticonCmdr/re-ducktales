@@ -18,7 +18,9 @@ Updated2026-10-26. **The full game is not complete.**
   original state/pixel evidence; full expedition timing parity remains unproven.
 - Mountain arrival → guide → walking, hook swing/throw → life loss → campaign
   map → direct retry. Independent replay also climbs to row2 and collects $50.
-  Full ascent/reward and original mountain parity remain unverified.
+  A complete variant0 ascent preserves three lives, collects $100, awards the
+  $7000 treasure, returns to the map and prevents repeat collection. Original
+  hook/ascent, pixel and timing parity remain unverified.
 
 Controls: Space/Enter fires. Up+Space enters the money bin; Right+Space opens the
 map. Hold Space for flight throttle; Down raises the nose, Up lowers it. In caves,
@@ -40,17 +42,23 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 
 ## Verification scope
 
-- 27 unit tests and13 browser checks. Browser coverage includes real flight
+- 27 unit tests and14 browser checks. Browser coverage includes real flight
  controls, crash/race return, airport landing, cave entry, safe-room cash,
  pit failure, direct retry, treasure recovery/$4500 award, collected-location
  notices (including native audio completion), calendar/map return, restart,
  folder loading, corrupt-file rejection and the existing audio adapter.
   Mountain coverage adds actual movement/hook controls, life loss, day/map
-  return and direct retry. Its independent regression requires ten exact state
-  checkpoints,148 input samples and149 rendered presentations. Terrain has75
-  static asset cases. A separate conditional original initialization checkpoint
+  return, direct retry and the complete variant0 ascent/reward/collected notice.
+  The ascent uses a controlled125Hz browser display clock with real keyboard
+  events; the existing failure/retry scenario uses normal browser timing. Its
+  independent regressions require ten short-route checkpoints/148 input samples/
+  149 presentations plus26 ascent checkpoints/764 inputs/870 presentations.
+  Terrain has75 static asset cases. A separate conditional original initialization checkpoint
   matches actor/lives/RNG/hazards/geometry and the full relocated12002-byte
-  overlay. Its destination setup injection is explicit; movement/pixels/timing
+  overlay. Another15-checkpoint conditional original walking segment matches
+  actor/action/RNG/hazards/page histories/live locals, carrying its own state
+  from entry with a recorded joystick stream and explicit incoming stack provider.
+  Its destination setup injection is explicit; original hook/ascent/pixels/timing
   and a whole original mountain replay are not established.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
@@ -88,9 +96,10 @@ variant0. These checks do not establish a complete original campaign replay.
 - Jungle, photography, stock trading, campaign endings, normal
   Glomgold progression, atomic transport, save/load and high scores are absent.
   Mountain actions/hazards, scrolling and summit condition are translated;
-  full ascent/reward, other variants/difficulties and original movement comparisons are
-  still needed. Full redraws, life palette changes and unspecified initial stack
-  bytes have unverified presentation/state behavior. See `docs/mountain.md`.
+  variant0 ascent/reward works through browser controls. Other variants/
+  difficulties and original hook/ascent comparisons are still needed. Full
+  redraws, life palette changes and unspecified initial stack bytes outside the
+  walking capture have unverified presentation/state behavior. See `docs/mountain.md`.
 - Flight spin/boost/tether/airship paths are statically translated with limited
   original captures. Complete original landing/flight timing parity is unproven.
 - Dialogue helper09f5 uses seven driver ticks per poll: guide210 ticks, repair420,
@@ -118,14 +127,15 @@ verifiers listed in package.json. Analysis: `npm run prepare:analysis`,
 Mountain foundation: `npm run prepare:mountain-analysis` and
 `npm run verify:mountain`; scope and evidence in `docs/mountain.md`.
 
-Next: original mountain comparisons and full ascent/reward, then expand jungle/photography,
-trading and endings. Continue targeted original comparisons for cave movement,
+Next: expand jungle/photography while extending targeted original mountain
+hook/ascent comparisons, then trading and endings. Continue targeted original comparisons for cave movement,
 remaining outcomes and notice presentation/timing. Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-paused at mountain0e0c:0317 before its first input, DS/SS1403, BP9f48, stop45.
-Variant0, difficulty0, day13, seed10100 after its initial rock draw. No input
+paused at mountain0e0c:145d after15 movement updates, DS/SS1403, BP9f48, stop75.
+Variant0, difficulty0, day13. Fifteen recorded joystick bytes:0, thirteen3s,0. No input
 schedule or breakpoints remain. One destination RAM byte was injected before
-travel; no machine restore was used. See `reference/mountain-entry.json`.
+travel; no machine restore was used. See `reference/mountain-entry.json` and
+`reference/mountain-movement.json`.
 Revalidate addresses after relaunch.

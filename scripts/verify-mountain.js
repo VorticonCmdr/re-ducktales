@@ -8,6 +8,8 @@ import { unpackImage } from "../src/game/executable.js";
 import { Mountain } from "../src/game/mountain.js";
 import { renderFlightPixels } from "../src/game/flight-raster.js";
 import { verifyMountainOriginal } from "./verify-mountain-original.js";
+import { verifyMountainMovement } from "./verify-mountain-movement.js";
+import { verifyMountainAscent } from "./verify-mountain-ascent.js";
 
 const manifest = JSON.parse(
   await readFile("reference/mountain-controls.json", "utf8"),
@@ -132,3 +134,5 @@ await verifyMountainOriginal({
   mainEntries,
   executableRaw: resources["DUCKTALE.EXE"],
 });
+await verifyMountainMovement({ image, entries, mainEntries });
+await verifyMountainAscent({ image, entries, mainEntries });

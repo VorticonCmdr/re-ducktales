@@ -3,8 +3,9 @@
 The browser now connects flight/guide → mountain controls → three lost lives →
 campaign map → direct retry. Walking, the climbing hook, ledge climbing, hazards,
 pickups, camera movement and the summit condition are statically translated.
-Browser acceptance covers movement, hook throw and failure/retry. A complete
-ascent and the success report are not yet verified through actual controls.
+Browser acceptance covers movement, hook throw, failure/retry and a complete
+variant0 ascent with three lives, $100 in pickups, the $7000 treasure award,
+calendar/map return and repeat-visit protection.
 
 ## Supported source and analysis
 
@@ -90,8 +91,9 @@ differs around the upper enemy/transport graphics and palette colors; no pixel
 exclusion mask or parity assertion is used. Local images are
 `.local/mountain-initial-original.png` and `.local/mountain-initial-port.png`.
 Stack locals not initialized by the original entry currently start at zero in
-independent runs; allocation pointers and those unspecified initial bytes still
-need control-segment comparisons. This is not a machine checkpoint.
+independent runs; the conditional walking comparison supplies its incoming stack allocation
+from entry SS before initialization. Allocation/palette behavior outside that
+segment remains unverified. This is not a machine checkpoint.
 
 ## Verification and next milestone
 
@@ -126,9 +128,9 @@ pre-input segment; the executed case/checkpoint count must be one. Driver epoch,
 allocation storage, unspecified stack bytes and pixels/audio are outside this
 comparison. Expected final memory never supplies the starting state.
 
-Next: original control/hazard comparisons and a complete ascent/reward
-route, including other layouts and difficulties. Keep the shared emulator under
-one owner and revalidate bytes/addresses at mountain entry first.
+Next: extend original comparisons to hook/climbing/hazards, other layouts and
+difficulties. The complete browser ascent is documented below. Keep the shared
+emulator under one owner and revalidate bytes/addresses after a relaunch.
 
 The original conditional comparison uses a recorded setup injection. PIC scheduling during
 map navigation overshot the requested location. At main01f5:0439, stop38, a
@@ -142,3 +144,56 @@ input queued before Flight's input flush was discarded; the later post-flush
 sample at0e0c:02b3, stop42, confirmed actual joystick byte c5 (Fire+Down).
 The initialization comparison depends on that setup. It proves only the named
 conditional fields, not a campaign or closed-loop original level replay.
+
+
+## Original walking segment and complete browser ascent
+
+`reference/mountain-movement.json` pins thirty local input/post-state artifacts
+from original stops46..75 and reuses the original ENTRY capture. The live address
+mapping remains0e0c:031c for the hardware joystick return and0e0c:145d after the
+page history update, before flipping. Each input capture records AL independently
+from the expected output. The stream is0, thirteen Right bytes3, then0. No new
+injection or restore was used. Remove the two capture breakpoints after stop75.
+The capture recipe/configuration, hashes, setup injection and exclusions are in
+the manifest. Missing/corrupt artifacts fail with setup diagnostics.
+
+The port starts from ENTRY DS plus the incoming82-byte stack allocation at
+SS:[entrySP-2-0x52,entrySP-2). This is an explicit external initial-state provider;
+it never takes bytes from an expected post-state. `MountainLocals` must receive
+it in the constructor because the running generator retains its original locals
+object. Independent/browser runs continue to use the zero-filled provider.
+Every one of15 updates compares exact actor/action/pose/counters, page histories,
+RNG, global cloud/rock records, the full selected hazard table and ten live
+BP-relative fields. The port carries its state across all checkpoints. Three
+negative controls remove an input, corrupt a result and skip a checkpoint.
+This proves a conditional closed-loop walking segment, not original hook,
+summit, wall-clock, pixel or complete machine replay equivalence.
+
+`reference/mountain-ascent.json` is a separate independent port regression.
+Its764 authored input samples reach row24 with three lives and $100. The26 exact
+checkpoints and870 presentations include transport, hook catches, climbing,
+scrolling, pickups and summit completion. Every presentation is decoded/rendered.
+The route was discovered by an exploratory input-prefix search, then replayed
+from its initial state; expected values are port regression outputs and do not
+claim original ascent parity. Input events remain independent from expectations.
+Three negative controls remove Fire, alter final money and drop a checkpoint.
+
+`tests/browser/mountain-ascent.spec.js` follows title → office → El Capitan
+confirmation → ordinary flight/crash → guide → the complete ascent → original
+$7000 award → map/day+1 → collected-location notice → restart. All764 samples
+pass through actual browser keyboard events and the existing scheduler; all26
+checkpoints match. No state is injected. Playwright controls time and supplies
+a125Hz display cadence so every70Hz simulation consumption can be observed
+without two samples sharing one browser callback. This scenario verifies the
+input/render/reward/calendar adapters under that explicit display environment;
+it does not establish original wall-clock parity. The existing mountain
+failure/retry scenario retains the normal browser animation-frame provider.
+The award screenshot is local at
+`.local/browser-results/mountain-summit-award.png`.
+
+Commands: `npm run verify:mountain` checks terrain, both independent routes and
+both conditional original scenarios. `npx playwright test tests/browser/mountain*.spec.js`
+checks the two browser routes. `npm run verify` is the integration gate. Original
+hook/ascent and presentation comparisons, variants1/2 and other difficulties
+remain work to do. Jungle, photography, trading and endings remain outside the
+current playable mountain milestone.

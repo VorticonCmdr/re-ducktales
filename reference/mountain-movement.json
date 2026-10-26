@@ -1,0 +1,179 @@
+{
+  "id": "mountain-original-walk-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "4a13afd",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "currentDrive": 2,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "startingRecipe": "Continue reference/mountain-entry.json at stop45. Set execute breakpoints at 0e0c:031c (hardware joystick return, before AL store) and 0e0c:145d (after page history, before flip). Queue Right down t0, capture CPU+DS64K at alternating stops46..71, then release Right and capture stops72..75. PIC delivery leaves the first consumed byte0, thirteen bytes3, then0. Record AL at each input boundary independently from post-state. Remove both breakpoints after stop75. No restore or additional memory/register injection.",
+  "expectedInputCount": 15,
+  "expectedCheckpointCount": 15,
+  "inputEvents": [
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 3,
+      "count": 13
+    },
+    {
+      "byte": 0,
+      "count": 1
+    }
+  ],
+  "initialArtifact": {
+    "path": ".local/mountain-entry.json",
+    "sha256": "26a1703c83bd5bb115ba45318807e992eec0da35e60d8374e4b8f3ca1472aaee"
+  },
+  "injections": [
+    {
+      "at": "01f5:0439 before travel",
+      "segment": 5123,
+      "offset": 40798,
+      "width": 1,
+      "before": 33,
+      "after": 24,
+      "meaning": "requested expedition target; does not alter mountain mechanics"
+    }
+  ],
+  "fittedInputs": [],
+  "environmentContract": "Conditional segment starts from ENTRY CPU/DS and original resources. SS equals DS. Incoming BP is entrySP-2; copy incoming [BP-0x52,BP) as stack allocation provider before constructor initialization. Subsequent state is carried entirely by JavaScript; no intermediate checkpoint is injected. Joystick stream is consumed at one action update per sample. Driver/retrace epoch is port supplied and not compared.",
+  "comparisonRules": "Exact named DS actor/action/page histories, RNG, both global hazards, complete selected hazard table, and ten live BP-relative locals at every post-update stop. Render each port presentation. This is a conditional original closed-loop walking segment; it does not prove hook, summit, pixel or wall-clock timing parity.",
+  "exclusions": [
+    "Driver epoch/deadline and retrace duration",
+    "Allocator pointers and planar storage descriptors",
+    "MAIN HUD and terrain scratch-descriptor mutations replaced by pure commands",
+    "Audio, palette and exact framebuffer residue",
+    "Unspecified locals outside the ten compared live fields; initialized from incoming allocation bytes, never from expected post-state."
+  ],
+  "artifacts": {
+    "00-input": {
+      "path": ".local/mountain-runtime/00-input.json",
+      "sha256": "64580dc75ac31dd1465d08c16fbc7c93cea711d4610b2b144e27a099ecde0299"
+    },
+    "00-after": {
+      "path": ".local/mountain-runtime/00-after.json",
+      "sha256": "2e60e7320def7e3131138e374c9b0cc94310e04f9177416dec561f9a499bfd8a"
+    },
+    "01-input": {
+      "path": ".local/mountain-runtime/01-input.json",
+      "sha256": "ee8b197a74442a9b2cd635522d858bb74371e2bd82aa2ecd2e330c7aa3ec11b3"
+    },
+    "01-after": {
+      "path": ".local/mountain-runtime/01-after.json",
+      "sha256": "fc6b6f100671e8d833c0a74792e7e25f0be2988ff300dfedf9362129bb8eb9ed"
+    },
+    "02-input": {
+      "path": ".local/mountain-runtime/02-input.json",
+      "sha256": "cd19e904204f9ab28514952f39bbb4558552130c1c9ef73768b0f11a82aed4c2"
+    },
+    "02-after": {
+      "path": ".local/mountain-runtime/02-after.json",
+      "sha256": "a1d258abc44042bd439d1b5ab91ae7c64287dc33f01401690f9c9b64a08ae504"
+    },
+    "03-input": {
+      "path": ".local/mountain-runtime/03-input.json",
+      "sha256": "81b8d14b5881aef5f86c81c931a3598f0e48fcfa392790ff52909d1e6263d47e"
+    },
+    "03-after": {
+      "path": ".local/mountain-runtime/03-after.json",
+      "sha256": "d888b6642aabcd484fee6d53f3593861b2221819aeb893d7618303c421c2742c"
+    },
+    "04-input": {
+      "path": ".local/mountain-runtime/04-input.json",
+      "sha256": "53026901adae6bb01d5b11a677f6cf41b1cd6852658f7716b83eb1aad1d42abc"
+    },
+    "04-after": {
+      "path": ".local/mountain-runtime/04-after.json",
+      "sha256": "a858f4b98619f2d2b52846914f5c4cba0197e5f6e1f11b4e5970ee069a8dbf68"
+    },
+    "05-input": {
+      "path": ".local/mountain-runtime/05-input.json",
+      "sha256": "4116f998e0c8633bba7190e0bbfd97e3bd4369322c1988ff77a432d1a5ef9cb4"
+    },
+    "05-after": {
+      "path": ".local/mountain-runtime/05-after.json",
+      "sha256": "cddb3461568e69c9987d0a953ad64b43c3ad4c682e8052a9472bea3252b41624"
+    },
+    "06-input": {
+      "path": ".local/mountain-runtime/06-input.json",
+      "sha256": "ec6993a19ec46a088fe27d9a388161bca95e8c32338c8ca8f16599d4a3bba9bb"
+    },
+    "06-after": {
+      "path": ".local/mountain-runtime/06-after.json",
+      "sha256": "1b98e57f1986ae881ad7b7c9fb2d277dfd8e32bc25f2e613aeb6a60ebac7921f"
+    },
+    "07-input": {
+      "path": ".local/mountain-runtime/07-input.json",
+      "sha256": "13c7b613d4ff790ae30f92f1cc50a3ccafb8f44a152fc8b6fe8f37502f686822"
+    },
+    "07-after": {
+      "path": ".local/mountain-runtime/07-after.json",
+      "sha256": "b3f32c7edf7aba14db98f1f96dc0bc2f234d878dd5d25a67eb1f7f1e1f31c283"
+    },
+    "08-input": {
+      "path": ".local/mountain-runtime/08-input.json",
+      "sha256": "e2ff436bea4f6f0be613a9f19e8d792d49ea9f35a2a3e193b74405c6118310ec"
+    },
+    "08-after": {
+      "path": ".local/mountain-runtime/08-after.json",
+      "sha256": "98010a3076ea5ff1a8520a8c75c8bbb7d51dc99a19a7f9bd4b21523030543856"
+    },
+    "09-input": {
+      "path": ".local/mountain-runtime/09-input.json",
+      "sha256": "ebe9e8666a3c885e1abac4ad9484bb1ff09cff2d6f7f0b3b5af413f9e16f2c0e"
+    },
+    "09-after": {
+      "path": ".local/mountain-runtime/09-after.json",
+      "sha256": "bae3ab57e7a29ce1cae41b53352885f0b7bcc1aa0135dbcf4a64aae78b19d6e3"
+    },
+    "10-input": {
+      "path": ".local/mountain-runtime/10-input.json",
+      "sha256": "c3e0d1e86c28ef9ba388f45260e579a44a3eba46d0b38cea917b396df207bf17"
+    },
+    "10-after": {
+      "path": ".local/mountain-runtime/10-after.json",
+      "sha256": "dabc7852e1eaaf8ca2bf90dbb4e5f6816f8d67c724d36f001b0f672c3d848e64"
+    },
+    "11-input": {
+      "path": ".local/mountain-runtime/11-input.json",
+      "sha256": "d4abcf6f92c92d2b61578e1a398fc0322c49e914622b5cc79b5823136af50ab4"
+    },
+    "11-after": {
+      "path": ".local/mountain-runtime/11-after.json",
+      "sha256": "485e279f41fe0311d2b854a10b95428314fc894faae347b5c00d306b46fcc5e2"
+    },
+    "12-input": {
+      "path": ".local/mountain-runtime/12-input.json",
+      "sha256": "810959251bb5d5242bb38dd5e36574c1b01fb1e50e51c5b866e16e227cff5041"
+    },
+    "12-after": {
+      "path": ".local/mountain-runtime/12-after.json",
+      "sha256": "1de834296e80423ef7662536e4b22458a0e6929254e93d341b6df341e0d187a3"
+    },
+    "13-input": {
+      "path": ".local/mountain-runtime/13-input.json",
+      "sha256": "7665730dd314e8e0e582bb550b98c4768e79ab6275d20503c9afde1fe63e4d60"
+    },
+    "13-after": {
+      "path": ".local/mountain-runtime/13-after.json",
+      "sha256": "75b6bf4d17bc2959c6d6d6235ab6fba689f59a254209814c35fc6abdbb1b3830"
+    },
+    "14-input": {
+      "path": ".local/mountain-runtime/14-input.json",
+      "sha256": "b2068115e593dc06d67dc167f437ae3d075dcc39669e45292e0d5bd831f21518"
+    },
+    "14-after": {
+      "path": ".local/mountain-runtime/14-after.json",
+      "sha256": "9f74e3e786626f0ceb305a1e884f638a5f28cfbc11b8c930c3078f6838425c5b"
+    }
+  },
+  "verify": "npm run verify:mountain"
+}

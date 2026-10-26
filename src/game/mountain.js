@@ -32,8 +32,11 @@ export class Mountain {
       options.mainEntries[23],
       options.mainEntries[25],
     ];
-    this.locals = new MountainLocals();
+    // Original SS allocation contents are an explicit conditional-comparison
+    // input. Independent runs use the documented zero-filled stack provider.
+    this.locals = new MountainLocals(options.stackBytes);
     this.locals.b(-0x24, 1);
+    this.locals.b(-0x2c, 0);
     this.memory.b(0x4e0e, options.day);
     this.audioEnabled = options.audioEnabled === true;
     this.events = [];

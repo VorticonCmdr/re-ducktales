@@ -57,6 +57,12 @@ briefing pixels, and independent browser preparation for all four activity
 families. Captured internal seed/slot inputs are documented; this is not a
 whole-campaign RNG replay. Browser uses its own seed-0 provider.
 
+Flight physics: 8 **conditional** original before/after cases and 2 control-field
+checks match exact state bytes, including gravity, camera following, a bounce,
+and a dry-ground crash. Three negative controls fail as required. The module is
+not connected to browser gameplay; no full flight replay or flight browser
+acceptance is claimed. See `docs/flight.md`.
+
 ## Known limitations
 
 - No plane gameplay, climbing, jungle, photography, cave exploration,
@@ -94,19 +100,24 @@ npm run verify
 
 `npm run verify` checks all 22 file hashes, unit tests, the local original trace,
 negative controls, three campaign state checkpoints, two conditional departure
-output checkpoints, automated browser scenarios, and a production build. Missing
+output checkpoints, ten conditional flight checkpoints, automated browser scenarios,
+and a production build. Missing
 local traces/captures fail with setup errors. It does not silently skip them.
 
 Focused commands: `npm test`, `npm run verify:build`,
 `npm run verify:reference`, `npm run verify:campaign`, `npm run verify:departure`,
-`npm run test:browser`, `npm run audit:assets`.
+`npm run verify:flight`, `npm run test:browser`, `npm run audit:assets`.
 `npm run prepare:analysis` reproduces local unpacked analysis copies.
+`npm run prepare:flight-analysis` creates the combined flight analysis copy.
 
 ## Next milestone
 
-Translate Launchpad's actual flight controls, terrain, race and crash outcomes,
-and day advancement. The original flight-entry address and stack contract are
-captured in `reference/expedition-departure.json`; DOSBox is paused there.
+Connect translated flight physics to original terrain, obstacles, race/crash
+outcomes, rendering, and day advancement. The original flight-entry address and
+stack contract are captured in `reference/expedition-departure.json`. The live
+DOSBox session has advanced through a crash and is paused on Glomgold's message;
+it is no longer at entry. Physics comparison details and the next capture are in
+`docs/flight.md`.
 Then connect a real expedition level with success/failure and campaign return.
 Departure preparation is verified; completing a departure and the full-game
 request remain incomplete. Location details, transition timing, atomic aircraft,

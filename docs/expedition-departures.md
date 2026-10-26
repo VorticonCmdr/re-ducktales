@@ -84,13 +84,14 @@ Capture these stops and batch reads into `.local/reference-departure.json`:
    match overlay4 with the original relocated helper segment. Protected mode is
    false. No game code was patched for this comparison.
 
-The session is paused at the flight-entry checkpoint after capture; the once-only
-breakpoints self-deleted and the input replay fully dispatched. Prepared Ghidra
+The entry capture is retained; subsequent flight investigation has advanced the
+live session beyond it. See `docs/flight.md` for its current state. Prepared Ghidra
 `FLIGHT_ANALYSIS.EXE` is reproducible via `npm run prepare:analysis`. Its entry is
 normalized to 0; its decompiler currently truncates at software floating-point
 INT instructions. This program is actual game code, but that C is not a faithful
-flight translation. Use disassembly and validate those floating-point calls
-before implementing the next milestone.
+flight translation. The new combined analysis copy described in `docs/flight.md`
+exposes those floating-point operations; its physics translation now has exact
+conditional routine comparisons. It is not yet integrated into browser gameplay.
 
 ## Verification levels and limits
 

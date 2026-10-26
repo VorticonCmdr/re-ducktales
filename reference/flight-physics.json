@@ -1,0 +1,131 @@
+{
+  "id": "flight-physics-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "1345736",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 f6d9b",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "headless": true,
+    "mute": true,
+    "readOnlyMount": "game/"
+  },
+  "startingRecipe": "Continue expedition-departure scenario at flight entry. Break at 0e0c:1330 and 0e0c:194a. Capture CPU and full DS in an atomic batch. See docs/flight.md.",
+  "expectedCheckpointCount": 10,
+  "cases": [
+    {
+      "id": "0",
+      "sound": null,
+      "before": {
+        "path": ".local/flight-initial.json",
+        "sha256": "774d9259afad68461a0fd6d3a3ecc79566b4c0c14d9e64957fc61d233d0ee7b0"
+      },
+      "after": {
+        "path": ".local/flight-physics-after0.json",
+        "sha256": "e76de827721aaf1fbaf5d70dc1e30e6cd9051f6ce31da772110c41ca4ee7c208"
+      }
+    },
+    {
+      "id": "1",
+      "sound": null,
+      "before": {
+        "path": ".local/flight-physics-before1.json",
+        "sha256": "03d6afd38e707293172d45721be7a25358c3297233359c9cfe95ea5c6e3378bb"
+      },
+      "after": {
+        "path": ".local/flight-physics-after1.json",
+        "sha256": "02eaa3af07a241ed1ef6cea665d81e7b5e2655722635679357fce70578bf7d3d"
+      }
+    },
+    {
+      "id": "26",
+      "sound": null,
+      "before": {
+        "path": ".local/flight-physics-before26.json",
+        "sha256": "ab7f9af85701f956f85381b0e36e997758555c6bc5ca1de3394096408812c6c3"
+      },
+      "after": {
+        "path": ".local/flight-physics-after26.json",
+        "sha256": "753ebb997105b487cbc0f4b31bfd23808befa85cf4d1ee5f6d720242f148b0cb"
+      }
+    },
+    {
+      "id": "31",
+      "sound": null,
+      "before": {
+        "path": ".local/flight-physics-before31.json",
+        "sha256": "cd07e438cb5d4f2dfa55fc31f9bb811819761dc11e908d52c6a25222776b5aeb"
+      },
+      "after": {
+        "path": ".local/flight-physics-after31.json",
+        "sha256": "cd61be40f0ce7f7569e90edbeaa7ea33d539f5e5d5a50905cb2c715b916ab37a"
+      }
+    },
+    {
+      "id": "32",
+      "sound": null,
+      "before": {
+        "path": ".local/flight-physics-before32.json",
+        "sha256": "ec33811c0a6ceb5d3975c081898362799db66ca918e85b16fc19103950f269f8"
+      },
+      "after": {
+        "path": ".local/flight-physics-after32.json",
+        "sha256": "a0b2dc97857584454246927bc0991a4a84757d0a09e822887c4b61aa4a200b30"
+      }
+    },
+    {
+      "id": "33",
+      "sound": 40,
+      "before": {
+        "path": ".local/flight-physics-before33.json",
+        "sha256": "37bf3cc0021ce17cee64e545d5fc7f5f4b9f0256a9bff5769a8e5ce7eca7e021"
+      },
+      "after": {
+        "path": ".local/flight-physics-after33.json",
+        "sha256": "2184d3a6fdd70bf550eec0a567b4bfbd4d7e0c2b74f451770e388f4188166aab"
+      }
+    },
+    {
+      "id": "35",
+      "sound": null,
+      "before": {
+        "path": ".local/flight-physics-before35.json",
+        "sha256": "bf54bc83630a61d7dd285b3120de8d4fba9b14b34d88958f4ecbcdd1ae6800c9"
+      },
+      "after": {
+        "path": ".local/flight-physics-after35.json",
+        "sha256": "8cf877e1a253751a43e95d914b803f41f198b36afa4513f2bbad344a3831cfb5"
+      }
+    },
+    {
+      "id": "37",
+      "sound": 43,
+      "before": {
+        "path": ".local/flight-physics-before37.json",
+        "sha256": "24b476b7452d8e1622d35cd3e731bc53f15eab3561566b4d6840a4807933864f"
+      },
+      "after": {
+        "path": ".local/flight-physics-after37.json",
+        "sha256": "da6baf6e642f28cf4fef8bd7a7d6b3b6602f71cf2ee79ca5dc15ef6ab1afe08a"
+      }
+    }
+  ],
+  "rules": {
+    "level": "Conditional routine comparison only. Eight independent captured internal starting states, plus two control-boundary comparisons. No closed-loop or browser flight acceptance.",
+    "comparison": "Exact bytes of every game-state write made by physics, exact return sprite, and statically inferred sound request.",
+    "conditions": [
+      "Original initialized data segment and sprite descriptors supplied by each before snapshot.",
+      "Snapshots do not restore a machine checkpoint; no memory was injected into DOSBox.",
+      "Clock, terrain, object and render updates between physics calls are not translated by this checker."
+    ],
+    "exclusions": [
+      "Stack and software floating-point scratch workspace, registers except return AX, timer and device-driver state.",
+      "Water splash animation and audio output are uncaptured external effects.",
+      "Two control checks compare only speed and turn request fields across the intervening frame."
+    ],
+    "injections": [],
+    "fittedInputs": []
+  },
+  "verify": "npm run verify:flight"
+}

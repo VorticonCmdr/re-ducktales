@@ -24,7 +24,7 @@ from 512-byte-aligned file offsets:
 | 3       | 0x11c00     |           3830 | Not translated                 |
 | 4       | 0x12c00     |          18572 | Launchpad flight (entry verified) |
 | 5       | 0x17600     |          12514 | Not translated                 |
-| 6       | 0x1a800     |          12078 | Not translated                 |
+| 6       | 0x1a800     |          12078 | Cave expedition (entry/runtime verified) |
 | 7       | 0x1d800     |           8436 | Not translated                 |
 | 8       | 0x1fa00     |          26104 | Not translated                 |
 | 9       | 0x26000     |           3348 | Money-bin activity             |
@@ -67,8 +67,9 @@ Main helper static 140e:0eb8 and live 0603:0eb8 both contain:
 This proves the RNG mapping for this launch. It adds 0x9248 with 16-bit wrapping,
 rotates right three times, stores and returns the seed. Seed initialization at
 140e:0e01 reads BIOS 0040:006c. `nextRandom` preserves that exact update; the
-current activity consumes no random draws. The browser's initial seed is an
-explicit placeholder environment value (zero), irrelevant to this slice.
+activities consume this stream. The browser's initial seed is an explicit BIOS
+clock environment value (zero); its initialization, travel, flight and cave
+logic then advance their own state. Whole-campaign RNG parity is not claimed.
 
 Live overlay 9:022a bytes (`call 0319:0002; test al,c0`) were compared with original
 overlay bytes and their relocated segment. Overlay 2 was independently identified

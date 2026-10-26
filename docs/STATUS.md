@@ -47,10 +47,14 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 - Cave entry: one conditional original checkpoint matches64 map words, actor
  positions, torch/RNG/time fields and sprite geometry/frame bytes. Subsequent
  movement is statically translated and browser exercised, not original-replay
- compared. Four independent outcome scenarios replay every checkpoint exactly
- and render every presentation; conditional application checks cover rewards,
- calendar and report waits. No exact cave pixels or complete original-level
- replay is claimed.
+ compared for the new C-drive movement animation tables. Six additional original
+ runtime checks cover the197-sample idle-to-capture segment, animation state,
+ return, exact PNG with fixed one-frame VGA capture alignment, and second-entry
+ input/idle boundaries. A four-direction C-drive circuit verifies movement and
+ the revisit reward latch. Four independent shortened-path outcome scenarios
+ replay every checkpoint exactly and render every presentation; application checks cover rewards,
+ calendar and report waits. Pixel evidence is limited to the aligned capture
+ image; complete original-level replay and audio/timing parity remain unproven.
 
 All verifiers require their local artifacts and reject missing/corrupt files,
 wrong case/event counts and required negative controls. The old variant1 briefing
@@ -59,9 +63,11 @@ variant0. These checks do not establish a complete original campaign replay.
 
 ## Known limitations
 
-- Cave terminal animations/results are statically translated and independently
-  replayed, without an original ending comparison. Same-location and collected-
-  location dispatch remain incomplete and stop explicitly.
+- Cave capture now matches an original segment and aligned PNG; treasure, pit
+  and expiry endings have static/independent checks. Full C-drive entry/exit
+  animations are translated, but striped reveals and original movement/timing
+  comparisons remain incomplete. Same-location and collected-location dispatch
+  remain incomplete in the browser and stop explicitly.
 - Jungle, mountain, photography, stock trading, campaign endings, normal
   Glomgold progression, atomic transport, save/load and high scores are absent.
 - Flight spin/boost/tether/airship paths are statically translated with limited
@@ -89,13 +95,12 @@ Focused: `npm test`, `npm run test:browser`, `npm run verify:loot`,
 verifiers listed in package.json. Analysis: `npm run prepare:analysis`,
 `npm run prepare:flight-analysis`, `npm run prepare:cave-analysis`.
 
-Next: compare complete cave outcomes with the original, implement collected-
-location dispatch, then expand the other expeditions, trading and endings. Capture
+Next: compare C-drive cave movement and remaining outcomes with the original,
+implement collected-location dispatch, then expand the other expeditions, trading and endings. Capture
 room transitions, lamp and pursuit at input-consumption boundaries. Full-game
 work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`.
 
-Live original: restarted instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-paused at main01f5:1a30 (alias034f:0490), DS/SS1403, stop3. Startup input schedule
-cancelled; no breakpoints remain. Earlier cave captures are historical, not a
-restored machine checkpoint. Revalidate addresses after any relaunch.
+Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
+paused at cave0e0c:0b9c, DS/SS1403, stop20. No input schedule or breakpoints
+remain. No machine restore was used. Revalidate addresses after any relaunch.

@@ -9,6 +9,7 @@ import {
 } from "./cave-scene.js";
 import { u16 } from "./integer.js";
 import { caveEndings } from "./cave-endings.js";
+import { caveTransition } from "./cave-transitions.js";
 export class Cave {
   constructor(options, previousMemory) {
     this.options = options;
@@ -32,6 +33,7 @@ export class Cave {
     this.idleCount = 0;
     this.poseLatch = 0;
     this.invalidLatch = 0;
+    this.enteredFrom = null;
     this.outcome = null;
     this.iterator = this.run();
     this.resume();
@@ -185,11 +187,17 @@ export class Cave {
     this.progress = u16(this.progress + 1);
     if (this.cell & 64) m.b(0x546a, 1);
     for (let i = 0; i < 2; i++) {
-      const c = this.party(this.scene());
+      let c = this.scene();
+      if (!this.enteredFrom || m.b(0x5d2b)) c = this.party(c);
       if (m.signedByte(0x8b54) > 1 && !(this.cell & 80)) this.draw(c, 43);
       yield* this.present(c);
     }
-    if (m.signedByte(0x8b54) > 1 && !(this.cell & 80)) {
+    m.i(0x8eb2, 0);
+    if (!m.b(0x5d2b)) {
+      if (this.enteredFrom)
+        yield* caveTransition.call(this, "entry", this.enteredFrom);
+      for (let i = 0; i < 2; i++) yield* this.present(this.party(this.back()));
+    } else if (m.signedByte(0x8b54) > 1 && !(this.cell & 80)) {
       yield* this.delay(73);
       m.view.setUint32(
         0x8cc0,
@@ -204,7 +212,23 @@ export class Cave {
       }
     }
     m.b(0x5a42 + this.room * 2, this.cell | 16);
-    m.i(0x8eb2, 0);
+    if (
+      !(this.cell & 64) &&
+      m.signedByte(0x8b54) < m.i(0x54ac) &&
+      !m.b(0x5d2b)
+    ) {
+      for (const [bit, asset] of [
+        [1, 18],
+        [4, 19],
+        [8, 20],
+        [2, 21],
+      ])
+        if (this.cell & bit) {
+          this.load(asset);
+          yield* this.present(this.party(this.back()));
+          m.b(0x54aa, m.b(0x54aa) | 1);
+        }
+    }
     return !!(this.cell & 64);
   }
   moveEnemy() {
@@ -330,7 +354,12 @@ export class Cave {
       yield* this.present(commands);
       if (code & 192 && dir && this.cell & available[dir]) {
         this.sound(0x24);
+        if (!m.b(0x5d2b)) {
+          m.b(0x54aa, 0);
+          yield* caveTransition.call(this, "exit", dir);
+        }
         m.i(0x4d32, this.room + { up: -8, right: 1, down: 8, left: -1 }[dir]);
+        this.enteredFrom = dir;
         m.i(0x8eb2, 1);
         this.progress = u16(this.progress + 1);
       }

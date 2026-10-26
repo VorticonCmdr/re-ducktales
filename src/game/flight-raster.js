@@ -36,12 +36,18 @@ export function renderFlightPixels(
         archive,
         cache,
       );
-      for (let y = Math.max(0, -c.y); y < Math.min(c.height, 200 - c.y); y++)
-        for (let x = Math.max(0, -c.x); x < Math.min(c.width, 320 - c.x); x++) {
-          const from = ((c.sourceY + y) * 320 + c.sourceX + x) * 4;
+      const left = Math.max(0, -c.x),
+        right = Math.min(c.width, 320 - c.x);
+      if (right > left)
+        for (
+          let y = Math.max(0, -c.y);
+          y < Math.min(c.height, 200 - c.y);
+          y++
+        ) {
+          const from = ((c.sourceY + y) * 320 + c.sourceX + left) * 4;
           result.set(
-            source.subarray(from, from + 4),
-            ((c.y + y) * 320 + c.x + x) * 4,
+            source.subarray(from, from + (right - left) * 4),
+            ((c.y + y) * 320 + c.x + left) * 4,
           );
         }
     } else if (c.op === "fill") {
@@ -126,16 +132,28 @@ export function renderFlightPixels(
         sy + height > entry.height
       )
         throw Error(`Invalid flight image crop ${c.asset}`);
-      for (let y = Math.max(0, -c.y); y < Math.min(height, 200 - c.y); y++) {
-        for (let x = Math.max(0, -c.x); x < Math.min(width, 320 - c.x); x++) {
-          const from = ((sy + y) * entry.width + sx + x) * 4;
-          if (pixels[from + 3])
+      const left = Math.max(0, -c.x),
+        right = Math.min(width, 320 - c.x);
+      if (right > left)
+        for (let y = Math.max(0, -c.y); y < Math.min(height, 200 - c.y); y++) {
+          if (!sprite) {
+            const from = ((sy + y) * entry.width + sx + left) * 4;
             result.set(
-              pixels.subarray(from, from + 4),
-              ((c.y + y) * 320 + c.x + x) * 4,
+              pixels.subarray(from, from + (right - left) * 4),
+              ((c.y + y) * 320 + c.x + left) * 4,
             );
+          } else
+            for (let x = left; x < right; x++) {
+              const from = ((sy + y) * entry.width + sx + x) * 4;
+              if (pixels[from + 3]) {
+                const to = ((c.y + y) * 320 + c.x + x) * 4;
+                result[to] = pixels[from];
+                result[to + 1] = pixels[from + 1];
+                result[to + 2] = pixels[from + 2];
+                result[to + 3] = pixels[from + 3];
+              }
+            }
         }
-      }
     } else throw Error(`Unsupported flight drawing operation ${c.op}`);
   }
   cache.set(commands, result);

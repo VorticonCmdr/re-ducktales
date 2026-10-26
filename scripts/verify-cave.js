@@ -1,3 +1,4 @@
+import { verifyCaveRuntime } from "./verify-cave-runtime.js";
 import { verifyCaveRoutes } from "./verify-cave-routes.js";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
@@ -128,6 +129,7 @@ export async function verifyCave() {
     /cave divergence/,
   );
   assert.throws(() => compareCave({ ...local, scene: null }, resources));
+  await verifyCaveRuntime(resources);
   await verifyCaveRoutes(resources);
   console.log(
     "Cave entry: 1 conditional map/actors/torch/RNG/descriptor checkpoint; 3 negative controls. No reference pixel comparison or complete-level replay.",

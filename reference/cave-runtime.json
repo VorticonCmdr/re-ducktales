@@ -1,0 +1,59 @@
+{
+  "id": "cave-c-drive-capture-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "20761af",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14; bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "currentDrive": 2,
+    "resourceRoot": "game/ read-only C:"
+  },
+  "expectedCheckpointCount": 6,
+  "expectedInputCount": 198,
+  "startingRecipe": "Continue original loot initialization at main01f5:1a30, through security and office. Right+Space opens map; hold Up until Klondike. Fire for information, select airplane with Right and confirm with a held fire. Briefing6d9, first ordinary flight entry0e0c:0000 receives days1/racing0. Hold fire, then Up, release both, allow crash/repair; dispatcher main04dc receives target15. Continue through guide to cave entry0e0c:0000. Record entry CPU+DS64K+32 code bytes (variant0, seed39182, cash0, day4). No further input. Stop0e0c:0832 at capture, then1221 after18 capture presentations. Capture CPU+DS64K at both; raw PNG at1221. Continue to main01f5:04e7 after failure report, before the day increment; capture CPU+DS. Continue to map; fire to revisit current Klondike without flight. Capture next cave entry (seed31581, day5), first input sample09a1 and first post-idle decision0b9c. Hardware release of fire is complete before09a1. This is an initial-game-state conditional segment, not a machine checkpoint or whole campaign event replay.",
+  "inputEvents": {
+    "capture": "197 neutral samples; no external controls after entry",
+    "secondEntry": "one neutral sample"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "comparisonRules": "Exact core map/actors/RNG/torch/cash/limit/drive state and loaded sprite geometry/frame bytes. Exact local previous-enemy, idle and pursuit counter at capture. Compare18 terminal presentations; capture PNG equals fixed presentation16 (loop14): BIOS loop15 page selection at1221 precedes the cached VGA refresh. This one-frame capture alignment is fixed to this build/stop and not searched. Allocation pointers, CPU (except identity/return), stack (except declared counters), timers, processing/retrace duration, audio status/duration excluded. Port sound is disabled for comparison, so terminal completion polls are idle; this is conditional audio/timing evidence. Normal idle-to-capture state carries its own state from entry with no injections or fitted controls.",
+  "artifacts": {
+    "captureEntry": {
+      "path": ".local/cave-capture-entry.json",
+      "sha256": "4c8ce68a70adfee89d5f94bb8d98ca04ea3f81a51c349935fae1d08bffc1ab17"
+    },
+    "captureTerminal": {
+      "path": ".local/cave-capture-terminal.json",
+      "sha256": "67f7ef644f6a2493d4e87851fbfa9d1d729c9f6f55b2ef822663039887616869"
+    },
+    "captureAnimated": {
+      "path": ".local/cave-capture-animated.json",
+      "sha256": "ce2d579f6115dd1f5353c776344980a35e1a4244847c6056e27ebf6f674b8546"
+    },
+    "captureReturn": {
+      "path": ".local/cave-capture-return.json",
+      "sha256": "114005eba2e700bbfe4d415b174e88cb1192c69046e3261fa3d86458ed75d227"
+    },
+    "capturePng": {
+      "path": ".local/original-cave-capture.png",
+      "sha256": "0ebc764117229a93a02629e0adb21f489fee14ca7330a83a26493ca88c59927e"
+    },
+    "idleEntry": {
+      "path": ".local/cave-idle-entry.json",
+      "sha256": "46a2af893d4b51808997e5c51fdcae2efd02a70f55169d0e7750f13b08a7daa8"
+    },
+    "idleFirstInput": {
+      "path": ".local/cave-idle-first-input.json",
+      "sha256": "ab0f67da0bfafbb2e1e7bd8fc40da36d6fb2b466ed1cbee105c2c3dd832ac359"
+    },
+    "idleFirstDecision": {
+      "path": ".local/cave-idle-first-decision.json",
+      "sha256": "15eaec22e483ce2cb10ada5ac2ad7c7e37f48e69ac4779f96d643de749bc8854"
+    }
+  },
+  "verify": "npm run verify:cave"
+}

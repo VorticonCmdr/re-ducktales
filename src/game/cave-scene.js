@@ -52,6 +52,9 @@ export const CAVE_SPRITES = new Map([
   [44, 0x8c1c],
   [45, 0x5cfe],
   [46, 0x716c],
+  ...[10, 11, 12, 13].map((id) => [id, 0x54fc]),
+  [24, 0x8a6c],
+  [25, 0x8a6c],
 ]);
 export function caveRandom(m) {
   const seed = nextRandom(m.i(0x2229));
@@ -73,7 +76,7 @@ export function loadCaveSprite(m, entries, asset) {
   return at;
 }
 export function prepareCave(
-  { image, entries, maps, variant, difficulty, seed, money },
+  { image, entries, maps, variant, difficulty, seed, money, currentDrive = 2 },
   previousMemory,
 ) {
   if (image?.length !== 87664 || entries?.length !== 47 || maps?.length !== 8)
@@ -94,15 +97,33 @@ export function prepareCave(
   m.i(0x2229, seed);
   m.b(0x8990, difficulty);
   m.view.setUint32(0x8cc0, money >>> 0, true);
-  // Supported renderer is the original EGA driver pairing, not CGA door animations.
+  if (!Number.isInteger(currentDrive) || currentDrive < 0 || currentDrive > 25)
+    throw Error("Invalid DOS resource drive");
+  // Resident037a is INT21/AH19 (current drive), not a graphics query.
   m.i(0x2042, 0x100);
   m.i(0x2044, 0);
-  m.b(0x5d2b, 1);
+  if (currentDrive < 2) m.b(0x5d2b, 1);
   m.b(0x3c1, 0);
   m.b(0x546a, 0);
   maps[variant].forEach((cell, i) => m.i(0x5a42 + i * 2, cell));
   for (const asset of [
-    17, 18, 19, 20, 21, 4, 5, 6, 3, 22, 23, 26, 37, 38, 39, 40, 41, 42, 43, 14,
+    17,
+    ...(m.b(0x5d2b) ? [18, 19, 20, 21] : []),
+    4,
+    5,
+    6,
+    3,
+    22,
+    23,
+    26,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    14,
   ])
     loadCaveSprite(m, entries, asset);
   for (const [at, x, y] of [
@@ -247,12 +268,19 @@ export function composeCaveRoom(m, entries) {
 }
 // Overlay6:20b8, normal EGA party/torch drawing. RNG is consumed here exactly
 // once per original drawing call, even if the browser does not display the frame.
-export function drawCaveParty(m, commands, { asset = 17, pose = 0 } = {}) {
+export function drawCaveParty(
+  m,
+  commands,
+  { asset = 17, pose = 0, kind = 17 } = {},
+) {
   const party = CAVE_SPRITES.get(asset);
   if (party === undefined) throw Error(`Untranslated cave party ${asset}`);
-  m.i(party, pose === 6 ? 85 : m.b(0x546a) === 2 ? 83 : 82);
-  m.i(party + 2, pose === 6 ? 48 : m.b(0x546a) === 2 ? 47 : 38);
-  if (pose !== 5 && pose !== 6) draw(commands, m, asset);
+  if (kind === 17) {
+    m.i(party, pose === 6 ? 85 : m.b(0x546a) === 2 ? 83 : 82);
+    m.i(party + 2, pose === 6 ? 48 : m.b(0x546a) === 2 ? 47 : 38);
+  }
+  const beforeTorch = (kind === 17 && pose !== 5 && pose !== 6) || kind === 11;
+  if (beforeTorch) draw(commands, m, asset);
   const torch =
     m.signedByte(0x8b54) < m.i(0x54ac) >> 1
       ? 14
@@ -260,7 +288,9 @@ export function drawCaveParty(m, commands, { asset = 17, pose = 0 } = {}) {
         ? 15
         : 16;
   const at = CAVE_SPRITES.get(torch),
-    table = 0x19dc + pose * 4;
+    table =
+      ({ 17: 0x19dc, 10: 0x19f8, 11: 0x1a08, 13: 0x1a28 }[kind] ?? 0x1a18) +
+      pose * 4;
   m.b(at + 18, m.b(0x6d44));
   m.i(
     at,
@@ -285,9 +315,9 @@ export function drawCaveParty(m, commands, { asset = 17, pose = 0 } = {}) {
       m.i(table + 2),
   );
   draw(commands, m, torch);
-  if (pose === 5 || pose === 6) draw(commands, m, asset);
+  if (!beforeTorch) draw(commands, m, asset);
   for (const id of [26, 22, 23]) draw(commands, m, id);
-  if (!m.b(0x546a)) {
+  if (kind === 17 && !m.b(0x546a)) {
     draw(commands, m, 37);
     commands.push(...caveMinimap(m));
     for (const [room, color, links] of [

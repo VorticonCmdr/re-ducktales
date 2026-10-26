@@ -164,6 +164,7 @@ export const caveEndings = {
     else if (reason === "torch-expired") yield* caveEndings.expired.call(this);
     else throw Error(`Unsupported cave outcome ${reason}`);
     this.events.push({ type: "stopAudio" });
+    if (!this.memory.b(0x5d2b)) this.memory.b(0x54aa, 0);
     return {
       status: reason,
       code: reason === "treasure" ? 1 : 0,

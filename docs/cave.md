@@ -10,7 +10,8 @@ INT3f index0c selects this actual game code, not a loader stub.
 Easy → office → map → Klondike → Launchpad → fly to airport → landing →
 Junior Woodchuck Guide → cave. Hold an arrow to point and Space to move through
 an available passage. A new safe room after the first awards the original $50
-after73 driver ticks. Restart works. Maps, room/party/torch/passage art come from
+during its entry animation (the shortened A/B-drive path instead waits73
+driver ticks). Restart works. Maps, room/party/torch/passage art come from
 EXP.ARC/CAVEMAPS.ARC. Treasure collection, falling into a pit, pursuer capture
 and torch expiry now play their statically translated terminal sequences.
 Failure shows MAIN34, waits20 seven-tick polls and then spends a campaign day.
@@ -37,7 +38,8 @@ observes commands and does not advance simulation.
 
 Movement, room cash, lamp, pursuit, endings and campaign results are statically
 inferred. The browser exercises actual keyboard controls and rendering. These
-checks do not establish original timing, pixel or complete-level replay parity.
+checks do not establish full timing or complete-level replay parity; the aligned
+capture image below is the only terminal pixel comparison.
 Minimap refresh order and terminal animations still need original comparisons.
 
 ## Original comparison
@@ -89,8 +91,9 @@ first displayed pose; its RNG draw is retained. The port retains two video pages
 buffer with immutable drawing snapshots. The pure rasterizer resolves these
 copies without consuming clocks or RNG. The first treasure reveal uses a normal
 presentation in place of the original EGA striped reveal transition; that
-transition and its retrace duration remain unverified/omitted. No exact terminal
-pixel or full presentation timing claim is made.
+transition and its retrace duration remain unverified/omitted. Exact terminal
+pixels are limited to the aligned capture image below; full presentation timing
+is not verified.
 
 Audio is an explicit environment input. With Sound off, completion polls see
 idle. With Sound on, every cave sound gets a token and is pending immediately;
@@ -102,7 +105,10 @@ Reconstructed browser audio duration is not original device timing evidence.
 `npm run verify:cave` also runs four independent environment scenarios: capture
 (map0, seed0, idle), pit (map0, seed0, shortest pit controller), treasure (map0,
 seed0, safe-goal controller), and expiry (map3, seed0, idle), all Easy, cash0.
-The controller uses the original initial map and current room, never the expected
+A separate C-drive circuit traverses Right/Down/Left/Up through17→18→26→25→17,
+strictly renders every intermediate pose, and requires exactly$150 for the three
+new safe rooms, lamp5, and no duplicate reward on returning to17.
+The shortened-path controller uses the original initial map and current room, never the expected
 outcome, enemy or RNG. Its external events are recorded, then replayed from the
 same initial contract and compared at every checkpoint. This harness advances
 one driver tick and one retrace per iteration: a synthetic environment, not a
@@ -117,5 +123,55 @@ matching completion event. Conditional application-entry checks also verify
 success/failure reward, exact report waits, calendar and one-time collection.
 Original entry comparison remains a separate evidence level.
 
-Next: original input-boundary and screen comparisons for complete cave routes,
-then collected-location dispatch and the other expedition games.
+## C-drive path and original runtime comparison
+
+Resident140e:037a executes `MOV AH,19; INT21; RETF`: it returns the DOS current
+drive, not the graphics adapter. Cave entry sets DS5d2b=1 only on A/B (return0/1).
+On the supported C: launch (return2), the initial zero flag enables full passage
+animations. `currentDrive` is an explicit environment value, default2; an inherited
+nonzero flag is retained as in the original. It is independent of EGA/CGA.
+
+On C:, first room setup makes eight party draws (two room poses, two additional
+poses and four open-passage indicators) before input. The previous assumption
+skipped six of them and changed subsequent RNG/pursuit. Movement now uses the
+original EXP10–13 sprites, coordinate tables1848–19a8, torch-attachment tables,
+walk frames and foreground EXP24/25. Exit and entry are separate sequences;
+new safe-room cash is awarded by the entry helper2496. The simple room-coin
+73-tick delay belongs to the shortened A/B path. The striped EGA reveal itself
+remains omitted; neither complete presentation timing nor full sound parity is
+claimed.
+
+`reference/cave-runtime.json` pins eight local artifacts and six required checks.
+First scenario starts at captured cave entry: variant0, Easy, seed39182, cash0,
+day4, current location15 (Klondike). No subsequent controls are supplied. At
+0832 the original captures after197 neutral samples, lamp14, enemy16, RNG43553;
+map, counters, torch fields and loaded descriptors match the port exactly.
+Continue to1221 after18 capture presentations: RNG18736 and all compared
+animation descriptors match. Continue to resident04e7: result0, cash0, day4
+before the caller increments it. The browser implementation carries its own
+state across these checkpoints from that one conditional entry snapshot.
+
+The captured PNG at1221 is the native cached image of capture loop14 (presentation
+16): loop15's BIOS page selection has executed but its cached VGA refresh is
+pending. The verifier fixes this one-frame alignment for this build/stop and
+compares every RGBA byte; it never searches frames or adjusts inputs to fit.
+The next original cave entry (same-location retry, seed31581, day5) supplies
+independent first-input09a1 and first-idle-decision0b9c boundaries. These also
+match without memory injections. Required negative controls select the wrong
+drive, alter RNG, remove sprites and omit a checkpoint.
+
+Original sound was enabled. The comparison uses an explicitly idle audio
+provider; processing time, driver/retrace duration and the terminal audio busy
+wait are excluded. This is conditional game-state/pixel evidence, not an
+original audio/timing replay or a whole campaign replay. Earlier independent
+four-outcome tests explicitly use drive0 to cover the retained shortened path;
+the browser and new original-reference scenario use drive2. Movement coordinate
+paths are statically translated/browser exercised; original movement captures
+remain next work.
+
+Live original now pauses at overlay0e0c:0b9c, stop20, DS/SS1403, instance
+0719a1b0cdcede0b85c39577ff760639. No active input schedule or breakpoints remain.
+No original memory/register injection or partial/full restore was used.
+
+Next: original comparisons for C-drive room moves, striped reveal timing,
+collected-location dispatch, then the other expedition games.

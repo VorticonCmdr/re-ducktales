@@ -145,3 +145,16 @@ coalesces multiple 70 Hz game updates into one visible monitor refresh. Sampling
 only the final requestAnimationFrame state was found to skip the short pose in
 some runs; the strict pixel check now observes the actual renderer boundary.
 This establishes renderer output, not physical display scanout timing.
+
+## Debugger stops and timed input
+
+Observed on f6d9b/protocol1.14: a timed PIC input chain stops dispatching while
+the debugger is paused, but its elapsed wall time continues. On resume, overdue
+press/release events can collapse into a burst (observed drift23139ms). Do not
+carry a timed multi-event chain across a capture stop. Cancel its pending events,
+release its own held keys, then start the next schedule after establishing the
+new boundary. Frame-relative chains or one-event held inputs are preferable.
+A focused engine correction would pause a PIC chain's timeline with emulation,
+or explicitly expose this wall-time behavior and overdue event policy. Captured
+cave comparisons use no controls after entry and do not rely on these setup
+intervals as an original timed input replay.

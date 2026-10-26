@@ -232,16 +232,20 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   expect(firstRoom).toBe(17);
   await page.keyboard.down("ArrowRight");
   await page.keyboard.down("Space");
-  await expect.poll(async () => (await state(c)).cave.room).toBe(18);
+  await page.waitForFunction(
+    () =>
+      JSON.parse(document.querySelector("#game").dataset.state).cave.room ===
+      18,
+    undefined,
+    { polling: "raf" },
+  );
   await page.keyboard.up("Space");
   await page.keyboard.up("ArrowRight");
   await expect
     .poll(async () => (await state(c)).cave.money)
     .toBe(result.cave.money + 50);
   await expect(page.locator("#diagnostic")).toBeHidden();
-  await page.screenshot({
-    path: ".local/browser-results/cave-second-room.png",
-  });
+
   // Plan from the original map; drive only real held-key controls. No game
   // memory or expected final state is injected into the browser.
   const before = await state(c);
@@ -249,50 +253,66 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   while ((await state(c)).scene === "cave" && moves++ < 64) {
     const current = await state(c);
     if (["treasure", "complete"].includes(current.cave.phase)) break;
-    await page.waitForFunction(() => {
-      const s = JSON.parse(document.querySelector("#game").dataset.state);
-      return s.diagnostic || s.scene !== "cave" || s.cave.phase === "exploring";
-    });
+    await page.waitForFunction(
+      () => {
+        const s = JSON.parse(document.querySelector("#game").dataset.state);
+        return (
+          s.diagnostic ||
+          s.scene !== "cave" ||
+          ["exploring", "treasure"].includes(s.cave.phase)
+        );
+      },
+      undefined,
+      { timeout: 5000 },
+    );
     const now = await state(c);
     expect(now.diagnostic).toBeNull();
     if (now.scene !== "cave") break;
     const { room, goal, rooms } = now.cave;
 
-    const queue = [[room, []]],
-      seen = new Set([room]);
     let route;
-    while (queue.length) {
-      const [at, path] = queue.shift();
-      if (at === goal) {
-        route = path;
-        break;
+    for (const margin of [1, 0, -1]) {
+      const queue = [[room, []]],
+        seen = new Set([room]);
+      while (queue.length) {
+        const [at, path] = queue.shift();
+        if (at === goal) {
+          route = path;
+          break;
+        }
+        const danger =
+          margin === 1
+            ? [
+                now.cave.enemy,
+                now.cave.enemy - 8,
+                now.cave.enemy + 8,
+                now.cave.enemy - 1,
+                now.cave.enemy + 1,
+              ]
+            : margin === 0
+              ? [now.cave.enemy]
+              : [];
+        for (const [key, bit, delta] of [
+          ["ArrowUp", 8, -8],
+          ["ArrowRight", 2, 1],
+          ["ArrowDown", 4, 8],
+          ["ArrowLeft", 1, -1],
+        ]) {
+          const next = at + delta;
+          if (
+            !(rooms[at] & bit) ||
+            next < 0 ||
+            next >= 64 ||
+            rooms[next] & 64 ||
+            seen.has(next) ||
+            (next !== goal && danger.includes(next))
+          )
+            continue;
+          seen.add(next);
+          queue.push([next, [...path, key]]);
+        }
       }
-      for (const [key, bit, delta] of [
-        ["ArrowUp", 8, -8],
-        ["ArrowRight", 2, 1],
-        ["ArrowDown", 4, 8],
-        ["ArrowLeft", 1, -1],
-      ]) {
-        const next = at + delta;
-        if (
-          !(rooms[at] & bit) ||
-          next < 0 ||
-          next >= 64 ||
-          rooms[next] & 64 ||
-          (next !== goal &&
-            [
-              now.cave.enemy,
-              now.cave.enemy - 8,
-              now.cave.enemy + 8,
-              now.cave.enemy - 1,
-              now.cave.enemy + 1,
-            ].includes(next)) ||
-          seen.has(next)
-        )
-          continue;
-        seen.add(next);
-        queue.push([next, [...path, key]]);
-      }
+      if (route?.length) break;
     }
     expect(route?.length, "safe path to the treasure").toBeGreaterThan(0);
     await page.keyboard.down(route[0]);

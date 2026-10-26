@@ -124,29 +124,76 @@ function check(actual, scenario) {
     "terminal presentation/RNG-call count",
   );
 }
+function verifyFullPassages(resources) {
+  const c = new Cave({
+    ...resources,
+    currentDrive: 2,
+    variant: 0,
+    difficulty: 0,
+    seed: 0,
+    money: 0,
+  });
+  let steps = 0,
+    shown = 0;
+  const advance = () => {
+    assert.ok(++steps < 3000, "unfinished C-drive passage sequence");
+    assert.equal(c.outcome, null, "unexpected C-drive terminal path");
+    c.advanceTick();
+    c.advanceRetrace();
+    if (c.presentations !== shown) {
+      assert.equal(c.presentations, shown + 1);
+      renderFlightPixels(
+        c.current,
+        resources.entries,
+        resources.font,
+        "EXP.ARC",
+      );
+      shown = c.presentations;
+    }
+  };
+  while (c.phase !== "exploring") advance();
+  for (const [direction, target] of [
+    ["right", 18],
+    ["down", 26],
+    ["left", 25],
+    ["up", 17],
+  ]) {
+    const room = c.room;
+    c.setControls({ fire: true, direction });
+    while (c.room === room) advance();
+    assert.equal(c.room, target, "wrong C-drive room transition");
+    c.setControls({ fire: false, direction: null });
+    while (c.phase !== "exploring") advance();
+  }
+  assert.equal(c.snapshot().money, 150, "new-room rewards or revisit latch");
+  assert.equal(c.snapshot().torch, 5);
+  assert.equal(c.memory.b(0x5d2b), 0);
+  assert.ok(shown > 100, "C-drive passage animation skipped");
+}
 export async function verifyCaveRoutes(resources) {
+  verifyFullPassages(resources);
   const scenarios = [
     {
       id: "capture",
-      start: { variant: 0, difficulty: 0, seed: 0, money: 0 },
+      start: { variant: 0, difficulty: 0, seed: 0, money: 0, currentDrive: 0 },
       route: "idle",
       status: "captured",
     },
     {
       id: "pit",
-      start: { variant: 0, difficulty: 0, seed: 0, money: 0 },
+      start: { variant: 0, difficulty: 0, seed: 0, money: 0, currentDrive: 0 },
       route: "pit",
       status: "pit",
     },
     {
       id: "treasure",
-      start: { variant: 0, difficulty: 0, seed: 0, money: 0 },
+      start: { variant: 0, difficulty: 0, seed: 0, money: 0, currentDrive: 0 },
       route: "goal",
       status: "treasure",
     },
     {
       id: "expiry",
-      start: { variant: 3, difficulty: 0, seed: 0, money: 0 },
+      start: { variant: 3, difficulty: 0, seed: 0, money: 0, currentDrive: 0 },
       route: "idle",
       status: "torch-expired",
     },
@@ -217,7 +264,14 @@ export async function verifyCaveRoutes(resources) {
       const loot = parseLoot(
         parseArchive(await readFile("game/LOOT.ARC"), "LOOT.ARC"),
       );
-      const g = new Game({ locations, loot, expeditionResources: resources });
+      const g = new Game({
+        locations,
+        loot,
+        expeditionResources: {
+          ...resources,
+          currentDrive: scenario.start.currentDrive,
+        },
+      });
       g.seed = scenario.start.seed;
       g.campaign.location = 1;
       g.briefing = { activity: "cave", variant: scenario.start.variant };
@@ -279,6 +333,6 @@ export async function verifyCaveRoutes(resources) {
   c.advanceTick();
   assert.equal(c.outcome.status, "captured");
   console.log(
-    "Cave: 4 independent runtime outcomes; exact closed-loop input replays; all presentations rendered; outcome, omitted-movement and stale-audio negative controls. No original ending comparison claimed.",
+    "Cave: four C-drive passage directions/revisit; 4 independent shortened-path outcomes; exact closed-loop input replays; all presentations rendered; outcome, omitted-movement and stale-audio negative controls. No original ending comparison claimed.",
   );
 }

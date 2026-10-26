@@ -1,0 +1,79 @@
+{
+  "id": "money-bin-failed-segment-v1",
+  "build": "dos-fb658562",
+  "evidenceLevel": "routine-segment-comparison",
+  "scenario": "Money bin: failed dive, final fourteen presentation steps",
+  "startingStateRecipe": "See docs/original-scenario.md; enter the money bin through Up+Space; use an already-consumed rare-coin latch and fire at next-pose 4.",
+  "inputSchedule": {
+    "file": "scripts/verify-reference.js",
+    "fireAtPortTick": 182,
+    "consumedAtPortTick": 196,
+    "requiredEvents": 1
+  },
+  "expectedCheckpointCount": 14,
+  "emulator": {
+    "engine": "dosbox-automation",
+    "version": "0.84.0-vc1 (f6d9b)",
+    "protocol": "1.14",
+    "core": "normal",
+    "graphicsDriver": "IT.DRV #001",
+    "launch": "C:\\DUCKTALE.EXE",
+    "mount": "game/ read-only as C:",
+    "singleOwner": "root chat",
+    "configuredCore": "auto",
+    "effectiveCore": "normal",
+    "cputype": "auto",
+    "cpu_cycles": 3000,
+    "cpu_cycles_protected": 60000,
+    "cpu_throttle": "off",
+    "machine": "svga_s3",
+    "memsizeMB": 16,
+    "headless": true,
+    "mute": true,
+    "startupFlags": [
+      "--noprimaryconf",
+      "--nolocalconf"
+    ]
+  },
+  "captureTool": {
+    "revision": "initial-capture-2026-10-26",
+    "method": "execute breakpoint at overlay 09:09fb; atomic reads at DS:3b3c (60), SS:BP-10 (10), DS:4e26 (2)",
+    "runtime": {
+      "loadBase": "01f5",
+      "ds": "1403",
+      "overlay09": "0e0c"
+    },
+    "failedEndPixels": "Pause at overlay09:09fb with local counter13. Raw screen is preceding displayed pose12 (verified exact RGB match); no whole-sequence frame timing claim."
+  },
+  "artifacts": {
+    "trace": {
+      "path": ".local/reference-failed.json",
+      "sha256": "409235bb2f131cbab7f3383f643621b3c0e05799eca49be5c70f192150a4324b"
+    },
+    "officePixels": {
+      "path": ".local/original-office.png",
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "failedEndPixels": {
+      "path": ".local/original-failed-end.png",
+      "sha256": "928abb3f8c04344d99dd59509c8425605d78f5fc97a487317e16567b1272f1aa"
+    }
+  },
+  "comparisonRules": [
+    "Exact sprite resource, frame byte, x and y for Scrooge and foreground coins at every checkpoint.",
+    "Checkpoint count/order and event consumption are mandatory.",
+    "No pixel or absolute time equality is claimed by this segment comparison.",
+    "The final-pose PNG captured at debugger counter 13 displays frame 12: the raw screen capture lags the current blit state by one video frame at this paused boundary. Browser pixel capture aligns to frame 12 exactly, without pixel tolerance or changing the independent fire input."
+  ],
+  "exclusions": [
+    "Other sprite structs are allocated but not rendered on that checkpoint and are excluded.",
+    "Clock alignment is by semantic presentation checkpoint; host pause duration is excluded."
+  ],
+  "injections": [],
+  "conditionalInputs": [
+    "coinAvailable=false is an observed starting-state condition; the preceding campaign that set it is not replayed.",
+    "Periodic idle cycles before captured fire are collapsed to the same next-pose value 4; no RNG is consumed in this segment."
+  ],
+  "fittedInputs": [],
+  "verifyCommand": "npm run verify:reference"
+}

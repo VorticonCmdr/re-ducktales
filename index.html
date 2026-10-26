@@ -1,1 +1,56 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DuckTales asset viewer</title><meta http-equiv="refresh" content="0;url=./viewer.html"><a href="./viewer.html">Open the asset viewer</a></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>DuckTales — The Quest for Gold</title>
+    <link rel="stylesheet" href="./src/game/game.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>DuckTales <span>The Quest for Gold</span></h1>
+        <a href="./viewer.html">Asset explorer</a>
+      </header>
+      <section id="loader">
+        <h2>Open the original DOS game</h2>
+        <p>Select your game folder to load its original artwork and sounds.</p>
+        <button id="open-folder">Open game folder</button
+        ><button id="load-local">Load local game/</button
+        ><input id="folder" type="file" webkitdirectory multiple hidden />
+      </section>
+      <p id="status" role="status" aria-live="polite">
+        Loading original files…
+      </p>
+      <div class="screen">
+        <canvas
+          id="game"
+          width="320"
+          height="200"
+          tabindex="0"
+          aria-label="DuckTales game screen"
+        ></canvas>
+      </div>
+      <div id="actions" hidden>
+        <button id="fire">Start / Fire</button><button id="up">Up</button
+        ><button id="down">Down</button
+        ><button id="money-bin">Enter money bin</button
+        ><button id="restart">Restart</button
+        ><label
+          ><input id="audio" type="checkbox" /> Sound (reconstructed)</label
+        >
+      </div>
+      <p id="help">
+        Space / Enter: fire · Arrow keys: select · In the office, press Up +
+        Space to enter the money bin.
+      </p>
+      <p class="scope">
+        Playable milestone: title → office → money-bin dive → office. Campaign
+        travel and expedition levels are still being translated.
+      </p>
+      <output id="diagnostic" role="alert" hidden></output>
+      <audio id="sound" preload="auto" hidden></audio>
+    </main>
+    <script type="module" src="./src/game/browser.js"></script>
+  </body>
+</html>

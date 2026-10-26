@@ -1,0 +1,68 @@
+{
+  "id": "money-bin-win-segment-v1",
+  "build": "dos-fb658562",
+  "evidenceLevel": "routine-segment-comparison",
+  "scenario": "Fresh launch: rare-coin timing gate, fourteen successful poses, $1000 award",
+  "startingStateRecipe": "Original quit/relaunch, N joystick, Space intro, Easy Money, office Up+Space. Pause at overlay09:022a when nextPose=3 and DS:4e26=0; inject one hardware Space. See docs/original-scenario.md.",
+  "inputSchedule": {
+    "fireAtPortTick": 168,
+    "consumedAtPortTick": 182,
+    "requiredEvents": 1
+  },
+  "expectedCheckpointCount": 16,
+  "emulator": {
+    "engine": "dosbox-automation",
+    "version": "0.84.0-vc1 (f6d9b)",
+    "protocol": "1.14",
+    "core": "normal",
+    "graphicsDriver": "IT.DRV #001",
+    "launch": "C:\\DUCKTALE.EXE",
+    "mount": "game/ read-only as C:",
+    "singleOwner": "root chat",
+    "configuredCore": "auto",
+    "effectiveCore": "normal",
+    "cputype": "auto",
+    "cpu_cycles": 3000,
+    "cpu_cycles_protected": 60000,
+    "cpu_throttle": "off",
+    "machine": "svga_s3",
+    "memsizeMB": 16,
+    "headless": true,
+    "mute": true,
+    "startupFlags": [
+      "--noprimaryconf",
+      "--nolocalconf"
+    ]
+  },
+  "captureTool": {
+    "revision": "initial-capture-2026-10-26",
+    "gate": "overlay09:0270 (AL=c0, nextPose=3, latch=0); observed transition at 0287 sets local won=1 and latch=1",
+    "poses": "14 execute hits at overlay09:092f, DS:3aec length20 and SS:BP-10 length10, DS:4e26 length2",
+    "cash": "main 01f5:0268 after ADD/ADC: DS:8cc0 length4 is 1000",
+    "runtime": {
+      "loadBase": "01f5",
+      "ds": "1403",
+      "overlay09": "0e0c"
+    }
+  },
+  "artifacts": {
+    "trace": {
+      "path": ".local/reference-win.json",
+      "sha256": "dd80e1a2bd7ef3900a52cb786e4df2054a43e2857576181df24f3458b8bd05fb"
+    }
+  },
+  "comparisonRules": [
+    "Exact gate input/counter/latch, all fourteen resource/frame/x/y poses, and 32-bit cash result.",
+    "All required input and checkpoint counts must be consumed."
+  ],
+  "exclusions": [
+    "Host pause time and earlier periodic idle cycles are excluded; presentation checkpoints align the segment.",
+    "No full campaign, absolute animation timing or pixel equality is claimed by this trace."
+  ],
+  "injections": [],
+  "conditionalInputs": [
+    "The captured gate uses the observed starting pose and fresh-launch coin latch; preceding cutscene/office instructions are not instruction-replayed by the port."
+  ],
+  "fittedInputs": [],
+  "verifyCommand": "npm run verify:reference"
+}

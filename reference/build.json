@@ -1,0 +1,95 @@
+{
+  "id": "dos-fb658562",
+  "executable": "DUCKTALE.EXE",
+  "resourceRoot": "game/",
+  "files": {
+    "CAVEMAPS.ARC": {
+      "bytes": 949,
+      "sha256": "5582e5e358cd20746a21875255da0f9f7fad171467b9afda6f26eb3687a5af9b"
+    },
+    "CHART.ARC": {
+      "bytes": 475,
+      "sha256": "e3456152da564f41524e3e328a8391a33d812af3ac18bd0c98e72985101586a7"
+    },
+    "CLUES.ARC": {
+      "bytes": 1813,
+      "sha256": "5162697a313b227b81338d08ac8cfd8e65a88d50854ecf54a17209de96779aef"
+    },
+    "DUCKTALE.EXE": {
+      "bytes": 165218,
+      "sha256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981"
+    },
+    "Disney's Duck Tales -  The Quest for Gold (1990).ba1": {
+      "bytes": 80,
+      "sha256": "5a5f19251528372ace467978dfffc3c017d8bd6dfb08d3073cbe41200ee9f690"
+    },
+    "EXP.ARC": {
+      "bytes": 108115,
+      "sha256": "f5423396a20fc515add201e0d9a587d4e985130b2d2c05f98da417aa6ca34dbf"
+    },
+    "INVART.ARC": {
+      "bytes": 538,
+      "sha256": "433792e8edf0992529d7d9cb19de40bec46d55fa7b3cb6ccc73160a432692213"
+    },
+    "INVEST.ARC": {
+      "bytes": 4193,
+      "sha256": "5d5a2dea1d0bfbbfe6eb8589ca269c7494dfb1758325e0ef7a4c6c64df63362c"
+    },
+    "IT.DRV": {
+      "bytes": 27815,
+      "sha256": "3a421e0b11706baad2bc2c25520f0edcf2b4246f20d767320968535a55ae4ff2"
+    },
+    "JG.ARC": {
+      "bytes": 47389,
+      "sha256": "5f8ff2a00a806b76cbef8a6f24b24befe2d9e594e38e645e845d031e78320878"
+    },
+    "LOC.ARC": {
+      "bytes": 5447,
+      "sha256": "fedc421b354aec66ae2337b370500b71365c4fe1863958cf43d29c77552c1fd9"
+    },
+    "LOOT.ARC": {
+      "bytes": 3946,
+      "sha256": "cb496f5b9905d2aaa2539451633554d4f1f54d7a43e787906ceaf3b714e7ab7f"
+    },
+    "MAC.ARC": {
+      "bytes": 30405,
+      "sha256": "5c2be37bf6b85f1c1989f2d1726204e89359e7e8e8578b91f5a117a13684b5f1"
+    },
+    "MAIN.ARC": {
+      "bytes": 141676,
+      "sha256": "2ad0e38d8db5095a8b9a9ecc0188c4904f61de2624ec35bf738638a87ee99f83"
+    },
+    "MBIN.ARC": {
+      "bytes": 31735,
+      "sha256": "7b1d958f9eb2ac6a8205043cc715c19ea16d6470e896213014dc4930d7e3071b"
+    },
+    "MT.ARC": {
+      "bytes": 24269,
+      "sha256": "2b712ea21eef9a10c0084cf884a17b484b40b890d7bd87a1ce76fd565c4f7f7c"
+    },
+    "PLANE.ARC": {
+      "bytes": 34609,
+      "sha256": "9a33bcd8fbb4205ee8a15b3269a7da7a9eb5888dbcbc59f488b42c12e2107778"
+    },
+    "PS.ARC": {
+      "bytes": 78742,
+      "sha256": "28cae7f184927b98e65ccc7758c8a7404ca42ecafe88aa56f7fae795f74d6627"
+    },
+    "README.BAT": {
+      "bytes": 93,
+      "sha256": "58249899a3bca7eacda234fea631bd618dc96f8d57df511bf1d7da9bda23b8a1"
+    },
+    "README1.DOC": {
+      "bytes": 794,
+      "sha256": "aead233365ec026823a07f8eb3a090cff67fe32981a26f21fcc7903ecc89f2a6"
+    },
+    "README2.DOC": {
+      "bytes": 729,
+      "sha256": "deb56be3df365500da7b7b19a2278d8dbfe321b59ae3bffc5325497721de8e37"
+    },
+    "README3.DOC": {
+      "bytes": 311,
+      "sha256": "edacd2e4c4019555b179e5ed0e1d3cfeaea9039cd80450ee99c9bceb69946e62"
+    }
+  }
+}

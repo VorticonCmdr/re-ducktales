@@ -1,4 +1,8 @@
-import { prepareMountain, composeMountainViewport } from "./mountain-scene.js";
+import {
+  prepareMountain,
+  composeMountainViewport,
+  setMountainLifePalette,
+} from "./mountain-scene.js";
 import {
   MountainLocals,
   advanceMountainAction,
@@ -280,6 +284,7 @@ export class Mountain {
     }
     m.b(0x17db, 0);
     m.b(0x17e1, 0);
+    setMountainLifePalette(m);
   }
   *scroll() {
     const m = this.memory,

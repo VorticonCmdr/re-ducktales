@@ -150,8 +150,29 @@ test("photography keyboard target shot, results, campaign return and collected n
   });
   await page.clock.runFor(100);
   await press("Space");
-  await until((s) => s.scene === "visit-notice");
-  await until((s) => s.scene === "map", 3000);
+  const report = await until((s) => s.scene === "rival-report", 3000);
+  expect(report.rivalReport.busy).toBe(true);
+  expect(report.rivalReport.phase).toBe("speech");
+  // Media playback uses real time, independently of the controlled game clock.
+  // Observe the current speech ending before its successor sound replaces it.
+  await page.locator("#sound").evaluate((audio) => {
+    audio.setAttribute("data-report-ended", "false");
+    audio.addEventListener(
+      "ended",
+      () => audio.setAttribute("data-report-ended", "true"),
+      { once: true },
+    );
+  });
+  await page.clock.resume();
+  await expect(canvas).toHaveAttribute("data-scene", "visit-notice", {
+    timeout: 12000,
+  });
+  expect((await state()).visitNotice.reason).toBe("player");
+  await expect(page.locator("#sound")).toHaveAttribute(
+    "data-report-ended",
+    "true",
+  );
+  await expect(canvas).toHaveAttribute("data-scene", "map", { timeout: 12000 });
   const repeat = await state();
   expect({
     money: repeat.money,

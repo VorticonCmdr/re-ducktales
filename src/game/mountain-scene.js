@@ -1,3 +1,5 @@
+import { readEgaPalette, applyEgaPalette } from "./ega-palette.js";
+import { renderFlightPixels } from "./flight-raster.js";
 import { FlightMemory } from "./flight-physics.js";
 
 const LAYOUTS = [0x0fec, 0x11fa, 0x1408];
@@ -179,4 +181,50 @@ export function composeMountainViewport(m, firstRow, offset) {
     });
   }
   return commands;
+}
+
+// Overlay5:022f..0274 writes only these two logical palette slots per life.
+export function setMountainLifePalette(memory) {
+  const pair = { 3: [0x84, 0x8c], 2: [0x49, 0x41], 1: [0xc2, 0x4a] }[
+    memory.b(0x4d34)
+  ];
+  if (pair) {
+    memory.b(0x205b, pair[0]);
+    memory.b(0x2063, pair[1]);
+  }
+}
+
+export function createMountainRasterCache() {
+  return { logical: new WeakMap(), mapped: new WeakMap() };
+}
+
+// Hardware palette writes recolor the currently visible page too. Cache by
+// command identity and palette bytes,independently of simulation/render clocks.
+export function renderMountainPixels(
+  commands,
+  entries,
+  font,
+  memory,
+  cache = createMountainRasterCache(),
+) {
+  const codes = memory.bytes.subarray(0x2056, 0x2066),
+    previous = cache.mapped.get(commands);
+  if (previous && codes.every((v, i) => v === previous.codes[i]))
+    return previous.pixels;
+  const logical =
+    previous?.logical ??
+    renderFlightPixels(
+      commands,
+      entries,
+      font,
+      "MT.ARC / MAIN.ARC",
+      cache.logical,
+    );
+  const pixels = applyEgaPalette(logical, readEgaPalette(memory), "mountain");
+  cache.mapped.set(commands, {
+    codes: Uint8Array.from(codes),
+    logical,
+    pixels,
+  });
+  return pixels;
 }

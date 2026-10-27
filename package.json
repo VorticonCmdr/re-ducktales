@@ -40,7 +40,8 @@
     "verify:rival": "node scripts/verify-rival.js",
     "verify:atomic": "node scripts/verify-atomic.js",
     "verify:system-controls": "node scripts/verify-system-controls.js && node scripts/verify-money-bin-input.js && node scripts/verify-flight-input.js",
-    "verify:cave-input": "node scripts/verify-cave-input.js"
+    "verify:cave-input": "node scripts/verify-cave-input.js",
+    "verify:mountain-palette": "node scripts/verify-mountain-palette.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

@@ -85,15 +85,17 @@ Each sound request is explicit; no mountain mechanic waits for audio completion.
 Presentation limitation: the port rebuilds the complete playfield from the
 original terrain and current objects while retaining the erase pass's logical
 effects. It has not established equivalence for original framebuffer residue,
-all scrolling crops or palette changes with remaining lives. Audio remains the
-existing reconstructed provider. An exploratory initial PNG comparison still
-differs around the upper enemy/transport graphics and palette colors; no pixel
-exclusion mask or parity assertion is used. Local images are
-`.local/mountain-initial-original.png` and `.local/mountain-initial-port.png`.
+all scrolling crops or complete-frame palette presentation. Life-color writes and
+their logical-color conversion are now implemented and checked below. Audio remains the
+existing reconstructed provider. An old exploratory initial PNG comparison
+differs around the upper enemy/transport graphics; capture alignment is not
+established. It is not acceptance evidence and has no pixel-exclusion mask.
+`.local/mountain-initial-original.png` is retained for that investigation;
+the old unmapped port image is not a current rendering reference.
 Stack locals not initialized by the original entry currently start at zero in
 independent runs; the conditional walking comparison supplies its incoming stack allocation
-from entry SS before initialization. Allocation/palette behavior outside that
-segment remains unverified. This is not a machine checkpoint.
+from entry SS before initialization. Allocation behavior and complete-scene presentation outside that
+segment remain unverified. This is not a machine checkpoint.
 
 ## Verification and next milestone
 
@@ -199,3 +201,61 @@ checks the two browser routes. `npm run verify` is the integration gate. Origina
 hook/ascent and presentation comparisons, variants1/2 and other difficulties
 remain work to do. Jungle,photography and trading now have their own playable
 routes; [normal rival progression](rival.md) is also connected.
+
+
+## Life palettes
+
+Overlay5:022f–0274 changes DS205b/2063 (logical palette slots5/13) before each
+life's initial pages. Ghidra disassembly agrees with original overlay bytes.
+The same supported EGA008e handler used by jungle rendering converts those codes
+(hexadecimal byte values):
+
+| Lives | DS205b | DS2063 | Display color |
+| --- | --- | --- | --- |
+| 3 | 84 | 8c | red,#aa0000 |
+| 2 | 49 | 41 | blue,#0000aa |
+| 1 | c2 | 4a | green,#00aa00 |
+
+`Mountain.resetLife` preserves those byte writes. The shared `ega-palette.js`
+reads the original table; mountain and jungle both use its color conversion.
+Mountain rendering caches logical terrain separately from mapped pixels,so a
+palette change recolors the currently visible page without changing assets or
+rerasterizing terrain. Rendering does not advance or alter simulation memory.
+The asset viewer retains the original logical asset colors.
+
+`npm run verify:mountain-palette` requires the parent mountain-entry artifacts and
+three reused checksummed captures in `reference/mountain-palette.json`. Its parent
+checks all12002 original overlay bytes and68 relocations. The new checks compare
+all16 original life3 palette bytes,match the three palette-write instruction
+branches and the shared original IT.DRV handler,and render48 logical-color
+swatches. The same command page is rendered through3/2/1 conditions to reject
+stale palette caching. Changed source bytes,changed pixels and missing life cases
+are negative controls. The full `verify:mountain` command includes these checks
+and now renders its control/ascent presentations through the mountain palette.
+
+The initial mountain state inherits the explicit travel-target injection already
+recorded by `reference/mountain-entry.json`. Life2/1 here are authored static-rule
+conditions,not new original mountain captures. Shared driver evidence comes from
+`reference/jungle-scene.json`; its eight exact original jungle images remain
+regressions for the extracted converter. No old exploratory mountain PNG has
+been promoted into a whole-frame golden or given a pixel-exclusion mask.
+
+The native browser route uses actual keyboard flight,walking,hook throw and
+walking off ledges through all three lives. A render observer checks the32×32
+standing sprite after each natural reset: no logical-purple residue and at least
+80 pixels of the required life color. Keys release at each life boundary before
+moving again. Browser time is explicit; two8ms display callbacks run per16ms
+observation while the70Hz simulation clock stays independent. The60-second
+scenario limit is unchanged.
+This is browser acceptance and source-derived color verification,not an original
+complete-level pixel/timing comparison. Mountain input polling and original
+whole-frame/scrolling/erase behavior remain future work.
+
+The existing ascent browser replay still consumes764 inputs and all26 checkpoints
+within its120-second limit. A first1ms step aligns observations to a display
+callback; subsequent8ms steps land on exactly the same callback boundaries and
+still require precisely one consumed simulation frame per input. This removes
+redundant browser queries without dropping inputs or fitting expected states.
+The palette converter uses native packed pixel views built through byte arrays,
+so it preserves alpha without assuming machine endianness. Original jungle
+whole-frame comparisons validate the extracted and optimized shared conversion.

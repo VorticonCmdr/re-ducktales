@@ -6,7 +6,11 @@ import build from "../reference/build.json" with { type: "json" };
 import { parseArchive } from "../src/assets.js";
 import { unpackImage } from "../src/game/executable.js";
 import { Mountain } from "../src/game/mountain.js";
-import { renderFlightPixels } from "../src/game/flight-raster.js";
+import {
+  renderMountainPixels,
+  createMountainRasterCache,
+} from "../src/game/mountain-scene.js";
+import { verifyMountainPalette } from "./verify-mountain-palette.js";
 import { verifyMountainOriginal } from "./verify-mountain-original.js";
 import { verifyMountainMovement } from "./verify-mountain-movement.js";
 import { verifyMountainAscent } from "./verify-mountain-ascent.js";
@@ -15,7 +19,7 @@ const manifest = JSON.parse(
   await readFile("reference/mountain-controls.json", "utf8"),
 );
 const resources = {};
-for (const name of ["DUCKTALE.EXE", "MT.ARC", "MAIN.ARC"]) {
+for (const name of ["DUCKTALE.EXE", "MT.ARC", "MAIN.ARC", "IT.DRV"]) {
   const bytes = await readFile(`game/${name}`).catch(() => {
     throw Error(`SETUP: missing game/${name}`);
   });
@@ -51,7 +55,7 @@ function compare({
     "missing checkpoint",
   );
   const g = new Mountain({ image, entries, mainEntries, ...manifest.initial });
-  const cache = new WeakMap();
+  const cache = createMountainRasterCache();
   let executed = 0,
     rendered = 0,
     presentation = -1,
@@ -86,11 +90,11 @@ function compare({
       }
     }
     if (g.current && g.presentations !== presentation) {
-      renderFlightPixels(
+      renderMountainPixels(
         g.current,
         g.entries,
         mainEntries[42].data,
-        "MT.ARC / MAIN.ARC",
+        g.memory,
         cache,
       );
       presentation = g.presentations;
@@ -136,3 +140,10 @@ await verifyMountainOriginal({
 });
 await verifyMountainMovement({ image, entries, mainEntries });
 await verifyMountainAscent({ image, entries, mainEntries });
+
+await verifyMountainPalette({
+  image,
+  entries,
+  mainEntries,
+  driverEntries: parseArchive(resources["IT.DRV"]),
+});

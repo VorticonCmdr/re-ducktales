@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { Mountain } from "../src/game/mountain.js";
-import { renderFlightPixels } from "../src/game/flight-raster.js";
+import {
+  renderMountainPixels,
+  createMountainRasterCache,
+} from "../src/game/mountain-scene.js";
 
 export async function verifyMountainAscent(resources) {
   const manifest = JSON.parse(
@@ -24,7 +27,7 @@ export async function verifyMountainAscent(resources) {
     assert.equal(checks.length, 26, "missing checkpoint");
     if (alterMoney) checks.at(-1).money++;
     const g = new Mountain({ ...resources, ...manifest.initial }),
-      cache = new WeakMap();
+      cache = createMountainRasterCache();
     let executed = 0,
       rendered = 0,
       presentation = -1;
@@ -52,11 +55,11 @@ export async function verifyMountainAscent(resources) {
         }
       }
       if (g.current && g.presentations !== presentation) {
-        renderFlightPixels(
+        renderMountainPixels(
           g.current,
           g.entries,
           resources.mainEntries[42].data,
-          "MT.ARC / MAIN.ARC",
+          g.memory,
           cache,
         );
         presentation = g.presentations;

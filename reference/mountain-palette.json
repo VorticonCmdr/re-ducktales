@@ -1,0 +1,69 @@
+{
+  "id": "mountain-life-palette-fb658562",
+  "buildManifest": "reference/build.json",
+  "implementationBaseRevision": "332e75c",
+  "sourceManifests": [
+    "reference/mountain-entry.json",
+    "reference/jungle-scene.json"
+  ],
+  "captureSourceRevisions": {
+    "entry": "307806a",
+    "driver": "79c9e95"
+  },
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "currentDrive": 2,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "startingRecipe": "Reuse the conditional mountain entry/first-input captures in reference/mountain-entry.json (including its explicitly recorded travel-target injection). Reuse original EGA handler008e..00e4 captured at jungle stop261 in reference/jungle-scene.json. No new original runtime life2/life1 captures are introduced.",
+  "expectedCapturedPaletteCount": 1,
+  "expectedStaticLifeCases": 3,
+  "expectedSwatchCount": 48,
+  "lifeCases": [3, 2, 1],
+  "inputEvents": [],
+  "injections": [
+    {
+      "at": "01f5:0439 before travel",
+      "segment": 5123,
+      "offset": 40798,
+      "width": 1,
+      "before": 33,
+      "after": 24,
+      "meaning": "requested expedition target; does not alter mountain mechanics"
+    }
+  ],
+  "fittedInputs": [],
+  "artifacts": {
+    "entry": {
+      "path": ".local/mountain-entry.json",
+      "sha256": "26a1703c83bd5bb115ba45318807e992eec0da35e60d8374e4b8f3ca1472aaee"
+    },
+    "scene": {
+      "path": ".local/mountain-initial-scene.json",
+      "sha256": "8d35d9e9ccd05ac9ac5e4ff44f94caa50d03f3f253a2a2b563410eb493918174"
+    },
+    "driver": {
+      "path": ".local/jungle-scene-palette-driver.json",
+      "sha256": "6141f5e6015e3c61000755c057f61aad7271f4304d436ece3100afaaa07eef31"
+    }
+  },
+  "comparisonRules": "Complete mountain code identity/68relocations is required by the parent original-entry checker. Palette writes at0243/0248,0259/025e,0265/026a match exact original instructions. All16 initial palette bytes match the original life3 scene. The shared graphics handler is exact original IT.DRV code. Authored life3/2/1 conditions exercise actual life reset,16 logical-color swatches each,the same-page cache across palette changes,and render memory preservation. Missing life cases,changed source bytes or changed pixels fail.",
+  "evidenceLevel": "One captured original palette and three statically inferred life rules,plus independent rendering checks. Whole original mountain/frame/timing and native life2/1 pixel parity remain unproven.",
+  "verify": "npm run verify:mountain-palette",
+  "captureTools": {
+    "mountain": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+    "driver": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1"
+  },
+  "authoredModelConditions": {
+    "lifeCounts": [3, 2, 1],
+    "operation": "Reset each life on a copy of captured entry memory; static-rule rendering cases,not original runtime injections."
+  },
+  "exclusions": [
+    "No new original mountain life2/life1 capture",
+    "No whole-frame mountain pixel comparison; exploratory PNGs are not acceptance fixtures",
+    "No complete-machine checkpoint or original full-level timing claim"
+  ]
+}

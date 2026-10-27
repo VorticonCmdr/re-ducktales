@@ -74,16 +74,47 @@ test("original map pixels and keyboard bank round trip", async ({ page }) => {
 test("expedition briefing, keyboard takeoff, crash, rival claim and campaign return", async ({
   page,
 }) => {
-  const c = await office(page, 2);
+  // Keep the flight input schedule independent of test-runner latency,then
+  // restore native time for the real media-completion boundary below.
+  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
+  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
+  await page.addInitScript(() => {
+    window.requestAnimationFrame = (callback) =>
+      setTimeout(() => callback(performance.now()), 8);
+    window.cancelAnimationFrame = clearTimeout;
+  });
+  await page.goto("/");
+  const c = page.locator("#game");
+  async function until(predicate, max = 2500) {
+    for (let i = 0; i < max; i++) {
+      const s = await state(c);
+      if (s?.diagnostic) throw Error(s.diagnostic);
+      if (s && (await predicate(s))) return s;
+      await page.clock.runFor(16);
+    }
+    throw Error(
+      "Unfinished race browser sequence " + JSON.stringify(await state(c)),
+    );
+  }
+  async function press(key) {
+    await page.keyboard.press(key);
+    await page.clock.runFor(100);
+  }
+  await until((s) => s.scene === "title");
+  await c.focus();
+  await press("Space");
+  await press("ArrowUp");
+  await press("Enter");
+  await until((s) => s.scene === "office");
   await page.locator("#map").click();
-  await expect(c).toHaveAttribute("data-scene", "map");
+  await until((s) => s.scene === "map");
   await point(c, 37, 33);
-  await page.keyboard.press("Space");
-  await expect.poll(async () => (await state(c)).campaign.info).toBe(true);
-  await page.keyboard.press("ArrowRight");
-  await expect.poll(async () => (await state(c)).campaign.choice).toBe(1);
-  await page.keyboard.press("Space");
-  await expect(c).toHaveAttribute("data-scene", "departure");
+  await press("Space");
+  await until((s) => s.campaign.info);
+  await press("ArrowRight");
+  await until((s) => s.campaign.choice === 1);
+  await press("Space");
+  await until((s) => s.scene === "departure");
   await expect(page.locator("#diagnostic")).toBeHidden();
   await expect(page.locator("#status")).toContainText("Departure confirmed");
   const prepared = await state(c);
@@ -98,20 +129,16 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
     });
   });
   await page.keyboard.down("Space");
-  await expect(c).toHaveAttribute("data-scene", "flight");
-  await expect
-    .poll(async () => (await state(c)).flight.speed)
-    .toBeGreaterThan(4);
+  await until((s) => s.scene === "flight");
+  await until((s) => s.flight.speed > 4);
   await page.keyboard.down("ArrowDown");
-  await expect
-    .poll(async () => (await state(c)).flight.heading)
-    .toBeGreaterThan(0);
+  await until((s) => s.flight.heading > 0);
   await page.keyboard.up("ArrowDown");
   await page.keyboard.up("Space");
-  await expect.poll(async () => (await state(c)).flight.y).toBeLessThan(139);
+  await until((s) => s.flight.y < 139);
   await page.screenshot({ path: ".local/browser-results/flight-takeoff.png" });
-  await expect(c).toHaveAttribute("data-saw-crash", "true", { timeout: 20000 });
-  await expect(c).toHaveAttribute("data-scene", "map", { timeout: 10000 });
+  await until(async () => (await c.getAttribute("data-saw-crash")) === "true");
+  await until((s) => s.scene === "map");
   const result = await state(c);
   expect(result.flight.outcome.status).toBe("crashed");
   expect(result.campaign.day).toBe(2);
@@ -119,6 +146,7 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   expect(result.campaign.rival.money).toBe(4500);
   expect(result.campaign.rival.location).toBe(30);
   expect(result.money).toBe(0);
+  await page.clock.resume();
   await page.locator("#audio").check();
   await c.focus();
   await page.keyboard.press("Space");

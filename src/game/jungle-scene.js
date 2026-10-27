@@ -1,5 +1,5 @@
 import { s16 } from "./integer.js";
-import { EGA } from "../assets.js";
+import { readEgaPalette, applyEgaPalette } from "./ega-palette.js";
 import { renderFlightPixels } from "./flight-raster.js";
 
 // Pointer variables populated by main13d4, in original resource-load order.
@@ -48,34 +48,14 @@ export function jungleSceneResources(entries, mainEntries, mountainEntries) {
 // Life setup changes palette slots5/13 together: red,blue,green. Keep this
 // palette explicit; the asset viewer and other scenes retain their own palette.
 export function junglePalette(m) {
-  return Array.from({ length: 16 }, (_, i) => {
-    const code = m.b(0x2056 + i);
-    return EGA[(code & 7) | ((code & 16) >> 1)];
-  });
+  return readEgaPalette(m);
 }
 export function renderJunglePixels(commands, resources, palette) {
-  if (
-    palette?.length !== 16 ||
-    palette.some(
-      (c) =>
-        !Array.isArray(c) ||
-        c.length !== 3 ||
-        c.some((v) => !Number.isInteger(v) || v < 0 || v > 255),
-    )
-  )
-    throw Error("Missing jungle presentation palette");
-  const rgba = Uint8ClampedArray.from(
+  return applyEgaPalette(
     renderFlightPixels(commands, resources.entries, resources.font, "JG.ARC"),
+    palette,
+    "jungle",
   );
-  const colors = new Map(
-    EGA.map((c, i) => [c[0] * 65536 + c[1] * 256 + c[2], palette[i]]),
-  );
-  for (let i = 0; i < rgba.length; i += 4) {
-    const color = colors.get(rgba[i] * 65536 + rgba[i + 1] * 256 + rgba[i + 2]);
-    if (!color) throw Error("Unsupported jungle source color");
-    rgba.set(color, i);
-  }
-  return rgba;
 }
 
 // f97:05bf builds a104-pixel repeating strip from frame1 of JG7, after

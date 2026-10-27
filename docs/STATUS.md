@@ -30,6 +30,8 @@ Updated2026-10-27. **The full game is not complete.**
 - Mountain arrival → guide → walking,hook/climbing,hazards,pickups and three lives.
   A complete variant0 ascent preserves three lives,collects$100,awards the current
   startup's$8000 treasure and returns to the map with duplicate protection.
+  The life palette now recolors Scrooge red/blue/green at3/2/1 lives,using the
+  original table and the shared EGA converter.
 - Jungle arrival → guide → jump/walk/climb/drop,vines,fish/platforms and hazards.
   A complete Easy/variant0 route reaches the chest with one life,awards$1000,
   returns on day5 and prevents repeat collection. Failure/retry also works.
@@ -132,7 +134,7 @@ comparators include negative controls.
 
 Current milestone passed full `npm run verify`:56 unit tests,28 browser scenarios,
 all required original-data checks and the production build. Integration log:
-`.local/cave-input-final-verify.log`.
+`.local/mountain-palette-integrated-verify.log`.
 
 One browser worker keeps the full mountain/jungle replays within their existing
 120-second limits; their required inputs and checkpoint counts are unchanged.
@@ -147,13 +149,25 @@ bounded checks,not an original whole-cave state replay. The shared photo-score
 shortcut is checked to skip the normal cave result dialog and its input flush.
 Detailed rules,exclusions and negative controls are in the subsystem manifests.
 
+Mountain life-palette checks pass focused source,native browser and full
+integration checks. The same-page cache is checked through three life colors;
+the shared converter retains eight exact original jungle PNG comparisons.
+The mountain ascent still consumes764 inputs and all26 checkpoints. Browser
+observations align to the existing8ms display cadence without changing expected
+states or extending scenario timeouts. Flight inputs also use explicit browser
+time; native sound completion uses real time.
+
+The photography repeat visit now requires rival speech to end through the
+native media event before the collected-location notice and map return. Game
+time alone cannot complete browser audio. Money,calendar and RNG checks remain
+unchanged. Mountain input-poll timing and the unresolved upper transport/erase
+graphics remain the next investigation; whole original scene parity is unproven.
+
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-0e0c:09a6 stop525 after a safe cave-room entry flushed unread P,DS/SS1403,sound on.
-No breakpoints or pending replay. Money-bin/flight input captures use a fresh
-natural launch and original play with no memory/CPU injections. Earlier controls/
-credits captures inherit conditional setup from `reference/atomic.json`.
-`reference/flight-input.json` pins the accepted flight observations.
-`reference/cave-input.json` promotes the natural cave scouting into18 mandatory
-artifacts,eight original comparisons and one independent controller replay.
-Complete cave code identity,pause/overdue deadline and room-entry flushes now
-have accepted evidence; original whole-cave movement/timing remains unproven.
+0e0c:0000 stop535 at a cave entry after exploratory native travel,DS/SS1403.
+No breakpoints or pending replay. This exploration did not supply a new mountain
+runtime capture. Mountain palette evidence reuses the explicitly conditional
+entry in `reference/mountain-entry.json` and shared driver evidence from jungle.
+Money-bin/flight/cave-input captures use a fresh natural launch with no memory/CPU
+injections. Earlier controls/credits captures inherit conditional atomic setup.
+Whole original expedition presentation,timing and audio remain unproven.

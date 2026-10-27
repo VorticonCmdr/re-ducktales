@@ -70,8 +70,9 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   const route = ascent.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
   expect(route.length).toBe(764);
   let checkpoints = 0;
-  // Feed actual keyboard adapter, advancing the browser clock in 1ms steps.
-  // No game state is written. Each sample is held until frames increments once.
+  // Feed actual keyboard events. The first1ms observation aligns to a display
+  // callback; subsequent8ms steps visit exactly the same callback boundaries.
+  // No game state is written; every input still requires exactly one frame.
   let held = new Set();
   let used = 0;
   const rows = [];
@@ -93,8 +94,9 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
     expect(before.scene).toBe("mountain");
     const frame = before.mountain.frames;
     let after;
-    for (let i = 0; i < 500; i++) {
-      await page.clock.runFor(1);
+    const step = used === 0 ? 1 : 8;
+    for (let i = 0; i < Math.floor(500 / step); i++) {
+      await page.clock.runFor(step);
       after = await state();
       if (after.diagnostic) throw Error(after.diagnostic);
       if (after.scene !== "mountain" || after.mountain.frames > frame) break;

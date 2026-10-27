@@ -95,8 +95,9 @@ neighbor scaling. Zoom fits the available panel width on small displays.
 Sprite background indices differ between assets. The viewer defaults to opaque
 pixels; choosing a transparent palette index is an inspection option. It is not
 a claim about the game's masking rules. Likewise 10 fps is a preview default,
-not recovered game timing. Original monitor aspect correction and graphics-driver
-palette/dithering variants are not reproduced.
+not recovered game timing. The viewer uses logical RGBI colors; scene palettes
+are documented below. Original monitor aspect correction and additional graphics-driver dithering
+variants remain outside viewer scope.
 
 ## Font
 
@@ -136,3 +137,14 @@ or original runtime parity.
 
 Stock resource field layouts and first30-of31 chart loading are documented in
 [investments.md](investments.md). Original resources remain authoritative.
+
+
+## Scene palette versus stored image colors
+
+Mountain and jungle images retain logical16-color indices in their original
+files. The supported EGA driver interprets the scene's DS2056..2065 palette table;
+slots5/13 change together for remaining lives. The game applies that palette after
+logical drawing,while the asset viewer continues to show the stored logical
+colors. `ega-palette.js` shares the conversion without changing any source asset.
+[Mountain life-palette evidence](mountain.md#life-palettes) distinguishes the
+captured initial palette,static life rules and native browser color checks.

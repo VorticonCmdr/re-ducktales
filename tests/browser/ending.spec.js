@@ -184,6 +184,7 @@ test("a lost real flight race leads to Glomgold's winning ending", async ({
     asset: 37,
   });
   await t.press("Space");
+  await t.until((s) => s.ending.phase === "celebration");
   expect((await t.state()).ending.asset).toBe(33);
   await t.press("Space");
   await t.until((s) => s.ending.phase === "replay");

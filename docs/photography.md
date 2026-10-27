@@ -227,6 +227,11 @@ spends the film,checks native audio,views the result,returns exactly two days
 later,checks cash without an extra treasure award,and exercises the collected
 notice and Restart. It chooses targets adaptively from observable game state;
 this browser acceptance is separate from fixed-stream deterministic replay.
+On the repeat visit,the rival report precedes the collected-location notice.
+The test resumes real browser time at that report and requires the native media
+`ended` event before the notice and map return. Advancing the controlled game
+clock alone cannot complete browser audio. No audio-status event is injected;
+the original money,calendar and three-draw RNG assertions remain required.
 Sound replacement now invalidates the cancelled playback request. Only an
 AbortError belonging to a superseded request is ignored;current audio failures
 remain fatal. This fixes an observed browser failure during the sound-enabled

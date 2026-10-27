@@ -1,6 +1,10 @@
 import { executableText } from "./executable.js";
 import { imagePixels, EGA } from "../assets.js";
 import { renderFlightPixels } from "./flight-raster.js";
+import {
+  renderMountainPixels,
+  createMountainRasterCache,
+} from "./mountain-scene.js";
 import { investmentPrice } from "./investments.js";
 import { systemOverlayLayout } from "./system-controls.js";
 export class Renderer {
@@ -9,7 +13,7 @@ export class Renderer {
     this.ctx = canvas.getContext("2d", { alpha: false });
     this.resources = resources;
     this.cache = new Map();
-    this.mountainRasterCache = new WeakMap();
+    this.mountainRasterCache = createMountainRasterCache();
     if (!this.ctx) throw Error("Canvas 2D is unavailable");
     this.font = resources.archives.get("MAIN.ARC")[42].data;
   }
@@ -281,11 +285,11 @@ export class Renderer {
       if (game.mountain.current)
         this.ctx.putImageData(
           new ImageData(
-            renderFlightPixels(
+            renderMountainPixels(
               game.mountain.current,
               game.mountain.entries,
               this.font,
-              "MT.ARC / MAIN.ARC",
+              game.mountain.memory,
               this.mountainRasterCache,
             ),
             320,

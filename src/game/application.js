@@ -13,6 +13,7 @@ import { FlightMemory } from "./flight-physics.js";
 import { initializeInvestments, advanceInvestmentDays } from "./investments.js";
 import { InvestmentScreen } from "./investment-screen.js";
 import { CampaignEnding, depositAccounts } from "./ending.js";
+import { advanceRival, RivalReport, RIVAL_UNLOCK } from "./rival.js";
 export const DRIVER_HZ = 1193182 / (1365 * 12);
 export const RETRACE_HZ = 70.086;
 
@@ -45,6 +46,8 @@ export class Game {
     this.investments = null;
     this.ending = null;
     this.marketMemory = null;
+    this.pendingCampaignAction = null;
+    this.rivalReport = null;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
     this.scene = "title";
@@ -68,11 +71,11 @@ export class Game {
     return initializeInvestments(this.marketMemory, this.investmentResources)
       .seed;
   }
-  settleMarket() {
+  settleMarket(force = false) {
     if (
       !this.marketMemory ||
       !this.campaign ||
-      !["office", "map"].includes(this.scene)
+      (!force && !["office", "map"].includes(this.scene))
     )
       return;
     const m = this.marketMemory,
@@ -88,7 +91,83 @@ export class Game {
   }
   input(event) {
     this.handleInput(event);
-    this.settleMarket();
+  }
+  // Resident main0187/0f7f: exactly one rival call, then daily market work,
+  // before the next root dispatch. Cursor movement and idle clocks never call it.
+  completeCampaignAction(action) {
+    if (this.pendingCampaignAction)
+      throw Error("Campaign continuation already pending");
+    const c = this.campaign;
+    if (c && c.day > 30 && action.type !== "ending") {
+      this.beginEnding();
+      return;
+    }
+    if (c) {
+      const result = advanceRival({
+        day: c.day,
+        difficulty: this.difficulty,
+        unlockMask: c.rivalUnlockMask,
+        seed: this.seed,
+        rival: c.rival,
+        locations: c.locations,
+        loot: this.loot,
+      });
+      this.seed = c.seed = result.seed;
+      if (result.report) {
+        c.rival.location = result.from; // Original publishes this after the report.
+        this.pendingCampaignAction = { ...action };
+        this.rivalReport = new RivalReport({
+          ...result.report,
+          audioEnabled: this.audioEnabled,
+          token: `rival:${++this.audioScope}`,
+        });
+        this.scene = "rival-report";
+        this.effects.push({ type: "stopAudio" });
+        if (this.audioEnabled)
+          this.effects.push({
+            type: "sound",
+            id: 0x6e,
+            token: this.rivalReport.token,
+          });
+        return;
+      }
+    }
+    this.finishCampaignAction(action);
+  }
+  finishCampaignAction(action) {
+    this.settleMarket(true);
+    if (action.type === "travel") {
+      this.travel(action.target);
+      return;
+    }
+    if (action.type === "map") {
+      this.campaign.openMap();
+      this.scene = "map";
+      return;
+    }
+    if (action.type === "office") {
+      this.scene = "office";
+      return;
+    }
+    if (action.type === "money-bin") {
+      this.scene = "money-bin";
+      this.bin = new MoneyBin({ coinAvailable: !this.rareCoinTaken });
+      this.effects.push(...this.bin.drainEvents());
+      return;
+    }
+    if (action.type === "investments") {
+      this.investments = new InvestmentScreen(
+        this.marketMemory,
+        this.investmentResources,
+      );
+      this.scene = "investments";
+      return;
+    }
+    if (action.type === "ending") {
+      this.showEnding();
+      return;
+    }
+    throw Error(`Unsupported campaign continuation ${action.type}`);
   }
   handleInput(event) {
     if (this.diagnostic) throw Error(this.diagnostic);
@@ -101,11 +180,13 @@ export class Game {
       this.jungle?.setAudioEnabled(event.enabled);
       this.photography?.setAudioEnabled(event.enabled);
       this.visitNotice?.setAudioEnabled(event.enabled);
+      this.rivalReport?.setAudioEnabled(event.enabled);
       return;
     }
     if (event.type === "audio-status") {
       this.cave?.setAudioStatus(event.token, event.busy);
       this.visitNotice?.setAudioStatus(event.token, event.busy);
+      this.rivalReport?.setAudioStatus(event.token, event.busy);
       return;
     }
     if (event.type === "restart") {
@@ -123,6 +204,8 @@ export class Game {
       this.investments = null;
       this.ending = null;
       this.visitNotice = null;
+      this.rivalReport = null;
+      this.pendingCampaignAction = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
       this.money = 0;
@@ -164,7 +247,10 @@ export class Game {
     if (this.scene === "difficulty") {
       if (event.type === "up") this.difficulty = (this.difficulty + 2) % 3;
       if (event.type === "down") this.difficulty = (this.difficulty + 1) % 3;
-      if (event.type === "fire") this.scene = "office";
+      if (event.type === "fire") {
+        this.scene = "office";
+        this.settleMarket();
+      }
       return;
     }
     if (this.scene === "map") {
@@ -187,7 +273,7 @@ export class Game {
       }
       if (event.type === "back") {
         if (c.info) c.info = false;
-        else this.travel(OFFICE);
+        else this.completeCampaignAction({ type: "travel", target: OFFICE });
         return;
       }
       if (c.info && ["left", "right"].includes(event.type)) {
@@ -196,12 +282,12 @@ export class Game {
       }
       if (event.type === "fire") {
         if (c.selected === OFFICE) {
-          this.travel(OFFICE);
+          this.completeCampaignAction({ type: "travel", target: OFFICE });
           return;
         }
         if (!c.info) {
           if (c.location !== OFFICE) {
-            this.travel(c.selected);
+            this.completeCampaignAction({ type: "travel", target: c.selected });
             return;
           }
           c.info = true;
@@ -213,7 +299,7 @@ export class Game {
           c.info = false;
           return;
         }
-        this.travel(c.selected);
+        this.completeCampaignAction({ type: "travel", target: c.selected });
       }
       return;
     }
@@ -223,17 +309,14 @@ export class Game {
         (event.type === "fire" && event.direction === "right")
       ) {
         if (!this.campaign) throw Error("Campaign locations not loaded");
-        this.campaign.openMap();
-        this.scene = "map";
+        this.completeCampaignAction({ type: "map" });
         return;
       }
       if (
         event.type === "money-bin" ||
         (event.type === "fire" && event.direction === "up")
       ) {
-        this.scene = "money-bin";
-        this.bin = new MoneyBin({ coinAvailable: !this.rareCoinTaken });
-        this.effects.push(...this.bin.drainEvents());
+        this.completeCampaignAction({ type: "money-bin" });
         return;
       }
       if (
@@ -241,12 +324,7 @@ export class Game {
         event.type === "investments"
       ) {
         if (!this.marketMemory) throw Error("Investment resources not loaded");
-        this.settleMarket();
-        this.investments = new InvestmentScreen(
-          this.marketMemory,
-          this.investmentResources,
-        );
-        this.scene = "investments";
+        this.completeCampaignAction({ type: "investments" });
         return;
       }
       if (event.type === "unsupported")
@@ -276,6 +354,10 @@ export class Game {
     }
     if (this.scene === "rival-claim") {
       if (event.type === "fire") this.claim.skipRequested = true;
+      return;
+    }
+    if (this.scene === "rival-report") {
+      if (event.type === "fire") this.rivalReport.skipRequested = true;
       return;
     }
     if (this.scene === "crash-repairs") {
@@ -355,7 +437,7 @@ export class Game {
         this.beginEnding(true);
         return;
       }
-      c.openMap();
+      this.completeCampaignAction({ type: "map" });
     } else {
       if (c.day > 30) {
         this.beginEnding();
@@ -367,10 +449,24 @@ export class Game {
   }
   advanceTick() {
     this.advanceDriverTick();
-    this.settleMarket();
   }
   advanceDriverTick() {
     this.tick++;
+    if (this.scene === "rival-report") {
+      if (this.rivalReport.advanceTick()) {
+        const r = this.rivalReport,
+          action = this.pendingCampaignAction;
+        this.campaign.rival.location = r.target;
+        this.rivalReport = null;
+        this.pendingCampaignAction = null;
+        this.effects.push({ type: "stopAudio" });
+        if (this.audioEnabled && r.phase === "dialogue" && r.skipRequested)
+          this.effects.push({ type: "sound", id: 0x24 });
+        if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x21 });
+        this.finishCampaignAction(action);
+      }
+      return;
+    }
     if (this.scene === "ending") {
       this.ending.advanceTick(this.controls);
       return;
@@ -392,10 +488,9 @@ export class Game {
           this.visitNotice.skipRequested &&
           this.visitNotice.phase === "dialogue";
         this.visitNotice = null;
-        this.campaign.openMap();
-        this.scene = "map";
         this.effects.push({ type: "stopAudio" });
         if (fireClick) this.effects.push({ type: "sound", id: 0x24 });
+        this.completeCampaignAction({ type: "map" });
       }
       return;
     }
@@ -589,9 +684,8 @@ export class Game {
         this.beginEnding();
         return;
       }
-      c.openMap();
-      this.scene = "map";
       this.effects.push({ type: "stopAudio" });
+      this.completeCampaignAction({ type: "map" });
     }
   }
   finishScoredExpedition(memory) {
@@ -619,8 +713,7 @@ export class Game {
         this.beginEnding();
         return;
       }
-      this.campaign.openMap();
-      this.scene = "map";
+      this.completeCampaignAction({ type: "map" });
       return;
     }
     this.campaign.day = u8(this.campaign.day + 1);
@@ -659,9 +752,8 @@ export class Game {
       this.beginEnding();
       return;
     }
-    c.openMap();
-    this.scene = "map";
     this.effects.push({ type: "stopAudio" });
+    this.completeCampaignAction({ type: "map" });
   }
   finishRepairs() {
     if (this.repairs.phase === "repair" && (this.money | 0) > 0) {
@@ -702,6 +794,7 @@ export class Game {
     this.scene = "expedition-briefing";
   }
   startExpedition() {
+    this.campaign.rivalUnlockMask |= RIVAL_UNLOCK[this.briefing.activity] ?? 0;
     if (this.briefing.activity === "photography") {
       this.photography = new Photography(
         {
@@ -782,9 +875,8 @@ export class Game {
       this.beginEnding();
       return;
     }
-    this.campaign.openMap();
-    this.scene = "map";
     this.effects.push({ type: "stopAudio" });
+    this.completeCampaignAction({ type: "map" });
   }
   collectEffects() {
     for (const event of this.bin.drainEvents()) {
@@ -793,7 +885,7 @@ export class Game {
           this.money = u32(this.money + 1000);
           this.rareCoinTaken = true;
         }
-        this.scene = "office";
+        this.completeCampaignAction({ type: "office" });
       }
       this.effects.push(event);
     }
@@ -803,7 +895,8 @@ export class Game {
   }
   collectInvestments() {
     this.money = this.marketMemory.view.getUint32(0x8cc0, true);
-    if (this.investments.complete) this.scene = "office";
+    if (this.investments.complete)
+      this.completeCampaignAction({ type: "office" });
   }
   deposit() {
     const c = this.campaign;
@@ -827,9 +920,13 @@ export class Game {
     // Main0187 skips ordinary market cleanup past day30. An exact day30 bank
     // arrival performs cleanup before the winner comparison.
     if (c.day === 30) {
-      this.scene = "map";
-      this.settleMarket();
+      this.completeCampaignAction({ type: "ending" });
+      return;
     }
+    this.showEnding();
+  }
+  showEnding() {
+    const c = this.campaign;
     this.ending = new CampaignEnding({
       day: c.day,
       banked: c.banked,
@@ -859,6 +956,10 @@ export class Game {
       photography: this.photography?.snapshot() ?? null,
       investments: this.investments?.snapshot() ?? null,
       ending: this.ending?.snapshot() ?? null,
+      rivalReport: this.rivalReport?.snapshot() ?? null,
+      pendingCampaignAction: this.pendingCampaignAction
+        ? { ...this.pendingCampaignAction }
+        : null,
       briefing: this.briefing?.snapshot() ?? null,
       repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
       expeditionResult:

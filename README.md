@@ -3,11 +3,11 @@
 HTML, CSS, vanilla JavaScript and Vite, with original DOS assets loaded locally.
 
 Playable routes include the money-bin coin,world-map travel and banking,flights,
-cave/mountain/jungle expeditions,photography,stock trading with daily news,and campaign endings/replay.
+cave/mountain/jungle expeditions,photography,stock trading with daily news,Glomgold campaign travel,and endings/replay.
 The browser uses the original assets and shared RNG; completed routes include
 rewards,campaign return,retries and duplicate-collection protection.
-**The full game is incomplete:** normal rival progression,atomic travel and
-save/load remain unfinished,and original timing/presentation parity is partial. See
+**The full game is incomplete:** atomic travel,save/load and
+high scores remain unfinished,and original timing/presentation parity is partial. See
 [current status](docs/STATUS.md) for exact evidence,limitations and verification.
 
 ## Run

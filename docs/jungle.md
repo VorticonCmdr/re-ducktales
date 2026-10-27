@@ -698,8 +698,7 @@ browser exploration collected$50 and observed the coat/HUD life change. Required
 commands are `npm run verify:jungle`, `npx playwright test tests/browser/jungle.spec.js`
 and the full `npm run verify`. Missing local originals are setup failures.
 
-Photography and trading are now connected; normal rival progression
-remain next. Other maps/difficulties received exploratory short runs only;
+Photography,trading and [normal rival progression](rival.md) are connected. Other maps/difficulties received exploratory short runs only;
 those are not full acceptance. Original scrolling/enemy/hit pixels,whole-loop
 clock/IRQ alignment,audio and full-level replay remain open.
 
@@ -762,10 +761,11 @@ Final outcome/frame/display counts,reward,calendar,collection and Restart are
 checked exactly. The controlled8ms display cadence leaves simulation rates intact.
 
 The browser route awards$1000,returns on day5,marks current location1 collected
-and shows the collected notice without changing cash/day/location/seed. Run
+and shows the collected notice without changing cash/day/location. The campaign
+dispatch now advances Glomgold and consumes his exact RNG draws; see [rival evidence](rival.md). Run
 `npx playwright test tests/browser/jungle-treasure.spec.js`,
 `npm run verify:jungle` and `npm run verify:startup`;all are required by
 `npm run verify`. This does not establish an original whole-level replay.
 Original whole-level timing,scrolling/enemy/transition pixels,audio and other
 variants/difficulties remain unverified. Photography and trading are connected;
-normal rival progression remain next. The full-game goal is active.
+[normal rival progression](rival.md) is connected. The full-game goal is active.

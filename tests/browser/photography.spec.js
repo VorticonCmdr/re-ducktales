@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { nextRandom } from "../../src/game/integer.js";
 
 test("photography keyboard target shot, results, campaign return and collected notice", async ({
   page,
@@ -137,7 +138,8 @@ test("photography keyboard target shot, results, campaign return and collected n
   const preserved = {
     money: returned.money,
     day: returned.campaign.day,
-    seed: returned.seed,
+    // The visit's two root dispatches include one normal rival claim (3 draws).
+    seed: nextRandom(nextRandom(nextRandom(returned.seed))),
   };
   const afterBounds = await canvas.boundingBox();
   await canvas.click({

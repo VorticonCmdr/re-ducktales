@@ -302,6 +302,11 @@ export async function verifyCaveRoutes(resources) {
       for (let i = 0; i < delay - 1; i++) g.advanceTick();
       assert.equal(g.scene, "expedition-result", "report ended too soon");
       g.advanceTick();
+      if (g.scene === "rival-report") {
+        assert.deepEqual(g.pendingCampaignAction, { type: "map" });
+        for (let i = 0; i < 280; i++) g.advanceTick();
+        assert.equal(g.rivalReport, null, "unfinished rival report");
+      }
       assert.equal(g.scene, "map");
       assert.equal(g.campaign.day, 2);
       assert.equal(g.campaign.locations[1].playerCollected, won);

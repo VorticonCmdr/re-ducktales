@@ -1,6 +1,9 @@
 import { test, expect } from "@playwright/test";
 import startup from "../../reference/campaign-startup-browser.json" with { type: "json" };
 import ascent from "../../reference/mountain-ascent.json" with { type: "json" };
+import { nextRandom } from "../../src/game/integer.js";
+import { readFile } from "node:fs/promises";
+import { PNG } from "pngjs";
 
 test("keyboard mountain ascent awards treasure and prevents duplicate collection", async ({
   page,
@@ -136,8 +139,36 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   const returned = await until((s) => s.scene === "map");
   expect(returned.campaign.playerCollected).toContain(31);
   expect(returned.money).toBe(8100);
+  expect(returned.campaign.rivalUnlockMask).toBe(2);
   await press("Space");
+  const report = await state();
+  expect(report.scene).toBe("rival-report");
+  expect(report.pendingCampaignAction).toEqual({ type: "travel", target: 31 });
+  expect(report.campaign.rivalCollected).toContain(report.rivalReport.target);
+  expect(report.campaign.rival.location).toBe(returned.campaign.rival.location);
+  // Compare portrait pixels against the original report capture, independently
+  // of this browser's destination text. Presentation clocks are supplied above.
+  const expectedPortrait = PNG.sync.read(
+    await readFile(".local/rival-value-report.png"),
+  );
+  const actualPortrait = PNG.sync.read(
+    Buffer.from(
+      (await c.evaluate((c) => c.toDataURL())).split(",")[1],
+      "base64",
+    ),
+  );
+  for (let y = 0; y < 200; y++)
+    expect(
+      Buffer.compare(
+        actualPortrait.data.subarray(y * 1280, y * 1280 + 128 * 4),
+        expectedPortrait.data.subarray(y * 1280, y * 1280 + 128 * 4),
+      ),
+    ).toBe(0);
+  await c.screenshot({
+    path: ".local/browser-results/campaign-rival-report.png",
+  });
   const collected = await until((s) => s.scene === "visit-notice");
+  expect(collected.campaign.rival.location).toBe(report.rivalReport.target);
   expect(collected.visitNotice.reason).toBe("player");
   expect([
     collected.money,
@@ -148,7 +179,7 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
     returned.money,
     returned.campaign.day,
     returned.campaign.location,
-    returned.seed,
+    nextRandom(nextRandom(nextRandom(returned.seed))),
   ]);
   await press("Space");
   await until((s) => s.scene === "map");

@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import startup from "../../reference/campaign-startup-browser.json" with { type: "json" };
+import { nextRandom } from "../../src/game/integer.js";
 const route = startup.jungle;
 
 test("keyboard jungle completion awards treasure and prevents duplicate collection", async ({
@@ -124,6 +125,12 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
   const returned = await until((s) => s.scene === "map");
   expect(returned.campaign.playerCollected).toEqual([1]);
   expect(returned.money).toBe(1000);
+  expect(returned.campaign.rivalUnlockMask).toBe(1);
+  const idleRival = returned.campaign.rival,
+    idleSeed = returned.seed;
+  await page.clock.runFor(2000);
+  expect((await state()).campaign.rival).toEqual(idleRival);
+  expect((await state()).seed).toBe(idleSeed);
   await press("Space");
   const collected = await until((s) => s.scene === "visit-notice");
   expect(collected.visitNotice.reason).toBe("player");
@@ -136,7 +143,8 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
     returned.money,
     returned.campaign.day,
     returned.campaign.location,
-    returned.seed,
+    // This dispatch is a rival miss: two RNG draws, with no extra report draw.
+    nextRandom(nextRandom(returned.seed)),
   ]);
   await press("Space");
   const again = await until((s) => s.scene === "map");

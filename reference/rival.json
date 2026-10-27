@@ -1,0 +1,101 @@
+{
+  "id": "campaign-rival-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "d988e13",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 9,
+  "evidenceLevel": "conditional original routine comparisons and exact report PNG, not a whole campaign replay",
+  "startingRecipe": "Original ending Play Again/Yes resets to difficulty (stop426); Enter selects Easy; at Office Right+Space traps live0460:0008 (stop427). Capture inactive entry plus1275 relocated code bytes and return0328 (428). Fire/N through security/quit dialog returns to Office via next entry430. See docs/rival.md for the remaining conditional setup. DS/SS1403 and loadbase01f5; original126b maps0460.",
+  "injections": [
+    "At stop430 CAS player day1\u219210 and unlock mask0\u21921; capture Easy miss. This bypasses expedition activation and is conditional evidence.",
+    "At next entry432 CAS difficulty0\u21921 and RNG23516\u219256; capture Standard odd-day nearest claim. Output observed later in bin animation at0603:0deb, with the same final seed29915. No full-machine restore.",
+    "At entry437 CAS rival scheduled day5\u21924 and RNG29915\u219256; capture Standard even-day value claim and report. All other inputs come from incoming memory.",
+    "At next map return entry440 CAS difficulty1\u21922 and RNG29915\u219256. Rival day6, carried8500 and banked6000 remain incoming values. Capture Hard ratio selection at return441.",
+    "At following office/money-bin dispatch entry442 CAS carried cash16500\u21921000 and seed29915\u219277, selecting roll50 and an odd second draw. At return443 the prior1000 is erased before the new treasure is credited."
+  ],
+  "fittedInputs": [],
+  "inputEvents": "Paired hardware keys, released between actions: Enter; OfficeRight+Space; securityEsc thenN andFire twice; OfficeUp+Space; Fire in bin and wait for return; OfficeRight+Space. Debug stops bound the routine captures. This is an exploration recipe, not an elapsed-time input replay.",
+  "comparisonRules": "Exact RNG, rival day/location/carried/banked money, chosen destination and every player/rival collected flag. Captured entry DS resources supply coordinates and signed16 loot values. Nearest comparison is a later conditional observation; it is not a routine-return checkpoint. Value report captures at0460:0297 after reveal and input flush, before sound-status query; location must still equal incoming location. Exact320x200RGBA against MAIN33 plus original font/text. Other heap/graphics/scratch fields are outside semantic scope.",
+  "unsupported": [
+    "All destinations exhausted returns special slot35; its downstream behavior remains unknown and stops in development.",
+    "Original audio-busy timing and whole-campaign closed-loop replay are not proven; browser integration is independently exercised."
+  ],
+  "verifyCommand": "npm run verify:rival",
+  "artifacts": {
+    "mode": {
+      "path": ".local/rival-mode.json",
+      "sha256": "e43bcadd87390a9fc82fa2f96379a54ede62daba3439c25db418b1fde45eb8aa"
+    },
+    "inactiveBefore": {
+      "path": ".local/rival-inactive-before.json",
+      "sha256": "09e7403342dabc3ae05d552fb8934059f1a3803ea4dc3f70a14368651a07f610"
+    },
+    "inactiveAfter": {
+      "path": ".local/rival-inactive-after.json",
+      "sha256": "d6c7ca536ac6fffd30906bff9ec5b78685662098a74d42f2517b6a988e265c57"
+    },
+    "easyBefore": {
+      "path": ".local/rival-easy-before.json",
+      "sha256": "50f7eaf31be80fd7f71fe47180adfae7df6e96521eebd04b00025b3c825b9ba0"
+    },
+    "easyAfter": {
+      "path": ".local/rival-easy-after.json",
+      "sha256": "e3014341321f21589f8905d3bfff3e347f8a8ca5603a7d52897817af857d5e2e"
+    },
+    "nearestBefore": {
+      "path": ".local/rival-nearest-before.json",
+      "sha256": "d3be6d2255d043445743592111f61982634c3d7db227e0fc24edeaaaaeceaba7"
+    },
+    "nearestAfter": {
+      "path": ".local/rival-nearest-wait.json",
+      "sha256": "3fd6853afadab0ed1d3e51e5c7abcb3db370a8f50bb51d215ec065a6fe94d001"
+    },
+    "bankBefore": {
+      "path": ".local/rival-bank-before.json",
+      "sha256": "31c61e5cbd4564018ce02f1b014c654f11576bc85056f75c876aac6c46b9a3ce"
+    },
+    "bankAfter": {
+      "path": ".local/rival-bank-after.json",
+      "sha256": "0f272cb4e084bf6e1460c2ae37e98e613ea4e4166fef6e3a2570440eab4482e8"
+    },
+    "valueBefore": {
+      "path": ".local/rival-value-before.json",
+      "sha256": "0927b263f9525b407de9393671fbe4fdc24e0b6396d67b8320be2c50c94f4df0"
+    },
+    "valueAfter": {
+      "path": ".local/rival-value-after.json",
+      "sha256": "018503812e9d78cf6642a2f596ae904fa28edf3089212e78966ea4e50e46ef41"
+    },
+    "valueReport": {
+      "path": ".local/rival-value-report.json",
+      "sha256": "5b788fb6a165b32274c055f7c0627895d03c3117097c3a82ec6605b81d248ce0"
+    },
+    "reportPNG": {
+      "path": ".local/rival-value-report.png",
+      "sha256": "6bed2853deb730098264f9bbc0a0fdb88299ecbacf443b3d233323da2707a90a"
+    },
+    "ratioBefore": {
+      "path": ".local/rival-ratio-before.json",
+      "sha256": "f1206cec0e526b970f6e57df1bd0474662466e7623b14eb19278b5f87285909f"
+    },
+    "ratioAfter": {
+      "path": ".local/rival-ratio-after.json",
+      "sha256": "5920bc2ef5dfadaf124ad92715178dcfb09cee3129c8121896f8a02079e0b8a8"
+    },
+    "lossBefore": {
+      "path": ".local/rival-loss-before.json",
+      "sha256": "f943999fb732b500779251ae363909451df3e2653a598ee02ff9a29d3e9ecc09"
+    },
+    "lossAfter": {
+      "path": ".local/rival-loss-after.json",
+      "sha256": "c523dd3563aea782110a493e0d53dce2537b477243746a7205786425e1377b58"
+    }
+  }
+}

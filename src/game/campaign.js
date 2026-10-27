@@ -106,6 +106,7 @@ export class Campaign {
       playerCollected: false,
     }));
     this.rival = { day: 1, money: 0, location: OFFICE };
+    this.rivalUnlockMask = 0;
     this.seed = assigned.seed;
     this.atomicLocation = assigned.atomicLocation;
     this.atomicAvailable = false;
@@ -166,6 +167,10 @@ export class Campaign {
       location: this.location,
       banked: this.banked,
       rival: { ...this.rival },
+      rivalUnlockMask: this.rivalUnlockMask,
+      rivalCollected: this.locations.flatMap((l, i) =>
+        l.rivalCollected ? [i] : [],
+      ),
       playerCollected: this.locations.flatMap((l, i) =>
         l.playerCollected ? [i] : [],
       ),

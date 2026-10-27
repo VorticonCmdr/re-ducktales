@@ -69,9 +69,9 @@ This is conditional caller-segment evidence. No output-derived inputs, fitted
 RNG/timers or post-call memory are used to start it. CPU/stack outside identity,
 argument and cost fields, allocations, driver clocks, reveal duration and audio
 completion timing are excluded. Normal Glomgold progression before the map is
-not replayed. Collected-notice pixels/poll timing are statically translated and
+not replayed by this segment; see [separate rival evidence](rival.md). Collected-notice pixels/poll timing are statically translated and
 browser exercised, without an original notice capture comparison yet.
 
-Current original is paused at cave0e0c:0000, stop23, DS/SS1403, instance
+At this notice capture,the original was paused at cave0e0c:0000, stop23, DS/SS1403, instance
 0719a1b0cdcede0b85c39577ff760639. Fire was released; no active schedule or
 breakpoints remain. Revalidate addresses after relaunch/layout changes.

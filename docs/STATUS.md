@@ -23,6 +23,10 @@ Updated2026-10-27. **The full game is not complete.**
 - Office → investments → portfolio → company → buy/sell → broker → office.
   Original resources,99-share limit,held-Fire repetition,persistent holdings and
   daily news work. Trading preserves the calendar and money-bin coin latch.
+- Entering an expedition activates normal Glomgold turns. Completed campaign actions
+  advance one rival trip,claim or bank deposit. Reports pause and resume pending
+  actions; a new rival claim can prevent the selected departure. Idle map time
+  does not advance him.
 - Deadline → final deposit → winner/loser pictures → Play Again. Ties favor Scrooge;
   unsold shares are excluded from banked score. Yes resets to difficulty;No shows
   credits and a finished screen. Restart remains available as a browser adapter.
@@ -58,13 +62,15 @@ A production visitor selects their own original folder. `.gitignore` is preserve
 
 Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 [jungle](jungle.md),[photography](photography.md),[trading](investments.md),
-[endings](ending.md),[treasure assignment](treasure-assignment.md).
+[endings](ending.md),[rival progression](rival.md),[treasure assignment](treasure-assignment.md).
 
 ## Known limitations and next milestone
 
-- Normal Glomgold progression is absent; forced flight-race claims work. Next:
-  translate its unlock mask96ba and scheduled travel/claims/banking. Static source
-  sets bits1/2/4/8 on jungle/mountain/cave/photography entry at2c03/36/60/8a.
+- Normal Glomgold progression is connected. Nine conditional original checks cover
+  inactive/miss/claim/bank and all difficulty selectors,with exact report pixels.
+  Original full-campaign/audio timing remains unproven. An exhausted rival route35
+  stops explicitly; its original out-of-table behavior is unknown.
+- Next: atomic transport,including its original departure choice and campaign return.
 - Atomic travel,save/load and high scores are absent. Some editions are unsupported.
 - Full original expedition timing,presentation and audio parity are unproven.
   Cave movement,mountain hook/ascent,jungle scrolling/enemies and additional
@@ -85,16 +91,18 @@ npx playwright install chromium
 npm run verify
 ```
 
-Focused commands: `npm test`,`npm run test:browser`,`npm run verify:ending`,
+Focused commands: `npm test`,`npm run test:browser`,`npm run verify:rival`,`npm run verify:ending`,
 `npm run verify:investments`,`npm run verify:startup`,and the subsystem commands
 in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Full `npm run verify` passed for this milestone:27 unit tests,23 browser scenarios,
-all required original/independent checks and the production build.
+Full `npm run verify` passed for this milestone:32 unit tests,23 browser scenarios,
+all required original/independent checks and the production build. Rival-specific
+checks include9 conditional original comparisons,exact report pixels,negative
+controls and pending-action/audio/ending integration checks.
 
-Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,returned through
-Play Again/Yes to difficulty. Paused0603:0de3 stop426,DS/SS1403,all keys released,
-no pending input schedule. The ending capture inherited explicit cash/date setup
-from trading; `reference/ending.json` records the exact scope and checksums.
+Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
+0460:0328 stop443 after the conditional cash-loss/treasure trip,DS/SS1403. No pending
+input schedule or breakpoints. `reference/rival.json` records cash/date/difficulty/
+unlock/seed injections and the later observation used for the nearest-selector case.

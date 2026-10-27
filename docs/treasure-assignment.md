@@ -33,5 +33,6 @@ also establish the capture's identity. The pending startup input schedule was
 cancelled afterward. A focused bridge correction would make `bridge_start` wait
 for the probed engine PID to match the spawned PID before reporting connected.
 
-Normal Glomgold progression and other untranslated campaign code consume more
-RNG; this closes treasure initialization, not complete campaign RNG parity.
+[Normal Glomgold progression](rival.md) now consumes the shared RNG at root action
+boundaries. Other untranslated campaign code also consumes RNG; this closes treasure
+initialization, not complete campaign RNG parity.

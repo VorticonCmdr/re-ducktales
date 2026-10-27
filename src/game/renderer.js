@@ -427,9 +427,11 @@ export class Renderer {
       );
       return;
     }
-    if (game.scene === "rival-claim") {
+    if (["rival-claim", "rival-report"].includes(game.scene)) {
       this.draw("MAIN.ARC", 33, 0, 0, 0);
-      const offsets = game.claim.variant ? [0x52c, 0x538] : [0x541, 0x552];
+      const report =
+        game.scene === "rival-report" ? game.rivalReport : game.claim;
+      const offsets = report.variant ? [0x52c, 0x538] : [0x541, 0x552];
       offsets.forEach((at, i) =>
         this.text(
           executableText(this.resources.executable, at),
@@ -439,7 +441,10 @@ export class Renderer {
       );
       this.text(executableText(this.resources.executable, 0x562), 168, 100);
       this.text(executableText(this.resources.executable, 0x571), 168, 116);
-      const name = game.campaign.locations[game.departure.target].name;
+      const name =
+        game.campaign.locations[
+          game.scene === "rival-report" ? report.target : game.departure.target
+        ].name;
       this.text(name, 224 - name.length * 4, 132);
       this.text(
         executableText(this.resources.executable, 0x57f),

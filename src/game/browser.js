@@ -338,7 +338,9 @@ function frame() {
                             ? "The Junior Woodchuck Guide"
                             : game.scene === "flight"
                               ? `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
-                              : game.scene === "rival-claim"
+                              : ["rival-claim", "rival-report"].includes(
+                                    game.scene,
+                                  )
                                 ? `Glomgold has taken the treasure · Fire to continue`
                                 : game.scene === "money-bin"
                                   ? `Money bin · ${game.bin.phase} · Fire to dive`

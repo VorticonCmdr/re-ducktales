@@ -106,6 +106,7 @@ controlled browser time. It does not inject game memory or outcomes:
   the deadline. The player loses0–4500 and sees MAIN37/33 and the replay prompt.
 
 These are browser acceptance scenarios,not an original whole-campaign replay.
-Normal rival progression is still absent. Static investigation identified its
-activation byte96ba: entering jungle/mountain/cave/photography sets bits1/2/4/8
-(resident2c03/2c36/2c60/2c8a). Translating that progression is the next milestone.
+Normal rival progression is now connected; see [its evidence](rival.md). Exact
+day30 bank cleanup advances one rival turn before the winner comparison. Past-day30
+cleanup remains skipped. The ending cases above do not activate normal progression
+(the flight race forces its separate claim),so they do not prove a whole campaign.

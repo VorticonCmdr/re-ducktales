@@ -21,7 +21,7 @@ Confirming an expedition now prepares Launchpad's flight and displays the origin
 briefing, followed by playable flight and cave arrival. Caves now return through
 reward/failure screens. See [departure evidence](expedition-departures.md) and
 [cave evidence](cave.md). Other expedition families and stocks now have playable routes. Normal Glomgold
-progression and save/load remain unsupported. Deadline deposits and endings now
+progression is connected; see [rival evidence](rival.md). Save/load remains unsupported. Deadline deposits and endings now
 work; see [ending evidence](ending.md). Bank arrival at day30 ends the campaign;
 travel to the office on exactly day30 is still allowed. A later arrival redirects
 to final banking.

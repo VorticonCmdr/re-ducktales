@@ -1,0 +1,148 @@
+{
+  "id": "money-bin-input-polls-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "56e6f2f",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 10,
+  "evidenceLevel": "fresh-launch original money-bin input-reader boundaries, retained released keys, pause preservation and dive flush; independent port input schedule. Not original whole-level timing replay.",
+  "startingRecipe": "Exit reference/credits.json farewell naturally to C prompt. Run DUCKTALE, hardware N, paired Space through intro and Enter for Easy. Original source1124 inputcode matches live0319,helpers140e->0603,pause11c4->03b9,overlay9->0e0c; DS/SS1403. Whole overlay and resident code identities are checked. No game/CPU writes or restores. Office Up+Space enters bin. First poll022a stop482 pins code. P at idle: pause047f483,05d5484,066c485,bin022f486. Fire completes a dive,returnoffice. A later intro capture at0181 precedes first28-tick wait. After it, frame-scheduled P down10/up20 while paused,arm bin022a and continue: stop493 has P flag40,next-pose2,sprite1. Continue pause047f494,05d5495; schedule P down10/up11 frames and stop066c496,then bin0210497. Space down10/up11 frames enters dive first wait02f9498. Schedule Q10/11,P12/13,S14/15 frames; run bin0b07499 before flush,then0b0c500 after. All owned breakpoints removed;final paused500,all inputs dispatched. Earlier attempts whose input chain had not dispatched at an early stop are excluded.",
+  "injections": [],
+  "fittedInputs": [],
+  "inputEvents": {
+    "intro": [
+      {
+        "frame": 10,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 20,
+        "key": "KBD_p",
+        "pressed": false
+      }
+    ],
+    "resume": [
+      {
+        "frame": 10,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 11,
+        "key": "KBD_p",
+        "pressed": false
+      }
+    ],
+    "dive": [
+      {
+        "frame": 10,
+        "key": "KBD_q",
+        "pressed": true
+      },
+      {
+        "frame": 11,
+        "key": "KBD_q",
+        "pressed": false
+      },
+      {
+        "frame": 12,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 13,
+        "key": "KBD_p",
+        "pressed": false
+      },
+      {
+        "frame": 14,
+        "key": "KBD_s",
+        "pressed": true
+      },
+      {
+        "frame": 15,
+        "key": "KBD_s",
+        "pressed": false
+      }
+    ]
+  },
+  "comparisonRules": "Exact relocated 2836-byte overlay9,65 relocations; resident input876,pause494,wait53,IRQ173 and key-reader114 byte identities. Exact active sprite descriptors,bin caller counter,pause guard,128-byte key flush,campaign seed/accounts/date. Original caller counter is before its post-render increment at0210; port nextPose is after that increment,explicit+1 alignment. Pause holds clocks continue,but no original CPU/presentation/audio delay total is replayed or fitted. The independent port starts a fresh MoneyBin with incoming coin latch/money/seed from introPoll,uses authored press-at50/resume-after1000 ticks and every driver/retrace step. Its full dive consumes separate Q/P/S inputs and must finish. Sound and other global keys outside money-bin still have next-driver-tick approximation.",
+  "artifacts": {
+    "code": {
+      "path": ".local/bin-pause-first-poll.json",
+      "sha256": "36807223b72e80fc87968c98a997b9d2f5429b7bb0002d2af3736c166ec83009"
+    },
+    "idleEntry": {
+      "path": ".local/bin-pause-idle-entry.json",
+      "sha256": "595f48c02d98249637c4910a2b1dcb475a5e29f4a8361f38168d243bb169dff2"
+    },
+    "idleWait": {
+      "path": ".local/bin-pause-idle-wait.json",
+      "sha256": "ad9f149e1014ab49979aad8c3f268d4e1856f66be92e42c73b0070c2ccea7b1b"
+    },
+    "idleAfter": {
+      "path": ".local/bin-pause-idle-after.json",
+      "sha256": "27584f31425019758ba7b23fcb8ae052d9af391726db2bf1117167174e878f15"
+    },
+    "idleReturn": {
+      "path": ".local/bin-pause-idle-return.json",
+      "sha256": "008d9a0533acd19f39b82712142fcf4a1ad4cbf509f6dfb9195a9e2954754aba"
+    },
+    "introPoll": {
+      "path": ".local/bin-pause-intro-key-poll.json",
+      "sha256": "10d5ba88b2285b9692ec66c6ef82557a0a40b020fb1e8eb8f65e4e389dd9e425"
+    },
+    "introReplay": {
+      "path": ".local/bin-pause-intro-replay.json",
+      "sha256": "1671c51dd90812db943f34bcdda30b97ae1461d1d30e12ac59c45e042fad2686"
+    },
+    "introEntry": {
+      "path": ".local/bin-pause-intro-entry.json",
+      "sha256": "7f807e038b956db63e99690aa9033bf5ce2b1f2f5813ca6f6e9823e3357b8932"
+    },
+    "introWait": {
+      "path": ".local/bin-pause-intro-wait.json",
+      "sha256": "d5a7a05fc0fd91ee9c168ed8389b55c348134b62fe381fced6fd3150bf3c74e4"
+    },
+    "introAfter": {
+      "path": ".local/bin-pause-intro-after.json",
+      "sha256": "37af36e8a77db0362739fb557ec7cf64667ce59df286518e716677ccf4734d03"
+    },
+    "introNext": {
+      "path": ".local/bin-pause-intro-next-pose.json",
+      "sha256": "6fba55a025b3b53381a4a777f4420a418d87b5cb78ca5619f36f1ed0e84a469b"
+    },
+    "diveStart": {
+      "path": ".local/bin-pause-dive-start.json",
+      "sha256": "7b195e3156c553c83f72a76ba63e528e7ce2b462c7034bd2803d79ae59770c18"
+    },
+    "diveBefore": {
+      "path": ".local/bin-pause-dive-before-flush.json",
+      "sha256": "e6af6898f8b0e16d3d66cd83f24d4c492f17adc85f8e54f8e0785f56afdfd383"
+    },
+    "diveAfter": {
+      "path": ".local/bin-pause-dive-after-flush.json",
+      "sha256": "2bcd1145be68e45ca4e15de6243983295edb85ec3a6628c938c57e17e4dc1f66"
+    },
+    "diveReplay": {
+      "path": ".local/bin-pause-dive-replay.json",
+      "sha256": "26a36b21bf9e5c3d427ccdca8d38ccac8690d91b3282978f9ccfad1321c10a88"
+    },
+    "mode": {
+      "path": ".local/bin-pause-mode.json",
+      "sha256": "4387cc9e369e925b92f8953fdbc12a24f996989b77a11b1559f6d62685a8753f"
+    },
+    "resumeReplay": {
+      "path": ".local/bin-pause-resume-replay.json",
+      "sha256": "9708c3c66be5d574c1b999840917abd8f248f42e01088d340fc35b40e6a1f15e"
+    }
+  },
+  "replayStatusProvenance": "Intro/dive statuses serialized at their capture calls. Resume status serialized verbatim from the replay_status tool response returned immediately after stop496 (frame367884,2/2 events,remaining0,activefalse); it is a preserved past response,not a new emulator observation."
+}

@@ -7,6 +7,8 @@ Updated2026-10-27. **The full game is not complete.**
 - P pauses/resumes; S switches sound; Q/Escape/F1 asks to quit. N continues the
   same scene; Y shows credits without banking or replay. The Back/Office button
   provides navigation. Dialog state and original popup pixels are checked.
+  In the money bin these keys wait for the original idle input poll; the intro
+  continues before Pause,and the dive clears unread keys on its return.
 
 - Title → difficulty → office → money-bin dive → office. Correct timing awards
   the original one-time$1000 coin; travel/banking resets its latch.
@@ -82,8 +84,10 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   assumed those features; [the interface audit](system-controls.md) corrects that.
   Browser persistence would be an explicit addition,not a translated original format.
 - Next: input-poll timing and remaining campaign edge paths,then broader original
-  expedition comparisons. Global dialogs currently accept keys at the next driver
-  tick; alignment with every original animation/audio wait is unproven.
+  expedition comparisons. Money-bin intro/idle/dive polling now has10 original
+  comparisons,including retained released keys and the final flush. Other scenes
+  still accept global keys at the next driver tick; alignment with their original
+  animation/audio waits is unproven.
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
@@ -115,7 +119,7 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:42 unit tests,26 browser scenarios,
+Last fully verified milestone passed `npm run verify`:42 unit tests,26 browser scenarios,
 all required original comparisons (including7 system-control/interface checks)
 and production build. The real-time jungle retry check accepts the original rival
 claim notice when Glomgold has already collected that destination; otherwise it
@@ -126,8 +130,15 @@ Additional credits checks pass `npm run verify:ending` and the focused system
 controls browser scenario,including9 new original code/index/pixel comparisons.
 `reference/credits.json` records their precise scope and mandatory local files.
 
+Money-bin input correction passes44 unit tests,focused controller/browser checks
+and10 new original comparisons. Integration found a flight zero-width left-edge
+rendering failure; the two large expedition browser replays also exceeded their
+timeouts with4 concurrent browsers.23 browser scenarios passed. These failures
+remain strict and are being investigated; no full integration pass is claimed yet.
+
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-04ea:1164 stop475 at farewell wait,DS/SS1403,sound off. No breakpoints or pending
-replay. The controls/credits captures inherit conditional campaign setup from
-`reference/atomic.json`; `reference/system-controls.json` and `reference/credits.json`
-pin the new observations.
+0e0c:0b0c stop500 at money-bin return after flushing,Q/P/S cleared,DS/SS1403,sound
+on. No breakpoints or pending replay. The money-bin input captures use a fresh
+natural launch and original play with no memory/CPU injections. Earlier controls/
+credits captures inherit conditional setup from `reference/atomic.json`.
+`reference/money-bin-input.json` pins the new observations.

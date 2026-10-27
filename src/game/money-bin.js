@@ -76,7 +76,9 @@ function diveSequence(won) {
 }
 
 export class MoneyBin {
-  constructor({ coinAvailable = true } = {}) {
+  constructor({ coinAvailable = true, pollInput = () => true } = {}) {
+    this.pollInput = pollInput;
+    this.waitingForInputPoll = false;
     this.tick = 0;
     this.phase = "intro";
     this.nextPose = 2;
@@ -110,6 +112,11 @@ export class MoneyBin {
     this.inputQueue.push({ type: "fire" });
   }
   pollIdle() {
+    // Overlay9:022a is the only input-reader call in this routine. The
+    // caller may suspend that call in a global dialog before it returns.
+    this.waitingForInputPoll = true;
+    if (!this.pollInput()) return;
+    this.waitingForInputPoll = false;
     if (this.inputQueue.length) {
       this.inputQueue.shift();
       this.won = this.nextPose === 3 && this.coinAvailable;
@@ -162,13 +169,16 @@ export class MoneyBin {
     this.emitSound();
   }
   advanceTick() {
-    if (this.complete) return;
+    if (this.complete || this.waitingForInputPoll) return;
     this.tick++;
     if (!this.current.retraces && --this.remaining <= 0) this.advanceBoundary();
   }
   advanceRetrace() {
     if (this.complete || !this.current.retraces) return;
     if (--this.retracesRemaining <= 0) this.advanceBoundary();
+  }
+  resumeInputPoll() {
+    if (this.waitingForInputPoll) this.pollIdle();
   }
   drainEvents() {
     return this.events.splice(0);
@@ -184,6 +194,7 @@ export class MoneyBin {
       coinAvailable: this.coinAvailable,
       complete: this.complete,
       sprites: this.current.sprites.map((s) => ({ ...s })),
+      ...(this.waitingForInputPoll ? { waitingForInputPoll: true } : {}),
     };
   }
 }

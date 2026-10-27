@@ -30,13 +30,65 @@ input and can arrive during a dialog. Input/audio/time do not come from renderin
 - Dialogs cannot nest. Confirmed quit blocks new pause/quit dialogs during credits.
  Restart clears the overlay and exit latch. Sound settings remain adjustable.
 
-The original routines are blocking calls from the input reader. The browser
-currently consumes global key events on the next driver tick. Exact alignment
-with every original activity's input-poll boundary,especially uninterruptible
+The original routines are blocking calls from the input reader. Money-bin global
+keys now wait for its actual idle input poll; its intro and dive do not read them.
+Other scenes currently consume global key events on the next driver tick. Exact
+alignment with every original activity's input-poll boundary,especially uninterruptible
 animation/audio waits,is **not reproduced**. Original IRQ clocks keep running
 inside the dialogs; the browser freezes activity clocks while its diagnostic game
 clock advances. Long-pause active-level timing has not been compared with a carried
 original replay. These are remaining fidelity gaps,not a whole-game timing claim.
+
+### Money-bin input boundaries
+
+Overlay9 has exactly one input-reader call,at022a. The six intro poses each wait28
+driver ticks,then the first poll runs before any idle pose is drawn. Subsequent
+idle poses wait14 ticks before polling. No input reader runs during a dive.
+Its final0b07 call flushes the BIOS queue and128-byte custom key table.
+
+The IRQ9 handler (`140e:1aa9..1b55`) stores80 for a press and40 for a release
+whose key flag is still present. The custom reader19c5 consumes the released flag;
+therefore a short P during the intro survives until the first idle poll. Keys are
+scanned in scan-code order,not arrival order. Escape/Q precede P/S; F1 follows
+them. Duplicate presses during a wait occupy one key slot. A global dialog's
+flush discards the remaining queued keys and Fire. The browser retains these
+semantic key slots in `pendingBinSystemKeys`; native keys retain their scan code.
+The sound checkbox remains an immediate browser setting adapter.
+
+`MoneyBin.pollInput` is an explicit caller interface. A blocking dialog suspends
+that input call with `waitingForInputPoll`,preserving the last displayed pose.
+On cancellation/resume,the call returns no Fire and the next idle pose is drawn.
+Sound effects from that resumed pose are collected immediately. The global clock
+continues while the call is blocked; money-bin pose waits begin after the call
+returns,so no expired animation wait is carried through this pause. This narrow
+result does not establish clocks for active flight or expedition levels.
+
+`reference/money-bin-input.json` adds17 mandatory local artifacts and10 original
+comparisons to `verify:system-controls`. Whole overlay9 (2836 bytes,65 relocations),
+resident input/pause/wait code and the IRQ/key-reader bytes match the supported
+EXE after this fresh launch. Released P is40 at first poll,next-pose2 and final
+intro sprite1. Pause preserves that pose; resuming draws idle sprite2. A separate
+idle pause preserves sprite2,next-pose3 and returns AL0. Accounts,date,coin latch
+and RNG remain unchanged. During the captured dive,Q/P/S all reach release flag40
+without opening either dialog or changing sound; the final flush clears all128
+key bytes. No memory/CPU injection or checkpoint restore was used.
+
+The manifest records exact capture addresses,independent input schedules and
+checksums. Intro and dive schedules are emulator frame events,armed while paused;
+their status must show all2/all2/all6 events dispatched,no remaining events and inactive.
+Earlier timed scheduling attempts had zero events dispatched when the early stop
+was reached. Those observations are excluded from acceptance. `events_scheduled`
+alone is not evidence that a key reached the guest. A focused bridge improvement
+would document how paused time affects PIC schedules and provide atomic arming
+of a relative input schedule with debugger continuation. Frame scheduling plus
+explicit completion checks is sufficient here; no general input tool was built.
+
+Independent controller and real-browser scenarios now require the intro to keep
+moving after P,open Pause at its first poll,freeze there,and resume to idle. They
+also press Q/P/S during a real dive and require uninterrupted completion,unchanged
+sound and no delayed office dialog. Omitted-P and corrupted-state negative controls
+must fail. CPU drawing costs,whole original timing and other scene poll boundaries
+are excluded explicitly; no expected output supplies replay input timing.
 
 ## Verification and evidence
 

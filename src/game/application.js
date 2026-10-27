@@ -52,6 +52,7 @@ export class Game {
     this.rivalReport = null;
     this.atomicTransport = null;
     this.systemOverlay = null;
+    this.pendingBinSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -156,7 +157,10 @@ export class Game {
     }
     if (action.type === "money-bin") {
       this.scene = "money-bin";
-      this.bin = new MoneyBin({ coinAvailable: !this.rareCoinTaken });
+      this.bin = new MoneyBin({
+        coinAvailable: !this.rareCoinTaken,
+        pollInput: () => this.pollMoneyBinSystemInput(),
+      });
       this.effects.push(...this.bin.drainEvents());
       return;
     }
@@ -174,8 +178,23 @@ export class Game {
     }
     throw Error(`Unsupported campaign continuation ${action.type}`);
   }
-  handleInput(event) {
+  handleInput(event, fromBinPoll = false) {
     if (this.diagnostic) throw Error(this.diagnostic);
+    if (
+      !fromBinPoll &&
+      !this.systemOverlay &&
+      this.scene === "money-bin" &&
+      ["pause", "quit", "toggle-sound"].includes(event.type)
+    ) {
+      // IRQ9 retains make/release flags until19c5 consumes them. No input
+      // reader runs during the intro, dive or explicit animation waits.
+      this.pendingBinSystemKeys.set(
+        event.scanCode ??
+          { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
+        event.type,
+      );
+      return;
+    }
     if (event.type === "toggle-sound") {
       this.handleInput({ type: "audio-enabled", enabled: !this.audioEnabled });
       this.effects.push({ type: "stopAudio" });
@@ -219,6 +238,7 @@ export class Game {
       this.rivalReport = null;
       this.atomicTransport = null;
       this.systemOverlay = null;
+      this.pendingBinSystemKeys.clear();
       this.exiting = false;
       this.pendingCampaignAction = null;
       this.briefing = null;
@@ -711,6 +731,8 @@ export class Game {
     if (!this.systemOverlay?.result) return;
     const result = this.systemOverlay.result;
     this.systemOverlay = null;
+    this.pendingBinSystemKeys.clear();
+    if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
@@ -726,6 +748,22 @@ export class Game {
       this.scene = "ending";
       this.effects.push({ type: "stopAudio" });
     }
+    if (result === "resume" && this.scene === "money-bin") {
+      this.bin.resumeInputPoll();
+      this.collectEffects();
+    }
+  }
+  pollMoneyBinSystemInput() {
+    // The custom key table is scanned by scan code, not event arrival order.
+    // Native Escape/Q precede P/S; F1 follows them. A dialog flushes the rest.
+    for (const [scanCode, type] of [...this.pendingBinSystemKeys].sort(
+      (a, b) => a[0] - b[0],
+    )) {
+      this.pendingBinSystemKeys.delete(scanCode);
+      this.handleInput({ type }, true);
+      if (this.systemOverlay) return false;
+    }
+    return true;
   }
   advanceDialogue(wait) {
     wait.remaining--;
@@ -985,6 +1023,11 @@ export class Game {
   collectEffects() {
     for (const event of this.bin.drainEvents()) {
       if (event.type === "return") {
+        // Overlay9:0b07 flushes before returning; keys pressed during the
+        // uninterruptible dive must not open a dialog in the office.
+        this.pendingBinSystemKeys.clear();
+        this.handleInput({ type: "controls", fire: false, direction: null });
+        this.effects.push({ type: "flushControls" });
         if (event.won) {
           this.money = u32(this.money + 1000);
           this.rareCoinTaken = true;
@@ -1051,6 +1094,13 @@ export class Game {
       seed: this.seed,
       tick: this.tick,
       bin: this.bin?.snapshot() ?? null,
+      ...(this.pendingBinSystemKeys.size
+        ? {
+            pendingBinSystemKeys: [...this.pendingBinSystemKeys].sort(
+              (a, b) => a[0] - b[0],
+            ),
+          }
+        : {}),
       campaign: this.campaign?.snapshot() ?? null,
       departure: this.departure?.snapshot() ?? null,
       flight: this.flight?.snapshot() ?? null,

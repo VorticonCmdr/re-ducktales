@@ -194,7 +194,12 @@ window.addEventListener("keydown", (event) => {
     KeyN: "quit-no",
   }[event.code];
   if (systemKey) {
-    dispatch({ type: systemKey });
+    dispatch({
+      type: systemKey,
+      scanCode: { Escape: 1, KeyQ: 0x10, KeyP: 0x19, KeyS: 0x1f, F1: 0x3b }[
+        event.code
+      ],
+    });
     return;
   }
   held.add(event.code);

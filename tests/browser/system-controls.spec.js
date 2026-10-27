@@ -54,14 +54,21 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
   await press("Enter");
   await page.locator("#money-bin").click();
   await page.clock.runFor(200);
-  const moving = await state(),
-    image = await pixels();
+  const moving = await state();
   expect(moving.scene).toBe("money-bin");
   await press("p");
+  expect((await state()).systemOverlay).toBeNull();
+  await until(
+    (s) =>
+      s.bin.phase === "intro" && s.bin.cursor === 5 && s.bin.remaining <= 2,
+  );
+  const image = await pixels();
   await until((s) => s.systemOverlay?.phase === "waiting");
   const frozen = await state(),
     pausedImage = await pixels();
-  expect(frozen.bin).toEqual(moving.bin);
+  expect(frozen.bin.waitingForInputPoll).toBe(true);
+  expect(frozen.bin.tick).toBe(168);
+  expect(frozen.bin.sprites[0].frame).toBe(1);
   await popup("pause", pausedImage);
   // Exact preservation outside the popup,using independently captured pre-input pixels.
   for (let y = 0; y < 200; y++) {
@@ -100,14 +107,21 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
     .poll(() => page.locator("#sound").evaluate((a) => a.currentTime))
     .toBeGreaterThan(0);
   await press("s");
+  await until((s) => s.bin.nextPose === 4);
   await expect(page.locator("#audio")).not.toBeChecked();
   await until(
     (s) =>
       s.bin.phase === "idle" && s.bin.nextPose === 3 && s.bin.remaining >= 10,
   );
   await press("Space");
+  await until((s) => s.bin.phase === "dive");
+  for (const key of ["q", "p", "s"]) {
+    await press(key);
+    expect((await state()).systemOverlay).toBeNull();
+  }
   await until((s) => s.scene === "office");
   expect((await state()).money).toBe(1000);
+  await expect(page.locator("#audio")).not.toBeChecked();
   await page.locator("#map").click();
   await until((s) => s.scene === "map");
   const map = await state();

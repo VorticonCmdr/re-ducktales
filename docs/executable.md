@@ -21,14 +21,14 @@ from 512-byte-aligned file offsets:
 | ------- | ----------- | -------------: | ------------------------------ |
 | 1       | 0xf200      |            526 | Location/treasure setup thunk   |
 | 2       | 0xf600      |           9392 | Office selection / transitions |
-| 3       | 0x11c00     |           3830 | Not translated                 |
+| 3       | 0x11c00     |           3830 | Macaroon bank celebration (not fully translated) |
 | 4       | 0x12c00     |          18572 | Launchpad flight (entry verified) |
 | 5       | 0x17600     |          12514 | Mountain expedition (entry/walking compared; browser ascent) |
 | 6       | 0x1a800     |          12078 | Cave expedition (entry/runtime verified) |
 | 7       | 0x1d800     |           8436 | Photography (`ps.arc`; conditional state/pixels; browser photos/reward/return) |
 | 8       | 0x1fa00     |          26104 | Jungle (conditional state/pixels; browser completion/reward) |
 | 9       | 0x26000     |           3348 | Money-bin activity             |
-| 10      | 0x26e00     |           5986 | Not translated                 |
+| 10      | 0x26e00     |           5986 | Stock trading/news (browser; conditional original state) |
 
 The original runtime uses INT 3F overlay dispatch. Appended overlays are distinct
 from the EXEPACK compressed main image. Their inherited CS:IP header values must

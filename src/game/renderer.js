@@ -168,6 +168,44 @@ export class Renderer {
     this.ctx.strokeRect(192 + screen.button * 32, 174, 25, 20);
   }
   render(game) {
+    if (game.scene === "ending") {
+      const e = game.ending;
+      if (e.asset !== null) {
+        this.draw("MAIN.ARC", e.asset, 0, 0, 0);
+        if (e.phase === "credits" && e.credit >= 0) {
+          this.ctx.fillStyle = "#0000aa";
+          this.ctx.fillRect(0, 192, 320, 8);
+          this.text(
+            executableText(this.resources.executable, 0x79e + e.credit * 26),
+            64,
+            192,
+          );
+        }
+      } else if (e.phase === "replay") {
+        this.ctx.fillStyle = "#000";
+        this.ctx.fillRect(0, 0, 320, 200);
+        this.text(executableText(this.resources.executable, 0xa42), 112, 70);
+        this.text(
+          executableText(
+            this.resources.executable,
+            e.choice === 0 ? 0xa4e : 0xa56,
+          ),
+          e.choice === 0 ? 136 : 144,
+          100,
+          e.choice === 0 ? "#ff5555" : "#fff",
+        );
+        this.text(
+          executableText(
+            this.resources.executable,
+            e.choice === 0 ? 0xa53 : 0xa5a,
+          ),
+          e.choice === 0 ? 144 : 136,
+          120,
+          e.choice === 0 ? "#fff" : "#ff5555",
+        );
+      } else throw Error(`Unsupported ending presentation ${e.phase}`);
+      return;
+    }
     if (game.scene === "investments") {
       this.renderInvestments(game);
       return;

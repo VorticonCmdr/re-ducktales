@@ -12,6 +12,7 @@ import { nextRandom, u8, u32, u16 } from "./integer.js";
 import { FlightMemory } from "./flight-physics.js";
 import { initializeInvestments, advanceInvestmentDays } from "./investments.js";
 import { InvestmentScreen } from "./investment-screen.js";
+import { CampaignEnding, depositAccounts } from "./ending.js";
 export const DRIVER_HZ = 1193182 / (1365 * 12);
 export const RETRACE_HZ = 70.086;
 
@@ -42,6 +43,7 @@ export class Game {
     this.locations = locations;
     this.investmentResources = investmentResources;
     this.investments = null;
+    this.ending = null;
     this.marketMemory = null;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -119,6 +121,7 @@ export class Game {
       this.jungle = null;
       this.photography = null;
       this.investments = null;
+      this.ending = null;
       this.visitNotice = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
@@ -143,6 +146,15 @@ export class Game {
     if (this.scene === "investments") {
       this.investments.input(event);
       this.collectInvestments();
+      return;
+    }
+    if (this.scene === "ending") {
+      this.ending.input(event);
+      if (this.ending.result === "again") {
+        this.handleInput({ type: "restart" });
+        this.scene = "difficulty";
+        this.effects.push({ type: "stopAudio" });
+      }
       return;
     }
     if (this.scene === "title" && event.type === "fire") {
@@ -334,18 +346,21 @@ export class Game {
       this.effects.push({ type: "stopAudio" });
       return;
     }
-    if (c.day + days >= 30)
-      throw Error(
-        "Campaign ending is not translated; journey would reach day 30.",
-      );
     c.day += days;
     c.location = target;
     if (target === 0) {
-      c.banked = u32(c.banked + this.money);
-      this.money = 0;
+      this.deposit();
       this.rareCoinTaken = false;
+      if (c.day >= 30) {
+        this.beginEnding(true);
+        return;
+      }
       c.openMap();
     } else {
+      if (c.day > 30) {
+        this.beginEnding();
+        return;
+      }
       this.scene = "office";
       c.info = false;
     }
@@ -356,6 +371,10 @@ export class Game {
   }
   advanceDriverTick() {
     this.tick++;
+    if (this.scene === "ending") {
+      this.ending.advanceTick(this.controls);
+      return;
+    }
     if (this.scene === "investments") {
       this.investments.advanceTick(this.controls);
       this.collectInvestments();
@@ -566,8 +585,10 @@ export class Game {
       if (!this.finishScoredExpedition(p.memory))
         throw Error("Photography score disappeared before campaign return");
     } else {
-      if (c.day > 30)
-        throw Error("Untranslated campaign ending after photography.");
+      if (c.day > 30) {
+        this.beginEnding();
+        return;
+      }
       c.openMap();
       this.scene = "map";
       this.effects.push({ type: "stopAudio" });
@@ -594,8 +615,10 @@ export class Game {
     // is not part of these routines. Both callers then spend one day.
     if (expedition.outcome.code === 0) {
       this.campaign.day = u8(this.campaign.day + 1);
-      if (this.campaign.day > 30)
-        throw Error("Untranslated campaign ending after expedition.");
+      if (this.campaign.day > 30) {
+        this.beginEnding();
+        return;
+      }
       this.campaign.openMap();
       this.scene = "map";
       return;
@@ -632,8 +655,10 @@ export class Game {
         return;
       }
     }
-    if (c.day > 30)
-      throw Error("Untranslated campaign ending after expedition.");
+    if (c.day > 30) {
+      this.beginEnding();
+      return;
+    }
     c.openMap();
     this.scene = "map";
     this.effects.push({ type: "stopAudio" });
@@ -660,8 +685,10 @@ export class Game {
     if (!Number.isInteger(target) || target < 1 || target > 34)
       throw Error("Missing expedition destination");
     this.campaign.location = target;
-    if (this.campaign.day > 30)
-      throw Error("Untranslated campaign ending after flight.");
+    if (this.campaign.day > 30) {
+      this.beginEnding();
+      return;
+    }
     if (!this.expeditionResources)
       throw Error(
         `Untranslated expedition arrival: ${this.campaign.locations[target].name}.`,
@@ -751,6 +778,10 @@ export class Game {
   }
   finishRivalClaim() {
     this.campaign.location = this.departure.target;
+    if (this.campaign.day > 30) {
+      this.beginEnding();
+      return;
+    }
     this.campaign.openMap();
     this.scene = "map";
     this.effects.push({ type: "stopAudio" });
@@ -774,6 +805,39 @@ export class Game {
     this.money = this.marketMemory.view.getUint32(0x8cc0, true);
     if (this.investments.complete) this.scene = "office";
   }
+  deposit() {
+    const c = this.campaign;
+    const accounts = depositAccounts({
+      day: c.day,
+      money: this.money,
+      banked: c.banked,
+      rivalMoney: c.rival.money,
+      rivalBanked: c.rival.banked ?? 0,
+    });
+    this.money = accounts.money;
+    c.banked = accounts.banked;
+    c.rival.banked = accounts.rivalBanked;
+  }
+  beginEnding(alreadyDeposited = false) {
+    const c = this.campaign;
+    if (!c || c.day < 30) throw Error("Campaign ending before its deadline");
+    if (!alreadyDeposited) this.deposit();
+    c.location = 0;
+    this.rareCoinTaken = false;
+    // Main0187 skips ordinary market cleanup past day30. An exact day30 bank
+    // arrival performs cleanup before the winner comparison.
+    if (c.day === 30) {
+      this.scene = "map";
+      this.settleMarket();
+    }
+    this.ending = new CampaignEnding({
+      day: c.day,
+      banked: c.banked,
+      rivalBanked: c.rival.banked ?? 0,
+    });
+    this.scene = "ending";
+    this.effects.push({ type: "stopAudio" });
+  }
   fail(error) {
     this.diagnostic = error instanceof Error ? error.message : String(error);
   }
@@ -794,6 +858,7 @@ export class Game {
       jungle: this.jungle?.snapshot() ?? null,
       photography: this.photography?.snapshot() ?? null,
       investments: this.investments?.snapshot() ?? null,
+      ending: this.ending?.snapshot() ?? null,
       briefing: this.briefing?.snapshot() ?? null,
       repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
       expeditionResult:

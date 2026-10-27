@@ -238,7 +238,7 @@ npx playwright test tests/browser/photography.spec.js
 ```
 
 Next: extend original comparisons for special-species reactions and whole-scene
-timing. Remaining full-game work includes campaign endings,
+timing. Remaining full-game work includes
 normal rival progression,atomic travel,save/load and high scores.
 
 

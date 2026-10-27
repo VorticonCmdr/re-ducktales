@@ -198,4 +198,4 @@ both conditional original scenarios. `npx playwright test tests/browser/mountain
 checks the two browser routes. `npm run verify` is the integration gate. Original
 hook/ascent and presentation comparisons, variants1/2 and other difficulties
 remain work to do. Jungle,photography and trading now have their own playable
-routes; campaign endings and normal rival progression remain unfinished.
+routes; normal rival progression remain unfinished.

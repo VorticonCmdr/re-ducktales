@@ -20,9 +20,11 @@ All 35 location records and their descriptions load from verified `LOC.ARC`.
 Confirming an expedition now prepares Launchpad's flight and displays the original
 briefing, followed by playable flight and cave arrival. Caves now return through
 reward/failure screens. See [departure evidence](expedition-departures.md) and
-[cave evidence](cave.md). Other expeditions, normal Glomgold progression, stocks,
-campaign ending, and save/load remain unsupported.
-Macaroon/office journeys reaching day 30 stop with a diagnostic.
+[cave evidence](cave.md). Other expedition families and stocks now have playable routes. Normal Glomgold
+progression and save/load remain unsupported. Deadline deposits and endings now
+work; see [ending evidence](ending.md). Bank arrival at day30 ends the campaign;
+travel to the office on exactly day30 is still allowed. A later arrival redirects
+to final banking.
 
 ## Evidence and scope
 
@@ -59,7 +61,8 @@ adapters; original keyboard selection remains available. Rendering observes the
 simulation and never supplies results. Map polling uses two driver ticks; DOS
 instruction/render costs have not been matched. Browser BIOS seed is explicitly
 0; original BIOS seeding and RNG consumption by untranslated setup/security/
-stocks paths are not a verified full-campaign RNG stream.
+paths are not a verified full-campaign RNG stream. Stock initialization and daily
+updates now consume the shared RNG; see `docs/investments.md`.
 
 ## Original reproduction and local artifacts
 

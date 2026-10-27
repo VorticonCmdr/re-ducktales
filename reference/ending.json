@@ -1,0 +1,89 @@
+{
+  "id": "campaign-ending-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "cde8379",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 8,
+  "evidenceLevel": "conditional original deadline deposit/winner/replay flow,exact final picture/prompt pixels; not a whole original campaign replay",
+  "startingRecipe": "Continue the conditional investment-trading day30/cash1000 state; see docs/ending.md. Enter map,select Borneo,fly/crash,finish repairs. Stop main1036 bank entry and1076 after bank; stop0fb0 predicate; stop12f5:0ee7 then100-poll wait; second picture entry0f26 and wait; replay0f55,visible103c after2 driver clocks,Down to1064 after14 clocks,Up thenFire to main0ff1. All addresses are original segment-relative; live base01f5,DS1403. Original code bytes verified.",
+  "injections": [
+    "Inherited explicit cash0\u21921000 and day1\u219230 CAS setup from reference/investment-trading.json. No further game/CPU writes."
+  ],
+  "fittedInputs": [],
+  "inputEvents": "Paired hardware Right+Space,Space twice past security; Right4300ms reached Borneo; Space,Right400ms,Space to confirm; Space throttle with Down pulse to crash; Fire through repair/bank waits. Paired Fire100ms skips each ending wait. Replay Down100ms thenUp100ms/Fire100ms returnsYes. This is an exploration recipe,not a timed whole-machine replay.",
+  "comparisonRules": "Exact account fields/company record preservation,winner/second-picture arguments,wait arguments,choice locals and replay return. Complete relocated code spans pinned by captures. PNGs exactRGBA. Final picture captures at100-poll wait boundaries; default prompt captureafter2 driver clocks atpostflip; No captureafter14-clock arrow delay. No frame search or fitted timer. Bank allocator,animation and unrelated scratch are outside semantic comparison scope.",
+  "artifacts": {
+    "mode": {
+      "path": ".local/ending-mode.json",
+      "sha256": "3db2cae986e9e79e75184a7c903304acf1f64df5897d686ae47a04372be0c37c"
+    },
+    "bankBefore": {
+      "path": ".local/ending-bank-before.json",
+      "sha256": "4dc7c5e5163656161d4a757938f76c4ff44c7c56880b7636c9d6c087d63d0c65"
+    },
+    "bankAfter": {
+      "path": ".local/ending-bank-after.json",
+      "sha256": "a68de75e7250e3ea143401b91175fc2ddbf0beec6124a3a1f1451f368f5e8c92"
+    },
+    "winnerBefore": {
+      "path": ".local/ending-winner-before.json",
+      "sha256": "a54efd9f04ee2e906ea3db14ab951b7df4735f6290040b619cee74de758f3c8d"
+    },
+    "winnerAfter": {
+      "path": ".local/ending-winner-after.json",
+      "sha256": "62aa81352298967f1247b4fc435ff74ac189e74f40c911d192e3fbe43c7463a5"
+    },
+    "firstWait": {
+      "path": ".local/ending-first-wait.json",
+      "sha256": "5742d2bf4207b962c0363db17aeea3962455c780d79dc56cc888275a1b0532af"
+    },
+    "secondEntry": {
+      "path": ".local/ending-second-entry.json",
+      "sha256": "269ea51fd59a21c5bfe0c94b02baa801c4b0bbb3a40ae24371543487bf5b8744"
+    },
+    "secondWait": {
+      "path": ".local/ending-second-wait.json",
+      "sha256": "45f46f60798125be7ac3646ff77d51cf46d219692ed47455f3158488fcb81bc6"
+    },
+    "replayEntry": {
+      "path": ".local/ending-replay-entry.json",
+      "sha256": "e8452f58b227afa4e0092a1a0f4fd9f45ca83f710089b21a77853b9753740816"
+    },
+    "replayYes": {
+      "path": ".local/ending-replay-visible.json",
+      "sha256": "49d23edac88c8f7e49f4a64e8c6b7c4e315f338442068f13d66b4098589e14e5"
+    },
+    "replayNo": {
+      "path": ".local/ending-replay-no-state.json",
+      "sha256": "6e6a7fd5b2c84f4362f304718e67965c0dedf50fd857003ce4b9c14e994a1bbd"
+    },
+    "again": {
+      "path": ".local/ending-again-return.json",
+      "sha256": "a37eaf81a30c84a85ea1b0ef1d88af87be53ba49ebbf099393d4ee9165b8f9cd"
+    },
+    "coverPNG": {
+      "path": ".local/ending-winner-first.png",
+      "sha256": "7aa51310a407e4843b9262e8e433d464118061f0d24b82b5e13d191ae0cec7c8"
+    },
+    "celebrationPNG": {
+      "path": ".local/ending-winner-second.png",
+      "sha256": "343b67d2ed8cb541c286bad7cb803bf95ac788a333de573371f534051d328eee"
+    },
+    "yesPNG": {
+      "path": ".local/ending-replay-yes.png",
+      "sha256": "69b26d9a7f8dc3afd9375a7b3ee08ba41c3a76c2edc57590e5b7788154abcee3"
+    },
+    "noPNG": {
+      "path": ".local/ending-replay-no.png",
+      "sha256": "418b0a1c58c0f1e1d5ae27b3c5f0693390a7f4abab997336d250e2b0492c8d59"
+    }
+  },
+  "verify": "npm run verify:ending"
+}

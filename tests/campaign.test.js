@@ -131,6 +131,8 @@ test("invalid resources and unsupported journeys fail explicitly", () => {
   assert.throws(() => g.input({ type: "fire" }), /Flight resources not loaded/);
   assert.equal(g.campaign.day, 1);
   g.campaign.day = 28;
-  assert.throws(() => g.travel(0), /ending/);
-  assert.equal(g.campaign.day, 28);
+  g.travel(0);
+  assert.equal(g.campaign.day, 31);
+  assert.equal(g.scene, "ending");
+  assert.equal(g.ending.won, true); // Original ties favor Scrooge.
 });

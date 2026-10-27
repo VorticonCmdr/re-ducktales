@@ -10,6 +10,7 @@ test("Tandy tone counter gives clock/(32*period), with 2dB attenuation", () => {
   chip.write(0x90);
   let last = chip.sample(),
     transitions = 0;
+  assert.equal(last, -0.18); // NCR negation, with the authored initial output1.
   for (let i = 1; i < 44100; i++) {
     const sample = chip.sample();
     if (Math.sign(last) !== Math.sign(sample)) transitions++;
@@ -22,17 +23,20 @@ test("Tandy tone counter gives clock/(32*period), with 2dB attenuation", () => {
   assert.equal(chip.sample(), 0);
 });
 
-test("Tandy unsupported chip paths and invalid inputs fail explicitly", () => {
+test("Tandy invalid device inputs fail explicitly", () => {
   assert.throws(() => new TandyTones({ sampleRate: 0 }), /sample rate/);
   const chip = new TandyTones();
   assert.throws(() => chip.write(256), /register byte/);
-  assert.throws(() => chip.write(0xe0), /noise synthesis/);
+  assert.throws(() => new TandyTones({ noise: {} }), /noise state/);
+  assert.throws(() => chip.advanceClocks(-1), /clock count/);
+  chip.write(0xe0);
   chip.write(0xf0);
-  assert.throws(() => chip.sample(), /noise channel/);
+  assert.ok(Number.isFinite(chip.sample()));
   chip.write(0xff);
   chip.write(0x80);
   chip.write(0);
-  assert.throws(() => chip.sample(), /zero-period/);
+  assert.ok(Number.isFinite(chip.sample()));
+  assert.equal(chip.digitalState().periods[0], 1024);
 });
 
 test("original Tandy036 ends after six ticks with exact sequence writes", async () => {
@@ -61,10 +65,7 @@ test("original Tandy036 ends after six ticks with exact sequence writes", async 
   );
   assert.ok(result.pcm.every(Number.isFinite));
   assert.ok(result.pcm.some((v) => v > 0) && result.pcm.some((v) => v < 0));
-  assert.throws(
-    () => renderTandyPreview(bytes, 35),
-    /Tandy noise synthesis is not implemented/,
-  );
+
   assert.throws(
     () => renderTandyPreview(bytes, 121),
     /Unsupported Tandy public sound ID/,
@@ -128,4 +129,21 @@ test("falling Tandy envelopes preserve the original nonzero-target quirk", async
   assert.equal(d.byte(at + 16), 0);
   assert.equal(d.byte(at + 10), 0);
   assert.equal(d.byte(0x2c1), 255);
+});
+
+test("complete original noise cues and zero-period cue render finite PCM", async () => {
+  const bytes = parseArchive(await readFile("game/IT.DRV"), "IT.DRV")[4].data;
+  for (const [id, ticks, samples] of [
+    [10, 3, 1211],
+    [35, 3, 1211],
+    [69, 195, 117449],
+  ]) {
+    const r = renderTandyPreview(bytes, id);
+    assert.equal(r.ticks, ticks);
+    assert.equal(r.pcm.length, samples);
+    assert.equal(r.truncated, false);
+    assert.equal(r.approximate, true);
+    assert.ok(r.pcm.every(Number.isFinite));
+    assert.ok(r.pcm.some((v) => v !== 0));
+  }
 });

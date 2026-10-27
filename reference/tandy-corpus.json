@@ -4,27 +4,23 @@
     "sampleRate": 44100,
     "resetPort61": 0,
     "firstTickTime": 0,
-    "initialPeriods": [
-      1,
-      1,
-      1
-    ],
-    "initialCounters": [
-      1,
-      1,
-      1
-    ],
-    "initialOutputs": [
-      1,
-      1,
-      1
-    ]
+    "initialPeriods": [1, 1, 1],
+    "initialCounters": [1, 1, 1],
+    "initialOutputs": [1, 1, 1],
+    "chipVariant": "NCR8496",
+    "initialNoise": {
+      "control": 0,
+      "counter": 1,
+      "output": 0,
+      "lfsr": 32768
+    },
+    "centeredOutputNegated": true
   },
   "counts": {
     "requests": 121,
-    "complete": 70,
-    "audible": 48,
-    "unsupported": 51,
+    "complete": 109,
+    "audible": 87,
+    "unsupported": 12,
     "silent": 22
   },
   "cases": [
@@ -40,7 +36,7 @@
     {
       "id": 1,
       "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
     },
     {
       "id": 2,
@@ -48,18 +44,26 @@
       "ticks": 27,
       "samples": 15741,
       "busWrites": 51,
-      "pcmSHA256": "43eb9f2530c401bf0b019b97710c8c99e7c880d14d8b05070dcaa4e301aec461",
+      "pcmSHA256": "9ad8f985558a2631c124757dd8b374b0ea5a70a703dc332c2c76932a31a2be2f",
       "silent": false
     },
     {
       "id": 3,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 171,
+      "samples": 102919,
+      "busWrites": 61,
+      "pcmSHA256": "3f3bfe9f678f052003ade43738e40702f805873d089d9127cd4e0682bdcb3b7d",
+      "silent": false
     },
     {
       "id": 4,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 258,
+      "samples": 155589,
+      "busWrites": 589,
+      "pcmSHA256": "b4e9f41e1ad8ae1a13d3763d17b6ae82044cb5084fc4ebfeacbbd28447f6c9f1",
+      "silent": false
     },
     {
       "id": 5,
@@ -73,7 +77,7 @@
     {
       "id": 6,
       "status": "unsupported",
-      "diagnostic": "Tandy preview did not terminate"
+      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
     },
     {
       "id": 7,
@@ -81,7 +85,7 @@
       "ticks": 43,
       "samples": 25427,
       "busWrites": 86,
-      "pcmSHA256": "1929a89cecef32a5d05f32b03b8d10bc135249f8a44581b537df506576397024",
+      "pcmSHA256": "a327d17973551d0a3634371260064d6388704c3c6dafbbc635631d7c575dc370",
       "silent": false
     },
     {
@@ -96,8 +100,12 @@
     },
     {
       "id": 10,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 3,
+      "samples": 1211,
+      "busWrites": 9,
+      "pcmSHA256": "eb0f11a0305a688354b522fb38ba3a604353fa728da085706b46bab77009fff8",
+      "silent": false
     },
     {
       "id": 11,
@@ -105,18 +113,22 @@
       "ticks": 249,
       "samples": 150140,
       "busWrites": 263,
-      "pcmSHA256": "3bbed73568df1ce9ebda2f48d9fd8629dcc6efad79cc687aa2e5ac36d07432eb",
+      "pcmSHA256": "990a9702d6dbcee8da73acefd8592804b1957a68f25464223343ae83647dd98e",
       "silent": false
     },
     {
       "id": 12,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 98,
+      "samples": 58724,
+      "busWrites": 64,
+      "pcmSHA256": "24ea467546bafe6f62528fff8d8687f35a1cc0beda0a47e85e06890f02a13766",
+      "silent": false
     },
     {
       "id": 13,
       "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
     },
     {
       "id": 14,
@@ -124,7 +136,7 @@
       "ticks": 74,
       "samples": 44195,
       "busWrites": 149,
-      "pcmSHA256": "611bcd6a2118b2a62eb9506d9db90937bbd8dd73114b309c36068091a6e6cc4a",
+      "pcmSHA256": "25039c4e1abb793f553ed79825ff2231a0420dcf8a95f640bb9df32c5cef5b52",
       "silent": false
     },
     {
@@ -133,13 +145,17 @@
       "ticks": 257,
       "samples": 154984,
       "busWrites": 692,
-      "pcmSHA256": "ebf834027091c97f4bf91dd258190d27d7918765d534cab50456e9110dd5eb27",
+      "pcmSHA256": "491ed7a5bc27042a9c3af5eec3e453b2b54e1ac8cd78e2660469c082346db256",
       "silent": false
     },
     {
       "id": 16,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 98,
+      "samples": 58724,
+      "busWrites": 151,
+      "pcmSHA256": "81455afb697c1535eefa1dee3ba3f8583236e34665ae340bf90a38e8728c343b",
+      "silent": false
     },
     {
       "id": 17,
@@ -147,7 +163,7 @@
       "ticks": 4,
       "samples": 1816,
       "busWrites": 11,
-      "pcmSHA256": "a16de6aed3992543ad49ce4ef4f14fbcdf3b06990f70740496510afff091e786",
+      "pcmSHA256": "64907fdd0e1b77eab8030e4d0fbacb867b73b45257a52c260b1183548c40b904",
       "silent": false
     },
     {
@@ -156,7 +172,7 @@
       "ticks": 309,
       "samples": 186465,
       "busWrites": 410,
-      "pcmSHA256": "ecd201ddf280d03d6093541e2c19f11ab2e91ce5101de6a4db379453b260c0e4",
+      "pcmSHA256": "8ad91dc2e8f2ccc988c3d0e20ab2c084b6994e8c148490f1e722578a0b1cd8ef",
       "silent": false
     },
     {
@@ -165,7 +181,7 @@
       "ticks": 25,
       "samples": 14530,
       "busWrites": 59,
-      "pcmSHA256": "b26b3edf03332a4bb7fea63610deb2d7088ae15520353b474f6e9d6fd39b0fb3",
+      "pcmSHA256": "1df416e90dc3268d34ee415acaf6b281a143fb5985ae2abff11ac96dacfee5c8",
       "silent": false
     },
     {
@@ -174,28 +190,44 @@
       "ticks": 25,
       "samples": 14530,
       "busWrites": 59,
-      "pcmSHA256": "2fb565bb2445a7c41e1e33768c9d0ec8546420549931f2c73cc0b700348f5c49",
+      "pcmSHA256": "791151e90875d72105494093e15f7a24103862368c12f3e102c5c8a71bdbe79d",
       "silent": false
     },
     {
       "id": 21,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 50,
+      "samples": 29665,
+      "busWrites": 148,
+      "pcmSHA256": "f5eaa16519264f510497791071dcbfa6e4876e500af232184862dbe051f8c776",
+      "silent": false
     },
     {
       "id": 22,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 9,
+      "samples": 4843,
+      "busWrites": 28,
+      "pcmSHA256": "4d168330d397e32f5f599083d4aaf45c03015de337ff2571261f29953a2784aa",
+      "silent": false
     },
     {
       "id": 23,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 9,
+      "samples": 4843,
+      "busWrites": 15,
+      "pcmSHA256": "cd494b894e32b674089e9bd375f078924b5237a26762ceaa2486c75bbb84f7ad",
+      "silent": false
     },
     {
       "id": 24,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 9,
+      "samples": 4843,
+      "busWrites": 15,
+      "pcmSHA256": "cd494b894e32b674089e9bd375f078924b5237a26762ceaa2486c75bbb84f7ad",
+      "silent": false
     },
     {
       "id": 25,
@@ -203,7 +235,7 @@
       "ticks": 25,
       "samples": 14530,
       "busWrites": 78,
-      "pcmSHA256": "84dcc9f0f83ecee5eb7832e4f03968862202c5179ae1c20d4c620f2933d90c8f",
+      "pcmSHA256": "03b1f5a49a814c47458103ec9959d9dd5872c0d0c666733b22096229f6d7d1c4",
       "silent": false
     },
     {
@@ -226,23 +258,31 @@
     },
     {
       "id": 28,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 9,
+      "samples": 4843,
+      "busWrites": 15,
+      "pcmSHA256": "9a75c135006be0c4d1973a690e8c8bfe02c2a2040981c0185b1276c57a77d465",
+      "silent": false
     },
     {
       "id": 29,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 98,
+      "samples": 58724,
+      "busWrites": 151,
+      "pcmSHA256": "1c957bff131768e0a6e9ea36308f81251cfb276b3605c92d7110d79f347bbecf",
+      "silent": false
     },
     {
       "id": 30,
       "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
     },
     {
       "id": 31,
       "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
     },
     {
       "id": 32,
@@ -250,7 +290,7 @@
       "ticks": 135,
       "samples": 81124,
       "busWrites": 281,
-      "pcmSHA256": "a910d82810038ce72f96deb0980b11378b482e0337869dc5c8b36857acb6ddd2",
+      "pcmSHA256": "78fa98438a84e25379f6201c0aecd794b29bf4356b2253447704532f51bdc4b4",
       "silent": false
     },
     {
@@ -264,13 +304,21 @@
     },
     {
       "id": 34,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 178,
+      "samples": 107157,
+      "busWrites": 358,
+      "pcmSHA256": "5945351339afff9bc824edef3b55d1f479976682cf47c0f0016c88368cad8bbc",
+      "silent": false
     },
     {
       "id": 35,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 3,
+      "samples": 1211,
+      "busWrites": 8,
+      "pcmSHA256": "d34c50bbe881f98d1a8836c5535d287507770b2b66e7179cef868099126f1f78",
+      "silent": false
     },
     {
       "id": 36,
@@ -278,7 +326,7 @@
       "ticks": 6,
       "samples": 3027,
       "busWrites": 13,
-      "pcmSHA256": "2bbb8bebe3dfa920db2284468a4188494c29aa277c9eba3eb5224fe478a90c31",
+      "pcmSHA256": "87875f446053214ca99c40ee353ea4d8f0c0b23874f3548a5751346b6993e865",
       "silent": false
     },
     {
@@ -287,13 +335,13 @@
       "ticks": 49,
       "samples": 29059,
       "busWrites": 74,
-      "pcmSHA256": "f4fb1c7ce4dced16217a795cc00b3a83e39aca8ec7e3e558aeab4fcb46828555",
+      "pcmSHA256": "63720b35de46a93b8559271bbf9cf47f3f95ce545ea163d8ac60c2b071660088",
       "silent": false
     },
     {
       "id": 38,
       "status": "unsupported",
-      "diagnostic": "Tandy preview did not terminate"
+      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
     },
     {
       "id": 39,
@@ -306,23 +354,39 @@
     },
     {
       "id": 40,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 18,
+      "samples": 10292,
+      "busWrites": 42,
+      "pcmSHA256": "b276dcbe9c3df62d027c5a90c16979634ad2280d88f343f8969fc9fbea28f6c6",
+      "silent": false
     },
     {
       "id": 41,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 18,
+      "samples": 10292,
+      "busWrites": 42,
+      "pcmSHA256": "b276dcbe9c3df62d027c5a90c16979634ad2280d88f343f8969fc9fbea28f6c6",
+      "silent": false
     },
     {
       "id": 42,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 130,
+      "samples": 78097,
+      "busWrites": 274,
+      "pcmSHA256": "987b00a078e213ec95d3685a67c345a1432c71a5e82fc36e4e880970b206b62c",
+      "silent": false
     },
     {
       "id": 43,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 66,
+      "samples": 39351,
+      "busWrites": 302,
+      "pcmSHA256": "7b34f6ec83df8aef338338a866b1a86fe1f36e53cc390ccc9f71f2fe781ef8c2",
+      "silent": false
     },
     {
       "id": 44,
@@ -330,7 +394,7 @@
       "ticks": 65,
       "samples": 38746,
       "busWrites": 198,
-      "pcmSHA256": "5edc684d55a1945e4dfac092468495af4b0a42560ca61249a76479b2d12e1ea3",
+      "pcmSHA256": "31ad1fed93cda1d0fd4514936dd43d3fcc2594455987762b18dd64c5b69adfd4",
       "silent": false
     },
     {
@@ -348,7 +412,7 @@
       "ticks": 97,
       "samples": 58119,
       "busWrites": 150,
-      "pcmSHA256": "c22d1730db18c45e9d194c6485cb939bbd3cefe4981e1cbe4fb9d34e4747c40c",
+      "pcmSHA256": "ea41dcff7b5ea55e0f807ac3ab42fdf269030e89ddbc27cad47aa0dc92d8f136",
       "silent": false
     },
     {
@@ -357,7 +421,7 @@
       "ticks": 241,
       "samples": 145297,
       "busWrites": 726,
-      "pcmSHA256": "b6a7907c62992263058e1a290da2121a7315cdcc0e6fc0277527a2f6ba198187",
+      "pcmSHA256": "51e51a0246ded9a14e211b23111a9dfa5dd97ccc621d15fd8cdb3231a48117ee",
       "silent": false
     },
     {
@@ -366,18 +430,26 @@
       "ticks": 49,
       "samples": 29059,
       "busWrites": 71,
-      "pcmSHA256": "75a7de5cb0b078261a65a48c8e54e591b81744d5e04530b4b6ed51f00b833c7e",
+      "pcmSHA256": "5aa3a7af2ae673eac8eb93359ebc5f9f541e95223b018d249c516ffd6a524ec4",
       "silent": false
     },
     {
       "id": 49,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 66,
+      "samples": 39351,
+      "busWrites": 146,
+      "pcmSHA256": "763bae6f6ee3ea99d539fbdd797060e5ada48500565f0bbf13d1c1ae04d299fc",
+      "silent": false
     },
     {
       "id": 50,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 18,
+      "samples": 10292,
+      "busWrites": 42,
+      "pcmSHA256": "b276dcbe9c3df62d027c5a90c16979634ad2280d88f343f8969fc9fbea28f6c6",
+      "silent": false
     },
     {
       "id": 51,
@@ -385,13 +457,17 @@
       "ticks": 249,
       "samples": 150140,
       "busWrites": 263,
-      "pcmSHA256": "3bbed73568df1ce9ebda2f48d9fd8629dcc6efad79cc687aa2e5ac36d07432eb",
+      "pcmSHA256": "990a9702d6dbcee8da73acefd8592804b1957a68f25464223343ae83647dd98e",
       "silent": false
     },
     {
       "id": 52,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 18,
+      "samples": 10292,
+      "busWrites": 42,
+      "pcmSHA256": "b276dcbe9c3df62d027c5a90c16979634ad2280d88f343f8969fc9fbea28f6c6",
+      "silent": false
     },
     {
       "id": 53,
@@ -399,23 +475,35 @@
       "ticks": 52,
       "samples": 30876,
       "busWrites": 71,
-      "pcmSHA256": "022e68b5dd9aac7e75d43b7a9868afee4ffee0f42d15c74babf6c3e97339c0ba",
+      "pcmSHA256": "c46ba5221b64a4bb045c4a88c021b5850f8f48ab8230f4b0ca6f581cf0afee8b",
       "silent": false
     },
     {
       "id": 54,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 82,
+      "samples": 49038,
+      "busWrites": 184,
+      "pcmSHA256": "efdf2de873dc9d13e00559ffa6ceee9e1d59bcfe513f7cc87996baaed86b1a29",
+      "silent": false
     },
     {
       "id": 55,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 82,
+      "samples": 49038,
+      "busWrites": 170,
+      "pcmSHA256": "2a0b2aaff09d0bac7afd9680baba7e733beeed1f0be912f41b70019525871711",
+      "silent": false
     },
     {
       "id": 56,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 18,
+      "samples": 10292,
+      "busWrites": 42,
+      "pcmSHA256": "b276dcbe9c3df62d027c5a90c16979634ad2280d88f343f8969fc9fbea28f6c6",
+      "silent": false
     },
     {
       "id": 57,
@@ -424,8 +512,12 @@
     },
     {
       "id": 58,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 82,
+      "samples": 49038,
+      "busWrites": 81,
+      "pcmSHA256": "b02c1e73cfa855b0293a23fd139210fcd3034a04fb74f48d8bbe9f504cef0adb",
+      "silent": false
     },
     {
       "id": 59,
@@ -439,7 +531,7 @@
     {
       "id": 60,
       "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "diagnostic": "Unsupported Tandy command 8d"
     },
     {
       "id": 61,
@@ -447,7 +539,7 @@
       "ticks": 65,
       "samples": 38746,
       "busWrites": 139,
-      "pcmSHA256": "7c4c5e39a5d65c0d7bccd89c46a89b93392184c4ca9294bb4beb33b81becec7b",
+      "pcmSHA256": "0951682ba8b1573bb366d93d6cb107b4dc7f6a5bab5fa482ce50a8276e682edd",
       "silent": false
     },
     {
@@ -456,7 +548,7 @@
       "ticks": 193,
       "samples": 116238,
       "busWrites": 176,
-      "pcmSHA256": "1c2e9d723b31c641543afe7e9e1b36eee0ef4338afbf1187e9b405df2f5f256d",
+      "pcmSHA256": "0f00b90bb43fe87dc2749db34dbb9ad314e098bb53605408cb919b1a62099ead",
       "silent": false
     },
     {
@@ -465,13 +557,17 @@
       "ticks": 97,
       "samples": 58119,
       "busWrites": 103,
-      "pcmSHA256": "b6786394ea46cfea3abd4ab49fe1f7882b039c71a31276790abf9302d3d33898",
+      "pcmSHA256": "61d7230d19b8d0d3bd2af771d80c6b3dbcd154c251a8c7f7777de30a6c8ec9c6",
       "silent": false
     },
     {
       "id": 64,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 31,
+      "samples": 18162,
+      "busWrites": 20,
+      "pcmSHA256": "b9c07774d1183e6eecda03fd6e00a10a198d51e43e0983e4df708c5ba79818d7",
+      "silent": false
     },
     {
       "id": 65,
@@ -479,7 +575,7 @@
       "ticks": 249,
       "samples": 150140,
       "busWrites": 263,
-      "pcmSHA256": "3bbed73568df1ce9ebda2f48d9fd8629dcc6efad79cc687aa2e5ac36d07432eb",
+      "pcmSHA256": "990a9702d6dbcee8da73acefd8592804b1957a68f25464223343ae83647dd98e",
       "silent": false
     },
     {
@@ -497,7 +593,7 @@
       "ticks": 17,
       "samples": 9686,
       "busWrites": 42,
-      "pcmSHA256": "64cd82eedfb66237081dac0d9584722de5fd8dd0be3871432a1ce19d16074f0e",
+      "pcmSHA256": "e45cbec5d88eddba28ade8ee21ad19832b9f0c13cda887502bd3d71ae69cbab9",
       "silent": false
     },
     {
@@ -506,13 +602,17 @@
       "ticks": 17,
       "samples": 9686,
       "busWrites": 42,
-      "pcmSHA256": "3d93fab9bdede7b03be79cd9009e45638e1c7db010e044aae8f76fe4a76cda0b",
+      "pcmSHA256": "f6879c424755131f58c4f947b865d84e04419c7db4a89596208e69749a9c7ff7",
       "silent": false
     },
     {
       "id": 69,
-      "status": "unsupported",
-      "diagnostic": "Tandy zero-period behavior is not implemented"
+      "status": "complete",
+      "ticks": 195,
+      "samples": 117449,
+      "busWrites": 395,
+      "pcmSHA256": "b960f04e78c113799c67412f0c06e452b56e6a0abe96e455ba98c7470770effb",
+      "silent": false
     },
     {
       "id": 70,
@@ -520,7 +620,7 @@
       "ticks": 5,
       "samples": 2422,
       "busWrites": 9,
-      "pcmSHA256": "182bfdd8ef6a6d359f50251b683e7ba9932a44f3a3e581ff971d15e4c215e318",
+      "pcmSHA256": "aadd806acec0a49214deb74646dbbfd88777a30d7c7b6450d0037bb7c1f59701",
       "silent": false
     },
     {
@@ -529,7 +629,7 @@
       "ticks": 257,
       "samples": 154984,
       "busWrites": 585,
-      "pcmSHA256": "4984df18ac2c69b14a46bdd35fb5794e0063670acabafce6f159c9c7e46e5d9d",
+      "pcmSHA256": "40d954fe567332faa3363b5889e9ab4182c77a73c08ff985be059a2b48ba8009",
       "silent": false
     },
     {
@@ -538,7 +638,7 @@
       "ticks": 209,
       "samples": 125924,
       "busWrites": 442,
-      "pcmSHA256": "feb8623392dd2f815a652e0b5ef7d2ba94a4401444653fd3c5d0af48f5c0e8fa",
+      "pcmSHA256": "6618c750d21c2d06f537770f6119272c5670acc7d88ede245b79dd2560d3838e",
       "silent": false
     },
     {
@@ -547,7 +647,7 @@
       "ticks": 308,
       "samples": 185859,
       "busWrites": 580,
-      "pcmSHA256": "acd91c3aa1967e284f6d7a21b1b57fedc01aa965ad95b07221583938d3d8cd88",
+      "pcmSHA256": "1f956a16269d17d03b433a0ecbedc5d47f6d3c27562278fabe4afbf98a559ddf",
       "silent": false
     },
     {
@@ -561,13 +661,21 @@
     },
     {
       "id": 75,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 50,
+      "samples": 29665,
+      "busWrites": 23,
+      "pcmSHA256": "73b437f39820dcb1233a16bdd2a9070ac413768d514c46af8afa4843d8c9b3d0",
+      "silent": false
     },
     {
       "id": 76,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 66,
+      "samples": 39351,
+      "busWrites": 146,
+      "pcmSHA256": "763bae6f6ee3ea99d539fbdd797060e5ada48500565f0bbf13d1c1ae04d299fc",
+      "silent": false
     },
     {
       "id": 77,
@@ -575,7 +683,7 @@
       "ticks": 131,
       "samples": 78703,
       "busWrites": 158,
-      "pcmSHA256": "0a33832b852eba5961e323c6b8ba49e843b74380ed57cf6c1c7307b285ffb249",
+      "pcmSHA256": "cb6bb630a7b4cde64d4521889a3d60780d336e833f3f1d64b5722478b96e1a32",
       "silent": false
     },
     {
@@ -584,7 +692,7 @@
       "ticks": 97,
       "samples": 58119,
       "busWrites": 100,
-      "pcmSHA256": "94c1b7fe532e7a91eb54e2741fb210cb8acff90870d184805b4b3fa7ebdb0577",
+      "pcmSHA256": "1837f5fe2dd007e200b03a700cf6811d24e6aa645eb7077bd404933faac71715",
       "silent": false
     },
     {
@@ -593,7 +701,7 @@
       "ticks": 146,
       "samples": 87784,
       "busWrites": 105,
-      "pcmSHA256": "cb2546ea1d4714914b7d4bd896c7cee0630898c6acd530364cb67146573ba265",
+      "pcmSHA256": "41abaffde46f1dc7bb54f6f56abbb3a004010af2ac76a1e680f6f31e9d5b84bc",
       "silent": false
     },
     {
@@ -602,7 +710,7 @@
       "ticks": 97,
       "samples": 58119,
       "busWrites": 96,
-      "pcmSHA256": "88284b966dd84970dad385b163bf963a6fa9965af00ab55b830815da5bfcfafe",
+      "pcmSHA256": "544fae9643837ea94ab63b2aabe1d0f3489656a5d797d27d43eaba9df64b91d0",
       "silent": false
     },
     {
@@ -611,13 +719,17 @@
       "ticks": 193,
       "samples": 116238,
       "busWrites": 125,
-      "pcmSHA256": "c550f1672e53cb76daad28cbdb93f4f29861c85c31424a7221a19095eee3c3e9",
+      "pcmSHA256": "178aab37eb0cd844abe309fc066d6163adc679635ec878bc9dd5998b29f265dd",
       "silent": false
     },
     {
       "id": 82,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 3,
+      "samples": 1211,
+      "busWrites": 9,
+      "pcmSHA256": "eb0f11a0305a688354b522fb38ba3a604353fa728da085706b46bab77009fff8",
+      "silent": false
     },
     {
       "id": 83,
@@ -625,7 +737,7 @@
       "ticks": 217,
       "samples": 130767,
       "busWrites": 572,
-      "pcmSHA256": "c75ed0382f9b627eb1ff679b5752799815f891eec3d0f068050e12c09c3dbed9",
+      "pcmSHA256": "504ccb04288ade2756619f01b1309e45339494666d2ccb3669a868fab897dc9e",
       "silent": false
     },
     {
@@ -634,7 +746,7 @@
       "ticks": 169,
       "samples": 101708,
       "busWrites": 407,
-      "pcmSHA256": "683a422f1370ffb921c163102b77f86064dbd92d0c4d72cab53b54311f953a18",
+      "pcmSHA256": "6cc2062f0ebb4ef66dcbd8956a66a3e294be9b7c0b34f36e784af7c9a6c63110",
       "silent": false
     },
     {
@@ -661,13 +773,17 @@
       "ticks": 17,
       "samples": 9686,
       "busWrites": 54,
-      "pcmSHA256": "6507d3191d65768cfdf9850793a4af04f42e1c32b90d27088dead8d78f90b9eb",
+      "pcmSHA256": "fdc28e3c429e0c6f1584f7e683f57fd0bc1a827710af8067e168460d7ec8d559",
       "silent": false
     },
     {
       "id": 88,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 82,
+      "samples": 49038,
+      "busWrites": 154,
+      "pcmSHA256": "f1a3f264ebcd762da51f0663be351edb8042a63bc1172d0e78f69621fe9f1ea7",
+      "silent": false
     },
     {
       "id": 89,
@@ -675,18 +791,26 @@
       "ticks": 71,
       "samples": 42378,
       "busWrites": 174,
-      "pcmSHA256": "05ce98d33b736f8532e6e20b691b7a64d89fad0435f0c4b07fa3fdf9745e4e3d",
+      "pcmSHA256": "ad78c25de24d8a9d7b16e2169c602f08ee93e0ed9083fae91f676b4c16a88d34",
       "silent": false
     },
     {
       "id": 90,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 98,
+      "samples": 58724,
+      "busWrites": 76,
+      "pcmSHA256": "602957a4015f995c76a9eaf9045eb0b5959c3305e1051ff94c1f459eadd08641",
+      "silent": false
     },
     {
       "id": 91,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 5,
+      "samples": 2422,
+      "busWrites": 12,
+      "pcmSHA256": "bec88e987789cd96f5e06a53d4494c1b7fde09b884c469f327307a6684b417fa",
+      "silent": false
     },
     {
       "id": 92,
@@ -699,8 +823,12 @@
     },
     {
       "id": 93,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 98,
+      "samples": 58724,
+      "busWrites": 76,
+      "pcmSHA256": "f715e720438407b462ae7bc56e93ac9558ff3216383195aa4a07e541d4a9389b",
+      "silent": false
     },
     {
       "id": 94,
@@ -708,18 +836,22 @@
       "ticks": 17,
       "samples": 9686,
       "busWrites": 54,
-      "pcmSHA256": "aa29b82773c8d726159677db8eff67efb1508e815f5173e29c30fd4ec778b461",
+      "pcmSHA256": "488d7d79783a3873db57c3827f6e27e1291c882f4cd9d778ded98e8977905640",
       "silent": false
     },
     {
       "id": 95,
       "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
     },
     {
       "id": 96,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 50,
+      "samples": 29665,
+      "busWrites": 148,
+      "pcmSHA256": "f5eaa16519264f510497791071dcbfa6e4876e500af232184862dbe051f8c776",
+      "silent": false
     },
     {
       "id": 97,
@@ -727,18 +859,26 @@
       "ticks": 69,
       "samples": 41168,
       "busWrites": 178,
-      "pcmSHA256": "989adab16c0bc6582719f8c672c60339f061f14a3709712c57f24edebf4f0d72",
+      "pcmSHA256": "7bcfa17e5da79a6b6ed0e60626d97b65c120e9311d111deea547dd181c0af40f",
       "silent": false
     },
     {
       "id": 98,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 33,
+      "samples": 19373,
+      "busWrites": 39,
+      "pcmSHA256": "2b55f0f502fb03dad046f41ec87c3e67e961e9b521982c87f2da0f878bd49ec9",
+      "silent": false
     },
     {
       "id": 99,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 18,
+      "samples": 10292,
+      "busWrites": 19,
+      "pcmSHA256": "1c136e5bf5f22d5161f3b76927c20783e8a29539814e5b80e367aed263b1ab05",
+      "silent": false
     },
     {
       "id": 100,
@@ -746,7 +886,7 @@
       "ticks": 19,
       "samples": 10897,
       "busWrites": 43,
-      "pcmSHA256": "3e492a4a242bc2d13e27c815ffc475c14165816dc084528ca7306cfcbfe04ecc",
+      "pcmSHA256": "efbbdaf0115b19a890f37b8efc2580b5c4cab8c92ca56b0dd1098d04654cce7d",
       "silent": false
     },
     {
@@ -773,7 +913,7 @@
       "ticks": 36,
       "samples": 21189,
       "busWrites": 46,
-      "pcmSHA256": "a086a17c89e80be987284808c3b3ac8296fdefe745d3b76531af8013bc11bd8c",
+      "pcmSHA256": "4a2b614f6206d8e4268c2d159a7847ac62b477eadef38c2205b5551a622b6c6b",
       "silent": false
     },
     {
@@ -782,7 +922,7 @@
       "ticks": 36,
       "samples": 21189,
       "busWrites": 64,
-      "pcmSHA256": "bcb6b576fb525b4984649daf629bd7f793c409975eb8855160ce6787d058a085",
+      "pcmSHA256": "43eda1fedee2deb2306e1bbda723b77bc7bcf2a2834f7e318f43f47be6544d25",
       "silent": false
     },
     {
@@ -791,13 +931,17 @@
       "ticks": 49,
       "samples": 29059,
       "busWrites": 106,
-      "pcmSHA256": "a6348273446a35188f26d75f0c7d7cb420f355df5db691297066b76612725ecc",
+      "pcmSHA256": "9864d54a59f2decf0d2248703147be1e7a9e795091f99e0216ed931b2f89a5c0",
       "silent": false
     },
     {
       "id": 106,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 18,
+      "samples": 10292,
+      "busWrites": 18,
+      "pcmSHA256": "b9687a3deda74d4d115144c09ee1e1e52c59337605b56c707d4c7beff8d63806",
+      "silent": false
     },
     {
       "id": 107,
@@ -805,7 +949,7 @@
       "ticks": 48,
       "samples": 28454,
       "busWrites": 71,
-      "pcmSHA256": "fe52b973fd9f4c032136110336ca9b0e7c7e95752c7e4f64ba17d56184c7dff6",
+      "pcmSHA256": "c97ff1b011994c0b08cec3d9d6ac9a2a1e0c7eed903617bc3e3c6275130ebdce",
       "silent": false
     },
     {
@@ -814,7 +958,7 @@
       "ticks": 67,
       "samples": 39957,
       "busWrites": 47,
-      "pcmSHA256": "f76a6e85dc4c5e0bfccbe62c28f22f94140f16731ef67b8adf5459fbc7c23da9",
+      "pcmSHA256": "fdcf8dd710e55dc96e6c39a7ae2305de55153ab905176aa92b1be8e6ce9b5c5c",
       "silent": false
     },
     {
@@ -823,7 +967,7 @@
       "ticks": 17,
       "samples": 9686,
       "busWrites": 39,
-      "pcmSHA256": "81d716d91c5f56b81c6bef29fa032f4f0ba58eb7ff7d33bf61571e5066fe2571",
+      "pcmSHA256": "2206ae22bd02d5838870dafb60a31fa8065f4b546401fe9baa57bd196046b2d5",
       "silent": false
     },
     {
@@ -832,13 +976,13 @@
       "ticks": 935,
       "samples": 565448,
       "busWrites": 667,
-      "pcmSHA256": "93b2b1c322ff197f0856d25bda5c67727be7071e5f355a3d9c9f61389cb3716f",
+      "pcmSHA256": "58bf207b403c48c2b27fab769b8b96723c20cce68fb500f948dc1fa34e9f79e9",
       "silent": false
     },
     {
       "id": 111,
       "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
     },
     {
       "id": 112,
@@ -905,13 +1049,21 @@
     },
     {
       "id": 119,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 17,
+      "samples": 9686,
+      "busWrites": 8,
+      "pcmSHA256": "8dfa5971cbc2c6ec1437974435b5ef0912064b2aff946a40461cefbf9f15cf23",
+      "silent": false
     },
     {
       "id": 120,
-      "status": "unsupported",
-      "diagnostic": "Tandy noise synthesis is not implemented"
+      "status": "complete",
+      "ticks": 17,
+      "samples": 9686,
+      "busWrites": 8,
+      "pcmSHA256": "8dfa5971cbc2c6ec1437974435b5ef0912064b2aff946a40461cefbf9f15cf23",
+      "silent": false
     }
   ]
 }

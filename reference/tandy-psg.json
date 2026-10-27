@@ -1,0 +1,28 @@
+{
+  "level": "External pinned DOSBox NCR8496 digital comparison; not original game runtime or waveform parity.",
+  "captureRevision": "tandy-psg-v1-2026-10-27",
+  "sourceRevision": "DOSBox engine f6d9b (the four files also match source HEAD7ae3dbe)",
+  "sources": {
+    "src/hardware/audio/mame/sn76496.cpp": "f4c8dc1ff7caf8d5112fec1ec6c4f7c02c1ac3ef4f1449783190bf7dc7876a2c",
+    "src/hardware/audio/private/mame/sn76496.h": "ff92773ef16202e82d999db6618e3e4b3bd0df95f055405e678d7f67d75b6b7d",
+    "src/hardware/audio/private/mame/emu.h": "d140f8bd94c7a8ebecf2316f14c2e27afd85776190ff8a23ca3263cf871d2ba9",
+    "src/hardware/audio/tandy_sound.cpp": "c92507733b116af2d6fdca35f2390254be08c688266bfc75adfa37d022416961"
+  },
+  "inputs": "reference/tandy-psg-inputs.json",
+  "inputsSHA256": "08c85bb41b30ccfc2d9dea92caf944e799d2f90695367b8adcdf0352c8e16e76",
+  "probe": "reference/tandy-psg-probe.cpp",
+  "probeSHA256": "f2410f95c90ed33dc0d1a131432df924b644b3855bbb733c3b9dce577fca41f1",
+  "captureToolSHA256": "bdd563eb856e107b57459d0f687449c26c0b37c8aebfbfd30913ebd12c736b35",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+  "cases": 15,
+  "checkpoints": 625,
+  "clock": "One digital step = chip clock/16. Reference sound_stream_update advances8 internal samples per step. Reference clock3579552 is rounded by the pinned DOSBox Tandy provider; audition uses nominal3579545. No PCM-time equivalence claimed.",
+  "injections": "Authored initial register/counter/output/LFSR state in inputs; all volumes15,latched0,internal divided-clock phase7. No expected state supplies input. Probe exposes private visibility only; chip algorithms unchanged.",
+  "comparison": "Exact registers,effective periods,counters,output bits,LFSR,latch and output-negation flag at every consumed event. No exclusions. No analog/gain/resampling comparison.",
+  "recipe": "docs/tandy-audio.md",
+  "verify": "npm run verify:tandy-psg",
+  "artifact": {
+    "path": ".local/tandy-psg/digital.json",
+    "sha256": "17a3091d763b410a46c4e777720ecc5abad8eb739238247374ce6c59918b3a1d"
+  }
+}

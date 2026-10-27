@@ -18,6 +18,9 @@ assert.deepEqual(manifest.environment, {
   initialPeriods: [1, 1, 1],
   initialCounters: [1, 1, 1],
   initialOutputs: [1, 1, 1],
+  chipVariant: "NCR8496",
+  initialNoise: { control: 0, counter: 1, output: 0, lfsr: 32768 },
+  centeredOutputNegated: true,
 });
 function run(id) {
   let r;
@@ -64,9 +67,9 @@ const counts = {
 };
 assert.deepEqual(counts, {
   requests: 121,
-  complete: 70,
-  audible: 48,
-  unsupported: 51,
+  complete: 109,
+  audible: 87,
+  unsupported: 12,
   silent: 22,
 });
 assert.deepEqual(manifest.counts, counts);
@@ -78,8 +81,8 @@ const changed = structuredClone(manifest.cases);
 changed[25].pcmSHA256 = "0".repeat(64);
 assert.throws(() => compare(changed), /Tandy corpus result 25/);
 const unsupported = structuredClone(manifest.cases);
-unsupported[3].diagnostic = "ignored";
-assert.throws(() => compare(unsupported), /Tandy corpus result 3/);
+unsupported[8].diagnostic = "ignored";
+assert.throws(() => compare(unsupported), /Tandy corpus result 8/);
 console.log(
-  "Tandy corpus: 121 independently initialized requests; 70 complete (48 audible,22 silent),51 explicitly unsupported; 3 negative controls. Port regression only, not full original runtime/waveform parity.",
+  "Tandy corpus: 121 independently initialized requests; 109 complete (87 audible,22 silent),12 explicitly unsupported; 3 negative controls. Port regression only, not full original runtime/waveform parity.",
 );

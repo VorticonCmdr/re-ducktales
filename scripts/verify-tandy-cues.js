@@ -5,31 +5,42 @@ import { parseArchive } from "../src/assets.js";
 import { TandyDriver } from "../src/tandy-driver.js";
 import build from "../reference/build.json" with { type: "json" };
 const sequenceMode = process.argv.includes("--sequence");
+const noiseMode = process.argv.includes("--noise");
+assert.ok(!(sequenceMode && noiseMode), "choose one cue set");
 assert.ok(
-  process.argv.slice(2).every((arg) => arg === "--sequence"),
+  process.argv
+    .slice(2)
+    .every((arg) => arg === "--sequence" || arg === "--noise"),
   "unknown cue verification option",
 );
 const manifest = JSON.parse(
   await readFile(
     new URL(
-      sequenceMode
-        ? "../reference/tandy-sequence-cues.json"
-        : "../reference/tandy-cues.json",
+      noiseMode
+        ? "../reference/tandy-noise-cues.json"
+        : sequenceMode
+          ? "../reference/tandy-sequence-cues.json"
+          : "../reference/tandy-cues.json",
       import.meta.url,
     ),
   ),
 );
-const requiredInputs = sequenceMode
+const requiredInputs = noiseMode
   ? [
-      { sound: 2, ticks: 27 },
-      { sound: 25, ticks: 25 },
+      { sound: 10, ticks: 3 },
+      { sound: 35, ticks: 3 },
     ]
-  : [
-      { sound: 67, ticks: 17 },
-      { sound: 68, ticks: 17 },
-    ];
-const requiredCheckpoints = sequenceMode ? 56 : 38;
-const requiredWrites = sequenceMode ? 129 : 84;
+  : sequenceMode
+    ? [
+        { sound: 2, ticks: 27 },
+        { sound: 25, ticks: 25 },
+      ]
+    : [
+        { sound: 67, ticks: 17 },
+        { sound: 68, ticks: 17 },
+      ];
+const requiredCheckpoints = noiseMode ? 10 : sequenceMode ? 56 : 38;
+const requiredWrites = noiseMode ? 17 : sequenceMode ? 129 : 84;
 const priorWrites = sequenceMode ? 4 : 0;
 const firstSound = requiredInputs[0].sound,
   lastSound = requiredInputs[1].sound;
@@ -44,7 +55,7 @@ for (const [key, item] of Object.entries(manifest.artifacts)) {
   assert.equal(hash(b), item.sha256, `SETUP: corrupt ${item.path}`);
   raw[key] = JSON.parse(b);
 }
-assert.equal(Object.keys(raw).length, sequenceMode ? 62 : 42);
+assert.equal(Object.keys(raw).length, noiseMode ? 16 : sequenceMode ? 62 : 42);
 assert.equal(manifest.expectedCheckpoints, requiredCheckpoints);
 assert.equal(manifest.expectedPortWrites, requiredWrites);
 for (const name of ["DUCKTALE.EXE", "IT.DRV"])
@@ -100,7 +111,7 @@ function compare(data, input = manifest.inputs) {
   let checkpoints = 0,
     writes = 0;
   for (const { sound, ticks } of input) {
-    if (sequenceMode) {
+    if (sequenceMode || noiseMode) {
       const setup = batch(data[`${sound}-setup`], 2);
       assert.deepEqual(
         setup.map((r) => r.op),
@@ -207,7 +218,9 @@ a.results[1].data = memory.toString("base64");
 altered[`${lastSound}-01`].after.content[0].text = JSON.stringify(a);
 assert.throws(() => compare(altered), /entire native cue state/);
 const missing = structuredClone(raw);
-delete missing[`${firstSound}-09`];
+delete missing[
+  `${firstSound}-${String(Math.min(9, requiredInputs[0].ticks)).padStart(2, "0")}`
+];
 assert.throws(() => compare(missing), /missing native cue checkpoint/);
 const event = structuredClone(raw);
 event[`${lastSound}-events`].bios.pop();

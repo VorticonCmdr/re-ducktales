@@ -2,12 +2,16 @@ import { test, expect } from "@playwright/test";
 
 for (const [id, ticks, samples] of [
   ["002", 27, 15741],
+  ["003", 171, 102919],
+  ["010", 3, 1211],
   ["025", 25, 14530],
   ["032", 135, 81124],
+  ["035", 3, 1211],
   ["036", 6, 3027],
   ["037", 49, 29059],
   ["067", 17, 9686],
   ["068", 17, 9686],
+  ["069", 195, 117449],
 ]) {
   test(`asset viewer plays the Tandy${id} preview through native audio`, async ({
     page,
@@ -56,9 +60,9 @@ for (const [id, ticks, samples] of [
     await expect(audio).toHaveAttribute("data-state", "ended");
     await page
       .getByRole("searchbox", { name: "FIND AN ASSET" })
-      .fill("Sound 035");
+      .fill("Sound 008");
     await page
-      .getByRole("button", { name: "IT.DRV · Sound 035 Sound", exact: true })
+      .getByRole("button", { name: "IT.DRV · Sound 008 Sound", exact: true })
       .click();
     await expect(audio).toHaveCount(0);
     await expect(page.locator("audio")).toHaveCount(1);
@@ -77,14 +81,14 @@ test("Tandy unsupported and silent requests have explicit outcomes", async ({
     "All resources decoded successfully",
   );
   const search = page.getByRole("searchbox", { name: "FIND AN ASSET" });
-  await search.fill("Sound 003");
+  await search.fill("Sound 008");
   await page
-    .getByRole("button", { name: "IT.DRV · Sound 003 Sound", exact: true })
+    .getByRole("button", { name: "IT.DRV · Sound 008 Sound", exact: true })
     .click();
   const section = page.locator('section[aria-label="Tandy preview"]');
   await expect(section).toHaveAttribute("data-state", "error");
   await expect(section.getByRole("alert")).toHaveText(
-    "Tandy preview stopped: Tandy noise synthesis is not implemented",
+    "Tandy preview stopped: Tandy engine sequencing is not implemented",
   );
   await expect(section.locator("audio")).toHaveCount(0);
   await expect(

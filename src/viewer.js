@@ -35,7 +35,7 @@ function appendTandyPreview(entry) {
       section.append(play,player,caption);
     }
   } catch(error){fail(error);}
-  const limit=document.createElement('p');limit.textContent='Partial Tandy implementation. Noise, engine effects and some commands remain unfinished. Unsupported paths stop with a diagnostic. Audio waveform matching is unverified.';
+  const limit=document.createElement('p');limit.textContent='Partial Tandy implementation. Engine effects and some commands remain unfinished. Unsupported paths stop with a diagnostic. Audio waveform matching is unverified.';
   section.append(diagnostic,limit);$('stage').append(section);
 }
 function draw() {

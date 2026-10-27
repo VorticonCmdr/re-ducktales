@@ -14,20 +14,20 @@ unsupported paths stop with a visible diagnostic and no Tandy playback. A
 zero-sample original request is identified explicitly. Selection stops playback
 and releases object URLs. No alternate rendition is substituted for a failed one.
 
-All121 public requests are exercised by `npm run verify:tandy-corpus`:70 complete,
-48 produce a nonzero signal and22 are silent. Of the silent requests,nine return
-no samples and13 produce timed silence.51 requests stop with known diagnostics,
-including request069's unimplemented zero-period chip behavior. The corpus
+All121 public requests are exercised by `npm run verify:tandy-corpus`:109 complete,
+87 produce a nonzero signal and22 are silent. Of the silent requests,nine return
+no samples and13 produce timed silence.12 requests stop with known diagnostics,
+covering engine/remaining commands and the1024-tick audition limit. The corpus
 manifest records deterministic PCM hashes as **port regressions**,not original
 audio outputs. Missing requests,changed results and changed unsupported paths
 fail; three negative controls check those mechanisms.
 
-Native complete-cue comparisons cover002,025,036,067,068.025 demonstrates combined
+Native complete-cue comparisons cover002,010,025,035,036,067,068.025 demonstrates combined
 pitch slide/vibrato:25 calls,14530 samples at44100Hz.002 has27 calls/15741 samples;
 036 has6 calls/3027 samples;067/068 have17 calls/9686 samples. Browser acceptance
 uses real keyboard/buttons,native audio completion and a one-sample tolerance
 for the browser's microsecond-rounded WAV duration. Hardware waveform parity,
-in-game Tandy,noise,engine effects and remaining commands are unfinished.
+in-game Tandy,engine effects and remaining commands are unfinished.
 
 ## Source evidence
 
@@ -120,14 +120,20 @@ all channels muted, first sequence call at time0 and nominal clock3579545Hz.
 Sequencer spacing is16380/1193182 seconds; PCM boundaries round to the nearest
 sample. Source instruction delays between OUTs are not reproduced.
 
-The independently written counter model uses10-bit periods, clock/16 decrement,
-toggle/reload and2dB attenuation steps, with15 muted, from the
-[TI SN76489AN datasheet](https://map.grauw.nl/resources/sound/texas_instruments_sn76489an.pdf).
-Nominal clock14318180/4 also appears in DOSBox `tandy_sound.cpp`. Period writes
-preserve the current countdown. Zero-period and noise behavior are rejected.
-Gain0.18 per voice is an audition setting. Chip phase, waveform shape, analog
-filtering, mixing, resampling and real hardware output have not been matched.
-The preview explicitly returns `approximate:true` for this presentation boundary.
+The counter model now targets the NCR8496 selected by the pinned DOSBox Tandy
+profile. The PCjr profile selects a different SN76496. The earlier tone-only
+implementation used the [TI SN76489AN datasheet](https://map.grauw.nl/resources/sound/texas_instruments_sn76489an.pdf);
+NCR-specific noise/register/zero-period behavior is checked separately below.
+Period writes preserve countdowns. Nominal clock14318180/4 appears in DOSBox
+`tandy_sound.cpp`; its render provider rounds that clock to3579552Hz,whereas
+the audition retains nominal3579545Hz. Digital-clock checks bypass resampling;
+they do not prove PCM sample alignment or original IRQ timing.
+
+Centered,negated mixing with gain0.18 per voice and ideal2dB attenuation remains
+an audition setting. The external chip source mixes unipolar integer levels
+with a gain/clipping table. Chip phase,analog filtering,gain/mixing,resampling
+and physical hardware output have not been matched. The preview explicitly
+returns `approximate:true` for this presentation boundary.
 
 Verification levels: native state/bus comparison passes; independent PCM
 provider passes tone-frequency/attenuation checks; actual browser input/native
@@ -282,7 +288,8 @@ truncated approximation. Speaker controls are a distinct rendition and do not
 autoplay after Tandy failure. The sequence milestone's59 completed requests prove
 termination/implemented-path coverage and deterministic provider output. They
 do not establish original parity for all those requests. Native browser checks
-cover five captured cues,an unsupported noise request and a zero-sample request.
+covered five captured cues,an unsupported noise request and a zero-sample request
+at that milestone; the current noise/browser coverage is described below.
 
 Tool limitation: Lua cannot access CPU/debugger/port I/O,and `batch_execute`
 cannot batch debugger continuation/stops. Capturing each OUT therefore requires
@@ -292,9 +299,8 @@ specified stop—would reduce that overhead. No general emulator/compiler was
 added as a prerequisite; the present experiments use a short fixed call/jump
 harness and documented tool limits.
 
-Next audio milestone: noise synthesis and exact zero-period chip behavior,
-then remaining commands,engine and audio-status APIs for a persistent in-game
-Tandy driver. Precomputed independent auditions are not a substitute for that driver.
+Next audio milestone: remaining commands8d/9f,engine and audio-status APIs,
+and a persistent in-game Tandy driver for music and long-running effects. Precomputed independent auditions are not a substitute for that driver.
 
 The sequence milestone passes full `npm run verify`:65 unit tests,38 browser
 scenarios,all required original comparisons,the121-request strict corpus audit
@@ -344,17 +350,19 @@ fixtures. No handler consumes an external device value or emits an OUT in these
 ranges. Captures remain in ignored `.local/tandy-controls/`,with checksums in the
 manifest. The original caller was0ed6:046e,stop1232. Cleanup restored its general/
 segment registers and recorded port61 control,freed the allocation and verified
-empty allocation/breakpoint lists. It is paused at the same caller,stop1261;
+empty allocation/breakpoint lists. That capture ended at the same caller,stop1261;
 flags,clocks and BIOS effects are not a machine checkpoint.
 
-The unchanged PCM provider now completes70 requests (48 audible,22 silent),
+At the control milestone,the then-existing PCM provider completed70 requests
+(48 audible,22 silent),
 with51 explicit failures. The11 newly completed requests are032,037,048,062,063,
-078,079,080,081,083,110. Previously completed requests retain their exact corpus
+078,079,080,081,083,110. At that milestone,previously completed requests retained their exact corpus
 results and PCM hashes. New hashes are independent-provider regressions; they
 are not original waveform goldens. Browser scenarios032 (tempo/no-op) and037
 (sustained pitch) exercise actual keyboard activation,native completion,repeat
-playback and asset switching. Noise synthesis,zero-period chip behavior,engine
-playback,remaining commands and persistent in-game Tandy are still unfinished.
+playback and asset switching. Noise and zero-period behavior were unfinished
+at that milestone; the current support is recorded below. Engine playback,
+remaining commands and persistent in-game Tandy remain unfinished.
 Requests006/038 reach the1024-tick audition limit; that limit does not establish
 that their original sequences are invalid or should terminate.
 
@@ -363,3 +371,84 @@ scenarios,all required original comparisons,the121-request corpus audit and the
 production build. Log: `.local/tandy-controls-final-verify.log`. Runtime source
 remained unchanged throughout that gate. The two new browser scenarios also
 passed in the focused eight-scenario Tandy run before the full gate.
+
+
+## NCR8496 noise and zero-period behavior
+
+`reference/tandy-psg.json` pins the four external DOSBox source files,authored
+inputs,probe/capture-tool hashes and a local digital-state artifact. All four
+files also match `git show f6d9b:<path>`,the running engine revision. The chip
+source is `src/hardware/audio/mame/sn76496.cpp`; selection is in
+`src/hardware/audio/tandy_sound.cpp`. These are primary implementation sources
+for the emulator target,not evidence of physical-chip waveform parity.
+
+The narrow C++ probe includes that existing chip implementation without changing
+its algorithms. Its private-visibility shim installs the independently authored
+initial periods,counters,output bits,LFSR and latch; it then invokes real writes
+and `sound_stream_update`. Eight internal samples advance one digital clock.
+Only logging dependencies are stubbed through an empty `dosbox.h` with
+`C_DEBUGGER=0`; no game/compiler/emulator implementation is added. To recapture:
+
+```
+python3 scripts/capture-tandy-psg.py /path/to/dosbox-automation
+npm run verify:tandy-psg
+```
+
+The source hashes must match before compilation. Recapture requires clang++ and
+that source tree; routine verification requires the retained local artifact.
+Missing/corrupt evidence fails setup. Fifteen independent scenarios consume610
+write/clock events and compare625 exact snapshots of registers,effective periods,
+counters,output bits,LFSR,latch and negation. Four negative controls reject
+missing cases,changed LFSR,removed events and changed noise mode. The scenarios
+cover all8 noise modes,all4 ignored attenuation-data registers,ignored noise-data
+writes,mode-only resets,retained countdown/output,rate-only LFSR preservation,
+linked tone2 periods and zero-period reloads on all3 tones.
+
+Digital rules now implemented:
+
+- Tone register zero reloads1024; noise selectors0/1/2 reload32/64/128 digital
+  clocks. Selector3 reloads twice tone2's effective period,including zero→2048.
+- The16-bit NCR feedback state uses mask8000 and taps0002/0020. Periodic mode
+  feeds bit1; white mode uses XNOR of bits1 and5. Output is the shifted low bit.
+- A noise mode-bit change resets only the feedback register. It leaves current
+  output/countdown until the next shift; a rate-only change retains allthree.
+  Data-only writes to attenuation/noise registers are ignored. Tone writes
+  retain existing countdowns,and tone2 writes update the linked noise reload.
+- NCR output is negated. A one-time comparison with the previous provider at
+  commit`faef38b` checked all70 previously completed requests:exact bus,ticks and
+  PCM lengths are unchanged; samples differ only by polarity (zero stays zero).
+  This is a port-baseline comparison,not an original waveform comparison. The
+  local report is `.local/tandy-psg-polarity-audit.json`. Corpus hashes were
+  deliberately updated for that polarity and the newly supported cues.
+
+`reference/tandy-noise-cues.json` adds actual original sequences010/035. Each
+fresh original004 body is reset,started and advanced exactly3 times,carrying
+state. All10 complete-body checkpoints and17 OUT writes compare exactly,with
+separate consumed IN61/BIOS events and five negative controls. Reproduce using
+the existing459c/privatefef0 fixture and4000/4003 near-call harness,4100 far-start
+wrapper,and all17 documented breakpoints. Use sound10 then35. Each cue has a
+fresh original body; no synthetic sequence is substituted. Save full before/
+after memory and each OUT stop. Final breakpoint counts cover all17 writes.
+`npm run verify:tandy-noise-cues` is included in `npm run verify:tandy`.
+The installed original remains005 under svga_s3; this is conditional004-driver
+evidence,not a natural Tandy-machine run. Cleanup restored original non-flag
+registers and recorded port61 control,freed the allocation and removed owned
+breakpoints. Original caller remains0ed6:046e,now stop1301; flags,clocks and BIOS
+effects are not a full machine checkpoint.
+
+The independent audition corpus now completes109 requests (87 audible,22 silent).
+The remaining12 outcomes are explicit:008 engine,009/057 command9f,060 command8d,
+and001/006/013/030/031/038/095/111 exceeding the1024-tick audition limit. A limit
+is not evidence that an original music sequence is invalid or must terminate.
+No partial audio is offered after failure. Native browser audio scenarios add
+003,010,035 and069 (the formerly blocked zero-period path),with keyboard play,
+completion,replay and asset switching. Original whole-game/device waveform,
+gain/filter/sample alignment and persistent in-game Tandy remain unverified.
+
+
+The noise milestone passes full `npm run verify`:66 unit tests,44 browser
+scenarios,all required original comparisons,the121-request corpus audit and the
+production build. Log: `.local/tandy-noise-final-verify.log`. Runtime source
+remained unchanged throughout the gate. The focused12-scenario browser audio
+suite passed before that full run. No original assets or local captures are
+committed.

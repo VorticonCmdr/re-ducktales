@@ -116,23 +116,21 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
-- Tandy is partially implemented: the viewer attempts all121 public requests;
-  70 complete (48 audible,22 silent),51 stop with explicit diagnostics. These
-  counts are independent-provider regressions,not full-corpus original parity.
-  Companion starts,priorities,loops/calls,transpose/tempo and vibrato add42
-  conditional native cases/43 checkpoints and4 exact writes. Complete002/025
-  captures add56 carried checkpoints and129 writes. Earlier envelope and
-  036/067/068 evidence remains checked. Native browser keyboard/playback and
-  unsupported/silent outcomes pass. Commands90/97/aa/9d and the noise-note
-  pitch boundary add14 exact conditional native cases. Eleven more requests
-  complete; new browser scenarios cover032/037. Full `npm run verify` passes65
-  unit tests,40 browser scenarios and the production build; log
-  `.local/tandy-controls-final-verify.log`. Noise synthesis,engine effects,some
-  commands and in-game integration are unfinished; waveform parity is unverified. See
-  [Tandy setup and limitations](tandy-audio.md). In-game playback uses the PC-speaker
-  driver. PC-speaker
-  noise and engine effects are approximate,and original waveform/device parity
-  is unverified. See `docs/audio.md`.
+- Tandy viewer auditions complete109 of121 requests (87 audible,22 silent).
+  NCR8496 noise,zero-period reloads,register semantics and output polarity now
+  pass625 external chip-model checkpoints. Two original noise cues add10 carried
+  driver checkpoints and17 exact OUT writes; earlier driver comparisons remain
+  required. New browser routes cover noise003/010/035 and zero-period069.
+  These are separate digital/provider/browser evidence levels; full waveform,
+  gain/filter/timing parity and persistent in-game Tandy are unverified. The12
+  remaining auditions report engine008,commands8d/9f or the1024-tick limit.
+  Next:remaining commands,engine/audio-status APIs and persistent playback for
+  music and gameplay. [Tandy evidence/setup](tandy-audio.md) records exact commands
+  `npm run verify:tandy-psg`, `npm run verify:tandy-noise-cues` and the full
+  `npm run verify:tandy` suite. In-game audio still uses the PC-speaker driver;
+  its noise/engine effects are approximate. See [audio.md](audio.md). Full
+  `npm run verify` passes66 unit tests,44 browser scenarios,all required original
+  comparisons and the build; log `.local/tandy-noise-final-verify.log`.
 - Full original expedition timing,presentation and audio parity are unproven.
   Cave movement,mountain hook/ascent,jungle scrolling/enemies and additional
   variants/difficulties still need targeted original comparisons.
@@ -263,7 +261,7 @@ The original repository's `main` remains the local integration target; no push
 or deployment is authorized. The existing `.gitignore` remains unchanged.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,paused
-0ed6:046e stop1261,DS/SS1403,after the conditional Tandy-driver harness. Rechecked
+0ed6:046e stop1301,DS/SS1403,after the conditional Tandy-driver harness. Rechecked
 with the live debugger. Original general/segment registers were restored to
 the saved post-RETF caller; flags,time and BIOS effects were not restored.
 The allocated fixture was freed and owned breakpoints cleared. This is not a

@@ -114,7 +114,7 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   const prepared = await state(c);
   expect(prepared.departure.flightRequest).toEqual({ days: 1, racing: 1 });
   expect(prepared.departure.activity).toBe("cave");
-  expect(prepared.seed).toBe(18461);
+  expect(prepared.seed).toBe(54448);
   expect(prepared.departure.variant).toBe(0);
   await c.evaluate((canvas) => {
     canvas.addEventListener("gamepresent", (event) => {
@@ -140,9 +140,9 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   const result = await state(c);
   expect(result.flight.outcome.status).toBe("crashed");
   expect(result.campaign.day).toBe(2);
-  expect(result.campaign.location).toBe(1);
+  expect(result.campaign.location).toBe(30);
   expect(result.campaign.rival.money).toBe(4500);
-  expect(result.campaign.rival.location).toBe(1);
+  expect(result.campaign.rival.location).toBe(30);
   expect(result.money).toBe(0);
   await page.locator("#audio").check();
   await c.focus();
@@ -277,7 +277,7 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   const result = await state(c);
   expect(result.flight.outcome.status).toBe("arrived");
   expect(result.flight.outcome.code).toBe(1);
-  expect(result.campaign.location).toBe(1);
+  expect(result.campaign.location).toBe(30);
   // Real keyboard feedback can cross the original fast-arrival boundary.
   // Check its exact calendar rule using the flight's actual simulation count;
   // do not fit inputs or pretend this is a fixed-frame original replay.

@@ -4,7 +4,7 @@ The browser now connects flight/guide → mountain controls → three lost lives
 campaign map → direct retry. Walking, the climbing hook, ledge climbing, hazards,
 pickups, camera movement and the summit condition are statically translated.
 Browser acceptance covers movement, hook throw, failure/retry and a complete
-variant0 ascent with three lives, $100 in pickups, the $7000 treasure award,
+variant0 ascent with three lives, $100 in pickups, the $8000 treasure award,
 calendar/map return and repeat-visit protection.
 
 ## Supported source and analysis
@@ -180,9 +180,11 @@ Three negative controls remove Fire, alter final money and drop a checkpoint.
 
 `tests/browser/mountain-ascent.spec.js` follows title → office → El Capitan
 confirmation → ordinary flight/crash → guide → the complete ascent → original
-$7000 award → map/day+1 → collected-location notice → restart. All764 samples
+$8000 award → map/day+1 → collected-location notice → restart. All764 samples
 pass through actual browser keyboard events and the existing scheduler; all26
-checkpoints match. No state is injected. Playwright controls time and supplies
+checkpoints match,using the corrected startup RNG seeds in
+`reference/campaign-startup-browser.json`. Historical conditional-seed ascent
+expectations remain in the original manifest. No state is injected. Playwright controls time and supplies
 a125Hz display cadence so every70Hz simulation consumption can be observed
 without two samples sharing one browser callback. This scenario verifies the
 input/render/reward/calendar adapters under that explicit display environment;
@@ -195,5 +197,5 @@ Commands: `npm run verify:mountain` checks terrain, both independent routes and
 both conditional original scenarios. `npx playwright test tests/browser/mountain*.spec.js`
 checks the two browser routes. `npm run verify` is the integration gate. Original
 hook/ascent and presentation comparisons, variants1/2 and other difficulties
-remain work to do. Jungle, photography, trading and endings remain outside the
-current playable mountain milestone.
+remain work to do. Jungle,photography and trading now have their own playable
+routes; campaign endings and normal rival progression remain unfinished.

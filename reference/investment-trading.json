@@ -1,0 +1,83 @@
+{
+  "id": "investment-trading-market-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "693ee62",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "core": "normal",
+    "machine": "svga_s3",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 5,
+  "evidenceLevel": "original transaction segments; conditional29-day whole market routine; not whole original campaign replay",
+  "injections": [
+    {
+      "artifact": "cashSetup",
+      "address": "1403:8cc0",
+      "expected": 0,
+      "value": 1000,
+      "width": 4,
+      "reason": "conditional funded trading setup; not an earned-coin capture"
+    },
+    {
+      "artifact": "daySetup",
+      "address": "1403:4e0e",
+      "expected": 1,
+      "value": 30,
+      "width": 1,
+      "reason": "conditional elapsed calendar setup before normal caller cleanup"
+    }
+  ],
+  "fittedInputs": [],
+  "inputEvents": "From original portfolio company10: Fire to description; Right100ms/release,Fire20ms for attempted buy. After failed buy,cash CAS1000,Fire20ms for buy. Right100ms/release,Fire20ms for sell. Left twice with releases,Fire20ms returns portfolio; five Down100ms pulses with300ms releases,Fire20ms returns through broker. Conditional day30 then main cleanup runs market. See docs/investments.md.",
+  "comparisonRules": "Exact DS and caller trade locals except IRQ8 clock DS2225..2226 and transaction IRQ stack SP-10..SP-1; market call excludes only its stack scratch DS9f22..9f57 (54 bytes,frame/calls/IRQ). Exact message,cash,shares,trade flag,RNG,day and records. The 29-day market carries its own state; captured incoming state and explicit CAS setup are independent of expected output. Full trading code is revalidated.",
+  "artifacts": {
+    "cashSetup": {
+      "path": ".local/investment-cash-setup.json",
+      "sha256": "3bcda88ee5b3fb9a3192e61d501f975cfc3ae1f69b1d0471a3d8a86100b9b8c5"
+    },
+    "daySetup": {
+      "path": ".local/investment-day-setup.json",
+      "sha256": "9921b6e47a30c3c7c6c3d1507399f6e338365661a8a4944943e69b0a3d70e797"
+    },
+    "exit": {
+      "path": ".local/investment-exit.json",
+      "sha256": "6dcb45406dfdb9d06e4e8a6b1f227538a750434dc56a40d4bd247e39314351d3"
+    },
+    "daysBefore": {
+      "path": ".local/investment-days-before.json",
+      "sha256": "cddc5eef530c0cff1935e452d7a84a9d4b390b43fc27c354eca68ee40180f346"
+    },
+    "daysAfter": {
+      "path": ".local/investment-days-after.json",
+      "sha256": "f22965f5ea1337be05f37ad3e01104d701d13b02f09802e4a5aabe4669b9f54d"
+    },
+    "failedBuyBefore": {
+      "path": ".local/investment-buy-failed-before.json",
+      "sha256": "5befd7d33f77e53a2d0b06014cfca9e29b3b6eb20b1e05603582849995cc5199"
+    },
+    "failedBuyAfter": {
+      "path": ".local/investment-buy-failed-after.json",
+      "sha256": "b6d1205c74e0996461ae3644a239df353310282d2bc992bbd41cc7280c025ca7"
+    },
+    "buyBefore": {
+      "path": ".local/investment-buy-before.json",
+      "sha256": "d2c3b293f0b9b3da1d96c945a1565e1011cad8e705c82531a6ec26ff08122d9a"
+    },
+    "buyAfter": {
+      "path": ".local/investment-buy-after.json",
+      "sha256": "4477c9d95f5cf244318796532b25513713f59db3a08a4d4ba2b8057c5b3eae71"
+    },
+    "sellBefore": {
+      "path": ".local/investment-sell-before.json",
+      "sha256": "661868c1e8c0264148dfa86ced33a43fe6d47c14b8b3ecc12815ba4b171ffb2a"
+    },
+    "sellAfter": {
+      "path": ".local/investment-sell-after.json",
+      "sha256": "3afb41c36e4bb8bb05b1b7a7ee48e1b9846dae86b3ecf59e2fd27939e8d856f2"
+    }
+  },
+  "verify": "npm run verify:investments"
+}

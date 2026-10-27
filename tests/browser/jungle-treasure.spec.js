@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
-import route from "../../reference/jungle-treasure.json" with { type: "json" };
+import startup from "../../reference/campaign-startup-browser.json" with { type: "json" };
+const route = startup.jungle;
 
 test("keyboard jungle completion awards treasure and prevents duplicate collection", async ({
   page,
@@ -55,16 +56,16 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
   await page.keyboard.up("ArrowDown");
   await page.keyboard.up("Space");
   const entered = await until((s) => s.scene === "jungle");
-  expect(entered.campaign.location).toBe(25);
+  expect(entered.campaign.location).toBe(1);
   expect(entered.campaign.day).toBe(4);
   expect(entered.money).toBe(0);
   expect(entered.briefing.variant).toBe(0);
-  expect(entered.briefing.seed).toBe(11324);
-  expect(entered.jungle.seed).toBe(18256);
+  expect(entered.briefing.seed).toBe(30127);
+  expect(entered.jungle.seed).toBe(44031);
   expect(entered.jungle.frames).toBe(0);
   const stream = route.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
-  expect(stream).toHaveLength(792);
-  expect(route.checkpoints).toHaveLength(20);
+  expect(stream).toHaveLength(857);
+  expect(route.checkpoints).toHaveLength(23);
   let held = new Set(),
     used = 0,
     checked = 0;
@@ -102,16 +103,16 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
   }
   for (const key of held) await page.keyboard.up(key);
   const awarded = await until((s) => s.scene !== "jungle", 1500);
-  expect(used).toBe(792);
-  expect(checked).toBe(20);
+  expect(used).toBe(857);
+  expect(checked).toBe(23);
   expect(awarded.scene).toBe("expedition-result");
   expect(awarded.jungle.outcome.code).toBe(1);
   expect(awarded.jungle.lives).toBe(1);
-  expect(awarded.jungle.frames).toBe(792);
-  expect(awarded.jungle.presentations).toBe(839);
+  expect(awarded.jungle.frames).toBe(857);
+  expect(awarded.jungle.presentations).toBe(904);
   expect(awarded.jungle.scroll).toBe(960);
   expect(awarded.jungle.money).toBe(0);
-  expect(awarded.jungle.seed).toBe(42471);
+  expect(awarded.jungle.seed).toBe(60975);
   expect(awarded.expeditionResult.phase).toBe("award");
   expect(awarded.expeditionResult.value).toBe(1000);
   expect(awarded.money).toBe(1000);
@@ -121,7 +122,7 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
   });
   await press("Space");
   const returned = await until((s) => s.scene === "map");
-  expect(returned.campaign.playerCollected).toEqual([25]);
+  expect(returned.campaign.playerCollected).toEqual([1]);
   expect(returned.money).toBe(1000);
   await press("Space");
   const collected = await until((s) => s.scene === "visit-notice");

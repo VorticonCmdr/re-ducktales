@@ -1,6 +1,7 @@
 import { executableText } from "./executable.js";
 import { imagePixels, EGA } from "../assets.js";
 import { renderFlightPixels } from "./flight-raster.js";
+import { investmentPrice } from "./investments.js";
 export class Renderer {
   constructor(canvas, resources) {
     this.canvas = canvas;
@@ -60,7 +61,117 @@ export class Renderer {
       x += 8;
     }
   }
+  renderInvestments(game) {
+    const screen = game.investments,
+      m = screen.memory;
+    const original = (at) => executableText(this.resources.executable, at);
+    const textAt = (at, x, y, color = "#fff") =>
+      this.text(original(at), x, y, color);
+    const number = (n, right, y, color = "#fff") =>
+      this.text(String(n), right - String(n).length * 8, y, color);
+    if (screen.phase === "broker") {
+      this.draw("MAIN.ARC", 32, 0, 0, 0);
+      [0x1c39, 0x1c47, 0x1c55, 0x1c64].forEach((at, i) =>
+        textAt(at, 176, 60 + i * 16),
+      );
+      return;
+    }
+    this.draw("MAIN.ARC", 20, 0, 0, 0);
+    this.draw("MAIN.ARC", 25, 0, 8, 175, -2);
+    this.text(
+      String(game.campaign.day),
+      game.campaign.day < 10 ? 18 : 14,
+      182,
+      "#0000aa",
+    );
+    this.draw("MAIN.ARC", 23, 0, 40, 172, -2);
+    number(game.money, 175, 175);
+    if (screen.phase === "portfolio") {
+      textAt(0x1c82, 100, 8, "#0000aa");
+      textAt(0x1c92, 40, 22);
+      textAt(0x1c9f, 196, 22);
+      textAt(0x1ca5, 244, 22);
+      for (let row = 0; row < 6; row++) {
+        const company = (screen.top + row) & 15,
+          y = 40 + row * 20;
+        if (company === screen.selected) {
+          this.ctx.fillStyle = "#aa0000";
+          this.ctx.fillRect(32, y, 256, 8);
+        }
+        if (company === 15) textAt(0x1ccd, 32, y, "#00aa00");
+        else {
+          this.text(screen.resources.companies[company].name, 32, y);
+          number(investmentPrice(m, company), 248, y);
+          number(m.i(0x92d4 + company * 46), 280, y);
+        }
+      }
+      return;
+    }
+    const at = 0x92b2 + screen.company * 46;
+    if (screen.phase === "news") {
+      textAt(0x1ec7, 96, 8);
+      this.text(original(0x1ed8) + m.i(at + 40), 56, 22, "#ffff55");
+      const positive = screen.newsStatus === 1 || screen.newsStatus === 3;
+      screen.resources.companies[screen.company].lines
+        .slice(positive ? 8 : 10, positive ? 10 : 12)
+        .forEach((line, i) => this.text(line, 32, 35 + i * 10));
+      if (screen.newsStatus < 3)
+        this.text(
+          original(positive ? 0x1e45 : 0x1e57) + m.i(at + 44) + "%",
+          80,
+          100,
+          "#ffff55",
+        );
+      else {
+        textAt(positive ? 0x1e6b : 0x1e99, 48, 100, "#ffff55");
+        this.text(
+          original(positive ? 0x1e87 : 0x1eb5) + m.i(at + 42),
+          56,
+          110,
+          "#ffff55",
+        );
+      }
+      return;
+    }
+    if (screen.phase !== "company")
+      throw Error(`Unsupported investment presentation ${screen.phase}`);
+    const name = screen.resources.companies[screen.company].name;
+    this.text(name, 160 - name.length * 4, 8, "#ff5555");
+    this.ctx.fillStyle = "#0000aa";
+    for (const y of [23, 100, 127]) this.ctx.fillRect(32, y, 256, 8);
+    textAt(0x1ce9, 32, 23);
+    screen.resources.companies[screen.company].lines
+      .slice(2, 8)
+      .forEach((line, i) => this.text(line, 32, 35 + i * 10));
+    textAt(0x1d0a, 32, 100);
+    this.text(
+      String(game.money) + ".00",
+      104 - String(game.money).length * 4,
+      113,
+      "#ffff55",
+    );
+    this.text(String.fromCharCode(65 + m.i(at + 38)), 224, 113);
+    textAt(0x1d2e, 32, 127);
+    this.text(investmentPrice(m, screen.company) + ".00", 88, 140);
+    this.text(String(m.i(at + 34)), 224, 140, "#ffff55");
+    if (screen.message)
+      textAt(
+        [0, 0x1d53, 0x1db6, 0x1d95, 0x1dd7, 0x1df8, 0x1e19][screen.message],
+        32,
+        150,
+        "#ffff55",
+      );
+    this.draw("INVART.ARC", 0, 0, 192, 175, -2);
+    this.draw("INVART.ARC", screen.message === 3 ? 2 : 1, 0, 224, 175, -2);
+    this.draw("INVART.ARC", screen.message === 2 ? 4 : 3, 0, 256, 175, -2);
+    this.ctx.strokeStyle = "#ff5555";
+    this.ctx.strokeRect(192 + screen.button * 32, 174, 25, 20);
+  }
   render(game) {
+    if (game.scene === "investments") {
+      this.renderInvestments(game);
+      return;
+    }
     if (game.scene === "photography") {
       const p = game.photography;
       if (p.current) {

@@ -11,9 +11,10 @@ probing skips37 although an initial draw can select37. Fixed IDs consume no RNG.
 ID9 records the special transport's location. Resource=ID-1; its signed16 value
 comes from LOOT.ARC. No original record is overwritten.
 
-Browser seed0 now consumes two location draws and twenty loot draws, ending at
-58061. First Klondike departure uses18461, variant0 and race roll61: Hard races,
-Easy/Standard do not. This supersedes the old partial startup's32100/variant1.
+Browser seed0 consumes30 company draws,then two location and twenty loot draws,
+ending at45111. Easy day-one market processing reaches1960. First Klondike
+departure uses54448,variant0 and race roll48: Standard/Hard race,Easy does not.
+This supersedes earlier incomplete startup streams; see `docs/investments.md`.
 The old screenshot is retained as an explicitly conditional rendering comparison
 using captured departure seed41725, separate from the independent browser route.
 

@@ -1,11 +1,16 @@
 # Investments
 
-Initialization and pricing are translated in `src/game/investments.js`,but are
-**not yet connected to browser campaigns**. Browser startup still omits the
-market's30 RNG draws. Correct startup,daily market/news changes and the original
-portfolio/company screens are the next integration step. Existing browser routes
-remain port regressions with the older stream; they do not establish a fresh
-original campaign's destination/treasure pairing.
+The browser now supports office → investments → portfolio → company → buy/sell →
+broker confirmation → office,including all15 original companies and daily news.
+Holding Fire repeats successful trades; shares are capped at99. Trading does not
+spend a day or reset the money-bin coin latch. Restart clears holdings.
+
+Startup now initializes companies before location ordering/loot assignment and
+processes the first market day after choosing difficulty. With the port's final
+BIOS-seed provider0: company seed5245,location/loot seed45111,Easy day-one seed1960.
+These composed startup values are static/port regression evidence,not a captured
+fresh original campaign. Missing market resources stop browser loading. Component
+checks may explicitly omit that subsystem by constructing Game without resources.
 
 ## Executable and resource identity
 
@@ -69,10 +74,30 @@ a zero factor yields0. Five natural day-one quotes,companies10..14,match exactly
 3,70,20,19,4. An overflow/minimum-price boundary check is disassembly-derived,
 not an additional runtime case.
 
-**Observed,not translated:** office Left+Fire enters investments; a day-one news
-bulletin precedes the portfolio. Initial selection/top row is company10,showing
-five companies and Return to Office. Daily news uses the same campaign RNG.
-Trading,news,calendar cost and endings are still unsupported in the browser.
+**Translated and browser exercised:** office Left+Fire enters investments; news
+precedes the portfolio when company status is1..4. Display changes1/2 to5 and
+3/4 to83/84,so acknowledged pending news does not repeat. Pending rise events
+consume two RNG draws each processed day,including jitter in their effective
+announcement date. Falls use the due date directly. Both change the signed base
+price with the same low-word multiply/divide as quotes. Event discovery scans
+chart slope reversals,with difficulty/held-share chances and player/rival wealth
+choosing different deltas. `advanceInvestmentDays` follows both complete company
+passes per day. A conditional29-day original call matches all data outside its
+specified stack/IRQ boundaries,including all690 company bytes and final RNG.
+
+Buy checks zero quote,then signed shares>=99,then the sign of the wrapped32-bit
+cash-minus-price result. Sell requires positive shares and permits a zero quote.
+Success transfers one share,updates cash and sets3bb4. A held successful trade
+clears the input latch to allow repetition. Entry clears3bb4; leaving after a
+successful trade shows the broker's original four-line message for50 seven-tick
+polls,shortened by Fire. The calendar remains unchanged,verified in the original.
+
+Company descriptions use six original lines,news uses the following positive or
+negative pair. All original text,buttons and backgrounds are loaded from assets.
+Escape/Back is a documented browser navigation adapter; original DOS Escape opens
+its global quit dialog. Browser company polling uses driver ticks; original
+CPU-bound redraw/poll timing,exact trading pixels,broker audio and all
+boundary/difficulty paths still need original comparison.
 
 ## Capture and verification
 
@@ -104,3 +129,29 @@ recipe,not timing parity. Initialization covers company/chart/RNG semantic
 fields; allocator,archive handles,stack and IRQ clocks are outside its boundary.
 Quotes use each original incoming company/chart/day state and do not establish
 a closed-loop daily-news simulation or browser acceptance.
+
+## Trading and calendar capture extension
+
+`reference/investment-trading.json` pins11 further local artifacts,five checks:
+failed buy,successful buy,sell,calendar-preserving exit and a29-day market call.
+After the first rejected purchase,an explicit CAS changes cash0→1000. Buy and
+sell then use real input and carry their own balance/holdings. This is conditional
+funding,not proof of an earned original coin. At the normal main0310 return,
+DS4e0e is still1,cash1000 and holdings0. A second explicit CAS changes day1→30;
+the normal caller cleanup reaches overlay10:10d1. Capture CPU+DS+all5474 code
+bytes at entry and CPU+DS at145a return. No other fields or registers are injected.
+The translation carries its own state across29 days,using390 translated RNG draws.
+
+Transaction comparisons include caller message/icon/latch locals and all DS except
+only the10-byte IRQ stack below SP and the changed low word2225..2226 of the32-bit IRQ clock. The market call excludes
+only54 bytes of stack scratch9f22..9f57 plus that same low clock word; the upper clock word remains compared. Changing a cash
+result or incoming market seed is detected by required negative controls.
+
+`tests/browser/investments.spec.js` is independent of these conditional captures.
+It earns a real browser money-bin coin,buys/sells,reaches99 shares with held Fire,
+checks broker/office return and Restart. A separate route makes four bank round
+trips to day25,acknowledges two news bulletins,and verifies they stay consumed.
+`npm run verify:startup` checks composed startup and a complete jungle replay with
+23 checkpoints and857 inputs. Its input stream is independent of expected states:
+it adds65 idle player polls before the existing route to board the fish under
+corrected RNG. It supplies no fitted timer,BIOS,memory or RNG values.

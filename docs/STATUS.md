@@ -19,7 +19,7 @@ Updated2026-10-27. **The full game is not complete.**
 - Mountain arrival → guide → walking, hook swing/throw → life loss → campaign
   map → direct retry. Independent replay also climbs to row2 and collects $50.
   A complete variant0 ascent preserves three lives, collects $100, awards the
-  $7000 treasure, returns to the map and prevents repeat collection. Original
+  $8000 treasure, returns to the map and prevents repeat collection. Original
   hook/ascent, pixel and timing parity remain unverified.
 - Jungle arrival → guide → keyboard jump/walk/drop → life loss → campaign map
   → direct retry. Original assets,hazards,vines,fish and moving platforms run
@@ -29,6 +29,12 @@ Updated2026-10-27. **The full game is not complete.**
   the chest with one life,awards$1000,returns on day5 and prevents duplicate
   collection. Original whole-level timing and scrolling pixels remain unverified.
 
+
+- Office → investments → portfolio → company description → buy/sell → broker
+  confirmation → office. Shares persist across visits,holding Fire repeats trades,
+  and the99-share limit is enforced. Trading leaves the calendar and coin latch
+  unchanged. News after calendar travel is acknowledged once. Browser acceptance
+  earns actual money-bin cash and verifies trades,limit,news and Restart.
 
 - Photography arrival → guide → Left/Up/Right aiming → Fire to photograph →
   twelve-photo result sheet → campaign map. Target pictures pay$500,ordinary
@@ -41,7 +47,7 @@ Controls: Space/Enter fires. Up+Space enters the money bin; Right+Space opens th
 map. Hold Space for flight throttle; Down raises the nose, Up lowers it. In caves,
 hold an arrow to point, then press Space to move. Use Restart at an unsupported
 boundary. With current browser initialization and BIOS-seed0, the first Klondike
-flight races only on Hard; Easy/Standard are ordinary flights.
+flight races on Standard/Hard; Easy is an ordinary flight.
 In mountains, arrows move; hold Fire to swing the hook and release to throw.
 Up climbs an adjacent ledge or uses a transport point. In jungles,arrows walk,
 climb or drop;Fire jumps. In photography,Left/Up/Right choose the camera column
@@ -59,7 +65,7 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 
 ## Verification scope
 
-- 27 unit tests and18 browser checks. Browser coverage includes real flight
+- 27 unit tests and20 browser checks. Browser coverage includes real flight
  controls, crash/race return, airport landing, cave entry, safe-room cash,
  pit failure, direct retry, treasure recovery/$4500 award, collected-location
  notices (including native audio completion), calendar/map return, restart,
@@ -101,11 +107,11 @@ does not advance simulation. Unsupported paths stop with diagnostics.
  PNGs),4 conditional crash/calendar/repair states.
 - Treasure initialization: one conditional whole-routine checkpoint matches all34
  IDs/resources/values, RNG and special treasure location. Startup now consumes
- the missing20 loot RNG draws after the2 location-permutation draws. New original
- evidence confirms another30 company-initialization draws precede location
- ordering; those are not integrated into browser startup yet. Existing startup
- destination/treasure routes therefore remain port regressions,not whole-original
- campaign evidence. See `docs/investments.md`.
+ 20 loot RNG draws after30 company and2 location-permutation draws. Day-one
+ market processing also consumes the shared RNG. Default BIOS-seed0 reaches
+ company seed5245,location/loot seed45111 and Easy day-one seed1960. Startup
+ composition is statically inferred and independently checked; it is not a whole
+ original campaign replay. See `docs/investments.md`.
 - Cave entry: one conditional original checkpoint matches64 map words, actor
  positions, torch/RNG/time fields and sprite geometry/frame bytes. Subsequent
  movement is statically translated and browser exercised, not original-replay
@@ -130,7 +136,7 @@ variant0. These checks do not establish a complete original campaign replay.
   animations are translated, but striped reveals and original movement/timing
   comparisons remain incomplete. Collected-location notices lack original pixel
   and timing comparisons; their state and explicit device boundaries are tested.
-- Stock trading,campaign endings,normal Glomgold progression,
+- Campaign endings,normal Glomgold progression,
   atomic transport,save/load and high scores are absent. Jungle gameplay is
   connected,including a complete treasure/reward route. All three maps load;
   full browser coverage is Easy/variant0. Original comparisons are conditional,
@@ -153,6 +159,9 @@ variant0. These checks do not establish a complete original campaign replay.
   inspectable pause. Navigation buttons are accessibility adapters.
 - The money-bin failed sprite's unchecked frame addressing is partly modeled;
   allocator-dependent mask bytes outside the captured pose remain unverified.
+
+Full `npm run verify` passed for this milestone:27 unit tests,20 browser scenarios,
+all required original/independent checks and the production build.
 
 ## Commands and next work
 
@@ -179,31 +188,26 @@ cases cover every actual photo layout and difficulty;Borneo uses layout6. Origin
 all species/browser variants remain unverified. See `docs/photography.md` and
 `npm run verify:photography`.
 
-Stock foundation: `npm run verify:investments` passes seven original checkpoints
-covering all15 company records,five charts,30 RNG draws,seed continuity into
-destination ordering and five natural quotes. Entire relocated initializer and
-trading overlay bytes are checked. This module is not connected to the browser.
+Stocks: `npm run verify:investments` passes12 original checkpoints: initialization,
+seed continuity,five quotes,three trade branches,unchanged calendar return and a
+conditional29-day market run. Entire relocated initializer and trading overlay
+bytes are checked. Exact company/news UI pixels,poll timing,broker audio and
+additional original difficulties/boundaries remain unverified.
+`npm run verify:startup` adds23 independent jungle state/DS/pixel checkpoints,
+857 inputs,6409 clock events and904 presentations under corrected startup. The
+browser follows that route,with an initial player wait before boarding the fish.
+The historical792-input conditional-seed route remains checked separately.
 `npm run prepare:investment-analysis` reproduces its Ghidra analysis image.
 
-Next: integrate correct market startup,daily news and playable stock trading,
-then campaign endings. Extend targeted original comparisons for jungle
+Next: campaign endings and normal rival progression; extend trading comparisons
+for news acknowledgments,limits,overflow and difficulties. Extend targeted original comparisons for jungle
 scrolling/timing,mountain hook/ascent,cave movement and result presentation.
 Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
-Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-restarted Easy/day1,stock portfolio with company10 selected,paused0603:19d7
-stop398. DS/SS1403. The entire5474-byte relocated trading overlay was validated
-against101 relocations. No breakpoints or pending input schedules remain.
-The prior photography/jungle evidence remains below.
-All keys released,no breakpoints or pending schedules. The complete relocated
-24056-byte overlay was revalidated at entry313; EGA copy/page code is pinned at323,
-including its four documented self-modifying operands. Previous conditional
-position/camera/target setup remains in its original manifests. The retry at312
-needed no additional override. `reference/jungle-presentation.json` pins19 local
-artifacts,six state/color passes and the four-pass conditional pixel pipeline.
-`reference/jungle-runtime.json` adds conditional initialization and that whole
-frame plus the independent replay. Browser acceptance is separate;whole original
-jungle timing replay remains unproven. `reference/jungle-treasure.json` records
-conditional chest contact328/329 and return330;its explicit setup places the
-actor/camera at the final chest and is never used by the browser route.
+Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,
+Easy,conditional cash1000/day30 setup,paused0e0c:145a stop411 after market
+processing. DS/SS1403. All5474 relocated trading bytes and101 relocations were
+revalidated before the call. No breakpoints or pending inputs remain. Original
+setup injections and exact comparison scope are in `reference/investment-trading.json`.
+Historical photography/jungle capture identities remain in their dedicated manifests.

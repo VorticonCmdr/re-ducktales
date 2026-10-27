@@ -12,7 +12,7 @@ import {
 import build from "../reference/build.json" with { type: "json" };
 
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
-function capture(raw, count, physical) {
+export function capture(raw, count, physical) {
   assert.equal(raw?.isError, false, "missing or failed original capture");
   const result = JSON.parse(raw.content[0].text);
   assert.equal(result.aborted, false);
@@ -27,7 +27,7 @@ function capture(raw, count, physical) {
   assert.equal(result.results[1].addr, 0x14030);
   return { cpu, bytes, results: result.results, m: new FlightMemory(bytes) };
 }
-function sameBytes(actual, expected, label) {
+export function sameBytes(actual, expected, label) {
   assert.equal(actual.length, expected.length, `${label} length`);
   for (let i = 0; i < actual.length; i++)
     assert.equal(actual[i], expected[i], `${label} byte${i.toString(16)}`);
@@ -183,7 +183,7 @@ export async function verifyInvestments() {
   );
   assert.equal(checked, manifest.expectedCheckpointCount);
   console.log(
-    "Investments: original initialization, 30 RNG draws, destination seed continuity and five exact quotes; complete relocated code identities, negative controls passed. Browser trading is not yet connected.",
+    "Investments: original initialization, 30 RNG draws, destination seed continuity and five exact quotes; complete relocated code identities, negative controls passed. Browser acceptance is checked separately.",
   );
 }
 if (process.argv[1]?.endsWith("verify-investments.js"))

@@ -203,7 +203,7 @@ test("failed dive preserves original final pose pixels", async ({ page }) => {
   expect(JSON.parse(await canvas.getAttribute("data-state")).money).toBe(0);
 });
 
-test("local folder loading works without the development asset endpoint and unsupported routes stop", async ({
+test("local folder loading supports investments without the development asset endpoint", async ({
   page,
 }) => {
   const path = await import("node:path");
@@ -224,9 +224,8 @@ test("local folder loading works without the development asset endpoint and unsu
   await page.keyboard.down("ArrowLeft");
   await page.keyboard.press("Space");
   await page.keyboard.up("ArrowLeft");
-  await expect(page.locator("#diagnostic")).toContainText(
-    "Untranslated route: investments",
-  );
+  await expect(canvas).toHaveAttribute("data-scene", "investments");
+  await expect(page.locator("#diagnostic")).toBeHidden();
   await page.getByRole("button", { name: "Restart", exact: true }).click();
   await expect(canvas).toHaveAttribute("data-scene", "title");
   await expect(page.locator("#diagnostic")).toBeHidden();

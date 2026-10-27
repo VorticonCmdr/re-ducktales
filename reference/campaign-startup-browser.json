@@ -1,0 +1,691 @@
+{
+  "id": "campaign-startup-market-browser",
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "port browser regressions after corrected market initialization; not an original campaign replay",
+  "environment": {
+    "biosSeed": 0,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086,
+    "displayClock": "controlled125Hz for expedition replays"
+  },
+  "startup": {
+    "companyDraws": 30,
+    "companySeed": 5245,
+    "locationAndLootSeed": 45111,
+    "easyDayOneSeed": 1960,
+    "departureSeed": 54448
+  },
+  "mountain": {
+    "inputManifest": "reference/mountain-ascent.json",
+    "location": 31,
+    "briefingSeed": 30127,
+    "entrySeed": 57598,
+    "checkpointSeeds": [
+      57598, 57598, 57598, 57598, 57598, 57598, 57598, 57598, 57598, 57598,
+      57598, 57598, 57598, 57598, 57598, 57598, 52840, 52840, 52840, 52840,
+      52840, 52840, 52840, 52840, 52840, 52840
+    ],
+    "reward": 8000
+  },
+  "jungle": {
+    "inputManifest": "reference/jungle-treasure.json",
+    "location": 1,
+    "briefingSeed": 30127,
+    "entrySeed": 44031,
+    "checkpoints": [
+      {
+        "inputCount": 1,
+        "state": {
+          "phase": "playing",
+          "x": 8,
+          "y": 16,
+          "column": 0,
+          "row": 0,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 44031,
+          "tick": 25,
+          "retrace": 25,
+          "frames": 1,
+          "presentations": 6,
+          "outcome": null
+        },
+        "memorySha256": "921fc8001c224c423b6e839243e5cb2220ac3b3c2ef11fdfb52c355c0ab0fad8",
+        "pixelSha256": "8f2cb91f4c9404c8a25543934964e62efc8dc7f620a5ce27aad590fb11ff218f"
+      },
+      {
+        "inputCount": 30,
+        "state": {
+          "phase": "playing",
+          "x": 8,
+          "y": 16,
+          "column": 0,
+          "row": 0,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 52623,
+          "tick": 161,
+          "retrace": 154,
+          "frames": 30,
+          "presentations": 43,
+          "outcome": null
+        },
+        "memorySha256": "c694dd98c044801c4df12875a33777602e30f6b4e5951c8b7647428e1dc5148d",
+        "pixelSha256": "6e1471326a55401525af873684a336b35d10bc977de5c6e68bb24cab2a4545d3"
+      },
+      {
+        "inputCount": 65,
+        "state": {
+          "phase": "playing",
+          "x": 8,
+          "y": 16,
+          "column": 0,
+          "row": 0,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 59169,
+          "tick": 266,
+          "retrace": 255,
+          "frames": 65,
+          "presentations": 78,
+          "outcome": null
+        },
+        "memorySha256": "a7a02272c1c034a31f41fb45b64210e06bff0f6c71ff3040268832a7f8dd4245",
+        "pixelSha256": "8628fcd382c7677a2cf61c9b86cbf5661d5d8db0086b32d284625d9bde9e0cfa"
+      },
+      {
+        "inputCount": 66,
+        "state": {
+          "phase": "playing",
+          "x": 8,
+          "y": 16,
+          "column": 0,
+          "row": 0,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 51534,
+          "tick": 269,
+          "retrace": 258,
+          "frames": 66,
+          "presentations": 79,
+          "outcome": null
+        },
+        "memorySha256": "bc6214d4b268a77cde47131877d80a89ffbf143bad047511a2e4bed03d710c1e",
+        "pixelSha256": "8628fcd382c7677a2cf61c9b86cbf5661d5d8db0086b32d284625d9bde9e0cfa"
+      },
+      {
+        "inputCount": 68,
+        "state": {
+          "phase": "playing",
+          "x": 22,
+          "y": 16,
+          "column": 0,
+          "row": 0,
+          "action": 18,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 64447,
+          "tick": 275,
+          "retrace": 264,
+          "frames": 68,
+          "presentations": 81,
+          "outcome": null
+        },
+        "memorySha256": "67b2ec65b4586e2b88356ada617b08ad087a644bc12aa80f8e99878c068c3791",
+        "pixelSha256": "8628fcd382c7677a2cf61c9b86cbf5661d5d8db0086b32d284625d9bde9e0cfa"
+      },
+      {
+        "inputCount": 70,
+        "state": {
+          "phase": "playing",
+          "x": 6,
+          "y": -8,
+          "column": 0,
+          "row": -1,
+          "action": 18,
+          "frame": 2,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 14548,
+          "tick": 281,
+          "retrace": 270,
+          "frames": 70,
+          "presentations": 83,
+          "outcome": null
+        },
+        "memorySha256": "24827eedb9236503c94bd5e11dbba69d3c36dc1f2bbaf7162fbf044ade3d1d90",
+        "pixelSha256": "67bf593e0fa4d4854f7d919cb6ef6d93cf01ecba164d728bc2f80d75706908d6"
+      },
+      {
+        "inputCount": 81,
+        "state": {
+          "phase": "playing",
+          "x": 8,
+          "y": 16,
+          "column": 0,
+          "row": 0,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 24548,
+          "tick": 314,
+          "retrace": 302,
+          "frames": 81,
+          "presentations": 94,
+          "outcome": null
+        },
+        "memorySha256": "5e8913b61d42213dc424b20046d240c0cd2e12ee223a6ab295f92315131c64a1",
+        "pixelSha256": "36148d00ab3db59b477ae5ee3556438aee37f931ea1d5ce0f9fb45ca4ed5bac2"
+      },
+      {
+        "inputCount": 84,
+        "state": {
+          "phase": "playing",
+          "x": 24,
+          "y": 16,
+          "column": 0,
+          "row": 0,
+          "action": 1,
+          "frame": 5,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 27592,
+          "tick": 323,
+          "retrace": 310,
+          "frames": 84,
+          "presentations": 97,
+          "outcome": null
+        },
+        "memorySha256": "167fcc2083e89a4d537f2518ae9662df8415473ae122d2743e89785094912401",
+        "pixelSha256": "8628fcd382c7677a2cf61c9b86cbf5661d5d8db0086b32d284625d9bde9e0cfa"
+      },
+      {
+        "inputCount": 89,
+        "state": {
+          "phase": "playing",
+          "x": 24,
+          "y": 16,
+          "column": 0,
+          "row": 0,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 10872,
+          "tick": 338,
+          "retrace": 325,
+          "frames": 89,
+          "presentations": 102,
+          "outcome": null
+        },
+        "memorySha256": "277acb09fbda27ad72c1bdeefe1be24a3593504ab963679aa2c78bb6734163ec",
+        "pixelSha256": "0c5419a0ef548a5dcd4df75370b41467181e58d5291644d0d0bd66dff3b8acdc"
+      },
+      {
+        "inputCount": 101,
+        "state": {
+          "phase": "playing",
+          "x": 60,
+          "y": 48,
+          "column": 1,
+          "row": 1,
+          "action": 4,
+          "frame": 5,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 47400,
+          "tick": 374,
+          "retrace": 359,
+          "frames": 101,
+          "presentations": 114,
+          "outcome": null
+        },
+        "memorySha256": "8df9bc8bffa706c580d384b3212de194a44ff0a34cd171c5dd6e2a5e55071807",
+        "pixelSha256": "34afee098ea8e164fbc4204b6e38fd747d30064dd9edcb2004c0dcd38785b80f"
+      },
+      {
+        "inputCount": 109,
+        "state": {
+          "phase": "playing",
+          "x": 60,
+          "y": 48,
+          "column": 1,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 6737,
+          "tick": 398,
+          "retrace": 382,
+          "frames": 109,
+          "presentations": 122,
+          "outcome": null
+        },
+        "memorySha256": "7e229dda479392212939f99a152172d45903a7b6d3ba7c2bdfe3415847957772",
+        "pixelSha256": "e4a6f1222b872d1fcd105b839466a660c5010bf5ad4e1f96896d521ee304cd98"
+      },
+      {
+        "inputCount": 145,
+        "state": {
+          "phase": "playing",
+          "x": 8,
+          "y": 46,
+          "column": 0,
+          "row": 0,
+          "action": 2,
+          "frame": 0,
+          "facing": 1,
+          "lives": 2,
+          "scroll": 0,
+          "money": 0,
+          "seed": 15617,
+          "tick": 798,
+          "retrace": 767,
+          "frames": 145,
+          "presentations": 172,
+          "outcome": null
+        },
+        "memorySha256": "5d0229e3a91a53d20dcd035a3bb3424808ad6a1b1f7c45cdcc5b58b9e5427502",
+        "pixelSha256": "7054747dc616dc58c750cee75ce84d16b40b3a85062e5e49d7b528130c52a711"
+      },
+      {
+        "inputCount": 185,
+        "state": {
+          "phase": "playing",
+          "x": 36,
+          "y": 121,
+          "column": 0,
+          "row": 3,
+          "action": 10,
+          "frame": 1,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 0,
+          "money": 0,
+          "seed": 3326,
+          "tick": 1214,
+          "retrace": 1168,
+          "frames": 185,
+          "presentations": 226,
+          "outcome": null
+        },
+        "memorySha256": "98e0cb0257a206d766298d39d8f298592dd4115b4cd145d736b12806726f7c58",
+        "pixelSha256": "40cb801658c819fcad1242d143c81496b32b0063fcacdf50d07e23be7010ce98"
+      },
+      {
+        "inputCount": 265,
+        "state": {
+          "phase": "playing",
+          "x": 196,
+          "y": 119,
+          "column": 3,
+          "row": 3,
+          "action": 10,
+          "frame": 1,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 0,
+          "money": 0,
+          "seed": 29542,
+          "tick": 1454,
+          "retrace": 1398,
+          "frames": 265,
+          "presentations": 306,
+          "outcome": null
+        },
+        "memorySha256": "1aadeb06faa2a7ae09105ec6aaca48c9763482b5adc199c3c7911c7ecc58bcbb",
+        "pixelSha256": "8c71e6eea512341780f453804f25c805d6166b8f289455407a73222ef01fd904"
+      },
+      {
+        "inputCount": 365,
+        "state": {
+          "phase": "playing",
+          "x": 344,
+          "y": 119,
+          "column": 6,
+          "row": 3,
+          "action": 10,
+          "frame": 1,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 208,
+          "money": 0,
+          "seed": 58213,
+          "tick": 1754,
+          "retrace": 1687,
+          "frames": 365,
+          "presentations": 406,
+          "outcome": null
+        },
+        "memorySha256": "5ae39b602beaa414a7310c9a125360f2f34e66ea7eeeed1913349915950de00f",
+        "pixelSha256": "ae8efbae8a7c4dd9342864e22caed02c1e97723f76c0512d17a32de4f2f74025"
+      },
+      {
+        "inputCount": 465,
+        "state": {
+          "phase": "playing",
+          "x": 516,
+          "y": 119,
+          "column": 9,
+          "row": 3,
+          "action": 10,
+          "frame": 1,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 320,
+          "money": 0,
+          "seed": 4388,
+          "tick": 2054,
+          "retrace": 1976,
+          "frames": 465,
+          "presentations": 506,
+          "outcome": null
+        },
+        "memorySha256": "fb6cd940c5514af0021fd6366c77cc3f85aa7adcfb99bd8fa09c2982a7b99787",
+        "pixelSha256": "3f44ecab72acc6c10848a1267492621963fcc67833354df9ca8114c6274ba30a"
+      },
+      {
+        "inputCount": 565,
+        "state": {
+          "phase": "playing",
+          "x": 664,
+          "y": 119,
+          "column": 12,
+          "row": 3,
+          "action": 10,
+          "frame": 1,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 528,
+          "money": 0,
+          "seed": 32354,
+          "tick": 2354,
+          "retrace": 2264,
+          "frames": 565,
+          "presentations": 606,
+          "outcome": null
+        },
+        "memorySha256": "92ca4d17b677186b55d503d84273a606b6e7748d2886835591084c61a17c20df",
+        "pixelSha256": "accb14085e30cbbdfea86eb5233a6e472e283b43b92fd0976ddb6ced19b7a050"
+      },
+      {
+        "inputCount": 665,
+        "state": {
+          "phase": "playing",
+          "x": 840,
+          "y": 119,
+          "column": 15,
+          "row": 3,
+          "action": 10,
+          "frame": 1,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 640,
+          "money": 0,
+          "seed": 38886,
+          "tick": 2662,
+          "retrace": 2561,
+          "frames": 665,
+          "presentations": 706,
+          "outcome": null
+        },
+        "memorySha256": "55132bc6f1638fc23010a6fe660c1560fb2a25faa1f3f7027fdfa6cfc3ea6536",
+        "pixelSha256": "946a1b14979967c499cecb40c556a1b5862d80bef8ae3ea8b371ed4d1baeb8c7"
+      },
+      {
+        "inputCount": 765,
+        "state": {
+          "phase": "playing",
+          "x": 988,
+          "y": 119,
+          "column": 18,
+          "row": 3,
+          "action": 10,
+          "frame": 1,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 848,
+          "money": 0,
+          "seed": 55118,
+          "tick": 2962,
+          "retrace": 2849,
+          "frames": 765,
+          "presentations": 806,
+          "outcome": null
+        },
+        "memorySha256": "fcbba5e13275f599188333b7031aad0bdc4c29101013e5ba009e1f44f0ae75eb",
+        "pixelSha256": "647e81d2584c13ace8ae505dc277f3311c343f503194dde12c43a684d63bbd80"
+      },
+      {
+        "inputCount": 831,
+        "state": {
+          "phase": "playing",
+          "x": 1092,
+          "y": 119,
+          "column": 20,
+          "row": 3,
+          "action": 10,
+          "frame": 1,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 960,
+          "money": 0,
+          "seed": 50440,
+          "tick": 3160,
+          "retrace": 3040,
+          "frames": 831,
+          "presentations": 872,
+          "outcome": null
+        },
+        "memorySha256": "4a35bce7682587e81c050bc64ac4b39ce2f77352d70b8fb8128e1cdf06ef5c28",
+        "pixelSha256": "f4689abe8a82ba6b9f5b6e27f6297b572b3b5d69e026efe7c7e871d2559b54ae"
+      },
+      {
+        "inputCount": 840,
+        "state": {
+          "phase": "playing",
+          "x": 1108,
+          "y": 119,
+          "column": 20,
+          "row": 3,
+          "action": 10,
+          "frame": 1,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 960,
+          "money": 0,
+          "seed": 11300,
+          "tick": 3187,
+          "retrace": 3066,
+          "frames": 840,
+          "presentations": 881,
+          "outcome": null
+        },
+        "memorySha256": "784dc76810e3fc4d6f91acd45197be07a46d571aa71fddfda1371c5d1d28ec65",
+        "pixelSha256": "22f9160b2e1375f958e6077b1482b686a8b3e86e4cb1dca37ca6661461d90237"
+      },
+      {
+        "inputCount": 852,
+        "state": {
+          "phase": "playing",
+          "x": 1108,
+          "y": 96,
+          "column": 20,
+          "row": 2,
+          "action": 12,
+          "frame": 3,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 960,
+          "money": 0,
+          "seed": 53118,
+          "tick": 3223,
+          "retrace": 3100,
+          "frames": 852,
+          "presentations": 893,
+          "outcome": null
+        },
+        "memorySha256": "7dcf800f4f8f596225383cefa4c319963670caf13eb349226838d43115f84452",
+        "pixelSha256": "df9df7d77854834776bc6f914078ee6532c690d1fe40cddfb5cb77792265fad5"
+      },
+      {
+        "inputCount": 857,
+        "state": {
+          "phase": "playing",
+          "x": 1124,
+          "y": 80,
+          "column": 21,
+          "row": 2,
+          "action": 1,
+          "frame": 5,
+          "facing": 1,
+          "lives": 1,
+          "scroll": 960,
+          "money": 0,
+          "seed": 60975,
+          "tick": 3238,
+          "retrace": 3115,
+          "frames": 857,
+          "presentations": 898,
+          "outcome": null
+        },
+        "memorySha256": "80d2cd8e9516eba040f6de0772788b8e1fef7ed6e78c733aaee48138e6842d49",
+        "pixelSha256": "32e6f666395ba1eb790cac029e103afa753961752637356ec68a44fa0855c064"
+      }
+    ],
+    "inputEvents": [
+      {
+        "byte": 0,
+        "count": 65
+      },
+      {
+        "byte": 0,
+        "count": 2
+      },
+      {
+        "byte": 64,
+        "count": 1
+      },
+      {
+        "byte": 0,
+        "count": 15
+      },
+      {
+        "byte": 3,
+        "count": 18
+      },
+      {
+        "byte": 0,
+        "count": 8
+      },
+      {
+        "byte": 5,
+        "count": 722
+      },
+      {
+        "byte": 1,
+        "count": 5
+      },
+      {
+        "byte": 5,
+        "count": 2
+      },
+      {
+        "byte": 1,
+        "count": 17
+      },
+      {
+        "byte": 3,
+        "count": 2
+      }
+    ],
+    "checkpointIds": [
+      1, 30, 65, 66, 68, 70, 81, 84, 89, 101, 109, 145, 185, 265, 365, 465, 565,
+      665, 765, 831, 840, 852, 857
+    ],
+    "final": {
+      "phase": "complete",
+      "x": 1124,
+      "y": 80,
+      "column": 21,
+      "row": 2,
+      "action": 1,
+      "frame": 5,
+      "facing": 1,
+      "lives": 1,
+      "scroll": 960,
+      "money": 0,
+      "seed": 60975,
+      "tick": 3266,
+      "retrace": 3143,
+      "frames": 857,
+      "presentations": 904,
+      "outcome": {
+        "code": 1,
+        "money": 0,
+        "seed": 60975
+      }
+    },
+    "finalMemorySha256": "6feedb3bb82a8d6eb801cf6a0e01378d7a8294563d723b86ba994b0235527916",
+    "finalPixelSha256": "846f860302bb0486601324e073c35fb69c413b5c9237cf1152bf151a055d3f90",
+    "expectedClockEventCount": 6409,
+    "expectedPresentationCount": 904,
+    "initial": {
+      "variant": 0,
+      "difficulty": 0,
+      "seed": 30127,
+      "money": 0,
+      "day": 4,
+      "audioEnabled": false
+    },
+    "browserComparisonFields": [
+      "x",
+      "y",
+      "column",
+      "row",
+      "action",
+      "frame",
+      "facing",
+      "lives",
+      "scroll",
+      "money",
+      "seed"
+    ],
+    "inputProvenance": "Player-input exploration: prepend65 idle polls to the existing authored route,then replay it unchanged. No BIOS/RNG/timer/memory injection. Search optimized only RGBA expansion; all expectations were captured again with full rendering and are independently replayed by verify:startup."
+  },
+  "comparisonRules": "Keep authored keyboard streams independent of expected states. Existing original/conditional manifests remain unchanged. New startup changes company,location,loot and downstream shared RNG state. Browser checkpoint expectations are explicitly port outputs.",
+  "verify": "npm run verify:startup"
+}

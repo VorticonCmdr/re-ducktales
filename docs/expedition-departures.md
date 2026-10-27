@@ -123,10 +123,11 @@ classification, malformed executable input, and strict difficulty thresholds.
 Flight input, terrain, racing and crash/cash consequences are connected. Cave
 arrival, cave navigation and terminal results work. Mountain variant0 ascent,
 reward and retries also work; see `docs/mountain.md`. Original ending comparison,
-other jungle variants/difficulties,photography,atomic aircraft and normal Glomgold/stock progression remain
-incomplete.
+other jungle variants/difficulties,atomic aircraft and normal Glomgold progression
+remain incomplete. Photography and stock trading now have playable browser routes.
 
 Campaign startup now includes original random loot assignment. With BIOS seed0,
-first Klondike preparation is variant0/seed18461/race roll61, so only Hard races.
+the company initializer and day-one market update are also included. First
+Klondike preparation is variant0/seed54448/race roll48: Standard/Hard race.
 The old variant1 pixel check is explicitly conditional; the browser default
 scenario uses its corrected initialization. See docs/treasure-assignment.md.

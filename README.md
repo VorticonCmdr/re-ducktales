@@ -2,14 +2,13 @@
 
 HTML, CSS, vanilla JavaScript and Vite, with original DOS assets loaded locally.
 
-The current playable milestone is **title → difficulty → office → money-bin
-dive → office**, including the timing-based rare coin and $1000 reward. The full
-campaign remains partial: world-map browsing, Macaroon deposits, and office return
-are supported; expedition confirmation reaches Launchpad’s original briefing.
-Flight controls, crashes, airport landings and losing-race map return are now
-connected. Cave arrival and normal room navigation now work; cave terminal
-animations and results, other expedition games, trading and endings remain incomplete. See [current status](docs/STATUS.md)
-for supported behavior, evidence and limitations.
+Playable routes include the money-bin coin,world-map travel and banking,flights,
+cave/mountain/jungle expeditions,photography,and stock trading with daily news.
+The browser uses the original assets and shared RNG; completed routes include
+rewards,campaign return,retries and duplicate-collection protection.
+**The full game is incomplete:** campaign endings and normal rival progression
+remain unfinished,and original timing/presentation parity is partial. See
+[current status](docs/STATUS.md) for exact evidence,limitations and verification.
 
 ## Run
 

@@ -698,7 +698,8 @@ browser exploration collected$50 and observed the coat/HUD life change. Required
 commands are `npm run verify:jungle`, `npx playwright test tests/browser/jungle.spec.js`
 and the full `npm run verify`. Missing local originals are setup failures.
 
-Next:implement photography,then trading and endings. Other maps/difficulties received exploratory short runs only;
+Photography and trading are now connected; endings and normal rival progression
+remain next. Other maps/difficulties received exploratory short runs only;
 those are not full acceptance. Original scrolling/enemy/hit pixels,whole-loop
 clock/IRQ alignment,audio and full-level replay remain open.
 
@@ -744,21 +745,27 @@ corrupt argument/RNG/pixels,or leave an input unconsumed. Missing/corrupt local
 artifacts and unsupported paths fail explicitly.
 
 The browser scenario starts at title with BIOS-seed0,selects Easy and the swamp,
-flies using actual keyboard controls,then reaches seed11324 through the ordinary
-campaign/guide logic. It injects no memory,RNG,allocator or expected state. It feeds
-the same792 inputs through real key events,checking20 semantic checkpoints at
-matching input counts. Intermediate standalone timestamps,phase and display
-counters are outside this DOM comparison because their observation phases differ;
-position,action,RNG,lives,camera and cash remain exact. Final outcome/frame/display
-counts,reward,calendar,collection and restart are checked exactly. The controlled
-8ms display cadence observes inputs without changing the two simulation rates.
+then uses ordinary flight/crash/guide logic. Corrected market startup reaches
+briefing seed30127 and jungle entry seed44031. The historical seed11324 replay
+above remains unchanged as a separate conditional-seed regression. The current
+browser input stream prepends65 idle polls before the same route to board the
+fish under the new RNG. These are player inputs,not fitted device timing. It
+injects no memory,RNG,allocator or expected state.
 
-The complete browser route awards$1000 for this assigned treasure,returns on day5,
-marks location25 collected,and shows the original collected notice on a revisit
-without changing cash/day/location/seed. Run
-`npx playwright test tests/browser/jungle-treasure.spec.js` and
-`npm run verify:jungle`;both are required by `npm run verify`. Browser acceptance
-is distinct from the conditional original return and independent level replay.
+`reference/campaign-startup-browser.json` records the new23 checkpoints,857 inputs,
+6409 clocks and904 presentations; `npm run verify:startup` checks exact state,
+DS and pixel hashes,plus negative controls. The browser feeds the same authored
+input stream through real keys. Intermediate standalone timestamps,phase and
+presentation counters are outside its semantic checkpoint comparison because
+observation phases differ; position,action,RNG,lives,camera and cash remain exact.
+Final outcome/frame/display counts,reward,calendar,collection and Restart are
+checked exactly. The controlled8ms display cadence leaves simulation rates intact.
+
+The browser route awards$1000,returns on day5,marks current location1 collected
+and shows the collected notice without changing cash/day/location/seed. Run
+`npx playwright test tests/browser/jungle-treasure.spec.js`,
+`npm run verify:jungle` and `npm run verify:startup`;all are required by
+`npm run verify`. This does not establish an original whole-level replay.
 Original whole-level timing,scrolling/enemy/transition pixels,audio and other
-variants/difficulties remain unverified. Photography,trading and endings remain
-next;the full-game goal is active.
+variants/difficulties remain unverified. Photography and trading are connected;
+endings and normal rival progression remain next. The full-game goal is active.

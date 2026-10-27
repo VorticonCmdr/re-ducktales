@@ -133,3 +133,6 @@ Some printed row labels are suppressed, and declared counts can leave trailing
 source rows unused. See [jungle map contract](jungle.md) and
 `reference/jungle-maps.json`; this is static asset evidence, not playable-jungle
 or original runtime parity.
+
+Stock resource field layouts and first30-of31 chart loading are documented in
+[investments.md](investments.md). Original resources remain authoritative.

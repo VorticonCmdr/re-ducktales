@@ -36,7 +36,7 @@ hardware-key injection; do not build a keyboard emulator around that limitation.
 ## Office → money bin
 
 The office input routine is overlay 2:02e4. Its poll at 03c2 maps Up to money bin,
-Right to stock trading, and Left to control center. Its current selection can
+Right to control center,and Left to stock trading. Its current selection can
 reset on subsequent idle polls. A short Up press followed much later by Space
 is insufficient. A reproducible emulator-side burst uses:
 

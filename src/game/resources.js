@@ -13,6 +13,9 @@ export const REQUIRED_FILES = [
   "MT.ARC",
   "JG.ARC",
   "PS.ARC",
+  "INVEST.ARC",
+  "CHART.ARC",
+  "INVART.ARC",
   "CLUES.ARC",
   "IT.DRV",
 ];

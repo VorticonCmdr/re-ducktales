@@ -68,7 +68,7 @@ test("jungle departure, keyboard jump/walk/drop, life loss, campaign return and 
   expect(returned.jungle.outcome.code).toBe(0);
   expect(returned.jungle.lives).toBe(0);
   expect(returned.campaign.day).toBeGreaterThan(1);
-  expect(returned.campaign.location).toBe(25);
+  expect(returned.campaign.location).toBe(1);
   expect(returned.money).toBe(returned.jungle.money);
   await page.keyboard.press("Space");
   await expect(canvas).toHaveAttribute("data-scene", "jungle", {

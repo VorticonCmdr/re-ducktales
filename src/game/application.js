@@ -9,6 +9,9 @@ import { Photography } from "./photography.js";
 import { ExpeditionBriefing } from "./expedition.js";
 import { CampaignVisitNotice } from "./campaign-visit.js";
 import { nextRandom, u8, u32, u16 } from "./integer.js";
+import { FlightMemory } from "./flight-physics.js";
+import { initializeInvestments, advanceInvestmentDays } from "./investments.js";
+import { InvestmentScreen } from "./investment-screen.js";
 export const DRIVER_HZ = 1193182 / (1365 * 12);
 export const RETRACE_HZ = 70.086;
 
@@ -20,6 +23,7 @@ export class Game {
     loot = null,
     expeditionResources = null,
     audioEnabled = false,
+    investmentResources = null,
   } = {}) {
     this.expeditionResources = expeditionResources;
     this.audioEnabled = audioEnabled;
@@ -36,7 +40,11 @@ export class Game {
     this.flightMemory = null;
     this.controls = { fire: false, direction: null };
     this.locations = locations;
-    this.campaign = locations ? new Campaign(locations, biosSeed) : null;
+    this.investmentResources = investmentResources;
+    this.investments = null;
+    this.marketMemory = null;
+    const campaignSeed = this.initializeMarket(biosSeed);
+    this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
     this.scene = "title";
     this.difficulty = 0;
     this.money = 0;
@@ -49,7 +57,38 @@ export class Game {
     this.effects = [];
     this.diagnostic = null;
   }
+  initializeMarket(seed) {
+    if (!this.investmentResources) return seed; // Explicit component-only callers.
+    const bytes = new Uint8Array(65536);
+    bytes.set(this.investmentResources.image.subarray(0x120e0));
+    this.marketMemory = new FlightMemory(bytes);
+    this.marketMemory.i(0x2229, seed);
+    return initializeInvestments(this.marketMemory, this.investmentResources)
+      .seed;
+  }
+  settleMarket() {
+    if (
+      !this.marketMemory ||
+      !this.campaign ||
+      !["office", "map"].includes(this.scene)
+    )
+      return;
+    const m = this.marketMemory,
+      c = this.campaign;
+    m.i(0x2229, this.seed);
+    m.b(0x8990, this.difficulty);
+    m.b(0x4e0e, c.day);
+    m.view.setUint32(0x8cc0, this.money, true);
+    m.view.setUint32(0x5ae2, c.banked, true);
+    m.view.setUint32(0x4e0a, c.rival.money, true);
+    m.view.setUint32(0x54f2, c.rival.banked ?? 0, true);
+    this.seed = c.seed = advanceInvestmentDays(m).seed;
+  }
   input(event) {
+    this.handleInput(event);
+    this.settleMarket();
+  }
+  handleInput(event) {
     if (this.diagnostic) throw Error(this.diagnostic);
     if (event.type === "audio-enabled") {
       if (typeof event.enabled !== "boolean")
@@ -79,12 +118,13 @@ export class Game {
       this.mountain = null;
       this.jungle = null;
       this.photography = null;
+      this.investments = null;
       this.visitNotice = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
       this.money = 0;
       this.campaign = this.locations
-        ? new Campaign(this.locations, this.biosSeed)
+        ? new Campaign(this.locations, this.initializeMarket(this.biosSeed))
         : null;
       this.seed = this.campaign?.seed ?? this.biosSeed;
       this.rareCoinTaken = false;
@@ -98,6 +138,11 @@ export class Game {
       this.mountain?.setControls(this.controls);
       this.jungle?.setControls(this.controls);
       this.photography?.setControls(this.controls);
+      return;
+    }
+    if (this.scene === "investments") {
+      this.investments.input(event);
+      this.collectInvestments();
       return;
     }
     if (this.scene === "title" && event.type === "fire") {
@@ -179,8 +224,19 @@ export class Game {
         this.effects.push(...this.bin.drainEvents());
         return;
       }
-      if (event.type === "fire" && ["left", "right"].includes(event.direction))
-        throw Error("Untranslated route: investments.");
+      if (
+        (event.type === "fire" && event.direction === "left") ||
+        event.type === "investments"
+      ) {
+        if (!this.marketMemory) throw Error("Investment resources not loaded");
+        this.settleMarket();
+        this.investments = new InvestmentScreen(
+          this.marketMemory,
+          this.investmentResources,
+        );
+        this.scene = "investments";
+        return;
+      }
       if (event.type === "unsupported")
         throw Error(
           `Untranslated route: ${event.route}. Supported routes: money bin and campaign bank travel.`,
@@ -295,7 +351,16 @@ export class Game {
     }
   }
   advanceTick() {
+    this.advanceDriverTick();
+    this.settleMarket();
+  }
+  advanceDriverTick() {
     this.tick++;
+    if (this.scene === "investments") {
+      this.investments.advanceTick(this.controls);
+      this.collectInvestments();
+      return;
+    }
     if (this.scene === "photography") {
       this.photography.advanceTick();
       this.collectPhotography();
@@ -705,6 +770,10 @@ export class Game {
   drainEffects() {
     return this.effects.splice(0);
   }
+  collectInvestments() {
+    this.money = this.marketMemory.view.getUint32(0x8cc0, true);
+    if (this.investments.complete) this.scene = "office";
+  }
   fail(error) {
     this.diagnostic = error instanceof Error ? error.message : String(error);
   }
@@ -724,6 +793,7 @@ export class Game {
       mountain: this.mountain?.snapshot() ?? null,
       jungle: this.jungle?.snapshot() ?? null,
       photography: this.photography?.snapshot() ?? null,
+      investments: this.investments?.snapshot() ?? null,
       briefing: this.briefing?.snapshot() ?? null,
       repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
       expeditionResult:

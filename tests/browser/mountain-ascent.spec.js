@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import startup from "../../reference/campaign-startup-browser.json" with { type: "json" };
 import ascent from "../../reference/mountain-ascent.json" with { type: "json" };
 
 test("keyboard mountain ascent awards treasure and prevents duplicate collection", async ({
@@ -62,7 +63,7 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   const entered = await until((s) => s.scene === "mountain");
   expect(entered.mountain.lives).toBe(3);
   expect(entered.flight.outcome.status).toBe("crashed");
-  expect(entered.campaign.location).toBe(13);
+  expect(entered.campaign.location).toBe(31);
   const route = ascent.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
   expect(route.length).toBe(764);
   let checkpoints = 0;
@@ -106,7 +107,11 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
           expect(
             after.mountain[key],
             `checkpoint${checkpoints} ${key}`,
-          ).toEqual(value);
+          ).toEqual(
+            key === "seed"
+              ? startup.mountain.checkpointSeeds[checkpoints]
+              : value,
+          );
       checkpoints++;
     }
   }
@@ -121,16 +126,16 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   expect(result.mountain.presentations).toBe(870);
   expect(result.mountain.money).toBe(100);
   expect(result.expeditionResult.phase).toBe("award");
-  expect(result.expeditionResult.value).toBe(7000);
-  expect(result.money).toBe(7100);
+  expect(result.expeditionResult.value).toBe(8000);
+  expect(result.money).toBe(8100);
   expect(result.campaign.day).toBe(entered.campaign.day + 1);
   await page.screenshot({
     path: ".local/browser-results/mountain-summit-award.png",
   });
   await press("Space");
   const returned = await until((s) => s.scene === "map");
-  expect(returned.campaign.playerCollected).toContain(13);
-  expect(returned.money).toBe(7100);
+  expect(returned.campaign.playerCollected).toContain(31);
+  expect(returned.money).toBe(8100);
   await press("Space");
   const collected = await until((s) => s.scene === "visit-notice");
   expect(collected.visitNotice.reason).toBe("player");

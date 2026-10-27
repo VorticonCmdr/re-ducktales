@@ -136,6 +136,25 @@ export function flagJungleBirdDirty(m, id, kind) {
   for (const off of [0x399e, 0x39a0, 0x39a2])
     if (m.i(at + off) !== 0) flagJunglePlatformDirty(m, m.i(at + off), 5);
 }
+export function flagJungleSnakeDirty(m, id, kind) {
+  const at = id * 38;
+  m.i(at + 0x704a, 2);
+  if (m.i(at + 0x704c) === 0 || kind === 8) m.i(at + 0x704c, kind);
+}
+export function flagJungleFishDirty(m, id, kind) {
+  const at = id * 32;
+  m.i(at + 0x5166, 2);
+  if (m.i(at + 0x5168) === 0 || kind === 6) m.i(at + 0x5168, kind);
+  if (kind === 6)
+    markJungleDirty(
+      m,
+      m.i(at + 0x5160),
+      m.i(at + 0x5164),
+      88,
+      30,
+      (id % 4) + 18,
+    );
+}
 export function flagJunglePlatformDirty(m, id, kind) {
   const at = id * 50;
   m.i(at + 0x6066, 2);

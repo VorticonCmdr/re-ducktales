@@ -280,10 +280,12 @@ export function initializeJungleObjectAnimation(
   action,
   x,
   y,
-  { sound = () => {}, sequenceSound = () => {} } = {},
+  { sound = () => {}, wait } = {},
 ) {
   if (![2, 8, 11, 24, 33].includes(type))
     throw Error(`Untranslated jungle animation type${type}`);
+  if (type === 2 && action === 18 && typeof wait !== "function")
+    throw Error("Missing jungle driver wait provider");
   at &= 65535;
   const emit = (id) => {
     if (m.b(0x3be)) sound(id);
@@ -324,8 +326,8 @@ export function initializeJungleObjectAnimation(
     if (sequences[action]) sequence(...sequences[action]);
     if (action === 18) {
       emit(0);
-      sequenceSound(0);
-      sequenceSound(0x07);
+      wait(0);
+      wait(0x07);
       emit(0x61);
     }
   }

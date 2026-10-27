@@ -10,7 +10,7 @@ import {
   junglePlatformAt,
   jungleVineReach,
   leaveJungleMovingPlatform,
-  markJungleDirty,
+  flagJungleFishDirty,
   updateJungleGrid,
 } from "./jungle-collision.js";
 
@@ -35,10 +35,12 @@ const sound = (m, effects, id) => {
 };
 
 function beginFishRide(m, id, effects) {
+  if (typeof effects.wait !== "function")
+    throw Error("Missing jungle driver wait provider");
   m.i(0x7158, id);
   m.i(0x5b24, 0);
-  effects.sequenceSound?.(0);
-  effects.sequenceSound?.(7);
+  effects.wait(0);
+  effects.wait(7);
   sound(m, effects, 0x5b);
 }
 // f26:0684. Repeated calls intentionally apply repeated four-pixel movement;
@@ -61,20 +63,6 @@ export function moveJungleFishRider(m, id, effects = {}) {
     m.i(0x6882, 6);
     selectJungleActorAnimation(m, 6, animationEffects(m, effects));
   }
-}
-function flagFish(m, id, kind) {
-  const at = id * 32;
-  m.i(at + 0x5166, 2);
-  if (m.i(at + 0x5168) === 0 || kind === 6) m.i(at + 0x5168, kind);
-  if (kind === 6)
-    markJungleDirty(
-      m,
-      m.i(at + 0x5160),
-      m.i(at + 0x5164),
-      88,
-      30,
-      (id % 4) + 18,
-    );
 }
 // Original1090:0824's FILD/FISUB/FIMUL/FDIV sequence operates on integer
 // operands and the exact original double104. __ftol truncates before AX stores.
@@ -109,7 +97,7 @@ export function updateJungleRider(m, effects = {}) {
       m.i(0x8d64, 0);
     } else {
       moveJungleFishRider(m, m.i(0x7158), effects);
-      flagFish(m, m.i(0x7158), 10);
+      flagJungleFishDirty(m, m.i(0x7158), 10);
     }
   }
 }

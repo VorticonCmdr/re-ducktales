@@ -8,7 +8,7 @@ full-scene compositor and presentation history.
 The actor routines now have conditional original-runtime comparisons. The next playable route is flight/guide →
 walking/jumping among the initial platforms → consequence → restart, followed
 by the complete expedition and campaign reward. No substitute mechanics are
-implemented while hazard advancement and scene scheduling remain untranslated.
+implemented while presentation-side state updates and scene scheduling remain unfinished.
 
 ## Source identity and analysis
 
@@ -103,8 +103,8 @@ polls joystick input at body0651 before collision/scene passes. Actor action
 selection is f97:06a9 (Ghidra currently fails to decompile it); camera movement
 is body0591. Actor world X/Y are DS5f46/6858, current action6882, facing3d12
 and platform column/row544c/5462. The animation helpers are now translated
-from raw disassembly and checked below. Translate hazard advancement and
-scene scheduling next; extend full-scene rendering to scrolling/incremental
+from raw disassembly and checked below. Translate presentation-side state updates
+and scene scheduling next; extend full-scene rendering to scrolling/incremental
 comparisons before claiming a playable jungle milestone. Existing cave and mountain browser routes
 remain the working expedition routes.
 
@@ -124,9 +124,10 @@ helpers000c/01e6. Their captured runtime coverage is still absent.
 Actor drawing emits original sprite/frame/position commands using a caller
 supplied resource-pointer map. Page-history updates occur explicitly in
 simulation before rendering; rasterization cannot advance animation or consume
-RNG/time/input. Direct driver sound requests honor original DS03be; resident
-sequence-sound requests have a separate callback. There is no audio-completion
-or host-clock substitution in these helpers. Full audio fidelity is unverified.
+RNG/time/input. Direct driver sound requests honor original DS03be. Resident
+0dcc calls are driver waits, exposed as a required `wait` provider where used;
+the earlier `sequenceSound` name was misleading and has been removed. There is
+no audio-completion or host-clock substitution. Full audio fidelity is unverified.
 Vine projection has an explicit geometric provider; its missing default stops
 with a useful diagnostic. Other actions beyond the captured subset are static
 translations and still require gameplay comparisons.
@@ -212,7 +213,7 @@ Those modified initial states are independent checks, not original captures.
 The command remains `npm run verify:jungle`; the original overlay identity is
 checked by the animation verifier before these control cases.
 
-Hazard advancement, scene scheduling and browser integration
+Presentation-side state updates, scene scheduling and browser integration
 still remain before a playable jungle route. Ground, vine
 and moving-platform helpers have static evidence but no new runtime comparison
 in these seven cases. No full-scene, audio, original wall-clock or browser
@@ -381,8 +382,9 @@ it is not an independent resource allocation/startup or gameplay replay.
 Five negative controls reject changed live code, an omitted routine, corruption
 of the RNG adjacent to the clock, treating first entry as a retry and omitting
 the carried bird initializer. Run `npm run verify:jungle`; missing/corrupt
-artifacts and incomplete cases/arguments fail. Scene pixels, palette appearance,
-hazard advancement, audio/timing and browser acceptance remain unproven.
+artifacts and incomplete cases/arguments fail. This initializer evidence does not
+establish scene pixels, hazard advancement, audio/timing or browser acceptance;
+later sections add scoped scene and advancement comparisons.
 
 After initializer246, run to main0680 stop247, observing neutral AL0, then049a
 stop248 after the first presentation path. CPU/DS captures are local
@@ -464,9 +466,101 @@ projectile hits: original e7a:0912 draws the projectile before09c0 may deactivat
 it and change the actor. An arbitrary post-collision snapshot cannot reconstruct
 that already-drawn projectile from its now-cleared active flag. The production
 loop must retain drawing commands at those consumption boundaries; this snapshot
-compositor is not acceptance for hit frames. Hazard movement/collisions and the
-main scheduler remain before a playable browser route.
+compositor is not acceptance for hit frames. The separate projectile presentation
+and collision helpers below now preserve that ordering; presentation-side state
+updates and the main scheduler remain before a playable browser route.
 
-Current original: paused0e0c:049a stop261,variant0/day23,life2. All controls released;
-no breakpoints or pending input schedules. Code identity remains entry230 until
-another overlay load or memory-layout change requires revalidation.
+The stop261 pause was followed by the advancement comparisons below.
+
+## Hazard advancement, collisions and explicit waits
+
+`jungle-hazards.js` translates main0251..0323's section pass: moving-platform
+attachment/animation, bird decisions/attacks, vine projection, monkey decisions/
+climbing/throws, projectile movement, snake trapping/escape, transport completion,
+fish phases and the idle-triggered moving bonus. Camera0591 remains separate.
+Rider maintenance and actor motion follow this pass in the caller. RNG always
+uses shared seed2229 and the original integer generator; short-circuit draws and
+unsigned probability comparisons are retained.
+
+The monkey dispatcher e7a:0402 does not decompile coherently. Its eight-entry
+table11..18 is translated from raw disassembly, including its unconditional dirty
+local and countdown behavior. The bird distance test uses the actual signed
+DX:AX result (distance>=10000), not a stale high word from decompilation. Vine
+projection uses resident040e:14d7/151a's byte table at DS269a, preserving XLAT's
+AH, word overflow, CWD/XOR/SUB/SAR division and sign changes. It uses no host
+trigonometry. All129 original trig-code bytes are pinned; quadrant checks are
+authored static-rule evidence in addition to original whole-pass comparisons.
+
+`presentJungleProjectile` implements e7a:0912 and requires a drawing sink for a
+visible projectile. The sink snapshots the descriptor immediately;09c0 collision
+is a separate call. A hit can start monkey action18, clear the projectile and
+force actor falling after it was drawn. The new original draw/miss/hit captures
+verify that state boundary. They do not turn the snapshot compositor into a
+complete renderer for collision frames.
+
+The old `sequenceSound` callback in jungle object/fish helpers actually represented
+resident040e:0dcc. It is now `wait`, with required providers for fish boarding and
+monkey-hit animation. Missing providers stop development mode. Original waits0
+and7 run even with sound disabled. The hit capture records both wait entries and
+0603:0df1 immediately BEFORE reading the driver counter and storing the new wait
+base. Counts166605/166612 are independent external events from those boundaries,
+not values fitted from the final hit state. A provider carries its own base,
+checks the seven-tick deadline, updates clock2225..2228 and base2221..2224, and
+must consume both events. Timing/input scheduling in an independent browser
+environment still needs implementation; these are conditional consumption checks.
+
+`reference/jungle-advance.json` requires45 local artifacts,12 conditional whole
+passes and six other game checkpoints: bonus spawn,two camera calls,projectile
+draw,miss and hit. The two pre-read clock boundaries bring the total to20. Three
+projectile ID arguments and two clock events must match the original incoming
+stack/consumption snapshots and all be consumed. The hit segment starts at
+106f:0a39, after pure geometry calculation/local writes but before any collision
+game-state write; AX1 is observed and the JS helper recomputes overlap from the
+same BEFORE geometry.
+
+All65536 DS bytes are compared outside explicit stack scratch: whole passes
+9e36..9e71 plus caller section cursor9e78..9e79 and record pointer9f44..9f45;
+other routines use the exact intervals in the manifest. No game-global,descriptor,
+RNG,clock or wait-base exclusions. Captures must start at the first section and
+finish the full pass. No expected state is inserted between calls. This is not
+a carried gameplay comparison: original control,rendering,history and device
+logic runs between each independently captured BEFORE/AFTER pair.
+
+Setup is explicitly conditional. After scene261, ordinary idle passes262..267
+lead to bonus spawn268/269 and moving pass270/271. A position/camera override
+at272 sets X8→340 and camera0→312. A mistaken camera stop064c was inside the MOV
+at064a; no breakpoint fired, and an unmeasured interval ended in natural life
+loss. A memory read taken while running is rejected and absent from acceptance.
+At requested pause274, the atomic CPU/memory batch reports0b83:01e6 (the pause
+notification had reported01ea); neither is treated as a routine boundary. All
+24056 overlay bytes match again after436 relocations; the game is in life3.
+The valid camera return is0650, used by275/276. A second recorded setup at277
+sets X8→400,Y16→80,camera0→312. It exposes vine1,monkey1 and snake1, followed
+by passes280..287. The monkey's current Y8 is retained from the earlier life;
+its reset restores X but does not reset Y. An active-projectile condition reaches
+288 in section5,not the first section3, so that observation is setup only.
+Drawing/miss289..292, whole passes293..300 and a later actual hit301..306 are
+accepted at checked instruction boundaries. No registers,code/resources,partial
+machine restore or fitted timer is used. The failed stop attempt prevents any
+claim that this entire original capture history is a reproducible timed replay;
+each accepted conditional routine remains reproducible from its required fixture.
+
+Seven negative controls remove a case,omit an update,corrupt RNG,lose the drawing
+event,omit a clock event,complete a wait early and leave an extra event unconsumed.
+Additional authored static checks cover trig quadrants,snake capture/escape,
+transport completion and missing wait diagnostics. Remaining bird attacks,monkey
+branches,fish boarding and other state combinations still need targeted runtime
+comparisons. Run `npm run verify:jungle`. No full-level,independent browser,audio
+or wall-clock timing parity is claimed.
+
+For the next runtime boundary, main1227 invalidates the previous actor rectangle;
+it is not a timing wait. The frame footer calls original098e:01d8 (Ghidra198e),
+which waits against deadline27f8/27fa and schedules the next deadline from the
+driver counter plus27fc/27fe (entry sets the interval to3). Its DX:AX arithmetic
+must be checked in raw disassembly before implementing the scheduler. Graphics
+flip1fd4 points to live2ed7:00e5, which also calls the driver retrace helper0064.
+Keep driver-clock deadlines and display retraces separate from browser frames.
+
+Current original: paused106f:0ac0 stop306,variant0/day23,life3,after an actual
+projectile hit. All controls released,no breakpoints or pending schedules. Code
+mapping was revalidated at recovery274 and remains unchanged.

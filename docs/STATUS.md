@@ -70,8 +70,8 @@ does not advance simulation. Unsupported paths stop with diagnostics.
   selection and the128-byte keyboard matrix. Support/ground helpers are
   statically translated. Actor motion adds25 exact original routine cases,
   21 carried actor checkpoints and25 decoded poses covering walking,short step,
-  drop,fall and water death. Hazard advancement and browser gameplay remain
-  unimplemented. Authored boundary checks are kept separate from runtime evidence.
+  drop,fall and water death. Browser jungle gameplay remains unimplemented.
+  Authored boundary checks are kept separate from runtime evidence.
   Fish/bonus reset adds2 conditional original checkpoints with exact DS outside
   their42/8-byte stack intervals and17 original fish RNG draws. Vine initialization
   has static checks. Additional hazard initialization now matches10 original
@@ -83,7 +83,12 @@ does not advance simulation. Unsupported paths stop with diagnostics.
   life-reset routine matches all DS except22 stack bytes. Seven negative controls
   reject wrong alignment,palette,background,pixel,state mutation,case loss and
   reset argument. Full incremental rendering/scrolling/enemy pixels and hazard
-  advancement remain incomplete.
+  scheduling remains incomplete. Hazard advancement adds12 conditional whole
+  passes plus bonus/camera/projectile draw,miss and hit:18 game checkpoints and
+  two pre-read driver-clock boundaries. All DS matches except documented stack
+  scratch/caller locals; no RNG,clock or wait-base exclusions. Five independent
+  arguments/events and seven negative controls are required. Remaining branches
+  have static evidence,not a complete carried gameplay replay.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
@@ -124,8 +129,9 @@ variant0. These checks do not establish a complete original campaign replay.
   Actor motion and support contributions are now translated separately.
   Hazard initializers and life setup are translated and compared separately;
   full-scene rendering now matches the captured initial viewport/drop/life reset.
-  Hazard advancement, incremental page behavior, scrolling and runtime/browser
-  integration remain. See `docs/jungle.md`.
+  Hazard advancement/collisions and camera logic are translated with conditional
+  original checks. Presentation-side history/dirty updates, incremental page
+  behavior, scrolling and runtime/browser integration remain. See `docs/jungle.md`.
   Mountain actions/hazards, scrolling and summit condition are translated;
   variant0 ascent/reward works through browser controls. Other variants/
   difficulties and original hook/ascent comparisons are still needed. Full
@@ -160,7 +166,7 @@ Mountain foundation: `npm run prepare:mountain-analysis` and
 Jungle analysis/checks: `npm run prepare:jungle-analysis` and
 `npm run verify:jungle`; Python3 is required for the independent oracle.
 
-Next: translate jungle hazard advancement and scene
+Next: translate jungle presentation-side history/dirty updates and scene
 scheduling, extend scrolling/incremental rendering checks, then connect the existing pieces to a
 playable browser route. Then expand photography, trading and
 endings, while extending targeted original mountain hook/ascent comparisons. Continue targeted original comparisons for cave movement,
@@ -168,7 +174,7 @@ remaining outcomes and notice presentation/timing. Full-game work remains active
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-jungle variant0/day23, paused0e0c:049a stop261 after the second life begins.
+jungle variant0/day23,life3, paused106f:0ac0 stop306 after a projectile hit.
 No breakpoints or pending schedules. Entry230 revalidates the complete relocated
 overlay. Its retry destination22→25 override at resident0439 is explicit conditional
 setup, separate from the earlier flight/repair override. Clock evidence pins
@@ -176,4 +182,7 @@ decoded IT.DRV5 IRQ8 code and its DS1403:2225 destination. See
 `reference/jungle-hazards.json` and `docs/jungle.md`; older manifests remain pinned
 to their recorded stops. `reference/jungle-scene.json` pins20 local artifacts,
 eight exact PNG comparisons with a fixed one-presentation capture offset, and
-the life-reset258/259 boundary. No browser jungle or timing acceptance is claimed.
+the life-reset258/259 boundary. `reference/jungle-advance.json` records the later
+conditional position/camera setups, rejected debugger-stop attempt, revalidated
+overlay,18 game checks and two clock-consumption boundaries. No browser jungle
+or full timing acceptance is claimed.

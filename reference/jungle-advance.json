@@ -1,0 +1,326 @@
+{
+  "id": "jungle-advance-conditional-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "38c2692",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "expectedCaseCount": 18,
+  "expectedGameCheckpointCount": 18,
+  "expectedCheckpointCount": 20,
+  "expectedWaitBoundaryCount": 2,
+  "expectedInputCount": 5,
+  "inputEvents": [
+    {
+      "case": "projectile-draw",
+      "id": 1
+    },
+    {
+      "case": "projectile-miss",
+      "id": 1
+    },
+    {
+      "case": "projectile-hit",
+      "id": 1
+    },
+    {
+      "case": "projectile-hit",
+      "wait": 0,
+      "ticks": 166605
+    },
+    {
+      "case": "projectile-hit",
+      "wait": 7,
+      "ticks": 166612
+    }
+  ],
+  "loopCases": [
+    "00",
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11"
+  ],
+  "loopStops": [
+    [262, 263],
+    [264, 265],
+    [266, 267],
+    [270, 271],
+    [280, 281],
+    [282, 283],
+    [284, 285],
+    [286, 287],
+    [293, 294],
+    [295, 296],
+    [297, 298],
+    [299, 300]
+  ],
+  "routines": [
+    ["bonus-spawn", "bonus", 3596, 8339, 8699, 268, 269, 40516, 40558],
+    ["camera-idle", "camera", 3596, 1425, 1616, 275, 276, 40546, 40558],
+    ["camera-view", "camera", 3596, 1425, 1616, 278, 279, 40546, 40558],
+    ["projectile-draw", "draw", 4207, 2322, 2430, 289, 290, 40486, 40556],
+    ["projectile-miss", "miss", 4207, 2496, 2752, 291, 292, 40520, 40556],
+    ["projectile-hit", "hit", 4207, 2617, 2752, 301, 306, 40488, 40556]
+  ],
+  "trigOriginalSha256": "eebb96b12e530497d9a1aa18845ee433b83c318fc86764d97f89e83c53d4eb6f",
+  "startingRecipe": "Continue scene stop261 from reference/jungle-scene.json with all controls released. Capture three whole passes at main0251\u21920323 stops262..267. Conditional execute breakpoint main2093 with DS88ac==351 reaches bonus spawn268; capture through21fb269. Whole pass03 is270/271. Stop main0651 at272 and record position/camera CAS setup below. At camera0591 stop273 a mistaken target064c was inside a MOV instruction; no stop occurred, so original ran through natural life loss. A running capture was rejected. Pause274; complete overlay revalidated unchanged,life3 at X8/Y16/camera0. Valid camera idle275\u2192276 uses actual RETF0650. Stop main0651 at277, record second setup below, then camera278\u2192279 and whole passes04..07 at280..287. Conditional main0251 breakpoint M1 active flag==1 reaches288 in the MIDDLE section5 of an outer pass (first3); this is setup only,not a whole-pass case. Capture actual projectile drawing at live106f:0912\u2192097e289/290 and miss09c0\u21920ac0291/292. Whole passes08..11 are293..300. At live106f:0a39 conditional AX==1, stop301 immediately after pure rectangle-overlap return and before any collision game-state writes. Capture this hit segment. Capture resident0603:0dcc wait entry302 then0df1 before reading driver counter303; repeat304/305 for wait7. Finish hit segment106f:0ac0 at306. All targets are checked against actual CS/IP before accepting captures; no breakpoints or pending timelines remain.",
+  "injections": [
+    {
+      "stop": 272,
+      "at": "0e0c:0651",
+      "writes": [
+        {
+          "segment": 5123,
+          "offset": 24390,
+          "before": 8,
+          "after": 340,
+          "width": 2
+        },
+        {
+          "segment": 5123,
+          "offset": 24274,
+          "before": 0,
+          "after": 312,
+          "width": 2
+        }
+      ]
+    },
+    {
+      "stop": 277,
+      "at": "0e0c:0651",
+      "writes": [
+        {
+          "segment": 5123,
+          "offset": 24390,
+          "before": 8,
+          "after": 400,
+          "width": 2
+        },
+        {
+          "segment": 5123,
+          "offset": 26712,
+          "before": 16,
+          "after": 80,
+          "width": 2
+        },
+        {
+          "segment": 5123,
+          "offset": 24274,
+          "before": 0,
+          "after": 312,
+          "width": 2
+        }
+      ]
+    }
+  ],
+  "rejectedCapture": {
+    "path": ".local/jungle-loop-camera-start-after.json",
+    "reason": "Read while running after invalid instruction target064c; not a checkpoint,not used by verification."
+  },
+  "fittedInputs": [],
+  "inheritedSetup": "Entry230 conditional retry destination22\u219225 from reference/jungle-hazards.json. Both new position/camera overrides are conditional setup,not played routes. No restore,register writes,code/resource edits or fitted timer values. The first failed debugger-stop attempt ran an unmeasured interval; this is not a reproducible whole original replay. Accepted cases each have their own authoritative BEFORE and exact boundary recipe.",
+  "environmentContract": "Each whole hazard pass/routine begins only from its own BEFORE DS. No carried gameplay claim or expected intermediate-state injection. RNG is internal original nextRandom on DS2229. Projectile drawing is an outgoing descriptor snapshot,required before collision deactivation. Actual waits are resident0dcc driver waits,not sound requests: providers must explicitly consume0 and7. The only external values for the hit segment are driver counts166605/166612 captured at0603:0df1 BEFORE the counter read/store; never derived from final state. A provider validates the current simulation wait base against deadlines and updates clock/base fields at this boundary. Missing wait/draw providers stop.",
+  "comparisonRules": "Exact all65536 DS bytes outside documented stack intervals,including RNG,driver clock and wait base. Whole passes exclude only helper call/interrupt scratch9e36..9e71 plus caller section cursor9e78..9e79 and current-record pointer9f44..9f45. Require capture at the FIRST section and after full pass. Other routine stack bounds are in routines. Hit starts after pure overlap calculation; AX1 is independently checked and JavaScript recomputes overlap from BEFORE geometry. Wait entry and pre-read arguments/counters are required; both wait events must be consumed and deadline met. Recovery274 pins full24056 bytes/436 relocations,load bias01f5; resident trigonometry code129 bytes also pinned.",
+  "exclusions": [
+    "Only listed stack scratch/caller locals and CPU registers/flags outside required identities. No game-global,RNG,clock,wait-base or resource-descriptor exclusions.",
+    "Whole hazard passes are conditional comparisons,not a closed-loop simulation across frames; original rendering,controls,history and device handling run between them.",
+    "Projectile hit routine prefix before0a39 performs only geometry/local writes; its pure rectangle result is observed at the incoming AX boundary. Rendering itself is a required outgoing descriptor callback,not an original pixel comparison here.",
+    "Remaining bird attacks,snake trap/escape,transport completion,vine attachment extremes and monkey branches have static evidence/authored checks beyond these cases. No full-level,browser,audio/wall-clock timing or independent campaign replay acceptance claimed."
+  ],
+  "artifacts": {
+    "00-before": {
+      "path": ".local/jungle-loop-00-before.json",
+      "sha256": "6026b46e9f26a3e67fa300d819401f59a397f5a76d146259592cbea1394092b8"
+    },
+    "00-after": {
+      "path": ".local/jungle-loop-00-after.json",
+      "sha256": "b31f4d04733e0fc4265b6a020208be9c82227e0a8e643bf24071b035b73062e9"
+    },
+    "01-before": {
+      "path": ".local/jungle-loop-01-before.json",
+      "sha256": "829c564cf5f7fa59c1f8813ff3b1c8c644e5adf038b45c1c91491bcc42ed3123"
+    },
+    "01-after": {
+      "path": ".local/jungle-loop-01-after.json",
+      "sha256": "fa93483b1acd8a837669a848ce311e99f8931e62e33cd1b6800a37bde7e3f416"
+    },
+    "02-before": {
+      "path": ".local/jungle-loop-02-before.json",
+      "sha256": "154ee2c66fdedcc66a855216ef1049b9e6180b29ec1f16479ed2af36165b2d56"
+    },
+    "02-after": {
+      "path": ".local/jungle-loop-02-after.json",
+      "sha256": "bfdbc4f67b5b115c630307b7f8b397e5b5984b34eb9f132734ef25780b2b56e4"
+    },
+    "03-before": {
+      "path": ".local/jungle-loop-03-before.json",
+      "sha256": "fad5bf3b4b22ca536b9ef44d86c4a04f7c0ef19494fe6b8fd383f38ed73f4e94"
+    },
+    "03-after": {
+      "path": ".local/jungle-loop-03-after.json",
+      "sha256": "1ea33889e6d3be97cef3349b14f434ab24135fd6278e4cbb438d9f4086e1c03c"
+    },
+    "04-before": {
+      "path": ".local/jungle-loop-04-before.json",
+      "sha256": "097b80a2a8b811f161c4cc61ef409fe89033ac61f8cd285d56fc17ad2c666778"
+    },
+    "04-after": {
+      "path": ".local/jungle-loop-04-after.json",
+      "sha256": "c7fc011f890d838d8f72a6f4fb68d1bc60b01f59c39c7ae53ad89e1793428455"
+    },
+    "05-before": {
+      "path": ".local/jungle-loop-05-before.json",
+      "sha256": "32a4fff0ec31c0efa954b178f98f251cf4eaf9b5a6c30a12bf302628070ff562"
+    },
+    "05-after": {
+      "path": ".local/jungle-loop-05-after.json",
+      "sha256": "926f2b596a5d9ea25cbafd9e157627be1877c7b4c1b56780e7ff2d23928ce31c"
+    },
+    "06-before": {
+      "path": ".local/jungle-loop-06-before.json",
+      "sha256": "a938cf3803ed15b7904343be94acaf63b18f8ba25c73844ae41d0a61afefc6ab"
+    },
+    "06-after": {
+      "path": ".local/jungle-loop-06-after.json",
+      "sha256": "55c9ee3fda2befd5445b8893813221da06e272a119029c8469f26af05388dd10"
+    },
+    "07-before": {
+      "path": ".local/jungle-loop-07-before.json",
+      "sha256": "8cb0159b20dcc1c9d462f238bd738991c6d43fac2131a642a2d282ff6116390e"
+    },
+    "07-after": {
+      "path": ".local/jungle-loop-07-after.json",
+      "sha256": "540b975d0afb38145d3578bc8f6d0d9a727637e0decbd48de54747c1aafe70fa"
+    },
+    "08-before": {
+      "path": ".local/jungle-loop-08-before.json",
+      "sha256": "40336e0139b9c5a1d03509f11bade5a6308a4d6f4979e1a2f5ff61dac993ec41"
+    },
+    "08-after": {
+      "path": ".local/jungle-loop-08-after.json",
+      "sha256": "a4c9aa7f2c0b38c5e7321cc75ea92c9193546d81c318376ba6bf42e3954fcd28"
+    },
+    "09-before": {
+      "path": ".local/jungle-loop-09-before.json",
+      "sha256": "a8e2a41b912c6a8f7aae10599478693a830360883d1412c25d40e4532e04c2f0"
+    },
+    "09-after": {
+      "path": ".local/jungle-loop-09-after.json",
+      "sha256": "0c127874d946e76f9d7c02c6b79e177f3f7c3ab487c003193852642dd6a7bc4c"
+    },
+    "10-before": {
+      "path": ".local/jungle-loop-10-before.json",
+      "sha256": "d258bb731ba36249af49aa761b92ced73b8f4b65a4b6c6a87572ea7bb2e308b8"
+    },
+    "10-after": {
+      "path": ".local/jungle-loop-10-after.json",
+      "sha256": "98d7fa17bf5aeb731d049194e393004f3d9aa3d81279de01c43ba8cef899305f"
+    },
+    "11-before": {
+      "path": ".local/jungle-loop-11-before.json",
+      "sha256": "e8d9cc114ca949a92b7bc71015fce6c120f84ca5e26753c152d0f3505f00f94e"
+    },
+    "11-after": {
+      "path": ".local/jungle-loop-11-after.json",
+      "sha256": "aeb5e2a5fb43d1df08293ddd7043c74891d66dfd8fc2dde1a88fc78ac566fd97"
+    },
+    "bonus-spawn-before": {
+      "path": ".local/jungle-loop-bonus-spawn-before.json",
+      "sha256": "844922c312188c4f28c2502fbd0d5ca1f45ee606573bb04badf8772b766eab26"
+    },
+    "bonus-spawn-after": {
+      "path": ".local/jungle-loop-bonus-spawn-after.json",
+      "sha256": "ee7e32bca76cb68918037b57b1a3201f6ceea4ab06cf4bb56132fab60317bb9f"
+    },
+    "camera-idle-before": {
+      "path": ".local/jungle-loop-camera-idle-before.json",
+      "sha256": "9f0ab17b6fd366c6479ff47b1e8a697927d67f32a485f336c43d0b33d4cbb29f"
+    },
+    "camera-idle-after": {
+      "path": ".local/jungle-loop-camera-idle-after.json",
+      "sha256": "19256583c73ba71e8ac740e3629577942884c565d77f2c2d7f8f7a1f3dbe6344"
+    },
+    "camera-view-before": {
+      "path": ".local/jungle-loop-camera-view-before.json",
+      "sha256": "9b5ddb2ef373302bea4b88e1dd34155c2b3357fb3c655f6071dfc4118548075f"
+    },
+    "camera-view-after": {
+      "path": ".local/jungle-loop-camera-view-after.json",
+      "sha256": "a4ca3b73eea6ba464a426cfcb42ed49d6d9f5e7cc888d3f60fceb42381d10f7a"
+    },
+    "projectile-draw-before": {
+      "path": ".local/jungle-loop-projectile-draw-before.json",
+      "sha256": "9a406d2d57c727ebb86bf1ee77b81fb51ba0570fcf1f9ae6a455df801ae4f43c"
+    },
+    "projectile-draw-after": {
+      "path": ".local/jungle-loop-projectile-draw-after.json",
+      "sha256": "cf3a24003085d39a9dc98634d587650a29959a7f334e4f79e74c947db13f9c24"
+    },
+    "projectile-miss-before": {
+      "path": ".local/jungle-loop-projectile-miss-before.json",
+      "sha256": "4205c01a4d0b512949ed0e703cbed2ca9c473b8721067572e7909b03069bc0a1"
+    },
+    "projectile-miss-after": {
+      "path": ".local/jungle-loop-projectile-miss-after.json",
+      "sha256": "939e42cea4000d8373e200b3a008b09ca756431b6884607a9295f3f97456aeee"
+    },
+    "projectile-hit-before": {
+      "path": ".local/jungle-loop-projectile-hit-before.json",
+      "sha256": "0b3211a59a6359fcb53977a91e766ae6ccb84a4bf8166d0b9eb5bb395f10652c"
+    },
+    "projectile-hit-after": {
+      "path": ".local/jungle-loop-projectile-hit-after.json",
+      "sha256": "c38ec3af384eda2a673a0148a455929ed17eaef1c90fd4ae6954ebcf3a780c20"
+    },
+    "hit-wait0-entry": {
+      "path": ".local/jungle-loop-hit-wait0-entry.json",
+      "sha256": "f1b1b0c0ae792f40e95eceaeb47b3ba99af3a5f47ac17988733233bfbd867eda"
+    },
+    "hit-wait0-consume": {
+      "path": ".local/jungle-loop-hit-wait0-consume.json",
+      "sha256": "f74b41b60bc6307c593475d45c1e8b00ee852ea488e85eeb2808fdbf1d8e059d"
+    },
+    "hit-wait1-entry": {
+      "path": ".local/jungle-loop-hit-wait1-entry.json",
+      "sha256": "b38b66274c0006ee97b58e951e29b88655948308dfe1985914900d99c3369ea1"
+    },
+    "hit-wait1-consume": {
+      "path": ".local/jungle-loop-hit-wait1-consume.json",
+      "sha256": "36cba28d2a5e671deb094418d02127fd02ce18f67b9ff04f078f0d76ad39575c"
+    },
+    "before-position": {
+      "path": ".local/jungle-loop-before-position.json",
+      "sha256": "09a2377bc7bffc7c713ca2b65bded7742fb59684a01ce5bc5da061e21c370ba4"
+    },
+    "after-position": {
+      "path": ".local/jungle-loop-after-position.json",
+      "sha256": "9b697446d0288b95e7f29fb954539aade81b1dbd6dbd3ef5f986aaecbb76ee7a"
+    },
+    "before-position2": {
+      "path": ".local/jungle-loop-before-position2.json",
+      "sha256": "4bbc10dc6c8634ba0d18d0e970d06ba3c4486e4449e0d467c5db8996615c34d7"
+    },
+    "after-position2": {
+      "path": ".local/jungle-loop-after-position2.json",
+      "sha256": "7f0635faafb9011b748e49e95bd7f6a4fbd52fd2b5832d0e7e785b7766a08e30"
+    },
+    "recovery": {
+      "path": ".local/jungle-loop-recovery.json",
+      "sha256": "20d4739e2b918378d74c5e84759b9b758af9d8b4b07e3d48a9f16cffc4dd5bbd"
+    }
+  },
+  "verifyCommand": "npm run verify:jungle"
+}

@@ -373,12 +373,13 @@ export class Renderer {
         );
         this.draw("MAIN.ARC", 26, 0, 192, 170, -2);
         this.draw("MAIN.ARC", 27, 0, 248, 174, -2);
+        if (c.atomicAvailable) this.draw("MAIN.ARC", 29, 0, 281, 170, -2);
         this.ctx.strokeStyle = "#fff";
         this.ctx.strokeRect(
-          c.choice === 0 ? 191 : 247,
-          c.choice === 0 ? 169 : 173,
-          c.choice === 0 ? 53 : 34,
-          c.choice === 0 ? 28 : 19,
+          [191, 247, 280][c.choice],
+          [169, 173, 169][c.choice],
+          [53, 34, 39][c.choice],
+          [28, 19, 28][c.choice],
         );
       }
       const title = c.selected === 35 ? "OFFICE" : selected.name;
@@ -389,6 +390,25 @@ export class Renderer {
       this.text(String(game.money), 176 - String(game.money).length * 8, 175);
       if (!c.info)
         this.draw("MAIN.ARC", 28, 0, c.cursor.x - 8, c.cursor.y - 8, -2);
+      return;
+    }
+    if (game.scene === "atomic-transport") {
+      if (game.atomicTransport.phase !== "report") return;
+      this.draw("MAIN.ARC", 41, 0, 0, 0);
+      [0x147, 0x159, 0x166, 0x174].forEach((at, i) =>
+        this.text(
+          executableText(this.resources.executable, at),
+          168,
+          60 + i * 16,
+        ),
+      );
+      const name = game.campaign.locations[game.atomicTransport.target].name;
+      this.text(name, 232 - name.length * 4, 124);
+      this.text(
+        executableText(this.resources.executable, 0x184),
+        232 + name.length * 4,
+        124,
+      );
       return;
     }
     if (game.scene === "departure") {

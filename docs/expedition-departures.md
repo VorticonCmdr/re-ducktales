@@ -37,7 +37,7 @@ journey cannot be cancelled during flight; Restart is available.
 | --- | --- | --- |
 | Confirming an ordinary expedition clears DS:4e26 coin latch | main 1000:0e68 | Static; browser simulation carries an earned coin through this transition |
 | A different-location journey uses the flight route; same-location skips it | main 1000:0439–045e | Static; no zero-day flight is fabricated |
-| Standard aircraft uses Launchpad; atomic transport is gated separately | map overlay 2:1d4e–1d7d; main 1000:0454 | Static; only standard aircraft available in supported current campaign |
+| Standard aircraft uses Launchpad; atomic transport is gated separately | map overlay 2:1d4e–1d7d; main 1000:0454 | Atomic unlock/map choice and both journeys are now connected; see atomic-transport.md |
 | First RNG draw modulo 3 selects speech variant | main 1000:06d9–07fe | Static; captured variant 1 matches browser pixels exactly |
 | Second RNG draw modulo 100 tests strict thresholds 25/50/75 by difficulty | main 1000:0758–0845 | Static + conditional original segment comparison; synthetic threshold checks |
 | Race is suppressed if rival already collected this location | main 1000:0820–0831 | Static + synthetic case; normal Glomgold progression now has separate evidence in rival.md |
@@ -123,7 +123,7 @@ classification, malformed executable input, and strict difficulty thresholds.
 Flight input, terrain, racing and crash/cash consequences are connected. Cave
 arrival, cave navigation and terminal results work. Mountain variant0 ascent,
 reward and retries also work; see `docs/mountain.md`. Original expedition-ending comparison,
-other jungle variants/difficulties and atomic aircraft remain incomplete.
+other jungle variants/difficulties remain incomplete. [Atomic transport](atomic-transport.md) is connected.
 [Normal Glomgold progression](rival.md) is connected. Photography and stock trading now have playable browser routes.
 
 Campaign startup now includes original random loot assignment. With BIOS seed0,

@@ -239,7 +239,7 @@ npx playwright test tests/browser/photography.spec.js
 
 Next: extend original comparisons for special-species reactions and whole-scene
 timing. Remaining full-game work includes
-atomic travel,save/load and high scores. [Normal rival progression](rival.md) is connected.
+save/load and high scores. [Atomic transport](atomic-transport.md) is connected. [Normal rival progression](rival.md) is connected.
 
 
 The LOC audit establishes layouts1..6:Yellerstone,Duckbill,Ronguay,Kenya,Xanadu

@@ -13,7 +13,7 @@
     "prepare:analysis": "python3 scripts/prepare-analysis.py",
     "verify:reference": "node scripts/verify-reference.js",
     "verify:build": "node scripts/verify-build.js",
-    "verify": "npm run verify:build && npm test && npm run verify:reference && npm run verify:campaign && npm run verify:visits && npm run verify:loot && npm run verify:investments && npm run verify:startup && npm run verify:ending && npm run verify:rival && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run verify:flight-scene && npm run verify:flight-runtime && npm run verify:cave && npm run verify:mountain && npm run verify:jungle && npm run verify:photography && npm run test:browser && npm run build",
+    "verify": "npm run verify:build && npm test && npm run verify:reference && npm run verify:campaign && npm run verify:visits && npm run verify:loot && npm run verify:investments && npm run verify:startup && npm run verify:ending && npm run verify:rival && npm run verify:atomic && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run verify:flight-scene && npm run verify:flight-runtime && npm run verify:cave && npm run verify:mountain && npm run verify:jungle && npm run verify:photography && npm run test:browser && npm run build",
     "format": "prettier --write src/game scripts/verify-*.js tests/game.test.js tests/browser/*.js index.html playwright.config.js reference/*.json",
     "verify:campaign": "node scripts/verify-campaign.js",
     "verify:departure": "node scripts/verify-departure.js",
@@ -37,7 +37,8 @@
     "prepare:investment-analysis": "python3 scripts/prepare-investment-analysis.py",
     "verify:startup": "node scripts/verify-campaign-startup.js",
     "verify:ending": "node scripts/verify-ending.js",
-    "verify:rival": "node scripts/verify-rival.js"
+    "verify:rival": "node scripts/verify-rival.js",
+    "verify:atomic": "node scripts/verify-atomic.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

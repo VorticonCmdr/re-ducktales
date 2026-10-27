@@ -1,0 +1,74 @@
+{
+  "id": "atomic-transport-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "a7106ef",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 5,
+  "evidenceLevel": "three conditional original travel segments, report boundary and exact report pixels; independent browser play is separate",
+  "startingRecipe": "Continue original rival cash-loss return0460:0328 stop443. CAS unlock DS8eb4 from0 to1 and rival activation96ba from1 to0. Complete bin and open Office map with paired Right+Fire. Trap map loop0e0c:1ec8 (445); after pending releases complete, Up2500ms selects Klondike. Fire opens information; Left100ms selects atomic third choice; Fire traps resident01f5:0454 (446). No machine restore. Verify resident and freshly loaded map bytes against original EXE.",
+  "injections": [
+    "Inherited conditional day10/Hard campaign and rival accounts from reference/rival.json. Atomic unlock0\u21921 and rival mask1\u21920 at stop443 bypass finding the item and isolate travel. This is conditional evidence.",
+    "Following each idle cave failure at resident04e7 (449 and452), CAS rival activation4\u21920 before campaign cleanup.",
+    "At the next atomic gate450, CAS RNG40976\u219228088 to select roll0. The requested Novay slot22 redirects to current Klondike slot1 with zero journey days.",
+    "At atomic gate453, CAS RNG6497\u21920 to select roll81, a successful Hard journey from1 to30."
+  ],
+  "fittedInputs": [],
+  "inputEvents": "Paired keys with released hardware states; after first arrival, allow idle Cave failure, continue to map, Right1500ms then Fire. After second failure wait4000ms for map, Right1500ms, release, wait300ms then Fire100ms. Each gate/arrival is bounded by one-shot execute stops. This is a setup recipe, not a timed whole-machine replay.",
+  "checkpoints": "first before0454/report067e/arrival04da (446/447/448), redirect before0454/arrival04da (450/451), success before0454/arrival04da (453/454). Local date increments inside subsequent expeditions are outside the travel comparison.",
+  "comparisonRules": "Exact RNG, chosen destination, player day/location, account and collected-flag preservation. Original inputs come only from incoming CPU/DS records. Full resident0454..06b8 and map1757..1ec8 identities are compared with relocated original bytes. Report at067e after reveal and before60-poll wait: day/location unchanged; exact320x200RGBA from MAIN41, original font/strings and incoming destination name. No frame search or fitted clocks.",
+  "exclusions": [
+    "Original sound45 latency and driver-clock consumption are not captured as an input stream. Semantic travel comparisons use the pure roll/destination/calendar rules, not a fitted audio event.",
+    "Report60x7 wait and charge7 ticks have static evidence and independent controller/browser tests; no original elapsed-time replay claimed.",
+    "Heap, graphics scratch, CPU temporaries and subsequent expedition simulation are outside these bounded travel comparisons."
+  ],
+  "verifyCommand": "npm run verify:atomic",
+  "artifacts": {
+    "mode": {
+      "path": ".local/atomic-mode.json",
+      "sha256": "9b19d9eb58fd284c4f0b48aa19acf7f34d234bca265200c94e5cc3d076861cff"
+    },
+    "firstBefore": {
+      "path": ".local/atomic-first-before.json",
+      "sha256": "c445943db49015787bf7a9d5ea2e82632914b1fd32d25422eb975db6f16153da"
+    },
+    "firstReport": {
+      "path": ".local/atomic-first-report.json",
+      "sha256": "4c5e35bb142fc6ff7d634eb83c54d049dbbbd48292d970061067e51367f2fe2a"
+    },
+    "firstAfter": {
+      "path": ".local/atomic-first-after.json",
+      "sha256": "0174c8f299236ff2c610bd638ed7ae2ce9efc54073df27d0765b0593d103c4df"
+    },
+    "redirectBefore": {
+      "path": ".local/atomic-redirect-before.json",
+      "sha256": "7d3d99eefc4cbe088bf826c1f035a5a9ab1c5065f5f15b14a8650425308a7b5a"
+    },
+    "redirectAfter": {
+      "path": ".local/atomic-redirect-after.json",
+      "sha256": "a3458a6dcb1f6367debed94cfb474041dc8f1209ed680275222379fca9053bad"
+    },
+    "successBefore": {
+      "path": ".local/atomic-success-before.json",
+      "sha256": "65dbaf4cd712a28b8bc443388880ded519f86ecc95ef609c7d6b3ddf68dff83b"
+    },
+    "successAfter": {
+      "path": ".local/atomic-success-after.json",
+      "sha256": "d15de291f5d4709c317d1d6cc706c5b63c4ea8fe82de0f0afec032fb22163c21"
+    },
+    "reportPNG": {
+      "path": ".local/atomic-first-report.png",
+      "sha256": "feb6d511948e5ea2ad34aea1953e945104cddd85163c3f2541a2ba38cd266450"
+    },
+    "choicePNG": {
+      "path": ".local/atomic-map-choice.png",
+      "sha256": "7c430e82085676f9474b859786f29e4dfb05c45b6b074684578dfc3f4e2cf851"
+    }
+  }
+}

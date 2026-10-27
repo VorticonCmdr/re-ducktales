@@ -50,7 +50,8 @@ TRAVEL_ANALYSIS were overlays 3 and 4; neither is the campaign map.
 The browser uses the original map, sprites, font, marker positions, and colors.
 The opening map PNG matches every RGBA pixel. Location information currently
 shows original descriptions and calculated journey duration, omitting treasure
-valuation/description and optional extra aircraft choice. These screens have no
+valuation/description. The unlocked atomic aircraft choice is now connected; see
+[atomic transport](atomic-transport.md). These screens have no
 claim of full pixel parity. Door, security, bank celebration, initial map reveal,
 and other transition animations are omitted. The checked EXE's security routine
 has an unconditional branch returning success at overlay 2:0c9c–0ca5.

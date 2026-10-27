@@ -9,6 +9,9 @@ Updated2026-10-27. **The full game is not complete.**
 - Office → map → Macaroon bank → office. All35 destinations can be inspected.
 - Confirm expedition → Launchpad → keyboard flight → crash or airport landing.
   Losing a flight race credits Glomgold and returns to the campaign map.
+- Earn the Atomic Matter Transmitter in Too-Pei → return to office → select its
+  map icon → atomic journey → next expedition. Misdirection,original calendar/RNG,
+  reports,direct-map aircraft persistence and deadline arrivals are connected.
 - Cave arrival → guide → rooms → treasure or failure → results/map → direct retry.
   Safe new rooms award$50. Collected locations prevent duplicate treasure awards.
 - Mountain arrival → guide → walking,hook/climbing,hazards,pickups and three lives.
@@ -35,7 +38,8 @@ Controls: Space/Enter fires. Office Up+Space enters the money bin,Right+Space
 opens the map,Left+Space opens investments. Hold Fire for flight throttle;
 Down raises the nose,Up lowers it. Caves use arrow+Fire for passages. Mountains
 use Fire to swing the hook,release to throw,and Up to climb. Jungles use arrows
-and Fire to jump. Photography uses Left/Up/Right to aim and Fire to shoot.
+and Fire to jump. Photography uses Left/Up/Right to aim and Fire to shoot. After earning the transmitter,Left from the Map choice selects
+Atomic; Right cycles Map/Launchpad/Atomic.
 
 ## Supported build and evidence
 
@@ -62,7 +66,7 @@ A production visitor selects their own original folder. `.gitignore` is preserve
 
 Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 [jungle](jungle.md),[photography](photography.md),[trading](investments.md),
-[endings](ending.md),[rival progression](rival.md),[treasure assignment](treasure-assignment.md).
+[endings](ending.md),[atomic transport](atomic-transport.md),[rival progression](rival.md),[treasure assignment](treasure-assignment.md).
 
 ## Known limitations and next milestone
 
@@ -70,8 +74,10 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   inactive/miss/claim/bank and all difficulty selectors,with exact report pixels.
   Original full-campaign/audio timing remains unproven. An exhausted rival route35
   stops explicitly; its original out-of-table behavior is unknown.
-- Next: atomic transport,including its original departure choice and campaign return.
-- Atomic travel,save/load and high scores are absent. Some editions are unsupported.
+- Next: original save/load and high-score handling. These are absent; some editions
+  are unsupported. Atomic travel now has5 conditional original checks,exact report
+  pixels and an independently played browser unlock/use route. Its original sound
+  latency and full map-information/transition timing remain unproven.
 - Full original expedition timing,presentation and audio parity are unproven.
   Cave movement,mountain hook/ascent,jungle scrolling/enemies and additional
   variants/difficulties still need targeted original comparisons.
@@ -97,12 +103,12 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Full `npm run verify` passed for this milestone:32 unit tests,23 browser scenarios,
-all required original/independent checks and the production build. Rival-specific
-checks include9 conditional original comparisons,exact report pixels,negative
-controls and pending-action/audio/ending integration checks.
+Full `npm run verify` passed for this milestone:38 unit tests,25 browser scenarios,
+all required original/independent comparisons and the production build. Atomic
+checks include5 conditional original comparisons,exact report pixels,negative
+controls,audio/calendar/controller checks and actual browser treasure/unlock/use.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-0460:0328 stop443 after the conditional cash-loss/treasure trip,DS/SS1403. No pending
-input schedule or breakpoints. `reference/rival.json` records cash/date/difficulty/
-unlock/seed injections and the later observation used for the nearest-selector case.
+01f5:04da stop454 after the conditional atomic success,DS/SS1403. No breakpoints
+or pending input schedule. `reference/atomic.json` records inherited campaign
+setup,unlock/rival-mask writes and the two explicit branch-selection seeds.

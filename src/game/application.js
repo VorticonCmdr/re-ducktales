@@ -14,6 +14,7 @@ import { initializeInvestments, advanceInvestmentDays } from "./investments.js";
 import { InvestmentScreen } from "./investment-screen.js";
 import { CampaignEnding, depositAccounts } from "./ending.js";
 import { advanceRival, RivalReport, RIVAL_UNLOCK } from "./rival.js";
+import { AtomicTransport } from "./atomic-transport.js";
 export const DRIVER_HZ = 1193182 / (1365 * 12);
 export const RETRACE_HZ = 70.086;
 
@@ -48,6 +49,7 @@ export class Game {
     this.marketMemory = null;
     this.pendingCampaignAction = null;
     this.rivalReport = null;
+    this.atomicTransport = null;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
     this.scene = "title";
@@ -181,12 +183,14 @@ export class Game {
       this.photography?.setAudioEnabled(event.enabled);
       this.visitNotice?.setAudioEnabled(event.enabled);
       this.rivalReport?.setAudioEnabled(event.enabled);
+      this.atomicTransport?.setAudioEnabled(event.enabled);
       return;
     }
     if (event.type === "audio-status") {
       this.cave?.setAudioStatus(event.token, event.busy);
       this.visitNotice?.setAudioStatus(event.token, event.busy);
       this.rivalReport?.setAudioStatus(event.token, event.busy);
+      this.atomicTransport?.setAudioStatus(event.token, event.busy);
       return;
     }
     if (event.type === "restart") {
@@ -205,6 +209,7 @@ export class Game {
       this.ending = null;
       this.visitNotice = null;
       this.rivalReport = null;
+      this.atomicTransport = null;
       this.pendingCampaignAction = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
@@ -277,7 +282,9 @@ export class Game {
         return;
       }
       if (c.info && ["left", "right"].includes(event.type)) {
-        c.choice = 1 - c.choice;
+        const count = c.atomicAvailable ? 3 : 2;
+        c.choice =
+          (c.choice + (event.type === "right" ? 1 : count - 1)) % count;
         return;
       }
       if (event.type === "fire") {
@@ -299,6 +306,7 @@ export class Game {
           c.info = false;
           return;
         }
+        c.aircraft = c.choice === 2 ? "atomic" : "launchpad";
         this.completeCampaignAction({ type: "travel", target: c.selected });
       }
       return;
@@ -360,6 +368,10 @@ export class Game {
       if (event.type === "fire") this.rivalReport.skipRequested = true;
       return;
     }
+    if (this.scene === "atomic-transport") {
+      if (event.type === "fire") this.atomicTransport.fire();
+      return;
+    }
     if (this.scene === "crash-repairs") {
       if (event.type === "fire") this.repairs.skipRequested = true;
       return;
@@ -410,6 +422,24 @@ export class Game {
         this.arrive(target, destination.flags);
         return;
       }
+      if (c.aircraft === "atomic") {
+        if (!c.atomicAvailable) throw Error("Atomic transport is not unlocked");
+        this.departure = null;
+        this.flight = null;
+        this.atomicTransport = new AtomicTransport({
+          from: c.location,
+          target,
+          day: c.day,
+          difficulty: this.difficulty,
+          seed: this.seed,
+          locations: c.locations,
+          audioEnabled: this.audioEnabled,
+          token: `atomic:${++this.audioScope}`,
+        });
+        this.scene = "atomic-transport";
+        this.collectAtomicTransport();
+        return;
+      }
       const departure = new Departure({
         from: c.location,
         target,
@@ -452,6 +482,11 @@ export class Game {
   }
   advanceDriverTick() {
     this.tick++;
+    if (this.scene === "atomic-transport") {
+      this.atomicTransport.advanceTick();
+      this.collectAtomicTransport();
+      return;
+    }
     if (this.scene === "rival-report") {
       if (this.rivalReport.advanceTick()) {
         const r = this.rivalReport,
@@ -622,6 +657,17 @@ export class Game {
       return;
     }
     this.arrive();
+  }
+  collectAtomicTransport() {
+    const a = this.atomicTransport;
+    this.effects.push(...a.drainEvents());
+    this.seed = this.campaign.seed = a.seed;
+    this.campaign.day = a.day;
+    if (a.outcome)
+      this.arrive(
+        a.outcome.target,
+        this.campaign.locations[a.outcome.target].flags,
+      );
   }
   advanceDialogue(wait) {
     wait.remaining--;
@@ -957,6 +1003,7 @@ export class Game {
       investments: this.investments?.snapshot() ?? null,
       ending: this.ending?.snapshot() ?? null,
       rivalReport: this.rivalReport?.snapshot() ?? null,
+      atomicTransport: this.atomicTransport?.snapshot() ?? null,
       pendingCampaignAction: this.pendingCampaignAction
         ? { ...this.pendingCampaignAction }
         : null,

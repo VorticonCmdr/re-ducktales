@@ -110,6 +110,7 @@ export class Campaign {
     this.seed = assigned.seed;
     this.atomicLocation = assigned.atomicLocation;
     this.atomicAvailable = false;
+    this.aircraft = "launchpad";
     this.day = 1;
     this.location = OFFICE;
     this.banked = 0;
@@ -175,6 +176,7 @@ export class Campaign {
         l.playerCollected ? [i] : [],
       ),
       atomicAvailable: this.atomicAvailable,
+      aircraft: this.aircraft,
       cursor: { ...this.cursor },
       selected: this.selected,
       asset:

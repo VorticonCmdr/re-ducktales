@@ -4,7 +4,35 @@ import { createHash } from "node:crypto";
 import { parseArchive } from "../src/assets.js";
 import { TandyDriver } from "../src/tandy-driver.js";
 import build from "../reference/build.json" with { type: "json" };
-import manifest from "../reference/tandy-cues.json" with { type: "json" };
+const sequenceMode = process.argv.includes("--sequence");
+assert.ok(
+  process.argv.slice(2).every((arg) => arg === "--sequence"),
+  "unknown cue verification option",
+);
+const manifest = JSON.parse(
+  await readFile(
+    new URL(
+      sequenceMode
+        ? "../reference/tandy-sequence-cues.json"
+        : "../reference/tandy-cues.json",
+      import.meta.url,
+    ),
+  ),
+);
+const requiredInputs = sequenceMode
+  ? [
+      { sound: 2, ticks: 27 },
+      { sound: 25, ticks: 25 },
+    ]
+  : [
+      { sound: 67, ticks: 17 },
+      { sound: 68, ticks: 17 },
+    ];
+const requiredCheckpoints = sequenceMode ? 56 : 38;
+const requiredWrites = sequenceMode ? 129 : 84;
+const priorWrites = sequenceMode ? 4 : 0;
+const firstSound = requiredInputs[0].sound,
+  lastSound = requiredInputs[1].sound;
 import driverManifest from "../reference/tandy-driver.json" with { type: "json" };
 
 const hash = (b) => createHash("sha256").update(b).digest("hex");
@@ -16,9 +44,9 @@ for (const [key, item] of Object.entries(manifest.artifacts)) {
   assert.equal(hash(b), item.sha256, `SETUP: corrupt ${item.path}`);
   raw[key] = JSON.parse(b);
 }
-assert.equal(Object.keys(raw).length, 42);
-assert.equal(manifest.expectedCheckpoints, 38);
-assert.equal(manifest.expectedPortWrites, 84);
+assert.equal(Object.keys(raw).length, sequenceMode ? 62 : 42);
+assert.equal(manifest.expectedCheckpoints, requiredCheckpoints);
+assert.equal(manifest.expectedPortWrites, requiredWrites);
 for (const name of ["DUCKTALE.EXE", "IT.DRV"])
   assert.equal(hash(await readFile(`game/${name}`)), build.files[name].sha256);
 const driver = parseArchive(await readFile("game/IT.DRV"), "IT.DRV")[4].data;
@@ -68,17 +96,19 @@ function portWrites(stops) {
   });
 }
 function compare(data, input = manifest.inputs) {
-  assert.deepEqual(
-    input,
-    [
-      { sound: 67, ticks: 17 },
-      { sound: 68, ticks: 17 },
-    ],
-    "required cue inputs",
-  );
+  assert.deepEqual(input, requiredInputs, "required cue inputs");
   let checkpoints = 0,
     writes = 0;
   for (const { sound, ticks } of input) {
+    if (sequenceMode) {
+      const setup = batch(data[`${sound}-setup`], 2);
+      assert.deepEqual(
+        setup.map((r) => r.op),
+        ["mem_write", "cpu_write"],
+      );
+      assert.equal(setup[0].addr, 285120);
+      assert.equal(setup[1].value, 0xfef0);
+    }
     const events = data[`${sound}-events`];
     assert.equal(events.sound, sound);
     assert.equal(events.ticks, ticks);
@@ -165,27 +195,27 @@ function compare(data, input = manifest.inputs) {
     }
     assert.equal(model.active, false, "unfinished native cue sequence");
   }
-  assert.equal(checkpoints, 38);
-  assert.equal(writes, 84);
+  assert.equal(checkpoints, requiredCheckpoints);
+  assert.equal(writes, requiredWrites);
 }
 compare(raw);
 const altered = structuredClone(raw),
-  a = unwrap(altered["68-01"].after);
+  a = unwrap(altered[`${lastSound}-01`].after);
 const memory = Buffer.from(a.results[1].data, "base64");
 memory[0x1ef] ^= 1;
 a.results[1].data = memory.toString("base64");
-altered["68-01"].after.content[0].text = JSON.stringify(a);
+altered[`${lastSound}-01`].after.content[0].text = JSON.stringify(a);
 assert.throws(() => compare(altered), /entire native cue state/);
 const missing = structuredClone(raw);
-delete missing["67-09"];
+delete missing[`${firstSound}-09`];
 assert.throws(() => compare(missing), /missing native cue checkpoint/);
 const event = structuredClone(raw);
-event["68-events"].bios.pop();
+event[`${lastSound}-events`].bios.pop();
 assert.throws(() => compare(event), /unconsumed BIOS events/);
 const out = structuredClone(raw),
-  p = unwrap(out["67-01"].writes[0]);
+  p = unwrap(out[`${firstSound}-01`].writes[0]);
 p.registers.eax ^= 1;
-out["67-01"].writes[0].content[0].text = JSON.stringify(p);
+out[`${firstSound}-01`].writes[0].content[0].text = JSON.stringify(p);
 assert.throws(() => compare(out), /native cue port writes/);
 assert.throws(
   () => compare(raw, manifest.inputs.slice(1)),
@@ -209,12 +239,25 @@ assert.equal(
   breakpoints.breakpoints
     .filter((b) => ![0x729, 0x4003].includes(b.offset))
     .reduce((n, b) => n + b.hit_count, 0),
-  84,
+  requiredWrites + priorWrites,
 );
 const wrapper = batch(final.reads, 3)[1];
 assert.deepEqual(
   Buffer.from(wrapper.data, "base64"),
-  Buffer.from([0x68, 68, 0, 0x9a, 0x15, 4, 0x9c, 0x45, 0x83, 0xc4, 2, 0xc3]),
+  Buffer.from([
+    0x68,
+    lastSound,
+    0,
+    0x9a,
+    0x15,
+    4,
+    0x9c,
+    0x45,
+    0x83,
+    0xc4,
+    2,
+    0xc3,
+  ]),
 );
 const cleanup = raw.cleanup,
   initial = batch(cleanup.context, 2)[0].registers,
@@ -225,5 +268,5 @@ assert.equal(unwrap(cleanup.freed).status, "ok");
 assert.deepEqual(unwrap(cleanup.allocations).allocations, []);
 assert.equal(unwrap(cleanup.breakpoints).count, 0);
 console.log(
-  "Tandy067/068: 38 carried native driver checkpoints, 84 exact port writes, separate consumed input streams, 5 negative controls. IRQ scheduling and waveform unverified.",
+  `Tandy ${firstSound}/${lastSound}: ${requiredCheckpoints} carried native driver checkpoints, ${requiredWrites} exact port writes, separate consumed input streams, 5 negative controls. IRQ scheduling and waveform unverified.`,
 );

@@ -1,0 +1,861 @@
+{
+  "level": "Independent provider / port regression; not an original waveform or full-corpus runtime comparison.",
+  "environment": {
+    "sampleRate": 44100,
+    "resetPort61": 0,
+    "firstTickTime": 0,
+    "initialPeriods": [1, 1, 1],
+    "initialCounters": [1, 1, 1],
+    "initialOutputs": [1, 1, 1]
+  },
+  "counts": {
+    "requests": 121,
+    "complete": 59,
+    "audible": 37,
+    "unsupported": 62,
+    "silent": 22
+  },
+  "cases": [
+    {
+      "id": 0,
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 10,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
+    },
+    {
+      "id": 1,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 2,
+      "status": "complete",
+      "ticks": 27,
+      "samples": 15741,
+      "busWrites": 51,
+      "pcmSHA256": "43eb9f2530c401bf0b019b97710c8c99e7c880d14d8b05070dcaa4e301aec461",
+      "silent": false
+    },
+    {
+      "id": 3,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 4,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 5,
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 6,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
+    },
+    {
+      "id": 6,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 7,
+      "status": "complete",
+      "ticks": 43,
+      "samples": 25427,
+      "busWrites": 86,
+      "pcmSHA256": "1929a89cecef32a5d05f32b03b8d10bc135249f8a44581b537df506576397024",
+      "silent": false
+    },
+    {
+      "id": 8,
+      "status": "unsupported",
+      "diagnostic": "Tandy engine sequencing is not implemented"
+    },
+    {
+      "id": 9,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command aa"
+    },
+    {
+      "id": 10,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 11,
+      "status": "complete",
+      "ticks": 249,
+      "samples": 150140,
+      "busWrites": 263,
+      "pcmSHA256": "3bbed73568df1ce9ebda2f48d9fd8629dcc6efad79cc687aa2e5ac36d07432eb",
+      "silent": false
+    },
+    {
+      "id": 12,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 13,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 14,
+      "status": "complete",
+      "ticks": 74,
+      "samples": 44195,
+      "busWrites": 149,
+      "pcmSHA256": "611bcd6a2118b2a62eb9506d9db90937bbd8dd73114b309c36068091a6e6cc4a",
+      "silent": false
+    },
+    {
+      "id": 15,
+      "status": "complete",
+      "ticks": 257,
+      "samples": 154984,
+      "busWrites": 692,
+      "pcmSHA256": "ebf834027091c97f4bf91dd258190d27d7918765d534cab50456e9110dd5eb27",
+      "silent": false
+    },
+    {
+      "id": 16,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 17,
+      "status": "complete",
+      "ticks": 4,
+      "samples": 1816,
+      "busWrites": 11,
+      "pcmSHA256": "a16de6aed3992543ad49ce4ef4f14fbcdf3b06990f70740496510afff091e786",
+      "silent": false
+    },
+    {
+      "id": 18,
+      "status": "complete",
+      "ticks": 309,
+      "samples": 186465,
+      "busWrites": 410,
+      "pcmSHA256": "ecd201ddf280d03d6093541e2c19f11ab2e91ce5101de6a4db379453b260c0e4",
+      "silent": false
+    },
+    {
+      "id": 19,
+      "status": "complete",
+      "ticks": 25,
+      "samples": 14530,
+      "busWrites": 59,
+      "pcmSHA256": "b26b3edf03332a4bb7fea63610deb2d7088ae15520353b474f6e9d6fd39b0fb3",
+      "silent": false
+    },
+    {
+      "id": 20,
+      "status": "complete",
+      "ticks": 25,
+      "samples": 14530,
+      "busWrites": 59,
+      "pcmSHA256": "2fb565bb2445a7c41e1e33768c9d0ec8546420549931f2c73cc0b700348f5c49",
+      "silent": false
+    },
+    {
+      "id": 21,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 22,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 23,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 24,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 25,
+      "status": "complete",
+      "ticks": 25,
+      "samples": 14530,
+      "busWrites": 78,
+      "pcmSHA256": "84dcc9f0f83ecee5eb7832e4f03968862202c5179ae1c20d4c620f2933d90c8f",
+      "silent": false
+    },
+    {
+      "id": 26,
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 6,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
+    },
+    {
+      "id": 27,
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 6,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
+    },
+    {
+      "id": 28,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 29,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 30,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 31,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 32,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 33,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 34,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 35,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 36,
+      "status": "complete",
+      "ticks": 6,
+      "samples": 3027,
+      "busWrites": 13,
+      "pcmSHA256": "2bbb8bebe3dfa920db2284468a4188494c29aa277c9eba3eb5224fe478a90c31",
+      "silent": false
+    },
+    {
+      "id": 37,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 9d"
+    },
+    {
+      "id": 38,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 39,
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 6,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
+    },
+    {
+      "id": 40,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 41,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 42,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 43,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 44,
+      "status": "complete",
+      "ticks": 65,
+      "samples": 38746,
+      "busWrites": 198,
+      "pcmSHA256": "5edc684d55a1945e4dfac092468495af4b0a42560ca61249a76479b2d12e1ea3",
+      "silent": false
+    },
+    {
+      "id": 45,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 46,
+      "status": "complete",
+      "ticks": 97,
+      "samples": 58119,
+      "busWrites": 150,
+      "pcmSHA256": "c22d1730db18c45e9d194c6485cb939bbd3cefe4981e1cbe4fb9d34e4747c40c",
+      "silent": false
+    },
+    {
+      "id": 47,
+      "status": "complete",
+      "ticks": 241,
+      "samples": 145297,
+      "busWrites": 726,
+      "pcmSHA256": "b6a7907c62992263058e1a290da2121a7315cdcc0e6fc0277527a2f6ba198187",
+      "silent": false
+    },
+    {
+      "id": 48,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 9d"
+    },
+    {
+      "id": 49,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 50,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 51,
+      "status": "complete",
+      "ticks": 249,
+      "samples": 150140,
+      "busWrites": 263,
+      "pcmSHA256": "3bbed73568df1ce9ebda2f48d9fd8629dcc6efad79cc687aa2e5ac36d07432eb",
+      "silent": false
+    },
+    {
+      "id": 52,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 53,
+      "status": "complete",
+      "ticks": 52,
+      "samples": 30876,
+      "busWrites": 71,
+      "pcmSHA256": "022e68b5dd9aac7e75d43b7a9868afee4ffee0f42d15c74babf6c3e97339c0ba",
+      "silent": false
+    },
+    {
+      "id": 54,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 55,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 56,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 57,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 58,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 59,
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 6,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
+    },
+    {
+      "id": 60,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 61,
+      "status": "complete",
+      "ticks": 65,
+      "samples": 38746,
+      "busWrites": 139,
+      "pcmSHA256": "7c4c5e39a5d65c0d7bccd89c46a89b93392184c4ca9294bb4beb33b81becec7b",
+      "silent": false
+    },
+    {
+      "id": 62,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 63,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 64,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 65,
+      "status": "complete",
+      "ticks": 249,
+      "samples": 150140,
+      "busWrites": 263,
+      "pcmSHA256": "3bbed73568df1ce9ebda2f48d9fd8629dcc6efad79cc687aa2e5ac36d07432eb",
+      "silent": false
+    },
+    {
+      "id": 66,
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 6,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
+    },
+    {
+      "id": 67,
+      "status": "complete",
+      "ticks": 17,
+      "samples": 9686,
+      "busWrites": 42,
+      "pcmSHA256": "64cd82eedfb66237081dac0d9584722de5fd8dd0be3871432a1ce19d16074f0e",
+      "silent": false
+    },
+    {
+      "id": 68,
+      "status": "complete",
+      "ticks": 17,
+      "samples": 9686,
+      "busWrites": 42,
+      "pcmSHA256": "3d93fab9bdede7b03be79cd9009e45638e1c7db010e044aae8f76fe4a76cda0b",
+      "silent": false
+    },
+    {
+      "id": 69,
+      "status": "unsupported",
+      "diagnostic": "Tandy zero-period behavior is not implemented"
+    },
+    {
+      "id": 70,
+      "status": "complete",
+      "ticks": 5,
+      "samples": 2422,
+      "busWrites": 9,
+      "pcmSHA256": "182bfdd8ef6a6d359f50251b683e7ba9932a44f3a3e581ff971d15e4c215e318",
+      "silent": false
+    },
+    {
+      "id": 71,
+      "status": "complete",
+      "ticks": 257,
+      "samples": 154984,
+      "busWrites": 585,
+      "pcmSHA256": "4984df18ac2c69b14a46bdd35fb5794e0063670acabafce6f159c9c7e46e5d9d",
+      "silent": false
+    },
+    {
+      "id": 72,
+      "status": "complete",
+      "ticks": 209,
+      "samples": 125924,
+      "busWrites": 442,
+      "pcmSHA256": "feb8623392dd2f815a652e0b5ef7d2ba94a4401444653fd3c5d0af48f5c0e8fa",
+      "silent": false
+    },
+    {
+      "id": 73,
+      "status": "complete",
+      "ticks": 308,
+      "samples": 185859,
+      "busWrites": 580,
+      "pcmSHA256": "acd91c3aa1967e284f6d7a21b1b57fedc01aa965ad95b07221583938d3d8cd88",
+      "silent": false
+    },
+    {
+      "id": 74,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 75,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 76,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 77,
+      "status": "complete",
+      "ticks": 131,
+      "samples": 78703,
+      "busWrites": 158,
+      "pcmSHA256": "0a33832b852eba5961e323c6b8ba49e843b74380ed57cf6c1c7307b285ffb249",
+      "silent": false
+    },
+    {
+      "id": 78,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 79,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 80,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 81,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 82,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 83,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 84,
+      "status": "complete",
+      "ticks": 169,
+      "samples": 101708,
+      "busWrites": 407,
+      "pcmSHA256": "683a422f1370ffb921c163102b77f86064dbd92d0c4d72cab53b54311f953a18",
+      "silent": false
+    },
+    {
+      "id": 85,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 86,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 87,
+      "status": "complete",
+      "ticks": 17,
+      "samples": 9686,
+      "busWrites": 54,
+      "pcmSHA256": "6507d3191d65768cfdf9850793a4af04f42e1c32b90d27088dead8d78f90b9eb",
+      "silent": false
+    },
+    {
+      "id": 88,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 89,
+      "status": "complete",
+      "ticks": 71,
+      "samples": 42378,
+      "busWrites": 174,
+      "pcmSHA256": "05ce98d33b736f8532e6e20b691b7a64d89fad0435f0c4b07fa3fdf9745e4e3d",
+      "silent": false
+    },
+    {
+      "id": 90,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 91,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 92,
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 6,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
+    },
+    {
+      "id": 93,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 94,
+      "status": "complete",
+      "ticks": 17,
+      "samples": 9686,
+      "busWrites": 54,
+      "pcmSHA256": "aa29b82773c8d726159677db8eff67efb1508e815f5173e29c30fd4ec778b461",
+      "silent": false
+    },
+    {
+      "id": 95,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 96,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 97,
+      "status": "complete",
+      "ticks": 69,
+      "samples": 41168,
+      "busWrites": 178,
+      "pcmSHA256": "989adab16c0bc6582719f8c672c60339f061f14a3709712c57f24edebf4f0d72",
+      "silent": false
+    },
+    {
+      "id": 98,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 99,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 100,
+      "status": "complete",
+      "ticks": 19,
+      "samples": 10897,
+      "busWrites": 43,
+      "pcmSHA256": "3e492a4a242bc2d13e27c815ffc475c14165816dc084528ca7306cfcbfe04ecc",
+      "silent": false
+    },
+    {
+      "id": 101,
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 6,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
+    },
+    {
+      "id": 102,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 103,
+      "status": "complete",
+      "ticks": 36,
+      "samples": 21189,
+      "busWrites": 46,
+      "pcmSHA256": "a086a17c89e80be987284808c3b3ac8296fdefe745d3b76531af8013bc11bd8c",
+      "silent": false
+    },
+    {
+      "id": 104,
+      "status": "complete",
+      "ticks": 36,
+      "samples": 21189,
+      "busWrites": 64,
+      "pcmSHA256": "bcb6b576fb525b4984649daf629bd7f793c409975eb8855160ce6787d058a085",
+      "silent": false
+    },
+    {
+      "id": 105,
+      "status": "complete",
+      "ticks": 49,
+      "samples": 29059,
+      "busWrites": 106,
+      "pcmSHA256": "a6348273446a35188f26d75f0c7d7cb420f355df5db691297066b76612725ecc",
+      "silent": false
+    },
+    {
+      "id": 106,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 107,
+      "status": "complete",
+      "ticks": 48,
+      "samples": 28454,
+      "busWrites": 71,
+      "pcmSHA256": "fe52b973fd9f4c032136110336ca9b0e7c7e95752c7e4f64ba17d56184c7dff6",
+      "silent": false
+    },
+    {
+      "id": 108,
+      "status": "complete",
+      "ticks": 67,
+      "samples": 39957,
+      "busWrites": 47,
+      "pcmSHA256": "f76a6e85dc4c5e0bfccbe62c28f22f94140f16731ef67b8adf5459fbc7c23da9",
+      "silent": false
+    },
+    {
+      "id": 109,
+      "status": "complete",
+      "ticks": 17,
+      "samples": 9686,
+      "busWrites": 39,
+      "pcmSHA256": "81d716d91c5f56b81c6bef29fa032f4f0ba58eb7ff7d33bf61571e5066fe2571",
+      "silent": false
+    },
+    {
+      "id": 110,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 111,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 97"
+    },
+    {
+      "id": 112,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 113,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 114,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 115,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 116,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 117,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 118,
+      "status": "complete",
+      "ticks": 2,
+      "samples": 605,
+      "busWrites": 9,
+      "pcmSHA256": "d16171b37461c01b167beafc1c4746ccbe00df1c8e6e32941fa962e5fbbb3208",
+      "silent": true
+    },
+    {
+      "id": 119,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    },
+    {
+      "id": 120,
+      "status": "unsupported",
+      "diagnostic": "Unsupported Tandy command 90"
+    }
+  ]
+}

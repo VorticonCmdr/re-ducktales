@@ -1,0 +1,202 @@
+{
+  "build": "dos-fb658562",
+  "driverSHA256": "c17ef1f352cc26f470c8297a070fbcf5fd3d6eaa8b146b3486b54f076205d80c",
+  "captureRevision": "tandy-sequence-v1-2026-10-27",
+  "engine": "dosbox-automation 0.84.0-vc1 (f6d9b), bridge0.1.1/protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "mode": "x86 16-bit real mode",
+    "segment": 17820,
+    "physical": 285120
+  },
+  "recipe": "docs/tandy-audio.md",
+  "inputs": "reference/tandy-sequence-inputs.json",
+  "expectedCases": 42,
+  "expectedCheckpoints": 43,
+  "expectedPortWrites": 4,
+  "artifacts": {
+    "00": {
+      "path": ".local/tandy-sequence/00.json",
+      "sha256": "e45dd324a93938df1cd071be05fb4a42cceba7d5dbaf0b19e585ea975db2bb36"
+    },
+    "01": {
+      "path": ".local/tandy-sequence/01.json",
+      "sha256": "1a99c200d182a74e9d95c254f94ce917d886369e5e5ff57dba7402ddd545a98d"
+    },
+    "02": {
+      "path": ".local/tandy-sequence/02.json",
+      "sha256": "991f8ec59b66743393e9649ddbd425627c837c4ccaad7ed2bbc227aaea3bb589"
+    },
+    "03": {
+      "path": ".local/tandy-sequence/03.json",
+      "sha256": "3ed8a2e12f390615fb58a907359fa0f446af194fd532df030dda8718be9a56a2"
+    },
+    "04": {
+      "path": ".local/tandy-sequence/04.json",
+      "sha256": "e1cb89dd2f1e0e4d99aa84c8d3746e1bfd34ceb979ab2cc3a92b4773b45a2159"
+    },
+    "05": {
+      "path": ".local/tandy-sequence/05.json",
+      "sha256": "586cdbf2fe8e51c9af280a57dcd9bb6adeacbefc16a3ae1965158900194f6542"
+    },
+    "06": {
+      "path": ".local/tandy-sequence/06.json",
+      "sha256": "24e27ba85e65cbe67075ef27a219eac79060e04c4486de179a08c71c5b080821"
+    },
+    "07": {
+      "path": ".local/tandy-sequence/07.json",
+      "sha256": "66cf9d9797e8a36a24720dbef914a3a0b3a7de99f89f25d239b253d5b8c0a63b"
+    },
+    "08": {
+      "path": ".local/tandy-sequence/08.json",
+      "sha256": "7c4c9aea7e80bbb093c4bf517c1bbd1160ddd0207b71401e8c5cb31b754fc4c9"
+    },
+    "09": {
+      "path": ".local/tandy-sequence/09.json",
+      "sha256": "a21cb04fab2d4d6064624775944d7c39e3a501434ccdc1a62e643f6a882a6001"
+    },
+    "10": {
+      "path": ".local/tandy-sequence/10.json",
+      "sha256": "36fa2d90146e7e19a4617ad67a24e46d4fd8579e0ac0c3c7da9e9cec97583cff"
+    },
+    "11": {
+      "path": ".local/tandy-sequence/11.json",
+      "sha256": "f42f50de8b3cfafd6ed5e72382524d56900143aae8bc92ddb6a830b46c235f93"
+    },
+    "12": {
+      "path": ".local/tandy-sequence/12.json",
+      "sha256": "248599c3787079d103a34a559f886adb8330083dabf85c239040d6f3396bdf56"
+    },
+    "13": {
+      "path": ".local/tandy-sequence/13.json",
+      "sha256": "78cceb23b35f045571bdb0cb83a6644aa84139bdab3d69b34c169c8eff9e361f"
+    },
+    "14": {
+      "path": ".local/tandy-sequence/14.json",
+      "sha256": "4298cd02492aeec34a15f37974ff0f1571e619630008b5649533ab0c26863351"
+    },
+    "15": {
+      "path": ".local/tandy-sequence/15.json",
+      "sha256": "2e8b57b22bc6ecff8274fec50626dff02b131e34b1dd42f2fcf8072112946386"
+    },
+    "16": {
+      "path": ".local/tandy-sequence/16.json",
+      "sha256": "909e97b6b9cc2c34f6e573dcfbae0316257a24e28025e4736772f118be83cf44"
+    },
+    "17": {
+      "path": ".local/tandy-sequence/17.json",
+      "sha256": "740a903c0b4ce4c46bd5c2035898b31a4cb2cfcb072b1896040536432cbab6e7"
+    },
+    "18": {
+      "path": ".local/tandy-sequence/18.json",
+      "sha256": "671cb8ef80b8f7f3c0538b1dc1700eec5a2cd88910af0459de24bdf5717d2c15"
+    },
+    "19": {
+      "path": ".local/tandy-sequence/19.json",
+      "sha256": "ee462dc6e755cd44e719b97a296a9340e8c82aeadd7bb08cf955d2578b777386"
+    },
+    "20": {
+      "path": ".local/tandy-sequence/20.json",
+      "sha256": "618d393d458e338e78eca8a0c8dfa1015c5cf0f5195a0b3cbc3ac35848f8bfb1"
+    },
+    "21": {
+      "path": ".local/tandy-sequence/21.json",
+      "sha256": "8023bf84b90acbe0536b150ff012fb2118f849d8b33c9ee6f8a2fbced1bdd641"
+    },
+    "22": {
+      "path": ".local/tandy-sequence/22.json",
+      "sha256": "ad631463f3a0e51651b7ab924fb7923055fde8dad088857b57dc3bd70305c254"
+    },
+    "23": {
+      "path": ".local/tandy-sequence/23.json",
+      "sha256": "55c22f95ae9d2734b893e7f092583b9c27bb4b0717a9f98b09a45ffa01dd888c"
+    },
+    "24": {
+      "path": ".local/tandy-sequence/24.json",
+      "sha256": "c4ae5211755f6a7478e6e3c744715f5a0498888b2490ec318c6e97bf219da89d"
+    },
+    "25": {
+      "path": ".local/tandy-sequence/25.json",
+      "sha256": "4b76f0af3802e75e489ce4e364d613e514c39b10d9d0a04f4f6e88233a6340aa"
+    },
+    "26": {
+      "path": ".local/tandy-sequence/26.json",
+      "sha256": "41fbb4da5ec793ebb22c39592875b4f5a6832549c1c07a6228c2981c9dbbce79"
+    },
+    "27": {
+      "path": ".local/tandy-sequence/27.json",
+      "sha256": "7b5359a1ed7087e115430151c50a9812a44941e6f1f1db5403c2de21f46f7957"
+    },
+    "28": {
+      "path": ".local/tandy-sequence/28.json",
+      "sha256": "288e962169c641357c9cc0208dabbe98a3d3c4aae23a0ecb6b612e41c5df4334"
+    },
+    "29": {
+      "path": ".local/tandy-sequence/29.json",
+      "sha256": "0fe6e468a2d1673b65775926c901a604437e721f1e0dbcd50bcb77acb7726ba9"
+    },
+    "30": {
+      "path": ".local/tandy-sequence/30.json",
+      "sha256": "bbb653a08dd66a550c312b2be7734bd8f0f7707a07f335d2c1e450f55418a723"
+    },
+    "31": {
+      "path": ".local/tandy-sequence/31.json",
+      "sha256": "e7cf40ef25c77f9fdbfa656f7216689aa4cd0d892e90f4106712bf06ec822159"
+    },
+    "32": {
+      "path": ".local/tandy-sequence/32.json",
+      "sha256": "fe67ae79df78c37ba76bf405ed1bfde62addf69b4a6a896b8cd14b133ad04159"
+    },
+    "33": {
+      "path": ".local/tandy-sequence/33.json",
+      "sha256": "454960fa68004ad094034f668d5157acddc6d4e23a874d2aca1facc71d8cc6ef"
+    },
+    "34": {
+      "path": ".local/tandy-sequence/34.json",
+      "sha256": "833c7eaab616767139b827821e52b39bd312321c0469fd06867781045bc077cc"
+    },
+    "35": {
+      "path": ".local/tandy-sequence/35.json",
+      "sha256": "14d0cfac38b271166b5d2f901b9408234639f2904cbbb17f995a1517191807d3"
+    },
+    "36": {
+      "path": ".local/tandy-sequence/36.json",
+      "sha256": "d8c5dd5a4df10d97938a95571de73716da42ebba7d8394bd4910c4ce1c766108"
+    },
+    "37": {
+      "path": ".local/tandy-sequence/37.json",
+      "sha256": "5d139e92a58509616ec5f9e3249fb99728ba38059637c206ee28a42749df46e6"
+    },
+    "38": {
+      "path": ".local/tandy-sequence/38.json",
+      "sha256": "a4e6b4cd4921e60bc92505896f74e90ce303ca3c5461c0a538a76fe6f886a948"
+    },
+    "39": {
+      "path": ".local/tandy-sequence/39.json",
+      "sha256": "b98b88bf2a6f35469581a801d29a7892c240be320985fa0e29999f2d458c507a"
+    },
+    "40": {
+      "path": ".local/tandy-sequence/40.json",
+      "sha256": "07f95e01e10d375e501b0f0bebb40639cf3f7f5069903cb14ad6de5b0513fb7c"
+    },
+    "41": {
+      "path": ".local/tandy-sequence/41.json",
+      "sha256": "b4cd7a54d42102437145dd32db0be88dbb6d489207a8b474ae38a0cf49ad56b6"
+    },
+    "runtime-events": {
+      "path": ".local/tandy-sequence/runtime-events.json",
+      "sha256": "adbf4bb645d3f7614756f2d169e0a236b4cc3cee58f3def986771ad8bcd3fd94"
+    },
+    "setup": {
+      "path": ".local/tandy-sequence/setup.json",
+      "sha256": "127badb92903369fbf9f5b15abfa25cbf49e36193a8b9bfcdb21152930ac5346"
+    }
+  },
+  "cleanup": {
+    "path": ".local/tandy-sequence-cues/cleanup.json",
+    "sha256": "e749bcd457867917abd1f30a8f58b204aecf403488f428d05478286ee7e68cad"
+  },
+  "verify": "npm run verify:tandy-sequence"
+}

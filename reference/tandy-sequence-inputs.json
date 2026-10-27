@@ -1,0 +1,554 @@
+{
+  "schema": 1,
+  "argumentOffset": 12288,
+  "segment": 17820,
+  "stack": 65264,
+  "cases": [
+    {
+      "name": "zero-record",
+      "kind": "control",
+      "opcode": 130,
+      "entry": 2892,
+      "channel": 2,
+      "args": [0],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "eight-record",
+      "kind": "control",
+      "opcode": 130,
+      "entry": 2892,
+      "channel": 1,
+      "args": [8],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "extended-130",
+      "kind": "control",
+      "opcode": 130,
+      "entry": 2892,
+      "channel": 0,
+      "args": [130],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "extended-128",
+      "kind": "control",
+      "opcode": 130,
+      "entry": 2892,
+      "channel": 2,
+      "args": [128],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "extended-180",
+      "kind": "control",
+      "opcode": 130,
+      "entry": 2892,
+      "channel": 1,
+      "args": [180],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "lower-priority-rejected",
+      "kind": "control",
+      "opcode": 130,
+      "entry": 2892,
+      "channel": 1,
+      "args": [170],
+      "priorities": [9, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "signed-priority-accepted",
+      "kind": "control",
+      "opcode": 130,
+      "entry": 2892,
+      "channel": 1,
+      "args": [170],
+      "priorities": [255, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "self-channel-replaced",
+      "kind": "control",
+      "opcode": 130,
+      "entry": 2892,
+      "channel": 0,
+      "args": [170],
+      "priorities": [8, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "self-channel-rejected",
+      "kind": "control",
+      "opcode": 130,
+      "entry": 2892,
+      "channel": 0,
+      "args": [170],
+      "priorities": [9, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "loop-counter-set",
+      "kind": "control",
+      "opcode": 128,
+      "entry": 2806,
+      "channel": 0,
+      "args": [255],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "loop-decrement-2",
+      "kind": "control",
+      "opcode": 129,
+      "entry": 2831,
+      "channel": 0,
+      "args": [52, 18],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[17, 1, 2]],
+      "extra": []
+    },
+    {
+      "name": "loop-decrement-1",
+      "kind": "control",
+      "opcode": 129,
+      "entry": 2831,
+      "channel": 0,
+      "args": [52, 18],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[17, 1, 1]],
+      "extra": []
+    },
+    {
+      "name": "loop-decrement-0",
+      "kind": "control",
+      "opcode": 129,
+      "entry": 2831,
+      "channel": 0,
+      "args": [52, 18],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[17, 1, 0]],
+      "extra": []
+    },
+    {
+      "name": "jump-little-endian",
+      "kind": "control",
+      "opcode": 132,
+      "entry": 2843,
+      "channel": 0,
+      "args": [52, 18],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "call-depth-0",
+      "kind": "control",
+      "opcode": 133,
+      "entry": 2985,
+      "channel": 0,
+      "args": [52, 18],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[18, 1, 0]],
+      "extra": []
+    },
+    {
+      "name": "call-depth-3",
+      "kind": "control",
+      "opcode": 133,
+      "entry": 2985,
+      "channel": 0,
+      "args": [52, 18],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[18, 1, 3]],
+      "extra": []
+    },
+    {
+      "name": "call-depth-4",
+      "kind": "control",
+      "opcode": 133,
+      "entry": 2985,
+      "channel": 0,
+      "args": [52, 18],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[18, 1, 4]],
+      "extra": []
+    },
+    {
+      "name": "call-depth-128",
+      "kind": "control",
+      "opcode": 133,
+      "entry": 2985,
+      "channel": 0,
+      "args": [52, 18],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[18, 1, 128]],
+      "extra": []
+    },
+    {
+      "name": "return-depth-1",
+      "kind": "control",
+      "opcode": 134,
+      "entry": 3049,
+      "channel": 0,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[18, 1, 1]],
+      "extra": [[484, 2, 9029]]
+    },
+    {
+      "name": "return-depth-4",
+      "kind": "control",
+      "opcode": 134,
+      "entry": 3049,
+      "channel": 0,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[18, 1, 4]],
+      "extra": [[490, 2, 9029]]
+    },
+    {
+      "name": "return-depth-0",
+      "kind": "control",
+      "opcode": 134,
+      "entry": 3049,
+      "channel": 0,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [[18, 1, 0]],
+      "extra": [[738, 2, 9029]]
+    },
+    {
+      "name": "octave-byte",
+      "kind": "control",
+      "opcode": 135,
+      "entry": 2706,
+      "channel": 0,
+      "args": [224],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "transpose-byte",
+      "kind": "control",
+      "opcode": 140,
+      "entry": 3114,
+      "channel": 0,
+      "args": [255],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "vibrato-setup-0",
+      "kind": "control",
+      "opcode": 149,
+      "entry": 3251,
+      "channel": 0,
+      "args": [255, 1, 2, 1],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "vibrato-setup-1",
+      "kind": "control",
+      "opcode": 149,
+      "entry": 3251,
+      "channel": 0,
+      "args": [104, 3, 255, 128],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "vibrato-setup-2",
+      "kind": "control",
+      "opcode": 149,
+      "entry": 3251,
+      "channel": 0,
+      "args": [0, 0, 0, 0],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "tempo-0",
+      "kind": "control",
+      "opcode": 169,
+      "entry": 2731,
+      "channel": 0,
+      "args": [0],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "tempo-159",
+      "kind": "control",
+      "opcode": 169,
+      "entry": 2731,
+      "channel": 0,
+      "args": [159],
+      "priorities": [0, 0, 0, 0],
+      "fields": [],
+      "extra": []
+    },
+    {
+      "name": "vibrato-delay",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 2],
+        [39, 1, 255],
+        [38, 1, 255],
+        [35, 1, 1],
+        [36, 1, 2],
+        [32, 2, 10],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "vibrato-no-carry",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 0],
+        [38, 1, 255],
+        [35, 1, 1],
+        [36, 1, 2],
+        [32, 2, 10],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "vibrato-carry-step",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 255],
+        [38, 1, 1],
+        [35, 1, 2],
+        [36, 1, 2],
+        [32, 2, 10],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "vibrato-reverse",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 255],
+        [38, 1, 1],
+        [35, 1, 1],
+        [36, 1, 2],
+        [32, 2, 10],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "vibrato-phase-wrap",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 255],
+        [38, 1, 1],
+        [35, 1, 0],
+        [36, 1, 2],
+        [32, 2, 10],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "vibrato-zero-span",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 255],
+        [38, 1, 1],
+        [35, 1, 1],
+        [36, 1, 0],
+        [32, 2, 10],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "vibrato-positive-overflow",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 255],
+        [38, 1, 1],
+        [35, 1, 2],
+        [36, 1, 2],
+        [32, 2, 10],
+        [8, 2, 65530]
+      ],
+      "extra": [[699, 2, 65530]]
+    },
+    {
+      "name": "vibrato-negative-underflow",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 255],
+        [38, 1, 1],
+        [35, 1, 2],
+        [36, 1, 2],
+        [32, 2, 65526],
+        [8, 2, 5]
+      ],
+      "extra": [[699, 2, 5]]
+    },
+    {
+      "name": "vibrato-negate-min-word",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 255],
+        [38, 1, 1],
+        [35, 1, 1],
+        [36, 1, 2],
+        [32, 2, 32768],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "vibrato-zero-rate",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 255],
+        [38, 1, 0],
+        [35, 1, 2],
+        [36, 1, 2],
+        [32, 2, 10],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "vibrato-zero-delta",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 0],
+        [39, 1, 255],
+        [38, 1, 1],
+        [35, 1, 1],
+        [36, 1, 2],
+        [32, 2, 0],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "vibrato-last-delay",
+      "kind": "modulation",
+      "entry": 3845,
+      "channel": 1,
+      "args": [],
+      "priorities": [0, 0, 0, 0],
+      "fields": [
+        [40, 1, 1],
+        [39, 1, 255],
+        [38, 1, 255],
+        [35, 1, 1],
+        [36, 1, 2],
+        [32, 2, 10],
+        [8, 2, 100]
+      ],
+      "extra": [[699, 2, 100]]
+    },
+    {
+      "name": "companion-order-channel-3",
+      "kind": "tick",
+      "entry": 1027,
+      "channel": 3,
+      "args": [130, 121, 136],
+      "ticks": 1,
+      "fields": [],
+      "extra": [],
+      "priorities": [0, 0, 0, 0]
+    },
+    {
+      "name": "companion-order-channel-0",
+      "kind": "tick",
+      "entry": 1027,
+      "channel": 0,
+      "args": [130, 121, 136],
+      "ticks": 2,
+      "fields": [],
+      "extra": [],
+      "priorities": [0, 0, 0, 0]
+    }
+  ]
+}

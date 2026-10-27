@@ -48,7 +48,7 @@ export class TandyDriver {
       throw Error("Tandy sound argument must be a word");
     const id = argument & 255;
     // The original table has181 records. Standalone starts above127 remain
-    // outside this translated boundary; compound-sequence support is pending.
+    // outside this translated entry boundary; opcode82 uses startSequence.
     if (id > 127) throw Error(`Unsupported Tandy sound ID ${id}`);
     if (id === 0) {
       this.reset(port61);
@@ -71,6 +71,13 @@ export class TandyDriver {
       }
       return;
     }
+    this.startSequence(id);
+  }
+  startSequence(id) {
+    // 0b4c..0ba8 starts an ordinary record, including records0 and8. Unlike
+    // the far API, it does not interpret those IDs as reset/engine requests.
+    if (!Number.isInteger(id) || id < 0 || id >= 181)
+      throw Error(`Unsupported Tandy sequence record ${id}`);
     const sequence = this.word(0xfb1 + id * 2),
       channel = this.byte(sequence),
       priority = this.byte(sequence + 1);
@@ -91,6 +98,42 @@ export class TandyDriver {
       throw Error(`Unsupported Tandy sequence pointer ${pc.toString(16)}`);
     this.word(at, pc + 1);
     return this.byte(pc);
+  }
+  readAddress(at) {
+    const low = this.readSequence(at);
+    return low | (this.readSequence(at) << 8);
+  }
+  processControl(at, ch, op) {
+    if (op === 0x80) this.byte(at + 0x11, this.readSequence(at));
+    else if (op === 0x81) {
+      this.byte(at + 0x11, this.byte(at + 0x11) - 1);
+      if (this.byte(at + 0x11)) this.word(at, this.readAddress(at));
+      else this.word(at, this.word(at) + 2); // No argument read on this path.
+    } else if (op === 0x82) this.startSequence(this.readSequence(at));
+    else if (op === 0x84) this.word(at, this.readAddress(at));
+    else if (op === 0x85) {
+      const depth = this.byte(at + 0x12);
+      // The original shifts BL, so its index wraps at128. Keep its memory
+      // aliasing for overflow rather than substituting an unbounded JS stack.
+      this.word(at + 0x13 + ((depth << 1) & 255), this.word(at) + 2);
+      this.byte(at + 0x12, depth + 1);
+      this.word(at, this.readAddress(at));
+    } else if (op === 0x86) {
+      this.byte(at + 0x12, this.byte(at + 0x12) - 1);
+      this.word(at, this.word(at + 0x13 + ((this.byte(at + 0x12) << 1) & 255)));
+    } else if (op === 0x87) this.byte(at + 6, this.readSequence(at));
+    else if (op === 0x8c) this.byte(at + 0x1b, this.readSequence(at));
+    else if (op === 0x95) {
+      this.byte(at + 0x26, this.readSequence(at));
+      this.byte(at + 0x22, this.readSequence(at));
+      const span = this.readSequence(at);
+      this.byte(at + 0x24, span);
+      this.byte(at + 0x23, span >>> 1);
+      this.byte(at + 0x25, this.readSequence(at));
+      this.word(at + 0x32, 0xf05);
+    } else if (op === 0xa9) this.byte(at + 0x2e, this.readSequence(at));
+    else return false;
+    return true;
   }
   selectEnvelopeStage(at) {
     let index = this.byte(at + 12),
@@ -164,6 +207,7 @@ export class TandyDriver {
   processModulation(at, ch, offset) {
     const handler = this.word(at + offset);
     if (handler === 0xf04) return;
+    if (handler === 0xf05) return this.processVibrato(at, ch);
     if (handler !== 0xf3f)
       throw Error(
         `Unsupported Tandy modulation handler ${handler.toString(16)}`,
@@ -177,6 +221,24 @@ export class TandyDriver {
       this.word(at + 8, period);
       this.word(0x2b9 + ch * 2, period);
     }
+  }
+  processVibrato(at, ch) {
+    if (this.byte(at + 0x28)) {
+      this.byte(at + 0x28, this.byte(at + 0x28) - 1);
+      return;
+    }
+    const sum = this.byte(at + 0x27) + this.byte(at + 0x26);
+    this.byte(at + 0x27, sum);
+    if (sum <= 255) return;
+    this.byte(at + 0x23, this.byte(at + 0x23) - 1);
+    if (this.byte(at + 0x23) === 0) {
+      this.word(at + 0x20, -this.word(at + 0x20));
+      this.byte(at + 0x23, this.byte(at + 0x24));
+    }
+    const period = this.word(at + 8) + this.word(at + 0x20);
+    this.word(at + 8, period);
+    this.word(0x2b9 + ch * 2, period);
+    return;
   }
   processNote(at, ch, note) {
     if (ch === 3) throw Error("Tandy noise sequencing is not implemented");
@@ -226,6 +288,7 @@ export class TandyDriver {
               this.processNote(at, ch, op);
               break;
             }
+            if (this.processControl(at, ch, op)) continue;
             if (op === 0x91) {
               this.byte(at + 0x1c, this.readSequence(at));
               const high = this.readSequence(at);

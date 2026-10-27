@@ -8,15 +8,26 @@ This is x86 16-bit real-mode driver code, with no extender. Ghidra program
 
 ## Delivered behavior
 
-In `viewer.html`, search `Sound 036`, `Sound 067` or `Sound 068`, select the sound,
-then press **Play Tandy preview**.036 terminates on its sixth sequencer call,
-using3027 mono PCM samples at44100Hz.067/068 run17 calls with opposite pitch
-deltas and9686 samples each. Switching assets stops playback and releases object
-URLs. The existing PC-speaker audition remains available alongside each preview.
+In `viewer.html`, select a Sound asset. Both speaker and Tandy renditions are
+attempted independently. Translated Tandy paths offer **Play Tandy preview**;
+unsupported paths stop with a visible diagnostic and no Tandy playback. A
+zero-sample original request is identified explicitly. Selection stops playback
+and releases object URLs. No alternate rendition is substituted for a failed one.
 
-Only036/067/068 are exposed. In-game Tandy audio, other sequences, noise,
-vibrato, engine modulation and sampled audio are unfinished. Unsupported paths
-throw diagnostic errors. There is no silent fallback to speaker playback.
+All121 public requests are exercised by `npm run verify:tandy-corpus`:59 complete,
+37 produce a nonzero signal and22 are silent. Of the silent requests,nine return
+no samples and13 produce timed silence.62 requests stop with known diagnostics,
+including request069's unimplemented zero-period chip behavior. The corpus
+manifest records deterministic PCM hashes as **port regressions**,not original
+audio outputs. Missing requests,changed results and changed unsupported paths
+fail; three negative controls check those mechanisms.
+
+Native complete-cue comparisons cover002,025,036,067,068.025 demonstrates combined
+pitch slide/vibrato:25 calls,14530 samples at44100Hz.002 has27 calls/15741 samples;
+036 has6 calls/3027 samples;067/068 have17 calls/9686 samples. Browser acceptance
+uses real keyboard/buttons,native audio completion and a one-sample tolerance
+for the browser's microsecond-rounded WAV duration. Hardware waveform parity,
+in-game Tandy,noise,engine effects and remaining commands are unfinished.
 
 ## Source evidence
 
@@ -31,8 +42,8 @@ throw diagnostic errors. There is no silent fallback to speaker playback.
   word stack argument. Priority comparisons are signed bytes. Native start
   checks include extended records121..123 within the181-entry table at0fb1. The table ends
   at111b,also its minimum sequence pointer. All181 pointers lie inside this
-  resource and have channel headers0..3. Standalone starts above127 and
-  compound-start opcode82 remain explicitly unsupported in the translation.
+  resource and have channel headers0..3. Standalone far-API starts above127
+  remain unsupported; compound-start opcode82 now uses the full181-record table.
 - Near wrapper0403 calls0802. IRQ02ed divides the1365-PIT-count interrupt by12,
   giving one sequencer call per16380 PIT clocks.0532 is sampled-audio playback,
   not the sequence tick.0802 clears BIOS0040:0018 bit08; decompiler output which
@@ -196,13 +207,98 @@ first breakpoint. The remaining owned entries were inspected and removed before
 restoring/freeing the fixture. No original game instruction was stepped during
 this experiment's entry or cleanup.
 
-All three reference commands run through `npm run verify:tandy`. Browser native
-input/audio acceptance covers all three exposed IDs; PCM remains an independent
-audition provider with unverified waveform parity. Next: companion-sequence
-opcode82, vibrato/noise and engine paths before enabling in-game Tandy playback.
+The earlier reference commands remain part of `npm run verify:tandy`. PCM is an
+independent audition provider with unverified waveform parity.
 
 The envelope/pitch milestone passes full `npm run verify`:65 unit tests,35 browser
 scenarios, all required original comparisons and the production build. Log:
 `.local/tandy-envelopes-final-verify.log`. No runtime source edits occurred during
 that gate. A later comment/table-identity correction records the181-entry finding;
 the affected static check was rerun separately without changing runtime behavior.
+
+## Compound sequences, control flow and vibrato
+
+`reference/tandy-sequence-inputs.json` supplies42 authored cases, prepared by
+`reference/tandy-sequence-fixture.js`. They cover28 command-handler cases,12
+direct vibrato-function cases and two whole-pass scenarios with three carried
+ticks. The fixture starts with the pinned resource and explicit channel/argument
+patches. Expected output and captured before-memory never initialize the model.
+All12339 resource bytes compare before/after, including aliased fields. Forty
+isolated handler comparisons and three whole-pass checkpoints pass, with four
+exact c0 writes and six negative controls. This is conditional native evidence.
+
+- Opcode82 at0b4c..0ba8 consumes a record ID and performs the signed priority
+  comparison. Channel0 clears1c9 even on rejection. Accepted records reset only
+  their channel and invalidate its requested attenuation, retaining the cached
+  attenuation. IDs0 and8 are ordinary sequence records here; they do not request
+  the far API's reset/engine actions. Native cases include128/130/180, rejected
+  and signed priorities,and replacement/rejection of the current channel.
+- The signed byte `CMP BL,7f; JLE` accepts IDs above127. The verified record table
+  ends at180; higher entries remain unsupported rather than reading adjacent
+  sequence bytes as table pointers.
+- 80/81 set/decrement a byte loop counter; zero underflows to255. The exhausted
+  path advances PC by two without reading its target.84/85 addresses are
+  little-endian,unlike91's big-endian delta.85 stores PC+2 in the original record
+  return slots and increments byte depth;86 decrements it and loads the return.
+  `SHL BL,1` wraps the index: native cases preserve overflow/underflow aliases,
+  including depth4 overwriting neighboring fields and depth128 using slot0.
+- 87,8c,a9 store octave,transpose and tempo bytes.95 sets rate,shift,span,
+  half-span,delay and modulation handler0f05; it does not reset unrelated phase
+  fields.0f05 decrements a nonzero delay before touching its accumulator. Carry
+  advances/reverses the signed word step,with wrapping phase counters and word
+  period additions. Native tests cover those boundaries,including zero values
+  and negation of8000. No generic sine-wave replacement is used.
+- The sequencer traverses channels3→0. Authored native programs `82 79 88` prove
+  that a companion on a channel already visited waits for the next call; a
+  channel still ahead executes in the same pass. These programs start the real
+  record121 and retain model/native state across the two-call case.
+
+Reproduce with the allocated459c fixture/privatefef0 stack described above.
+Reload each authored initial body and put its arguments at3000. Control cases
+enter the specified original handler and stop at083e,before the next dispatch;
+that boundary has no synthetic RET. Vibrato cases use the4000 near-call harness
+to enter0f05 and return at4003. The whole-pass cases call0403,retaining state.
+Capture CPU/full resource/32 argument bytes/five harness bytes at each boundary;
+whole-pass cases additionally capture BIOS0040:0018 and every c0 write. Separate
+`runtime-events.json` contains the consumed BIOS input stream. The strict command
+is `npm run verify:tandy-sequence`; its manifest pins setup,all42 case files,
+events and cleanup. The CS-alias scratch jump moves between paused boundaries
+without modifying original resource instructions or stepping original game code.
+
+`reference/tandy-sequence-cues.json` adds two original-resource scenarios: reset,
+far start002/025 and27/25 manual sequencer calls.56 carried full-body checkpoints
+and129 exact port writes match. IN61 and BIOS inputs remain in separate events
+files. The existing cue checker runs in `--sequence` mode with fixed counts and
+five negative controls,via `npm run verify:tandy-sequence-cues`. The two scenarios
+each reload the original resource; they have no synthetic sequence patches.
+The final port-breakpoint counters account for133 writes:four earlier scheduler
+writes plus129 cue writes. Register restore/free/empty breakpoint and allocation
+registries are checked. Live original caller is0ed6:046e,stop1232. This remains a
+partial caller restore,not a machine checkpoint; clocks/BIOS effects are retained.
+
+The viewer tries every request through the same strict renderer. It precomputes
+the whole Tandy audition before making audio available,so failure cannot play a
+truncated approximation. Speaker controls are a distinct rendition and do not
+autoplay after Tandy failure. The full corpus audit's59 completed requests prove
+termination/implemented-path coverage and deterministic provider output. They
+do not establish original parity for all those requests. Native browser checks
+cover five captured cues,an unsupported noise request and a zero-sample request.
+
+Tool limitation: Lua cannot access CPU/debugger/port I/O,and `batch_execute`
+cannot batch debugger continuation/stops. Capturing each OUT therefore requires
+repeated pause/resume RPCs. A focused bounded capture operation—owned temporary
+breakpoints,requested register/memory snapshots and an OUT-event buffer until a
+specified stop—would reduce that overhead. No general emulator/compiler was
+added as a prerequisite; the present experiments use a short fixed call/jump
+harness and documented tool limits.
+
+Next audio milestone: noise/control commands90/97/aa/9d and exact zero-period
+chip behavior,then engine and audio-status APIs for a persistent in-game Tandy
+driver. Precomputed independent auditions are not a substitute for that driver.
+
+The sequence milestone passes full `npm run verify`:65 unit tests,38 browser
+scenarios,all required original comparisons,the121-request strict corpus audit
+and production build. Log: `.local/tandy-sequence-final-verify.log`. Runtime
+source files remained frozen throughout this final gate.
+Additional setup-receipt assertions were then checked by `npm run verify:tandy`;
+log: `.local/tandy-sequence-focused-final.log`. Runtime behavior did not change.

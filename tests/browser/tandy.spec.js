@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 for (const [id, ticks, samples] of [
+  ["002", 27, 15741],
+  ["025", 25, 14530],
   ["036", 6, 3027],
   ["067", 17, 9686],
   ["068", 17, 9686],
@@ -46,7 +48,7 @@ for (const [id, ticks, samples] of [
     expect(Math.abs(media.duration - samples / 44100)).toBeLessThan(1 / 44100);
     expect(Math.abs(media.time - media.duration)).toBeLessThan(1 / 44100);
     await expect(
-      page.getByText("Supported Tandy previews:", { exact: false }),
+      page.getByText("Partial Tandy implementation.", { exact: false }),
     ).toBeVisible();
     await button.click();
     await expect(audio).toHaveAttribute("data-state", "ended");
@@ -62,3 +64,43 @@ for (const [id, ticks, samples] of [
     expect(errors).toEqual([]);
   });
 }
+
+test("Tandy unsupported and silent requests have explicit outcomes", async ({
+  page,
+}) => {
+  const errors = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/viewer.html");
+  await expect(page.locator("#status")).toContainText(
+    "All resources decoded successfully",
+  );
+  const search = page.getByRole("searchbox", { name: "FIND AN ASSET" });
+  await search.fill("Sound 003");
+  await page
+    .getByRole("button", { name: "IT.DRV · Sound 003 Sound", exact: true })
+    .click();
+  const section = page.locator('section[aria-label="Tandy preview"]');
+  await expect(section).toHaveAttribute("data-state", "error");
+  await expect(section.getByRole("alert")).toHaveText(
+    "Tandy preview stopped: Unsupported Tandy command 90",
+  );
+  await expect(section.locator("audio")).toHaveCount(0);
+  await expect(
+    section.getByRole("button", { name: "Play Tandy preview" }),
+  ).toHaveCount(0);
+  expect(
+    await page
+      .locator("audio")
+      .evaluateAll((elements) => elements.every((a) => a.paused)),
+  ).toBe(true);
+  await search.fill("Sound 000");
+  await page
+    .getByRole("button", { name: "IT.DRV · Sound 000 Sound", exact: true })
+    .click();
+  await expect(section).toHaveAttribute("data-state", "silent");
+  await expect(
+    section.getByText("This original request ends without audio samples."),
+  ).toBeVisible();
+  await expect(section.locator("audio")).toHaveCount(0);
+  expect(errors).toEqual([]);
+});

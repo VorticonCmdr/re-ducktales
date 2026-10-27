@@ -63,7 +63,11 @@ test("original Tandy036 ends after six ticks with exact sequence writes", async 
   assert.ok(result.pcm.some((v) => v > 0) && result.pcm.some((v) => v < 0));
   assert.throws(
     () => renderTandyPreview(bytes, 35),
-    /supports sounds036,067,068/,
+    /Unsupported Tandy command 90/,
+  );
+  assert.throws(
+    () => renderTandyPreview(bytes, 121),
+    /Unsupported Tandy public sound ID/,
   );
   const engine = new TandyDriver(bytes, { writePort() {} });
   engine.reset(0);

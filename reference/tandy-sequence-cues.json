@@ -1,0 +1,285 @@
+{
+  "build": "dos-fb658562",
+  "driverSHA256": "c17ef1f352cc26f470c8297a070fbcf5fd3d6eaa8b146b3486b54f076205d80c",
+  "captureRevision": "tandy-sequence-v1-2026-10-27",
+  "engine": "dosbox-automation 0.84.0-vc1 (f6d9b), bridge0.1.1/protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "mode": "x86 16-bit real mode",
+    "segment": 17820,
+    "physical": 285120
+  },
+  "recipe": "docs/tandy-audio.md",
+  "inputs": [
+    {
+      "sound": 2,
+      "ticks": 27
+    },
+    {
+      "sound": 25,
+      "ticks": 25
+    }
+  ],
+  "expectedCheckpoints": 56,
+  "expectedPortWrites": 129,
+  "expectedPriorPortWrites": 4,
+  "artifacts": {
+    "2-01": {
+      "path": ".local/tandy-sequence-cues/2-01.json",
+      "sha256": "72f9531119d8ca6ac30b0b2f54221c1140c4bdaf58db5f9eabe93be20ad49d44"
+    },
+    "2-02": {
+      "path": ".local/tandy-sequence-cues/2-02.json",
+      "sha256": "32282b3dcdecb31054c8cb589c77e7bbe79758d3740e058b89ea2621027ec513"
+    },
+    "2-03": {
+      "path": ".local/tandy-sequence-cues/2-03.json",
+      "sha256": "291841cc9fd38d61b0c98f30f1cf2655d982dffc65789e58f082896e49dc7c9a"
+    },
+    "2-04": {
+      "path": ".local/tandy-sequence-cues/2-04.json",
+      "sha256": "16eb430a397decf25c6d3df03b9f0b4cb35aff335b150eb67cb41fda514f7d84"
+    },
+    "2-05": {
+      "path": ".local/tandy-sequence-cues/2-05.json",
+      "sha256": "7df478a7956c1376301e57c4285d3bc05280cf84b65a5eb26b8f7331ef777b3c"
+    },
+    "2-06": {
+      "path": ".local/tandy-sequence-cues/2-06.json",
+      "sha256": "2637a43bfd643f2e36ec240ae9099f96895ef2a65d6eb9daf1191f86eb7eb909"
+    },
+    "2-07": {
+      "path": ".local/tandy-sequence-cues/2-07.json",
+      "sha256": "0e02dd278763ba416dcd2260874d3c0b6b3b9a1ee41eb1049b6bd31cbc9aed0d"
+    },
+    "2-08": {
+      "path": ".local/tandy-sequence-cues/2-08.json",
+      "sha256": "4bb1241d972fe36518e8850e2667cda4478218e683033d38ac75eb5cddc7cec1"
+    },
+    "2-09": {
+      "path": ".local/tandy-sequence-cues/2-09.json",
+      "sha256": "5d6688292e9142e95b2604814603b42caa6cf5f13857476cd7ba079310c3db1f"
+    },
+    "2-10": {
+      "path": ".local/tandy-sequence-cues/2-10.json",
+      "sha256": "47b9f78840ea65e248879d2c34443528027828cd5f24a8da5371426e6dbd1e56"
+    },
+    "2-11": {
+      "path": ".local/tandy-sequence-cues/2-11.json",
+      "sha256": "6dfb40b3a363db4c3d39134792b5176ab5ba4e10c325b1551caa9e752ce52e38"
+    },
+    "2-12": {
+      "path": ".local/tandy-sequence-cues/2-12.json",
+      "sha256": "0e53a2e4b41f07ce7e4f991b62c812e9972b3aae03dfc5327c077c7854959803"
+    },
+    "2-13": {
+      "path": ".local/tandy-sequence-cues/2-13.json",
+      "sha256": "daed6b2b307d91a021fc1ff4b1a74845ed0a17c9d898944ffaa0cae6b0561919"
+    },
+    "2-14": {
+      "path": ".local/tandy-sequence-cues/2-14.json",
+      "sha256": "009eba29096039ee3f50ef59bbfdb80e246da0b7a7f182806b2c1226904d430e"
+    },
+    "2-15": {
+      "path": ".local/tandy-sequence-cues/2-15.json",
+      "sha256": "c83e68ab55c59074994a8cd2b74605a211444e9b0dcbd30ca9f0d5c8a6e35cab"
+    },
+    "2-16": {
+      "path": ".local/tandy-sequence-cues/2-16.json",
+      "sha256": "2960fcd3b56986709052f33903ca6654de751a71873176eec32b2dfcaafb155c"
+    },
+    "2-17": {
+      "path": ".local/tandy-sequence-cues/2-17.json",
+      "sha256": "d1cda75bb6b6f4a89f270af4cd8c0fb42a7c79a765c0b464c6e6df3a39d7f459"
+    },
+    "2-18": {
+      "path": ".local/tandy-sequence-cues/2-18.json",
+      "sha256": "f086185fe1a28c0e448b83b964109c62c102a469857a5ad1fdfd2e7a1ed27c86"
+    },
+    "2-19": {
+      "path": ".local/tandy-sequence-cues/2-19.json",
+      "sha256": "a72728a4e1320f1e7d70f7703c836a91a3b2768f48759be6aba2ab80acfb8d60"
+    },
+    "2-20": {
+      "path": ".local/tandy-sequence-cues/2-20.json",
+      "sha256": "089e886e0b7020f60ea9a164a1627ac8ccb46e45642e45593cf2d8faa36e8b1b"
+    },
+    "2-21": {
+      "path": ".local/tandy-sequence-cues/2-21.json",
+      "sha256": "caaa2a9eb8143922e23a7a0f1e41019d205e08511410f69dbe86e44fbfaf5808"
+    },
+    "2-22": {
+      "path": ".local/tandy-sequence-cues/2-22.json",
+      "sha256": "8a6cacc89a4d71f6c0d99e5910f33041e5b957af0f6ba32dd7eb4d4b54409ea8"
+    },
+    "2-23": {
+      "path": ".local/tandy-sequence-cues/2-23.json",
+      "sha256": "261ff19ef46496bf277fa2f8b0d03a6b2fd0d5855c6156cc420bb80cf0bbbaaf"
+    },
+    "2-24": {
+      "path": ".local/tandy-sequence-cues/2-24.json",
+      "sha256": "bb6cc4edf4e4e801369b47ec8542a5287076318bedea702117106c42c7d7ccff"
+    },
+    "2-25": {
+      "path": ".local/tandy-sequence-cues/2-25.json",
+      "sha256": "482e0a891dcd0141382c6de510d94b353aa3a9a9e114e9e3b90202e02b56e05a"
+    },
+    "2-26": {
+      "path": ".local/tandy-sequence-cues/2-26.json",
+      "sha256": "d2505b704c2fe4e46be532118cda7aee331497d969cfb1d40307dbfab193b630"
+    },
+    "2-27": {
+      "path": ".local/tandy-sequence-cues/2-27.json",
+      "sha256": "bd74bf33361c11d918abe421bed329f6a5921807f545f0124ce3ba8b2a161fcd"
+    },
+    "2-events": {
+      "path": ".local/tandy-sequence-cues/2-events.json",
+      "sha256": "5a7652fc00bb1823071b0e47d4b701146e24c649a4b9d555f0cb67ad9bff55d7"
+    },
+    "2-reset": {
+      "path": ".local/tandy-sequence-cues/2-reset.json",
+      "sha256": "227eaf247728ff2477f285dfe05e1c90e9363e4cefafd93a0e75f3078938c4b3"
+    },
+    "2-setup": {
+      "path": ".local/tandy-sequence-cues/2-setup.json",
+      "sha256": "a67beb0247fe235edc17b7c6b0c929636666872a2091848e902a682f04f8ec08"
+    },
+    "2-start": {
+      "path": ".local/tandy-sequence-cues/2-start.json",
+      "sha256": "23f3b0949ea219738d4c0663c7468e3a00be1133c44576cbb7c67321dd01e1d0"
+    },
+    "25-01": {
+      "path": ".local/tandy-sequence-cues/25-01.json",
+      "sha256": "cd26245f88d45a47eb465f2e5ae3e903b4588dc5ffa7737e190dc33c0160b26d"
+    },
+    "25-02": {
+      "path": ".local/tandy-sequence-cues/25-02.json",
+      "sha256": "36c9706ffb8968293a7e3a778c446ce5f1cfd81102b9f25cd58606681146c4aa"
+    },
+    "25-03": {
+      "path": ".local/tandy-sequence-cues/25-03.json",
+      "sha256": "96390f91adb4d77060e16339f7bf3289d95ac3b5c4a64e18ea649cf9d442c1a6"
+    },
+    "25-04": {
+      "path": ".local/tandy-sequence-cues/25-04.json",
+      "sha256": "5d5db0594e26f3b2cdda1a04e367614cfb2b47d88897f61f8b4d662db523f45c"
+    },
+    "25-05": {
+      "path": ".local/tandy-sequence-cues/25-05.json",
+      "sha256": "79ffb27f07448ae3434fd80187906c6dd3c37561aee0c7638ebba644065ff4fd"
+    },
+    "25-06": {
+      "path": ".local/tandy-sequence-cues/25-06.json",
+      "sha256": "5672110517e934e26976a8dfb9612e4cd17bafaeb2197435b3f7b47b87b7d7bc"
+    },
+    "25-07": {
+      "path": ".local/tandy-sequence-cues/25-07.json",
+      "sha256": "068e4a82fede802fe71b8da778cb1ff3a0fd2e429701423a43496a4fc49469c1"
+    },
+    "25-08": {
+      "path": ".local/tandy-sequence-cues/25-08.json",
+      "sha256": "71531fd5d0cb4205d963ba805490bdf230ee36c4517c2798d58097893501f61b"
+    },
+    "25-09": {
+      "path": ".local/tandy-sequence-cues/25-09.json",
+      "sha256": "ff9c5ebd70f7477dbaa6af7f21b54f846aea72742364abf1008d952d6126bda4"
+    },
+    "25-10": {
+      "path": ".local/tandy-sequence-cues/25-10.json",
+      "sha256": "29346313be969f417c8c594cb6f7f109e1d0bd87fdede4fade3b6fd7cc3bebe9"
+    },
+    "25-11": {
+      "path": ".local/tandy-sequence-cues/25-11.json",
+      "sha256": "3ca7ace60ab639ea6f17628b31cbbe902b484e0efdc1db89b83205df0d67b6ac"
+    },
+    "25-12": {
+      "path": ".local/tandy-sequence-cues/25-12.json",
+      "sha256": "ad29a6bd30d1ac92cab920072896f462f5b9f596084ab67347a35900cd867bc8"
+    },
+    "25-13": {
+      "path": ".local/tandy-sequence-cues/25-13.json",
+      "sha256": "205234c8261bb00c36ce225a324c213a2d563f88e3527146eecd1f6411513410"
+    },
+    "25-14": {
+      "path": ".local/tandy-sequence-cues/25-14.json",
+      "sha256": "50f882d616a9f76e55d8b92809fea91c34472ec2b0f1ec55f8432f65e5b36962"
+    },
+    "25-15": {
+      "path": ".local/tandy-sequence-cues/25-15.json",
+      "sha256": "af89e9fa3617968e098973dfddbf23235eaed6654a357b0424c9649d9398c8ba"
+    },
+    "25-16": {
+      "path": ".local/tandy-sequence-cues/25-16.json",
+      "sha256": "3ed7626339944b724e5b1f8ddb60605b9f1978741c160c62701f914ce2737cde"
+    },
+    "25-17": {
+      "path": ".local/tandy-sequence-cues/25-17.json",
+      "sha256": "44fd25f70d190062cd2b75346b512d85df5bc921ebd2c8d75ebb94a33b2f8247"
+    },
+    "25-18": {
+      "path": ".local/tandy-sequence-cues/25-18.json",
+      "sha256": "1e3b28cd9f9ecaefb0fcb08393b83634c67bb7e5165dccd8f0aee6297b5df68b"
+    },
+    "25-19": {
+      "path": ".local/tandy-sequence-cues/25-19.json",
+      "sha256": "031eace9bbb0c8041ae7e2b19fb7ca1af9d30c562385eb8b603beeec1f452b45"
+    },
+    "25-20": {
+      "path": ".local/tandy-sequence-cues/25-20.json",
+      "sha256": "94d68e5cbcb4025ab97f5ecb7f18623cb78b0651ade62bcddf3a7375d250d430"
+    },
+    "25-21": {
+      "path": ".local/tandy-sequence-cues/25-21.json",
+      "sha256": "8ce53878fdb74ee582e8d001a234686f1362aface4da9d4ee07025e8c8ccd5a9"
+    },
+    "25-22": {
+      "path": ".local/tandy-sequence-cues/25-22.json",
+      "sha256": "736eb0eadebc34c464916b141f369232cf236b5cb6b2b0ff7bf5e4448e41d1eb"
+    },
+    "25-23": {
+      "path": ".local/tandy-sequence-cues/25-23.json",
+      "sha256": "f55ea0a6d2797d0655e154dbebe11040ea7edf5805f176106af079d6d153bfaf"
+    },
+    "25-24": {
+      "path": ".local/tandy-sequence-cues/25-24.json",
+      "sha256": "cb0af3fa7c0dc0bfdf627ead36cfb1f53d4599e9e564bf65d2d628186f06ce02"
+    },
+    "25-25": {
+      "path": ".local/tandy-sequence-cues/25-25.json",
+      "sha256": "74ad9bfbd65fe9fd0b96618bbb4347bfec3914ba0b5baa1219d20e1db23db106"
+    },
+    "25-events": {
+      "path": ".local/tandy-sequence-cues/25-events.json",
+      "sha256": "58f3ce06f4c0a7296674ec09279c4ae95ef09b73fdf8570338a32e599af67663"
+    },
+    "25-reset": {
+      "path": ".local/tandy-sequence-cues/25-reset.json",
+      "sha256": "834a027b158b3bf3e5883cdd95dc260d2fc7612f7aabce40e3071810fc2744de"
+    },
+    "25-setup": {
+      "path": ".local/tandy-sequence-cues/25-setup.json",
+      "sha256": "a67beb0247fe235edc17b7c6b0c929636666872a2091848e902a682f04f8ec08"
+    },
+    "25-start": {
+      "path": ".local/tandy-sequence-cues/25-start.json",
+      "sha256": "549f7e01eb659eee47e1d13884e1078e491292d9442a904f51232b6aeb81d1c0"
+    },
+    "cleanup": {
+      "path": ".local/tandy-sequence-cues/cleanup.json",
+      "sha256": "e749bcd457867917abd1f30a8f58b204aecf403488f428d05478286ee7e68cad"
+    },
+    "final-native": {
+      "path": ".local/tandy-sequence-cues/final-native.json",
+      "sha256": "1dc78be1c3f9b6081206026ec7bc2ad4f3ccce09dfb3e9f6745e984c06aa4d85"
+    }
+  },
+  "verify": "npm run verify:tandy-sequence-cues",
+  "comparison": "Complete12339-byte carried driver states, exact OUT port/order/AL, distinct consumed IN61/BIOS event streams. No driver-state exclusions.",
+  "limitations": [
+    "Isolated allocated resource004; original installed driver005 remains unchanged.",
+    "Manual sequencer calls; no original IRQ timing or hardware waveform parity claim.",
+    "General/segment registers restored, block freed, breakpoints removed; flags/clocks/BIOS effects are not a complete checkpoint."
+  ]
+}

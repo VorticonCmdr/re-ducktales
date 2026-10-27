@@ -2,7 +2,6 @@ import { TandyDriver } from "./tandy-driver.js";
 
 export const TANDY_TICK_SECONDS = (1365 * 12) / 1193182;
 export const TANDY_CLOCK_HZ = 14318180 / 4;
-export const TANDY_PREVIEW_IDS = [36, 67, 68];
 
 // Tone-only SN76489 register/counter boundary. TI's 10-bit period counters
 // toggle at clock/16; each attenuation step is2dB and15 is off. This preview
@@ -81,8 +80,8 @@ export class TandyTones {
 }
 
 export function renderTandyPreview(bytes, id, { sampleRate = 44100 } = {}) {
-  if (!TANDY_PREVIEW_IDS.includes(id))
-    throw Error(`Tandy preview supports sounds036,067,068 (requested ${id})`);
+  if (!Number.isInteger(id) || id < 0 || id > 120)
+    throw Error(`Unsupported Tandy public sound ID ${id}`);
   const chip = new TandyTones({ sampleRate }),
     bus = [],
     biosFlags = [];
@@ -97,7 +96,7 @@ export function renderTandyPreview(bytes, id, { sampleRate = 44100 } = {}) {
   // Independent audition environment: port61 control0,initial chip state above,
   // first sequencer tick at time0. No expected PCM or final state supplies input.
   driver.reset(0);
-  driver.start(id);
+  driver.start(id, { port61: 0 });
   const pcm = [];
   let ticks = 0;
   for (tick = 0; tick < 1024; tick++) {

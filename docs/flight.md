@@ -382,3 +382,37 @@ original routine and includes its RNG draws before departure. This supersedes
 the previous zero-ID limitation and partial startup RNG noted above. Cave
 arrivals now reach an interactive normal-room slice; see docs/cave.md for its
 strict terminal boundaries and limited evidence scope.
+
+## Empty strip at the left edge
+
+The campaign landing browser scenario exposed a normal small-scroll case that
+previously stopped with `Unsupported terrain drawing tile -1`. Overlay4:0fd8
+rounds the strip origin down to an8-pixel boundary. With first tile0 and scroll
+−1..−7,the preceding tile−1 therefore has width0. At1010..101b the original tests
+that width **before** reading the terrain pointer. The port had rejected the tile
+before computing its width,preventing the original no-copy path.
+
+The corrected scene keeps that empty strip in both passes,including the original
+rival increment at113e. It reads no terrain. All three original object loops
+(10f9,197f,2322) load an unsigned byte and clear AH before comparing with the signed
+tile word; no object can match−1. The translated iterator consequently returns no
+objects for that strip. Visible preceding terrain remains unsupported: scroll−8
+still fails,as do other invalid indices or visible terrain assets. No replacement
+terrain or best-effort recovery is used.
+
+This rule is statically inferred from this executable and checked against literal
+source instructions in `tests/flight-edge.test.js`; there is no original runtime
+edge capture. `reference/flight-left-edge.json` records14 authored boundary cases,
+their incoming state,comparison rules and limitations. Every case rasterizes;
+non-racing scene commands equal an independently initialized scroll0 scene.
+Racing cases require the extra strip's+2 rival movement. Missing/corrupt EXE,
+MAIN.ARC or PLANE.ARC fails setup. Negative controls require visible invalid
+terrain to remain fatal. Existing original closed-loop state and exact scene PNG
+comparisons continue to pass.
+
+Browser acceptance now uses two concurrent workers explicitly. At four,the large
+jungle/mountain replays exceeded their existing120-second wall-clock limits under
+CPU contention; their simulation clocks,input streams,checkpoint counts and
+timeouts are unchanged. All browser scenarios remain required. This concurrency
+setting establishes a repeatable verification environment,not a presentation
+timing tolerance or a performance claim.

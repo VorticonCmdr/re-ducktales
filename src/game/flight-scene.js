@@ -67,8 +67,6 @@ export function advanceFlightScene(
     found = false,
     finishLeft;
   while (left < 320) {
-    if (tile < 0 || tile >= 130)
-      throw Error(`Unsupported terrain drawing tile ${tile}`);
     left = s16(left & 0xfff8);
     let sourceX = 0,
       x = left,
@@ -78,10 +76,15 @@ export function advanceFlightScene(
       sourceX = -left;
       x = 0;
     } else if (left > 240) width = 320 - left;
-    const terrain = m.i(0x4f42 + tile * 4);
-    if (terrain < 0 || terrain > 16)
-      throw Error(`Unsupported terrain asset ${terrain}`);
-    if (width > 0)
+    // 0fd8/1010 rounds the left edge before testing its width. Scroll -1..-7
+    // gives an empty preceding strip (-1): no terrain pointer is read. Keep
+    // processing the strip's counters, as the original does at113e/1154.
+    if ((tile < 0 || tile >= 130) && !(tile === -1 && width === 0))
+      throw Error(`Unsupported terrain drawing tile ${tile}`);
+    if (width > 0) {
+      const terrain = m.i(0x4f42 + tile * 4);
+      if (terrain < 0 || terrain > 16)
+        throw Error(`Unsupported terrain asset ${terrain}`);
       commands.push({
         op: "copy",
         asset: terrain,
@@ -92,6 +95,7 @@ export function advanceFlightScene(
         width,
         height: terrain >= 1 && terrain <= 10 ? 32 : 16,
       });
+    }
     for (const o of tileObjects(m, tile)) {
       m.i(o + 2, left);
       const type = m.b(o + 12);

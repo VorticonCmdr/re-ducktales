@@ -15,6 +15,8 @@ Updated2026-10-27. **The full game is not complete.**
 - Office → map → Macaroon bank → office. All35 destinations can be inspected.
 - Confirm expedition → Launchpad → keyboard flight → crash or airport landing.
   Losing a flight race credits Glomgold and returns to the campaign map.
+  A small left-edge scroll now follows the original zero-width-strip path,
+  preserving rival advancement without reading off-table terrain.
 - Earn the Atomic Matter Transmitter in Too-Pei → return to office → select its
   map icon → atomic journey → next expedition. Misdirection,original calendar/RNG,
   reports,direct-map aircraft persistence and deadline arrivals are connected.
@@ -94,6 +96,8 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 - Full original expedition timing,presentation and audio parity are unproven.
   Cave movement,mountain hook/ascent,jungle scrolling/enemies and additional
   variants/difficulties still need targeted original comparisons.
+- Flight's empty preceding strip is supported for scroll−1..−7. Visible
+  out-of-table terrain remains an explicit diagnostic pending original evidence.
 - Ending bank celebration animation,striped reveals and music are incomplete.
   First/last credit names and farewell match exact original PNGs; all26 natural
   browser credit boundaries pass. Two original waits are exactly140 driver ticks;
@@ -119,9 +123,10 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Last fully verified milestone passed `npm run verify`:42 unit tests,26 browser scenarios,
-all required original comparisons (including7 system-control/interface checks)
-and production build. The real-time jungle retry check accepts the original rival
+Current milestone passed full `npm run verify`:46 unit tests,26 browser scenarios,
+all required original comparisons and production build. Browser concurrency is
+fixed at2; full jungle/mountain replay inputs,checkpoint counts and120-second
+timeouts remain unchanged. The real-time jungle retry check accepts the original rival
 claim notice when Glomgold has already collected that destination; otherwise it
 requires a fresh three-life expedition. Campaign notice checks preserve accounts
 and calendar; exact rival RNG checks use captured inputs in `verify:rival`.
@@ -130,11 +135,13 @@ Additional credits checks pass `npm run verify:ending` and the focused system
 controls browser scenario,including9 new original code/index/pixel comparisons.
 `reference/credits.json` records their precise scope and mandatory local files.
 
-Money-bin input correction passes44 unit tests,focused controller/browser checks
-and10 new original comparisons. Integration found a flight zero-width left-edge
-rendering failure; the two large expedition browser replays also exceeded their
-timeouts with4 concurrent browsers.23 browser scenarios passed. These failures
-remain strict and are being investigated; no full integration pass is claimed yet.
+Money-bin polling has10 new original code/state/input comparisons in
+`verify:system-controls`,including retained released keys and final keyboard flush.
+The flight left-edge correction has14 authored cases checked against original
+instructions; it is static evidence,not an original edge runtime replay.
+`reference/flight-left-edge.json` records the exact scope and negative controls.
+The prior integration failures are resolved: the native cave route and both full
+expedition replays pass in the complete verification run.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
 0e0c:0b0c stop500 at money-bin return after flushing,Q/P/S cleared,DS/SS1403,sound

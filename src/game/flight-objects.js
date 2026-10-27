@@ -7,6 +7,9 @@ export function flightRandom(m) {
 }
 
 export function* tileObjects(m, tile) {
+  // 10f9/197f/2322 load an unsigned byte, zero AH, then compare with the
+  // signed word tile. No object can match the empty preceding strip -1.
+  if (tile === -1) return;
   if (tile < 0 || tile >= 130) throw Error(`Unsupported flight tile ${tile}`);
   const index = m.i(0x4f44 + tile * 4);
   if (index === -1) return;

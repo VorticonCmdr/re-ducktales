@@ -1,0 +1,19 @@
+{
+  "id": "flight-empty-left-strip-fb658562",
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "static original instruction checks and authored scene cases; browser integration. No original runtime edge capture or whole-flight parity claim.",
+  "source": {
+    "program": "FLIGHT_ANALYSIS.EXE",
+    "sourceOverlay": 4,
+    "originalExecutableOffset": "12c00",
+    "overlayHeaderBytes": 1024,
+    "widthBeforeTerrainRead": "0fd8..101b",
+    "zeroExtendedObjectTags": ["10f9..1100", "197f..1986", "2322..2329"]
+  },
+  "expectedCaseCount": 14,
+  "startingRecipe": "Build a normal flight course from the pinned original executable/PLANE.ARC for day1,one travel day,Easy,seed1960. Supply screen X10,Y100,first tile0 and authored scroll offsets -1..-7,with and without racing. These initial states are authored boundary inputs,not captured original outputs.",
+  "inputEvents": [],
+  "comparisonRules": "Width rounds to zero before any terrain read. A signed tile -1 cannot equal the source's zero-extended byte object tag. Guard reads of the preceding terrain/object pointer; require no guarded reads. Without racing,the entire scene command sequence equals the independent scroll0 scene. With racing,the extra empty strip still advances rival position by2. Every case must rasterize all320x200 pixels. Visible preceding strip at scroll-8,other negative tiles and corrupt visible terrain remain fatal negative controls.",
+  "limitations": "This fixes the original empty-strip path only. Visible out-of-table terrain remains unsupported. No fitted inputs,no original machine writes,no original runtime edge capture and no expected final state copied into inputs.",
+  "verify": "node --test tests/flight-edge.test.js; npm run verify:flight-scene; npm run test:browser"
+}

@@ -17,6 +17,9 @@ Updated2026-10-27. **The full game is not complete.**
   Losing a flight race credits Glomgold and returns to the campaign map.
   A small left-edge scroll now follows the original zero-width-strip path,
   preserving rival advancement without reading off-table terrain.
+  Flight dialogs now wait for the original input poll,freeze actors while clocks
+  continue,and preserve the overdue deadline on resume. Flight completion includes
+  the original140-tick input wait before expedition/repair dispatch.
 - Earn the Atomic Matter Transmitter in Too-Pei → return to office → select its
   map icon → atomic journey → next expedition. Misdirection,original calendar/RNG,
   reports,direct-map aircraft persistence and deadline arrivals are connected.
@@ -87,7 +90,9 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   Browser persistence would be an explicit addition,not a translated original format.
 - Next: input-poll timing and remaining campaign edge paths,then broader original
   expedition comparisons. Money-bin intro/idle/dive polling now has10 original
-  comparisons,including retained released keys and the final flush. Other scenes
+  comparisons,including retained released keys and the final flush. Flight has9
+  new original checks for input,clock/deadline preservation and final return wait.
+  Other scenes
   still accept global keys at the next driver tick; alignment with their original
   animation/audio waits is unproven.
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
@@ -123,9 +128,9 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:46 unit tests,26 browser scenarios,
+Current milestone passed full `npm run verify`:51 unit tests,27 browser scenarios,
 all required original comparisons and production build. Browser concurrency is
-fixed at2; full jungle/mountain replay inputs,checkpoint counts and120-second
+fixed at1; full jungle/mountain replay inputs,checkpoint counts and120-second
 timeouts remain unchanged. The real-time jungle retry check accepts the original rival
 claim notice when Glomgold has already collected that destination; otherwise it
 requires a fresh three-life expedition. Campaign notice checks preserve accounts
@@ -143,9 +148,21 @@ instructions; it is static evidence,not an original edge runtime replay.
 The prior integration failures are resolved: the native cave route and both full
 expedition replays pass in the complete verification run.
 
+Flight input/deadline/final-wait changes pass the integrated verification run,
+including the original comparisons and the real browser crash/return route.
+The cave landing/failure/retry/treasure scenario now supplies an explicit browser
+clock so test-runner delays cannot introduce idle RNG and pursuer turns. It keeps
+its keyboard route,reward/calendar assertions and90-second limit. Mountain and
+jungle full replays retain their required input/checkpoint counts and120-second
+limits; one browser worker avoids the observed two-worker contention failures.
+Integration log: `.local/flight-input-integrated-verify.log`.
+
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-0e0c:0b0c stop500 at money-bin return after flushing,Q/P/S cleared,DS/SS1403,sound
-on. No breakpoints or pending replay. The money-bin input captures use a fresh
+0e0c:09a1 stop515 at the cave's first input call,DS/SS1403,sound on.
+No breakpoints or pending replay. Money-bin/flight input captures use a fresh
 natural launch and original play with no memory/CPU injections. Earlier controls/
 credits captures inherit conditional setup from `reference/atomic.json`.
-`reference/money-bin-input.json` pins the new observations.
+`reference/flight-input.json` pins the new accepted flight observations. Exploratory
+cave scouting then continued naturally from514 with no new input; the complete
+11054-byte/196-relocation cave code identity matches. Local recipe/capture in
+`.local/cave-input-scout.json` await a versioned checker and pause/entry captures.

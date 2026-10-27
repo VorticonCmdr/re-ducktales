@@ -4,7 +4,7 @@ export default defineConfig({
   timeout: 45000,
   // The full expedition replays perform thousands of clock/input handoffs.
   // Bound concurrent renderers so CPU contention cannot consume their timeouts.
-  workers: 2,
+  workers: 1,
   use: { baseURL: "http://127.0.0.1:5186", headless: true },
   webServer: {
     command: "npm run dev -- --port 5186 --strictPort",

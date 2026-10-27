@@ -389,7 +389,9 @@ function frame() {
                             : game.scene === "expedition-briefing"
                               ? "The Junior Woodchuck Guide"
                               : game.scene === "flight"
-                                ? `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
+                                ? game.flight.phase === "return-wait"
+                                  ? `Flight complete · Fire to continue · Day ${game.flight.snapshot().day}`
+                                  : `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
                                 : ["rival-claim", "rival-report"].includes(
                                       game.scene,
                                     )

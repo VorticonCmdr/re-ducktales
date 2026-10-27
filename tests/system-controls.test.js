@@ -126,12 +126,16 @@ test("sound settings and device results remain explicit while a global dialog bl
   const g = new Game();
   g.input({ type: "pause" });
   g.input({ type: "toggle-sound" });
+  assert.equal(g.audioEnabled, false);
+  for (let i = 0; i < 35; i++) g.advanceTick();
+  g.input({ type: "toggle-sound" });
   assert.equal(g.audioEnabled, true);
   g.input({ type: "toggle-sound" });
   assert.equal(g.audioEnabled, false);
-  for (let i = 0; i < 35; i++) g.advanceTick();
   g.input({ type: "audio-enabled", enabled: true });
   g.input({ type: "pause" });
+  g.input({ type: "toggle-sound" });
+  assert.equal(g.audioEnabled, true);
   assert.ok(g.drainEffects().some((e) => e.type === "sound" && e.id === 0x24));
   g.input({ type: "restart" });
   assert.equal(g.systemOverlay, null);

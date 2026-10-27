@@ -8,8 +8,9 @@ explicit navigation adapter. Escape no longer means Back/Office.
 ## Behavior and implementation
 
 `src/game/system-controls.js` owns the blocking dialog state and original layout.
-`application.js` blocks simulation advancement while a dialog is active; rendering
-continues over the current scene. Audio completion remains an explicit external
+`application.js` blocks gameplay updates while a dialog is active; rendering
+continues over the current scene. Flight's driver/retrace clocks keep advancing.
+Audio completion remains an explicit external
 input and can arrive during a dialog. Input/audio/time do not come from rendering.
 
 - Pause `11c4:047f..066c` draws white-on-blue13-column text with a white border at
@@ -31,13 +32,17 @@ input and can arrive during a dialog. Input/audio/time do not come from renderin
  Restart clears the overlay and exit latch. Sound settings remain adjustable.
 
 The original routines are blocking calls from the input reader. Money-bin global
-keys now wait for its actual idle input poll; its intro and dive do not read them.
+keys wait for its actual idle input poll; its intro and dive do not read them.
+Flight keys wait for the post-collision input call or final dialogue poll.
 Other scenes currently consume global key events on the next driver tick. Exact
 alignment with every original activity's input-poll boundary,especially uninterruptible
 animation/audio waits,is **not reproduced**. Original IRQ clocks keep running
-inside the dialogs; the browser freezes activity clocks while its diagnostic game
-clock advances. Long-pause active-level timing has not been compared with a carried
-original replay. These are remaining fidelity gaps,not a whole-game timing claim.
+inside the dialogs. Flight now preserves that device-clock advancement while
+holding actor updates; other activity clocks remain frozen. Long-pause expedition
+timing has not been compared with a carried original replay. These are remaining
+fidelity gaps,not a whole-game timing claim. S during Pause's35/7-tick locks is
+discarded by the original input flush; the browser sound checkbox remains an
+immediate setting adapter.
 
 ### Money-bin input boundaries
 
@@ -89,6 +94,60 @@ also press Q/P/S during a real dive and require uninterrupted completion,unchang
 sound and no delayed office dialog. Omitted-P and corrupted-state negative controls
 must fail. CPU drawing costs,whole original timing and other scene poll boundaries
 are excluded explicitly; no expected output supplies replay input timing.
+
+### Flight input, clocks and final wait
+
+Flight overlay4:02ae calls the input reader after rendering and collisions.
+Crash,landing,boost and other scripted animations do not read global keys there.
+The port's `Flight.readInput` can suspend at this call; Game supplies its queued
+scan-code slots and resumes the same generator after Pause or No. Actor/scene
+state remains frozen while `Flight.tick` and its retrace counter keep advancing.
+Resume flushes held controls before the pending input call returns.
+That flush also discards a tapped Fire request,so it cannot shorten the final
+flight wait after Pause or cancelled Quit. The regression was verified to fail
+before that request latch was included in the flush.
+
+Flight pacing uses **198e:01d8**,an independent32-bit deadline at DS27f8 with
+interval6 at27fc. Pause's `140e:0dcc` resets a different timer base at2221.
+Observed original flight frame2 and its actors/RNG remain unchanged through
+Pause,while driver clock2225 advances49639→49830 and the separate deadline stays
+49643. The next deadline helper consumes zero driver ticks and sets49836=current+6.
+The port therefore processes overdue flight physics immediately on resume; it
+does not add a fresh six-tick delay. Unit and browser cases require this boundary.
+
+At final flight cleanup,0f27 calls `11c4:09f5(20)`. That helper flushes all input
+once,then polls before each of twenty7-tick waits. The original capture's local
+counter advances0→20 with result0 and driver clock50423→50563,exactly140 ticks.
+The browser now includes this wait,keeps the completed flight visible,and accepts
+a new Fire at a poll. Keys entered during crash/landing are discarded by the
+initial flush. Airship/tether input-flush helpers also clear held controls and
+queued global keys. `returnWaitTick` records the injected driver clock at entry.
+
+`reference/flight-input.json` pins18 local artifacts and9 original code/state/
+deadline/wait/popup/input checks,plus one independent controller replay. All
+three frame schedules require complete dispatch (2/3/4 events). Negative controls
+remove P,drop device clocks,change preserved RNG,corrupt a popup pixel and change
+a FPU operand. No memory/CPU injection or restore is used. This capture scenario
+ended paused at the completed final wait,stop514. This is a naturally reached flight
+with conditional comparison boundaries,not a whole-flight original input replay.
+
+The original hardware-FPU handlers rewrite executed CD34..3b/3d prefixes in
+place. Their resident129-byte span at19c4:0755..07d5 and live interrupt vectors
+are matched against original bytes. The complete17548-byte flight overlay has248
+relocations plus exactly91 such executed rewrites at pinned offsets. The checker
+derives each two-byte replacement using the original subtraction and conditional
+WAIT/NOP predicate. Every other byte remains exact; no bytes are masked. This
+execution-history code state is separate from replay inputs and the analysis-only
+FPU normalization described in flight.md.
+
+The real browser case loads assets,flies,uses P and Q/N,waits while paused,
+checks clock/actor separation and original popup pixels,then causes a real crash.
+Q/P/S pressed during that crash cannot interrupt it. The final flush discards them,
+and natural return requires140 driver ticks before repair processing. Existing
+crash/calendar comparisons remain at their original0ee6 boundary; the new final
+wait is checked separately. No original runtime flight Quit-No capture or whole
+flight pixel/audio/wall-clock parity is claimed. Expedition poll boundaries remain
+the next investigation.
 
 ## Verification and evidence
 

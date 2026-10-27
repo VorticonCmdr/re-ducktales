@@ -90,15 +90,28 @@ export function compareCrash(
   assert.equal(f.presentations, 25, "missing crash presentation");
   compare(f.memory, end);
   f.iterator = f.finish("crashed");
+  f.outcome = null;
   f.resume();
   steps = 0;
-  while (f.wait && steps++ < 100) {
+  while (f.phase !== "return-wait" && f.wait && steps++ < 100) {
     f.advanceTick();
     f.advanceRetrace();
   }
-  assert.equal(f.wait, null, "unfinished final calendar sequence");
+  assert.equal(f.phase, "return-wait", "unfinished final calendar sequence");
+  assert.deepEqual(f.wait, { clock: "driver", remaining: 7 });
   assert.equal(f.presentations, 27);
   if (alterResult) f.memory.b(0x4e0e, f.memory.b(0x4e0e) + 1);
+  compare(f.memory, final);
+  // The captured0ee6 boundary precedes09f5(20). Verify that separate wait
+  // without pretending its clocks belong to the earlier calendar capture.
+  for (let i = 0; i < 139; i++) {
+    f.advanceTick();
+    f.advanceRetrace();
+    assert.equal(f.outcome, null);
+  }
+  f.advanceTick();
+  f.advanceRetrace();
+  assert.equal(f.wait, null, "unfinished final return wait");
   compare(f.memory, final);
   assert.deepEqual(f.outcome, {
     status: "crashed",

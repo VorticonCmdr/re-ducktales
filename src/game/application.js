@@ -53,6 +53,7 @@ export class Game {
     this.atomicTransport = null;
     this.systemOverlay = null;
     this.pendingBinSystemKeys = new Map();
+    this.pendingFlightSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -178,17 +179,21 @@ export class Game {
     }
     throw Error(`Unsupported campaign continuation ${action.type}`);
   }
-  handleInput(event, fromBinPoll = false) {
+  handleInput(event, fromActivityPoll = false) {
     if (this.diagnostic) throw Error(this.diagnostic);
     if (
-      !fromBinPoll &&
+      !fromActivityPoll &&
       !this.systemOverlay &&
-      this.scene === "money-bin" &&
+      ["money-bin", "flight"].includes(this.scene) &&
       ["pause", "quit", "toggle-sound"].includes(event.type)
     ) {
       // IRQ9 retains make/release flags until19c5 consumes them. No input
       // reader runs during the intro, dive or explicit animation waits.
-      this.pendingBinSystemKeys.set(
+      const keys =
+        this.scene === "flight"
+          ? this.pendingFlightSystemKeys
+          : this.pendingBinSystemKeys;
+      keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
         event.type,
@@ -196,6 +201,8 @@ export class Game {
       return;
     }
     if (event.type === "toggle-sound") {
+      // Pause's35/7-tick waits do not read input; their final flush drops S.
+      if (this.systemOverlay && this.systemOverlay.phase !== "waiting") return;
       this.handleInput({ type: "audio-enabled", enabled: !this.audioEnabled });
       this.effects.push({ type: "stopAudio" });
       return;
@@ -239,6 +246,7 @@ export class Game {
       this.atomicTransport = null;
       this.systemOverlay = null;
       this.pendingBinSystemKeys.clear();
+      this.pendingFlightSystemKeys.clear();
       this.exiting = false;
       this.pendingCampaignAction = null;
       this.briefing = null;
@@ -404,12 +412,18 @@ export class Game {
             seed: this.seed,
             day: this.campaign.day,
             money: this.money,
+            pollInput: () => this.pollFlightSystemInput(),
+            flushInput: () => this.flushFlightInput(),
           },
           this.flightMemory,
         );
         this.flight.setControls(this.controls);
         this.scene = "flight";
       }
+      return;
+    }
+    if (this.scene === "flight") {
+      if (event.type === "fire") this.flight.requestFire();
       return;
     }
     if (this.scene === "rival-claim") {
@@ -535,6 +549,7 @@ export class Game {
   advanceDriverTick() {
     this.tick++;
     if (this.systemOverlay) {
+      if (this.scene === "flight") this.flight.advanceBlockedTick();
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
       return;
@@ -632,7 +647,10 @@ export class Game {
     this.collectEffects();
   }
   advanceRetrace() {
-    if (this.systemOverlay) return;
+    if (this.systemOverlay) {
+      if (this.scene === "flight") this.flight.advanceBlockedRetrace();
+      return;
+    }
     if (this.scene === "photography") {
       this.photography.advanceRetrace();
       this.collectPhotography();
@@ -732,10 +750,14 @@ export class Game {
     const result = this.systemOverlay.result;
     this.systemOverlay = null;
     this.pendingBinSystemKeys.clear();
+    this.pendingFlightSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
-    this.handleInput({ type: "controls", fire: false, direction: null });
-    this.effects.push({ type: "flushControls" });
+    if (this.scene === "flight") this.flight.flushInput();
+    else {
+      this.handleInput({ type: "controls", fire: false, direction: null });
+      this.effects.push({ type: "flushControls" });
+    }
     if (result === "quit") {
       this.exiting = true;
       this.pendingCampaignAction = null;
@@ -752,14 +774,27 @@ export class Game {
       this.bin.resumeInputPoll();
       this.collectEffects();
     }
+    if (result === "resume" && this.scene === "flight") {
+      this.flight.resumeInputPoll();
+      this.collectFlight();
+    }
   }
   pollMoneyBinSystemInput() {
+    return this.pollSystemInput(this.pendingBinSystemKeys);
+  }
+  pollFlightSystemInput() {
+    return this.pollSystemInput(this.pendingFlightSystemKeys);
+  }
+  flushFlightInput() {
+    this.pendingFlightSystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
+  }
+  pollSystemInput(keys) {
     // The custom key table is scanned by scan code, not event arrival order.
     // Native Escape/Q precede P/S; F1 follows them. A dialog flushes the rest.
-    for (const [scanCode, type] of [...this.pendingBinSystemKeys].sort(
-      (a, b) => a[0] - b[0],
-    )) {
-      this.pendingBinSystemKeys.delete(scanCode);
+    for (const [scanCode, type] of [...keys].sort((a, b) => a[0] - b[0])) {
+      keys.delete(scanCode);
       this.handleInput({ type }, true);
       if (this.systemOverlay) return false;
     }
@@ -1104,6 +1139,13 @@ export class Game {
       campaign: this.campaign?.snapshot() ?? null,
       departure: this.departure?.snapshot() ?? null,
       flight: this.flight?.snapshot() ?? null,
+      ...(this.pendingFlightSystemKeys.size
+        ? {
+            pendingFlightSystemKeys: [...this.pendingFlightSystemKeys].sort(
+              (a, b) => a[0] - b[0],
+            ),
+          }
+        : {}),
       cave: this.cave?.snapshot() ?? null,
       mountain: this.mountain?.snapshot() ?? null,
       jungle: this.jungle?.snapshot() ?? null,

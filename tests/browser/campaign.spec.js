@@ -21,31 +21,6 @@ async function point(canvas, x, y) {
     position: { x: (r.width * x) / 320, y: (r.height * y) / 200 },
   });
 }
-async function caveMove(page, canvas, key, target) {
-  await page.waitForFunction(
-    () => {
-      const s = JSON.parse(document.querySelector("#game").dataset.state);
-      return s.diagnostic || s.scene !== "cave" || s.cave.phase === "exploring";
-    },
-    undefined,
-    { timeout: 5000 },
-  );
-  expect((await state(canvas)).scene).toBe("cave");
-  await page.keyboard.down(key);
-  await page.keyboard.down("Space");
-  await page.waitForFunction(
-    (target) => {
-      const s = JSON.parse(document.querySelector("#game").dataset.state);
-      return s.diagnostic || s.scene !== "cave" || s.cave.room === target;
-    },
-    target,
-    { polling: "raf", timeout: 5000 },
-  );
-  await page.keyboard.up("Space");
-  await page.keyboard.up(key);
-  expect((await state(canvas)).diagnostic).toBeNull();
-  expect((await state(canvas)).cave.room).toBe(target);
-}
 test("original map pixels and keyboard bank round trip", async ({ page }) => {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
@@ -214,18 +189,58 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   test.setTimeout(90000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  const c = await office(page);
+  // Supply an explicit browser clock so test-runner latency cannot add idle
+  // cave decisions (RNG/pursuer steps) between reading a room and pressing a key.
+  // Input and rendering still use the unmodified browser application.
+  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
+  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
+  await page.addInitScript(() => {
+    window.requestAnimationFrame = (callback) =>
+      setTimeout(() => callback(performance.now()), 8);
+    window.cancelAnimationFrame = clearTimeout;
+  });
+  await page.goto("/");
+  const c = page.locator("#game");
+  async function until(predicate, max = 10000) {
+    for (let i = 0; i < max; i++) {
+      const s = await state(c);
+      if (s?.diagnostic) throw Error(s.diagnostic);
+      if (s && predicate(s)) return s;
+      await page.clock.runFor(4);
+    }
+    throw Error(
+      "Unfinished cave browser wait " + JSON.stringify(await state(c)),
+    );
+  }
+  async function press(key) {
+    await page.keyboard.press(key);
+    await page.clock.runFor(100);
+  }
+  async function move(key, target) {
+    await until((s) => s.scene !== "cave" || s.cave.phase === "exploring");
+    expect((await state(c)).scene).toBe("cave");
+    await page.keyboard.down(key);
+    await page.keyboard.down("Space");
+    await until((s) => s.scene !== "cave" || s.cave.room === target);
+    await page.keyboard.up("Space");
+    await page.keyboard.up(key);
+    expect((await state(c)).cave.room).toBe(target);
+  }
+  await until((s) => s.scene === "title");
+  await c.focus();
+  await press("Space");
+  await press("Enter");
   await page.locator("#map").click();
-  await expect(c).toHaveAttribute("data-scene", "map");
+  await until((s) => s.scene === "map");
   await point(c, 37, 33);
-  await page.keyboard.press("Space");
-  await expect.poll(async () => (await state(c)).campaign.info).toBe(true);
-  await page.keyboard.press("ArrowRight");
-  await expect.poll(async () => (await state(c)).campaign.choice).toBe(1);
-  await page.keyboard.press("Space");
-  await expect(c).toHaveAttribute("data-scene", "departure");
+  await press("Space");
+  await until((s) => s.campaign.info);
+  await press("ArrowRight");
+  await until((s) => s.campaign.choice === 1);
+  await press("Space");
+  await until((s) => s.scene === "departure");
   await page.keyboard.down("Space");
-  await expect(c).toHaveAttribute("data-scene", "flight");
+  await until((s) => s.scene === "flight");
   let lastFrame = -1,
     heldDirection = null,
     steps = 0,
@@ -243,7 +258,7 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
       if (heldDirection) await page.keyboard.up(heldDirection);
       heldDirection = null;
       await page.keyboard.up("Space");
-      await expect(c).toHaveAttribute("data-scene", "cave", { timeout: 10000 });
+      await until((s) => s.scene === "cave");
       break;
     }
     const f = current.flight;
@@ -258,15 +273,11 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
       heldDirection = direction;
     }
     lastFrame = f.frames;
-    await page.waitForFunction(
-      ({ frame, phase }) => {
-        const s = JSON.parse(document.querySelector("#game").dataset.state);
-        return (
-          s.diagnostic || s.flight.frames > frame || s.flight.phase !== phase
-        );
-      },
-      { frame: lastFrame, phase: f.phase },
-      { timeout: 3000 },
+    await until(
+      (s) =>
+        s.scene !== "flight" ||
+        s.flight.frames > lastFrame ||
+        s.flight.phase !== f.phase,
     );
   }
   if (heldDirection) await page.keyboard.up(heldDirection);
@@ -289,39 +300,31 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   expect(firstRoom).toBe(17);
   await page.keyboard.down("ArrowRight");
   await page.keyboard.down("Space");
-  await page.waitForFunction(
-    () =>
-      JSON.parse(document.querySelector("#game").dataset.state).cave.room ===
-      18,
-    undefined,
-    { polling: "raf" },
-  );
+  await until((s) => s.scene !== "cave" || s.cave.room === 18);
   await page.keyboard.up("Space");
   await page.keyboard.up("ArrowRight");
-  await expect
-    .poll(async () => (await state(c)).cave.money)
-    .toBe(result.cave.money + 50);
+  await until((s) => s.cave.money === result.cave.money + 50);
   await expect(page.locator("#diagnostic")).toBeHidden();
 
   // Intentionally fail this expedition, then retry the current destination.
   // The retry uses the real map/guide input route and must not create a flight.
-  await caveMove(page, c, "ArrowLeft", 17);
-  await caveMove(page, c, "ArrowUp", 9);
-  await caveMove(page, c, "ArrowUp", 1);
-  await expect(c).toHaveAttribute("data-scene", "expedition-result");
+  await move("ArrowLeft", 17);
+  await move("ArrowUp", 9);
+  await move("ArrowUp", 1);
+  await until((s) => s.scene === "expedition-result");
   const failed = await state(c);
   expect(failed.cave.outcome.status).toBe("pit");
   expect(failed.expeditionResult.phase).toBe("failure");
   const failedDay = failed.campaign.day;
-  await page.keyboard.press("Space");
-  await expect(c).toHaveAttribute("data-scene", "map");
+  await press("Space");
+  await until((s) => s.scene === "map");
   const retryMap = await state(c);
   expect(retryMap.campaign.day).toBe(failedDay + 1);
   expect(retryMap.campaign.playerCollected).not.toContain(
     retryMap.campaign.location,
   );
-  await page.keyboard.press("Space");
-  await expect(c).toHaveAttribute("data-scene", "expedition-briefing");
+  await press("Space");
+  await until((s) => s.scene === "expedition-briefing");
   const retry = await state(c);
   expect(retry.flight).toBeNull();
   expect(retry.departure).toBeNull();
@@ -330,8 +333,8 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
     retryMap.campaign.day,
     retryMap.campaign.location,
   ]);
-  await page.keyboard.press("Space");
-  await expect(c).toHaveAttribute("data-scene", "cave");
+  await press("Space");
+  await until((s) => s.scene === "cave");
 
   // Plan from the original map; drive only real held-key controls. No game
   // memory or expected final state is injected into the browser.
@@ -340,17 +343,9 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   while ((await state(c)).scene === "cave" && moves++ < 64) {
     const current = await state(c);
     if (["treasure", "complete"].includes(current.cave.phase)) break;
-    await page.waitForFunction(
-      () => {
-        const s = JSON.parse(document.querySelector("#game").dataset.state);
-        return (
-          s.diagnostic ||
-          s.scene !== "cave" ||
-          ["exploring", "treasure"].includes(s.cave.phase)
-        );
-      },
-      undefined,
-      { timeout: 5000 },
+    await until(
+      (s) =>
+        s.scene !== "cave" || ["exploring", "treasure"].includes(s.cave.phase),
     );
     const now = await state(c);
     expect(now.diagnostic).toBeNull();
@@ -404,20 +399,13 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
     expect(route?.length, "safe path to the treasure").toBeGreaterThan(0);
     await page.keyboard.down(route[0]);
     await page.keyboard.down("Space");
-    await page.waitForFunction(
-      (room) => {
-        const s = JSON.parse(document.querySelector("#game").dataset.state);
-        return s.diagnostic || s.scene !== "cave" || s.cave.room !== room;
-      },
-      room,
-      { polling: "raf" },
-    );
+    await until((s) => s.scene !== "cave" || s.cave.room !== room);
     await page.keyboard.up("Space");
     await page.keyboard.up(route[0]);
     expect((await state(c)).diagnostic).toBeNull();
   }
   expect(moves).toBeLessThan(64);
-  await expect(c).toHaveAttribute("data-scene", "expedition-result");
+  await until((s) => s.scene === "expedition-result");
   const award = await state(c);
   expect(award.cave.outcome.status).toBe("treasure");
   expect(award.expeditionResult.phase).toBe("award");
@@ -427,15 +415,15 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   await page.screenshot({
     path: ".local/browser-results/cave-treasure-award.png",
   });
-  await page.keyboard.press("Space");
-  await expect(c).toHaveAttribute("data-scene", "map");
+  await press("Space");
+  await until((s) => s.scene === "map");
   const returned = await state(c);
   expect(returned.campaign.playerCollected).toContain(
     returned.campaign.location,
   );
   expect(returned.money).toBe(award.money);
-  await page.keyboard.press("Space");
-  await expect(c).toHaveAttribute("data-scene", "visit-notice");
+  await press("Space");
+  await until((s) => s.scene === "visit-notice");
   const collected = await state(c);
   expect(collected.visitNotice.reason).toBe("player");
   expect([
@@ -447,7 +435,7 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
     returned.campaign.day,
     returned.campaign.location,
   ]);
-  // This real-time feedback route has variable flight/cave inputs. The enclosing
+  // This controlled-clock feedback route supplies browser keyboard inputs. The enclosing
   // root dispatch may advance Glomgold and consume RNG; the notice itself does
   // not. Exact draw counts are checked against independent incoming original
   // states by verify:rival and by the deterministic browser routes.
@@ -457,12 +445,12 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   await page.screenshot({
     path: ".local/browser-results/collected-notice.png",
   });
-  await page.keyboard.press("Space");
-  await expect(c).toHaveAttribute("data-scene", "map");
+  await press("Space");
+  await until((s) => s.scene === "map");
   expect((await state(c)).money).toBe(award.money);
   await expect(page.locator("#diagnostic")).toBeHidden();
   await page.locator("#restart").click();
-  await expect(c).toHaveAttribute("data-scene", "title");
+  await until((s) => s.scene === "title");
   expect((await state(c)).cave).toBeNull();
   expect(errors).toEqual([]);
 });

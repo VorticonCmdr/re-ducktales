@@ -416,3 +416,19 @@ CPU contention; their simulation clocks,input streams,checkpoint counts and
 timeouts are unchanged. All browser scenarios remain required. This concurrency
 setting establishes a repeatable verification environment,not a presentation
 timing tolerance or a performance claim.
+
+## Input polls and return delay
+
+Flight global keys now enter through the original02ae post-collision poll and
+the final `09f5(20)` dialogue. Plane/actor updates stop inside Pause or Quit;
+driver and retrace clocks continue. The separate six-tick deadline can expire
+while paused,so the first resumed flight loop advances immediately. A captured
+original pause verifies that deadline preservation and zero-wait continuation.
+
+Final cleanup flushes inputs and waits twenty7-tick polls before returning to the
+campaign. This140-tick wait was previously omitted. Crash/landing keys are dropped
+by that flush; a fresh Fire can shorten the wait at a poll. The existing crash
+verifier keeps its calendar checkpoint at0ee6 and then verifies the separate final
+wait before carrying the result into repairs. `reference/flight-input.json` and
+[the system-control evidence](system-controls.md) record exact scopes,original
+code identities,runtime FPU rewrites,input schedules and limitations.

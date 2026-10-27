@@ -17,16 +17,16 @@ and torch expiry now play their statically translated terminal sequences.
 Failure shows MAIN34, waits20 seven-tick polls and then spends a campaign day.
 Success spends a day, shows MAIN35, adds the location's signed16 LOOT value to
 uint32 carried cash, waits40 seven-tick polls and marks the destination collected.
-Both return to the map. ID9 unlocks the original atomic-transport explanation;
-using that transport remains unsupported. Collected destinations show the
-original notice; failed current destinations can be retried without flight.
+Both return to the map. ID9 unlocks the original atomic-transport explanation
+and the usable transmitter choice documented in [atomic transport](atomic-transport.md).
+Collected destinations show the original notice; failed current destinations can be retried without flight.
 
 `cave-scene.js` translates setup and normal EGA composition. `cave.js` supplies
 independent driver/retrace clocks, held-input sampling, room transitions, cash,
 lamp counters and pursuer movement. `expedition.js` translates main12bb:00fe/022a:
 chapter screen, one RNG draw for its CLUES.ARC group, and30 seven-tick input polls (210 driver ticks), shortened by Fire.
-Other activity chapters stop before their untranslated gameplay. Same-location
-retry and collected-location notices are documented in `campaign-visits.md`.
+Mountain,jungle and photography chapters enter their implemented activities.
+Same-location retry and collected-location notices are documented in `campaign-visits.md`.
 
 Map bits:1 left,2 right,4 down,8 up,16 visited/start,32 goal,64 pit. All64 words
 are parsed exactly, accepting original map4's trailing spaces. Entry locates
@@ -176,3 +176,22 @@ No original memory/register injection or partial/full restore was used.
 
 Next: original comparisons for C-drive room moves, striped reveal timing,
 remaining outcome comparisons alongside the other expedition games.
+
+## Next input-boundary comparison
+
+Static analysis in `CAVE_CODE.EXE` identifies overlay6:0495 as the initial
+`140e:19a5` keyboard flush,0997 as the room-entry flush,and09a1 as the
+`1124:0002` input call (return09a6). The099c label initializes its local input
+word before that call; it is not itself an input read. Overlay6:04a6 calls the
+same independent `198e:01d8` deadline helper used by flight,with interval6.
+The call locations are statically inferred from original instruction bytes.
+Exploratory scouting continued naturally from flight-input stop514 to cave
+0e0c:09a1 stop515,DS/SS1403. All11054 original code bytes match after196
+relocations at base01f5; room17,goal45,pursuer37,seed3129. Local capture and
+recipe are `.local/cave-input-first-poll.json` and `.local/cave-input-scout.json`.
+They are exploratory artifacts awaiting a versioned scenario/checker; they do
+not establish pause/transition behavior or add an accepted regression case.
+The current cave controller samples held controls directly and has no explicit
+global-key poll or keyboard-flush interface. Its native browser route now uses
+an explicit browser clock so test-runner delays do not add idle RNG/pursuer turns;
+this is browser acceptance,not proof of original input-boundary timing.

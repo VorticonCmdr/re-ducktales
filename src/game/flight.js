@@ -12,6 +12,8 @@ import { u8, u16 } from "./integer.js";
 // never reads a browser clock and never advances simulation from rendering.
 export class Flight {
   constructor(options, previousMemory) {
+    this.pollInput = options.pollInput ?? (() => true);
+    this.onFlushInput = options.flushInput ?? (() => {});
     this.course = prepareFlightCourse(options, previousMemory);
     this.memory = this.course.memory;
     this.memory.view.setUint32(0x8cc0, options.money >>> 0, true);
@@ -30,6 +32,7 @@ export class Flight {
     this.current = null;
     this.pending = null;
     this.outcome = null;
+    this.returnFireRequested = false;
     this.iterator = this.run();
     this.resume();
   }
@@ -81,7 +84,7 @@ export class Flight {
       return;
     }
     if (
-      !["driver", "retrace"].includes(next.value.clock) ||
+      !["driver", "retrace", "input"].includes(next.value.clock) ||
       !Number.isInteger(next.value.remaining) ||
       next.value.remaining < 1
     )
@@ -95,6 +98,28 @@ export class Flight {
   advanceRetrace() {
     this.retrace++;
     this.advance("retrace");
+  }
+  advanceBlockedTick() {
+    this.tick++;
+  }
+  advanceBlockedRetrace() {
+    this.retrace++;
+  }
+  *readInput() {
+    if (!this.pollInput()) yield { clock: "input", remaining: 1 };
+  }
+  resumeInputPoll() {
+    if (this.wait?.clock !== "input")
+      throw Error("Flight resumed outside its input reader");
+    this.resume();
+  }
+  flushInput() {
+    this.controls = { fire: false, direction: null };
+    this.returnFireRequested = false;
+    this.onFlushInput();
+  }
+  requestFire() {
+    if (this.phase === "return-wait") this.returnFireRequested = true;
   }
   advance(clock) {
     if (!this.wait || this.wait.clock !== clock || --this.wait.remaining !== 0)
@@ -127,6 +152,10 @@ export class Flight {
       day: m.b(0x4e0e),
       seed: u16(m.i(0x2229)),
       outcome: this.outcome,
+      ...(this.returnWaitTick !== undefined
+        ? { returnWaitTick: this.returnWaitTick }
+        : {}),
+      ...(this.wait?.clock === "input" ? { waitingForInputPoll: true } : {}),
     };
   }
   *spin() {
@@ -225,8 +254,8 @@ export class Flight {
     m.b(0x0fb7, 0);
     m.i(0x5466, 0);
     m.i(0x8a9c, 0);
-    // Resident19a5 discards BIOS/driver key queues. This provider models held
-    // state, so there are no queued pulses to discard here.
+    // Resident19a5 also discards held flags and queued global keys.
+    this.flushInput();
   }
   planeDescriptor() {
     const m = this.memory;
@@ -366,6 +395,8 @@ export class Flight {
         sound: (id) => this.sound(id),
         spin: () => this.spin(),
       });
+      // Overlay4:02ae calls the global input reader only after collisions.
+      yield* this.readInput();
       const code =
         (this.controls.fire ? 192 : 0) |
         ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ?? 0);
@@ -413,6 +444,15 @@ export class Flight {
       yield* this.present(commands);
     }
     this.events.push({ type: "stopAudio" });
+    // 0f27 -> resident09f5(20): flush once,then poll before each7-tick wait.
+    this.phase = "return-wait";
+    this.returnWaitTick = this.tick;
+    this.flushInput();
+    for (let i = 0; i < 20; i++) {
+      yield* this.readInput();
+      if (this.controls.fire || this.returnFireRequested) break;
+      yield { clock: "driver", remaining: 7 };
+    }
     return {
       status: result,
       code: result === "arrived" ? 1 : 0,

@@ -1,0 +1,241 @@
+{
+  "id": "flight-input-pause-return-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "0ae4211",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 9,
+  "expectedIndependentReplayCount": 1,
+  "evidenceLevel": "original pause preservation and overdue driver deadline,final20-poll wait and exact popup; independent port boundary replay and browser acceptance. No whole original flight input replay or complete-machine checkpoint.",
+  "startingRecipe": "Continue reference/money-bin-input.json stop500 naturally to office. Right+Space,paired Fire past security. Map helper at0e0c:1ec8 (alias0ed6:1228) has SS:SP+4 x-pointer9f46(value46),SP+6 y-pointer9f42(value139). Hold Up for280 emulator frames to reach Klondike at top edge. Fire info,Right,Fire journey,Fire through Launchpad. Arm flight02ae with word code condition0e0c:02b1==0319 to avoid an overlay-address collision. First poll504 captures full17548-byte overlay and resident code. P downframe0/up1 ->pause047f505,05d5506 plus PNG. From506 schedule P release0,press140,release141; capture066c507,flight02b3508. Capture deadline helperB83:01d8509 and0208510. Fly using Space0,Down80,Down-release100,Space-release160 frames; stop flight0f27511,dialogue03b9:09f5512,postflushfirstpoll0a33513,andnatural20-pollend0a46514. Remove all owned breakpoints. Final paused514,all replay schedules complete. Resident base01f5,gameDS/SS1403,overlay0e0c,input0319,pause03b9,deadline0b83; complete original code bytes verified.",
+  "injections": [],
+  "fittedInputs": [],
+  "inputEvents": {
+    "pause": [
+      {
+        "frame": 0,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 1,
+        "key": "KBD_p",
+        "pressed": false
+      }
+    ],
+    "resume": [
+      {
+        "frame": 0,
+        "key": "KBD_p",
+        "pressed": false
+      },
+      {
+        "frame": 140,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 141,
+        "key": "KBD_p",
+        "pressed": false
+      }
+    ],
+    "fly": [
+      {
+        "frame": 0,
+        "key": "KBD_space",
+        "pressed": true
+      },
+      {
+        "frame": 80,
+        "key": "KBD_down",
+        "pressed": true
+      },
+      {
+        "frame": 100,
+        "key": "KBD_down",
+        "pressed": false
+      },
+      {
+        "frame": 160,
+        "key": "KBD_space",
+        "pressed": false
+      }
+    ]
+  },
+  "comparisonRules": "Complete relocated overlay4 (17548bytes,248relocations) and resident input876,pause494,deadline49,dialogue88,quit472 code identities. Exact flight actors,objects,course,RNG,day,money and frame-counter preservation across pause. Device clocks,stack,heap/graphics scratch are outside preservation comparison. The independent deadline27f8 stays unchanged while original driver clock2225 advances; after resume the already-overdue helper consumes zero driver ticks and sets deadline=current+6. Input reader returnsAL0 and flushes128 key bytes. Final09f5 argument20,counter0->20,result0 and exact140-clock interval. Popup crop104,80,104x24 is exactRGBA; background is not compared to a different flight. Independent port replay uses initial decoded original resources with authored pause timing; no expected original output supplies input time or restores state. Browser acceptance supplies only native keys,original assets and controlled clocks,then requires a real crash and final140-driver-tick wait. Overlay identity includes exactly91 executed software-FPU escape rewrites at the pinned offsets. Resident hardware-FPU handlers19c4:0755..07d5 (129bytes) and live IVT34..3d are independently matched. For34..3b the handler subtracts5c32,then conditionally replaces WAIT byNOP using its instruction predicate;3d subtractsa23d. All unlisted bytes compare exactly; no bytes are masked. Offset list describes observed execution-history code state,not replay inputs. Negative controls change an operand outside those two-byte prefixes.",
+  "limitations": "No original runtime Quit-No flight capture; its common resident routine has prior map/bin evidence and flight controller/browser checks. CPU draw/reveal costs,original whole-flight wall-clock/audio parity,additional collision variants and expedition poll boundaries remain unproven.",
+  "artifacts": {
+    "code": {
+      "path": ".local/flight-pause-first-poll.json",
+      "sha256": "60bc58c55af92aa663719edf1ba9f867cfe191f04b4db30525c8b99d201095f3"
+    },
+    "pauseEntry": {
+      "path": ".local/flight-pause-entry.json",
+      "sha256": "9ec1dc83a61c4c4938d50b1d4860d0ebb22f57b13cce6bfdcad0e8f7639f9882"
+    },
+    "pauseWait": {
+      "path": ".local/flight-pause-wait.json",
+      "sha256": "1aaa65505b267f7679290fa21f2acc0efb20511681a221a2d669652d753f0bab"
+    },
+    "pauseAfter": {
+      "path": ".local/flight-pause-after.json",
+      "sha256": "cbf59b5c9959ccd4515d3f87c27b3c875fad741cbcdb2ff8e1f4f679ddf9ba67"
+    },
+    "pauseReturn": {
+      "path": ".local/flight-pause-return.json",
+      "sha256": "2ea53600a055f8af1243309fb52baa38cc299aaba6d3efd85d720fcb2090bb16"
+    },
+    "deadlineEntry": {
+      "path": ".local/flight-pause-deadline-entry.json",
+      "sha256": "417fff65992d10b70972218d888e4079459a2beec844aa94a617a16dae736f4f"
+    },
+    "deadlineAfter": {
+      "path": ".local/flight-pause-deadline-after.json",
+      "sha256": "df889004022d835265e7f9d0aaf45a438973b2f0e19a711bb611ea604552d560"
+    },
+    "returnEntry": {
+      "path": ".local/flight-input-return-wait-entry.json",
+      "sha256": "d31a5093eac06fd865b82eb70295579a2c93255bf1aef0b1cf2746041a3a6c61"
+    },
+    "returnDialogue": {
+      "path": ".local/flight-input-return-dialogue.json",
+      "sha256": "e6ce761cfde1a5c2aed2ea253debd401d5fdfbcda785d31c96bbee80c0c82dff"
+    },
+    "returnFirst": {
+      "path": ".local/flight-input-return-first-poll.json",
+      "sha256": "410f39ec69df60172558b8657e7b335d44a16d36d9f9d6f351007cb4d56166e0"
+    },
+    "returnLast": {
+      "path": ".local/flight-input-return-last.json",
+      "sha256": "b8d5f0135a9405d2d0260e63cbab858f90554b10c65cc8d117a9fd392cd4484d"
+    },
+    "mode": {
+      "path": ".local/flight-input-mode.json",
+      "sha256": "a32c481a51b11f1942852184b9109ddede33e1d6320089d9993a40eb338ed9e0"
+    },
+    "pausePNG": {
+      "path": ".local/flight-pause.png",
+      "sha256": "d828923c58205fa8919eebc34272e4cf2a1aa333c6f46831ab6816ad8876cdaa"
+    },
+    "pauseReplay": {
+      "path": ".local/flight-pause-replay.json",
+      "sha256": "7cf01bb97bb45a72caae31f733c017e316b31d6de6a66552c60beae270df0afb"
+    },
+    "resumeReplay": {
+      "path": ".local/flight-pause-resume-replay.json",
+      "sha256": "5df6a9be59b168ca5467ed6e04eba4a7ea13a45ffc9190ffd054977e7acebf23"
+    },
+    "flyReplay": {
+      "path": ".local/flight-input-fly-replay.json",
+      "sha256": "b1e5abb24dbfb9f2b113f0bd5f4135c36ef5478773faab2c481db0f43367428c"
+    },
+    "fpuVectors": {
+      "path": ".local/flight-input-fpu-vectors.json",
+      "sha256": "66b369f1ead908662a24843344c5626c49c5ac5ec5d9f6a51bb34068b92afd2d"
+    },
+    "fpuHandler": {
+      "path": ".local/flight-input-fpu-handler.json",
+      "sha256": "78f83ce8d9f93dea9488ea6846c308e18d5d4c6d7124b15e589f9df7c8254ca9"
+    }
+  },
+  "runtimeFpuPatchedOffsets": [
+    "1f",
+    "22",
+    "27",
+    "19a",
+    "19f",
+    "1a4",
+    "1a9",
+    "1ae",
+    "1b3",
+    "1b8",
+    "1c3",
+    "1c6",
+    "1cb",
+    "1d0",
+    "1d5",
+    "20b",
+    "1168",
+    "116c",
+    "1171",
+    "1174",
+    "1178",
+    "11e2",
+    "11ef",
+    "11f4",
+    "120f",
+    "1214",
+    "1219",
+    "121c",
+    "1220",
+    "1349",
+    "134e",
+    "1353",
+    "1356",
+    "135a",
+    "14fb",
+    "1500",
+    "1504",
+    "1508",
+    "152f",
+    "1534",
+    "1539",
+    "153c",
+    "1540",
+    "1579",
+    "157e",
+    "1583",
+    "1586",
+    "158a",
+    "16af",
+    "16b4",
+    "16b9",
+    "16bc",
+    "16c0",
+    "16c8",
+    "16cc",
+    "16d1",
+    "16d4",
+    "16d8",
+    "16ef",
+    "16f4",
+    "16f9",
+    "16fc",
+    "1700",
+    "1724",
+    "1728",
+    "172d",
+    "1730",
+    "1734",
+    "18ad",
+    "18ba",
+    "18d3",
+    "18d7",
+    "18f0",
+    "18f4",
+    "190d",
+    "1911",
+    "192a",
+    "192e",
+    "2658",
+    "265d",
+    "266a",
+    "266f",
+    "2bab",
+    "2bb0",
+    "2bb4",
+    "2bb9",
+    "2bbd",
+    "2ccc",
+    "2cd0",
+    "2cd4",
+    "2cd9"
+  ]
+}

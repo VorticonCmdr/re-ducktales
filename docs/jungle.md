@@ -561,6 +561,66 @@ must be checked in raw disassembly before implementing the scheduler. Graphics
 flip1fd4 points to live2ed7:00e5, which also calls the driver retrace helper0064.
 Keep driver-clock deadlines and display retraces separate from browser frames.
 
-Current original: paused106f:0ac0 stop306,variant0/day23,life3,after an actual
-projectile hit. All controls released,no breakpoints or pending schedules. Code
-mapping was revalidated at recovery274 and remains unchanged.
+## Stateful presentation and bounded pixel pages
+
+`jungle-presentation.js` translates main032b..047c,including dirty rectangle
+restores,platform redraw/coin passes,monkey/fish/vine/projectile histories,actor
+history,bonus presentation and the conditional HUD. Draw descriptors are consumed
+immediately before reuse; projectile drawing precedes its collision. Driver
+color is an explicit incoming/outgoing byte. No DOM or browser clock is used.
+The helpers retain original redraw-counter behavior,including the pickup pass
+occurring after decrementing static-platform redraws and the nested vine2 gate.
+
+`jungle-raster.js` keeps two EGA pages,one saved background and the forest strip.
+Pixel storage is bounded at108800 bytes,plus108800 bytes of validity masks and
+temporary current-pass commands/pixels. Reading unwritten bits stops explicitly;
+initial allocation zeroes are never accepted as original pixel evidence.
+It copies width>>3 bytes from sourceX>>3 to destinationX>>3,matching driver01ef;
+only the destination bottom is clipped. RAM planes remain contiguous,so right
+overscan retains scanline/plane addressing rather than being horizontally clipped.
+Unknown surfaces,negative rectangles,overlapping copies and reads outside allocated
+storage stop with diagnostics; those unsupported cases are not silently simulated.
+The existing pure sprite/font/line rasterizer draws into the selected page.
+
+`reference/jungle-presentation.json` pins19 local artifacts and6 independently
+started BEFORE/AFTER state passes307/308,309/310,314/315,316/317,318/319,320/321.
+Redraw counters entering these are0,0,3,2,1,0. All DS bytes compare exactly except
+helper/call/interrupt stack9df2..9e71 and the independently advancing IRQ8 counter
+2225..2228. Caller locals,dirty lists,histories,descriptors and adjacent RNG remain
+exact. Every pass consumes its independently captured incoming graphics-driver
+color; outgoing color matches exactly. No AFTER value supplies an input.
+
+After310,an armed032b condition78e8>0 sees19 nonmatching frames; the game returns
+to map without another matching stop. Pause311/delete248,then Map Fire100ms press/
+250ms release reaches resident0439 stop312 with target25/current25. No new override
+is needed. Entry313 revalidates the complete overlay after436 relocations at01f5.
+Fresh entry produces passes02..05. Each checkpoint atomically reads CPU,DS and
+2ed7:0024 color. This capture adds no register/memory write or restore; inherited
+conditional campaign setups remain explicit in the earlier manifests.
+
+A separate raster comparison carries only its pixel pages/background through
+02..05,consuming each original BEFORE game state and page descriptor. The first
+frame's own incoming stack flag9f42 requests copying to the other page. The final
+image matches all320x200 RGBA bytes of PNG323,after four passes,with no image
+exclusions or tolerance. The prior established fixed one-presentation VGA cache
+offset maps post-flip state322 to PNG323. Wrong PNG322 alignment is rejected.
+This is carried pixel storage with conditional game states,not a whole-game replay.
+Other negative controls remove an input/case/frame/restore,corrupt RNG/color/pixels,
+leave an event unconsumed,omit a required sink and read unwritten pixels:
+11 required negatives in total.
+
+The live EGA driver00e5..035c matches decoded IT.DRV1 except four required exact
+self-modifying words. Copy01ef writes32d/331=row-stride minus copy byte-width and
+341/34b=source/destination plane stride. Capture323 has36,36,8000,8000 following
+the32-pixel actor restore; these exact values replace the original1234 placeholders
+for code comparison. Every other byte is exact. They are expected code patches,
+not simulation inputs or a blanket code exclusion.
+
+Run `npm run verify:jungle` (also required by `npm run verify`). Missing/corrupt
+local captures fail setup. Pixel evidence covers this initial viewport sequence;
+scrolling,other hazard/hit pixels,driver deadlines,retrace scheduling,independent
+startup and browser jungle gameplay remain incomplete.
+
+Current original: paused0e0c:049a stop323,variant0/day24,after the next presentation
+following the initial dirty-restore frame. All controls released,no breakpoints or
+pending schedules. Fresh overlay mapping was revalidated at313.

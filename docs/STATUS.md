@@ -82,13 +82,16 @@ does not advance simulation. Unsupported paths stop with diagnostics.
   including the downward step and two-life blue coat/HUD. A separate original
   life-reset routine matches all DS except22 stack bytes. Seven negative controls
   reject wrong alignment,palette,background,pixel,state mutation,case loss and
-  reset argument. Full incremental rendering/scrolling/enemy pixels and hazard
-  scheduling remains incomplete. Hazard advancement adds12 conditional whole
+  reset argument. Full scrolling/enemy pixels and hazard scheduling remain incomplete. Hazard advancement adds12 conditional whole
   passes plus bonus/camera/projectile draw,miss and hit:18 game checkpoints and
   two pre-read driver-clock boundaries. All DS matches except documented stack
   scratch/caller locals; no RNG,clock or wait-base exclusions. Five independent
   arguments/events and seven negative controls are required. Remaining branches
-  have static evidence,not a complete carried gameplay replay.
+  have static evidence,not a complete carried gameplay replay. Presentation now
+  adds6 conditional whole-pass DS/color checks and a bounded two-page raster
+  pipeline:4 carried drawing passes match one exact320x200 original PNG,with
+  fixed one-presentation alignment and11 negative controls. This covers the
+  initial redraw/save/dirty-restore viewport,not scrolling or browser gameplay.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
@@ -130,8 +133,9 @@ variant0. These checks do not establish a complete original campaign replay.
   Hazard initializers and life setup are translated and compared separately;
   full-scene rendering now matches the captured initial viewport/drop/life reset.
   Hazard advancement/collisions and camera logic are translated with conditional
-  original checks. Presentation-side history/dirty updates, incremental page
-  behavior, scrolling and runtime/browser integration remain. See `docs/jungle.md`.
+  original checks. Presentation histories/dirty updates and the initial incremental page sequence
+  now match conditional original checks. Scrolling, whole-loop scheduling and
+  runtime/browser integration remain. See `docs/jungle.md`.
   Mountain actions/hazards, scrolling and summit condition are translated;
   variant0 ascent/reward works through browser controls. Other variants/
   difficulties and original hook/ascent comparisons are still needed. Full
@@ -166,23 +170,18 @@ Mountain foundation: `npm run prepare:mountain-analysis` and
 Jungle analysis/checks: `npm run prepare:jungle-analysis` and
 `npm run verify:jungle`; Python3 is required for the independent oracle.
 
-Next: translate jungle presentation-side history/dirty updates and scene
-scheduling, extend scrolling/incremental rendering checks, then connect the existing pieces to a
-playable browser route. Then expand photography, trading and
+Next: connect jungle memory/resource initialization,frame scheduling and the
+verified drawing pass to a playable browser route; extend scrolling checks. Then expand photography, trading and
 endings, while extending targeted original mountain hook/ascent comparisons. Continue targeted original comparisons for cave movement,
 remaining outcomes and notice presentation/timing. Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-jungle variant0/day23,life3, paused106f:0ac0 stop306 after a projectile hit.
-No breakpoints or pending schedules. Entry230 revalidates the complete relocated
-overlay. Its retry destination22→25 override at resident0439 is explicit conditional
-setup, separate from the earlier flight/repair override. Clock evidence pins
-decoded IT.DRV5 IRQ8 code and its DS1403:2225 destination. See
-`reference/jungle-hazards.json` and `docs/jungle.md`; older manifests remain pinned
-to their recorded stops. `reference/jungle-scene.json` pins20 local artifacts,
-eight exact PNG comparisons with a fixed one-presentation capture offset, and
-the life-reset258/259 boundary. `reference/jungle-advance.json` records the later
-conditional position/camera setups, rejected debugger-stop attempt, revalidated
-overlay,18 game checks and two clock-consumption boundaries. No browser jungle
-or full timing acceptance is claimed.
+jungle variant0/day24,paused0e0c:049a stop323 after a same-location retry.
+All keys released,no breakpoints or pending schedules. The complete relocated
+24056-byte overlay was revalidated at entry313; EGA copy/page code is pinned at323,
+including its four documented self-modifying operands. Previous conditional
+position/camera/target setup remains in its original manifests. The retry at312
+needed no additional override. `reference/jungle-presentation.json` pins19 local
+artifacts,six state/color passes and the four-pass conditional pixel pipeline.
+No whole jungle timing replay or browser jungle acceptance is claimed.

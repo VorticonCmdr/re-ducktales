@@ -11,6 +11,7 @@ import { verifyJungleInitialization } from "./verify-jungle-initialization.js";
 import { verifyJungleHazards } from "./verify-jungle-hazards.js";
 import { verifyJungleScene } from "./verify-jungle-scene.js";
 import { verifyJungleAdvance } from "./verify-jungle-advance.js";
+import { verifyJunglePresentation } from "./verify-jungle-presentation.js";
 import { unpackImage } from "../src/game/executable.js";
 import {
   parseJungleMap,
@@ -169,3 +170,11 @@ await verifyJungleScene({
 });
 
 await verifyJungleAdvance({ image, executableRaw: resources["DUCKTALE.EXE"] });
+
+await verifyJunglePresentation({
+  executableRaw: resources["DUCKTALE.EXE"],
+  driverEntries: parseArchive(resources["IT.DRV"]),
+  entries,
+  mainEntries: parseArchive(resources["MAIN.ARC"]),
+  mountainEntries: parseArchive(resources["MT.ARC"]),
+});

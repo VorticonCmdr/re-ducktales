@@ -1,0 +1,145 @@
+{
+  "buildManifest": "reference/build.json",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "id": "jungle-presentation-conditional-fb658562",
+  "captureSourceRevision": "dae81e5",
+  "codeIdentityManifest": "reference/jungle-advance.json",
+  "expectedCaseCount": 6,
+  "expectedCheckpointCount": 6,
+  "expectedInputCount": 6,
+  "inputEvents": [
+    {
+      "case": "00",
+      "colorArtifact": "00-before"
+    },
+    {
+      "case": "01",
+      "colorArtifact": "01-before"
+    },
+    {
+      "case": "02",
+      "colorArtifact": "02-before"
+    },
+    {
+      "case": "03",
+      "colorArtifact": "03-before"
+    },
+    {
+      "case": "04",
+      "colorArtifact": "04-before"
+    },
+    {
+      "case": "05",
+      "colorArtifact": "05-before"
+    }
+  ],
+  "caseSchedule": [
+    ["00", 307, 308, 0],
+    ["01", 309, 310, 0],
+    ["02", 314, 315, 3],
+    ["03", 316, 317, 2],
+    ["04", 318, 319, 1],
+    ["05", 320, 321, 0]
+  ],
+  "stackExclusion": [40434, 40562],
+  "deviceClockExclusion": [8741, 8745],
+  "injections": [],
+  "fittedInputs": [],
+  "startingRecipe": "Continue original projectile-hit stop306 from reference/jungle-advance.json. Run main032b then047c for cases00/01. Arm032b condition DS78e8>0 and continue:19 nonmatching presentations occur, then the game returns to map; no matching stop. Pause311, delete248. Map Space press100/release250ms reaches resident01f5:0439 stop312 with target25/current25, no override. Run jungle entry0e0c:0000 stop313 and capture complete24056-byte overlay; revalidate all436 relocations. Run032b/047c for four fresh-entry cases02..05. Every game checkpoint atomically captures CPU,DS64K,and graphics driver2ed7:0024 drawing color. No register/memory writes,restores,or fitted timers in this capture. All keys released; no breakpoints/pending schedules at321. After case05 AFTER321,run main049a stop322 and capture CPU+DS/raw PNG; run049a again stop323 and capture CPU+DS/raw PNG. Capture driver2ed7:00e5..035c at323. The fixed one-presentation VGA cache alignment established in jungle-scene maps case05 to PNG323; PNG322 is a required wrong-alignment negative control. Final live stop323 has no breakpoints or schedules.",
+  "inheritedSetup": "Cases00/01 inherit the conditional destination/position/camera setups recorded by jungle-advance. Fresh retry02..05 inherits campaign state but adds no override. No independent campaign or jungle replay claim.",
+  "environmentContract": "Each case starts from its own BEFORE DS. Required external drawing color comes only from the independently captured driver byte in BEFORE, never AFTER. Simulation owns all game globals,RNG,dirty lists,histories,resource descriptors. Draw sink must snapshot descriptors immediately; copy uses explicit original near surface handles. This segment has no wait/audio event consumption. IRQ8 clock advances independently and is not consumed in this presentation segment. The separate conditional raster sequence carries its own two video pages and saved background through cases02..05,while each pass consumes its own original BEFORE game state and driver page descriptor. The original first-frame flag SS:9f42 from BEFORE requests the one-time copy to the other page; no AFTER state supplies rendering input. This carries pixel storage only,not whole game logic.",
+  "comparisonRules": "Exact65536 DS bytes except128-byte helper call/local/interrupt stack union9df2..9e71 and identified IRQ8 counter2225..2228. Caller locals and adjacent RNG2229 compare exactly. Required external final drawing color exact. Each case owns an independent initial state; no carried whole-loop replay. Effect arguments are range/resource validated; the independent state cases alone do not establish pixel parity; the separate carried raster comparison below adds narrowly scoped pixel evidence. Separate pixel comparison:exact all320x200 RGBA bytes against raw PNG323,zero tolerance or image exclusions. Original EGA copy/page code00e5..035c must match decoded IT.DRV1. Draw storage remains bounded at two8192-byte-per-plane video pages,one8000-byte-per-plane background and one2816-byte-per-plane strip; no drawing history persists between frames. Driver identity preserves self-modifying copy operands:32d/331=36(row stride40 minus actor width32/8),341/34b=8000(descriptor plane stride). Those exact four word replacements are required; every other code byte remains exact. Per-bit validity masks reject reads from unwritten storage,including video padding and unused forest columns; allocation zeroes are not treated as original data.",
+  "exclusions": [
+    "Pixel coverage is only the four-pass conditional initial viewport pipeline,ending in the first dirty-restore frame. Scrolling/enemy/hit pixels,whole-game scheduling and browser acceptance remain unverified. CPU registers excluded except boundary contract.",
+    "Rendering sink arguments are validated against original assets; this does not prove that emitted effects reproduce original pixels."
+  ],
+  "artifacts": {
+    "retry": {
+      "path": ".local/jungle-present-retry.json",
+      "sha256": "4033ad098cf1ce438977619bf2bb9bd9797f338363abc8497dceebe108eea6bb"
+    },
+    "entry": {
+      "path": ".local/jungle-present-entry.json",
+      "sha256": "0e3608dcb16b4d51434c94b7fc287e980686e0cd8981d4313105db70b2e02155"
+    },
+    "00-before": {
+      "path": ".local/jungle-present-00-before.json",
+      "sha256": "bfb4db33b20b682702ce7bde36db633ab6dbec91760082b515415171b3ec42f4"
+    },
+    "00-after": {
+      "path": ".local/jungle-present-00-after.json",
+      "sha256": "26b0cdf90815edec206eb5284680505c4a1c336a424039c7e07fb53016377cab"
+    },
+    "01-before": {
+      "path": ".local/jungle-present-01-before.json",
+      "sha256": "c43443fa442f6b32832f04e2613b84c6e44120ebf1bac6a6fe0cae8f36539e21"
+    },
+    "01-after": {
+      "path": ".local/jungle-present-01-after.json",
+      "sha256": "e9407f433a3c1dba085637bb305a1e61619ce5179b0ae80222e3eeb8207dea14"
+    },
+    "02-before": {
+      "path": ".local/jungle-present-02-before.json",
+      "sha256": "f4363ed19edae2093a0a9e98f3708e3e8e0fb6a932ab777603fc974d2d217a49"
+    },
+    "02-after": {
+      "path": ".local/jungle-present-02-after.json",
+      "sha256": "d90d5d4f8accbe044ba33b7b29ea12f3adb919523fe7658e5f11c1d4997ecf73"
+    },
+    "03-before": {
+      "path": ".local/jungle-present-03-before.json",
+      "sha256": "3395958ba142911002c49c5a97811221c5088dffc340841098adbc890e5583c9"
+    },
+    "03-after": {
+      "path": ".local/jungle-present-03-after.json",
+      "sha256": "20ad9d1ac8eb2b025d50d0f5b641d156720ff2a7aa412c99a84d3024276f7c20"
+    },
+    "04-before": {
+      "path": ".local/jungle-present-04-before.json",
+      "sha256": "07201d6bb386cd640395e53f50382a2bb3c48a92502bda2c337a7da2cfe36a3c"
+    },
+    "04-after": {
+      "path": ".local/jungle-present-04-after.json",
+      "sha256": "d39cc202d9d237062cb8ffddaa774d64e52f9280bffc2d3524e562a4f327419a"
+    },
+    "05-before": {
+      "path": ".local/jungle-present-05-before.json",
+      "sha256": "d2d952e1e1b4fd6a05a08e13e003e35fafd78915853cc0de5b1819ed38ccf6d0"
+    },
+    "05-after": {
+      "path": ".local/jungle-present-05-after.json",
+      "sha256": "271d67749bc1eb7df15218f7078bc770d7c162bcf15f13714b4c82f2a598e027"
+    },
+    "pixels-322": {
+      "path": ".local/jungle-present-pixels-322.json",
+      "sha256": "cbe91a7a0d3af503b2bdb28cb0fd76f89f5c63cd267debfb81bf0205b1a83348"
+    },
+    "state-322": {
+      "path": ".local/jungle-present-state-322.json",
+      "sha256": "231687c72718c8b8b3175e085b96357ac968286db3b52b38e2a80dc77b24c710"
+    },
+    "pixels-323": {
+      "path": ".local/jungle-present-pixels-323.json",
+      "sha256": "96efa507ce3ecf66dd4e39d9dafc7c5c9d4f2fa0eb417c50b10180e02dad948e"
+    },
+    "state-323": {
+      "path": ".local/jungle-present-state-323.json",
+      "sha256": "2b213b2d79a8dfadf0ba97ece900204ff8eb8252174358116157a097cf88ec1c"
+    },
+    "driver": {
+      "path": ".local/jungle-present-driver.json",
+      "sha256": "64149528abcc31a22b60f84732835f5af4cd146df9f9951dc3fbfff66a7186d7"
+    }
+  },
+  "expectedPixelCheckpointCount": 1,
+  "expectedRasterPassCount": 4,
+  "pixelTolerance": 0,
+  "capturePresentationOffset": 1
+}

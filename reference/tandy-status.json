@@ -1,0 +1,93 @@
+{
+  "build": "dos-fb658562",
+  "driverSHA256": "c17ef1f352cc26f470c8297a070fbcf5fd3d6eaa8b146b3486b54f076205d80c",
+  "captureRevision": "tandy-status-v1-2026-10-27",
+  "captureTool": "dosbox-automation 0.84.0-vc1 (f6d9b), bridge0.1.1/protocol1.14",
+  "configuration": {
+    "instance": "0719a1b0cdcede0b85c39577ff760639",
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "mode": "x86 16-bit real mode",
+    "segment": 17820,
+    "physical": 285120
+  },
+  "inputs": "reference/tandy-status-inputs.json",
+  "inputsSHA256": "8579c1af6d122fb455450266b8b1d09b573aa18ced2343516a7959f0758fa996",
+  "fixtureSHA256": "e2733b9fe190578c08d9e71917503017dcbee30523199cd97d838ac06890bfe1",
+  "expectedCases": 12,
+  "expectedCheckpoints": 17,
+  "expectedEvents": 4,
+  "verify": "npm run verify:tandy-status",
+  "recipe": "docs/tandy-audio.md",
+  "scope": "Conditional native unsigned marker/status queries and a carried wait. All 12339 source/body bytes, far-return frame and return marker compare exactly. Four separately authored pointer-clear events drive wait completion; interrupts are disabled. No sequence execution, natural IRQ timing, waveform or in-game integration claim.",
+  "environment": "Source copy459c:0000, far frame459c:fef0->[4003,459c], scratch CLI/FAR JMP through499c, initial DS1403 and preserved general-register sentinels. Wait loop stops0694 and external two-byte zero writes clear channels0..3 in order. Expected outputs do not supply these events.",
+  "cleanup": "Original non-flag registers restored to0ed6:046e at stop1430, fixture freed, no breakpoints/allocations remain. Port61 control bits unchanged; timer/refresh observation bits4/5 may differ. Flags/device clocks are not restored: not a machine checkpoint.",
+  "artifacts": {
+    "00": {
+      "path": ".local/tandy-status/00.json",
+      "sha256": "b8ad079ce015ae3701a31c82f34f7aa006f72c30c3bd0255cbab8dc047c71dbe"
+    },
+    "01": {
+      "path": ".local/tandy-status/01.json",
+      "sha256": "5381cb77ef629ebf21b15b915c324727433c254515c3323b273edcc9b5f576bf"
+    },
+    "02": {
+      "path": ".local/tandy-status/02.json",
+      "sha256": "57dcdef697e666600a00b0920aa35caf95ec10d0d40f08f8e2ee414aa0e6a86a"
+    },
+    "03": {
+      "path": ".local/tandy-status/03.json",
+      "sha256": "d5565352d0d9ce8f0aec4718db3a4a0492a70b7967615e824a0ae06aeba17ddb"
+    },
+    "04": {
+      "path": ".local/tandy-status/04.json",
+      "sha256": "f5edea19f5862510fbf38701567c4e0bb9d8d1c36a96097c023ba668cf7a9dd3"
+    },
+    "05": {
+      "path": ".local/tandy-status/05.json",
+      "sha256": "1544b25365db6297d5f753381cb5f03a1390e312aad9fb630e9ae817a48da91f"
+    },
+    "06": {
+      "path": ".local/tandy-status/06.json",
+      "sha256": "00c7d6530b74db6753e8b7e09528058415e9639bcc398aeed3057e3f656e7268"
+    },
+    "07": {
+      "path": ".local/tandy-status/07.json",
+      "sha256": "25fc9ed96abc0b2a0afade76c326f3ce35f01398fd52187d8fb2821f393efa6e"
+    },
+    "08": {
+      "path": ".local/tandy-status/08.json",
+      "sha256": "b02cb16c0626c2a41cec0cdfdf529c57f9fcca5bcb1575934d1c625756ce742b"
+    },
+    "09": {
+      "path": ".local/tandy-status/09.json",
+      "sha256": "aae5188d889c62ed90e7079b4bf30e5abc1e2c044cb8cbe1ab315c1169fdc9ce"
+    },
+    "10": {
+      "path": ".local/tandy-status/10.json",
+      "sha256": "90c8b5b244d9fa63b9e76c1f33ec8147ed19ce761bc0fe05cd3a29b81b76a2a5"
+    },
+    "11": {
+      "path": ".local/tandy-status/11.json",
+      "sha256": "162df64d01b3caa0bcbb409973966d66b5e3343f9ef37e08b3490170d9016981"
+    },
+    "cleanup": {
+      "path": ".local/tandy-status/cleanup.json",
+      "sha256": "47ebe2435415b6ab395d5c1d3f8b27865683bd1bfee20814e03f58b1a1b0b1d5"
+    },
+    "context": {
+      "path": ".local/tandy-status/context.json",
+      "sha256": "a4f716ba1aed91b6280968b90b5f655ab890703d21a81a8612a3ea4bbc0018f5"
+    },
+    "wait": {
+      "path": ".local/tandy-status/wait.json",
+      "sha256": "5a8e50a65daad8189b07bc7f913073a24739da8af138b001f2261646be72ea30"
+    },
+    "environment": {
+      "path": ".local/tandy-status/environment.json",
+      "sha256": "c0986ee88806627d546c08a2c863c89e0f0573e6191af563b342f71d59396bf3"
+    }
+  },
+  "configurationProvenance": "svga_s3/3000 retained from reference/tandy-driver.json setup; current bridge receipt confirms same instance, engine/protocol, original read-only C drive and normal core. These routines run with IF clear; no elapsed-time assertion depends on inherited cycles."
+}

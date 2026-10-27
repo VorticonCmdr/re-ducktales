@@ -440,9 +440,24 @@ export class TandyDriver {
     }
     this.byte(0x1b3, 255);
   }
+  get marker() {
+    // Far0686: AL=CS:[02ea], AH=0. This is not playback status.
+    return this.byte(0x2ea);
+  }
+  get playbackStatus() {
+    // Far06c8: first nonzero sequence pointer wins, returning4..1, else0.
+    // Duration bytes may be zero while a channel still owns a sequence.
+    for (let ch = 0; ch < 4; ch++)
+      if (this.word(this.word(0x2b1 + ch * 2)) !== 0) return 4 - ch;
+    return 0;
+  }
+  pollWait() {
+    // One observation of far068d's wait condition. The original spins while
+    // IRQs change these pointers. The caller supplies advancement separately;
+    // querying never injects ticks, clears channels or advances host time.
+    return this.playbackStatus === 0;
+  }
   get active() {
-    return [0, 1, 2, 3].some(
-      (ch) => this.byte(this.word(0x2b1 + ch * 2) + 2) !== 0,
-    );
+    return this.playbackStatus !== 0;
   }
 }

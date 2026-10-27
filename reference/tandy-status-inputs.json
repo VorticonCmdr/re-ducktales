@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "name": "marker-zero",
+      "entry": 1670,
+      "marker": 0,
+      "pointers": [0, 0, 0, 0],
+      "durations": [0, 0, 0, 0]
+    },
+    {
+      "name": "marker-high-bit",
+      "entry": 1670,
+      "marker": 128,
+      "pointers": [1, 0, 0, 0],
+      "durations": [0, 0, 0, 0]
+    },
+    {
+      "name": "marker-ff",
+      "entry": 1670,
+      "marker": 255,
+      "pointers": [0, 0, 0, 0],
+      "durations": [255, 0, 0, 0]
+    },
+    {
+      "name": "idle",
+      "entry": 1736,
+      "marker": 37,
+      "pointers": [0, 0, 0, 0],
+      "durations": [0, 0, 0, 0]
+    },
+    {
+      "name": "channel-zero",
+      "entry": 1736,
+      "marker": 37,
+      "pointers": [1, 0, 0, 0],
+      "durations": [0, 0, 0, 0]
+    },
+    {
+      "name": "channel-one",
+      "entry": 1736,
+      "marker": 37,
+      "pointers": [0, 256, 0, 0],
+      "durations": [0, 0, 0, 0]
+    },
+    {
+      "name": "channel-two",
+      "entry": 1736,
+      "marker": 37,
+      "pointers": [0, 0, 65535, 0],
+      "durations": [0, 0, 0, 0]
+    },
+    {
+      "name": "channel-three",
+      "entry": 1736,
+      "marker": 37,
+      "pointers": [0, 0, 0, 12288],
+      "durations": [0, 0, 0, 0]
+    },
+    {
+      "name": "first-of-all",
+      "entry": 1736,
+      "marker": 37,
+      "pointers": [12288, 12288, 12288, 12288],
+      "durations": [0, 0, 0, 0]
+    },
+    {
+      "name": "first-of-later",
+      "entry": 1736,
+      "marker": 37,
+      "pointers": [0, 0, 1, 1],
+      "durations": [255, 255, 0, 255]
+    },
+    {
+      "name": "durations-do-not-mean-busy",
+      "entry": 1736,
+      "marker": 37,
+      "pointers": [0, 0, 0, 0],
+      "durations": [255, 255, 255, 255]
+    },
+    {
+      "name": "busy-with-expired-duration",
+      "entry": 1736,
+      "marker": 37,
+      "pointers": [0, 1, 0, 0],
+      "durations": [0, 0, 255, 0]
+    }
+  ],
+  "wait": {
+    "name": "wait-for-every-channel",
+    "entry": 1677,
+    "marker": 128,
+    "pointers": [12288, 12289, 12290, 12291],
+    "durations": [0, 0, 0, 0],
+    "events": [
+      { "clearChannel": 0 },
+      { "clearChannel": 1 },
+      { "clearChannel": 2 },
+      { "clearChannel": 3 }
+    ]
+  }
+}

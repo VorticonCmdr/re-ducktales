@@ -36,7 +36,8 @@ pitch slide/vibrato:25 calls,14530 samples at44100Hz.002 has27 calls/15741 sampl
 036 has6 calls/3027 samples;067/068 have17 calls/9686 samples. Browser acceptance
 uses real keyboard/buttons,native audio completion and a one-sample tolerance
 for the browser's microsecond-rounded WAV duration. Hardware waveform parity,
-in-game Tandy and original status-query/wait APIs are unfinished.
+in-game Tandy and original wait timing are unfinished. Native status queries and
+the wait predicate are verified below.
 
 ## Source evidence
 
@@ -587,3 +588,79 @@ ticks. Final log: `.local/tandy-live-final-verify.log`. Runtime/package/test fil
 remained frozen during this run. The earlier focused failure-injection attempt
 could not intercept Chromium's worklet request; the corrected URL-export
 injection and final full run pass without mocking audio or suppressing errors.
+
+
+## Marker, playback status and wait predicate
+
+Resource 004 exports separate far calls: 0686 returns the unsigned marker byte
+at 02ea with AH cleared; 06c8 returns 4, 3, 2 or 1 for the first nonzero channel
+sequence pointer, or zero if all four are zero. The duration byte at record+2
+is not its busy condition. At 068d the original scans those same pointer words
+in channel order, restarting at 0694 whenever any is nonzero. It returns only
+after a complete empty scan. The driver table maps these to resident far vectors
+DS:202c, DS:2028 and DS:2024 respectively. The initializer at 140e:0909 copies
+nine resource offsets to the far-vector table beginning at DS:2010.
+
+`TandyDriver.marker` and `playbackStatus` translate the two queries. `pollWait()`
+performs one observation of the wait predicate and returns true only when it
+can finish. It never advances time or clears a pointer. `active` now uses the
+original pointer condition. Simulation/audio providers remain responsible for
+interrupt advancement. This is a polling boundary, not an instruction-timed
+translation of the original spin loop or its asynchronous interrupt interleaving.
+
+`reference/tandy-status-inputs.json` independently defines 12 query cases and
+four ordered external pointer-clear events for one carried wait. Cases include
+marker 00/80/ff, each channel, competing channels, a high pointer byte, zero
+pointers with nonzero durations, and nonzero pointers with zero durations.
+The native wait blocks on each channel and returns after the fourth clear.
+No expected output supplies a clear event. Native snapshots compare all 12,339
+source/body bytes, the four-byte far return frame and two-byte return marker
+without exclusions. Unsigned AX results and preserved registers are checked.
+
+To reproduce, use the existing read-only original pairing, normal real-mode
+DOSBox instance and validated caller 0ed6:046e. Allocate 65,535 bytes at 459c
+(physical 285120), prepare each input with `prepareTandyStatusCase`, and write
+its source/body plus far frame and marker. Set SP=fef0, SS=459c, DS=1403,
+ES=a200 and general-register sentinels AX=abcd, BX=beef, CX=cdef, DX=2468,
+SI=1357, DI=2468, BP=3579; their high words are 1234/5678/90ab/1357/2468/3579/4680.
+Enter through scratch CS=499c: write `CLI; JMP FAR 459c:entry` at allocation
+4000+currentIP and step exactly two instructions. Assert the entry's original
+bytes, real mode, normal core and IF/DF clear. Query cases run to 459c:4003.
+Capture CPU, entire body, fef0..fef3 and 4003..4004 before and after.
+
+For the wait, first stop at 0694, then run to its next visit and capture the
+blocked scan. Clear only the pointer word for the next input's channel, capture
+again, and repeat for channels 0 through 3. DI at each blocked visit identifies
+01d1/0209/0241/0279. After the last clear, run to 4003 and verify preserved
+registers and SP=fef4. These clears are explicit fixture injections with IRQs
+disabled, not a natural sound completion or a full-machine replay. Source
+instructions remain unpatched. Stack scratch below fef0 is outside the compared
+source/body and return-frame regions.
+
+Manifest `reference/tandy-status.json` pins capture revision, configuration,
+source/input/preparer hashes, 16 local artifacts, 17 checkpoints and four events.
+`npm run verify:tandy-status` fails on missing/corrupt artifacts, altered state,
+return values, skipped/unfinished waits and unconsumed inputs. Seven negative
+controls exercise those failures; it is mandatory in `npm run verify:tandy`.
+All 121 corpus outcomes and ten live-provider replays remain unchanged by the
+pointer-based completion check.
+
+Cleanup restores the original non-flag registers, frees the fixture and verifies
+empty breakpoint/allocation registries. Original caller is paused at stop 1430.
+Port61 control bits remain unchanged; timer/refresh observation bits 4/5 can
+change as hardware time advances. Flags and device clocks are not restored,
+so this is not a complete checkpoint. A fresh launch is needed before natural
+runtime comparisons. Actual gameplay still uses PC-speaker audio; wiring the
+persistent Tandy device to game requests, engine events and status consumers
+remains the next milestone.
+
+This milestone passes 68 unit tests, all Tandy original-data/provider/corpus
+comparisons, 15 development browser audio scenarios and the production worklet
+scenario. Log: `.local/tandy-status-final-verify.log`. The previous full campaign
+gate remains recorded separately; this change touches only driver query and
+completion semantics, so its browser regression is scoped to audio. The current
+bridge/environment receipt pins the same emulator instance, version, protocol,
+read-only original drive and normal core. Machine/cycle setup is inherited from
+the earlier driver fixture; this capture makes no elapsed-time claim. Debugger
+stop records describe the last instruction stop; fresh CPU reads in the cleanup
+receipt verify registers after the subsequent restoration writes.

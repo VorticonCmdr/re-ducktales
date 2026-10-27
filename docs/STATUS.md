@@ -128,8 +128,12 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   original runtime/waveform evidence. All 109 prior completed file renditions
   retain exact PCM, timing and port sequences. Live Stop/replay, asset cleanup,
   missing-module failure and a built production worklet/folder route are checked.
-  Next: connect persistent Tandy to actual game sound/engine events and translate
-  original status-query/wait APIs. Full original IRQ phase, device waveform,
+  Native marker/status queries and the wait predicate now match 12 original
+  queries and five carried wait checkpoints, consuming four independent clear
+  events. Completion checks sequence pointers rather than note durations.
+  Next: connect persistent Tandy to actual game sound/engine events and status
+  consumers; original asynchronous wait timing remains unverified. Full original
+  IRQ phase, device waveform,
   gain/filter timing and whole-engine replay remain unproven. In-game audio
   still uses the PC-speaker driver, whose noise/engine effects are approximate.
   Commands:`npm run verify:tandy`,`npm run verify:tandy-production` and full
@@ -171,14 +175,16 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`: 68 unit tests, 47 development
-browser scenarios and one production browser scenario, all required original-data
-checks and the production build. Integration log:
+The preceding live-player milestone passed full `npm run verify`: 68 unit tests,
+47 development browser scenarios and one production browser scenario, all
+required original-data checks and the production build. Log:
 `.local/tandy-live-final-verify.log`. Sound 001 finishes naturally through actual
-browser audio after 3,558 ticks; production acceptance loads the original folder
-and plays/stops the compiled worklet. The speaker asset audit also retains 121
-successful renditions. Runtime, package and browser-test sources remained frozen
-throughout the final full run.
+browser audio after 3,558 ticks. The subsequent status/wait correction passes
+68 unit tests, all Tandy comparisons, 15 development browser audio scenarios and
+the production worklet/folder route; log `.local/tandy-status-final-verify.log`.
+Its 12 native queries and five carried wait checkpoints distinguish sequence
+pointers from durations without changing any corpus or live replay outcome.
+No whole-campaign acceptance is inferred from the focused audio regression.
 
 One browser worker keeps the full mountain/jungle replays within their existing
 120-second limits; their required inputs and checkpoint counts are unchanged.
@@ -265,9 +271,11 @@ The original repository's `main` remains the local integration target; no push
 or deployment is authorized. The existing `.gitignore` remains unchanged.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,paused
-0ed6:046e stop 1397, DS/SS1403, after the conditional Tandy-driver harness. Rechecked
-with the live debugger. Original general/segment registers, port61 control and the saved BIOS flag byte
-were restored to the saved caller. CPU flags, clocks, PIC and other BIOS/device
+0ed6:046e stop 1430, DS/SS1403, after the conditional Tandy status/wait harness. Rechecked
+with the live debugger. Fresh CPU reads confirm original general/segment
+registers restored to the saved caller. Port61 control bits remain unchanged;
+its timer/refresh observation bits can advance. The query harness does not
+modify the BIOS flag byte. CPU flags, clocks, PIC and other BIOS/device
 state are not a machine checkpoint.
 The allocated fixture was freed and owned breakpoints cleared. This is not a
 machine checkpoint or a natural campaign replay. Fresh launch/address validation

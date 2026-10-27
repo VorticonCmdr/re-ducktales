@@ -8,6 +8,10 @@ This is x86 16-bit real-mode driver code, with no extender. Ghidra program
 
 ## Delivered behavior
 
+In the game, choose **Tandy / PCjr** under **Sound device** before enabling
+sound. The persistent device now handles game requests, flight-engine words
+and actual completion waits. PC speaker remains available as the default.
+
 In `viewer.html`, select a Sound asset. Both speaker and Tandy renditions are
 attempted independently. Translated Tandy paths offer **Play Tandy preview**;
 unsupported paths stop with a visible diagnostic and no Tandy playback. A
@@ -35,8 +39,8 @@ Native complete-cue comparisons cover002,010,025,035,036,067,068.025 demonstrate
 pitch slide/vibrato:25 calls,14530 samples at44100Hz.002 has27 calls/15741 samples;
 036 has6 calls/3027 samples;067/068 have17 calls/9686 samples. Browser acceptance
 uses real keyboard/buttons,native audio completion and a one-sample tolerance
-for the browser's microsecond-rounded WAV duration. Hardware waveform parity,
-in-game Tandy and original wait timing are unfinished. Native status queries and
+for the browser's microsecond-rounded WAV duration. Hardware waveform parity and
+original asynchronous wait timing remain unverified. Native status queries and
 the wait predicate are verified below.
 
 ## Source evidence
@@ -373,7 +377,7 @@ are not original waveform goldens. Browser scenarios032 (tempo/no-op) and037
 (sustained pitch) exercise actual keyboard activation,native completion,repeat
 playback and asset switching. Noise and zero-period behavior were unfinished
 at that milestone; the current support is recorded below. Engine playback,
-remaining commands and persistent in-game Tandy remain unfinished.
+at that milestone, remaining commands and persistent in-game Tandy were unfinished.
 Requests006/038 reach the1024-tick audition limit; that limit does not establish
 that their original sequences are invalid or should terminate.
 
@@ -455,7 +459,7 @@ is not evidence that an original music sequence is invalid or must terminate.
 No partial audio is offered after failure. Native browser audio scenarios add
 003,010,035 and069 (the formerly blocked zero-period path),with keyboard play,
 completion,replay and asset switching. Original whole-game/device waveform,
-gain/filter/sample alignment and persistent in-game Tandy remain unverified.
+at that milestone, gain/filter/sample alignment and persistent in-game Tandy remained unverified.
 
 
 The noise milestone passes full `npm run verify`:66 unit tests,44 browser
@@ -576,9 +580,8 @@ Production acceptance uses `npm run verify:tandy-production`: build, serve the
 built files, select the real original folder and play/stop the compiled worklet.
 It runs after development-browser checks in full `npm run verify`. The relative
 worklet asset URL is verified in a production server;no publication/deployment
-has occurred. Viewer support does not yet connect Tandy to the game's sound
-inputs, engine-speed events or original marker/status/wait consumers. In-game
-audio remains the separate PC-speaker rendition.
+has occurred. At the live-viewer milestone, gameplay integration was still pending; the
+persistent in-game milestone below supersedes that boundary.
 
 The live-player milestone passes full `npm run verify`: 68 unit tests, 47
 development browser scenarios and one production browser scenario, plus all
@@ -650,9 +653,8 @@ empty breakpoint/allocation registries. Original caller is paused at stop 1430.
 Port61 control bits remain unchanged; timer/refresh observation bits 4/5 can
 change as hardware time advances. Flags and device clocks are not restored,
 so this is not a complete checkpoint. A fresh launch is needed before natural
-runtime comparisons. Actual gameplay still uses PC-speaker audio; wiring the
-persistent Tandy device to game requests, engine events and status consumers
-remains the next milestone.
+runtime comparisons. At the status-query milestone, gameplay still used PC-speaker audio. The
+persistent in-game milestone below connects those requests and waits.
 
 This milestone passes 68 unit tests, all Tandy original-data/provider/corpus
 comparisons, 15 development browser audio scenarios and the production worklet
@@ -664,3 +666,133 @@ read-only original drive and normal core. Machine/cycle setup is inherited from
 the earlier driver fixture; this capture makes no elapsed-time claim. Debugger
 stop records describe the last instruction stop; fresh CPU reads in the cleanup
 receipt verify registers after the subsequent restoration writes.
+
+
+## Persistent in-game Tandy / PCjr
+
+With sound switched off, choose **Tandy / PCjr** in the game's **Sound device**
+menu, then enable **Sound (reconstructed)**. PC speaker remains the default.
+The selector is disabled while sound is enabled. These are two explicit output
+choices; a Tandy failure stops with a diagnostic and never starts speaker audio.
+The viewer retains its separate finite and long-sequence audition controls.
+
+`TandyGameStream` owns one `TandyPlayback` with the original divider 12. It
+keeps advancing the same device through silence, sound replacement and resets.
+A new request calls the original word API; it does not clear other channels or
+replace the driver. Consequently the original signed priorities, compound
+starts, engine flag, channel caches and IRQ phase carry across requests.
+Its providers explicitly choose initial port61=0, first IRQ at sample frame0,
+virtual clock/BIOS flags=0 and the established NCR8496 digital initial state.
+These choices are reproducible provider inputs, not recovered original phases.
+
+Requests have strictly increasing sequence numbers and optional scoped game
+completion tokens. The processor acknowledges the actual consumed word/token
+at its audio-frame boundary. It polls the verified global sequence-pointer
+condition after each IRQ and completes all pending tokens only when every
+channel is idle. A reset request0 can complete them at its consumption boundary.
+Completion timestamps therefore describe the source IRQ or reset, rather than
+the end of the browser's output block or a guessed WAV duration. Output-block
+size has no effect on PCM, driver state, acknowledgement or completion events.
+
+The browser adapter retains ordered requests while loading its Vite-built
+AudioWorklet, unlocks the native AudioContext from user input, validates every
+word/token acknowledgement, and reports status through the existing
+`audio-status` simulation input. Its `gameaudio` DOM event exposes consumed
+acknowledgement/completion events for recording; it does not advance simulation.
+Mute and game stop effects issue request0. Device switching issues a final
+reset, waits for its acknowledgement with no remaining requests/tokens, and
+then closes the context. Explicit failure/page teardown also disposes it.
+Hidden-page suspension follows the browser scheduler's existing pause policy;
+in-game P does not suspend the audio device or its IRQ clock.
+
+Flight starts engine request9 once, at overlay4:01de..01e8. After each physics
+call, 020c..022a loads float32 DS:0fae, invokes resident140e:52c2's truncating
+integer conversion, shifts AX by11 and ORs AL with8. The translation emits
+`(Math.trunc(speed) << 11 | 8) & 65535`, retaining the high-bit control and word
+wrapping. The compiler helper temporarily ORs the FPU control word with0c00;
+its original software-FPU escapes and the exact original caller ranges are
+hash-pinned in `reference/tandy-game.json`. Ghidra's normalized overlay listing
+is used for understanding, while the resident helper is checked as original
+bytes, not trusted decompiled C. This caller rule is **statically inferred**.
+Existing conditional original engine/IRQ checks validate the receiving driver;
+there is no claim of an original complete-flight sound timeline comparison.
+The unsupported nonfinite/out-of-int32 conversion boundary stops explicitly.
+The PC-speaker audition still omits this parameterized flight-engine path.
+
+Three independent carried provider scenarios use the separate schedules in
+`reference/tandy-game-inputs.json`: two natural cues separated by idle time;
+engine start/speed/effect overlap and reset; and music/effect priority/reset
+followed by a new cue. Thirteen requests produce sixteen exact state/PCM
+checkpoints and six token-completion events. Frame budgets and input times
+are authored independently. `reference/tandy-game.json` contains **port
+regression** hashes, not original waveform or full-game goldens. The mandatory
+`npm run verify:tandy-game` compares all events, counters, driver/chip/PCM hashes
+and eleven static conversion boundaries. It rejects missing cases, altered PCM,
+omitted inputs, skipped checkpoints, false completion and unconsumed/unfinished
+schedules, with seven negative controls. A second independent output-block size
+produces exactly the same result. Existing native driver/query/chip comparisons
+remain separate mandatory evidence.
+
+Browser exploration confirmed money-bin output, flight speed word2008, and
+flight/crash/guide/cave transitions. The first cave room does not itself wait
+on a sound. Automated acceptance therefore reaches the **pit ending**, whose
+final sound47 is followed by the actual `waitAudio()` before expedition results.
+It records native processor acknowledgements/completions through `gameaudio`,
+checks that the wait token completes at a later audio frame with status0, and
+requires every issued request acknowledged. This route injects only actual
+keyboard/pointer controls and an independently supplied simulation clock;
+native audio time is never mocked or completed by a fitted timer. Separate
+browser cases check money-bin cue continuity, mute/reset, acknowledged device
+closure, continued PC-speaker playback, and a missing-module diagnostic.
+Production acceptance loads the user's original folder into the compiled game
+and plays/mutes/closes the real persistent worklet. No original assets are
+bundled, overwritten, committed or deployed.
+
+The earlier focused test failures are retained locally: the frozen simulation
+clock initially prevented its first frame, and an initial assertion incorrectly
+expected the first cave room to play the later reward cue. The corrected test
+waits for resource loading before its first supplied frame and exercises the
+real pit sound-wait path. Neither failure was hidden or accepted as passing.
+
+**Remaining fidelity boundary:** browser requests are consumed at real worklet
+message boundaries; simulation driver/retrace clocks are separate explicit
+providers. Their phase relationship, RAF batching versus original CPU request
+latency, natural IRQ interleaving, hardware waveform/gain/filter timing, title
+music dispatch and complete original game audio timelines remain unverified.
+A working selected route does not prove every campaign or edition finishable.
+
+The sound-effect gate reads the simulation's authoritative `audioEnabled` flag,
+not the checkbox that is repainted later in the animation frame. A native
+browser negative control temporarily restored the old checkbox gate on an
+isolated development server. During a 250ms supplied frame containing both an
+S-key poll and subsequent physics, the checker observed engine word8200 after
+mute and rejected it. The corrected source was restored before final testing.
+The test waits for every issued request's acknowledgement before checking the
+reset, so an intermediate reset acknowledgement cannot hide a later request.
+The first negative-control attempt on the shared development server encountered
+a hot reload before the campaign started; it was explicitly rejected as
+unrelated evidence. The isolated rerun detected the intended mute defect.
+The first full gate was deliberately stopped before browser acceptance to fix
+this edge case; its partial log is not a passing verification receipt.
+
+Production acceptance exposed a checkbox repaint race: a display frame can
+precede consumption of its queued `audio-enabled` input. The browser now retains
+that pending intent until the scheduler's consumed log contains the exact input
+object. It then publishes the authoritative final state, including any later
+S-key event. This also clears on load/restart. A supplied8ms display update
+between input ticks verifies the checkbox stays checked; an isolated negative
+control restoring the old repaint failed that exact assertion. The compiled
+folder-loading/game/audio test subsequently passed. Its earlier failed full
+run remains in `.local/tandy-game-production-race-verify.log`, not a success
+receipt. These UI changes do not advance simulation or satisfy audio tokens.
+
+Final persistent-game acceptance passes full `npm run verify`: 71 unit tests,
+50 development-browser scenarios and two production-browser scenarios, all
+required original-data checks and the production build. The runtime, package
+and test sources remained frozen throughout this final run. Authoritative log:
+`.local/tandy-game-final-verify.log`. Sound 001's complete native browser ending
+still passes. Both game and viewer compiled worklets load and play from the
+original-folder interface. The original DOSBox session was rechecked read-only
+at stop1430; fresh CPU reads still show the restored non-flag caller registers.
+No original machine-state restoration or complete original audio parity is
+inferred from these browser/provider checks.

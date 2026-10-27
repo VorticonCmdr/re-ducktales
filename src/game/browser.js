@@ -6,6 +6,7 @@ import { verifiedResources, REQUIRED_FILES } from "./resources.js";
 import { renderSound, wavFile } from "../audio.js";
 import { parseCaveMaps } from "./cave-scene.js";
 import { investmentResources } from "./investments.js";
+import { GameTandyAudio } from "./tandy-audio.js";
 const $ = (id) => document.getElementById(id);
 let game,
   renderer,
@@ -14,6 +15,37 @@ let game,
   scheduler,
   resumeAudio = false,
   pausedAt = null;
+let tandyAudio,
+  tandyGeneration = 0,
+  pendingAudioInput = null;
+function ensureTandyAudio() {
+  if (tandyAudio?.disposed) tandyAudio = null;
+  if (!tandyAudio && resources) {
+    const generation = ++tandyGeneration;
+    tandyAudio = new GameTandyAudio(resources.archives.get("IT.DRV")[4].data, {
+      status: (token, busy) => dispatch({ type: "audio-status", token, busy }),
+      stats: (values) => {
+        if (generation !== tandyGeneration) return;
+        $("sound").dataset.device = $("audio-device").value;
+        for (const [key, value] of Object.entries(values))
+          if (value !== undefined) $("sound").dataset[key] = String(value);
+      },
+      fail: fatal,
+      observe: (event) =>
+        $("sound").dispatchEvent(
+          new CustomEvent("gameaudio", { detail: event, bubbles: true }),
+        ),
+    });
+  }
+  return tandyAudio;
+}
+function unlockTandyAudio() {
+  try {
+    if ($("audio-device").value === "tandy") ensureTandyAudio()?.unlock();
+  } catch (error) {
+    fatal(error);
+  }
+}
 const held = new Set();
 function mapDirection() {
   const x = Number(held.has("ArrowRight")) - Number(held.has("ArrowLeft"));
@@ -51,6 +83,7 @@ function fatal(error) {
   $("diagnostic").textContent =
     `Stopped: ${error.message}\nRestart after resolving this diagnostic.`;
   playing?.pause();
+  tandyAudio?.close();
 }
 function dispatch(event) {
   if (!game) return;
@@ -70,6 +103,9 @@ async function load(read) {
   try {
     $("status").textContent = "Checking original files…";
     resources = await verifiedResources(read);
+    tandyAudio?.close();
+    tandyAudio = null;
+    pendingAudioInput = null;
     game = new Game({
       biosSeed: 0,
       audioEnabled: $("audio").checked,
@@ -168,6 +204,7 @@ $("money-bin").onclick = () => {
   dispatch({ type: "money-bin" });
 };
 $("restart").onclick = () => {
+  pendingAudioInput = null;
   stopSound();
   held.clear();
   if (game) {
@@ -197,6 +234,8 @@ window.addEventListener("keydown", (event) => {
   )
     return;
   if (event.target instanceof HTMLInputElement) return;
+  if (event.target instanceof HTMLSelectElement) return;
+  if ($("audio").checked || event.code === "KeyS") unlockTandyAudio();
   event.preventDefault();
   const systemKey = {
     KeyP: "pause",
@@ -263,6 +302,7 @@ document.addEventListener("visibilitychange", () => {
     resumeAudio = !!playing && !playing.paused;
     audioGeneration++;
     playing?.pause();
+    tandyAudio?.setSuspended(true);
   } else if (pausedAt !== null) {
     scheduler?.pauseDuration(now - pausedAt);
     pausedAt = null;
@@ -271,6 +311,7 @@ document.addEventListener("visibilitychange", () => {
       playing?.play().catch((e) => audioFailure(e, generation));
     }
     resumeAudio = false;
+    tandyAudio?.setSuspended(false);
   }
 });
 const sounds = new Map();
@@ -286,6 +327,7 @@ function audioFailure(error, generation) {
 function stopSound() {
   audioGeneration++;
   playing?.pause();
+  if (tandyAudio && !tandyAudio.disposed) tandyAudio.request(0);
   if (activeAudioToken !== null) {
     dispatch({ type: "audio-status", token: activeAudioToken, busy: false });
     activeAudioToken = null;
@@ -295,7 +337,17 @@ function effects() {
   for (const event of game.drainEffects()) {
     if (event.type === "flushControls") held.clear();
     if (event.type === "stopAudio") stopSound();
-    if (event.type === "sound" && $("audio").checked) {
+    if (event.type === "sound" && game.audioEnabled) {
+      if ($("audio-device").value === "tandy") {
+        ensureTandyAudio().request(
+          event.argument ?? event.id,
+          event.token ?? null,
+        );
+        continue;
+      }
+      // The existing speaker audition omits its parameterized engine. Tandy
+      // receives the real start/speed words through its persistent device.
+      if (event.engine) continue;
       if (!sounds.has(event.id))
         sounds.set(
           event.id,
@@ -331,9 +383,23 @@ function effects() {
   }
 }
 $("audio").onchange = () => {
-  dispatch({ type: "audio-enabled", enabled: $("audio").checked });
+  if ($("audio").checked) unlockTandyAudio();
+  const event = { type: "audio-enabled", enabled: $("audio").checked };
+  pendingAudioInput = { event, from: scheduler?.consumed.length ?? 0 };
+  dispatch(event);
   if (!$("audio").checked) stopSound();
 };
+$("audio-device").onchange = () => {
+  if (game?.audioEnabled) {
+    fatal(Error("Switch sound off before changing its device"));
+    return;
+  }
+  const previous = tandyAudio;
+  tandyAudio = null;
+  previous?.stopAndClose().catch(fatal);
+  $("sound").dataset.device = $("audio-device").value;
+};
+window.addEventListener("pagehide", () => tandyAudio?.close());
 function frame() {
   const now = performance.now();
   try {
@@ -360,7 +426,19 @@ function frame() {
         game.exiting ||
         (game.scene === "ending" && game.ending.phase === "closed");
       $("quit-yes").hidden = $("quit-no").hidden = overlay?.kind !== "quit";
-      $("audio").checked = game.audioEnabled;
+      if (
+        pendingAudioInput &&
+        scheduler.consumed
+          .slice(pendingAudioInput.from)
+          .some((entry) => entry.event === pendingAudioInput.event)
+      )
+        pendingAudioInput = null;
+      // Retain checkbox intent until the scheduler consumes that exact input.
+      // A later S event can then publish its own authoritative final setting.
+      $("audio").checked =
+        pendingAudioInput?.event.enabled ?? game.audioEnabled;
+      $("audio-device").disabled =
+        game.audioEnabled || pendingAudioInput?.event.enabled === true;
       $("status").textContent = overlay
         ? overlay.kind === "pause"
           ? "Game paused · P to resume"

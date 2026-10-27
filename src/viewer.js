@@ -40,7 +40,7 @@ function appendTandyPreview(entry) {
     if(error.code==="TANDY_PREVIEW_LIMIT")tandyLiveCleanup=attachTandyLiveControls(section,entry.tandyDriver,entry.index,fail);
     else fail(error);
   }
-  const limit=document.createElement('p');limit.textContent='Tandy asset playback with live controls for long sequences. Unsupported paths stop with a diagnostic. Waveform matching remains unverified; the game still uses PC-speaker audio.';
+  const limit=document.createElement('p');limit.textContent='Tandy asset playback with live controls for long sequences. Unsupported paths stop with a diagnostic. Waveform matching remains unverified; Tandy is also available in the game’s Sound device menu.';
   section.append(diagnostic,limit);$('stage').append(section);
 }
 function draw() {

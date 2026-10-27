@@ -4,7 +4,7 @@ There are no WAV/MIDI files among the originals. Sound sequences and frequency
 tables are embedded inside the compressed drivers in `IT.DRV`. Decode that file
 using the same container/LZW routines as `.ARC`.
 
-The current player interprets **resource #005**, a 7,253-byte PC-speaker driver.
+The PC-speaker player interprets **resource #005**, a 7,253-byte driver.
 Resource #004 (12,339 bytes) is the Tandy/PCjr driver. The viewer now attempts
 all 121 public requests:111 file previews (88 audible,23 silent) and 10 live
 players for long/looping sequences. NCR8496 noise/register/zero-period behavior
@@ -13,8 +13,10 @@ reset/start, complete bounded cues, envelopes, control flow, pitch/vibrato and t
 engine/fast interrupt. Independent live scenarios cover two natural music
 endings and eight explicit stops. All 109 earlier file renditions retain their
 exact PCM, timing and port writes. These evidence levels do not establish full
-original waveform/IRQ phase or whole-engine parity. In-game Tandy is not yet
-connected; current gameplay still uses the PC-speaker rendition. Resource #006 (4,142 bytes) remains unidentified and is not
+original waveform/IRQ phase or whole-engine parity. In-game sound now offers PC speaker or persistent Tandy / PCjr. Tandy retains
+channel priorities, consumes flight engine start/speed words, and satisfies
+model waits from actual sequence completion. PC speaker remains the default
+and retains its approximate noise and omitted flight-engine rendition. Resource #006 (4,142 bytes) remains unidentified and is not
 synthesized. See [Tandy evidence and setup](tandy-audio.md).
 
 ## Verified locations in decoded resource #005

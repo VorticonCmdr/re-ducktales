@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "environment": {
+    "sampleRate": 44100,
+    "port61": 0,
+    "firstInterruptFrame": 0,
+    "sequencerDivider": 12,
+    "virtualClock": 0,
+    "biosFlags": 0,
+    "chip": "Default TandyPlayback/NCR8496 digital initial state, as pinned by reference/tandy-psg.json; output gain/phase is a provider choice, not a recovered original machine phase."
+  },
+  "cases": [
+    {
+      "name": "cue-token-and-retained-idle-clock",
+      "frames": 8192,
+      "events": [
+        { "frame": 0, "argument": 36, "token": "first-cue" },
+        { "frame": 4096, "argument": 36, "token": "second-cue" }
+      ]
+    },
+    {
+      "name": "engine-speed-and-overlap",
+      "frames": 60000,
+      "events": [
+        { "frame": 0, "argument": 9 },
+        { "frame": 128, "argument": 8 },
+        { "frame": 11025, "argument": 8200 },
+        { "frame": 12000, "argument": 36, "token": "engine-effect" },
+        { "frame": 22050, "argument": 16392 },
+        { "frame": 33075, "argument": 32776 },
+        { "frame": 44100, "argument": 0 }
+      ]
+    },
+    {
+      "name": "music-priority-reset-and-next-cue",
+      "frames": 20480,
+      "events": [
+        { "frame": 0, "argument": 1, "token": "music" },
+        { "frame": 4096, "argument": 36, "token": "overlapping-effect" },
+        { "frame": 8192, "argument": 0 },
+        { "frame": 12288, "argument": 36, "token": "after-reset" }
+      ]
+    }
+  ],
+  "flightConversions": [
+    { "speed": 0, "argument": 8 },
+    { "speed": 0.999, "argument": 8 },
+    { "speed": 1, "argument": 2056 },
+    { "speed": 1.999, "argument": 2056 },
+    { "speed": 4.5, "argument": 8200 },
+    { "speed": 15.999, "argument": 30728 },
+    { "speed": 16, "argument": 32776 },
+    { "speed": 31, "argument": 63496 },
+    { "speed": 32, "argument": 8 },
+    { "speed": -1.999, "argument": 63496 },
+    { "speed": 65537, "argument": 2056 }
+  ]
+}

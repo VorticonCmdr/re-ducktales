@@ -8,6 +8,14 @@ import { collideFlight } from "./flight-collisions.js";
 import { flightRandom, foregroundFlightObjects } from "./flight-objects.js";
 import { u8, u16 } from "./integer.js";
 
+export function flightEngineArgument(speed) {
+  // Overlay4:020c..022a loads float speed, calls the truncating signed32
+  // conversion at140e:52c2, then shifts AX by11 and ORs AL with8.
+  if (!Number.isFinite(speed) || speed < -2147483648 || speed >= 2147483648)
+    throw Error("Unsupported flight engine conversion");
+  return ((Math.trunc(speed) << 11) | 8) & 65535;
+}
+
 // Overlay 4 main loop. The generator yields actual driver/retrace waits; it
 // never reads a browser clock and never advances simulation from rendering.
 export class Flight {
@@ -367,6 +375,9 @@ export class Flight {
     const m = this.memory;
     let deadline = 0,
       result;
+    // Original01de requests9 once. Speed-control8 updates follow physics and
+    // precede the crash check; they do not replace/reset the running device.
+    this.events.push({ type: "sound", id: 9, engine: true });
     while (true) {
       this.phase = "flying";
       if (this.tick < deadline)
@@ -375,6 +386,12 @@ export class Flight {
       const p = advanceFlightPhysics(m);
       if (p.sound !== null) this.sound(p.sound);
       for (let i = 0; i < p.splashFrames; i++) yield* this.frame(0x7182);
+      this.events.push({
+        type: "sound",
+        id: 8,
+        argument: flightEngineArgument(m.f(0x0fae)),
+        engine: true,
+      });
       if (p.sprite === 0x4d1e) {
         yield* this.crash();
         result = "crashed";

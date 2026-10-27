@@ -131,11 +131,17 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   Native marker/status queries and the wait predicate now match 12 original
   queries and five carried wait checkpoints, consuming four independent clear
   events. Completion checks sequence pointers rather than note durations.
-  Next: connect persistent Tandy to actual game sound/engine events and status
-  consumers; original asynchronous wait timing remains unverified. Full original
-  IRQ phase, device waveform,
-  gain/filter timing and whole-engine replay remain unproven. In-game audio
-  still uses the PC-speaker driver, whose noise/engine effects are approximate.
+  In-game sound now offers PC speaker or persistent Tandy / PCjr. Tandy keeps
+  all four channels and priorities across requests, accepts the original flight
+  engine start/speed words, and releases game waits from real processor status.
+  Three independent provider routes consume 13 requests, checking 16 exact
+  checkpoints and six completion events. Browser routes cover money-bin cues,
+  mute/reset and device closure, flight → cave → pit → sound wait → results,
+  missing-module failure, and the compiled game with original folder loading.
+  Next: compare complete original in-game sound timelines and IRQ phase,
+  broaden destination/difficulty coverage, and resolve remaining mechanics gaps.
+  Device waveform, gain/filter timing and whole-engine replay remain unproven.
+  PC speaker remains the default and retains approximate noise/omitted engine.
   Commands:`npm run verify:tandy`,`npm run verify:tandy-production` and full
   `npm run verify`. See [Tandy evidence/setup](tandy-audio.md).
 - Full original expedition timing,presentation and audio parity are unproven.
@@ -175,16 +181,22 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-The preceding live-player milestone passed full `npm run verify`: 68 unit tests,
-47 development browser scenarios and one production browser scenario, all
-required original-data checks and the production build. Log:
-`.local/tandy-live-final-verify.log`. Sound 001 finishes naturally through actual
-browser audio after 3,558 ticks. The subsequent status/wait correction passes
-68 unit tests, all Tandy comparisons, 15 development browser audio scenarios and
-the production worklet/folder route; log `.local/tandy-status-final-verify.log`.
-Its 12 native queries and five carried wait checkpoints distinguish sequence
-pointers from durations without changing any corpus or live replay outcome.
-No whole-campaign acceptance is inferred from the focused audio regression.
+Current milestone passes full `npm run verify`: 71 unit tests, 50 development
+browser scenarios and two production browser scenarios, plus all required
+original-data comparisons and the production build. Log:
+`.local/tandy-game-final-verify.log`. Native browser routes cover persistent
+Tandy money-bin cues, mute/reset and acknowledged device closure, original
+flight-engine word dispatch, and flight → cave → pit → natural sound wait →
+results. Compiled game/viewer tests load the real original folder. Sound 001
+also still finishes naturally after 3,558 ticks in actual browser audio.
+
+Three carried provider regressions consume 13 independent requests and compare
+16 exact checkpoints/six completion events. Two isolated browser negative
+controls reject the previous delayed-frame mute and pending-checkbox repaint
+behaviors. These are distinct from original native query/engine evidence;
+whole-game IRQ phase/waveform alignment remains unverified. Earlier interrupted
+or failed runs are retained locally and are not passing receipts. Runtime,
+package and test sources stayed frozen through the final complete run.
 
 One browser worker keeps the full mountain/jungle replays within their existing
 120-second limits; their required inputs and checkpoint counts are unchanged.

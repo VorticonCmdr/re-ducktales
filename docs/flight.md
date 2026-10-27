@@ -310,9 +310,14 @@ for an arrival under tiles*5 frames or +1 above tiles*11. Rendering never advanc
 simulation. Flight retains its data segment between journeys.
 
 Special animation translations are static evidence; they are not all validated
-against original execution. The engine sound is currently omitted; SFX use the
-existing optional reconstructed audio adapter. Forced rival claim presentation
-uses the sound-disabled40-poll delay (280 driver ticks), without original speech audio. Browser
+against original execution. Optional Tandy / PCjr audio now retains a live
+driver: sound 9 starts the engine, and each physics step sends the original
+truncated-speed control word `(speedInteger << 11 | 8) & 65535`. This encoding
+is statically inferred from overlay4:020c..022a and resident140e:52c2; original
+whole-flight audio/IRQ alignment remains unverified. The PC-speaker rendition
+still omits engine updates and approximates noise. Campaign notices consume
+real audio completion when sound is enabled; sound-disabled notices retain
+their 40-poll delay. Browser
 instruction/render cost is not modeled, so total flight duration is not yet
 original-aligned. The browser sound option does not establish audio fidelity.
 
@@ -324,7 +329,7 @@ and skips wreckage search/RNG entirely for signed cash<=0. Positive cash consume
 one draw: rolls0/1 lose nothing,2..4 lose cash>>3,5..7 cash>>2,8/9 cash>>1. Only
 the low16 bits of that signed32-bit shift are subtracted from unsigned32 cash.
 The wreckage dialogue waits100 seven-tick polls (700 driver ticks); fire can shorten both waits. Both landing
-and repaired ordinary crash continue to expedition entry, which currently stops.
+and repaired ordinary crash continue to expedition entry and its playable activity.
 The captured positive-cash repair case below validates day/cash/RNG. Other
 caller branches are statically translated, not full-campaign replay evidence.
 

@@ -55,7 +55,7 @@ for (const [id, ticks, samples] of [
     expect(Math.abs(media.time - media.duration)).toBeLessThan(1 / 44100);
     await expect(
       page.getByText(
-        "Waveform matching remains unverified; the game still uses PC-speaker audio.",
+        "Waveform matching remains unverified; Tandy is also available in the game’s Sound device menu.",
         { exact: false },
       ),
     ).toBeVisible();

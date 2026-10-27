@@ -184,7 +184,7 @@ export class TandyPlayback {
   start(argument) {
     this.driver.start(argument, { port61: this.port61 });
   }
-  renderFrames(count, { haltWhenIdle = false } = {}) {
+  renderFrames(count, { haltWhenIdle = false, onInterrupt } = {}) {
     if (!Number.isInteger(count) || count < 1 || count > 65536)
       throw Error("Invalid Tandy frame request");
     const pcm = new Float32Array(count);
@@ -209,6 +209,7 @@ export class TandyPlayback {
         this.nextInterruptFrame = Math.round(
           this.interrupts * TANDY_INTERRUPT_SECONDS * this.sampleRate,
         );
+        onInterrupt?.();
       }
       if (haltWhenIdle && !this.driver.active) {
         if (this.chip.volumes.some((v) => v !== 15))

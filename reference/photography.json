@@ -1,0 +1,298 @@
+{
+  "id": "photography-leaves-yellerstone-v1",
+  "evidenceLevel": "conditional original routine comparisons; not closed-loop or browser acceptance",
+  "buildManifest": "reference/build.json",
+  "source": {
+    "file": "game/DUCKTALE.EXE",
+    "offset": 120832,
+    "length": 8436,
+    "headerBytes": 512,
+    "bodyBytes": 7924,
+    "relocationCount": 93,
+    "originalSegment": 3095,
+    "loadBias": 501,
+    "liveSegment": 3596,
+    "sha256": "fb2eb3f7c329c64b4b3511f0eca497b399afab37dd3bba5f121f111ec7ab378b",
+    "bodySha256": "f9af75d9397eb95d39f0c9eb3670cdb1237f21c4fdd3d9487f12cdf6d637cf6c"
+  },
+  "emulator": {
+    "instanceId": "0719a1b0cdcede0b85c39577ff760639",
+    "core": "normal",
+    "cycles": 3000,
+    "machine": "svga_s3",
+    "protectedMode": false,
+    "DS": 5123,
+    "SS": 5123
+  },
+  "captureTool": {
+    "name": "DOSBox MCP",
+    "engine": "0.84.0-vc1",
+    "revision": "f6d9b",
+    "protocol": "atomic batch_execute cpu_read + fixed DS memory read; entry includes full overlay",
+    "bridgeVersion": "0.1.1",
+    "protocolVersion": "1.14"
+  },
+  "startingStateRecipe": "docs/photography.md#original-scenario",
+  "initialStateDependency": "Existing jungle return stop330; then conditional map shortcut at stop333. No machine restore. Full DS snapshots are internal routine preconditions, not external replay inputs.",
+  "injections": [
+    {
+      "atStop": 333,
+      "segment": 5123,
+      "offset": 40774,
+      "before": [64, 0],
+      "after": [46, 0],
+      "purpose": "map cursor X"
+    },
+    {
+      "atStop": 333,
+      "segment": 5123,
+      "offset": 40770,
+      "before": [73, 0],
+      "after": [56, 0],
+      "purpose": "map cursor Y"
+    },
+    {
+      "atStop": 333,
+      "segment": 5123,
+      "offset": 23356,
+      "before": [25],
+      "after": [7],
+      "purpose": "current location Yellerstone, skip flight"
+    }
+  ],
+  "inputSchedules": [
+    {
+      "atStop": 333,
+      "events": [
+        {
+          "key": "space",
+          "pressed": true,
+          "delayMs": 50
+        },
+        {
+          "key": "space",
+          "pressed": false,
+          "delayMs": 120
+        },
+        {
+          "key": "right",
+          "pressed": true,
+          "delayMs": 700
+        },
+        {
+          "key": "right",
+          "pressed": false,
+          "delayMs": 120
+        },
+        {
+          "key": "space",
+          "pressed": true,
+          "delayMs": 300
+        },
+        {
+          "key": "space",
+          "pressed": false,
+          "delayMs": 120
+        }
+      ]
+    },
+    {
+      "atStop": 347,
+      "events": [
+        {
+          "key": "left",
+          "pressed": true,
+          "delayMs": 20
+        },
+        {
+          "key": "left",
+          "pressed": false,
+          "delayMs": 160
+        },
+        {
+          "key": "space",
+          "pressed": true,
+          "delayMs": 60
+        },
+        {
+          "key": "space",
+          "pressed": false,
+          "delayMs": 300
+        }
+      ],
+      "cleanup": "After stop349 cancel remaining release event; input_key Space up then continue to350."
+    },
+    {
+      "atStop": 350,
+      "events": [
+        {
+          "key": "space",
+          "pressed": true,
+          "delayMs": 30
+        },
+        {
+          "key": "space",
+          "pressed": false,
+          "delayMs": 15000
+        }
+      ],
+      "cleanup": "At stop352 cancel remaining release event; input_key Space up; continue to353."
+    }
+  ],
+  "fittedInputs": [],
+  "timingLimitation": "PIC schedules include tool/debugger pauses and measured drift; these schedules are setup provenance, not strict timing-replay acceptance.",
+  "expectedArtifactCount": 20,
+  "expectedCaseCount": 8,
+  "expectedCheckpointCount": 9,
+  "routineCases": [
+    {
+      "id": "animals",
+      "beforeStop": 336,
+      "afterStop": 337,
+      "cs": 3886,
+      "beforeIP": 6,
+      "afterIP": 66,
+      "stackExclusion": [40656, 40664]
+    },
+    {
+      "id": "spawn",
+      "beforeStop": 338,
+      "afterStop": 339,
+      "cs": 3886,
+      "beforeIP": 2714,
+      "afterIP": 3211,
+      "stackExclusion": [40628, 40644],
+      "accepted": false,
+      "rngDraws": 2
+    },
+    {
+      "id": "spawn2",
+      "beforeStop": 340,
+      "afterStop": 341,
+      "cs": 3886,
+      "beforeIP": 2714,
+      "afterIP": 3211,
+      "stackExclusion": [40614, 40644],
+      "accepted": true,
+      "rngDraws": 2
+    },
+    {
+      "id": "spawn3",
+      "beforeStop": 342,
+      "afterStop": 343,
+      "cs": 3886,
+      "beforeIP": 2714,
+      "afterIP": 3211,
+      "stackExclusion": [40628, 40644],
+      "accepted": false,
+      "rngDraws": 2
+    },
+    {
+      "id": "position",
+      "beforeStop": 345,
+      "afterStop": 346,
+      "cs": 3886,
+      "beforeIP": 2276,
+      "afterIP": 2564,
+      "stackExclusion": [40632, 40642]
+    },
+    {
+      "id": "shutter",
+      "beforeStop": 348,
+      "afterStop": 349,
+      "cs": 3886,
+      "beforeIP": 111,
+      "afterIP": 177,
+      "stackExclusion": [40650, 40664]
+    }
+  ],
+  "comparisonRules": {
+    "leaves": "Entire DS exactly except per-case original stack scratch; no clock/RNG/global exclusions. Position ends before draw call; sound output is not captured.",
+    "target": "Entry334 -> target335: seed and target word only; loader/heap/resource work excluded by scope.",
+    "results": "Results351 ->352: full score/cash DWORDs, twelve result bytes and success local; return353: AX, cash, score, day, current location and player claim. Drawing/cleanup internals not compared."
+  },
+  "command": "npm run verify:photography",
+  "artifacts": {
+    "map-before": {
+      "path": ".local/photography-map-before.json",
+      "sha256": "dbf1327a0c104c2a0822fcc4e0eb92a142f55e8f5c221d86fce9c2de7ea2a27b"
+    },
+    "map-after": {
+      "path": ".local/photography-map-after.json",
+      "sha256": "d642a52ed320152820914385147743b91bff869aa200b3f88b8d28b08484732a"
+    },
+    "entry": {
+      "path": ".local/photography-entry.json",
+      "sha256": "199f41c7e7e9ff839693b2208154a0f62610af8a78b37af4fa1c3780559304a8"
+    },
+    "target": {
+      "path": ".local/photography-target.json",
+      "sha256": "bc72d12fa0122bc2a314aeab37632339f0e3924c0cd36335d325ffa7f519f189"
+    },
+    "animals-before": {
+      "path": ".local/photography-animals-before.json",
+      "sha256": "560795d56749b03810d0c9615d973422e47eba4297e07a896e5360895468c6c5"
+    },
+    "animals-after": {
+      "path": ".local/photography-animals-after.json",
+      "sha256": "88c028decd7af26ac0e2dfdd8b87b4e88b4376c7882d3c9e73282b32e289d823"
+    },
+    "spawn-before": {
+      "path": ".local/photography-spawn-before.json",
+      "sha256": "627778440ce9bd58200150d29dae30d01983e3f13e111ec8253cc5043bb34a9c"
+    },
+    "spawn-after": {
+      "path": ".local/photography-spawn-after.json",
+      "sha256": "922eef7242ea709402c599c236a8093bcff280300b311add2fcef2e6dea8465d"
+    },
+    "spawn2-before": {
+      "path": ".local/photography-spawn2-before.json",
+      "sha256": "9a14d5df995e0a23a9d21769bcd2d2fb5f70c04922b16350076efc595eb3846f"
+    },
+    "spawn2-after": {
+      "path": ".local/photography-spawn2-after.json",
+      "sha256": "0757689e2f37bb2d2fbf04b3ad446303c869a86fb03197b804a4421c2974fdb0"
+    },
+    "spawn3-before": {
+      "path": ".local/photography-spawn3-before.json",
+      "sha256": "11920632c8c97c10e40267ddbec21265b003a8ca349e42c07a31fb90827247e5"
+    },
+    "spawn3-after": {
+      "path": ".local/photography-spawn3-after.json",
+      "sha256": "e7605ffe96830dbd4003ea0665d989efaace842a8a0a3c4b860e34187be7c093"
+    },
+    "position-before": {
+      "path": ".local/photography-position-before.json",
+      "sha256": "ed431d95a4942cc3d0dea46d20dc32454e0ca4ca4859a92e205b18f1868b66ac"
+    },
+    "position-after": {
+      "path": ".local/photography-position-after.json",
+      "sha256": "754002d96d231592fca82c009263a310955899c8bb241120d121ed21c1bed6eb"
+    },
+    "shutter-before": {
+      "path": ".local/photography-shutter-before.json",
+      "sha256": "57fbee65314e91c438543a7c1b96a0016ad7314068a3064c00c7d8d5c0573cc7"
+    },
+    "shutter-after": {
+      "path": ".local/photography-shutter-after.json",
+      "sha256": "042839cb54b01d168f844618cc1f25d54e72c9022f4296d46b3e203b934897e7"
+    },
+    "results-before": {
+      "path": ".local/photography-results-before.json",
+      "sha256": "bed40f954678c06f304730b9fcf8409f540534e4912a10f560e9e6dd31b57e53"
+    },
+    "results-after": {
+      "path": ".local/photography-results-after.json",
+      "sha256": "14219fd36063976ac9f198cc57b44959573f53836a4fe0d1a569fbbe0bd6951e"
+    },
+    "return": {
+      "path": ".local/photography-return.json",
+      "sha256": "d3fb257d0174606d81ce9a969ba8969acd03c57033a2996b88e1c04c671236dc"
+    },
+    "results-png": {
+      "path": ".local/photography-results.png",
+      "sha256": "a60db73d85833cde946c87d57450c273037504e1303ca26c74db098796ef9a4f",
+      "role": "Observed original result; no pixel comparison claimed"
+    }
+  }
+}

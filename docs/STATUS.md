@@ -117,7 +117,7 @@ variant0. These checks do not establish a complete original campaign replay.
   animations are translated, but striped reveals and original movement/timing
   comparisons remain incomplete. Collected-location notices lack original pixel
   and timing comparisons; their state and explicit device boundaries are tested.
-- Photography,stock trading,campaign endings,normal Glomgold progression,
+- Photography gameplay,stock trading,campaign endings,normal Glomgold progression,
   atomic transport,save/load and high scores are absent. Jungle gameplay is
   connected,including a complete treasure/reward route. All three maps load;
   full browser coverage is Easy/variant0. Original comparisons are conditional,
@@ -158,13 +158,21 @@ Mountain foundation: `npm run prepare:mountain-analysis` and
 Jungle analysis/checks: `npm run prepare:jungle-analysis` and
 `npm run verify:jungle`; Python3 is required for the independent oracle.
 
-Next: implement photography,then trading and endings. Extend targeted original comparisons for jungle
+Photography core now has8 conditional original cases/9 checkpoints,96 static
+target boundaries and32 exact metadata records. Target selection,spawn helpers,
+shutter reaction and$1000 two-target accounting match the original Yellerstone
+visit; this is not browser gameplay. See `docs/photography.md` and
+`npm run verify:photography`.
+
+Next: implement photography animation/main loop and connect its browser route,then trading and endings. Extend targeted original comparisons for jungle
 scrolling/timing,mountain hook/ascent,cave movement and result presentation.
 Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-jungle variant0/day24,paused0e0c:04b0 stop330 before successful jungle return,AX1.
+photography variant1/day26,paused0e0c:1225 stop353 before successful return,AX1.
+Yellerstone Park slot7 is claimed;cash2094. Photography overlay identity was
+revalidated in full at334. The prior jungle evidence remains below.
 All keys released,no breakpoints or pending schedules. The complete relocated
 24056-byte overlay was revalidated at entry313; EGA copy/page code is pinned at323,
 including its four documented self-modifying operands. Previous conditional

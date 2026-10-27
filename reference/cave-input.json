@@ -1,0 +1,181 @@
+{
+  "id": "cave-input-pause-room-flush-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "d8c3f2c",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 8,
+  "expectedIndependentReplayCount": 1,
+  "startingRecipe": "Inherit reference/flight-input.json natural stop514. Continue without new input to cave09a1 only if word09a4==0319. First input515:live0e0c,DS/SS1403,room17,goal45,enemy37,seed3129. P0/up1->pause03b9:047f516,05d5517. Resume release0,press140,release141->066c518,then cave09a6519 and deadline0b83:01d8520/0208521. Right/Space0,release10->cave0997 only if DS4d32==18(522),then09a6523. Left/Space0,release10,P20/up21->0997 only if room17(524),then09a6525. Remove owned breakpoints. Original real-mode mappings,complete11054-byte cave body/196relocations and resident input/pause/deadline/flush bytes are checked. No game/CPU writes or restores.",
+  "inputEvents": {
+    "pause": [
+      {
+        "frame": 0,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 1,
+        "key": "KBD_p",
+        "pressed": false
+      }
+    ],
+    "resume": [
+      {
+        "frame": 0,
+        "key": "KBD_p",
+        "pressed": false
+      },
+      {
+        "frame": 140,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 141,
+        "key": "KBD_p",
+        "pressed": false
+      }
+    ],
+    "right": [
+      {
+        "frame": 0,
+        "key": "KBD_right",
+        "pressed": true
+      },
+      {
+        "frame": 0,
+        "key": "KBD_space",
+        "pressed": true
+      },
+      {
+        "frame": 10,
+        "key": "KBD_right",
+        "pressed": false
+      },
+      {
+        "frame": 10,
+        "key": "KBD_space",
+        "pressed": false
+      }
+    ],
+    "left": [
+      {
+        "frame": 0,
+        "key": "KBD_left",
+        "pressed": true
+      },
+      {
+        "frame": 0,
+        "key": "KBD_space",
+        "pressed": true
+      },
+      {
+        "frame": 10,
+        "key": "KBD_left",
+        "pressed": false
+      },
+      {
+        "frame": 10,
+        "key": "KBD_space",
+        "pressed": false
+      },
+      {
+        "frame": 20,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 21,
+        "key": "KBD_p",
+        "pressed": false
+      }
+    ]
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "comparisonRules": "Exact complete cave overlay after relocation; no normalized or masked bytes. Pause preserves selected cave globals,all original sprite descriptors and the complete134-byte cave local frame. Asynchronous device clocks,input state,graphics/allocator scratch and other stack frames are outside the preservation comparison. The captured external driver-clock interval is exactly191 ticks. Independent deadline27f8 is preserved through pause; overdue198e:01d8 consumes zero driver ticks and sets current+6. Room18/17 safe-entry flushes preserve those cave fields; room17 P flag64 becomes0,all128 key slots clear,and input returnsAL0. Exact104x24 popup crop matches the previously verified original flight pause popup; surrounding cave pixels are outside this check. All four emulator schedules must finish2/3/4/6 events. Independent replay uses fresh decoded resources and authored200-tick pause,not captured output clocks.",
+  "limitations": "Naturally reached original cave with conditional routine comparisons; not a whole original cave/campaign event replay. Source-only initial flush and final result09f5 flush are covered by unit/browser integration; captured room-entry flush is a revisit from18 to17. No new original cave Quit-No capture,whole-scene/audio/presentation timing parity or full-level movement replay.",
+  "artifacts": {
+    "first": {
+      "path": ".local/cave-input-first-poll.json",
+      "sha256": "cf28589b67b5dd5d7f91785e530d9455cde9cf6b2c5a4d52127071b3342dacee"
+    },
+    "pauseEntry": {
+      "path": ".local/cave-input-pause-entry.json",
+      "sha256": "51b12a3d2467ab700f7269b3892dfdb4b999a982ad2474a14df048f063fe5950"
+    },
+    "pauseWait": {
+      "path": ".local/cave-input-pause-wait.json",
+      "sha256": "9c1a53be8c410399ca6c4c3b60ca90ea75d517f1982342b28e2fe64516a2f88d"
+    },
+    "pauseAfter": {
+      "path": ".local/cave-input-pause-after.json",
+      "sha256": "aa51e79bb066718c8340c18bb3b0c8d7b2923e570e45521423cefb0b75709ccd"
+    },
+    "pauseReturn": {
+      "path": ".local/cave-input-pause-return.json",
+      "sha256": "d56bc92ec55a3c8d971043c3c594ac1ce7cdc7ee9f374a24d2fca634dd05299b"
+    },
+    "deadlineEntry": {
+      "path": ".local/cave-input-deadline-entry.json",
+      "sha256": "4a9820cd78f0c8a39dec9739c57986ec80dc644c68524e6b29b09074d86d340e"
+    },
+    "deadlineAfter": {
+      "path": ".local/cave-input-deadline-after.json",
+      "sha256": "d110f6286c3706b085dd0657bd17855d420cb197104e0713968677cc38c4c83f"
+    },
+    "rightBefore": {
+      "path": ".local/cave-input-room18-before-flush.json",
+      "sha256": "fc2582c0d1e7d772807166802e599600c83a835ee9b17497ddbc139a98db53d3"
+    },
+    "rightAfter": {
+      "path": ".local/cave-input-room18-after-flush.json",
+      "sha256": "1a11ade1fee093724c12d7ece7d12dd3e052db4eb91d1e783774c04ca3e25fd7"
+    },
+    "leftBefore": {
+      "path": ".local/cave-input-room17-before-flush.json",
+      "sha256": "0d54bf6fe27752156132bbe7eec9cd8de8bf35f6867948dd6fb86e85ebde59b6"
+    },
+    "leftAfter": {
+      "path": ".local/cave-input-room17-after-flush.json",
+      "sha256": "f3008806603fd55bad0d980bcce2fa983888860910fd67a297b6e5e019305834"
+    },
+    "pauseReplay": {
+      "path": ".local/cave-input-pause-replay.json",
+      "sha256": "d69e44a45ae8c17f49f6f5d7168406258a78a6431d95f906d5d314f893156a34"
+    },
+    "resumeReplay": {
+      "path": ".local/cave-input-resume-replay.json",
+      "sha256": "fca1dc553bb81be22a228c4a97600bd7bfc13cf9fd87a3c3f8f08f69c78cdeb1"
+    },
+    "rightReplay": {
+      "path": ".local/cave-input-right-replay.json",
+      "sha256": "cb6569c12e2db0a59617e72338721da9aa65a3a4df91b2b8d8e67b95fb5afd21"
+    },
+    "leftReplay": {
+      "path": ".local/cave-input-left-replay.json",
+      "sha256": "bd4e2497b7c790d659ab810dd03aa6ae3423e2cfe1d1769ec1b431205ad34c8f"
+    },
+    "mode": {
+      "path": ".local/cave-input-mode.json",
+      "sha256": "e8cb4380e0151cdc9db97a065c4e209c1132c3a8b0da7b3ac2432264e0aab298"
+    },
+    "pausePNG": {
+      "path": ".local/cave-input-pause.png",
+      "sha256": "9ff721a3fce1c38ae3fce994e6156a980539643b4648f5d73fae9f6c4a844d0b"
+    },
+    "sharedPausePNG": {
+      "path": ".local/flight-pause.png",
+      "sha256": "d828923c58205fa8919eebc34272e4cf2a1aa333c6f46831ab6816ad8876cdaa"
+    }
+  },
+  "verify": "npm run verify:cave-input",
+  "evidenceLevel": "Original code identity and captured source-state/input invariants,paired with a separate independent controller property replay and browser acceptance. No same-initial-state captured-input whole-cave replay is claimed."
+}

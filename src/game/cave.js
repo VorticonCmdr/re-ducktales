@@ -13,6 +13,8 @@ import { caveTransition } from "./cave-transitions.js";
 export class Cave {
   constructor(options, previousMemory) {
     this.options = options;
+    this.pollInput = options.pollInput ?? (() => true);
+    this.onFlushInput = options.flushInput ?? (() => {});
     Object.assign(this, prepareCave(options, previousMemory));
     this.tick = 0;
     this.retrace = 0;
@@ -35,6 +37,7 @@ export class Cave {
     this.invalidLatch = 0;
     this.enteredFrom = null;
     this.outcome = null;
+    this.flushInput();
     this.iterator = this.run();
     this.resume();
   }
@@ -81,7 +84,7 @@ export class Cave {
       this.phase = "complete";
     } else {
       if (
-        !["driver", "retrace"].includes(n.value.clock) ||
+        !["driver", "retrace", "input"].includes(n.value.clock) ||
         !Number.isInteger(n.value.remaining) ||
         n.value.remaining < 1
       )
@@ -96,6 +99,24 @@ export class Cave {
   advanceRetrace() {
     this.retrace++;
     this.advance("retrace");
+  }
+  advanceBlockedTick() {
+    this.tick++;
+  }
+  advanceBlockedRetrace() {
+    this.retrace++;
+  }
+  *readInput() {
+    if (!this.pollInput()) yield { clock: "input", remaining: 1 };
+  }
+  resumeInputPoll() {
+    if (this.wait?.clock !== "input")
+      throw Error("Cave resumed outside its input reader");
+    this.resume();
+  }
+  flushInput() {
+    this.controls = { fire: false, direction: null };
+    this.onFlushInput();
   }
   advance(clock) {
     if (!this.wait || this.wait.clock !== clock || --this.wait.remaining)
@@ -305,11 +326,16 @@ export class Cave {
       if (this.tick < deadline) yield* this.delay(deadline - this.tick);
       deadline = this.tick + 6;
       m.i(0x4e08, caveDistance(m.i(0x97b0), this.room));
-      if (m.i(0x8eb2) && (yield* this.enter()))
+      const entered = !!m.i(0x8eb2);
+      if (entered && (yield* this.enter()))
         return yield* caveEndings.finish.call(this, "pit");
       if (m.signedByte(0x8b54) >= m.i(0x54ac))
         return yield* caveEndings.finish.call(this, "torch-expired");
+      // Overlay6:0997 flushes only after a safe,non-expired room entry.
+      if (entered) this.flushInput();
       this.phase = "exploring";
+      // 09a1 reads input after entry/animation,then returns at09a6.
+      yield* this.readInput();
       const code =
         (this.controls.fire ? 192 : 0) |
         ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ?? 0);
@@ -369,6 +395,7 @@ export class Cave {
     const m = this.memory;
     return {
       phase: this.phase,
+      ...(this.wait?.clock === "input" ? { waitingForInputPoll: true } : {}),
       room: this.room,
       goal: m.i(0x97b0),
       enemy: m.i(0x6810),

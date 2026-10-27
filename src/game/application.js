@@ -54,6 +54,7 @@ export class Game {
     this.systemOverlay = null;
     this.pendingBinSystemKeys = new Map();
     this.pendingFlightSystemKeys = new Map();
+    this.pendingCaveSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -184,7 +185,7 @@ export class Game {
     if (
       !fromActivityPoll &&
       !this.systemOverlay &&
-      ["money-bin", "flight"].includes(this.scene) &&
+      ["money-bin", "flight", "cave"].includes(this.scene) &&
       ["pause", "quit", "toggle-sound"].includes(event.type)
     ) {
       // IRQ9 retains make/release flags until19c5 consumes them. No input
@@ -192,7 +193,9 @@ export class Game {
       const keys =
         this.scene === "flight"
           ? this.pendingFlightSystemKeys
-          : this.pendingBinSystemKeys;
+          : this.scene === "cave"
+            ? this.pendingCaveSystemKeys
+            : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -247,6 +250,7 @@ export class Game {
       this.systemOverlay = null;
       this.pendingBinSystemKeys.clear();
       this.pendingFlightSystemKeys.clear();
+      this.pendingCaveSystemKeys.clear();
       this.exiting = false;
       this.pendingCampaignAction = null;
       this.briefing = null;
@@ -550,6 +554,7 @@ export class Game {
     this.tick++;
     if (this.systemOverlay) {
       if (this.scene === "flight") this.flight.advanceBlockedTick();
+      if (this.scene === "cave") this.cave.advanceBlockedTick();
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
       return;
@@ -649,6 +654,7 @@ export class Game {
   advanceRetrace() {
     if (this.systemOverlay) {
       if (this.scene === "flight") this.flight.advanceBlockedRetrace();
+      if (this.scene === "cave") this.cave.advanceBlockedRetrace();
       return;
     }
     if (this.scene === "photography") {
@@ -751,9 +757,11 @@ export class Game {
     this.systemOverlay = null;
     this.pendingBinSystemKeys.clear();
     this.pendingFlightSystemKeys.clear();
+    this.pendingCaveSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "flight") this.flight.flushInput();
+    else if (this.scene === "cave") this.cave.flushInput();
     else {
       this.handleInput({ type: "controls", fire: false, direction: null });
       this.effects.push({ type: "flushControls" });
@@ -778,9 +786,21 @@ export class Game {
       this.flight.resumeInputPoll();
       this.collectFlight();
     }
+    if (result === "resume" && this.scene === "cave") {
+      this.cave.resumeInputPoll();
+      this.collectCave();
+    }
   }
   pollMoneyBinSystemInput() {
     return this.pollSystemInput(this.pendingBinSystemKeys);
+  }
+  pollCaveSystemInput() {
+    return this.pollSystemInput(this.pendingCaveSystemKeys);
+  }
+  flushCaveInput() {
+    this.pendingCaveSystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
   }
   pollFlightSystemInput() {
     return this.pollSystemInput(this.pendingFlightSystemKeys);
@@ -834,6 +854,9 @@ export class Game {
       };
       this.effects.push({ type: "sound", id: 0x49 });
     }
+    // Only the actual09f5 result dialog starts with19a5. The shared photo-score
+    // branch above returns directly and never enters this input wait.
+    this.cave.flushInput();
     this.scene = "expedition-result";
   }
   collectMountain() {
@@ -1040,6 +1063,8 @@ export class Game {
         money: this.money,
         audioEnabled: this.audioEnabled,
         audioScope: ++this.audioScope,
+        pollInput: () => this.pollCaveSystemInput(),
+        flushInput: () => this.flushCaveInput(),
       },
       this.flightMemory,
     );
@@ -1142,6 +1167,13 @@ export class Game {
       ...(this.pendingFlightSystemKeys.size
         ? {
             pendingFlightSystemKeys: [...this.pendingFlightSystemKeys].sort(
+              (a, b) => a[0] - b[0],
+            ),
+          }
+        : {}),
+      ...(this.pendingCaveSystemKeys.size
+        ? {
+            pendingCaveSystemKeys: [...this.pendingCaveSystemKeys].sort(
               (a, b) => a[0] - b[0],
             ),
           }

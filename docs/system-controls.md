@@ -146,8 +146,24 @@ Q/P/S pressed during that crash cannot interrupt it. The final flush discards th
 and natural return requires140 driver ticks before repair processing. Existing
 crash/calendar comparisons remain at their original0ee6 boundary; the new final
 wait is checked separately. No original runtime flight Quit-No capture or whole
-flight pixel/audio/wall-clock parity is claimed. Expedition poll boundaries remain
-the next investigation.
+flight pixel/audio/wall-clock parity is claimed. Cave input boundaries are covered below; mountain,jungle and photography
+poll boundaries remain future investigations.
+
+## Cave input boundaries
+
+Cave has its own queued scan-code slots and poll/flush callbacks. Overlay6 reads
+at09a1 after room-entry animation and flush0997. Global keys pressed during
+passages or terminal animation stay unread until their corresponding flush.
+During Pause/No dialogs,cave device clocks advance while actors and the current
+input call remain suspended. Its independent deadline survives Pause and can
+already be overdue on resume. The result dialog clears terminal-animation keys.
+
+`reference/cave-input.json` pins18 artifacts,eight original comparisons and four
+complete schedules. It checks all11054 relocated cave code bytes,selected resident
+routines,preserved game fields/locals,queued P→flush,input return and overdue
+clock behavior. A fresh controller replay and native browser scenario are separate
+verification levels. [Cave evidence](cave.md) records the precise scope,source/live
+addresses,negative controls and remaining capture gaps.
 
 ## Verification and evidence
 

@@ -25,6 +25,8 @@ Updated2026-10-27. **The full game is not complete.**
   reports,direct-map aircraft persistence and deadline arrivals are connected.
 - Cave arrival → guide → rooms → treasure or failure → results/map → direct retry.
   Safe new rooms award$50. Collected locations prevent duplicate treasure awards.
+  P/Q/S wait for the cave input call; room-entry/result flushes discard unread
+  keys and held controls. Pause freezes actors while device clocks continue.
 - Mountain arrival → guide → walking,hook/climbing,hazards,pickups and three lives.
   A complete variant0 ascent preserves three lives,collects$100,awards the current
   startup's$8000 treasure and returns to the map with duplicate protection.
@@ -92,9 +94,9 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   expedition comparisons. Money-bin intro/idle/dive polling now has10 original
   comparisons,including retained released keys and the final flush. Flight has9
   new original checks for input,clock/deadline preservation and final return wait.
-  Other scenes
-  still accept global keys at the next driver tick; alignment with their original
-  animation/audio waits is unproven.
+  Cave has8 new original code/pause/deadline/room-flush checks. Mountain,jungle
+  and photography still accept global keys at the next driver tick; alignment
+  with their original animation/audio waits is unproven.
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
@@ -123,46 +125,35 @@ npm run verify
 ```
 
 Focused commands: `npm test`,`npm run test:browser`,`npm run verify:system-controls`,`npm run verify:rival`,`npm run verify:ending`,
-`npm run verify:investments`,`npm run verify:startup`,and the subsystem commands
+`npm run verify:investments`,`npm run verify:startup`,`npm run verify:cave-input`,and the subsystem commands
 in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:51 unit tests,27 browser scenarios,
-all required original comparisons and production build. Browser concurrency is
-fixed at1; full jungle/mountain replay inputs,checkpoint counts and120-second
-timeouts remain unchanged. The real-time jungle retry check accepts the original rival
-claim notice when Glomgold has already collected that destination; otherwise it
-requires a fresh three-life expedition. Campaign notice checks preserve accounts
-and calendar; exact rival RNG checks use captured inputs in `verify:rival`.
+Current milestone passed full `npm run verify`:56 unit tests,28 browser scenarios,
+all required original-data checks and the production build. Integration log:
+`.local/cave-input-final-verify.log`.
 
-Additional credits checks pass `npm run verify:ending` and the focused system
-controls browser scenario,including9 new original code/index/pixel comparisons.
-`reference/credits.json` records their precise scope and mandatory local files.
+One browser worker keeps the full mountain/jungle replays within their existing
+120-second limits; their required inputs and checkpoint counts are unchanged.
+The cave treasure route retains its90-second limit,uses explicit browser time,
+and observes the supplied8ms display cadence. It still requires landing,room
+reward,failure,retry,treasure and campaign return. The new native cave scenario
+checks P,Q/N,clock/actor separation,popup pixels and held/unread-key entry flushes.
 
-Money-bin polling has10 new original code/state/input comparisons in
-`verify:system-controls`,including retained released keys and final keyboard flush.
-The flight left-edge correction has14 authored cases checked against original
-instructions; it is static evidence,not an original edge runtime replay.
-`reference/flight-left-edge.json` records the exact scope and negative controls.
-The prior integration failures are resolved: the native cave route and both full
-expedition replays pass in the complete verification run.
-
-Flight input/deadline/final-wait changes pass the integrated verification run,
-including the original comparisons and the real browser crash/return route.
-The cave landing/failure/retry/treasure scenario now supplies an explicit browser
-clock so test-runner delays cannot introduce idle RNG and pursuer turns. It keeps
-its keyboard route,reward/calendar assertions and90-second limit. Mountain and
-jungle full replays retain their required input/checkpoint counts and120-second
-limits; one browser worker avoids the observed two-worker contention failures.
-Integration log: `.local/flight-input-integrated-verify.log`.
+`verify:cave-input` requires18 checksummed artifacts,eight original code/state/
+input invariant checks and a separate independent controller replay. These are
+bounded checks,not an original whole-cave state replay. The shared photo-score
+shortcut is checked to skip the normal cave result dialog and its input flush.
+Detailed rules,exclusions and negative controls are in the subsystem manifests.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-0e0c:09a1 stop515 at the cave's first input call,DS/SS1403,sound on.
+0e0c:09a6 stop525 after a safe cave-room entry flushed unread P,DS/SS1403,sound on.
 No breakpoints or pending replay. Money-bin/flight input captures use a fresh
 natural launch and original play with no memory/CPU injections. Earlier controls/
 credits captures inherit conditional setup from `reference/atomic.json`.
-`reference/flight-input.json` pins the new accepted flight observations. Exploratory
-cave scouting then continued naturally from514 with no new input; the complete
-11054-byte/196-relocation cave code identity matches. Local recipe/capture in
-`.local/cave-input-scout.json` await a versioned checker and pause/entry captures.
+`reference/flight-input.json` pins the accepted flight observations.
+`reference/cave-input.json` promotes the natural cave scouting into18 mandatory
+artifacts,eight original comparisons and one independent controller replay.
+Complete cave code identity,pause/overdue deadline and room-entry flushes now
+have accepted evidence; original whole-cave movement/timing remains unproven.

@@ -261,3 +261,7 @@ subsequent success result at the application boundary to verify one suppressed
 award and restoration of normal awards afterward. Those injected success packets
 are explicit test inputs,not a played subsequent expedition or original campaign
 replay. `applicationChecks` in the manifest records that scope.
+
+The shared-score shortcut also skips the ordinary cave result dialog and its
+keyboard flush. The conditional cave success adapter instruments that flush
+effect and requires zero calls on this path. It does not simulate cave play.

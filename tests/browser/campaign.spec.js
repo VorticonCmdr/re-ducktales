@@ -206,7 +206,9 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
       const s = await state(c);
       if (s?.diagnostic) throw Error(s.diagnostic);
       if (s && predicate(s)) return s;
-      await page.clock.runFor(4);
+      // Observe at the supplied8ms display cadence; shorter polls cannot
+      // expose another rendered state. Simulation remains at its own70Hz.
+      await page.clock.runFor(8);
     }
     throw Error(
       "Unfinished cave browser wait " + JSON.stringify(await state(c)),
@@ -298,6 +300,7 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   );
   const firstRoom = result.cave.room;
   expect(firstRoom).toBe(17);
+  await until((s) => s.cave.phase === "exploring");
   await page.keyboard.down("ArrowRight");
   await page.keyboard.down("Space");
   await until((s) => s.scene !== "cave" || s.cave.room === 18);

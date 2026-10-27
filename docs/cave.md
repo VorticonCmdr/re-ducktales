@@ -177,21 +177,54 @@ No original memory/register injection or partial/full restore was used.
 Next: original comparisons for C-drive room moves, striped reveal timing,
 remaining outcome comparisons alongside the other expedition games.
 
-## Next input-boundary comparison
+## Input polls, Pause and keyboard flushes
 
-Static analysis in `CAVE_CODE.EXE` identifies overlay6:0495 as the initial
-`140e:19a5` keyboard flush,0997 as the room-entry flush,and09a1 as the
-`1124:0002` input call (return09a6). The099c label initializes its local input
-word before that call; it is not itself an input read. Overlay6:04a6 calls the
-same independent `198e:01d8` deadline helper used by flight,with interval6.
-The call locations are statically inferred from original instruction bytes.
-Exploratory scouting continued naturally from flight-input stop514 to cave
-0e0c:09a1 stop515,DS/SS1403. All11054 original code bytes match after196
-relocations at base01f5; room17,goal45,pursuer37,seed3129. Local capture and
-recipe are `.local/cave-input-first-poll.json` and `.local/cave-input-scout.json`.
-They are exploratory artifacts awaiting a versioned scenario/checker; they do
-not establish pause/transition behavior or add an accepted regression case.
-The current cave controller samples held controls directly and has no explicit
-global-key poll or keyboard-flush interface. Its native browser route now uses
-an explicit browser clock so test-runner delays do not add idle RNG/pursuer turns;
-this is browser acceptance,not proof of original input-boundary timing.
+`npm run verify:cave-input` requires the18 checksummed local artifacts in
+`reference/cave-input.json`. It runs as part of `npm run verify:cave` and the full
+verification command. Missing/corrupt files,unfinished event schedules and changed
+required values fail. Five negative controls change preserved RNG,a queued P,
+a popup pixel,required Pause input or required device clocks.
+
+Ghidra `CAVE_CODE.EXE` and original instructions identify overlay6:0495 as the
+initial `140e:19a5` flush,0997 as the safe room-entry flush,and09a1 as the
+`1124:0002` input call (return09a6). The099c label initializes a local word before
+that call. Overlay6:04a6 calls `198e:01d8`,with a separate six-tick deadline.
+The port exposes poll/flush interfaces at these boundaries. Unread P/Q/S and held
+controls clear at room entry; passage/terminal animation cannot open a dialog.
+The following result dialog also starts with a keyboard flush; the shared
+photo-score shortcut skips that dialog and flush. Pause and cancelled
+Quit resume the suspended input call after clearing controls.
+
+Original scouting continued naturally from flight-input stop514 to cave09a1515,
+room17,goal45,pursuer37,seed3129. All11054 cave code bytes match after196
+relocations. Resident input876,pause494,deadline49 and flush32 bytes also match.
+Original/live segments are cave0c17→0e0c,input1124→0319,pause11c4→03b9,
+deadline198e→0b83,helpers140e→0603,load base01f5 and DS/SS1403. Normal-core
+real mode and original code are verified; no loader stub or analysis image runs.
+
+P schedules reach pause entry516,waiting517,return518 and cave09a6519. Selected
+cave globals,all sprite descriptors and the complete134-byte cave local frame
+remain exact. Device clock52840→53031 advances191 ticks while deadline52846 stays
+unchanged. At the next helper520→521,the overdue deadline consumes zero driver
+ticks and becomes53047=current53041+6. Drawing between input return and that
+helper costs10 original driver ticks; the port does not claim that drawing cost.
+
+Right/Space enters18,then Left/Space revisits17 with P pressed during passage
+animation. At0997 stop524,P's unread key flag is64. After the flush and input
+return525,all128 key slots are zero and AL is0. Required emulator schedules fully
+consume2/3/4/6 events. The pause popup's104×24 crop matches the previously verified
+original popup exactly; surrounding cave pixels are outside this comparison.
+No game-memory/CPU injection,partial restore or machine checkpoint is used.
+
+These are eight original code/state/input invariant checks. Separate port checks
+validate the same rules; this is not a captured-input whole-cave state replay.
+An independent replay starts
+from decoded resources and supplies its own200-tick pause. Five unit cases cover
+entry/room/terminal flushes,clock separation,No and Restart. A native browser case
+loads original assets,flies/crashes/arrives,uses P and Q/N,compares popup pixels,
+holds movement across entry and checks the$50 room reward. The treasure browser
+route also still completes failure,retry,treasure and campaign return. Both use
+an explicit browser clock and observe its8ms display cadence; simulation retains
+its own driver/retrace clocks. This proves browser acceptance,not an original
+full-level replay. New original Quit-No,terminal-flush and initial-flush captures,
+movement/CPU-render/audio timing and additional variants remain future checks.

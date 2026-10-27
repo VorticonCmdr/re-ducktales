@@ -465,8 +465,16 @@ for (const kind of ["action", "cave"]) {
   follow.campaign.atomicLocation = 0;
   if (kind === "cave") {
     follow.scene = "cave";
-    follow.cave = result;
+    // This conditional result adapter supplies the required cave flush effect;
+    // it does not stand in for a played cave or its keyboard reader.
+    let flushes = 0;
+    follow.cave = { ...result, flushInput: () => flushes++ };
     follow.collectCave();
+    assert.equal(
+      flushes,
+      0,
+      "shared photo-score shortcut has no cave result input wait",
+    );
   } else {
     follow.scene = "jungle";
     follow.collectActionExpedition(result);

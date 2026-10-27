@@ -8,7 +8,9 @@ and campaign return. Mountain arrival now supports a complete variant0 ascent,
 reward and return,plus failure/retry. Jungle arrival now supports keyboard
 movement,jumping,hazards,three-life failure,campaign return and direct retry.
 A complete Easy/variant0 jungle route reaches the chest,awards$1000,returns to
-the campaign and prevents repeat collection. Photography remains incomplete.
+the campaign and prevents repeat collection. Photography arrival now supports aiming,photographs,results and campaign return.
+Target pictures mark the location collected;photo earnings replace the generic
+loot award and the original overlay/caller together spend two days.
 
 ## Browser behavior
 

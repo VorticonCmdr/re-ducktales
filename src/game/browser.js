@@ -67,6 +67,7 @@ async function load(read) {
         clues: resources.archives.get("CLUES.ARC"),
         mountainEntries: resources.archives.get("MT.ARC"),
         jungleEntries: resources.archives.get("JG.ARC"),
+        photographyEntries: resources.archives.get("PS.ARC"),
         mainEntries: resources.archives.get("MAIN.ARC"),
       },
       flightResources: {
@@ -137,7 +138,7 @@ $("money-bin").onclick = () => {
   dispatch({ type: "money-bin" });
 };
 $("restart").onclick = () => {
-  playing?.pause();
+  stopSound();
   held.clear();
   if (game) {
     game.diagnostic = null;
@@ -214,20 +215,30 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     pausedAt = now;
     resumeAudio = !!playing && !playing.paused;
+    audioGeneration++;
     playing?.pause();
   } else if (pausedAt !== null) {
     scheduler?.pauseDuration(now - pausedAt);
     pausedAt = null;
-    if (resumeAudio && $("audio").checked)
-      playing
-        ?.play()
-        .catch((e) => fatal(new Error(`Audio playback: ${e.message}`)));
+    if (resumeAudio && $("audio").checked) {
+      const generation = audioGeneration;
+      playing?.play().catch((e) => audioFailure(e, generation));
+    }
     resumeAudio = false;
   }
 });
 const sounds = new Map();
 let activeAudioToken = null;
+let audioGeneration = 0;
+function audioFailure(error, generation) {
+  // A newer sound,explicit stop,or visibility pause cancels the old request.
+  // The original driver has one channel too. Only that known cancellation
+  // is expected; failures of the current playback still stop development.
+  if (error.name === "AbortError" && generation !== audioGeneration) return;
+  fatal(new Error(`Audio playback: ${error.message}`));
+}
 function stopSound() {
+  audioGeneration++;
   playing?.pause();
   if (activeAudioToken !== null) {
     dispatch({ type: "audio-status", token: activeAudioToken, busy: false });
@@ -259,6 +270,7 @@ function effects() {
       playing = $("sound");
       activeAudioToken = event.token ?? null;
       const token = activeAudioToken;
+      const generation = audioGeneration;
       playing.onended = () => {
         if (token !== null)
           dispatch({ type: "audio-status", token, busy: false });
@@ -267,9 +279,7 @@ function effects() {
       playing.onerror = () => fatal(new Error("Audio playback failed"));
       playing.src = sounds.get(event.id);
       playing.volume = 0.35;
-      playing
-        .play()
-        .catch((e) => fatal(new Error(`Audio playback: ${e.message}`)));
+      playing.play().catch((e) => audioFailure(e, generation));
     }
   }
 }
@@ -288,29 +298,31 @@ function frame() {
       $("map").disabled = game.scene !== "office";
       $("back").disabled = game.scene === "departure";
       $("status").textContent =
-        game.scene === "jungle"
-          ? `Jungle · Arrow keys to move, climb, or drop · Fire to jump · Lives ${game.jungle.snapshot().lives} · Cash $${game.money}`
-          : game.scene === "mountain"
-            ? `Mountain · Arrow keys to move · Hold Fire to swing the hook; release to throw · Lives ${game.mountain.snapshot().lives} · Cash $${game.money}`
-            : game.scene === "departure"
-              ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · Fire to fly`
-              : game.scene === "cave"
-                ? `Cave · ${game.cave.phase === "exploring" ? "Hold an arrow to point; press Space to move" : game.cave.phase} · Lamp ${game.cave.snapshot().torch}/${game.cave.snapshot().limit} · Cash $${game.cave.snapshot().money}`
-                : game.scene === "expedition-result"
-                  ? `Expedition ${game.expeditionResult.phase === "failure" ? "failed" : game.expeditionResult.phase === "award" ? "treasure recovered" : "atomic transport unlocked"} · Fire to continue · Cash $${game.money}`
-                  : game.scene === "visit-notice"
-                    ? `${game.visitNotice.reason === "player" ? "This treasure is already collected" : "Glomgold has already taken this treasure"} · Fire to return to the map`
-                    : game.scene === "expedition-briefing"
-                      ? "The Junior Woodchuck Guide"
-                      : game.scene === "flight"
-                        ? `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
-                        : game.scene === "rival-claim"
-                          ? `Glomgold has taken the treasure · Fire to continue`
-                          : game.scene === "money-bin"
-                            ? `Money bin · ${game.bin.phase} · Fire to dive`
-                            : game.scene === "map"
-                              ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
-                              : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
+        game.scene === "photography"
+          ? `Photography · Left / Up / Right to aim · Fire to take a picture · Film ${game.photography.snapshot().film} · Cash $${game.money}`
+          : game.scene === "jungle"
+            ? `Jungle · Arrow keys to move, climb, or drop · Fire to jump · Lives ${game.jungle.snapshot().lives} · Cash $${game.money}`
+            : game.scene === "mountain"
+              ? `Mountain · Arrow keys to move · Hold Fire to swing the hook; release to throw · Lives ${game.mountain.snapshot().lives} · Cash $${game.money}`
+              : game.scene === "departure"
+                ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · Fire to fly`
+                : game.scene === "cave"
+                  ? `Cave · ${game.cave.phase === "exploring" ? "Hold an arrow to point; press Space to move" : game.cave.phase} · Lamp ${game.cave.snapshot().torch}/${game.cave.snapshot().limit} · Cash $${game.cave.snapshot().money}`
+                  : game.scene === "expedition-result"
+                    ? `Expedition ${game.expeditionResult.phase === "failure" ? "failed" : game.expeditionResult.phase === "award" ? "treasure recovered" : "atomic transport unlocked"} · Fire to continue · Cash $${game.money}`
+                    : game.scene === "visit-notice"
+                      ? `${game.visitNotice.reason === "player" ? "This treasure is already collected" : "Glomgold has already taken this treasure"} · Fire to return to the map`
+                      : game.scene === "expedition-briefing"
+                        ? "The Junior Woodchuck Guide"
+                        : game.scene === "flight"
+                          ? `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
+                          : game.scene === "rival-claim"
+                            ? `Glomgold has taken the treasure · Fire to continue`
+                            : game.scene === "money-bin"
+                              ? `Money bin · ${game.bin.phase} · Fire to dive`
+                              : game.scene === "map"
+                                ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
+                                : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
       $("game").dataset.scene = game.scene;
       $("game").dataset.state = JSON.stringify(game.snapshot());
     }

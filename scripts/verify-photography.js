@@ -244,7 +244,8 @@ for (const mutation of [
     `negative control ${mutation}`,
   );
 
-// Static branch boundaries: all16 AND15 outcomes for all six variants.
+// Static branch boundaries: explicit branches and the default-branch probe0.
+// The actual sixth destination,Borneo6,is checked separately below.
 const targets = [
   [30, 30, 30, 30, 30, 32, 32, 32, 32, 32, 40, 40, 40, 41, 41, 41],
   [31, 31, 31, 31, 31, 44, 44, 44, 44, 44, 37, 37, 37, 37, 37, 37],
@@ -276,11 +277,24 @@ assert.equal(initialized.b(0x5d2a), 12);
 assert.deepEqual(photographyOccluders(4), [0x8da8, 0x8d68]);
 assert.deepEqual(photographyOccluders(8), [0x9260, 0x8eb6]);
 assert.deepEqual(photographyOccluders(14), []);
-assert.throws(() => selectPhotographyTarget(initialized, 6));
+assert.throws(() => selectPhotographyTarget(initialized, 7));
+assert.throws(() => selectPhotographyAnimals(initialized, 0));
+let borneoBoundaries = 0;
+for (let roll = 0; roll < 16; roll++) {
+  initialized.i(0x2229, u16(roll * 8 - 0x9248));
+  assert.equal(selectPhotographyTarget(initialized, 6), targets[0][roll]);
+  borneoBoundaries++;
+}
+assert.equal(borneoBoundaries, 16);
+selectPhotographyAnimals(initialized, 6);
+assert.deepEqual(
+  Array.from({ length: 5 }, (_, i) => initialized.i(0x6d32 + i * 2)),
+  [14, 18, 24, 27, 16],
+);
 assert.throws(() => selectPhotographyAnimals(initialized, -1));
 assert.throws(() => spawnPhotographyAnimal(initialized, 3));
 assert.throws(() => settlePhotographyResults(initialized, new Uint8Array(11)));
 assert.throws(() => finishPhotographyReturn(initialized, 2));
 console.log(
-  "Photography:8 conditional original cases,9 checkpoints,96 static target boundaries,32 exact metadata records;7 negative controls. Browser gameplay remains unsupported.",
+  "Photography:8 conditional original cases,9 checkpoints,112 static target/default boundaries,32 exact metadata records;7 negative controls. Browser acceptance and carried runtime checks are separate.",
 );

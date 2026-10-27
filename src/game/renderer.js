@@ -61,6 +61,33 @@ export class Renderer {
     }
   }
   render(game) {
+    if (game.scene === "photography") {
+      const p = game.photography;
+      if (p.current) {
+        let pixels = p.current;
+        if (p.presentationMode === "overlay") {
+          if (
+            this.photographyWipeGame !== p ||
+            this.photographyWipeToken !== p.wipeToken
+          ) {
+            this.photographyWipeGame = p;
+            this.photographyWipeToken = p.wipeToken;
+            this.photographyWipeSource = this.ctx.getImageData(
+              0,
+              0,
+              320,
+              200,
+            ).data;
+          }
+          const composite = Uint8ClampedArray.from(this.photographyWipeSource);
+          for (let i = 0; i < pixels.length; i += 4)
+            if (pixels[i + 3]) composite.set(pixels.subarray(i, i + 4), i);
+          pixels = composite;
+        }
+        this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
+      }
+      return;
+    }
     if (game.scene === "jungle") {
       if (game.jungle.current) {
         let pixels = game.jungle.current;

@@ -29,6 +29,14 @@ Updated2026-10-27. **The full game is not complete.**
   the chest with one life,awards$1000,returns on day5 and prevents duplicate
   collection. Original whole-level timing and scrolling pixels remain unverified.
 
+
+- Photography arrival → guide → Left/Up/Right aiming → Fire to photograph →
+  twelve-photo result sheet → campaign map. Target pictures pay$500,ordinary
+  pictures$50;success marks the location collected and prevents duplicate payout.
+  Both overlay and caller spend a day (two total),and photo earnings bypass the
+  generic loot award. Browser coverage exercises Easy/variant1 with native audio,
+  target capture,results,cash/day/claim return,collected notice and Restart.
+
 Controls: Space/Enter fires. Up+Space enters the money bin; Right+Space opens the
 map. Hold Space for flight throttle; Down raises the nose, Up lowers it. In caves,
 hold an arrow to point, then press Space to move. Use Restart at an unsupported
@@ -36,7 +44,8 @@ boundary. With complete initialization and browser BIOS-seed0, the first Klondik
 flight races only on Hard; Easy/Standard are ordinary flights.
 In mountains, arrows move; hold Fire to swing the hook and release to throw.
 Up climbs an adjacent ledge or uses a transport point. In jungles,arrows walk,
-climb or drop;Fire jumps.
+climb or drop;Fire jumps. In photography,Left/Up/Right choose the camera column
+and Fire takes a picture.
 
 ## Supported original and architecture
 
@@ -50,7 +59,7 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 
 ## Verification scope
 
-- 27 unit tests and16 browser checks. Browser coverage includes real flight
+- 27 unit tests and18 browser checks. Browser coverage includes real flight
  controls, crash/race return, airport landing, cave entry, safe-room cash,
  pit failure, direct retry, treasure recovery/$4500 award, collected-location
  notices (including native audio completion), calendar/map return, restart,
@@ -117,7 +126,7 @@ variant0. These checks do not establish a complete original campaign replay.
   animations are translated, but striped reveals and original movement/timing
   comparisons remain incomplete. Collected-location notices lack original pixel
   and timing comparisons; their state and explicit device boundaries are tested.
-- Photography gameplay,stock trading,campaign endings,normal Glomgold progression,
+- Stock trading,campaign endings,normal Glomgold progression,
   atomic transport,save/load and high scores are absent. Jungle gameplay is
   connected,including a complete treasure/reward route. All three maps load;
   full browser coverage is Easy/variant0. Original comparisons are conditional,
@@ -158,21 +167,23 @@ Mountain foundation: `npm run prepare:mountain-analysis` and
 Jungle analysis/checks: `npm run prepare:jungle-analysis` and
 `npm run verify:jungle`; Python3 is required for the independent oracle.
 
-Photography core now has8 conditional original cases/9 checkpoints,96 static
-target boundaries and32 exact metadata records. Target selection,spawn helpers,
-shutter reaction and$1000 two-target accounting match the original Yellerstone
-visit; this is not browser gameplay. See `docs/photography.md` and
+Photography has8 original leaf cases/9 checkpoints,11 original animation passes,
+112 static target/default boundaries,32 exact metadata records and2 exact original PNGs.
+Four independent replays cover target success,ordinary-only earnings,misses and
+timeout (20 checkpoints,554 joystick samples,43 dialogue events). Eighteen resource
+cases cover every actual photo layout and difficulty;Borneo uses layout6. Original full-expedition timing and
+all species/browser variants remain unverified. See `docs/photography.md` and
 `npm run verify:photography`.
 
-Next: implement photography animation/main loop and connect its browser route,then trading and endings. Extend targeted original comparisons for jungle
+Next: stock trading and campaign endings. Extend targeted original comparisons for jungle
 scrolling/timing,mountain hook/ascent,cave movement and result presentation.
 Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-photography variant1/day26,paused0e0c:1225 stop353 before successful return,AX1.
-Yellerstone Park slot7 is claimed;cash2094. Photography overlay identity was
-revalidated in full at334. The prior jungle evidence remains below.
+photography Kenya variant4/day27,paused0e0c:07bf stop383,film12,target39.
+The full7924-byte relocated photography overlay was revalidated at entry360.
+The prior jungle evidence remains below.
 All keys released,no breakpoints or pending schedules. The complete relocated
 24056-byte overlay was revalidated at entry313; EGA copy/page code is pinned at323,
 including its four documented self-modifying operands. Previous conditional

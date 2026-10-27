@@ -8,14 +8,17 @@ const random = (m) => {
   return value;
 };
 
-// Main006b..0249. The AND15 roll is consumed once, including variant3.
+// Main006b..0249. LOC uses variants1..6; Borneo6 takes the default branch.
+// Variant0 is retained here only for direct default-branch comparisons.
+// The AND15 roll is consumed once, including variant3.
 export function selectPhotographyTarget(m, variant) {
-  if (!Number.isInteger(variant) || variant < 0 || variant > 5)
+  if (!Number.isInteger(variant) || variant < 0 || variant > 6)
     throw Error(`Unsupported photography variant ${variant}`);
   const roll = random(m) & 15;
   let target;
   switch (variant) {
     case 0:
+    case 6:
       target = roll < 5 ? 30 : roll < 10 ? 32 : roll < 13 ? 40 : 41;
       break;
     case 1:
@@ -75,7 +78,7 @@ export function selectPhotographyTarget(m, variant) {
 
 // 0d39:0006 (body1226). Copy original executable's five companion IDs.
 export function selectPhotographyAnimals(m, variant) {
-  if (!Number.isInteger(variant) || variant < 0 || variant > 5)
+  if (!Number.isInteger(variant) || variant < 1 || variant > 6)
     throw Error(`Unsupported photography variant ${variant}`);
   m.i(0x6d30, m.i(0x5f48) - 16);
   for (let i = 1; i < 6; i++)

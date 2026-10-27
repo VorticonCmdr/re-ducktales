@@ -5,6 +5,7 @@ import { Flight } from "./flight.js";
 import { Cave } from "./cave.js";
 import { Mountain } from "./mountain.js";
 import { Jungle } from "./jungle.js";
+import { Photography } from "./photography.js";
 import { ExpeditionBriefing } from "./expedition.js";
 import { CampaignVisitNotice } from "./campaign-visit.js";
 import { nextRandom, u8, u32, u16 } from "./integer.js";
@@ -27,6 +28,7 @@ export class Game {
     this.cave = null;
     this.mountain = null;
     this.jungle = null;
+    this.photography = null;
     this.briefing = null;
     this.loot = loot;
     this.flightResources = flightResources;
@@ -56,6 +58,7 @@ export class Game {
       this.cave?.setAudioEnabled(event.enabled);
       this.mountain?.setAudioEnabled(event.enabled);
       this.jungle?.setAudioEnabled(event.enabled);
+      this.photography?.setAudioEnabled(event.enabled);
       this.visitNotice?.setAudioEnabled(event.enabled);
       return;
     }
@@ -75,6 +78,7 @@ export class Game {
       this.cave = null;
       this.mountain = null;
       this.jungle = null;
+      this.photography = null;
       this.visitNotice = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
@@ -93,6 +97,7 @@ export class Game {
       this.cave?.setControls(this.controls);
       this.mountain?.setControls(this.controls);
       this.jungle?.setControls(this.controls);
+      this.photography?.setControls(this.controls);
       return;
     }
     if (this.scene === "title" && event.type === "fire") {
@@ -291,6 +296,11 @@ export class Game {
   }
   advanceTick() {
     this.tick++;
+    if (this.scene === "photography") {
+      this.photography.advanceTick();
+      this.collectPhotography();
+      return;
+    }
     if (this.scene === "visit-notice") {
       if (this.visitNotice.advanceTick()) {
         const fireClick =
@@ -351,6 +361,11 @@ export class Game {
     this.collectEffects();
   }
   advanceRetrace() {
+    if (this.scene === "photography") {
+      this.photography.advanceRetrace();
+      this.collectPhotography();
+      return;
+    }
     if (this.scene === "jungle") {
       this.jungle.advanceRetrace();
       this.collectActionExpedition(this.jungle);
@@ -450,6 +465,7 @@ export class Game {
       };
     } else {
       this.campaign.day = u8(this.campaign.day + 1);
+      if (this.finishScoredExpedition(this.cave.memory)) return;
       const id = this.campaign.locations[this.campaign.location].treasure;
       const treasure = this.loot?.[id - 1];
       if (!treasure) throw Error("Missing original expedition reward");
@@ -466,6 +482,42 @@ export class Game {
   }
   collectMountain() {
     this.collectActionExpedition(this.mountain);
+  }
+  collectPhotography() {
+    const p = this.photography,
+      c = this.campaign;
+    this.effects.push(...p.drainEvents());
+    this.money = p.memory.view.getUint32(0x8cc0, true);
+    this.seed = c.seed = u16(p.memory.i(0x2229));
+    if (!p.outcome) return;
+    this.flightMemory = p.memory;
+    // Photography increments its own day before returning. Main04e7 then
+    // increments it again. A nonzero photo score bypasses the loot award.
+    c.day = u8(p.outcome.day + 1);
+    p.memory.b(0x4e0e, c.day);
+    if (p.outcome.code) {
+      if (!p.outcome.score)
+        throw Error("Unsupported photography success without score");
+      if (!this.finishScoredExpedition(p.memory))
+        throw Error("Photography score disappeared before campaign return");
+    } else {
+      if (c.day > 30)
+        throw Error("Untranslated campaign ending after photography.");
+      c.openMap();
+      this.scene = "map";
+      this.effects.push({ type: "stopAudio" });
+    }
+  }
+  finishScoredExpedition(memory) {
+    // Resident04f2 tests the shared DWORD after any successful expedition.
+    // A failed ordinary-only photography visit leaves it set,so a later
+    // success also takes this branch. No other expedition clears it on entry.
+    if (!memory.view.getUint32(0x97a8, true)) return false;
+    memory.view.setUint32(0x97a8, 0, true);
+    this.expeditionResult = { phase: "award", value: 0 };
+    this.scene = "expedition-result";
+    this.finishExpeditionResult();
+    return true;
   }
   collectActionExpedition(expedition) {
     this.effects.push(...expedition.drainEvents());
@@ -484,6 +536,7 @@ export class Game {
       return;
     }
     this.campaign.day = u8(this.campaign.day + 1);
+    if (this.finishScoredExpedition(expedition.memory)) return;
     const id = this.campaign.locations[this.campaign.location].treasure;
     const treasure = this.loot?.[id - 1];
     if (!treasure) throw Error("Missing original expedition reward");
@@ -557,6 +610,25 @@ export class Game {
     this.scene = "expedition-briefing";
   }
   startExpedition() {
+    if (this.briefing.activity === "photography") {
+      this.photography = new Photography(
+        {
+          ...this.expeditionResources,
+          entries: this.expeditionResources.photographyEntries,
+          variant: this.briefing.variant,
+          difficulty: this.difficulty,
+          seed: this.seed,
+          money: this.money,
+          day: this.campaign.day,
+          location: this.campaign.location,
+          audioEnabled: this.audioEnabled,
+        },
+        this.flightMemory,
+      );
+      this.photography.setControls(this.controls);
+      this.scene = "photography";
+      return;
+    }
     if (this.briefing.activity === "jungle") {
       this.jungle = new Jungle(
         {
@@ -651,6 +723,7 @@ export class Game {
       cave: this.cave?.snapshot() ?? null,
       mountain: this.mountain?.snapshot() ?? null,
       jungle: this.jungle?.snapshot() ?? null,
+      photography: this.photography?.snapshot() ?? null,
       briefing: this.briefing?.snapshot() ?? null,
       repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
       expeditionResult:

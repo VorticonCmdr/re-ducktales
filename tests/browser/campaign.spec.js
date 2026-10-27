@@ -184,6 +184,7 @@ for (const [name, x, y, activity] of [
   ["El Capitan", 36, 61, "mountain"],
   ["Okeefadokie Swamp", 64, 73, "jungle"],
   ["Yellerstone Park", 46, 56, "photography"],
+  ["Borneo", 280, 149, "photography"],
 ]) {
   test(`departure dispatch classifies ${name}`, async ({ page }) => {
     const c = await office(page);
@@ -197,6 +198,8 @@ for (const [name, x, y, activity] of [
     await page.keyboard.press("Space");
     await expect(c).toHaveAttribute("data-scene", "departure");
     expect((await state(c)).departure.activity).toBe(activity);
+    if (name === "Borneo")
+      expect((await state(c)).departure.flags >>> 4).toBe(6);
     expect((await state(c)).campaign.location).toBe(35);
     await expect(page.locator("#diagnostic")).toBeHidden();
     await page.locator("#restart").click();

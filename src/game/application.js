@@ -4,6 +4,7 @@ import { MoneyBin } from "./money-bin.js";
 import { Flight } from "./flight.js";
 import { Cave } from "./cave.js";
 import { Mountain } from "./mountain.js";
+import { Jungle } from "./jungle.js";
 import { ExpeditionBriefing } from "./expedition.js";
 import { CampaignVisitNotice } from "./campaign-visit.js";
 import { nextRandom, u8, u32, u16 } from "./integer.js";
@@ -25,6 +26,7 @@ export class Game {
     this.visitNotice = null;
     this.cave = null;
     this.mountain = null;
+    this.jungle = null;
     this.briefing = null;
     this.loot = loot;
     this.flightResources = flightResources;
@@ -53,6 +55,7 @@ export class Game {
       this.audioEnabled = event.enabled;
       this.cave?.setAudioEnabled(event.enabled);
       this.mountain?.setAudioEnabled(event.enabled);
+      this.jungle?.setAudioEnabled(event.enabled);
       this.visitNotice?.setAudioEnabled(event.enabled);
       return;
     }
@@ -71,6 +74,7 @@ export class Game {
       this.flightMemory = null;
       this.cave = null;
       this.mountain = null;
+      this.jungle = null;
       this.visitNotice = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
@@ -88,6 +92,7 @@ export class Game {
       this.flight?.setControls(this.controls);
       this.cave?.setControls(this.controls);
       this.mountain?.setControls(this.controls);
+      this.jungle?.setControls(this.controls);
       return;
     }
     if (this.scene === "title" && event.type === "fire") {
@@ -322,6 +327,11 @@ export class Game {
       this.collectMountain();
       return;
     }
+    if (this.scene === "jungle") {
+      this.jungle.advanceTick();
+      this.collectActionExpedition(this.jungle);
+      return;
+    }
     if (this.scene === "flight") {
       this.flight.advanceTick();
       this.collectFlight();
@@ -341,6 +351,11 @@ export class Game {
     this.collectEffects();
   }
   advanceRetrace() {
+    if (this.scene === "jungle") {
+      this.jungle.advanceRetrace();
+      this.collectActionExpedition(this.jungle);
+      return;
+    }
     if (this.scene === "mountain") {
       this.mountain.advanceRetrace();
       this.collectMountain();
@@ -450,15 +465,17 @@ export class Game {
     this.scene = "expedition-result";
   }
   collectMountain() {
-    const mountain = this.mountain;
-    this.effects.push(...mountain.drainEvents());
-    this.money = mountain.memory.view.getUint32(0x8cc0, true);
-    this.seed = this.campaign.seed = u16(mountain.memory.i(0x2229));
-    if (!mountain.outcome) return;
-    this.flightMemory = mountain.memory;
-    // Mountain returns directly on failure; Cave's internal failure portrait
-    // is not part of the mountain routine. Both callers then spend one day.
-    if (mountain.outcome.code === 0) {
+    this.collectActionExpedition(this.mountain);
+  }
+  collectActionExpedition(expedition) {
+    this.effects.push(...expedition.drainEvents());
+    this.money = expedition.memory.view.getUint32(0x8cc0, true);
+    this.seed = this.campaign.seed = u16(expedition.memory.i(0x2229));
+    if (!expedition.outcome) return;
+    this.flightMemory = expedition.memory;
+    // Action expeditions return directly on failure; Cave's failure portrait
+    // is not part of these routines. Both callers then spend one day.
+    if (expedition.outcome.code === 0) {
       this.campaign.day = u8(this.campaign.day + 1);
       if (this.campaign.day > 30)
         throw Error("Untranslated campaign ending after expedition.");
@@ -540,6 +557,24 @@ export class Game {
     this.scene = "expedition-briefing";
   }
   startExpedition() {
+    if (this.briefing.activity === "jungle") {
+      this.jungle = new Jungle(
+        {
+          ...this.expeditionResources,
+          entries: this.expeditionResources.jungleEntries,
+          variant: this.briefing.variant,
+          difficulty: this.difficulty,
+          seed: this.seed,
+          money: this.money,
+          day: this.campaign.day,
+          audioEnabled: this.audioEnabled,
+        },
+        this.flightMemory,
+      );
+      this.jungle.setControls(this.controls);
+      this.scene = "jungle";
+      return;
+    }
     if (this.briefing.activity === "mountain") {
       this.mountain = new Mountain(
         {
@@ -615,6 +650,7 @@ export class Game {
       flight: this.flight?.snapshot() ?? null,
       cave: this.cave?.snapshot() ?? null,
       mountain: this.mountain?.snapshot() ?? null,
+      jungle: this.jungle?.snapshot() ?? null,
       briefing: this.briefing?.snapshot() ?? null,
       repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
       expeditionResult:

@@ -125,7 +125,7 @@ export function jungleProjectilePosition(m, id) {
 
 // 1090:01fe: redraw platforms under a world rectangle, including the
 // original kind10 widening and truncating signed column division.
-function flagPlatformsUnder(m, x, y, width, height, kind) {
+export function flagJunglePlatformsUnder(m, x, y, width, height, kind) {
   let right = s16(x + width),
     bottom = s16(y + height - (kind === 10 ? 16 : 48));
   if (kind === 10) {
@@ -704,7 +704,7 @@ export function advanceJungleProjectile(m, id, effects = {}) {
     m.i(0x5ada, 0);
   }
   markJungleDirty(m, m.i(at + 54), m.i(at + 58), 24, 16, id + 12);
-  flagPlatformsUnder(m, m.i(at + 54), m.i(at + 58), 24, 16, 11);
+  flagJunglePlatformsUnder(m, m.i(at + 54), m.i(at + 58), 24, 16, 11);
   const bird = word(m, 0x6a28 + Math.trunc(m.i(at + 54) / 104) * 14);
   if (bird) flagJungleBirdDirty(m, bird, 11);
 }

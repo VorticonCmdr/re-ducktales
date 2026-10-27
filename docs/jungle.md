@@ -1,14 +1,14 @@
 # Jungle expedition
 
-Jungle gameplay is not yet connected to the browser. The current foundation
-loads the three original map resources, locates the starting platform and
-translates actor animation lists, selection, countdowns, control selection,
-ground/support queries, actor motion, hazard/life initialization, a pure
-full-scene compositor and presentation history.
-The actor routines now have conditional original-runtime comparisons. The next playable route is flight/guide →
-walking/jumping among the initial platforms → consequence → restart, followed
-by the complete expedition and campaign reward. No substitute mechanics are
-implemented while presentation-side state updates and scene scheduling remain unfinished.
+Jungle gameplay is connected to the browser. The working slice is flight →
+guide → keyboard jump/walk/drop → life loss → campaign return → direct retry.
+Original assets,maps,actor/hazard logic,dirty rectangles and two video pages run
+together. A $50 pickup was manually exercised;automated browser coverage includes
+variant0 controls,three-life failure,retry and restart. Treasure success,other
+variants/difficulties and original full-loop timing still need acceptance.
+
+The sections below preserve each comparison's scope. The runtime section at the
+end records the independent factory,clock providers and current browser route.
 
 ## Source identity and analysis
 
@@ -103,10 +103,9 @@ polls joystick input at body0651 before collision/scene passes. Actor action
 selection is f97:06a9 (Ghidra currently fails to decompile it); camera movement
 is body0591. Actor world X/Y are DS5f46/6858, current action6882, facing3d12
 and platform column/row544c/5462. The animation helpers are now translated
-from raw disassembly and checked below. Translate presentation-side state updates
-and scene scheduling next; extend full-scene rendering to scrolling/incremental
-comparisons before claiming a playable jungle milestone. Existing cave and mountain browser routes
-remain the working expedition routes.
+from raw disassembly and checked below. Stateful presentation and browser
+integration are documented in the later sections;these map checks alone do not
+establish either behavior.
 
 ## Actor animation and conditional original scenario
 
@@ -162,8 +161,7 @@ advance. Missing/corrupt local captures are explicit setup failures.
 
 These checks prove conditional routines and two carried animation segments;
 they do not prove full jungle gameplay, controls, hazards, complete-scene pixels,
-audio or wall-clock timing. The browser still stops at the unsupported jungle
-boundary. The local original screenshot `.local/jungle-original.png` is an
+audio or wall-clock timing. Browser integration is verified separately below. The local original screenshot `.local/jungle-original.png` is an
 exploratory capture at stop104, not a pixel expectation.
 
 
@@ -213,9 +211,8 @@ Those modified initial states are independent checks, not original captures.
 The command remains `npm run verify:jungle`; the original overlay identity is
 checked by the animation verifier before these control cases.
 
-Presentation-side state updates, scene scheduling and browser integration
-still remain before a playable jungle route. Ground, vine
-and moving-platform helpers have static evidence but no new runtime comparison
+Presentation,scene scheduling and browser integration have separate evidence
+below. Ground,vine and moving-platform helpers have static evidence but no new runtime comparison
 in these seven cases. No full-scene, audio, original wall-clock or browser
 acceptance claim is made for jungle yet.
 
@@ -290,8 +287,8 @@ vine attach/detach and remaining branches currently have static evidence only.
 
 Run `npm run verify:jungle`. All55 local capture artifacts are required and
 hash checked; missing/corrupt captures fail explicitly. No full scene pixels,
-original audio/timing or jungle browser acceptance is claimed. Next: complete
-hazard advancement and scene scheduling, then integrate this actor loop.
+original audio/timing or jungle browser acceptance is claimed by these actor
+checks. Hazard,scene and browser evidence follows separately below.
 
 After the dispatched Down release and neutral AL0 at stop218, the original
 continued through natural life loss and the reset boundaries recorded below.
@@ -468,7 +465,7 @@ that already-drawn projectile from its now-cleared active flag. The production
 loop must retain drawing commands at those consumption boundaries; this snapshot
 compositor is not acceptance for hit frames. The separate projectile presentation
 and collision helpers below now preserve that ordering; presentation-side state
-updates and the main scheduler remain before a playable browser route.
+updates and the main scheduler are now implemented separately below.
 
 The stop261 pause was followed by the advancement comparisons below.
 
@@ -553,11 +550,12 @@ branches,fish boarding and other state combinations still need targeted runtime
 comparisons. Run `npm run verify:jungle`. No full-level,independent browser,audio
 or wall-clock timing parity is claimed.
 
-For the next runtime boundary, main1227 invalidates the previous actor rectangle;
+For the runtime boundary, main1227 invalidates the previous actor rectangle;
 it is not a timing wait. The frame footer calls original098e:01d8 (Ghidra198e),
 which waits against deadline27f8/27fa and schedules the next deadline from the
 driver counter plus27fc/27fe (entry sets the interval to3). Its DX:AX arithmetic
-must be checked in raw disassembly before implementing the scheduler. Graphics
+was checked in raw disassembly before implementing the scheduler:unsigned
+high-word/low-word comparisons followed by ADD AX/ADC DX and word stores. Graphics
 flip1fd4 points to live2ed7:00e5, which also calls the driver retrace helper0064.
 Keep driver-clock deadlines and display retraces separate from browser frames.
 
@@ -619,8 +617,87 @@ not simulation inputs or a blanket code exclusion.
 Run `npm run verify:jungle` (also required by `npm run verify`). Missing/corrupt
 local captures fail setup. Pixel evidence covers this initial viewport sequence;
 scrolling,other hazard/hit pixels,driver deadlines,retrace scheduling,independent
-startup and browser jungle gameplay remain incomplete.
+startup and browser jungle gameplay are outside these presentation checks;the
+next section adds separate runtime evidence.
 
-Current original: paused0e0c:049a stop323,variant0/day24,after the next presentation
-following the initial dirty-restore frame. All controls released,no breakpoints or
-pending schedules. Fresh overlay mapping was revalidated at313.
+Current original: paused0e0c:047c stop326,variant0/day24,after the whole-frame
+comparison below. All controls released,no breakpoints or pending schedules.
+Fresh overlay mapping was revalidated at313.
+
+## Browser runtime and current playable slice
+
+`jungle-state.js` translates loader13d4's observable resource/map/list setup.
+Original assets remain authoritative;runtime descriptors occupy explicit virtual
+DSa000..a167 and framebuffer handlesa400/a40c/a418. These addresses replace DOS
+allocation,not game mechanics. Observable geometry/frame/coordinates stay in
+original descriptor layouts;unused DOS data/mask far pointers are not consumed.
+The supported EGA drawing page starts atA200 and flips with XOR0200. Maps,
+source text,animation lists,palette and hazard initializers use the source order.
+A prior expedition DS may be carried;independent startup uses static executable
+data with zero BSS. No captured state is loaded in the browser.
+
+`jungle.js` runs the original main-loop sequence:invalidate old actor,input,
+ground,life reset,camera,hazards,rider,motion,presentation,page operation,frame
+deadline. Browser keys emulate original joystick bytes1/3/5/7 and Fire40;the
+provider owns held controls independently of the cleared DOS keyboard matrix.
+Driver ticks and display retraces are separate. The driver rate is PIT1193182 /
+(1365*12),not125Hz;the independent retrace provider is70.086Hz. Resident098e:01d8
+uses unsigned DX:AX comparison and ADD/ADC,not the decompiler's staleDX value.
+
+Synchronous translated segments finish at a logical driver timestamp. A required
+wait provider implements040e:0dcc's unsigned base+ticks deadline and consumes its
+own clock. Subsequent input,presentation and sound are held until the advancing
+driver provider reaches that logical timestamp. Audio completion does not enter
+these jungle mechanics. This preserves waits with sound disabled;there is no
+rollback,expected-state/timer fitting or host randomness. Internal states during
+a queued segment wait are not original checkpoints. Instruction-duration/IRQ
+alignment and original whole-loop timing remain unverified.
+
+EGA0155/0101 wipe/reveal rows0,5,...195,then1,6,...196,etc,with five retraces per
+group. Entry/outgoing clears consume25 retraces;first-frame wipe plus reveal
+consumes50. The final cleanup includes its separate25-retrace clear too. Wipe
+payload alpha0 explicitly preserves the incoming renderer screen;the DOM renderer
+owns that pixel source and never returns it to simulation. Reveals progressively
+copy the completed jungle page. Masks,pages and renderer incoming-screen storage
+are bounded;no historical frame command chain is retained. This translation has
+static driver evidence;original transition-pixel/timing comparison is pending.
+
+`reference/jungle-runtime.json` requires five hashed local original artifacts.
+Its conditional loader starts from entry230 BEFORE,consumes campaign values
+checked there,and compares against initialized246:12 full entity/map/pickup/edge
+ranges,33 animation lists,all loaded descriptor geometry/frame,actor globals,
+palette and RNG. Only tuple sprite pointers are normalized to explicit asset IDs;
+unknown identities fail. DOS heap/archive/freed-resource/stack/device state is
+outside this semantic initialization comparison. It is not a full-DS loader proof.
+
+The whole-frame case continues stop323:checked run-to00dc stop324,independent
+joystick consumption0680 stop325 (AL0),then047c stop326. Each game boundary
+captures CPU+DS;before/after also capture driver drawing color. The simulation
+starts once from324,consumes the recorded incoming joystick/color,and carries all
+state through every helper in order to326. All65536 DS bytes compare except the
+fixed128-byte helper stack9df2..9e71 and identified IRQ8 counter2225..2228.
+RNG,descriptors,histories,dirty lists and all game globals compare exactly.
+No new input schedule,injection,register write or restore was used. This neutral
+initial-viewport frame does not establish original life-reset or scrolling loops.
+
+A separate independent replay starts only from original static files,authored
+campaign seed2725/$44/day23/Easy/variant0,virtual descriptors and its own driver/
+retrace providers. Its five input runs total824 samples:neutral2,Fire1,neutral15,
+Right18,Down788. It carries all game state through20 exact snapshots/full-memory
+hashes/presentation-payload hashes,6405 clock events and875 display updates,then
+requires an exact final failure state at scroll960. Fish travel covers much of
+the level. Expected values are authored port regression data,not original capture
+outputs. Eight negatives corrupt seed,input,dirty invalidation,pixels or required
+case/event counts;missing/corrupt artifacts and unsupported paths fail explicitly.
+
+`tests/browser/jungle.spec.js` exercises actual verified file loading,keyboard
+flight,jungle jump/walk/drop,life loss,calendar/map return,direct same-location
+retry and restart. No game memory or expected state is injected. Separate manual
+browser exploration collected$50 and observed the coat/HUD life change. Required
+commands are `npm run verify:jungle`, `npx playwright test tests/browser/jungle.spec.js`
+and the full `npm run verify`. Missing local originals are setup failures.
+
+Next:verify a complete jungle treasure route and campaign reward,then photography,
+trading and endings. Other maps/difficulties received exploratory short runs only;
+those are not full acceptance. Original scrolling/enemy/hit pixels,whole-loop
+clock/IRQ alignment,audio and full-level replay remain open.

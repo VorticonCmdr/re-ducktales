@@ -8,9 +8,29 @@ import {
   jungleProjectilePosition,
   presentJungleProjectile,
   collideJungleProjectile,
+  flagJunglePlatformsUnder,
 } from "./jungle-hazards.js";
+import { markJungleDirty } from "./jungle-collision.js";
 
 const pointer = (m, at) => m.view.getUint16(at & 65535, true);
+
+// Main1227:invalidate the sprite occupying this page two presentations ago.
+export function invalidateJungleActor(m) {
+  const previous = pointer(m, 0x68ae);
+  let width, height;
+  if (previous === pointer(m, 0x9762) || previous === pointer(m, 0x5f90)) {
+    width = 40;
+    height = 33;
+  } else if (previous === pointer(m, 0x5f2c)) {
+    width = 48;
+    height = 41;
+  } else if (previous === pointer(m, 0x957e)) {
+    width = 88;
+    height = 34;
+  } else return;
+  markJungleDirty(m, m.i(0x711a), m.i(0x7196), width, height, 22);
+  flagJunglePlatformsUnder(m, m.i(0x711a), m.i(0x7196), width, height, 10);
+}
 
 // Original f97:02f6. Draw immediately: later objects may reuse this descriptor.
 export function presentJungleObject(m, at, draw) {

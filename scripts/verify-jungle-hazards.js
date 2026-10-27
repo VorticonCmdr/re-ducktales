@@ -232,6 +232,6 @@ export async function verifyJungleHazards(resources) {
   assert.throws(() => routines({ wrongFirst: true }), /hazard DS divergence/);
   assert.throws(() => carried(true), /hazard DS divergence/);
   console.log(
-    "Jungle hazards: 10 exact original initialization/reset cases,2 first/reset arguments,9 carried complete DS checkpoints; fresh overlay and IRQ8 driver code identity; five negative controls. Only documented stack scratch and the asynchronous four-byte device clock excluded. Advancement and scene evidence follows separately; browser route remains unfinished.",
+    "Jungle hazards: 10 exact original initialization/reset cases,2 first/reset arguments,9 carried complete DS checkpoints; fresh overlay and IRQ8 driver code identity; five negative controls. Only documented stack scratch and the asynchronous four-byte device clock excluded. Advancement,scene and browser evidence follow in separate checks.",
   );
 }

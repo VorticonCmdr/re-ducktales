@@ -66,6 +66,7 @@ async function load(read) {
         maps: parseCaveMaps(resources.archives.get("CAVEMAPS.ARC")),
         clues: resources.archives.get("CLUES.ARC"),
         mountainEntries: resources.archives.get("MT.ARC"),
+        jungleEntries: resources.archives.get("JG.ARC"),
         mainEntries: resources.archives.get("MAIN.ARC"),
       },
       flightResources: {
@@ -287,27 +288,29 @@ function frame() {
       $("map").disabled = game.scene !== "office";
       $("back").disabled = game.scene === "departure";
       $("status").textContent =
-        game.scene === "mountain"
-          ? `Mountain · Arrow keys to move · Hold Fire to swing the hook; release to throw · Lives ${game.mountain.snapshot().lives} · Cash $${game.money}`
-          : game.scene === "departure"
-            ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · Fire to fly`
-            : game.scene === "cave"
-              ? `Cave · ${game.cave.phase === "exploring" ? "Hold an arrow to point; press Space to move" : game.cave.phase} · Lamp ${game.cave.snapshot().torch}/${game.cave.snapshot().limit} · Cash $${game.cave.snapshot().money}`
-              : game.scene === "expedition-result"
-                ? `Expedition ${game.expeditionResult.phase === "failure" ? "failed" : game.expeditionResult.phase === "award" ? "treasure recovered" : "atomic transport unlocked"} · Fire to continue · Cash $${game.money}`
-                : game.scene === "visit-notice"
-                  ? `${game.visitNotice.reason === "player" ? "This treasure is already collected" : "Glomgold has already taken this treasure"} · Fire to return to the map`
-                  : game.scene === "expedition-briefing"
-                    ? "The Junior Woodchuck Guide"
-                    : game.scene === "flight"
-                      ? `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
-                      : game.scene === "rival-claim"
-                        ? `Glomgold has taken the treasure · Fire to continue`
-                        : game.scene === "money-bin"
-                          ? `Money bin · ${game.bin.phase} · Fire to dive`
-                          : game.scene === "map"
-                            ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
-                            : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
+        game.scene === "jungle"
+          ? `Jungle · Arrow keys to move, climb, or drop · Fire to jump · Lives ${game.jungle.snapshot().lives} · Cash $${game.money}`
+          : game.scene === "mountain"
+            ? `Mountain · Arrow keys to move · Hold Fire to swing the hook; release to throw · Lives ${game.mountain.snapshot().lives} · Cash $${game.money}`
+            : game.scene === "departure"
+              ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · Fire to fly`
+              : game.scene === "cave"
+                ? `Cave · ${game.cave.phase === "exploring" ? "Hold an arrow to point; press Space to move" : game.cave.phase} · Lamp ${game.cave.snapshot().torch}/${game.cave.snapshot().limit} · Cash $${game.cave.snapshot().money}`
+                : game.scene === "expedition-result"
+                  ? `Expedition ${game.expeditionResult.phase === "failure" ? "failed" : game.expeditionResult.phase === "award" ? "treasure recovered" : "atomic transport unlocked"} · Fire to continue · Cash $${game.money}`
+                  : game.scene === "visit-notice"
+                    ? `${game.visitNotice.reason === "player" ? "This treasure is already collected" : "Glomgold has already taken this treasure"} · Fire to return to the map`
+                    : game.scene === "expedition-briefing"
+                      ? "The Junior Woodchuck Guide"
+                      : game.scene === "flight"
+                        ? `Flight · ${game.flight.phase} · Hold Space for throttle · Down raises the nose; Up lowers it · Day ${game.flight.snapshot().day}`
+                        : game.scene === "rival-claim"
+                          ? `Glomgold has taken the treasure · Fire to continue`
+                          : game.scene === "money-bin"
+                            ? `Money bin · ${game.bin.phase} · Fire to dive`
+                            : game.scene === "map"
+                              ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
+                              : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
       $("game").dataset.scene = game.scene;
       $("game").dataset.state = JSON.stringify(game.snapshot());
     }

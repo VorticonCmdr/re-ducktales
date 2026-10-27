@@ -316,6 +316,6 @@ export async function verifyJunglePresentation(resources) {
     /Uninitialized jungle framebuffer pixel/,
   );
   console.log(
-    "Jungle presentation:6 conditional original full-DS passes/external colors;fresh overlay and EGA copy/page identity;4 carried raster passes match one exact320x200 original PNG with fixed presentation alignment;11 negative controls. Conditional initial viewport only; scrolling,timing and browser gameplay remain unverified.",
+    "Jungle presentation:6 conditional original full-DS passes/external colors;fresh overlay and EGA copy/page identity;4 carried raster passes match one exact320x200 original PNG with fixed presentation alignment;11 negative controls. Conditional initial viewport only;full gameplay/timing comparisons are outside this presentation check.",
   );
 }

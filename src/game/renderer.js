@@ -61,6 +61,27 @@ export class Renderer {
     }
   }
   render(game) {
+    if (game.scene === "jungle") {
+      if (game.jungle.current) {
+        let pixels = game.jungle.current;
+        if (game.jungle.presentationMode === "overlay") {
+          if (
+            this.jungleWipeGame !== game.jungle ||
+            this.jungleWipeToken !== game.jungle.wipeToken
+          ) {
+            this.jungleWipeGame = game.jungle;
+            this.jungleWipeToken = game.jungle.wipeToken;
+            this.jungleWipeSource = this.ctx.getImageData(0, 0, 320, 200).data;
+          }
+          const composite = Uint8ClampedArray.from(this.jungleWipeSource);
+          for (let i = 0; i < pixels.length; i += 4)
+            if (pixels[i + 3]) composite.set(pixels.subarray(i, i + 4), i);
+          pixels = composite;
+        }
+        this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
+      }
+      return;
+    }
     if (game.scene === "mountain") {
       if (game.mountain.current)
         this.ctx.putImageData(

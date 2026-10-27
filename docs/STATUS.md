@@ -21,6 +21,11 @@ Updated2026-10-27. **The full game is not complete.**
   A complete variant0 ascent preserves three lives, collects $100, awards the
   $7000 treasure, returns to the map and prevents repeat collection. Original
   hook/ascent, pixel and timing parity remain unverified.
+- Jungle arrival → guide → keyboard jump/walk/drop → life loss → campaign map
+  → direct retry. Original assets,hazards,vines,fish and moving platforms run
+  together. Pickups work (a $50 pickup was manually exercised in the browser).
+  Automated acceptance covers variant0 controls,three-life failure,day/map
+  return,direct retry and restart; treasure success remains to be verified.
 
 Controls: Space/Enter fires. Up+Space enters the money bin; Right+Space opens the
 map. Hold Space for flight throttle; Down raises the nose, Up lowers it. In caves,
@@ -28,7 +33,8 @@ hold an arrow to point, then press Space to move. Use Restart at an unsupported
 boundary. With complete initialization and browser BIOS-seed0, the first Klondike
 flight races only on Hard; Easy/Standard are ordinary flights.
 In mountains, arrows move; hold Fire to swing the hook and release to throw.
-Up climbs an adjacent ledge or uses a transport point.
+Up climbs an adjacent ledge or uses a transport point. In jungles,arrows walk,
+climb or drop;Fire jumps.
 
 ## Supported original and architecture
 
@@ -42,7 +48,7 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 
 ## Verification scope
 
-- 27 unit tests and14 browser checks. Browser coverage includes real flight
+- 27 unit tests and15 browser checks. Browser coverage includes real flight
  controls, crash/race return, airport landing, cave entry, safe-room cash,
  pit failure, direct retry, treasure recovery/$4500 award, collected-location
  notices (including native audio completion), calendar/map return, restart,
@@ -60,38 +66,19 @@ does not advance simulation. Unsupported paths stop with diagnostics.
   from entry with a recorded joystick stream and explicit incoming stack provider.
   Its destination setup injection is explicit; original hook/ascent/pixels/timing
   and a whole original mountain replay are not established.
-- Jungle foundation: three static map-loading cases compare all65536 DS bytes,
-  348 declared records and the three starting-platform scans against an
-  independent scanf-table oracle. Duplicate printed B labels and the extra
-  undeclared F row retain original behavior. Actor animation now adds12
-  conditional original routine checkpoints,7 carried animation checkpoints and
-  18 decoded actor poses, with complete24056-byte relocated overlay identity.
-  Seven additional conditional original control cases compare directional/Fire
-  selection and the128-byte keyboard matrix. Support/ground helpers are
-  statically translated. Actor motion adds25 exact original routine cases,
-  21 carried actor checkpoints and25 decoded poses covering walking,short step,
-  drop,fall and water death. Browser jungle gameplay remains unimplemented.
-  Authored boundary checks are kept separate from runtime evidence.
-  Fish/bonus reset adds2 conditional original checkpoints with exact DS outside
-  their42/8-byte stack intervals and17 original fish RNG draws. Vine initialization
-  has static checks. Additional hazard initialization now matches10 original
-  routine cases and9 carried full-DS checkpoints, including initial actor/lives,
-  all hazard slots and pickup RNG. Only documented stack scratch and the identified
-  four-byte IRQ8 clock are excluded. A pure full-scene compositor adds8 exact
-  original320x200 PNG comparisons with fixed one-presentation VGA alignment,
-  including the downward step and two-life blue coat/HUD. A separate original
-  life-reset routine matches all DS except22 stack bytes. Seven negative controls
-  reject wrong alignment,palette,background,pixel,state mutation,case loss and
-  reset argument. Full scrolling/enemy pixels and hazard scheduling remain incomplete. Hazard advancement adds12 conditional whole
-  passes plus bonus/camera/projectile draw,miss and hit:18 game checkpoints and
-  two pre-read driver-clock boundaries. All DS matches except documented stack
-  scratch/caller locals; no RNG,clock or wait-base exclusions. Five independent
-  arguments/events and seven negative controls are required. Remaining branches
-  have static evidence,not a complete carried gameplay replay. Presentation now
-  adds6 conditional whole-pass DS/color checks and a bounded two-page raster
-  pipeline:4 carried drawing passes match one exact320x200 original PNG,with
-  fixed one-presentation alignment and11 negative controls. This covers the
-  initial redraw/save/dirty-restore viewport,not scrolling or browser gameplay.
+- Jungle: three exact static map cases;conditional original animation,controls,
+  motion,initialization,hazards and drawing-state checks;9 exact original PNG
+  comparisons (8 reconstructed scenes and1 carried four-pass page sequence).
+  Virtual resource initialization now matches original entity arrays,33 animation
+  lists,descriptor geometry/frame,palette,actor globals and RNG. One conditional
+  whole frame matches all DS except fixed stack scratch and IRQ8 clock.
+  Independent replay carries its own state through20 checkpoints,824 joystick
+  samples,6405 clock events and875 display updates,including fish travel to
+  scroll960 and final failure. Its full-memory/presentation hashes are port
+  regression expectations,not original full-level outputs. Browser controls and
+  campaign failure/retry work;original scrolling/enemy pixels,full timing,audio,
+  treasure success and other variants/difficulties need further acceptance.
+  See `docs/jungle.md` for exact evidence scopes,capture recipes and exclusions.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
  departure:2 conditional checkpoints and exact portrait pixels.
@@ -125,17 +112,13 @@ variant0. These checks do not establish a complete original campaign replay.
   animations are translated, but striped reveals and original movement/timing
   comparisons remain incomplete. Collected-location notices lack original pixel
   and timing comparisons; their state and explicit device boundaries are tested.
-- Jungle gameplay, photography, stock trading, campaign endings, normal
-  Glomgold progression, atomic transport, save/load and high scores are absent.
-  Jungle maps and actor animation/presentation helpers are implemented
-  separately; control selection and collision support are now translated too.
-  Actor motion and support contributions are now translated separately.
-  Hazard initializers and life setup are translated and compared separately;
-  full-scene rendering now matches the captured initial viewport/drop/life reset.
-  Hazard advancement/collisions and camera logic are translated with conditional
-  original checks. Presentation histories/dirty updates and the initial incremental page sequence
-  now match conditional original checks. Scrolling, whole-loop scheduling and
-  runtime/browser integration remain. See `docs/jungle.md`.
+- Photography,stock trading,campaign endings,normal Glomgold progression,
+  atomic transport,save/load and high scores are absent. Jungle gameplay is
+  connected,but treasure success has no acceptance scenario yet. All three
+  maps load;browser coverage is variant0. Original comparisons are conditional,
+  with exact whole-frame state and initial pixel evidence. Striped wipe/reveal
+  and driver/retrace scheduling follow static driver code;their original timing
+  and transition-pixel parity remain unproven. See `docs/jungle.md`.
   Mountain actions/hazards, scrolling and summit condition are translated;
   variant0 ascent/reward works through browser controls. Other variants/
   difficulties and original hook/ascent comparisons are still needed. Full
@@ -170,18 +153,20 @@ Mountain foundation: `npm run prepare:mountain-analysis` and
 Jungle analysis/checks: `npm run prepare:jungle-analysis` and
 `npm run verify:jungle`; Python3 is required for the independent oracle.
 
-Next: connect jungle memory/resource initialization,frame scheduling and the
-verified drawing pass to a playable browser route; extend scrolling checks. Then expand photography, trading and
-endings, while extending targeted original mountain hook/ascent comparisons. Continue targeted original comparisons for cave movement,
-remaining outcomes and notice presentation/timing. Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
+Next: verify a complete jungle treasure route and campaign reward,then expand
+photography,trading and endings. Extend targeted original comparisons for jungle
+scrolling/timing,mountain hook/ascent,cave movement and result presentation.
+Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-jungle variant0/day24,paused0e0c:049a stop323 after a same-location retry.
+jungle variant0/day24,paused0e0c:047c stop326 after a complete neutral jungle frame.
 All keys released,no breakpoints or pending schedules. The complete relocated
 24056-byte overlay was revalidated at entry313; EGA copy/page code is pinned at323,
 including its four documented self-modifying operands. Previous conditional
 position/camera/target setup remains in its original manifests. The retry at312
 needed no additional override. `reference/jungle-presentation.json` pins19 local
 artifacts,six state/color passes and the four-pass conditional pixel pipeline.
-No whole jungle timing replay or browser jungle acceptance is claimed.
+`reference/jungle-runtime.json` adds conditional initialization and that whole
+frame plus the independent replay. Browser acceptance is separate;whole original
+jungle timing replay remains unproven.

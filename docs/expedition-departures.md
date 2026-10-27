@@ -5,7 +5,9 @@ Supported build: `reference/build.json`, EXE SHA-256
 This milestone implements **departure preparation**, through the original flight
 call contract. Flight is connected; cave arrival now reaches playable rooms, terminal animations, rewards/failure
 and campaign return. Mountain arrival now supports a complete variant0 ascent,
-reward and return, plus failure/retry. Jungle and photography remain incomplete.
+reward and return,plus failure/retry. Jungle arrival now supports keyboard
+movement,jumping,hazards,three-life failure,campaign return and direct retry.
+Jungle treasure success still needs acceptance;photography remains incomplete.
 
 ## Browser behavior
 

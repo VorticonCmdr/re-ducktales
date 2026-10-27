@@ -11,6 +11,7 @@ export const REQUIRED_FILES = [
   "EXP.ARC",
   "CAVEMAPS.ARC",
   "MT.ARC",
+  "JG.ARC",
   "CLUES.ARC",
   "IT.DRV",
 ];

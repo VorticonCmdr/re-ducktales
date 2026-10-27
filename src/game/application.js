@@ -71,6 +71,21 @@ export class Game {
     this.departure = null;
     this.effects = [];
     this.diagnostic = null;
+    this.titleMusicRequested = false;
+    this.startTitleMusic();
+  }
+  startTitleMusic() {
+    // Original12f5:0a51..0a60 starts request1 once while MAIN.ARC2 is shown.
+    // The browser's initially muted provider may activate on its first sound
+    // gesture. Later mute/unmute events must not replay an already-started song.
+    if (
+      this.scene !== "title" ||
+      !this.audioEnabled ||
+      this.titleMusicRequested
+    )
+      return;
+    this.titleMusicRequested = true;
+    this.effects.push({ type: "sound", id: 1 });
   }
   initializeMarket(seed) {
     if (!this.investmentResources) return seed; // Explicit component-only callers.
@@ -215,8 +230,8 @@ export class Game {
     if (event.type === "toggle-sound") {
       // Pause's35/7-tick waits do not read input; their final flush drops S.
       if (this.systemOverlay && this.systemOverlay.phase !== "waiting") return;
-      this.handleInput({ type: "audio-enabled", enabled: !this.audioEnabled });
       this.effects.push({ type: "stopAudio" });
+      this.handleInput({ type: "audio-enabled", enabled: !this.audioEnabled });
       return;
     }
     if (event.type === "audio-enabled") {
@@ -230,6 +245,7 @@ export class Game {
       this.visitNotice?.setAudioEnabled(event.enabled);
       this.rivalReport?.setAudioEnabled(event.enabled);
       this.atomicTransport?.setAudioEnabled(event.enabled);
+      this.startTitleMusic();
       return;
     }
     if (event.type === "audio-status") {
@@ -273,6 +289,8 @@ export class Game {
       this.seed = this.campaign?.seed ?? this.biosSeed;
       this.rareCoinTaken = false;
       this.effects.push({ type: "stopAudio" });
+      this.titleMusicRequested = false;
+      this.startTitleMusic();
       return;
     }
     if (this.systemOverlay) {
@@ -321,6 +339,8 @@ export class Game {
       return;
     }
     if (this.scene === "title" && event.type === "fire") {
+      // The interrupted original intro sends reset0 at12f5:0a10..0a17.
+      if (this.audioEnabled) this.effects.push({ type: "sound", id: 0 });
       this.scene = "difficulty";
       return;
     }

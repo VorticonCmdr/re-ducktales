@@ -1,0 +1,54 @@
+{
+  "id": "title-audio-fb658562",
+  "baseRevision": "129dc9c",
+  "buildManifest": "reference/build.json",
+  "source": {
+    "program": "DUCK_UNPACKED.EXE",
+    "format": "MZ EXEPACK, x86 LE16 real mode, unpacked actual resident code",
+    "callingConvention": "Far driver API, caller pushes one unsigned word and removes two bytes",
+    "ranges": [
+      {
+        "at": 14753,
+        "length": 18,
+        "purpose": "12f5:0a51 sound-enabled guard, request1 and caller cleanup",
+        "sha256": "eb9c6a1a1bca2eed7a45a22667a37975460184a40086aa58234bb178584afc21"
+      },
+      {
+        "at": 14678,
+        "length": 20,
+        "purpose": "12f5:0a06 interrupted-intro sound guard and reset0",
+        "sha256": "726163e8c8789944b29518ffda48070b398634063c2c1021a2cfcbe9c3f96cd5"
+      }
+    ]
+  },
+  "evidence": "Statically inferred title request lifecycle plus independent controller/browser acceptance. No new original runtime capture, original complete intro timing or hardware waveform comparison.",
+  "environment": {
+    "initialSound": "Muted by default. First sound-enable gesture while the title is displayed supplies the initial enabled sound option late; it starts request1 once. Subsequent mute/unmute does not replay it. Explicit browser Restart initializes a fresh title.",
+    "audio": "Persistent Tandy original driver4 sequencer on the real audio sample clock; PC speaker uses existing rendition. Sound completion does not advance the title.",
+    "presentation": "Existing static MAIN.ARC2 title retained. Original crop/reveal/story/security sequence is incomplete and not validated by this milestone."
+  },
+  "scenario": {
+    "unitCases": 5,
+    "browserCases": 2,
+    "inputs": "Authored controller events in tests/title-audio.test.js; actual sound controls and keyboard in tests/browser/title-audio.spec.js.",
+    "checks": "Exact request order/once-only lifecycle, natural native browser completion, no automatic loop, restart and Fire reset, original source hashes.",
+    "negativeControl": "Removing the title start must fail the controller request checker.",
+    "artifacts": "Local browser screenshot .local/browser-results/title-audio.png. No proprietary data committed."
+  },
+  "verify": [
+    "node --test tests/title-audio.test.js",
+    "npm run test:browser -- tests/browser/title-audio.spec.js",
+    "npm run verify"
+  ],
+  "receipts": {
+    "scope": "Run-specific port acceptance outputs; not original runtime fixtures, expected checkpoints or replay inputs. A rerun produces a new log.",
+    "screenshot": {
+      "path": ".local/browser-results/title-audio.png",
+      "sha256": "9089be458fea2774819208aa183d3b06658d002b925ac2f89f36bcc0c66ca098"
+    },
+    "fullVerification": {
+      "path": ".local/title-audio-full-verify.log",
+      "sha256": "75e2f3fc39aab5f4d76b206d74de8160ca046b5368206e523c20955aaa547c52"
+    }
+  }
+}

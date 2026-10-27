@@ -122,7 +122,11 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   (88 audible,23 silent) and 10 live players for long/looping sequences. Request 008
   is an engine-control command and produces no standalone sound;009 plays live.
   Intro music001 now ends naturally after 3558 sequencer ticks (about 48.8s),
-  verified with the browser's real audio worklet. Request 095's5199-tick natural
+  verified with the browser's real audio worklet. The title now starts001 once
+  on first sound activation and resets it on skip; later mute/unmute does not
+  replay it. Browser Restart initializes a fresh title. Initially muted startup
+  is an explicit browser adaptation; original animated intro timing is incomplete.
+  Request 095's5199-tick natural
   ending is checked in the independent provider. Engine/IRQ translation adds 29
   conditional native cases/31 checkpoints,30 exact OUTs, three clock advances and
   three chained interrupts. Ten carried provider scenarios consume 21 authored
@@ -183,10 +187,10 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passes full `npm run verify`: 77 unit tests, 51 development
+Current milestone passes full `npm run verify`: 82 unit tests, 53 development
 browser scenarios and two production browser scenarios, plus all required
 original-data comparisons and the production build. Log:
-`.local/jungle-input-full-verify.log`. Native browser routes cover persistent
+`.local/title-audio-full-verify.log`. Native browser routes cover persistent
 Tandy money-bin cues, mute/reset and acknowledged device closure, original
 flight-engine word dispatch, and flight → cave → pit → natural sound wait →
 results. Compiled game/viewer tests load the real original folder. Sound 001
@@ -307,3 +311,13 @@ reader. Existing 824-input failure,792-input treasure and857-input campaign
 replays pass unchanged. See `reference/jungle-input.json` and `docs/jungle.md`.
 These are static-source/controller/browser results, not a new original
 full-scene timing capture. The complete suite passed with no skipped tests.
+
+
+Title audio now has five controller cases and two native browser scenarios,
+including the complete natural Sound001 ending, exact request acknowledgements,
+keyboard activation, both devices, mute/no replay and restart/skip. Production
+acceptance requires title request1 with the real original folder. Source-call
+hashes and the browser startup adaptation are in `reference/title-audio.json`;
+see `docs/tandy-audio.md`. The full suite passed unchanged campaign replays with
+zero skipped cases. The initial failed browser assertion is retained locally;
+it counted one Restart reset where the existing adapter/model emit two.

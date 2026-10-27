@@ -20,6 +20,7 @@ test("production game loads originals and plays, mutes and closes its persistent
   await expect(c).toHaveAttribute("data-scene", "title");
   await page.getByLabel("Sound device", { exact: true }).selectOption("tandy");
   await page.getByRole("checkbox", { name: "Sound (reconstructed)" }).check();
+  await expect(device).toHaveAttribute("data-last-argument", "1");
   await c.focus();
   await page.keyboard.press("Space");
   await expect(c).toHaveAttribute("data-scene", "difficulty");

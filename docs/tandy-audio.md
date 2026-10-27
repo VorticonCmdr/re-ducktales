@@ -758,7 +758,7 @@ real pit sound-wait path. Neither failure was hidden or accepted as passing.
 message boundaries; simulation driver/retrace clocks are separate explicit
 providers. Their phase relationship, RAF batching versus original CPU request
 latency, natural IRQ interleaving, hardware waveform/gain/filter timing, title
-music dispatch and complete original game audio timelines remain unverified.
+music timing and complete original game audio timelines remain unverified.
 A working selected route does not prove every campaign or edition finishable.
 
 The sound-effect gate reads the simulation's authoritative `audioEnabled` flag,
@@ -796,3 +796,48 @@ original-folder interface. The original DOSBox session was rechecked read-only
 at stop1430; fresh CPU reads still show the restored non-flag caller registers.
 No original machine-state restoration or complete original audio parity is
 inferred from these browser/provider checks.
+
+## Title Sound001 dispatch (2026-10-28)
+
+The title now starts request001 on its persistent selected sound device.
+`DUCK_UNPACKED.EXE` function12f5:09e1 loads MAIN.ARC2; at0a51 it checks DS:03be,
+then0a58..0a62 pushes unsigned word1, calls the driver API at[201c] and removes
+the two-byte argument. The interrupted intro checks the same sound flag and
+sends reset0 at0a06..0a19. These decoded instructions are x86 LE16 real-mode
+resident game code, not an EXEPACK stub. Original unpacked source ranges are
+hashed in `reference/title-audio.json`; its build manifest pins the executable
+and resource pairing. No new DOSBox runtime timeline is claimed.
+
+The browser initially supplies sound disabled. Its first sound-enable gesture
+while this title is displayed supplies the enabled startup option late and starts
+request1 once. This applies to both the checkbox and S. It is an explicit browser
+environment adaptation; it does not establish original S/initialization timing.
+Later mute/unmute events do not restart the song. Explicit browser Restart
+initializes a fresh title. Fire/Enter leaves the title and sends reset0. The
+keyboard reset effect precedes the new start effect, so it cannot cancel the
+first requested song. Audio runs independently of presentation and does not
+advance the title when it ends.
+
+Five controller cases check exact effect order, once-only activation, constructor
+sound settings, restart and skip; a missing-start negative control must fail.
+Two native browser scenarios check natural Tandy completion, no loop, mute,
+restart/skip, S activation and speaker playback/skip. Exact sequence timing
+remains covered separately by `verify:tandy-live`; browser stats arrive at audio
+block/report boundaries. Production acceptance explicitly requires request1 at
+the real original-folder-loaded title before starting the campaign.
+
+This milestone retains the current static title presentation. Original cropped
+reveals, story/security transitions, complete intro timing and hardware waveform
+parity remain incomplete or unverified. Passing the sound route does not prove
+those presentation paths. Verification commands are
+`node --test tests/title-audio.test.js`,
+`npm run test:browser -- tests/browser/title-audio.spec.js` and `npm run verify`.
+
+The first focused native browser run completed the song and passed keyboard
+playback, then rejected a test expectation which counted only one Restart reset.
+The existing browser Restart handler resets immediately and the Game restart
+emits its own reset before request1. The corrected test requires both native
+acknowledgements in order: `[1,0,0,0,1,0]` for initial start, mute, the two Restart
+resets, fresh start and Fire reset. No inputs or runtime behavior were changed to
+fit that observation. The failed log is retained locally alongside the final
+verification receipt.

@@ -116,8 +116,12 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
-- Tandy sound is not ported. Playback currently interprets the PC-speaker
-  driver; alternate sound-driver renditions remain unimplemented. PC-speaker
+- Tandy is partially implemented: asset-viewer sound036 has a six-call preview,
+  with18 conditional native-state checkpoints and15 exact port writes. Native
+  browser keyboard/playback completion passes. Other Tandy sounds,noise and
+  in-game integration are unfinished; waveform parity is unverified. See
+  [Tandy setup and limitations](tandy-audio.md). In-game playback uses the PC-speaker
+  driver. PC-speaker
   noise and engine effects are approximate,and original waveform/device parity
   is unverified. See `docs/audio.md`.
 - Full original expedition timing,presentation and audio parity are unproven.
@@ -157,9 +161,13 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:60 unit tests,32 browser scenarios,
+Current milestone passed full `npm run verify`:63 unit tests,33 browser scenarios,
 all required original-data checks and the production build. Integration log:
-`.local/map-pointer-ready-final-verify.log`.
+`.local/tandy-driver-final-verify.log`. The speaker asset audit also retains
+121 successful renditions. The initial Tandy integration run was invalidated by
+a development reload during the cave scenario and exposed directory-upload
+handling of the worktree's asset symlink. Selecting its real directory fixed
+the folder test; the final full run kept source files frozen throughout.
 
 One browser worker keeps the full mountain/jungle replays within their existing
 120-second limits; their required inputs and checkpoint counts are unchanged.
@@ -239,14 +247,17 @@ The final success log is `map-pointer-ready-final-verify.log`; the baseline's
 ready run is `map-pointer-cave-baseline-ready.log`. Concurrent CPU activity was
 observed; the observations do not isolate a single cause of wall-time variance.
 
-The diagnostic baseline server is stopped. The app refused to archive its
-managed checkout as primary; its local status directs future work to the active
-original DuckTales folder. It contains no integrated port changes.
+The managed `map-baseline/DuckTales` checkout is now active development on
+`codex/tandy-audio`, based on the integrated map milestone `e2a70ca`. Its original
+assets, dependencies and ignored captures link to the original repository.
+The original repository's `main` remains the local integration target; no push
+or deployment is authorized. The existing `.gitignore` remains unchanged.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,paused
-0ed6:140e stop626,DS/SS1403,at the map pointer routine return with AX1 after the
-authored Fire+Right case. No owned breakpoints or pending native input remain.
-This inherits the prior flight/rival conditional setup and16 explicit external
-AX injections recorded by `reference/map-pointer.json`; it is not a natural
-campaign replay. No game-memory writes or partial/full machine restore were
-used in the map experiment. Earlier captures retain their own manifest scopes.
+0ed6:046e stop682,DS/SS1403,after the conditional Tandy-driver harness. Rechecked
+with the live debugger. Original general/segment registers were restored to
+the saved post-RETF caller; flags,time and BIOS effects were not restored.
+The allocated fixture was freed and owned breakpoints cleared. This is not a
+machine checkpoint or a natural campaign replay. Fresh launch/address validation
+is required before natural runtime comparisons. Earlier map/flight/rival captures
+retain their own scopes; see `reference/tandy-driver.json` and `docs/tandy-audio.md`.

@@ -1,13 +1,15 @@
 import { parseArchive, imagePixels, fontPixels } from './assets.js';
 import { SOUND_COUNT, renderSound, soundOffset, wavFile } from './audio.js';
+import { renderTandyPreview } from './tandy-preview.js';
 const $ = id => document.getElementById(id);
-let assets = [], selected, timer, audioUrl, exportData, exportName, generation = 0;
+let assets = [], selected, timer, audioUrl, exportData, exportName, generation = 0, tandyAudioUrl;
 const decodeText = bytes => new TextDecoder('windows-1252').decode(bytes).replace(/\x1a/g, '');
 const hex = data => Array.from({length: Math.ceil(Math.min(4096, data.length) / 16)}, (_, i) => `${(i * 16).toString(16).padStart(6,'0')}  ${Array.from(data.slice(i*16,i*16+16), n => n.toString(16).padStart(2,'0')).join(' ')}`).join('\n') + (data.length > 4096 ? '\n… first 4096 bytes shown' : '');
 for (let i = 0; i < 16; i++) $('transparent').add(new Option(String(i), String(i)));
 function stopMedia() {
   clearInterval(timer); timer = null; $('animate').textContent = 'Play animation';
-  document.querySelector('audio')?.pause();
+  document.querySelectorAll('audio').forEach(audio=>audio.pause());
+  if (tandyAudioUrl) { URL.revokeObjectURL(tandyAudioUrl); tandyAudioUrl = null; }
   if (audioUrl) { URL.revokeObjectURL(audioUrl); audioUrl = null; }
 }
 function draw() {
@@ -46,7 +48,23 @@ function select(entry) {
       const audio = document.createElement('audio'); audio.controls = true; audio.src = audioUrl; audio.volume = 0.5;
       const caption = document.createElement('p'); caption.textContent = `${result.duration.toFixed(2)} seconds · ${result.sampleRate.toLocaleString()} Hz · ${result.truncated ? 'Preview capped at 60 seconds (looping / long sequence)' : 'Sequence complete'}`;
       panel.append(title,canvas,audio,caption); $('stage').append(panel);
-      $('note').textContent = `Reconstructed PC-speaker playback from IT.DRV #005. ${result.approximate ? 'Noise and engine effects are approximate; engine speed is fixed for audition.' : 'Pitch, rests, tempo, loops and modulation are interpreted from the driver.'} Tandy / alternate driver renditions are not synthesized. Some IDs intentionally contain silence or alias another sequence.`;
+      audio.addEventListener('play',()=>document.querySelectorAll('audio').forEach(other=>{if(other!==audio)other.pause();}));
+      if (entry.index === 36 && entry.tandyDriver) {
+        const tandy = renderTandyPreview(entry.tandyDriver, entry.index);
+        tandyAudioUrl = URL.createObjectURL(new Blob([wavFile(tandy)],{type:'audio/wav'}));
+        const section=document.createElement('section');section.className='audio-panel';section.setAttribute('aria-label','Tandy preview');
+        const label=document.createElement('h3');label.textContent='Tandy preview';
+        const player=document.createElement('audio');player.controls=true;player.src=tandyAudioUrl;player.volume=0.5;
+        player.setAttribute('aria-label','Tandy sound preview');player.dataset.state='ready';player.dataset.ticks=String(tandy.ticks);
+        const play=document.createElement('button');play.textContent='Play Tandy preview';
+        player.onplay=()=>{player.dataset.state='playing';document.querySelectorAll('audio').forEach(other=>{if(other!==player)other.pause();});};
+        player.onended=()=>{player.dataset.state='ended';};
+        player.onerror=()=>{player.dataset.state='error';};
+        play.onclick=()=>{player.currentTime=0;player.play().catch(error=>{player.dataset.state='error';$('note').textContent=`Tandy playback failed: ${error.message}`;});};
+        const limit=document.createElement('p');limit.textContent='One supported sound preview. Other Tandy sounds and in-game Tandy playback are unfinished. Audio waveform matching is still unverified.';
+        section.append(label,play,player,limit);$('stage').append(section);
+      }
+      $('note').textContent = `Reconstructed PC-speaker playback from IT.DRV #005. ${result.approximate ? 'Noise and engine effects are approximate; engine speed is fixed for audition.' : 'Pitch, rests, tempo, loops and modulation are interpreted from the driver.'} A limited Tandy preview is available for sound 036; other alternate renditions remain unfinished. Some IDs intentionally contain silence or alias another sequence.`;
     } catch (error) { $('stage').textContent = `Unable to render audio: ${error.message}`; $('download').disabled = true; }
   } else {
     const pre = document.createElement('pre'); pre.textContent = entry.kind === 'Text / data' || entry.kind === 'Document' ? decodeText(entry.data) : hex(entry.data); $('stage').append(pre);
@@ -78,7 +96,7 @@ async function load(files) {
           const driver = entries[5]?.data;
           for (let id = 0; id < SOUND_COUNT; id++) {
             const offset = soundOffset(driver, id);
-            next.push({ name: `IT.DRV · Sound ${String(id).padStart(3,'0')}`, archive: file.name, index:id, offset, kind:'Sound', driver, data:driver.subarray(offset, Math.min(offset+128,driver.length)) });
+            next.push({ name: `IT.DRV · Sound ${String(id).padStart(3,'0')}`, archive: file.name, index:id, offset, kind:'Sound', driver, tandyDriver:entries[4]?.data, data:driver.subarray(offset, Math.min(offset+128,driver.length)) });
           }
         }
       } else next.push({name:file.name, archive:file.name, index:0, data, kind:/\.(doc|bat|ba1|txt)$/i.test(file.name) ? 'Document' : 'Binary'});

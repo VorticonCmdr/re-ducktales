@@ -1,0 +1,80 @@
+{
+  "build": "dos-fb658562",
+  "driver": {
+    "archive": "IT.DRV",
+    "index": 4,
+    "bytes": 12339,
+    "sha256": "c17ef1f352cc26f470c8297a070fbcf5fd3d6eaa8b146b3486b54f076205d80c"
+  },
+  "capture": {
+    "tool": "DOSBox MCP debugger batch/breakpoint API",
+    "revision": "capture-2026-10-27-tandy-1",
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "cpuMode": "x86 16-bit real mode",
+    "instance": "0719a1b0cdcede0b85c39577ff760639",
+    "driverSegment": 17820,
+    "driverPhysical": 285120,
+    "privateStack": 65264,
+    "returnMarker": 16384,
+    "engineRevision": "dosbox-automation 0.84.0-vc1 (f6d9b)",
+    "bridgeVersion": "0.1.1",
+    "protocol": "1.14"
+  },
+  "inputs": {
+    "resetPort61": 16,
+    "startArguments": [36, 33, 2, 33, 121, 122, 123, 16392, 49160, 49160],
+    "toneResetPort61": 64,
+    "toneSound": 36,
+    "tickCount": 6
+  },
+  "expected": {
+    "checkpoints": 18,
+    "portWrites": 15
+  },
+  "comparison": {
+    "bytes": "Every byte in decoded resource004, including mutable data; no exclusions. Before each carried call must equal current translated state.",
+    "ports": "Exact port/order/byte, from captured OUT instruction and AL.",
+    "external": "Reset port61 values observed at IN consumption; manual sequencer calls; captured BIOS flag byte checked against mask f7.",
+    "limitations": [
+      "Conditional isolated native-function harness, not natural Tandy hardware selection. Original game uses driver005.",
+      "Allocated copy at459c:0000, private stack and explicit near/far call frames. Harness lies outside original12339-byte body.",
+      "Source reset and start setup precede tone replay. No expected final state supplies sequencer inputs.",
+      "Original registers restored to post-RETF caller, allocated block freed. Flags, clocks and BIOS effects are not restored: not a machine checkpoint.",
+      "PCM phase, analog output, resampling and instruction-level I/O timing unverified."
+    ]
+  },
+  "artifacts": {
+    "reset": {
+      "path": ".local/tandy-driver/reset.json",
+      "sha256": "78b827b925cd3c18cb63f20d4952aa75212dcad8ac965fbda630507b9137a817"
+    },
+    "starts": {
+      "path": ".local/tandy-driver/starts.json",
+      "sha256": "b39af91c222ad2220133ab62ad32d74119e9ac4b249e9232ee35ccae332f276a"
+    },
+    "tone": {
+      "path": ".local/tandy-driver/tone.json",
+      "sha256": "b427bab0b142771d4a1ab6afb27c164395baaf0a6c509c27ef19c77b8cd970fa"
+    },
+    "cleanup": {
+      "path": ".local/tandy-driver/cleanup.json",
+      "sha256": "d50c06c05fb173018aab5224f7292fdf457807963843db1798c6e16db53ff20f"
+    },
+    "resume-context": {
+      "path": ".local/tandy-driver/resume-context.json",
+      "sha256": "6da2e9a894e05f5bf40deb19af18d1668f25c6d5345cefc0f8daa9d6c5be100d"
+    },
+    "saved-context": {
+      "path": ".local/tandy-driver/saved-context.json",
+      "sha256": "d53ef87581516a72297ef7291063e798317887b272aa085aeb3fe2c89d363025"
+    },
+    "original-speaker": {
+      "path": ".local/tandy-driver/original-speaker.json",
+      "sha256": "0d9df0aa710c14d77ca1efa474d11034d4c995ac5ef9f613fe49a76d1996b83d"
+    }
+  },
+  "verify": "npm run verify:tandy",
+  "recipe": "docs/tandy-audio.md"
+}

@@ -206,13 +206,15 @@ test("failed dive preserves original final pose pixels", async ({ page }) => {
 test("local folder loading supports investments without the development asset endpoint", async ({
   page,
 }) => {
-  const path = await import("node:path");
+  const { realpath } = await import("node:fs/promises");
   await page.route("**/game/DUCKTALE.EXE", (route) =>
     route.fulfill({ status: 404, body: "" }),
   );
   await page.goto("/");
   await expect(page.locator("#diagnostic")).toContainText("Missing game/");
-  await page.locator("#folder").setInputFiles(path.resolve("game"));
+  // Chromium directory upload does not traverse a directory symlink. Managed
+  // worktrees link the authoritative originals; select the actual folder.
+  await page.locator("#folder").setInputFiles(await realpath("game"));
   const canvas = page.locator("#game");
   await expect(canvas).toHaveAttribute("data-scene", "title");
   await expect(page.locator("#diagnostic")).toBeHidden();

@@ -244,12 +244,12 @@ The native browser route uses actual keyboard flight,walking,hook throw and
 walking off ledges through all three lives. A render observer checks the32×32
 standing sprite after each natural reset: no logical-purple residue and at least
 80 pixels of the required life color. Keys release at each life boundary before
-moving again. Browser time is explicit; two8ms display callbacks run per16ms
+moving again. Browser time is explicit; four8ms display callbacks run per32ms
 observation while the70Hz simulation clock stays independent. The60-second
 scenario limit is unchanged.
 This is browser acceptance and source-derived color verification,not an original
-complete-level pixel/timing comparison. Mountain input polling and original
-whole-frame/scrolling/erase behavior remain future work.
+complete-level pixel/timing comparison. Original whole-frame/scrolling/erase
+behavior remains future work; input-poll evidence is documented below.
 
 The existing ascent browser replay still consumes764 inputs and all26 checkpoints
 within its120-second limit. A first1ms step aligns observations to a display
@@ -259,3 +259,69 @@ redundant browser queries without dropping inputs or fitting expected states.
 The palette converter uses native packed pixel views built through byte arrays,
 so it preserves alpha without assuming machine endianness. Original jungle
 whole-frame comparisons validate the extracted and optimized shared conversion.
+
+## Input polls,pause and life-reset controls
+
+Mountain reads controls at overlay5:0317,after the two opening pages and after
+each later action presentation. P/Q/S make/release flags wait for that reader.
+Pause suspends its call; resume returns neutral input through the same call.
+The driver/retrace clocks keep advancing while actor state and the independent
+four-tick life deadline stay fixed. Mountain has no extra per-action driver wait.
+
+Original19a5 calls at0014,016a and0278 clear both the BIOS queue and128-byte key
+table. The port performs the entry/post-load clears around synchronous loading,
+and the per-life clear immediately before preparing the opening pages. The
+environment callback clears pending system keys and browser held controls. A
+still-held arrow therefore requires a fresh keydown after a life reset.
+`waitingForInputPoll` appears only while the iterator is suspended inside input;
+normal and completed snapshots retain their previous deterministic shape.
+
+The fresh original route used normal travel from Carlsbad Caverns to El Capitan
+(ordinal17 in this run),without game/CPU memory writes or restores. Its live
+location pointer table atDS4e2a establishes the name and target; resource ordinals
+are not assumed stable. Native MT entry545 and input546 use0e0c:0000/0317 with
+DS/SS1403,normal core,real mode. Complete12002-byte code/68-relocation identity
+and resident input,pause,deadline and flush bytes are checked against the hashed
+EXE. Ghidra `MOUNTAIN_CODE.EXE`,x86 16-bit real mode,normalizes the overlay at
+1c17:0000; its instructions0317,016a and0278 agree with those live bytes. This
+contains actual game code,not the EXEPACK loader. The far entry follows the
+existing16-bit caller contract; the input byte returns inAL.
+
+`reference/mountain-input.json` pins14 local artifacts,all input schedules and
+the starting recipe. The six original checks cover code/mode/target identity,
+pause state and advancing clock,neutral input return,held Right cleared at a
+life2 reset,the popup crop and complete replay-event consumption. Comparisons
+preserve the full52-byte mountain local frame plus named actor,hazard,palette,
+RNG,cash,day,page-history and deadline ranges. They do not compare all DS or
+driver scratch. The captured pause spans190 driver ticks; that observed value
+is checked as output and is never supplied to the independent replay.
+
+At stop551,0278 sees a held Right byte80 atDS27b9,with two lives. At552,0317,
+the entire128-byte key table is zero. Both states also carry the original blue
+life2 palette49/41. This adds a native second-life observation to the earlier
+static palette evidence; life1 still has static/browser evidence only.
+
+The independent controller replay starts from its own authored state and event
+stream. It pauses after both opening pages,preserves all port DS/locals for200
+clock steps,resumes through the suspended reader,walks into a natural life loss
+and continues after its flush. An unread P is explicitly supplied at the flush
+callback boundary to check discarding; this is an authored environment condition,
+not an original captured P-at-reset replay. Six negative controls alter preserved
+state,flushed keys,popup pixels,pause input,clock advancement and the flush callback.
+
+The native browser scenario flies/crashes/arrives,presses P between opening
+pages,compares the exact104×24 pause crop,checks frozen actors/advancing clocks,
+resumes,uses Quit/No and walks through a life reset while keeping Right physically
+down. It checks neutral movement afterward and Restart. No game state,timer or
+audio completion is injected. Quit/No uses the shared statically verified input
+path; it is not a new original mountain Quit/No capture.
+
+```sh
+npm run verify:mountain-input
+npm run verify:mountain
+npx playwright test tests/browser/mountain-input.spec.js tests/browser/mountain.spec.js tests/browser/mountain-ascent.spec.js
+```
+
+This is a bounded original input/pause/reset comparison,an independent controller
+replay and browser acceptance. Complete original mountain movement,scrolling,
+framebuffer residue,timing and other variants/difficulties remain unproven.

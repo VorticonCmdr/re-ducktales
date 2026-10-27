@@ -1,0 +1,124 @@
+{
+  "id": "mountain-input-pause-life-flush-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "7258913",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 6,
+  "expectedIndependentReplayCount": 1,
+  "startingRecipe": "Continue the natural session from docs/STATUS.md at revision7258913,stop535,cave variant1. Reach cave09a1(536);Up+Space0/release10 then09a1(537);Down+Space0/release10 then main04e7(538). Map input0ed6:1228(539),SS arguments x=9f46/y=9f42. Hold Left until x<=36(540),release Left/hold Up until y<=61(541);release Up/Space0/up30. This naturally starts Launchpad flight for ordinal17,El Capitan,validated against incoming live location table4e2a. Pause driver543,Space0/Down80/down-up100/Space-up160. Main04ca544 then MT entry545,first input546. P0/up1 ->pause03b9:047f547,05d5548. Resume P-up0/P140/up141 ->066c549,MT031c550. Hold Right0 ->MT0278 on life2(551),then0317(552). No game/CPU writes or restores. Incorrectly aliased exploratory map breakpoint456 was removed before travel; all owned breakpoints are removed. Captures start at native MT entry545; prior navigation is a setup recipe,not an accepted input replay.",
+  "inputEvents": {
+    "pause": [
+      {
+        "frame": 0,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 1,
+        "key": "KBD_p",
+        "pressed": false
+      }
+    ],
+    "resume": [
+      {
+        "frame": 0,
+        "key": "KBD_p",
+        "pressed": false
+      },
+      {
+        "frame": 140,
+        "key": "KBD_p",
+        "pressed": true
+      },
+      {
+        "frame": 141,
+        "key": "KBD_p",
+        "pressed": false
+      }
+    ],
+    "right": [
+      {
+        "frame": 0,
+        "key": "KBD_right",
+        "pressed": true
+      }
+    ]
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "artifacts": {
+    "entry": {
+      "path": ".local/mountain-input-entry.json",
+      "sha256": "879bd3a9be9703f648f4908e1e02516b730745049942b37ef6e779397b5b3885"
+    },
+    "mode": {
+      "path": ".local/mountain-input-mode.json",
+      "sha256": "177c9fbd05a73170177159f6f9d9024cb270d64dc21dfc679faf2864dddaf123"
+    },
+    "first": {
+      "path": ".local/mountain-input-first.json",
+      "sha256": "77609ccf400c94d06dc3e28b86d1bee2f699a1badcf0719a5cf479a379552b2d"
+    },
+    "pauseEntry": {
+      "path": ".local/mountain-input-pause-entry.json",
+      "sha256": "dca6794484bd2f5132ddb02b25986b0648b40f585a90cca9dcf6e2784e62241e"
+    },
+    "pauseWait": {
+      "path": ".local/mountain-input-pause-wait.json",
+      "sha256": "6d49619fc82841fc7e81fba286898d505a4e40a61119f7c83191a760eff50a0d"
+    },
+    "pauseAfter": {
+      "path": ".local/mountain-input-pause-after.json",
+      "sha256": "e6a49dacf4c9b80973d6194b7a8a3ff03b5017e59f855d3a2213d18bf3d7839c"
+    },
+    "pauseReturn": {
+      "path": ".local/mountain-input-pause-return.json",
+      "sha256": "ddb9ae225ef90f888263615ab975f58d87ad1358384ca7b5fff73df004b2d1ae"
+    },
+    "lifeFlush": {
+      "path": ".local/mountain-input-life-flush.json",
+      "sha256": "03b8d3f387fc95c4b94d3d2810521f8f066b8d3a54b433934a6a12860bdd74ff"
+    },
+    "lifeAfter": {
+      "path": ".local/mountain-input-life-after.json",
+      "sha256": "667930e5614b465a5a1c3301e76fed62dd43d78d44e22f2bdddeb876b90c1756"
+    },
+    "pauseReplay": {
+      "path": ".local/mountain-input-pause-replay.json",
+      "sha256": "0d252002a0eca917fe7a8b0a003b6a05297b7c5ad25b6ab12dd79182b6f6377f"
+    },
+    "resumeReplay": {
+      "path": ".local/mountain-input-resume-replay.json",
+      "sha256": "270bcb23944a2b7966071ca4b844cb5e60a96b0c92fca7137bb4a0a6c54b97b9"
+    },
+    "rightReplay": {
+      "path": ".local/mountain-input-right-replay.json",
+      "sha256": "35efc6f50ce230251502c9eb470a6b23dbd48aa29d6b6dca57a5df2b4b04c176"
+    },
+    "pausePNG": {
+      "path": ".local/mountain-input-pause.png",
+      "sha256": "3156ba2f969275a57f396e5139683e111a000cd6e3d896a581335521d3370b07"
+    },
+    "sharedPausePNG": {
+      "path": ".local/flight-pause.png",
+      "sha256": "d828923c58205fa8919eebc34272e4cf2a1aa333c6f46831ab6816ad8876cdaa"
+    }
+  },
+  "comparisonRules": "Exact complete12002-byte/68-relocation MT code and resident input,pause,deadline and flush code. Paused local52-byte frame plus named game globals,hazard table and sprite descriptors remain exact. Device clock advances; independent life deadline stays fixed. Input returns0 with zero128-byte key table. Life2 has held Right before0278 and zero keys at0317; palette is exact source bytes. Pause popup crop x104,y80,w104,h24 matches the shared original layout. Independent controller replay preserves full port DS/locals while clocks advance,consumes pause/resume,clears pending keys at life flush and continues through a new input poll.",
+  "exclusions": [
+    "No full original mountain movement/timing or framebuffer comparison",
+    "Original pause comparison covers named game ranges and complete mountain local frame,not all DS,driver graphics scratch or resident input stack",
+    "Independent replay uses its own clock/input stream and starting state; expected original clocks are checked separately and never fitted into replay",
+    "No complete-machine checkpoint or partial restore"
+  ],
+  "evidenceLevel": "Observed original input/pause/life-flush segment and static code identity; independent controller and browser acceptance separate.",
+  "verify": "npm run verify:mountain-input",
+  "startingStateLimit": "The original observations start from a running native campaign,not a complete machine checkpoint. Recreate a fresh session using docs/original-scenario.md,then normally travel to El Capitan for the same input experiment. Seed,loot and day vary with the incoming campaign; exact captured bytes are verified against the pinned artifacts,not claimed reproducible from a DS-only restore."
+}

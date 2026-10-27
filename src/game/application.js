@@ -55,6 +55,7 @@ export class Game {
     this.pendingBinSystemKeys = new Map();
     this.pendingFlightSystemKeys = new Map();
     this.pendingCaveSystemKeys = new Map();
+    this.pendingMountainSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -185,7 +186,7 @@ export class Game {
     if (
       !fromActivityPoll &&
       !this.systemOverlay &&
-      ["money-bin", "flight", "cave"].includes(this.scene) &&
+      ["money-bin", "flight", "cave", "mountain"].includes(this.scene) &&
       ["pause", "quit", "toggle-sound"].includes(event.type)
     ) {
       // IRQ9 retains make/release flags until19c5 consumes them. No input
@@ -195,7 +196,9 @@ export class Game {
           ? this.pendingFlightSystemKeys
           : this.scene === "cave"
             ? this.pendingCaveSystemKeys
-            : this.pendingBinSystemKeys;
+            : this.scene === "mountain"
+              ? this.pendingMountainSystemKeys
+              : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -251,6 +254,7 @@ export class Game {
       this.pendingBinSystemKeys.clear();
       this.pendingFlightSystemKeys.clear();
       this.pendingCaveSystemKeys.clear();
+      this.pendingMountainSystemKeys.clear();
       this.exiting = false;
       this.pendingCampaignAction = null;
       this.briefing = null;
@@ -555,6 +559,7 @@ export class Game {
     if (this.systemOverlay) {
       if (this.scene === "flight") this.flight.advanceBlockedTick();
       if (this.scene === "cave") this.cave.advanceBlockedTick();
+      if (this.scene === "mountain") this.mountain.advanceBlockedTick();
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
       return;
@@ -655,6 +660,7 @@ export class Game {
     if (this.systemOverlay) {
       if (this.scene === "flight") this.flight.advanceBlockedRetrace();
       if (this.scene === "cave") this.cave.advanceBlockedRetrace();
+      if (this.scene === "mountain") this.mountain.advanceBlockedRetrace();
       return;
     }
     if (this.scene === "photography") {
@@ -758,10 +764,12 @@ export class Game {
     this.pendingBinSystemKeys.clear();
     this.pendingFlightSystemKeys.clear();
     this.pendingCaveSystemKeys.clear();
+    this.pendingMountainSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "flight") this.flight.flushInput();
     else if (this.scene === "cave") this.cave.flushInput();
+    else if (this.scene === "mountain") this.mountain.flushInput();
     else {
       this.handleInput({ type: "controls", fire: false, direction: null });
       this.effects.push({ type: "flushControls" });
@@ -790,6 +798,18 @@ export class Game {
       this.cave.resumeInputPoll();
       this.collectCave();
     }
+    if (result === "resume" && this.scene === "mountain") {
+      this.mountain.resumeInputPoll();
+      this.collectMountain();
+    }
+  }
+  pollMountainSystemInput() {
+    return this.pollSystemInput(this.pendingMountainSystemKeys);
+  }
+  flushMountainInput() {
+    this.pendingMountainSystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
   }
   pollMoneyBinSystemInput() {
     return this.pollSystemInput(this.pendingBinSystemKeys);
@@ -1037,6 +1057,8 @@ export class Game {
         {
           ...this.expeditionResources,
           entries: this.expeditionResources.mountainEntries,
+          pollInput: () => this.pollMountainSystemInput(),
+          flushInput: () => this.flushMountainInput(),
           variant: this.briefing.variant,
           difficulty: this.difficulty,
           seed: this.seed,
@@ -1186,6 +1208,13 @@ export class Game {
       ending: this.ending?.snapshot() ?? null,
       rivalReport: this.rivalReport?.snapshot() ?? null,
       atomicTransport: this.atomicTransport?.snapshot() ?? null,
+      ...(this.pendingMountainSystemKeys.size
+        ? {
+            pendingMountainSystemKeys: [...this.pendingMountainSystemKeys].sort(
+              (a, b) => a[0] - b[0],
+            ),
+          }
+        : {}),
       systemOverlay: this.systemOverlay?.snapshot() ?? null,
       exiting: this.exiting,
       pendingCampaignAction: this.pendingCampaignAction

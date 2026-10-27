@@ -16,14 +16,14 @@ test("mountain arrival, keyboard movement, hook throw, life loss and direct retr
   });
   await page.goto("/");
   const c = page.locator("#game");
-  async function until(predicate, max = 2500) {
+  async function until(predicate, max = 1250) {
     for (let i = 0; i < max; i++) {
       const s = await state(c);
       if (s?.diagnostic) throw Error(s.diagnostic);
       if (s && (await predicate(s))) return s;
-      // Two display callbacks per observation; gamepresent still samples each
+      // Four display callbacks per observation; gamepresent still samples each
       // simulation presentation,including the standing life-reset poses.
-      await page.clock.runFor(16);
+      await page.clock.runFor(32);
     }
     throw Error(
       "Unfinished mountain browser sequence " +
@@ -108,7 +108,7 @@ test("mountain arrival, keyboard movement, hook throw, life loss and direct retr
   await until(
     async () =>
       !!JSON.parse((await c.getAttribute("data-life-palettes")) ?? "{}")[3],
-    500,
+    250,
   );
   const entered = await state(c);
   expect(entered.diagnostic).toBeNull();

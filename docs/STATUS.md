@@ -2,6 +2,11 @@
 
 Updated2026-10-27. **The full game is not complete.**
 
+The main campaign loop and all four expedition families are playable. This is
+still completion work,not only final polish: known rival/flight hard stops and
+unverified destination/difficulty routes remain. Selected complete routes and
+endings are established; arbitrary campaigns are not yet guaranteed finishable.
+
 ## Working browser routes
 
 - P pauses/resumes; S switches sound; Q/Escape/F1 asks to quit. N continues the
@@ -32,6 +37,9 @@ Updated2026-10-27. **The full game is not complete.**
   startup's$8000 treasure and returns to the map with duplicate protection.
   The life palette now recolors Scrooge red/blue/green at3/2/1 lives,using the
   original table and the shared EGA converter.
+  Mountain P/Q/S now wait for the normal input poll; life resets clear held
+  controls. Pause freezes actors while device clocks continue. Source/model/
+  browser checks and full integration pass.
 - Jungle arrival → guide → jump/walk/climb/drop,vines,fish/platforms and hazards.
   A complete Easy/variant0 route reaches the chest with one life,awards$1000,
   returns on day5 and prevents repeat collection. Failure/retry also works.
@@ -92,13 +100,14 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 - No save/load/high-score path is identified in this build. Earlier status entries
   assumed those features; [the interface audit](system-controls.md) corrects that.
   Browser persistence would be an explicit addition,not a translated original format.
-- Next: input-poll timing and remaining campaign edge paths,then broader original
-  expedition comparisons. Money-bin intro/idle/dive polling now has10 original
+- Next: resolve gameplay hard stops and broaden complete destination/difficulty
+  routes,alongside remaining original expedition comparisons. Money-bin intro/idle/dive polling now has10 original
   comparisons,including retained released keys and the final flush. Flight has9
   new original checks for input,clock/deadline preservation and final return wait.
-  Cave has8 new original code/pause/deadline/room-flush checks. Mountain,jungle
-  and photography still accept global keys at the next driver tick; alignment
-  with their original animation/audio waits is unproven.
+  Cave has8 new original code/pause/deadline/room-flush checks. Mountain has6
+  new original input/pause/life-flush checks and an independent controller replay.
+  Jungle and photography global-key alignment with their original animation/
+  audio waits remains unproven.
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
@@ -132,9 +141,9 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:56 unit tests,28 browser scenarios,
+Current milestone passed full `npm run verify`:56 unit tests,29 browser scenarios,
 all required original-data checks and the production build. Integration log:
-`.local/mountain-palette-integrated-verify.log`.
+`.local/mountain-input-integrated-verify.log`.
 
 One browser worker keeps the full mountain/jungle replays within their existing
 120-second limits; their required inputs and checkpoint counts are unchanged.
@@ -160,14 +169,26 @@ time; native sound completion uses real time.
 The photography repeat visit now requires rival speech to end through the
 native media event before the collected-location notice and map return. Game
 time alone cannot complete browser audio. Money,calendar and RNG checks remain
-unchanged. Mountain input-poll timing and the unresolved upper transport/erase
-graphics remain the next investigation; whole original scene parity is unproven.
+unchanged. Mountain input-poll and life-flush checks now pass full integration:
+six original checks from14 required local artifacts,an independent controller
+replay with six negative controls,and native pause/Quit-No/life-reset acceptance.
+The three-life route observes four display callbacks per read,retaining its
+40-second virtual wait budget and60-second wall limit. Original whole-mountain
+movement,timing and upper transport/erase graphics remain unproven.
+
+Next priority is gameplay completeness: exercise additional destination layouts,
+difficulties and uncommon interactions,and resolve reachable flight-boundary or
+exhausted-rival hard stops. Selected complete expeditions and win/loss routes do
+not establish a complete arbitrary campaign. Remaining mountain graphics and
+presentation differences are separate fidelity work.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-0e0c:0000 stop535 at a cave entry after exploratory native travel,DS/SS1403.
-No breakpoints or pending replay. This exploration did not supply a new mountain
-runtime capture. Mountain palette evidence reuses the explicitly conditional
-entry in `reference/mountain-entry.json` and shared driver evidence from jungle.
+0e0c:0317 stop552 at a native mountain life2 input poll,DS/SS1403. No breakpoints
+or pending replay. Normal map navigation from Carlsbad to El Capitan reached
+MT entry545,input546,pause547..550 and life-reset551..552. No game/CPU writes or
+restores. `reference/mountain-input.json` records the setup and14 required local
+artifacts. The earlier palette verifier separately reuses the explicitly
+conditional entry in `reference/mountain-entry.json` and shared jungle driver.
 Money-bin/flight/cave-input captures use a fresh natural launch with no memory/CPU
 injections. Earlier controls/credits captures inherit conditional atomic setup.
 Whole original expedition presentation,timing and audio remain unproven.

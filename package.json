@@ -28,7 +28,7 @@
     "verify:visits": "node scripts/verify-visits.js",
     "prepare:mountain-analysis": "python3 scripts/prepare-mountain-analysis.py",
     "verify:mountain-terrain": "node scripts/verify-mountain-terrain.js",
-    "verify:mountain": "node scripts/verify-mountain.js",
+    "verify:mountain": "node scripts/verify-mountain.js && npm run verify:mountain-input",
     "prepare:jungle-analysis": "python3 scripts/prepare-jungle-analysis.py",
     "verify:jungle": "node scripts/verify-jungle.js && python3 scripts/verify-jungle-oracle.py",
     "prepare:photography-analysis": "python3 scripts/prepare-photography-analysis.py",
@@ -41,7 +41,8 @@
     "verify:atomic": "node scripts/verify-atomic.js",
     "verify:system-controls": "node scripts/verify-system-controls.js && node scripts/verify-money-bin-input.js && node scripts/verify-flight-input.js",
     "verify:cave-input": "node scripts/verify-cave-input.js",
-    "verify:mountain-palette": "node scripts/verify-mountain-palette.js"
+    "verify:mountain-palette": "node scripts/verify-mountain-palette.js",
+    "verify:mountain-input": "node scripts/verify-mountain-input.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

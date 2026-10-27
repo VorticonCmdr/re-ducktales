@@ -23,6 +23,10 @@ const SPRITES = new Map([
 
 export class Mountain {
   constructor(options, previousMemory) {
+    this.pollInput = options.pollInput ?? (() => true);
+    this.onFlushInput = options.flushInput ?? (() => {});
+    this.controls = { fire: false, direction: null };
+    this.flushInput(); // Original entry0014,before synchronous resource loading.
     Object.assign(this, prepareMountain(options, previousMemory));
     if (!Number.isInteger(options.day) || options.day < 1 || options.day > 30)
       throw Error("Invalid mountain campaign day");
@@ -45,7 +49,6 @@ export class Mountain {
     this.audioEnabled = options.audioEnabled === true;
     this.events = [];
     this.inputs = [];
-    this.controls = { fire: false, direction: null };
     this.tick = 0;
     this.retrace = 0;
     this.frames = 0;
@@ -55,6 +58,7 @@ export class Mountain {
     this.current = null;
     this.outcome = null;
     this.lifeDeadline = 0;
+    this.flushInput(); // Post-load016a,before the first life deadline.
     this.iterator = this.run();
     this.resume();
   }
@@ -85,7 +89,7 @@ export class Mountain {
       this.wait = null;
     } else {
       if (
-        !["driver", "retrace"].includes(result.value.clock) ||
+        !["driver", "retrace", "input"].includes(result.value.clock) ||
         !Number.isInteger(result.value.remaining) ||
         result.value.remaining < 1
       )
@@ -100,6 +104,24 @@ export class Mountain {
   advanceRetrace() {
     this.retrace++;
     this.advance("retrace");
+  }
+  advanceBlockedTick() {
+    this.tick++;
+  }
+  advanceBlockedRetrace() {
+    this.retrace++;
+  }
+  *readInput() {
+    if (!this.pollInput()) yield { clock: "input", remaining: 1 };
+  }
+  resumeInputPoll() {
+    if (this.wait?.clock !== "input")
+      throw Error("Mountain resumed outside its input reader");
+    this.resume();
+  }
+  flushInput() {
+    this.controls = { fire: false, direction: null };
+    this.onFlushInput();
   }
   advance(clock) {
     if (!this.wait || this.wait.clock !== clock || --this.wait.remaining)
@@ -285,6 +307,7 @@ export class Mountain {
     m.b(0x17db, 0);
     m.b(0x17e1, 0);
     setMountainLifePalette(m);
+    this.flushInput(); //0278 precedes both opening page presentations.
   }
   *scroll() {
     const m = this.memory,
@@ -323,6 +346,9 @@ export class Mountain {
       for (let i = 0; i < 2; i++) yield* this.present(this.frame());
       this.phase = "playing";
       while (true) {
+        l.b(-0x28, 0);
+        l.b(-0x1e, 0);
+        yield* this.readInput(); //0317,after rendering and before action logic.
         const input =
           ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ??
             0) | (this.controls.fire ? 0x40 : 0);
@@ -370,6 +396,7 @@ export class Mountain {
       money: m.view.getUint32(0x8cc0, true),
       seed: u16(m.i(0x2229)),
       tick: this.tick,
+      ...(this.wait?.clock === "input" ? { waitingForInputPoll: true } : {}),
       frames: this.frames,
       presentations: this.presentations,
       outcome: this.outcome,

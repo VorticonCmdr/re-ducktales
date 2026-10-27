@@ -120,6 +120,7 @@ export class Game {
         rival: c.rival,
         locations: c.locations,
         loot: this.loot,
+        memory: this.flightMemory ?? this.marketMemory,
       });
       this.seed = c.seed = result.seed;
       if (result.report) {

@@ -4,6 +4,8 @@ import { readFileSync } from "node:fs";
 import { parseArchive } from "../src/assets.js";
 import { parseLocations, parseLoot } from "../src/game/campaign.js";
 import { Game } from "../src/game/application.js";
+import { FlightMemory } from "../src/game/flight-physics.js";
+import { unpackImage } from "../src/game/executable.js";
 import {
   advanceRival,
   selectRivalDestination,
@@ -49,17 +51,70 @@ test("rival policy keeps first ties, signed cash thresholds and difficulty strat
     1,
   );
   c.locations.forEach((l) => (l.playerCollected = true));
-  assert.throws(
-    () =>
-      advanceRival({
+  for (const [difficulty, day] of [
+    [0, 1],
+    [1, 1],
+    [1, 2],
+    [2, 1],
+  ]) {
+    assert.equal(
+      selectRivalDestination({
         ...c,
+        rival: { ...c.rival, day },
         loot: values,
-        difficulty: 0,
-        day: 10,
-        unlockMask: 1,
+        difficulty,
       }),
-    /exhausted rival route35/,
-  );
+      35,
+    );
+  }
+  const exhausted = advanceRival({
+    ...c,
+    seed: 0,
+    loot: values,
+    difficulty: 0,
+    day: 10,
+    unlockMask: 1,
+  });
+  assert.equal(exhausted.target, 35);
+  assert.equal(exhausted.kind, "miss");
+  assert.equal(exhausted.draws, 2);
+});
+
+test("exhausted rival preserves the flight-table alias and resumes the campaign after its raw report", () => {
+  const g = game(),
+    c = g.campaign,
+    bytes = new Uint8Array(65536);
+  bytes.set(unpackImage(readFileSync("game/DUCKTALE.EXE")).subarray(0x120e0));
+  const m = (g.flightMemory = new FlightMemory(bytes));
+  m.i(0x4f42, 15);
+  m.i(0x4f44, 0);
+  m.i(0x4f48, -1);
+  c.locations.forEach((l) => (l.playerCollected = true));
+  c.day = 10;
+  c.rivalUnlockMask = 2;
+  c.rival.location = 0;
+  c.rival.day = 1;
+  g.seed = 56;
+  g.completeCampaignAction({ type: "map" });
+  assert.equal(g.scene, "rival-report");
+  assert.equal(g.rivalReport.target, 35);
+  assert.equal(g.rivalReport.name.length, 50);
+  assert.equal(g.rivalReport.name.charCodeAt(49), 17);
+  assert.equal(c.rival.location, 0, "publish location after report");
+  assert.equal(g.seed, 29915);
+  assert.equal(c.rival.money, 0);
+  assert.equal(m.b(0x4f49), 1);
+  assert.equal(m.i(0x4f48), 511);
+  assert.equal(c.locations.length, 35, "no invented treasure location");
+  for (let i = 0; i < 280; i++) g.advanceTick();
+  assert.equal(g.scene, "map");
+  assert.equal(c.rival.location, 35);
+  g.completeCampaignAction({ type: "office" });
+  for (let i = 0; i < 280 && g.scene === "rival-report"; i++) g.advanceTick();
+  assert.equal(g.scene, "office");
+  assert.equal(g.pendingCampaignAction, null);
+  assert.equal(g.diagnostic, null);
+  assert.equal(g.seed, 42517, "second turn carries its own RNG state");
 });
 
 test("a normal rival report suspends travel and rechecks the newly claimed destination", () => {

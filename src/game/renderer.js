@@ -54,15 +54,24 @@ export class Renderer {
   draw(archive, index, frame, x, y, transparent = -1) {
     this.ctx.drawImage(this.image(archive, index, frame, transparent), x, y);
   }
-  text(text, x, y, color = "#fff") {
+  text(text, x, y, color = "#fff", linear = false) {
     this.ctx.fillStyle = color;
     for (const char of text) {
       const glyph = char.charCodeAt(0);
       if (glyph > 255) throw Error(`Unsupported font character ${char}`);
       for (let row = 0; row < 8; row++)
         for (let col = 0; col < 8; col++)
-          if (this.font[8 + glyph * 8 + row] & (128 >> col))
-            this.ctx.fillRect(x + col, y + row, 1, 1);
+          if (this.font[8 + glyph * 8 + row] & (128 >> col)) {
+            const pixelX = x + col;
+            // The original EGA address advances into the next scanline when
+            // a raw out-of-table report name extends beyond320 pixels.
+            this.ctx.fillRect(
+              linear ? ((pixelX % 320) + 320) % 320 : pixelX,
+              y + row + (linear ? Math.floor(pixelX / 320) : 0),
+              1,
+              1,
+            );
+          }
       x += 8;
     }
   }
@@ -485,14 +494,18 @@ export class Renderer {
       this.text(executableText(this.resources.executable, 0x562), 168, 100);
       this.text(executableText(this.resources.executable, 0x571), 168, 116);
       const name =
+        report.name ??
         game.campaign.locations[
           game.scene === "rival-report" ? report.target : game.departure.target
         ].name;
-      this.text(name, 224 - name.length * 4, 132);
+      const linear = game.scene === "rival-report" && report.target === 35;
+      this.text(name, 224 - name.length * 4, 132, "#fff", linear);
       this.text(
         executableText(this.resources.executable, 0x57f),
         224 + name.length * 4,
         132,
+        "#fff",
+        linear,
       );
       return;
     }

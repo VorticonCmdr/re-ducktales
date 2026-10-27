@@ -1,0 +1,90 @@
+{
+  "id": "rival-exhausted-alias-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "de945af",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCaseCount": 2,
+  "expectedCheckpointCount": 5,
+  "artifacts": {
+    "beforeSetup": {
+      "path": ".local/rival-exhausted-before-setup.json",
+      "sha256": "05349031b99727e85cc0d8bcb2bca73203030034e70f17e960c21d07ef7ba441"
+    },
+    "setup": {
+      "path": ".local/rival-exhausted-setup.json",
+      "sha256": "6540f16ac103cbc3280374510933d5553bdc1fed56f280dfa277bf1c3f848058"
+    },
+    "missBefore": {
+      "path": ".local/rival-exhausted-miss-before.json",
+      "sha256": "d2382a7eedbfce8dfd3453718017479ea3fd02d9ba6dbd48dea5d7ae918670fb"
+    },
+    "missSelected": {
+      "path": ".local/rival-exhausted-miss-selected.json",
+      "sha256": "c295f1be04d029896f515b518fe6ee430bf49af1306a82648c2ae135d0473e10"
+    },
+    "missAfter": {
+      "path": ".local/rival-exhausted-miss-after.json",
+      "sha256": "7ce0813380237554b0bea8240919c4154d5d1a28d6695cf7b19a114c00be71a0"
+    },
+    "claimBeforeSetup": {
+      "path": ".local/rival-exhausted-claim-before-setup.json",
+      "sha256": "cd375de57894964909305c270032bd97ea8697e099964d2242ac65e2efe2d3af"
+    },
+    "claimSetup": {
+      "path": ".local/rival-exhausted-claim-setup.json",
+      "sha256": "f4ed6d4057ec8973c61f6521f2eac98c9fedbfc550966219d39a771762e5742c"
+    },
+    "claimBefore": {
+      "path": ".local/rival-exhausted-claim-before.json",
+      "sha256": "b01ea3a0312f2ef6185d3ddea0b8df29d87de389eba2b4643e4fcfa43ae39cd7"
+    },
+    "claimReport": {
+      "path": ".local/rival-exhausted-claim-report.json",
+      "sha256": "3b1c8f440e8baff9d487fe9fbe34989d0794a7fa96d44c82137f90abfbfe9920"
+    },
+    "claimAfter": {
+      "path": ".local/rival-exhausted-claim-after.json",
+      "sha256": "f6198d16a1fabd28b685c8d543ace3ce92bdbf652dcb18f032d11ed7105da199"
+    },
+    "reportPNG": {
+      "path": ".local/rival-exhausted-report.png",
+      "sha256": "5dec783854b60ebb3a3f742f1c7b38ec884dade4359c031cc526a1bd8177e570"
+    },
+    "mode": {
+      "path": ".local/rival-exhausted-mode.json",
+      "sha256": "4f0f4d89850f45fff157ad601e4aca181904685e21f3551751a9c2372340c65b"
+    },
+    "navigationReplay": {
+      "path": ".local/rival-exhausted-navigation-replay.json",
+      "sha256": "3b98cf1eb5a829cd6ca134352ca1e9603e476aaa6c2152431081c37fcf1abd81"
+    }
+  },
+  "startingRecipe": "Continue the natural mountain-input session at MT0317 stop552. Right-up0/right-down2 ->life1 flush553; repeat ->natural rival entry0460:0008 stop554. Save incoming CPU,DS64K,rival1275 bytes and travel450 bytes. CAS the34 player-collected flags to1 and seed56053 to0. Capture missBefore at554,selector return0078 at555,epilogue0328 at556. Return to office normally via map Down0/up140,Fire160/up180; Office Up+Space140/release160,then bin Fire0/release10 reaches next rival entry558 (explicit driver pause557 was observational). Capture before seed CAS17689 to56,claimBefore558,report0297 at559 and raw PNG,epilogue0328 at560. Early map Fire pulses were exploratory navigation,not accepted replay inputs. No CPU writes or partial/full machine restores.",
+  "injections": [
+    {
+      "at": "rival entry554",
+      "meaning": "All34 ordinary destinations player-collected,plus seed0 to choose miss; exact CAS requests and results are pinned in setup artifact."
+    },
+    {
+      "at": "rival entry558",
+      "meaning": "Change seed17689 to56 to choose successful zero-value alias claim. All other incoming state carries from normal play since the preceding conditional miss."
+    }
+  ],
+  "fittedInputs": [],
+  "inputEvents": [],
+  "comparisonRules": "Complete1275-byte relocated rival/selector and450-byte travel code identities. Exact setup differences only34 declared flags and seed bytes; second setup only seed. Miss and claim inputs come from their independent incoming DS snapshots. Compare seed,day,location,cash,banked,all35 player/rival flags,selected target,and aliased flight-record bytes. Exact complete320x200 report PNG with original MAIN33/font and raw byte name,including linear EGA row spill. No pixel mask or time fit. All five checkpoints and two cases required.",
+  "evidenceLevel": "Two conditional original routine cases,one exact report image and static alias translation. Independent/controller/browser checks are separate; not a natural exhausted whole campaign.",
+  "exclusions": [
+    "Unrelated original heap,driver clocks,graphics scratch and resident input stack are outside semantic routine comparison",
+    "Capture setup changes collected flags and RNG explicitly; not a naturally exhausted campaign",
+    "No whole-campaign original replay or complete machine checkpoint"
+  ],
+  "verify": "npm run verify:rival-exhausted"
+}

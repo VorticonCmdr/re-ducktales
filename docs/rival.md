@@ -48,7 +48,7 @@ new8000 treasure is credited. Other signed/wrapping boundaries are statically
 translated; not every branch has an original runtime case. Original device completion latency,
 full campaign timing and a whole original campaign replay remain unproven. Exhausting
 all eligible destinations returns special slot35, outside the35-record LOC table.
-Its downstream behavior is unknown and stops with an explicit diagnostic. No bank
+Its original aliasing behavior is now translated and checked below. No bank
 fallback is substituted. Forced flight-race claims retain their separately verified
 existing application path.
 
@@ -117,3 +117,78 @@ Negative controls remove the unlock input, alter an account result and corrupt a
 report pixel; each must be rejected. Nine comparisons must execute, including the
 report-state boundary and exact PNG. Repeatable inputs are a setup recipe; the
 manifest does not claim a frame-timed original campaign replay.
+
+## Exhausted destination35
+
+This is an original out-of-table bug,not an additional treasure location. All
+selectors can return35 if nothing eligible remains. Main1080 treats35 as the
+office for travel duration,so the trip still advances the rival's calendar. The
+ordinary two RNG draws still determine delay/loss and success. A miss publishes
+location35 and returns normally without reading a treasure record.
+
+On success,126b:0149 writes the collected byte for record35 atDS4f49. Its name
+pointer at4f42 and treasure pointer at4f44 alias the first flight terrain record.
+The verified post-flight values are15 and0. The signed reward therefore reads
+DS0002 (zero),and the raw NUL-terminated name points into the original runtime
+library copyright string. No real location is marked rival-collected. The write
+turns the next flight object's word at4f48 fromffff to01ff; the next flight course
+preparation normally rebuilds that table. The port preserves this memory effect,
+zero award,three RNG draws,raw name bytes and normal report/pending-action return.
+It neither banks the cash nor skips the turn.
+
+The50-byte raw name includes control glyph17. Original EGA text writes across the
+right screen boundary into the next scanline. The browser renderer uses that
+linear addressing only for this sentinel report's name and punctuation; its
+complete320×200 image matches the original capture exactly,without a pixel mask.
+Ordinary names keep their existing presentation.
+
+`advanceRival` takes the incoming mutable data segment through its optional
+`memory` boundary. It is needed only for a successful exhausted claim. The real
+application supplies its carried expedition/flight memory (or initialized market
+memory); no name or reward is fabricated. Missing memory is a setup diagnostic.
+The semantic location table remains35 records. Raw strings use the original
+byte glyphs rather than the normal printable-ASCII resource-text validator.
+
+`reference/rival-exhausted.json` pins13 required local artifacts and exact setup
+mutations. The original is the same hashed build,real16-bit mode,normal core,
+3000 cycles,load01f5,DS/SS1403. Native0460:0008 maps to Ghidra
+`DUCK_UNPACKED.EXE`126b:0008; complete1275-byte rival/selector and450-byte travel
+identities are verified against the relocated original. The far routine's
+16-bit forced-route argument is0 in both cases.
+
+At natural rival entry554 after mountain failure,the experiment explicitly CASes
+all34 player-collected flags to1 and seed56053 to0. Selector return555 is35;
+return556 has rival day6→9,location0→35,seed13458 and unchanged cash/banked cash.
+Normal map/office/bin navigation then reaches entry558; bin play has advanced
+the seed to17689. A second explicit CAS chooses seed56. Report559 and return560
+have day9 unchanged,zero cash,seed29915 and alias byte4f49=1. The full report PNG
+is captured before its normal fallback wait. No CPU writes,partial restore or
+complete machine checkpoint was used. This is a conditional routine experiment,
+not a naturally exhausted campaign or a frame-timed original campaign replay.
+
+Five checkpoints require identity/mode,exact setup deltas,miss state,claim/report
+state and the full image. Five negative controls remove an eligibility input,
+alter an account,omit the alias write,clip the row spill and change a pixel.
+Missing/corrupt fixtures,zero/missing cases,incomplete setup operations or replay
+events and state/image differences fail. Runtime clocks,heap,graphics scratch and
+resident input stack are outside the named semantic comparison; no clock value
+or expected output is fitted into the port's inputs.
+
+An independent controller unit scenario carries its own state through two rival
+turns and report completion. The conditional browser host loads verified assets,
+uses the production Game/Scheduler/Renderer and native keyboard Fire,compares the
+whole original image and reaches map then office. Its all-collected condition and
+canonical flight record are authored inputs; its small test-host input adapter
+is explicit. It does not claim the production page was played to exhaustion.
+Existing normal campaign browser scenarios separately cover the production page's
+input and audio adapters.
+
+```sh
+npm run verify:rival-exhausted
+npm run verify:rival
+npx playwright test tests/browser/rival-exhausted.spec.js
+```
+
+The former hard stop is removed. Other alias layouts have memory-based translation
+but lack additional original captures. A natural full-campaign exhaustion route,
+original sound latency and whole-campaign timing remain unverified.

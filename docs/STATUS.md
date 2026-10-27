@@ -3,7 +3,7 @@
 Updated2026-10-27. **The full game is not complete.**
 
 The main campaign loop and all four expedition families are playable. This is
-still completion work,not only final polish: known rival/flight hard stops and
+still completion work,not only final polish: known flight hard stops and
 unverified destination/difficulty routes remain. Selected complete routes and
 endings are established; arbitrary campaigns are not yet guaranteed finishable.
 
@@ -95,8 +95,10 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 
 - Normal Glomgold progression is connected. Nine conditional original checks cover
   inactive/miss/claim/bank and all difficulty selectors,with exact report pixels.
-  Original full-campaign/audio timing remains unproven. An exhausted rival route35
-  stops explicitly; its original out-of-table behavior is unknown.
+  Original full-campaign/audio timing remains unproven. Exhausted destination35
+  now preserves the original zero-value aliased claim/report and normal return;
+  two conditional original cases and one exact image cover this edge. Natural
+  full-campaign exhaustion remains unverified; full integration passes.
 - No save/load/high-score path is identified in this build. Earlier status entries
   assumed those features; [the interface audit](system-controls.md) corrects that.
   Browser persistence would be an explicit addition,not a translated original format.
@@ -141,9 +143,9 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:56 unit tests,29 browser scenarios,
+Current milestone passed full `npm run verify`:57 unit tests,30 browser scenarios,
 all required original-data checks and the production build. Integration log:
-`.local/mountain-input-integrated-verify.log`.
+`.local/rival-exhausted-final-verify.log`.
 
 One browser worker keeps the full mountain/jungle replays within their existing
 120-second limits; their required inputs and checkpoint counts are unchanged.
@@ -177,16 +179,28 @@ The three-life route observes four display callbacks per read,retaining its
 movement,timing and upper transport/erase graphics remain unproven.
 
 Next priority is gameplay completeness: exercise additional destination layouts,
-difficulties and uncommon interactions,and resolve reachable flight-boundary or
-exhausted-rival hard stops. Selected complete expeditions and win/loss routes do
-not establish a complete arbitrary campaign. Remaining mountain graphics and
+difficulties and uncommon interactions,and resolve reachable flight-boundary
+hard stops. The exhausted-rival hard stop is now removed using original behavior.
+Selected complete expeditions and win/loss routes do not establish a complete
+arbitrary campaign. Remaining mountain graphics and
 presentation differences are separate fidelity work.
 
+`verify:rival-exhausted` requires13 checksummed local artifacts,two conditional
+original cases,five checkpoints,one exact report PNG and five negative controls.
+The conditional browser host verifies real keyboard continuation through the
+production Game/Scheduler/Renderer and carries a second turn. It does not claim
+a naturally exhausted campaign or the production page's whole-campaign route.
+The first integration attempt had one cave-route wall timeout under concurrent
+host load; that route passed unchanged on focused rerun and on the final full
+gate. Timing limits,inputs and expected results were retained.
+
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-0e0c:0317 stop552 at a native mountain life2 input poll,DS/SS1403. No breakpoints
-or pending replay. Normal map navigation from Carlsbad to El Capitan reached
-MT entry545,input546,pause547..550 and life-reset551..552. No game/CPU writes or
-restores. `reference/mountain-input.json` records the setup and14 required local
+0460:0328 stop560 after a conditional exhausted-rival claim,DS/SS1403. No
+breakpoints or pending replay. All ordinary destinations are explicitly marked
+player-collected for this experiment; seed56 was injected at558. Do not treat
+this live state as a natural campaign. Earlier mountain captures remain natural. Normal map navigation from Carlsbad to El Capitan reached
+MT entry545,input546,pause547..550 and life-reset551..552 had no game/CPU
+writes or restores. Later rival entry554 introduces the explicit conditional setup. `reference/mountain-input.json` records the setup and14 required local
 artifacts. The earlier palette verifier separately reuses the explicitly
 conditional entry in `reference/mountain-entry.json` and shared jungle driver.
 Money-bin/flight/cave-input captures use a fresh natural launch with no memory/CPU

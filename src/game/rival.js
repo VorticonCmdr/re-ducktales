@@ -12,8 +12,9 @@ export const RIVAL_UNLOCK = Object.freeze({
 // Resident126b:0297..02ed: an observed busy sound bypasses the extra40x7
 // fallback wait. Audio status is provided by the host, never inferred from time.
 export class RivalReport {
-  constructor({ target, variant, audioEnabled = false, token }) {
+  constructor({ target, variant, name, audioEnabled = false, token }) {
     Object.assign(this, { target, variant, audioEnabled, token });
+    if (name !== undefined) this.name = name;
     this.busy = audioEnabled;
     this.phase = audioEnabled ? "speech" : "dialogue";
     this.polledBusy = false;
@@ -51,6 +52,7 @@ export class RivalReport {
   snapshot() {
     return {
       target: this.target,
+      ...(this.name !== undefined ? { name: this.name } : {}),
       variant: this.variant,
       phase: this.phase,
       remaining: this.remaining,
@@ -109,6 +111,7 @@ export function advanceRival({
   locations,
   loot,
   forcedTarget = null,
+  memory = null,
 }) {
   seed = u16(seed);
   if (
@@ -123,10 +126,6 @@ export function advanceRival({
     selectRivalDestination({ locations, loot, rival, difficulty });
   if (!Number.isInteger(target) || target < 0 || target > OFFICE)
     throw Error(`Unsupported rival target ${target}`);
-  if (target === OFFICE)
-    throw Error(
-      "Unsupported exhausted rival route35: original reads an uncaptured special table record",
-    );
   let draws = 0;
   const random = () => {
     seed = nextRandom(seed);
@@ -150,13 +149,24 @@ export function advanceRival({
     }
     const success = random() & 1;
     if (success || forcedTarget !== null) {
-      const location = locations[target],
-        treasure = loot[location.treasure - 1];
-      if (!treasure) throw Error(`Missing rival treasure ${location.treasure}`);
-      location.rivalCollected = true;
-      const value = s16(treasure.value);
+      let value, name;
+      if (target === OFFICE) {
+        ({ value, name } = claimExhaustedRivalRecord(memory));
+      } else {
+        const location = locations[target],
+          treasure = loot[location.treasure - 1];
+        if (!treasure)
+          throw Error(`Missing rival treasure ${location.treasure}`);
+        location.rivalCollected = true;
+        value = s16(treasure.value);
+      }
       rival.money = u32(rival.money + value);
-      report = { variant: random() & 1, target, value };
+      report = {
+        variant: random() & 1,
+        target,
+        value,
+        ...(name !== undefined ? { name } : {}),
+      };
     }
   }
   rival.location = target;
@@ -170,4 +180,28 @@ export function advanceRival({
     lostCash,
     kind: target === 0 ? "bank" : report ? "claim" : "miss",
   };
+}
+
+//126b:0143..0155/0211..0254 also execute for the selector's sentinel35.
+// Its8-byte record aliases the first two flight terrain entries. Preserve the
+// original out-of-table flag write and raw byte string; do not invent a location.
+export function claimExhaustedRivalRecord(memory) {
+  if (
+    !(memory?.bytes instanceof Uint8Array) ||
+    memory.bytes.length !== 65536 ||
+    typeof memory.b !== "function" ||
+    typeof memory.i !== "function"
+  )
+    throw Error("Missing original data segment for exhausted rival claim");
+  memory.b(0x4f49, 1);
+  const namePointer = u16(memory.i(0x4f42)),
+    treasurePointer = u16(memory.i(0x4f44)),
+    value = memory.i(u16(treasurePointer + 2));
+  let name = "";
+  for (let i = 0; i < 65536; i++) {
+    const byte = memory.b(u16(namePointer + i));
+    if (byte === 0) return { value, name };
+    name += String.fromCharCode(byte);
+  }
+  throw Error("Unterminated original exhausted-rival report name");
 }

@@ -24,7 +24,7 @@
   "inputEvents": "Paired hardware keys, released between actions: Enter; OfficeRight+Space; securityEsc thenN andFire twice; OfficeUp+Space; Fire in bin and wait for return; OfficeRight+Space. Debug stops bound the routine captures. This is an exploration recipe, not an elapsed-time input replay.",
   "comparisonRules": "Exact RNG, rival day/location/carried/banked money, chosen destination and every player/rival collected flag. Captured entry DS resources supply coordinates and signed16 loot values. Nearest comparison is a later conditional observation; it is not a routine-return checkpoint. Value report captures at0460:0297 after reveal and input flush, before sound-status query; location must still equal incoming location. Exact320x200RGBA against MAIN33 plus original font/text. Other heap/graphics/scratch fields are outside semantic scope.",
   "unsupported": [
-    "All destinations exhausted returns special slot35; its downstream behavior remains unknown and stops in development.",
+    "The exhausted destination35 path is outside this earlier manifest; reference/rival-exhausted.json now checks its original aliasing behavior.",
     "Original audio-busy timing and whole-campaign closed-loop replay are not proven; browser integration is independently exercised."
   ],
   "verifyCommand": "npm run verify:rival",

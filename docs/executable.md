@@ -25,8 +25,8 @@ from 512-byte-aligned file offsets:
 | 4       | 0x12c00     |          18572 | Launchpad flight (entry verified) |
 | 5       | 0x17600     |          12514 | Mountain expedition (entry/walking compared; browser ascent) |
 | 6       | 0x1a800     |          12078 | Cave expedition (entry/runtime verified) |
-| 7       | 0x1d800     |           8436 | Not translated                 |
-| 8       | 0x1fa00     |          26104 | Jungle (maps/actor routines compared; no browser gameplay) |
+| 7       | 0x1d800     |           8436 | Photography (`ps.arc` binding identified statically; not translated) |
+| 8       | 0x1fa00     |          26104 | Jungle (conditional state/pixels; browser completion/reward) |
 | 9       | 0x26000     |           3348 | Money-bin activity             |
 | 10      | 0x26e00     |           5986 | Not translated                 |
 

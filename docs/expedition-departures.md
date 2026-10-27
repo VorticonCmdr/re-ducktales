@@ -7,7 +7,8 @@ call contract. Flight is connected; cave arrival now reaches playable rooms, ter
 and campaign return. Mountain arrival now supports a complete variant0 ascent,
 reward and return,plus failure/retry. Jungle arrival now supports keyboard
 movement,jumping,hazards,three-life failure,campaign return and direct retry.
-Jungle treasure success still needs acceptance;photography remains incomplete.
+A complete Easy/variant0 jungle route reaches the chest,awards$1000,returns to
+the campaign and prevents repeat collection. Photography remains incomplete.
 
 ## Browser behavior
 
@@ -120,7 +121,7 @@ classification, malformed executable input, and strict difficulty thresholds.
 Flight input, terrain, racing and crash/cash consequences are connected. Cave
 arrival, cave navigation and terminal results work. Mountain variant0 ascent,
 reward and retries also work; see `docs/mountain.md`. Original ending comparison,
-jungle/photography, atomic aircraft and normal Glomgold/stock progression remain
+other jungle variants/difficulties,photography,atomic aircraft and normal Glomgold/stock progression remain
 incomplete.
 
 Campaign startup now includes original random loot assignment. With BIOS seed0,

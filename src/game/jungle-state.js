@@ -104,6 +104,17 @@ export function resetJungleLoader(m) {
   for (const at of [0x5ed2, 0x5f16, 0x8e0e, 0x1aac]) m.i(at, 0);
   m.i(0x78e8, 3);
 }
+
+// Main0210..0226 restores the shared palette before returning to campaign.
+// DOS archive/heap release is outside the browser's virtual resource boundary.
+export function restoreJunglePalette(m) {
+  m.b(0x205b, 0x85);
+  m.b(0x2063, 0x8d);
+  if (m.b(0x2042) !== 0) {
+    m.b(0x2057, 1);
+    m.b(0x205f, 9);
+  }
+}
 export function initializeJungleEntry(m, effects) {
   initializeJungleMonkeys(m, effects);
   initializeJungleBirds(m, effects);

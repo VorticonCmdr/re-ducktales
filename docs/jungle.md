@@ -4,8 +4,9 @@ Jungle gameplay is connected to the browser. The working slice is flight →
 guide → keyboard jump/walk/drop → life loss → campaign return → direct retry.
 Original assets,maps,actor/hazard logic,dirty rectangles and two video pages run
 together. A $50 pickup was manually exercised;automated browser coverage includes
-variant0 controls,three-life failure,retry and restart. Treasure success,other
-variants/difficulties and original full-loop timing still need acceptance.
+variant0 controls,three-life failure,retry and restart. A complete Easy/variant0
+route reaches the chest with one life,awards$1000 and returns to the campaign.
+Other variants/difficulties and original full-loop timing still need acceptance.
 
 The sections below preserve each comparison's scope. The runtime section at the
 end records the independent factory,clock providers and current browser route.
@@ -620,8 +621,8 @@ scrolling,other hazard/hit pixels,driver deadlines,retrace scheduling,independen
 startup and browser jungle gameplay are outside these presentation checks;the
 next section adds separate runtime evidence.
 
-Current original: paused0e0c:047c stop326,variant0/day24,after the whole-frame
-comparison below. All controls released,no breakpoints or pending schedules.
+Current original: paused0e0c:04b0 stop330,variant0/day24,AX1 before successful
+return after the conditional chest comparison below. All controls released,no breakpoints or pending schedules.
 Fresh overlay mapping was revalidated at313.
 
 ## Browser runtime and current playable slice
@@ -697,7 +698,67 @@ browser exploration collected$50 and observed the coat/HUD life change. Required
 commands are `npm run verify:jungle`, `npx playwright test tests/browser/jungle.spec.js`
 and the full `npm run verify`. Missing local originals are setup failures.
 
-Next:verify a complete jungle treasure route and campaign reward,then photography,
-trading and endings. Other maps/difficulties received exploratory short runs only;
+Next:implement photography,then trading and endings. Other maps/difficulties received exploratory short runs only;
 those are not full acceptance. Original scrolling/enemy/hit pixels,whole-loop
 clock/IRQ alignment,audio and full-level replay remain open.
+
+## Treasure completion and shared-palette cleanup
+
+JG15 is the treasure chest. The existing internal `Transport` names refer to X
+records,not teleportation. Original11d4:00cb tests the actor center/Y+16 against
+an inclusive48x30 chest rectangle after checking nearby columns. Variant0 X1
+is at(1125,85),so its rectangle ends at(1173,115). Contact sets1aac=1;the main
+loop finishes its current presentation,cleans up and returnsAX1. The campaign
+caller spends one day,credits the assigned treasure value,then marks the location
+collected after the award dialogue. No Fire action is required at the chest.
+
+`reference/jungle-treasure.json` pins five local original artifacts. Continue
+stop326 to main0651 stop327,and revalidate all24056 relocated overlay bytes.
+Four explicit CAS setup words move X8→1124,Y16→80,camera0→960 and redraw0→3.
+Before/after setup DS differs in exactly these words;CPU registers are unchanged.
+Run original goal helper live13c9:00cb stop328 with independent stack argument1,
+then014f stop329. Actor point(1128,96) lies inside the chest rectangle. The port
+helper matches all64K DS outside its fixed40-byte call/local stack9e44..9e6b.
+Clock,RNG,descriptors and every game global remain exact. This position/camera
+injection is conditional completion evidence,not an original whole-level replay.
+
+Run main04b0 stop330 before RETF:AX1 and success flag1. The original also restores
+shared palette slots5/13 to85/8d. `restoreJunglePalette` now performs those source
+writes before returning;the captured EGA-mode0 palette matches all17 bytes,and
+no other DS byte may change in that helper. The other source video mode also
+restores slots1/9;it has static evidence only. DOS heap/archive release remains
+outside the browser's virtual allocator boundary. This fixes the previously
+retained life palette in carried campaign state;the visible screen is black
+before the next scene renders,so the omission was not exposed by the old PNGs.
+
+An independent full-level route starts from variant0/Easy,seed11324,$0/day4 and
+static original files. The inputs total792 samples:neutral2,Fire1,neutral15,
+Right18,neutral8,Down722,Up5,Down2,Up17,Right2. It carries its own state through20
+exact snapshots/full-DS/presentation-payload hashes,6026 driver/retrace events and
+839 display updates,and requires success with one life at X1124/Y80/scroll960.
+The eight neutral samples are player input chosen during exploration to board a
+fish,not fitted timer values;the clock providers remain unchanged. Expected
+outputs are authored port regressions,not original level capture outputs. Nine
+negative controls omit setup,goal contact,climb,checkpoint or palette restoration,
+corrupt argument/RNG/pixels,or leave an input unconsumed. Missing/corrupt local
+artifacts and unsupported paths fail explicitly.
+
+The browser scenario starts at title with BIOS-seed0,selects Easy and the swamp,
+flies using actual keyboard controls,then reaches seed11324 through the ordinary
+campaign/guide logic. It injects no memory,RNG,allocator or expected state. It feeds
+the same792 inputs through real key events,checking20 semantic checkpoints at
+matching input counts. Intermediate standalone timestamps,phase and display
+counters are outside this DOM comparison because their observation phases differ;
+position,action,RNG,lives,camera and cash remain exact. Final outcome/frame/display
+counts,reward,calendar,collection and restart are checked exactly. The controlled
+8ms display cadence observes inputs without changing the two simulation rates.
+
+The complete browser route awards$1000 for this assigned treasure,returns on day5,
+marks location25 collected,and shows the original collected notice on a revisit
+without changing cash/day/location/seed. Run
+`npx playwright test tests/browser/jungle-treasure.spec.js` and
+`npm run verify:jungle`;both are required by `npm run verify`. Browser acceptance
+is distinct from the conditional original return and independent level replay.
+Original whole-level timing,scrolling/enemy/transition pixels,audio and other
+variants/difficulties remain unverified. Photography,trading and endings remain
+next;the full-game goal is active.

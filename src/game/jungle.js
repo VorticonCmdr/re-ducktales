@@ -2,6 +2,7 @@ import {
   prepareJungle,
   resetJungleLoader,
   initializeJungleEntry,
+  restoreJunglePalette,
 } from "./jungle-state.js";
 import { sampleJungleControls } from "./jungle-controls.js";
 import { collideJungleGround } from "./jungle-collision.js";
@@ -247,6 +248,7 @@ export class Jungle {
     }
     yield* this.wipe();
     this.sound(0);
+    restoreJunglePalette(m);
     return {
       code: m.i(0x1aac),
       money: m.view.getUint32(0x8cc0, true),

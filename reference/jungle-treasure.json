@@ -1,0 +1,674 @@
+{
+  "id": "jungle-treasure-variant0-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "1b7376c",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "resourceRoot": "game/ mounted read-only as C:"
+  },
+  "expectedOriginalContactCount": 1,
+  "expectedOriginalReturnCount": 1,
+  "expectedReplayCheckpointCount": 20,
+  "expectedInputCount": 792,
+  "expectedClockEventCount": 6026,
+  "expectedPresentationCount": 839,
+  "checkpointIds": [
+    1, 3, 5, 16, 19, 24, 36, 44, 80, 120, 200, 300, 400, 500, 600, 700, 766,
+    775, 787, 792
+  ],
+  "clockProvider": {
+    "driverNumerator": 1193182,
+    "driverDivisors": [1365, 12],
+    "retraceHz": 70.086,
+    "tieOrder": "driver-first"
+  },
+  "initial": {
+    "variant": 0,
+    "difficulty": 0,
+    "seed": 11324,
+    "money": 0,
+    "day": 4,
+    "audioEnabled": false
+  },
+  "inputEvents": [
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 64,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 15
+    },
+    {
+      "byte": 3,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 5,
+      "count": 722
+    },
+    {
+      "byte": 1,
+      "count": 5
+    },
+    {
+      "byte": 5,
+      "count": 2
+    },
+    {
+      "byte": 1,
+      "count": 17
+    },
+    {
+      "byte": 3,
+      "count": 2
+    }
+  ],
+  "checkpoints": [
+    {
+      "inputCount": 1,
+      "state": {
+        "phase": "playing",
+        "x": 8,
+        "y": 16,
+        "column": 0,
+        "row": 0,
+        "action": 5,
+        "frame": 0,
+        "facing": 1,
+        "lives": 3,
+        "scroll": 0,
+        "money": 0,
+        "seed": 18256,
+        "tick": 25,
+        "retrace": 25,
+        "frames": 1,
+        "presentations": 6,
+        "outcome": null
+      },
+      "memorySha256": "feb12547d6195fac1cad213d730e80cec89171d93cb9799b6a7085c0fb58e7a5",
+      "pixelSha256": "8f2cb91f4c9404c8a25543934964e62efc8dc7f620a5ce27aad590fb11ff218f"
+    },
+    {
+      "inputCount": 3,
+      "state": {
+        "phase": "playing",
+        "x": 22,
+        "y": 16,
+        "column": 0,
+        "row": 0,
+        "action": 18,
+        "frame": 0,
+        "facing": 1,
+        "lives": 3,
+        "scroll": 0,
+        "money": 0,
+        "seed": 57598,
+        "tick": 80,
+        "retrace": 76,
+        "frames": 3,
+        "presentations": 16,
+        "outcome": null
+      },
+      "memorySha256": "3a42c5200fc0690fc1d28e6b50bd622b5c4464e12bdb1352996902de77d6e1ec",
+      "pixelSha256": "7a0e494684401e24a2bf5bb38e72009f5fd9652ab25f7fa58b12a58337402fea"
+    },
+    {
+      "inputCount": 5,
+      "state": {
+        "phase": "playing",
+        "x": 6,
+        "y": -8,
+        "column": 0,
+        "row": -1,
+        "action": 18,
+        "frame": 2,
+        "facing": 1,
+        "lives": 3,
+        "scroll": 0,
+        "money": 0,
+        "seed": 54219,
+        "tick": 86,
+        "retrace": 82,
+        "frames": 5,
+        "presentations": 18,
+        "outcome": null
+      },
+      "memorySha256": "b04cc099342c14a8208a31640360e6a80d3236a30789a5552ea206c74b1b5a3f",
+      "pixelSha256": "ec9b3a4fc604600a17ed910d0b9feb8a2c0e8e598e13bdc45497787afad6c300"
+    },
+    {
+      "inputCount": 16,
+      "state": {
+        "phase": "playing",
+        "x": 8,
+        "y": 16,
+        "column": 0,
+        "row": 0,
+        "action": 5,
+        "frame": 0,
+        "facing": 1,
+        "lives": 3,
+        "scroll": 0,
+        "money": 0,
+        "seed": 8847,
+        "tick": 119,
+        "retrace": 114,
+        "frames": 16,
+        "presentations": 29,
+        "outcome": null
+      },
+      "memorySha256": "a4ea7a27201282faf32d16989f9484582ef13fb3c5cfb443a6032b24fdb6d053",
+      "pixelSha256": "443b18c761044d87469deb4ee9744b63d15f07dddb446ffac87bb878b9b253eb"
+    },
+    {
+      "inputCount": 19,
+      "state": {
+        "phase": "playing",
+        "x": 24,
+        "y": 16,
+        "column": 0,
+        "row": 0,
+        "action": 1,
+        "frame": 5,
+        "facing": 1,
+        "lives": 3,
+        "scroll": 0,
+        "money": 0,
+        "seed": 40044,
+        "tick": 128,
+        "retrace": 123,
+        "frames": 19,
+        "presentations": 32,
+        "outcome": null
+      },
+      "memorySha256": "586bfda8df59f36f8426bdfc7e6205c574e3aca03a5c18b0110d09a3a10e0e66",
+      "pixelSha256": "17769607bb127b6b2bc43560efffa5f8110724e87d9aae488d80ddc943722b9b"
+    },
+    {
+      "inputCount": 24,
+      "state": {
+        "phase": "playing",
+        "x": 24,
+        "y": 16,
+        "column": 0,
+        "row": 0,
+        "action": 5,
+        "frame": 0,
+        "facing": 1,
+        "lives": 3,
+        "scroll": 0,
+        "money": 0,
+        "seed": 162,
+        "tick": 143,
+        "retrace": 137,
+        "frames": 24,
+        "presentations": 37,
+        "outcome": null
+      },
+      "memorySha256": "2df41d634053d16c7b9500174c4029d9d630f274ec9907b3521a5438ab576029",
+      "pixelSha256": "99635dda86344d29b62b6bd0cd18fc2dff8d7bf9715f938de096d43277d30e7d"
+    },
+    {
+      "inputCount": 36,
+      "state": {
+        "phase": "playing",
+        "x": 60,
+        "y": 48,
+        "column": 1,
+        "row": 1,
+        "action": 4,
+        "frame": 5,
+        "facing": 1,
+        "lives": 3,
+        "scroll": 0,
+        "money": 0,
+        "seed": 20869,
+        "tick": 179,
+        "retrace": 172,
+        "frames": 36,
+        "presentations": 49,
+        "outcome": null
+      },
+      "memorySha256": "7b79f64f0cc219c371ab4d7839fe49d7f096758429d10b4b2573b5b741de018d",
+      "pixelSha256": "4ec3bee09c087d1d59345811d94a7c05570f7b948cd47b7f1e206de0ee02d1dc"
+    },
+    {
+      "inputCount": 44,
+      "state": {
+        "phase": "playing",
+        "x": 60,
+        "y": 48,
+        "column": 1,
+        "row": 1,
+        "action": 5,
+        "frame": 0,
+        "facing": 1,
+        "lives": 3,
+        "scroll": 0,
+        "money": 0,
+        "seed": 53808,
+        "tick": 203,
+        "retrace": 195,
+        "frames": 44,
+        "presentations": 57,
+        "outcome": null
+      },
+      "memorySha256": "13ef1be57ccbaaf36a7d3119cc5043906500987e94f3492348ba5cb1b089b0fe",
+      "pixelSha256": "c0ff200a274b3293ba41afae5ff29a3ef4f2ccf31797bbe5c674e37260a080bd"
+    },
+    {
+      "inputCount": 80,
+      "state": {
+        "phase": "playing",
+        "x": 8,
+        "y": 46,
+        "column": 0,
+        "row": 0,
+        "action": 2,
+        "frame": 0,
+        "facing": 1,
+        "lives": 2,
+        "scroll": 0,
+        "money": 0,
+        "seed": 18512,
+        "tick": 603,
+        "retrace": 580,
+        "frames": 80,
+        "presentations": 107,
+        "outcome": null
+      },
+      "memorySha256": "b4df44c40e2cad528de3fbe9224954489568db65aee5bb79bbc16cfbea15781a",
+      "pixelSha256": "4868d7f2fa773e845bf22c49d157c7a2a685e07d0e15b5f5840ce3b3a48cb09c"
+    },
+    {
+      "inputCount": 120,
+      "state": {
+        "phase": "playing",
+        "x": 36,
+        "y": 119,
+        "column": 0,
+        "row": 3,
+        "action": 10,
+        "frame": 1,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 0,
+        "money": 0,
+        "seed": 7798,
+        "tick": 1019,
+        "retrace": 980,
+        "frames": 120,
+        "presentations": 161,
+        "outcome": null
+      },
+      "memorySha256": "d452eef00e908adb0fb17bc2ea5a2daa14751d62efa29a3309eaeca0880c9a15",
+      "pixelSha256": "c00bc9299da72a265eb5028c0745a40b64a735b4acffc59efacf2287003715fa"
+    },
+    {
+      "inputCount": 200,
+      "state": {
+        "phase": "playing",
+        "x": 196,
+        "y": 119,
+        "column": 3,
+        "row": 3,
+        "action": 10,
+        "frame": 1,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 0,
+        "money": 0,
+        "seed": 42798,
+        "tick": 1259,
+        "retrace": 1211,
+        "frames": 200,
+        "presentations": 241,
+        "outcome": null
+      },
+      "memorySha256": "72e7fe52a83c40db4720d5322b24c8cd24b79de0d7d3de3bfdf236511410f792",
+      "pixelSha256": "15152817658e8e94717d07768b78626bdbda14f90c2f970aac0cce858ac2c833"
+    },
+    {
+      "inputCount": 300,
+      "state": {
+        "phase": "playing",
+        "x": 344,
+        "y": 119,
+        "column": 6,
+        "row": 3,
+        "action": 10,
+        "frame": 1,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 208,
+        "money": 0,
+        "seed": 50043,
+        "tick": 1559,
+        "retrace": 1499,
+        "frames": 300,
+        "presentations": 341,
+        "outcome": null
+      },
+      "memorySha256": "3cf90d7446105eb511fe382f22a0486b39289f25af763bfc3a17a9cc8fce1a71",
+      "pixelSha256": "0916a9467b07d5a54dc83e9126d618da281e11c7e60b3bd60a2c7fa49ab32868"
+    },
+    {
+      "inputCount": 400,
+      "state": {
+        "phase": "playing",
+        "x": 516,
+        "y": 119,
+        "column": 9,
+        "row": 3,
+        "action": 10,
+        "frame": 1,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 320,
+        "money": 0,
+        "seed": 44975,
+        "tick": 1859,
+        "retrace": 1788,
+        "frames": 400,
+        "presentations": 441,
+        "outcome": null
+      },
+      "memorySha256": "defacb10ffd58e254d72b31d29cc4e6ae1bc5e400b14a01cf3a727c26ccffc3d",
+      "pixelSha256": "4607e7d06bf60e7a9cff3928100b003f6a14dc4afc6f28e07e05eeabd0f38e28"
+    },
+    {
+      "inputCount": 500,
+      "state": {
+        "phase": "playing",
+        "x": 664,
+        "y": 119,
+        "column": 12,
+        "row": 3,
+        "action": 10,
+        "frame": 1,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 528,
+        "money": 0,
+        "seed": 54093,
+        "tick": 2159,
+        "retrace": 2077,
+        "frames": 500,
+        "presentations": 541,
+        "outcome": null
+      },
+      "memorySha256": "c8455f50ae4d0ea311323a537e8463fac29e1780495f9d1c183166afef6f0d60",
+      "pixelSha256": "892b94861a4e37d9b67c502d9ec6d72cda0b4d56cf700fba4be7015223f43846"
+    },
+    {
+      "inputCount": 600,
+      "state": {
+        "phase": "playing",
+        "x": 840,
+        "y": 119,
+        "column": 15,
+        "row": 3,
+        "action": 10,
+        "frame": 1,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 640,
+        "money": 0,
+        "seed": 3667,
+        "tick": 2467,
+        "retrace": 2373,
+        "frames": 600,
+        "presentations": 641,
+        "outcome": null
+      },
+      "memorySha256": "9bc0759de7868c1da5a06b36e961985f8c16fe7aa0b9455abc16a7503afa4b1b",
+      "pixelSha256": "ddabec3aa4bdc394290c6199e40dfa99b5d19a95e30f7db978b27a8e5381f120"
+    },
+    {
+      "inputCount": 700,
+      "state": {
+        "phase": "playing",
+        "x": 988,
+        "y": 119,
+        "column": 18,
+        "row": 3,
+        "action": 10,
+        "frame": 1,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 848,
+        "money": 0,
+        "seed": 55759,
+        "tick": 2767,
+        "retrace": 2662,
+        "frames": 700,
+        "presentations": 741,
+        "outcome": null
+      },
+      "memorySha256": "9426679fa06c9d7f5576761ff023846f60c59e21575385ec18ad913fb2e142bc",
+      "pixelSha256": "544a521052a7459ab5e04e6d39a7cbd89570e6fa27b111b8b5ba958b00563588"
+    },
+    {
+      "inputCount": 766,
+      "state": {
+        "phase": "playing",
+        "x": 1092,
+        "y": 119,
+        "column": 20,
+        "row": 3,
+        "action": 10,
+        "frame": 1,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 960,
+        "money": 0,
+        "seed": 6901,
+        "tick": 2965,
+        "retrace": 2852,
+        "frames": 766,
+        "presentations": 807,
+        "outcome": null
+      },
+      "memorySha256": "4809d8d157dea27b8f8879c9f4291a76423fbd2ca9db03e59b4e5f63cf1bf73c",
+      "pixelSha256": "e971e3d4f935dfa6a7a3cbdd5554af2a04fb5710cb3bfb4e9d04780dcc4ed545"
+    },
+    {
+      "inputCount": 775,
+      "state": {
+        "phase": "playing",
+        "x": 1108,
+        "y": 119,
+        "column": 20,
+        "row": 3,
+        "action": 10,
+        "frame": 1,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 960,
+        "money": 0,
+        "seed": 38509,
+        "tick": 2992,
+        "retrace": 2878,
+        "frames": 775,
+        "presentations": 816,
+        "outcome": null
+      },
+      "memorySha256": "ca46a71731f9fc61f6e345ff7b15303cdd90a3cfaf22d1c4dfc46e2164c428bc",
+      "pixelSha256": "e73f6484b8480c02e20db77957a795b491f3dff802951b67dae7d382c4c0b638"
+    },
+    {
+      "inputCount": 787,
+      "state": {
+        "phase": "playing",
+        "x": 1108,
+        "y": 96,
+        "column": 20,
+        "row": 2,
+        "action": 12,
+        "frame": 3,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 960,
+        "money": 0,
+        "seed": 51202,
+        "tick": 3028,
+        "retrace": 2913,
+        "frames": 787,
+        "presentations": 828,
+        "outcome": null
+      },
+      "memorySha256": "692f3ffa9268673bbf5795396a3de67331833067d6e25b311f33890db94f762c",
+      "pixelSha256": "06c84d86353fba70e3656c5fee3e5913d823919425c791103ed5b927ef646e72"
+    },
+    {
+      "inputCount": 792,
+      "state": {
+        "phase": "playing",
+        "x": 1124,
+        "y": 80,
+        "column": 21,
+        "row": 2,
+        "action": 1,
+        "frame": 5,
+        "facing": 1,
+        "lives": 1,
+        "scroll": 960,
+        "money": 0,
+        "seed": 42471,
+        "tick": 3043,
+        "retrace": 2927,
+        "frames": 792,
+        "presentations": 833,
+        "outcome": null
+      },
+      "memorySha256": "77cac32474463e672c871590cf70dbb3560051d074dcf5ae28e6df6422e82a23",
+      "pixelSha256": "ff5bdee7635b60a69cee23a673cf12d34939661d8dc57484a79062a591e5b350"
+    }
+  ],
+  "final": {
+    "phase": "complete",
+    "x": 1124,
+    "y": 80,
+    "column": 21,
+    "row": 2,
+    "action": 1,
+    "frame": 5,
+    "facing": 1,
+    "lives": 1,
+    "scroll": 960,
+    "money": 0,
+    "seed": 42471,
+    "tick": 3071,
+    "retrace": 2955,
+    "frames": 792,
+    "presentations": 839,
+    "outcome": {
+      "code": 1,
+      "money": 0,
+      "seed": 42471
+    }
+  },
+  "finalMemorySha256": "1b76d70a95505fbdf303031442f0d4ddafd578dc143ce212eb1ff78b56c40663",
+  "browserComparisonFields": [
+    "x",
+    "y",
+    "column",
+    "row",
+    "action",
+    "frame",
+    "facing",
+    "lives",
+    "scroll",
+    "money",
+    "seed"
+  ],
+  "browser": {
+    "biosSeed": 0,
+    "difficulty": 0,
+    "target": 25,
+    "arrivalDay": 4,
+    "arrivalMoney": 0,
+    "briefingSeed": 11324,
+    "initializedSeed": 18256,
+    "reward": 1000,
+    "returnDay": 5,
+    "returnMoney": 1000,
+    "playerCollected": [25],
+    "route": "Controlled8ms RAF,normal separate game clocks. Title Fire,Easy Fire,map target64,73,Fire,Right,Fire. Hold throttle until speed>4,then Down until heading>0;release both. Read own incoming briefing seed,then feed inputEvents through real keyboard until each jungle frame increments once. Skip award,return to map,confirm collected notice,return,restart."
+  },
+  "contactStackExclusion": [40516, 40556],
+  "originalInputEvents": [
+    {
+      "kind": "goal-id",
+      "value": 1,
+      "source": "incoming SS:SP+4 at13c9:00cb"
+    }
+  ],
+  "setupWrites": [
+    {
+      "offset": 24390,
+      "before": 8,
+      "after": 1124
+    },
+    {
+      "offset": 26712,
+      "before": 16,
+      "after": 80
+    },
+    {
+      "offset": 24274,
+      "before": 0,
+      "after": 960
+    },
+    {
+      "offset": 30952,
+      "before": 0,
+      "after": 3
+    }
+  ],
+  "startingRecipe": "Continue whole-frame stop326 from jungle-runtime. Validate bytes at main0651,goal00cb/014f and main04b0. Run main0651 stop327,capture CPU+DS+all24056 code bytes. CAS only four recorded setup words,then capture CPU+DS. Run goal helper13c9:00cb stop328 and014f stop329,each CPU+DS. Run main0e0c:04b0 stop330,capture CPU+DS before RETF;AX1. Keys released,no pending schedules/breakpoints. No partial restore or register writes. Setup is conditional and does not prove an original whole-level route.",
+  "injections": "The four setupWrites place the original actor/camera at the final chest and request a full redraw. They are excluded from the browser and independent replay;all are pinned by exact before/after DS comparison.",
+  "fittedInputs": [],
+  "environmentContract": "Original contact consumes only its independently recorded stack argument1;all world and RNG state comes from its own BEFORE328. Expected AFTER329 never supplies inputs. The original return observation checks AX1 and the restored palette;DOS archive/heap cleanup is outside browser virtual allocation. Independent replay starts only from static original files,authored campaign parameters,virtual descriptors and its own fixed driver/retrace providers;it carries all state through an independent keyboard/joystick byte stream. Browser acceptance starts at title and carries its own campaign/flight/jungle state,without memory or RNG injection. Input events were recorded separately from expected checkpoints during an exploratory successful route;the eight neutral samples are player input,not fitted device-clock values.",
+  "comparisonRules": "Original contact:exact entire64K DS except40-byte helper/call stack9e44..9e6b;no clock,RNG,game-global,descriptor or dirty exclusions. Verify all relocated overlay bytes at327. Setup differs in exactly the four declared words,with identical CPU registers. Return:AX1,success flag1 and exact17-byte restored palette;palette helper may write only the source-declared two colors in this captured EGA mode0 case. Independent replay:20 exact snapshots,full-DS/presentation-payload hashes,792 consumed inputs,required clock/display counts,exact final state and full-DS hash. Expected independent outputs are port regression data,not original full-level captures. Browser compares listed semantic fields at the same input counts;intermediate phase/timestamps/display counters are outside that comparison because DOM publication and the standalone clock phase differ. Final frame/display/outcome/reward/calendar/collection checks are exact. No image tolerance or original timing claim.",
+  "limitations": [
+    "Conditional original completion is position/camera/redraw injection evidence,not an original campaign or level replay.",
+    "Independent and browser routes prove variant0 on Easy with this explicit input stream. Other variants/difficulties and original scrolling/enemy/transition pixels,full-loop timing and audio remain unverified.",
+    "Resource15 is the treasure chest. Existing internal Transport names refer to original X records;the completion code does not implement teleportation."
+  ],
+  "artifacts": {
+    "setup-before": {
+      "path": ".local/jungle-treasure-setup-before.json",
+      "sha256": "6d2e8fcbf9529d2262d54b15282fdaa6206820c3a415204e9d5870e8651b3312"
+    },
+    "setup-after": {
+      "path": ".local/jungle-treasure-setup-after.json",
+      "sha256": "a3f968cbd30ff3eb983f5642a3d0161410c8e6bd1bcb943ace0d8fc95e87ab94"
+    },
+    "contact-before": {
+      "path": ".local/jungle-treasure-contact-before.json",
+      "sha256": "fbf8d8090a911ae7ae705aeae75636645097d51fd91ccc14fb070332e1a080f0"
+    },
+    "contact-after": {
+      "path": ".local/jungle-treasure-contact-after.json",
+      "sha256": "ac070de2a10dc4b91bf77307b4f8036ecdb134b7344546096790b1623885dfbd"
+    },
+    "return": {
+      "path": ".local/jungle-treasure-return.json",
+      "sha256": "16b457389d0ac3e5e7055afb4ce97f3853687997f5e1bba2394e8da35cfa9798"
+    }
+  }
+}

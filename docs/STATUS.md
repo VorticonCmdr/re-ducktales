@@ -25,7 +25,9 @@ Updated2026-10-27. **The full game is not complete.**
   → direct retry. Original assets,hazards,vines,fish and moving platforms run
   together. Pickups work (a $50 pickup was manually exercised in the browser).
   Automated acceptance covers variant0 controls,three-life failure,day/map
-  return,direct retry and restart; treasure success remains to be verified.
+  return,direct retry and restart. A complete Easy/variant0 route also reaches
+  the chest with one life,awards$1000,returns on day5 and prevents duplicate
+  collection. Original whole-level timing and scrolling pixels remain unverified.
 
 Controls: Space/Enter fires. Up+Space enters the money bin; Right+Space opens the
 map. Hold Space for flight throttle; Down raises the nose, Up lowers it. In caves,
@@ -48,7 +50,7 @@ does not advance simulation. Unsupported paths stop with diagnostics.
 
 ## Verification scope
 
-- 27 unit tests and15 browser checks. Browser coverage includes real flight
+- 27 unit tests and16 browser checks. Browser coverage includes real flight
  controls, crash/race return, airport landing, cave entry, safe-room cash,
  pit failure, direct retry, treasure recovery/$4500 award, collected-location
  notices (including native audio completion), calendar/map return, restart,
@@ -75,9 +77,12 @@ does not advance simulation. Unsupported paths stop with diagnostics.
   Independent replay carries its own state through20 checkpoints,824 joystick
   samples,6405 clock events and875 display updates,including fish travel to
   scroll960 and final failure. Its full-memory/presentation hashes are port
-  regression expectations,not original full-level outputs. Browser controls and
-  campaign failure/retry work;original scrolling/enemy pixels,full timing,audio,
-  treasure success and other variants/difficulties need further acceptance.
+  regression expectations,not original full-level outputs. Treasure completion adds
+  an exact conditional original chest-contact case and return/palette contract,
+  plus20 independent checkpoints/792 inputs/6026 clock events/839 display updates.
+  Browser completion awards$1000 and prevents repeat collection. Original
+  scrolling/enemy pixels,full timing,audio and other variants/difficulties need
+  further acceptance.
   See `docs/jungle.md` for exact evidence scopes,capture recipes and exclusions.
 - Original money-bin:30 routine checkpoints; campaign bank:3 checkpoints;
  same-location retry:2 conditional dispatcher/cave-call checkpoints;
@@ -114,8 +119,8 @@ variant0. These checks do not establish a complete original campaign replay.
   and timing comparisons; their state and explicit device boundaries are tested.
 - Photography,stock trading,campaign endings,normal Glomgold progression,
   atomic transport,save/load and high scores are absent. Jungle gameplay is
-  connected,but treasure success has no acceptance scenario yet. All three
-  maps load;browser coverage is variant0. Original comparisons are conditional,
+  connected,including a complete treasure/reward route. All three maps load;
+  full browser coverage is Easy/variant0. Original comparisons are conditional,
   with exact whole-frame state and initial pixel evidence. Striped wipe/reveal
   and driver/retrace scheduling follow static driver code;their original timing
   and transition-pixel parity remain unproven. See `docs/jungle.md`.
@@ -153,14 +158,13 @@ Mountain foundation: `npm run prepare:mountain-analysis` and
 Jungle analysis/checks: `npm run prepare:jungle-analysis` and
 `npm run verify:jungle`; Python3 is required for the independent oracle.
 
-Next: verify a complete jungle treasure route and campaign reward,then expand
-photography,trading and endings. Extend targeted original comparisons for jungle
+Next: implement photography,then trading and endings. Extend targeted original comparisons for jungle
 scrolling/timing,mountain hook/ascent,cave movement and result presentation.
 Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-jungle variant0/day24,paused0e0c:047c stop326 after a complete neutral jungle frame.
+jungle variant0/day24,paused0e0c:04b0 stop330 before successful jungle return,AX1.
 All keys released,no breakpoints or pending schedules. The complete relocated
 24056-byte overlay was revalidated at entry313; EGA copy/page code is pinned at323,
 including its four documented self-modifying operands. Previous conditional
@@ -169,4 +173,6 @@ needed no additional override. `reference/jungle-presentation.json` pins19 local
 artifacts,six state/color passes and the four-pass conditional pixel pipeline.
 `reference/jungle-runtime.json` adds conditional initialization and that whole
 frame plus the independent replay. Browser acceptance is separate;whole original
-jungle timing replay remains unproven.
+jungle timing replay remains unproven. `reference/jungle-treasure.json` records
+conditional chest contact328/329 and return330;its explicit setup places the
+actor/camera at the final chest and is never used by the browser route.

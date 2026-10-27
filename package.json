@@ -46,11 +46,12 @@
     "verify:rival-exhausted": "node scripts/verify-rival-exhausted.js",
     "verify:flight-visible-left-edge": "node scripts/verify-flight-visible-left-edge.js && node scripts/verify-flight-boundary-replay.js",
     "verify:map-pointer": "node scripts/verify-map-pointer.js",
-    "verify:tandy": "node scripts/verify-tandy-driver.js && npm run verify:tandy-envelope && npm run verify:tandy-cues && npm run verify:tandy-sequence && npm run verify:tandy-sequence-cues && npm run verify:tandy-corpus",
+    "verify:tandy": "node scripts/verify-tandy-driver.js && npm run verify:tandy-envelope && npm run verify:tandy-cues && npm run verify:tandy-sequence && npm run verify:tandy-sequence-cues && npm run verify:tandy-controls && npm run verify:tandy-corpus",
     "verify:tandy-envelope": "node scripts/verify-tandy-envelopes.js",
     "verify:tandy-cues": "node scripts/verify-tandy-cues.js",
     "verify:tandy-sequence": "node scripts/verify-tandy-sequence.js",
     "verify:tandy-sequence-cues": "node scripts/verify-tandy-cues.js --sequence",
+    "verify:tandy-controls": "node scripts/verify-tandy-controls.js",
     "verify:tandy-corpus": "node scripts/verify-tandy-corpus.js"
   },
   "devDependencies": {

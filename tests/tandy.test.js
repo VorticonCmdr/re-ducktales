@@ -63,7 +63,7 @@ test("original Tandy036 ends after six ticks with exact sequence writes", async 
   assert.ok(result.pcm.some((v) => v > 0) && result.pcm.some((v) => v < 0));
   assert.throws(
     () => renderTandyPreview(bytes, 35),
-    /Unsupported Tandy command 90/,
+    /Tandy noise synthesis is not implemented/,
   );
   assert.throws(
     () => renderTandyPreview(bytes, 121),

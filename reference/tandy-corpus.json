@@ -4,15 +4,27 @@
     "sampleRate": 44100,
     "resetPort61": 0,
     "firstTickTime": 0,
-    "initialPeriods": [1, 1, 1],
-    "initialCounters": [1, 1, 1],
-    "initialOutputs": [1, 1, 1]
+    "initialPeriods": [
+      1,
+      1,
+      1
+    ],
+    "initialCounters": [
+      1,
+      1,
+      1
+    ],
+    "initialOutputs": [
+      1,
+      1,
+      1
+    ]
   },
   "counts": {
     "requests": 121,
-    "complete": 59,
-    "audible": 37,
-    "unsupported": 62,
+    "complete": 70,
+    "audible": 48,
+    "unsupported": 51,
     "silent": 22
   },
   "cases": [
@@ -28,7 +40,7 @@
     {
       "id": 1,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 2,
@@ -42,12 +54,12 @@
     {
       "id": 3,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 4,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 5,
@@ -61,7 +73,7 @@
     {
       "id": 6,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "diagnostic": "Tandy preview did not terminate"
     },
     {
       "id": 7,
@@ -80,12 +92,12 @@
     {
       "id": 9,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command aa"
+      "diagnostic": "Unsupported Tandy command 9f"
     },
     {
       "id": 10,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 11,
@@ -99,12 +111,12 @@
     {
       "id": 12,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 13,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 14,
@@ -127,7 +139,7 @@
     {
       "id": 16,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 17,
@@ -168,22 +180,22 @@
     {
       "id": 21,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 22,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 23,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 24,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 25,
@@ -215,27 +227,31 @@
     {
       "id": 28,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 29,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 30,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 31,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 32,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "status": "complete",
+      "ticks": 135,
+      "samples": 81124,
+      "busWrites": 281,
+      "pcmSHA256": "a910d82810038ce72f96deb0980b11378b482e0337869dc5c8b36857acb6ddd2",
+      "silent": false
     },
     {
       "id": 33,
@@ -249,12 +265,12 @@
     {
       "id": 34,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 35,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 36,
@@ -267,13 +283,17 @@
     },
     {
       "id": 37,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 9d"
+      "status": "complete",
+      "ticks": 49,
+      "samples": 29059,
+      "busWrites": 74,
+      "pcmSHA256": "f4fb1c7ce4dced16217a795cc00b3a83e39aca8ec7e3e558aeab4fcb46828555",
+      "silent": false
     },
     {
       "id": 38,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "diagnostic": "Tandy preview did not terminate"
     },
     {
       "id": 39,
@@ -287,22 +307,22 @@
     {
       "id": 40,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 41,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 42,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 43,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 44,
@@ -342,18 +362,22 @@
     },
     {
       "id": 48,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 9d"
+      "status": "complete",
+      "ticks": 49,
+      "samples": 29059,
+      "busWrites": 71,
+      "pcmSHA256": "75a7de5cb0b078261a65a48c8e54e591b81744d5e04530b4b6ed51f00b833c7e",
+      "silent": false
     },
     {
       "id": 49,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 50,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 51,
@@ -367,7 +391,7 @@
     {
       "id": 52,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 53,
@@ -381,27 +405,27 @@
     {
       "id": 54,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 55,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 56,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 57,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "diagnostic": "Unsupported Tandy command 9f"
     },
     {
       "id": 58,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 59,
@@ -415,7 +439,7 @@
     {
       "id": 60,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 61,
@@ -428,18 +452,26 @@
     },
     {
       "id": 62,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "status": "complete",
+      "ticks": 193,
+      "samples": 116238,
+      "busWrites": 176,
+      "pcmSHA256": "1c2e9d723b31c641543afe7e9e1b36eee0ef4338afbf1187e9b405df2f5f256d",
+      "silent": false
     },
     {
       "id": 63,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "status": "complete",
+      "ticks": 97,
+      "samples": 58119,
+      "busWrites": 103,
+      "pcmSHA256": "b6786394ea46cfea3abd4ab49fe1f7882b039c71a31276790abf9302d3d33898",
+      "silent": false
     },
     {
       "id": 64,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 65,
@@ -530,12 +562,12 @@
     {
       "id": 75,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 76,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 77,
@@ -548,33 +580,53 @@
     },
     {
       "id": 78,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "status": "complete",
+      "ticks": 97,
+      "samples": 58119,
+      "busWrites": 100,
+      "pcmSHA256": "94c1b7fe532e7a91eb54e2741fb210cb8acff90870d184805b4b3fa7ebdb0577",
+      "silent": false
     },
     {
       "id": 79,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "status": "complete",
+      "ticks": 146,
+      "samples": 87784,
+      "busWrites": 105,
+      "pcmSHA256": "cb2546ea1d4714914b7d4bd896c7cee0630898c6acd530364cb67146573ba265",
+      "silent": false
     },
     {
       "id": 80,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "status": "complete",
+      "ticks": 97,
+      "samples": 58119,
+      "busWrites": 96,
+      "pcmSHA256": "88284b966dd84970dad385b163bf963a6fa9965af00ab55b830815da5bfcfafe",
+      "silent": false
     },
     {
       "id": 81,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "status": "complete",
+      "ticks": 193,
+      "samples": 116238,
+      "busWrites": 125,
+      "pcmSHA256": "c550f1672e53cb76daad28cbdb93f4f29861c85c31424a7221a19095eee3c3e9",
+      "silent": false
     },
     {
       "id": 82,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 83,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "status": "complete",
+      "ticks": 217,
+      "samples": 130767,
+      "busWrites": 572,
+      "pcmSHA256": "c75ed0382f9b627eb1ff679b5752799815f891eec3d0f068050e12c09c3dbed9",
+      "silent": false
     },
     {
       "id": 84,
@@ -615,7 +667,7 @@
     {
       "id": 88,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 89,
@@ -629,12 +681,12 @@
     {
       "id": 90,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 91,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 92,
@@ -648,7 +700,7 @@
     {
       "id": 93,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 94,
@@ -662,12 +714,12 @@
     {
       "id": 95,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 96,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 97,
@@ -681,12 +733,12 @@
     {
       "id": 98,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 99,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 100,
@@ -745,7 +797,7 @@
     {
       "id": 106,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 107,
@@ -776,13 +828,17 @@
     },
     {
       "id": 110,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "status": "complete",
+      "ticks": 935,
+      "samples": 565448,
+      "busWrites": 667,
+      "pcmSHA256": "93b2b1c322ff197f0856d25bda5c67727be7071e5f355a3d9c9f61389cb3716f",
+      "silent": false
     },
     {
       "id": 111,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 97"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 112,
@@ -850,12 +906,12 @@
     {
       "id": 119,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     },
     {
       "id": 120,
       "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 90"
+      "diagnostic": "Tandy noise synthesis is not implemented"
     }
   ]
 }

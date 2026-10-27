@@ -64,9 +64,9 @@ const counts = {
 };
 assert.deepEqual(counts, {
   requests: 121,
-  complete: 59,
-  audible: 37,
-  unsupported: 62,
+  complete: 70,
+  audible: 48,
+  unsupported: 51,
   silent: 22,
 });
 assert.deepEqual(manifest.counts, counts);
@@ -81,5 +81,5 @@ const unsupported = structuredClone(manifest.cases);
 unsupported[3].diagnostic = "ignored";
 assert.throws(() => compare(unsupported), /Tandy corpus result 3/);
 console.log(
-  "Tandy corpus: 121 independently initialized requests; 59 complete (37 audible,22 silent),62 explicitly unsupported; 3 negative controls. Port regression only, not full original runtime/waveform parity.",
+  "Tandy corpus: 121 independently initialized requests; 70 complete (48 audible,22 silent),51 explicitly unsupported; 3 negative controls. Port regression only, not full original runtime/waveform parity.",
 );

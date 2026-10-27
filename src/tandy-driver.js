@@ -131,7 +131,15 @@ export class TandyDriver {
       this.byte(at + 0x23, span >>> 1);
       this.byte(at + 0x25, this.readSequence(at));
       this.word(at + 0x32, 0xf05);
-    } else if (op === 0xa9) this.byte(at + 0x2e, this.readSequence(at));
+    } else if (op === 0x90) {
+      // 0c43..0c6a zero-extends the operand, including on the noise channel.
+      const period = this.readSequence(at);
+      this.word(at + 8, period);
+      this.word(0x2b9 + ch * 2, period);
+    } else if (op === 0x97 || op === 0xa9)
+      this.byte(at + 0x2e, this.readSequence(at)); // Shared handler0aab.
+    else if (op === 0xaa)
+      return true; // 0b18: no operand, just dispatch again.
     else return false;
     return true;
   }
@@ -240,8 +248,10 @@ export class TandyDriver {
     this.word(0x2b9 + ch * 2, period);
     return;
   }
-  processNote(at, ch, note) {
-    if (ch === 3) throw Error("Tandy noise sequencing is not implemented");
+  processPitch(at, ch, note) {
+    // 0ea0..0f03 returns immediately for noise. Normal noise notes still
+    // initialize their envelope/duration in the caller at084d..086e.
+    if (ch === 3) return;
     let octave = ((note + this.byte(at + 6)) & 255) >>> 4;
     let semitone = ((note & 15) + this.byte(at + 0x1b)) & 255;
     if ((semitone << 24) >> 24 > 11) {
@@ -259,6 +269,14 @@ export class TandyDriver {
       Math.max(1, period >>> ((this.byte(at + 0x22) & 7) ^ 6)),
     );
     this.byte(at + 0x28, this.byte(at + 0x25));
+  }
+  processLegato(at, ch) {
+    // 0bfb..0c29 changes pitch/duration without restarting the envelope.
+    this.processPitch(at, ch, this.readSequence(at));
+    this.byte(at + 2, this.readSequence(at));
+  }
+  processNote(at, ch, note) {
+    this.processPitch(at, ch, note);
     this.word(at + 13, this.word(at + 0x36));
     this.byte(at + 10, 1);
     this.byte(at + 12, 0);
@@ -300,7 +318,12 @@ export class TandyDriver {
               this.word(at + 0x34, this.word(0x1387 + index));
               this.byte(at + 10, 1);
             } else if (op === 0x9e) this.byte(at + 0x29, this.readSequence(at));
-            else if (op === 0x89 || op === 0xa0) {
+            else if (op === 0x9d) {
+              this.processLegato(at, ch);
+              // Original jumps to0906, skipping this channel's modulation,
+              // envelope advancement and OUTs for the current tick.
+              waited = skip = true;
+            } else if (op === 0x89 || op === 0xa0) {
               this.byte(at + 2, this.readSequence(at));
               if (op === 0x89) this.byte(at + 10, 5);
               waited = skip = true;

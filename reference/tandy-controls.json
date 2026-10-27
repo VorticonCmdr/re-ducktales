@@ -1,0 +1,88 @@
+{
+  "build": "dos-fb658562",
+  "driverSHA256": "c17ef1f352cc26f470c8297a070fbcf5fd3d6eaa8b146b3486b54f076205d80c",
+  "captureRevision": "tandy-controls-v1-2026-10-27",
+  "engine": "dosbox-automation 0.84.0-vc1 (f6d9b), bridge0.1.1/protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "mode": "x86 16-bit real mode",
+    "segment": 17820,
+    "physical": 285120
+  },
+  "recipe": "docs/tandy-audio.md",
+  "inputs": "reference/tandy-controls-inputs.json",
+  "inputsSHA256": "3fb92a5d838911e1b1b86a566c3e928dae49817a51ae70d9a7ad105aacbadbd5",
+  "expectedCases": 14,
+  "expectedCheckpoints": 14,
+  "expectedPortWrites": 0,
+  "comparison": "Exact complete12339-byte resource,32 argument bytes and5 harness bytes before and after every case. No exclusions. Initial state authored independently. Conditional handler boundaries; no external values consumed during handlers. Registers checked for address/stack/mode correspondence,not compared as translated outputs. Caller register restore is partial; flags,clocks and BIOS effects are not a machine checkpoint.",
+  "verify": "npm run verify:tandy-controls",
+  "artifacts": {
+    "context": {
+      "path": ".local/tandy-controls/context.json",
+      "sha256": "b50f294e379dffd2971fc15bc1cb5b926b71de0c5eab43838faaa6f6a66b4a3b"
+    },
+    "00": {
+      "path": ".local/tandy-controls/00.json",
+      "sha256": "91e79c14f04e17224daa0bb30ad5a5c86ea9da129647c4aaedfb9fcc3f536213"
+    },
+    "01": {
+      "path": ".local/tandy-controls/01.json",
+      "sha256": "2718daa4ff669a5616770ce858521a6d5910aa593b9dd2b201df56cad384da95"
+    },
+    "02": {
+      "path": ".local/tandy-controls/02.json",
+      "sha256": "28e9b9f345d7a2941287a2704c672e33117a27af91184b3ec7a7dd703e1dd8a4"
+    },
+    "03": {
+      "path": ".local/tandy-controls/03.json",
+      "sha256": "1f97add1d28a5d421bf1562f6a1fe829b4594e0aee7f02cb8b7a06baef89fb2e"
+    },
+    "04": {
+      "path": ".local/tandy-controls/04.json",
+      "sha256": "948c2e0ecb48d87c4d34dbb6086a0464ae8ea59ab5fa7925c13d306fd6c7048d"
+    },
+    "05": {
+      "path": ".local/tandy-controls/05.json",
+      "sha256": "7051ac15a9f320460c4a37789d08a92bc4d52ee4f739c5c06f94924f8506d1fe"
+    },
+    "06": {
+      "path": ".local/tandy-controls/06.json",
+      "sha256": "c2faf2b799fb06e542bcdeacd05e31df92bf0d2a370c82277ab011d1b4a9a6ce"
+    },
+    "07": {
+      "path": ".local/tandy-controls/07.json",
+      "sha256": "45170ac6f2116e93e5abce0db1865033f4d092f908fd0e5cd3067eb92982da78"
+    },
+    "08": {
+      "path": ".local/tandy-controls/08.json",
+      "sha256": "5a342c9d9a07c53356f969d99b1cbaeb83f068fb666357aa8c1c732dde3ebc0e"
+    },
+    "09": {
+      "path": ".local/tandy-controls/09.json",
+      "sha256": "774cf62c333d616145003c4004a3c2c26d178dda2559c8c71043bdeb73ef8164"
+    },
+    "10": {
+      "path": ".local/tandy-controls/10.json",
+      "sha256": "f9a5e448485a9431598a1ff0fc98eb29ea7687becfd72c682d72e4e17400e193"
+    },
+    "11": {
+      "path": ".local/tandy-controls/11.json",
+      "sha256": "074aac900b9b2d1aaff5957831d0212029fabca9e5a9b1460c6a33058bb18406"
+    },
+    "12": {
+      "path": ".local/tandy-controls/12.json",
+      "sha256": "a20c8cc01227737d7b1dc37199d16ff4a7c19417f87a432ecfce634522f569ec"
+    },
+    "13": {
+      "path": ".local/tandy-controls/13.json",
+      "sha256": "70b05b18cace9a479a04031ba88b04375040644facbcf464ca2400971b62f61c"
+    },
+    "cleanup": {
+      "path": ".local/tandy-controls/cleanup.json",
+      "sha256": "bd6e3219eb6adade0d33da8ba52e7f908f8cff4943dc01aeb7b1f67e236a0d9a"
+    }
+  }
+}

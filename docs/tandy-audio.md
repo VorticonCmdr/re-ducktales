@@ -14,9 +14,9 @@ unsupported paths stop with a visible diagnostic and no Tandy playback. A
 zero-sample original request is identified explicitly. Selection stops playback
 and releases object URLs. No alternate rendition is substituted for a failed one.
 
-All121 public requests are exercised by `npm run verify:tandy-corpus`:59 complete,
-37 produce a nonzero signal and22 are silent. Of the silent requests,nine return
-no samples and13 produce timed silence.62 requests stop with known diagnostics,
+All121 public requests are exercised by `npm run verify:tandy-corpus`:70 complete,
+48 produce a nonzero signal and22 are silent. Of the silent requests,nine return
+no samples and13 produce timed silence.51 requests stop with known diagnostics,
 including request069's unimplemented zero-period chip behavior. The corpus
 manifest records deterministic PCM hashes as **port regressions**,not original
 audio outputs. Missing requests,changed results and changed unsupported paths
@@ -279,7 +279,7 @@ partial caller restore,not a machine checkpoint; clocks/BIOS effects are retaine
 The viewer tries every request through the same strict renderer. It precomputes
 the whole Tandy audition before making audio available,so failure cannot play a
 truncated approximation. Speaker controls are a distinct rendition and do not
-autoplay after Tandy failure. The full corpus audit's59 completed requests prove
+autoplay after Tandy failure. The sequence milestone's59 completed requests prove
 termination/implemented-path coverage and deterministic provider output. They
 do not establish original parity for all those requests. Native browser checks
 cover five captured cues,an unsupported noise request and a zero-sample request.
@@ -292,9 +292,9 @@ specified stop—would reduce that overhead. No general emulator/compiler was
 added as a prerequisite; the present experiments use a short fixed call/jump
 harness and documented tool limits.
 
-Next audio milestone: noise/control commands90/97/aa/9d and exact zero-period
-chip behavior,then engine and audio-status APIs for a persistent in-game Tandy
-driver. Precomputed independent auditions are not a substitute for that driver.
+Next audio milestone: noise synthesis and exact zero-period chip behavior,
+then remaining commands,engine and audio-status APIs for a persistent in-game
+Tandy driver. Precomputed independent auditions are not a substitute for that driver.
 
 The sequence milestone passes full `npm run verify`:65 unit tests,38 browser
 scenarios,all required original comparisons,the121-request strict corpus audit
@@ -302,3 +302,64 @@ and production build. Log: `.local/tandy-sequence-final-verify.log`. Runtime
 source files remained frozen throughout this final gate.
 Additional setup-receipt assertions were then checked by `npm run verify:tandy`;
 log: `.local/tandy-sequence-focused-final.log`. Runtime behavior did not change.
+
+
+## Period, tempo aliases and sustained pitch changes
+
+Commands90,97,aa,9d and the noise-note pitch boundary are now translated from
+resource004. Fourteen conditional native cases in `reference/tandy-controls.json`
+compare every12339 driver byte,32 argument bytes and5 harness bytes before and
+after each call,with no exclusions. `reference/tandy-controls-inputs.json` is the
+independent authored setup; expected capture outputs never initialize the model.
+The command is `npm run verify:tandy-controls`,included in `npm run verify:tandy`
+and the full gate. Four negative controls reject a missing input,a missing
+checkpoint,changed native state and changed authored arguments. Missing/corrupt
+local captures fail setup.
+
+- 90 at0c43..0c6a consumes one byte,zero-extends it and stores both the channel
+  period and requested output period. Zero and255 compare on channels0 and3.
+- 97 and a9 share handler0aab; both store the tempo byte. Native97 cases exercise
+  zero and255. aa at0b18 jumps directly back to083e without reading an operand.
+- 9d at0bfb..0c29 reads a note,uses pitch helper0ea0,then reads duration. It
+  preserves the envelope and jumps to0906,skipping current-channel modulation,
+  envelope advancement and port output that tick. Tone/noise cases compare at
+  that actual jump target. These are handler comparisons,not full scheduler or
+  original IRQ timing comparisons.
+- 0ea0 returns immediately for channel3,leaving pitch,slope and vibrato delay
+  untouched. A normal noise note still initializes its attack envelope/duration
+  at084d..086e. Tone/noise normal-note cases compare at088b,before advancement.
+  Three additional pitch-helper cases cover signed transpose,byte/word wrapping
+  and the channel3 early return. Native SHR and signed JLE behavior is retained.
+
+To reproduce: use the existing allocated459c fixture and privatefef0 stack,
+preparing each case with `prepareTandySequenceCase` from
+`reference/tandy-sequence-fixture.js`. The fixture contains original004 plus the
+explicitly authored channel fields and arguments at3000. Set AX=case.note,
+BX=channel*2,DI=01d1+channel*38hex; zero CX,DX,SI,BP,FS,GS. Set DS/ES/SS459c.
+Enter case.entry through the CS499c scratch-alias FAR JMP recipe,or enter4000's
+near-call harness for pitch-helper cases. Run to a one-shot breakpoint at
+case.stop. Capture setup receipts,entry step,CPU/body/arguments/harness before
+and after,and the actual breakpoint stop. All14 cases are independent fresh
+fixtures. No handler consumes an external device value or emits an OUT in these
+ranges. Captures remain in ignored `.local/tandy-controls/`,with checksums in the
+manifest. The original caller was0ed6:046e,stop1232. Cleanup restored its general/
+segment registers and recorded port61 control,freed the allocation and verified
+empty allocation/breakpoint lists. It is paused at the same caller,stop1261;
+flags,clocks and BIOS effects are not a machine checkpoint.
+
+The unchanged PCM provider now completes70 requests (48 audible,22 silent),
+with51 explicit failures. The11 newly completed requests are032,037,048,062,063,
+078,079,080,081,083,110. Previously completed requests retain their exact corpus
+results and PCM hashes. New hashes are independent-provider regressions; they
+are not original waveform goldens. Browser scenarios032 (tempo/no-op) and037
+(sustained pitch) exercise actual keyboard activation,native completion,repeat
+playback and asset switching. Noise synthesis,zero-period chip behavior,engine
+playback,remaining commands and persistent in-game Tandy are still unfinished.
+Requests006/038 reach the1024-tick audition limit; that limit does not establish
+that their original sequences are invalid or should terminate.
+
+The control milestone passes full `npm run verify`:65 unit tests,40 browser
+scenarios,all required original comparisons,the121-request corpus audit and the
+production build. Log: `.local/tandy-controls-final-verify.log`. Runtime source
+remained unchanged throughout that gate. The two new browser scenarios also
+passed in the focused eight-scenario Tandy run before the full gate.

@@ -3,7 +3,9 @@ import { test, expect } from "@playwright/test";
 for (const [id, ticks, samples] of [
   ["002", 27, 15741],
   ["025", 25, 14530],
+  ["032", 135, 81124],
   ["036", 6, 3027],
+  ["037", 49, 29059],
   ["067", 17, 9686],
   ["068", 17, 9686],
 ]) {
@@ -82,7 +84,7 @@ test("Tandy unsupported and silent requests have explicit outcomes", async ({
   const section = page.locator('section[aria-label="Tandy preview"]');
   await expect(section).toHaveAttribute("data-state", "error");
   await expect(section.getByRole("alert")).toHaveText(
-    "Tandy preview stopped: Unsupported Tandy command 90",
+    "Tandy preview stopped: Tandy noise synthesis is not implemented",
   );
   await expect(section.locator("audio")).toHaveCount(0);
   await expect(

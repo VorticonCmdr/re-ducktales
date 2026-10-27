@@ -117,14 +117,18 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
 - Tandy is partially implemented: the viewer attempts all121 public requests;
-  59 complete (37 audible,22 silent),62 stop with explicit diagnostics. These
+  70 complete (48 audible,22 silent),51 stop with explicit diagnostics. These
   counts are independent-provider regressions,not full-corpus original parity.
   Companion starts,priorities,loops/calls,transpose/tempo and vibrato add42
   conditional native cases/43 checkpoints and4 exact writes. Complete002/025
   captures add56 carried checkpoints and129 writes. Earlier envelope and
   036/067/068 evidence remains checked. Native browser keyboard/playback and
-  unsupported/silent outcomes pass. Noise,engine effects,some commands and
-  in-game integration are unfinished; waveform parity is unverified. See
+  unsupported/silent outcomes pass. Commands90/97/aa/9d and the noise-note
+  pitch boundary add14 exact conditional native cases. Eleven more requests
+  complete; new browser scenarios cover032/037. Full `npm run verify` passes65
+  unit tests,40 browser scenarios and the production build; log
+  `.local/tandy-controls-final-verify.log`. Noise synthesis,engine effects,some
+  commands and in-game integration are unfinished; waveform parity is unverified. See
   [Tandy setup and limitations](tandy-audio.md). In-game playback uses the PC-speaker
   driver. PC-speaker
   noise and engine effects are approximate,and original waveform/device parity
@@ -259,11 +263,11 @@ The original repository's `main` remains the local integration target; no push
 or deployment is authorized. The existing `.gitignore` remains unchanged.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,paused
-0ed6:046e stop1232,DS/SS1403,after the conditional Tandy-driver harness. Rechecked
+0ed6:046e stop1261,DS/SS1403,after the conditional Tandy-driver harness. Rechecked
 with the live debugger. Original general/segment registers were restored to
 the saved post-RETF caller; flags,time and BIOS effects were not restored.
 The allocated fixture was freed and owned breakpoints cleared. This is not a
 machine checkpoint or a natural campaign replay. Fresh launch/address validation
 is required before natural runtime comparisons. Earlier map/flight/rival captures
 retain their own scopes; see `reference/tandy-sequence.json`, `reference/tandy-sequence-cues.json`
-and `docs/tandy-audio.md`.
+`reference/tandy-controls.json` and `docs/tandy-audio.md`.

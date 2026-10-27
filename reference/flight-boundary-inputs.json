@@ -1,0 +1,162 @@
+{
+  "scope": "Independent authored input schedules from deterministic exploration. Original scene evidence is separate. Case9737 adds an explicit neutral/release at16000 to end in a crash; case10877 ends at a declared flying checkpoint, not a completed flight. No fitted clocks, injected memory, or expected outputs supply replay inputs.",
+  "cases": [
+    {
+      "id": 9737,
+      "options": {
+        "days": 3,
+        "seed": 56801,
+        "racing": 1,
+        "difficulty": 2,
+        "day": 1,
+        "money": 0
+      },
+      "events": [
+        {
+          "at": 0,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 1360,
+          "fire": true,
+          "direction": null
+        },
+        {
+          "at": 1928,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 3192,
+          "fire": true,
+          "direction": null
+        },
+        {
+          "at": 4856,
+          "fire": true,
+          "direction": "up"
+        },
+        {
+          "at": 6352,
+          "fire": false,
+          "direction": "down"
+        },
+        {
+          "at": 8016,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 9352,
+          "fire": true,
+          "direction": "up"
+        },
+        {
+          "at": 9744,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 10096,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 11640,
+          "fire": true,
+          "direction": "up"
+        },
+        {
+          "at": 12664,
+          "fire": true,
+          "direction": null
+        },
+        {
+          "at": 13512,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 16000,
+          "fire": false,
+          "direction": null
+        }
+      ],
+      "endAt": 30656,
+      "requiredBoundary": -8,
+      "completionRequired": true
+    },
+    {
+      "id": 10877,
+      "options": {
+        "days": 3,
+        "seed": 20421,
+        "racing": 1,
+        "difficulty": 2,
+        "day": 1,
+        "money": 0
+      },
+      "events": [
+        {
+          "at": 0,
+          "fire": true,
+          "direction": null
+        },
+        {
+          "at": 1360,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 1712,
+          "fire": true,
+          "direction": null
+        },
+        {
+          "at": 2728,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 3848,
+          "fire": true,
+          "direction": "up"
+        },
+        {
+          "at": 4448,
+          "fire": true,
+          "direction": null
+        },
+        {
+          "at": 5128,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 5448,
+          "fire": true,
+          "direction": "down"
+        },
+        {
+          "at": 5552,
+          "fire": true,
+          "direction": "up"
+        },
+        {
+          "at": 6224,
+          "fire": true,
+          "direction": null
+        },
+        {
+          "at": 7104,
+          "fire": true,
+          "direction": "down"
+        }
+      ],
+      "endAt": 16000,
+      "requiredBoundary": -8,
+      "completionRequired": false
+    }
+  ]
+}

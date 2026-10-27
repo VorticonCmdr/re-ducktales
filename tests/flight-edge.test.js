@@ -45,7 +45,9 @@ function course(scroll, racing = false) {
 
 test("zero-width preceding flight strip reads no terrain or objects and keeps rival advancement", () => {
   // Literal source instructions, not values generated from the port. Overlay4
-  // 1010 tests width before loading terrain; object loops zero-extend the byte.
+  // 1010 tests width before copying visible terrain. The earlier descriptor
+  // prefetch is unused for width0; the port omits that ordinary-memory read.
+  // Object loops zero-extend the byte.
   const body = 0x12c00 + 1024;
   assert.equal(
     exe.subarray(body + 0x1010, body + 0x101b).toString("hex"),
@@ -86,11 +88,38 @@ test("zero-width preceding flight strip reads no terrain or objects and keeps ri
   assert.equal(executed, edge.expectedCaseCount);
 });
 
-test("visible preceding flight strip and other unsupported terrain remain strict", () => {
+test("visible preceding flight strip reads the original neighboring word and keeps invalid terrain strict", () => {
   const c = course(-8);
+  c.memory.i(0x4f3e, 0);
+  const alias = advanceFlightScene(c.memory, c).find((x) => x.op === "copy");
+  assert.deepEqual(alias, {
+    op: "copy",
+    asset: 0,
+    sourceX: 72,
+    sourceY: 0,
+    x: 0,
+    y: 160,
+    width: 8,
+    height: 16,
+  });
+  const changed = course(-8);
+  changed.memory.i(0x4f3e, 8);
+  assert.equal(
+    advanceFlightScene(changed.memory, changed).find((x) => x.op === "copy")
+      .asset,
+    8,
+  );
+  const corrupt = course(-8);
+  corrupt.memory.i(0x4f3e, 17);
   assert.throws(
-    () => advanceFlightScene(c.memory, c),
-    /Unsupported terrain drawing tile -1/,
+    () => advanceFlightScene(corrupt.memory, corrupt),
+    /Unsupported terrain asset 17/,
+  );
+  const beyond = course(-8);
+  beyond.memory.i(0x0fb2, -1);
+  assert.throws(
+    () => advanceFlightScene(beyond.memory, beyond),
+    /Unsupported terrain drawing tile -2/,
   );
   assert.throws(
     () => [...tileObjects(c.memory, -2)],

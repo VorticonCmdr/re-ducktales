@@ -20,7 +20,7 @@
     "verify:flight": "node scripts/verify-flight.js",
     "prepare:flight-analysis": "python3 scripts/prepare-flight-analysis.py",
     "verify:flight-course": "node scripts/verify-flight-course.js",
-    "verify:flight-scene": "node scripts/verify-flight-scene.js",
+    "verify:flight-scene": "node scripts/verify-flight-scene.js && npm run verify:flight-visible-left-edge",
     "verify:flight-runtime": "node scripts/verify-flight-runtime.js",
     "verify:loot": "node scripts/verify-loot.js",
     "prepare:cave-analysis": "python3 scripts/prepare-cave-analysis.py",
@@ -43,7 +43,8 @@
     "verify:cave-input": "node scripts/verify-cave-input.js",
     "verify:mountain-palette": "node scripts/verify-mountain-palette.js",
     "verify:mountain-input": "node scripts/verify-mountain-input.js",
-    "verify:rival-exhausted": "node scripts/verify-rival-exhausted.js"
+    "verify:rival-exhausted": "node scripts/verify-rival-exhausted.js",
+    "verify:flight-visible-left-edge": "node scripts/verify-flight-visible-left-edge.js && node scripts/verify-flight-boundary-replay.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

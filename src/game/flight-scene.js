@@ -76,10 +76,10 @@ export function advanceFlightScene(
       sourceX = -left;
       x = 0;
     } else if (left > 240) width = 320 - left;
-    // 0fd8/1010 rounds the left edge before testing its width. Scroll -1..-7
-    // gives an empty preceding strip (-1): no terrain pointer is read. Keep
-    // processing the strip's counters, as the original does at113e/1154.
-    if ((tile < 0 || tile >= 130) && !(tile === -1 && width === 0))
+    // The preceding strip aliases DS:4f3e, immediately before the flight table.
+    // Scroll -1..-7 has zero width; -8 and below reads that original word.
+    // Keep the alias and the strip's counters rather than clamping the camera.
+    if (tile < -1 || tile >= 130)
       throw Error(`Unsupported terrain drawing tile ${tile}`);
     if (width > 0) {
       const terrain = m.i(0x4f42 + tile * 4);

@@ -389,16 +389,20 @@ The campaign landing browser scenario exposed a normal small-scroll case that
 previously stopped with `Unsupported terrain drawing tile -1`. Overlay4:0fd8
 rounds the strip origin down to an8-pixel boundary. With first tile0 and scroll
 −1..−7,the preceding tile−1 therefore has width0. At1010..101b the original tests
-that width **before** reading the terrain pointer. The port had rejected the tile
-before computing its width,preventing the original no-copy path.
+that width before the visible-copy branch. The original also prefetches the
+terrain descriptor at0fc5..0fd0 even for an empty strip; its value is unused when
+width is zero. The port had rejected the tile before computing its width,
+preventing the original no-copy path.
 
 The corrected scene keeps that empty strip in both passes,including the original
-rival increment at113e. It reads no terrain. All three original object loops
+rival increment at113e. The port omits the unused descriptor prefetch for the
+empty strip; this preserves observable state/pixels rather than memory-read
+traces. All three original object loops
 (10f9,197f,2322) load an unsigned byte and clear AH before comparing with the signed
 tile word; no object can match−1. The translated iterator consequently returns no
-objects for that strip. Visible preceding terrain remains unsupported: scroll−8
-still fails,as do other invalid indices or visible terrain assets. No replacement
-terrain or best-effort recovery is used.
+objects for that strip. Visible preceding terrain now follows the neighboring
+word alias described below. Other invalid indices and visible terrain assets
+remain fatal. No replacement terrain or best-effort recovery is used.
 
 This rule is statically inferred from this executable and checked against literal
 source instructions in `tests/flight-edge.test.js`; there is no original runtime
@@ -410,7 +414,7 @@ MAIN.ARC or PLANE.ARC fails setup. Negative controls require visible invalid
 terrain to remain fatal. Existing original closed-loop state and exact scene PNG
 comparisons continue to pass.
 
-Browser acceptance now uses two concurrent workers explicitly. At four,the large
+Browser acceptance now uses one worker explicitly. At four,the large
 jungle/mountain replays exceeded their existing120-second wall-clock limits under
 CPU contention; their simulation clocks,input streams,checkpoint counts and
 timeouts are unchanged. All browser scenarios remain required. This concurrency
@@ -432,3 +436,53 @@ verifier keeps its calendar checkpoint at0ee6 and then verifies the separate fin
 wait before carrying the result into repairs. `reference/flight-input.json` and
 [the system-control evidence](system-controls.md) record exact scopes,original
 code identities,runtime FPU rewrites,input schedules and limitations.
+
+
+## Visible strip at the left edge
+
+A deterministic exploration of12,000 finite input schedules,with duration1..3,
+all difficulties and the parent departure's race/seed coupling,found two model
+runs reaching first tile0/scroll−8. This was a reachable port hard stop rather
+than a reason to clamp the camera. Exploration is not original or browser proof.
+
+Original overlay4:faa..fc8 computes the terrain pointer as4f42+4*(firstTile−1).
+For tile−1 this reads DS:4f3e,the unused word preceding the generated flight
+table. The captured original word is0. At scroll−8 the original copies asset0,
+sourceX72,width8,to screen x0/y160. The fix reads that actual word. It preserves
+object filtering,rival advancement and camera state; corrupt alias values still
+fail. A unit negative control changes the word to8 and requires asset8,preventing
+an implementation that merely substitutes asset0.
+
+`reference/flight-visible-left-edge.json` pins13 ignored original artifacts.
+Entry569 verifies the full relocated17,548-byte body and actual3-day/racing1
+arguments. At initial scene570,the unexecuted drawing routine still matches the
+original bytes exactly. The scene comparison runs from independently captured
+incoming memory,compares the enumerated game-state fields at return571 and all
+320x200 pixels. The page flip at572 is not sufficient for a visible capture;
+next physics entry574 aligns the already-drawn page to retrace. There are no
+pixel exclusions or tolerances. Timer/CPU/stack/device state are outside this
+routine's state scope,as in the existing flight-scene comparisons.
+
+This is **conditional original evidence**: the manifest records player flags,
+difficulty/rival-unlock,cursor/menu,seed and scroll setup injections. It also
+records cancellation of four remaining navigation pulses before the experiment.
+No CPU writes,partial restore or complete machine checkpoint were used. Neither
+that camera injection nor expected output supplies the independent replay inputs.
+
+`reference/flight-boundary-inputs.json` holds25 independent control events for
+two carried Flight runs. The first includes an explicit neutral/release at16s,
+completes a crash and its return wait at30.656s,and renders709 presentations.
+The second has a declared16s flying endpoint; it is not a complete-flight claim.
+All required events must be consumed,both must reach−8,and every presented frame
+must rasterize. Reinstating the old guard must fail. These endpoint assertions
+are port regressions,separate from original expected outputs.
+
+The conditional browser fixture uses the first independent stream through native
+keyboard events,real asset loading,the production Flight simulation and raster,
+and separate driver/retrace clocks. It verifies boundary passage and completed
+crash without injected simulation memory. It starts with seeded flight options;
+it does not claim natural campaign navigation or whole original-flight parity.
+Run `npm run verify:flight-visible-left-edge` and
+`npx playwright test tests/browser/flight-boundary.spec.js`; both are included in
+full verification. The next priority is additional complete routes and the
+original map pointer's held-direction acceleration,which is still missing.

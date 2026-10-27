@@ -1,0 +1,154 @@
+{
+  "id": "flight-visible-left-edge-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "6fc5d82",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 f6d9b protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "protected_mode": false,
+    "loadBase": "01f5",
+    "cs": "0e0c",
+    "ds": "1403",
+    "ss": "1403",
+    "readOnlyMount": "game/"
+  },
+  "expectedCaseCount": 1,
+  "evidenceLevel": "Conditional original drawing routine and full exact PNG; not an event-only original flight replay.",
+  "startingRecipe": "Continue from exhausted-rival stop560. Reset player-collected flags1..34 to0, difficulty0 to2, rival unlock6 to0 using setup artifact CAS operations. Open map. At567 set cursor DS9f46=173 from46 and DS9f42=98 from139 using CAS; these are setup injections. At Kenya info568 set local SS:9eb2=1 from0 (Launchpad). Native Space pulses launch duration3,racing1; verify actual flight signature at569. Cancel four remaining setup pulses (declared setup cancellation, not required replay events); last dispatched release140. Set seed7672 to56801 at569 using CAS. Stop first scene570:f78, capture initial; CAS scroll0 to-8, capture before. Stop571:132f, capture after; stop572:2a7 after page flip; continue through input573:2b3 to next physics574:1330 for retrace-aligned raw PNG. No CPU writes or partial/full machine restore.",
+  "inputEvents": [],
+  "expectedRequiredInputCount": 0,
+  "conditionalInjections": [
+    "player flags, difficulty, rival unlock",
+    "map cursor and Launchpad selection",
+    "flight RNG seed56801",
+    "first scene scroll -8"
+  ],
+  "comparisonRules": "All bytes of relocated17548-byte flight body at entry; exact unexecuted scene code f78..132f before first call. Exact game-state ranges enumerated in checker, shared with flight-scene routine scope; timer/CPU/stack/device state excluded from routine comparison. Full320x200 RGBA pixels after next physics entry, no tolerance/excluded pixels. No expected state copied into simulation.",
+  "limitations": "Camera is explicitly injected. Separate authored independent input streams reproduce the model boundary but do not prove original whole-flight parity. Native page campaign acceptance remains separate.",
+  "artifacts": {
+    "entry": {
+      "path": ".local/flight-boundary-entry-before.json",
+      "sha256": "9bb420f5488d44a6c06a49878f224ab099d1821dad4881bd9508f297800d3f2b"
+    },
+    "initial": {
+      "path": ".local/flight-boundary-initial-before.json",
+      "sha256": "a23d5e820e18aeab7d91759ddd7a04ef18f483ecbbaae1e6957e1c698172dedb"
+    },
+    "before": {
+      "path": ".local/flight-boundary-scene-before.json",
+      "sha256": "67e7e5e356e5a3a4561b30490b31d4dc14c3ba18c0ada714468d2fff415fbd83"
+    },
+    "after": {
+      "path": ".local/flight-boundary-scene-after.json",
+      "sha256": "1191dace21a2214c173a2bc9f411c477ac4e0081649e254c39dc38c1a9f84c3c"
+    },
+    "present": {
+      "path": ".local/flight-boundary-present.json",
+      "sha256": "3ef5810d8d43c872a173977bfa9c462acba7cd938ece6e62c6d8441e3feb9b39"
+    },
+    "aligned": {
+      "path": ".local/flight-boundary-aligned.json",
+      "sha256": "7c9790b31e99ac6341727dbb9893f79c657026a9801845cb303de2d902c41c4e"
+    },
+    "image": {
+      "path": ".local/flight-boundary.png",
+      "sha256": "d12324c4f7cd898d1c91d810ec48e5daa73bbcb6a55d7f21546f2b6ba31f8410"
+    },
+    "seedSetup": {
+      "path": ".local/flight-boundary-seed-setup.json",
+      "sha256": "23cc08929ee26c048d434e9a8689a371851f1cae1a5316109c78801d8f126dbb"
+    },
+    "scrollSetup": {
+      "path": ".local/flight-boundary-scroll-setup.json",
+      "sha256": "3fcc83697075976e71f9dfbee8d9d7b2c2a424caf9e7e1b3b217248075c9d9a6"
+    },
+    "setup": {
+      "path": ".local/flight-boundary-setup.json",
+      "sha256": "25bc9edba6e6df44e8d6d538bebe4d04b10d381ed314fdf742a8d96ce3b2b008"
+    },
+    "setupBefore": {
+      "path": ".local/flight-boundary-setup-before.json",
+      "sha256": "f6198d16a1fabd28b685c8d543ace3ce92bdbf652dcb18f032d11ed7105da199"
+    },
+    "info": {
+      "path": ".local/flight-boundary-info-before.json",
+      "sha256": "14000c008f03b63c8e4a4e0ca636059a654b9becee72da05f304316d5056e436"
+    },
+    "navigationCancel": {
+      "path": ".local/flight-boundary-navigation-cancel.json",
+      "sha256": "4773c43791aeb923bff4543a846785f1b843cef6ae34257841b02a3f7f85fb64"
+    }
+  },
+  "verify": "npm run verify:flight-visible-left-edge",
+  "setupNavigation": {
+    "boundary": "emulator native frames,setup only",
+    "events": [
+      {
+        "frame": 0,
+        "key": "Space",
+        "pressed": true
+      },
+      {
+        "frame": 20,
+        "key": "Space",
+        "pressed": false
+      },
+      {
+        "frame": 40,
+        "key": "Space",
+        "pressed": true
+      },
+      {
+        "frame": 60,
+        "key": "Space",
+        "pressed": false
+      },
+      {
+        "frame": 80,
+        "key": "Space",
+        "pressed": true
+      },
+      {
+        "frame": 100,
+        "key": "Space",
+        "pressed": false
+      },
+      {
+        "frame": 120,
+        "key": "Space",
+        "pressed": true
+      },
+      {
+        "frame": 140,
+        "key": "Space",
+        "pressed": false
+      },
+      {
+        "frame": 160,
+        "key": "Space",
+        "pressed": true
+      },
+      {
+        "frame": 180,
+        "key": "Space",
+        "pressed": false
+      },
+      {
+        "frame": 200,
+        "key": "Space",
+        "pressed": true
+      },
+      {
+        "frame": 220,
+        "key": "Space",
+        "pressed": false
+      }
+    ],
+    "dispatchedBeforeCancellation": 8,
+    "lastDispatchedFrame": 140,
+    "remainingCancelled": 4,
+    "limitation": "Navigation pulse train was explicitly cancelled at flight entry before the scene experiment. It is not a required strict replay stream."
+  }
+}

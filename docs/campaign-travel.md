@@ -35,7 +35,7 @@ to final banking.
 | Original location permutation, two RNG calls | main 115a:00d7–02e7 (image 1677–188e) | Statically inferred; seed-specific runtime comparison remains unverified |
 | Office cursor (46,139), icon hit box inclusive x22–70,y115–163 | overlay 2:0e19,11b7 | Original map pixels match exactly |
 | Closest location uses squared Euclidean distance, strict less-than ties | overlay 2:12b6–1338 | Static; browser selects original location records |
-| Cursor clamps x32–285,y28–151; one-pixel cardinal keyboard polls | overlay 2:1ec8–20ae | Static; browser real keyboard movement; exact input latency unverified |
+| Cursor clamps x32–285,y28–151; port currently uses fixed cardinal steps | overlay 2:1ec8–20ae | Clamps/keyboard movement checked; original held-direction acceleration and diagonals are missing |
 | Cost office coordinate is (56,64), independent of icon | main 1000:1099–10eb | Static + original bank/return day changes |
 | Shortest wrapped distance on 272×140 map, squared /6606 +1 capped3; same location0 | main 1000:1080–1241; helper 11c4:0176–01d1 | Disassembly checked widths/32-bit multiplication; original 3-day legs; independent boundary checks |
 | Bank adds cash with carry, then clears it | main 1000:1036–107f | Zero-cash original checkpoints; nonzero browser/simulation route, not nonzero original comparison |
@@ -115,3 +115,13 @@ Retry/ownership dispatch now follows the original before flight: current failed
 expeditions restart via their guide; player/rival collected destinations show
 notices and return to the origin map. See [campaign visits](campaign-visits.md)
 for original checkpoints, timing/device boundaries and verification scope.
+
+
+Map movement completeness: original exploration during the flight-boundary setup
+showed a held Right overshooting x173 to200. Static overlay2:1ec8..20ae contains
+an input-dependent counter at DS:5514,capped at256,and adds a counter-scaled
+vector to the initial movement. Neutral input clears it; changing direction
+without a neutral poll can retain it. Diagonal cases also adjust horizontal
+movement. The existing fixed-step port is an approximation here. A targeted
+original input-return/coordinate capture is the next experiment; the instruction
+sequence includes special input flags and needs that capture before translation.

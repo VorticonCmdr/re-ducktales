@@ -3,8 +3,8 @@
 Updated2026-10-27. **The full game is not complete.**
 
 The main campaign loop and all four expedition families are playable. This is
-still completion work,not only final polish: known flight hard stops and
-unverified destination/difficulty routes remain. Selected complete routes and
+still completion work,not only final polish: unverified destination/difficulty
+routes and behavior gaps remain. Selected complete routes and
 endings are established; arbitrary campaigns are not yet guaranteed finishable.
 
 ## Working browser routes
@@ -20,8 +20,8 @@ endings are established; arbitrary campaigns are not yet guaranteed finishable.
 - Office → map → Macaroon bank → office. All35 destinations can be inspected.
 - Confirm expedition → Launchpad → keyboard flight → crash or airport landing.
   Losing a flight race credits Glomgold and returns to the campaign map.
-  A small left-edge scroll now follows the original zero-width-strip path,
-  preserving rival advancement without reading off-table terrain.
+  Left-edge scrolling preserves both empty strips and the original visible
+  preceding-word alias,with rival advancement and exact original scene pixels.
   Flight dialogs now wait for the original input poll,freeze actors while clocks
   continue,and preserve the overdue deadline on resume. Flight completion includes
   the original140-tick input wait before expedition/repair dispatch.
@@ -116,8 +116,13 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 - Full original expedition timing,presentation and audio parity are unproven.
   Cave movement,mountain hook/ascent,jungle scrolling/enemies and additional
   variants/difficulties still need targeted original comparisons.
-- Flight's empty preceding strip is supported for scroll−1..−7. Visible
-  out-of-table terrain remains an explicit diagnostic pending original evidence.
+- The reachable flight tile−1/scroll−8 stop is removed using the original
+  neighboring-word read. One conditional original scene matches exact state
+  fields/pixels; two independent input streams cross the boundary. Native browser
+  component acceptance covers one completed crash. Other invalid terrain remains
+  strict. Original whole-flight parity remains unproven.
+- Map pointer movement still lacks the original held-direction acceleration and
+  diagonal behavior. Static overlay2:1ec8..2034 identifies this next behavior gap.
 - Ending bank celebration animation,striped reveals and music are incomplete.
   First/last credit names and farewell match exact original PNGs; all26 natural
   browser credit boundaries pass. Two original waits are exactly140 driver ticks;
@@ -143,9 +148,9 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:57 unit tests,30 browser scenarios,
+Current milestone passed full `npm run verify`:57 unit tests,31 browser scenarios,
 all required original-data checks and the production build. Integration log:
-`.local/rival-exhausted-final-verify.log`.
+`.local/flight-visible-left-edge-final-verify.log`.
 
 One browser worker keeps the full mountain/jungle replays within their existing
 120-second limits; their required inputs and checkpoint counts are unchanged.
@@ -179,8 +184,9 @@ The three-life route observes four display callbacks per read,retaining its
 movement,timing and upper transport/erase graphics remain unproven.
 
 Next priority is gameplay completeness: exercise additional destination layouts,
-difficulties and uncommon interactions,and resolve reachable flight-boundary
-hard stops. The exhausted-rival hard stop is now removed using original behavior.
+difficulties and uncommon interactions. The exhausted-rival and visible left-edge
+flight stops are removed using original behavior. Map pointer acceleration is
+the next identified translation gap.
 Selected complete expeditions and win/loss routes do not establish a complete
 arbitrary campaign. Remaining mountain graphics and
 presentation differences are separate fidelity work.
@@ -194,15 +200,18 @@ The first integration attempt had one cave-route wall timeout under concurrent
 host load; that route passed unchanged on focused rerun and on the final full
 gate. Timing limits,inputs and expected results were retained.
 
-Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-0460:0328 stop560 after a conditional exhausted-rival claim,DS/SS1403. No
-breakpoints or pending replay. All ordinary destinations are explicitly marked
-player-collected for this experiment; seed56 was injected at558. Do not treat
-this live state as a natural campaign. Earlier mountain captures remain natural. Normal map navigation from Carlsbad to El Capitan reached
-MT entry545,input546,pause547..550 and life-reset551..552 had no game/CPU
-writes or restores. Later rival entry554 introduces the explicit conditional setup. `reference/mountain-input.json` records the setup and14 required local
-artifacts. The earlier palette verifier separately reuses the explicitly
-conditional entry in `reference/mountain-entry.json` and shared jungle driver.
-Money-bin/flight/cave-input captures use a fresh natural launch with no memory/CPU
-injections. Earlier controls/credits captures inherit conditional atomic setup.
-Whole original expedition presentation,timing and audio remain unproven.
+The visible left-edge milestone passed full integration with no retries or widened
+limits. `verify:flight-visible-left-edge` requires13 checksummed local artifacts,
+one conditional original scene/state comparison and exact full PNG,plus two
+independent carried replays consuming25 events. The new native keyboard browser
+fixture completes the crash return and renders709 presentations. A focused gate
+also reran after adding explicit required-event-count checks. Detailed evidence,
+setup injections and limitations are in `reference/flight-visible-left-edge.json`
+and `docs/flight.md`.
+
+Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,paused
+0e0c:1330 stop574,DS/SS1403,after the conditional left-boundary scene and its
+retrace-aligned image. No owned breakpoints or required replay remain. This
+inherits the exhausted-rival experiment and explicit setup in
+`reference/flight-visible-left-edge.json`; it is not a natural campaign state.
+Earlier mountain/cave/flight captures retain their own manifest scopes.

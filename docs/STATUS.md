@@ -40,7 +40,7 @@ Updated2026-10-27. **The full game is not complete.**
 Controls: Space/Enter fires. Up+Space enters the money bin; Right+Space opens the
 map. Hold Space for flight throttle; Down raises the nose, Up lowers it. In caves,
 hold an arrow to point, then press Space to move. Use Restart at an unsupported
-boundary. With complete initialization and browser BIOS-seed0, the first Klondike
+boundary. With current browser initialization and BIOS-seed0, the first Klondike
 flight races only on Hard; Easy/Standard are ordinary flights.
 In mountains, arrows move; hold Fire to swing the hook and release to throw.
 Up climbs an adjacent ledge or uses a transport point. In jungles,arrows walk,
@@ -101,7 +101,11 @@ does not advance simulation. Unsupported paths stop with diagnostics.
  PNGs),4 conditional crash/calendar/repair states.
 - Treasure initialization: one conditional whole-routine checkpoint matches all34
  IDs/resources/values, RNG and special treasure location. Startup now consumes
- the missing20 loot RNG draws after the2 location-permutation draws.
+ the missing20 loot RNG draws after the2 location-permutation draws. New original
+ evidence confirms another30 company-initialization draws precede location
+ ordering; those are not integrated into browser startup yet. Existing startup
+ destination/treasure routes therefore remain port regressions,not whole-original
+ campaign evidence. See `docs/investments.md`.
 - Cave entry: one conditional original checkpoint matches64 map words, actor
  positions, torch/RNG/time fields and sprite geometry/frame bytes. Subsequent
  movement is statically translated and browser exercised, not original-replay
@@ -175,15 +179,23 @@ cases cover every actual photo layout and difficulty;Borneo uses layout6. Origin
 all species/browser variants remain unverified. See `docs/photography.md` and
 `npm run verify:photography`.
 
-Next: stock trading and campaign endings. Extend targeted original comparisons for jungle
+Stock foundation: `npm run verify:investments` passes seven original checkpoints
+covering all15 company records,five charts,30 RNG draws,seed continuity into
+destination ordering and five natural quotes. Entire relocated initializer and
+trading overlay bytes are checked. This module is not connected to the browser.
+`npm run prepare:investment-analysis` reproduces its Ghidra analysis image.
+
+Next: integrate correct market startup,daily news and playable stock trading,
+then campaign endings. Extend targeted original comparisons for jungle
 scrolling/timing,mountain hook/ascent,cave movement and result presentation.
 Full-game work remains active. Details: `docs/cave.md`, `docs/treasure-assignment.md`,
 `docs/flight.md`, `docs/expedition-departures.md`, `docs/jungle.md`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639, PID59942,
-photography Kenya variant4/day27,paused0e0c:07bf stop383,film12,target39.
-The full7924-byte relocated photography overlay was revalidated at entry360.
-The prior jungle evidence remains below.
+restarted Easy/day1,stock portfolio with company10 selected,paused0603:19d7
+stop398. DS/SS1403. The entire5474-byte relocated trading overlay was validated
+against101 relocations. No breakpoints or pending input schedules remain.
+The prior photography/jungle evidence remains below.
 All keys released,no breakpoints or pending schedules. The complete relocated
 24056-byte overlay was revalidated at entry313; EGA copy/page code is pinned at323,
 including its four documented self-modifying operands. Previous conditional

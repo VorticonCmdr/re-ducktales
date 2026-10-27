@@ -1,0 +1,76 @@
+{
+  "id": "investment-initialization-and-quotes-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "f62d8d2",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 (f6d9b), protocol1.14",
+  "configuration": {
+    "core": "normal",
+    "machine": "svga_s3",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "evidenceLevel": "conditional original initialization and natural portfolio quote routine checks; not a whole campaign replay or browser acceptance",
+  "expectedCheckpointCount": 7,
+  "expectedRandomDraws": 30,
+  "startingRecipe": "See docs/investments.md. Fresh process launch from C shell, N, two Space pulses to difficulty, Enter selects Easy. Capture resident1a31 entry/1c46 return and1677 location entry. Enter investments from office with simultaneous Left+Space; dismiss day-one news with Space. Capture five natural quote returns at live0e0c:0afe, companies10..14. No game memory or register injection. Map and all relocated code revalidated.",
+  "comparisonRules": "Exact 690-byte company area,155-byte chart area including untouched padding,processed-day byte,RNG and seed continuity; five exact signed16 quotes with independently recorded routine arguments. Allocator,archive handle,stack and interrupt clocks are outside initialization semantic scope. Quotes use each original incoming memory state, not a closed-loop news implementation.",
+  "inputEvents": {
+    "launch": [
+      {
+        "text": "ducktale\n",
+        "cps": 30
+      }
+    ],
+    "hardware": "Paired N100ms; two Space100ms pulses separated2000ms; Enter100ms after observing difficulty; Left+Space100ms after office; Space100ms after news. Human-paced screen transitions; no timing parity claim."
+  },
+  "fittedInputs": [],
+  "injections": [],
+  "overlay": {
+    "fileOffset": 159232,
+    "bytes": 5986,
+    "headerBytes": 512,
+    "codeBytes": 5474,
+    "relocations": 101,
+    "sha256": "9c4a19c262e86ea844109e0558e2d214ea6f0b4e1f9270139d8349c49bc9999f"
+  },
+  "artifacts": {
+    "before": {
+      "path": ".local/investment-init-before.json",
+      "sha256": "7835277f0e5611bead8ad9be6e7561348d66c02999f8067fc64bd485081fd9e0"
+    },
+    "after": {
+      "path": ".local/investment-init-after.json",
+      "sha256": "d0dbb7911396192fa5b0d69ceea30f56558a6c5a0e7f062b34b34223214f8d50"
+    },
+    "location": {
+      "path": ".local/investment-location-entry.json",
+      "sha256": "f80dbda1f8f1b28a674b8b36ed2d0075dcc85f92139b5583967ce4be358674c6"
+    },
+    "live": {
+      "path": ".local/investment-live-map.json",
+      "sha256": "4de83f4aef1231fa5294e3423d0d5470f7b8b3d888fee24608146ec7717d460a"
+    },
+    "quote0": {
+      "path": ".local/investment-quote-0.json",
+      "sha256": "5e4f4a4a9b4db860f111bf10590ed6fefeb433202954c61776add5ee54443fd4"
+    },
+    "quote1": {
+      "path": ".local/investment-quote-1.json",
+      "sha256": "55db99eb2ea0e74d3e1567775fc147eed5aeec35f4acf966649758abc9ec8e5d"
+    },
+    "quote2": {
+      "path": ".local/investment-quote-2.json",
+      "sha256": "9b47a50528b6301eb7273cc3e4e9a8476765f17c2e63be46d1bf1e37e2c3fa06"
+    },
+    "quote3": {
+      "path": ".local/investment-quote-3.json",
+      "sha256": "6902dd15a83be4c8815876adaa7102c384e1412f365708ca415a77bb0cfb2dc0"
+    },
+    "quote4": {
+      "path": ".local/investment-quote-4.json",
+      "sha256": "10f3c3cf8a35dbff2244ca3a612e6cfd47370b2bcf3db1c4ce56d467cb6039d3"
+    }
+  },
+  "verify": "npm run verify:investments"
+}

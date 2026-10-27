@@ -21,6 +21,10 @@ assert.deepEqual(manifest.environment, {
   chipVariant: "NCR8496",
   initialNoise: { control: 0, counter: 1, output: 0, lfsr: 32768 },
   centeredOutputNegated: true,
+  firstInterruptFrame: 0,
+  initialSequencerDivider: 1,
+  virtualClock: 0,
+  biosFlags: 0,
 });
 function run(id) {
   let r;
@@ -29,7 +33,11 @@ function run(id) {
       sampleRate: manifest.environment.sampleRate,
     });
   } catch (error) {
-    return { id, status: "unsupported", diagnostic: error.message };
+    return {
+      id,
+      status: error.code === "TANDY_PREVIEW_LIMIT" ? "live" : "unsupported",
+      diagnostic: error.message,
+    };
   }
   assert.equal(r.truncated, false, "unfinished audition");
   assert.ok(r.ticks > 0);
@@ -64,13 +72,15 @@ const counts = {
   audible: actual.filter((c) => c.status === "complete" && !c.silent).length,
   unsupported: actual.filter((c) => c.status === "unsupported").length,
   silent: actual.filter((c) => c.status === "complete" && c.silent).length,
+  live: actual.filter((c) => c.status === "live").length,
 };
 assert.deepEqual(counts, {
   requests: 121,
-  complete: 109,
-  audible: 87,
-  unsupported: 12,
-  silent: 22,
+  complete: 111,
+  audible: 88,
+  unsupported: 0,
+  live: 10,
+  silent: 23,
 });
 assert.deepEqual(manifest.counts, counts);
 assert.throws(
@@ -81,8 +91,8 @@ const changed = structuredClone(manifest.cases);
 changed[25].pcmSHA256 = "0".repeat(64);
 assert.throws(() => compare(changed), /Tandy corpus result 25/);
 const unsupported = structuredClone(manifest.cases);
-unsupported[8].diagnostic = "ignored";
-assert.throws(() => compare(unsupported), /Tandy corpus result 8/);
+unsupported[9].diagnostic = "ignored";
+assert.throws(() => compare(unsupported), /Tandy corpus result 9/);
 console.log(
-  "Tandy corpus: 121 independently initialized requests; 109 complete (87 audible,22 silent),12 explicitly unsupported; 3 negative controls. Port regression only, not full original runtime/waveform parity.",
+  "Tandy corpus: 121 independently initialized requests; 111 file previews (88 audible,23 silent),10 require live playback,0 unsupported; 3 negative controls. Port regression only, not full original runtime/waveform parity.",
 );

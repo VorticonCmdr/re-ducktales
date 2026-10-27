@@ -1,12 +1,14 @@
 import { parseArchive, imagePixels, fontPixels } from './assets.js';
 import { SOUND_COUNT, renderSound, soundOffset, wavFile } from './audio.js';
 import { renderTandyPreview } from './tandy-preview.js';
+import { attachTandyLiveControls } from './tandy-live.js';
 const $ = id => document.getElementById(id);
-let assets = [], selected, timer, audioUrl, exportData, exportName, generation = 0, tandyAudioUrl;
+let assets = [], selected, timer, audioUrl, exportData, exportName, generation = 0, tandyAudioUrl, tandyLiveCleanup;
 const decodeText = bytes => new TextDecoder('windows-1252').decode(bytes).replace(/\x1a/g, '');
 const hex = data => Array.from({length: Math.ceil(Math.min(4096, data.length) / 16)}, (_, i) => `${(i * 16).toString(16).padStart(6,'0')}  ${Array.from(data.slice(i*16,i*16+16), n => n.toString(16).padStart(2,'0')).join(' ')}`).join('\n') + (data.length > 4096 ? '\n… first 4096 bytes shown' : '');
 for (let i = 0; i < 16; i++) $('transparent').add(new Option(String(i), String(i)));
 function stopMedia() {
+  tandyLiveCleanup?.(); tandyLiveCleanup=null;
   clearInterval(timer); timer = null; $('animate').textContent = 'Play animation';
   document.querySelectorAll('audio').forEach(audio=>audio.pause());
   if (tandyAudioUrl) { URL.revokeObjectURL(tandyAudioUrl); tandyAudioUrl = null; }
@@ -34,8 +36,11 @@ function appendTandyPreview(entry) {
       const caption=document.createElement('p');caption.textContent=`${tandy.duration.toFixed(2)} seconds · ${tandy.sampleRate.toLocaleString()} Hz · Sequence complete`;
       section.append(play,player,caption);
     }
-  } catch(error){fail(error);}
-  const limit=document.createElement('p');limit.textContent='Partial Tandy implementation. Engine effects and some commands remain unfinished. Unsupported paths stop with a diagnostic. Audio waveform matching is unverified.';
+  } catch(error){
+    if(error.code==="TANDY_PREVIEW_LIMIT")tandyLiveCleanup=attachTandyLiveControls(section,entry.tandyDriver,entry.index,fail);
+    else fail(error);
+  }
+  const limit=document.createElement('p');limit.textContent='Tandy asset playback with live controls for long sequences. Unsupported paths stop with a diagnostic. Waveform matching remains unverified; the game still uses PC-speaker audio.';
   section.append(diagnostic,limit);$('stage').append(section);
 }
 function draw() {

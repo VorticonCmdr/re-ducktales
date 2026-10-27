@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "environment": {
+    "sampleRate": 44100,
+    "port61": 0,
+    "firstInterruptFrame": 0,
+    "sequencerDivider": 1,
+    "virtualClock": 0,
+    "biosFlags": 0,
+    "chipInitialPeriods": [1, 1, 1],
+    "chipInitialCounters": [1, 1, 1],
+    "chipInitialOutputs": [1, 1, 1],
+    "chipInitialNoise": {
+      "control": 0,
+      "counter": 1,
+      "output": 0,
+      "lfsr": 32768
+    }
+  },
+  "cases": [
+    {
+      "sound": 1,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 1
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "natural"
+    },
+    {
+      "sound": 6,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 6
+        },
+        {
+          "frame": 44100,
+          "argument": 0
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "requested-stop"
+    },
+    {
+      "sound": 9,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 9
+        },
+        {
+          "frame": 11025,
+          "argument": 16392
+        },
+        {
+          "frame": 22050,
+          "argument": 776
+        },
+        {
+          "frame": 33075,
+          "argument": 32776
+        },
+        {
+          "frame": 44100,
+          "argument": 0
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "requested-stop"
+    },
+    {
+      "sound": 13,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 13
+        },
+        {
+          "frame": 44100,
+          "argument": 0
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "requested-stop"
+    },
+    {
+      "sound": 30,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 30
+        },
+        {
+          "frame": 44100,
+          "argument": 0
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "requested-stop"
+    },
+    {
+      "sound": 31,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 31
+        },
+        {
+          "frame": 44100,
+          "argument": 0
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "requested-stop"
+    },
+    {
+      "sound": 38,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 38
+        },
+        {
+          "frame": 44100,
+          "argument": 0
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "requested-stop"
+    },
+    {
+      "sound": 57,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 57
+        },
+        {
+          "frame": 44100,
+          "argument": 0
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "requested-stop"
+    },
+    {
+      "sound": 95,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 95
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "natural"
+    },
+    {
+      "sound": 111,
+      "events": [
+        {
+          "frame": 0,
+          "argument": 111
+        },
+        {
+          "frame": 44100,
+          "argument": 0
+        }
+      ],
+      "maxFrames": 5292000,
+      "ending": "requested-stop"
+    }
+  ]
+}

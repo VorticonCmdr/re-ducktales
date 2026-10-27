@@ -1,0 +1,551 @@
+{
+  "level": "Independent audio-provider port regressions;not original whole-engine,IRQ-timing or waveform goldens.",
+  "inputs": "reference/tandy-live-inputs.json",
+  "inputsSHA256": "440a9f9d0fc1e6b3efcc1d0f4890e32fd399381e19d5c9f6f5b4b73751a02003",
+  "counts": {
+    "cases": 10,
+    "events": 21,
+    "checkpoints": 31,
+    "natural": 2,
+    "requestedStop": 8
+  },
+  "comparison": "Exact consumed events,source states,chip states,PCM hashes,clock/interrupt/ack/chain counters and termination. No exclusions. Initial divider1/first IRQ0 is explicit audition alignment,not recovered original phase.",
+  "verify": "npm run verify:tandy-live",
+  "cases": [
+    {
+      "sound": 1,
+      "ending": "natural",
+      "events": 1,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "750847c8bfae24ef8f1fc05bca696103ff5cee04c385c849fceead56c03810bd",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "ended",
+          "frame": 2153425,
+          "ticks": 3558,
+          "interrupts": 42685,
+          "clock": 3558,
+          "bios": 0,
+          "acknowledgements": 41795,
+          "chains": 890,
+          "busWrites": 12788,
+          "signalSamples": 2092055,
+          "driverSHA256": "c16a42327d3ab4996655a4405eafcfac70e33f3cd80cc3ea72cfb50cb95d27c9",
+          "chipSHA256": "cba673963dc872a1dec6b617d1265aba6c26112fa344a2d9bbfdc043b61f9bff",
+          "pcmSHA256": "c462a13f5abef09066302fa5878d60bf461f61dac5616338f64318c8154cbda4"
+        }
+      ]
+    },
+    {
+      "sound": 6,
+      "ending": "requested-stop",
+      "events": 2,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "0fbed6e7be94c97ad30d0e3a3dc98d95ab1aeed463085d629cd7248e50e5bc95",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "input-2",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 115,
+          "signalSamples": 41368,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "2acba8f5f488e08302f00c01aa3de47ab301cae6b29fa07e38773aa46d3b2bdb",
+          "pcmSHA256": "3e332bea98068c0ec9f1300fc8f2f374ac27df46283f4d2e38529ba54432c19b"
+        },
+        {
+          "kind": "ended",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 115,
+          "signalSamples": 41368,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "2acba8f5f488e08302f00c01aa3de47ab301cae6b29fa07e38773aa46d3b2bdb",
+          "pcmSHA256": "3e332bea98068c0ec9f1300fc8f2f374ac27df46283f4d2e38529ba54432c19b"
+        }
+      ]
+    },
+    {
+      "sound": 9,
+      "ending": "requested-stop",
+      "events": 5,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "9353af1b53fc399e720ad0328257accf0a85a2831e01470be58a7dc055ed361a",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "input-2",
+          "frame": 11025,
+          "ticks": 19,
+          "interrupts": 219,
+          "clock": 19,
+          "bios": 0,
+          "acknowledgements": 214,
+          "chains": 5,
+          "busWrites": 236,
+          "signalSamples": 5524,
+          "driverSHA256": "a8af60eca1170fef9da8876f8520c2f25572d8d8e160c5a250c602fcb51ac52e",
+          "chipSHA256": "bfb6a418d0fc3e20aab913b039e3a3f4e2d44a791d5368e2a595a54176c3834e",
+          "pcmSHA256": "2d254ee7f43b0d33704881d81e82f88ddd5f85f02b9d742113119f31e5c5fad6"
+        },
+        {
+          "kind": "input-3",
+          "frame": 22050,
+          "ticks": 37,
+          "interrupts": 438,
+          "clock": 37,
+          "bios": 0,
+          "acknowledgements": 428,
+          "chains": 10,
+          "busWrites": 252,
+          "signalSamples": 10293,
+          "driverSHA256": "846aeb79ccfe6236ac5a1831691c5f5a895de3e3cc764946b7cc514d763496cb",
+          "chipSHA256": "e4f9344edf031c4655d28f5da4f403f495a9cdd6e1e17642c1e40f7a07046aa8",
+          "pcmSHA256": "e628c0c0e7d502b6a630b881ecc9e6a86096963785b5c9ddd1e2f653a4847a9f"
+        },
+        {
+          "kind": "input-4",
+          "frame": 33075,
+          "ticks": 55,
+          "interrupts": 656,
+          "clock": 55,
+          "bios": 0,
+          "acknowledgements": 642,
+          "chains": 14,
+          "busWrites": 268,
+          "signalSamples": 15062,
+          "driverSHA256": "0ddda68cd4b7cb70b800cb9a3e2d17b8fe7888e91e022f785d652a9f9a15b0e9",
+          "chipSHA256": "b8358e1a52154d631b2791ef81c00153352a528ad81aea9d051409f61dbe7b89",
+          "pcmSHA256": "24077e21b988da3bc10bb3ded71689116c39d296467557562286141f65530c1e"
+        },
+        {
+          "kind": "input-5",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 284,
+          "signalSamples": 21238,
+          "driverSHA256": "9a63bbeaf7d9355c45e61cdd4b86bf8803035e95ad03f9c47938569d8c165d77",
+          "chipSHA256": "412f22318cd3888b2935d53ac2db1bec25370bcc7f30e160fce9823cb3bbd9ba",
+          "pcmSHA256": "c3a3c1099b329b80389a4a042d4462f09dd462d3f9f71fd14fabbd15ae72e5f5"
+        },
+        {
+          "kind": "ended",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 284,
+          "signalSamples": 21238,
+          "driverSHA256": "9a63bbeaf7d9355c45e61cdd4b86bf8803035e95ad03f9c47938569d8c165d77",
+          "chipSHA256": "412f22318cd3888b2935d53ac2db1bec25370bcc7f30e160fce9823cb3bbd9ba",
+          "pcmSHA256": "c3a3c1099b329b80389a4a042d4462f09dd462d3f9f71fd14fabbd15ae72e5f5"
+        }
+      ]
+    },
+    {
+      "sound": 13,
+      "ending": "requested-stop",
+      "events": 2,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "ff801cae345d3d33b5dc752c8e434791133b93077d23d905fb86ff0fca0a15e0",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "input-2",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 39,
+          "signalSamples": 22307,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "f1053414f19c57579bf5e11865bce39f21e5cfffb59953615f7c9d820871d9cf",
+          "pcmSHA256": "dffb702ac4286d39b7308542b26ec8087730486669c712ace3d626a88b1779f4"
+        },
+        {
+          "kind": "ended",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 39,
+          "signalSamples": 22307,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "f1053414f19c57579bf5e11865bce39f21e5cfffb59953615f7c9d820871d9cf",
+          "pcmSHA256": "dffb702ac4286d39b7308542b26ec8087730486669c712ace3d626a88b1779f4"
+        }
+      ]
+    },
+    {
+      "sound": 30,
+      "ending": "requested-stop",
+      "events": 2,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "2e09d617ee1dc38899ea77216a0a08a574808b8d3e9daeb9917f7c3b335845ad",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "input-2",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 95,
+          "signalSamples": 28966,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "15a14e4206cba064b6cbe8d2973fc56ef14fc06a65a239cef09e615a2344323c",
+          "pcmSHA256": "ec5807b28e244e1030c0e25c541ad7ff7ed7db1106bcafff1eca4a576c6bba3c"
+        },
+        {
+          "kind": "ended",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 95,
+          "signalSamples": 28966,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "15a14e4206cba064b6cbe8d2973fc56ef14fc06a65a239cef09e615a2344323c",
+          "pcmSHA256": "ec5807b28e244e1030c0e25c541ad7ff7ed7db1106bcafff1eca4a576c6bba3c"
+        }
+      ]
+    },
+    {
+      "sound": 31,
+      "ending": "requested-stop",
+      "events": 2,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "e06218d8d73bcf91164a447b4ef45f9b969fc23052d121a37d54a9f827edde6c",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "input-2",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 104,
+          "signalSamples": 35719,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "5abb1e7d2d977c99307f75bf284f57e13c78d53142bb60e397901eba7e75ef3c",
+          "pcmSHA256": "2c00e2618621ca6f4d73d54d24addb709673d793fd4c9229a81aceb0867d97aa"
+        },
+        {
+          "kind": "ended",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 104,
+          "signalSamples": 35719,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "5abb1e7d2d977c99307f75bf284f57e13c78d53142bb60e397901eba7e75ef3c",
+          "pcmSHA256": "2c00e2618621ca6f4d73d54d24addb709673d793fd4c9229a81aceb0867d97aa"
+        }
+      ]
+    },
+    {
+      "sound": 38,
+      "ending": "requested-stop",
+      "events": 2,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "9275f50f7cc640bfd85265a747735a18947c25e87e77a7c474687fb7a3cca84a",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "input-2",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 117,
+          "signalSamples": 43552,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "251830981c444b54a74a24ae6310f8b95beb63520c4da0ebe9dc7de0360f164e",
+          "pcmSHA256": "931a8436ddec611b2d5ab0b0cc2b4105ef958839e92d3d64ffabffeb4e0afcf3"
+        },
+        {
+          "kind": "ended",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 117,
+          "signalSamples": 43552,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "251830981c444b54a74a24ae6310f8b95beb63520c4da0ebe9dc7de0360f164e",
+          "pcmSHA256": "931a8436ddec611b2d5ab0b0cc2b4105ef958839e92d3d64ffabffeb4e0afcf3"
+        }
+      ]
+    },
+    {
+      "sound": 57,
+      "ending": "requested-stop",
+      "events": 2,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "9d32e596d589e5851b796bbb7a5873603fe080b66db6b933810dd28293ca2cf4",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "input-2",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 232,
+          "signalSamples": 44100,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "795c4eb16cf34a4c30aeeb02f62de51f8badda5220c56a257d67c9d67c4b044c",
+          "pcmSHA256": "04b2413588bef214cbee9166bbcd3a86bbbba57a2edc9acd2069bf8242c1b331"
+        },
+        {
+          "kind": "ended",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 232,
+          "signalSamples": 44100,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "795c4eb16cf34a4c30aeeb02f62de51f8badda5220c56a257d67c9d67c4b044c",
+          "pcmSHA256": "04b2413588bef214cbee9166bbcd3a86bbbba57a2edc9acd2069bf8242c1b331"
+        }
+      ]
+    },
+    {
+      "sound": 95,
+      "ending": "natural",
+      "events": 1,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "8cab2c8509f14bc73cdecd2d75fdfd82c80a364abb8168b0ba2567a6aebe5135",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "ended",
+          "frame": 3146894,
+          "ticks": 5199,
+          "interrupts": 62377,
+          "clock": 5199,
+          "bios": 0,
+          "acknowledgements": 61077,
+          "chains": 1300,
+          "busWrites": 19672,
+          "signalSamples": 3056924,
+          "driverSHA256": "0166e03981b4334a5bc221c57d223f96a6bb4a2fba4b2be0cec47f921a4b1907",
+          "chipSHA256": "4aeda33ecef3f8bebb9f7c7ab513c1c5862bdc4dcc9a6c0d9b179494699e4a32",
+          "pcmSHA256": "94064b340b0cd37a4ed46122291d06017e53ed6eeecd0f4a129ac4973f78e527"
+        }
+      ]
+    },
+    {
+      "sound": 111,
+      "ending": "requested-stop",
+      "events": 2,
+      "checkpoints": [
+        {
+          "kind": "input-1",
+          "frame": 0,
+          "ticks": 0,
+          "interrupts": 0,
+          "clock": 0,
+          "bios": 0,
+          "acknowledgements": 0,
+          "chains": 0,
+          "busWrites": 5,
+          "signalSamples": 0,
+          "driverSHA256": "7afb0c7e1068d1cbbcaad9e93d6d30380016c8e1744de10c2b8ba72d5037c21e",
+          "chipSHA256": "e8055be5e8671592f515fae5a0fe3a9c395d64f2ea3027f7a00ac8945c398cbd",
+          "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "kind": "input-2",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 112,
+          "signalSamples": 43495,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "8982a13bf2923501c09442740e5808cea4319169aab5189ae0f55595dc3192e8",
+          "pcmSHA256": "0059b86c096ba5442da75bb32a110552004099ab0cb463bcfc8a000009d88dd2"
+        },
+        {
+          "kind": "ended",
+          "frame": 44100,
+          "ticks": 73,
+          "interrupts": 875,
+          "clock": 73,
+          "bios": 0,
+          "acknowledgements": 856,
+          "chains": 19,
+          "busWrites": 112,
+          "signalSamples": 43495,
+          "driverSHA256": "faa8ecd618e6cc472cfff6196f0bd09aa56960274763100e2ed7e43fdb49ad13",
+          "chipSHA256": "8982a13bf2923501c09442740e5808cea4319169aab5189ae0f55595dc3192e8",
+          "pcmSHA256": "0059b86c096ba5442da75bb32a110552004099ab0cb463bcfc8a000009d88dd2"
+        }
+      ]
+    }
+  ]
+}

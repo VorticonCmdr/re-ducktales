@@ -3,7 +3,11 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { parseArchive } from "../src/assets.js";
 import { TandyDriver } from "../src/tandy-driver.js";
-import { TandyTones, renderTandyPreview } from "../src/tandy-preview.js";
+import {
+  TandyTones,
+  TandyPlayback,
+  renderTandyPreview,
+} from "../src/tandy-preview.js";
 
 test("Tandy tone counter gives clock/(32*period), with 2dB attenuation", () => {
   const chip = new TandyTones({ periods: [427, 1, 1], counters: [427, 1, 1] });
@@ -73,10 +77,9 @@ test("original Tandy036 ends after six ticks with exact sequence writes", async 
   const engine = new TandyDriver(bytes, { writePort() {} });
   engine.reset(0);
   engine.start(0x4008);
-  assert.throws(
-    () => engine.processTick({ clearBiosFlags() {} }),
-    /engine sequencing is not implemented/,
-  );
+  engine.processTick({ clearBiosFlags() {} });
+  assert.equal(engine.word(0x2e6), 0x4008);
+  assert.equal(renderTandyPreview(bytes, 8).pcm.length, 0);
 });
 
 test("original pitch deltas are big-endian and both complete cues terminate", async () => {
@@ -146,4 +149,41 @@ test("complete original noise cues and zero-period cue render finite PCM", async
     assert.ok(r.pcm.every(Number.isFinite));
     assert.ok(r.pcm.some((v) => v !== 0));
   }
+});
+
+test("Tandy device clock is independent of render block boundaries", async () => {
+  const bytes = parseArchive(await readFile("game/IT.DRV"), "IT.DRV")[4].data;
+  const a = new TandyPlayback(bytes),
+    b = new TandyPlayback(bytes);
+  a.start(9);
+  b.start(9);
+  const full = a.renderFrames(556).pcm;
+  const parts = [
+    b.renderFrames(1).pcm,
+    b.renderFrames(127).pcm,
+    b.renderFrames(428).pcm,
+  ];
+  assert.deepEqual(Float32Array.from(parts.flatMap((p) => [...p])), full);
+  assert.deepEqual(a.driver.memory, b.driver.memory);
+  assert.deepEqual(a.chip.digitalState(), b.chip.digitalState());
+  assert.equal(a.interrupts, 12);
+  assert.equal(a.ticks, 1);
+  assert.equal(a.clock, 1);
+  assert.equal(a.chains, 1);
+  assert.equal(a.acks, 11);
+  assert.equal(a.driver.byte(0x1ca), 12);
+  assert.equal(a.driver.byte(0x2dd), 40);
+});
+
+test("unknown Tandy command paths stop explicitly", async () => {
+  const bytes = parseArchive(await readFile("game/IT.DRV"), "IT.DRV")[4].data;
+  const d = new TandyDriver(bytes, { writePort() {} });
+  d.reset(0);
+  d.start(36);
+  d.word(0x1d1, 0x3000);
+  d.byte(0x3000, 0xab);
+  assert.throws(
+    () => d.processTick({ clearBiosFlags() {} }),
+    /Unsupported Tandy command ab/,
+  );
 });

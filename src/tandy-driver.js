@@ -122,8 +122,45 @@ export class TandyDriver {
       this.byte(at + 0x12, this.byte(at + 0x12) - 1);
       this.word(at, this.word(at + 0x13 + ((this.byte(at + 0x12) << 1) & 255)));
     } else if (op === 0x87) this.byte(at + 6, this.readSequence(at));
+    else if (op === 0x83) this.byte(at + 0x2a, this.readSequence(at));
     else if (op === 0x8c) this.byte(at + 0x1b, this.readSequence(at));
-    else if (op === 0x95) {
+    else if (op === 0x8d || op === 0x8e)
+      this.word(at + (op === 0x8d ? 0x30 : 0x32), 0xf04);
+    else if (op === 0x93) {
+      const high = this.readSequence(at);
+      this.word(at + 0x2c, (high << 8) | this.readSequence(at));
+    } else if (op === 0x98) {
+      const speed = (this.word(0x2e6) >>> 8) & 127;
+      const period = this.word(0x2a + speed * 2);
+      this.word(0x2e4, period);
+      this.word(0x2e2, period);
+    } else if (op === 0x8a) {
+      // 0d31..0d60 deliberately overshoots at equality and wraps as a word.
+      // Both OUT DX,AL instructions address tone0,regardless of channel.
+      const current = this.word(0x2e2),
+        target = this.word(0x2e4);
+      const next =
+        (current + (current > target ? -1 : 1) * this.byte(0x2e8)) & 65535;
+      this.word(0x2e2, next);
+      this.writePort(0xc0, 0x80 | (next & 15));
+      this.writePort(0xc0, (next >>> 4) & 127);
+    } else if (op === 0xa1) {
+      const high = this.readSequence(at);
+      this.word(0x2e4, (high << 8) | this.readSequence(at));
+    } else if (op === 0x99) {
+      if (!this.byte(0x1c5)) {
+        this.stopChannel(at, ch);
+        return "stop";
+      }
+    } else if (op === 0x9a) this.byte(at + 7, this.readSequence(at));
+    else if (op === 0x9b) this.byte(0x2ea, this.readSequence(at));
+    else if (op === 0x9f) {
+      this.byte(0x1c9, this.readSequence(at));
+      if (this.byte(0x1c9)) {
+        this.writePort(0xc0, 0xd0 + (this.byte(0x2cf) >>> 4));
+        this.writePort(0xc0, 0xf0 + (this.byte(0x2d0) >>> 4));
+      }
+    } else if (op === 0x95) {
       this.byte(at + 0x26, this.readSequence(at));
       this.byte(at + 0x22, this.readSequence(at));
       const span = this.readSequence(at);
@@ -282,9 +319,51 @@ export class TandyDriver {
     this.byte(at + 12, 0);
     this.byte(at + 2, this.readSequence(at));
   }
+  stopChannel(at, ch) {
+    if (ch === 0) this.byte(0x1c9, 0);
+    this.byte(0x2c1 + ch, 255);
+    this.resetChannel(at);
+    this.byte(0x2cd + ch, 255);
+    this.writePort(0xc0, 0x9f + ch * 32);
+  }
+  processFastModulation() {
+    // 02f5..0328,before the sequencer divider. XOR's sign selects the mute.
+    if (!this.byte(0x1c9)) return;
+    this.byte(0x1c7, this.byte(0x1c7) - 1);
+    if (this.byte(0x1c7)) return;
+    this.byte(0x1c7, this.byte(0x1c6));
+    this.byte(0x1c8, this.byte(0x1c8) ^ 255);
+    this.writePort(
+      0xc0,
+      this.byte(0x1c8) & 128 ? 0x9f : 0x90 + (this.byte(0x2cd) >>> 4),
+    );
+  }
+  processInterrupt({ clearBiosFlags, incrementClock, chainInterrupt } = {}) {
+    if (
+      typeof clearBiosFlags !== "function" ||
+      typeof incrementClock !== "function" ||
+      typeof chainInterrupt !== "function"
+    )
+      throw Error(
+        "Tandy interrupt requires BIOS,clock and chained-interrupt providers",
+      );
+    this.processFastModulation();
+    let sequenced = false;
+    this.byte(0x1ca, this.byte(0x1ca) - 1);
+    if (!this.byte(0x1ca)) {
+      this.byte(0x1ca, 12);
+      incrementClock({ offset: this.word(0x1ba), segment: this.word(0x1bc) });
+      this.processTick({ clearBiosFlags });
+      sequenced = true;
+    }
+    this.byte(0x2dd, this.byte(0x2dd) - 1);
+    if (!this.byte(0x2dd)) {
+      this.byte(0x2dd, 48);
+      chainInterrupt({ offset: this.word(0x2de), segment: this.word(0x2e0) });
+    } else this.writePort(0x20, 0x20);
+    return sequenced;
+  }
   processTick({ clearBiosFlags } = {}) {
-    if (this.byte(0x1c5))
-      throw Error("Tandy engine sequencing is not implemented");
     if (typeof clearBiosFlags !== "function")
       throw Error("Tandy tick requires an explicit BIOS-flag effect provider");
     clearBiosFlags(0xf7); // 0040:0018 &=f7; this is not driver/code memory.
@@ -306,7 +385,12 @@ export class TandyDriver {
               this.processNote(at, ch, op);
               break;
             }
-            if (this.processControl(at, ch, op)) continue;
+            const control = this.processControl(at, ch, op);
+            if (control === "stop") {
+              waited = skip = true;
+              break;
+            }
+            if (control) continue;
             if (op === 0x91) {
               this.byte(at + 0x1c, this.readSequence(at));
               const high = this.readSequence(at);
@@ -318,7 +402,7 @@ export class TandyDriver {
               this.word(at + 0x34, this.word(0x1387 + index));
               this.byte(at + 10, 1);
             } else if (op === 0x9e) this.byte(at + 0x29, this.readSequence(at));
-            else if (op === 0x9d) {
+            else if (op === 0x9d || op === 0x8b) {
               this.processLegato(at, ch);
               // Original jumps to0906, skipping this channel's modulation,
               // envelope advancement and OUTs for the current tick.
@@ -327,12 +411,13 @@ export class TandyDriver {
               this.byte(at + 2, this.readSequence(at));
               if (op === 0x89) this.byte(at + 10, 5);
               waited = skip = true;
-            } else if (op === 0x88) {
-              if (ch === 0) this.byte(0x1c9, 0);
-              this.byte(0x2c1 + ch, 255);
-              this.resetChannel(at);
-              this.byte(0x2cd + ch, 255);
-              this.writePort(0xc0, 0x9f + ch * 32);
+            } else if (
+              [
+                0x88, 0x92, 0x94, 0x96, 0x9c, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6,
+                0xa7, 0xa8,
+              ].includes(op)
+            ) {
+              this.stopChannel(at, ch);
               waited = skip = true;
             } else throw Error(`Unsupported Tandy command ${op.toString(16)}`);
           }

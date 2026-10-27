@@ -14,20 +14,29 @@ unsupported paths stop with a visible diagnostic and no Tandy playback. A
 zero-sample original request is identified explicitly. Selection stops playback
 and releases object URLs. No alternate rendition is substituted for a failed one.
 
-All121 public requests are exercised by `npm run verify:tandy-corpus`:109 complete,
-87 produce a nonzero signal and22 are silent. Of the silent requests,nine return
-no samples and13 produce timed silence.12 requests stop with known diagnostics,
-covering engine/remaining commands and the1024-tick audition limit. The corpus
-manifest records deterministic PCM hashes as **port regressions**,not original
-audio outputs. Missing requests,changed results and changed unsupported paths
-fail; three negative controls check those mechanisms.
+All 121 public requests are exercised by `npm run verify:tandy-corpus`:111 file
+previews (88 audible,23 silent) and 10 requests that use live playback. Nine
+requests return no samples and 14 produce timed silence;008 is a control-only
+engine request. There are no unsupported outcomes in this corpus. Missing
+requests, changed results and changed live outcomes fail, with three negative
+controls. Hashes are port regressions, not original waveform goldens. Live
+requests001/095 finish naturally in the independent provider; the remaining
+ones run until an explicit reset input stops them. Intro 001 also completes
+through actual browser audio after 3558 ticks, about 48.8 seconds.
+
+The viewer's file audition budget remains1024 ticks. Reaching it offers
+**Play live Tandy** and **Stop Tandy playback**, with no partial file played.
+The live player starts a fresh independent audition and advances the original
+IRQ/sequencer on the audio sample clock. Unsupported paths stop with a visible
+diagnostic; no alternate rendition is substituted. Asset switching and page
+cleanup close the audio context. Short cues keep their native file controls.
 
 Native complete-cue comparisons cover002,010,025,035,036,067,068.025 demonstrates combined
 pitch slide/vibrato:25 calls,14530 samples at44100Hz.002 has27 calls/15741 samples;
 036 has6 calls/3027 samples;067/068 have17 calls/9686 samples. Browser acceptance
 uses real keyboard/buttons,native audio completion and a one-sample tolerance
 for the browser's microsecond-rounded WAV duration. Hardware waveform parity,
-in-game Tandy,engine effects and remaining commands are unfinished.
+in-game Tandy and original status-query/wait APIs are unfinished.
 
 ## Source evidence
 
@@ -299,8 +308,9 @@ specified stop—would reduce that overhead. No general emulator/compiler was
 added as a prerequisite; the present experiments use a short fixed call/jump
 harness and documented tool limits.
 
-Next audio milestone: remaining commands8d/9f,engine and audio-status APIs,
-and a persistent in-game Tandy driver for music and long-running effects. Precomputed independent auditions are not a substitute for that driver.
+Next audio milestone: connect the persistent device to actual game sound/engine
+events and translate original status-query/wait APIs. Viewer playback alone
+does not establish game integration or whole-original timing.
 
 The sequence milestone passes full `npm run verify`:65 unit tests,38 browser
 scenarios,all required original comparisons,the121-request strict corpus audit
@@ -436,8 +446,9 @@ registers and recorded port61 control,freed the allocation and removed owned
 breakpoints. Original caller remains0ed6:046e,now stop1301; flags,clocks and BIOS
 effects are not a full machine checkpoint.
 
-The independent audition corpus now completes109 requests (87 audible,22 silent).
-The remaining12 outcomes are explicit:008 engine,009/057 command9f,060 command8d,
+At the noise milestone, the independent audition corpus completed109 requests
+(87 audible,22 silent).
+The then-remaining 12 outcomes were008 engine,009/057 command9f,060 command8d,
 and001/006/013/030/031/038/095/111 exceeding the1024-tick audition limit. A limit
 is not evidence that an original music sequence is invalid or must terminate.
 No partial audio is offered after failure. Native browser audio scenarios add
@@ -452,3 +463,127 @@ production build. Log: `.local/tandy-noise-final-verify.log`. Runtime source
 remained unchanged throughout the gate. The focused12-scenario browser audio
 suite passed before that full run. No original assets or local captures are
 committed.
+
+
+## Engine commands, fast interrupt and live playback
+
+`reference/tandy-engine.json` pins29 conditional original cases with 31 complete
+state checkpoints,30 exact OUTs, three clock increments and three chained events.
+`reference/tandy-engine-inputs.json` supplies independent authored states and
+arguments; `reference/tandy-engine-fixture.js` prepares them from original 004.
+No captured output initializes the translated model. All 12339 source bytes,
+32 argument bytes,5 harness bytes,4 private-clock bytes and the external BIOS
+byte compare before/after every call. Six negative controls reject missing
+cases, changed state/input/OUT, chained events and unfinished schedules.
+`npm run verify:tandy-engine` is included in `npm run verify:tandy`.
+
+Source rules checked:
+
+- 8d/8e select the original 0f04 no-op pitch/vibrato handlers.83 writes field 2a;
+  93 reads a big-endian detune word;9a writes priority and 9b writes marker 2ea.
+  8b shares9d's sustained-pitch handler. The stop aliases follow their original
+  table entries at 0a0e, including a2..a8; malformed/untranslated paths still throw.
+- 98 at 0dbe reloads current/target engine period from the speed word's original
+  table. a1 at 0d90 reads a big-endian explicit target.8a at 0d31 compares periods
+  unsigned, adds the byte step when current<=target and subtracts otherwise.
+  Equality overshoots; arithmetic wraps16 bits. It writes tone 0 through OUT DX, AL
+  regardless of the command's channel, without updating normal tone caches.
+- 99 at 0dd7 continues while engine flag 1c5 is nonzero; otherwise it reaches the
+  normal stop handler. Request 8 updates control state; it does not start a
+  sequence. The previous blanket processTick rejection for engine flag 1 was
+  an untranslated boundary, not original behavior, and is removed.
+- 9f at 0e16 stores strobe-enable1c9 and, if nonzero, writes cached attenuation for
+  channels 2/3. IRQ 02ed's02f5..0328 region gates channel 0: decrement byte 1c7,
+  reload from 1c6 on zero, XOR the whole phase byte 1c8 withff, then mute on a negative
+  result or restore cached attenuation0 otherwise. Rate0 underflows on the next
+  call. Rate/phase/cached data are retained rather than replaced by a generic
+  engine/tremolo approximation.
+- The IRQ decrements 1ca and reloads 12 on zero, then increments the external
+  DWORD clock with ADD/ADC and calls 0403. Finally it decrements 2dd, reloads 48 on
+  zero and chains to the saved handler; otherwise it acknowledges PIC20. Strobe
+  handling precedes the sequencer. Native cases include clockffffffff→0, the
+  chain/clock coincidence, XOR sign boundaries and three carried interrupts.
+
+To reproduce the engine fixture: begin at the validated original 0ed6:046e caller,
+allocate 65535 bytes at 459c and prepare each case from the versioned inputs.
+Keep the stack atfef0. Control cases enter their specified handler and stop at
+083e or0906. IRQ cases use an authored hardware frame `[4003,459c,0202]`, private
+clock459c:5000 and an IRET-only old-handler stand-in at 459c:4300;all ordinary
+sequence channels are inactive. The stand-in's omitted BIOS/PIC effects are an
+explicit environment injection, not a full old-BIOS implementation. Use scratch
+CS499c at 4000+oldIP with `CLI; JMP FAR459c:entry`, then step exactly two instructions
+and assert IF/DF clear, real mode, core and original instruction bytes. No source
+instructions are patched.
+
+Watch all 14 earlier c0 OUT sites plus OUT DX at 0d53/0d5d, PIC20 at 035a, and chain
+entry4300. Use a one-shot execute stop for each case's boundary. Capture full
+CPU/body/arguments/harness/clock/BIOS before/after and each OUT/chain stop. Fresh
+initial states are used per case;the last IRQ case carries three calls. Native
+IRET returns with SPfef6, versusfef0 at control boundaries. The final 18 breakpoint
+counters account for 30 OUTs and three chains. Save setup/cleanup receipts and
+checksums in the manifest;local artifacts remain in `.local/tandy-engine/`.
+Cleanup restored original non-flag registers, recorded port61 control and the
+saved BIOS flag byte, freed the fixture and verified empty allocation/breakpoint
+lists. Original caller is now0ed6:046e, stop 1397. CPU flags, clocks, PIC and other
+BIOS/device state are not a restored machine checkpoint.
+
+`TandyPlayback` is the persistent, DOM-free sample/IRQ provider. It accepts
+original driver bytes, explicit sample rate/frames and word sound inputs. Each
+IRQ edge is placed at `round(index*1365/1193182*sampleRate)`;the sequencer remains
+at one call per 12 interrupts. Clock/BIOS/chain/PIC effects are explicit virtual
+providers;all acknowledgements/chains are consumed. Normal devices retain the
+original divider 12. Asset auditions explicitly choose divider 1 and first IRQ 0,
+preserving the established first sequencer tick0. This is independent audition
+alignment, not a recovered original machine phase. Original port-instruction
+delays, hardware scheduling, gain/filter/sample alignment and waveform parity
+remain unverified.
+
+A baseline audit against commit `76baf63` compared both old translated modules
+with the new provider: all 109 previously completed file auditions retain exact
+PCM, port-write sequences, ticks and durations. The local receipt is
+`.local/tandy-live-baseline-audit.json`. New file results are008 (control-only,
+zero samples) and 060 (99 ticks/59330 samples). The corpus now has 111 file results
+and 10 live requests:001,006,009,013,030,031,038,057,095,111.
+
+`reference/tandy-live-inputs.json` defines 10 independent carried provider routes.
+001/095 run to natural endings, with 120-second safety bounds;the other eight
+receive a reset request 0 at frame 44100. Engine 009 additionally receives speed
+words4008/0308/8008 at independently authored quarter-second boundaries. Neither
+expected frames nor output data supply inputs. `reference/tandy-live.json`
+records31 exact port-regression checkpoints from 21 consumed inputs, two natural
+endings and eight requested stops. Source/chip/PCM hashes, counters, effect
+consumption and termination compare exactly;five negative controls reject
+missing cases, altered PCM, input omission/change and unconsumed events.
+`npm run verify:tandy-live` is mandatory. These are independent provider
+regressions, not original whole-engine/IRQ/waveform captures.
+
+The live viewer uses an AudioWorklet built through Vite's worker-URL pipeline.
+Actual output frame requests advance the device;the DOM and wall clock do not
+advance simulation. Play creates a fresh audition;Stop sends original request 0
+and waits for processor acknowledgement before closing the context. Natural
+ends also close it. Switching assets/page cleanup disposes independent playback.
+Processor/module errors stop visibly and do not autoplay speaker fallback.
+Browser tests cover keyboard engine play, nonzero native output, Stop/replay,
+asset-switch context closure and the complete 49-second Sound 001 ending at 3558 ticks.
+The missing-module test substitutes Vite's observed URL-export response once,
+then a real AudioContext attempts a missing same-origin module. This Chromium
+build does not expose AudioWorklet fetches to Page/Context request routing;
+there is no AudioContext mock. A focused tool correction would expose those
+worklet fetches through the context routing API.
+
+Production acceptance uses `npm run verify:tandy-production`: build, serve the
+built files, select the real original folder and play/stop the compiled worklet.
+It runs after development-browser checks in full `npm run verify`. The relative
+worklet asset URL is verified in a production server;no publication/deployment
+has occurred. Viewer support does not yet connect Tandy to the game's sound
+inputs, engine-speed events or original marker/status/wait consumers. In-game
+audio remains the separate PC-speaker rendition.
+
+The live-player milestone passes full `npm run verify`: 68 unit tests, 47
+development browser scenarios and one production browser scenario, plus all
+required original-data comparisons and the production build. Sound 001's real
+browser completion takes about 49 seconds and reaches exactly 3,558 sequence
+ticks. Final log: `.local/tandy-live-final-verify.log`. Runtime/package/test files
+remained frozen during this run. The earlier focused failure-injection attempt
+could not intercept Chromium's worklet request; the corrected URL-export
+injection and final full run pass without mocking audio or suppressing errors.

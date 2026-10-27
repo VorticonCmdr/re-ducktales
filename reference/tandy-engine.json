@@ -1,0 +1,157 @@
+{
+  "build": "dos-fb658562",
+  "captureRevision": "tandy-engine-v1-2026-10-27",
+  "driverSHA256": "c17ef1f352cc26f470c8297a070fbcf5fd3d6eaa8b146b3486b54f076205d80c",
+  "engine": "dosbox-automation 0.84.0-vc1 (f6d9b), bridge0.1.1/protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "mode": "x86 16-bit real mode",
+    "segment": 17820,
+    "physical": 285120
+  },
+  "inputs": "reference/tandy-engine-inputs.json",
+  "inputsSHA256": "e6e55d830dcb2b3a1d03f566540f5b411405cb1642545d4b1cd1bf7ea7a9b739",
+  "fixtureSHA256": "67b4d7799b268f74046e775bc20e279e24c0c2cb2f821f5f23cb2b7215c78bb3",
+  "expectedCases": 29,
+  "expectedCheckpoints": 31,
+  "expectedPortWrites": 30,
+  "expectedChains": 3,
+  "expectedClockAdvances": 3,
+  "recipe": "docs/tandy-audio.md",
+  "verify": "npm run verify:tandy-engine",
+  "scope": "Conditional original command/IRQ comparisons. Full source body plus authored arguments,private harness,external clock and BIOS byte compare exactly. Initial values originate in independent inputs. Full IRQ uses an authored hardware-return frame and an IRET-only old-handler stand-in at459c:4300. No natural machine/BIOS/IRQ timing or waveform claim.",
+  "injections": "Private source459c,stackfef0;IRQ clock at459c:5000 and chain stub459c:4300,FLAGS0202 return frame;explicit BIOS input written before each case. CLI scratch-alias entry;no original source instructions patched.",
+  "cleanup": "Restore original non-flag registers,port61 and pre-experiment BIOS flag byte;free fixture and remove owned breakpoints. Flags,device clocks and PIC/other BIOS state are not a machine checkpoint. Original remains0ed6:046e stop1397.",
+  "artifacts": {
+    "context": {
+      "path": ".local/tandy-engine/context.json",
+      "sha256": "d516a99f66480124cd2a138aeba11a55cd925727650bbac0eabbba6e733718bf"
+    },
+    "00": {
+      "path": ".local/tandy-engine/00.json",
+      "sha256": "287ed8ee6df2b05c72977d1f35e66992e88a1e9abdd352186a9c2b51e126e497"
+    },
+    "01": {
+      "path": ".local/tandy-engine/01.json",
+      "sha256": "7a5270dbe7b3d28da4ec59068e836f8dac475531c9be4967058e5c3bca8a5bce"
+    },
+    "02": {
+      "path": ".local/tandy-engine/02.json",
+      "sha256": "2df8fe595b163180704a11632a1dabeafce1b94f651ee0ca1aef8631a68fe1c9"
+    },
+    "03": {
+      "path": ".local/tandy-engine/03.json",
+      "sha256": "f29e793b77326d5c1d98f051ee85dc6cbb6ac2f6ba0fde11d3dc038faad78bdc"
+    },
+    "04": {
+      "path": ".local/tandy-engine/04.json",
+      "sha256": "b33eae9d2d39f7d750a60f8c79dba8c3b9ea294d6429023bbdee0d1eb41c8169"
+    },
+    "05": {
+      "path": ".local/tandy-engine/05.json",
+      "sha256": "e43873104410c8e9254ecbbb258b01ca38061c74405d8d7115bfce4af2c0400a"
+    },
+    "06": {
+      "path": ".local/tandy-engine/06.json",
+      "sha256": "adeed044f017aca9eab5b800d11c55a24aa811127913003a9e80e87dcc33f776"
+    },
+    "07": {
+      "path": ".local/tandy-engine/07.json",
+      "sha256": "3e705a0cf29592fe64464fec24c43862522471bf50cf8ce3637b5d02f07b6bc8"
+    },
+    "08": {
+      "path": ".local/tandy-engine/08.json",
+      "sha256": "0b11c75ed6410056cf78d399398b682c141650ab7bb1c77d561acf69d117d142"
+    },
+    "09": {
+      "path": ".local/tandy-engine/09.json",
+      "sha256": "f5ef636371852dca3dd7a4b2eb216ce1ec3e9f1716aee55769401d88e060ef7f"
+    },
+    "10": {
+      "path": ".local/tandy-engine/10.json",
+      "sha256": "0820b16dfe1af17a0698d0f726c39de77f9f59341bc9362a274947dc42ea9bea"
+    },
+    "11": {
+      "path": ".local/tandy-engine/11.json",
+      "sha256": "5a407ce8b9fa2210c28b7f684291dbb9a2fd1a75c71eeeb926c95b1c784649db"
+    },
+    "12": {
+      "path": ".local/tandy-engine/12.json",
+      "sha256": "034ee586a9a1c2995c9bff94f94388efea1974f3ca6d4fa6234aec809b556561"
+    },
+    "13": {
+      "path": ".local/tandy-engine/13.json",
+      "sha256": "af22a52dab1e42933bf1da5e92d786580ca847c4840d3cc491c8edb6014a9c5d"
+    },
+    "14": {
+      "path": ".local/tandy-engine/14.json",
+      "sha256": "4600c86fde3597eab45cbc6d448eb8f201e63300422c7da248e082f5a39b4ead"
+    },
+    "15": {
+      "path": ".local/tandy-engine/15.json",
+      "sha256": "3de6e82dbc16eebf5890f42b6dce581b62ed57de845935875594164222616929"
+    },
+    "16": {
+      "path": ".local/tandy-engine/16.json",
+      "sha256": "ff01d56740d46abdd60f5646f3e60413dbfcb9c698e4703eb7d92053043aeaa2"
+    },
+    "17": {
+      "path": ".local/tandy-engine/17.json",
+      "sha256": "bcedf392363e230438c4cc0dfdcf7d17a25fe41ce221de33f41d5a075bb86ef1"
+    },
+    "18": {
+      "path": ".local/tandy-engine/18.json",
+      "sha256": "5fa439d27593b2aff6a3ef85661d39bb857b511eeac627994b44d34ee5c2b561"
+    },
+    "19": {
+      "path": ".local/tandy-engine/19.json",
+      "sha256": "43e6b56d2dc395320d01f68dc3c3624ffab96c1884371c9b432cedb5907d821f"
+    },
+    "20": {
+      "path": ".local/tandy-engine/20.json",
+      "sha256": "3d3e543c35f9fdafcc6ea04db79a1d86fd7d9d3bf3e041ebd55d4a4626a7171e"
+    },
+    "21": {
+      "path": ".local/tandy-engine/21.json",
+      "sha256": "8c9c11889a7d7ecee3543e3e25457131ccd01741486391677ff70652dd6901bf"
+    },
+    "22": {
+      "path": ".local/tandy-engine/22.json",
+      "sha256": "a1ee51c3f0021a4adab9a2d52a0c09b76845358d747fb90dfc982f558c4f3798"
+    },
+    "23": {
+      "path": ".local/tandy-engine/23.json",
+      "sha256": "2250a7d92b78dd74d4fb02d4fad9c2dcb9f0a14bc99fea084a7cc802eb0788d5"
+    },
+    "24": {
+      "path": ".local/tandy-engine/24.json",
+      "sha256": "9a34e9379d1faa719ad3541fe128ef51c6a2f95c6020f8d8244d22bbb8aa5de2"
+    },
+    "25": {
+      "path": ".local/tandy-engine/25.json",
+      "sha256": "284108dae7a4641f1922de84930f161e4545a41c32c3476b21ea1e14baad2f50"
+    },
+    "26": {
+      "path": ".local/tandy-engine/26.json",
+      "sha256": "6e516ff84f50ea510d8df78a18dd3b66fb68e4802d75a79535dcf01292cde3ae"
+    },
+    "27": {
+      "path": ".local/tandy-engine/27.json",
+      "sha256": "c5c4043a0b1e6ecd7ecad809b1186dd3088420b1b0960da745a060e3c9278c57"
+    },
+    "28": {
+      "path": ".local/tandy-engine/28.json",
+      "sha256": "b62ab1495a55455c6a2438d7f72546bf488d7573e9d2ed7cacda887dc3ff00f8"
+    },
+    "final-native": {
+      "path": ".local/tandy-engine/final-native.json",
+      "sha256": "234f89b75c1430be9ec55b3e91e9da74863acb858eaef1541ab1ea7ad330cade"
+    },
+    "cleanup": {
+      "path": ".local/tandy-engine/cleanup.json",
+      "sha256": "876dc4834da47c98bc550229940c8c0a1b4e25e054f853436dc9bc92cd3c359a"
+    }
+  }
+}

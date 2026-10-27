@@ -116,21 +116,24 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
-- Tandy viewer auditions complete109 of121 requests (87 audible,22 silent).
-  NCR8496 noise,zero-period reloads,register semantics and output polarity now
-  pass625 external chip-model checkpoints. Two original noise cues add10 carried
-  driver checkpoints and17 exact OUT writes; earlier driver comparisons remain
-  required. New browser routes cover noise003/010/035 and zero-period069.
-  These are separate digital/provider/browser evidence levels; full waveform,
-  gain/filter/timing parity and persistent in-game Tandy are unverified. The12
-  remaining auditions report engine008,commands8d/9f or the1024-tick limit.
-  Next:remaining commands,engine/audio-status APIs and persistent playback for
-  music and gameplay. [Tandy evidence/setup](tandy-audio.md) records exact commands
-  `npm run verify:tandy-psg`, `npm run verify:tandy-noise-cues` and the full
-  `npm run verify:tandy` suite. In-game audio still uses the PC-speaker driver;
-  its noise/engine effects are approximate. See [audio.md](audio.md). Full
-  `npm run verify` passes66 unit tests,44 browser scenarios,all required original
-  comparisons and the build; log `.local/tandy-noise-final-verify.log`.
+- All 121 public Tandy requests have viewer playback:111 file previews
+  (88 audible,23 silent) and 10 live players for long/looping sequences. Request 008
+  is an engine-control command and produces no standalone sound;009 plays live.
+  Intro music001 now ends naturally after 3558 sequencer ticks (about 48.8s),
+  verified with the browser's real audio worklet. Request 095's5199-tick natural
+  ending is checked in the independent provider. Engine/IRQ translation adds 29
+  conditional native cases/31 checkpoints,30 exact OUTs, three clock advances and
+  three chained interrupts. Ten carried provider scenarios consume 21 authored
+  inputs and compare 31 port-regression checkpoints; these are separate from
+  original runtime/waveform evidence. All 109 prior completed file renditions
+  retain exact PCM, timing and port sequences. Live Stop/replay, asset cleanup,
+  missing-module failure and a built production worklet/folder route are checked.
+  Next: connect persistent Tandy to actual game sound/engine events and translate
+  original status-query/wait APIs. Full original IRQ phase, device waveform,
+  gain/filter timing and whole-engine replay remain unproven. In-game audio
+  still uses the PC-speaker driver, whose noise/engine effects are approximate.
+  Commands:`npm run verify:tandy`,`npm run verify:tandy-production` and full
+  `npm run verify`. See [Tandy evidence/setup](tandy-audio.md).
 - Full original expedition timing,presentation and audio parity are unproven.
   Cave movement,mountain hook/ascent,jungle scrolling/enemies and additional
   variants/difficulties still need targeted original comparisons.
@@ -168,13 +171,14 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:65 unit tests,38 browser scenarios,
-all required original-data checks and the production build. Integration log:
-`.local/tandy-sequence-final-verify.log`. The speaker asset audit also retains
-121 successful renditions. The initial Tandy integration run was invalidated by
-a development reload during the cave scenario and exposed directory-upload
-handling of the worktree's asset symlink. Selecting its real directory fixed
-the folder test; the final full run kept source files frozen throughout.
+Current milestone passed full `npm run verify`: 68 unit tests, 47 development
+browser scenarios and one production browser scenario, all required original-data
+checks and the production build. Integration log:
+`.local/tandy-live-final-verify.log`. Sound 001 finishes naturally through actual
+browser audio after 3,558 ticks; production acceptance loads the original folder
+and plays/stops the compiled worklet. The speaker asset audit also retains 121
+successful renditions. Runtime, package and browser-test sources remained frozen
+throughout the final full run.
 
 One browser worker keeps the full mountain/jungle replays within their existing
 120-second limits; their required inputs and checkpoint counts are unchanged.
@@ -261,9 +265,10 @@ The original repository's `main` remains the local integration target; no push
 or deployment is authorized. The existing `.gitignore` remains unchanged.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,paused
-0ed6:046e stop1301,DS/SS1403,after the conditional Tandy-driver harness. Rechecked
-with the live debugger. Original general/segment registers were restored to
-the saved post-RETF caller; flags,time and BIOS effects were not restored.
+0ed6:046e stop 1397, DS/SS1403, after the conditional Tandy-driver harness. Rechecked
+with the live debugger. Original general/segment registers, port61 control and the saved BIOS flag byte
+were restored to the saved caller. CPU flags, clocks, PIC and other BIOS/device
+state are not a machine checkpoint.
 The allocated fixture was freed and owned breakpoints cleared. This is not a
 machine checkpoint or a natural campaign replay. Fresh launch/address validation
 is required before natural runtime comparisons. Earlier map/flight/rival captures

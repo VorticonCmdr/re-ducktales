@@ -54,7 +54,10 @@ for (const [id, ticks, samples] of [
     expect(Math.abs(media.duration - samples / 44100)).toBeLessThan(1 / 44100);
     expect(Math.abs(media.time - media.duration)).toBeLessThan(1 / 44100);
     await expect(
-      page.getByText("Partial Tandy implementation.", { exact: false }),
+      page.getByText(
+        "Waveform matching remains unverified; the game still uses PC-speaker audio.",
+        { exact: false },
+      ),
     ).toBeVisible();
     await button.click();
     await expect(audio).toHaveAttribute("data-state", "ended");
@@ -71,7 +74,7 @@ for (const [id, ticks, samples] of [
   });
 }
 
-test("Tandy unsupported and silent requests have explicit outcomes", async ({
+test("Tandy long sequences and silent requests have explicit outcomes", async ({
   page,
 }) => {
   const errors = [];
@@ -81,19 +84,17 @@ test("Tandy unsupported and silent requests have explicit outcomes", async ({
     "All resources decoded successfully",
   );
   const search = page.getByRole("searchbox", { name: "FIND AN ASSET" });
-  await search.fill("Sound 008");
+  await search.fill("Sound 009");
   await page
-    .getByRole("button", { name: "IT.DRV · Sound 008 Sound", exact: true })
+    .getByRole("button", { name: "IT.DRV · Sound 009 Sound", exact: true })
     .click();
   const section = page.locator('section[aria-label="Tandy preview"]');
-  await expect(section).toHaveAttribute("data-state", "error");
-  await expect(section.getByRole("alert")).toHaveText(
-    "Tandy preview stopped: Tandy engine sequencing is not implemented",
-  );
+  await expect(section).toHaveAttribute("data-state", "live-ready");
+  await expect(section.getByRole("alert")).toBeHidden();
   await expect(section.locator("audio")).toHaveCount(0);
   await expect(
-    section.getByRole("button", { name: "Play Tandy preview" }),
-  ).toHaveCount(0);
+    section.getByRole("button", { name: "Play live Tandy", exact: true }),
+  ).toBeVisible();
   expect(
     await page
       .locator("audio")

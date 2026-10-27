@@ -13,7 +13,7 @@
     "prepare:analysis": "python3 scripts/prepare-analysis.py",
     "verify:reference": "node scripts/verify-reference.js",
     "verify:build": "node scripts/verify-build.js",
-    "verify": "npm run verify:build && npm test && npm run verify:tandy && npm run verify:reference && npm run verify:campaign && npm run verify:visits && npm run verify:loot && npm run verify:investments && npm run verify:startup && npm run verify:ending && npm run verify:rival && npm run verify:atomic && npm run verify:system-controls && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run verify:flight-scene && npm run verify:flight-runtime && npm run verify:cave && npm run verify:mountain && npm run verify:jungle && npm run verify:photography && npm run test:browser && npm run build",
+    "verify": "npm run verify:build && npm test && npm run verify:tandy && npm run verify:reference && npm run verify:campaign && npm run verify:visits && npm run verify:loot && npm run verify:investments && npm run verify:startup && npm run verify:ending && npm run verify:rival && npm run verify:atomic && npm run verify:system-controls && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run verify:flight-scene && npm run verify:flight-runtime && npm run verify:cave && npm run verify:mountain && npm run verify:jungle && npm run verify:photography && npm run test:browser && npm run verify:tandy-production",
     "format": "prettier --write src/game scripts/verify-*.js tests/game.test.js tests/browser/*.js index.html playwright.config.js reference/*.json",
     "verify:campaign": "node scripts/verify-campaign.js && npm run verify:map-pointer",
     "verify:departure": "node scripts/verify-departure.js",
@@ -46,7 +46,7 @@
     "verify:rival-exhausted": "node scripts/verify-rival-exhausted.js",
     "verify:flight-visible-left-edge": "node scripts/verify-flight-visible-left-edge.js && node scripts/verify-flight-boundary-replay.js",
     "verify:map-pointer": "node scripts/verify-map-pointer.js",
-    "verify:tandy": "node scripts/verify-tandy-driver.js && npm run verify:tandy-envelope && npm run verify:tandy-cues && npm run verify:tandy-sequence && npm run verify:tandy-sequence-cues && npm run verify:tandy-controls && npm run verify:tandy-psg && npm run verify:tandy-noise-cues && npm run verify:tandy-corpus",
+    "verify:tandy": "node scripts/verify-tandy-driver.js && npm run verify:tandy-envelope && npm run verify:tandy-cues && npm run verify:tandy-sequence && npm run verify:tandy-sequence-cues && npm run verify:tandy-controls && npm run verify:tandy-psg && npm run verify:tandy-noise-cues && npm run verify:tandy-engine && npm run verify:tandy-live && npm run verify:tandy-corpus",
     "verify:tandy-envelope": "node scripts/verify-tandy-envelopes.js",
     "verify:tandy-cues": "node scripts/verify-tandy-cues.js",
     "verify:tandy-sequence": "node scripts/verify-tandy-sequence.js",
@@ -54,6 +54,9 @@
     "verify:tandy-controls": "node scripts/verify-tandy-controls.js",
     "verify:tandy-psg": "node scripts/verify-tandy-psg.js",
     "verify:tandy-noise-cues": "node scripts/verify-tandy-cues.js --noise",
+    "verify:tandy-engine": "node scripts/verify-tandy-engine.js",
+    "verify:tandy-live": "node scripts/verify-tandy-live.js",
+    "verify:tandy-production": "npm run build && playwright test --config playwright.production.config.js",
     "verify:tandy-corpus": "node scripts/verify-tandy-corpus.js"
   },
   "devDependencies": {

@@ -14,14 +14,19 @@
       "output": 0,
       "lfsr": 32768
     },
-    "centeredOutputNegated": true
+    "centeredOutputNegated": true,
+    "firstInterruptFrame": 0,
+    "initialSequencerDivider": 1,
+    "virtualClock": 0,
+    "biosFlags": 0
   },
   "counts": {
     "requests": 121,
-    "complete": 109,
-    "audible": 87,
-    "unsupported": 12,
-    "silent": 22
+    "complete": 111,
+    "audible": 88,
+    "unsupported": 0,
+    "silent": 23,
+    "live": 10
   },
   "cases": [
     {
@@ -35,8 +40,8 @@
     },
     {
       "id": 1,
-      "status": "unsupported",
-      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 2,
@@ -76,8 +81,8 @@
     },
     {
       "id": 6,
-      "status": "unsupported",
-      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 7,
@@ -90,13 +95,17 @@
     },
     {
       "id": 8,
-      "status": "unsupported",
-      "diagnostic": "Tandy engine sequencing is not implemented"
+      "status": "complete",
+      "ticks": 1,
+      "samples": 0,
+      "busWrites": 5,
+      "pcmSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "silent": true
     },
     {
       "id": 9,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 9f"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 10,
@@ -127,8 +136,8 @@
     },
     {
       "id": 13,
-      "status": "unsupported",
-      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 14,
@@ -276,13 +285,13 @@
     },
     {
       "id": 30,
-      "status": "unsupported",
-      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 31,
-      "status": "unsupported",
-      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 32,
@@ -340,8 +349,8 @@
     },
     {
       "id": 38,
-      "status": "unsupported",
-      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 39,
@@ -507,8 +516,8 @@
     },
     {
       "id": 57,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 9f"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 58,
@@ -530,8 +539,12 @@
     },
     {
       "id": 60,
-      "status": "unsupported",
-      "diagnostic": "Unsupported Tandy command 8d"
+      "status": "complete",
+      "ticks": 99,
+      "samples": 59330,
+      "busWrites": 370,
+      "pcmSHA256": "5b5c0764ca5aea7c3513be5f4813c6753a494ae8d79878f9478f074c25766bac",
+      "silent": false
     },
     {
       "id": 61,
@@ -841,8 +854,8 @@
     },
     {
       "id": 95,
-      "status": "unsupported",
-      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 96,
@@ -981,8 +994,8 @@
     },
     {
       "id": 111,
-      "status": "unsupported",
-      "diagnostic": "Tandy audition exceeded 1024 ticks; persistent playback is not implemented"
+      "status": "live",
+      "diagnostic": "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences"
     },
     {
       "id": 112,

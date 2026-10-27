@@ -132,47 +132,144 @@ export class TandyTones {
   }
 }
 
+export const TANDY_INTERRUPT_SECONDS = 1365 / 1193182;
+
+// Persistent,DOM-free device clock. Callers supply a sample rate and frames;
+// wall-clock scheduling,input and browser audio remain outside translated logic.
+export class TandyPlayback {
+  constructor(
+    bytes,
+    {
+      sampleRate = 44100,
+      port61 = 0,
+      auditionAlignment = false,
+      trace = false,
+    } = {},
+  ) {
+    this.chip = new TandyTones({ sampleRate });
+    this.sampleRate = sampleRate;
+    this.port61 = port61;
+    this.trace = trace;
+    this.frame = 0;
+    this.interrupts = 0;
+    this.ticks = 0;
+    this.nextInterruptFrame = 0;
+    this.clock = 0;
+    this.bios = 0;
+    this.acks = 0;
+    this.chains = 0;
+    this.signalSamples = 0;
+    this.bus = [];
+    this.biosFlags = [];
+    this.driver = new TandyDriver(bytes, {
+      writePort: (port, value) => {
+        if (port === 0x20) {
+          if (value !== 0x20)
+            throw Error("Unsupported Tandy PIC acknowledgement");
+          this.acks++;
+          return;
+        }
+        if (port !== 0xc0 && port !== 0x61)
+          throw Error(`Unsupported Tandy port ${port}`);
+        if (this.trace) this.bus.push({ tick: this.ticks - 1, port, value });
+        if (port === 0xc0) this.chip.write(value);
+      },
+    });
+    this.driver.reset(port61);
+    // Independent audition alignment,retaining the established first tick0.
+    // Normal persistent devices keep original divider12. Neither option claims
+    // to recover the unobserved phase of a previously running original machine.
+    if (auditionAlignment) this.driver.byte(0x1ca, 1);
+  }
+  start(argument) {
+    this.driver.start(argument, { port61: this.port61 });
+  }
+  renderFrames(count, { haltWhenIdle = false } = {}) {
+    if (!Number.isInteger(count) || count < 1 || count > 65536)
+      throw Error("Invalid Tandy frame request");
+    const pcm = new Float32Array(count);
+    for (let i = 0; i < count; i++) {
+      while (this.frame >= this.nextInterruptFrame) {
+        this.driver.processInterrupt({
+          clearBiosFlags: (mask) => {
+            this.bios &= mask;
+            if (this.trace) this.biosFlags.push(mask);
+          },
+          incrementClock: (address) => {
+            this.clock = (this.clock + 1) >>> 0;
+            this.clockAddress = address;
+            this.ticks++;
+          },
+          chainInterrupt: (address) => {
+            this.chainAddress = address;
+            this.chains++;
+          },
+        });
+        this.interrupts++;
+        this.nextInterruptFrame = Math.round(
+          this.interrupts * TANDY_INTERRUPT_SECONDS * this.sampleRate,
+        );
+      }
+      if (haltWhenIdle && !this.driver.active) {
+        if (this.chip.volumes.some((v) => v !== 15))
+          throw Error("Tandy sequence ended without muting all channels");
+        return { pcm: pcm.subarray(0, i), ended: true };
+      }
+      const value = this.chip.sample();
+      pcm[i] = value;
+      if (value !== 0) this.signalSamples++;
+      this.frame++;
+    }
+    return { pcm, ended: false };
+  }
+}
+
+export class TandyPreviewLimitError extends Error {
+  constructor() {
+    super(
+      "Tandy audition exceeded 1024 ticks; use live playback for long or looping sequences",
+    );
+    this.code = "TANDY_PREVIEW_LIMIT";
+  }
+}
 export function renderTandyPreview(bytes, id, { sampleRate = 44100 } = {}) {
   if (!Number.isInteger(id) || id < 0 || id > 120)
     throw Error(`Unsupported Tandy public sound ID ${id}`);
-  const chip = new TandyTones({ sampleRate }),
-    bus = [],
-    biosFlags = [];
-  let tick = -1;
-  const driver = new TandyDriver(bytes, {
-    writePort: (port, value) => {
-      bus.push({ tick, port, value });
-      if (port === 0xc0) chip.write(value);
-      else if (port !== 0x61) throw Error(`Unsupported Tandy port ${port}`);
-    },
+  const playback = new TandyPlayback(bytes, {
+    sampleRate,
+    auditionAlignment: true,
+    trace: true,
   });
-  // Independent audition environment: port61 control0,initial chip state above,
-  // first sequencer tick at time0. No expected PCM or final state supplies input.
-  driver.reset(0);
-  driver.start(id, { port61: 0 });
-  const pcm = [];
-  let ticks = 0;
-  for (tick = 0; tick < 1024; tick++) {
-    const end = Math.round(tick * TANDY_TICK_SECONDS * sampleRate);
-    while (pcm.length < end) pcm.push(chip.sample());
-    driver.processTick({ clearBiosFlags: (mask) => biosFlags.push(mask) });
-    ticks++;
-    if (!driver.active) {
-      if (chip.volumes.some((v) => v !== 15))
-        throw Error("Tandy sequence ended without muting all channels");
+  playback.start(id);
+  const chunks = [];
+  let length = 0;
+  while (playback.ticks < 1024) {
+    const { pcm, ended } = playback.renderFrames(128, { haltWhenIdle: true });
+    chunks.push(pcm);
+    length += pcm.length;
+    if (ended) {
+      const output = new Float32Array(length);
+      let offset = 0;
+      for (const chunk of chunks) {
+        output.set(chunk, offset);
+        offset += chunk.length;
+      }
+      if (playback.acks + playback.chains !== playback.interrupts)
+        throw Error("Unconsumed Tandy interrupt effects");
       return {
-        pcm: Float32Array.from(pcm),
+        pcm: output,
         sampleRate,
-        duration: pcm.length / sampleRate,
-        ticks,
-        bus,
-        biosFlags,
+        duration: length / sampleRate,
+        ticks: playback.ticks,
+        bus: playback.bus,
+        biosFlags: playback.biosFlags,
+        interrupts: playback.interrupts,
+        acknowledgements: playback.acks,
+        chains: playback.chains,
         approximate: true,
         truncated: false,
       };
     }
   }
-  throw Error(
-    "Tandy audition exceeded 1024 ticks; persistent playback is not implemented",
-  );
+  throw new TandyPreviewLimitError();
 }

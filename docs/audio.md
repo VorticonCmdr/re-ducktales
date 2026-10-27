@@ -6,14 +6,15 @@ using the same container/LZW routines as `.ARC`.
 
 The current player interprets **resource #005**, a 7,253-byte PC-speaker driver.
 Resource #004 (12,339 bytes) is the Tandy/PCjr driver. The viewer now attempts
-all121 public requests:109 complete (87 audible,22 silent);12 explicitly stop on
-unsupported commands/devices. Envelope modes,pitch slides,vibrato and sequence
-controls have bounded original-driver state/port comparisons. The full-corpus
-counts are port regressions; original runtime parity is limited to the recorded
-scenarios. NCR8496 noise/zero-period behavior has625 external digital checks;
-two original noise cues add10 carried checkpoints and17 exact port writes.
-Waveform parity,in-game Tandy and engine support remain
-unfinished. Resource #006 (4,142 bytes) remains unidentified and is not
+all 121 public requests:111 file previews (88 audible,23 silent) and 10 live
+players for long/looping sequences. NCR8496 noise/register/zero-period behavior
+has 625 external digital checks. Native driver state/OUT comparisons cover
+reset/start, complete bounded cues, envelopes, control flow, pitch/vibrato and the
+engine/fast interrupt. Independent live scenarios cover two natural music
+endings and eight explicit stops. All 109 earlier file renditions retain their
+exact PCM, timing and port writes. These evidence levels do not establish full
+original waveform/IRQ phase or whole-engine parity. In-game Tandy is not yet
+connected; current gameplay still uses the PC-speaker rendition. Resource #006 (4,142 bytes) remains unidentified and is not
 synthesized. See [Tandy evidence and setup](tandy-audio.md).
 
 ## Verified locations in decoded resource #005

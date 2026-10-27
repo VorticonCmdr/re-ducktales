@@ -769,3 +769,35 @@ dispatch now advances Glomgold and consumes his exact RNG draws; see [rival evid
 Original whole-level timing,scrolling/enemy/transition pixels,audio and other
 variants/difficulties remain unverified. Photography and trading are connected;
 [normal rival progression](rival.md) is connected. The full-game goal is active.
+
+
+## Global input polling and flushes (2026-10-28)
+
+The jungle now consumes P/Q/S at the original global input call in control
+`1c17:067b`, rather than immediately when the browser receives a key. Entry
+`00d7`, control `0aa4`, and first-page presentation `048f` call the resident
+`140e:19a5` input flush. Ghidra's displayed linear aliases differ from the raw
+far operands; original overlay bytes are authoritative. The four source ranges
+are hashed in `reference/jungle-input.json` and checked against the pinned EXE.
+
+A pause or quit dialog suspends the pending input call. Actor state, RNG,
+presentations and rendered pixels stay frozen; driver/retrace providers continue.
+Cancelling quit or resuming pause flushes pending keys and releases browser
+controls before returning to that same input call. Logical-segment flushes are
+queued until their driver timestamp, so they cannot discard later keys early.
+Ordinary BIOS/key-matrix flushes preserve the separate physical joystick
+provider. Original keyboard typematic behavior remains unverified.
+
+Six executable controller cases cover entry, first-page reveal, pause, scan
+priority, quit cancellation and deferred flush timing. A negative control removes
+the entry flush and must be rejected. The independent browser scenario travels
+through the real title, office, map and flight into jungle, checks entry keys,
+pause pixels/clocks, resume, cancelled quit and sound switching. Its screenshot
+is local at `.local/browser-results/jungle-input-pause.png`.
+
+Evidence scope: the call positions are statically inferred and the port's
+controller/browser behavior is regression checked. Existing original control
+and shared dialog comparisons remain separate evidence. This adds no original
+full-scene pause timeline capture and proves no additional campaign completion.
+Run `node --test tests/jungle-input.test.js`, `npm run verify:jungle`, and
+`npm run test:browser -- tests/browser/jungle-input.spec.js tests/browser/jungle.spec.js tests/browser/jungle-treasure.spec.js`.

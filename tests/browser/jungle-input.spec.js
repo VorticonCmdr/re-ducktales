@@ -1,0 +1,109 @@
+import { test, expect } from "@playwright/test";
+
+test("jungle defers global keys, pauses actors and resumes cancelled quit", async ({
+  page,
+}) => {
+  test.setTimeout(120000);
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  // Only the external clock and real keyboard adapter are supplied. The8ms
+  // display cadence observes every input sample without changing game clocks.
+  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
+  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
+  await page.addInitScript(() => {
+    window.requestAnimationFrame = (callback) =>
+      setTimeout(() => callback(performance.now()), 8);
+    window.cancelAnimationFrame = clearTimeout;
+  });
+  await page.goto("/");
+  const canvas = page.locator("#game");
+  const state = () => canvas.getAttribute("data-state").then(JSON.parse);
+  async function until(predicate, max = 3000) {
+    for (let i = 0; i < max; i++) {
+      const s = await state();
+      if (s?.diagnostic) throw Error(s.diagnostic);
+      if (s && predicate(s)) return s;
+      await page.clock.runFor(8);
+    }
+    throw Error(
+      `unfinished jungle browser wait:${JSON.stringify(await state())}`,
+    );
+  }
+  async function press(key) {
+    await page.keyboard.press(key);
+    await page.clock.runFor(100);
+  }
+  await until((s) => s.scene === "title");
+  await canvas.focus();
+  await press("Space");
+  await press("Enter");
+  await page.locator("#map").click();
+  await page.clock.runFor(100);
+  const bounds = await canvas.boundingBox();
+  await canvas.click({
+    position: { x: (bounds.width * 64) / 320, y: (bounds.height * 73) / 200 },
+  });
+  await page.clock.runFor(100);
+  await press("Space");
+  await press("ArrowRight");
+  await press("Space");
+  await page.keyboard.down("Space");
+  await until((s) => s.scene === "flight" && s.flight.speed > 4);
+  await page.keyboard.down("ArrowDown");
+  await until((s) => s.flight.heading > 0);
+  await page.keyboard.up("ArrowDown");
+  await page.keyboard.up("Space");
+  const entered = await until((s) => s.scene === "jungle");
+  expect(entered.campaign.location).toBe(1);
+  expect(entered.campaign.day).toBe(4);
+  expect(entered.money).toBe(0);
+  expect(entered.briefing.variant).toBe(0);
+  expect(entered.briefing.seed).toBe(30127);
+  expect(entered.jungle.seed).toBe(44031);
+  expect(entered.jungle.frames).toBe(0);
+  await page.keyboard.press("p");
+  await page.keyboard.press("s");
+  await page.clock.runFor(1200);
+  let current = await state();
+  expect(current.scene).toBe("jungle");
+  expect(current.systemOverlay).toBeNull();
+  await expect(page.locator("#audio")).not.toBeChecked();
+  await page.keyboard.press("p");
+  const paused = await until((s) => s.systemOverlay?.kind === "pause");
+  expect(paused.jungle.waitingForInputPoll).toBe(true);
+  const pausedPixels = await canvas.screenshot();
+  const actorFields = [
+    "x",
+    "y",
+    "action",
+    "frame",
+    "seed",
+    "frames",
+    "presentations",
+  ];
+  await page.keyboard.press("s");
+  await page.clock.runFor(800);
+  const waiting = await state();
+  expect(waiting.systemOverlay.phase).toBe("waiting");
+  for (const field of actorFields)
+    expect(waiting.jungle[field]).toEqual(paused.jungle[field]);
+  expect(waiting.jungle.tick).toBeGreaterThan(paused.jungle.tick);
+  expect(waiting.jungle.retrace).toBeGreaterThan(paused.jungle.retrace);
+  expect(await canvas.screenshot()).toEqual(pausedPixels);
+  await expect(page.locator("#audio")).not.toBeChecked();
+  await canvas.screenshot({
+    path: ".local/browser-results/jungle-input-pause.png",
+  });
+  await page.keyboard.press("p");
+  await until((s) => !s.systemOverlay);
+  await page.keyboard.press("q");
+  await until((s) => s.systemOverlay?.kind === "quit");
+  await page.keyboard.press("n");
+  current = await until((s) => !s.systemOverlay);
+  expect(current.scene).toBe("jungle");
+  await page.keyboard.press("s");
+  await page.clock.runFor(200);
+  await expect(page.locator("#audio")).toBeChecked();
+  expect(errors).toEqual([]);
+  await expect(page.locator("#diagnostic")).toBeHidden();
+});

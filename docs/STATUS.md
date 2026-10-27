@@ -1,6 +1,6 @@
 # Current port status
 
-Updated2026-10-27. **The full game is not complete.**
+Updated2026-10-28. **The full game is not complete.**
 
 The main campaign loop and all four expedition families are playable. This is
 still completion work,not only final polish: unverified destination/difficulty
@@ -111,8 +111,10 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   new original checks for input,clock/deadline preservation and final return wait.
   Cave has8 new original code/pause/deadline/room-flush checks. Mountain has6
   new original input/pause/life-flush checks and an independent controller replay.
-  Jungle and photography global-key alignment with their original animation/
-  audio waits remains unproven.
+  Jungle global-key polling now follows static call/flush locations, with six
+  controller checks and a real browser pause/quit/sound route. Original full-scene
+  pause timing remains unproven. Photography global-key alignment with its
+  original animation/audio waits remains unproven.
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
@@ -181,10 +183,10 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passes full `npm run verify`: 71 unit tests, 50 development
+Current milestone passes full `npm run verify`: 77 unit tests, 51 development
 browser scenarios and two production browser scenarios, plus all required
 original-data comparisons and the production build. Log:
-`.local/tandy-game-final-verify.log`. Native browser routes cover persistent
+`.local/jungle-input-full-verify.log`. Native browser routes cover persistent
 Tandy money-bin cues, mute/reset and acknowledged device closure, original
 flight-engine word dispatch, and flight → cave → pit → natural sound wait →
 results. Compiled game/viewer tests load the real original folder. Sound 001
@@ -294,3 +296,14 @@ machine checkpoint or a natural campaign replay. Fresh launch/address validation
 is required before natural runtime comparisons. Earlier map/flight/rival captures
 retain their own scopes; see `reference/tandy-sequence.json`, `reference/tandy-sequence-cues.json`
 `reference/tandy-controls.json` and `docs/tandy-audio.md`.
+
+
+The jungle input milestone adds six controller cases (including a rejected
+missing-flush negative control), four pinned original call-site ranges and one
+independent keyboard browser route. Pause suspends actor/RNG/presentation state
+and exact screen pixels while device clocks continue. Entry/first-page keys are
+flushed at their original call boundaries; cancelled quit resumes the pending
+reader. Existing 824-input failure,792-input treasure and857-input campaign
+replays pass unchanged. See `reference/jungle-input.json` and `docs/jungle.md`.
+These are static-source/controller/browser results, not a new original
+full-scene timing capture. The complete suite passed with no skipped tests.

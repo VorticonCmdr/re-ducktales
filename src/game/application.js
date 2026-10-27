@@ -56,6 +56,7 @@ export class Game {
     this.pendingFlightSystemKeys = new Map();
     this.pendingCaveSystemKeys = new Map();
     this.pendingMountainSystemKeys = new Map();
+    this.pendingJungleSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -187,7 +188,9 @@ export class Game {
     if (
       !fromActivityPoll &&
       !this.systemOverlay &&
-      ["money-bin", "flight", "cave", "mountain"].includes(this.scene) &&
+      ["money-bin", "flight", "cave", "mountain", "jungle"].includes(
+        this.scene,
+      ) &&
       ["pause", "quit", "toggle-sound"].includes(event.type)
     ) {
       // IRQ9 retains make/release flags until19c5 consumes them. No input
@@ -199,7 +202,9 @@ export class Game {
             ? this.pendingCaveSystemKeys
             : this.scene === "mountain"
               ? this.pendingMountainSystemKeys
-              : this.pendingBinSystemKeys;
+              : this.scene === "jungle"
+                ? this.pendingJungleSystemKeys
+                : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -256,6 +261,7 @@ export class Game {
       this.pendingFlightSystemKeys.clear();
       this.pendingCaveSystemKeys.clear();
       this.pendingMountainSystemKeys.clear();
+      this.pendingJungleSystemKeys.clear();
       this.exiting = false;
       this.pendingCampaignAction = null;
       this.briefing = null;
@@ -561,6 +567,7 @@ export class Game {
       if (this.scene === "flight") this.flight.advanceBlockedTick();
       if (this.scene === "cave") this.cave.advanceBlockedTick();
       if (this.scene === "mountain") this.mountain.advanceBlockedTick();
+      if (this.scene === "jungle") this.jungle.advanceBlockedTick();
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
       return;
@@ -662,6 +669,7 @@ export class Game {
       if (this.scene === "flight") this.flight.advanceBlockedRetrace();
       if (this.scene === "cave") this.cave.advanceBlockedRetrace();
       if (this.scene === "mountain") this.mountain.advanceBlockedRetrace();
+      if (this.scene === "jungle") this.jungle.advanceBlockedRetrace();
       return;
     }
     if (this.scene === "photography") {
@@ -766,11 +774,13 @@ export class Game {
     this.pendingFlightSystemKeys.clear();
     this.pendingCaveSystemKeys.clear();
     this.pendingMountainSystemKeys.clear();
+    this.pendingJungleSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "flight") this.flight.flushInput();
     else if (this.scene === "cave") this.cave.flushInput();
     else if (this.scene === "mountain") this.mountain.flushInput();
+    else if (this.scene === "jungle") this.jungle.flushInput();
     else {
       this.handleInput({ type: "controls", fire: false, direction: null });
       this.effects.push({ type: "flushControls" });
@@ -802,6 +812,20 @@ export class Game {
     if (result === "resume" && this.scene === "mountain") {
       this.mountain.resumeInputPoll();
       this.collectMountain();
+    }
+    if (result === "resume" && this.scene === "jungle") {
+      this.jungle.resumeInputPoll();
+      this.collectActionExpedition(this.jungle);
+    }
+  }
+  pollJungleSystemInput() {
+    return this.pollSystemInput(this.pendingJungleSystemKeys);
+  }
+  flushJungleInput(releaseControls = true) {
+    this.pendingJungleSystemKeys.clear();
+    if (releaseControls) {
+      this.handleInput({ type: "controls", fire: false, direction: null });
+      this.effects.push({ type: "flushControls" });
     }
   }
   pollMountainSystemInput() {
@@ -1040,6 +1064,8 @@ export class Game {
         {
           ...this.expeditionResources,
           entries: this.expeditionResources.jungleEntries,
+          pollInput: () => this.pollJungleSystemInput(),
+          flushInput: (release) => this.flushJungleInput(release),
           variant: this.briefing.variant,
           difficulty: this.difficulty,
           seed: this.seed,
@@ -1204,6 +1230,13 @@ export class Game {
       cave: this.cave?.snapshot() ?? null,
       mountain: this.mountain?.snapshot() ?? null,
       jungle: this.jungle?.snapshot() ?? null,
+      ...(this.pendingJungleSystemKeys.size
+        ? {
+            pendingJungleSystemKeys: [...this.pendingJungleSystemKeys].sort(
+              (a, b) => a[0] - b[0],
+            ),
+          }
+        : {}),
       photography: this.photography?.snapshot() ?? null,
       investments: this.investments?.snapshot() ?? null,
       ending: this.ending?.snapshot() ?? null,

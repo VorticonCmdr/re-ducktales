@@ -1,0 +1,63 @@
+{
+  "id": "jungle-global-input-fb658562",
+  "buildManifest": "reference/build.json",
+  "evidence": "Statically inferred call positions, controller regressions, and independent browser acceptance. No original full-scene pause timeline or waveform comparison.",
+  "source": {
+    "program": "JUNGLE_CODE.EXE",
+    "format": "x86 16-bit real-mode MZ overlay 8",
+    "originalFile": "game/DUCKTALE.EXE",
+    "overlayHeaderOffset": 129536,
+    "overlayBodyOffset": 131584,
+    "ghidraSegment": "1c17",
+    "ranges": [
+      {
+        "offset": 215,
+        "length": 5,
+        "purpose": "entry input flush",
+        "sha256": "d4e8f2dae9d815f87efeb24cd35cc14903df1f60e55ebf69b6b970c7bdce3134"
+      },
+      {
+        "offset": 1659,
+        "length": 5,
+        "purpose": "global input reader",
+        "sha256": "41299a6ecfc17020c2e6fe77a4ed4d3f56a8df1619defedbe43fd178bb2d73a6"
+      },
+      {
+        "offset": 2724,
+        "length": 5,
+        "purpose": "normal control flush",
+        "sha256": "d4e8f2dae9d815f87efeb24cd35cc14903df1f60e55ebf69b6b970c7bdce3134"
+      },
+      {
+        "offset": 1154,
+        "length": 24,
+        "purpose": "first-page reveal and flush",
+        "sha256": "a5f6f03fd8c0befb2897a88f71b713435c55f7b6ba23266fdb4826ad2fe5ce06"
+      }
+    ]
+  },
+  "relatedNativeEvidence": [
+    "reference/jungle-controls.json",
+    "reference/system-controls.json",
+    "reference/jungle-runtime.json"
+  ],
+  "scenario": {
+    "start": "Conditional Game.startExpedition jungle variant0 difficulty0 seed11324 location1, original LOC/JG/MT/MAIN and unpacked executable. Browser independently travels title -> office -> map -> flight crash -> jungle.",
+    "clock": "Scheduler original driver divisor1365*12 and70.086Hz retrace; browser external 8ms presentation schedule.",
+    "inputs": "Authored schedules and direct events in tests/jungle-input.test.js; real keyboard in tests/browser/jungle-input.spec.js. Expected state is never used to generate controller inputs.",
+    "expectedUnitCases": 6,
+    "expectedBrowserCases": 1,
+    "comparison": "Exact actor state, queues, phase and clock invariants. Browser checks real adapter, rendering, entry flush, pause/resume, quit cancellation and sound setting.",
+    "exclusions": [
+      "No original keyboard typematic comparison; held directions are an explicit physical joystick provider separate from BIOS key flags.",
+      "No new natural DOSBox capture. Existing native controls/global dialog evidence remains separately scoped."
+    ],
+    "negativeControl": "Disabling entry flush must cause entry checker to reject."
+  },
+  "artifacts": "Browser screenshot .local/browser-results/jungle-input-pause.png (local only); original fixtures required by related native manifests.",
+  "verify": [
+    "node --test tests/jungle-input.test.js",
+    "npm run verify:jungle",
+    "npm run test:browser -- tests/browser/jungle-input.spec.js tests/browser/jungle-treasure.spec.js tests/browser/jungle.spec.js"
+  ]
+}

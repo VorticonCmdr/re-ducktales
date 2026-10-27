@@ -32,6 +32,9 @@ export class Jungle {
     Object.assign(this, prepareJungle(options, previousMemory));
     this.raster = new JungleRaster(this.resources);
     this.controls = { direction: null, fire: false };
+    this.pollInput = options.pollInput ?? (() => true);
+    this.onFlushInput = options.flushInput ?? (() => {});
+    this.pendingFlushes = [];
     this.events = [];
     this.inputs = [];
     this.tick = 0;
@@ -53,7 +56,7 @@ export class Jungle {
       sound: (id) => this.sound(id),
       wait: (ticks) => this.driverWait(ticks),
       vinePoint: (id) => jungleVinePoint(this.memory, id),
-      flushInput: () => {},
+      flushInput: () => this.flushInput(false),
     };
     initializeJungleEntry(this.memory, this.effects);
     this.iterator = this.run();
@@ -111,7 +114,7 @@ export class Jungle {
       return;
     }
     if (
-      !["driver", "retrace"].includes(result.value.clock) ||
+      !["driver", "retrace", "input"].includes(result.value.clock) ||
       !Number.isInteger(result.value.remaining) ||
       result.value.remaining < 1
     )
@@ -125,7 +128,48 @@ export class Jungle {
       Math.max(this.tick, this.logicalTick) >>> 0,
       true,
     );
+    this.consumeFlushes();
     this.advance("driver");
+  }
+  advanceBlockedTick() {
+    this.tick++;
+    this.memory.view.setUint32(
+      0x2225,
+      Math.max(this.tick, this.logicalTick) >>> 0,
+      true,
+    );
+  }
+  advanceBlockedRetrace() {
+    this.retrace++;
+  }
+  *readInput() {
+    if (!this.pollInput()) yield { clock: "input", remaining: 1 };
+  }
+  resumeInputPoll() {
+    if (this.wait?.clock !== "input")
+      throw Error("Jungle resumed outside its input reader");
+    this.resume();
+  }
+  flushInput(releaseControls = true) {
+    // Ordinary control0aa4 clears the BIOS/key-matrix state, while the browser's
+    // physical joystick provider remains separate. Dialog flushes additionally
+    // release the browser controls adapter. Logical waits can put this
+    // effect in the future; consume it before resuming at that driver time.
+    const event = { due: this.logicalTick, releaseControls };
+    if (event.due > this.tick) this.pendingFlushes.push(event);
+    else this.applyFlush(event);
+  }
+  applyFlush({ releaseControls }) {
+    this.memory.bytes.fill(0, 0x276c, 0x27ec);
+    if (releaseControls) this.controls = { direction: null, fire: false };
+    this.onFlushInput(releaseControls);
+  }
+  consumeFlushes() {
+    while (
+      this.pendingFlushes.length &&
+      this.pendingFlushes[0].due <= this.tick
+    )
+      this.applyFlush(this.pendingFlushes.shift());
   }
   advanceRetrace() {
     this.retrace++;
@@ -192,11 +236,13 @@ export class Jungle {
     const m = this.memory;
     this.phase = "entering";
     yield* this.wipe();
+    this.flushInput(false); // Main00d7, after the uninterruptible entry wipe.
     let first = true;
     while (m.i(0x1aac) === 0) {
       this.phase = "playing";
       if (m.i(0x78e8) === 0) invalidateJungleActor(m);
       m.i(0x8b56, 0);
+      yield* this.readInput(); // Main067b calls the shared global input reader.
       const input =
         ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ?? 0) |
         (this.controls.fire ? 64 : 0);
@@ -233,6 +279,7 @@ export class Jungle {
       updateJungleRider(m, this.effects);
       advanceJungleMotion(m, this.effects);
       yield* this.frame(first);
+      if (first) this.flushInput(false); // Main048f, after both first-page reveals.
       first = false;
       // Resident098e:01d8 uses an unsigned DX:AX deadline,then a fresh read.
       const interval = m.view.getUint32(0x27fc, true);
@@ -259,6 +306,7 @@ export class Jungle {
     const m = this.memory;
     return {
       phase: this.phase,
+      ...(this.wait?.clock === "input" ? { waitingForInputPoll: true } : {}),
       x: m.i(0x5f46),
       y: m.i(0x6858),
       column: m.i(0x544c),

@@ -52,11 +52,7 @@ export class CampaignEnding {
     if (event.type === "fire") {
       if (this.phase === "replay") {
         if (this.choice === 0) this.result = "again";
-        else {
-          this.phase = "credits";
-          this.credit = -1;
-          this.remaining = 20 * 7;
-        }
+        else this.beginCredits();
       } else this.skipRequested = true;
       return;
     }
@@ -67,6 +63,12 @@ export class CampaignEnding {
       this.choice ^= 1;
       this.repeat = 14;
     }
+  }
+  beginCredits() {
+    this.phase = "credits";
+    this.credit = -1;
+    this.remaining = 20 * 7;
+    this.skipRequested = false;
   }
   advanceTick(controls = { fire: false, direction: null }) {
     if (this.phase === "replay") {

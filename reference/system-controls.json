@@ -1,0 +1,82 @@
+{
+  "id": "system-controls-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "a4bbae3",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 7,
+  "evidenceLevel": "bounded original pause/quit/sound state, popup pixels and static interface audit; independent browser checks are separate",
+  "startingRecipe": "Continue atomic arrival01f5:04da stop454. Allow the expedition to fail and map return at day16. First P during transition was not consumed; another paired hardware P100ms at stable map hits03b9:047f (455). Original mappings unchanged: root01f5,DS/SS1403,helper03b9,input0319.",
+  "inputEvents": "Hardware paired P100ms; stop pause entry047f,wait05d5 after mandatory35-tick wait/flush,then P100ms to return066c. Escape100ms opens quit; stop03a7 before input,then N100ms to return047e. Q100ms opens second quit; stop03a7 then conditionally stop again after exactly2 DS2225 DWORD ticks. Y100ms reaches04ea:1098 credits. S3000ms later hits0319:01c4 after clearing sound flag. All releases must finish before a new schedule.",
+  "injections": [
+    "Inherited explicit day/difficulty/accounts/unlock/rival-mask/seed setup from reference/atomic.json. No new memory/CPU writes in this controls capture."
+  ],
+  "fittedInputs": [],
+  "comparisonRules": "Exact day/location/accounts/RNG/collected-flag preservation across pause,No andYes; pause/quit guard bytes and128-byte keyboard-table flush; original sound1\u21920 write. Complete input876/dialog966/flush32 code bytes match relocated original EXE. Popup rectangles compare exactRGBA; underlying map pixels are outside this popup check. Quit first flip raw capture lagged VGA; the PNG is captured on the second quit after fixed2 driver clocks at the same polling address. No frame search or fitted clocks.",
+  "exclusions": [
+    "Original elapsed time across busy input loops,IRQ clock fields,heap/graphics/stack scratch and full active-level timing are not compared. The35/7 waits have static evidence and independent executable tests.",
+    "The unused-file-writer audit checks canonical pointers and direct aliased far calls across resident plus all10 overlays. It supports no identified persistence path in this build; it does not prove the absence of every computed transfer or make claims about other editions."
+  ],
+  "verifyCommand": "npm run verify:system-controls",
+  "artifacts": {
+    "pauseBefore": {
+      "path": ".local/system-pause-before.json",
+      "sha256": "b8c2d70c4595ce052e3b208c9adfc94ba8b76ff4b3311619870f7810f8d6766a"
+    },
+    "pauseWait": {
+      "path": ".local/system-pause-wait.json",
+      "sha256": "257cf1a7fcad39189007eaf43ac14417775a0a7798ada711b0223612e287cb2e"
+    },
+    "pauseAfter": {
+      "path": ".local/system-pause-after.json",
+      "sha256": "2175285e7ae8a039d7ee59b7e8e690b571144673d822d97523e5873f56a51493"
+    },
+    "quitWait": {
+      "path": ".local/system-quit-wait.json",
+      "sha256": "d78cc7d0a55808cb2eeabeb248bf770bb37341de8048edb07f8909bbeec9efa4"
+    },
+    "quitNo": {
+      "path": ".local/system-quit-no.json",
+      "sha256": "50f3dcc6d08308184f65d8b229aa4d1b54afde60aabce261e686fc38b7d1b53c"
+    },
+    "quitReveal": {
+      "path": ".local/system-quit-reveal.json",
+      "sha256": "accdfb7105becfd26880f7f905a859957de9c41492710572e6f23134b097333b"
+    },
+    "quitVisible": {
+      "path": ".local/system-quit-visible.json",
+      "sha256": "c4614604c37509ddf5ceaf8dfb3508a5230da0d04bfe7d89c57c65829d9425a3"
+    },
+    "quitYes": {
+      "path": ".local/system-quit-yes.json",
+      "sha256": "69a836da1167c7b53eec9817921545f6e919dc9373a4831d99367ac194acb1e2"
+    },
+    "soundOff": {
+      "path": ".local/system-sound-off.json",
+      "sha256": "758f3c1ffab40794e0d85ee809ddc0c7e61f2d410dbe587edca31465c10a352c"
+    },
+    "mode": {
+      "path": ".local/system-mode.json",
+      "sha256": "41b9b22649dcba3ab8bc40845ee6047cab216fb0268c445396ba6e80c497e096"
+    },
+    "pausePNG": {
+      "path": ".local/system-pause.png",
+      "sha256": "dd2cdb4cd8c20cd40f9eafa4f2f2e13cfe660f0e45dcfb8a2e5f5287f04423d0"
+    },
+    "quitPNG": {
+      "path": ".local/system-quit.png",
+      "sha256": "5c821dc3edd9c577992c0fd492e5ba31ce4fb93e632f550ffec35e2760e78073"
+    },
+    "watchpointDiagnostic": {
+      "path": ".local/system-memory-watch-limitation.json",
+      "sha256": "952fd80dd455cfb5c32bdc58abfd51b215950792b2157508f7e622b3eae1e15e"
+    }
+  },
+  "captureToolLimitation": "A newly armed write watchpoint stopped immediately at credits entry with the sound byte still1 and before scheduled S. It also remained registered with once=true after2 reported hits. The sound case uses0319:01c4 execute stop instead; diagnostic records the still-live memory breakpoint. Explicit owned-id removal was required."
+}

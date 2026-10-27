@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("jungle departure, keyboard jump/walk/drop, life loss, campaign return and direct retry", async ({
+test("jungle departure, keyboard movement, life loss and campaign retry or rival claim", async ({
   page,
 }) => {
   test.setTimeout(120000);
@@ -71,15 +71,30 @@ test("jungle departure, keyboard jump/walk/drop, life loss, campaign return and 
   expect(returned.campaign.location).toBe(1);
   expect(returned.money).toBe(returned.jungle.money);
   await page.keyboard.press("Space");
-  await expect(canvas).toHaveAttribute("data-scene", "jungle", {
-    timeout: 10000,
-  });
-  const retry = await state();
-  expect(retry.jungle.lives).toBe(3);
-  expect(retry.campaign.day).toBe(returned.campaign.day);
-  expect(retry.money).toBe(returned.money);
-  expect(retry.flight).toBeNull();
-  expect(retry.diagnostic).toBeNull();
+  if (returned.campaign.rivalCollected.includes(1)) {
+    await expect(canvas).toHaveAttribute("data-scene", "visit-notice", {
+      timeout: 10000,
+    });
+    const blocked = await state();
+    expect(blocked.visitNotice.reason).toBe("rival");
+    expect(blocked.jungle.lives).toBe(0);
+    expect(blocked.campaign.day).toBe(returned.campaign.day);
+    expect(blocked.money).toBe(returned.money);
+    await page.keyboard.press("Space");
+    await expect(canvas).toHaveAttribute("data-scene", "map", {
+      timeout: 10000,
+    });
+  } else {
+    await expect(canvas).toHaveAttribute("data-scene", "jungle", {
+      timeout: 10000,
+    });
+    const retry = await state();
+    expect(retry.jungle.lives).toBe(3);
+    expect(retry.campaign.day).toBe(returned.campaign.day);
+    expect(retry.money).toBe(returned.money);
+    expect(retry.flight).toBeNull();
+    expect(retry.diagnostic).toBeNull();
+  }
   await page.locator("#restart").click();
   await expect(canvas).toHaveAttribute("data-scene", "title");
   expect((await state()).jungle).toBeNull();

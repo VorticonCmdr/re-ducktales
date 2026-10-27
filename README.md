@@ -6,8 +6,10 @@ Playable routes include the money-bin coin,world-map travel and banking,flights,
 cave/mountain/jungle expeditions,photography,stock trading with daily news,Glomgold campaign travel,atomic transport,and endings/replay.
 The browser uses the original assets and shared RNG; completed routes include
 rewards,campaign return,retries and duplicate-collection protection.
-**The full game is incomplete:** save/load and
-high scores remain unfinished,and original timing/presentation parity is partial. See
+P pauses/resumes,S switches sound,and Q/Escape/F1 opens the original quit question.
+**The full game is incomplete:** input-poll timing,campaign edge paths and broader
+original expedition/presentation comparisons remain. No save/load/high-score path
+has been identified in this build; see the [interface audit](docs/system-controls.md). See
 [current status](docs/STATUS.md) for exact evidence,limitations and verification.
 
 ## Run

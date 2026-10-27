@@ -131,7 +131,14 @@ $("right").onclick = () =>
       ? { type: "step", direction: "right" }
       : { type: "right" },
   );
-$("back").onclick = () => dispatch({ type: "back" });
+$("back").onclick = () => {
+  dispatch({ type: "back" });
+  $("game").focus();
+};
+$("pause").onclick = () => dispatch({ type: "pause" });
+$("quit").onclick = () => dispatch({ type: "quit" });
+$("quit-yes").onclick = () => dispatch({ type: "quit-yes" });
+$("quit-no").onclick = () => dispatch({ type: "quit-no" });
 $("up").onclick = () =>
   dispatch(
     game?.scene === "map" ? { type: "step", direction: "up" } : { type: "up" },
@@ -166,11 +173,30 @@ window.addEventListener("keydown", (event) => {
       "Space",
       "Enter",
       "Escape",
+      "KeyP",
+      "KeyS",
+      "KeyQ",
+      "KeyY",
+      "KeyN",
+      "F1",
     ].includes(event.code)
   )
     return;
   if (event.target instanceof HTMLInputElement) return;
   event.preventDefault();
+  const systemKey = {
+    KeyP: "pause",
+    KeyS: "toggle-sound",
+    KeyQ: "quit",
+    Escape: "quit",
+    F1: "quit",
+    KeyY: "quit-yes",
+    KeyN: "quit-no",
+  }[event.code];
+  if (systemKey) {
+    dispatch({ type: systemKey });
+    return;
+  }
   held.add(event.code);
   flightControls();
   if (event.repeat) return;
@@ -189,7 +215,6 @@ window.addEventListener("keydown", (event) => {
   else if (event.code === "ArrowDown") dispatch({ type: "down" });
   else if (event.code === "ArrowLeft") dispatch({ type: "left" });
   else if (event.code === "ArrowRight") dispatch({ type: "right" });
-  else if (event.code === "Escape") dispatch({ type: "back" });
   if (event.code.startsWith("Arrow"))
     dispatch({
       type: "direction",
@@ -256,6 +281,7 @@ function stopSound() {
 }
 function effects() {
   for (const event of game.drainEffects()) {
+    if (event.type === "flushControls") held.clear();
     if (event.type === "stopAudio") stopSound();
     if (event.type === "sound" && $("audio").checked) {
       if (!sounds.has(event.id))
@@ -303,12 +329,31 @@ function frame() {
       scheduler.advanceTo(now);
       effects();
       renderer.render(game);
-      $("money-bin").disabled = game.scene !== "office";
-      $("map").disabled = game.scene !== "office";
-      $("investments").disabled = game.scene !== "office";
-      $("back").disabled = ["departure", "ending"].includes(game.scene);
-      $("status").textContent =
-        game.scene === "ending"
+      const overlay = game.systemOverlay;
+      for (const id of ["fire", "up", "down", "left", "right"])
+        $(id).disabled = !!overlay;
+      $("money-bin").disabled = !!overlay || game.scene !== "office";
+      $("map").disabled = !!overlay || game.scene !== "office";
+      $("investments").disabled = !!overlay || game.scene !== "office";
+      $("back").disabled =
+        !!overlay || ["departure", "ending"].includes(game.scene);
+      $("pause").disabled =
+        game.exiting ||
+        (game.scene === "ending" && game.ending.phase === "closed") ||
+        (!!overlay &&
+          (overlay.kind !== "pause" || overlay.phase !== "waiting"));
+      $("pause").textContent = overlay?.kind === "pause" ? "Resume" : "Pause";
+      $("quit").disabled =
+        !!overlay ||
+        game.exiting ||
+        (game.scene === "ending" && game.ending.phase === "closed");
+      $("quit-yes").hidden = $("quit-no").hidden = overlay?.kind !== "quit";
+      $("audio").checked = game.audioEnabled;
+      $("status").textContent = overlay
+        ? overlay.kind === "pause"
+          ? "Game paused · P to resume"
+          : "Quit game? · Y to quit · N to keep playing"
+        : game.scene === "ending"
           ? game.ending.phase === "closed"
             ? "Game finished · Restart to play again"
             : game.ending.phase === "replay"
@@ -350,6 +395,7 @@ function frame() {
                                       ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
                                       : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
       $("game").dataset.scene = game.scene;
+      $("game").dataset.overlay = overlay?.kind ?? "";
       $("game").dataset.state = JSON.stringify(game.snapshot());
     }
   } catch (e) {

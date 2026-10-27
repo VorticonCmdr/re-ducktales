@@ -21,7 +21,7 @@ Confirming an expedition now prepares Launchpad's flight and displays the origin
 briefing, followed by playable flight and cave arrival. Caves now return through
 reward/failure screens. See [departure evidence](expedition-departures.md) and
 [cave evidence](cave.md). Other expedition families and stocks now have playable routes. Normal Glomgold
-progression is connected; see [rival evidence](rival.md). Save/load remains unsupported. Deadline deposits and endings now
+progression is connected; see [rival evidence](rival.md). No original save/load path has been identified; see [the interface audit](system-controls.md). Deadline deposits and endings now
 work; see [ending evidence](ending.md). Bank arrival at day30 ends the campaign;
 travel to the office on exactly day30 is still allowed. A later arrival redirects
 to final banking.
@@ -57,7 +57,7 @@ and other transition animations are omitted. The checked EXE's security routine
 has an unconditional branch returning success at overlay 2:0c9c–0ca5.
 
 The environment supplies semantic input and elapsed time through the scheduler.
-Browser cursor clicking, buttons, and Escape-to-office are explicit accessibility
+Browser cursor clicking, buttons, and Back/Office are explicit accessibility
 adapters; original keyboard selection remains available. Rendering observes the
 simulation and never supplies results. Map polling uses two driver ticks; DOS
 instruction/render costs have not been matched. Browser BIOS seed is explicitly

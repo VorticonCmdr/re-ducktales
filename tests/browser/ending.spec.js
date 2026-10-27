@@ -20,7 +20,8 @@ async function campaign(page, hard = false) {
     throw Error(`unfinished ending scenario ${JSON.stringify(await state())}`);
   }
   async function press(key) {
-    await page.keyboard.press(key);
+    if (key === "Escape") await page.locator("#back").click();
+    else await page.keyboard.press(key);
     await page.clock.runFor(100);
   }
   async function point(x, y) {

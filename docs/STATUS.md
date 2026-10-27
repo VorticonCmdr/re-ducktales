@@ -4,6 +4,10 @@ Updated2026-10-27. **The full game is not complete.**
 
 ## Working browser routes
 
+- P pauses/resumes; S switches sound; Q/Escape/F1 asks to quit. N continues the
+  same scene; Y shows credits without banking or replay. The Back/Office button
+  provides navigation. Dialog state and original popup pixels are checked.
+
 - Title → difficulty → office → money-bin dive → office. Correct timing awards
   the original one-time$1000 coin; travel/banking resets its latch.
 - Office → map → Macaroon bank → office. All35 destinations can be inspected.
@@ -66,7 +70,7 @@ A production visitor selects their own original folder. `.gitignore` is preserve
 
 Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 [jungle](jungle.md),[photography](photography.md),[trading](investments.md),
-[endings](ending.md),[atomic transport](atomic-transport.md),[rival progression](rival.md),[treasure assignment](treasure-assignment.md).
+[endings](ending.md),[system controls/audit](system-controls.md),[atomic transport](atomic-transport.md),[rival progression](rival.md),[treasure assignment](treasure-assignment.md).
 
 ## Known limitations and next milestone
 
@@ -74,10 +78,15 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   inactive/miss/claim/bank and all difficulty selectors,with exact report pixels.
   Original full-campaign/audio timing remains unproven. An exhausted rival route35
   stops explicitly; its original out-of-table behavior is unknown.
-- Next: original save/load and high-score handling. These are absent; some editions
-  are unsupported. Atomic travel now has5 conditional original checks,exact report
-  pixels and an independently played browser unlock/use route. Its original sound
-  latency and full map-information/transition timing remain unproven.
+- No save/load/high-score path is identified in this build. Earlier status entries
+  assumed those features; [the interface audit](system-controls.md) corrects that.
+  Browser persistence would be an explicit addition,not a translated original format.
+- Next: input-poll timing and remaining campaign edge paths,then broader original
+  expedition comparisons. Global dialogs currently accept keys at the next driver
+  tick; alignment with every original animation/audio wait is unproven.
+- Atomic travel has5 conditional original checks,exact report pixels and an earned
+  browser unlock/use route. Original sound latency,map-information and transition
+  timing remain unproven. Some editions are unsupported.
 - Full original expedition timing,presentation and audio parity are unproven.
   Cave movement,mountain hook/ascent,jungle scrolling/enemies and additional
   variants/difficulties still need targeted original comparisons.
@@ -97,18 +106,20 @@ npx playwright install chromium
 npm run verify
 ```
 
-Focused commands: `npm test`,`npm run test:browser`,`npm run verify:rival`,`npm run verify:ending`,
+Focused commands: `npm test`,`npm run test:browser`,`npm run verify:system-controls`,`npm run verify:rival`,`npm run verify:ending`,
 `npm run verify:investments`,`npm run verify:startup`,and the subsystem commands
 in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Full `npm run verify` passed for this milestone:38 unit tests,25 browser scenarios,
-all required original/independent comparisons and the production build. Atomic
-checks include5 conditional original comparisons,exact report pixels,negative
-controls,audio/calendar/controller checks and actual browser treasure/unlock/use.
+Current milestone passed full `npm run verify`:42 unit tests,26 browser scenarios,
+all required original comparisons (including7 system-control/interface checks)
+and production build. The real-time jungle retry check accepts the original rival
+claim notice when Glomgold has already collected that destination; otherwise it
+requires a fresh three-life expedition. Campaign notice checks preserve accounts
+and calendar; exact rival RNG checks use captured inputs in `verify:rival`.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-01f5:04da stop454 after the conditional atomic success,DS/SS1403. No breakpoints
-or pending input schedule. `reference/atomic.json` records inherited campaign
-setup,unlock/rival-mask writes and the two explicit branch-selection seeds.
+0319:0002 stop467 inside credits,input polling,DS/SS1403,sound off. No breakpoints
+or pending replay. The controls capture inherits conditional campaign setup from
+`reference/atomic.json`; `reference/system-controls.json` pins the new observations.

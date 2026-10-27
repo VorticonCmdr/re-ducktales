@@ -11,7 +11,8 @@ test("calendar travel produces company news and acknowledged bulletins stay cons
   const canvas = page.locator("#game");
   const state = () => canvas.getAttribute("data-state").then(JSON.parse);
   async function press(key) {
-    await page.keyboard.press(key);
+    if (key === "Escape") await page.locator("#back").click();
+    else await page.keyboard.press(key);
     await page.clock.runFor(100);
   }
   for (
@@ -87,7 +88,8 @@ test("original assets, earned cash, stock transactions, held Fire limit, office 
     );
   }
   async function press(key) {
-    await page.keyboard.press(key);
+    if (key === "Escape") await page.locator("#back").click();
+    else await page.keyboard.press(key);
     await page.clock.runFor(100);
   }
   async function openInvestments() {

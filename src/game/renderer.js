@@ -2,6 +2,7 @@ import { executableText } from "./executable.js";
 import { imagePixels, EGA } from "../assets.js";
 import { renderFlightPixels } from "./flight-raster.js";
 import { investmentPrice } from "./investments.js";
+import { systemOverlayLayout } from "./system-controls.js";
 export class Renderer {
   constructor(canvas, resources) {
     this.canvas = canvas;
@@ -168,6 +169,24 @@ export class Renderer {
     this.ctx.strokeRect(192 + screen.button * 32, 174, 25, 20);
   }
   render(game) {
+    this.renderScene(game);
+    if (!game.systemOverlay || game.systemOverlay.phase === "resuming") return;
+    const { box, fill, rows } = systemOverlayLayout(game.systemOverlay.kind);
+    this.ctx.fillStyle = "#0000aa";
+    this.ctx.fillRect(fill.x, fill.y, fill.width, fill.height);
+    for (const row of rows)
+      this.text(
+        executableText(this.resources.executable, row.at),
+        row.x,
+        row.y,
+      );
+    this.ctx.fillStyle = "#fff";
+    this.ctx.fillRect(box.x, box.y, box.width, 1);
+    this.ctx.fillRect(box.x, box.y + box.height - 1, box.width, 1);
+    this.ctx.fillRect(box.x, box.y, 1, box.height);
+    this.ctx.fillRect(box.x + box.width - 1, box.y, 1, box.height);
+  }
+  renderScene(game) {
     if (game.scene === "ending") {
       const e = game.ending;
       if (e.asset !== null) {

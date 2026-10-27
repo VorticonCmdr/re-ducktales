@@ -15,6 +15,7 @@ import { InvestmentScreen } from "./investment-screen.js";
 import { CampaignEnding, depositAccounts } from "./ending.js";
 import { advanceRival, RivalReport, RIVAL_UNLOCK } from "./rival.js";
 import { AtomicTransport } from "./atomic-transport.js";
+import { SystemControls } from "./system-controls.js";
 export const DRIVER_HZ = 1193182 / (1365 * 12);
 export const RETRACE_HZ = 70.086;
 
@@ -50,6 +51,8 @@ export class Game {
     this.pendingCampaignAction = null;
     this.rivalReport = null;
     this.atomicTransport = null;
+    this.systemOverlay = null;
+    this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
     this.scene = "title";
@@ -173,6 +176,11 @@ export class Game {
   }
   handleInput(event) {
     if (this.diagnostic) throw Error(this.diagnostic);
+    if (event.type === "toggle-sound") {
+      this.handleInput({ type: "audio-enabled", enabled: !this.audioEnabled });
+      this.effects.push({ type: "stopAudio" });
+      return;
+    }
     if (event.type === "audio-enabled") {
       if (typeof event.enabled !== "boolean")
         throw Error("Invalid audio setting");
@@ -210,6 +218,8 @@ export class Game {
       this.visitNotice = null;
       this.rivalReport = null;
       this.atomicTransport = null;
+      this.systemOverlay = null;
+      this.exiting = false;
       this.pendingCampaignAction = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
@@ -220,6 +230,28 @@ export class Game {
       this.seed = this.campaign?.seed ?? this.biosSeed;
       this.rareCoinTaken = false;
       this.effects.push({ type: "stopAudio" });
+      return;
+    }
+    if (this.systemOverlay) {
+      if (event.type === "controls")
+        this.controls = { fire: event.fire, direction: event.direction };
+      const previous = this.systemOverlay.phase;
+      this.systemOverlay.input(event);
+      if (
+        previous === "waiting" &&
+        this.systemOverlay.phase === "resuming" &&
+        this.audioEnabled
+      )
+        this.effects.push({ type: "sound", id: 0x24 });
+      this.finishSystemOverlay();
+      return;
+    }
+    if (["pause", "quit"].includes(event.type)) {
+      if (
+        !this.exiting &&
+        !(this.scene === "ending" && this.ending.phase === "closed")
+      )
+        this.systemOverlay = new SystemControls(event.type);
       return;
     }
     if (event.type === "controls") {
@@ -482,6 +514,11 @@ export class Game {
   }
   advanceDriverTick() {
     this.tick++;
+    if (this.systemOverlay) {
+      this.systemOverlay.advanceTick();
+      this.finishSystemOverlay();
+      return;
+    }
     if (this.scene === "atomic-transport") {
       this.atomicTransport.advanceTick();
       this.collectAtomicTransport();
@@ -575,6 +612,7 @@ export class Game {
     this.collectEffects();
   }
   advanceRetrace() {
+    if (this.systemOverlay) return;
     if (this.scene === "photography") {
       this.photography.advanceRetrace();
       this.collectPhotography();
@@ -668,6 +706,26 @@ export class Game {
         a.outcome.target,
         this.campaign.locations[a.outcome.target].flags,
       );
+  }
+  finishSystemOverlay() {
+    if (!this.systemOverlay?.result) return;
+    const result = this.systemOverlay.result;
+    this.systemOverlay = null;
+    // Original19a5 clears the BIOS input queue and128-byte key table.
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
+    if (result === "quit") {
+      this.exiting = true;
+      this.pendingCampaignAction = null;
+      this.ending = new CampaignEnding({
+        day: this.campaign?.day ?? 1,
+        banked: this.campaign?.banked ?? 0,
+        rivalBanked: this.campaign?.rival.banked ?? 0,
+      });
+      this.ending.beginCredits();
+      this.scene = "ending";
+      this.effects.push({ type: "stopAudio" });
+    }
   }
   advanceDialogue(wait) {
     wait.remaining--;
@@ -1004,6 +1062,8 @@ export class Game {
       ending: this.ending?.snapshot() ?? null,
       rivalReport: this.rivalReport?.snapshot() ?? null,
       atomicTransport: this.atomicTransport?.snapshot() ?? null,
+      systemOverlay: this.systemOverlay?.snapshot() ?? null,
+      exiting: this.exiting,
       pendingCampaignAction: this.pendingCampaignAction
         ? { ...this.pendingCampaignAction }
         : null,

@@ -89,7 +89,7 @@ test("keyboard route loads originals, dives, returns and restarts", async ({
   expect(banked.money).toBe(0);
   expect(banked.rareCoinTaken).toBe(false);
   expect(banked.campaign.day).toBe(4);
-  await page.keyboard.press("Escape");
+  await page.locator("#back").click();
   await expect(canvas).toHaveAttribute("data-scene", "office");
   expect(JSON.parse(await canvas.getAttribute("data-state")).campaign.day).toBe(
     7,

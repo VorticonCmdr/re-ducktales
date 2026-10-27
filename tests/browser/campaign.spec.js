@@ -442,13 +442,18 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
     collected.money,
     collected.campaign.day,
     collected.campaign.location,
-    collected.seed,
   ]).toEqual([
     returned.money,
     returned.campaign.day,
     returned.campaign.location,
-    returned.seed,
   ]);
+  // This real-time feedback route has variable flight/cave inputs. The enclosing
+  // root dispatch may advance Glomgold and consume RNG; the notice itself does
+  // not. Exact draw counts are checked against independent incoming original
+  // states by verify:rival and by the deterministic browser routes.
+  expect(collected.campaign.rival.day).toBeGreaterThanOrEqual(
+    returned.campaign.rival.day,
+  );
   await page.screenshot({
     path: ".local/browser-results/collected-notice.png",
   });

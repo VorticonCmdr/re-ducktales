@@ -90,8 +90,11 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 - Full original expedition timing,presentation and audio parity are unproven.
   Cave movement,mountain hook/ascent,jungle scrolling/enemies and additional
   variants/difficulties still need targeted original comparisons.
-- Ending bank celebration animation,striped reveals,credits-page pixels/timing
-  and music are incomplete. Losing ending pictures lack original PNG captures.
+- Ending bank celebration animation,striped reveals and music are incomplete.
+  First/last credit names and farewell match exact original PNGs; all26 natural
+  browser credit boundaries pass. Two original waits are exactly140 driver ticks;
+  whole-sequence original presentation timing remains unproven. Losing ending
+  pictures lack original PNG captures.
 - Some title/office/security transitions are omitted. Navigation buttons,Back and
   browser pausing on hide are explicit adapters. Browser BIOS seed is an injected
   environment provider0; full title/BIOS seeding timing has not been reproduced.
@@ -119,7 +122,12 @@ claim notice when Glomgold has already collected that destination; otherwise it
 requires a fresh three-life expedition. Campaign notice checks preserve accounts
 and calendar; exact rival RNG checks use captured inputs in `verify:rival`.
 
+Additional credits checks pass `npm run verify:ending` and the focused system
+controls browser scenario,including9 new original code/index/pixel comparisons.
+`reference/credits.json` records their precise scope and mandatory local files.
+
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942. Paused
-0319:0002 stop467 inside credits,input polling,DS/SS1403,sound off. No breakpoints
-or pending replay. The controls capture inherits conditional campaign setup from
-`reference/atomic.json`; `reference/system-controls.json` pins the new observations.
+04ea:1164 stop475 at farewell wait,DS/SS1403,sound off. No breakpoints or pending
+replay. The controls/credits captures inherit conditional campaign setup from
+`reference/atomic.json`; `reference/system-controls.json` and `reference/credits.json`
+pin the new observations.

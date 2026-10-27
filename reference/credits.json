@@ -1,0 +1,72 @@
+{
+  "id": "credits-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "da25d71",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "protected_mode": false,
+    "readOnlyMount": "game/"
+  },
+  "expectedCheckpointCount": 9,
+  "evidenceLevel": "conditional original credits code/state/pixels and two wait intervals; independent full port credits boundary replay",
+  "startingRecipe": "Continue reference/system-controls.json paused0319:0002 stop467 after Q/Y and S off. No input or memory/register writes in this segment. Original12f5 maps to04ea,DS/SS1403. Run to04ea:0e26 (468),capture full DS and249-byte credit routine; run to0e96 first credit flip (469). Stop0319:0002 when DWORD DS2225 >= incoming+2 (470),actual+7,delete condition,capture PNG. Run to0e96 again (471),index1. Run to0e96 with WORD DS9ef8==25 (472),delete condition. Repeat fixed next-input-poll alignment (473,actual+7),capture PNG. Run0ee3 (474),index26. Run1164 (475),capture credits entry260bytes and farewell PNG. Final paused475; no breakpoints or input replay.",
+  "injections": [
+    "No new memory or CPU injections. Inherits conditional campaign funding/calendar/atomic setup from reference/system-controls.json and its ancestors. Sound was disabled by real S input before this segment."
+  ],
+  "fittedInputs": [],
+  "inputEvents": [],
+  "comparisonRules": "Exact PNG RGBA for first/last credit and farewell. Full relocated code identities; indices0/1/25/26; campaign/seed preservation. VGA capture at next input-reader entry after at least2 driver clocks is exactly+7 here. First0-to1 and final25-to26 clock differences exactly140. Intervening conditional breakpoint polling adds clock overhead; no full-sequence original elapsed-time claim. No machine restore. Independent port replay uses140 clocks per wait and26 rows from initial state; no expected outputs supply replay inputs.",
+  "artifacts": {
+    "before": {
+      "path": ".local/credits-before.json",
+      "sha256": "40a42a2922047b2d5a84fe8d887fb150f42caf94c7e7d6559b78ef0c7bda02b7"
+    },
+    "line0": {
+      "path": ".local/credits-line0.json",
+      "sha256": "3e42bf8e3db1896f40095e63dd463532cd84654b080d3e17349719fe5bc5f7cf"
+    },
+    "line0Visible": {
+      "path": ".local/credits-line0-visible.json",
+      "sha256": "d64f32e7b26fd0ba28e074b69581cb6f5087307e8efb7e5880f31c23cc2cc841"
+    },
+    "line1": {
+      "path": ".local/credits-line1.json",
+      "sha256": "faa3de7d2d9a2c5a2907e202f1cfaa7189422fa779aeb30d2ea3bc5f8ba8ce73"
+    },
+    "line25": {
+      "path": ".local/credits-line25.json",
+      "sha256": "38d76438c6c5b19c5a8404f9619b1e00f0ddcda767616bbfb6a1a32d4037a352"
+    },
+    "line25Visible": {
+      "path": ".local/credits-line25-visible.json",
+      "sha256": "f380d08be7a813a3729157c886203ebae406213cb54e5f47a046dbea7cf337f6"
+    },
+    "return": {
+      "path": ".local/credits-return.json",
+      "sha256": "675b3d5a396fbe91e0c56d903f2ef0c558daa8d266071dedc365273aee2c47a6"
+    },
+    "farewell": {
+      "path": ".local/credits-farewell.json",
+      "sha256": "054ae8b08ab96c254ff37e8b0b794a1396151af60958d49477ed86e0d33f5b0f"
+    },
+    "line0PNG": {
+      "path": ".local/credits-line0.png",
+      "sha256": "fd7ea39e246e23d69f016f72828d7caf43129da0749e0cce355bc513a79d9d1f"
+    },
+    "line25PNG": {
+      "path": ".local/credits-line25.png",
+      "sha256": "7d1f2d390171ad3640b002012cabd4fffc93774324f2a0f4cc2f3de85aeecabc"
+    },
+    "farewellPNG": {
+      "path": ".local/credits-farewell.png",
+      "sha256": "553e259bca5bc817789150040504fe0d104de8942566d8c81a616035034af7e8"
+    },
+    "mode": {
+      "path": ".local/credits-mode.json",
+      "sha256": "21d438e754381f4136587e255803184bee5a169749596ea5d2c5c9a606afdd9c"
+    }
+  }
+}

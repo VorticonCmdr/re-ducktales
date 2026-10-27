@@ -132,9 +132,32 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
   expect(quit.money).toBe(1000);
   expect(quit.campaign.banked).toBe(0);
   expect(quit.exiting).toBe(true);
-  await press("Space");
+  // Consume every natural credit boundary; no injected ending state or skips.
+  const seen = [];
+  for (let line = 0; line < 26; line++) {
+    const current = await until(
+      (s) => s.ending.phase === "credits" && s.ending.credit === line,
+    );
+    seen.push(current.ending.credit);
+    expect(current.money).toBe(1000);
+    expect(current.campaign.banked).toBe(0);
+    expect(current.seed).toBe(quit.seed);
+    if (line === 0 || line === 25) {
+      const original = PNG.sync.read(
+        await readFile(`.local/credits-line${line}.png`),
+      );
+      expect(Buffer.compare((await pixels()).data, original.data)).toBe(0);
+    }
+  }
+  expect(seen).toEqual(Array.from({ length: 26 }, (_, i) => i));
+  await canvas.screenshot({ path: ".local/browser-results/credits-last.png" });
   await until((s) => s.ending.phase === "farewell");
-  await press("Space");
+  expect(
+    Buffer.compare(
+      (await pixels()).data,
+      PNG.sync.read(await readFile(".local/credits-farewell.png")).data,
+    ),
+  ).toBe(0);
   await until((s) => s.ending.phase === "closed");
   await page.locator("#restart").click();
   await page.clock.runFor(100);

@@ -40,8 +40,10 @@ these are game routines,not the EXEPACK stub.
 `src/game/ending.js` owns account arithmetic and ending/menu clocks. Simulation
 is independent of the DOM. The existing scheduler supplies driver ticks and
 semantic input; the renderer only observes state. Complete original bank
-celebration animation,striped picture reveals,CPU-bound redraw costs,ending music
-and exact credits-page pixels/timing are not established. Losing pictures are
+celebration animation,striped picture reveals,CPU-bound redraw costs and ending
+music are not established. Credits first/last text and farewell pixels now match
+the original; two isolated20-poll waits also match140 driver ticks. This does
+not establish whole-sequence original elapsed time. Losing pictures are
 statically identified and browser rendered; they have no original PNG capture yet.
 
 ## Original capture and strict checks
@@ -55,6 +57,27 @@ controls alter a bank result and image bytes. Static integer tests cover ties,
 low-word boundaries,32-bit wrapping and signed-high-word order. These are not
 extra original runtime cases. Dialogue/credits boundary checks are independent
 port checks.
+
+The same command also checks12 mandatory local artifacts in
+`reference/credits.json`. Nine comparisons cover complete relocated credits
+routine identities (`12f5:0dee`,249 bytes and `12f5:1098`,260 bytes), original
+indices0/1/25/26, and three exact full-frame PNGs (first name,last name,farewell).
+The shared seed,accounts,date and location/collection records remain unchanged.
+Negative controls corrupt an account/RNG byte and a pixel. An independent port
+replay starts at `beginCredits`, consumes all26 waits without Fire, and requires
+the natural farewell and closed boundaries; expected outputs supply no inputs.
+
+This capture continues the system-controls scenario with sound disabled by S.
+It adds no input, memory writes, CPU writes or restore. Run from paused stop467
+to live04ea:0e26,then0e96 (first text flip),next0e96 (index1),0e96 conditional
+on WORD DS9ef8==25,last0ee3 (index26),and1164 (farewell wait). At each text PNG,
+resume to the first0319:0002 input poll after DWORD DS2225 has advanced at least2;
+the observed delta is exactly7, and the checker requires7 for both captures.
+Remove each owned breakpoint after use. The first0→1 and last25→26 intervals
+are exactly140 driver ticks. Conditional breakpoint processing adds overhead
+between the middle records; no total-time tolerance or fitted clock is used.
+The versioned manifest contains the full setup recipe and hashes. The final
+original state is paused at farewell entry; the original has not been exited.
 
 Original configuration: DOSBox0.84.0-vc1 f6d9b,svga_s3,normal core,3000 cycles,
 read-only C mount of game/. Root is sole session owner. No partial or complete
@@ -95,6 +118,11 @@ Capture recipe:
 
 `tests/browser/ending.spec.js` supplies real keys,asset loading,rendering and
 controlled browser time. It does not inject game memory or outcomes:
+
+`tests/browser/system-controls.spec.js` additionally follows real Q/Y into all26
+natural credit names, checks every index without skipping, compares the first
+and last names and farewell against the exact original PNGs, and reaches the
+closed screen and Restart. The earned$1000 remains unbanked throughout.
 
 - Earn the actual money-bin coin,buy a22-dollar share,keep it unsold,and travel
   through five bank round trips. The day31 banked score is978. Original winner

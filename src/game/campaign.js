@@ -1,4 +1,5 @@
 import { nextRandom, u16 } from "./integer.js";
+import { advanceMapPointer, MAP_DIRECTION_CODES } from "./map-pointer.js";
 
 export const OFFICE = 35;
 export function parseLoot(entries) {
@@ -114,6 +115,7 @@ export class Campaign {
     this.day = 1;
     this.location = OFFICE;
     this.banked = 0;
+    this.pointerMotion = { acceleration: 0, dx: 0, dy: 0, firstPollLatch: 0 };
     this.openMap();
   }
   openMap() {
@@ -154,12 +156,21 @@ export class Campaign {
   advanceTick() {
     if (this.info || ++this.pollTicks < 2) return;
     this.pollTicks = 0;
-    const vectors = { up: [0, -1], right: [1, 0], down: [0, 1], left: [-1, 0] };
-    const v = vectors[this.direction];
-    if (!v) return;
-    // Overlay 2:1f34,1f81,1fd0–2049: the first-poll latch resets
-    // its acceleration counter, leaving one pixel per cardinal poll.
-    this.point(this.cursor.x + v[0], this.cursor.y + v[1]);
+    const code =
+      this.direction === null ? 0 : MAP_DIRECTION_CODES[this.direction];
+    if (code === undefined)
+      throw Error(`Unsupported map direction ${this.direction}`);
+    const next = advanceMapPointer(
+      { ...this.cursor, ...this.pointerMotion },
+      code,
+    );
+    this.pointerMotion = {
+      acceleration: next.acceleration,
+      dx: next.dx,
+      dy: next.dy,
+      firstPollLatch: next.firstPollLatch,
+    };
+    this.point(next.x, next.y);
   }
 
   snapshot() {
@@ -178,6 +189,7 @@ export class Campaign {
       atomicAvailable: this.atomicAvailable,
       aircraft: this.aircraft,
       cursor: { ...this.cursor },
+      pointerMotion: { ...this.pointerMotion },
       selected: this.selected,
       asset:
         this.selected === OFFICE ? null : this.locations[this.selected].asset,

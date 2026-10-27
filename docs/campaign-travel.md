@@ -35,13 +35,14 @@ to final banking.
 | Original location permutation, two RNG calls | main 115a:00d7–02e7 (image 1677–188e) | Statically inferred; seed-specific runtime comparison remains unverified |
 | Office cursor (46,139), icon hit box inclusive x22–70,y115–163 | overlay 2:0e19,11b7 | Original map pixels match exactly |
 | Closest location uses squared Euclidean distance, strict less-than ties | overlay 2:12b6–1338 | Static; browser selects original location records |
-| Cursor clamps x32–285,y28–151; port currently uses fixed cardinal steps | overlay 2:1ec8–20ae | Clamps/keyboard movement checked; original held-direction acceleration and diagonals are missing |
+| Cursor clamps x32–285,y28–151; consecutive inputs accelerate and diagonals adjust horizontal steps | overlay 2:1ec8–20ae | 24 exact routine cases; native browser chords/selection; original reader cadence/full-map timing unverified |
 | Cost office coordinate is (56,64), independent of icon | main 1000:1099–10eb | Static + original bank/return day changes |
 | Shortest wrapped distance on 272×140 map, squared /6606 +1 capped3; same location0 | main 1000:1080–1241; helper 11c4:0176–01d1 | Disassembly checked widths/32-bit multiplication; original 3-day legs; independent boundary checks |
 | Bank adds cash with carry, then clears it | main 1000:1036–107f | Zero-cash original checkpoints; nonzero browser/simulation route, not nonzero original comparison |
 | Bank clears rare-coin latch | main 1000:0144 | Static + simulation |
 
-Ghidra `OFFICE_MAP.EXE` is original overlay 2 normalized to entry 0000:0caa,
+Ghidra `OFFICE_MAP.EXE` is original overlay2 with header entry0000:0caa
+(loaded analysis address1000:0caa),
 reproducible with `npm run prepare:analysis`. Overlay dispatch indices are **not**
 physical overlay numbers: INT 3f index 4 offset 000a reaches this routine through
 its paragraph-adjusted entry. The early exploratory imports MAP_ANALYSIS and
@@ -117,11 +118,76 @@ notices and return to the origin map. See [campaign visits](campaign-visits.md)
 for original checkpoints, timing/device boundaries and verification scope.
 
 
-Map movement completeness: original exploration during the flight-boundary setup
-showed a held Right overshooting x173 to200. Static overlay2:1ec8..20ae contains
-an input-dependent counter at DS:5514,capped at256,and adds a counter-scaled
-vector to the initial movement. Neutral input clears it; changing direction
-without a neutral poll can retain it. Diagonal cases also adjust horizontal
-movement. The existing fixed-step port is an approximation here. A targeted
-original input-return/coordinate capture is the next experiment; the instruction
-sequence includes special input flags and needs that capture before translation.
+
+## Map pointer movement
+
+The fixed one-pixel implementation is replaced by `src/game/map-pointer.js`,
+a DOM/clock-independent translation of overlay2:1edd..20ae. Its input is the
+external reader's AX word. Consecutive cardinal inputs move1,2,3,4,... pixels;
+changing direction without neutral retains the counter. Diagonals begin with
+horizontal2/vertical1,then adjust the horizontal vector before multiplying by
+counter−1. Neutral resets the counter/vector/latch. Fire bitsc0 win over movement,
+return1 and leave pointer drawing disabled. The counter uses the source's signed
+comparison against256; IMUL/ADD and coordinate updates preserve16-bit wrapping
+before clamps. Counter-cap/wrap boundaries have authored static-rule tests.
+
+`reference/map-pointer.json` pins four ignored artifacts,24 original routine
+cases and the full8368-byte/180-relocation body. Eight cases observe a native
+Right hold at the input-reader return:3 then seven0 inputs. This observation
+alone does not establish keyboard typematic behavior. The future hold-release
+was explicitly cancelled; its exact dispatch count was not captured,so this is
+not a strict event-only acceptance replay. A subsequent three-key release
+schedule is verified fully dispatched and inactive.
+
+The other16 cases supply independent authored AX values **at the original
+reader return** via explicit CPU writes. They are conditional external-input
+injections,not natural original keyboard replay. The checker carries its own
+pointer state through all16,compares exact coordinates,counter,vectors,latch,
+latched input,sprite coordinates,draw flag and return AX,and never copies an
+expected after-state back into the simulation. Missing/corrupt fixtures,zero or
+missing cases,missing/unconsumed inputs and any compared difference fail.
+Negative controls change state,remove an input and corrupt source code.
+
+Ghidra's default CS1000 for `OFFICE_MAP.EXE` resolves the indirect switch table
+incorrectly and produces bad-data warnings. The actual routine executes at
+CS0ed6,allocation0e0c+ca paragraphs. Its CS-relative table1320 is physical body1fc0.
+The verifier checks that table's eight targets and all relocated body bytes.
+Disassembly and live observations,not the faulty decompiled switch,establish the
+direction cases. Resident input reader `1124:0002` and scanner `140e:19c5` were
+also inspected; their keyboard-table/BIOS/key-repeat paths require separate
+consumption-boundary evidence before claiming full input-device fidelity.
+
+The browser supplies held cardinal/diagonal direction words at the existing
+2-driver-tick map poll. Opposing arrows cancel at this adapter; releasing one
+arrow keeps the other. These chords supply the original eight-direction codes;
+they are not a claim about original simultaneous-key priority. Original numpad/
+navigation-key diagonal bindings are not yet exposed by this browser adapter. This is a declared browser environment provider,not a
+verified reproduction of original keyboard typematic or rendering costs.
+`Campaign.pointerMotion` carries the translated counter/vector/latch across
+polls and direction changes; neutral clears them. Entering another map preserves
+them until the next input poll rather than inventing an entry reset.
+
+Native browser acceptance starts from the real title/office/map UI,holds Right,
+adds Up,releases Right,returns to neutral,then uses Down+Right. Exact coordinates
+and counters are checked at each poll. Fire opens destination information,Back
+cancels,and selecting the Office returns normally. Mouse setup targets logical
+pixel centers to avoid CSS/browser rounding into a neighboring pixel; there are
+no coordinate tolerances or simulation-state injections. Screenshot:
+`.local/browser-results/map-pointer.png`. A separate interactive IAB exploration
+also moved diagonally to Machu Picchu.
+
+Run `npm run verify:map-pointer`, `node --test tests/map-pointer.test.js` and
+`npx playwright test tests/browser/map-pointer.spec.js`; these are included in
+`npm run verify`. Remaining map work is original input-provider/timing alignment,
+not the previously missing pointer arithmetic.
+
+
+The integrated cave acceptance setup now waits for asset-ready controls while
+its virtual clock remains frozen,then requires initial tick0 before the first
+native key. This makes asynchronous file/network readiness explicit rather
+than advancing test time during setup. The prior unchanged c858923 baseline
+also exceeded the cave's90-second wall limit; it passed with the readiness wait.
+The working focused route passed49.6s and the final full gate passed38.4s.
+Gameplay checks,required actions,8ms observation cadence and the90-second limit
+are unchanged. Concurrent CPU use was observed,but a unique cause of wall-time
+variation is not established. Failed runs are retained in.local/; see STATUS.

@@ -228,6 +228,10 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
     window.cancelAnimationFrame = clearTimeout;
   });
   await page.goto("/");
+  // Resource loading is real asynchronous I/O. Keep the supplied simulation
+  // clock frozen until the application has created its scheduler; otherwise
+  // network/host latency chooses the clock origin before the first input.
+  await expect(page.locator("#actions")).toBeVisible();
   const c = page.locator("#game");
   async function until(predicate, max = 10000) {
     for (let i = 0; i < max; i++) {
@@ -257,6 +261,10 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
     expect((await state(c)).cave.room).toBe(target);
   }
   await until((s) => s.scene === "title");
+  expect(
+    (await state(c)).tick,
+    "asset loading must not advance the simulation",
+  ).toBe(0);
   await c.focus();
   await press("Space");
   await press("Enter");

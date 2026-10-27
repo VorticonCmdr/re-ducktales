@@ -18,6 +18,9 @@ endings are established; arbitrary campaigns are not yet guaranteed finishable.
 - Title → difficulty → office → money-bin dive → office. Correct timing awards
   the original one-time$1000 coin; travel/banking resets its latch.
 - Office → map → Macaroon bank → office. All35 destinations can be inspected.
+  Consecutive direction inputs accelerate; diagonals and releasing one arrow of
+  a chord now work. Neutral resets the counter. Original key-repeat cadence and
+  full-map polling time remain unverified.
 - Confirm expedition → Launchpad → keyboard flight → crash or airport landing.
   Losing a flight race credits Glomgold and returns to the campaign map.
   Left-edge scrolling preserves both empty strips and the original visible
@@ -113,6 +116,10 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
+- Tandy sound is not ported. Playback currently interprets the PC-speaker
+  driver; alternate sound-driver renditions remain unimplemented. PC-speaker
+  noise and engine effects are approximate,and original waveform/device parity
+  is unverified. See `docs/audio.md`.
 - Full original expedition timing,presentation and audio parity are unproven.
   Cave movement,mountain hook/ascent,jungle scrolling/enemies and additional
   variants/difficulties still need targeted original comparisons.
@@ -121,8 +128,10 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   fields/pixels; two independent input streams cross the boundary. Native browser
   component acceptance covers one completed crash. Other invalid terrain remains
   strict. Original whole-flight parity remains unproven.
-- Map pointer movement still lacks the original held-direction acceleration and
-  diagonal behavior. Static overlay2:1ec8..2034 identifies this next behavior gap.
+- Map pointer arithmetic is translated and matches24 original routine cases,
+  including16 carried authored reader inputs. Native browser acceptance covers
+  held/chord/release/reset/selection. The2-tick held-direction provider remains
+  separate from unverified original keyboard typematic and rendering costs.
 - Ending bank celebration animation,striped reveals and music are incomplete.
   First/last credit names and farewell match exact original PNGs; all26 natural
   browser credit boundaries pass. Two original waits are exactly140 driver ticks;
@@ -148,9 +157,9 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:57 unit tests,31 browser scenarios,
+Current milestone passed full `npm run verify`:60 unit tests,32 browser scenarios,
 all required original-data checks and the production build. Integration log:
-`.local/flight-visible-left-edge-final-verify.log`.
+`.local/map-pointer-ready-final-verify.log`.
 
 One browser worker keeps the full mountain/jungle replays within their existing
 120-second limits; their required inputs and checkpoint counts are unchanged.
@@ -186,7 +195,7 @@ movement,timing and upper transport/erase graphics remain unproven.
 Next priority is gameplay completeness: exercise additional destination layouts,
 difficulties and uncommon interactions. The exhausted-rival and visible left-edge
 flight stops are removed using original behavior. Map pointer acceleration is
-the next identified translation gap.
+now translated; its original input-device timing remains unverified.
 Selected complete expeditions and win/loss routes do not establish a complete
 arbitrary campaign. Remaining mountain graphics and
 presentation differences are separate fidelity work.
@@ -209,9 +218,35 @@ also reran after adding explicit required-event-count checks. Detailed evidence,
 setup injections and limitations are in `reference/flight-visible-left-edge.json`
 and `docs/flight.md`.
 
+Map pointer integration passes24 original routine comparisons,including16
+carried authored reader inputs,full relocated source identity,and native browser
+chord/release/reset/destination acceptance. Counter-cap/wrap boundaries have
+static-rule checks. A final focused verifier also checks unchanged source RNG,
+calendar and accounts across each pointer routine. Original keyboard typematic,
+original diagonal key bindings and whole-map timing remain separate gaps.
+
+The first full gate and two focused cave runs exceeded the existing90-second
+wall limit. The unchanged c858923 runtime/test also timed out in an isolated
+checkout. The harness now waits for the asset-ready controls before advancing
+its independent virtual clock,and requires initial simulation tick0. No gameplay
+assertions,input requirements,8ms observation cadence or time limits were relaxed.
+The baseline passed with that readiness wait; the working focused cave route
+passed49.6s,and the final full gate's cave route passed38.4s. All32 browser cases
+and the production build then passed. Earlier failed logs remain local:
+`map-pointer-final-verify.log`,`map-pointer-cave-focused.log`,
+`map-pointer-cave-scoped.log`,`map-pointer-cave-baseline.log`.
+The final success log is `map-pointer-ready-final-verify.log`; the baseline's
+ready run is `map-pointer-cave-baseline-ready.log`. Concurrent CPU activity was
+observed; the observations do not isolate a single cause of wall-time variance.
+
+The diagnostic baseline server is stopped. The app refused to archive its
+managed checkout as primary; its local status directs future work to the active
+original DuckTales folder. It contains no integrated port changes.
+
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,paused
-0e0c:1330 stop574,DS/SS1403,after the conditional left-boundary scene and its
-retrace-aligned image. No owned breakpoints or required replay remain. This
-inherits the exhausted-rival experiment and explicit setup in
-`reference/flight-visible-left-edge.json`; it is not a natural campaign state.
-Earlier mountain/cave/flight captures retain their own manifest scopes.
+0ed6:140e stop626,DS/SS1403,at the map pointer routine return with AX1 after the
+authored Fire+Right case. No owned breakpoints or pending native input remain.
+This inherits the prior flight/rival conditional setup and16 explicit external
+AX injections recorded by `reference/map-pointer.json`; it is not a natural
+campaign replay. No game-memory writes or partial/full machine restore were
+used in the map experiment. Earlier captures retain their own manifest scopes.

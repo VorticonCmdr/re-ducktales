@@ -1,0 +1,54 @@
+{
+  "id": "map-pointer-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "c858923",
+  "captureTool": "DOSBox MCP 0.84.0-vc1 f6d9b,protocol1.14 bridge0.1.1",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "protected_mode": false,
+    "loadBase": "01f5",
+    "overlayAllocation": "0e0c",
+    "cs": "0ed6",
+    "ds": "1403",
+    "ss": "1403",
+    "readOnlyMount": "game/"
+  },
+  "expectedRoutineCases": 24,
+  "expectedAuthoredInputCount": 16,
+  "source": {
+    "program": "OFFICE_MAP.EXE",
+    "routine": "1000:1ec8..20ae",
+    "liveInputReturn": "0ed6:123d",
+    "liveReturn": "0ed6:140e",
+    "originalExecutableOffset": "f600",
+    "bodyBytes": 8368,
+    "relocations": 180,
+    "callingConvention": "16-bit far caller-cleanup; BP+6 points to cursorX,BP+8 to cursorY",
+    "analysisWarning": "Ghidra default CS1000 misresolves the CS-relative switch at1320. Physical table is body1fc0 because actual routine CS is allocation+ca paragraphs. Decompiled C contains bad-data warnings and is not used as authority for the direction cases; disassembly,table bytes and live results are authoritative."
+  },
+  "startingRecipe": "Continue c858923 conditional flight at574 with Space frame0..280,then20 alternating Space edges every20 frames,then Space+Up at0,Up release100,Space release300. Stop flight return575:f77,then map input entry576:0ed6:1228. First idle input returns0 at577; finish578. Hold Right at frame0 with planned release10000; capture8 input-return/end pairs579..594. Native input values are3 then seven0; next input return595 is0. Cancel remaining long-hold schedule explicitly (not a complete event-only acceptance replay). Schedule Right/Up/Space releases atframe0; final status confirms all3 dispatch. At each following input-return breakpoint,supply the next independent authored AX code from map-pointer-inputs.json via cpu_write eax; capture memory/registers,continue to routine end,and carry state to the next input-return. Final Fire+Right case stops at return626 before its caller acts. Remove breakpoints492/493. No game-memory injection or partial/full machine restoration in this experiment; inherited flight/earlier rival conditional setups remain disclosed in their manifests.",
+  "environmentContract": "AX at the original input-reader return is external input. The16 authored return words are supplied explicitly; no expected output,time,allocator state or intermediate game state supplies inputs. x/y,counter,vector,latch,sprite coordinates carry across checks. Native8-case observations use captured AX values at consumption boundaries and are separate from an event-only replay.",
+  "comparisonRules": "Exact signed-word coordinate/counter/vector/latch/latched-input/sprite fields,draw flag and return AX after each source routine. Initial state comes only from the first independent before snapshot; expected after snapshots never feed the implementation. Full original relocated body identity,no code masks. Timer,other CPU/DS/graphics/audio state are outside this routine comparison.",
+  "limitations": "Conditional authored driver-return inputs,not original whole-map event replay. Native hold probe cancelled its future release; its exact dispatch count before cancellation was not captured,so it is not strict input-schedule acceptance. Browser held-direction provider and2-tick polling are separate environment choices; original keyboard typematic,render costs and full-map timing remain unverified. Counter256/wrapping boundaries have static-rule tests,not original runtime captures.",
+  "artifacts": {
+    "start": {
+      "path": ".local/map-pointer-start.json",
+      "sha256": "b9d007abe1b9aeecea025560011bcd5bcbeec4fee208812d4d17514cd350c3f8"
+    },
+    "native": {
+      "path": ".local/map-pointer-right-trace.json",
+      "sha256": "b0c10dd63868d6634d193597a1388f2fecee79b0f46c37bb0ef0f575a2177cb7"
+    },
+    "authored": {
+      "path": ".local/map-pointer-authored-trace.json",
+      "sha256": "09e1de3895d239ccae5193ca4a57151ead0fc8185068f64f248f6662416ce72f"
+    },
+    "mode": {
+      "path": ".local/map-pointer-mode.json",
+      "sha256": "f9a09dbad1017d552a0d4f4869d6b1c4eb065bbc60a3f7ef68cb29db3c88ec78"
+    }
+  },
+  "verify": "npm run verify:map-pointer; npx playwright test tests/browser/map-pointer.spec.js"
+}

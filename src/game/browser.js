@@ -15,6 +15,18 @@ let game,
   resumeAudio = false,
   pausedAt = null;
 const held = new Set();
+function mapDirection() {
+  const x = Number(held.has("ArrowRight")) - Number(held.has("ArrowLeft"));
+  const y = Number(held.has("ArrowDown")) - Number(held.has("ArrowUp"));
+  return (
+    [
+      y < 0 ? "up" : y > 0 ? "down" : null,
+      x < 0 ? "left" : x > 0 ? "right" : null,
+    ]
+      .filter(Boolean)
+      .join("-") || null
+  );
+}
 function flightControls() {
   dispatch({
     type: "controls",
@@ -26,6 +38,8 @@ function flightControls() {
         ?.slice(5)
         .toLowerCase() ?? null,
   });
+  if (game?.scene === "map")
+    dispatch({ type: "direction", direction: mapDirection() });
 }
 function fatal(error) {
   if (game) game.fail(error);
@@ -220,17 +234,10 @@ window.addEventListener("keydown", (event) => {
   else if (event.code === "ArrowDown") dispatch({ type: "down" });
   else if (event.code === "ArrowLeft") dispatch({ type: "left" });
   else if (event.code === "ArrowRight") dispatch({ type: "right" });
-  if (event.code.startsWith("Arrow"))
-    dispatch({
-      type: "direction",
-      direction: event.code.slice(5).toLowerCase(),
-    });
 });
 window.addEventListener("keyup", (event) => {
   held.delete(event.code);
   flightControls();
-  if (event.code.startsWith("Arrow"))
-    dispatch({ type: "direction", direction: null });
 });
 $("game").addEventListener("pointerdown", (event) => {
   if (game?.scene !== "map" || game.campaign.info) return;

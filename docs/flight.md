@@ -485,4 +485,5 @@ it does not claim natural campaign navigation or whole original-flight parity.
 Run `npm run verify:flight-visible-left-edge` and
 `npx playwright test tests/browser/flight-boundary.spec.js`; both are included in
 full verification. The next priority is additional complete routes and the
-original map pointer's held-direction acceleration,which is still missing.
+broader destination/difficulty coverage and audio-driver work. Map pointer
+arithmetic is now translated; original input-provider timing remains unverified.

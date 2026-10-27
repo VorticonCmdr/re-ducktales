@@ -8,14 +8,14 @@ This is x86 16-bit real-mode driver code, with no extender. Ghidra program
 
 ## Delivered behavior
 
-In `viewer.html`, search `Sound 036`, select the sound, then press **Play Tandy
-preview**. The original driver sequence produces three ascending tones and
-terminates on its sixth sequencer call. Browser playback uses3027 mono PCM
-samples at44100Hz. Switching assets stops playback and releases object URLs.
-The existing PC-speaker audition remains available alongside it.
+In `viewer.html`, search `Sound 036`, `Sound 067` or `Sound 068`, select the sound,
+then press **Play Tandy preview**.036 terminates on its sixth sequencer call,
+using3027 mono PCM samples at44100Hz.067/068 run17 calls with opposite pitch
+deltas and9686 samples each. Switching assets stops playback and releases object
+URLs. The existing PC-speaker audition remains available alongside each preview.
 
-Only036 is exposed. In-game Tandy audio, other sequences, noise, non-flat
-envelopes, pitch modulation and sampled audio are unfinished. Unsupported paths
+Only036/067/068 are exposed. In-game Tandy audio, other sequences, noise,
+vibrato, engine modulation and sampled audio are unfinished. Unsupported paths
 throw diagnostic errors. There is no silent fallback to speaker playback.
 
 ## Source evidence
@@ -28,8 +28,11 @@ throw diagnostic errors. There is no silent fallback to speaker playback.
   checked against005. This is not a natural Tandy-machine run.
 - Resource004 reset0727..0801 and reset-channel0e7c..0e9f initialize four38-byte
   channel records at01d1/0209/0241/0279. Start0415..0531 uses a far caller-cleaned
-  word stack argument. Priority comparisons are signed bytes. IDs121..127 are
-  internal accompaniment records in the same128-entry table at0fb1.
+  word stack argument. Priority comparisons are signed bytes. Native start
+  checks include extended records121..123 within the181-entry table at0fb1. The table ends
+  at111b,also its minimum sequence pointer. All181 pointers lie inside this
+  resource and have channel headers0..3. Standalone starts above127 and
+  compound-start opcode82 remain explicitly unsupported in the translation.
 - Near wrapper0403 calls0802. IRQ02ed divides the1365-PIT-count interrupt by12,
   giving one sequencer call per16380 PIT clocks.0532 is sampled-audio playback,
   not the sequence tick.0802 clears BIOS0040:0018 bit08; decompiler output which
@@ -122,16 +125,84 @@ audio completion passes. None establishes full Tandy audio parity.
 Commands: `npm run verify:tandy`, `node --test tests/tandy.test.js`,
 `npx playwright test tests/browser/tandy.spec.js`, full integration `npm run verify`.
 
-Final integration passes63 unit tests,33 browser scenarios, all required original
-comparisons and the build. Logs are local `.local/tandy-driver-final-verify.log`
-and `.local/tandy-driver-assets.log`. An earlier full run failed after a Vite
+The initial preview integration passed63 unit tests,33 browser scenarios, all
+required original comparisons and the build. Its logs are local
+`.local/tandy-driver-final-verify.log` and `.local/tandy-driver-assets.log`.
+An earlier full run failed after a Vite
 reload during the cave replay and on a symlink directory upload; the unchanged
 gameplay checks pass with a frozen source tree and the resolved original folder.
 
-Next targeted source work: envelope ramps at0942/0996/09b7. Static disassembly
-shows byte-index wrapping and a notable falling-stage branch at09e4..09ed which
-stores AL back to the target field atDI+0b, leaving the current level unchanged.
-The decoded original bytes confirm that operand. Preserve it for a native
-nonzero-target experiment before translating broader envelopes; a generic ADSR
-replacement would conceal this source behavior. This branch is statically
-inferred, not yet runtime-validated.
+## Envelope and pitch expansion
+
+`reference/tandy-envelope-inputs.json` is the independent, authored initial-state
+stream for26 conditional native cases. Each starts from the pinned004 resource,
+patches the named channel fields, sets the selected output slot to17, and places
+the authored envelope in zeroed scratch memory at5000. No expected output or
+captured before-state supplies the translated model's initial state. The checker
+compares the prepared state against the capture before executing the translation.
+
+The six envelope modes are now translated: inactive, initial level, rise, fall,
+hold and release. Native evidence confirms that the nonzero-target fall branch
+at09e4..09ed leaves the current level unchanged while advancing the stage. Zero
+targets instead clear the level and envelope mode. Positive overflow, negative
+underflow, saturation, release and index wrapping are covered. In0942, flat
+stages increment BX as a word; ramps increment BL as a byte. All12339 driver
+bytes and the unchanged512-byte scratch envelope/5-byte call harness compare
+exactly. Four negative controls reject altered state, missing cases, missing
+inputs and mismatched initial state.
+
+Reproduce using the same allocated459c fixture described above. At4000 install
+`CALL near entry; JMP short4000`, with return marker4003, and a private stack
+atfef0. Set DS/ES/SS=459c, DI to the selected channel and SI=5000. Cases specify
+entry0910 (24 envelope-wrapper calls) or0942 (two stage-selection calls).
+Capture CPU, full resource body, scratch envelope and five harness bytes before
+and after each native call. Reload the original resource and authored patches
+for each independent case. `reference/tandy-envelope.json` pins all26 artifacts
+and setup/cleanup evidence; `npm run verify:tandy-envelope` is the strict check.
+
+Opcode91 at0c6a..0cb0 configures an unsigned byte frequency accumulator and a
+**big-endian word delta**. Handler0f3f..0f5a adds that delta to the wrapping period
+only when the accumulator carries. It does not approach a target or clamp.
+Native067 uses deltaffff;068 uses0001. The asymmetric068 operand caught and
+corrected an initial little-endian interpretation. At native checkpoint16 their
+periods are16 and30, respectively. No waveform or host-frequency adjustment was
+used to correct the discrepancy.
+
+`reference/tandy-cues.json` pins two independent reset/start scenarios,17 native
+sequencer calls each,38 full-body checkpoints and84 exact OUT writes. The
+17-call schedule follows the original16-count note duration and terminating
+command; it does not inject an expected final state. Driver state carries across
+every call. Separate `*-events.json` files retain the actual IN61 consumption
+stop before OR60 and the BIOS byte consumed at each call. These values are not
+reconstructed from expected OUT bytes or post-call state. Five negative controls
+reject altered state/port data, missing checkpoints, missing external events and
+missing cue inputs. `npm run verify:tandy-cues` is the strict check.
+
+For those scenarios, reload the original resource once per cue and use the same
+4000/4003 near-call harness. Call0727 for reset, then a fixed scratch wrapper at
+4100: `PUSH word soundID; CALL FAR459c:0415; ADD SP,2; RET`. The wrapper bytes are
+`68 id 00 9a 15 04 9c 45 83 c4 02 c3`. Call0403 exactly17 times, retaining driver
+state. Watch the14 previously listed c0 OUT sites, OUT61 at072b and IN61's
+post-read instruction at0729. Capture each OUT stop and CPU/body/BIOS before
+and after each call. The final breakpoint counters account for all84 writes;
+the return marker counts64 calls across26 envelope cases and38 cue calls.
+
+Cleanup removed all owned breakpoints, restored caller general/segment registers
+and port61 control, and freed the block while the original DOS owner remained
+active. Live caller is now0ed6:046e,stop897. Flags/clocks/BIOS effects are not a
+restored machine checkpoint. Breakpoint deletion returns `status:removed`, not
+`status:ok`; an overly strict cleanup response check stopped after removing its
+first breakpoint. The remaining owned entries were inspected and removed before
+restoring/freeing the fixture. No original game instruction was stepped during
+this experiment's entry or cleanup.
+
+All three reference commands run through `npm run verify:tandy`. Browser native
+input/audio acceptance covers all three exposed IDs; PCM remains an independent
+audition provider with unverified waveform parity. Next: companion-sequence
+opcode82, vibrato/noise and engine paths before enabling in-game Tandy playback.
+
+The envelope/pitch milestone passes full `npm run verify`:65 unit tests,35 browser
+scenarios, all required original comparisons and the production build. Log:
+`.local/tandy-envelopes-final-verify.log`. No runtime source edits occurred during
+that gate. A later comment/table-identity correction records the181-entry finding;
+the affected static check was rerun separately without changing runtime behavior.

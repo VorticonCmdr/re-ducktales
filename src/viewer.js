@@ -1,6 +1,6 @@
 import { parseArchive, imagePixels, fontPixels } from './assets.js';
 import { SOUND_COUNT, renderSound, soundOffset, wavFile } from './audio.js';
-import { renderTandyPreview } from './tandy-preview.js';
+import { renderTandyPreview, TANDY_PREVIEW_IDS } from './tandy-preview.js';
 const $ = id => document.getElementById(id);
 let assets = [], selected, timer, audioUrl, exportData, exportName, generation = 0, tandyAudioUrl;
 const decodeText = bytes => new TextDecoder('windows-1252').decode(bytes).replace(/\x1a/g, '');
@@ -49,7 +49,7 @@ function select(entry) {
       const caption = document.createElement('p'); caption.textContent = `${result.duration.toFixed(2)} seconds · ${result.sampleRate.toLocaleString()} Hz · ${result.truncated ? 'Preview capped at 60 seconds (looping / long sequence)' : 'Sequence complete'}`;
       panel.append(title,canvas,audio,caption); $('stage').append(panel);
       audio.addEventListener('play',()=>document.querySelectorAll('audio').forEach(other=>{if(other!==audio)other.pause();}));
-      if (entry.index === 36 && entry.tandyDriver) {
+      if (TANDY_PREVIEW_IDS.includes(entry.index) && entry.tandyDriver) {
         const tandy = renderTandyPreview(entry.tandyDriver, entry.index);
         tandyAudioUrl = URL.createObjectURL(new Blob([wavFile(tandy)],{type:'audio/wav'}));
         const section=document.createElement('section');section.className='audio-panel';section.setAttribute('aria-label','Tandy preview');
@@ -61,10 +61,10 @@ function select(entry) {
         player.onended=()=>{player.dataset.state='ended';};
         player.onerror=()=>{player.dataset.state='error';};
         play.onclick=()=>{player.currentTime=0;player.play().catch(error=>{player.dataset.state='error';$('note').textContent=`Tandy playback failed: ${error.message}`;});};
-        const limit=document.createElement('p');limit.textContent='One supported sound preview. Other Tandy sounds and in-game Tandy playback are unfinished. Audio waveform matching is still unverified.';
+        const limit=document.createElement('p');limit.textContent='Supported Tandy previews: 036, 067 and 068. Other Tandy sounds and in-game Tandy playback are unfinished. Audio waveform matching is still unverified.';
         section.append(label,play,player,limit);$('stage').append(section);
       }
-      $('note').textContent = `Reconstructed PC-speaker playback from IT.DRV #005. ${result.approximate ? 'Noise and engine effects are approximate; engine speed is fixed for audition.' : 'Pitch, rests, tempo, loops and modulation are interpreted from the driver.'} A limited Tandy preview is available for sound 036; other alternate renditions remain unfinished. Some IDs intentionally contain silence or alias another sequence.`;
+      $('note').textContent = `Reconstructed PC-speaker playback from IT.DRV #005. ${result.approximate ? 'Noise and engine effects are approximate; engine speed is fixed for audition.' : 'Pitch, rests, tempo, loops and modulation are interpreted from the driver.'} Limited Tandy previews are available for sounds 036, 067 and 068; other alternate renditions remain unfinished. Some IDs intentionally contain silence or alias another sequence.`;
     } catch (error) { $('stage').textContent = `Unable to render audio: ${error.message}`; $('download').disabled = true; }
   } else {
     const pre = document.createElement('pre'); pre.textContent = entry.kind === 'Text / data' || entry.kind === 'Document' ? decodeText(entry.data) : hex(entry.data); $('stage').append(pre);

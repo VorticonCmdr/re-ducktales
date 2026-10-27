@@ -1,0 +1,203 @@
+{
+  "build": "dos-fb658562",
+  "captureRevision": "tandy-cues-v1-2026-10-27",
+  "engine": "dosbox-automation 0.84.0-vc1 (f6d9b), bridge0.1.1/protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "mode": "x86 16-bit real mode",
+    "driverSegment": 17820,
+    "driverPhysical": 285120
+  },
+  "inputs": [
+    {
+      "sound": 67,
+      "ticks": 17
+    },
+    {
+      "sound": 68,
+      "ticks": 17
+    }
+  ],
+  "expectedCheckpoints": 38,
+  "expectedPortWrites": 84,
+  "artifacts": {
+    "67-01": {
+      "path": ".local/tandy-cues/67-01.json",
+      "sha256": "b523c402e744d5131d56f64736d7f542b31604db3852367a11129875bdb56dd9"
+    },
+    "67-02": {
+      "path": ".local/tandy-cues/67-02.json",
+      "sha256": "4dd765188e828e531be1f3ca3f1a934eb34e6874022e392366ce36af08b1301b"
+    },
+    "67-03": {
+      "path": ".local/tandy-cues/67-03.json",
+      "sha256": "8d0edd729c697ed3bb2c3486118ec8c652a61e22091cfd5004591245afc55418"
+    },
+    "67-04": {
+      "path": ".local/tandy-cues/67-04.json",
+      "sha256": "ad60ec94f8f40a6cdca159503937d206fd0236468e5ace18e82741d4920fbfba"
+    },
+    "67-05": {
+      "path": ".local/tandy-cues/67-05.json",
+      "sha256": "a63316bbadc3ef0ea01ad8eb068455bfe1ee7eb93b1bd7a55211925924c55dce"
+    },
+    "67-06": {
+      "path": ".local/tandy-cues/67-06.json",
+      "sha256": "ff089827cf90bdb3cf30f672ce6172d63c8d72d8f08723ce81558520b0c47d07"
+    },
+    "67-07": {
+      "path": ".local/tandy-cues/67-07.json",
+      "sha256": "2c3d08100f362edf6120bbd560dfb509aa597f41930344133abe48d96348f82c"
+    },
+    "67-08": {
+      "path": ".local/tandy-cues/67-08.json",
+      "sha256": "5bbb08aeb88a7649b2ff38eac6c19fcc0ccac083324b6297ca17e682dddee9bb"
+    },
+    "67-09": {
+      "path": ".local/tandy-cues/67-09.json",
+      "sha256": "f46199316b23507415a9c5954eba983c00b13d4ed9c7d7b8159d1814d2c28f91"
+    },
+    "67-10": {
+      "path": ".local/tandy-cues/67-10.json",
+      "sha256": "03a4642e06429ff1ee93dd4111960ee2aced9cf15df628455f343dd7c24b0c04"
+    },
+    "67-11": {
+      "path": ".local/tandy-cues/67-11.json",
+      "sha256": "9abe17091c655484d622485b8a8d2b2ff04a101a3265525d6dff2a378285dc7c"
+    },
+    "67-12": {
+      "path": ".local/tandy-cues/67-12.json",
+      "sha256": "dd083be8ed8f378b4e729e46ce64a16a465e894063c360a9dfc4019f229c1c44"
+    },
+    "67-13": {
+      "path": ".local/tandy-cues/67-13.json",
+      "sha256": "52c89817844ae0950425757988005d769d21d96f209ddeb039d95bd7f2dbf085"
+    },
+    "67-14": {
+      "path": ".local/tandy-cues/67-14.json",
+      "sha256": "1e254c1547f2720bc3f0be4d9ee513ecb20f98a43572cb8b3557fe29e6aa5b41"
+    },
+    "67-15": {
+      "path": ".local/tandy-cues/67-15.json",
+      "sha256": "8a96d21f047dccd1d6c6937af7d363d249320d269ec8574405f3a31c55609bbb"
+    },
+    "67-16": {
+      "path": ".local/tandy-cues/67-16.json",
+      "sha256": "17df20b42a47d2308591144d071aa41eaec5a99c9e8814730cfb679d646ff9e6"
+    },
+    "67-17": {
+      "path": ".local/tandy-cues/67-17.json",
+      "sha256": "7caa52b97d3083ebd4631862fa8265b4095afe66c3a1f822c79abab18b4fffc1"
+    },
+    "67-events": {
+      "path": ".local/tandy-cues/67-events.json",
+      "sha256": "b8d1a9d09c9356ee154a09687b45ce478e44c818d099a0f67dcc7775bd06b702"
+    },
+    "67-reset": {
+      "path": ".local/tandy-cues/67-reset.json",
+      "sha256": "ee8300fae82be6bbae0db283fe45c794decbb7ca7b92168706750fc4c48c3391"
+    },
+    "67-start": {
+      "path": ".local/tandy-cues/67-start.json",
+      "sha256": "65e8d994174fdf732ae9fca22bf4c308425ac86f9893cd8111db5a7e4367417f"
+    },
+    "68-01": {
+      "path": ".local/tandy-cues/68-01.json",
+      "sha256": "cfb18a4cf56d0de72a9294b9c23935e5bfe053e1dae666c2ea4fc997f83ca262"
+    },
+    "68-02": {
+      "path": ".local/tandy-cues/68-02.json",
+      "sha256": "3c8830295b2de27e702b8e6750f6a64c9cab4ac3b3cf8940ab956a42195ed7ca"
+    },
+    "68-03": {
+      "path": ".local/tandy-cues/68-03.json",
+      "sha256": "a8a1fed0cbbd20d37bd8e5693625d82cfab66669ef0da5445bd772b6fdb217bc"
+    },
+    "68-04": {
+      "path": ".local/tandy-cues/68-04.json",
+      "sha256": "ddaba6f4f904c7cdca191a622a292b9b47924908a506072108e0a8c076cdd62b"
+    },
+    "68-05": {
+      "path": ".local/tandy-cues/68-05.json",
+      "sha256": "c6edb0e08da40a91988a53f6d711762e37439864517f7f8b5f58bad603df2e34"
+    },
+    "68-06": {
+      "path": ".local/tandy-cues/68-06.json",
+      "sha256": "f88bcb38fc1d52f1d17d698af4d0f1e485945c9df3e59744053ab052c7393ee5"
+    },
+    "68-07": {
+      "path": ".local/tandy-cues/68-07.json",
+      "sha256": "eefec73ac707b03a17fdea00557920e7677a9f3cd38deec2e84c1a6bc67bc8ba"
+    },
+    "68-08": {
+      "path": ".local/tandy-cues/68-08.json",
+      "sha256": "0a080976d4b4bab377e2635f21841da18e7091a86a2d20d20dfd1b51789318bc"
+    },
+    "68-09": {
+      "path": ".local/tandy-cues/68-09.json",
+      "sha256": "583bea81eb5ec40759291ed020fa1b58f3d8c195ac8023257e574905374d2dff"
+    },
+    "68-10": {
+      "path": ".local/tandy-cues/68-10.json",
+      "sha256": "c83e57f765e71b0b97d786f7912966ae3c8a37ee5ee53c30e2bb234acd662463"
+    },
+    "68-11": {
+      "path": ".local/tandy-cues/68-11.json",
+      "sha256": "21930e948aec079b0c921af4017bace562c947b07621e4e69b50a4a3d1e85dd1"
+    },
+    "68-12": {
+      "path": ".local/tandy-cues/68-12.json",
+      "sha256": "7e2883f8758d89d50c09867926296491a372eb6adf7bf0f998b80b4747098e12"
+    },
+    "68-13": {
+      "path": ".local/tandy-cues/68-13.json",
+      "sha256": "7928a4022c3a154fc9dc677b31dd9ba6e5a9765829148c27e52d9066cb6a42ac"
+    },
+    "68-14": {
+      "path": ".local/tandy-cues/68-14.json",
+      "sha256": "e291024a4524cd98686a2edcecd7ae7b7dcf978ba0ee062364e9e99473a7e550"
+    },
+    "68-15": {
+      "path": ".local/tandy-cues/68-15.json",
+      "sha256": "707805e677cd1b7f4fb82c194bee8138852d633c1fc6f4db80ce27ca18684fbd"
+    },
+    "68-16": {
+      "path": ".local/tandy-cues/68-16.json",
+      "sha256": "aac24b9eef4a55dfcc97f34c987b314c8cb875d7f1be397686a9d179490a216f"
+    },
+    "68-17": {
+      "path": ".local/tandy-cues/68-17.json",
+      "sha256": "f235d5243dba563c91e293dde99a73010afafc178bd204ab7c9cb51449539fc6"
+    },
+    "68-events": {
+      "path": ".local/tandy-cues/68-events.json",
+      "sha256": "232daaf40f352b2a84d43b5d974a41e7a56a7e3d3c504c10f67303d1d2410a9b"
+    },
+    "68-reset": {
+      "path": ".local/tandy-cues/68-reset.json",
+      "sha256": "1069e0311ba74fbdf0b948cda02a9cdf131e01c3b05fcefce5e7a8a6bb4aee2e"
+    },
+    "68-start": {
+      "path": ".local/tandy-cues/68-start.json",
+      "sha256": "d00420df4c11599bc75ee2d49c4b337e953a008e5a12f506c287edaa08ef86cd"
+    },
+    "cleanup": {
+      "path": ".local/tandy-cues/cleanup.json",
+      "sha256": "265859be4812e3de8595ed065566a56d45bacd8cdcd94f488a6a411606a409e4"
+    },
+    "final-native": {
+      "path": ".local/tandy-cues/final-native.json",
+      "sha256": "4ab65c459f3f568e8462e91b5a5027058b259e1b38893f454ec9797fda113963"
+    }
+  },
+  "comparison": "Every12339-byte driver state, carried before-state, exact OUT port/order/AL and BIOS AND-f7 effects. External reads in distinct events files. No exclusions in driver body.",
+  "limitations": [
+    "Isolated allocated resource004, not natural installed Tandy machine playback.",
+    "Explicit reset/start/manual tick schedule; no original IRQ wall-clock or PCM waveform claim.",
+    "Caller general/segment registers restored; flags, clocks and BIOS effects not restored. Not a machine checkpoint."
+  ],
+  "verify": "npm run verify:tandy-cues",
+  "recipe": "docs/tandy-audio.md"
+}

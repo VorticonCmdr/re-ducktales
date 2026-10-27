@@ -5,10 +5,10 @@ tables are embedded inside the compressed drivers in `IT.DRV`. Decode that file
 using the same container/LZW routines as `.ARC`.
 
 The current player interprets **resource #005**, a 7,253-byte PC-speaker driver.
-Resource #004 (12,339 bytes) is the Tandy/PCjr driver. A limited sound036 Tandy
-preview now plays alongside the PC-speaker rendition in the viewer. Its six
-sequencer calls match conditional original-driver state and port-write captures;
-its waveform remains unverified. Other Tandy sounds and in-game Tandy playback
+Resource #004 (12,339 bytes) is the Tandy/PCjr driver. Limited previews036,067
+and068 play alongside their PC-speaker renditions in the viewer. Envelope modes
+and pitch slides match conditional original-driver state and port-write captures;
+their waveform remains unverified. Other Tandy sounds and in-game Tandy playback
 are unfinished. Resource #006 (4,142 bytes) remains unidentified and is not
 synthesized. See [Tandy evidence and setup](tandy-audio.md).
 

@@ -2,6 +2,7 @@ import { TandyDriver } from "./tandy-driver.js";
 
 export const TANDY_TICK_SECONDS = (1365 * 12) / 1193182;
 export const TANDY_CLOCK_HZ = 14318180 / 4;
+export const TANDY_PREVIEW_IDS = [36, 67, 68];
 
 // Tone-only SN76489 register/counter boundary. TI's 10-bit period counters
 // toggle at clock/16; each attenuation step is2dB and15 is off. This preview
@@ -80,10 +81,8 @@ export class TandyTones {
 }
 
 export function renderTandyPreview(bytes, id, { sampleRate = 44100 } = {}) {
-  if (id !== 36)
-    throw Error(
-      `Tandy preview currently supports sound036 only (requested ${id})`,
-    );
+  if (!TANDY_PREVIEW_IDS.includes(id))
+    throw Error(`Tandy preview supports sounds036,067,068 (requested ${id})`);
   const chip = new TandyTones({ sampleRate }),
     bus = [],
     biosFlags = [];

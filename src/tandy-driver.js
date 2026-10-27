@@ -1,6 +1,6 @@
 // IT.DRV resource004. These translated entry points retain the original driver
 // layout so conditional original-function comparisons can check every byte.
-// Sequencing is currently bounded to the source paths exercised by sound036.
+// Sequencing rejects commands and device paths that have not been translated.
 export class TandyDriver {
   constructor(bytes, { writePort } = {}) {
     if (!(bytes instanceof Uint8Array) || bytes.length !== 12339)
@@ -47,8 +47,8 @@ export class TandyDriver {
     if (!Number.isInteger(argument) || argument < 0 || argument > 65535)
       throw Error("Tandy sound argument must be a word");
     const id = argument & 255;
-    // The supplied build's table has128 records. Higher IDs fall outside this
-    // translated boundary; do not interpret adjacent bytes as a made-up sound.
+    // The original table has181 records. Standalone starts above127 remain
+    // outside this translated boundary; compound-sequence support is pending.
     if (id > 127) throw Error(`Unsupported Tandy sound ID ${id}`);
     if (id === 0) {
       this.reset(port61);
@@ -96,7 +96,14 @@ export class TandyDriver {
     let index = this.byte(at + 12),
       pointer = this.word(at + 13);
     const delta = this.byte(pointer + index);
-    if (delta !== 0) throw Error(`Unsupported Tandy envelope slope ${delta}`);
+    if (delta !== 0) {
+      this.byte(at + 10, delta < 128 ? 2 : 3);
+      this.byte(at + 15, delta);
+      index = (index + 1) & 255; // INC BL, not INC BX, in the ramp branch.
+      this.byte(at + 11, this.byte(pointer + index));
+      this.byte(at + 12, index + 1);
+      return;
+    }
     index = (index + 1) & 65535;
     const hold = this.byte(pointer + index);
     if (hold === 0) {
@@ -113,14 +120,63 @@ export class TandyDriver {
       this.byte(at + 16, this.byte(this.word(at + 13) + this.byte(at + 12)));
       this.byte(at + 12, this.byte(at + 12) + 1);
       this.selectEnvelopeStage(at);
+    } else if (mode === 2) {
+      const sum = this.byte(at + 16) + this.byte(at + 15);
+      if (sum > 255 || sum >= this.byte(at + 11)) {
+        this.byte(at + 16, this.byte(at + 11));
+        this.selectEnvelopeStage(at);
+      } else this.byte(at + 16, sum);
+    } else if (mode === 3) {
+      const next = this.byte(at + 16) - (-this.byte(at + 15) & 255);
+      if (next < 0 || next <= this.byte(at + 11)) {
+        if (this.byte(at + 11) === 0) {
+          this.byte(at + 16, 0);
+          this.byte(at + 10, 0);
+        } else {
+          // 09e4..09ed writes the target back to DI+0b, not the level
+          // at DI+10. Preserve this original nonzero-target quirk.
+          this.selectEnvelopeStage(at);
+        }
+      } else this.byte(at + 16, next);
     } else if (mode === 4) {
       this.byte(at + 11, this.byte(at + 11) - 1);
       if (this.byte(at + 11) === 0) {
         this.byte(at + 12, this.byte(at + 12) + 1);
         this.selectEnvelopeStage(at);
       }
+    } else if (mode === 5) {
+      this.word(at + 13, this.word(at + 0x34));
+      this.byte(at + 12, 0);
+      this.selectEnvelopeStage(at);
     } else if (mode !== 0)
       throw Error(`Unsupported Tandy envelope mode ${mode}`);
+  }
+  processEnvelope(at) {
+    // 0910..0941 computes the saturated attenuation after the stage handler,
+    // including a handler that has just changed the envelope mode to zero.
+    if (this.byte(at + 10) === 0) return;
+    this.advanceEnvelope(at);
+    this.byte(
+      0x2c1 + this.byte(0x1b3),
+      Math.min(255, (this.byte(at + 16) ^ 255) + this.byte(at + 0x29)),
+    );
+  }
+  processModulation(at, ch, offset) {
+    const handler = this.word(at + offset);
+    if (handler === 0xf04) return;
+    if (handler !== 0xf3f)
+      throw Error(
+        `Unsupported Tandy modulation handler ${handler.toString(16)}`,
+      );
+    // 0f3f..0f5a: a byte accumulator gates a wrapping word addition. The
+    // sequence's word is a delta, not a target frequency or a clamped slide.
+    const sum = this.byte(at + 0x1d) + this.byte(at + 0x1c);
+    this.byte(at + 0x1d, sum);
+    if (sum > 255) {
+      const period = this.word(at + 8) + this.word(at + 0x1e);
+      this.word(at + 8, period);
+      this.word(0x2b9 + ch * 2, period);
+    }
   }
   processNote(at, ch, note) {
     if (ch === 3) throw Error("Tandy noise sequencing is not implemented");
@@ -170,7 +226,12 @@ export class TandyDriver {
               this.processNote(at, ch, op);
               break;
             }
-            if (op === 0x8f) {
+            if (op === 0x91) {
+              this.byte(at + 0x1c, this.readSequence(at));
+              const high = this.readSequence(at);
+              this.word(at + 0x1e, (high << 8) | this.readSequence(at));
+              this.word(at + 0x30, 0xf3f);
+            } else if (op === 0x8f) {
               const index = (this.readSequence(at) << 1) & 255;
               this.word(at + 0x36, this.word(0x1385 + index));
               this.word(at + 0x34, this.word(0x1387 + index));
@@ -192,18 +253,8 @@ export class TandyDriver {
         }
       }
       if (skip) continue;
-      for (const offset of [0x30, 0x32])
-        if (this.word(at + offset) !== 0xf04)
-          throw Error(
-            `Unsupported Tandy modulation handler ${this.word(at + offset).toString(16)}`,
-          );
-      if (this.byte(at + 10)) {
-        this.advanceEnvelope(at);
-        this.byte(
-          0x2c1 + ch,
-          Math.min(255, (this.byte(at + 16) ^ 255) + this.byte(at + 0x29)),
-        );
-      }
+      for (const offset of [0x30, 0x32]) this.processModulation(at, ch, offset);
+      this.processEnvelope(at);
       const volume = this.byte(0x2c1 + ch);
       if (volume !== this.byte(0x2cd + ch)) {
         this.byte(0x2cd + ch, volume);

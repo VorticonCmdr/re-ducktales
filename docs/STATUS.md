@@ -116,9 +116,11 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
-- Tandy is partially implemented: asset-viewer sound036 has a six-call preview,
-  with18 conditional native-state checkpoints and15 exact port writes. Native
-  browser keyboard/playback completion passes. Other Tandy sounds,noise and
+- Tandy is partially implemented: asset-viewer sounds036,067,068 have previews.
+  All six envelope modes and byte/word index wrapping have26 conditional native
+  cases. The two pitch-slide cues carry38 native checkpoints and84 exact port
+  writes; sound036 retains18 original checks and15 port writes. Native browser
+  keyboard/playback completion passes. Other Tandy sounds,noise and
   in-game integration are unfinished; waveform parity is unverified. See
   [Tandy setup and limitations](tandy-audio.md). In-game playback uses the PC-speaker
   driver. PC-speaker
@@ -161,9 +163,9 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passed full `npm run verify`:63 unit tests,33 browser scenarios,
+Current milestone passed full `npm run verify`:65 unit tests,35 browser scenarios,
 all required original-data checks and the production build. Integration log:
-`.local/tandy-driver-final-verify.log`. The speaker asset audit also retains
+`.local/tandy-envelopes-final-verify.log`. The speaker asset audit also retains
 121 successful renditions. The initial Tandy integration run was invalidated by
 a development reload during the cave scenario and exposed directory-upload
 handling of the worktree's asset symlink. Selecting its real directory fixed
@@ -254,10 +256,11 @@ The original repository's `main` remains the local integration target; no push
 or deployment is authorized. The existing `.gitignore` remains unchanged.
 
 Live original: instance0719a1b0cdcede0b85c39577ff760639,PID59942,paused
-0ed6:046e stop682,DS/SS1403,after the conditional Tandy-driver harness. Rechecked
+0ed6:046e stop897,DS/SS1403,after the conditional Tandy-driver harness. Rechecked
 with the live debugger. Original general/segment registers were restored to
 the saved post-RETF caller; flags,time and BIOS effects were not restored.
 The allocated fixture was freed and owned breakpoints cleared. This is not a
 machine checkpoint or a natural campaign replay. Fresh launch/address validation
 is required before natural runtime comparisons. Earlier map/flight/rival captures
-retain their own scopes; see `reference/tandy-driver.json` and `docs/tandy-audio.md`.
+retain their own scopes; see `reference/tandy-driver.json`, `reference/tandy-cues.json`
+and `docs/tandy-audio.md`.

@@ -1,0 +1,132 @@
+{
+  "build": "dos-fb658562",
+  "driverSHA256": "c17ef1f352cc26f470c8297a070fbcf5fd3d6eaa8b146b3486b54f076205d80c",
+  "captureRevision": "tandy-envelope-v1-2026-10-27",
+  "engine": "dosbox-automation 0.84.0-vc1 (f6d9b), bridge0.1.1/protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cycles": 3000,
+    "mode": "x86 16-bit real mode",
+    "segment": 17820,
+    "physical": 285120
+  },
+  "inputs": "reference/tandy-envelope-inputs.json",
+  "expectedCases": 26,
+  "comparison": "All12339 driver bytes, unchanged512-byte authored envelope and5-byte call harness. Conditional injected channel/envelope state; no whole-game or waveform claim.",
+  "artifacts": [
+    {
+      "path": ".local/tandy-envelope/00.json",
+      "sha256": "05e473cc627e35ac6ca575b778be8f13f19182e8c4aa40f513105d450517d387"
+    },
+    {
+      "path": ".local/tandy-envelope/01.json",
+      "sha256": "b9c688d636e6c877c87e1000cb39b08c90a93077e37cd4cc64a4a8c4c2ce641c"
+    },
+    {
+      "path": ".local/tandy-envelope/02.json",
+      "sha256": "f0cbc150822961a249fe6c0fae37e4194e3ff9bd7b7f8becbd42489796bd3bee"
+    },
+    {
+      "path": ".local/tandy-envelope/03.json",
+      "sha256": "b017ee6aa12b5727819a29e5c4eb4b834f995bdd052409f7347e2bffbfcf31dc"
+    },
+    {
+      "path": ".local/tandy-envelope/04.json",
+      "sha256": "426a0de733076fee18521f8f3d470bb6c914126efdc283ed9ee6c12b46297f76"
+    },
+    {
+      "path": ".local/tandy-envelope/05.json",
+      "sha256": "a5e299cae39958a6dfe08596658f4a98d2e4d68a94714d267d9c3f1521924989"
+    },
+    {
+      "path": ".local/tandy-envelope/06.json",
+      "sha256": "4ef2cdd7e6b2036db2dfdc0849b96ae88662ad17882cfcb69a38fb6e8e77ca73"
+    },
+    {
+      "path": ".local/tandy-envelope/07.json",
+      "sha256": "8aa4db88b837853ce84cd85650ff39f3fd42c4d42671e36e52ea49ea588fd43e"
+    },
+    {
+      "path": ".local/tandy-envelope/08.json",
+      "sha256": "94f123ae4f3fb0dcb89b0c44926302ed38609dd84fbf02dd46aed59f507cd1da"
+    },
+    {
+      "path": ".local/tandy-envelope/09.json",
+      "sha256": "a33b90d18a19a0a8b4fb970ae1f2d49228ae5814c25a42f52cf0073a29217707"
+    },
+    {
+      "path": ".local/tandy-envelope/10.json",
+      "sha256": "9d29e5061162398ffcc10c7f546d41b5b0f9a867257be060437b77aefc8efa32"
+    },
+    {
+      "path": ".local/tandy-envelope/11.json",
+      "sha256": "e41df057300aa890242537971781c86d8d4faa408dc35eb4760ad258c6c3ba24"
+    },
+    {
+      "path": ".local/tandy-envelope/12.json",
+      "sha256": "1c88be5f92c2d4bfb61b2f64a09552c0236b38c7850d98476f148090b8af1fe8"
+    },
+    {
+      "path": ".local/tandy-envelope/13.json",
+      "sha256": "1d7e25446a71a0e23d2dfd2a5582366d48616155084bbe13c8afcd0b08b64a08"
+    },
+    {
+      "path": ".local/tandy-envelope/14.json",
+      "sha256": "4ae1f53e6c13006442e81a8a6795a75d678b59188284c7e188d6f5d44c2e1e6a"
+    },
+    {
+      "path": ".local/tandy-envelope/15.json",
+      "sha256": "99b884c037dcfa235620d4a2afbd8a6cabda1655b57eb5b1f701b6540cf66a2b"
+    },
+    {
+      "path": ".local/tandy-envelope/16.json",
+      "sha256": "957fec55d5c7cf27941405b08c81dfca830d37305ddbf9af64836a1ae2c2fbe2"
+    },
+    {
+      "path": ".local/tandy-envelope/17.json",
+      "sha256": "512880e8cef825e93417a370196516ce6e279d5a9bc8e71541d5ce42ff2cb5ea"
+    },
+    {
+      "path": ".local/tandy-envelope/18.json",
+      "sha256": "1e4b0823023e5df1a586863539ac44208a53a32f6143f98c9de753a845629436"
+    },
+    {
+      "path": ".local/tandy-envelope/19.json",
+      "sha256": "7957554d56a8ea669c4572c14b55a5b57b40cdb7747de699f8f27446b9927121"
+    },
+    {
+      "path": ".local/tandy-envelope/20.json",
+      "sha256": "dd45c2f7f771b7c1e927173d55c1ee7866af376e28bc34770b716437ded8a2c6"
+    },
+    {
+      "path": ".local/tandy-envelope/21.json",
+      "sha256": "94a0afe0535ca3fc430b6f9c9db3ff245fd9ab26bd3e016dfa54d72d42e6715a"
+    },
+    {
+      "path": ".local/tandy-envelope/22.json",
+      "sha256": "dfeaea8e2bfc3dd5fe38b6170ad889b6716670d6c73b861f65d76c50724e7771"
+    },
+    {
+      "path": ".local/tandy-envelope/23.json",
+      "sha256": "6a8348c57c6faeb4b0fa2d4f69f4064494148d5692eff66f59d29e2ef120d671"
+    },
+    {
+      "path": ".local/tandy-envelope/24.json",
+      "sha256": "63c87e19f8109b1efbc7d903664a19f747c034e81ba315d4cca04c9dc0c12255"
+    },
+    {
+      "path": ".local/tandy-envelope/25.json",
+      "sha256": "4b0c26cfa24efc6c44308cdb01c0ede1a4b8e3cd57048c46fc824f96d78cd648"
+    }
+  ],
+  "setup": {
+    "path": ".local/tandy-envelope/setup.json",
+    "sha256": "2a5987d6b9819e363d6994c4a00970b2b5d51427613faa6576f0531bee90f29c"
+  },
+  "cleanup": {
+    "path": ".local/tandy-cues/cleanup.json",
+    "sha256": "265859be4812e3de8595ed065566a56d45bacd8cdcd94f488a6a411606a409e4"
+  },
+  "verify": "npm run verify:tandy-envelope"
+}

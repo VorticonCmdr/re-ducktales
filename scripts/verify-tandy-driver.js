@@ -71,6 +71,15 @@ const entries = parseArchive(await readFile("game/IT.DRV"), "IT.DRV"),
   driver = entries[4].data;
 assert.equal(driver.length, 12339);
 assert.equal(hash(driver), manifest.driver.sha256);
+const table = new DataView(driver.buffer, driver.byteOffset, driver.byteLength);
+const sequences = Array.from({ length: 181 }, (_, i) =>
+  table.getUint16(0xfb1 + i * 2, true),
+);
+assert.equal(0xfb1 + sequences.length * 2, 0x111b);
+assert.equal(Math.min(...sequences), 0x111b);
+assert.ok(
+  sequences.every((p) => p >= 0x111b && p + 1 < 12339 && driver[p] <= 3),
+);
 assert.equal(manifest.expected.checkpoints, 18);
 assert.equal(manifest.expected.portWrites, 15);
 // This machine had selected the speaker rendition, not resource004. Compare

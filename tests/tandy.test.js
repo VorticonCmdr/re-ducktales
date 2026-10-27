@@ -61,7 +61,10 @@ test("original Tandy036 ends after six ticks with exact sequence writes", async 
   );
   assert.ok(result.pcm.every(Number.isFinite));
   assert.ok(result.pcm.some((v) => v > 0) && result.pcm.some((v) => v < 0));
-  assert.throws(() => renderTandyPreview(bytes, 35), /supports sound036 only/);
+  assert.throws(
+    () => renderTandyPreview(bytes, 35),
+    /supports sounds036,067,068/,
+  );
   const engine = new TandyDriver(bytes, { writePort() {} });
   engine.reset(0);
   engine.start(0x4008);
@@ -69,4 +72,56 @@ test("original Tandy036 ends after six ticks with exact sequence writes", async 
     () => engine.processTick({ clearBiosFlags() {} }),
     /engine sequencing is not implemented/,
   );
+});
+
+test("original pitch deltas are big-endian and both complete cues terminate", async () => {
+  const bytes = parseArchive(await readFile("game/IT.DRV"), "IT.DRV")[4].data;
+  for (const [id, delta, period] of [
+    [67, 65535, 16],
+    [68, 1, 30],
+  ]) {
+    const d = new TandyDriver(bytes, { writePort() {} });
+    d.reset(0);
+    d.start(id);
+    for (let i = 0; i < 16; i++) d.processTick({ clearBiosFlags() {} });
+    // Native fixtures67/68, checkpoint16; these values catch a little-endian
+    // interpretation even when the negative delta's ff/ff bytes are symmetric.
+    assert.equal(d.word(0x1ef), delta);
+    assert.equal(d.word(0x1d9), period);
+    const preview = renderTandyPreview(bytes, id);
+    assert.equal(preview.ticks, 17);
+    assert.equal(preview.pcm.length, 9686);
+    assert.equal(preview.bus.length, 42);
+    assert.equal(preview.truncated, false);
+    assert.ok(preview.pcm.every(Number.isFinite));
+  }
+});
+
+test("falling Tandy envelopes preserve the original nonzero-target quirk", async () => {
+  const bytes = parseArchive(await readFile("game/IT.DRV"), "IT.DRV")[4].data;
+  const d = new TandyDriver(bytes, {
+    writePort() {
+      throw Error("unexpected I/O");
+    },
+  });
+  const at = 0x1d1;
+  d.byte(0x1b3, 0);
+  d.byte(at + 10, 3);
+  d.byte(at + 11, 90);
+  d.byte(at + 12, 3);
+  d.byte(at + 15, 246);
+  d.byte(at + 16, 100);
+  d.word(at + 13, 0x5000);
+  d.byte(0x5004, 2);
+  d.processEnvelope(at);
+  assert.equal(d.byte(at + 16), 100);
+  assert.equal(d.byte(at + 10), 4);
+  assert.equal(d.byte(at + 11), 2);
+  d.byte(at + 10, 3);
+  d.byte(at + 11, 0);
+  d.byte(at + 16, 5);
+  d.processEnvelope(at);
+  assert.equal(d.byte(at + 16), 0);
+  assert.equal(d.byte(at + 10), 0);
+  assert.equal(d.byte(0x2c1), 255);
 });

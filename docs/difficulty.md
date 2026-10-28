@@ -140,3 +140,10 @@ DS/SS1403, with all replay events dispatched and no breakpoints.
 Raw opcode8ec0 sets ES from AX in the BIOS helper. The Ghidra MCP instruction
 text reports the operands reversed; source bytes establish the correct operation.
 A focused tool correction should fix that segment-register operand formatting.
+
+The browser integration now passes the full required gate on runtime cd1e4dd:
+117 unit,72 development browser and2 production browser cases, zero skips.
+Its receipt is pinned separately as integrationGate in reference/difficulty.json;
+the earlier native and focused browser captures remain unchanged. The restored
+menu lifecycle is connected to title startup and ending replay. Original CPU/file
+cost and elapsed-time parity remain unproven.

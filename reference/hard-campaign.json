@@ -167,6 +167,26 @@
     "scenario-at-replay": {
       "path": ".local/hard-campaign/accepted-menu-browser-replay-01/scenario-at-replay.json",
       "sha256": "e53d009a5f3babd6a3edc505c9e25c4108791514be12447a402633d246097ff3"
+    },
+    "menu-gate-development-status": {
+      "path": ".local/menu-integration-full-gate-20261028/development-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "menu-gate-full-verify": {
+      "path": ".local/menu-integration-full-gate-20261028/full-verify.log",
+      "bytes": 55266,
+      "sha256": "37dfc1f5af9060c5fb67f57d583c6dde884987f7ad140386f3ff8daca424cfa8"
+    },
+    "menu-gate-production-status": {
+      "path": ".local/menu-integration-full-gate-20261028/production-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "menu-gate-source-revision": {
+      "path": ".local/menu-integration-full-gate-20261028/source-revision.json",
+      "bytes": 391,
+      "sha256": "15f7d6b5c86187abe22c3dbeec69922f30468aecf1acdbbecd2f4f83ec6b8149"
     }
   },
   "inputManifests": [
@@ -258,8 +278,21 @@
     "ready": true
   },
   "expectedOwnership": {
-    "playerCollected": [2, 30, 31, 32],
-    "rivalCollected": [9, 10, 13, 21, 25, 27, 28]
+    "playerCollected": [
+      2,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      9,
+      10,
+      13,
+      21,
+      25,
+      27,
+      28
+    ]
   },
   "comparisonRules": "Exact hashes of every field published by Game.snapshot at all24 observation points, and exact320x200 decoded browser pixels. Raw private memory/stack and input-reader internals are not wholly exposed by these snapshots. Events and the observation/display timeline are separate input artifacts. No state injection,fitted timing,pixel tolerance or result-derived controls.",
   "verifyCommand": "node scripts/verify-hard-campaign.js",
@@ -409,5 +442,38 @@
     "artifactRoot": ".local/hard-campaign/accepted-reference-09",
     "status": "Previous verified main baseline; retained separately."
   },
-  "pendingBrowserReplay": false
+  "pendingBrowserReplay": false,
+  "integrationGate": {
+    "runtimeCommit": "cd1e4dd08bf2139cf9cbd540a1aabe8bc8696dfb",
+    "command": "npm run verify",
+    "exitCode": 0,
+    "unit": 117,
+    "developmentBrowser": 72,
+    "productionBrowser": 2,
+    "skipped": 0,
+    "scope": "Complete required gate on clean runtime revision, followed by receipt/documentation-only integration metadata. This is a port acceptance gate, not complete original-game parity.",
+    "archive": ".local/menu-integration-full-gate-20261028",
+    "artifacts": [
+      {
+        "path": ".local/menu-integration-full-gate-20261028/development-status.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      {
+        "path": ".local/menu-integration-full-gate-20261028/full-verify.log",
+        "bytes": 55266,
+        "sha256": "37dfc1f5af9060c5fb67f57d583c6dde884987f7ad140386f3ff8daca424cfa8"
+      },
+      {
+        "path": ".local/menu-integration-full-gate-20261028/production-status.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      {
+        "path": ".local/menu-integration-full-gate-20261028/source-revision.json",
+        "bytes": 391,
+        "sha256": "15f7d6b5c86187abe22c3dbeec69922f30468aecf1acdbbecd2f4f83ec6b8149"
+      }
+    ]
+  }
 }

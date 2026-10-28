@@ -6,12 +6,12 @@ and full original-game parity are not guaranteed.
 
 ## Integration state
 
-- Main57beb92 is the last fully integrated baseline:117 unit,70 development
+- Main9fbb7c4 is the last fully integrated baseline:117 unit,72 development
   browser and2 production browser cases, zero skips, with required original
   comparisons and negative controls passing.
-- The difficulty-menu branch restores the original menu and migrates startup,
-  flight input boundaries and complete campaign checks. Its full gate is running
-  on cd1e4dd; focused results do not replace it.
+- The original difficulty menu, startup waits, flight input boundaries and
+  campaign checks are integrated. Its passing runtime cd1e4dd receipt is retained
+  at .local/menu-integration-full-gate-20261028/.
 - This office branch adds the original money-bin departure. Two new browser
   cases, nine existing browser regressions,117 unit cases, exact native/core
   checks and the production build pass. Its full gate is pending. It has not been
@@ -73,8 +73,7 @@ missing fixtures fail setup.
 - No original save/load/high-score format has been identified. Browser persistence
   would be an explicit addition.
 
-Next: finish the full menu gate, then the connected office-departure gate and
-integration. Continue with the remaining office/security transitions. The capture
+Next: finish the connected office-departure full gate and integration. Continue with the remaining office/security transitions. The capture
 bridge's stale settings/port collision needs the focused correction documented
 in [office evidence](office-transitions.md) before another native capture.
 

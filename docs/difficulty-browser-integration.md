@@ -1,97 +1,70 @@
 # Difficulty menu browser integration
 
-This work is on `codex/difficulty-menu`, based on `6f7867b`. It is not yet
-integrated into the main checkout's verified campaign milestone.
+The original menu is connected to title startup and ending replay. Clean runtime
+cd1e4dd08bf2139cf9cbd540a1aabe8bc8696dfb passes the complete `npm run verify`:
+117 unit cases,72 development browser cases,2 production browser cases and zero
+skips, including required native comparisons and negative controls.
 
-The application now uses `DifficultyMenu` with original MAIN.ARC32 and executable
-strings. Entry fills/flips to black, reveals five interleaved row groups, and
-flushes queued keys before polling. Selection wraps, waits seven driver counts
-between reads, emits sound36 when enabled and tests Fire before movement.
-Confirmation reads the explicit BIOS seed provider before the25-retrace closing
-wipe; campaign initialization follows cleanup. Replay from the ending uses the
-same menu and retains the original post-return sound reset.
+Immutable full log, browser status files and source identity are under ignored
+`.local/menu-integration-full-gate-20261028/`, pinned as integrationGate in
+reference/difficulty.json and reference/hard-campaign.json. The Hard checker
+requires those retained gate artifacts. Subsequent integration changes only
+receipts/documentation; the tested runtime identity remains explicit.
 
-Input, audio settings, system dialogs, driver ticks, display retraces and BIOS
-seed values enter through explicit interfaces. The component has no wall-clock
-or host RNG access. Queued button/key taps are distinct from the held digital
-joystick provider. Entry flush discards taps; global-dialog resume also releases
-controls. The browser's keyboard-as-joystick mapping remains an explicit adapter.
+## Menu lifecycle
 
-## Focused verification
+`DifficultyMenu` uses original MAIN.ARC32 and EXE strings. Entry fills/flips to
+black, reveals five interleaved row groups and flushes queued keys before polling.
+Selection wraps, waits seven driver counts between reads, emits sound36 when
+enabled and tests Fire before movement. Confirmation consumes the explicit BIOS
+seed provider before the25-retrace closing wipe; campaign initialization follows
+cleanup. Ending replay uses the same menu and original post-return sound reset.
 
-`node scripts/verify-difficulty.js` checks four exact original menu pictures,
-nine consumed inputs, five native sound calls, fresh relocated code identity and
-the BIOS consumption/write boundary, then carries a component replay through the
-source-derived lifecycle. See [native recipe and scope](difficulty.md).
+Input, audio settings, global dialogs, driver ticks, display retraces and BIOS
+seed values enter through explicit interfaces. The component has no DOM,
+wall-clock or host RNG access. Entry flush discards queued taps; dialog resume
+also releases controls. Keyboard-as-joystick remains an explicit browser adapter.
 
-`playwright test tests/browser/difficulty.spec.js` exercises real keyboard and
-visible buttons, four exact original pictures, reveal-key flushing, wrapping,
-Fire+Up priority, confirmation/office return, pause/resume and actual Tandy cue36
-acknowledgements and sample output. The pixel comparisons have no tolerance.
-`node scripts/verify-difficulty-browser-negative.js` omits the required Up action
-and must reject the missing Hard selection, rather than timing out or failing
-setup. Private originals are required; missing files fail explicitly.
+The native check compares four exact original pictures, nine consumed inputs,
+five sound calls, fresh relocated code and the BIOS consumption/write boundary.
+A carried component replay checks the reveal, flush, selected-page and closing
+waits. Two browser cases exercise keyboard/buttons, exact pictures, wrapping,
+Fire+Up priority, pause/resume and actual Tandy cue36 acknowledgement/sample output.
+The missing-Up control must reject the required Hard selection. Earlier focused
+receipts remain unchanged in `.local/difficulty-browser-accepted-20261028/`.
+See [native recipe/scope](difficulty.md).
 
-The existing money-bin/banking/restart route and earned-cash winning-ending/replay
-route also pass after waiting for menu readiness and cleanup. The117 unit tests
-and production build pass. Four combined browser cases and the negative-control
-log, unit/build logs, screenshot and exact source identities are archived in
-`.local/difficulty-browser-accepted-20261028/`, pinned by `reference/difficulty.json`.
-The native verifier rejects missing/corrupt receipts as well as native fixtures.
-These are focused results, not a passing complete application gate for this branch. Neither browser clock waits nor native captures
-establish original CPU/file costs or complete elapsed-time/waveform parity.
+## Startup and campaign boundaries
 
-## Startup and campaign migration
+Startup scripts wait for readiness, observed selection and cleanup. Fast Up+Enter
+cannot silently override the original Fire priority. Flight frame counts precede
+input consumption, so the read-only inputReads/lastInputCode observations support
+real keyboard replay at consumption boundaries. The independent baseline player
+streams retain established flight results and actor checks; no physics, RNG,
+clock rate, reveal or wipe was shortened to recover expected outputs.
+See [input provenance](flight-input-boundaries.md).
 
-Startup scripts now wait for `difficultyMenu.ready`, the visible selection and
-cleanup/office boundaries. Fast Up+Enter must not override the original Fire
-priority by silently forcing a selection. Eleven targeted startup/travel/audio
-cases pass, as does the complete Easy winning campaign with its existing19
-summary checkpoints. All117 unit cases pass after the migration.
+The natural lightning check consumes111 observed player values, keeps the last
+physical hold and verifies that read112 is neutralized internally by the strike.
+It retains the frame112/tile17/y136 strike and fresh-key recovery. The mountain
+pause check observes the actual first completed page before submitting P and
+retains its page2, frozen-actor and life-reset assertions.
 
-Flight frame counts precede input consumption. The new read-only `inputReads`
-and `lastInputCode` observations support real keyboard replay at input boundaries;
-[the independent control streams and their scope](flight-input-boundaries.md)
-retain the established flight outcomes and expedition actor checks. No physics,
-RNG, game clock rate, reveal or closing wipe is shortened to recover a test result.
+The complete Easy route retains its19 summary checkpoints and winning ending.
+The migrated Hard route consumes3350 real DOM events and matches25 exact state
+and pixel checkpoints in independent Game and actual browser replays. A legitimate
+rival report before mountain return is included as an additional checkpoint.
+The previous24-checkpoint/3284-event capture remains separate and unchanged.
 
-The new Hard capture completes all four families and ends on day33 with19600
-against44000. It includes a legitimate Glomgold report before mountain return,
-which is acknowledged through existing controls and recorded as an additional
-checkpoint. All3350 DOM events and25 exact published snapshots match in a fresh
-Game replay. An independent actual browser replay matches all25 state/pixel
-checkpoints, checks the actual submitted input transcript and stays on one page.
-The previous accepted24-checkpoint/3284-event capture remains separate. The new
-source/dependency snapshot pins85 files, all unchanged during capture.
+## Limits
 
-One earlier exploratory run loaded a fresh title document and lost its window
-recorder state; its cause was not established and it is excluded from acceptance.
-Captures now log main-document navigation and Vite messages, reject any unexpected
-navigation and preserve the prior document's captured prefix. The accepted run
-used a fresh owned server with exactly one navigation. Ordinary browser tests
-also own a fresh server rather than reuse an editor session.
+One excluded exploratory capture navigated to a fresh title and lost its recorder;
+its cause was not established. Captures now record main-document navigation and
+Vite messages, reject unexpected navigation and preserve the prior document's
+prefix. Accepted capture/replay each stayed on one page and used a fresh owned
+server. Historical capture dependencies remain pinned to their original Git tree;
+current startup/input replay tools are pinned separately.
 
-`npm run verify:flight-input-stream` checks all four source profiles and verifies
-that dropping a real turn fails at consumed input18. A separate pending-receipt
-control confirmed that a new capture cannot be accepted without a new independent
-browser receipt. The full branch gate must still pass before integration into
-main; focused or exploratory results do not replace it. No original whole-campaign,
-CPU/file cost, elapsed-time or waveform parity is claimed.
-
-The first full integration gate stopped at a historical route-helper identity
-check after its native comparisons and input-stream controls passed. The four
-Hard route manifests now preserve their historical capture identities against
-Git57beb92 while pinning the current startup/input replay tools separately. No
-expedition controls, actor expectations or required divergence checkpoints changed.
-The full gate must pass on this revision before integration.
-
-The second full gate passed117 unit cases, all native/segment checks and all four
-Hard wrong-input controls, then finished70 of72 browser cases successfully.
-The two failures were a frame-observation flight controller and a mountain entry
-sample taken before page1. The lightning route now consumes111 independently
-observed baseline player values, keeps its last physical hold, and checks the
-112th read is neutralized by the original strike flush. It retains frame112,
-tile17, y136, speed/heading recovery assertions and the original RNG result.
-The mountain test observes page1 before submitting P and retains its pause,
-page2 and life-reset expectations. Both focused browser cases pass; the final
-full gate remains required. No game logic or timing rate changed for these fixes.
+No complete original campaign, CPU/file cost, elapsed-time, physical scanout or
+hardware audio waveform parity is established. The original office/security
+transitions continue as separate completion work.

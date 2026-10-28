@@ -1,5 +1,7 @@
 import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
+import { finishSecurityEntry } from "./helpers/security.js";
+import marketRoute from "../../reference/security-market-route.json" with { type: "json" };
 
 test("calendar travel produces company news and acknowledged bulletins stay consumed", async ({
   page,
@@ -11,6 +13,17 @@ test("calendar travel produces company news and acknowledged bulletins stay cons
   await page.goto("/");
   const canvas = page.locator("#game");
   const state = () => canvas.getAttribute("data-state").then(JSON.parse);
+  async function until(predicate) {
+    for (let i = 0; i < 2000; i++) {
+      const s = await state();
+      if (s?.diagnostic) throw Error(s.diagnostic);
+      if (s && predicate(s)) return s;
+      await page.clock.runFor(16);
+    }
+    throw Error(
+      `unfinished investment travel ${JSON.stringify(await state())}`,
+    );
+  }
   async function press(key) {
     if (key === "Escape") await page.locator("#back").click();
     else await page.keyboard.press(key);
@@ -30,7 +43,8 @@ test("calendar travel produces company news and acknowledged bulletins stay cons
   await waitForScene(page, canvas, "office");
   for (let trip = 0; trip < 4; trip++) {
     await page.locator("#map").click();
-    await page.clock.runFor(100);
+    await finishSecurityEntry({ page, until, state });
+    await until((s) => s.scene === "map");
     const bounds = await canvas.boundingBox();
     await canvas.click({
       position: {
@@ -52,18 +66,21 @@ test("calendar travel produces company news and acknowledged bulletins stay cons
     await press("Escape");
     expect((await state()).scene).toBe("office");
     expect((await state()).campaign.day).toBe(7 + trip * 6);
+    expect((await state()).seed).toBe(marketRoute.checkpoints[trip].seed);
   }
   await page.locator("#investments").click();
   await page.clock.runFor(100);
   await canvas.focus();
   expect((await state()).investments.phase).toBe("news");
-  expect((await state()).investments.company).toBe(10);
-  expect((await state()).investments.newsStatus).toBe(3);
   await page.screenshot({ path: ".local/browser-results/investment-news.png" });
-  await press("Space");
-  expect((await state()).investments.company).toBe(11);
-  expect((await state()).investments.newsStatus).toBe(4);
-  await press("Space");
+  // Security consumes shared RNG before travel. This separately reproduced
+  // route has three bulletins; the historical pre-security route had two.
+  for (const news of marketRoute.news) {
+    expect((await state()).investments.phase).toBe("news");
+    expect((await state()).investments.company).toBe(news.company);
+    expect((await state()).investments.newsStatus).toBe(news.status);
+    await press("Space");
+  }
   expect((await state()).investments.phase).toBe("portfolio");
   await press("Escape");
   expect((await state()).scene).toBe("office");

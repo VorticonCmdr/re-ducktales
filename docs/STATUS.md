@@ -95,6 +95,15 @@ Native security checks now cover82 RNG boundaries,16 inputs and24 pictures in
 two independent segment scenarios. Browser controls, pixel output, dialogs,
 Tandy requests and the per-campaign flag pass focused acceptance.
 
+Bank, map-pointer, ending, investment and system-control setups now consume real
+security inputs. All11 distinct cases in the focused integration batch pass
+across the initial run and the affected investment rerun. The security-aware
+market route independently matches four exact calendar/RNG checkpoints and three
+ordered bulletins; startup/core and missing-Right negative checks pass. No runtime
+or RNG was changed to preserve old expectations. See
+[route integration evidence](security-route-integration.md). Other expedition
+setups and the full branch gate remain pending.
+
 ## Verification
 
 `npm run verify` is the required full gate and rejects missing/corrupt fixtures,

@@ -1,5 +1,6 @@
 import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
+import { finishSecurityEntry } from "./helpers/security.js";
 
 test("native map chords accelerate, retain the remaining arrow, reset on neutral and select a destination", async ({
   page,
@@ -34,6 +35,7 @@ test("native map chords accelerate, retain the remaining arrow, reset on neutral
   await page.keyboard.press("Enter");
   await waitForScene(page, c, "office");
   await page.locator("#map").click();
+  await finishSecurityEntry({ page, until, state });
   await until((s) => s.scene === "map");
   async function point(x, y) {
     const b = await c.boundingBox();

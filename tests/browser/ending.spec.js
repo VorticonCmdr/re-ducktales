@@ -102,8 +102,7 @@ test("a lost real flight race leads to Glomgold's winning ending", async ({
 }) => {
   test.setTimeout(90000);
   const t = await campaign(page, true);
-  await page.locator("#map").click();
-  await page.clock.runFor(100);
+  await t.enterMap();
   await t.point(37, 33);
   await t.press("Space");
   await t.press("ArrowRight");

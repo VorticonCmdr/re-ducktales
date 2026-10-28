@@ -1,0 +1,24 @@
+{
+  "id": "security-aware-easy-calendar-market",
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "independent semantic Game route and browser regression; not an original whole-campaign comparison",
+  "environment": { "biosSeed": 0, "audioEnabled": false, "difficulty": 0 },
+  "inputRecipe": "Fresh originals; skip opening, accept Easy, enter control center, fixed Right then Fire after ready. Four Macaroon bank/office round trips using fixed map coordinates212,131, then open investments and acknowledge each bulletin once. No reseeding, memory injection or output-derived inputs.",
+  "expectedCheckpointCount": 4,
+  "checkpoints": [
+    { "day": 7, "seed": 62042 },
+    { "day": 13, "seed": 19313 },
+    { "day": 19, "seed": 6124 },
+    { "day": 25, "seed": 54134 }
+  ],
+  "news": [
+    { "company": 3, "status": 1 },
+    { "company": 8, "status": 1 },
+    { "company": 10, "status": 3 }
+  ],
+  "comparisonRules": "Exact day, seed, company order and bulletin status; all three bulletins must be consumed and reopening must show portfolio. No exclusions.",
+  "injections": [],
+  "fittedInputs": [],
+  "verifyCommand": "node scripts/verify-security-market-route.js",
+  "browserVerifyCommand": "npx playwright test tests/browser/investments.spec.js"
+}

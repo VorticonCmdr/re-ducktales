@@ -2,6 +2,7 @@ import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import { finishSecurityEntry } from "./helpers/security.js";
 
 test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and Yes", async ({
   page,
@@ -127,6 +128,7 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
   expect((await state()).money).toBe(1000);
   await expect(page.locator("#audio")).not.toBeChecked();
   await page.locator("#map").click();
+  await finishSecurityEntry({ page, until, state });
   await until((s) => s.scene === "map");
   const map = await state();
   await press("Escape");

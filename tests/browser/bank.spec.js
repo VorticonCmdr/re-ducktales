@@ -3,8 +3,7 @@ import { campaign } from "./helpers/ending-route.js";
 // Explored interactively: title,office,map,Macaroon travel,bank pause/resume,
 // Fire return to day4 map. Browser holds supply the declared digital provider.
 async function enterBank(page, t) {
-  await page.locator("#map").click();
-  await page.clock.runFor(100);
+  await t.enterMap();
   await t.point(212, 131);
   await t.press("Space");
   await t.press("ArrowRight");

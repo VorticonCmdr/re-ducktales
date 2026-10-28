@@ -4,6 +4,9 @@ import { expect } from "@playwright/test";
 // explored in security.spec.js. No target/final RNG selects a replay input.
 export async function finishSecurityEntry({ page, until, state }) {
   let s = await state();
+  // A DOM click queues the office action for the next simulation poll. Wait
+  // for that action to be consumed before deciding whether security is needed.
+  if (s.scene === "office") s = await until((v) => v.scene !== "office");
   if (s.scene === "office-departure")
     s = await until((v) => v.scene !== "office-departure");
   if (s.scene !== "security") return s;

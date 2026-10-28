@@ -2,6 +2,7 @@ import { waitForScene } from "./scene.js";
 import { expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import { finishSecurityEntry } from "./security.js";
 
 export async function campaign(page, hard = false) {
   const errors = [];
@@ -40,10 +41,14 @@ export async function campaign(page, hard = false) {
       await page.clock.runFor(16);
     }
   }
+  async function enterMap() {
+    await page.locator("#map").click();
+    await finishSecurityEntry({ page, until, state });
+    return until((s) => s.scene === "map");
+  }
   async function bankRoundTrip() {
     if ((await state()).scene === "office") {
-      await page.locator("#map").click();
-      await page.clock.runFor(100);
+      await enterMap();
     }
     expect((await state()).scene).toBe("map");
     await point(212, 131);
@@ -85,5 +90,15 @@ export async function campaign(page, hard = false) {
   }
   await press("Enter");
   await until((s) => s.scene === "office");
-  return { canvas, state, until, press, point, ending, pixels, errors };
+  return {
+    canvas,
+    state,
+    until,
+    press,
+    point,
+    enterMap,
+    ending,
+    pixels,
+    errors,
+  };
 }

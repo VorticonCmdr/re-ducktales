@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "integrationCommit": "bf3876811bb6a53ba9e02b707dab694989235459",
+  "runtimeCommit": "9cfc0a3",
+  "buildManifest": "reference/build.json",
+  "fullBranchGate": "pending",
+  "scope": "11 distinct browser cases pass across initial10/11 run and affected2/2 investment rerun; initial failed expectation retained explicitly. Port regression,not native whole-campaign parity.",
+  "artifactRoot": ".local/security-route-integration-20261028",
+  "artifacts": [
+    {
+      "path": ".local/security-route-integration-20261028/run.log",
+      "bytes": 3144,
+      "sha256": "a9ad1baf2b4bb36ecb52240831b1f2f0778d7ec9fffce1698811a2cc8091fbf4"
+    },
+    {
+      "path": ".local/security-route-integration-20261028/results.json",
+      "bytes": 18530,
+      "sha256": "54c88ab4d9dfd9299d3fbae4c98ffad57bca17ba70ef0736fd785c5730cc7ee7"
+    },
+    {
+      "path": ".local/security-route-integration-20261028/market-run.log",
+      "bytes": 694,
+      "sha256": "4ab17309aa172d8f4ffac44d4ee6eeb30ae94282b2f475a9439f207b0bb84b80"
+    },
+    {
+      "path": ".local/security-route-integration-20261028/market-results.json",
+      "bytes": 4952,
+      "sha256": "c3097a485eb4cac00d49dff76e57a19e5aa29a64e448678e68174fb63d74fab3"
+    },
+    {
+      "path": ".local/security-route-integration-20261028/security-core.log",
+      "bytes": 615,
+      "sha256": "a9d0d2e068a5ed3a141ca2c80076209c8226f1a8a85695892f0e98d9c0e77ef7"
+    },
+    {
+      "path": ".local/security-route-integration-20261028/startup.log",
+      "bytes": 590,
+      "sha256": "f7ae035c9ea0bd06093025d30e659cbafc7fbfa41dc49ef418305f1af9ed46d6"
+    },
+    {
+      "path": ".local/security-route-integration-20261028/security-negative.log",
+      "bytes": 98,
+      "sha256": "4135ea074816f04a85aaae805a24e8222b75d550ed19f97d679835e91acb54d9"
+    },
+    {
+      "path": ".local/security-route-integration-20261028/source-revision.json",
+      "bytes": 12683,
+      "sha256": "cfb6af852aa8dadba3c4e52c290d7e7de2f011d7a67e6c4731362112d22a5585"
+    },
+    {
+      "path": ".local/security-route-integration-20261028/accepted-source-revision.json",
+      "bytes": 12970,
+      "sha256": "01d6fc066c79767bc278a0c94e6b51a1be272b2dac1ec0663acd7e7a4893595e"
+    },
+    {
+      "path": ".local/security-route-integration-20261028/market-probe.json",
+      "bytes": 510,
+      "sha256": "40585b05c2506421281c91ca1af9473b9f6c179255f9e1471fe26006283f4a00"
+    }
+  ]
+}

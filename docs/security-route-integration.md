@@ -50,6 +50,10 @@ required correct-choice return.
 ## Retained run evidence
 
 Private receipts are in `.local/security-route-integration-20261028/`:
+Their checksums and integration identity are recorded in
+[security-route-integration.json](../reference/security-route-integration.json).
+The initial expanded run and corrected market run have separate source records;
+the final integration commit is bf38768. All use unchanged runtime9cfc0a3.
 
 - `run.log`/`results.json`: initial expanded run,10 passed and one failed at the
   obsolete investment company expectation. This run is diagnostic, not green

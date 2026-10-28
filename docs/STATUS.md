@@ -124,6 +124,16 @@ prove arbitrary campaigns finishable. Follow with the original difficulty,
 security and office/door presentation using targeted native scenarios rather
 than broad executable documentation.
 
+Current Hard investigation: a carried second flight exposed visible landing-flag
+frame255. The renderer now reproduces the original decoded-memory alias into
+the following plane image. Two native decoded buffers and one conditional
+original blit match exactly (all65536 VGA bytes); three negative controls fail.
+The exploratory browser route now reaches photography on day10 after the
+Bermuda jungle and bank deposit. The remaining linked route is not yet accepted.
+See [flag evidence and reproduction](flight-flag-alias.md). Focused flight
+regressions,117 unit tests and the production build pass; this is not a new full
+suite result.
+
 ## Exact verification commands
 
 `npm run verify` is the required full gate. It fails on missing/corrupt required

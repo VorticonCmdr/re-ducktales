@@ -9,6 +9,8 @@ return, airport landing and restart are covered by browser acceptance. Arrivals
 continue through the guide into all four expedition families, including treasure,
 failure and campaign return. A complete mixed Easy campaign is also checked.
 Original whole-flight parity and broader Hard/variant routes remain unproven.
+Visible landing-flag frame255 now follows the original decoded-buffer alias;
+see [conditional native evidence](flight-flag-alias.md).
 
 ## Implemented rules
 

@@ -1,0 +1,38 @@
+{
+  "id": "flight-flag-alias-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureSourceRevision": "7ecd8b7fd0c37bae6a5347c4f947c818fba7b3b6",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "readOnlyMount": "game/",
+    "protectedMode": false
+  },
+  "startingRecipe": "docs/flight-flag-alias.md",
+  "expectedCheckpointCount": 3,
+  "inputs": {
+    "asset": 58,
+    "frame": 255,
+    "x": 310,
+    "y": 116,
+    "neighborAsset": 61,
+    "neighborOffset": 1104
+  },
+  "comparison": "Exact full decoded buffers and all65536 bytes of four VGA planes; no exclusions.",
+  "injections": [
+    "Live flag descriptor x=310,y=116,frame=255 at EGA0373. VGA read-map selected during buffer capture."
+  ],
+  "scope": "Conditional original blitter comparison, not a natural whole-flight or campaign replay.",
+  "artifacts": {
+    "pool": {
+      "path": ".local/flight-flag-alias/pool.json",
+      "sha256": "cd70a4b9d7c8c4dedc88f01da39bb2855b82c959c89f1aee789816798c30f978"
+    },
+    "blit": {
+      "path": ".local/flight-flag-alias/blit-310.json",
+      "sha256": "357ad507c7921beea24b427fcabd1f788c537b4b710ad07a7a160b1f143301fd"
+    }
+  }
+}

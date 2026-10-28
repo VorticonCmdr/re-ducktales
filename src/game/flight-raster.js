@@ -1,4 +1,5 @@
 import { EGA, imagePixels } from "../assets.js";
+import { flightFlagAliasPixels } from "./flight-flag-raster.js";
 
 // Pure presentation. No game memory, input, time or RNG is consumed here.
 export function renderFlightPixels(
@@ -101,6 +102,8 @@ export function renderFlightPixels(
       const sprite = c.op === "sprite";
       // EGA driver 035d clips scanlines/columns before dereferencing pixels.
       // An offscreen flag may pass frame ff; it has no pixel or mask reads.
+      const flagAlias =
+        sprite && archive === "PLANE.ARC" && c.asset === 58 && c.frame === 255;
       if (
         sprite &&
         (c.x >= 320 ||
@@ -111,16 +114,19 @@ export function renderFlightPixels(
         continue;
       if (
         sprite &&
+        !flagAlias &&
         (!Number.isInteger(c.frame) || c.frame < 0 || c.frame >= entry.frames)
       )
         throw Error(
           `Unsupported flight animation frame ${c.frame} for ${archive} resource ${c.asset}`,
         );
-      const pixels = imagePixels(
-        entry,
-        sprite ? c.frame : 0,
-        sprite ? entry.data[0] >> 4 : -1,
-      );
+      const pixels = flagAlias
+        ? flightFlagAliasPixels(entries)
+        : imagePixels(
+            entry,
+            sprite ? c.frame : 0,
+            sprite ? entry.data[0] >> 4 : -1,
+          );
       const sx = sprite ? 0 : c.sourceX,
         sy = sprite ? 0 : c.sourceY;
       const width = sprite ? entry.width : c.width,

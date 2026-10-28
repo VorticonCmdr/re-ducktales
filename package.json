@@ -21,7 +21,7 @@
     "prepare:flight-analysis": "python3 scripts/prepare-flight-analysis.py",
     "verify:flight-course": "node scripts/verify-flight-course.js",
     "verify:flight-scene": "node scripts/verify-flight-scene.js && npm run verify:flight-visible-left-edge",
-    "verify:flight-runtime": "node scripts/verify-flight-runtime.js",
+    "verify:flight-runtime": "node scripts/verify-flight-runtime.js && node scripts/verify-flight-flag-alias.js",
     "verify:loot": "node scripts/verify-loot.js",
     "prepare:cave-analysis": "python3 scripts/prepare-cave-analysis.py",
     "verify:cave": "node scripts/verify-cave.js && npm run verify:cave-input",

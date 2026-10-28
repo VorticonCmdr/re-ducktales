@@ -211,7 +211,7 @@ export async function verifyFlightRuntime() {
   assert.throws(
     () =>
       renderFlightPixels(
-        [{ op: "sprite", asset: 58, frame: 255, x: 319, y: 0 }],
+        [{ op: "sprite", asset: 58, frame: 254, x: 319, y: 0 }],
         resources.entries,
         resources.font,
       ),

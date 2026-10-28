@@ -1,5 +1,7 @@
 import { waitForScene, waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
+import { finishSecurityEntry } from "./helpers/security.js";
+import { bankTrips } from "./helpers/bank-trips.js";
 
 async function tandy(page, suppliedClock = false) {
   await page.goto("/");
@@ -145,7 +147,14 @@ test("Tandy flight speed words and cave completion use the real persistent proce
   await waitForScene(page, c, "office");
   await until((s) => s.scene === "office");
   await page.locator("#map").click();
+  await finishSecurityEntry({ page, until, state });
   await until((s) => s.scene === "map");
+  expect(
+    await bankTrips({ page, canvas: c, state, until, press, count: 2 }),
+  ).toEqual([
+    { day: 7, seed: 62042 },
+    { day: 13, seed: 19313 },
+  ]);
   const bounds = await c.boundingBox();
   await c.click({
     position: { x: (bounds.width * 37) / 320, y: (bounds.height * 33) / 200 },
@@ -154,6 +163,7 @@ test("Tandy flight speed words and cave completion use the real persistent proce
   await press("ArrowRight");
   await press("Space");
   await until((s) => s.scene === "departure");
+  expect((await state()).departure.racing).toBe(false);
   await press("Space");
   await until((s) => s.scene === "flight");
   await page.keyboard.down("Space");

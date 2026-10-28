@@ -2,6 +2,8 @@ import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import { finishSecurityEntry } from "./helpers/security.js";
+import { bankTrips } from "./helpers/bank-trips.js";
 
 test("cave input polls pause actors while clocks run and room entry flushes unread keys", async ({
   page,
@@ -43,7 +45,14 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   await press("Enter");
   await waitForScene(page, c, "office");
   await page.locator("#map").click();
+  await finishSecurityEntry({ page, until, state });
   await until((s) => s.scene === "map");
+  expect(
+    await bankTrips({ page, canvas: c, state, until, press, count: 2 }),
+  ).toEqual([
+    { day: 7, seed: 62042 },
+    { day: 13, seed: 19313 },
+  ]);
   const bounds = await c.boundingBox();
   await c.click({
     position: { x: (bounds.width * 37) / 320, y: (bounds.height * 33) / 200 },
@@ -52,6 +61,7 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   await press("ArrowRight");
   await press("Space");
   await until((s) => s.scene === "departure");
+  expect((await state()).departure.racing).toBe(false);
   await press("Space");
   await until((s) => s.scene === "flight");
   // Authored keyboard takeoff/stall through the actual flight and repair route.

@@ -115,6 +115,14 @@ No simulation/RNG was changed. See
 [expedition integration evidence](security-expedition-integration.md). Remaining
 focused expedition recordings and the complete branch gate are still pending.
 
+Six additional input/audio browser cases now pass together with zero skips:
+cave room/pause/flush, flight pause/crash return, camera entry/shutter/pause and
+all three in-game Tandy cases. Tandy remains persistent through real security,
+bank travel, flight speed/mute changes and cave completion. Their separate
+provider/native-segment commands also pass. The two-bank player route is shared
+without output-derived inputs or state injection. See
+[input/audio integration evidence](security-input-audio-integration.md).
+
 ## Verification
 
 `npm run verify` is the required full gate and rejects missing/corrupt fixtures,

@@ -57,3 +57,9 @@ capture mode (`DUCKTALES_CAPTURE_HARD_CAMPAIGN=1`) is exploratory. The earlier
 `--diagnose` helper permits an incomplete stream and declared100ms tail and cannot
 satisfy acceptance. Original hardware audio, elapsed pacing, arbitrary-route
 finishability and full-game native parity remain separate work.
+
+The menu-migrated campaign is now included in the accepted complete gate for
+runtime cd1e4dd:117 unit,72 development and2 production browser cases, zero skips.
+The integrationGate receipt in reference/hard-campaign.json pins the full log,
+status files and runtime revision; earlier receipts remain historical. This
+completes menu integration acceptance, not an original whole-campaign comparison.

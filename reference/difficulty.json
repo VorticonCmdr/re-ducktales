@@ -182,5 +182,38 @@
     "negativeCommand": "node scripts/verify-difficulty-browser-negative.js",
     "artifactRoot": ".local/difficulty-browser-accepted-20261028"
   },
-  "expectedArtifactCount": 14
+  "expectedArtifactCount": 14,
+  "integrationGate": {
+    "runtimeCommit": "cd1e4dd08bf2139cf9cbd540a1aabe8bc8696dfb",
+    "command": "npm run verify",
+    "exitCode": 0,
+    "unit": 117,
+    "developmentBrowser": 72,
+    "productionBrowser": 2,
+    "skipped": 0,
+    "scope": "Complete required gate on clean runtime revision, followed by receipt/documentation-only integration metadata. This is a port acceptance gate, not complete original-game parity.",
+    "archive": ".local/menu-integration-full-gate-20261028",
+    "artifacts": [
+      {
+        "path": ".local/menu-integration-full-gate-20261028/development-status.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      {
+        "path": ".local/menu-integration-full-gate-20261028/full-verify.log",
+        "bytes": 55266,
+        "sha256": "37dfc1f5af9060c5fb67f57d583c6dde884987f7ad140386f3ff8daca424cfa8"
+      },
+      {
+        "path": ".local/menu-integration-full-gate-20261028/production-status.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      {
+        "path": ".local/menu-integration-full-gate-20261028/source-revision.json",
+        "bytes": 391,
+        "sha256": "15f7d6b5c86187abe22c3dbeec69922f30468aecf1acdbbecd2f4f83ec6b8149"
+      }
+    ]
+  }
 }

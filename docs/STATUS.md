@@ -74,7 +74,9 @@ missing fixtures fail setup.
 
 Next: connect the remaining office/control-center/security transitions. A fresh
 original security capture records carried RNG generation, a wrong-choice warning,
-three alarm cycles and return. Its browser implementation remains unfinished.
+three alarm cycles and return. Its browser implementation remains unfinished. The segment checker passes41
+carried RNG boundaries,7 consumed inputs and11 exact original pictures; see
+[security evidence](security.md).
 A bounded capture script using the existing emulator client on an isolated port
 has avoided the bridge's cached-port limitation without altering shared sessions.
 
@@ -87,7 +89,8 @@ The complete gate includes the office native/core and missing-Up controls.
 Focused commands: `npm run verify:office`, `npm run verify:difficulty`,
 `npm run verify:opening`, `npm run verify:hard-campaign`,
 `npm run verify:hard-expedition`, `npm run verify:hard-mountains`,
-`npm run verify:flight-input-stream`, `npm run verify:bank`.
+`npm run verify:flight-input-stream`, `npm run verify:bank`,
+`npm run verify:security-core`.
 
 Local development: `npm run dev -- --port 5186`. The user's integrated checkout is
 served on5187. No push, publication or deployment has been requested.

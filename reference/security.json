@@ -1,0 +1,321 @@
+{
+  "version": 1,
+  "status": "Native segment translation only; security is not wired into Game or browser gameplay.",
+  "buildManifest": "reference/build.json",
+  "baseCommit": "054ac66",
+  "captureRecipe": "scripts/capture-security.py",
+  "captureRecipeSha256": "34162ff147afa5777d63046a5b063f39873b4143a0ca4bdf2fafee668d5da749",
+  "artifactRoot": ".local/security-native-fire0-03",
+  "expectedArtifactCount": 43,
+  "expectedRngCalls": 41,
+  "expectedInputCount": 7,
+  "inputStream": "reference/security-inputs.json",
+  "inputStreamSha256": "3fc64b3d663073b5e67259347d173abdb10c6f06beb93bca973f4bf5187314af",
+  "expectedPixelCheckpoints": 11,
+  "pixelCases": [
+    {
+      "name": "entry",
+      "kind": "office"
+    },
+    {
+      "name": "initial-poll-3",
+      "kind": "challenge"
+    },
+    {
+      "name": "first-result",
+      "kind": "warning"
+    },
+    {
+      "name": "warning-poll",
+      "kind": "warning"
+    },
+    {
+      "name": "alarm-0",
+      "kind": "alarm",
+      "red": true
+    },
+    {
+      "name": "alarm-1",
+      "kind": "alarm",
+      "red": false
+    },
+    {
+      "name": "alarm-2",
+      "kind": "alarm",
+      "red": true
+    },
+    {
+      "name": "alarm-3",
+      "kind": "alarm",
+      "red": false
+    },
+    {
+      "name": "alarm-4",
+      "kind": "alarm",
+      "red": true
+    },
+    {
+      "name": "alarm-5",
+      "kind": "alarm",
+      "red": false
+    },
+    {
+      "name": "return",
+      "kind": "return"
+    }
+  ],
+  "emulator": {
+    "engine": "dosbox-automation",
+    "version": "0.84.0-vc1 (f6d9b)",
+    "protocol": "1.14",
+    "bridge": "0.1.1",
+    "pid": 42061,
+    "instanceId": "9bab6d16f4e8400ba84faea89f171a2e",
+    "port": 8387,
+    "cycles": 3000,
+    "core": "normal",
+    "machine": "svga_s3",
+    "memoryMB": 16,
+    "mount": "Original game/ read-only as C:",
+    "launch": "C:\\DUCKTALE.EXE",
+    "singleOwner": "root chat"
+  },
+  "source": {
+    "overlay": "physical overlay2 at executable file offset0xf600",
+    "routine": "07ad..0ca9",
+    "helper": "06d0..07ac",
+    "oncePerCampaignGuard": "0e4e..0e59",
+    "moneyFooter": "0ea2..0ec3",
+    "wholeOverlayMapping": "8368 bytes,180 relocated words,verified before installing breakpoints"
+  },
+  "comparisonRules": "Exact41 carried RNG pre-read states/source addresses, source-derived quad generation, target and row locals, seven consumed input bytes and selection/failure state, eleven full320x200 RGBA images, original return1 and unchanged post-generation RNG. No pixel tolerance.",
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "exclusions": [
+    "Initial native seed is an observed segment starting state, not a replay of startup BIOS/timer scheduling.",
+    "Initial-poll-0..2 are retained exploratory scanout states; comparison uses initial-poll-3 after three source waits.",
+    "No native movement/correct-first-choice branch capture yet; only neutral and two fixed wrong Fire inputs.",
+    "Driver waits and sound requests are statically inferred, not native elapsed-time or audio waveform comparisons.",
+    "No browser integration or whole native campaign comparison.",
+    "Earlier incomplete captures fire0-01 and fire0-02 are excluded."
+  ],
+  "verify": "node scripts/verify-security.js",
+  "artifacts": [
+    {
+      "path": ".local/security-native-fire0-03/alarm-0.json",
+      "bytes": 88772,
+      "sha256": "6a71f792e0fc39991e27d70b1251664570db709b3c0ec726290c6cc766d05799"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-0.png",
+      "bytes": 5092,
+      "sha256": "8cb9e7c530e7d45a384655154d393e38a5f292d08d9d39c08d93b9483092e4a5"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-1.json",
+      "bytes": 88772,
+      "sha256": "4121e5245e124ed0ecb5f2937a63edd97b8381dade4e7715ebbf02f7db386fcd"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-1.png",
+      "bytes": 4849,
+      "sha256": "2525b571aaee53f07f75eea61935268dddb5d1902b135f29305884e5b835ead3"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-2.json",
+      "bytes": 88772,
+      "sha256": "55d8046a3db23d2626d661ac15ada0eeab8b2c5e0016c5151c14ebc1cc692319"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-2.png",
+      "bytes": 5092,
+      "sha256": "8cb9e7c530e7d45a384655154d393e38a5f292d08d9d39c08d93b9483092e4a5"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-3.json",
+      "bytes": 88772,
+      "sha256": "b08a4a80396502cd77a6a0ed5fe4b4ecf042fa45b825dcabf0c7f4622fb65fc7"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-3.png",
+      "bytes": 4849,
+      "sha256": "2525b571aaee53f07f75eea61935268dddb5d1902b135f29305884e5b835ead3"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-4.json",
+      "bytes": 88772,
+      "sha256": "8cd6a66ce8d18aa4d2d39a6ef852d512c86dd9d815684e022f7e3410bbf2a239"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-4.png",
+      "bytes": 5092,
+      "sha256": "8cb9e7c530e7d45a384655154d393e38a5f292d08d9d39c08d93b9483092e4a5"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-5.json",
+      "bytes": 88772,
+      "sha256": "5a8c24af4d0fe8cc4398b500ee4b3af7ec715a8a5e21dcb98ff8801aba1de9eb"
+    },
+    {
+      "path": ".local/security-native-fire0-03/alarm-5.png",
+      "bytes": 4849,
+      "sha256": "2525b571aaee53f07f75eea61935268dddb5d1902b135f29305884e5b835ead3"
+    },
+    {
+      "path": ".local/security-native-fire0-03/capture.json",
+      "bytes": 354,
+      "sha256": "2d59eb60d1a70f265c2f919592958338cd5174149c53d810f2f01def497a3aad"
+    },
+    {
+      "path": ".local/security-native-fire0-03/cleanup.json",
+      "bytes": 88772,
+      "sha256": "2485ba483765d2ace420efdc37e768d94b0bdf07bc80d3cde3d1b6061e884bc1"
+    },
+    {
+      "path": ".local/security-native-fire0-03/cleanup.png",
+      "bytes": 4849,
+      "sha256": "2525b571aaee53f07f75eea61935268dddb5d1902b135f29305884e5b835ead3"
+    },
+    {
+      "path": ".local/security-native-fire0-03/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    {
+      "path": ".local/security-native-fire0-03/engine.json",
+      "bytes": 3988,
+      "sha256": "e3830216abc30688dba74d53cb3b2a9d259e1b8bc757f03bffe7512ee1830002"
+    },
+    {
+      "path": ".local/security-native-fire0-03/entry.json",
+      "bytes": 88774,
+      "sha256": "6366955463af755c8d23d8b3dd62f9f92c774021f181e109cfd6b7e7abce0dc9"
+    },
+    {
+      "path": ".local/security-native-fire0-03/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    {
+      "path": ".local/security-native-fire0-03/fire-first.json",
+      "bytes": 88769,
+      "sha256": "d0757f52745c87164439976ec425a5df90ef9ee972074a49f5338c01b9537782"
+    },
+    {
+      "path": ".local/security-native-fire0-03/fire-second.json",
+      "bytes": 88770,
+      "sha256": "e93e2c213f4d13c24440b41c6578c512d707234afb45b3095205656fcc47edaf"
+    },
+    {
+      "path": ".local/security-native-fire0-03/first-result.json",
+      "bytes": 88770,
+      "sha256": "a5a952a50aa2f53630d98621d4cb920bd4da3ebd0d1c9420af47b63d3aa0f680"
+    },
+    {
+      "path": ".local/security-native-fire0-03/first-result.png",
+      "bytes": 5174,
+      "sha256": "f5cacb107bd83ec7d2cae6521deb86a12a35493bdb926e9f443ac7a05630f97b"
+    },
+    {
+      "path": ".local/security-native-fire0-03/generated.json",
+      "bytes": 88773,
+      "sha256": "3433657f8af14a9c609e9b3fecb80115b40e8397d260c01c9cb5b61d031377eb"
+    },
+    {
+      "path": ".local/security-native-fire0-03/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "aff75a88686d4dd3d538fb86a5f452385f3a6897d64f68e91404dfce08494bbd"
+    },
+    {
+      "path": ".local/security-native-fire0-03/initial-poll-0.png",
+      "bytes": 4819,
+      "sha256": "eb1128e44e6a829b951b80011a90f5147442478dd03ff26c1e6d9335e3f5837a"
+    },
+    {
+      "path": ".local/security-native-fire0-03/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "8ed29d639b95351230787e5ebe4d5181cdbde7c7947ea211f7862b9d5e346bea"
+    },
+    {
+      "path": ".local/security-native-fire0-03/initial-poll-1.png",
+      "bytes": 4849,
+      "sha256": "2525b571aaee53f07f75eea61935268dddb5d1902b135f29305884e5b835ead3"
+    },
+    {
+      "path": ".local/security-native-fire0-03/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "521f0a4dcf7aa32216c9e7dd97a27521b7d2c4ac4583b3a1839677418748b0ba"
+    },
+    {
+      "path": ".local/security-native-fire0-03/initial-poll-2.png",
+      "bytes": 4849,
+      "sha256": "2525b571aaee53f07f75eea61935268dddb5d1902b135f29305884e5b835ead3"
+    },
+    {
+      "path": ".local/security-native-fire0-03/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "f6152d8f1ebd123aadc20148c8595dbe29a5f2347028673973080aa9a0731983"
+    },
+    {
+      "path": ".local/security-native-fire0-03/initial-poll-3.png",
+      "bytes": 4849,
+      "sha256": "2525b571aaee53f07f75eea61935268dddb5d1902b135f29305884e5b835ead3"
+    },
+    {
+      "path": ".local/security-native-fire0-03/inputs.json",
+      "bytes": 2721,
+      "sha256": "5391faa83b5bcde7d4f0387d15f27ac21a963758168767f135c75ba8474203de"
+    },
+    {
+      "path": ".local/security-native-fire0-03/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "f9ed7c49a89678058a638423c9e3fb9fdd92abf487b3e324771802eb42ec47ef"
+    },
+    {
+      "path": ".local/security-native-fire0-03/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "d31421fee8b3754d82542a0b2f01965e8f1f2817586317cfb2980b66845ae428"
+    },
+    {
+      "path": ".local/security-native-fire0-03/office-input.json",
+      "bytes": 88775,
+      "sha256": "f62e47cef3eaa214aa71e81266950dff19695121554e74820607c9c63760a39b"
+    },
+    {
+      "path": ".local/security-native-fire0-03/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    {
+      "path": ".local/security-native-fire0-03/return.json",
+      "bytes": 88770,
+      "sha256": "a99beb3dda36fbbd47dac2a94e0cf09acc1e80997811385aec8fb08c6ffe50ea"
+    },
+    {
+      "path": ".local/security-native-fire0-03/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    {
+      "path": ".local/security-native-fire0-03/rng-consumption.json",
+      "bytes": 49631,
+      "sha256": "9a0a436d7a4c018e2dbe92ccd42de3f71172b852038f7eb32da6ad621eb2984f"
+    },
+    {
+      "path": ".local/security-native-fire0-03/startup-inputs.json",
+      "bytes": 1221,
+      "sha256": "0cd9316996019d133f25a98ef9833c30aed83f08823436c16087ac04c0b31f1e"
+    },
+    {
+      "path": ".local/security-native-fire0-03/warning-poll.json",
+      "bytes": 88774,
+      "sha256": "a93beb64375c68e7e212b6ac9285f246e7ae1e0dfa2bd9e0c9b28d8a7be2aa22"
+    },
+    {
+      "path": ".local/security-native-fire0-03/warning-poll.png",
+      "bytes": 5174,
+      "sha256": "f5cacb107bd83ec7d2cae6521deb86a12a35493bdb926e9f443ac7a05630f97b"
+    }
+  ]
+}

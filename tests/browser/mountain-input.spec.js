@@ -56,7 +56,10 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   await until((s) => s.flight.heading > 0);
   await page.keyboard.up("ArrowDown");
   await page.keyboard.up("Space");
-  const entered = await until((s) => s.scene === "mountain");
+  // Observe the first completed opening page, independently of arrival phase.
+  const entered = await until(
+    (s) => s.scene === "mountain" && s.mountain.presentations === 1,
+  );
   expect(entered.flight.outcome.status).toBe("crashed");
   expect(entered.mountain.phase).toBe("entering");
   expect(entered.mountain.frames).toBe(0);

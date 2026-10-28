@@ -1,0 +1,115 @@
+{
+  "id": "lightning-flight-consumed-controls-v1",
+  "baselineCommit": "57beb92d1250452ee5e8ed22ec8e04b48321fe08",
+  "scope": "External controls observed during the unchanged baseline real-browser lightning scenario. No expected actor state chooses controls. The final inputLog byte0 is produced by the strike keyboard flush, not an external neutral event; it is excluded from this player stream. The browser keeps the last physical Space+Down hold through the strike and verifies the internal neutral read separately. No original whole-flight or hardware timing parity claim.",
+  "inputCount": 111,
+  "sha256": "0741bc3eef6515089db464a119d4f67646906f60f5706020ae3fe06153708d19",
+  "events": [
+    {
+      "byte": 192,
+      "count": 17
+    },
+    {
+      "byte": 197,
+      "count": 3
+    },
+    {
+      "byte": 192,
+      "count": 1
+    },
+    {
+      "byte": 193,
+      "count": 1
+    },
+    {
+      "byte": 192,
+      "count": 29
+    },
+    {
+      "byte": 193,
+      "count": 2
+    },
+    {
+      "byte": 192,
+      "count": 10
+    },
+    {
+      "byte": 193,
+      "count": 2
+    },
+    {
+      "byte": 197,
+      "count": 1
+    },
+    {
+      "byte": 192,
+      "count": 33
+    },
+    {
+      "byte": 193,
+      "count": 1
+    },
+    {
+      "byte": 192,
+      "count": 5
+    },
+    {
+      "byte": 197,
+      "count": 6
+    }
+  ],
+  "sourceFiles": {
+    "src/game/flight.js": "248104ed27d88626e4911c3606a8a7418ccb399fe6391d081e4132e21a446674",
+    "src/game/flight-collisions.js": "2e5df837a0724a853555607767fff83118ae4de5895431c52d0220b87cc88ae7",
+    "src/game/application.js": "267c51ce43f5f8e59e7b13a00d780d6c146be05a2bc128935c67734ccbf62a76",
+    "src/game/browser.js": "90cfa1157b08cc9f60dac8e79577b24e971b2637bb19b829410ff1d3c6cdfdc1",
+    "tests/browser/flight-lightning.spec.js": "c98f7669db922773d01b37c7e721b234c433c67abecc2d56a2d79e995f0febca"
+  },
+  "artifacts": [
+    {
+      "path": ".local/lightning-input-observation-20261028/browser.log",
+      "bytes": 734,
+      "sha256": "8af5acf1c1f983f6f1b8257d328b43e00fe2607d5080b8eac4d16e46a9904e85"
+    },
+    {
+      "path": ".local/lightning-input-observation-20261028/capture-config.js",
+      "bytes": 437,
+      "sha256": "ccfc726e81fb86a53f9e6613a7de5d11ce972cf211c460f59786ead5a3bd1c1b"
+    },
+    {
+      "path": ".local/lightning-input-observation-20261028/lightning-events.json",
+      "bytes": 2061,
+      "sha256": "a07bc11ddc44e3c1d6f3949e29dcc5eaaf763d2b7cacc0b2149c1d82146b8942"
+    },
+    {
+      "path": ".local/lightning-input-observation-20261028/lightning-flight.json",
+      "bytes": 28048,
+      "sha256": "1a22f6180a4fffbd42df7ba60d71f5e721ea9db8fb1875054c5c57993d8f1ea5"
+    },
+    {
+      "path": ".local/lightning-input-observation-20261028/lightning-recovery.json",
+      "bytes": 873,
+      "sha256": "e81230821701debc3ec0541b56002a7c44268266208c7b1840917f2dcd55b0ea"
+    },
+    {
+      "path": ".local/lightning-input-observation-20261028/lightning-recovery.png",
+      "bytes": 6655,
+      "sha256": "10399f3fa78a948837ec8264daba637b170f16a93aad9fef090e97ac81d31b05"
+    },
+    {
+      "path": ".local/lightning-input-observation-20261028/lightning-strike.png",
+      "bytes": 7564,
+      "sha256": "7d57138c99d73c52e88c107fccaf45b07282f3aa6a0d5c248e4e35cc4639b339"
+    },
+    {
+      "path": ".local/lightning-input-observation-20261028/observed-inputs.json",
+      "bytes": 6905,
+      "sha256": "d319d254539a01f0af96a17712442f3b75a93021c6550dac19e5faeb2484be61"
+    },
+    {
+      "path": ".local/lightning-input-observation-20261028/observer.spec.js",
+      "bytes": 5877,
+      "sha256": "47e369a29f542b7cf5d5e4573f045aa30f7f4afddbcac5eac8b63146f48650e9"
+    }
+  ]
+}

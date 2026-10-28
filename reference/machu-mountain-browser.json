@@ -1730,7 +1730,7 @@
     },
     {
       "path": "tests/browser/helpers/flight-inputs.js",
-      "sha256": "2ca1d95a148ec8ab3caf9f1a29351ff202944fd57cdb04056d938de1fe0e24ab"
+      "sha256": "3db0ee8b60ab6dabe1cf3cf4a40cdf35ab08e1755bef4156dfddcd9927c9f907"
     },
     {
       "path": "reference/hard-flight-inputs.json",

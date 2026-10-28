@@ -45,3 +45,18 @@ This boundary schedule is scoped to the captured routes. It is not a general
 flight autopilot and does not establish arbitrary-route finishability. The
 browser still supplies independent driver/retrace clocks, real keyboard actions
 and actual rendering; it does not inject a flight state or RNG value.
+
+## Natural lightning route
+
+`reference/lightning-flight-inputs.json` pins111 player input values observed
+without changing controls or returned values during the passing baseline57beb92
+browser route. The private capture script wraps Flight.resume solely to copy
+inputLog. Its baseline source, observer, real DOM events, complete trace,
+recovery result and passing browser log are hashed separately. The final112th
+logged byte0 is caused by the strike's keyboard flush, so it is an expected
+internal result, never replayed as an external neutral input. The browser keeps
+Space+Down held after value111, observes read112, and verifies the unchanged
+frame112/tile17/y136 strike, deceleration without new input, and recovery after
+fresh keys. Full original flight timing and hardware parity remain unproven.
+`node scripts/verify-lightning-control-profile.js` rejects missing/corrupt
+artifacts, zero/missing controls and an altered value.

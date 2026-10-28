@@ -3,7 +3,12 @@ import { expect } from "@playwright/test";
 
 // Values come from an independent consumed-input stream, never expected actor
 // positions or results. Real keys are submitted before the next game input read.
-export async function replayFlightInputs({ page, until, profile }) {
+export async function replayFlightInputs({
+  page,
+  until,
+  profile,
+  release = true,
+}) {
   const codes = profile.events.flatMap(({ byte, count }) => {
     expect(Number.isInteger(count) && count > 0).toBe(true);
     expect([0, 1, 5, 192, 193, 197]).toContain(byte);
@@ -72,7 +77,8 @@ export async function replayFlightInputs({ page, until, profile }) {
     );
   }
   expect(s.flight.inputReads).toBe(codes.length);
-  for (const key of active) await page.keyboard.up(key);
+  // Some scenarios must keep the physical hold through an internal keyboard flush.
+  if (release) for (const key of active) await page.keyboard.up(key);
   trace.push(s.flight);
   return trace;
 }

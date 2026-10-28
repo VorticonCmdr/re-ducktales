@@ -1,0 +1,446 @@
+{
+  "version": 1,
+  "buildManifest": "reference/build.json",
+  "baseCommit": "6fc0ef4a9d23f324bb762bd6475f199acd4697a4",
+  "status": "Standalone source-derived office input/raster and money-bin departure. Not connected to the browser application yet.",
+  "artifactRoot": ".local/office-native-postwait-20261028",
+  "expectedCheckpointCount": 20,
+  "expectedInputObservationCount": 3,
+  "cases": [
+    {
+      "name": "initial",
+      "kind": "initial",
+      "ip": 967
+    },
+    {
+      "name": "up",
+      "kind": "selection",
+      "byte": 1,
+      "ip": 967
+    },
+    {
+      "name": "pendulum-0",
+      "kind": "money-bin",
+      "frameIndex": 1,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-1",
+      "kind": "money-bin",
+      "frameIndex": 2,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-2",
+      "kind": "money-bin",
+      "frameIndex": 3,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-3",
+      "kind": "money-bin",
+      "frameIndex": 4,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-4",
+      "kind": "money-bin",
+      "frameIndex": 5,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-5",
+      "kind": "money-bin",
+      "frameIndex": 6,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-6",
+      "kind": "money-bin",
+      "frameIndex": 7,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-7",
+      "kind": "money-bin",
+      "frameIndex": 8,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-8",
+      "kind": "money-bin",
+      "frameIndex": 9,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-9",
+      "kind": "money-bin",
+      "frameIndex": 10,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-10",
+      "kind": "money-bin",
+      "frameIndex": 11,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-11",
+      "kind": "money-bin",
+      "frameIndex": 12,
+      "ip": 512
+    },
+    {
+      "name": "pendulum-12",
+      "kind": "money-bin",
+      "frameIndex": 13,
+      "ip": 512
+    },
+    {
+      "name": "door-open",
+      "kind": "money-bin",
+      "frameIndex": 14,
+      "ip": 595
+    },
+    {
+      "name": "door-pause",
+      "kind": "money-bin",
+      "frameIndex": 15,
+      "ip": 681
+    },
+    {
+      "name": "roof-1",
+      "kind": "money-bin",
+      "frameIndex": 16,
+      "ip": 727
+    },
+    {
+      "name": "roof-2",
+      "kind": "money-bin",
+      "frameIndex": 17,
+      "ip": 727
+    },
+    {
+      "name": "roof-3",
+      "kind": "money-bin",
+      "frameIndex": 18,
+      "ip": 727
+    }
+  ],
+  "startingStateRecipe": "See docs/office-transitions.md. Fresh original launch, Easy menu, office; observe input0, hold Up for two reads, observe Up1 picture, press Fire to consume193, release both keys. Break after original waits, with no game memory/register/device writes or restore.",
+  "emulator": {
+    "engine": "dosbox-automation",
+    "version": "0.84.0-vc1 (f6d9b)",
+    "protocol": "1.14",
+    "bridge": "0.1.1",
+    "instanceId": "43a3d5fe3c6dabff772df78826dbcbf7",
+    "pid": 96675,
+    "core": "normal",
+    "protectedMode": false,
+    "graphicsDriver": "IT.DRV #001",
+    "mount": "game/ read-only as C:",
+    "launch": "C:\\DUCKTALE.EXE",
+    "launchFlags": [
+      "--noprimaryconf",
+      "--nolocalconf"
+    ],
+    "headless": true,
+    "mute": true,
+    "cpuCycles": "Not independently retained from CONFIG query in this capture; no elapsed-time/CPU-rate claim.",
+    "singleOwner": "root chat",
+    "partialRestore": false
+  },
+  "mapping": {
+    "loadParagraph": 502,
+    "gameDS": 5124,
+    "gameSS": 5124,
+    "overlay2": 3597,
+    "overlayRelocationOrigin": 49520,
+    "egaSegment": 11992,
+    "overlayBytes": 8368,
+    "overlayRelocations": 180
+  },
+  "inputSchedule": {
+    "heldAtFirstObservedPoll": {
+      "fire": false,
+      "direction": null
+    },
+    "afterFirstPoll": [
+      "KBD_up down"
+    ],
+    "afterThirdPoll": [
+      "KBD_space down"
+    ],
+    "afterFourthPoll": [
+      "KBD_space up",
+      "KBD_up up"
+    ],
+    "observedBytes": [
+      0,
+      1,
+      193
+    ],
+    "scope": "Three retained read observations; an intervening held-Up read positions the selection picture. These are not a complete original campaign/event replay."
+  },
+  "comparisonRules": "Every RGBA byte of20 raw320x200 PNGs and every sprite tuple represented by their translated commands. Native input AL at3 retained observations; all8368 relocated office-overlay bytes. Pendulum source draws MAIN7 before MAIN6, preserving their two overlapping pixels. No pixel tolerances, state injections or fitted clocks.",
+  "exclusions": [
+    "No complete native office input-loop replay, allocation/whole-DS comparison or original CPU/IRQ/elapsed-time claim.",
+    "Driver-count waits and sound requests are statically derived from pinned original instructions; native sound call trace and driver-count elapsed totals are not independently captured.",
+    "Earlier pre-wait captures in .local/office-native-20261028 are exploratory and excluded from this acceptance.",
+    "No original control-center/investments/security acceptance and no browser integration claim."
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "verify": "node scripts/verify-office.js",
+  "artifacts": [
+    {
+      "path": ".local/office-native-postwait-20261028/door-open.json",
+      "bytes": 87858,
+      "sha256": "c4e7b73715f071df9f9eea5a3a7fa670918514a0ef38ef1476ad2f766d874604"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/door-open.png",
+      "bytes": 16865,
+      "sha256": "87f08399cb818fee4dc16754ab695278463f9a7ea72226dc9fc3d92804d55354"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/door-pause.json",
+      "bytes": 87858,
+      "sha256": "15648902f6436dbb87219682c26649edf2e2f914bc5cd948c790c02b72672cdf"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/door-pause.png",
+      "bytes": 16865,
+      "sha256": "87f08399cb818fee4dc16754ab695278463f9a7ea72226dc9fc3d92804d55354"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/driver-table.json",
+      "bytes": 205,
+      "sha256": "9cf9ddb6711e108c2f9e814b74aa14bdac6d6d6044c2a7cb776e9a3ad463fbea"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/engine-status.json",
+      "bytes": 5737,
+      "sha256": "0fc5f2b75416baeaad0736674fdcb873c5a0d53a1a4f4eeb3c904c589487d8fc"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/final-stop.json",
+      "bytes": 663,
+      "sha256": "0cdf7c436c885239d3284e2967c4c01f65ef9888d4b83020b2750008635e374b"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/fire-input.json",
+      "bytes": 847,
+      "sha256": "bd4f68bf0cd6a31eacf2dd5b1d1211374284d6430d1c821bf492cd11b5b36b99"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/ghidra-bin-door.json",
+      "bytes": 14697,
+      "sha256": "5c24f61438c42f835401bd460f14d65f8f2bb45d3259fa3bc8171869ac9fcadf"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/ghidra-office-input.json",
+      "bytes": 38531,
+      "sha256": "1485ae59554fc063fbf9760b9a9429da6418ada95e4dfd40abecfbcbc18adcb3"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/ghidra-office-load.json",
+      "bytes": 11150,
+      "sha256": "f2e7a17f36d69e70c843d0fea01a38027ed7986c9f98620cdba3ecd25dec86f3"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/initial.json",
+      "bytes": 88700,
+      "sha256": "2ab4702d0356f79c224497be630f5359a7e931ec8ef1e1e86bb186a068516c65"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/initial.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/live-overlay.json",
+      "bytes": 11257,
+      "sha256": "5e6fd9ece6a81b59d3daa5219570713da2a37e43c9dff3c68b1f07b6fa054fdb"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-0.json",
+      "bytes": 87857,
+      "sha256": "5d4c6d8280db0369ecfc3d97abf1d239589141d2c3d4e4f072fb43938771f6d0"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-0.png",
+      "bytes": 16841,
+      "sha256": "f2ebe180f01198809506895c90f69a46e14a0ad4447a55f44e7f6ab427aaab8b"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-1.json",
+      "bytes": 87857,
+      "sha256": "18c4cbeef95fa730f9987ed7851777c71f11697fbfe10f1d99bc688560fc28a6"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-1.png",
+      "bytes": 16874,
+      "sha256": "19a14e2a23df5db5060f3ba90b9949f1f460ea24290c8241744bd0c54e01517a"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-10.json",
+      "bytes": 87858,
+      "sha256": "1561ad891b8bfbf22990771c82d2b7894e8406ed77ab87bd90a7be675235258b"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-10.png",
+      "bytes": 16874,
+      "sha256": "19a14e2a23df5db5060f3ba90b9949f1f460ea24290c8241744bd0c54e01517a"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-11.json",
+      "bytes": 87858,
+      "sha256": "832d175467b90ab85e3d30113bfaab205e346eab5f98abdfffe8e7acc193e24d"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-11.png",
+      "bytes": 16908,
+      "sha256": "68478390bb0e55f7143d396476255e2e7439027376aad9c8faed3e2d013e55e1"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-12.json",
+      "bytes": 87858,
+      "sha256": "d885751bb9fd77dfac19fea198feaa62f24225ae8c4609a8a303336474d05d7c"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-12.png",
+      "bytes": 16841,
+      "sha256": "f2ebe180f01198809506895c90f69a46e14a0ad4447a55f44e7f6ab427aaab8b"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-2.json",
+      "bytes": 87857,
+      "sha256": "fc3064a03242bad7048cacdfe9ca344f9dff33c887919a8863b42674414cd340"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-2.png",
+      "bytes": 16908,
+      "sha256": "68478390bb0e55f7143d396476255e2e7439027376aad9c8faed3e2d013e55e1"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-3.json",
+      "bytes": 87858,
+      "sha256": "a9ee11574ed1ceb74f68ab1ca0c720c140d2127e79c667f927a9a0d35cca0e85"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-3.png",
+      "bytes": 16841,
+      "sha256": "f2ebe180f01198809506895c90f69a46e14a0ad4447a55f44e7f6ab427aaab8b"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-4.json",
+      "bytes": 87858,
+      "sha256": "d26e6608d1b0352bc8c768e235e91bcf7233193370083b41ce7ab5376cc779b9"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-4.png",
+      "bytes": 16874,
+      "sha256": "19a14e2a23df5db5060f3ba90b9949f1f460ea24290c8241744bd0c54e01517a"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-5.json",
+      "bytes": 87858,
+      "sha256": "0da7ec830ac779be17f7839e02456d042b24c21efc0b88f3ba726746f6c993b5"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-5.png",
+      "bytes": 16908,
+      "sha256": "68478390bb0e55f7143d396476255e2e7439027376aad9c8faed3e2d013e55e1"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-6.json",
+      "bytes": 87858,
+      "sha256": "c393c8825b065a25a5056bae0498f5ae3d9e46d5de28493ec7381ed5d1196d1e"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-6.png",
+      "bytes": 16841,
+      "sha256": "f2ebe180f01198809506895c90f69a46e14a0ad4447a55f44e7f6ab427aaab8b"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-7.json",
+      "bytes": 87858,
+      "sha256": "c15d105a5472213b0e090c4ed9c11d09358869499d976a522d34d1a2dde2e261"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-7.png",
+      "bytes": 16874,
+      "sha256": "19a14e2a23df5db5060f3ba90b9949f1f460ea24290c8241744bd0c54e01517a"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-8.json",
+      "bytes": 87858,
+      "sha256": "7e025278ac1f859b3a9ad2349a2403857547102ea3ec8c117754d10a76e009de"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-8.png",
+      "bytes": 16908,
+      "sha256": "68478390bb0e55f7143d396476255e2e7439027376aad9c8faed3e2d013e55e1"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-9.json",
+      "bytes": 87858,
+      "sha256": "0945ffd06726f5b7b399bdc782c31361a7edd60aca7d9563fe5865411cffb466"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/pendulum-9.png",
+      "bytes": 16841,
+      "sha256": "f2ebe180f01198809506895c90f69a46e14a0ad4447a55f44e7f6ab427aaab8b"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/roof-1.json",
+      "bytes": 87858,
+      "sha256": "060aab9f6fd16e8cbf6a3946069efe4452fc97ef09c4750321b6af4549243127"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/roof-1.png",
+      "bytes": 17143,
+      "sha256": "606e2818cfc79b07a6bf3263d84ab07c60b2995c9e5b583f6e0ee9edaf1272e5"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/roof-2.json",
+      "bytes": 87858,
+      "sha256": "04199839f6aac26309a2106d1b0949e89bec9354136821e790ac25a0d5740411"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/roof-2.png",
+      "bytes": 17348,
+      "sha256": "47df49b2dcb8c747a7e8c6e1f7106ac2377488bb8484703c848c0412067ad8e3"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/roof-3.json",
+      "bytes": 87858,
+      "sha256": "a2321941d2888735975c8c2c07a1cc83902d5f0ba0363de044ec60ba6eb1dc7b"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/roof-3.png",
+      "bytes": 17302,
+      "sha256": "4d52539fa4d019993b6d851555b417424affe90398e30597ec739eabb2dc1b51"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/up.json",
+      "bytes": 88700,
+      "sha256": "426b7e533172caf6954b54f1c30c9b56f84fd113347cce592af50df26a8c991a"
+    },
+    {
+      "path": ".local/office-native-postwait-20261028/up.png",
+      "bytes": 16736,
+      "sha256": "a597e8c7967a9a0c8888048e7d563205d5bb253a9e5b87d6be3005622d4a84b6"
+    }
+  ],
+  "expectedArtifactCount": 48,
+  "captureToolRevision": "office-postwait-v1; DOSBox MCP bridge0.1.1, engine0.84.0-vc1 (f6d9b), protocol1.14; exact recipe in docs/office-transitions.md; raw Ghidra listings and engine status pinned as private artifacts.",
+  "verificationTools": {
+    "src/game/office.js": "2286ae90c0dcdce7a41fc4b067189a6a77437bf4a02259405d7a0c660bfd21d0",
+    "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
+    "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
+    "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
+    "scripts/verify-office.js": "73c1e841fc620e30fb18b1a2cbce8a63df25d00381222b75d3d2c35fd55d07bb"
+  }
+}

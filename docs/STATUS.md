@@ -1,6 +1,13 @@
 # Current port status
 
-Updated2026-10-28. **The whole game is not complete.** The campaign loop and all
+Updated2026-10-28. This office worktree is based on6fc0ef4. Its standalone
+money-bin office departure now matches20 native pictures and all represented
+sprite tuples, with a carried19-flip/255-count sequence. It is not yet connected
+to browser dispatch; run `npm run verify:office` and see
+[office evidence](office-transitions.md). The later menu branch remains separate
+until its complete integration gate passes.
+
+ **The whole game is not complete.** The campaign loop and all
 four expedition families are playable on selected routes. We still have
 unverified routes and behavior gaps; arbitrary campaigns are not yet guaranteed
 finishable. This is completion work, not only final polish.

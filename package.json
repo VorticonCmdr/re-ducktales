@@ -74,7 +74,8 @@
     "test:hard-campaign": "playwright test tests/browser/hard-campaign.spec.js",
     "verify:difficulty-core": "node scripts/verify-difficulty.js",
     "verify:flight-input-stream": "node scripts/verify-flight-control-profiles.js && node scripts/verify-flight-input-browser-negative.js",
-    "verify:difficulty": "npm run verify:difficulty-core && playwright test tests/browser/difficulty.spec.js && node scripts/verify-difficulty-browser-negative.js"
+    "verify:difficulty": "npm run verify:difficulty-core && playwright test tests/browser/difficulty.spec.js && node scripts/verify-difficulty-browser-negative.js",
+    "verify:office": "node scripts/verify-office.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

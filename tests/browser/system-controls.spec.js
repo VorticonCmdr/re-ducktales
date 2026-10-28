@@ -150,7 +150,10 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
   const seen = [];
   for (let line = 0; line < 26; line++) {
     const current = await until(
-      (s) => s.ending.phase === "credits" && s.ending.credit === line,
+      (s) =>
+        s.ending.phase === "credits" &&
+        s.ending.credit === line &&
+        s.ending.ready,
     );
     seen.push(current.ending.credit);
     expect(current.money).toBe(1000);
@@ -165,7 +168,7 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
   }
   expect(seen).toEqual(Array.from({ length: 26 }, (_, i) => i));
   await canvas.screenshot({ path: ".local/browser-results/credits-last.png" });
-  await until((s) => s.ending.phase === "farewell");
+  await until((s) => s.ending.phase === "farewell" && s.ending.ready);
   expect(
     Buffer.compare(
       (await pixels()).data,

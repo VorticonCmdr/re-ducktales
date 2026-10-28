@@ -1,74 +1,8 @@
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
-
-async function campaign(page, hard = false) {
-  const errors = [];
-  page.on("pageerror", (e) => errors.push(e.message));
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.goto("/");
-  const canvas = page.locator("#game");
-  const state = () => canvas.getAttribute("data-state").then(JSON.parse);
-  async function until(predicate, max = 3000) {
-    for (let i = 0; i < max; i++) {
-      const s = await state();
-      if (s?.diagnostic) throw Error(s.diagnostic);
-      if (s && predicate(s)) return s;
-      await page.clock.runFor(16);
-    }
-    throw Error(`unfinished ending scenario ${JSON.stringify(await state())}`);
-  }
-  async function press(key) {
-    if (key === "Escape") await page.locator("#back").click();
-    else await page.keyboard.press(key);
-    await page.clock.runFor(100);
-  }
-  async function point(x, y) {
-    const r = await canvas.boundingBox();
-    await canvas.click({
-      position: { x: (r.width * x) / 320, y: (r.height * y) / 200 },
-    });
-    await page.clock.runFor(100);
-  }
-  async function bankRoundTrip() {
-    if ((await state()).scene === "office") {
-      await page.locator("#map").click();
-      await page.clock.runFor(100);
-    }
-    expect((await state()).scene).toBe("map");
-    await point(212, 131);
-    await press("Space");
-    await press("ArrowRight");
-    await press("Space");
-    if ((await state()).scene !== "ending") await press("Escape");
-  }
-  async function ending() {
-    for (let trip = 0; trip < 6 && (await state()).scene !== "ending"; trip++)
-      await bankRoundTrip();
-    const s = await until((s) => s.scene === "ending");
-    expect(s.ending.phase).toBe("cover");
-    return s;
-  }
-  async function pixels(path) {
-    const expected = PNG.sync.read(await readFile(path));
-    const actual = PNG.sync.read(
-      Buffer.from(
-        (await canvas.evaluate((c) => c.toDataURL())).split(",")[1],
-        "base64",
-      ),
-    );
-    expect([actual.width, actual.height]).toEqual([320, 200]);
-    expect(Buffer.compare(actual.data, expected.data)).toBe(0);
-  }
-  await until((s) => s.scene === "title");
-  await canvas.focus();
-  await press("Space");
-  if (hard) await press("ArrowUp");
-  await press("Enter");
-  await until((s) => s.scene === "office");
-  return { canvas, state, until, press, point, ending, pixels, errors };
-}
+import { parseArchive, imagePixels } from "../../src/assets.js";
+import { campaign } from "./helpers/ending-route.js";
 
 test("earned cash reaches the winning ending and Yes starts a fresh campaign", async ({
   page,
@@ -110,10 +44,10 @@ test("earned cash reaches the winning ending and Yes starts a fresh campaign", a
   await t.pixels(".local/ending-winner-first.png");
   await page.screenshot({ path: ".local/browser-results/ending-win.png" });
   await t.press("Space");
-  await t.until((s) => s.ending.phase === "celebration");
+  await t.until((s) => s.ending.phase === "celebration" && s.ending.ready);
   await t.pixels(".local/ending-winner-second.png");
   await t.press("Space");
-  await t.until((s) => s.ending.phase === "replay");
+  await t.until((s) => s.ending.phase === "replay" && s.ending.ready);
   await t.pixels(".local/ending-replay-yes.png");
   await t.press("Space");
   expect((await t.state()).scene).toBe("difficulty");
@@ -135,17 +69,22 @@ test("a tied campaign wins and No reaches credits and a finished screen", async 
   const result = await t.ending();
   expect(result.ending).toMatchObject({ won: true, banked: 0, rivalBanked: 0 });
   await t.press("Space");
+  await t.until((s) => s.ending.phase === "celebration" && s.ending.ready);
   await t.press("Space");
+  await t.until((s) => s.ending.phase === "replay" && s.ending.ready);
   await t.press("ArrowDown");
   expect((await t.state()).ending.choice).toBe(1);
+  await t.until((s) => s.ending.choice === 1 && s.ending.ready);
   await t.pixels(".local/ending-replay-no.png");
   await t.press("Space");
-  expect((await t.state()).ending.phase).toBe("credits");
-  await page.clock.runFor(2000);
-  expect((await t.state()).ending.credit).toBe(0);
+  await t.until((s) => s.ending.phase === "credits");
+  await t.until(
+    (s) =>
+      s.ending.phase === "credits" && s.ending.credit === 0 && s.ending.ready,
+  );
   await t.press("Space");
   expect((await t.state()).ending.phase).toBe("farewell");
-  await page.clock.runFor(4000);
+  await t.until((s) => s.ending.phase === "closed");
   expect((await t.state()).ending.phase).toBe("closed");
   await expect(page.locator("#status")).toContainText("Game finished");
   await page.locator("#restart").click();
@@ -184,10 +123,21 @@ test("a lost real flight race leads to Glomgold's winning ending", async ({
     asset: 37,
   });
   await t.press("Space");
-  await t.until((s) => s.ending.phase === "celebration");
-  expect((await t.state()).ending.asset).toBe(33);
+  await t.until((s) => s.ending.phase === "celebration" && s.ending.ready);
+  expect((await t.state()).ending.asset).toBe(38);
+  // Static helper11 selects MAIN38; this is asset identity, not a new DOSBox capture.
+  const original = parseArchive(await readFile("game/MAIN.ARC"))[38];
+  const actual = PNG.sync.read(
+    Buffer.from(
+      (await t.canvas.evaluate((c) => c.toDataURL())).split(",")[1],
+      "base64",
+    ),
+  );
+  expect(Buffer.compare(actual.data, Buffer.from(imagePixels(original)))).toBe(
+    0,
+  );
   await t.press("Space");
-  await t.until((s) => s.ending.phase === "replay");
+  await t.until((s) => s.ending.phase === "replay" && s.ending.ready);
   await expect(page.locator("#diagnostic")).toBeHidden();
   expect(t.errors).toEqual([]);
 });

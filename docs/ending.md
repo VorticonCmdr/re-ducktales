@@ -27,9 +27,9 @@ these are game routines,not the EXEPACK stub.
   low words. Player>=rival wins,including ties. Cash,stock quotes and stock counts
   are not added by this comparison. Scores are not coerced to unsigned ordering.
 - `12f5:0ee7` selects picture helper13 for a win,14 for a loss: MAIN36/37.
-  `12f5:0f26` then selects helper12/11: MAIN39/33. Each calls shared09f5 for100 reads. A neutral read waits seven driver ticks;
-  Fire is checked before that wait. The current ending adapter still latches
-  Fire to its seven-tick boundaries; full reader/flush timing is pending.
+  `12f5:0f26` then selects helper12/11: MAIN39/38. Each calls shared09f5 for100 reads. A neutral read waits seven driver ticks;
+  Fire is checked before that wait, including an immediate first read after the
+  picture flush. The browser now follows these polling/flush boundaries.
 - `12f5:0f55` defaults to Yes. Arrow directions toggle the choice; held directions
   have a14-tick delay/flush. Fire returns0 for Yes,1 for No. The caller at main0ff1
   sends Yes to difficulty `12f5:0aeb`,then initializes a new game. No calls credits
@@ -41,8 +41,8 @@ these are game routines,not the EXEPACK stub.
 `src/game/ending.js` owns account arithmetic and ending/menu clocks. Simulation
 is independent of the DOM. The existing scheduler supplies driver ticks and
 semantic input; the renderer only observes state. Complete original bank
-celebration animation,striped picture reveals,CPU-bound redraw costs and full
-input-poll alignment are not established. Ending music dispatch is now translated
+celebration animation and CPU-bound redraw costs are not established. Striped
+picture reveals and input-poll boundaries are translated from source. Ending music dispatch is now translated
 as described below. Credits first/last text and farewell pixels now match
 the original; two isolated20-poll waits also match140 driver ticks. This does
 not establish whole-sequence original elapsed time. Losing pictures are
@@ -150,9 +150,9 @@ Resident12f5:0f74..0f85 requests1 again before displaying Play Again. Its
 1080..1090 epilogue checks the flag and requests0 before returning either choice.
 Main0ff8 sends Yes directly to difficulty12f5:0aeb, then main1007 requests0 after
 that configuration returns. No skips difficulty and receives the same main reset
-before entering credits. The two No resets are separate original calls.
+before entering credits. Those two resets are separate original calls; credits1098 sends a third reset on entry.
 
-`reference/ending-audio.json` pins four ranges of the original unpacked resident
+`reference/ending-audio.json` pins five ranges of the original unpacked resident
 image against the supported build. Disassembly establishes the word argument,
 far indirect sound call and caller cleanup. The recovered replay C incorrectly
 reinitializes a choice local; its XOR byte and return branches were checked in
@@ -171,7 +171,7 @@ Yes initializes difficulty directly instead of invoking the browser title
 restart. This also removes an unintended extra title-song request from the old
 internal restart path. A small continuation flag places main's final reset after
 actual difficulty confirmation. Explicit browser Restart retains its title and
-title music behavior. No consumes both original reset calls before credits;
+title music behavior. No consumes both return resets plus the credits-entry reset;
 quitting a campaign directly to credits starts no ending song.
 
 Six conditional controller cases cover both score outcomes, start/replay/reset
@@ -179,16 +179,75 @@ order, Yes/No, muted transitions, explicit Restart, direct quit and unsupported
 effects. A missing replay start must be rejected. Two independent native browser
 routes reach a tied winning ending through five real bank round trips, match the
 original winner/replay pixels, exercise Tandy sample output and require the
-acknowledged words `[1,1,0,0]`. Yes requires the final0 only after difficulty
-confirmation; No requires both zeros before credits. No state,score,date or RNG
+acknowledged words `[1,1,0,0]` for Yes and `[1,1,0,0,0]` for No. Yes requires the final0 only after difficulty
+confirmation; No requires the third zero at credits entry. No state,score,date or RNG
 is injected into those browser journeys. The existing earned-score winning and
 real-flight losing routes remain separate checks.
 
-This milestone does not translate bank animations,striped reveals,immediate
-first ending Fire polls,global-key reader alignment,original IRQ phase or hardware
-waveform timing. Existing ending/credits waits and browser adapter behavior are
-retained. A working music/choice route does not prove full ending timing parity.
+The original music milestone did not translate presentation or input timing.
+The following milestone adds those source paths; bank animation, original IRQ
+phase and hardware waveform timing remain unverified.
 Run `node --test tests/ending-audio.test.js`, `npm run verify:ending`, and
 `npm run test:browser -- tests/browser/ending-audio.spec.js tests/browser/ending.spec.js`.
 These are included in `npm run verify`. Screenshots stay local at
 `.local/browser-results/ending-audio-yes.png` and `ending-audio-no.png`.
+
+
+## Ending pictures, polling and credits presentation (2026-10-28)
+
+The full browser ending now executes five interleaved row groups for each wipe
+and reveal. Each group changes rows with remainder0 through the current group
+modulo5, then waits five display retraces. Graphics resource1 in IT.DRV contains
+real-mode x86 code:00e5 flips pages and waits one retrace,0101 reveals,0155 wipes,
+and0064 supplies the retrace wait. The decoded driver identity and resident
+routine spans are pinned in `reference/ending-presentation.json`. The existing
+jungle native comparison independently checks relocated graphics code identity.
+This is static translation, not a new native mid-transition capture.
+
+The picture helper's jump table at11c4:0151 selects MAIN36/37 for the winning/
+losing cover, then39/38 for the score picture. MAIN33 was previously selected
+for the losing second picture; it is a different portrait. Both source operands
+and the real losing browser route now require38 and its exact decoded pixels.
+
+Wait09f5 flushes unread keys, polls Fire immediately, and then waits seven driver
+ticks after each neutral read. It performs exactly its requested number of reads,
+including the final wait, without an extra terminal read. Input during picture
+presentation is flushed before that first poll. Physical held Fire remains an
+explicit external input. Global P/Q/S keys are deferred to the same reader;
+pause suspends the pending read and freezes gameplay/presentation while device
+clocks continue. Resuming flushes controls before continuing the reader.
+
+Replay reads Fire before arrows, toggles the low-byte choice, presents the
+selected page with one retrace, flushes after a direction and waits14 driver
+ticks before the next read. Committed page descriptions survive consecutive
+flips, including neutral input loops. Presentation reads those descriptions and
+cannot drive simulation. The initial wipe consumes the preceding browser frame
+as a presentation-only input. The original bank animation that would precede
+this wipe remains unported, so its incoming picture is not claimed to match DOS.
+
+Credits1098 resets sound on entry. Its0dee helper first waits20 reads, clears
+both footer pages with one flip, then presents26 names, each with one flip and
+20 reads. It clears both footers again after the last name. Fire skips the names
+and requests36; the farewell picture has40 reads, its own skip36, and final
+reset0. Natural credits execute580 reads. Existing original first/last-name and
+farewell PNGs remain exact comparisons, with no changed captures or tolerances.
+
+Eight controller cases cover row pixels, the four helper mappings, exact50-
+retrace picture duration, first-read/flush behavior, blocked global input,
+page retention/14-tick menu delay, all26 credits and skip sound order. Altered
+pixels and invalid provider values must fail. A browser route reaches day31
+through five bank journeys, captures all30 row-group frames through both winning
+pictures and replay, checks exact pixels, tests entry-key flushing and pause,
+and continues through No, credits, farewell and closure. It uses no injected
+campaign state. Its observer listens to public presentation events only.
+
+The conditional `presentationReady:true` option is limited to routine-boundary
+checks whose original captures already completed the picture helper. It skips
+only multi-band picture calls; page flips still consume retraces. It is never
+used by the browser route and does not count as full presentation acceptance.
+The existing native verifiers remain mandatory and fail if their local captures
+are missing/corrupt. Run `node --test tests/ending-presentation.test.js`,
+`npm run verify:ending`, and `npm run test:browser -- tests/browser/ending-presentation.spec.js tests/browser/ending.spec.js tests/browser/ending-audio.spec.js tests/browser/system-controls.spec.js`.
+All are included in `npm run verify`. The intermediate reveal screenshot remains
+local at `.local/browser-results/ending-reveal-group2.png`. Full-machine ending
+replay, original input/IRQ phase and hardware waveform parity are still unproven.

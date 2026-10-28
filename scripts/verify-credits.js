@@ -156,16 +156,24 @@ for (const [name, line] of [
 }
 // Independent state-carrying port boundary replay. Original rendering costs
 // and unobserved intervening waits are not fitted into this input stream.
-const ending = new CampaignEnding({ day: 1, banked: 0, rivalBanked: 0 });
+const ending = new CampaignEnding({
+  day: 1,
+  banked: 0,
+  rivalBanked: 0,
+  presentationReady: true,
+});
 ending.beginCredits();
 for (let i = 0; i < 139; i++) ending.advanceTick();
 assert.equal(ending.credit, -1);
 ending.advanceTick();
+ending.advanceRetrace();
+ending.advanceRetrace();
 assert.equal(ending.credit, 0);
 for (let line = 0; line < 26; line++) {
   assert.equal(ending.credit, line);
   assert.equal(ending.phase, "credits");
   for (let i = 0; i < 140; i++) ending.advanceTick();
+  ending.advanceRetrace();
 }
 assert.equal(ending.phase, "farewell");
 for (let i = 0; i < 279; i++) ending.advanceTick();

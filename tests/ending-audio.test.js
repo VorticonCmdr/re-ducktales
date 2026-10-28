@@ -16,7 +16,7 @@ async function supported(name) {
   return b;
 }
 const image = unpackImage(await supported("DUCKTALE.EXE"));
-assert.equal(evidence.source.ranges.length, 4);
+assert.equal(evidence.source.ranges.length, 5);
 assert.equal(evidence.scenario.unitCases, 6);
 for (const r of evidence.source.ranges)
   assert.equal(
@@ -33,12 +33,13 @@ function fresh(audioEnabled = true, won = true) {
   g.campaign.day = 31;
   g.campaign.banked = won ? 1000 : 0;
   g.campaign.rival.banked = won ? 0 : 1000;
-  g.showEnding();
+  g.showEnding({ presentationReady: true });
   return g;
 }
 function skipToReplay(g) {
   g.input({ type: "fire" });
   for (let i = 0; i < 7; i++) g.advanceTick();
+  g.advanceRetrace();
   assert.equal(g.ending.phase, "celebration");
   assert.deepEqual(g.drainEffects(), []);
   g.input({ type: "fire" });
@@ -52,6 +53,7 @@ test("both winner outcomes start ending music once and request it again at repla
     assert.equal(g.ending.won, won);
     assert.deepEqual(g.drainEffects(), [sound(1)]);
     for (let i = 0; i < 700; i++) g.advanceTick();
+    g.advanceRetrace();
     assert.equal(g.ending.phase, "celebration");
     assert.deepEqual(g.drainEffects(), []);
     for (let i = 0; i < 700; i++) g.advanceTick();
@@ -70,6 +72,7 @@ test("Yes resets replay music and bypasses title; main reset follows difficulty 
   g.drainEffects();
   skipToReplay(g);
   g.input({ type: "fire" });
+  g.advanceRetrace();
   assert.equal(g.scene, "difficulty");
   assert.equal(g.ending, null);
   assert.deepEqual(g.drainEffects(), [sound(0)]);
@@ -87,11 +90,16 @@ test("No consumes replay and main resets before credits without starting another
   g.drainEffects();
   skipToReplay(g);
   g.input({ type: "down" });
+  g.advanceRetrace();
+  g.advanceRetrace();
   g.input({ type: "fire" });
+  for (let i = 0; i < 14; i++) g.advanceTick();
   assert.equal(g.scene, "ending");
   assert.equal(g.ending.phase, "credits");
-  assert.deepEqual(g.drainEffects(), [sound(0), sound(0)]);
+  assert.deepEqual(g.drainEffects(), [sound(0), sound(0), sound(0)]);
   for (let i = 0; i < 140; i++) g.advanceTick();
+  g.advanceRetrace();
+  g.advanceRetrace();
   assert.equal(g.ending.credit, 0);
   assert.deepEqual(g.drainEffects(), []);
 });
@@ -99,7 +107,11 @@ test("ending sound guards follow mute changes without restarting music within a 
   const g = fresh();
   g.drainEffects();
   g.input({ type: "toggle-sound" });
+  if (g.ending.phase === "replay") g.advanceRetrace();
+  else for (let i = 0; i < 7; i++) g.advanceTick();
   g.input({ type: "toggle-sound" });
+  if (g.ending.phase === "replay") g.advanceRetrace();
+  else for (let i = 0; i < 7; i++) g.advanceTick();
   assert.equal(g.ending.audioEnabled, true);
   assert.deepEqual(g.drainEffects(), [
     { type: "stopAudio" },
@@ -107,14 +119,21 @@ test("ending sound guards follow mute changes without restarting music within a 
   ]);
   skipToReplay(g);
   g.input({ type: "toggle-sound" });
+  if (g.ending.phase === "replay") g.advanceRetrace();
+  else for (let i = 0; i < 7; i++) g.advanceTick();
   g.drainEffects();
   g.input({ type: "down" });
+  g.advanceRetrace();
+  g.advanceRetrace();
   g.input({ type: "fire" });
+  for (let i = 0; i < 14; i++) g.advanceTick();
   assert.equal(g.ending.phase, "credits");
   assert.deepEqual(g.drainEffects(), []);
   const muted = fresh(false);
   assert.deepEqual(muted.drainEffects(), [{ type: "stopAudio" }]);
-  for (let i = 0; i < 1400; i++) muted.advanceTick();
+  for (let i = 0; i < 700; i++) muted.advanceTick();
+  muted.advanceRetrace();
+  for (let i = 0; i < 700; i++) muted.advanceTick();
   assert.equal(muted.ending.phase, "replay");
   assert.deepEqual(muted.drainEffects(), []);
   assert.throws(

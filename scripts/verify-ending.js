@@ -216,17 +216,26 @@ assert.equal(
   }).rivalBanked,
   0,
 );
-const e = new CampaignEnding({ banked: 750, rivalBanked: 0, day: 33 });
+const e = new CampaignEnding({
+  banked: 750,
+  rivalBanked: 0,
+  day: 33,
+  presentationReady: true,
+});
 for (let i = 0; i < 699; i++) e.advanceTick();
 assert.equal(e.phase, "cover");
 e.advanceTick();
+e.advanceRetrace();
 assert.equal(e.phase, "celebration");
 e.input({ type: "fire" });
 for (let i = 0; i < 7; i++) e.advanceTick();
 assert.equal(e.phase, "replay");
 e.input({ type: "down" });
+e.advanceRetrace();
 assert.equal(e.choice, 1);
+e.advanceRetrace();
 e.input({ type: "fire" });
+for (let i = 0; i < 14; i++) e.advanceTick();
 assert.equal(e.phase, "credits");
 e.input({ type: "fire" });
 for (let i = 0; i < 7; i++) e.advanceTick();

@@ -1,0 +1,111 @@
+{
+  "id": "ending-presentation-fb658562-v1",
+  "buildManifest": "reference/build.json",
+  "baseRevision": "841368e",
+  "evidenceLevel": "statically inferred presentation and polling; independent controller and browser acceptance; completed native picture comparisons remain mandatory",
+  "unitCases": 8,
+  "browserCases": 1,
+  "ranges": [
+    {
+      "offset": 7240,
+      "length": 366,
+      "purpose": "11c4:0008 picture dispatcher and table",
+      "sha256": "f4d5e2435577bff6432dccb3cb98903eef9ffaadb1012c4b122703cc5b7bfc19"
+    },
+    {
+      "offset": 15927,
+      "length": 433,
+      "purpose": "12f5:0ee7 ending and replay",
+      "sha256": "d606e12697bf9c47038898a39186be3d992d05643139b90d9c7207b0f9b70a03"
+    },
+    {
+      "offset": 15678,
+      "length": 249,
+      "purpose": "12f5:0dee credits name loop",
+      "sha256": "f78c69b3eafcc17cfb7f1ab90715dfe75a75870c33e749f0e7ba64cb1f6dbfa5"
+    },
+    {
+      "offset": 16360,
+      "length": 260,
+      "purpose": "12f5:1098 credits and farewell",
+      "sha256": "1e4e8b596effcdc2852871fab0949cd5011ffc185ff9906e34b1af13c1ac3cc2"
+    },
+    {
+      "offset": 9781,
+      "length": 88,
+      "purpose": "11c4:09f5 input wait",
+      "sha256": "29c7a6a964b796914e9ba4d3c39ea964f1cdf051f5d0d6417effb6187bf9ba88"
+    }
+  ],
+  "graphics": {
+    "archive": "IT.DRV",
+    "resource": 1,
+    "bytes": 2599,
+    "sha256": "6ee03bd93f3979546d5b5c1511e377685e2aa5401caaf407c3308bca0b812aee",
+    "source": "Raw x86 LE16 real-mode driver: flip00e5, reveal0101, wipe0155, retrace0064. Five groups of rows y modulo5, each followed by five retraces."
+  },
+  "environment": {
+    "driverHz": "1193182/16380",
+    "retraceHz": 70.086,
+    "input": "External physical controls and semantic pulses consumed at source input polls. Dialog entry flushes pulses and pending global keys; held physical Fire remains readable.",
+    "conditionalChecks": "presentationReady=true assumes multi-band picture calls have completed. Used only by existing routine-boundary native comparisons; browser uses full presentations.",
+    "render": "First wipe consumes the preceding browser frame as presentation-only input; subsequent page descriptors are carried by the controller. Rendering does not supply simulation inputs."
+  },
+  "recipe": "Load supported game/, run npm run verify:ending, then browser ending routes. Five actual bank return journeys reach day31; no injected campaign state. Browser observer records each unique row group after gamepresent.",
+  "verification": [
+    "node --test tests/ending-presentation.test.js tests/ending-audio.test.js",
+    "npm run verify:ending",
+    "npm run test:browser -- tests/browser/ending-presentation.spec.js tests/browser/ending.spec.js tests/browser/ending-audio.spec.js tests/browser/system-controls.spec.js"
+  ],
+  "requiredOriginalArtifacts": [
+    "reference/ending.json",
+    "reference/credits.json"
+  ],
+  "comparisonRules": "Exact RGBA for all observed row groups and original completed PNGs; exact poll/event counts, no frame-search tolerance. Altered pixel negative control must fail. Missing supported files fail setup.",
+  "injections": [],
+  "fittedInputs": [],
+  "limitations": [
+    "No new original mid-transition pixel capture or whole-machine replay; row algorithm and delay counts are inferred from the pinned graphics driver.",
+    "Bank animation and its original incoming frame remain unported. First wipe therefore starts from the current browser scene.",
+    "Full hardware IRQ phase, CPU instruction time and waveform parity remain unverified."
+  ],
+  "captureTool": {
+    "kind": "Playwright desktop Chromium and Node controller tests",
+    "playwright": "1.64.1",
+    "baseRevision": "841368e",
+    "sourceHashes": {
+      "src/game/ending.js": "7e3ebf5077f02bfcb5401b17037e3ef6b390ef1d806ba8a9bbde8a3ddd233fa3",
+      "src/game/ending-presentation.js": "7664dd081d0db9cd7b5680765896e04385ce7029a521d54fb21c01efa3b95056",
+      "src/game/application.js": "b2f4f9a97cf9ea0aa72e4ebd9c817905589a60543bf15b6660b0a3d6dec79d81",
+      "src/game/renderer.js": "e912c4fa604c3a2e5e61ca5f8102988c3c1334b9bdb579eeabc158481503ec9d",
+      "tests/ending-presentation.test.js": "abf21b7a9a3e0f53ba4eed132caf57d4edcc898c66063791aa8d4acbb4304de2",
+      "tests/browser/ending-presentation.spec.js": "46a768d7969aefece58fb5974ab568c9003f1b141f781b0af7f4d28f308978a6",
+      "tests/browser/helpers/ending-route.js": "0c7276541e1ab780ee8f34086fefb010df08a2b5de838f7e9af9a71145cc79b0"
+    }
+  },
+  "receipts": {
+    "scope": "Port verification outputs, not new original runtime captures",
+    "unitCases": 104,
+    "developmentBrowserCases": 57,
+    "productionBrowserCases": 2,
+    "skippedCases": 0,
+    "artifacts": {
+      "fullVerification": {
+        "path": ".local/ending-presentation-full-verify.log",
+        "sha256": "5b39a390e81cd80c8cdc4b829cd124935ed971b92d7caf39a89f56e5dbc9bb2d"
+      },
+      "rowGroup2": {
+        "path": ".local/ending-presentation-reveal-group2.png",
+        "sha256": "d8ac5a699c65cd35dc66632eb2d98136a76c14c08c2a78240410198bc41ce2a2"
+      },
+      "replayYes": {
+        "path": ".local/ending-presentation-replay-yes.png",
+        "sha256": "52a68736522855c9e376f9ac1f50c620e6561474cca38e0fa2791ee2da0b3280"
+      },
+      "replayNo": {
+        "path": ".local/ending-presentation-replay-no.png",
+        "sha256": "38a5e567a37be87b73c08f04718f4da7c929c7015d1588c3d2541b38607c3d2a"
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import {
 } from "./mountain-scene.js";
 import { investmentPrice } from "./investments.js";
 import { systemOverlayLayout } from "./system-controls.js";
+import { endingTransitionPixels } from "./ending-presentation.js";
 export class Renderer {
   constructor(canvas, resources) {
     this.canvas = canvas;
@@ -199,43 +200,98 @@ export class Renderer {
     this.ctx.fillRect(box.x, box.y, 1, box.height);
     this.ctx.fillRect(box.x + box.width - 1, box.y, 1, box.height);
   }
+  endingFrame(e) {
+    const key = `ending:${e.phase}:${e.asset}:${e.choice}:${e.credit}:${!!e.clearFooter}`;
+    if (!this.cache.has(key)) {
+      const surface = document.createElement("canvas");
+      surface.width = 320;
+      surface.height = 200;
+      const previous = this.ctx;
+      this.ctx = surface.getContext("2d", { alpha: false });
+      try {
+        if (e.phase === "blank") {
+          this.ctx.fillStyle = "#000";
+          this.ctx.fillRect(0, 0, 320, 200);
+        } else if (e.asset !== null) {
+          this.draw("MAIN.ARC", e.asset, 0, 0, 0);
+          if (e.phase === "credits" && (e.credit >= 0 || e.clearFooter)) {
+            this.ctx.fillStyle = "#0000aa";
+            this.ctx.fillRect(0, 192, 320, 8);
+            if (e.credit >= 0)
+              this.text(
+                executableText(
+                  this.resources.executable,
+                  0x79e + e.credit * 26,
+                ),
+                64,
+                192,
+              );
+          }
+        } else if (e.phase === "replay") {
+          this.ctx.fillStyle = "#000";
+          this.ctx.fillRect(0, 0, 320, 200);
+          this.text(executableText(this.resources.executable, 0xa42), 112, 70);
+          this.text(
+            executableText(
+              this.resources.executable,
+              e.choice === 0 ? 0xa4e : 0xa56,
+            ),
+            e.choice === 0 ? 136 : 144,
+            100,
+            e.choice === 0 ? "#ff5555" : "#fff",
+          );
+          this.text(
+            executableText(
+              this.resources.executable,
+              e.choice === 0 ? 0xa53 : 0xa5a,
+            ),
+            e.choice === 0 ? 144 : 136,
+            120,
+            e.choice === 0 ? "#fff" : "#ff5555",
+          );
+        } else throw Error(`Unsupported ending presentation ${e.phase}`);
+      } finally {
+        this.ctx = previous;
+      }
+      this.cache.set(key, {
+        surface,
+        pixels: surface.getContext("2d").getImageData(0, 0, 320, 200).data,
+      });
+    }
+    return this.cache.get(key);
+  }
   renderScene(game) {
     if (game.scene === "ending") {
       const e = game.ending;
-      if (e.asset !== null) {
-        this.draw("MAIN.ARC", e.asset, 0, 0, 0);
-        if (e.phase === "credits" && e.credit >= 0) {
-          this.ctx.fillStyle = "#0000aa";
-          this.ctx.fillRect(0, 192, 320, 8);
-          this.text(
-            executableText(this.resources.executable, 0x79e + e.credit * 26),
-            64,
-            192,
-          );
+      if (e.transition) {
+        const t = e.transition;
+        let source;
+        if (t.source) source = this.endingFrame(t.source).pixels;
+        else {
+          if (
+            this.endingTransitionGame !== e ||
+            this.endingTransitionToken !== t.token
+          ) {
+            this.endingTransitionGame = e;
+            this.endingTransitionToken = t.token;
+            this.endingTransitionSource = this.ctx.getImageData(
+              0,
+              0,
+              320,
+              200,
+            ).data;
+          }
+          source = this.endingTransitionSource;
         }
-      } else if (e.phase === "replay") {
-        this.ctx.fillStyle = "#000";
-        this.ctx.fillRect(0, 0, 320, 200);
-        this.text(executableText(this.resources.executable, 0xa42), 112, 70);
-        this.text(
-          executableText(
-            this.resources.executable,
-            e.choice === 0 ? 0xa4e : 0xa56,
-          ),
-          e.choice === 0 ? 136 : 144,
-          100,
-          e.choice === 0 ? "#ff5555" : "#fff",
+        const target = this.endingFrame(t.target).pixels;
+        const pixels = endingTransitionPixels(t, source, target);
+        this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
+      } else
+        this.ctx.drawImage(
+          this.endingFrame(e.visible ?? e.describe()).surface,
+          0,
+          0,
         );
-        this.text(
-          executableText(
-            this.resources.executable,
-            e.choice === 0 ? 0xa53 : 0xa5a,
-          ),
-          e.choice === 0 ? 144 : 136,
-          120,
-          e.choice === 0 ? "#fff" : "#ff5555",
-        );
-      } else throw Error(`Unsupported ending presentation ${e.phase}`);
       return;
     }
     if (game.scene === "investments") {

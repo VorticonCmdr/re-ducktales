@@ -58,6 +58,7 @@ export class Game {
     this.pendingMountainSystemKeys = new Map();
     this.pendingJungleSystemKeys = new Map();
     this.pendingPhotographySystemKeys = new Map();
+    this.pendingEndingSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -212,7 +213,9 @@ export class Game {
         "mountain",
         "jungle",
         "photography",
+        "ending",
       ].includes(this.scene) &&
+      !(this.scene === "ending" && this.ending.phase === "closed") &&
       ["pause", "quit", "toggle-sound"].includes(event.type)
     ) {
       // IRQ9 retains make/release flags until19c5 consumes them. No input
@@ -228,7 +231,9 @@ export class Game {
                 ? this.pendingJungleSystemKeys
                 : this.scene === "photography"
                   ? this.pendingPhotographySystemKeys
-                  : this.pendingBinSystemKeys;
+                  : this.scene === "ending"
+                    ? this.pendingEndingSystemKeys
+                    : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -290,6 +295,7 @@ export class Game {
       this.pendingMountainSystemKeys.clear();
       this.pendingJungleSystemKeys.clear();
       this.pendingPhotographySystemKeys.clear();
+      this.pendingEndingSystemKeys.clear();
       this.exiting = false;
       this.pendingCampaignAction = null;
       this.briefing = null;
@@ -334,6 +340,7 @@ export class Game {
       this.mountain?.setControls(this.controls);
       this.jungle?.setControls(this.controls);
       this.photography?.setControls(this.controls);
+      this.ending?.setControls(this.controls);
       return;
     }
     if (this.scene === "investments") {
@@ -600,6 +607,7 @@ export class Game {
       if (this.scene === "mountain") this.mountain.advanceBlockedTick();
       if (this.scene === "jungle") this.jungle.advanceBlockedTick();
       if (this.scene === "photography") this.photography.advanceBlockedTick();
+      if (this.scene === "ending") this.ending.advanceBlockedTick();
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
       return;
@@ -705,6 +713,12 @@ export class Game {
       if (this.scene === "jungle") this.jungle.advanceBlockedRetrace();
       if (this.scene === "photography")
         this.photography.advanceBlockedRetrace();
+      if (this.scene === "ending") this.ending.advanceBlockedRetrace();
+      return;
+    }
+    if (this.scene === "ending") {
+      this.ending.advanceRetrace();
+      this.collectEnding();
       return;
     }
     if (this.scene === "photography") {
@@ -811,6 +825,7 @@ export class Game {
     this.pendingMountainSystemKeys.clear();
     this.pendingJungleSystemKeys.clear();
     this.pendingPhotographySystemKeys.clear();
+    this.pendingEndingSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "flight") this.flight.flushInput();
@@ -818,6 +833,7 @@ export class Game {
     else if (this.scene === "mountain") this.mountain.flushInput();
     else if (this.scene === "jungle") this.jungle.flushInput();
     else if (this.scene === "photography") this.photography.flushInput();
+    else if (this.scene === "ending") this.ending.flushInput();
     else {
       this.handleInput({ type: "controls", fire: false, direction: null });
       this.effects.push({ type: "flushControls" });
@@ -829,10 +845,14 @@ export class Game {
         day: this.campaign?.day ?? 1,
         banked: this.campaign?.banked ?? 0,
         rivalBanked: this.campaign?.rival.banked ?? 0,
+        audioEnabled: this.audioEnabled,
+        pollInput: () => this.pollEndingSystemInput(),
+        flushInput: (release) => this.flushEndingInput(release),
       });
       this.ending.beginCredits();
       this.scene = "ending";
-      this.effects.push({ type: "stopAudio" });
+      this.collectEnding();
+      if (!this.audioEnabled) this.effects.push({ type: "stopAudio" });
     }
     if (result === "resume" && this.scene === "money-bin") {
       this.bin.resumeInputPoll();
@@ -857,6 +877,20 @@ export class Game {
     if (result === "resume" && this.scene === "photography") {
       this.photography.resumeInputPoll();
       this.collectPhotography();
+    }
+    if (result === "resume" && this.scene === "ending") {
+      this.ending.resumeInputPoll();
+      this.collectEnding();
+    }
+  }
+  pollEndingSystemInput() {
+    return this.pollSystemInput(this.pendingEndingSystemKeys);
+  }
+  flushEndingInput(releaseControls = true) {
+    this.pendingEndingSystemKeys.clear();
+    if (releaseControls) {
+      this.handleInput({ type: "controls", fire: false, direction: null });
+      this.effects.push({ type: "flushControls" });
     }
   }
   pollPhotographySystemInput() {
@@ -1234,14 +1268,18 @@ export class Game {
     }
     this.showEnding();
   }
-  showEnding() {
+  showEnding({ presentationReady = false } = {}) {
     const c = this.campaign;
     this.ending = new CampaignEnding({
       day: c.day,
       banked: c.banked,
       rivalBanked: c.rival.banked ?? 0,
       audioEnabled: this.audioEnabled,
+      presentationReady,
+      pollInput: () => this.pollEndingSystemInput(),
+      flushInput: (release) => this.flushEndingInput(release),
     });
+    this.ending.setControls(this.controls);
     this.scene = "ending";
     if (this.audioEnabled) this.effects.push({ type: "sound", id: 1 });
     else this.effects.push({ type: "stopAudio" });
@@ -1313,6 +1351,13 @@ export class Game {
         : {}),
       investments: this.investments?.snapshot() ?? null,
       ending: this.ending?.snapshot() ?? null,
+      ...(this.pendingEndingSystemKeys.size
+        ? {
+            pendingEndingSystemKeys: [...this.pendingEndingSystemKeys].sort(
+              (a, b) => a[0] - b[0],
+            ),
+          }
+        : {}),
       rivalReport: this.rivalReport?.snapshot() ?? null,
       atomicTransport: this.atomicTransport?.snapshot() ?? null,
       ...(this.pendingMountainSystemKeys.size

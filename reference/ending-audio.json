@@ -1,6 +1,6 @@
 {
-  "id": "ending-audio-fb658562",
-  "baseRevision": "d775c18",
+  "id": "ending-audio-fb658562-v2",
+  "baseRevision": "841368e",
   "buildManifest": "reference/build.json",
   "source": {
     "program": "DUCK_UNPACKED.EXE",
@@ -29,6 +29,12 @@
         "length": 48,
         "purpose": "Main0fec: Yes calls difficulty directly; main reset follows difficulty or precedes No credits",
         "sha256": "02666288cf0869876dc10f016ae509ebc933ddf971ebc87bdb4abb069a4c236a"
+      },
+      {
+        "offset": 16360,
+        "length": 32,
+        "purpose": "Resident12f5:1098 separate credits-entry reset0",
+        "sha256": "ad1f902365ef8b4661a8e7acb1c2e33438c462b3fdea43bc8d1072bf5bd95648"
       }
     ]
   },
@@ -41,8 +47,8 @@
   ],
   "environment": {
     "audio": "Current sound-enabled flag gates source requests. Sound001 uses the persistent selected device. Completion does not advance ending phases. Muting resets through the existing browser adapter; unmuting within a phase does not restart music.",
-    "choice": "Replay returns an explicit choice event to the application. Yes initializes difficulty directly, bypassing the browser title and its music. Main reset0 occurs after difficulty confirmation; No receives the replay reset0 and main reset0 before credits.",
-    "unchanged": "Existing picture/credits waits, input polling, redraw and bank-animation adapters are retained. Original global-key alignment, first-poll/Fire timing, picture reveals and bank animation remain incomplete or unverified."
+    "choice": "Replay returns an explicit choice event to the application. Yes initializes difficulty directly, bypassing the browser title and its music. Main reset0 occurs after difficulty confirmation; No receives the replay reset0 and main reset0 before credits. Credits1098 adds a third reset0 on No; the new ending presentation controller also translates skip/exit requests.",
+    "unchanged": "Full ending presentation/input translation is described in reference/ending-presentation.json. Conditional unit/native wait-boundary checks assume completed picture calls; browser executes all bands. Bank animation and original IRQ phase remain unverified."
   },
   "scenario": {
     "unitCases": 6,
@@ -61,7 +67,7 @@
     "npm run verify"
   ],
   "receipts": {
-    "scope": "Run-specific port acceptance outputs; not original full ending/audio captures or replay inputs.",
+    "scope": "Historical port acceptance outputs from841368e before full presentation/input translation; not current acceptance or original runtime captures.",
     "fullVerification": {
       "path": ".local/ending-audio-full-verify.log",
       "sha256": "02e87717b604fca6467f56aa726c07246d8909bd95004b429baad92564e496b8"

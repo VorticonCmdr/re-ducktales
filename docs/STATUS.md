@@ -58,7 +58,9 @@ endings are established; arbitrary campaigns are not yet guaranteed finishable.
   does not advance him.
 - Deadline → final deposit → winner/loser pictures → Play Again. Ties favor Scrooge;
   unsold shares are excluded from banked score. Yes resets to difficulty;No shows
-  credits and a finished screen. Restart remains available as a browser adapter.
+  credits and a finished screen. Pictures use the original five row groups,
+  losing scores use MAIN38, and P/Q/S wait for ending input polls. All26 credits
+  and both skip clicks are connected. Restart remains available as a browser adapter.
 
 Controls: Space/Enter fires. Office Up+Space enters the money bin,Right+Space
 opens the map,Left+Space opens investments. Hold Fire for flight throttle;
@@ -167,8 +169,8 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   separate from unverified original keyboard typematic and rendering costs.
 - Ending music now follows its original picture/replay start and choice-return
   reset calls,including Yes bypassing the title and the reset after difficulty.
-  Bank celebration animation,striped reveals and full ending input-poll timing
-  remain incomplete.
+  Ending row-group reveals and source input polling are translated and checked.
+  Bank celebration animation and full original CPU/IRQ timing remain incomplete.
   First/last credit names and farewell match exact original PNGs; all26 natural
   browser credit boundaries pass. Two original waits are exactly140 driver ticks;
   whole-sequence original presentation timing remains unproven. Losing ending
@@ -193,7 +195,7 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passes full `npm run verify`: 96 unit tests, 56 development
+Previous committed milestone passed full `npm run verify`: 96 unit tests, 56 development
 browser scenarios and two production browser scenarios, plus all required
 original-data comparisons and the production build. Log:
 `.local/ending-audio-full-verify.log`. Native browser routes cover persistent
@@ -346,5 +348,21 @@ confirmation or before No enters credits. Yes bypasses the browser title/music
 adapter. Six conditional controller cases and two real bank-journey Tandy browser
 routes pass,including original winner/replay pixels and exact acknowledged words.
 The full suite has no skipped cases. See `reference/ending-audio.json` and
-`docs/ending.md`. Ending bank animation,reveals,first Fire poll/global-key timing
+`docs/ending.md`. The subsequent presentation/input milestone is described below; bank animation
 and original full audio timelines remain incomplete or unverified.
+
+
+Ending presentation/input work now adds original five-group wipes/reveals,
+source-aligned first Fire polling and global-key flushes, one-retrace page flips,
+14-tick replay arrow delays, all26 credit pages and the separate credits-entry,
+skip and farewell sound calls. The losing second picture now correctly uses
+MAIN38. Eight controller cases and one browser journey cover exact row pixels,
+flush/pause behavior, natural credits and skip events. Existing original captures
+and expected completed pixels are unchanged. Full `npm run verify` passes104 unit cases,57 development browser scenarios
+and two production browser scenarios, all with zero skips, plus the required
+original-data comparisons and build. The local receipt is
+`.local/ending-presentation-full-verify.log`. See `reference/ending-presentation.json`
+and `docs/ending.md` for exact commands and evidence boundaries. The next ending
+milestone is the original bank presentation and its incoming frame; full-machine
+ending timing, hardware sound parity and a complete original campaign replay
+remain unverified. The whole-game goal is still incomplete.

@@ -156,9 +156,11 @@ test("confirmed quit skips scores,bank deposits and replay and enters the origin
   g.input({ type: "pause" });
   g.input({ type: "quit" });
   assert.equal(g.systemOverlay, null);
+  for (let i = 0; i < 50; i++) g.advanceRetrace();
   g.input({ type: "fire" });
   for (let i = 0; i < 7; i++) g.advanceTick();
   assert.equal(g.ending.phase, "farewell");
+  for (let i = 0; i < 50; i++) g.advanceRetrace();
   g.input({ type: "fire" });
   for (let i = 0; i < 7; i++) g.advanceTick();
   assert.equal(g.ending.phase, "closed");

@@ -379,6 +379,16 @@
       "path": ".local/hard-campaign/security-browser-replay-01/browser-negative.log",
       "bytes": 1763,
       "sha256": "67439dd4081e362583ba517e6511c9502bc96983b2a1b3cbd0e491c66c004c22"
+    },
+    "final-verification": {
+      "path": ".local/hard-campaign/security-browser-replay-01/final-verification.log",
+      "bytes": 602,
+      "sha256": "e48324939a9f72c868a3fa30edc4d8b7a42915f88de369e685f3c4018053ec96"
+    },
+    "browser-negative-normal-server": {
+      "path": ".local/hard-campaign/security-browser-replay-01/browser-negative-normal-server.log",
+      "bytes": 1763,
+      "sha256": "20448e829dd7865d9452051f430b30bb2788aa566d3df79f2576121acbf77fca"
     }
   },
   "pendingBrowserReplay": false,
@@ -390,5 +400,7 @@
     "scripts/verify-hard-campaign-browser-negative.js": "1c3f4b33b8f312fb5458faf362a3368283a99f578f4499a951815b2bd9bb591f",
     "tests/browser/hard-campaign.spec.js": "c25e83216b40920cace0013b39c21652f6076df648dfb15023c8a7a324a8ab96",
     "tests/browser/helpers/recorded-campaign.js": "107b07b3f3dfe0f0b6b475093bd9d3cb601ef8557dd747e8cc55836eae4e97d7"
-  }
+  },
+  "replayCommit": "3c935850f084b36305cba54307c500259ea3aa1b",
+  "verificationToolCommit": "3c935850f084b36305cba54307c500259ea3aa1b"
 }

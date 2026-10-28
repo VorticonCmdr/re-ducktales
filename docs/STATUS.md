@@ -105,7 +105,8 @@ Focused commands: `npm run verify:office`, `npm run verify:difficulty`,
 `npm run verify:opening`, `npm run verify:hard-campaign`,
 `npm run verify:hard-expedition`, `npm run verify:hard-mountains`,
 `npm run verify:flight-input-stream`, `npm run verify:bank`,
-`npm run verify:security`, `npm run verify:security-core`.
+`npm run verify:security`, `npm run verify:security-core`,
+`npm run verify:hard-security-campaign`, `npm run test:hard-security-campaign`.
 
 Local development: `npm run dev -- --port 5186`. The user's integrated checkout is
 served on5187. No push, publication or deployment has been requested.

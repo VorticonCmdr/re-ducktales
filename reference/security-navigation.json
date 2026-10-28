@@ -1,0 +1,363 @@
+{
+  "version": 1,
+  "status": "Native segment and carried source-clock component comparison; connected browser acceptance is separately recorded in reference/security-browser.json. Full branch campaign gate pending.",
+  "buildManifest": "reference/build.json",
+  "baseCommit": "054ac66",
+  "captureRecipe": "scripts/capture-security.py",
+  "captureRecipeSha256": "abc42bf117ae6316cdcb05d6aa9c1746c00904a6999d34d2a560d06e4ccd9eec",
+  "artifactRoot": ".local/security-native-navigation-04",
+  "expectedArtifactCount": 49,
+  "expectedRngCalls": 41,
+  "expectedInputCount": 9,
+  "inputStream": "reference/security-navigation-inputs.json",
+  "inputStreamSha256": "1bac97da07ad722946649ebcc4f3eb1f9b9a47cdf43df6970e4d4fdbe6f83d9a",
+  "expectedPixelCheckpoints": 13,
+  "pixelCases": [
+    {
+      "name": "entry",
+      "kind": "office"
+    },
+    {
+      "name": "initial-poll-3",
+      "kind": "challenge"
+    },
+    {
+      "name": "first-result",
+      "kind": "warning"
+    },
+    {
+      "name": "warning-poll",
+      "kind": "warning"
+    },
+    {
+      "name": "navigation-right",
+      "kind": "challenge",
+      "selection": 1
+    },
+    {
+      "name": "navigation-left",
+      "kind": "challenge",
+      "selection": 0
+    },
+    {
+      "name": "alarm-0",
+      "kind": "alarm",
+      "red": true
+    },
+    {
+      "name": "alarm-1",
+      "kind": "alarm",
+      "red": false
+    },
+    {
+      "name": "alarm-2",
+      "kind": "alarm",
+      "red": true
+    },
+    {
+      "name": "alarm-3",
+      "kind": "alarm",
+      "red": false
+    },
+    {
+      "name": "alarm-4",
+      "kind": "alarm",
+      "red": true
+    },
+    {
+      "name": "alarm-5",
+      "kind": "alarm",
+      "red": false
+    },
+    {
+      "name": "return",
+      "kind": "return"
+    }
+  ],
+  "emulator": {
+    "engine": "dosbox-automation",
+    "version": "0.84.0-vc1 (f6d9b)",
+    "protocol": "1.14",
+    "bridge": "0.1.1",
+    "pid": 51396,
+    "instanceId": "8696ce4a79d6979e36121cf222065f36",
+    "port": 8389,
+    "cycles": 3000,
+    "core": "normal",
+    "machine": "svga_s3",
+    "memoryMB": 16,
+    "mount": "Original game/ read-only as C:",
+    "launch": "C:\\DUCKTALE.EXE",
+    "singleOwner": "root chat"
+  },
+  "source": {
+    "overlay": "physical overlay2 at executable file offset0xf600",
+    "routine": "07ad..0ca9",
+    "helper": "06d0..07ac",
+    "oncePerCampaignGuard": "0e4e..0e59",
+    "moneyFooter": "0ea2..0ec3",
+    "wholeOverlayMapping": "8368 bytes,180 relocated words,verified before installing breakpoints"
+  },
+  "comparisonRules": "Exact41 carried RNG pre-read states/source addresses, source-derived quad generation, target and row locals, nine consumed input bytes and selection/failure state, thirteen full320x200 RGBA images, original return1 and unchanged post-generation RNG. No pixel tolerance. Right/Left are scheduled at0b97, after flush and before the original one-count wait, and their post-seven-count selection pictures must erase the warning.",
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "exclusions": [
+    "Initial native seed is an observed segment starting state, not a replay of startup BIOS/timer scheduling.",
+    "Initial-poll-0..2 are retained exploratory scanout states; comparison uses initial-poll-3 after three source waits.",
+    "Driver waits and sound requests are statically inferred, not native elapsed-time or audio waveform comparisons.",
+    "No complete native campaign comparison. Focused browser integration is recorded separately.",
+    "Native movement covers Right/Left only; Up/Down and correct-first-choice remain static/browser evidence.",
+    "Navigation attempts01/03 consumed0 rather than3 and are incomplete;02 failed endpoint preflight. All are excluded."
+  ],
+  "verify": "node scripts/verify-security.js",
+  "artifacts": [
+    {
+      "path": ".local/security-native-navigation-04/alarm-0.json",
+      "bytes": 88772,
+      "sha256": "d0f788b0fd9e9a373dd3a531efa5b55c151b34d10ff0f6930a31413018ef669d"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-0.png",
+      "bytes": 5111,
+      "sha256": "3874e59e56ca349c3d49ca319b6edabc3a2397f91feaeabc19121e77cbd25bfe"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-1.json",
+      "bytes": 88772,
+      "sha256": "987d157f5d96f5f2d66cc7120514d1e60bf0ebbe4bd7080381c2575ea66e5be9"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-1.png",
+      "bytes": 4868,
+      "sha256": "47b249ab6a5fc0a9bd8c8354db010be4f22e8b4229efbece9411700a590f6ffd"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-2.json",
+      "bytes": 88772,
+      "sha256": "1aeb3f910f26fc3cea46d9233699ada0cab76bac550805f44403b485bb67f9cf"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-2.png",
+      "bytes": 5111,
+      "sha256": "3874e59e56ca349c3d49ca319b6edabc3a2397f91feaeabc19121e77cbd25bfe"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-3.json",
+      "bytes": 88772,
+      "sha256": "742a73e79df1434817bf7529e95a21a663df2be60a8828924d708e2e0869d6ae"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-3.png",
+      "bytes": 4868,
+      "sha256": "47b249ab6a5fc0a9bd8c8354db010be4f22e8b4229efbece9411700a590f6ffd"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-4.json",
+      "bytes": 88772,
+      "sha256": "fddd5d86881c929d71f69dd19dc98c2cdc31bbbbc4b4f31d2f12e2ddc7b02441"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-4.png",
+      "bytes": 5111,
+      "sha256": "3874e59e56ca349c3d49ca319b6edabc3a2397f91feaeabc19121e77cbd25bfe"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-5.json",
+      "bytes": 88772,
+      "sha256": "82302690226bdbd3e399cc5f52cd4f933c0fddd49f4c769c48a08b0641fabaf4"
+    },
+    {
+      "path": ".local/security-native-navigation-04/alarm-5.png",
+      "bytes": 4868,
+      "sha256": "47b249ab6a5fc0a9bd8c8354db010be4f22e8b4229efbece9411700a590f6ffd"
+    },
+    {
+      "path": ".local/security-native-navigation-04/capture.json",
+      "bytes": 376,
+      "sha256": "e3c474338fe7a07f130bb720287ce46c65afc7cf3d89f079015a8427e2a67a98"
+    },
+    {
+      "path": ".local/security-native-navigation-04/cleanup.json",
+      "bytes": 88772,
+      "sha256": "173653ff17ce74465b362f431885f4ba39c319d4b9319e4b22cfb905cfaf49eb"
+    },
+    {
+      "path": ".local/security-native-navigation-04/cleanup.png",
+      "bytes": 4868,
+      "sha256": "47b249ab6a5fc0a9bd8c8354db010be4f22e8b4229efbece9411700a590f6ffd"
+    },
+    {
+      "path": ".local/security-native-navigation-04/configuration.json",
+      "bytes": 2695,
+      "sha256": "5d4e001895fb9f0df2186ef3d9eb54bee6ab79186fb9a8cef6daaa79934721f1"
+    },
+    {
+      "path": ".local/security-native-navigation-04/engine.json",
+      "bytes": 3988,
+      "sha256": "d2012c02e0f60d746aa9fee66e903931769f046cf5a7530c566025ab3fcba576"
+    },
+    {
+      "path": ".local/security-native-navigation-04/entry.json",
+      "bytes": 88774,
+      "sha256": "6a4737428333d2a681d216b8e140ece0f77a443891adb2560231b41a61c57592"
+    },
+    {
+      "path": ".local/security-native-navigation-04/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    {
+      "path": ".local/security-native-navigation-04/fire-first.json",
+      "bytes": 88769,
+      "sha256": "84760fc01965fa277c2b7b220f8adb94d515230a5efcda9acb2ed5e42bf09b46"
+    },
+    {
+      "path": ".local/security-native-navigation-04/fire-second.json",
+      "bytes": 88770,
+      "sha256": "b72912ac48899ce70a943a439505279a9c6d33c962e345cea4ddb305a244fd7b"
+    },
+    {
+      "path": ".local/security-native-navigation-04/first-result.json",
+      "bytes": 88770,
+      "sha256": "4cf80ef903c6ee36536fb9848c0de8bb9c66cffb8c2192d37f4195108dd637f4"
+    },
+    {
+      "path": ".local/security-native-navigation-04/first-result.png",
+      "bytes": 5194,
+      "sha256": "f58b555c00704883b46d799d3e246e1222e438f690fb29588b4e0f407ff700fa"
+    },
+    {
+      "path": ".local/security-native-navigation-04/generated.json",
+      "bytes": 88773,
+      "sha256": "6e0916de17022a8c983e7b8642b5e1d7a20ddbf4d5bb5aa5bb54f2ecb14f1059"
+    },
+    {
+      "path": ".local/security-native-navigation-04/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "7c3f5b16b98edb06981a49313142f8f4968ef7bdb2353864d3267f54947d08e9"
+    },
+    {
+      "path": ".local/security-native-navigation-04/initial-poll-0.png",
+      "bytes": 4838,
+      "sha256": "8a88487b58ce326cd711ffc5e81153f3c5e14fe7aa6aabb421448c35b82e4b9d"
+    },
+    {
+      "path": ".local/security-native-navigation-04/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "a0d5646bfb1350bbfe61e9d4adbcdf9c229c39365472c0e9ff83e4fae5ef820c"
+    },
+    {
+      "path": ".local/security-native-navigation-04/initial-poll-1.png",
+      "bytes": 4868,
+      "sha256": "47b249ab6a5fc0a9bd8c8354db010be4f22e8b4229efbece9411700a590f6ffd"
+    },
+    {
+      "path": ".local/security-native-navigation-04/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "34a38ca8dcfbe08be753f04bfde171fd543f22db75b2f122d1282e586a7a6936"
+    },
+    {
+      "path": ".local/security-native-navigation-04/initial-poll-2.png",
+      "bytes": 4868,
+      "sha256": "47b249ab6a5fc0a9bd8c8354db010be4f22e8b4229efbece9411700a590f6ffd"
+    },
+    {
+      "path": ".local/security-native-navigation-04/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "90541c4029f411cb91010fa1ca939e224eb8e9d84725cfaebb76a64e45b0ef31"
+    },
+    {
+      "path": ".local/security-native-navigation-04/initial-poll-3.png",
+      "bytes": 4868,
+      "sha256": "47b249ab6a5fc0a9bd8c8354db010be4f22e8b4229efbece9411700a590f6ffd"
+    },
+    {
+      "path": ".local/security-native-navigation-04/inputs.json",
+      "bytes": 3577,
+      "sha256": "e20c87e2fae8753846f796dee04baf40c9d6ca9d21e71d050c77e0e763959bea"
+    },
+    {
+      "path": ".local/security-native-navigation-04/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "f9ed7c49a89678058a638423c9e3fb9fdd92abf487b3e324771802eb42ec47ef"
+    },
+    {
+      "path": ".local/security-native-navigation-04/navigation-left-input.json",
+      "bytes": 88766,
+      "sha256": "07533d0df94ed364aab75f385df247d94ee21fd3effde9424dec8632eb6eee6e"
+    },
+    {
+      "path": ".local/security-native-navigation-04/navigation-left.json",
+      "bytes": 88770,
+      "sha256": "f014817b66aade05fb60148a6f0905e6595342529b5ae57041c5375125ea3858"
+    },
+    {
+      "path": ".local/security-native-navigation-04/navigation-left.png",
+      "bytes": 4868,
+      "sha256": "47b249ab6a5fc0a9bd8c8354db010be4f22e8b4229efbece9411700a590f6ffd"
+    },
+    {
+      "path": ".local/security-native-navigation-04/navigation-right-input.json",
+      "bytes": 88766,
+      "sha256": "9132ea4a235d49372b20abf3953e5818c15475a8fbdfc1889cc303e540f355a0"
+    },
+    {
+      "path": ".local/security-native-navigation-04/navigation-right.json",
+      "bytes": 88770,
+      "sha256": "7cc695a5e7a77066623d94abe91e685c346a4e670aa9c2f69013f396f7445a2e"
+    },
+    {
+      "path": ".local/security-native-navigation-04/navigation-right.png",
+      "bytes": 4871,
+      "sha256": "f7bedc0b8eeb2be1e8dd4b54f0b6d5b61ec005872e43d87c1a5356f31ac743c5"
+    },
+    {
+      "path": ".local/security-native-navigation-04/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "d0d0656837dd23fdf2f8f52ca7d53659e0c2e5a12244144ad027161a80e52ece"
+    },
+    {
+      "path": ".local/security-native-navigation-04/office-input.json",
+      "bytes": 88775,
+      "sha256": "4ecd18c61826ae719a1b5b3dbb1c0c6616849cc71e2f72422033a20394cee055"
+    },
+    {
+      "path": ".local/security-native-navigation-04/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    {
+      "path": ".local/security-native-navigation-04/return.json",
+      "bytes": 88770,
+      "sha256": "dd8d18217191635e3aea9fee6027af72477e08eed218e0dd45a0cc489980abdc"
+    },
+    {
+      "path": ".local/security-native-navigation-04/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    {
+      "path": ".local/security-native-navigation-04/rng-consumption.json",
+      "bytes": 49625,
+      "sha256": "8a619086943fec90e8973c5aa8cf88dcbbddaf80b339507766f6100b7ba7d211"
+    },
+    {
+      "path": ".local/security-native-navigation-04/startup-inputs.json",
+      "bytes": 1223,
+      "sha256": "63aec34caaee46605d7989409a2ff9ebeb4a9e9b1aacd92f149173e4714afdd2"
+    },
+    {
+      "path": ".local/security-native-navigation-04/warning-poll.json",
+      "bytes": 88774,
+      "sha256": "2e8a1ea8f5a69baf739fb63d95c576f5b1cd0cdc236f5f3a88e21a6d3e81e251"
+    },
+    {
+      "path": ".local/security-native-navigation-04/warning-poll.png",
+      "bytes": 5194,
+      "sha256": "f58b555c00704883b46d799d3e246e1222e438f690fb29588b4e0f407ff700fa"
+    }
+  ],
+  "captureCommit": null,
+  "variant": "navigation"
+}

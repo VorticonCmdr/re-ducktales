@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument('--output', required=True)
 parser.add_argument('--port', type=int, default=8387)
+parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 args = parser.parse_args()
 out = (ROOT / args.output).resolve()
 assert out.is_relative_to(ROOT / '.local'), 'Captures must stay in ignored local storage'
@@ -199,7 +200,25 @@ try:
         assert stop['breakpoint']['id'] == input_bp and stop['registers']['eax'] == 0
         state('warning-poll',stop)
         remove(input_bp)
-        before_bp = add(0xabf)
+        if args.navigation:
+            for key, byte, name in [('KBD_right',3,'navigation-right'),('KBD_left',7,'navigation-left')]:
+                before_bp = add(0xb97)
+                stop = resume(stop['stop_id'])
+                assert stop['breakpoint']['id'] == before_bp
+                keys((key,True))
+                input_bp = add(0xac4)
+                remove(before_bp)
+                stop = resume(stop['stop_id'])
+                state(name+'-input',stop,False)
+                assert stop['registers']['eax'] & 255 == byte, f'{name} consumed {stop["registers"]["eax"] & 255}, expected {byte}'
+                keys((key,False))
+                remove(input_bp)
+                moved_bp = add(0xb28)
+                stop = resume(stop['stop_id'])
+                assert stop['breakpoint']['id'] == moved_bp
+                state(name,stop)
+                remove(moved_bp)
+        before_bp = add(0xb97 if args.navigation else 0xabf)
         stop = resume(stop['stop_id'])
         assert stop['breakpoint']['id'] == before_bp
         keys(('KBD_space',True))
@@ -227,7 +246,7 @@ try:
     remove(return_bp)
     assert not owned
     save('inputs',inputs)
-    save('capture',{'completed':True,'pid':manager.pid,'instanceId':info['instance_id'],'port':args.port,'initialSeed':struct.unpack_from('<H',initial,0x2229)[0],'finalSeed':struct.unpack_from('<H',final,0x2229)[0],'rngCalls':len(draws),'wrongFirst':warned,'requiredInputPolls':4+(3 if warned else 1),'injections':[],'partialRestore':False,'scriptSha256':sha(Path(__file__).read_bytes())})
+    save('capture',{'completed':True,'pid':manager.pid,'instanceId':info['instance_id'],'port':args.port,'initialSeed':struct.unpack_from('<H',initial,0x2229)[0],'finalSeed':struct.unpack_from('<H',final,0x2229)[0],'rngCalls':len(draws),'wrongFirst':warned,'navigation':args.navigation and warned,'requiredInputPolls':4+(3+(2 if args.navigation else 0) if warned else 1),'injections':[],'partialRestore':False,'scriptSha256':sha(Path(__file__).read_bytes())})
     print(json.dumps({'completed':True,'pid':manager.pid,'rngCalls':len(draws),'wrongFirst':warned,'output':str(out)}),flush=True)
 finally:
     if manager.running:

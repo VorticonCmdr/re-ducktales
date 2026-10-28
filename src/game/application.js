@@ -1,5 +1,7 @@
 import { Opening } from "./opening.js";
 import { OfficeMoneyBin } from "./office.js";
+import { OfficeControlCenter } from "./office-control-center.js";
+import { SecurityScreen } from "./security-screen.js";
 import { DifficultyMenu } from "./difficulty-menu.js";
 import { Departure } from "./departure.js";
 import { Campaign, OFFICE, travelDays } from "./campaign.js";
@@ -39,6 +41,8 @@ export class Game {
     this.opening = null;
     this.difficultyMenu = null;
     this.officeDeparture = null;
+    this.security = null;
+    this.securityPending = true;
     this.expeditionResources = expeditionResources;
     this.bankResources = bankResources;
     this.bank = null;
@@ -74,6 +78,7 @@ export class Game {
     this.pendingBankSystemKeys = new Map();
     this.pendingOpeningSystemKeys = new Map();
     this.pendingDifficultySystemKeys = new Map();
+    this.pendingSecuritySystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -161,6 +166,7 @@ export class Game {
       : null;
     this.seed = this.campaign?.seed ?? menu.outcome.biosSeed;
     this.difficultyMenu = null;
+    this.securityPending = true;
     this.scene = "office";
     this.settleMarket();
   }
@@ -178,6 +184,52 @@ export class Game {
     this.scene = "office-departure";
     this.collectOfficeDeparture();
   }
+  startOfficeMap() {
+    if (!this.openingResources) {
+      this.completeCampaignAction({ type: "map" });
+      return;
+    }
+    if (this.scene !== "office") throw Error("Control center outside office");
+    if (this.audioEnabled) this.effects.push({ type: "sound", id: 0 });
+    this.officeDeparture = new OfficeControlCenter({
+      audioEnabled: this.audioEnabled,
+    });
+    this.scene = "office-departure";
+    this.collectOfficeDeparture();
+  }
+  startSecurity() {
+    if (!this.securityPending || !this.openingResources) return false;
+    // Overlay2:0e59 clears the main campaign's one-shot flag BEFORE the call.
+    this.securityPending = false;
+    this.security = new SecurityScreen({
+      ...this.openingResources,
+      ...(this.officeEntryFrame ? { initialFrame: this.officeEntryFrame } : {}),
+      seed: this.seed,
+      day: this.campaign.day,
+      money: this.money,
+      audioEnabled: this.audioEnabled,
+      pollInput: () => this.pollSystemInput(this.pendingSecuritySystemKeys),
+      flushInput: () => this.flushSecurityInput(),
+    });
+    this.officeEntryFrame = null;
+    this.scene = "security";
+    this.collectSecurity();
+    return true;
+  }
+  flushSecurityInput() {
+    this.pendingSecuritySystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
+  }
+  collectSecurity() {
+    const screen = this.security;
+    this.effects.push(...screen.drainEvents());
+    this.seed = this.campaign.seed = screen.seed;
+    if (!screen.outcome) return;
+    if (screen.outcome.code !== 1) throw Error("Unsupported security return");
+    this.security = null;
+    this.scene = "map";
+  }
   collectOfficeDeparture() {
     const departure = this.officeDeparture;
     this.effects.push(...departure.drainEvents());
@@ -188,7 +240,9 @@ export class Game {
     this.pendingBinSystemKeys.clear();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
-    this.completeCampaignAction({ type: "money-bin" });
+    if (departure.outcome.action === "map")
+      this.officeEntryFrame = departure.frame;
+    this.completeCampaignAction({ type: departure.outcome.action });
   }
   flushOpeningInput() {
     this.pendingOpeningSystemKeys.clear();
@@ -294,6 +348,8 @@ export class Game {
     }
     if (action.type === "map") {
       this.campaign.openMap();
+      if (this.startSecurity()) return;
+      this.officeEntryFrame = null;
       this.scene = "map";
       return;
     }
@@ -332,6 +388,7 @@ export class Game {
       ([
         "money-bin",
         "office-departure",
+        "security",
         ...(this.difficultyMenu ? ["difficulty"] : []),
         "flight",
         "cave",
@@ -350,23 +407,25 @@ export class Game {
       const keys =
         this.scene === "title"
           ? this.pendingOpeningSystemKeys
-          : this.scene === "difficulty"
-            ? this.pendingDifficultySystemKeys
-            : this.scene === "flight"
-              ? this.pendingFlightSystemKeys
-              : this.scene === "cave"
-                ? this.pendingCaveSystemKeys
-                : this.scene === "mountain"
-                  ? this.pendingMountainSystemKeys
-                  : this.scene === "jungle"
-                    ? this.pendingJungleSystemKeys
-                    : this.scene === "photography"
-                      ? this.pendingPhotographySystemKeys
-                      : this.scene === "ending"
-                        ? this.pendingEndingSystemKeys
-                        : this.scene === "bank"
-                          ? this.pendingBankSystemKeys
-                          : this.pendingBinSystemKeys;
+          : this.scene === "security"
+            ? this.pendingSecuritySystemKeys
+            : this.scene === "difficulty"
+              ? this.pendingDifficultySystemKeys
+              : this.scene === "flight"
+                ? this.pendingFlightSystemKeys
+                : this.scene === "cave"
+                  ? this.pendingCaveSystemKeys
+                  : this.scene === "mountain"
+                    ? this.pendingMountainSystemKeys
+                    : this.scene === "jungle"
+                      ? this.pendingJungleSystemKeys
+                      : this.scene === "photography"
+                        ? this.pendingPhotographySystemKeys
+                        : this.scene === "ending"
+                          ? this.pendingEndingSystemKeys
+                          : this.scene === "bank"
+                            ? this.pendingBankSystemKeys
+                            : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -388,6 +447,7 @@ export class Game {
       this.opening?.setAudioEnabled(event.enabled);
       this.difficultyMenu?.setAudioEnabled(event.enabled);
       this.officeDeparture?.setAudioEnabled(event.enabled);
+      this.security?.setAudioEnabled(event.enabled);
       this.cave?.setAudioEnabled(event.enabled);
       this.mountain?.setAudioEnabled(event.enabled);
       this.jungle?.setAudioEnabled(event.enabled);
@@ -412,6 +472,9 @@ export class Game {
       this.opening = null;
       this.difficultyMenu = null;
       this.officeDeparture = null;
+      this.security = null;
+      this.officeEntryFrame = null;
+      this.securityPending = true;
       this.difficulty = 0;
       this.difficultyFromEnding = event.skipTitle === true;
       this.tick = 0;
@@ -439,6 +502,7 @@ export class Game {
       this.pendingBankSystemKeys.clear();
       this.pendingOpeningSystemKeys.clear();
       this.pendingDifficultySystemKeys.clear();
+      this.pendingSecuritySystemKeys.clear();
       this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
@@ -483,6 +547,7 @@ export class Game {
       this.controls = { fire: event.fire, direction: event.direction };
       this.opening?.setControls(this.controls);
       this.difficultyMenu?.setControls(this.controls);
+      this.security?.setControls(this.controls);
       this.flight?.setControls(this.controls);
       this.cave?.setControls(this.controls);
       this.mountain?.setControls(this.controls);
@@ -493,6 +558,10 @@ export class Game {
       return;
     }
     if (this.scene === "office-departure") return;
+    if (this.scene === "security") {
+      this.security.input(event);
+      return;
+    }
     if (this.scene === "investments") {
       this.investments.input(event);
       this.collectInvestments();
@@ -603,7 +672,7 @@ export class Game {
         (event.type === "fire" && event.direction === "right")
       ) {
         if (!this.campaign) throw Error("Campaign locations not loaded");
-        this.completeCampaignAction({ type: "map" });
+        this.startOfficeMap();
         return;
       }
       if (
@@ -780,6 +849,7 @@ export class Game {
       if (this.scene === "photography") this.photography.advanceBlockedTick();
       if (this.scene === "ending") this.ending.advanceBlockedTick();
       if (this.scene === "bank") this.bank.advanceBlockedTick();
+      if (this.scene === "security") this.security.advanceBlockedTick();
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
       return;
@@ -792,6 +862,11 @@ export class Game {
     if (this.scene === "difficulty" && this.difficultyMenu) {
       this.difficultyMenu.advanceTick();
       this.collectDifficulty();
+      return;
+    }
+    if (this.scene === "security") {
+      this.security.advanceTick();
+      this.collectSecurity();
       return;
     }
     if (this.scene === "office-departure") {
@@ -911,6 +986,7 @@ export class Game {
         this.photography.advanceBlockedRetrace();
       if (this.scene === "ending") this.ending.advanceBlockedRetrace();
       if (this.scene === "bank") this.bank.advanceBlockedRetrace();
+      if (this.scene === "security") this.security.advanceBlockedRetrace();
       return;
     }
     if (this.scene === "title" && this.opening) {
@@ -921,6 +997,11 @@ export class Game {
     if (this.scene === "difficulty" && this.difficultyMenu) {
       this.difficultyMenu.advanceRetrace();
       this.collectDifficulty();
+      return;
+    }
+    if (this.scene === "security") {
+      this.security.advanceRetrace();
+      this.collectSecurity();
       return;
     }
     if (this.scene === "office-departure") {
@@ -1045,11 +1126,13 @@ export class Game {
     this.pendingEndingSystemKeys.clear();
     this.pendingBankSystemKeys.clear();
     this.pendingOpeningSystemKeys.clear();
+    this.pendingSecuritySystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "title" && this.opening) this.opening.flushInput();
     else if (this.scene === "difficulty" && this.difficultyMenu)
       this.difficultyMenu.flushInput(true);
+    else if (this.scene === "security") this.security.flushInput();
     else if (this.scene === "flight") this.flight.flushInput();
     else if (this.scene === "cave") this.cave.flushInput();
     else if (this.scene === "mountain") this.mountain.flushInput();
@@ -1580,6 +1663,17 @@ export class Game {
         : {}),
       ...(this.officeDeparture
         ? { officeDeparture: this.officeDeparture.snapshot() }
+        : {}),
+      ...(this.openingResources
+        ? { securityPending: this.securityPending }
+        : {}),
+      ...(this.security ? { security: this.security.snapshot() } : {}),
+      ...(this.pendingSecuritySystemKeys.size
+        ? {
+            pendingSecuritySystemKeys: [...this.pendingSecuritySystemKeys].sort(
+              (a, b) => a[0] - b[0],
+            ),
+          }
         : {}),
       bin: this.bin?.snapshot() ?? null,
       ...(this.pendingBinSystemKeys.size

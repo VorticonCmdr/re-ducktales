@@ -15,6 +15,11 @@ and full original-game parity are not guaranteed.
 - The prior menu runtimecd1e4dd receipt remains independently retained at
   `.local/menu-integration-full-gate-20261028/`.
 
+The `codex/security-menu` development branch adds first-map security. Its two
+browser routes, four adjacent office/menu regressions,117 unit cases, native
+segments and build pass. Main remains054ac66; security integration and the full
+branch gate await campaign replay migration. See [security evidence](security.md).
+
 ## Playable routes
 
 - Original opening/intro music → difficulty → office → money-bin dive/reward.
@@ -60,8 +65,9 @@ missing fixtures fail setup.
 
 ## Remaining work
 
-- Original office entry/selection, control-center and investments transitions,
-  security, and several map/notice presentations remain omitted or incomplete.
+- Original office entry/selection, investments transitions and several map/notice
+  presentations remain incomplete. Control-center departure/security work on
+  the development branch; their campaign integration gate remains pending.
 - Broader destination/difficulty routes and original whole-scene comparisons are
   needed. A complete native campaign comparison and arbitrary-route finishability
   remain unproven.
@@ -72,13 +78,13 @@ missing fixtures fail setup.
 - No original save/load/high-score format has been identified. Browser persistence
   would be an explicit addition.
 
-Next: connect the remaining office/control-center/security transitions. A fresh
-original security capture records carried RNG generation, a wrong-choice warning,
-three alarm cycles and return. Its browser implementation remains unfinished. The segment checker passes41
-carried RNG boundaries,7 consumed inputs and11 exact original pictures; see
-[security evidence](security.md).
-A bounded capture script using the existing emulator client on an isolated port
-has avoided the bridge's cached-port limitation without altering shared sessions.
+Next: migrate campaign/browser input streams through the new security step and
+carry its changed shared RNG into real departures. The previous Hard replay
+currently rejects checkpoint0 at the newly recorded `securityPending` field;
+its old goldens remain unchanged. Then run the full branch gate before merging.
+Native security checks now cover82 RNG boundaries,16 inputs and24 pictures in
+two independent segment scenarios. Browser controls, pixel output, dialogs,
+Tandy requests and the per-campaign flag pass focused acceptance.
 
 ## Verification
 
@@ -90,7 +96,7 @@ Focused commands: `npm run verify:office`, `npm run verify:difficulty`,
 `npm run verify:opening`, `npm run verify:hard-campaign`,
 `npm run verify:hard-expedition`, `npm run verify:hard-mountains`,
 `npm run verify:flight-input-stream`, `npm run verify:bank`,
-`npm run verify:security-core`.
+`npm run verify:security`, `npm run verify:security-core`.
 
 Local development: `npm run dev -- --port 5186`. The user's integrated checkout is
 served on5187. No push, publication or deployment has been requested.

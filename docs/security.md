@@ -1,10 +1,16 @@
 # First-map security challenge
 
-The source translation in `src/game/security.js` passes a native segment
-comparison. It is not connected to browser gameplay yet. Run
-`npm run verify:security-core`; missing originals or local captures fail setup.
-This is a step toward the original campaign entry, not a completed browser
-milestone or evidence that every campaign can finish.
+The development branch now connects office → control-center departure →
+security → map. Two actual-browser routes pass, with four adjacent office/menu
+regressions,117 unit cases, a production build and a missing-Right negative
+control. Main remains at the separately verified office milestone054ac66 while
+campaign replays are migrated. The full branch gate has not passed.
+
+Run `npm run verify:security` for both native segments, focused receipts, fresh
+browser cases and the negative control. `npm run verify:security-core` requires
+the retained native/browser artifacts; missing or corrupt local files fail setup.
+The development capture used an isolated5197 server; the standard command owns
+its normal5186 test server.
 
 ## Evidence and behavior
 
@@ -43,8 +49,12 @@ exit, stable challenge, warning before/after its wait, six alarm presentations
 and black return. It consumes seven separately versioned input events. Five
 negative controls reject changed original code, zero RNG cases, a changed RNG
 state, a missing picture and a changed pixel. No image tolerance, injected memory,
-partial restore or fitted timer is used. Native movement/correct-first-choice
-coverage, browser controls, and elapsed-time/audio parity remain unverified.
+partial restore or fitted timer is used. A second native navigation scenario independently compares41 RNG boundaries,
+nine inputs and13 full pictures, including the warning erased by Right and the
+return to row0 with Left. The source-timed component carries both independent
+input streams through separate retrace/count waits and every stable picture.
+Native Up/Down and correct-first-choice coverage, elapsed-time parity and audio
+waveform parity remain unverified.
 
 ## Reproducing the original segment
 
@@ -90,7 +100,45 @@ starting state: startup BIOS/timer scheduling is not independently replayed.
 A new capture may have a different initial seed and challenge; retain it as a
 new scenario rather than replacing these expected results.
 
-The next milestone is the source-timed component and actual browser entry,
-selection, warning/alarm, control flush, map return and restart. Wall-clock
-scheduling must remain outside the component; source driver counts, retraces,
-audio calls and consumed input reads need explicit boundaries.
+## Connected browser scope and remaining integration
+
+`SecurityScreen` keeps front/back pages separate. Helper06d0 reconstructs the
+back page from the clean challenge, so movement erases the warning. Original
+seven-count selection waits,35-count warning/alarm waits,25-retrace reveal/wipe,
+page flips and input reads use explicit clocks. Driver counts cannot substitute
+for retraces. Global dialogs block simulation reads while clock observations
+continue. The keyboard flush discards controls and queued system keys at source
+boundaries. The office departure page remains the display until the next real
+flip, rather than disappearing during its handoff to security.
+
+The BIOS0 browser provider reaches entry seed1960 and leaves security at46760.
+The positive keyboard route discards P/Down queued during reveal, pauses/resumes
+at a real read, flushes Fire pressed while paused, selects the visible matching
+row with fixed Right, confirms, returns/re-enters without another challenge,
+and resets the one-shot flag on Restart. The second route uses visible buttons,
+fixed wrong row0 choices, Right/Left warning erasure and all six alarm phases.
+Its persistent Tandy device acknowledges0/5/33/0/111/70/70/70/70/33 and produces
+nonzero samples. Eleven exact browser pixel comparisons cover the departure,
+initial challenge, Right selection, warning/erasure and six alarm phases.
+Challenge pixels use the independent BIOS0 initial state, not the browser's
+reported target/final RNG. Native comparison uses its own separately captured
+initial seeds. Missing the real Right fails the required correct-choice return.
+
+`reference/security-browser.json` pins19 retained focused receipts including10
+pictures and the producer sources. These are focused branch checks, not a full
+campaign gate. The old Hard replay currently stops at checkpoint0 because the
+new `securityPending` state field is absent from its previous snapshot. Its
+external event stream also needs the actual security choices before flight;
+then the newly carried RNG must determine subsequent routes. Old expected
+outputs and input streams remain unchanged. Capture a new complete scenario,
+replay it independently in Game and browser, update adjacent route tests and
+current tool provenance, then run the complete required gate before integrating.
+
+The native `--navigation` recipe schedules Right/Left at0b97, after the flush
+and before the existing one-count wait. Pressing at0abf was too late for these
+keyboard IRQs: attempts01/03 consumed0 and are excluded. Attempt02 failed its
+port preflight. Complete navigation capture04 uses isolated8389, ownedPID51396,
+instance8696ce4a79d6979e36121cf222065f36, entryseed47210 and finalseed35003.
+It contains49 pinned files; no partial restore, memory writes or fitted waits.
+The first fixed-Fire capture recipe remains pinned to its historical Git4098673
+source even though the maintained recipe now adds navigation.

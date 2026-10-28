@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "status": "Focused branch acceptance; full campaign replay migration and integration pending.",
+  "buildManifest": "reference/build.json",
+  "nativeManifests": [
+    "reference/security.json",
+    "reference/security-navigation.json"
+  ],
+  "artifactRoot": ".local/security-browser-accepted-20261028",
+  "caseCount": 2,
+  "adjacentRegressionCount": 4,
+  "unitCaseCount": 117,
+  "fullBranchGate": "pending",
+  "provider": {
+    "biosSeed": 0,
+    "initialCampaignSeed": 1960,
+    "securitySeed": 46760,
+    "day": 1,
+    "money": 0
+  },
+  "inputRecipes": [
+    "Keyboard Right+Fire enters control center; queued P/Down during reveal discarded; pause then Fire while paused then resume discards held Fire; fixed Right selects row1 and Fire confirms; return/re-enter skips security; Restart resets flag.",
+    "Visible controls enable Tandy; fixed Fire row0 warns; Right clears warning; Left returns row0; fixed Fire causes three red/blank alarm cycles then forced-success map return."
+  ],
+  "negative": "Omit real Right in first case; required correct-choice map return must fail, not timeout/setup.",
+  "pixelScope": "Native full-screen comparison for control-center departure; exact browser canvas comparisons for independently generated BIOS0 security challenge, Right selection, warning, warning erasure and all six alarm phases. Native challenge seeds differ and are compared separately in two segment manifests.",
+  "expectedCheckpointCount": 11,
+  "injections": [],
+  "fittedInputs": [],
+  "knownRegression": "Previous Hard replay stops at checkpoint0 campaign-start because securityPending is a newly recorded state field. Its input stream must also include actual security choices and carry the new RNG; old goldens remain unchanged.",
+  "verify": "npm run verify:security",
+  "artifacts": [
+    {
+      "path": ".local/security-browser-accepted-20261028/alarm-0.png",
+      "bytes": 10313,
+      "sha256": "0418d0c5805c753789e06a6a1d88dfc066ed6f012dfa6b2414df786f62526e4a"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/alarm-1.png",
+      "bytes": 9878,
+      "sha256": "83c490203a34e57fa3429d728599f856583586ac961ca2fe679cf3ca895f8718"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/alarm-2.png",
+      "bytes": 10313,
+      "sha256": "0418d0c5805c753789e06a6a1d88dfc066ed6f012dfa6b2414df786f62526e4a"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/alarm-3.png",
+      "bytes": 9878,
+      "sha256": "83c490203a34e57fa3429d728599f856583586ac961ca2fe679cf3ca895f8718"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/alarm-4.png",
+      "bytes": 10313,
+      "sha256": "0418d0c5805c753789e06a6a1d88dfc066ed6f012dfa6b2414df786f62526e4a"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/alarm-5.png",
+      "bytes": 9878,
+      "sha256": "83c490203a34e57fa3429d728599f856583586ac961ca2fe679cf3ca895f8718"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/browser-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/browser.log",
+      "bytes": 1287,
+      "sha256": "50c03cb519af9f11acd41d5e40a0a8549e23b0e6007151bef67f64c8b639d0b5"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/build.log",
+      "bytes": 832,
+      "sha256": "766120c7a478559c1fb570cef1e0ff406ed5112e684e2336ef8bbd86c288e856"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/capture-config.js",
+      "bytes": 302,
+      "sha256": "f6874cb88cbdaa07647abad5441a288115faaf75efa880002921bc9dc3abf155"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/control-center.png",
+      "bytes": 34421,
+      "sha256": "e0c0d85b6f6ee8d2770d5407bfe0de31fcd1925e19a4d04c16456bec9bb69de2"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/core.log",
+      "bytes": 444,
+      "sha256": "d08a28fa8895b49a11946637b63c2ccb3cc1c8901acb3006e30525e1372db32f"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/legacy-hard-diagnostic.log",
+      "bytes": 774,
+      "sha256": "9645661a1f86d05fcdc777598c924ffccb5e39a171c5e0592dad14ed995bcafd"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/negative-browser.log",
+      "bytes": 2829,
+      "sha256": "986e3a7f8c59ae8fbbb5f9185dfd36cfcbcfc64d74793c994182d2640bcb6966"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/security.png",
+      "bytes": 8609,
+      "sha256": "00a9f0fec8f3620b07d5752ef33219e7cb490c80cddd69df965187058faa410c"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/source-revision.json",
+      "bytes": 8330,
+      "sha256": "1f285577fda10bc39f5b74c07a5ad84811f1eb9f4e1cef733c1da981de77b637"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/unit.log",
+      "bytes": 10915,
+      "sha256": "4d4a8241840563876bd9bdfe2a173354e3b3ed5e597de3bea777c6fc760fcca4"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/warning-cleared.png",
+      "bytes": 8617,
+      "sha256": "36c56b964b99791ebf6ef0fa3373ac44fb21bedc13008dd07d40b54543d0df5b"
+    },
+    {
+      "path": ".local/security-browser-accepted-20261028/warning.png",
+      "bytes": 9042,
+      "sha256": "957bccf5c7d27be1c85f9c8cd460deb16a38dda58a2f79ce0bc65d3f35487735"
+    }
+  ],
+  "expectedArtifactCount": 19,
+  "expectedRetainedPictureCount": 10
+}

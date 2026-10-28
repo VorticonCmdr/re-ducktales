@@ -471,6 +471,14 @@ export class Renderer {
       );
       return;
     }
+    if (game.scene === "security") {
+      this.ctx.putImageData(
+        new ImageData(game.security.pixels(), 320, 200),
+        0,
+        0,
+      );
+      return;
+    }
     if (game.scene === "office-departure") {
       const pixels = renderFlightPixels(
         game.officeDeparture.frame,

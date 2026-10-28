@@ -79,7 +79,14 @@ export function controlCenterDepartureCommands() {
 export function securityCommands(
   image,
   setup,
-  { selection = 0, warning = false, alarm = null, day = 1, money = 0 } = {},
+  {
+    selection = 0,
+    warning = false,
+    alarm = null,
+    day = 1,
+    money = 0,
+    highlight = true,
+  } = {},
 ) {
   securityInput(selection, 0, setup.targetRow, 0);
   if (
@@ -88,6 +95,7 @@ export function securityCommands(
     !setup.choices.every((s) => /^[A-Z]{4}$/.test(s)) ||
     !/^[A-Z]{4}$/.test(setup.target) ||
     typeof warning !== "boolean" ||
+    typeof highlight !== "boolean" ||
     ![null, true, false].includes(alarm) ||
     !Number.isInteger(day) ||
     day < 0 ||
@@ -159,41 +167,45 @@ export function securityCommands(
   ];
   const x = selection % 2 ? 168 : 120,
     y = 88 + 8 * Math.floor(selection / 2);
-  for (const [x1, y1, x2, y2] of [
-    [x - 1, y, x - 1, y + 7],
-    [x + 32, y, x + 32, y + 7],
-    [x - 1, y - 1, x + 32, y - 1],
-    [x - 1, y + 7, x + 32, y + 7],
-  ])
+  for (const [x1, y1, x2, y2] of highlight
+    ? [
+        [x - 1, y, x - 1, y + 7],
+        [x + 32, y, x + 32, y + 7],
+        [x - 1, y - 1, x + 32, y - 1],
+        [x - 1, y + 7, x + 32, y + 7],
+      ]
+    : [])
     commands.push({ op: "line", x: x1, y: y1, x2, y2, color: 12 });
-  if (warning) {
-    const label = executableText(image, 0xd9c);
-    commands.push(
-      {
-        op: "fill",
-        x: 48,
-        y: 144,
-        width: label.length * 8,
-        height: 8,
-        color: 14,
-      },
-      text(0xd9c, 48, 144, 0),
-    );
-  }
+  if (warning) commands.push(...securityNoticeCommands(image, "warning"));
   if (alarm !== null) {
-    commands.push({
-      op: "fill",
-      x: 48,
-      y: 144,
-      width: 224,
-      height: 8,
-      color: 0,
-    });
-    if (alarm)
-      commands.push(
-        { op: "fill", x: 96, y: 144, width: 128, height: 8, color: 4 },
-        text(0xdd6, 96, 144, 15),
-      );
+    commands.push(...securityNoticeCommands(image, "clear-warning"));
+    if (alarm) commands.push(...securityNoticeCommands(image, "red"));
   }
   return commands;
+}
+
+// Overlay2 uses the opaque two-colour text callback. Keep these separate from
+// background reconstruction: the original draws each notice onto its current
+// back page, which can retain a different selection or notice from the front.
+export function securityNoticeCommands(image, kind) {
+  const [at, x, color, background] =
+    {
+      warning: [0xd9c, 48, 0, 14],
+      "clear-warning": [0xdb9, 48, 0, 0],
+      red: [0xdd6, 96, 15, 4],
+      blank: [0xde7, 96, 0, 0],
+    }[kind] ?? [];
+  if (at === undefined) throw Error(`Unsupported security notice ${kind}`);
+  const text = executableText(image, at);
+  return [
+    {
+      op: "fill",
+      x,
+      y: 144,
+      width: text.length * 8,
+      height: 8,
+      color: background,
+    },
+    { op: "text", text, x, y: 144, color },
+  ];
 }

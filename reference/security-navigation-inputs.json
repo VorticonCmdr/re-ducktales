@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "scope": "Segment initial state at first security entry, followed by fixed player choices. Native observed outputs are stored separately. No whole-campaign replay claim.",
+  "initialState": {
+    "seed": 47210,
+    "day": 1,
+    "money": 0,
+    "selection": 0,
+    "failures": 0
+  },
+  "events": [
+    {
+      "byte": 0,
+      "checkpoint": "initial-poll-0"
+    },
+    {
+      "byte": 0,
+      "checkpoint": "initial-poll-1"
+    },
+    {
+      "byte": 0,
+      "checkpoint": "initial-poll-2"
+    },
+    {
+      "byte": 0,
+      "checkpoint": "initial-poll-3"
+    },
+    {
+      "byte": 192,
+      "checkpoint": "fire-first"
+    },
+    {
+      "byte": 0,
+      "checkpoint": "warning-poll"
+    },
+    {
+      "byte": 3,
+      "checkpoint": "navigation-right-input"
+    },
+    {
+      "byte": 7,
+      "checkpoint": "navigation-left-input"
+    },
+    {
+      "byte": 192,
+      "checkpoint": "fire-second"
+    }
+  ],
+  "expectedEventCount": 9
+}

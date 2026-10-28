@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "Native segment translation only; security is not wired into Game or browser gameplay.",
+  "status": "Native segment and carried source-clock component comparison; connected browser acceptance is separately recorded in reference/security-browser.json. Full branch campaign gate pending.",
   "buildManifest": "reference/build.json",
   "baseCommit": "054ac66",
   "captureRecipe": "scripts/capture-security.py",
@@ -97,7 +97,7 @@
     "Initial-poll-0..2 are retained exploratory scanout states; comparison uses initial-poll-3 after three source waits.",
     "No native movement/correct-first-choice branch capture yet; only neutral and two fixed wrong Fire inputs.",
     "Driver waits and sound requests are statically inferred, not native elapsed-time or audio waveform comparisons.",
-    "No browser integration or whole native campaign comparison.",
+    "No complete native campaign comparison. Focused browser integration is recorded separately.",
     "Earlier incomplete captures fire0-01 and fire0-02 are excluded."
   ],
   "verify": "node scripts/verify-security.js",
@@ -317,5 +317,6 @@
       "bytes": 5174,
       "sha256": "f5cacb107bd83ec7d2cae6521deb86a12a35493bdb926e9f443ac7a05630f97b"
     }
-  ]
+  ],
+  "captureCommit": "4098673"
 }

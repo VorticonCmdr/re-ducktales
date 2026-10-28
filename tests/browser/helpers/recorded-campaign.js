@@ -37,7 +37,13 @@ export async function runRecordedCampaign({
   manifest,
   negativeMode,
 }) {
-  if (negativeMode && negativeMode !== "omit-hard-choice")
+  expect([undefined, "jungle-entry", "jungle-treasure"]).toContain(
+    manifest.milestone,
+  );
+  if (
+    negativeMode &&
+    !["omit-hard-choice", "omit-jungle-move"].includes(negativeMode)
+  )
     throw Error("SETUP: unknown recorded-input negative control");
   async function fixture(name) {
     const spec = manifest.artifacts[name];
@@ -102,6 +108,17 @@ export async function runRecordedCampaign({
   const start = await page.evaluate(() => performance.now());
   expect(start, "Recorded display-clock origin").toBe(environment.clockOrigin);
   let currentTime = start;
+  const omittedMove =
+    negativeMode === "omit-jungle-move"
+      ? events.findIndex(
+          (e, i) =>
+            i >= checks[0].eventCount &&
+            e.type === "keydown" &&
+            e.key === "ArrowRight",
+        )
+      : -1;
+  if (negativeMode === "omit-jungle-move")
+    expect(omittedMove).toBeGreaterThanOrEqual(0);
   async function advance(at) {
     expect(
       navigation,
@@ -154,9 +171,12 @@ export async function runRecordedCampaign({
       while (consumed < point.eventCount) {
         const event = events[consumed];
         if (!(
-          negativeMode === "omit-hard-choice" &&
-          consumed ===
-            events.findIndex((e) => e.type === "keydown" && e.key === "ArrowUp")
+          consumed === omittedMove ||
+          (negativeMode === "omit-hard-choice" &&
+            consumed ===
+              events.findIndex(
+                (e) => e.type === "keydown" && e.key === "ArrowUp",
+              ))
         ))
           await input(event);
         consumed++;
@@ -204,9 +224,27 @@ export async function runRecordedCampaign({
     }
     expect(consumed).toBe(events.length);
     expect(actualEvents).toHaveLength(events.length);
-    expect(lastState.scene).toBe("ending");
-    expect(lastState.ending.ready).toBe(true);
-    expect(lastState.ending).toEqual(manifest.expectedEnding);
+    if (manifest.milestone === "jungle-treasure") {
+      expect(lastState.scene).toBe("map");
+      expect(lastState.jungle.outcome.code).toBe(1);
+      expect({
+        money: lastState.money,
+        day: lastState.campaign.day,
+        playerCollected: lastState.campaign.playerCollected,
+        frames: lastState.jungle.frames,
+        presentations: lastState.jungle.presentations,
+        lives: lastState.jungle.lives,
+        seed: lastState.jungle.seed,
+      }).toEqual(manifest.expectedOutcome);
+    } else if (manifest.milestone === "jungle-entry") {
+      expect(lastState.scene).toBe("jungle");
+      expect(lastState.jungle.phase).toBe("entering");
+      expect(lastState.jungle.frames).toBe(0);
+    } else {
+      expect(lastState.scene).toBe("ending");
+      expect(lastState.ending.ready).toBe(true);
+      expect(lastState.ending).toEqual(manifest.expectedEnding);
+    }
     expect(navigation).toHaveLength(1);
     expect(errors).toEqual([]);
     await expect(page.locator("#diagnostic")).toBeHidden();

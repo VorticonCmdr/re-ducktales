@@ -1,6 +1,289 @@
 {
   "id": "security-aware-easy-jungle-treasure",
-  "pending": true,
+  "pending": false,
+  "milestone": "jungle-treasure",
+  "expectedHard": false,
+  "artifactRoot": ".local/security-jungle-treasure-accepted-01",
+  "captureRoot": ".local/security-jungle-treasure-01",
+  "expectedCheckpointCount": 27,
+  "checkpointNames": [
+    "entry",
+    "input-40",
+    "input-80",
+    "input-120",
+    "input-160",
+    "input-200",
+    "input-240",
+    "input-280",
+    "input-320",
+    "input-360",
+    "input-400",
+    "input-440",
+    "input-480",
+    "input-520",
+    "input-560",
+    "input-600",
+    "input-640",
+    "input-680",
+    "input-720",
+    "input-760",
+    "input-800",
+    "input-840",
+    "input-860",
+    "award",
+    "returned-map",
+    "collected-notice",
+    "complete-map"
+  ],
+  "requiredEventCount": 70,
+  "expectedFlightPresentations": 74,
+  "expectedFlagAliasPresentations": 0,
   "expectedInputCount": 860,
-  "checkpoints": []
+  "checkpoints": [
+    {
+      "name": "entry",
+      "at": 19569,
+      "eventCount": 50,
+      "stateSha256": "dc071746697ff32efec1353b3270d2d50e91f7a105d261a3c04f5499168ee90a",
+      "pixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7"
+    },
+    {
+      "name": "input-40",
+      "at": 22193,
+      "eventCount": 50,
+      "stateSha256": "903741fbdf0e94d0dd7c95b760c904e108adb7b18b0213a303bce86a957abdf0",
+      "pixelsSha256": "e80a14c9136d6b2897b09c08c6bb1387c894cf9b0890a815c507b3f9549a4543"
+    },
+    {
+      "name": "input-80",
+      "at": 23833,
+      "eventCount": 52,
+      "stateSha256": "665a61480181134ca808ed32552d193e08b761e24204240fe7faa878be84979e",
+      "pixelsSha256": "cb8d595dd721464fbb3d37563f5e499b10bb065d764c3f63e3997e3b8a74caed"
+    },
+    {
+      "name": "input-120",
+      "at": 25481,
+      "eventCount": 55,
+      "stateSha256": "bb470686931bf2c31bbcb858d47634d5c18a1869a9506a21ccc593b18117a359",
+      "pixelsSha256": "7b966c2d1a6758ec75eeb5f8d82c5fec9adaf7fd1110a0783302406765242fdc"
+    },
+    {
+      "name": "input-160",
+      "at": 31137,
+      "eventCount": 55,
+      "stateSha256": "8cbf1fd75b2bf94d1fd20c5a9c2a502f636bd0091dbe783da5e2f2be4772901e",
+      "pixelsSha256": "7531daa2bb0de7b211864585aee3ae85e62257a21ec4801ed38ff422079fe066"
+    },
+    {
+      "name": "input-200",
+      "at": 36849,
+      "eventCount": 55,
+      "stateSha256": "55bdf309b522850aaf616bbd237b02949222f20a8dac26b86864931f86272a71",
+      "pixelsSha256": "448e3f91f6ff087c0e1d4b9391f3829c9aee9add1126f2c2ece2b73672998910"
+    },
+    {
+      "name": "input-240",
+      "at": 38497,
+      "eventCount": 55,
+      "stateSha256": "748508e5b8716ecc1feb67fe641056aed0a40c9dcfa5adfc9f001bfb23e1aa9d",
+      "pixelsSha256": "ab8d3fb99af1c02b9d8c30d100f7e5a936360c01c21149f864291ce20546afc5"
+    },
+    {
+      "name": "input-280",
+      "at": 40145,
+      "eventCount": 55,
+      "stateSha256": "3c2a521be91cfb190039ea12173e07080351ae14c792d268537eb13a5295ee48",
+      "pixelsSha256": "661c99a6b8a5934c70e59c90d926dc52d6657ebae92d3416a93ab1a20030face"
+    },
+    {
+      "name": "input-320",
+      "at": 41793,
+      "eventCount": 55,
+      "stateSha256": "a67870653b974f103059e658f05396c398fee962935572d354654bfd6613911b",
+      "pixelsSha256": "0f2fe76a880328921899f44ebd942ea014ac77b6ab2010cbe637d6c3b8db3fae"
+    },
+    {
+      "name": "input-360",
+      "at": 43441,
+      "eventCount": 55,
+      "stateSha256": "a365c0bed69af40011b2542cc566e8293e0f8ff926e202c09e838c1e191a9323",
+      "pixelsSha256": "3c9b37cee345390b15e81df30548b3f46dce121ccb04b16c4569759c4cae33fa"
+    },
+    {
+      "name": "input-400",
+      "at": 45089,
+      "eventCount": 55,
+      "stateSha256": "2f3ade1a84f948ca6952f9fa8be7ab149a7357222a676c4fcebaf3c31bc826d9",
+      "pixelsSha256": "9735ff53038e7f3756a58ac2218488acf710b5d53ffc5f4c999e64701eebadab"
+    },
+    {
+      "name": "input-440",
+      "at": 46737,
+      "eventCount": 55,
+      "stateSha256": "dd12d32f85217a78154f3fad49a5fd70989b9dce9ccd2d1fed924e12bbbc5fc2",
+      "pixelsSha256": "a903fd70d8d8e249d0b34cb44a3b2b98eefc3a51b7d91218ecff1b500c285175"
+    },
+    {
+      "name": "input-480",
+      "at": 48385,
+      "eventCount": 55,
+      "stateSha256": "c9fc7bdebd88f9423abe1d4f405fa256da4fc68d2d0190e01a0bbe7bb6639bf0",
+      "pixelsSha256": "261cf04f2ad7e060e8a1d9ba1845c8185854c39632dc56481280f5df6576cd46"
+    },
+    {
+      "name": "input-520",
+      "at": 50033,
+      "eventCount": 55,
+      "stateSha256": "fa2528a9d2d89381a666875001ef79a19d232dd9ab79e3d41fa96d5cfd32af46",
+      "pixelsSha256": "7936ee6e0f5afab4b68ea6712a6fe29df313d8ed7a4ab2f07c02776f0188c5cf"
+    },
+    {
+      "name": "input-560",
+      "at": 51681,
+      "eventCount": 55,
+      "stateSha256": "40cb75409c2bc5b586c668c79b58f00d6066b80a5c3ccbc8e970cf3f8d0a9cc2",
+      "pixelsSha256": "d6cf408e943c355f13cfff07dc791bdc7a0592d77d89e4c535d68320c6dbc6bd"
+    },
+    {
+      "name": "input-600",
+      "at": 53321,
+      "eventCount": 55,
+      "stateSha256": "db8b3353329bd3730357511dd4a4febd950576f6a564d66c513596f404e3d221",
+      "pixelsSha256": "b3f3f4f1bd8cb2ed245f374d04154267731975769837ca0a53e9d347d8c409f0"
+    },
+    {
+      "name": "input-640",
+      "at": 55025,
+      "eventCount": 55,
+      "stateSha256": "aaf98599e0ee9fdb3e7950a336fa6461351ba6cb799b7373fb54ed63edaa8c0f",
+      "pixelsSha256": "3f4382921543121b4da5f8479f60400d35de7751886f7d5758b6bc1c9fafb27a"
+    },
+    {
+      "name": "input-680",
+      "at": 56729,
+      "eventCount": 55,
+      "stateSha256": "e7d0af9c8892ed2c152f804368d6bb73f95ba186ea82602edfae7c7fa14fb489",
+      "pixelsSha256": "f6dbb7a6bdb5b9441d79181940db400859cd2ea6b5c3ce603a47f6c951fdfb6d"
+    },
+    {
+      "name": "input-720",
+      "at": 58377,
+      "eventCount": 55,
+      "stateSha256": "ed6317ac46eac0b246d21f8d3e8bcb8756cf1e4c36d18b105aa5a78d9bb0f71d",
+      "pixelsSha256": "7964868a89e07adc354bfc766d6820517c16c594c456d83e27fda5d9fc75e0df"
+    },
+    {
+      "name": "input-760",
+      "at": 60025,
+      "eventCount": 55,
+      "stateSha256": "f17f6e388af3fe82a4c4fda3422e6999050b218b922cb89835da9dc51a3f1495",
+      "pixelsSha256": "b5b06c8cf6fe652df8766856a5b4e24d3b337e70f6a6a431cbec0ae21a537599"
+    },
+    {
+      "name": "input-800",
+      "at": 61673,
+      "eventCount": 55,
+      "stateSha256": "483b5e6be10c92b6260e12b38d03e1efe81dbf658a5631d341de8d6362dd76d1",
+      "pixelsSha256": "ea588c0cb1f3c42b6315c98754fbc6743370258f441137ca76db61027a2d27a1"
+    },
+    {
+      "name": "input-840",
+      "at": 63321,
+      "eventCount": 59,
+      "stateSha256": "8ab91387e323a0149b88de9fe03300240562f99112820ca7ba6d2a59c58c0e42",
+      "pixelsSha256": "7200c62cfdddb71209fa63f84d71e1a89eea67a343656472d50e3dc49892fc00"
+    },
+    {
+      "name": "input-860",
+      "at": 64145,
+      "eventCount": 63,
+      "stateSha256": "ce2021ac2a39fcb9df40c05ce1c1c5ca5d04821d959eb6d24f10e630d8f6886c",
+      "pixelsSha256": "87f66b18e9bd962695d236845fc82085bc586c7d7343f5a52b52ece518c2d2be"
+    },
+    {
+      "name": "award",
+      "at": 64537,
+      "eventCount": 64,
+      "stateSha256": "fe3b9ca03cab8843f80789a66f4b1f098ecaf9a8cb9e4ff9b9dc95c580dd0afb",
+      "pixelsSha256": "0137151bc7ad9115fe603bf75bd0b5f523c958ab526fd622b521f02205b723a9"
+    },
+    {
+      "name": "returned-map",
+      "at": 64637,
+      "eventCount": 66,
+      "stateSha256": "2c978981eb1bfb225ab2480f67f285683fdfb8138ac88fd43783e4fd927b6de5",
+      "pixelsSha256": "f37664283764314cf771fac3564abe7564a98571f0246ee6ee5ef2e31366e4e9"
+    },
+    {
+      "name": "collected-notice",
+      "at": 70481,
+      "eventCount": 68,
+      "stateSha256": "c53678122bcf22d3e78ac169703d6fd70b483c6b35f674a295dfeb394874ec17",
+      "pixelsSha256": "554c1ca82e8661f04262dafa1f9a50515278559c68acda2e144d0516fd4840f2"
+    },
+    {
+      "name": "complete-map",
+      "at": 74429,
+      "eventCount": 70,
+      "stateSha256": "843f3ab1eb8090842b25bdf005f9defdf9a405e9c5e6846ad89e9a0cffd1bc97",
+      "pixelsSha256": "f37664283764314cf771fac3564abe7564a98571f0246ee6ee5ef2e31366e4e9"
+    }
+  ],
+  "artifacts": {
+    "environment": {
+      "path": ".local/security-jungle-treasure-accepted-01/environment.json",
+      "bytes": 232,
+      "sha256": "778a639ff25eb70f41309b168204ef3574cccdaa2486bbee5c6a58c295611e58"
+    },
+    "captured-events": {
+      "path": ".local/security-jungle-treasure-accepted-01/captured-events.json",
+      "bytes": 8125,
+      "sha256": "2ed8787ff4655a2d226d24070e27d9ae064b35cdce5eac80524ae7fb02dd7547"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/security-jungle-treasure-accepted-01/campaign-checkpoints.json",
+      "bytes": 95167,
+      "sha256": "ac0518636a2bed0772be2ad8506a9cd9add9f22f72f6d5e6870b26a0ff02fc7e"
+    },
+    "timeline": {
+      "path": ".local/security-jungle-treasure-accepted-01/timeline.json",
+      "bytes": 2310,
+      "sha256": "d9943c1c5e0619f43b9f5276f2ec644c9ab64049163d94bd2293158bd8098c5e"
+    },
+    "capture-source": {
+      "path": ".local/security-jungle-treasure-01/source-revision.json",
+      "bytes": 13444,
+      "sha256": "85e05dce6947ef5caec31bc35b766204b2772e529b652bb7bdadc51604d37a4f"
+    },
+    "input-profile": {
+      "path": "reference/security-jungle-treasure-inputs.json",
+      "bytes": 1234,
+      "sha256": "b31c7acf91dcc00edb6ea89295e5f87bf448ca8e6e95e2fa2d81814148d97238"
+    },
+    "planning": {
+      "path": ".local/security-easy-jungle-planning-delay-3.json",
+      "bytes": 21900,
+      "sha256": "1a83f9e41dc7977c28e702ba446fdb7859a8dde6a251b49c3933d26b692d8ae0"
+    }
+  },
+  "captureCommit": "98f0cb6028b9a70e1aa2d099be0594174ae8edb1",
+  "captureProducer": ".local/security-jungle-treasure-01/source-revision.json",
+  "expectedOutcome": {
+    "money": 1050,
+    "day": 17,
+    "playerCollected": [
+      1
+    ],
+    "frames": 860,
+    "presentations": 907,
+    "lives": 1,
+    "seed": 55093
+  },
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "Recorded-input Game and independent browser state/pixel route; not native whole-level timing parity",
+  "fullBranchGate": "pending",
+  "injections": [],
+  "fittedInputs": [],
+  "inputRecipe": "Original BIOS0/Easy startup,security fixedRight/Fire,two real bank trips,non-racing crash/repair arrival,three neutral jungle samples then the original857-input route,award,map,idle,duplicate notice,map. Inputs and times are independently recorded; no seed/state injection."
 }

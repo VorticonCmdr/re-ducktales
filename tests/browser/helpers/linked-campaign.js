@@ -1,5 +1,8 @@
 import flightInputs from "../../../reference/hard-flight-inputs.json" with { type: "json" };
 import { replayFlightInputs } from "./flight-inputs.js";
+import { exploreFlight } from "./flight-policy.js";
+import securityInputs from "../../../reference/security-campaign-inputs.json" with { type: "json" };
+import { finishSecurityEntry } from "./security.js";
 import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -216,6 +219,7 @@ export async function runLinkedCampaign({
       await page.locator("#map").click();
       await page.clock.runFor(100);
       await settleReports();
+      await finishSecurityEntry({ page, until, state });
     }
     expect((await state()).scene).toBe("map");
     const fromOffice = (await state()).campaign.location === 35;
@@ -235,11 +239,38 @@ export async function runLinkedCampaign({
     expect((await state()).scene).toBe("departure");
     flightNumber++;
     if (hard) await checkpoint("flight-start");
-    if (hard) {
+    if (hard && !capture) {
       const trace = await replayFlightInputs({
         page,
         until,
         profile: flightInputs.profiles[flightNumber - 1],
+      });
+      await until(
+        (s) =>
+          ![
+            "departure",
+            "flight",
+            "crash-repairs",
+            "expedition-briefing",
+          ].includes(s.scene),
+      );
+      await writeFile(
+        info.outputPath(`flight-${flightNumber}.json`),
+        JSON.stringify(trace, null, 2),
+      );
+      await checkpoint("arrival");
+      return;
+    }
+    if (capture) {
+      const trace = await exploreFlight({
+        page,
+        state,
+        until,
+        hard,
+        policy: hard
+          ? (securityInputs.flights[flightNumber - 1] ??
+            securityInputs.flights[0])
+          : null,
       });
       await until(
         (s) =>
@@ -346,14 +377,20 @@ export async function runLinkedCampaign({
     const entry = await state();
     expect(entry.scene).toBe("jungle");
     const jungleRoute = hard ? hardInitial.jungle : startup.jungle;
-    expect(entry.jungle.seed).toBe(jungleRoute.entrySeed);
+    if (!capture) expect(entry.jungle.seed).toBe(jungleRoute.entrySeed);
     let held = new Set(),
       used = 0,
       checked = 0;
     const stream = (
-      hard ? hardInputs.jungle : startup.jungle.inputEvents
+      hard
+        ? capture
+          ? securityInputs.jungle
+          : hardInputs.jungle
+        : startup.jungle.inputEvents
     ).flatMap((e) => Array(e.count).fill(e.byte));
-    expect(stream).toHaveLength(hard ? 444 : 857);
+    expect(stream).toHaveLength(
+      hard ? (capture ? securityInputs.requiredJungleInputs : 444) : 857,
+    );
     // Deliberately wrong external input for the separate negative-control run.
     // Counts remain unchanged: an actual state comparison must reject it.
     if (process.env.DUCKTALES_MIXED_NEGATIVE === "wrong-jungle-input")
@@ -380,7 +417,7 @@ export async function runLinkedCampaign({
       used++;
       expect(after.jungle.frames).toBe(used);
       const expected = jungleRoute.checkpoints[checked];
-      if (expected?.inputCount === used) {
+      if (!capture && expected?.inputCount === used) {
         for (const field of hard
           ? jungleRoute.comparisonFields
           : jungleRoute.browserComparisonFields)
@@ -391,15 +428,18 @@ export async function runLinkedCampaign({
       }
     }
     for (const key of held) await page.keyboard.up(key);
-    expect(checked).toBe(hard ? 26 : 23);
+    if (!capture) expect(checked).toBe(hard ? 26 : 23);
     await until((s) => s.scene === "expedition-result");
-    expect((await state()).money).toBe(hard ? 2050 : 1000);
+    if (!capture) expect((await state()).money).toBe(hard ? 2050 : 1000);
+    const firstReward = (await state()).money;
     await press("Space");
     await until((s) => s.scene === "map");
     await checkpoint("jungle-return");
     await depart(212, 131);
     await finishBank();
-    expect((await state()).campaign.banked).toBe(hard ? 2050 : 1000);
+    expect((await state()).campaign.banked).toBe(
+      capture ? firstReward : hard ? 2050 : 1000,
+    );
     await page.locator("#back").click();
     await page.clock.runFor(100);
     await settleReports();
@@ -467,7 +507,9 @@ export async function runLinkedCampaign({
     expect((await state()).campaign.day).toBe(photoEntry.campaign.day + 2);
     await checkpoint("photography-return");
 
-    await depart(37, 33);
+    await depart(
+      ...(hard && capture ? securityInputs.destinations.cave : [37, 33]),
+    );
     await fly();
     expect((await state()).scene).toBe("cave");
     for (let move = 0; move < 64 && (await state()).scene === "cave"; move++) {
@@ -585,7 +627,7 @@ export async function runLinkedCampaign({
     expect(climbed).toBe(hard ? linkedInputs.mountain.expectedInputCount : 764);
     const summit = await until((s) => s.scene === "expedition-result");
     expect(summit.mountain.outcome.code).toBe(1);
-    if (hard) expect(summit.mountain.lives).toBe(3);
+    if (hard && !capture) expect(summit.mountain.lives).toBe(3);
     await press("Space");
     await until((s) => {
       expect(
@@ -614,7 +656,13 @@ export async function runLinkedCampaign({
     expect(ended.money).toBe(0);
     expect(ended.campaign.banked).toBeGreaterThan(1000);
     expect(ended.campaign.playerCollected).toEqual(
-      expect.arrayContaining(hard ? [2, 30, 31, 32] : [1, 30, 31, 32]),
+      expect.arrayContaining(
+        hard
+          ? capture
+            ? securityInputs.destinations.requiredLocations
+            : [2, 30, 31, 32]
+          : [1, 30, 31, 32],
+      ),
     );
     expect(ended.campaign.rivalCollected.length).toBeGreaterThan(0);
     expect(ended.campaign.rivalUnlockMask).toBe(15);

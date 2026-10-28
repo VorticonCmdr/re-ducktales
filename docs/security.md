@@ -142,3 +142,76 @@ instance8696ce4a79d6979e36121cf222065f36, entryseed47210 and finalseed35003.
 It contains49 pinned files; no partial restore, memory writes or fitted waits.
 The first fixed-Fire capture recipe remains pinned to its historical Git4098673
 source even though the maintained recipe now adds navigation.
+
+## Campaign migration experiments
+
+The integration work uses actual security choices and keeps its changed shared
+RNG. No game logic, race rule, seed or ownership flag was changed for these
+experiments. The exploratory controller observes current flight pose and map
+state; a strict regression will instead replay recorded external DOM events.
+Old menu-era campaign inputs and expected outputs remain untouched.
+
+- Capture01 reached the new first Hard departure at seed54124 but lost its race
+  at273 flight reads. Capture02 was stopped because the helper still used its
+  previous climb angle. These runs are incomplete and are not acceptance.
+- Conditional first-flight planning tried explicit altitude/climb policies from
+  the observed departure contract. First-flight Game memory is freshly created;
+  the model is still planning evidence, not browser acceptance. The10..25 band
+  and heading1 policy then independently won the actual browser race in286 reads.
+  Its Carried Game flight result and browser entry agree on the new state.
+- Capture03 reached Bermuda, but the previous444-input jungle route exhausted
+  three lives at frame363. Conditional jungle planning used fresh memory at the
+  observed seed40033/day2 entry; this cannot establish full carried-memory parity.
+  Its zero-delay trial hit an exploration bound during a life reset and is
+  incomplete. A candidate with three initial neutral reads was tested separately.
+- Capture04 validated that447-input jungle sequence in the carried browser:
+  treasure reached with all three lives,2150 returned to campaign and banked.
+  Photography then completed on day12 with4050 cash. The rival had already
+  claimed Klondike30, so the subsequent normal visit correctly showed its
+  claimed-location notice. This is a legitimate campaign consequence, not a
+  missing gameplay transition. The old route cannot assume that destination
+  remains available under the new RNG.
+
+A separate `Game` run from startup consumed all2316 recorded DOM events and
+matched all11 state checkpoints through photography. The diagnostic replay uses
+its declared100ms tail after those checkpoints and is explicitly exploratory;
+it is neither a complete campaign nor strict acceptance. Its expected states
+never select the input stream. Raw artifacts remain in ignored
+`.local/security-campaign-through-photo-04/`; captured producer sources and
+hashes are retained separately from inputs and expected observations.
+
+The bounded planning code is saved as `scripts/explore-security-flight.js` and
+`scripts/explore-security-jungle.js`. Both write local exploratory artifacts.
+`reference/security-campaign-inputs.json` records their exact source/result
+identities, conditional starting contracts, and the candidate fixed controls.
+The corresponding maintained browser capture uses:
+
+```sh
+DUCKTALES_CAPTURE_HARD_CAMPAIGN=1 npx playwright test tests/browser/hard-campaign.spec.js
+node scripts/replay-hard-campaign.js .local/security-campaign-through-photo-04 --diagnose
+```
+
+The browser capture is exploratory even when it completes. It still requires an
+independent complete Game replay, an independent browser replay, negative
+controls, fixture checks and the full integration gate. Capture05 used unclaimed Carlsbad34 through ordinary map travel, but the default
+flight policy lost that race. A separate Game replay matches all12 checkpoints
+up to the cave departure; copying its entire64K port data segment for conditional
+flight trials reproduces the browser loss exactly at285 reads/tile39/seed31602.
+A50..65 altitude band with heading1 then independently won the real browser race
+in capture06, which completed Carlsbad on day14 with6950 cash and2150 banked.
+
+Capture06 subsequently lost the mountain race. Its first16 checkpoints and3354
+DOM events match an independent Game replay. Conditional planning from that
+carried port state reproduces the279-read/tile37 loss. A50..65 band with heading2
+wins in232 reads in the model. Continuing that model through the unchanged671
+mountain inputs reaches the summit with three lives. Capture07 is validating
+the whole route in the actual browser; no complete new campaign pass is claimed.
+These planning copies are port data segments, not original emulator machine
+checkpoints. No memory or state is injected into the browser campaign.
+
+`node scripts/verify-security-campaign-progress.js` checks the retained partial
+through-photography evidence and a wrong-security-direction negative control.
+Its versioned manifest is `reference/security-campaign-progress.json`; missing
+or corrupt artifacts fail setup. This optional diagnostic does not replace the
+full required campaign gate. The source-controlled cave-flight, mountain-flight
+and mountain-ascent explorers preserve the bounded planning recipes.

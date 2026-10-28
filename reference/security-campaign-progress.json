@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "id": "security-hard-campaign-through-photography",
+  "status": "Diagnostic closed-loop port segment; not complete campaign acceptance.",
+  "buildManifest": "reference/build.json",
+  "runtimeCommit": "9cfc0a3",
+  "producerBaseCommit": "9ec7a05",
+  "artifactRoot": ".local/security-campaign-progress-20261028",
+  "expectedCheckpointCount": 11,
+  "expectedEventCount": 2316,
+  "expectedFlightPresentations": 913,
+  "expectedArtifactCount": 12,
+  "emulator": null,
+  "environment": {
+    "biosSeed": 0,
+    "sound": false,
+    "difficulty": 2,
+    "displayMilliseconds": 8,
+    "clockOrigin": 1,
+    "diagnosticTailMilliseconds": 100
+  },
+  "startingRecipe": "Fresh verified originals; first opening skip; original Hard menu; first security fixed Right/Fire; actual keyboard/canvas/buttons thereafter. See docs/security.md campaign migration experiments.",
+  "inputStream": "captured-events.json",
+  "expectedOutputs": "campaign-checkpoints.json",
+  "comparisonRules": "All11 full canonical Game state hashes match from startup while consuming all2316 separately recorded DOM events. Flight rendering executes913 presentations without unsupported paths. No expected output chooses an input.",
+  "exclusions": [
+    "This diagnostic ends at an already-claimed location notice after photography; no ending or whole-campaign success is asserted.",
+    "The existing diagnostic replay adds a declared100ms tail after captured checkpoints. It is not strict campaign acceptance.",
+    "Browser pixel hashes are retained in the source capture but have not been independently replayed for this segment.",
+    "Not an original DOSBox whole-scene or timing comparison.",
+    "Capture04 producer mtimes were checked against log last-write time; source hashes and separate snapshots pin its producer, without an independent process-start timestamp claim."
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "verify": "node scripts/verify-security-campaign-progress.js",
+  "artifacts": [
+    {
+      "path": ".local/security-campaign-progress-20261028/browser.log",
+      "bytes": 2581,
+      "sha256": "1c70e07a2ad2fe254a0011a6b53aeffb575d2e9f8163e20cbc10e7b35eff5757"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/campaign-checkpoints.json",
+      "bytes": 41303,
+      "sha256": "f37671664784edd070c52b60a1904a828ecbbb14d04da6322f9232ece0b35037"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/capture-config.js",
+      "bytes": 306,
+      "sha256": "e12225a51671dc7a614934e9c77f3c19b5d0006abe5e5cfc99e961c45dde99ec"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/capture-source/reference/security-campaign-inputs.json",
+      "bytes": 2815,
+      "sha256": "a1350ff971a0f5c85cbf433a071ba043e4b5ce09038b176b24134000d7d8d53e"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/capture-source/tests/browser/helpers/flight-policy.js",
+      "bytes": 1776,
+      "sha256": "5c479c4ed4b11d2d791c1c4c766e6756e92abbcf4c5509507aa64a0cf23988cb"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/capture-source/tests/browser/helpers/linked-campaign.js",
+      "bytes": 25681,
+      "sha256": "0c5929389b66f8d7811cdb2ea99a291d16ee2acd916eaff7c655037072586bfe"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/capture-source/tests/browser/helpers/security.js",
+      "bytes": 802,
+      "sha256": "e16e9b4f9285a0be9eee25b248233e783437601a5af19b3e353698f78da370cb"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/captured-events.json",
+      "bytes": 276789,
+      "sha256": "b3bfa77f490de146dacde298793b74dfb882676a884dfdd57242dc3ec101ee45"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/environment.json",
+      "bytes": 182,
+      "sha256": "5eb1bda2de8e6c14a034c951a04cfe42f88f8ed1d58dca1aff3d45f4c56f24f1"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/producer.json",
+      "bytes": 9699,
+      "sha256": "407111f2b6509d64cdcefae93102c485b33117a5d25ac77040260d72d16a4975"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/replay.log",
+      "bytes": 2720,
+      "sha256": "c054ecc48b7dc361fdc296f085d4e9e619a793b4d40bb72b2c7461919b7cae00"
+    },
+    {
+      "path": ".local/security-campaign-progress-20261028/timeline.json",
+      "bytes": 1040,
+      "sha256": "db2cb934ff25a03c0679ec67e609cab662a4b7c7d299fb7f82b93f05126457f7"
+    }
+  ]
+}

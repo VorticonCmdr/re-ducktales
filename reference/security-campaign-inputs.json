@@ -1,0 +1,181 @@
+{
+  "id": "security-linked-campaign-external-controls",
+  "scope": "Exploratory candidate controls only. Conditional model planning requires actual carried browser validation and independent replay before acceptance.",
+  "jungle": [
+    {
+      "byte": 0,
+      "count": 3
+    },
+    {
+      "byte": 3,
+      "count": 12
+    },
+    {
+      "byte": 1,
+      "count": 10
+    },
+    {
+      "byte": 3,
+      "count": 30
+    },
+    {
+      "byte": 1,
+      "count": 10
+    },
+    {
+      "byte": 3,
+      "count": 51
+    },
+    {
+      "byte": 1,
+      "count": 15
+    },
+    {
+      "byte": 3,
+      "count": 35
+    },
+    {
+      "byte": 1,
+      "count": 15
+    },
+    {
+      "byte": 3,
+      "count": 36
+    },
+    {
+      "byte": 1,
+      "count": 10
+    },
+    {
+      "byte": 3,
+      "count": 27
+    },
+    {
+      "byte": 0,
+      "count": 20
+    },
+    {
+      "byte": 3,
+      "count": 42
+    },
+    {
+      "byte": 0,
+      "count": 6
+    },
+    {
+      "byte": 1,
+      "count": 28
+    },
+    {
+      "byte": 3,
+      "count": 84
+    },
+    {
+      "byte": 0,
+      "count": 6
+    },
+    {
+      "byte": 1,
+      "count": 7
+    }
+  ],
+  "requiredJungleInputs": 447,
+  "planning": {
+    "scope": "Fresh Jungle memory at observed first-entry contract; not injected into the browser. Existing supported class and source clocks; no altered game logic or RNG.",
+    "initial": {
+      "variant": 1,
+      "difficulty": 2,
+      "seed": 40033,
+      "money": 0,
+      "day": 2
+    },
+    "foundArtifact": {
+      "path": ".local/security-jungle-found.json",
+      "sha256": "8c8dc0d53777e04e232e1927fe6dc738578dce4528549ead9e58b6a45ee3f297"
+    },
+    "searchArtifact": {
+      "path": ".local/security-jungle-delay-planning.json",
+      "sha256": "114b4305a8fbb167b46191ce0aef091974a6612e0e306322475d77c9be5bb19c"
+    },
+    "tool": {
+      "path": ".local/explore-security-jungle.mjs",
+      "sha256": "ebf2374e88573888baad7d92b2b669e918127496c84dbdd889368380882970c3"
+    },
+    "limitation": "The zero-delay trial stopped at its per-read exploration bound during a life reset and is incomplete. Candidate delay3 completes447 inputs, but fresh-memory equivalence is not asserted."
+  },
+  "flightPlanning": {
+    "scope": "Conditional first-flight contract seed54124,day1,money0,Hard,days1,racing1; Game creates fresh memory for this first flight. Browser capture03 independently arrived in286 inputs.",
+    "artifact": {
+      "path": ".local/security-flight-policy-planning.json",
+      "sha256": "0757d1062a3ec629f55e5172cc4c5fe86605c6db96c9e0d3e17b32f8dc87e57e"
+    },
+    "tool": {
+      "path": ".local/explore-security-flight.mjs",
+      "sha256": "c38b9cdf1702f022ddce75ec859fa0c0840f9698b1e7910aec09790a26d522ea"
+    },
+    "policy": {
+      "altitude": [10, 25],
+      "climbHeading": 1
+    }
+  },
+  "destinations": {
+    "cave": [45, 68],
+    "mountain": [36, 61],
+    "requiredLocations": [2, 31, 32, 34],
+    "reason": "Capture04 reached photography but Klondike30 was already claimed by the rival. Use the unclaimed Carlsbad34 cave through the normal map; ownership and RNG are unchanged."
+  },
+  "flights": [
+    {
+      "altitude": [10, 25],
+      "climbHeading": 1
+    },
+    {
+      "altitude": [10, 25],
+      "climbHeading": 1
+    },
+    {
+      "altitude": [50, 65],
+      "climbHeading": 1
+    },
+    {
+      "altitude": [50, 65],
+      "climbHeading": 2
+    }
+  ],
+  "caveFlightPlanning": {
+    "scope": "Conditional policies after12 exact Game prefix checkpoints and2316 DOM events. Copies full port DS from that carried replay, not a native machine checkpoint or browser injection. Baseline matches capture05 race loss at285 reads,tile39,seed31602. Candidate50..65/heading1 arrives in287 reads in the model; browser validation remains required.",
+    "artifact": {
+      "path": ".local/security-cave-flight-policy-planning.json",
+      "sha256": "46a8f5c10b16c5c1c46d72e498d04d472b7226e3f0d4479227238db6bd63f049"
+    },
+    "tool": {
+      "path": "scripts/explore-security-cave-flight.js",
+      "sha256": "181e9f51ad33399fd03da23ab17f734201ad5ddbdde2e62828036360f708196d"
+    },
+    "prefix": ".local/security-campaign-cave-prefix-05"
+  },
+  "mountainPlanning": {
+    "scope": "Conditional carried port planning after16 exact prefix checkpoints and3354 DOM inputs, followed by a modelled fourth flight. Browser validation remains required. Baseline flight matches capture06 race loss at279 reads,tile37,seed41092. Candidate50..65/heading2 arrives in232 reads. The unchanged671-input mountain stream then completes with three lives in the Game model.",
+    "flightArtifact": {
+      "path": ".local/security-mountain-flight-policy-planning.json",
+      "sha256": "d685d96ce7c9d8e1fb0a58c6804ef3c423aecaac7fbf52f564af5eadef706873"
+    },
+    "flightTool": {
+      "path": "scripts/explore-security-mountain-flight.js",
+      "sha256": "db284dc7ffee002c11c1002e3e47183e1a7d91f74dad20daebffeb7e9534b886"
+    },
+    "ascentArtifact": {
+      "path": ".local/security-mountain-ascent-planning.json",
+      "sha256": "a561501cc9d681a12239bd4b1b7821db86f717dda1a9079861c32f1cd00f85a4"
+    },
+    "ascentTool": {
+      "path": "scripts/explore-security-mountain-ascent.js",
+      "sha256": "ea3a1e151181edc583361df6c1a2e3da29d486016f76bf55e76429be0df2a747"
+    },
+    "prefix": ".local/security-campaign-mountain-prefix-06",
+    "mountainInputs": {
+      "path": "reference/hard-campaign-inputs.json",
+      "sha256": "bfdadae8ffb85b6d1a7d8649b5bcfc1df58e8b8daedec870f565dedffe74c8ce"
+    }
+  }
+}

@@ -78,7 +78,17 @@ missing fixtures fail setup.
 - No original save/load/high-score format has been identified. Browser persistence
   would be an explicit addition.
 
-Next: migrate campaign/browser input streams through the new security step and
+New integration evidence: a carried Hard browser route clears security, wins
+its first race, completes Bermuda with three lives, banks2150 and completes
+photography. An independent Game diagnostic matches11 checkpoints from2316
+inputs. The next old destination had already been claimed by the rival, so a
+fresh exploratory route completed Carlsbad on day14 with6950 cash and2150
+banked. Its first16 checkpoints and3354 DOM inputs match an independent Game
+replay; the next mountain race lost. A new whole-route browser capture is testing
+an alternative flight path. No complete new campaign pass is claimed; main and
+its old fixtures remain unchanged.
+
+Next: finish migrating campaign/browser input streams through the new security step and
 carry its changed shared RNG into real departures. The previous Hard replay
 currently rejects checkpoint0 at the newly recorded `securityPending` field;
 its old goldens remain unchanged. Then run the full branch gate before merging.

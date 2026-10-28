@@ -121,7 +121,9 @@ counter advances0→20 with result0 and driver clock50423→50563,exactly140 tic
 The browser now includes this wait,keeps the completed flight visible,and accepts
 a new Fire at a poll. Keys entered during crash/landing are discarded by the
 initial flush. Airship/tether input-flush helpers also clear held controls and
-queued global keys. `returnWaitTick` records the injected driver clock at entry.
+queued global keys. Storm strikes now supply the previously missing collision
+flush callback too; see [lightning evidence](flight.md#lightning-input-clear).
+`returnWaitTick` records the injected driver clock at entry.
 
 `reference/flight-input.json` pins18 local artifacts and9 original code/state/
 deadline/wait/popup/input checks,plus one independent controller replay. All

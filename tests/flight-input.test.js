@@ -7,6 +7,7 @@ import { Game } from "../src/game/application.js";
 import { unpackImage } from "../src/game/executable.js";
 import { parseArchive } from "../src/assets.js";
 import build from "../reference/build.json" with { type: "json" };
+import { DRIVER_HZ, RETRACE_HZ } from "../src/game/application.js";
 
 async function supported(name) {
   const b = await readFile(`game/${name}`);
@@ -21,7 +22,7 @@ const resources = {
   image: unpackImage(await supported("DUCKTALE.EXE")),
   entries: parseArchive(await supported("PLANE.ARC")),
 };
-function flightGame() {
+function flightGame(options = {}) {
   const g = new Game();
   g.scene = "flight";
   g.flight = new Flight({
@@ -32,11 +33,70 @@ function flightGame() {
     difficulty: 0,
     seed: 1960,
     money: 0,
+    ...options,
     pollInput: () => g.pollFlightSystemInput(),
     flushInput: () => g.flushFlightInput(),
   });
   return g;
 }
+
+test("a naturally generated lightning strike flushes pending global input before the flight reader", () => {
+  // Normal first Easy departure's actual seed; no actor/object memory writes.
+  // This authored controller encounters the generated tile17 strike at frame121.
+  const g = flightGame({ seed: 54448 }),
+    f = g.flight;
+  let driver = 1000 / DRIVER_HZ,
+    retrace = 1000 / RETRACE_HZ;
+  let lastFrame = -1,
+    queued = false,
+    struck = false;
+  for (let now = 0; now < 20000 && !struck; now += 8) {
+    const s = f.snapshot();
+    if (s.frames !== lastFrame) {
+      const desired = s.y > 15 ? 2 : s.y < 0 ? 15 : 0;
+      const delta = (desired - s.heading + 16) % 16;
+      g.input({
+        type: "controls",
+        fire: true,
+        direction: s.speed < 4 || !delta ? null : delta < 8 ? "down" : "up",
+      });
+      lastFrame = s.frames;
+    }
+    while (Math.min(driver, retrace) <= now) {
+      if (driver <= retrace) {
+        g.advanceTick();
+        driver += 1000 / DRIVER_HZ;
+      } else {
+        g.advanceRetrace();
+        retrace += 1000 / RETRACE_HZ;
+      }
+      if (!queued && f.frames === 121 && f.memory.i(0x0fbe) !== 43) {
+        assert.equal(f.wait.clock, "retrace");
+        g.input({ type: "pause" });
+        assert.equal(g.pendingFlightSystemKeys.size, 1);
+        queued = true;
+      }
+      if (f.memory.i(0x0fbe) === 43) {
+        struck = true;
+        break;
+      }
+    }
+  }
+  assert.ok(queued, "required pause event was not queued before the collision");
+  assert.ok(struck, "required natural lightning collision was not reached");
+  assert.equal(f.frames, 121);
+  assert.equal(f.memory.i(0x0fbc), 17);
+  assert.equal(
+    g.systemOverlay,
+    null,
+    "lightning must discard P before the input reader",
+  );
+  assert.equal(g.pendingFlightSystemKeys.size, 0);
+  assert.deepEqual(f.controls, { fire: false, direction: null });
+  assert.equal(f.inputLog.at(-1).code, 0);
+  assert.equal(f.memory.i(0x5466), 0);
+  assert.equal(f.memory.i(0x8a9c), 0);
+});
 
 test("flight pauses only at its input reader and advances device clocks while actors stay frozen", () => {
   const g = flightGame(),

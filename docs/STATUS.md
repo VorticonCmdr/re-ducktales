@@ -11,6 +11,9 @@ finishable. This is completion work, not only final polish.
   controls the one-time1000 coin and travel/banking resets its latch.
 - Office → map → confirmed departure → keyboard flight → landing or crash/repair.
   All35 destinations can be inspected. Losing a race credits Glomgold and returns.
+  Lightning strikes clear held controls and unread global keys before the next
+  input poll; fresh keyboard input accelerates/climbs again. The missing callback
+  is fixed, with exact original call/flush identities and a natural browser strike.
 - Cave rooms → treasure or failure → results/map → direct retry. Safe new rooms
   pay50; ownership prevents duplicate treasure awards.
 - Mountain walking/hook/climbing/hazards → complete variant0 ascent → reward/map.
@@ -58,15 +61,15 @@ and actual browser controls/rendering/audio. None alone proves whole-game parity
 Manifests pin source/artifact identities, setup recipes, events and exclusions.
 Conditional injections and provider assumptions are documented, not hidden.
 
-The mixed campaign milestone passes full `npm run verify`:112 unit cases,60 development
+The lightning-input milestone passes full `npm run verify`:113 unit cases,61 development
 and2 production browser scenarios, with zero skips, all required original-data
-comparisons and the production build. Bank coverage includes eight conditional original arithmetic
-cases, two exact native PNGs, first RNG point, four consumed input reads/carried
-checkpoints and separate280-tick outro pass. The local receipt is
-`.local/bank-full-verify.log` for the earlier bank milestone; the current full
-receipt is `.local/mixed-campaign/full-verify.log`. The mixed route checks19
-campaign checkpoints and rejects a deliberately wrong input at the first jungle
-position comparison. [Historical notes](status-history.md) retain older
+comparisons and the production build. The new checks pin the original lightning
+switch/call/flush bytes, reject a missing callback, and verify generated-strike
+input ordering plus real browser recovery. The component Pause trigger is an
+authored adversarial test, not an original lightning input timeline.
+The current full receipt is `.local/flight-lightning/full-verify.log`.
+Earlier bank and mixed-campaign receipts remain preserved; the mixed route still
+matches all19 campaign checkpoints. [Historical notes](status-history.md) retain older
 receipts and investigations without describing them as current state.
 
 Tandy/PCjr sound is available in-game with persistent channels, priorities,
@@ -93,15 +96,19 @@ whole-game IRQ alignment remain unverified.
   strict acceptance.
 
 Next playable milestone: extend linked campaigns to another difficulty and other
-expedition variants, investigating the first unsupported behavior or divergence
-against the original. The current mixed campaign has completed without a dead end;
-arbitrary routes and original whole-scene parity remain unproven.
+expedition variants, starting with a winning Hard flight into Bermuda Triangle's
+variant1 jungle. The exploratory Hard controller still loses its race; a model
+controller win alone is not browser acceptance. The investigation found and fixed
+the separate lightning input-clear omission. The current mixed Easy campaign
+still completes; arbitrary routes and original whole-scene parity remain unproven.
 
 ## Exact verification commands
 
 `npm run verify` is the required full gate. It fails on missing/corrupt required
 fixtures, incomplete case/input counts, unsupported paths and comparison failures.
 It includes unit checks, original comparisons, browser scenarios and production.
+For the lightning input boundary run `npm run verify:flight-lightning`. Its
+missing-provider control must fail at the intended natural collision boundary.
 For the linked campaign run `npm run verify:mixed-campaign` and
 `npm run verify:mixed-campaign-negative`. The latter succeeds only when a wrong
 input is rejected by the intended state comparison.

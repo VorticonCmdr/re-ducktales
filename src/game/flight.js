@@ -411,6 +411,7 @@ export class Flight {
       const collision = yield* collideFlight(m, {
         sound: (id) => this.sound(id),
         spin: () => this.spin(),
+        flushInput: () => this.flushInput(),
       });
       // Overlay4:02ae calls the global input reader only after collisions.
       yield* this.readInput();

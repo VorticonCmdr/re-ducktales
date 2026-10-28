@@ -5,9 +5,10 @@ Build: `reference/build.json`; overlay 4 SHA-256
 Physics, course generation, scene/object updates and collision rules are translated.
 The checks include conditional comparisons, a closed-loop segment, and exact pixels.
 Flight is connected to the browser. Actual keyboard takeoff, crash, losing-race
-return and restart are covered by browser acceptance. Airport landing is also
-exercised through the keyboard adapter. Arrival now continues through the original guide into the cave room slice.
-Cave terminal outcomes remain unsupported; no level result is substituted.
+return, airport landing and restart are covered by browser acceptance. Arrivals
+continue through the guide into all four expedition families, including treasure,
+failure and campaign return. A complete mixed Easy campaign is also checked.
+Original whole-flight parity and broader Hard/variant routes remain unproven.
 
 ## Implemented rules
 
@@ -213,8 +214,9 @@ It emits immutable drawing commands while advancing the original state changes.
 falling objects, the airship, launcher, water creature, birds, foreground bonuses
 and flags. `flight-collisions.js` translates261f–2b9f, including bounding-box
 adjustments, duplicate-collision suppression, bonus cash, race loss, arrival,
-boost/tether flags, reflections and randomized responses. The spin animation is
-an explicit required generator interface; its main-loop provider is still pending.
+boost/tether flags, reflections and randomized responses. The main loop supplies
+the required spin generator and input-clear callback. Missing providers stop
+when their branch is reached; no animation or input clear is silently omitted.
 
 `flight-raster.js` consumes those commands and original images/font, without
 access to simulation memory, time, input or RNG. It uses original transparency,
@@ -222,8 +224,8 @@ eight-pixel strip alignment, palette and clipping. It stops on unsupported image
 frames/crops; there is no silent image substitution. Original IT.DRV resource1
 code at035d (live2ed7:035d) was matched byte-for-byte for the EGA sprite path.
 Its03ad–03b8 instructions use the unsigned frame byte without a strip bounds
-check. In particular, the initial landing-flag variantff still needs investigation
-before a complete flight can satisfy strict rendering acceptance.
+check. The initial landing flag's frameff is entirely offscreen and therefore
+causes no pixel/mask reads; the clipping rule and its limits are described below.
 
 `npm run verify:flight-scene` adds22 checks:
 
@@ -289,12 +291,12 @@ Object placement conditionally changes terrain11 to8 and the following tile to0
 (3a68–3a89); the stage captures verify that distinction. The translated scene now
 includes rival movement, HUD day progression, object updates and rendering.
 The main loop and browser controls are now connected, including the normal
-race/crash outcome and airport landing. Expedition arrival dispatch is the next
-implementation boundary; special collisions need wider original-capture coverage.
+race/crash outcome and airport landing. Expedition dispatch and terminal returns
+are connected; special collisions need wider original-capture coverage.
 The full-game objective remains incomplete.
 
-The earlier stop118/flight-live-last snapshot is historical, not the current
-live state. The session now pauses at main01f5:0ae5 after the third ordinary
+Historical live-state note, **not current emulator status**: the earlier
+stop118/flight-live-last snapshot was superseded by main01f5:0ae5 after the third ordinary
 flight's repairs (day15,cash25). No keys, input schedules or breakpoints remain.
 The first losing-race return observed AX0/day8 at main0855; its broader campaign
 consequences remain static evidence rather than a captured full-campaign replay.
@@ -488,7 +490,56 @@ and separate driver/retrace clocks. It verifies boundary passage and completed
 crash without injected simulation memory. It starts with seeded flight options;
 it does not claim natural campaign navigation or whole original-flight parity.
 Run `npm run verify:flight-visible-left-edge` and
-`npx playwright test tests/browser/flight-boundary.spec.js`; both are included in
+`npm run test:browser -- tests/browser/flight-boundary.spec.js`; both are included in
 full verification. The next priority is additional complete routes and the
 broader destination/difficulty coverage and audio-driver work. Map pointer
 arithmetic is now translated; original input-provider timing remains unverified.
+
+## Lightning input clear
+
+The Hard-flight investigation exposed a missing callback in `Flight.run`:
+`collideFlight` translated the storm strike's keyboard clear, but its caller did
+not supply that external effect. A normally generated Easy course reproduces the
+consequence: P queued just before the strike incorrectly opened Pause, and held
+throttle continued after the original would have cleared the keyboard table.
+
+Original collision types2a/2b both dispatch to2962. The unmodified overlay bytes
+at2997 call resident040e:19a5, then clear the two turn-request words. Ghidra's
+resident load base names that helper140e:19a5. The full original overlay,69-byte
+branch and32-byte helper identities are pinned in
+[flight-lightning-input.json](../reference/flight-lightning-input.json). The
+existing original system-control captures independently verify the helper's
+BIOS/custom-key clear. This is static evidence for the lightning call plus reused
+runtime evidence for the primitive; it is not a new native lightning timeline.
+
+The main loop now supplies `flushInput`; an absent provider fails at the strike
+instead of doing nothing. The component ordering regression starts the original
+course normally, then queues P at an authored frame121 boundary learned during
+port exploration. This adversarial timing is explicitly conditional evidence.
+No objects or RNG state are patched. Its old-code failure is preserved locally.
+A negative-control module removes the callback without editing the checked-in
+runtime and must fail at the missing-provider diagnostic.
+
+The independent browser scenario navigates to Bermuda Triangle on Easy, encounters
+the generated tile17 strike at frame112/y136, observes deceleration without a new
+key, then uses fresh Space/Down to accelerate and climb. It records actual input
+events, flight snapshots, recovery values and screenshots locally. It supplies
+only original assets, browser controls and an8ms display clock. The component and
+browser frame numbers differ because their input/presentation providers differ;
+neither is asserted as original CPU/IRQ timing. Run
+`npm run verify:flight-lightning`; the source and negative checks and browser case
+are also included in full verification.
+
+Hard winning-flight and alternate-jungle completion remain unfinished. The
+exploratory Hard controller crashed or lost to Glomgold; those outcomes are not
+accepted as proof of a game defect or a completed route. They remain separate
+from strict acceptance in ignored `.local/flight-lightning/` storage.
+
+The lightning milestone passes full `npm run verify`:113 unit checks,61 development
+browser scenarios and2 production scenarios, zero skips, all required original
+comparisons and both negative-control mechanisms. The complete mixed campaign
+retains its prior19 exact checkpoints. Local recovery values are8.45000076 speed
+at the strike,8.15000153 after the input clear, then8.56000137/y127.08899689 after
+fresh controls. These are port browser observations, not native waveform/CPU
+measurements. Checksummed receipts and the reproducing old-code failure are in
+`.local/flight-lightning/`; the manifest pins their identities.

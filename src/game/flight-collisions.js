@@ -3,10 +3,7 @@ import { flightRandom, tileObjects } from "./flight-objects.js";
 
 // Overlay 4:261f..2b9f. A spin yields real presentation steps through the
 // supplied generator; no animation is collapsed into a guessed final heading.
-export function* collideFlight(
-  m,
-  { sound = () => {}, flushInput = () => {}, spin } = {},
-) {
+export function* collideFlight(m, { sound = () => {}, flushInput, spin } = {}) {
   if (m.b(0x5ed4) && m.i(0x8d7c) >= m.i(0x5ce6) && m.i(0x5d12) > 288) return 2;
   const tile = m.i(0x0fb4);
   if (m.i(0x0fbc) !== tile) m.i(0x0fbc, 0);
@@ -106,6 +103,10 @@ export function* collideFlight(
       m.i(0x974c, flightRandom(m) & 1 ? 8 : 0);
       m.i(0x0fc0, 1);
       remember(signedType);
+      if (typeof flushInput !== "function")
+        throw Error(
+          "Flight lightning collision requires the original input-flush provider",
+        );
       flushInput();
       m.i(0x5466, 0);
       m.i(0x8a9c, 0);

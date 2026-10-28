@@ -1,0 +1,142 @@
+{
+  "id": "flight-lightning-input-flush",
+  "buildManifest": "reference/build.json",
+  "baseCommit": "515e3a1",
+  "originalEvidence": {
+    "program": "FLIGHT_TRANSLATION.EXE (x86 LE16 real-mode, actual overlay4 game code)",
+    "overlayFile": {
+      "offset": 76800,
+      "length": 18572,
+      "sha256": "cefab7184f72f605af90ddcf9b8cc8027870fdacb9922acdb68e8d6212db3ae9"
+    },
+    "overlayBody": {
+      "offset": 77824,
+      "length": 17548,
+      "sha256": "e7f1232d7fe3de471eb3d34ac490ea7910ac08da11470bb072e6a039921db862"
+    },
+    "strikeBranch": {
+      "offset": 10594,
+      "length": 69,
+      "sha256": "cd4acd01ed08aeea2a4ccffa79446ec27f306c86ec8db78c899fd8f21fe06552"
+    },
+    "residentFlush": {
+      "imageOffset": 23173,
+      "length": 32,
+      "sha256": "80d700a63e3f22549f62f23eddf6c8ea690447150826ba5e8af9d97c1c8d7ced"
+    },
+    "rule": "Original collision switch2b09 maps types2a/2b to2962. At2997 CALL FAR040e:19a5 clears the BIOS queue and128-byte custom key table;299c..29a3 then clears both turn requests. Ghidra loads the resident helper at140e:19a5. The original helper's runtime behavior and full32-byte identity are covered by reference/system-controls.json; no new original lightning timeline is claimed.",
+    "runtimeManifest": "reference/system-controls.json"
+  },
+  "portComponent": {
+    "kind": "conditional input-ordering regression with normally generated course; not a native lightning capture",
+    "initial": {
+      "seed": 54448,
+      "difficulty": 0,
+      "days": 1,
+      "day": 1,
+      "racing": false,
+      "money": 0
+    },
+    "input": "Authored altitude0..15 controller/climb heading2 with70.086Hz retrace and1193182/(1365*12) driver. Queue P after physics frame121 and before its presentation/collision. This adversarial trigger was chosen from port exploration, not an original event recording.",
+    "expected": {
+      "frame": 121,
+      "tile": 17,
+      "type": 43,
+      "pendingSystemKeys": 0,
+      "systemOverlay": null,
+      "lastInput": 0
+    },
+    "requiredCases": 1
+  },
+  "browser": {
+    "kind": "independent browser acceptance with actual keyboard and rendering",
+    "startingRecipe": "Fresh muted browser; title Space,Enter selects Easy; open map; click logical68,77; Space,Right,Space; hold Space to fly. Use the authored altitude controller in tests/browser/flight-lightning.spec.js. No private game state is written.",
+    "clock": "Frozen at2026-01-01T00:00:01Z before asset loading; advance display in8ms increments. Game device clocks remain separate.",
+    "expectedStrike": {
+      "tile": 17,
+      "y": 136,
+      "frame": 112
+    },
+    "assertions": "A natural strike clears throttle despite the prior physical Space hold. Speed decreases without any new key; fresh Space+Down changes heading, accelerates and climbs. All held keys are released, diagnostics remain hidden, and browser errors fail the run.",
+    "captureTool": "tests/browser/flight-lightning.spec.js"
+  },
+  "comparisonRules": "Exact source hashes/table targets/call bytes, pending-key and neutral-input assertions; exact required strike tile/y/frame. Strict directional comparisons for throttle deceleration and new-input recovery, not a pixel or hardware timing comparison. Missing originals, no strike, unsupported paths, incomplete waits and unconsumed queued P fail.",
+  "exclusions": [
+    "No new whole-original lightning/flight replay or pixel comparison.",
+    "Component P timing is an authored adversarial port trigger, not independent native timing evidence.",
+    "Browser key holds use the documented digital adapter; original keyboard typematic/IRQ alignment remains unverified.",
+    "Hard winning-flight and alternate-jungle completion remain unfinished investigations; exploratory failures are not acceptance passes."
+  ],
+  "injections": [],
+  "fittedInputs": [
+    {
+      "scenario": "portComponent",
+      "input": "P after physics frame121",
+      "dependency": "Trigger selected after exploratory observation of the port's generated strike; scope is conditional input ordering."
+    }
+  ],
+  "verify": "npm run verify:flight-lightning",
+  "artifacts": "Ignored .local/flight-lightning/ captures and receipt. Existing original flush captures remain required by verify-system-controls.js; missing/corrupt fixtures fail setup. Browser traces are regenerable diagnostic outputs.",
+  "sourceSha256": {
+    "src/game/flight.js": "248104ed27d88626e4911c3606a8a7418ccb399fe6391d081e4132e21a446674",
+    "src/game/flight-collisions.js": "2e5df837a0724a853555607767fff83118ae4de5895431c52d0220b87cc88ae7",
+    "tests/flight-input.test.js": "e5b9c32c3c992a704211c28c33f5bce1ea07e75e5556e680f5564296bbd64dc9",
+    "tests/browser/flight-lightning.spec.js": "330c8444f0c028437d70b44a535b2fd2ef40ca7a6853c9a297f6667ac723f02b",
+    "scripts/verify-flight-lightning.js": "e29852b075007e9221e401de97b5afb6b1f4bcc8affd8fe4ae739b2d034ea4f4"
+  },
+  "receipt": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "unit": 113,
+    "developmentBrowser": 61,
+    "productionBrowser": 2,
+    "skipped": 0,
+    "artifacts": [
+      {
+        "path": ".local/flight-lightning/full-verify.log",
+        "bytes": 40128,
+        "sha256": "b2f5014d6adb86ebdb1237b703cd017341fe7d891196fe3283f4ce54ade8bd63"
+      },
+      {
+        "path": ".local/flight-lightning/before-fix.log",
+        "bytes": 1223,
+        "sha256": "0643f67e56a7b56cc1c23726758e688bfa0a570995e807762fed4d523171b8b5"
+      },
+      {
+        "path": ".local/flight-lightning/missing-callback-negative.log",
+        "bytes": 1675,
+        "sha256": "51416d380ca502603a27e36becd52a8d48f52496f47141e3fb2c043d8da38510"
+      },
+      {
+        "path": ".local/flight-lightning/ghidra-collision.json",
+        "bytes": 10195,
+        "sha256": "62c0f4df57882e5d0a0a106bf08f20944d5047afcd503e55fb7856558533ce9d"
+      },
+      {
+        "path": ".local/flight-lightning/lightning-flight.json",
+        "bytes": 28048,
+        "sha256": "1a22f6180a4fffbd42df7ba60d71f5e721ea9db8fb1875054c5c57993d8f1ea5"
+      },
+      {
+        "path": ".local/flight-lightning/lightning-events.json",
+        "bytes": 2061,
+        "sha256": "a07bc11ddc44e3c1d6f3949e29dcc5eaaf763d2b7cacc0b2149c1d82146b8942"
+      },
+      {
+        "path": ".local/flight-lightning/lightning-recovery.json",
+        "bytes": 873,
+        "sha256": "e81230821701debc3ec0541b56002a7c44268266208c7b1840917f2dcd55b0ea"
+      },
+      {
+        "path": ".local/flight-lightning/lightning-strike.png",
+        "bytes": 7564,
+        "sha256": "7d57138c99d73c52e88c107fccaf45b07282f3aa6a0d5c248e4e35cc4639b339"
+      },
+      {
+        "path": ".local/flight-lightning/lightning-recovery.png",
+        "bytes": 6655,
+        "sha256": "10399f3fa78a948837ec8264daba637b170f16a93aad9fef090e97ac81d31b05"
+      }
+    ]
+  }
+}

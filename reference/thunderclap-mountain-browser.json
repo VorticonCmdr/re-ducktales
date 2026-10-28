@@ -1,0 +1,1414 @@
+{
+  "id": "hard-thunderclap-mountain-browser",
+  "buildManifest": "reference/build.json",
+  "baseCommit": "b67010b",
+  "evidence": "Independent port/browser route, not original whole-level parity. Fixed controls discovered through bounded port-model exploration. Expected actor/hook/RNG checkpoints are port regressions, separate from replay inputs.",
+  "emulator": null,
+  "environment": {
+    "biosSeed": 0,
+    "difficulty": 2,
+    "audio": false,
+    "displayMilliseconds": 8,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086,
+    "stack": "Default independent zero-filled mountain local stack provider; no original stack capture injected."
+  },
+  "flight": {
+    "expectedFrames": 226,
+    "expectedSeed": 16696
+  },
+  "mountain": {
+    "variant": 1,
+    "location": 33,
+    "entrySeed": 5527,
+    "expectedInputCount": 494,
+    "expectedPacketCount": 29,
+    "expectedCheckpointCount": 59,
+    "comparisonFields": [
+      "x",
+      "y",
+      "row",
+      "column",
+      "scroll",
+      "action",
+      "frame",
+      "facing",
+      "lives",
+      "hook",
+      "money",
+      "seed"
+    ],
+    "checkpoints": [
+      {
+        "inputCount": 1,
+        "state": {
+          "x": 16,
+          "y": 131,
+          "row": 0,
+          "column": 2,
+          "scroll": 0,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 0,
+            "y": 0,
+            "angle": 0
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 2,
+        "state": {
+          "x": 16,
+          "y": 131,
+          "row": 0,
+          "column": 2,
+          "scroll": 0,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 0,
+            "y": 0,
+            "angle": 0
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 3,
+        "state": {
+          "x": 32,
+          "y": 131,
+          "row": 0,
+          "column": 2,
+          "scroll": 0,
+          "action": 0,
+          "frame": 26,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 0,
+            "y": 0,
+            "angle": 0
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 4,
+        "state": {
+          "x": 32,
+          "y": 131,
+          "row": 0,
+          "column": 2,
+          "scroll": 0,
+          "action": 0,
+          "frame": 26,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 0,
+            "y": 0,
+            "angle": 0
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 5,
+        "state": {
+          "x": 32,
+          "y": 131,
+          "row": 0,
+          "column": 2,
+          "scroll": 0,
+          "action": 4,
+          "frame": 27,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 15,
+            "y": 145,
+            "angle": 8
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 26,
+        "state": {
+          "x": 32,
+          "y": 131,
+          "row": 0,
+          "column": 2,
+          "scroll": 0,
+          "action": 4,
+          "frame": 27,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 71,
+            "y": 109,
+            "angle": 13
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 27,
+        "state": {
+          "x": 32,
+          "y": 131,
+          "row": 0,
+          "column": 2,
+          "scroll": 0,
+          "action": 5,
+          "frame": 27,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 80,
+            "y": 113,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 35,
+        "state": {
+          "x": 80,
+          "y": 104,
+          "row": 1,
+          "column": 6,
+          "scroll": 0,
+          "action": 7,
+          "frame": 1,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 120,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 44,
+        "state": {
+          "x": 96,
+          "y": 91,
+          "row": 1,
+          "column": 7,
+          "scroll": 0,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 120,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 45,
+        "state": {
+          "x": 96,
+          "y": 91,
+          "row": 1,
+          "column": 7,
+          "scroll": 0,
+          "action": 10,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 120,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 46,
+        "state": {
+          "x": 96,
+          "y": 51,
+          "row": 2,
+          "column": 7,
+          "scroll": 0,
+          "action": 10,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 120,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 47,
+        "state": {
+          "x": 144,
+          "y": 51,
+          "row": 2,
+          "column": 10,
+          "scroll": 0,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 120,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 48,
+        "state": {
+          "x": 144,
+          "y": 51,
+          "row": 2,
+          "column": 10,
+          "scroll": 0,
+          "action": 10,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 120,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 49,
+        "state": {
+          "x": 144,
+          "y": 21,
+          "row": 3,
+          "column": 10,
+          "scroll": 0,
+          "action": 10,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 130,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 50,
+        "state": {
+          "x": 144,
+          "y": 21,
+          "row": 4,
+          "column": 10,
+          "scroll": 1,
+          "action": 10,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 170,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 51,
+        "state": {
+          "x": 144,
+          "y": 21,
+          "row": 5,
+          "column": 10,
+          "scroll": 2,
+          "action": 10,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 210,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 52,
+        "state": {
+          "x": 224,
+          "y": 51,
+          "row": 5,
+          "column": 15,
+          "scroll": 3,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 240,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 53,
+        "state": {
+          "x": 224,
+          "y": 51,
+          "row": 5,
+          "column": 15,
+          "scroll": 3,
+          "action": 10,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 240,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 54,
+        "state": {
+          "x": 224,
+          "y": 21,
+          "row": 6,
+          "column": 15,
+          "scroll": 3,
+          "action": 10,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 250,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 55,
+        "state": {
+          "x": 224,
+          "y": 21,
+          "row": 7,
+          "column": 15,
+          "scroll": 4,
+          "action": 10,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 290,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 56,
+        "state": {
+          "x": 256,
+          "y": 51,
+          "row": 7,
+          "column": 17,
+          "scroll": 5,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 101,
+            "y": 320,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 76,
+        "state": {
+          "x": 256,
+          "y": 51,
+          "row": 7,
+          "column": 17,
+          "scroll": 5,
+          "action": 4,
+          "frame": 21,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 283,
+            "y": 29,
+            "angle": 13
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 89,
+        "state": {
+          "x": 224,
+          "y": 33,
+          "row": 8,
+          "column": 15,
+          "scroll": 5,
+          "action": 7,
+          "frame": 24,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 245,
+            "y": 10,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 94,
+        "state": {
+          "x": 224,
+          "y": 34,
+          "row": 9,
+          "column": 15,
+          "scroll": 6,
+          "action": 7,
+          "frame": 1,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 245,
+            "y": 50,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 103,
+        "state": {
+          "x": 240,
+          "y": 51,
+          "row": 9,
+          "column": 16,
+          "scroll": 7,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 245,
+            "y": 80,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 121,
+        "state": {
+          "x": 240,
+          "y": 51,
+          "row": 9,
+          "column": 16,
+          "scroll": 7,
+          "action": 4,
+          "frame": 21,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 287,
+            "y": 49,
+            "angle": 15
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 135,
+        "state": {
+          "x": 256,
+          "y": 29,
+          "row": 10,
+          "column": 17,
+          "scroll": 7,
+          "action": 7,
+          "frame": 24,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 277,
+            "y": 10,
+            "angle": 13
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 140,
+        "state": {
+          "x": 256,
+          "y": 34,
+          "row": 11,
+          "column": 17,
+          "scroll": 8,
+          "action": 7,
+          "frame": 1,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 277,
+            "y": 50,
+            "angle": 13
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 149,
+        "state": {
+          "x": 272,
+          "y": 51,
+          "row": 11,
+          "column": 18,
+          "scroll": 9,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 277,
+            "y": 80,
+            "angle": 13
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 169,
+        "state": {
+          "x": 272,
+          "y": 51,
+          "row": 11,
+          "column": 18,
+          "scroll": 9,
+          "action": 4,
+          "frame": 21,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 299,
+            "y": 29,
+            "angle": 13
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 184,
+        "state": {
+          "x": 240,
+          "y": 33,
+          "row": 12,
+          "column": 15,
+          "scroll": 9,
+          "action": 7,
+          "frame": 30,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 251,
+            "y": 10,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 189,
+        "state": {
+          "x": 240,
+          "y": 34,
+          "row": 13,
+          "column": 15,
+          "scroll": 10,
+          "action": 7,
+          "frame": 7,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 251,
+            "y": 50,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 198,
+        "state": {
+          "x": 240,
+          "y": 51,
+          "row": 13,
+          "column": 15,
+          "scroll": 11,
+          "action": 0,
+          "frame": 26,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 251,
+            "y": 80,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 216,
+        "state": {
+          "x": 240,
+          "y": 51,
+          "row": 13,
+          "column": 15,
+          "scroll": 11,
+          "action": 4,
+          "frame": 27,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 227,
+            "y": 49,
+            "angle": 9
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 230,
+        "state": {
+          "x": 208,
+          "y": 33,
+          "row": 14,
+          "column": 14,
+          "scroll": 11,
+          "action": 7,
+          "frame": 24,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 229,
+            "y": 10,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 235,
+        "state": {
+          "x": 208,
+          "y": 34,
+          "row": 15,
+          "column": 14,
+          "scroll": 12,
+          "action": 7,
+          "frame": 1,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 229,
+            "y": 50,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 244,
+        "state": {
+          "x": 224,
+          "y": 51,
+          "row": 15,
+          "column": 15,
+          "scroll": 13,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 229,
+            "y": 80,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 264,
+        "state": {
+          "x": 224,
+          "y": 51,
+          "row": 15,
+          "column": 15,
+          "scroll": 13,
+          "action": 4,
+          "frame": 21,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 251,
+            "y": 29,
+            "angle": 13
+          },
+          "money": 0,
+          "seed": 5527
+        }
+      },
+      {
+        "inputCount": 279,
+        "state": {
+          "x": 176,
+          "y": 33,
+          "row": 16,
+          "column": 12,
+          "scroll": 13,
+          "action": 7,
+          "frame": 24,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 197,
+            "y": 10,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 284,
+        "state": {
+          "x": 176,
+          "y": 34,
+          "row": 17,
+          "column": 12,
+          "scroll": 14,
+          "action": 7,
+          "frame": 1,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 197,
+            "y": 50,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 293,
+        "state": {
+          "x": 192,
+          "y": 51,
+          "row": 17,
+          "column": 13,
+          "scroll": 15,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 197,
+            "y": 80,
+            "angle": 11
+          },
+          "money": 0,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 314,
+        "state": {
+          "x": 192,
+          "y": 51,
+          "row": 17,
+          "column": 13,
+          "scroll": 15,
+          "action": 4,
+          "frame": 21,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 203,
+            "y": 25,
+            "angle": 12
+          },
+          "money": 0,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 329,
+        "state": {
+          "x": 112,
+          "y": 65,
+          "row": 16,
+          "column": 7,
+          "scroll": 15,
+          "action": 6,
+          "frame": 30,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 91,
+            "y": 0,
+            "angle": 10
+          },
+          "money": 0,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 340,
+        "state": {
+          "x": 24,
+          "y": 63,
+          "row": 17,
+          "column": 1,
+          "scroll": 15,
+          "action": 6,
+          "frame": 30,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 91,
+            "y": 0,
+            "angle": 10
+          },
+          "money": 0,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 347,
+        "state": {
+          "x": 32,
+          "y": 65,
+          "row": 16,
+          "column": 2,
+          "scroll": 15,
+          "action": 6,
+          "frame": 30,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 91,
+            "y": 0,
+            "angle": 10
+          },
+          "money": 0,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 364,
+        "state": {
+          "x": 80,
+          "y": 62,
+          "row": 17,
+          "column": 5,
+          "scroll": 15,
+          "action": 7,
+          "frame": 30,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 91,
+            "y": 0,
+            "angle": 10
+          },
+          "money": 50,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 377,
+        "state": {
+          "x": 80,
+          "y": 33,
+          "row": 18,
+          "column": 5,
+          "scroll": 15,
+          "action": 7,
+          "frame": 31,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 91,
+            "y": 10,
+            "angle": 10
+          },
+          "money": 50,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 384,
+        "state": {
+          "x": 80,
+          "y": 34,
+          "row": 19,
+          "column": 5,
+          "scroll": 16,
+          "action": 7,
+          "frame": 7,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 91,
+            "y": 50,
+            "angle": 10
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 393,
+        "state": {
+          "x": 80,
+          "y": 51,
+          "row": 19,
+          "column": 5,
+          "scroll": 17,
+          "action": 0,
+          "frame": 26,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 91,
+            "y": 80,
+            "angle": 10
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 394,
+        "state": {
+          "x": 64,
+          "y": 51,
+          "row": 19,
+          "column": 5,
+          "scroll": 17,
+          "action": 3,
+          "frame": 28,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 91,
+            "y": 80,
+            "angle": 10
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 402,
+        "state": {
+          "x": 64,
+          "y": 21,
+          "row": 20,
+          "column": 4,
+          "scroll": 17,
+          "action": 0,
+          "frame": 26,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 91,
+            "y": 90,
+            "angle": 10
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 420,
+        "state": {
+          "x": 64,
+          "y": 51,
+          "row": 20,
+          "column": 4,
+          "scroll": 18,
+          "action": 4,
+          "frame": 27,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 51,
+            "y": 49,
+            "angle": 9
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 434,
+        "state": {
+          "x": 48,
+          "y": 29,
+          "row": 21,
+          "column": 3,
+          "scroll": 18,
+          "action": 7,
+          "frame": 30,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 59,
+            "y": 10,
+            "angle": 11
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 439,
+        "state": {
+          "x": 48,
+          "y": 34,
+          "row": 22,
+          "column": 3,
+          "scroll": 19,
+          "action": 7,
+          "frame": 7,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 59,
+            "y": 50,
+            "angle": 11
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 448,
+        "state": {
+          "x": 48,
+          "y": 51,
+          "row": 22,
+          "column": 3,
+          "scroll": 20,
+          "action": 0,
+          "frame": 26,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 59,
+            "y": 80,
+            "angle": 11
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 465,
+        "state": {
+          "x": 48,
+          "y": 51,
+          "row": 22,
+          "column": 3,
+          "scroll": 20,
+          "action": 4,
+          "frame": 27,
+          "facing": 1,
+          "lives": 3,
+          "hook": {
+            "x": 31,
+            "y": 65,
+            "angle": 8
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 480,
+        "state": {
+          "x": 0,
+          "y": 33,
+          "row": 23,
+          "column": 1,
+          "scroll": 20,
+          "action": 7,
+          "frame": 24,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 21,
+            "y": 10,
+            "angle": 10
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 485,
+        "state": {
+          "x": 0,
+          "y": 34,
+          "row": 24,
+          "column": 1,
+          "scroll": 21,
+          "action": 7,
+          "frame": 1,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 21,
+            "y": 50,
+            "angle": 10
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      },
+      {
+        "inputCount": 494,
+        "state": {
+          "x": 16,
+          "y": 51,
+          "row": 24,
+          "column": 2,
+          "scroll": 22,
+          "action": 0,
+          "frame": 20,
+          "facing": 0,
+          "lives": 3,
+          "hook": {
+            "x": 21,
+            "y": 80,
+            "angle": 10
+          },
+          "money": 100,
+          "seed": 62715
+        }
+      }
+    ],
+    "expectedOutcome": {
+      "code": 1,
+      "money": 100,
+      "seed": 62715
+    },
+    "treasure": 2000,
+    "expectedCampaignMoney": 2100,
+    "expectedCampaignDay": 3,
+    "expectedUnlockMask": 2
+  },
+  "campaign": {
+    "afterBank": {
+      "day": 6
+    }
+  },
+  "negativeControl": {
+    "mode": "thunderclap-missing-hook",
+    "inputIndex": 4,
+    "replacementByte": 0,
+    "requiredFailure": "Hard mountain checkpoint5 action",
+    "change": "Input5 Fire becomes neutral, preserving all sample counts."
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "inputManifest": "reference/thunderclap-expedition-inputs.json",
+  "captureTool": "tests/browser/hard-mountains.spec.js",
+  "captureDependencies": [
+    {
+      "path": "tests/browser/hard-expedition-route.js",
+      "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
+    }
+  ],
+  "expectedScenarioCount": 1,
+  "limits": "The model explorer carries winning flight memory into a mountain with independent clock phase. Browser acceptance must carry its own startup, flight and clocks. Only listed actor/hook/geometry/money/RNG fields compare; device and presentation counters are not claimed as native timing. No new original full-level capture.",
+  "verify": "npm run verify:hard-mountains",
+  "captureToolSha256": "6bfa394f0d5456777c05ff478332caee419414f351b2e00951a310622ca6f937",
+  "inputManifestSha256": "27f918fde7178b3287b2f483f85dd97d22f93a24987ba183d0dac1a2fa381247",
+  "negativeToolSha256": "8e9b0ffa9bc026c4a35732738496c1df3c82d8f258351c134aeaa2030c6b63b3",
+  "captureToolRevision": {
+    "baseCommit": "b67010b",
+    "sha256": "6bfa394f0d5456777c05ff478332caee419414f351b2e00951a310622ca6f937",
+    "note": "Real-input flight, expedition, bank and restart logic shared through the separately pinned capture dependency. Earlier immutable receipts retain their tool identities."
+  },
+  "receipt": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "unit": 113,
+    "developmentBrowser": 65,
+    "productionBrowser": 2,
+    "skipped": 0,
+    "archive": ".local/hard-thunderclap/accepted-781882d7d743/",
+    "captureToolSha256": "6bfa394f0d5456777c05ff478332caee419414f351b2e00951a310622ca6f937",
+    "captureDependencies": [
+      {
+        "path": "tests/browser/hard-expedition-route.js",
+        "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
+      }
+    ],
+    "artifacts": [
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/hard-entry.json",
+        "bytes": 2343,
+        "sha256": "f9891b22a67c250d6e83c53f42944113ba8b1c91bb39b2c406eec047205b7e48"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/hard-entry.png",
+        "bytes": 21260,
+        "sha256": "e8af41154cea6063c32ac4954acd9f801efbe10d4d93e83a5bc0e4cf2bf32bb5"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/hard-flight.json",
+        "bytes": 62004,
+        "sha256": "1e47fdb199f951b8c3dd9697a63ef0aba73095fe3d2791c31dbf0d52dbae35a2"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/hard-mountain.json",
+        "bytes": 178843,
+        "sha256": "c796ee94e830dee1f0baae3ea2895a2905436a3c5948dd554259a49dc1baa68f"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/hard-mountain-treasure.png",
+        "bytes": 16207,
+        "sha256": "e780d23803123d3c13fab05e5d3dfc308580e3e0f75bb277e0252dd1b0ca2e94"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/hard-return.json",
+        "bytes": 2431,
+        "sha256": "23562b1f9eb4eeab8d7744aa93f6babc5c71608a9dad25a7458aee8d17c4bcc4"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/hard-bank.json",
+        "bytes": 2467,
+        "sha256": "834c76a6e375859f819a011fa03c9423ee08efb9510f1c9cc087d1df4129c9a1"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/hard-events.json",
+        "bytes": 53946,
+        "sha256": "91d59f4f8ecde0dd1eacfffa4a2ac49dc0a9258ef9508a5d5aa5bc9443599614"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/full-verify.log",
+        "bytes": 48583,
+        "sha256": "7b944956b973851166b345827ee0a18f2b55ce866f2ddd8318446e6c237f61a7"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/negative-control.log",
+        "bytes": 3302,
+        "sha256": "03dae0e71a961255f42b4669e9ef55e28c4f8c0233dad7f89e3f09e5db6f0665"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/model-explorer.mjs",
+        "bytes": 3487,
+        "sha256": "7e5c5ceb79ab0f9aeac7a86eabfde8697d52b2a8e4505ae2741f769f41a374d4"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/capture-tool.js",
+        "bytes": 948,
+        "sha256": "6bfa394f0d5456777c05ff478332caee419414f351b2e00951a310622ca6f937"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/input-manifest.json",
+        "bytes": 1866,
+        "sha256": "27f918fde7178b3287b2f483f85dd97d22f93a24987ba183d0dac1a2fa381247"
+      },
+      {
+        "path": ".local/hard-thunderclap/accepted-781882d7d743/capture-dependency.js",
+        "bytes": 9235,
+        "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
+      }
+    ],
+    "scope": "Full-suite independent browser captures and wrong-input control. Conditional model explorer is port exploration, not an original/runtime fixture. No new original whole-level parity or timing claim."
+  }
+}

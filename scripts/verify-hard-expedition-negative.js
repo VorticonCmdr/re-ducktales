@@ -32,6 +32,14 @@ assert.equal(
   manifest.captureToolSha256,
   "Hard capture tool identity changed",
 );
+for (const dependency of manifest.captureDependencies ?? [])
+  assert.equal(
+    createHash("sha256")
+      .update(await readFile(dependency.path))
+      .digest("hex"),
+    dependency.sha256,
+    `Changed capture dependency ${dependency.path}`,
+  );
 const events = JSON.parse(input).jungle;
 assert.equal(manifest.expectedScenarioCount, 1);
 assert.equal(events.length, packetCount);

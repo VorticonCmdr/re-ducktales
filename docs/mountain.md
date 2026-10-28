@@ -5,7 +5,10 @@ campaign map → direct retry. Walking, the climbing hook, ledge climbing, hazar
 pickups, camera movement and the summit condition are statically translated.
 Browser acceptance covers movement, hook throw, failure/retry and a complete
 variant0 ascent with three lives, $100 in pickups, the $8000 treasure award,
-calendar/map return and repeat-visit protection.
+calendar/map return and repeat-visit protection. Hard Thunderclap/variant1 and
+Machu Picchu/variant2 also reach the summit with three lives, bank2100/2700 on
+day6 and restart. Their494/706 samples and59/73 actor/hook/RNG checkpoints are
+required; see [Hard mountain routes](hard-mountains.md).
 
 ## Supported source and analysis
 
@@ -197,8 +200,9 @@ The award screenshot is local at
 
 Commands: `npm run verify:mountain` checks terrain, both independent routes and
 both conditional original scenarios. `npx playwright test tests/browser/mountain*.spec.js`
-checks the two browser routes. `npm run verify` is the integration gate. Original
-hook/ascent and presentation comparisons, variants1/2 and other difficulties
+checks the earlier variant0 browser routes; `npm run verify:hard-mountains`
+checks Hard variants1/2. `npm run verify` is the integration gate. Broader original
+hook/ascent and presentation comparisons and other linked difficulty routes
 remain work to do. Jungle,photography and trading now have their own playable
 routes; [normal rival progression](rival.md) is also connected.
 
@@ -325,3 +329,14 @@ npx playwright test tests/browser/mountain-input.spec.js tests/browser/mountain.
 This is a bounded original input/pause/reset comparison,an independent controller
 replay and browser acceptance. Complete original mountain movement,scrolling,
 framebuffer residue,timing and other variants/difficulties remain unproven.
+
+
+## Hard variants1/2 browser completion
+
+The shared real-input adapter now carries fresh Hard campaigns through winning
+flights, complete Thunderclap and Machu Picchu ascents, treasure awards, banking
+and Restart. Both keep three lives;132 total exact actor/hook/RNG checkpoints
+compare independent model routes with the browser. `npm run verify:hard-mountains`
+also rejects a missing first hook in each route. See [scope and recipes](hard-mountains.md).
+No native full-level timing or complete original mountain gameplay parity is
+implied by these browser passes.

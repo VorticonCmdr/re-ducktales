@@ -73,16 +73,16 @@ diagnostic port outputs, not required native fixtures. The input files, verifier
 and recipe are versioned; no original files, decoded asset dumps or traces are
 committed.
 
-The whole game remains incomplete. The remaining mountain variants, broader
-linked campaigns/difficulties and original full-scene parity remain work. These
+The whole game remains incomplete. Broader linked campaigns/difficulties, the
+original opening/office transitions and original full-scene parity remain work. These
 routes do not prove a complete thirty-day Hard campaign or arbitrary-route
 finishability.
 
-These milestones pass full `npm run verify`:113 unit checks,63 development browser
+These milestones pass full `npm run verify`:113 unit checks,65 development browser
 scenarios and2 production scenarios, zero skips, the required original comparisons
 and all required wrong-input controls. `.local/hard-jungle/receipt.json` points to the
 immutable accepted archive, and `.local/boola-jungle/receipt.json` does the same
-for Boola. Each archive contains13 artifacts. The versioned manifests record checksums and
+for Boola. Each archive contains14 artifacts, including the shared capture dependency. The versioned manifests record checksums and
 capture-tool/input identities. The existing mixed Easy campaign still matches
 all19 checkpoints.
 
@@ -115,3 +115,7 @@ captures intact. Local captures/receipts live under `.local/boola-jungle/`.
 The bounded model exploration carries its own flight memory into the level;
 actual browser acceptance carries state from the title through the bank.
 No new original full-level capture or native timing equivalence is claimed.
+
+The shared input/flight/bank adapter also supports the separately scoped
+[Hard mountain routes](hard-mountains.md). Capture manifests pin the shared
+adapter as a dependency; changing it requires the corresponding regression checks.

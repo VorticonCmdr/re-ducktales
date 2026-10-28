@@ -17,6 +17,9 @@ finishable. This is completion work, not only final polish.
 - Cave rooms → treasure or failure → results/map → direct retry. Safe new rooms
   pay50; ownership prevents duplicate treasure awards.
 - Mountain walking/hook/climbing/hazards → complete variant0 ascent → reward/map.
+  Hard Thunderclap/variant1 and Machu Picchu/variant2 also reach the summit with
+  three lives, bank2100/2700 on day6 and restart. Their494/706 samples and59/73
+  actor/hook/RNG checkpoints are required. See [Hard mountains](hard-mountains.md).
   Jungle jumping/climbing/vines/platforms/hazards → complete Easy/variant0 chest
   route → reward/map. Failures and retries also work; each has three lives.
 - Hard → win the opening race → Bermuda Triangle jungle variant1 → treasure with
@@ -67,16 +70,23 @@ and actual browser controls/rendering/audio. None alone proves whole-game parity
 Manifests pin source/artifact identities, setup recipes, events and exclusions.
 Conditional injections and provider assumptions are documented, not hidden.
 
-The Hard jungle milestones pass full `npm run verify`:113 unit cases,63 development
-and2 production browser scenarios, with zero skips, all required original-data
-comparisons and the production build. The shared capture wins each Hard race in226
-flight actions, consumes444/421 jungle inputs at26/29 exact actor/RNG checkpoints,
-banks2050/1100 and restarts. Each wrong first climb fails checkpoint22.
-Immutable evidence archives are referenced by `.local/hard-jungle/receipt.json`
-and `.local/boola-jungle/receipt.json`, with13 artifacts each. Earlier immutable
-archives remain unchanged. Lightning, bank and mixed-campaign checks still pass;
-the mixed route matches all19 campaign checkpoints. [Historical notes](status-history.md)
-retain older receipts without describing them as current state.
+The Hard expedition milestone passes full `npm run verify`:113 unit cases,65
+development and2 production browser scenarios, zero skips, all required original
+comparisons and the production build. Jungle variants1/2 consume444/421 inputs
+at26/29 checkpoints; mountain variants1/2 consume494/706 inputs at59/73
+checkpoints. Each route wins its Hard race, keeps three lives, banks its own
+reward and restarts. Both wrong-climb and both missing-hook controls fail at
+the intended comparisons. Four immutable archives contain14 artifacts each;
+receipts are under `.local/hard-jungle/`, `.local/boola-jungle/`,
+`.local/hard-thunderclap/` and `.local/hard-machu/`. Earlier archives are unchanged.
+The shared adapter and case modules are pinned separately. The mixed campaign
+still matches all19 checkpoints. [Historical notes](status-history.md) retain
+older receipts without describing them as current state.
+
+A separate `npm run verify:opening-source` passes four original source-range
+checks and one captured live101-byte mapping, including a one-byte negative
+control. It is preparation for the next runtime change, not opening animation
+or timing acceptance; see [opening investigation](opening-investigation.md).
 
 Tandy/PCjr sound is available in-game with persistent channels, priorities,
 flight-engine words and explicit completion status. All121 public requests have
@@ -101,11 +111,12 @@ whole-game IRQ alignment remain unverified.
   unproven. Unsupported paths stop in development; no recovery demo counts as
   strict acceptance.
 
-Next playable milestone: complete the remaining mountain variants through the
-browser, investigating the first unsupported behavior or divergence against the
-original. Hard flight and Bermuda/Boola jungle variants now have actual
-browser completion evidence; a complete thirty-day Hard campaign, arbitrary routes
-and original whole-scene parity remain unproven.
+Next runtime milestone: translate the original title reveal and following opening
+animation, starting with a reproducible original reveal/skip scenario. The
+[source investigation](opening-investigation.md) identifies the original11-step
+crop loop and remaining input/timer questions. All three jungle and mountain
+layouts now have selected browser completion routes; a complete thirty-day Hard
+campaign, arbitrary routes and original whole-scene parity remain unproven.
 
 ## Exact verification commands
 
@@ -114,6 +125,8 @@ fixtures, incomplete case/input counts, unsupported paths and comparison failure
 It includes unit checks, original comparisons, browser scenarios and production.
 For both Hard race/jungle/bank/restart routes run `npm run verify:hard-expedition`.
 For the third jungle layout alone run `npm run verify:boola-expedition`.
+For the Hard mountain variants1/2 run `npm run verify:hard-mountains`; each
+missing-hook control must fail checkpoint5 action.
 Its wrong-climb control must fail at checkpoint22, not at setup or a timeout.
 For the lightning input boundary run `npm run verify:flight-lightning`. Its
 missing-provider control must fail at the intended natural collision boundary.
@@ -122,6 +135,7 @@ For the linked campaign run `npm run verify:mixed-campaign` and
 input is rejected by the intended state comparison.
 For bank work run `npm run verify:bank`, `node --test tests/bank.test.js`, and
 `npm run test:browser -- tests/browser/bank.spec.js tests/browser/ending.spec.js tests/browser/ending-audio.spec.js tests/browser/ending-presentation.spec.js`.
+For the separately scoped opening source/mapping check run `npm run verify:opening-source`.
 For local testing run `npm run dev -- --port 5186`.
 The user's integrated checkout is served on5187. No push or deployment is authorized.
 

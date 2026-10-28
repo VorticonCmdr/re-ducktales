@@ -471,9 +471,9 @@
   "inputManifestSha256": "12cabd92ab5ab42a4df518570454f6c97a508026737ee3c737a386e21b8ea07e",
   "captureTool": "tests/browser/hard-expedition.spec.js",
   "captureToolRevision": {
-    "baseCommit": "70a467c",
-    "sha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508",
-    "note": "Shared two-route capture introduced after archived Bermuda receipt; the prior receipt retains its original tool hash."
+    "baseCommit": "b67010b",
+    "sha256": "1d3c8cde034c7038129ff0f981b9ff37f23eb6c3e99f61982278358b429ee59c",
+    "note": "Real-input flight, expedition, bank and restart logic shared through the separately pinned capture dependency. Earlier immutable receipts retain their tool identities."
   },
   "emulator": null,
   "originalEvidence": "Existing original jungle routine/presentation/control manifests remain separate. No new original Hard-flight or full variant1 gameplay capture is claimed.",
@@ -505,84 +505,101 @@
   },
   "verify": "npm run verify:hard-expedition",
   "artifacts": "Ignored .local/hard-jungle/ receipt and archived actual key/pointer events, flight/jungle snapshots, return/bank states and treasure screenshot. These are diagnostic port captures; original build files are required setup inputs. Accepted artifact checksums are recorded in this manifest.",
-  "captureToolSha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508",
-  "negativeToolSha256": "0786a2f126b50837ca5f84a58665fe14791386adbc2906e2540f60caa43649a1",
+  "captureToolSha256": "1d3c8cde034c7038129ff0f981b9ff37f23eb6c3e99f61982278358b429ee59c",
+  "negativeToolSha256": "3df0388d4b53e14258a2ca4b2f2bbcb0a4e1651b031b34da25188c11a687c231",
   "receipt": {
     "command": "npm run verify",
     "exitCode": 0,
     "unit": 113,
-    "developmentBrowser": 63,
+    "developmentBrowser": 65,
     "productionBrowser": 2,
     "skipped": 0,
-    "archive": ".local/hard-jungle/accepted-2cfbd0944904/",
-    "captureToolSha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508",
+    "archive": ".local/hard-jungle/accepted-d22bbb9ccbc5/",
+    "captureToolSha256": "1d3c8cde034c7038129ff0f981b9ff37f23eb6c3e99f61982278358b429ee59c",
+    "captureDependencies": [
+      {
+        "path": "tests/browser/hard-expedition-route.js",
+        "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
+      }
+    ],
     "artifacts": [
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/hard-entry.json",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/hard-entry.json",
         "bytes": 2285,
         "sha256": "70f1205b5c5ff33f7306734625f932302f77d7543f3169852414355023c8f286"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/hard-entry.png",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/hard-entry.png",
         "bytes": 14423,
         "sha256": "8d8ce2060629d07ead890ae7f6d596e213b5f45a6dc319635a22095a829051d8"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/hard-flight.json",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/hard-flight.json",
         "bytes": 62004,
         "sha256": "1e47fdb199f951b8c3dd9697a63ef0aba73095fe3d2791c31dbf0d52dbae35a2"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/hard-jungle.json",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/hard-jungle.json",
         "bytes": 139414,
         "sha256": "5e9c2e9eb552b04290ef3545428f0c755579df5f15a06f0e8764ea138ae7f58b"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/hard-jungle-treasure.png",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/hard-jungle-treasure.png",
         "bytes": 16207,
         "sha256": "e780d23803123d3c13fab05e5d3dfc308580e3e0f75bb277e0252dd1b0ca2e94"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/hard-return.json",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/hard-return.json",
         "bytes": 2372,
         "sha256": "a334b075b08e50d0f8c7e9fc59b03da9b84e1f1629fc1785119c7740e3002c92"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/hard-bank.json",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/hard-bank.json",
         "bytes": 2410,
         "sha256": "46178f81426b0759721ff7892a4c1dbfa71ef80fa9a4f618657ed5595dbe8e67"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/hard-events.json",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/hard-events.json",
         "bytes": 54210,
-        "sha256": "2af8d264d806f693150a7897e05cce7836e8ee2bea4f1573cdf574cdfce16030"
+        "sha256": "a233e104bdf6ef872de4798aed6e2083c05e3384fb2f4232a1e4d1e29372fc77"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/full-verify.log",
-        "bytes": 44365,
-        "sha256": "9a0e4d03950a38f29fb2c7932d1ef55c0c13ea603913368aa172de1ff63920a7"
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/full-verify.log",
+        "bytes": 48583,
+        "sha256": "7b944956b973851166b345827ee0a18f2b55ce866f2ddd8318446e6c237f61a7"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/negative-control.log",
-        "bytes": 3085,
-        "sha256": "0f4609bd91a1cd49d58ddea038a823d6e648942ccb43d1aa408969c03d37a891"
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/negative-control.log",
+        "bytes": 3258,
+        "sha256": "07160a6f09538c706184f0ba0841cd9daf91609b345b1a1e472c3f1787bd19fd"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/model-explorer.mjs",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/model-explorer.mjs",
         "bytes": 3591,
         "sha256": "80571c38bc3ae5ba14e7b0d9eab8d9fe803b66b4f6f33cd76d910557ef84d2e5"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/capture-tool.js",
-        "bytes": 10020,
-        "sha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508"
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/capture-tool.js",
+        "bytes": 877,
+        "sha256": "1d3c8cde034c7038129ff0f981b9ff37f23eb6c3e99f61982278358b429ee59c"
       },
       {
-        "path": ".local/hard-jungle/accepted-2cfbd0944904/input-manifest.json",
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/input-manifest.json",
         "bytes": 1286,
         "sha256": "12cabd92ab5ab42a4df518570454f6c97a508026737ee3c737a386e21b8ea07e"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-d22bbb9ccbc5/capture-dependency.js",
+        "bytes": 9235,
+        "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
       }
     ],
-    "scope": "Full-suite independent browser captures and wrong-climb control. Conditional model explorer is port exploration, not an original/runtime fixture. No new full original-level capture."
-  }
+    "scope": "Full-suite independent browser captures and wrong-input control. Conditional model explorer is port exploration, not an original/runtime fixture. No new original whole-level parity or timing claim."
+  },
+  "captureDependencies": [
+    {
+      "path": "tests/browser/hard-expedition-route.js",
+      "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
+    }
+  ]
 }

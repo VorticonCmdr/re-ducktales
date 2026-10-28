@@ -519,9 +519,9 @@
   "inputManifestSha256": "950bb3fa79ddb69837c7017ee1c1aa55b32ccfd9bc6b9ed84f91bf42c238433e",
   "captureTool": "tests/browser/hard-expedition.spec.js",
   "captureToolRevision": {
-    "baseCommit": "70a467c",
-    "sha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508",
-    "note": "Shared Bermuda/Boola browser scenario; expected checkpoints remain separate from independently authored input streams."
+    "baseCommit": "b67010b",
+    "sha256": "1d3c8cde034c7038129ff0f981b9ff37f23eb6c3e99f61982278358b429ee59c",
+    "note": "Real-input flight, expedition, bank and restart logic shared through the separately pinned capture dependency. Earlier immutable receipts retain their tool identities."
   },
   "emulator": null,
   "originalEvidence": "Existing original jungle routine/presentation/control manifests remain separate. No new original Hard-flight or full variant2 gameplay capture is claimed.",
@@ -553,84 +553,101 @@
   },
   "verify": "npm run verify:boola-expedition",
   "artifacts": "Ignored .local/boola-jungle receipts and browser captures. Accepted hashes recorded after verification.",
-  "captureToolSha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508",
-  "negativeToolSha256": "0786a2f126b50837ca5f84a58665fe14791386adbc2906e2540f60caa43649a1",
+  "captureToolSha256": "1d3c8cde034c7038129ff0f981b9ff37f23eb6c3e99f61982278358b429ee59c",
+  "negativeToolSha256": "3df0388d4b53e14258a2ca4b2f2bbcb0a4e1651b031b34da25188c11a687c231",
   "receipt": {
     "command": "npm run verify",
     "exitCode": 0,
     "unit": 113,
-    "developmentBrowser": 63,
+    "developmentBrowser": 65,
     "productionBrowser": 2,
     "skipped": 0,
-    "archive": ".local/boola-jungle/accepted-2cfbd0944904/",
-    "captureToolSha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508",
+    "archive": ".local/boola-jungle/accepted-d22bbb9ccbc5/",
+    "captureToolSha256": "1d3c8cde034c7038129ff0f981b9ff37f23eb6c3e99f61982278358b429ee59c",
+    "captureDependencies": [
+      {
+        "path": "tests/browser/hard-expedition-route.js",
+        "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
+      }
+    ],
     "artifacts": [
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-entry.json",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/hard-entry.json",
         "bytes": 2286,
         "sha256": "8c89eb2179e34141bc2210f4c6d023ce2739b1635d343804f01a21bbdfab376a"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-entry.png",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/hard-entry.png",
         "bytes": 14423,
         "sha256": "8d8ce2060629d07ead890ae7f6d596e213b5f45a6dc319635a22095a829051d8"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-flight.json",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/hard-flight.json",
         "bytes": 62004,
         "sha256": "1e47fdb199f951b8c3dd9697a63ef0aba73095fe3d2791c31dbf0d52dbae35a2"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-jungle.json",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/hard-jungle.json",
         "bytes": 132222,
         "sha256": "ed7893b24491e094c6260eee57e80c8302a218f03f2e20a952fcf13230789d62"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-jungle-treasure.png",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/hard-jungle-treasure.png",
         "bytes": 16203,
         "sha256": "eea04bb87a65eb265593005a801ad34e0e9df99157ed3f55b2f0e36896336cee"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-return.json",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/hard-return.json",
         "bytes": 2372,
         "sha256": "b67b6594bd6c1042984963849a1f802f78fd8981320e533a4a90fac374c899b6"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-bank.json",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/hard-bank.json",
         "bytes": 2392,
         "sha256": "ac8f2dd0ce21d4175d4a97207194051919c5911165e2bc6fc0d72fe66d6577f9"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-events.json",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/hard-events.json",
         "bytes": 53462,
-        "sha256": "8dd0ca885a04d948cc2ef130140e9841421d471a2a6aaae1016d661e0ad21615"
+        "sha256": "ce709de4d53b6ef3db221eff6d1a227210a31cce330b9a95977d7f006785f68e"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/full-verify.log",
-        "bytes": 44365,
-        "sha256": "9a0e4d03950a38f29fb2c7932d1ef55c0c13ea603913368aa172de1ff63920a7"
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/full-verify.log",
+        "bytes": 48583,
+        "sha256": "7b944956b973851166b345827ee0a18f2b55ce866f2ddd8318446e6c237f61a7"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/negative-control.log",
-        "bytes": 3082,
-        "sha256": "8cd853d66be4fbf64dc38fa21ceb16347d455cce800c2aa8c0ee28a94880c99c"
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/negative-control.log",
+        "bytes": 3255,
+        "sha256": "71954dab6d69e097edf4e45fd4a27ba1b9c3e02d8707f5b9227366691a136a54"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/model-explorer.mjs",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/model-explorer.mjs",
         "bytes": 3651,
         "sha256": "fb8e4c0b6fb18eb200dcdaab23ce6ce3e6515ae057b6f43c309e5fe98366a7e7"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/capture-tool.js",
-        "bytes": 10020,
-        "sha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508"
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/capture-tool.js",
+        "bytes": 877,
+        "sha256": "1d3c8cde034c7038129ff0f981b9ff37f23eb6c3e99f61982278358b429ee59c"
       },
       {
-        "path": ".local/boola-jungle/accepted-2cfbd0944904/input-manifest.json",
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/input-manifest.json",
         "bytes": 1001,
         "sha256": "950bb3fa79ddb69837c7017ee1c1aa55b32ccfd9bc6b9ed84f91bf42c238433e"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-d22bbb9ccbc5/capture-dependency.js",
+        "bytes": 9235,
+        "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
       }
     ],
-    "scope": "Full-suite independent browser captures and wrong-climb control. Conditional model explorer is port exploration, not an original/runtime fixture. No new full original-level capture."
-  }
+    "scope": "Full-suite independent browser captures and wrong-input control. Conditional model explorer is port exploration, not an original/runtime fixture. No new original whole-level parity or timing claim."
+  },
+  "captureDependencies": [
+    {
+      "path": "tests/browser/hard-expedition-route.js",
+      "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
+    }
+  ]
 }

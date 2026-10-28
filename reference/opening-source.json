@@ -1,0 +1,67 @@
+{
+  "id": "opening-source-fb658562",
+  "baseCommit": "b67010b",
+  "buildManifest": "reference/build.json",
+  "executableSha256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "evidence": "Static original source and fresh read-only relocated code identity. Not an original animation execution, a replay, timer/pixel comparison, or machine checkpoint.",
+  "sourceRanges": [
+    {
+      "address": "12f5:09e1",
+      "at": 14641,
+      "length": 266,
+      "sha256": "830d18abf464851aedd93178d4b6633bc9d80485f8d769ec7b9fafd038ecbfee"
+    },
+    {
+      "address": "12f5:0d89",
+      "at": 15577,
+      "length": 101,
+      "sha256": "2fd2e8fa8de05874c1c4879655b4cb68789e6abd8e36aeb3a8498dc422b307ce"
+    },
+    {
+      "address": "12f5:05ba",
+      "at": 13578,
+      "length": 1063,
+      "sha256": "702410f4c37d478abd3c91d2699c34bc5c9ddea6fa210ab0352daf7c16b00058"
+    },
+    {
+      "address": "11c4:09f5",
+      "at": 9781,
+      "length": 88,
+      "sha256": "29c7a6a964b796914e9ba4d3c39ea964f1cdf051f5d0d6417effb6187bf9ba88"
+    }
+  ],
+  "mapping": {
+    "ghidraProgram": "DUCK_UNPACKED.EXE",
+    "ghidraAddress": "12f5:0d89",
+    "ghidraLoadBias": 4096,
+    "liveAddress": "04ea:0d89",
+    "loadBias": 501,
+    "imageOffset": 15577,
+    "length": 101,
+    "registers": {
+      "cs": 501,
+      "eip": 4214,
+      "ds": 5123,
+      "ss": 5123
+    },
+    "artifact": {
+      "path": ".local/opening-audit/accepted-00c60595554c/reveal-live.json",
+      "bytes": 1158,
+      "sha256": "00c60595554c416a623c3d9899103672c8c4bdc35e8b7e8a8e7ef0db56345b7d"
+    },
+    "captureMethod": "DOSBox MCP mem_read(segment=04ea,offset=0d89,length=101,view=bytes,include_registers=true). Read-only, existing paused native session; no execution or inputs changed.",
+    "startingState": "Preserved normal-core DOSBox0.84.0-vc1(f6d9b) DUCKTALE on read-only C game/. Fresh debug_status separately confirmed stop1478,01f5:1076,DS/SS1403,protected_mode=false. Register fields in this artifact are checked; stop/mode were observed separately.",
+    "comparison": "All101 bytes equal original image after original MZ relocations with load bias01f5; no byte exclusions.",
+    "negativeControl": "Flip captured byte0 in a temporary copy; the exact relocated-byte comparator must reject it."
+  },
+  "expectedMappingCheckpoints": 1,
+  "inputs": [],
+  "fittedInputs": [],
+  "injections": [],
+  "verify": "npm run verify:opening-source",
+  "checker": "scripts/verify-opening-source.js",
+  "checkerRevision": {
+    "baseCommit": "b67010b",
+    "sha256": "3e20f0fb9ab1311c3cb604b12d5193d0921fe7fc3722026f5e948500b127e976"
+  }
+}

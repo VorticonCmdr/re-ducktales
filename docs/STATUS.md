@@ -165,7 +165,10 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   including16 carried authored reader inputs. Native browser acceptance covers
   held/chord/release/reset/selection. The2-tick held-direction provider remains
   separate from unverified original keyboard typematic and rendering costs.
-- Ending bank celebration animation,striped reveals and music are incomplete.
+- Ending music now follows its original picture/replay start and choice-return
+  reset calls,including Yes bypassing the title and the reset after difficulty.
+  Bank celebration animation,striped reveals and full ending input-poll timing
+  remain incomplete.
   First/last credit names and farewell match exact original PNGs; all26 natural
   browser credit boundaries pass. Two original waits are exactly140 driver ticks;
   whole-sequence original presentation timing remains unproven. Losing ending
@@ -190,10 +193,10 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passes full `npm run verify`: 90 unit tests, 54 development
+Current milestone passes full `npm run verify`: 96 unit tests, 56 development
 browser scenarios and two production browser scenarios, plus all required
 original-data comparisons and the production build. Log:
-`.local/photography-input-full-verify.log`. Native browser routes cover persistent
+`.local/ending-audio-full-verify.log`. Native browser routes cover persistent
 Tandy money-bin cues, mute/reset and acknowledged device closure, original
 flight-engine word dispatch, and flight → cave → pit → natural sound wait →
 results. Compiled game/viewer tests load the real original folder. Sound 001
@@ -335,3 +338,13 @@ inputs,original artifacts,gameplay checkpoints,locals,pixels,RNG and outcomes;
 only the documented final clock endpoints/base change. The full suite passed
 with no skipped cases. See `reference/photography-input.json` and
 `docs/photography.md`. Original full-scene pause/IRQ timing remains unverified.
+
+
+Ending music now follows the original guarded words:1 before winner pictures,
+1 at the replay prompt,0 when either choice returns,and main's0 after difficulty
+confirmation or before No enters credits. Yes bypasses the browser title/music
+adapter. Six conditional controller cases and two real bank-journey Tandy browser
+routes pass,including original winner/replay pixels and exact acknowledged words.
+The full suite has no skipped cases. See `reference/ending-audio.json` and
+`docs/ending.md`. Ending bank animation,reveals,first Fire poll/global-key timing
+and original full audio timelines remain incomplete or unverified.

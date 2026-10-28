@@ -27,8 +27,9 @@ these are game routines,not the EXEPACK stub.
   low words. Player>=rival wins,including ties. Cash,stock quotes and stock counts
   are not added by this comparison. Scores are not coerced to unsigned ordering.
 - `12f5:0ee7` selects picture helper13 for a win,14 for a loss: MAIN36/37.
-  `12f5:0f26` then selects helper12/11: MAIN39/33. Each waits100 dialogue polls,
-  seven driver ticks per poll. Fire shortens at a poll boundary.
+  `12f5:0f26` then selects helper12/11: MAIN39/33. Each calls shared09f5 for100 reads. A neutral read waits seven driver ticks;
+  Fire is checked before that wait. The current ending adapter still latches
+  Fire to its seven-tick boundaries; full reader/flush timing is pending.
 - `12f5:0f55` defaults to Yes. Arrow directions toggle the choice; held directions
   have a14-tick delay/flush. Fire returns0 for Yes,1 for No. The caller at main0ff1
   sends Yes to difficulty `12f5:0aeb`,then initializes a new game. No calls credits
@@ -40,8 +41,9 @@ these are game routines,not the EXEPACK stub.
 `src/game/ending.js` owns account arithmetic and ending/menu clocks. Simulation
 is independent of the DOM. The existing scheduler supplies driver ticks and
 semantic input; the renderer only observes state. Complete original bank
-celebration animation,striped picture reveals,CPU-bound redraw costs and ending
-music are not established. Credits first/last text and farewell pixels now match
+celebration animation,striped picture reveals,CPU-bound redraw costs and full
+input-poll alignment are not established. Ending music dispatch is now translated
+as described below. Credits first/last text and farewell pixels now match
 the original; two isolated20-poll waits also match140 driver ticks. This does
 not establish whole-sequence original elapsed time. Losing pictures are
 statically identified and browser rendered; they have no original PNG capture yet.
@@ -138,3 +140,55 @@ Normal rival progression is now connected; see [its evidence](rival.md). Exact
 day30 bank cleanup advances one rival turn before the winner comparison. Past-day30
 cleanup remains skipped. The ending cases above do not activate normal progression
 (the flight race forces its separate claim),so they do not prove a whole campaign.
+
+
+## Ending music and replay return (2026-10-28)
+
+Main0f9e..0faf checks the sound flag and starts request1 before the signed winner
+comparison. Both winning and losing pictures therefore receive the same song.
+Resident12f5:0f74..0f85 requests1 again before displaying Play Again. Its
+1080..1090 epilogue checks the flag and requests0 before returning either choice.
+Main0ff8 sends Yes directly to difficulty12f5:0aeb, then main1007 requests0 after
+that configuration returns. No skips difficulty and receives the same main reset
+before entering credits. The two No resets are separate original calls.
+
+`reference/ending-audio.json` pins four ranges of the original unpacked resident
+image against the supported build. Disassembly establishes the word argument,
+far indirect sound call and caller cleanup. The recovered replay C incorrectly
+reinitializes a choice local; its XOR byte and return branches were checked in
+original disassembly instead. No new original audio timeline capture is claimed.
+
+The application now starts the song at ending entry, preserves it across both
+pictures, requests it again on replay entry and dispatches the guarded reset
+calls in their source order. Replay returns an explicit choice event to the
+application; unknown ending effects stop with a diagnostic. Audio completion
+never advances these scene phases. The persistent sound device keeps its own
+sequencer clock and channel priorities. Mute/reset uses the existing browser
+adapter; unmuting within a phase does not restart the song. The next original
+phase-entry call starts it if sound is enabled then.
+
+Yes initializes difficulty directly instead of invoking the browser title
+restart. This also removes an unintended extra title-song request from the old
+internal restart path. A small continuation flag places main's final reset after
+actual difficulty confirmation. Explicit browser Restart retains its title and
+title music behavior. No consumes both original reset calls before credits;
+quitting a campaign directly to credits starts no ending song.
+
+Six conditional controller cases cover both score outcomes, start/replay/reset
+order, Yes/No, muted transitions, explicit Restart, direct quit and unsupported
+effects. A missing replay start must be rejected. Two independent native browser
+routes reach a tied winning ending through five real bank round trips, match the
+original winner/replay pixels, exercise Tandy sample output and require the
+acknowledged words `[1,1,0,0]`. Yes requires the final0 only after difficulty
+confirmation; No requires both zeros before credits. No state,score,date or RNG
+is injected into those browser journeys. The existing earned-score winning and
+real-flight losing routes remain separate checks.
+
+This milestone does not translate bank animations,striped reveals,immediate
+first ending Fire polls,global-key reader alignment,original IRQ phase or hardware
+waveform timing. Existing ending/credits waits and browser adapter behavior are
+retained. A working music/choice route does not prove full ending timing parity.
+Run `node --test tests/ending-audio.test.js`, `npm run verify:ending`, and
+`npm run test:browser -- tests/browser/ending-audio.spec.js tests/browser/ending.spec.js`.
+These are included in `npm run verify`. Screenshots stay local at
+`.local/browser-results/ending-audio-yes.png` and `ending-audio-no.png`.

@@ -28,7 +28,7 @@ export function campaignWinner(banked, rivalBanked) {
 // Resident12f5:0ee7/0f26/0f55/1098. Rendering and external input are separate.
 // Picture reveals/page-copy costs are not included in these dialogue waits.
 export class CampaignEnding {
-  constructor({ banked, rivalBanked, day }) {
+  constructor({ banked, rivalBanked, day, audioEnabled = false }) {
     this.banked = u32(banked);
     this.rivalBanked = u32(rivalBanked);
     this.day = day;
@@ -40,6 +40,19 @@ export class CampaignEnding {
     this.repeat = 0;
     this.result = null;
     this.credit = -1;
+    this.events = [];
+    this.setAudioEnabled(audioEnabled);
+  }
+  setAudioEnabled(enabled) {
+    if (typeof enabled !== "boolean")
+      throw Error("Invalid ending audio setting");
+    this.audioEnabled = enabled;
+  }
+  sound(id) {
+    if (this.audioEnabled) this.events.push({ type: "sound", id });
+  }
+  drainEvents() {
+    return this.events.splice(0);
   }
   get asset() {
     if (this.phase === "cover") return this.won ? 36 : 37;
@@ -51,6 +64,8 @@ export class CampaignEnding {
   input(event) {
     if (event.type === "fire") {
       if (this.phase === "replay") {
+        this.sound(0); // Resident12f5:1080..1091, before either return value.
+        this.events.push({ type: "replay-return", choice: this.choice });
         if (this.choice === 0) this.result = "again";
         else this.beginCredits();
       } else this.skipRequested = true;
@@ -88,8 +103,10 @@ export class CampaignEnding {
     if (this.phase === "cover") {
       this.phase = "celebration";
       this.remaining = 700;
-    } else if (this.phase === "celebration") this.phase = "replay";
-    else if (this.phase === "credits") {
+    } else if (this.phase === "celebration") {
+      this.phase = "replay";
+      this.sound(1); // Resident12f5:0f74..0f85 starts the replay-screen song.
+    } else if (this.phase === "credits") {
       if (skipped || controls.fire || ++this.credit >= 26) {
         this.phase = "farewell";
         this.remaining = 40 * 7;

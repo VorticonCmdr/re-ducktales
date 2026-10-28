@@ -63,6 +63,7 @@ export class Game {
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
     this.scene = "title";
     this.difficulty = 0;
+    this.difficultyFromEnding = false;
     this.money = 0;
     this.rareCoinTaken = false;
     this.biosSeed = u16(biosSeed);
@@ -253,6 +254,7 @@ export class Game {
       this.visitNotice?.setAudioEnabled(event.enabled);
       this.rivalReport?.setAudioEnabled(event.enabled);
       this.atomicTransport?.setAudioEnabled(event.enabled);
+      this.ending?.setAudioEnabled(event.enabled);
       this.startTitleMusic();
       return;
     }
@@ -264,8 +266,9 @@ export class Game {
       return;
     }
     if (event.type === "restart") {
-      this.scene = "title";
+      this.scene = event.skipTitle === true ? "difficulty" : "title";
       this.difficulty = 0;
+      this.difficultyFromEnding = event.skipTitle === true;
       this.tick = 0;
       this.bin = null;
       this.departure = null;
@@ -297,7 +300,7 @@ export class Game {
         : null;
       this.seed = this.campaign?.seed ?? this.biosSeed;
       this.rareCoinTaken = false;
-      this.effects.push({ type: "stopAudio" });
+      if (event.skipTitle !== true) this.effects.push({ type: "stopAudio" });
       this.titleMusicRequested = false;
       this.startTitleMusic();
       return;
@@ -340,11 +343,7 @@ export class Game {
     }
     if (this.scene === "ending") {
       this.ending.input(event);
-      if (this.ending.result === "again") {
-        this.handleInput({ type: "restart" });
-        this.scene = "difficulty";
-        this.effects.push({ type: "stopAudio" });
-      }
+      this.collectEnding();
       return;
     }
     if (this.scene === "title" && event.type === "fire") {
@@ -357,6 +356,9 @@ export class Game {
       if (event.type === "up") this.difficulty = (this.difficulty + 2) % 3;
       if (event.type === "down") this.difficulty = (this.difficulty + 1) % 3;
       if (event.type === "fire") {
+        if (this.difficultyFromEnding && this.audioEnabled)
+          this.effects.push({ type: "sound", id: 0 });
+        this.difficultyFromEnding = false;
         this.scene = "office";
         this.settleMarket();
       }
@@ -624,6 +626,7 @@ export class Game {
     }
     if (this.scene === "ending") {
       this.ending.advanceTick(this.controls);
+      this.collectEnding();
       return;
     }
     if (this.scene === "investments") {
@@ -1237,9 +1240,22 @@ export class Game {
       day: c.day,
       banked: c.banked,
       rivalBanked: c.rival.banked ?? 0,
+      audioEnabled: this.audioEnabled,
     });
     this.scene = "ending";
-    this.effects.push({ type: "stopAudio" });
+    if (this.audioEnabled) this.effects.push({ type: "sound", id: 1 });
+    else this.effects.push({ type: "stopAudio" });
+  }
+  collectEnding() {
+    for (const event of this.ending.drainEvents()) {
+      if (event.type === "sound") this.effects.push(event);
+      else if (event.type === "replay-return" && event.choice === 0) {
+        // Main0ff8 enters difficulty directly; reset1007 follows its return.
+        this.handleInput({ type: "restart", skipTitle: true });
+      } else if (event.type === "replay-return" && event.choice === 1) {
+        if (this.audioEnabled) this.effects.push({ type: "sound", id: 0 });
+      } else throw Error("Unsupported ending effect");
+    }
   }
   fail(error) {
     this.diagnostic = error instanceof Error ? error.message : String(error);

@@ -1,0 +1,78 @@
+{
+  "id": "ending-audio-fb658562",
+  "baseRevision": "d775c18",
+  "buildManifest": "reference/build.json",
+  "source": {
+    "program": "DUCK_UNPACKED.EXE",
+    "format": "Actual resident x86 LE16 real-mode code unpacked from MZ EXEPACK; far caller-cleaned word sound API",
+    "ranges": [
+      {
+        "offset": 3998,
+        "length": 18,
+        "purpose": "Main0f9e: sound flag and request1 before winner branch",
+        "sha256": "eb9c6a1a1bca2eed7a45a22667a37975460184a40086aa58234bb178584afc21"
+      },
+      {
+        "offset": 16068,
+        "length": 18,
+        "purpose": "Resident12f5:0f74: replay-screen request1",
+        "sha256": "eb9c6a1a1bca2eed7a45a22667a37975460184a40086aa58234bb178584afc21"
+      },
+      {
+        "offset": 16336,
+        "length": 17,
+        "purpose": "Resident12f5:1080: guarded reset0 before returning either choice",
+        "sha256": "e6bc8fc28b928f0ee70c2c4eb497d603f87a9707291100d4b3aee313bc9c4ad3"
+      },
+      {
+        "offset": 4076,
+        "length": 48,
+        "purpose": "Main0fec: Yes calls difficulty directly; main reset follows difficulty or precedes No credits",
+        "sha256": "02666288cf0869876dc10f016ae509ebc933ddf971ebc87bdb4abb069a4c236a"
+      }
+    ]
+  },
+  "evidence": "Statically inferred original request lifecycle, conditional controller checks and independent native browser acceptance. No new original audio timeline, waveform or complete ending-timing capture.",
+  "relatedEvidence": [
+    "reference/ending.json",
+    "reference/credits.json",
+    "reference/tandy-game.json",
+    "reference/tandy-live.json"
+  ],
+  "environment": {
+    "audio": "Current sound-enabled flag gates source requests. Sound001 uses the persistent selected device. Completion does not advance ending phases. Muting resets through the existing browser adapter; unmuting within a phase does not restart music.",
+    "choice": "Replay returns an explicit choice event to the application. Yes initializes difficulty directly, bypassing the browser title and its music. Main reset0 occurs after difficulty confirmation; No receives the replay reset0 and main reset0 before credits.",
+    "unchanged": "Existing picture/credits waits, input polling, redraw and bank-animation adapters are retained. Original global-key alignment, first-poll/Fire timing, picture reveals and bank animation remain incomplete or unverified."
+  },
+  "scenario": {
+    "unitCases": 6,
+    "browserCases": 2,
+    "inputs": "Authored events in tests/ending-audio.test.js; real browser map journeys, Fire, arrows and sound settings in tests/browser/ending-audio.spec.js. No expected-derived state or memory injection.",
+    "unitScope": "Conditional application ending entry, both winner outcomes, replay Yes/No, muted transitions, explicit Restart distinction, quit-without-ending-song, and unsupported-effect diagnostics.",
+    "browserScope": "Actual title -> difficulty -> office -> five bank round trips -> tied winning ending -> both pictures -> replay -> Yes/new campaign or No/credits. Real persistent Tandy requests/status/sample output; existing speaker adapter shares the same dispatched source words.",
+    "negativeControl": "Suppress replay sound emission and require the request checker to reject it.",
+    "comparison": "Exact request order, guards, choice transitions, reset placement, no phantom title start, and native acknowledgement continuity. Existing deterministic ending/credits and original PNG checks remain required."
+  },
+  "artifacts": "Local browser screenshots .local/browser-results/ending-audio-yes.png and ending-audio-no.png; original artifacts required by related evidence remain local.",
+  "verify": [
+    "node --test tests/ending-audio.test.js",
+    "npm run verify:ending",
+    "npm run test:browser -- tests/browser/ending-audio.spec.js tests/browser/ending.spec.js",
+    "npm run verify"
+  ],
+  "receipts": {
+    "scope": "Run-specific port acceptance outputs; not original full ending/audio captures or replay inputs.",
+    "fullVerification": {
+      "path": ".local/ending-audio-full-verify.log",
+      "sha256": "02e87717b604fca6467f56aa726c07246d8909bd95004b429baad92564e496b8"
+    },
+    "yesScreenshot": {
+      "path": ".local/ending-audio-full-yes.png",
+      "sha256": "52a68736522855c9e376f9ac1f50c620e6561474cca38e0fa2791ee2da0b3280"
+    },
+    "noScreenshot": {
+      "path": ".local/ending-audio-full-no.png",
+      "sha256": "38a5e567a37be87b73c08f04718f4da7c929c7015d1588c3d2541b38607c3d2a"
+    }
+  }
+}

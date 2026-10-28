@@ -19,6 +19,9 @@ finishable. This is completion work, not only final polish.
 - Mountain walking/hook/climbing/hazards → complete variant0 ascent → reward/map.
   Jungle jumping/climbing/vines/platforms/hazards → complete Easy/variant0 chest
   route → reward/map. Failures and retries also work; each has three lives.
+- Hard → win the opening race → Bermuda Triangle jungle variant1 → treasure with
+  three lives →2050 cash → bank on day6 → clean Restart. All444 authored jungle
+  inputs and26 actor/RNG checkpoints are required. See [Hard route](hard-expeditions.md).
 - Photography aiming/twelve shots → results/reward → map, including the original
   shared-score quirk and duplicate protection.
 - Earn the Atomic Matter Transmitter → office → atomic journey → next expedition,
@@ -61,14 +64,13 @@ and actual browser controls/rendering/audio. None alone proves whole-game parity
 Manifests pin source/artifact identities, setup recipes, events and exclusions.
 Conditional injections and provider assumptions are documented, not hidden.
 
-The lightning-input milestone passes full `npm run verify`:113 unit cases,61 development
+The Hard-route milestone passes full `npm run verify`:113 unit cases,62 development
 and2 production browser scenarios, with zero skips, all required original-data
-comparisons and the production build. The new checks pin the original lightning
-switch/call/flush bytes, reject a missing callback, and verify generated-strike
-input ordering plus real browser recovery. The component Pause trigger is an
-authored adversarial test, not an original lightning input timeline.
-The current full receipt is `.local/flight-lightning/full-verify.log`.
-Earlier bank and mixed-campaign receipts remain preserved; the mixed route still
+comparisons and the production build. The new browser case wins a Hard race in226
+flight actions, consumes444 jungle inputs at26 exact actor/RNG checkpoints, banks
+2050 and restarts. A wrong first climb must fail at checkpoint22. The current
+immutable evidence archive is referenced by `.local/hard-jungle/receipt.json`.
+Earlier lightning, bank and mixed-campaign receipts remain preserved; the mixed route still
 matches all19 campaign checkpoints. [Historical notes](status-history.md) retain older
 receipts and investigations without describing them as current state.
 
@@ -95,18 +97,19 @@ whole-game IRQ alignment remain unverified.
   unproven. Unsupported paths stop in development; no recovery demo counts as
   strict acceptance.
 
-Next playable milestone: extend linked campaigns to another difficulty and other
-expedition variants, starting with a winning Hard flight into Bermuda Triangle's
-variant1 jungle. The exploratory Hard controller still loses its race; a model
-controller win alone is not browser acceptance. The investigation found and fixed
-the separate lightning input-clear omission. The current mixed Easy campaign
-still completes; arbitrary routes and original whole-scene parity remain unproven.
+Next playable milestone: complete jungle variant2 and the remaining mountain
+variants through the browser, investigating the first unsupported behavior or
+divergence against the original. Hard flight and Bermuda variant1 now have actual
+browser completion evidence; a complete thirty-day Hard campaign, arbitrary routes
+and original whole-scene parity remain unproven.
 
 ## Exact verification commands
 
 `npm run verify` is the required full gate. It fails on missing/corrupt required
 fixtures, incomplete case/input counts, unsupported paths and comparison failures.
 It includes unit checks, original comparisons, browser scenarios and production.
+For the Hard race/jungle/bank/restart route run `npm run verify:hard-expedition`.
+Its wrong-climb control must fail at checkpoint22, not at setup or a timeout.
 For the lightning input boundary run `npm run verify:flight-lightning`. Its
 missing-provider control must fail at the intended natural collision boundary.
 For the linked campaign run `npm run verify:mixed-campaign` and
@@ -117,7 +120,7 @@ For bank work run `npm run verify:bank`, `node --test tests/bank.test.js`, and
 For local testing run `npm run dev -- --port 5186`.
 The user's integrated checkout is served on5187. No push or deployment is authorized.
 
-Detailed evidence: [mixed campaign](mixed-campaign.md), [bank](bank.md), [endings](ending.md), [flight](flight.md),
+Detailed evidence: [Hard route](hard-expeditions.md), [mixed campaign](mixed-campaign.md), [bank](bank.md), [endings](ending.md), [flight](flight.md),
 [caves](cave.md), [mountains](mountain.md), [jungle](jungle.md),
 [photography](photography.md), [trading](investments.md), [rival](rival.md),
 [atomic travel](atomic-transport.md), [controls](system-controls.md),

@@ -1,0 +1,83 @@
+{
+  "id": "hard-bermuda-authored-inputs",
+  "recipe": "Fresh muted title: Space,Up,Enter for Hard; open map; click68,77; Space,Right,Space; Space to fly. After jungle treasure, Space returns to map; click212,131 and Space travels to bank; hold Fire through bank return; use Restart.",
+  "flight": {
+    "altitude": [25, 40],
+    "climbHeading": 3,
+    "approachTile": 37
+  },
+  "jungle": [
+    {
+      "byte": 3,
+      "count": 12
+    },
+    {
+      "byte": 1,
+      "count": 10
+    },
+    {
+      "byte": 3,
+      "count": 30
+    },
+    {
+      "byte": 1,
+      "count": 10
+    },
+    {
+      "byte": 3,
+      "count": 51
+    },
+    {
+      "byte": 1,
+      "count": 15
+    },
+    {
+      "byte": 3,
+      "count": 35
+    },
+    {
+      "byte": 1,
+      "count": 15
+    },
+    {
+      "byte": 3,
+      "count": 36
+    },
+    {
+      "byte": 1,
+      "count": 10
+    },
+    {
+      "byte": 3,
+      "count": 27
+    },
+    {
+      "byte": 0,
+      "count": 20
+    },
+    {
+      "byte": 3,
+      "count": 42
+    },
+    {
+      "byte": 0,
+      "count": 6
+    },
+    {
+      "byte": 1,
+      "count": 28
+    },
+    {
+      "byte": 3,
+      "count": 84
+    },
+    {
+      "byte": 0,
+      "count": 6
+    },
+    {
+      "byte": 1,
+      "count": 7
+    }
+  ]
+}

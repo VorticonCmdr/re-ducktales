@@ -6,7 +6,10 @@ Original assets,maps,actor/hazard logic,dirty rectangles and two video pages run
 together. A $50 pickup was manually exercised;automated browser coverage includes
 variant0 controls,three-life failure,retry and restart. A complete Easy/variant0
 route reaches the chest with one life,awards$1000 and returns to the campaign.
-Other variants/difficulties and original full-loop timing still need acceptance.
+The [Hard Bermuda route](hard-expeditions.md) now completes variant1 with three
+lives,50 in pickups and the2000 treasure, then banks and restarts. Its444 authored
+inputs and26 actor/RNG checkpoints match the browser. Variant2, other linked
+routes and original full-loop timing still need acceptance.
 
 The sections below preserve each comparison's scope. The runtime section at the
 end records the independent factory,clock providers and current browser route.

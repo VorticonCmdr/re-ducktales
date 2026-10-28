@@ -1,0 +1,576 @@
+{
+  "id": "hard-bermuda-jungle-browser",
+  "buildManifest": "reference/build.json",
+  "baseCommit": "c173e55",
+  "evidence": "Independent port/browser route, not original whole-level parity. Authored controls discovered by bounded port exploration. Expected actor checkpoints are port-model regressions, separate from the control stream.",
+  "environment": {
+    "biosSeed": 0,
+    "difficulty": 2,
+    "audio": false,
+    "displayMilliseconds": 8,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086
+  },
+  "flight": {
+    "seed": 54448,
+    "days": 1,
+    "racing": true,
+    "expectedFrames": 226,
+    "expectedSeed": 16696
+  },
+  "jungle": {
+    "variant": 1,
+    "location": 2,
+    "entrySeed": 15567,
+    "expectedInputCount": 444,
+    "expectedCheckpointCount": 26,
+    "comparisonFields": [
+      "x",
+      "y",
+      "column",
+      "row",
+      "action",
+      "frame",
+      "facing",
+      "lives",
+      "scroll",
+      "money",
+      "seed"
+    ],
+    "checkpoints": [
+      {
+        "inputCount": 12,
+        "state": {
+          "x": 40,
+          "y": 80,
+          "column": 0,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 62426
+        }
+      },
+      {
+        "inputCount": 22,
+        "state": {
+          "x": 68,
+          "y": 48,
+          "column": 1,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 8582
+        }
+      },
+      {
+        "inputCount": 52,
+        "state": {
+          "x": 148,
+          "y": 48,
+          "column": 2,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 6995
+        }
+      },
+      {
+        "inputCount": 62,
+        "state": {
+          "x": 176,
+          "y": 16,
+          "column": 3,
+          "row": 0,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 52219
+        }
+      },
+      {
+        "inputCount": 113,
+        "state": {
+          "x": 308,
+          "y": 48,
+          "column": 5,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 104,
+          "money": 50,
+          "seed": 30971
+        }
+      },
+      {
+        "inputCount": 116,
+        "state": {
+          "x": 316,
+          "y": 44,
+          "column": 6,
+          "row": 0,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 104,
+          "money": 50,
+          "seed": 54807
+        }
+      },
+      {
+        "inputCount": 128,
+        "state": {
+          "x": 367,
+          "y": 46,
+          "column": 7,
+          "row": 0,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 136,
+          "money": 50,
+          "seed": 7794
+        }
+      },
+      {
+        "inputCount": 129,
+        "state": {
+          "x": 367,
+          "y": 48,
+          "column": 7,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 144,
+          "money": 50,
+          "seed": 7794
+        }
+      },
+      {
+        "inputCount": 174,
+        "state": {
+          "x": 479,
+          "y": 48,
+          "column": 9,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 320,
+          "money": 50,
+          "seed": 4656
+        }
+      },
+      {
+        "inputCount": 178,
+        "state": {
+          "x": 479,
+          "y": 48,
+          "column": 9,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 320,
+          "money": 50,
+          "seed": 42755
+        }
+      },
+      {
+        "inputCount": 214,
+        "state": {
+          "x": 570,
+          "y": 63,
+          "column": 10,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 360,
+          "money": 50,
+          "seed": 52142
+        }
+      },
+      {
+        "inputCount": 224,
+        "state": {
+          "x": 603,
+          "y": 16,
+          "column": 11,
+          "row": 0,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 424,
+          "money": 50,
+          "seed": 52160
+        }
+      },
+      {
+        "inputCount": 251,
+        "state": {
+          "x": 671,
+          "y": 48,
+          "column": 12,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 464,
+          "money": 50,
+          "seed": 54248
+        }
+      },
+      {
+        "inputCount": 271,
+        "state": {
+          "x": 671,
+          "y": 48,
+          "column": 12,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 528,
+          "money": 50,
+          "seed": 27715
+        }
+      },
+      {
+        "inputCount": 272,
+        "state": {
+          "x": 687,
+          "y": 48,
+          "column": 13,
+          "row": 1,
+          "action": 1,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 528,
+          "money": 50,
+          "seed": 8771
+        }
+      },
+      {
+        "inputCount": 296,
+        "state": {
+          "x": 751,
+          "y": 48,
+          "column": 14,
+          "row": 1,
+          "action": 1,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 528,
+          "money": 50,
+          "seed": 34812
+        }
+      },
+      {
+        "inputCount": 313,
+        "state": {
+          "x": 783,
+          "y": 48,
+          "column": 14,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 568,
+          "money": 50,
+          "seed": 42268
+        }
+      },
+      {
+        "inputCount": 319,
+        "state": {
+          "x": 783,
+          "y": 48,
+          "column": 14,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 616,
+          "money": 50,
+          "seed": 42268
+        }
+      },
+      {
+        "inputCount": 322,
+        "state": {
+          "x": 795,
+          "y": 48,
+          "column": 15,
+          "row": 1,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 640,
+          "money": 50,
+          "seed": 42268
+        }
+      },
+      {
+        "inputCount": 347,
+        "state": {
+          "x": 896,
+          "y": 40,
+          "column": 16,
+          "row": 0,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 688,
+          "money": 50,
+          "seed": 33809
+        }
+      },
+      {
+        "inputCount": 348,
+        "state": {
+          "x": 896,
+          "y": 48,
+          "column": 16,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 696,
+          "money": 50,
+          "seed": 33809
+        }
+      },
+      {
+        "inputCount": 377,
+        "state": {
+          "x": 964,
+          "y": 80,
+          "column": 18,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 744,
+          "money": 50,
+          "seed": 22763
+        }
+      },
+      {
+        "inputCount": 401,
+        "state": {
+          "x": 1028,
+          "y": 80,
+          "column": 19,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 848,
+          "money": 50,
+          "seed": 25433
+        }
+      },
+      {
+        "inputCount": 431,
+        "state": {
+          "x": 1103,
+          "y": 96,
+          "column": 20,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 936,
+          "money": 50,
+          "seed": 15000
+        }
+      },
+      {
+        "inputCount": 437,
+        "state": {
+          "x": 1108,
+          "y": 80,
+          "column": 20,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 960,
+          "money": 50,
+          "seed": 38268
+        }
+      },
+      {
+        "inputCount": 444,
+        "state": {
+          "x": 1133,
+          "y": 36,
+          "column": 21,
+          "row": 0,
+          "action": 3,
+          "frame": 6,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 960,
+          "money": 50,
+          "seed": 4774
+        }
+      }
+    ],
+    "expectedOutcome": {
+      "code": 1,
+      "money": 50,
+      "seed": 4774
+    },
+    "treasure": 2000,
+    "expectedCampaignMoney": 2050,
+    "expectedCampaignDay": 3
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "limits": "The model explorer carries its winning flight memory into jungle, then uses an isolated driver/retrace phase. Browser acceptance carries its own clocks and state. Only listed actor/RNG fields compare across providers; device/presentation counters are not asserted as native timing. The authored neutral waits are player input, not timer or RNG injections.",
+  "inputManifest": "reference/hard-expedition-inputs.json",
+  "inputManifestSha256": "197edebcd2b15c8c297dba0b2fe25999ac6c4a5f8351bc37bdb5428e170f64e6",
+  "captureTool": "tests/browser/hard-expedition.spec.js",
+  "captureToolRevision": {
+    "baseCommit": "c173e55",
+    "sha256": "5d6fd5d101ea4739bb3ee4513e0c572d3fced9d6a74e2d23ac925afef96304b9"
+  },
+  "emulator": null,
+  "originalEvidence": "Existing original jungle routine/presentation/control manifests remain separate. No new original Hard-flight or full variant1 gameplay capture is claimed.",
+  "expectedScenarioCount": 1,
+  "campaign": {
+    "afterTreasure": {
+      "day": 3,
+      "money": 2050,
+      "playerCollected": [
+        2
+      ]
+    },
+    "afterBank": {
+      "day": 6,
+      "money": 0,
+      "banked": 2050
+    },
+    "afterRestart": {
+      "scene": "title",
+      "day": 1,
+      "money": 0,
+      "banked": 0
+    }
+  },
+  "negativeControl": {
+    "mode": "wrong-climb",
+    "change": "Input13 Up becomes Right; counts unchanged.",
+    "requiredFailure": "Hard jungle checkpoint22 x"
+  },
+  "verify": "npm run verify:hard-expedition",
+  "artifacts": "Ignored .local/hard-jungle/ receipt and archived actual key/pointer events, flight/jungle snapshots, return/bank states and treasure screenshot. These are diagnostic port captures; original build files are required setup inputs. Accepted artifact checksums are recorded in this manifest.",
+  "captureToolSha256": "5d6fd5d101ea4739bb3ee4513e0c572d3fced9d6a74e2d23ac925afef96304b9",
+  "negativeToolSha256": "0d09c42284e9937c7904dcb9cfd27e0afbdd246c12ef63fdcbf114faf3843929",
+  "receipt": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "unit": 113,
+    "developmentBrowser": 62,
+    "productionBrowser": 2,
+    "skipped": 0,
+    "archive": ".local/hard-jungle/accepted-5d6fd5d101ea/",
+    "artifacts": [
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/hard-entry.json",
+        "bytes": 2285,
+        "sha256": "70f1205b5c5ff33f7306734625f932302f77d7543f3169852414355023c8f286"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/hard-entry.png",
+        "bytes": 14423,
+        "sha256": "8d8ce2060629d07ead890ae7f6d596e213b5f45a6dc319635a22095a829051d8"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/hard-flight.json",
+        "bytes": 62004,
+        "sha256": "1e47fdb199f951b8c3dd9697a63ef0aba73095fe3d2791c31dbf0d52dbae35a2"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/hard-jungle.json",
+        "bytes": 139414,
+        "sha256": "5e9c2e9eb552b04290ef3545428f0c755579df5f15a06f0e8764ea138ae7f58b"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/hard-jungle-treasure.png",
+        "bytes": 16207,
+        "sha256": "e780d23803123d3c13fab05e5d3dfc308580e3e0f75bb277e0252dd1b0ca2e94"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/hard-return.json",
+        "bytes": 2372,
+        "sha256": "a334b075b08e50d0f8c7e9fc59b03da9b84e1f1629fc1785119c7740e3002c92"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/hard-bank.json",
+        "bytes": 2410,
+        "sha256": "46178f81426b0759721ff7892a4c1dbfa71ef80fa9a4f618657ed5595dbe8e67"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/hard-events.json",
+        "bytes": 54210,
+        "sha256": "2af8d264d806f693150a7897e05cce7836e8ee2bea4f1573cdf574cdfce16030"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/full-verify.log",
+        "bytes": 42247,
+        "sha256": "e828fc5c689903fde55d168fe8edbc02a19c317e304ff09ec53f36c459c2c337"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/negative-control.log",
+        "bytes": 3064,
+        "sha256": "765a93c916b3d294b360bc4e36b7a975c32aff83cb50982052b7f391576b5cac"
+      },
+      {
+        "path": ".local/hard-jungle/accepted-5d6fd5d101ea/model-explorer.mjs",
+        "bytes": 3591,
+        "sha256": "80571c38bc3ae5ba14e7b0d9eab8d9fe803b66b4f6f33cd76d910557ef84d2e5"
+      }
+    ],
+    "scope": "Full-suite browser captures and negative control. model-explorer.mjs is conditional port exploration, not an original/runtime fixture."
+  }
+}

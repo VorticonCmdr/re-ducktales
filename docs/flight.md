@@ -530,10 +530,12 @@ neither is asserted as original CPU/IRQ timing. Run
 `npm run verify:flight-lightning`; the source and negative checks and browser case
 are also included in full verification.
 
-Hard winning-flight and alternate-jungle completion remain unfinished. The
-exploratory Hard controller crashed or lost to Glomgold; those outcomes are not
-accepted as proof of a game defect or a completed route. They remain separate
-from strict acceptance in ignored `.local/flight-lightning/` storage.
+Earlier exploratory Hard controllers crashed or lost to Glomgold; those outcomes
+were not proof of a game defect or a completed route. They remain separately
+archived in ignored `.local/flight-lightning/` storage. The later
+[Hard route](hard-expeditions.md) aligns controller observation with the browser's
+display callbacks, wins in226 actions and completes Bermuda's jungle, bank and
+Restart. This browser proof does not establish original whole-flight parity.
 
 The lightning milestone passes full `npm run verify`:113 unit checks,61 development
 browser scenarios and2 production scenarios, zero skips, all required original

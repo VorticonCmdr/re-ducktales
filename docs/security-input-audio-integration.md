@@ -38,6 +38,7 @@ npm run verify:tandy-game
 npm run verify:system-controls
 npm run verify:cave-input
 node scripts/verify-photography-runtime.js
+node scripts/verify-security-input-audio-receipts.js
 ```
 
 The original comparison fixtures and supported originals must be installed.
@@ -50,6 +51,11 @@ its conditional animation/pixel comparisons,carried replays,resource cases and
 
 Private run results, four pictures, four focused verification logs and122 frozen
 source files are retained in `.local/security-input-audio-integration-20261029/`.
+The [acceptance manifest](../reference/security-input-audio-integration.json)
+pins source commit04430fc and11 private artifact identities. Its receipt checker
+requires all six individual passes,zero skips/retries,all122 exact source
+identities and two deliberately damaged-report rejections. It validates retained
+historical acceptance; the Playwright command runs the current browser code.
 Remaining focused expedition and lightning recordings must still be migrated
 through the security RNG change. The complete branch gate must pass before
 security is merged into main.

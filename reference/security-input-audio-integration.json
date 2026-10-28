@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "integrationCommit": "04430fc67fce193c866c1ebc979176fa464b0162",
+  "runtimeCommit": "9cfc0a3",
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "independent browser input/audio acceptance; adaptive player flight,not native whole-scene timing or fixed-stream campaign parity",
+  "fullBranchGate": "pending",
+  "expectedCaseCount": 6,
+  "expectedSourceCount": 122,
+  "sourceRoot": ".local/security-input-audio-integration-20261029/sources",
+  "sourceRecord": ".local/security-input-audio-integration-20261029/source-revision.json",
+  "results": ".local/security-input-audio-integration-20261029/results.json",
+  "artifacts": [
+    {
+      "path": ".local/security-input-audio-integration-20261029/results.json",
+      "bytes": 9829,
+      "sha256": "6158ceb4dc2780abeda1c3b199ad1de3215948dfc752e5cbbc2ed79ed00f585c"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/run.log",
+      "bytes": 1272,
+      "sha256": "0f8f35079896de445c947c8b0b30e6951cfcfe6009cd98b05d936604edab3f3c"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/source-revision.json",
+      "bytes": 12852,
+      "sha256": "b1542cc772f079cce8608d56338e83ec350a65e5d851e7d5b5c381803158c429"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/tandy-core.log",
+      "bytes": 352,
+      "sha256": "fee005f35e362f9897abb1fb66728bbf962d8782b08c16f414f646190de5a7c8"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/input-core.log",
+      "bytes": 995,
+      "sha256": "287bed8cb6463deeaba6ebc1da38900b084b720dc9024374e35be8bebbfdf3a3"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/cave-core.log",
+      "bytes": 272,
+      "sha256": "c3c02c9023b671f106e62dde27623fb64ccb88ba4b441099e336fe610b4332e8"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/photography-core.log",
+      "bytes": 339,
+      "sha256": "c0a5fc1709f167d61c0f8f58eb1714898de96d0e2cbb34638771c33583b4a680"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/browser-output/cave-pause.png",
+      "bytes": 32735,
+      "sha256": "03a55d950f499c516a3796c52ddedc531fb86cac883cac36f2baa6746899fb44"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/browser-output/flight-pause.png",
+      "bytes": 7510,
+      "sha256": "77f73411bed39c93417eb16d36f7156cf402faaa37764262b495d9bf02006e01"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/browser-output/photography-input.png",
+      "bytes": 31296,
+      "sha256": "e065c53b60debc29aecdda02e598f711e413eaa50992763efc36d9eedc5473f3"
+    },
+    {
+      "path": ".local/security-input-audio-integration-20261029/browser-output/tandy-game-cave.png",
+      "bytes": 40399,
+      "sha256": "7882a92b612de17b98b47df7548cdf84c7bc4836fa83fcb33e1e844490e069de"
+    }
+  ],
+  "browserCommand": "npx playwright test tests/browser/photography-input.spec.js tests/browser/tandy-game.spec.js tests/browser/cave-input.spec.js tests/browser/flight-input.spec.js",
+  "receiptVerifyCommand": "node scripts/verify-security-input-audio-receipts.js",
+  "inputRecipe": "Fresh BIOS0/Easy; real original opening/difficulty/security fixed Right/Fire. Camera uses the current-pose75..90/heading1 pilot; cave/flight/Tandy use two actual bank/office loops to obtain a non-racing departure. No output-derived controls,seed resets or memory injection. See docs/security-input-audio-integration.md.",
+  "comparisonRules": "All six cases must pass without skip or retry. Exact declared pixel/actor/clock/flush assertions and request/completion sequence checks remain active. Original segment/provider commands retain their own fixture rules.",
+  "injections": [],
+  "fittedInputs": []
+}

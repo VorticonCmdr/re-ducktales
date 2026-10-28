@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
@@ -51,6 +52,7 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
   await until((s) => s.scene === "title");
   await canvas.focus();
   await press("Space");
+  await waitForScene(page, canvas, "difficulty");
   await press("Enter");
   await page.locator("#money-bin").click();
   await page.clock.runFor(200);

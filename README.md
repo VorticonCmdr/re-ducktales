@@ -26,8 +26,9 @@ On a static production build, select your original game folder. The exact
 supported build is pinned in `reference/build.json`; corrupt or different files
 stop loading with a diagnostic.
 
-Space / Enter starts and fires, arrows choose difficulty, and **Up + Space**
-enters the money bin from the office. Buttons provide equivalent accessible
+The opening plays automatically; Space / Enter skips it. Then use the arrows
+to choose difficulty and Enter to start. Space / Enter fires during play, and
+**Up + Space** enters the money bin from the office. Buttons provide equivalent accessible
 inputs. Time the dive while Scrooge moves on the board. Restart begins again.
 Sound is optional and labeled reconstructed because PC-speaker effects retain
 known approximation limits.

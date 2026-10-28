@@ -75,7 +75,9 @@ const result = spawnSync(
   ],
   {
     encoding: "utf8",
-    timeout: 120000,
+    // The browser test permits180s; allow60s for runner startup/teardown.
+    // A timeout still fails and never counts as the intended comparison.
+    timeout: 240000,
     maxBuffer: 4 * 1024 * 1024,
     env: {
       ...process.env,
@@ -93,7 +95,10 @@ assert.match(
   "must reject the first moving-platform climb",
 );
 assert.match(output, /1 failed/);
-assert.doesNotMatch(output, /No tests found|SETUP:|browserType\.launch:/);
+assert.doesNotMatch(
+  output,
+  /No tests found|SETUP:|browserType\.launch:|Test timeout|TimeoutError|Test was interrupted|ETIMEDOUT|Channel closed|clock\.runFor: Test ended/,
+);
 console.log(
   `${routeName} negative control: wrong first climb rejected at checkpoint22 position.`,
 );

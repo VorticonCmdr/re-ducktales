@@ -94,7 +94,9 @@ for (const [name, title, variant, packets, samples, checkpoints] of [
     ],
     {
       encoding: "utf8",
-      timeout: 120000,
+      // The browser test permits180s; allow60s for runner startup/teardown.
+      // A timeout still fails and never counts as the intended comparison.
+      timeout: 240000,
       maxBuffer: 4 * 1024 * 1024,
       env: {
         ...process.env,
@@ -111,7 +113,10 @@ for (const [name, title, variant, packets, samples, checkpoints] of [
     "must reject missing first hook at action checkpoint5",
   );
   assert.match(output, /1 failed/);
-  assert.doesNotMatch(output, /No tests found|SETUP:|browserType\.launch:/);
+  assert.doesNotMatch(
+    output,
+    /No tests found|SETUP:|browserType\.launch:|Test timeout|TimeoutError|Test was interrupted|ETIMEDOUT|Channel closed|clock\.runFor: Test ended/,
+  );
   console.log(
     `${title} negative control: missing first hook rejected at checkpoint5 action.`,
   );

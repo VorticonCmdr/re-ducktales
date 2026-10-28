@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import startup from "../../reference/campaign-startup-browser.json" with { type: "json" };
 import ascent from "../../reference/mountain-ascent.json" with { type: "json" };
@@ -46,6 +47,7 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
     throw Error("unfinished wait " + JSON.stringify(await state()));
   }
   await press("Space");
+  await waitForScene(page, c, "difficulty");
   await press("Enter");
   await page.locator("#map").click();
   await page.clock.runFor(100);

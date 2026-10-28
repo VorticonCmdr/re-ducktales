@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { nextRandom } from "../../src/game/integer.js";
 
@@ -35,6 +36,7 @@ test("photography keyboard target shot, results, campaign return and collected n
   await until((s) => s.scene === "title");
   await canvas.focus();
   await press("Space");
+  await waitForScene(page, canvas, "difficulty");
   await press("Enter");
   await page.getByRole("checkbox", { name: "Sound (reconstructed)" }).check();
   await page.locator("#map").click();

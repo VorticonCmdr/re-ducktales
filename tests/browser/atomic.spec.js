@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
@@ -39,6 +40,7 @@ test("earn the transmitter in Too-Pei, choose atomic transport and enter the nex
   await until((s) => s.scene === "title");
   await canvas.focus();
   await press("Space");
+  await waitForScene(page, canvas, "difficulty");
   await press("Enter");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");

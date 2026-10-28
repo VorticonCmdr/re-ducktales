@@ -601,5 +601,10 @@
       "path": "tests/browser/hard-expedition-route.js",
       "sha256": "bfff65433f4ac5ef79475dc5deeff5635d3b0c43494abe08616bab6fabf1b561"
     }
-  ]
+  ],
+  "currentNegativeTool": {
+    "path": "scripts/verify-hard-expedition-negative.js",
+    "sha256": "c3becbd5c29b5a876ec6fb3115349b1855744a54c8c4704015d2dc3993f1fd7c",
+    "scope": "The earlier negativeToolSha256 and receipt are historical and unchanged. This revision allows the browser test180s plus60s runner startup/teardown, and explicitly rejects timeout/interruption failures. Required divergence checkpoints and all route inputs/expected outcomes are unchanged."
+  }
 }

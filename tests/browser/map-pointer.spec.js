@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 
 test("native map chords accelerate, retain the remaining arrow, reset on neutral and select a destination", async ({
@@ -29,6 +30,7 @@ test("native map chords accelerate, retain the remaining arrow, reset on neutral
   await c.focus();
   await page.keyboard.press("Space");
   await page.clock.runFor(100);
+  await waitForScene(page, c, "difficulty");
   await page.keyboard.press("Enter");
   await page.clock.runFor(100);
   await page.locator("#map").click();

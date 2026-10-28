@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
@@ -38,6 +39,7 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   await until((s) => s.scene === "title");
   await c.focus();
   await press("Space");
+  await waitForScene(page, c, "difficulty");
   await press("Enter");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");

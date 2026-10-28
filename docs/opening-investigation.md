@@ -1,11 +1,34 @@
-# Opening sequence: remaining implementation work
+# Opening sequence: implementation and evidence
 
-The current browser displays MAIN.ARC2 as a static title and immediately selects
-difficulty on Fire. The original title reveal and following opening animation
-are still missing. Sound001 playback alone does not implement this sequence.
-This investigation identifies the next runtime boundary. It includes static
-and live code identity, but no new original gameplay/animation capture or
-acceptance claim.
+The browser now runs the original title reveal, office arrival and introductory
+kids/Scrooge dialogue before difficulty selection. Fire is consumed at the
+original polling boundaries: a reveal skip finishes all11 rectangles, while a
+dialogue skip follows the helper cleanup calls and final clear. The opening office keeps MAIN5 at x32, distinct from the normal office renderer
+at x33; the captured opening pixels validate that placement. The simulation
+uses original resources and executable text, explicit16-bit RNG, separate driver
+and retrace clocks, and no DOM or browser clock access.
+
+`npm run verify:opening` verifies three closed-loop source-boundary cases,
+33 exact native PNGs, native exit seeds/flags and six dialogue cleanup sound
+arguments. It also checks the101-byte relocated reveal routine captured after
+all three fresh launches, in addition to the earlier source-only mapping.
+Missing fixtures fail with SETUP; altered artifacts, missing Fire, wrong RNG,
+changed pixels and an omitted checkpoint are rejected. See the versioned
+`reference/opening.json`, separate `reference/opening-inputs.json`, and
+[original capture recipe](opening-capture-recipe.md).
+
+The constructor stops before consuming its first source input boundary so the
+browser can deliver initial controls. First driver advancement starts execution.
+Browser audio begins disabled; its first enable gesture can supply the original
+initial sound option late. No original autoplay restriction is implied. The
+second BIOS reseed on difficulty confirmation isolates campaign initialization
+from introductory RNG, including when the opening is skipped.
+
+Native CPU/file/decompression costs, full IRQ phase, exact DOS keyboard typematic,
+hardware waveform and complete elapsed-time parity remain unverified. Security,
+original difficulty presentation and office/door transitions remain separate
+work. The following source investigation is historical evidence from before the
+runtime translation; the old paused stop is not the current live session.
 
 ## Validated static source
 
@@ -56,7 +79,7 @@ Statically inferred from12f5:09e1 and0d89:
   it early; otherwise each poll resets the timer base, waits7 driver counts
   and increments a signed16-bit local counter. It is not a40-count delay.
 - If still active,09e1 calls12f5:05ba, whose resource loads and animations are
-  not yet implemented. It clears4e0f when returning. The interrupted intro
+  now translated in `src/game/opening.js`. It clears4e0f when returning. The interrupted intro
   sends sound reset0; title audio source hashes remain in title-audio.json.
 
 The53-byte140e:0dcc helper reads the32-bit driver counter2225/2227 and retains
@@ -64,7 +87,7 @@ its base at2221/2223. Its original bounded comparisons are documented separately
 in jungle/system-control evidence. No wall-clock duration or instruction cost
 has been measured for the complete opening.
 
-## Next experiment
+## Original investigation plan (historical)
 
 Revalidate executable, launch path, segments and original bytes before using a
 live address. Capture a natural opening and a Fire-during-reveal case with an
@@ -103,3 +126,49 @@ accepted fixture is `.local/opening-audit/accepted-00c60595554c/reveal-live.json
 A new launch can have a
 different memory layout; do not relabel or overwrite the accepted capture to
 make it fit. Establish a new mapping/scenario and receipt instead.
+
+## Prepared follow-up: difficulty screen
+
+A fresh read of Ghidra `DUCK_UNPACKED.EXE`12f5:0aeb (670 bytes,
+x86 LE16 real mode) identifies the remaining menu boundary. These are static
+observations, not native menu acceptance. It starts difficulty0, invokes the
+shared screen helper11c4:0008 with selector9, flushes input, then redraws at
+seven-driver-count waits. Direction byte1 decrements with0→2 wrapping;5
+increments with2→0 wrapping. Selection changes and Fire confirmation request36
+when sound is enabled. Confirmation calls the BIOS reseed140e:0e01 before the
+screen cleanup. The current browser preserves the three choices and reseed,
+but still uses its simplified menu presentation and omits those menu cues.
+
+Original text remains in the executable, not copied into a generated asset:
+DS0624/0662 heading;0637/0642/0651 labels;0675..06e8 selected/unselected rows.
+The heading is drawn at(168,60), rows at y80/100/120; selected text uses color12
+and x168 with a `>` prefix, others color15/x176. The shared helper's selector9
+jump-table entry is007c, verified from the original unpacked table at image1d91.
+Do not interpret selector9 as MAIN.ARC sprite9: the helper selects presentation
+procedures. Ghidra's current stored helper body includes misdecoded jump-table
+bytes and its decompilation timed out. Resolve its007c path using original bytes
+and a native menu capture before implementing the missing background/transition.
+
+The first combined browser gate exposed old startup scripts sending Enter before
+the reveal completed. Those scripts now wait on the actual difficulty scene
+using `tests/browser/helpers/scene.js`; no inputs or simulation state are
+injected, no route outcomes are weakened, and no delay is fitted from a final
+state. The initial failed/aborted run is retained locally in
+`.local/opening-full-verify.log`. A focused flight case interrupted by a source
+reload was rerun with frozen code; both flight/cave and atomic routes passed.
+
+A subsequent gate rejected a real negative-runner timeout, retained in
+`.local/opening-final-verify.log`. The old120s wrapper could kill its180s browser
+test before the required divergence. The wrapper now permits240s including
+startup/teardown and explicitly rejects timeout/interruption errors. The wrong
+climb still must fail checkpoint22 x; missing hooks still must fail checkpoint5
+action. Route inputs, expected outcomes and comparison fields are unchanged.
+The focused Bermuda negative rerun rejected its intended wrong climb.
+
+The final frozen-code `npm run verify` passed117 unit,67 development browser
+and2 production browser cases, zero skips, all original comparisons and the
+production build. Accepted log/screenshots and read-only native cleanup are
+pinned in `reference/opening.json` under `.local/opening-acceptance/`. The
+original session remained paused at1544 with no breakpoints, freezes, scripts
+or input replay active. CPU cycle settings were not exposed in the captured
+MCP status; this is not an elapsed-CPU-time or whole-machine checkpoint claim.

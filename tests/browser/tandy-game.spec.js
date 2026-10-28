@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 
 async function tandy(page, suppliedClock = false) {
@@ -137,6 +138,7 @@ test("Tandy flight speed words and cave completion use the real persistent proce
   }
   await c.focus();
   await press("Space");
+  await waitForScene(page, c, "difficulty");
   await press("Enter");
   await until((s) => s.scene === "office");
   await page.locator("#map").click();

@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import manifest from "../../reference/flight-lightning-input.json" with { type: "json" };
@@ -50,6 +51,7 @@ test("natural lightning clears held flight controls and fresh keyboard input rec
   ).not.toBeChecked();
   await canvas.focus();
   await press("Space");
+  await waitForScene(page, canvas, "difficulty");
   await press("Enter");
   await page.locator("#map").click();
   await page.clock.runFor(100);

@@ -1,0 +1,791 @@
+{
+  "version": 1,
+  "build": "dos-fb658562",
+  "recipe": "docs/opening-capture-recipe.md",
+  "artifactRoot": ".local/opening-native-accepted-20261028",
+  "artifacts": [
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-01.json",
+      "bytes": 1847,
+      "sha256": "197cb719775e6d52180e264b162d2ed998e684a47ede084478926c16d8c5ce2c"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-01.png",
+      "bytes": 3358,
+      "sha256": "2ad329142c1c863f6c006bb45c00c2a8dfbd9ba02c57a39da3efb0c7e319d70f"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-02.json",
+      "bytes": 1846,
+      "sha256": "e42c1520ab0c917747056ab8d019ce8cc0bc462b7947b482bb5f8cac1cbcbf22"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-02.png",
+      "bytes": 5204,
+      "sha256": "7d926d534fb93bfc14fb571eb474cc1d735fc402a05f573722719cb123cb7d96"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-03.json",
+      "bytes": 1847,
+      "sha256": "e7afb5f96f48cc7a94a7f39f29d45584d9b48760b0b623f44b62dad2eed26515"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-03.png",
+      "bytes": 7033,
+      "sha256": "8ec6807e5f0afd92ba3fbf8a4506f245bfbdd6e96f95217035b3d1891de51a08"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-04.json",
+      "bytes": 1847,
+      "sha256": "d4800ecd96e8ae60bb780263e81b8d14c7c624410e8d66101b50dcc430f8ee71"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-04.png",
+      "bytes": 9102,
+      "sha256": "68a398ac96c64ebadfbff157127324b161902aa81703891cba9ade1f3119479c"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-05.json",
+      "bytes": 1845,
+      "sha256": "96eed97f199026ea324da16b10ce8d27e6365df5ee6010620b297b0409e41a50"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-05.png",
+      "bytes": 11196,
+      "sha256": "5190efebda6b928abac8287bb4a80555c70355374bf9ca8aadded86b80c4cf09"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-06.json",
+      "bytes": 1845,
+      "sha256": "ceae84f0811738490a970264af654d399ed4ea598666111a49a4207326e5e5c9"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-06.png",
+      "bytes": 13197,
+      "sha256": "441f5dc27ab259497f3c6627b23495f8ec09c986c79df4ff638aa6fe8df8063e"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-07.json",
+      "bytes": 1845,
+      "sha256": "6dc7ffdae08fae7263ea4a4196f07d134949551258b4e01789c978a53ac94e59"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-07.png",
+      "bytes": 15205,
+      "sha256": "520eed1a19daec8850c5203c64b1d5f1ba8c8a39a58750f0039378a62804f809"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-08.json",
+      "bytes": 1845,
+      "sha256": "6ef00873d21fde4afd1d5e7c081d8eae96f779787b1156b28e37262ae6b8a7e2"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-08.png",
+      "bytes": 17433,
+      "sha256": "aaae39a54aa29cd11ffc9c846a6fc732b96b2c588c3496b8a7cd4c4eda27bd2a"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-09.json",
+      "bytes": 1845,
+      "sha256": "e193568152f5e3d0a001a504cf300ea01d0554875cfecca9e69bf93bf80e623d"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-09.png",
+      "bytes": 18987,
+      "sha256": "55e4360372a66621ee9e08cee368197b05cc95780fa8d8871a1b83c6e7a2dce8"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-10.json",
+      "bytes": 1844,
+      "sha256": "490de6bede09e07a20f24f1d81ecf3d325dd25af3836d8ebd8c11128deabec64"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-10.png",
+      "bytes": 20293,
+      "sha256": "c704bf86bb19526cb32c197aa741661625bdefbcffc48445cc63ac14b3da5bc6"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-11.json",
+      "bytes": 1842,
+      "sha256": "a21d88a5b19e217b5fa9dcc5c5fddf9ec94f0b65062fff17f31268d2cade34cb"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-11.png",
+      "bytes": 20947,
+      "sha256": "64a5e9f9b32366f887d706c98f08870f520bb49c4e75faa491205ada5d036508"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-entry.json",
+      "bytes": 3453,
+      "sha256": "4fbb3422ae44683d374dc0562a12d7e31ff992ba2a0543cd3f41de5ba85bc25e"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/fire-exit.json",
+      "bytes": 2056,
+      "sha256": "7016a658b6ea8d8ce31d0fa61ecc0cba61de63c5f42427ffbd7c741f087e2532"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/kids-1.json",
+      "bytes": 1216,
+      "sha256": "5d6c3ba2842815b3bce2aadde1cfb4926f6a0e39ce1c4f6d98a96888d6182bf5"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/kids-1.png",
+      "bytes": 18033,
+      "sha256": "3be2422531085022f2f939120d94491f5709020ac71323454bfa70fa84916a5e"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/kids-2.json",
+      "bytes": 1214,
+      "sha256": "92a882e98add504571e07c3071fa6c0a37c739eb07c16f905d2c410c770f9939"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/kids-2.png",
+      "bytes": 17975,
+      "sha256": "dcf28f3848c17d8c0ed838d9f822be56347fa67d6658b8b435a4e9bc9c4efc47"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-01.json",
+      "bytes": 1226,
+      "sha256": "61536308c7794b55d136a9171991126f11e0ffb6306a2744adb906bf3be4ef8a"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-01.png",
+      "bytes": 3358,
+      "sha256": "2ad329142c1c863f6c006bb45c00c2a8dfbd9ba02c57a39da3efb0c7e319d70f"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-02.json",
+      "bytes": 1226,
+      "sha256": "d3896808b1fd92e1581bffc9b136ee13a764af318c0536af67935e83cdf080a4"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-02.png",
+      "bytes": 5204,
+      "sha256": "7d926d534fb93bfc14fb571eb474cc1d735fc402a05f573722719cb123cb7d96"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-03.json",
+      "bytes": 1226,
+      "sha256": "d41ea2c2a2a1f9c6e24bc769fec101a02f8286666c73fdc1053da80a0035fd15"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-03.png",
+      "bytes": 7033,
+      "sha256": "8ec6807e5f0afd92ba3fbf8a4506f245bfbdd6e96f95217035b3d1891de51a08"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-04.json",
+      "bytes": 1226,
+      "sha256": "8d6ed49d7f194727b5add09c9f18a01239be3e6c42d1302bee60624f08ef65c2"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-04.png",
+      "bytes": 9102,
+      "sha256": "68a398ac96c64ebadfbff157127324b161902aa81703891cba9ade1f3119479c"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-05.json",
+      "bytes": 1225,
+      "sha256": "fee59928297d7dc7ba0246d3ca7f144d7dc63ff90da430e38910845f415e0fde"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-05.png",
+      "bytes": 11196,
+      "sha256": "5190efebda6b928abac8287bb4a80555c70355374bf9ca8aadded86b80c4cf09"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-06.json",
+      "bytes": 1225,
+      "sha256": "3686006f3b6ab1bcb4b0cc8580d3a8d15c5fa8ee611e9a11221426a529360d75"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-06.png",
+      "bytes": 13197,
+      "sha256": "441f5dc27ab259497f3c6627b23495f8ec09c986c79df4ff638aa6fe8df8063e"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-07.json",
+      "bytes": 1225,
+      "sha256": "041f26238baada52714661e4e84076d48839aaa021a952f93a38a80bca6733fa"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-07.png",
+      "bytes": 15205,
+      "sha256": "520eed1a19daec8850c5203c64b1d5f1ba8c8a39a58750f0039378a62804f809"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-08.json",
+      "bytes": 1225,
+      "sha256": "6b0858e87d05d3265f67ad02ab98dd948e4ef5243344262074456d65da644baa"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-08.png",
+      "bytes": 17433,
+      "sha256": "aaae39a54aa29cd11ffc9c846a6fc732b96b2c588c3496b8a7cd4c4eda27bd2a"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-09.json",
+      "bytes": 1225,
+      "sha256": "cdf0766ed0026865d7820009fbe2c415d37bf06f11a05cb12874665168a7a62a"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-09.png",
+      "bytes": 18987,
+      "sha256": "55e4360372a66621ee9e08cee368197b05cc95780fa8d8871a1b83c6e7a2dce8"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-10.json",
+      "bytes": 1224,
+      "sha256": "6c026abd9835bd69fca70eabd7ca622ffcdc1ad104a8aed5e5c35b92fea5ba52"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-10.png",
+      "bytes": 20293,
+      "sha256": "c704bf86bb19526cb32c197aa741661625bdefbcffc48445cc63ac14b3da5bc6"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-11.json",
+      "bytes": 1223,
+      "sha256": "2e0409550d795cff3ecaf62874d130b60b930b37e85cb8f6f813cc322a28ac5a"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-11.png",
+      "bytes": 20947,
+      "sha256": "64a5e9f9b32366f887d706c98f08870f520bb49c4e75faa491205ada5d036508"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-code.json",
+      "bytes": 1418,
+      "sha256": "341f97753c94e235e27a2abfb4355dc68eda5ff26cc791d507dad9f18da33661"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/natural-exit.json",
+      "bytes": 1080,
+      "sha256": "9653fc2aa4851ca4f33199ae21a50c4ffb641bad0dcbe485aa61156ca75d4448"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/scrooge-1.json",
+      "bytes": 1216,
+      "sha256": "8d4d1de8f1f49301d4fd2d8db097c27d52410838a8cfa6d3a7cdfb34141923c1"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/scrooge-1.png",
+      "bytes": 17317,
+      "sha256": "5a2b1bceb36f3051e7c07e069d26ce7c80d99195460bdc69e4a8dab4488a0168"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/scrooge-2.json",
+      "bytes": 1212,
+      "sha256": "0e9c26199f60cefe66ce2d3e5fb1d79d9214d61a444a1acfd9136539e74fa114"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/scrooge-2.png",
+      "bytes": 17333,
+      "sha256": "913bacbe8bb5978b005146d44b6ce15fd000be4c87a8d9b05c25ccdcb7671ec9"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/story-skip-before.json",
+      "bytes": 2147,
+      "sha256": "1f9c9f1617f19f833c4c0906ac3a6805f920bce2ca3ba2f38db4b6e67df6c2e9"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/story-skip-before.png",
+      "bytes": 18033,
+      "sha256": "3be2422531085022f2f939120d94491f5709020ac71323454bfa70fa84916a5e"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/story-skip-entry.json",
+      "bytes": 5806,
+      "sha256": "da9c9064960af0ccc3af0857f5fc3756e2be97a357e3f37d2fce9ed91ee36cf9"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/story-skip-exit.json",
+      "bytes": 10191,
+      "sha256": "6f7131d4e4ae905bc5965ac343c050178c48d5cbb317f911650966627ed9b884"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/story-skip-exit.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-01.json",
+      "bytes": 1708,
+      "sha256": "bcb0846aa7820e3201bf1b4cfe01eb837635753e0ef7b1e3f7d1d451b498342c"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-01.png",
+      "bytes": 17919,
+      "sha256": "b0aa3fb333691f1390c73fa2e463f2b2860e6edf0386f4d85482747b40b70280"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-02.json",
+      "bytes": 1708,
+      "sha256": "d5a9a5f87dcd1847b136fed4de03509b9577f8ef67df5fe48570524099cd5a16"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-02.png",
+      "bytes": 18702,
+      "sha256": "4b44395552c2e3de44435aec6555a27f52fc562514aa05a44282d851b2e88d90"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-03.json",
+      "bytes": 1705,
+      "sha256": "c0228bada4fde86c21e5ea60be99e23fc00a8ec02630cc5173cb39ac8573fdcf"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-03.png",
+      "bytes": 18344,
+      "sha256": "ac4d8238641e8ed27a15c0b5c4655c271dedf9b48a2b313860e2e929958b4e5b"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-04.json",
+      "bytes": 1705,
+      "sha256": "c5050bfe634eafb544994d1b4e9664b3809dbef0746772f1a034050976c12eee"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-04.png",
+      "bytes": 18289,
+      "sha256": "f648adccea808e6ed37065498f32b34f954ac431cc1be900fe11bf515fc8b93b"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-05.json",
+      "bytes": 1707,
+      "sha256": "a654adafb87cb6d25119654b3f5732b2fe88b767edfc97ba6f60bb30450555c3"
+    },
+    {
+      "path": ".local/opening-native-accepted-20261028/walk-05.png",
+      "bytes": 18140,
+      "sha256": "e871805c2148a7bf1982e9d089d54404cb75376b242c4feb78dcb10bbb79551f"
+    },
+    {
+      "path": ".local/opening-acceptance/full-verify.log",
+      "bytes": 50925,
+      "sha256": "70037c0db9d21ab3aad3aead978528c5703c7642111973dedc864abbfeb70068"
+    },
+    {
+      "path": ".local/opening-acceptance/opening-dialogue.png",
+      "bytes": 27518,
+      "sha256": "9ad071b18e553d5f586fd1c6765b03afd6e5e7c5cb2ffca30f470a1cbcbdbf8b"
+    },
+    {
+      "path": ".local/opening-acceptance/opening-office.png",
+      "bytes": 25748,
+      "sha256": "44c05736c0c6968b49ea4a84f6282efa1db71a3ac4f70dcf08afe2c13d030345"
+    },
+    {
+      "path": ".local/opening-acceptance/title-audio.png",
+      "bytes": 18294,
+      "sha256": "e9202305849b7898897e81abdfc8eeac2b9cbe824b8acb63974c70bdbac076f0"
+    },
+    {
+      "path": ".local/opening-acceptance/native-cleanup.json",
+      "bytes": 1426,
+      "sha256": "f211ddcf129151b5d43e4c584e86401d64e72f6c1b3f96a89126feb0a6376b41"
+    }
+  ],
+  "expectedArtifactCount": 76,
+  "expectedPixelCheckpoints": 33,
+  "toolRevisions": {
+    "scripts/verify-opening.js": "65df6c674f59a56c054d430d80505c933892b1ba9c2b2a1f3582811fa1a48e67",
+    "reference/opening-inputs.json": "6e1591e708fadcfe60d9cc382b1110ae863eeba7251da2c758bb06474275e7dd",
+    "docs/opening-capture-recipe.md": "10dc05aad340bf53dd5e18ddc1bc67ab205e85606889de41265cc15d94184466",
+    "src/game/opening.js": "ed91355bc55fc74eee726358fb207b6b66b7985b489ec0d1512410b49a60a9ab",
+    "src/game/application.js": "267c51ce43f5f8e59e7b13a00d780d6c146be05a2bc128935c67734ccbf62a76",
+    "src/game/browser.js": "90cfa1157b08cc9f60dac8e79577b24e971b2637bb19b829410ff1d3c6cdfdc1",
+    "src/game/renderer.js": "fb892215ab51e6af8d993684a14c9e20a6b50eedd7a9cfe8ec3a59856e5bd0eb",
+    "tests/opening.test.js": "4bf2a1661ae8bc641543d2531ca85aff3c1af85b4b4b4603754bfbea05688851",
+    "tests/browser/opening.spec.js": "350e5ecf0b5c5e9d8c6f45273155fa32196b590b81eb7e9f084970e5428053ba",
+    "tests/browser/title-audio.spec.js": "91e8d62783415815e57dab0e526f0d0eddf2fe3bc4da5108a454615df317c6c2",
+    "tests/browser/atomic.spec.js": "d9f4ba0c4865b8ec7e3a3a1a56c9727f7f96d91a1e26de27b8e38cdfd2394215",
+    "tests/browser/campaign.spec.js": "674b5bc8c6a226dc07186572fe3e26b95ce69529e00b2a00313384e600b3d939",
+    "tests/browser/cave-input.spec.js": "29ddb6151c50123cfc14bb4909084abcdacd1dcf2026c169e537186fc816a993",
+    "tests/browser/flight-input.spec.js": "f110956af8da2903e9b47df0ce12ad6be98b3e3b6ccfe7856adcc34eeb2df25b",
+    "tests/browser/flight-lightning.spec.js": "c98f7669db922773d01b37c7e721b234c433c67abecc2d56a2d79e995f0febca",
+    "tests/browser/helpers/ending-route.js": "c53c86dcd34ddf6e2c4af83fc360522ad9ba5ec0d71299528d5277b0120781e0",
+    "tests/browser/investments.spec.js": "081b7c32c564f953080c462111614d1e38b4d745b8a69e218bf3ad1bb92f0fa7",
+    "tests/browser/jungle-input.spec.js": "4fd1f2917943a74741fd09888a4bf3033296ab4d4040b2a6eba2871d47ef40e5",
+    "tests/browser/jungle-treasure.spec.js": "8c2b77ab5c1f837cde71d48c66694d54ac0de496760b7d8a0ae6c2c1a438d1be",
+    "tests/browser/jungle.spec.js": "4c543435dca29a168da1cfe435f2ef6d6b29f573eeac5a5c6c4bcd9a49de604b",
+    "tests/browser/map-pointer.spec.js": "e79b0f3e91447a9ae5ab87dd9c68c7972d6684f66e86566d88c5e00f7546db81",
+    "tests/browser/mountain-ascent.spec.js": "c328de2b736da7689e59e35dec5e822501fee17ae611845bfce560db9db59d05",
+    "tests/browser/mountain-input.spec.js": "05c337b2e553cadb1271d676d04762795ae29f0a13982a387569e0a82084e280",
+    "tests/browser/photography-input.spec.js": "122a28e6c01c50140f8d1c668f473f210c10b58ce0d876a8099d08110a9988e2",
+    "tests/browser/photography.spec.js": "5517ec1a2df42c1adaee66b24730bebc53ede58ca67ebfa0253364a6f5339891",
+    "tests/browser/system-controls.spec.js": "2e55ab3c27dae6854431b07a6a873e191112353cc42541f2503db9153e364646",
+    "tests/browser/tandy-game.spec.js": "7a0db7195d8d7ec072764a90355f42726b116db7c9e68ad09c7bc318d26f8f2b",
+    "tests/browser/helpers/scene.js": "944a7e7a0faf61ea72508a133702fe83f865a14ae617fceee1c7d23719a272bb",
+    "scripts/verify-hard-expedition-negative.js": "c3becbd5c29b5a876ec6fb3115349b1855744a54c8c4704015d2dc3993f1fd7c",
+    "scripts/verify-hard-mountains-negative.js": "c4f45fcff9b957dc4d1e719b4664e7dea7007c48b35013ba775261c730de8b88",
+    "reference/boola-jungle-browser.json": "761512ff89e83e5aff2ff1c6d14b805f10c36f26d2403dcf226d4c22edf271ba",
+    "reference/hard-jungle-browser.json": "24a52419a2022bb6beac56984ff775be4043e0edd0145b0d58825457d479a7bf",
+    "reference/machu-mountain-browser.json": "e22319634933e33786a5db6d560dd52bd01460cd5dd9e01e030ac0cf9a1ea2c5",
+    "reference/thunderclap-mountain-browser.json": "110012b243fe55460d43d6862e2e21f5cab1874c47618a6d4f022b37a22bb19d"
+  },
+  "emulator": {
+    "version": "DOSBox0.84.0-vc1",
+    "revision": "f6d9b",
+    "core": "normal",
+    "machine": "ega",
+    "loadBias": 501,
+    "ds": 5123,
+    "restore": "none; natural quit and fresh DUCKTALE launch per case",
+    "cpuCycles": null,
+    "cpuTimingScope": "Not exposed in captured MCP status; no full CPU elapsed-time comparison claimed."
+  },
+  "comparison": {
+    "pixels": "exact 320x200 RGBA, zero exclusions",
+    "state": "exact seed, skip, outcome, input count and cleanup requests",
+    "clocks": "minimum source waits only; native counters diagnostic, not replay inputs",
+    "inputEvidence": "consumption boundary stream; neutral reads source-authored, Fire returns captured"
+  },
+  "cases": [
+    {
+      "id": "natural",
+      "exit": "natural-exit",
+      "outcome": {
+        "status": "complete",
+        "seed": 41142,
+        "rngCalls": 136
+      },
+      "presentations": 139,
+      "boundaries": 136,
+      "sounds": [
+        1
+      ],
+      "checkpoints": [
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 80
+          },
+          "artifact": "natural-01"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 72
+          },
+          "artifact": "natural-02"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 64
+          },
+          "artifact": "natural-03"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 56
+          },
+          "artifact": "natural-04"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 48
+          },
+          "artifact": "natural-05"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 40
+          },
+          "artifact": "natural-06"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 32
+          },
+          "artifact": "natural-07"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 24
+          },
+          "artifact": "natural-08"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 16
+          },
+          "artifact": "natural-09"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 8
+          },
+          "artifact": "natural-10"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 0
+          },
+          "artifact": "natural-11"
+        },
+        {
+          "kind": "arrival",
+          "match": {
+            "index": 0
+          },
+          "artifact": "walk-01"
+        },
+        {
+          "kind": "arrival",
+          "match": {
+            "index": 1
+          },
+          "artifact": "walk-02"
+        },
+        {
+          "kind": "arrival",
+          "match": {
+            "index": 2
+          },
+          "artifact": "walk-03"
+        },
+        {
+          "kind": "arrival",
+          "match": {
+            "index": 3
+          },
+          "artifact": "walk-04"
+        },
+        {
+          "kind": "arrival",
+          "match": {
+            "index": 4
+          },
+          "artifact": "walk-05"
+        },
+        {
+          "kind": "speech-half",
+          "match": {
+            "speaker": "kids",
+            "first": 1,
+            "cycle": 0,
+            "half": 0
+          },
+          "artifact": "kids-1"
+        },
+        {
+          "kind": "speech-half",
+          "match": {
+            "speaker": "kids",
+            "first": 1,
+            "cycle": 0,
+            "half": 1
+          },
+          "artifact": "kids-2"
+        },
+        {
+          "kind": "speech-half",
+          "match": {
+            "speaker": "scrooge",
+            "first": 1,
+            "cycle": 0,
+            "half": 0
+          },
+          "artifact": "scrooge-1"
+        },
+        {
+          "kind": "speech-half",
+          "match": {
+            "speaker": "scrooge",
+            "first": 1,
+            "cycle": 0,
+            "half": 1
+          },
+          "artifact": "scrooge-2"
+        }
+      ]
+    },
+    {
+      "id": "reveal-fire",
+      "exit": "fire-exit",
+      "outcome": {
+        "status": "skipped",
+        "seed": 8274,
+        "rngCalls": 0
+      },
+      "presentations": 12,
+      "boundaries": 11,
+      "sounds": [
+        1,
+        0
+      ],
+      "checkpoints": [
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 80
+          },
+          "artifact": "fire-01"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 72
+          },
+          "artifact": "fire-02"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 64
+          },
+          "artifact": "fire-03"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 56
+          },
+          "artifact": "fire-04"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 48
+          },
+          "artifact": "fire-05"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 40
+          },
+          "artifact": "fire-06"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 32
+          },
+          "artifact": "fire-07"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 24
+          },
+          "artifact": "fire-08"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 16
+          },
+          "artifact": "fire-09"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 8
+          },
+          "artifact": "fire-10"
+        },
+        {
+          "kind": "reveal",
+          "match": {
+            "inset": 0
+          },
+          "artifact": "fire-11"
+        }
+      ]
+    },
+    {
+      "id": "dialogue-fire",
+      "exit": "story-skip-exit",
+      "outcome": {
+        "status": "skipped",
+        "seed": 5485,
+        "rngCalls": 2
+      },
+      "presentations": 23,
+      "boundaries": 17,
+      "sounds": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        36
+      ],
+      "checkpoints": [
+        {
+          "kind": "speech-half",
+          "match": {
+            "speaker": "kids",
+            "first": 1,
+            "cycle": 0,
+            "half": 0
+          },
+          "artifact": "story-skip-before"
+        },
+        {
+          "kind": "exit",
+          "artifact": "story-skip-exit"
+        }
+      ]
+    }
+  ],
+  "baseCommit": "ca043f3e7de7064bf2a3ac733ab16cd381115b51",
+  "verify": "npm run verify:opening",
+  "browserVerify": "npm run test:browser -- tests/browser/opening.spec.js tests/browser/title-audio.spec.js",
+  "captureTool": {
+    "name": "DOSBox MCP",
+    "version": "0.84.0-vc1",
+    "revision": "f6d9b",
+    "protocol": "1.14"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "receipt": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "unitCases": 117,
+    "developmentBrowserCases": 67,
+    "productionBrowserCases": 2,
+    "skippedCases": 0,
+    "node": "v26.8.1",
+    "artifacts": [
+      {
+        "path": ".local/opening-acceptance/full-verify.log",
+        "bytes": 50925,
+        "sha256": "70037c0db9d21ab3aad3aead978528c5703c7642111973dedc864abbfeb70068"
+      },
+      {
+        "path": ".local/opening-acceptance/opening-dialogue.png",
+        "bytes": 27518,
+        "sha256": "9ad071b18e553d5f586fd1c6765b03afd6e5e7c5cb2ffca30f470a1cbcbdbf8b"
+      },
+      {
+        "path": ".local/opening-acceptance/opening-office.png",
+        "bytes": 25748,
+        "sha256": "44c05736c0c6968b49ea4a84f6282efa1db71a3ac4f70dcf08afe2c13d030345"
+      },
+      {
+        "path": ".local/opening-acceptance/title-audio.png",
+        "bytes": 18294,
+        "sha256": "e9202305849b7898897e81abdfc8eeac2b9cbe824b8acb63974c70bdbac076f0"
+      },
+      {
+        "path": ".local/opening-acceptance/native-cleanup.json",
+        "bytes": 1426,
+        "sha256": "f211ddcf129151b5d43e4c584e86401d64e72f6c1b3f96a89126feb0a6376b41"
+      }
+    ],
+    "scope": "Frozen runtime/check code; this receipt and documentation were recorded after the successful gate. Native33-pixel/3-state comparisons and independent browser acceptance remain distinct; full CPU/IRQ/waveform timing unverified."
+  }
+}

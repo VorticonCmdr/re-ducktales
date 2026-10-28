@@ -7,7 +7,8 @@ finishable. This is completion work, not only final polish.
 
 ## Working browser routes
 
-- Title → difficulty → office → money-bin dive → reward/return. Original timing
+- Original title reveal → office arrival/dialogue → difficulty → office →
+  money-bin dive → reward/return. Fire can skip at original input boundaries. Original timing
   controls the one-time1000 coin and travel/banking resets its latch.
 - Office → map → confirmed departure → keyboard flight → landing or crash/repair.
   All35 destinations can be inspected. Losing a race credits Glomgold and returns.
@@ -70,7 +71,7 @@ and actual browser controls/rendering/audio. None alone proves whole-game parity
 Manifests pin source/artifact identities, setup recipes, events and exclusions.
 Conditional injections and provider assumptions are documented, not hidden.
 
-The Hard expedition milestone passes full `npm run verify`:113 unit cases,65
+The opening milestone passes full `npm run verify`:117 unit cases,67
 development and2 production browser scenarios, zero skips, all required original
 comparisons and the production build. Jungle variants1/2 consume444/421 inputs
 at26/29 checkpoints; mountain variants1/2 consume494/706 inputs at59/73
@@ -83,10 +84,15 @@ The shared adapter and case modules are pinned separately. The mixed campaign
 still matches all19 checkpoints. [Historical notes](status-history.md) retain
 older receipts without describing them as current state.
 
-A separate `npm run verify:opening-source` passes four original source-range
-checks and one captured live101-byte mapping, including a one-byte negative
-control. It is preparation for the next runtime change, not opening animation
-or timing acceptance; see [opening investigation](opening-investigation.md).
+The opening now has a separate `npm run verify:opening`: three closed-loop
+cases,33 exact native PNG comparisons, six native sound cleanup calls and three
+fresh relocated code mappings. Source waits and RNG are translated; original
+CPU/file/render costs and complete elapsed-time parity remain unverified.
+The browser checks also compare16 RNG-independent reveal/arrival frames and
+exercise natural completion, skip, restart, campaign initialization and intro
+audio. Accepted evidence is in `.local/opening-acceptance/`; hashes are pinned
+in `reference/opening.json`.
+See [opening implementation/evidence](opening-investigation.md).
 
 Tandy/PCjr sound is available in-game with persistent channels, priorities,
 flight-engine words and explicit completion status. All121 public requests have
@@ -100,7 +106,7 @@ whole-game IRQ alignment remain unverified.
 - Broaden complete destination/difficulty routes and targeted original comparisons.
   Cave movement, mountain hook/ascent, jungle actors/scrolling and other variants
   do not yet have comprehensive original whole-scene parity evidence.
-- Original title/story/security, office/door and several map/notice transitions
+- Security, original difficulty presentation, office/door and several map/notice transitions
   remain omitted or incomplete. BIOS seed0 is an explicit browser provider.
 - Bank nonzero complete-animation/sparkle pixels, unusual signed-overflow sprite
   aliases and whole original CPU/IRQ/input timing still need work. Unsupported
@@ -111,12 +117,12 @@ whole-game IRQ alignment remain unverified.
   unproven. Unsupported paths stop in development; no recovery demo counts as
   strict acceptance.
 
-Next runtime milestone: translate the original title reveal and following opening
-animation, starting with a reproducible original reveal/skip scenario. The
-[source investigation](opening-investigation.md) identifies the original11-step
-crop loop and remaining input/timer questions. All three jungle and mountain
-layouts now have selected browser completion routes; a complete thirty-day Hard
-campaign, arbitrary routes and original whole-scene parity remain unproven.
+Next playable milestone: complete a linked thirty-day Hard campaign across all
+four expedition families, through banking and the final result. All three jungle
+and mountain layouts have selected completion routes; linking them does not yet
+prove arbitrary campaigns finishable. Follow with the original difficulty,
+security and office/door presentation using targeted native scenarios rather
+than broad executable documentation.
 
 ## Exact verification commands
 
@@ -135,7 +141,9 @@ For the linked campaign run `npm run verify:mixed-campaign` and
 input is rejected by the intended state comparison.
 For bank work run `npm run verify:bank`, `node --test tests/bank.test.js`, and
 `npm run test:browser -- tests/browser/bank.spec.js tests/browser/ending.spec.js tests/browser/ending-audio.spec.js tests/browser/ending-presentation.spec.js`.
-For the separately scoped opening source/mapping check run `npm run verify:opening-source`.
+For original opening images, state and code mapping run `npm run verify:opening`;
+for actual browser opening controls/rendering run
+`npm run test:browser -- tests/browser/opening.spec.js tests/browser/title-audio.spec.js`.
 For local testing run `npm run dev -- --port 5186`.
 The user's integrated checkout is served on5187. No push or deployment is authorized.
 

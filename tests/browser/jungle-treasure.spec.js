@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import startup from "../../reference/campaign-startup-browser.json" with { type: "json" };
 import { nextRandom } from "../../src/game/integer.js";
@@ -39,6 +40,7 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
   await until((s) => s.scene === "title");
   await canvas.focus();
   await press("Space");
+  await waitForScene(page, canvas, "difficulty");
   await press("Enter");
   await page.locator("#map").click();
   await page.clock.runFor(100);

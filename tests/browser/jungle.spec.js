@@ -12,6 +12,7 @@ test("jungle departure, keyboard movement, life loss and campaign retry or rival
   await expect(canvas).toHaveAttribute("data-scene", "title");
   await canvas.focus();
   await page.keyboard.press("Space");
+  await expect(canvas).toHaveAttribute("data-scene", "difficulty");
   await page.keyboard.press("Enter");
   await expect(canvas).toHaveAttribute("data-scene", "office");
   await page.locator("#map").click();

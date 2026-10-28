@@ -108,6 +108,10 @@ async function load(read) {
     pendingAudioInput = null;
     game = new Game({
       biosSeed: 0,
+      openingResources: {
+        image: resources.executable,
+        entries: resources.archives.get("MAIN.ARC"),
+      },
       bankResources: {
         image: resources.executable,
         entries: resources.archives.get("MAC.ARC"),
@@ -491,7 +495,7 @@ function frame() {
                                       ? `Money bin · ${game.bin.phase} · Fire to dive`
                                       : game.scene === "map"
                                         ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
-                                        : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
+                                        : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : game.opening ? "Opening · Space or Enter to skip" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
       $("game").dataset.scene = game.scene;
       $("game").dataset.overlay = overlay?.kind ?? "";
       $("game").dataset.state = JSON.stringify(game.snapshot());

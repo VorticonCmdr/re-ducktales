@@ -1,3 +1,4 @@
+import { waitForScene } from "./scene.js";
 import { expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
@@ -77,6 +78,7 @@ export async function campaign(page, hard = false) {
   await until((s) => s.scene === "title");
   await canvas.focus();
   await press("Space");
+  await waitForScene(page, canvas, "difficulty");
   if (hard) await press("ArrowUp");
   await press("Enter");
   await until((s) => s.scene === "office");

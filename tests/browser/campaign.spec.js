@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
@@ -107,6 +108,7 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   await until((s) => s.scene === "title");
   await c.focus();
   await press("Space");
+  await waitForScene(page, c, "difficulty");
   await press("ArrowUp");
   await press("Enter");
   await until((s) => s.scene === "office");
@@ -271,6 +273,7 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   ).toBe(0);
   await c.focus();
   await press("Space");
+  await waitForScene(page, c, "difficulty");
   await press("Enter");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");

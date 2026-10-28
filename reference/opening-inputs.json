@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "environment": "Initial BIOS seed observed before RNG; byte provider at original input-consumption boundaries. Neutral reads are source-authored, not a full keyboard interrupt trace. Driver and retrace clocks advance independently of presentation.",
+  "cases": [
+    { "id": "natural", "initialSeed": 1643, "inputCount": 308, "events": [] },
+    {
+      "id": "reveal-fire",
+      "initialSeed": 8274,
+      "inputCount": 15,
+      "events": [{ "read": 5, "byte": 192 }]
+    },
+    {
+      "id": "dialogue-fire",
+      "initialSeed": 14008,
+      "inputCount": 72,
+      "events": [{ "read": 68, "byte": 192 }]
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { Opening } from "./opening.js";
 import { Departure } from "./departure.js";
 import { Campaign, OFFICE, travelDays } from "./campaign.js";
 import { MoneyBin } from "./money-bin.js";
@@ -30,7 +31,10 @@ export class Game {
     audioEnabled = false,
     investmentResources = null,
     bankResources = null,
+    openingResources = null,
   } = {}) {
+    this.openingResources = openingResources;
+    this.opening = null;
     this.expeditionResources = expeditionResources;
     this.bankResources = bankResources;
     this.bank = null;
@@ -64,6 +68,7 @@ export class Game {
     this.pendingPhotographySystemKeys = new Map();
     this.pendingEndingSystemKeys = new Map();
     this.pendingBankSystemKeys = new Map();
+    this.pendingOpeningSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -80,9 +85,44 @@ export class Game {
     this.effects = [];
     this.diagnostic = null;
     this.titleMusicRequested = false;
+    this.startOpening();
     this.startTitleMusic();
   }
+  startOpening() {
+    this.opening =
+      this.scene === "title" && this.openingResources
+        ? new Opening({
+            ...this.openingResources,
+            seed: this.biosSeed,
+            audioEnabled: this.audioEnabled,
+            pollInput: () =>
+              this.pollSystemInput(this.pendingOpeningSystemKeys),
+            flushInput: () => this.flushOpeningInput(),
+          })
+        : null;
+    if (this.opening) this.collectOpening();
+  }
+  collectOpening() {
+    this.effects.push(...this.opening.drainEvents());
+    this.seed = this.opening.seed;
+    this.titleMusicRequested = this.opening.musicRequested;
+    if (this.opening.outcome && this.scene === "title" && !this.exiting) {
+      this.scene = "difficulty";
+      // Original0aeb flushes unread keys before its first menu input poll.
+      this.opening.flushInput();
+    }
+  }
+  flushOpeningInput() {
+    this.pendingOpeningSystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
+  }
   startTitleMusic() {
+    if (this.opening && this.scene === "title") {
+      this.opening.setAudioEnabled(this.audioEnabled);
+      this.collectOpening();
+      return;
+    }
     // Original12f5:0a51..0a60 starts request1 once while MAIN.ARC2 is shown.
     // The browser's initially muted provider may activate on its first sound
     // gesture. Later mute/unmute events must not replay an already-started song.
@@ -211,7 +251,7 @@ export class Game {
     if (
       !fromActivityPoll &&
       !this.systemOverlay &&
-      [
+      ([
         "money-bin",
         "flight",
         "cave",
@@ -220,28 +260,31 @@ export class Game {
         "photography",
         "ending",
         "bank",
-      ].includes(this.scene) &&
+      ].includes(this.scene) ||
+        (this.scene === "title" && this.opening && !this.opening.outcome)) &&
       !(this.scene === "ending" && this.ending.phase === "closed") &&
       ["pause", "quit", "toggle-sound"].includes(event.type)
     ) {
       // IRQ9 retains make/release flags until19c5 consumes them. No input
       // reader runs during the intro, dive or explicit animation waits.
       const keys =
-        this.scene === "flight"
-          ? this.pendingFlightSystemKeys
-          : this.scene === "cave"
-            ? this.pendingCaveSystemKeys
-            : this.scene === "mountain"
-              ? this.pendingMountainSystemKeys
-              : this.scene === "jungle"
-                ? this.pendingJungleSystemKeys
-                : this.scene === "photography"
-                  ? this.pendingPhotographySystemKeys
-                  : this.scene === "ending"
-                    ? this.pendingEndingSystemKeys
-                    : this.scene === "bank"
-                      ? this.pendingBankSystemKeys
-                      : this.pendingBinSystemKeys;
+        this.scene === "title"
+          ? this.pendingOpeningSystemKeys
+          : this.scene === "flight"
+            ? this.pendingFlightSystemKeys
+            : this.scene === "cave"
+              ? this.pendingCaveSystemKeys
+              : this.scene === "mountain"
+                ? this.pendingMountainSystemKeys
+                : this.scene === "jungle"
+                  ? this.pendingJungleSystemKeys
+                  : this.scene === "photography"
+                    ? this.pendingPhotographySystemKeys
+                    : this.scene === "ending"
+                      ? this.pendingEndingSystemKeys
+                      : this.scene === "bank"
+                        ? this.pendingBankSystemKeys
+                        : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -260,6 +303,7 @@ export class Game {
       if (typeof event.enabled !== "boolean")
         throw Error("Invalid audio setting");
       this.audioEnabled = event.enabled;
+      this.opening?.setAudioEnabled(event.enabled);
       this.cave?.setAudioEnabled(event.enabled);
       this.mountain?.setAudioEnabled(event.enabled);
       this.jungle?.setAudioEnabled(event.enabled);
@@ -281,6 +325,7 @@ export class Game {
     }
     if (event.type === "restart") {
       this.scene = event.skipTitle === true ? "difficulty" : "title";
+      this.opening = null;
       this.difficulty = 0;
       this.difficultyFromEnding = event.skipTitle === true;
       this.tick = 0;
@@ -306,6 +351,7 @@ export class Game {
       this.pendingPhotographySystemKeys.clear();
       this.pendingEndingSystemKeys.clear();
       this.pendingBankSystemKeys.clear();
+      this.pendingOpeningSystemKeys.clear();
       this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
@@ -319,6 +365,7 @@ export class Game {
       this.rareCoinTaken = false;
       if (event.skipTitle !== true) this.effects.push({ type: "stopAudio" });
       this.titleMusicRequested = false;
+      this.startOpening();
       this.startTitleMusic();
       return;
     }
@@ -346,6 +393,7 @@ export class Game {
     }
     if (event.type === "controls") {
       this.controls = { fire: event.fire, direction: event.direction };
+      this.opening?.setControls(this.controls);
       this.flight?.setControls(this.controls);
       this.cave?.setControls(this.controls);
       this.mountain?.setControls(this.controls);
@@ -370,6 +418,10 @@ export class Game {
       this.collectEnding();
       return;
     }
+    if (this.scene === "title" && this.opening) {
+      if (event.type === "fire") this.opening.input(event);
+      return;
+    }
     if (this.scene === "title" && event.type === "fire") {
       // The interrupted original intro sends reset0 at12f5:0a10..0a17.
       if (this.audioEnabled) this.effects.push({ type: "sound", id: 0 });
@@ -383,6 +435,15 @@ export class Game {
         if (this.difficultyFromEnding && this.audioEnabled)
           this.effects.push({ type: "sound", id: 0 });
         this.difficultyFromEnding = false;
+        if (this.openingResources) {
+          // Original12f5:0d75 reseeds from BIOS40:6c before main00dd initializes
+          // companies and then location/loot ordering. The browser supplies the
+          // same explicit BIOS seed provider value at this second boundary.
+          this.campaign = this.locations
+            ? new Campaign(this.locations, this.initializeMarket(this.biosSeed))
+            : null;
+          this.seed = this.campaign?.seed ?? this.biosSeed;
+        }
         this.scene = "office";
         this.settleMarket();
       }
@@ -613,6 +674,8 @@ export class Game {
   advanceDriverTick() {
     this.tick++;
     if (this.systemOverlay) {
+      if (this.scene === "title" && this.opening)
+        this.opening.advanceBlockedTick();
       if (this.scene === "flight") this.flight.advanceBlockedTick();
       if (this.scene === "cave") this.cave.advanceBlockedTick();
       if (this.scene === "mountain") this.mountain.advanceBlockedTick();
@@ -622,6 +685,11 @@ export class Game {
       if (this.scene === "bank") this.bank.advanceBlockedTick();
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
+      return;
+    }
+    if (this.scene === "title" && this.opening) {
+      this.opening.advanceTick();
+      this.collectOpening();
       return;
     }
     if (this.scene === "bank") {
@@ -724,6 +792,8 @@ export class Game {
   }
   advanceRetrace() {
     if (this.systemOverlay) {
+      if (this.scene === "title" && this.opening)
+        this.opening.advanceBlockedRetrace();
       if (this.scene === "flight") this.flight.advanceBlockedRetrace();
       if (this.scene === "cave") this.cave.advanceBlockedRetrace();
       if (this.scene === "mountain") this.mountain.advanceBlockedRetrace();
@@ -732,6 +802,11 @@ export class Game {
         this.photography.advanceBlockedRetrace();
       if (this.scene === "ending") this.ending.advanceBlockedRetrace();
       if (this.scene === "bank") this.bank.advanceBlockedRetrace();
+      return;
+    }
+    if (this.scene === "title" && this.opening) {
+      this.opening.advanceRetrace();
+      this.collectOpening();
       return;
     }
     if (this.scene === "bank") {
@@ -850,9 +925,11 @@ export class Game {
     this.pendingPhotographySystemKeys.clear();
     this.pendingEndingSystemKeys.clear();
     this.pendingBankSystemKeys.clear();
+    this.pendingOpeningSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
-    if (this.scene === "flight") this.flight.flushInput();
+    if (this.scene === "title" && this.opening) this.opening.flushInput();
+    else if (this.scene === "flight") this.flight.flushInput();
     else if (this.scene === "cave") this.cave.flushInput();
     else if (this.scene === "mountain") this.mountain.flushInput();
     else if (this.scene === "jungle") this.jungle.flushInput();
@@ -917,6 +994,7 @@ export class Game {
   }
   flushBankInput(release = false) {
     this.pendingBankSystemKeys.clear();
+    this.pendingOpeningSystemKeys.clear();
     if (release) {
       this.handleInput({ type: "controls", fire: false, direction: null });
       this.effects.push({ type: "flushControls" });
@@ -1375,6 +1453,7 @@ export class Game {
       rareCoinTaken: this.rareCoinTaken,
       seed: this.seed,
       tick: this.tick,
+      ...(this.opening ? { opening: this.opening.snapshot() } : {}),
       bin: this.bin?.snapshot() ?? null,
       ...(this.pendingBinSystemKeys.size
         ? {

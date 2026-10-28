@@ -441,7 +441,13 @@ export class Renderer {
     this.ctx.fillStyle = "#000";
     this.ctx.fillRect(0, 0, 320, 200);
     if (game.scene === "title") {
-      this.draw("MAIN.ARC", 2, 0, 0, 0);
+      if (game.opening)
+        this.ctx.putImageData(
+          new ImageData(game.opening.pixels(), 320, 200),
+          0,
+          0,
+        );
+      else this.draw("MAIN.ARC", 2, 0, 0, 0);
       return;
     }
     if (game.scene === "difficulty") {

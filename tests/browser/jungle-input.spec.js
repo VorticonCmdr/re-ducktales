@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 
 test("jungle defers global keys, pauses actors and resumes cancelled quit", async ({
@@ -36,6 +37,7 @@ test("jungle defers global keys, pauses actors and resumes cancelled quit", asyn
   await until((s) => s.scene === "title");
   await canvas.focus();
   await press("Space");
+  await waitForScene(page, canvas, "difficulty");
   await press("Enter");
   await page.locator("#map").click();
   await page.clock.runFor(100);

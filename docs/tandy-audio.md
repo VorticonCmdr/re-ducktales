@@ -799,6 +799,12 @@ inferred from these browser/provider checks.
 
 ## Title Sound001 dispatch (2026-10-28)
 
+The static-title presentation described in this historical milestone has since
+been replaced by the [opening sequence](opening-investigation.md). Sound001
+still starts once, runs independently and is reset on a skip. Natural story
+completion reaches difficulty before the song ends; audio completion does not
+advance simulation. Original hardware waveform/timing parity remains unverified.
+
 The title now starts request001 on its persistent selected sound device.
 `DUCK_UNPACKED.EXE` function12f5:09e1 loads MAIN.ARC2; at0a51 it checks DS:03be,
 then0a58..0a62 pushes unsigned word1, calls the driver API at[201c] and removes

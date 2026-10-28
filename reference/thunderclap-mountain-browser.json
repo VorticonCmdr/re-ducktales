@@ -1410,5 +1410,10 @@
       }
     ],
     "scope": "Full-suite independent browser captures and wrong-input control. Conditional model explorer is port exploration, not an original/runtime fixture. No new original whole-level parity or timing claim."
+  },
+  "currentNegativeTool": {
+    "path": "scripts/verify-hard-mountains-negative.js",
+    "sha256": "c4f45fcff9b957dc4d1e719b4664e7dea7007c48b35013ba775261c730de8b88",
+    "scope": "The earlier negativeToolSha256 and receipt are historical and unchanged. This revision allows the browser test180s plus60s runner startup/teardown, and explicitly rejects timeout/interruption failures. Required divergence checkpoints and all route inputs/expected outcomes are unchanged."
   }
 }

@@ -32,7 +32,10 @@ test("title plays Sound001 to its natural Tandy ending once, restarts and stops 
   await expect(device).toHaveAttribute("data-playback-status", "0", {
     timeout: 65000,
   });
-  await expect(canvas).toHaveAttribute("data-scene", "title");
+  await expect(canvas).toHaveAttribute("data-scene", "difficulty");
+  const opening = JSON.parse(await canvas.getAttribute("data-state")).opening;
+  expect(opening.outcome.status).toBe("complete");
+  expect(opening.rngCalls).toBe(136);
   await expect(device).toHaveAttribute("data-requests", "1");
   const endedTicks = Number(await device.getAttribute("data-ticks"));
   // Status reports arrive at audio-block boundaries. Exact sequence timing is

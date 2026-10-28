@@ -5,6 +5,10 @@ four expedition families are playable on selected routes. We still have
 unverified routes and behavior gaps; arbitrary campaigns are not yet guaranteed
 finishable. This is completion work, not only final polish.
 
+This `codex/difficulty-menu` branch adds the original menu with focused acceptance;
+its full regression migration is pending. The complete main-checkout gate below
+precedes that integration. See [branch details](difficulty-browser-integration.md).
+
 ## Working browser routes
 
 - Original title reveal → office arrival/dialogue → difficulty → office →

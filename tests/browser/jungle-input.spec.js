@@ -6,7 +6,11 @@ import { openRecordedApplication } from "./helpers/clock.js";
 import {
   installEntryRecording,
   saveEntryRecording,
+  canonical,
+  digest,
 } from "./helpers/entry-recording.js";
+import entry from "../../reference/security-jungle-entry.json" with { type: "json" };
+import { PNG } from "pngjs";
 
 test("jungle defers global keys, pauses actors and resumes cancelled quit", async ({
   page,
@@ -78,13 +82,23 @@ test("jungle defers global keys, pauses actors and resumes cancelled quit", asyn
     });
     throw Error("EXPLORATORY jungle entry saved; this run is not acceptance");
   }
-  expect(entered.campaign.location).toBe(1);
-  expect(entered.campaign.day).toBe(4);
-  expect(entered.money).toBe(0);
+  expect({
+    location: entered.campaign.location,
+    day: entered.campaign.day,
+    money: entered.money,
+    briefingSeed: entered.briefing.seed,
+    jungleSeed: entered.jungle.seed,
+    frames: entered.jungle.frames,
+  }).toEqual(entry.entry);
+  expect(digest(canonical(entered))).toBe(entry.entryStateSha256);
+  const pixels = PNG.sync.read(
+    Buffer.from(
+      (await canvas.evaluate((c) => c.toDataURL())).split(",")[1],
+      "base64",
+    ),
+  );
+  expect(digest(pixels.data)).toBe(entry.entryPixelsSha256);
   expect(entered.briefing.variant).toBe(0);
-  expect(entered.briefing.seed).toBe(30127);
-  expect(entered.jungle.seed).toBe(44031);
-  expect(entered.jungle.frames).toBe(0);
   await page.keyboard.press("p");
   await page.keyboard.press("s");
   await page.clock.runFor(1200);

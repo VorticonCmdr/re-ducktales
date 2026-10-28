@@ -43,6 +43,21 @@
       "path": ".local/security-jungle-entry-accepted-02/timeline.json",
       "bytes": 178,
       "sha256": "35aa3d94e95d07520f8bede4ee668ed71380ed5dba1852b6a2a47c036d319138"
+    },
+    "capture-source": {
+      "path": ".local/security-jungle-entry-02/source-revision.json",
+      "bytes": 13072,
+      "sha256": "dd8c9aa3d9717336cecf732caf94cd8d434c59cc5d3d152450a405f34b754f30"
+    },
+    "capture-environment": {
+      "path": ".local/security-jungle-entry-02/environment.json",
+      "bytes": 211,
+      "sha256": "ae00c7a8cc905f460667565f34e5643f963b56731dfbc0d67012f5ce6884bbd4"
+    },
+    "entry-png": {
+      "path": ".local/security-jungle-entry-accepted-02/entry.png",
+      "bytes": 19873,
+      "sha256": "560613d928335a016ad40d170d1f2ed6d48c1258bbe84d47d1d19db9d6f6df3c"
     }
   },
   "inputRecipe": "BIOS0/Easy, clock frozen through original file loading; original security fixedRight/Fire; two real bank/office trips; fixed Okeefadokie selection; keyboard takeoff/stall and non-racing crash/repair arrival. All50 external DOM events and their timestamps are independent of expected states.",
@@ -50,5 +65,7 @@
   "fittedInputs": [],
   "comparisonRules": "Exact full Game state at jungle entry, all50 events consumed, all74 flight presentations valid, zero flag aliases, no tail/rollback/seed adjustment. Fresh browser compares full state and320x200 pixel hashes before testing original key deferral/pause/quit behavior.",
   "verifyCommand": "node scripts/replay-hard-campaign.js .local/security-jungle-entry-accepted-02 --manifest=reference/security-jungle-entry.json",
-  "browserCommand": "npx playwright test tests/browser/jungle-input.spec.js"
+  "browserCommand": "npx playwright test tests/browser/jungle-input.spec.js",
+  "captureCommit": "673f24508d98fdd42e4597fe71325456fe25c007",
+  "captureProducer": ".local/security-jungle-entry-02/source-revision.json"
 }

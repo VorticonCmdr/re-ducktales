@@ -395,12 +395,13 @@
   "fullBranchGate": "pending",
   "browserReplayRoot": ".local/hard-campaign/security-browser-replay-01",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "40b6b1f2a39f13336f294f32d565172843b01fb91f89e1c7d80becd817b81fcc",
+    "scripts/replay-hard-campaign.js": "e1da0883c5610e8ff78f28e8dade149114e78f66cf32524143ddff2efde4bbec",
     "scripts/verify-hard-campaign.js": "931201156cf2d3488ec53bba8d01d80fb30b5a3a7b1b12fc3b64517a1dc1cf60",
     "scripts/verify-hard-campaign-browser-negative.js": "1c3f4b33b8f312fb5458faf362a3368283a99f578f4499a951815b2bd9bb591f",
     "tests/browser/hard-campaign.spec.js": "c25e83216b40920cace0013b39c21652f6076df648dfb15023c8a7a324a8ab96",
     "tests/browser/helpers/recorded-campaign.js": "107b07b3f3dfe0f0b6b475093bd9d3cb601ef8557dd747e8cc55836eae4e97d7"
   },
   "replayCommit": "3c935850f084b36305cba54307c500259ea3aa1b",
-  "verificationToolCommit": "3c935850f084b36305cba54307c500259ea3aa1b"
+  "verificationToolCommit": "673f24508d98fdd42e4597fe71325456fe25c007",
+  "verificationToolNote": "Explicit Easy jungle-entry milestone added; Hard defaults and all28 state checkpoints/4140 events/1629 presentations/one alias plus original negative controls revalidated. Capture and independent browser producers remain pinned."
 }

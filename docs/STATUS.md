@@ -130,6 +130,14 @@ segment, mountain input and palette commands pass separately. See
 [terrain integration evidence](security-terrain-integration.md). Remaining strict
 recordings and the full branch gate are still pending.
 
+The seed-specific jungle input route now has an independent recorded startup:
+50 actual DOM events→74 flight presentations→one exact full Game entry state,
+then a fresh browser matches the complete state and320x200 pixels and passes
+all pause/deferral/quit controls. It carries day16/briefing3824/jungle14769 through
+real security and two bank trips. Hard replay defaults and its28 checkpoints
+remain validated after adding the explicit Easy entry endpoint. See
+[recorded jungle-entry evidence](security-jungle-entry.md).
+
 ## Verification
 
 `npm run verify` is the required full gate and rejects missing/corrupt fixtures,

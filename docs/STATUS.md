@@ -128,8 +128,15 @@ Current Hard investigation: a carried second flight exposed visible landing-flag
 frame255. The renderer now reproduces the original decoded-memory alias into
 the following plane image. Two native decoded buffers and one conditional
 original blit match exactly (all65536 VGA bytes); three negative controls fail.
-The exploratory browser route now reaches photography on day10 after the
-Bermuda jungle and bank deposit. The remaining linked route is not yet accepted.
+The exploratory browser route reaches photography on day10 after the Bermuda
+jungle and bank deposit, then earns4500 from nine target photos and returns on
+day12. Its third flight crashes and reaches the rival-claim branch on day13;
+the next experiment is a better flight input route from that carried state.
+The remaining linked route is not yet accepted. Exploratory capture07 and its
+13 checkpoints are in ignored `.local/hard-campaign/exploration-07/`; its failed
+full-route assertion is not acceptance. The independent1311-input diagnostic
+replays eight prior complete state checkpoints past the former rendering error;
+its incomplete endpoint with held Fire and100ms tail is also not acceptance.
 See [flag evidence and reproduction](flight-flag-alias.md). Focused flight
 regressions,117 unit tests and the production build pass; this is not a new full
 suite result.

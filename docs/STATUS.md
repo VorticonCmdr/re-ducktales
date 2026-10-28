@@ -21,7 +21,10 @@ finishable. This is completion work, not only final polish.
   route → reward/map. Failures and retries also work; each has three lives.
 - Hard → win the opening race → Bermuda Triangle jungle variant1 → treasure with
   three lives →2050 cash → bank on day6 → clean Restart. All444 authored jungle
-  inputs and26 actor/RNG checkpoints are required. See [Hard route](hard-expeditions.md).
+  inputs and26 actor/RNG checkpoints are required. Hard Boola Boola Island also
+  completes jungle variant2 through all four vines, returns1100 with three lives,
+  banks on day6 and restarts;421 inputs and29 checkpoints are required.
+  See [Hard routes](hard-expeditions.md).
 - Photography aiming/twelve shots → results/reward → map, including the original
   shared-score quirk and duplicate protection.
 - Earn the Atomic Matter Transmitter → office → atomic journey → next expedition,
@@ -64,15 +67,16 @@ and actual browser controls/rendering/audio. None alone proves whole-game parity
 Manifests pin source/artifact identities, setup recipes, events and exclusions.
 Conditional injections and provider assumptions are documented, not hidden.
 
-The Hard-route milestone passes full `npm run verify`:113 unit cases,62 development
+The Hard jungle milestones pass full `npm run verify`:113 unit cases,63 development
 and2 production browser scenarios, with zero skips, all required original-data
-comparisons and the production build. The new browser case wins a Hard race in226
-flight actions, consumes444 jungle inputs at26 exact actor/RNG checkpoints, banks
-2050 and restarts. A wrong first climb must fail at checkpoint22. The current
-immutable evidence archive is referenced by `.local/hard-jungle/receipt.json`.
-Earlier lightning, bank and mixed-campaign receipts remain preserved; the mixed route still
-matches all19 campaign checkpoints. [Historical notes](status-history.md) retain older
-receipts and investigations without describing them as current state.
+comparisons and the production build. The shared capture wins each Hard race in226
+flight actions, consumes444/421 jungle inputs at26/29 exact actor/RNG checkpoints,
+banks2050/1100 and restarts. Each wrong first climb fails checkpoint22.
+Immutable evidence archives are referenced by `.local/hard-jungle/receipt.json`
+and `.local/boola-jungle/receipt.json`, with13 artifacts each. Earlier immutable
+archives remain unchanged. Lightning, bank and mixed-campaign checks still pass;
+the mixed route matches all19 campaign checkpoints. [Historical notes](status-history.md)
+retain older receipts without describing them as current state.
 
 Tandy/PCjr sound is available in-game with persistent channels, priorities,
 flight-engine words and explicit completion status. All121 public requests have
@@ -97,9 +101,9 @@ whole-game IRQ alignment remain unverified.
   unproven. Unsupported paths stop in development; no recovery demo counts as
   strict acceptance.
 
-Next playable milestone: complete jungle variant2 and the remaining mountain
-variants through the browser, investigating the first unsupported behavior or
-divergence against the original. Hard flight and Bermuda variant1 now have actual
+Next playable milestone: complete the remaining mountain variants through the
+browser, investigating the first unsupported behavior or divergence against the
+original. Hard flight and Bermuda/Boola jungle variants now have actual
 browser completion evidence; a complete thirty-day Hard campaign, arbitrary routes
 and original whole-scene parity remain unproven.
 
@@ -108,7 +112,8 @@ and original whole-scene parity remain unproven.
 `npm run verify` is the required full gate. It fails on missing/corrupt required
 fixtures, incomplete case/input counts, unsupported paths and comparison failures.
 It includes unit checks, original comparisons, browser scenarios and production.
-For the Hard race/jungle/bank/restart route run `npm run verify:hard-expedition`.
+For both Hard race/jungle/bank/restart routes run `npm run verify:hard-expedition`.
+For the third jungle layout alone run `npm run verify:boola-expedition`.
 Its wrong-climb control must fail at checkpoint22, not at setup or a timeout.
 For the lightning input boundary run `npm run verify:flight-lightning`. Its
 missing-provider control must fail at the intended natural collision boundary.

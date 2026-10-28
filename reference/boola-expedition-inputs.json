@@ -1,0 +1,60 @@
+{
+  "id": "hard-boola-authored-inputs",
+  "recipe": "Fresh muted title: Space,Up,Enter for Hard; open map; click56,110; Space,Right,Space; Space to fly. After jungle treasure, Space returns to map; click212,131 and Space travels to bank; hold Fire through bank return; use Restart.",
+  "flight": {
+    "altitude": [25, 40],
+    "climbHeading": 3,
+    "approachTile": 37
+  },
+  "jungle": [
+    {
+      "byte": 3,
+      "count": 12
+    },
+    {
+      "byte": 1,
+      "count": 44
+    },
+    {
+      "byte": 3,
+      "count": 34
+    },
+    {
+      "byte": 1,
+      "count": 12
+    },
+    {
+      "byte": 3,
+      "count": 120
+    },
+    {
+      "byte": 1,
+      "count": 11
+    },
+    {
+      "byte": 3,
+      "count": 39
+    },
+    {
+      "byte": 1,
+      "count": 25
+    },
+    {
+      "byte": 3,
+      "count": 63
+    },
+    {
+      "byte": 0,
+      "count": 7
+    },
+    {
+      "byte": 1,
+      "count": 20
+    },
+    {
+      "byte": 3,
+      "count": 34
+    }
+  ],
+  "departurePoint": [56, 110]
+}

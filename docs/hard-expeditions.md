@@ -1,4 +1,4 @@
-# Hard race and Bermuda Triangle
+# Hard races and jungle expeditions
 
 The browser route starts a fresh Hard Earned Cash campaign, wins the first race
 to Bermuda Triangle, completes jungle variant1 with all three lives, returns with
@@ -73,14 +73,45 @@ diagnostic port outputs, not required native fixtures. The input files, verifier
 and recipe are versioned; no original files, decoded asset dumps or traces are
 committed.
 
-The whole game remains incomplete. Jungle variant2, the remaining mountain
-variants, broader linked campaigns/difficulties and original full-scene parity
-remain work. This route proves one Hard expedition/bank/restart slice, not a
-complete thirty-day Hard campaign or arbitrary-route finishability.
+The whole game remains incomplete. The remaining mountain variants, broader
+linked campaigns/difficulties and original full-scene parity remain work. These
+routes do not prove a complete thirty-day Hard campaign or arbitrary-route
+finishability.
 
-This milestone passes full `npm run verify`:113 unit checks,62 development browser
+These milestones pass full `npm run verify`:113 unit checks,63 development browser
 scenarios and2 production scenarios, zero skips, the required original comparisons
-and both wrong-input controls. `.local/hard-jungle/receipt.json` points to the
-immutable accepted archive; the versioned manifest records artifact checksums and
+and all required wrong-input controls. `.local/hard-jungle/receipt.json` points to the
+immutable accepted archive, and `.local/boola-jungle/receipt.json` does the same
+for Boola. Each archive contains13 artifacts. The versioned manifests record checksums and
 capture-tool/input identities. The existing mixed Easy campaign still matches
 all19 checkpoints.
+
+## Boola Boola Island: third jungle layout
+
+`npm run verify:boola-expedition` selects the Hard Boola route. The shared browser
+scenario keeps both routes in one implementation. Its separate authored input
+stream is [boola-expedition-inputs.json](../reference/boola-expedition-inputs.json);
+expected results and scope are in
+[boola-jungle-browser.json](../reference/boola-jungle-browser.json).
+
+From the fresh muted title, select Hard and click logical56,110 on the map.
+Confirm Launchpad's flight, win the one-day race, then enter jungle variant2.
+The flight's226 actions return seed16696; the guide returns6768 and this layout's
+initial hazard updates produce20869. The Bermuda layout initializes different
+hazards and returns15567 instead. These are observed game outputs, not injected
+values.
+
+The421 jungle samples in12 packets traverse four vines. Up stays on a vine;
+Right releases it. The final swing must reach the upper row before release so
+Scrooge lands on the row1 platform above the animal, then drops to the chest.
+Seven neutral samples before that swing are authored player waiting. All29
+actor/RNG checkpoints compare exact fields, with three lives retained. The chest
+awards the original Golden Boola Hoop (1000) plus100 pickups, giving1100 on day3.
+Return to Macaroon banks1100 on day6; Restart clears the campaign.
+
+The negative control changes the first Up to Right and must fail checkpoint22's
+X comparison. It has its own output directory and leaves the positive run's
+captures intact. Local captures/receipts live under `.local/boola-jungle/`.
+The bounded model exploration carries its own flight memory into the level;
+actual browser acceptance carries state from the title through the bank.
+No new original full-level capture or native timing equivalence is claimed.

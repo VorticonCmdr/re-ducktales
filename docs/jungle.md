@@ -8,8 +8,10 @@ variant0 controls,three-life failure,retry and restart. A complete Easy/variant0
 route reaches the chest with one life,awards$1000 and returns to the campaign.
 The [Hard Bermuda route](hard-expeditions.md) now completes variant1 with three
 lives,50 in pickups and the2000 treasure, then banks and restarts. Its444 authored
-inputs and26 actor/RNG checkpoints match the browser. Variant2, other linked
-routes and original full-loop timing still need acceptance.
+inputs and26 actor/RNG checkpoints match the browser. Hard Boola Boola Island
+completes variant2 with three lives,100 pickups and the1000 treasure, banks1100
+and restarts;421 inputs and29 checkpoints match. Other linked routes and
+original full-loop timing still need acceptance.
 
 The sections below preserve each comparison's scope. The runtime section at the
 end records the independent factory,clock providers and current browser route.
@@ -804,3 +806,19 @@ and shared dialog comparisons remain separate evidence. This adds no original
 full-scene pause timeline capture and proves no additional campaign completion.
 Run `node --test tests/jungle-input.test.js`, `npm run verify:jungle`, and
 `npm run test:browser -- tests/browser/jungle-input.spec.js tests/browser/jungle.spec.js tests/browser/jungle-treasure.spec.js`.
+
+
+## Third-layout completion route
+
+Hard Boola Boola Island (campaign slot4, LOC asset9, flags33) uses jungle
+variant2. A fresh title-to-bank browser scenario now completes it with all three
+lives and100 pickups, awards the1000 Golden Boola Hoop, banks1100 on day6 and
+restarts. The four-vine route requires421 authored samples and29 exact actor/RNG
+checkpoints. The last release occurs after the swing reaches the upper row,
+landing on the platform above the animal. No game rule was changed for this route.
+
+See [Hard routes](hard-expeditions.md) and
+[the scoped manifest](../reference/boola-jungle-browser.json).
+`npm run verify:boola-expedition` verifies original build identities, the actual
+browser route and a wrong-climb negative control. This is independent port/browser
+acceptance; full original variant2 parity remains unverified.

@@ -1,0 +1,636 @@
+{
+  "id": "hard-boola-jungle-browser",
+  "buildManifest": "reference/build.json",
+  "baseCommit": "70a467c",
+  "evidence": "Independent port/browser route, not original whole-level parity. Authored controls discovered by bounded port exploration. Expected actor checkpoints are port-model regressions, separate from the control stream.",
+  "environment": {
+    "biosSeed": 0,
+    "difficulty": 2,
+    "audio": false,
+    "displayMilliseconds": 8,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086
+  },
+  "flight": {
+    "seed": 54448,
+    "days": 1,
+    "racing": true,
+    "expectedFrames": 226,
+    "expectedSeed": 16696
+  },
+  "jungle": {
+    "variant": 2,
+    "location": 4,
+    "entrySeed": 20869,
+    "expectedInputCount": 421,
+    "expectedCheckpointCount": 29,
+    "comparisonFields": [
+      "x",
+      "y",
+      "column",
+      "row",
+      "action",
+      "frame",
+      "facing",
+      "lives",
+      "scroll",
+      "money",
+      "seed"
+    ],
+    "checkpoints": [
+      {
+        "inputCount": 12,
+        "state": {
+          "x": 40,
+          "y": 48,
+          "column": 0,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 40033
+        }
+      },
+      {
+        "inputCount": 22,
+        "state": {
+          "x": 102,
+          "y": 14,
+          "column": 2,
+          "row": -1,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 11544
+        }
+      },
+      {
+        "inputCount": 56,
+        "state": {
+          "x": 168,
+          "y": 45,
+          "column": 3,
+          "row": 0,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 54411
+        }
+      },
+      {
+        "inputCount": 57,
+        "state": {
+          "x": 168,
+          "y": 48,
+          "column": 3,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 0,
+          "money": 0,
+          "seed": 54411
+        }
+      },
+      {
+        "inputCount": 90,
+        "state": {
+          "x": 252,
+          "y": 79,
+          "column": 4,
+          "row": 1,
+          "action": 1,
+          "frame": 3,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 24,
+          "money": 0,
+          "seed": 2414
+        }
+      },
+      {
+        "inputCount": 102,
+        "state": {
+          "x": 314,
+          "y": 46,
+          "column": 6,
+          "row": 0,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 104,
+          "money": 0,
+          "seed": 52407
+        }
+      },
+      {
+        "inputCount": 103,
+        "state": {
+          "x": 314,
+          "y": 48,
+          "column": 6,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 104,
+          "money": 0,
+          "seed": 61380
+        }
+      },
+      {
+        "inputCount": 124,
+        "state": {
+          "x": 378,
+          "y": 48,
+          "column": 7,
+          "row": 1,
+          "action": 1,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 200,
+          "money": 50,
+          "seed": 6737
+        }
+      },
+      {
+        "inputCount": 147,
+        "state": {
+          "x": 430,
+          "y": 80,
+          "column": 8,
+          "row": 2,
+          "action": 4,
+          "frame": 5,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 208,
+          "money": 50,
+          "seed": 18565
+        }
+      },
+      {
+        "inputCount": 181,
+        "state": {
+          "x": 526,
+          "y": 80,
+          "column": 10,
+          "row": 2,
+          "action": 1,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 320,
+          "money": 50,
+          "seed": 6136
+        }
+      },
+      {
+        "inputCount": 222,
+        "state": {
+          "x": 622,
+          "y": 80,
+          "column": 11,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 424,
+          "money": 50,
+          "seed": 61303
+        }
+      },
+      {
+        "inputCount": 225,
+        "state": {
+          "x": 646,
+          "y": 79,
+          "column": 12,
+          "row": 1,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 424,
+          "money": 50,
+          "seed": 20563
+        }
+      },
+      {
+        "inputCount": 233,
+        "state": {
+          "x": 687,
+          "y": 78,
+          "column": 13,
+          "row": 1,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 456,
+          "money": 50,
+          "seed": 25043
+        }
+      },
+      {
+        "inputCount": 234,
+        "state": {
+          "x": 687,
+          "y": 80,
+          "column": 13,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 464,
+          "money": 50,
+          "seed": 25043
+        }
+      },
+      {
+        "inputCount": 272,
+        "state": {
+          "x": 783,
+          "y": 80,
+          "column": 14,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 568,
+          "money": 50,
+          "seed": 28220
+        }
+      },
+      {
+        "inputCount": 280,
+        "state": {
+          "x": 783,
+          "y": 48,
+          "column": 14,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 632,
+          "money": 50,
+          "seed": 28220
+        }
+      },
+      {
+        "inputCount": 288,
+        "state": {
+          "x": 783,
+          "y": 16,
+          "column": 14,
+          "row": 0,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 640,
+          "money": 50,
+          "seed": 17062
+        }
+      },
+      {
+        "inputCount": 297,
+        "state": {
+          "x": 783,
+          "y": 8,
+          "column": 14,
+          "row": -1,
+          "action": 19,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 640,
+          "money": 50,
+          "seed": 38557
+        }
+      },
+      {
+        "inputCount": 319,
+        "state": {
+          "x": 841,
+          "y": 16,
+          "column": 15,
+          "row": 0,
+          "action": 4,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 640,
+          "money": 100,
+          "seed": 50043
+        }
+      },
+      {
+        "inputCount": 348,
+        "state": {
+          "x": 903,
+          "y": 80,
+          "column": 17,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 744,
+          "money": 100,
+          "seed": 62194
+        }
+      },
+      {
+        "inputCount": 360,
+        "state": {
+          "x": 935,
+          "y": 80,
+          "column": 17,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 744,
+          "money": 100,
+          "seed": 54145
+        }
+      },
+      {
+        "inputCount": 367,
+        "state": {
+          "x": 935,
+          "y": 80,
+          "column": 17,
+          "row": 2,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 744,
+          "money": 100,
+          "seed": 45167
+        }
+      },
+      {
+        "inputCount": 370,
+        "state": {
+          "x": 951,
+          "y": 70,
+          "column": 18,
+          "row": 1,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 744,
+          "money": 100,
+          "seed": 32719
+        }
+      },
+      {
+        "inputCount": 378,
+        "state": {
+          "x": 990,
+          "y": 75,
+          "column": 18,
+          "row": 1,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 744,
+          "money": 100,
+          "seed": 6556
+        }
+      },
+      {
+        "inputCount": 387,
+        "state": {
+          "x": 1041,
+          "y": 44,
+          "column": 19,
+          "row": 0,
+          "action": 8,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 808,
+          "money": 100,
+          "seed": 6556
+        }
+      },
+      {
+        "inputCount": 388,
+        "state": {
+          "x": 1041,
+          "y": 48,
+          "column": 19,
+          "row": 1,
+          "action": 5,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 816,
+          "money": 100,
+          "seed": 6556
+        }
+      },
+      {
+        "inputCount": 400,
+        "state": {
+          "x": 1073,
+          "y": 48,
+          "column": 20,
+          "row": 1,
+          "action": 1,
+          "frame": 8,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 848,
+          "money": 100,
+          "seed": 33902
+        }
+      },
+      {
+        "inputCount": 415,
+        "state": {
+          "x": 1115,
+          "y": 48,
+          "column": 21,
+          "row": 1,
+          "action": 4,
+          "frame": 0,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 944,
+          "money": 100,
+          "seed": 27549
+        }
+      },
+      {
+        "inputCount": 421,
+        "state": {
+          "x": 1135,
+          "y": 80,
+          "column": 21,
+          "row": 2,
+          "action": 4,
+          "frame": 6,
+          "facing": 1,
+          "lives": 3,
+          "scroll": 960,
+          "money": 100,
+          "seed": 913
+        }
+      }
+    ],
+    "expectedOutcome": {
+      "code": 1,
+      "money": 100,
+      "seed": 913
+    },
+    "treasure": 1000,
+    "expectedCampaignMoney": 1100,
+    "expectedCampaignDay": 3
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "limits": "The model explorer carries its winning flight memory into jungle, then uses an isolated driver/retrace phase. Browser acceptance carries its own clocks and state. Only listed actor/RNG fields compare across providers; device/presentation counters are not asserted as native timing. The authored neutral waits are player input, not timer or RNG injections.",
+  "inputManifest": "reference/boola-expedition-inputs.json",
+  "inputManifestSha256": "950bb3fa79ddb69837c7017ee1c1aa55b32ccfd9bc6b9ed84f91bf42c238433e",
+  "captureTool": "tests/browser/hard-expedition.spec.js",
+  "captureToolRevision": {
+    "baseCommit": "70a467c",
+    "sha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508",
+    "note": "Shared Bermuda/Boola browser scenario; expected checkpoints remain separate from independently authored input streams."
+  },
+  "emulator": null,
+  "originalEvidence": "Existing original jungle routine/presentation/control manifests remain separate. No new original Hard-flight or full variant2 gameplay capture is claimed.",
+  "expectedScenarioCount": 1,
+  "campaign": {
+    "afterTreasure": {
+      "day": 3,
+      "money": 1100,
+      "playerCollected": [
+        4
+      ]
+    },
+    "afterBank": {
+      "day": 6,
+      "money": 0,
+      "banked": 1100
+    },
+    "afterRestart": {
+      "scene": "title",
+      "day": 1,
+      "money": 0,
+      "banked": 0
+    }
+  },
+  "negativeControl": {
+    "mode": "boola-wrong-climb",
+    "change": "Input13 Up becomes Right; counts unchanged.",
+    "requiredFailure": "Hard jungle checkpoint22 x"
+  },
+  "verify": "npm run verify:boola-expedition",
+  "artifacts": "Ignored .local/boola-jungle receipts and browser captures. Accepted hashes recorded after verification.",
+  "captureToolSha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508",
+  "negativeToolSha256": "0786a2f126b50837ca5f84a58665fe14791386adbc2906e2540f60caa43649a1",
+  "receipt": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "unit": 113,
+    "developmentBrowser": 63,
+    "productionBrowser": 2,
+    "skipped": 0,
+    "archive": ".local/boola-jungle/accepted-2cfbd0944904/",
+    "captureToolSha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508",
+    "artifacts": [
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-entry.json",
+        "bytes": 2286,
+        "sha256": "8c89eb2179e34141bc2210f4c6d023ce2739b1635d343804f01a21bbdfab376a"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-entry.png",
+        "bytes": 14423,
+        "sha256": "8d8ce2060629d07ead890ae7f6d596e213b5f45a6dc319635a22095a829051d8"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-flight.json",
+        "bytes": 62004,
+        "sha256": "1e47fdb199f951b8c3dd9697a63ef0aba73095fe3d2791c31dbf0d52dbae35a2"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-jungle.json",
+        "bytes": 132222,
+        "sha256": "ed7893b24491e094c6260eee57e80c8302a218f03f2e20a952fcf13230789d62"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-jungle-treasure.png",
+        "bytes": 16203,
+        "sha256": "eea04bb87a65eb265593005a801ad34e0e9df99157ed3f55b2f0e36896336cee"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-return.json",
+        "bytes": 2372,
+        "sha256": "b67b6594bd6c1042984963849a1f802f78fd8981320e533a4a90fac374c899b6"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-bank.json",
+        "bytes": 2392,
+        "sha256": "ac8f2dd0ce21d4175d4a97207194051919c5911165e2bc6fc0d72fe66d6577f9"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/hard-events.json",
+        "bytes": 53462,
+        "sha256": "8dd0ca885a04d948cc2ef130140e9841421d471a2a6aaae1016d661e0ad21615"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/full-verify.log",
+        "bytes": 44365,
+        "sha256": "9a0e4d03950a38f29fb2c7932d1ef55c0c13ea603913368aa172de1ff63920a7"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/negative-control.log",
+        "bytes": 3082,
+        "sha256": "8cd853d66be4fbf64dc38fa21ceb16347d455cce800c2aa8c0ee28a94880c99c"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/model-explorer.mjs",
+        "bytes": 3651,
+        "sha256": "fb8e4c0b6fb18eb200dcdaab23ce6ce3e6515ae057b6f43c309e5fe98366a7e7"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/capture-tool.js",
+        "bytes": 10020,
+        "sha256": "2cfbd0944904a04e1e7983b30f7afeb3e9e9f27736d5619c914eacdd44a8c508"
+      },
+      {
+        "path": ".local/boola-jungle/accepted-2cfbd0944904/input-manifest.json",
+        "bytes": 1001,
+        "sha256": "950bb3fa79ddb69837c7017ee1c1aa55b32ccfd9bc6b9ed84f91bf42c238433e"
+      }
+    ],
+    "scope": "Full-suite independent browser captures and wrong-climb control. Conditional model explorer is port exploration, not an original/runtime fixture. No new full original-level capture."
+  }
+}

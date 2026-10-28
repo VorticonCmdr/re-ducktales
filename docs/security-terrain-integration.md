@@ -24,6 +24,7 @@ npx playwright test tests/browser/jungle.spec.js tests/browser/mountain.spec.js 
 npm run verify:jungle
 npm run verify:mountain-input
 npm run verify:mountain-palette
+node scripts/verify-security-terrain-receipts.js
 ```
 
 The combined browser run passed all three cases in1.9 minutes. Private logs,
@@ -31,3 +32,9 @@ results, frozen122 source files and pictures are retained in
 `.local/security-terrain-integration-20261029/`. Supported originals and the
 private native comparison fixtures are required. Main remains054ac66; strict
 jungle/mountain/lightning recordings and the full branch gate remain pending.
+
+The [acceptance manifest](../reference/security-terrain-integration.json) pins
+source commit4106a13 and10 private artifact identities. The receipt check rejects
+missing/corrupt artifacts,skips,retries,missing cases and changed source identities,
+and verifies two deliberately damaged reports. It checks retained historical
+acceptance; the Playwright command executes the current browser application.

@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "integrationCommit": "4106a131a5dc5c48663b62c8263f55e96885b2dd",
+  "runtimeCommit": "9cfc0a3",
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "independent browser terrain acceptance; original routine/segment evidence remains separately scoped",
+  "fullBranchGate": "pending",
+  "expectedCaseCount": 3,
+  "expectedSourceCount": 122,
+  "sourceRoot": ".local/security-terrain-integration-20261029/sources",
+  "sourceRecord": ".local/security-terrain-integration-20261029/source-revision.json",
+  "results": ".local/security-terrain-integration-20261029/results.json",
+  "artifacts": [
+    {
+      "path": ".local/security-terrain-integration-20261029/results.json",
+      "bytes": 6394,
+      "sha256": "8e7b07e8a7e78500d977c72b80459dcdbec12326d2860cf74f44dc9bd3332d1d"
+    },
+    {
+      "path": ".local/security-terrain-integration-20261029/run.log",
+      "bytes": 837,
+      "sha256": "46b96145f5d5688840c263d0c9047737ea581b5546d6dfcfbfb463f194ccb97f"
+    },
+    {
+      "path": ".local/security-terrain-integration-20261029/source-revision.json",
+      "bytes": 12850,
+      "sha256": "e26431e2d5fca589e6be908f022aeee9ccc02d238c30bab4e1e63df3fc779436"
+    },
+    {
+      "path": ".local/security-terrain-integration-20261029/mountain-input-core.log",
+      "bytes": 301,
+      "sha256": "45e2c1e0b2641deb80397237b86a7d641fe4939f05997d826cf7fa14c5d0dda1"
+    },
+    {
+      "path": ".local/security-terrain-integration-20261029/mountain-palette-core.log",
+      "bytes": 555,
+      "sha256": "05bd2c2fd2f09cc5a7c654339b2328b6fd99ba28ce9635ec8b5b72dc95c2ef84"
+    },
+    {
+      "path": ".local/security-terrain-integration-20261029/jungle-core.log",
+      "bytes": 3569,
+      "sha256": "aefb6604a7266811fe984df78532d45992d776c46f430be7b1bee37f693c8501"
+    },
+    {
+      "path": ".local/security-terrain-integration-20261029/browser-output/jungle-movement.png",
+      "bytes": 30314,
+      "sha256": "8580b82a178cabc141c9f1b61656af231cc933a832fd7d4c42663d21b0602b98"
+    },
+    {
+      "path": ".local/security-terrain-integration-20261029/browser-output/mountain-hook.png",
+      "bytes": 46896,
+      "sha256": "8f43e0f208e5eaf3c63c5bf2755a00355f5dcf6be777ac5042beba77f2d73d63"
+    },
+    {
+      "path": ".local/security-terrain-integration-20261029/browser-output/mountain-input-pause.png",
+      "bytes": 22350,
+      "sha256": "b38107f13ba309a5c231193da3faf05c521314c0461d0eec53a2636297e1cbe1"
+    },
+    {
+      "path": ".local/security-terrain-integration-20261029/browser-output/mountain-life2-palette.png",
+      "bytes": 22581,
+      "sha256": "0a5a4d856c3d9c884bb90c34de0941fb9c871e27e9adb3d1a583637b6e0f07cc"
+    }
+  ],
+  "browserCommand": "npx playwright test tests/browser/jungle.spec.js tests/browser/mountain.spec.js tests/browser/mountain-input.spec.js",
+  "receiptVerifyCommand": "node scripts/verify-security-terrain-receipts.js",
+  "inputRecipe": "Fresh BIOS0/Easy; real opening/difficulty/security fixedRight/Fire, two actual bank/office loops with visible map-choice waits, then Okeefadokie or El Capitan non-racing crash/repair arrival. Real keys drive movement,jump,hook,life loss and retry. No state/RNG injection or output-derived controls.",
+  "comparisonRules": "All3 individual cases pass without skip/retry. Existing movement,life/palette,popup,clock,flush,retry and diagnostic assertions remain active. Native conditional comparison rules remain in their original manifests.",
+  "injections": [],
+  "fittedInputs": []
+}

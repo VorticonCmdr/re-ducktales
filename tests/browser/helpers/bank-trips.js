@@ -16,7 +16,9 @@ export async function bankTrips({ page, canvas, state, until, press, count }) {
       },
     });
     await press("Space");
+    await until((s) => s.scene === "map" && s.campaign.info);
     await press("ArrowRight");
+    await until((s) => s.scene === "map" && s.campaign.choice === 1);
     await press("Space");
     await until((s) => s.scene === "bank");
     await page.keyboard.down("Space");

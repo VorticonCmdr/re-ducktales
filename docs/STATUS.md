@@ -123,6 +123,13 @@ provider/native-segment commands also pass. The two-bank player route is shared
 without output-derived inputs or state injection. See
 [input/audio integration evidence](security-input-audio-integration.md).
 
+Three terrain browser cases also pass together with zero skips/retries: real-time
+jungle movement/life loss/return, mountain hook/life loss/direct retry with all
+three life palettes, and mountain pause/life-reset input flushing. Original jungle
+segment, mountain input and palette commands pass separately. See
+[terrain integration evidence](security-terrain-integration.md). Remaining strict
+recordings and the full branch gate are still pending.
+
 ## Verification
 
 `npm run verify` is the required full gate and rejects missing/corrupt fixtures,

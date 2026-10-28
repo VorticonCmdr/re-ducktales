@@ -1,5 +1,7 @@
 import { waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
+import { finishSecurityEntryRealTime } from "./helpers/security.js";
+import { bankTrips } from "./helpers/bank-trips.js";
 
 test("jungle departure, keyboard movement, life loss and campaign retry or rival claim", async ({
   page,
@@ -10,6 +12,20 @@ test("jungle departure, keyboard movement, life loss and campaign retry or rival
   await page.goto("/");
   const canvas = page.locator("#game");
   const state = () => canvas.getAttribute("data-state").then(JSON.parse);
+  async function until(predicate) {
+    let current;
+    await expect
+      .poll(
+        async () => {
+          current = await state();
+          if (current?.diagnostic) throw Error(current.diagnostic);
+          return Boolean(current && predicate(current));
+        },
+        { timeout: 30000, intervals: [16] },
+      )
+      .toBe(true);
+    return current;
+  }
   await expect(canvas).toHaveAttribute("data-scene", "title");
   await canvas.focus();
   await page.keyboard.press("Space");
@@ -18,7 +34,21 @@ test("jungle departure, keyboard movement, life loss and campaign retry or rival
   await page.keyboard.press("Enter");
   await expect(canvas).toHaveAttribute("data-scene", "office");
   await page.locator("#map").click();
+  await finishSecurityEntryRealTime(page, canvas);
   await expect(canvas).toHaveAttribute("data-scene", "map");
+  expect(
+    await bankTrips({
+      page,
+      canvas,
+      state,
+      until,
+      press: (key) => page.keyboard.press(key),
+      count: 2,
+    }),
+  ).toEqual([
+    { day: 7, seed: 62042 },
+    { day: 13, seed: 19313 },
+  ]);
   const bounds = await canvas.boundingBox();
   await canvas.click({
     position: { x: (bounds.width * 64) / 320, y: (bounds.height * 73) / 200 },
@@ -29,6 +59,7 @@ test("jungle departure, keyboard movement, life loss and campaign retry or rival
   await expect.poll(async () => (await state()).campaign.choice).toBe(1);
   await page.keyboard.press("Space");
   await expect(canvas).toHaveAttribute("data-scene", "departure");
+  expect((await state()).departure.racing).toBe(false);
   await page.keyboard.down("Space");
   await expect(canvas).toHaveAttribute("data-scene", "flight");
   await expect

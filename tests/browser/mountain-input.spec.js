@@ -2,6 +2,8 @@ import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import { finishSecurityEntry } from "./helpers/security.js";
+import { bankTrips } from "./helpers/bank-trips.js";
 
 test("mountain polls system keys after opening pages, pauses clocks correctly and clears held keys on life reset", async ({
   page,
@@ -41,7 +43,14 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   await press("Enter");
   await waitForScene(page, c, "office");
   await page.locator("#map").click();
+  await finishSecurityEntry({ page, until, state });
   await until((s) => s.scene === "map");
+  expect(
+    await bankTrips({ page, canvas: c, state, until, press, count: 2 }),
+  ).toEqual([
+    { day: 7, seed: 62042 },
+    { day: 13, seed: 19313 },
+  ]);
   const r = await c.boundingBox();
   await c.click({
     position: { x: (r.width * 36) / 320, y: (r.height * 61) / 200 },
@@ -50,6 +59,7 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   await press("ArrowRight");
   await press("Space");
   await until((s) => s.scene === "departure");
+  expect((await state()).departure.racing).toBe(false);
   await page.keyboard.down("Space");
   await until((s) => s.scene === "flight" && s.flight.speed > 4);
   await page.keyboard.down("ArrowDown");

@@ -49,6 +49,15 @@ finishable. This is completion work, not only final polish.
   banks treasure and carries its own state through Glomgold reports to the day30
   winning ending:15000 banked against10500. This is a repeatable browser regression,
   not an original whole-campaign replay. See [mixed campaign](mixed-campaign.md).
+- A fresh Hard campaign completes Bermuda jungle, Yellerstone photography,
+  Klondike cave and El Capitan mountain, carrying its state through banking and
+  rival reports to the day33 losing ending:19600 banked against44000. The current
+  full-gate browser run passed all24 exact state/pixel checkpoints and all3284
+  real DOM inputs. Its receipt is preserved at
+  `.local/hard-campaign/accepted-browser-replay-final-20261028/`. The full gate
+  passes117 unit,70 development browser and2 production browser cases, with
+  zero skips. This is not an original-game whole-campaign comparison.
+  See [Hard campaign](hard-campaign.md).
 
 P/Q/S wait for activity input polls and source flushes discard unread keys.
 Pause freezes actors/presentation while device clocks continue; quit cancellation
@@ -71,9 +80,10 @@ and actual browser controls/rendering/audio. None alone proves whole-game parity
 Manifests pin source/artifact identities, setup recipes, events and exclusions.
 Conditional injections and provider assumptions are documented, not hidden.
 
-The opening milestone passes full `npm run verify`:117 unit cases,67
+The current main-worktree milestone passes full `npm run verify`:117 unit cases,70
 development and2 production browser scenarios, zero skips, all required original
-comparisons and the production build. Jungle variants1/2 consume444/421 inputs
+comparisons, the production build and six Hard replay negative controls. The gate
+receipt is `.local/hard-campaign/accepted-full-gate-20261028/`. Jungle variants1/2 consume444/421 inputs
 at26/29 checkpoints; mountain variants1/2 consume494/706 inputs at59/73
 checkpoints. Each route wins its Hard race, keeps three lives, banks its own
 reward and restarts. Both wrong-climb and both missing-hook controls fail at
@@ -101,6 +111,17 @@ and title/ending dispatch is connected. PC speaker remains the default with
 approximate noise and an omitted engine. Hardware waveform, gain/filter and
 whole-game IRQ alignment remain unverified.
 
+The original difficulty-menu core matches four native pictures, nine consumed
+input bytes, five sound calls and the BIOS seed boundary. Its standalone
+component now implements the source-derived reveal, queued-key flush, seven-count
+waits and closing wipe. `node scripts/verify-difficulty.js` passes its carried
+replay and timing-boundary checks. Browser integration and original elapsed-time
+parity remain pending on this main worktree; see [difficulty evidence](difficulty.md).
+An isolated `codex/difficulty-menu` branch connects the component and passes two
+focused browser cases, a missing-input negative, the money-bin/banking route and
+winning-ending replay. Its wider startup scripts and campaign recordings still
+need migration before integration; its checks do not replace this main gate.
+
 ## Remaining gaps and next milestone
 
 - Broaden complete destination/difficulty routes and targeted original comparisons.
@@ -117,29 +138,11 @@ whole-game IRQ alignment remain unverified.
   unproven. Unsupported paths stop in development; no recovery demo counts as
   strict acceptance.
 
-Next playable milestone: complete a linked thirty-day Hard campaign across all
-four expedition families, through banking and the final result. All three jungle
-and mountain layouts have selected completion routes; linking them does not yet
-prove arbitrary campaigns finishable. Follow with the original difficulty,
-security and office/door presentation using targeted native scenarios rather
-than broad executable documentation.
-
-Current Hard investigation: a carried second flight exposed visible landing-flag
-frame255. The renderer now reproduces the original decoded-memory alias into
-the following plane image. Two native decoded buffers and one conditional
-original blit match exactly (all65536 VGA bytes); three negative controls fail.
-The exploratory browser route reaches photography on day10 after the Bermuda
-jungle and bank deposit, then earns4500 from nine target photos and returns on
-day12. Its third flight crashes and reaches the rival-claim branch on day13;
-the next experiment is a better flight input route from that carried state.
-The remaining linked route is not yet accepted. Exploratory capture07 and its
-13 checkpoints are in ignored `.local/hard-campaign/exploration-07/`; its failed
-full-route assertion is not acceptance. The independent1311-input diagnostic
-replays eight prior complete state checkpoints past the former rendering error;
-its incomplete endpoint with held Fire and100ms tail is also not acceptance.
-See [flag evidence and reproduction](flight-flag-alias.md). Focused flight
-regressions,117 unit tests and the production build pass; this is not a new full
-suite result.
+Next milestone: integrate the original difficulty menu after migrating startup
+waits and re-recording independent campaign inputs for its restored timing.
+Continue with security and office/door transitions using targeted native scenarios.
+The visible flag frame255 fix retains its exact native decoded-buffer and
+conditional blit checks; see [flag evidence](flight-flag-alias.md).
 
 ## Exact verification commands
 

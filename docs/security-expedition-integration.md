@@ -63,6 +63,7 @@ Historical pre-security records remain available under their original producers.
 ```
 npm run verify:departure
 npx playwright test tests/browser/game.spec.js tests/browser/campaign.spec.js tests/browser/flight-input.spec.js tests/browser/atomic.spec.js tests/browser/photography.spec.js
+node scripts/verify-security-expedition-receipts.js
 ```
 
 Required originals and private comparison fixtures must be present. The native
@@ -80,6 +81,11 @@ result. Conditional policy-planning files are separate from browser evidence.
 The final combined run passed all17 cases with zero skips in3.2 minutes. The
 native departure check also passed. Earlier diagnostic failures remain retained;
 the acceptance result is the final combined run, not a union of those attempts.
+The [acceptance manifest](../reference/security-expedition-integration.json)
+pins source commit4c89d92 and25 private artifact identities. The receipt command
+checks all121 archived/committed source files, all17 individual passing results,
+zero skips/retries and two deliberately damaged reports. It validates historical
+evidence; the Playwright command separately executes the current browser code.
 
 Broader destination/difficulty coverage, fixed-input focused fixture migration,
 promotion of the new full Hard recording and the full branch gate remain needed

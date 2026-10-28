@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "integrationCommit": "4c89d92ca979ff9ac8ef71e2ae067963a88cef43",
+  "runtimeCommit": "9cfc0a3",
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "independent browser acceptance with adaptive external player controls; not a native campaign comparison or fixed-stream campaign replay",
+  "fullBranchGate": "pending",
+  "expectedCaseCount": 17,
+  "expectedSourceCount": 121,
+  "sourceRoot": ".local/security-expedition-integration-20261028/final-sources",
+  "sourceRecord": ".local/security-expedition-integration-20261028/final-source-revision.json",
+  "results": ".local/security-expedition-integration-20261028/final-results.json",
+  "artifacts": [
+    {
+      "path": ".local/security-expedition-integration-20261028/final-results.json",
+      "bytes": 21293,
+      "sha256": "8b4d6d77278bf336543ebeef5df6c091375af4690dff3070f8526c66aea50d98"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/final-run.log",
+      "bytes": 2404,
+      "sha256": "0d1522347b0080ab221ae29bb5ad27ca2991ae3d3ac10b0d09ee524dbb749100"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/final-source-revision.json",
+      "bytes": 12726,
+      "sha256": "c27d325021554945ee9649347145bc254d87dc4c01c181b613cbcc4897d0f595"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/departure-core.log",
+      "bytes": 171,
+      "sha256": "745984ea3daf441ef281d4e193f9768da09eac1ee676c4b321a8fb83540f8b2a"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/departure-probe.mjs",
+      "bytes": 1303,
+      "sha256": "2951249fe270175595f185b07b7ae13c18faffd10eb18b8c7d4915bc41c069b9"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/departure-probe.json",
+      "bytes": 292,
+      "sha256": "ff89963513bd8aae578dd50b14e0c9f54380d2f88d6724a6465e625e2c1a57a4"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/bank-departure-probe.mjs",
+      "bytes": 2053,
+      "sha256": "8e263f65b6eccd95a7c58093207da8b807273765691477d8d34e3d1a91259a49"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/bank-departure-probe.log",
+      "bytes": 258,
+      "sha256": "fd3ee57fd1890c4250228c6f5abf58cab944328e0cffc74480a0eadfd8c584f4"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/second-bank-departure-probe.mjs",
+      "bytes": 2053,
+      "sha256": "edcd4864a98095de9002cdb8e8b89a2b5d0f4a4ea6f9b930e79ea7e549b2f45e"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/second-bank-departure-probe.log",
+      "bytes": 238,
+      "sha256": "949ad3e4d1067f85a67f1e4257e29345539585a84762cd2eea7c1494243d3a77"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/too-pei-policy-planning.mjs",
+      "bytes": 2035,
+      "sha256": "13d82b8d7197c43982fb6d99280377d2ba040b13453785ecd7c9a23a01d0e29b"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/too-pei-policy-planning.json",
+      "bytes": 6647,
+      "sha256": "17e414f04955963a76981cf16090aeda5e861d7eb46a7bfd3caad57de8daf610"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/photo-policy-planning.mjs",
+      "bytes": 2033,
+      "sha256": "749821f8a501d0d2e6dfbd6ca7a80e720a316f34b1e3aaf419bd2a84f76e8132"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/photo-policy-planning.json",
+      "bytes": 6657,
+      "sha256": "87772bb6bc04af8488eab72c6472f9285b91a6be4a2ff36a531a15fbc989a927"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/atomic-choice.png",
+      "bytes": 9855,
+      "sha256": "47c3402bb029b3120eab6075d170bfe72fba6bc1a129c9e6135073cfe787aa8f"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/cave-treasure-award.png",
+      "bytes": 34538,
+      "sha256": "996ec77c48de4194302e5bfa11345332b1a4ad1a211ef7948d129b3193631e7c"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/collected-notice.png",
+      "bytes": 24928,
+      "sha256": "de730a93d230c3c924e84247ae33f75821b1864171ca410f96f99db1f2aa2abe"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/flight-landing.png",
+      "bytes": 23069,
+      "sha256": "dd6a2fd3e20ccf50dc187d50b246553d0f69a5ae7092a247a225698fd42179d1"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/flight-pause.png",
+      "bytes": 7510,
+      "sha256": "77f73411bed39c93417eb16d36f7156cf402faaa37764262b495d9bf02006e01"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/flight-takeoff.png",
+      "bytes": 26353,
+      "sha256": "678b6048b92973550d17c33fbacaa3e8198bab99a2c70f090777d23cd41622b9"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/office-after-dive.png",
+      "bytes": 50337,
+      "sha256": "e684e71c7086de8e749bb0f18908a185366fda3b022ca1d6ba65a66ff920db2d"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/office-native.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/photography-results.png",
+      "bytes": 8148,
+      "sha256": "4026e5d4d01a2dd420708bc668b986d2958e0b41f6371bac17162cb2e66297c8"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/photography-shot.png",
+      "bytes": 31675,
+      "sha256": "593cc7e7d6bd6987429a2363d14a3952c472979f85e4dbf400e4a93a8393236d"
+    },
+    {
+      "path": ".local/security-expedition-integration-20261028/browser-output/rival-visit-notice.png",
+      "bytes": 35400,
+      "sha256": "e889710ae111a160b5afb9e00272d05c5d2578113df75aa63531db4124e86390"
+    }
+  ],
+  "browserCommand": "npx playwright test tests/browser/game.spec.js tests/browser/campaign.spec.js tests/browser/flight-input.spec.js tests/browser/atomic.spec.js tests/browser/photography.spec.js",
+  "receiptVerifyCommand": "node scripts/verify-security-expedition-receipts.js",
+  "comparisonScope": "Existing exact original pixel fixtures, decoded activity identities, carried RNG boundaries, real audio completion and actor/clock/flush assertions. Conditional presentation checks and adaptive browser routes remain distinct.",
+  "inputRecipe": "BIOS0; real opening/difficulty/security inputs; fixed Right/Fire after reveal. Too-Pei pilot altitude25..40/climb1; photography75..90/climb1. Crash-repair route performs two real bank/office round trips. See docs/security-expedition-integration.md.",
+  "injections": [],
+  "fittedInputs": []
+}

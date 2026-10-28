@@ -54,6 +54,8 @@ export class Photography {
     l.b(-2, [50, 40, 30][options.difficulty]);
     this.photos = l.bytes.subarray(2, 14);
     this.controls = { fire: false, direction: null };
+    this.pollInput = options.pollInput ?? (() => true);
+    this.onFlushInput = options.flushInput ?? (() => {});
     this.readInput = options.readInput ?? (() => this.joystick());
     this.readDialogueFire =
       options.readDialogueFire ?? (() => this.controls.fire);
@@ -110,7 +112,7 @@ export class Photography {
       this.wait = null;
     } else {
       if (
-        !["driver", "retrace"].includes(result.value.clock) ||
+        !["driver", "retrace", "input"].includes(result.value.clock) ||
         !Number.isInteger(result.value.remaining) ||
         result.value.remaining < 1
       )
@@ -122,6 +124,29 @@ export class Photography {
     this.tick++;
     this.memory.view.setUint32(0x2225, this.tick >>> 0, true);
     this.advance("driver");
+  }
+  advanceBlockedTick() {
+    this.tick++;
+    this.memory.view.setUint32(0x2225, this.tick >>> 0, true);
+  }
+  advanceBlockedRetrace() {
+    this.retrace++;
+  }
+  *pollSystemInput() {
+    const ready = this.pollInput();
+    if (typeof ready !== "boolean")
+      throw Error("Invalid photography global input provider");
+    if (!ready) yield { clock: "input", remaining: 1 };
+  }
+  resumeInputPoll() {
+    if (this.wait?.clock !== "input")
+      throw Error("Photography resumed outside its input reader");
+    this.resume();
+  }
+  flushInput(releaseControls = true) {
+    this.memory.bytes.fill(0, 0x276c, 0x27ec);
+    if (releaseControls) this.controls = { fire: false, direction: null };
+    this.onFlushInput(releaseControls);
   }
   advanceRetrace() {
     this.retrace++;
@@ -228,18 +253,22 @@ export class Photography {
       l = this.locals;
     yield* this.wipe();
     yield* this.reveal(this.frame());
+    this.flushInput(false); // Main0798, after the complete opening reveal.
     m.view.setUint32(0x27f8, 0, true);
     m.view.setUint32(0x27fc, 7, true);
     m.b(0x2066, 0);
     this.phase = "playing";
     while (!l.i(-0x38)) {
       yield* this.footer();
+      l.i(-0x52, 0);
+      yield* this.pollSystemInput(); // Main07d2, before sampling the joystick.
       let input = this.readInput();
       if (!Number.isInteger(input) || input < 0 || input > 255)
         throw Error("Invalid photography joystick provider");
       this.inputs.push(input);
       this.frames++;
       l.i(-0x52, input);
+      this.flushInput(false); // Main07da retains the sampled AX in its local.
       const record = 0x896c + m.b(0x4dde) * 12;
       if (!m.b(record)) l.b(-0x54, 0);
       if (!l.b(-0x54) && input & 192) {
@@ -299,13 +328,18 @@ export class Photography {
     const success = settlePhotographyResults(m, this.photos);
     l.i(-0x3c, success);
     yield* this.reveal(commands);
+    this.flushInput(false); // Main11b9 and shared11c4:0a05.
     for (let poll = 0; poll < 40; poll++) {
-      yield { clock: "driver", remaining: 7 };
+      // Shared09f5 enters its input reader before each neutral seven-tick wait.
+      yield* this.pollSystemInput();
       const fire = this.readDialogueFire();
       if (typeof fire !== "boolean")
         throw Error("Invalid photography dialogue input provider");
       this.dialogueInputs.push(fire);
       if (fire) break;
+      this.memory.view.setUint32(0x2221, this.tick >>> 0, true);
+      yield { clock: "driver", remaining: 7 };
+      this.memory.view.setUint32(0x2221, this.tick >>> 0, true);
     }
     m.b(0x2066, 0);
     finishPhotographyReturn(m, success);

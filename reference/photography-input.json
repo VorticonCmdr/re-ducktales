@@ -1,0 +1,102 @@
+{
+  "id": "photography-global-input-fb658562",
+  "baseRevision": "8af6257",
+  "buildManifest": "reference/build.json",
+  "identityManifest": "reference/photography.json",
+  "source": {
+    "program": "PHOTOGRAPHY_CODE.EXE",
+    "format": "MZ overlay7, x86 LE16 real mode, far cdecl",
+    "overlayBodyOffset": 121344,
+    "ranges": [
+      {
+        "source": "overlay",
+        "offset": 1944,
+        "length": 5,
+        "purpose": "Entry flush after reveal",
+        "sha256": "d4e8f2dae9d815f87efeb24cd35cc14903df1f60e55ebf69b6b970c7bdce3134"
+      },
+      {
+        "source": "overlay",
+        "offset": 2002,
+        "length": 13,
+        "purpose": "Global input, retain sampled AX, then flush",
+        "sha256": "01eead20e15af589e69a04e5668cd74b92bbf3fbc5c192b715927d7498ffe407"
+      },
+      {
+        "source": "overlay",
+        "offset": 4537,
+        "length": 17,
+        "purpose": "Results flush and forty-poll helper",
+        "sha256": "583fb20d9c585ae4fa4e91cd5b4481c2758dd4ab3738219b35b8ee87865c1cb6"
+      },
+      {
+        "source": "resident",
+        "offset": 9781,
+        "length": 88,
+        "purpose": "Shared09f5: flush, immediate global input, neutral seven-tick waits",
+        "sha256": "29c7a6a964b796914e9ba4d3c39ea964f1cdf051f5d0d6417effb6187bf9ba88"
+      },
+      {
+        "source": "resident",
+        "offset": 20140,
+        "length": 53,
+        "purpose": "Driver wait base2221 and unsigned clock2225",
+        "sha256": "4d7d7f75277c08089bc739de3cd6659364b2afe60aba7669395694c3b75a7f60"
+      },
+      {
+        "source": "resident",
+        "offset": 23173,
+        "length": 32,
+        "purpose": "BIOS queue/key-matrix flush",
+        "sha256": "80d700a63e3f22549f62f23eddf6c8ea690447150826ba5e8af9d97c1c8d7ced"
+      }
+    ]
+  },
+  "evidence": "Original disassembly establishes call positions and wait ordering. Controller invariants and independent browser acceptance follow. No new natural original pause timeline capture.",
+  "relatedNativeEvidence": [
+    "reference/photography.json",
+    "reference/photography-runtime.json",
+    "reference/system-controls.json"
+  ],
+  "environment": {
+    "clocks": "1193182/(1365*12) driver ticks; 70.086Hz retraces. Blocked dialogs advance clocks without actor/presentation progress.",
+    "input": "Global P/Q/S flags are retained until shared reader or explicit BIOS flush. The physical joystick provider is separate; ordinary BIOS flush does not release held physical directions/Fire. Dialog resume clears browser held controls.",
+    "results": "Shared09f5 reads Fire before each seven-tick neutral wait, with exactly40 reads at timeout. Neutral waits write2221 at entry/end. No sound-completion input controls this scene."
+  },
+  "scenario": {
+    "unitCases": 8,
+    "browserCases": 1,
+    "setup": "Conditional Game.startExpedition with original resources, plus actual browser title -> office -> Yellerstone -> flight crash -> photography. Results helper tests enter results through natural film exhaustion before supplying controlled clocks.",
+    "inputs": "Authored events in tests/photography-input.test.js and real keyboard in tests/browser/photography-input.spec.js; independent clocks. No expected-derived RNG, photos, score, timer or memory injections.",
+    "checks": "Exact state/locals freeze except four-byte device clock2225, deferred keys, scan priority, entry/results flushes, shutter waits, immediate Fire/40 neutral reads, resume and rendered pixels.",
+    "negativeControl": "Removing BIOS flush must cause the entry checker to reject.",
+    "regressionCorrection": "All22 existing runtime cases retain inputs, dialogue streams, gameplay checkpoints, locals, pixels, photos, RNG, scores and outcomes.21 Fire endpoints move seven driver ticks/six retraces earlier. The neutral timeout retains its clocks and corrects2221 to its completed driver timestamp."
+  },
+  "artifacts": "Local browser screenshot .local/browser-results/photography-input.png; original fixtures remain required by related native manifests.",
+  "verify": [
+    "node --test tests/photography-input.test.js",
+    "npm run verify:photography",
+    "npm run test:browser -- tests/browser/photography-input.spec.js tests/browser/photography.spec.js",
+    "npm run verify"
+  ],
+  "preservedRegressionSHA256": "864a75cdaea531dd52bd25cb54ae18f8d7ddfc94fb1ecdbb93aa8a8ff3f6936b",
+  "receipts": {
+    "scope": "Run-specific port verification/migration outputs, not original runtime captures or replay inputs.",
+    "fullVerification": {
+      "path": ".local/photography-input-full-verify.log",
+      "sha256": "2aefcf732e9052991754c04753c7bd6485063624d879d89438312be00988770a"
+    },
+    "screenshot": {
+      "path": ".local/photography-input-full.png",
+      "sha256": "1d87aa5e2962e435c3d97c3864ef4ac6821b3542babc3150bdd43cf94f49571e"
+    },
+    "beforeClockAudit": {
+      "path": ".local/photography-input-baseline.json",
+      "sha256": "c0917051de242616175f75f6ddc30c8c3deabcb5181c7258ec5ad7f2d146f31e"
+    },
+    "afterClockAudit": {
+      "path": ".local/photography-input-updated.json",
+      "sha256": "b2718141b18e86d19987799f4648b49be1fc03a8365a9f445c424eb9f8882876"
+    }
+  }
+}

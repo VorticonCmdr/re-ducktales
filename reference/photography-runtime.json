@@ -1,5 +1,5 @@
 {
-  "id": "photography-animation-runtime-v1",
+  "id": "photography-animation-runtime-v2",
   "evidenceLevels": {
     "original": "conditional routine comparisons plus two exact PNGs; not a whole original expedition replay",
     "independent": "port regression from initialized resources and independent authored input/device streams",
@@ -325,7 +325,7 @@
       ],
       "expectedInputCount": 19,
       "expectedDialogueCount": 1,
-      "expectedClockEventCount": 563,
+      "expectedClockEventCount": 550,
       "expectedPresentationCount": 84,
       "expectedCheckpointCount": 5,
       "checkpoints": [
@@ -591,13 +591,13 @@
         }
       ],
       "final": {
-        "ds": "381525417b8271c06146048220dde1bc1abf877aa8c0f68dc58ae7ee7ce7729b",
+        "ds": "b1c82c65770d1f54b42c956db1826801cf1e30fafdb8e7e6927fbf6801f269c7",
         "locals": "6aaf3948113c05e013349f4541818db4327f7c8fbf18527f92895df869e7ac50",
         "pixels": "84f7eb7ef33cddc05c9c83099fdc34bd56508205b6ecaef29fac9f4b69175e61",
         "state": {
           "phase": "complete",
-          "tick": 287,
-          "retrace": 276,
+          "tick": 280,
+          "retrace": 270,
           "frames": 19,
           "presentations": 84,
           "column": 1,
@@ -678,7 +678,7 @@
       ],
       "expectedInputCount": 18,
       "expectedDialogueCount": 1,
-      "expectedClockEventCount": 549,
+      "expectedClockEventCount": 536,
       "expectedPresentationCount": 83,
       "expectedCheckpointCount": 5,
       "checkpoints": [
@@ -944,13 +944,13 @@
         }
       ],
       "final": {
-        "ds": "455f76ec7d91ffc1179fe2f8f9c62ea189677d7fa555e67941b7bd67fa9a3208",
+        "ds": "2435e03748e332149fa77408264ecc56b4ba1e0feed25e1da20cb02d2c3348ae",
         "locals": "d95023da05feaa7458663303a0c70ffebd0c82d154592a6ac770358eb01ad381",
         "pixels": "bd9505bb9df98322b9e4a27223b49e32f0b28090ac43439622609df3cf3a57d7",
         "state": {
           "phase": "complete",
-          "tick": 280,
-          "retrace": 269,
+          "tick": 273,
+          "retrace": 263,
           "frames": 18,
           "presentations": 83,
           "column": 0,
@@ -1023,7 +1023,7 @@
       ],
       "expectedInputCount": 13,
       "expectedDialogueCount": 1,
-      "expectedClockEventCount": 480,
+      "expectedClockEventCount": 467,
       "expectedPresentationCount": 78,
       "expectedCheckpointCount": 5,
       "checkpoints": [
@@ -1289,13 +1289,13 @@
         }
       ],
       "final": {
-        "ds": "d997538afb27f9dad865a0edcbc5372611c4d9e89d54b7912e4ac895597045db",
+        "ds": "c445843287d2cc7442698ee7a09aaee8bdf8777f8d7cfa85a97284e706850c34",
         "locals": "bed43a9c6f179703a9c65221f8c4ee5d65bfbba68c6c21888283dfddc6c93da6",
         "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
         "state": {
           "phase": "complete",
-          "tick": 245,
-          "retrace": 235,
+          "tick": 238,
+          "retrace": 229,
           "frames": 13,
           "presentations": 78,
           "column": 1,
@@ -1634,7 +1634,7 @@
         }
       ],
       "final": {
-        "ds": "0f1f8977598634515a2f54a2cb13400c5e8709c4cc4bc91a632447bdbca66c0b",
+        "ds": "4cc1ac0bd53f588e7c7f40023c15a55b7aa3243651fa3c5b99341323a2c3381f",
         "locals": "6da3edfb1e49719678c84070882b269141a7a8c4c7b2093e180bca2d7cb3c1ed",
         "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
         "state": {
@@ -1727,9 +1727,9 @@
       "dialogueFire": true,
       "inputs": 19,
       "dialogueEvents": 1,
-      "clockEvents": 563,
+      "clockEvents": 550,
       "presentations": 84,
-      "ds": "1b193b699c2e82763b773a29dc839128b4c7944dc61ba0f06397b2f3e2631c0a",
+      "ds": "720de5c4eed537802ea72ec148383ee67931539493ff09830d345c429b6357cb",
       "pixels": "0a5ff84594e9b1e56ee008772c5afda21bcc2fae95da63309e22b0c906867ef2",
       "outcome": {
         "code": 0,
@@ -1753,9 +1753,9 @@
       "dialogueFire": true,
       "inputs": 19,
       "dialogueEvents": 1,
-      "clockEvents": 565,
+      "clockEvents": 552,
       "presentations": 85,
-      "ds": "4ff11438423896d0a4d6e8e96088db09f0cd473ff9b0c88c66c7dfd7484dc204",
+      "ds": "2e6fd90a771b44ceb6330ca82fb08502af49885a43c49c1ebf27f6fc6e6860a5",
       "pixels": "f41d1d8b882aa9178f5245c8247cf314c0c90e822f01a4e909b6b3405ed595e4",
       "outcome": {
         "code": 0,
@@ -1779,9 +1779,9 @@
       "dialogueFire": true,
       "inputs": 13,
       "dialogueEvents": 1,
-      "clockEvents": 480,
+      "clockEvents": 467,
       "presentations": 78,
-      "ds": "75b1869be70406470ad1f56581ade1d08729f3429317e2eb9fe8eba576a45f7f",
+      "ds": "ad8b99212417f42458a81bbbcd12c293d72e64b99be5ab06120f1c649437cf53",
       "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
       "outcome": {
         "code": 0,
@@ -1805,9 +1805,9 @@
       "dialogueFire": true,
       "inputs": 17,
       "dialogueEvents": 1,
-      "clockEvents": 535,
+      "clockEvents": 522,
       "presentations": 82,
-      "ds": "9ac209f7eca2342b9e6d65364c99a0392e3bad27d77279be8c94d0abd1631f8b",
+      "ds": "93cd29fd44cafb19f39f3188f3072905582fb28d7817413878eb7910b8d43839",
       "pixels": "64345e468e7656c732ab029cb0702ebcbb4fcee24103bdb0b1f9d4167e017353",
       "outcome": {
         "code": 0,
@@ -1831,9 +1831,9 @@
       "dialogueFire": true,
       "inputs": 15,
       "dialogueEvents": 1,
-      "clockEvents": 508,
+      "clockEvents": 495,
       "presentations": 80,
-      "ds": "cadb7860f0e044f92b7998523942a7d3d9f3e943b260c8903666f38947e0cee3",
+      "ds": "c4543fe23bb2ca7cad13f4905cf7d6accc9d6825f4f0814e97c1b7892f94c721",
       "pixels": "31a6d8681bd5195141001e397e44eec90e7515535eea4a99ccef48b4131a194b",
       "outcome": {
         "code": 0,
@@ -1857,9 +1857,9 @@
       "dialogueFire": true,
       "inputs": 13,
       "dialogueEvents": 1,
-      "clockEvents": 480,
+      "clockEvents": 467,
       "presentations": 78,
-      "ds": "30217cb80022885e3a513a5a0f0171a4fa58b08e3e85586210cb0031027b1f87",
+      "ds": "96b0da2ae7191d46cc063871769326362d12c85ce6fa4982acfe0085417d888b",
       "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
       "outcome": {
         "code": 0,
@@ -1883,9 +1883,9 @@
       "dialogueFire": true,
       "inputs": 17,
       "dialogueEvents": 1,
-      "clockEvents": 535,
+      "clockEvents": 522,
       "presentations": 82,
-      "ds": "a488995a2a984512c8507498a90f528c049afa894ee067d4819f6656eaa793e2",
+      "ds": "57739c34c1b89de11adcac57055e5b71c2135d6110f3d8a00db1cbfeac04355e",
       "pixels": "aba6bc536f5c54b1a9e93fc7c3d4719cf2960dec1f45d738a2ab3552d40af585",
       "outcome": {
         "code": 0,
@@ -1909,9 +1909,9 @@
       "dialogueFire": true,
       "inputs": 15,
       "dialogueEvents": 1,
-      "clockEvents": 508,
+      "clockEvents": 495,
       "presentations": 80,
-      "ds": "0a865b28ed6ad2c21d7853a05beeae6a87cb1a27753439ffa827d8e5ab760241",
+      "ds": "b8f023dfa9528ff9d0f87fe0ec973b30ccc2e319734b8a46cba8e65c295c0586",
       "pixels": "31a6d8681bd5195141001e397e44eec90e7515535eea4a99ccef48b4131a194b",
       "outcome": {
         "code": 0,
@@ -1935,9 +1935,9 @@
       "dialogueFire": true,
       "inputs": 15,
       "dialogueEvents": 1,
-      "clockEvents": 508,
+      "clockEvents": 495,
       "presentations": 80,
-      "ds": "1e65cdf29e79af64ded58f1a4eeeb9abd011e69519944b3b091bad5a718c2b35",
+      "ds": "73ed7160de2271f9b8d27471a21c37679d70260e21c48a2c7047f64929f32d27",
       "pixels": "b4d8521d32277b3ffc7fe20f022667d7ad7bf59c82a0570e670db81fb50fd983",
       "outcome": {
         "code": 0,
@@ -1961,9 +1961,9 @@
       "dialogueFire": true,
       "inputs": 17,
       "dialogueEvents": 1,
-      "clockEvents": 535,
+      "clockEvents": 522,
       "presentations": 82,
-      "ds": "e066ae797ea997134acefa3c5aef95e712eddf198bd77fa2005a77b240e54ce6",
+      "ds": "4eb053f0b1050f2783cc09e30c5de6f19ed7159a03529c64b893cc4b5a4beb40",
       "pixels": "03c139fbac222e54fda25214f3ee5f08da0eea10419a85e885ebcd09eb0021e6",
       "outcome": {
         "code": 1,
@@ -1987,9 +1987,9 @@
       "dialogueFire": true,
       "inputs": 17,
       "dialogueEvents": 1,
-      "clockEvents": 535,
+      "clockEvents": 522,
       "presentations": 82,
-      "ds": "76d680c7d50723c412a9c5daedc7f2aeb796a34686f1d6433ef6dc70b46c28e8",
+      "ds": "d090901f34ff731aa7ea042b438a25882dc4e1b076dce364a2fe712cda9b723a",
       "pixels": "03c139fbac222e54fda25214f3ee5f08da0eea10419a85e885ebcd09eb0021e6",
       "outcome": {
         "code": 1,
@@ -2013,9 +2013,9 @@
       "dialogueFire": true,
       "inputs": 13,
       "dialogueEvents": 1,
-      "clockEvents": 480,
+      "clockEvents": 467,
       "presentations": 78,
-      "ds": "7c0a2de83799886b6c74455ca5e36dbe9086e168ce5467378a88c9a764f3a3e3",
+      "ds": "0e058dbbad06a767f57f992e7c51ec66441bbbad02aa0620f6d20fdc974f2fdc",
       "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
       "outcome": {
         "code": 0,
@@ -2039,9 +2039,9 @@
       "dialogueFire": true,
       "inputs": 17,
       "dialogueEvents": 1,
-      "clockEvents": 535,
+      "clockEvents": 522,
       "presentations": 82,
-      "ds": "372b2b87eecb15b2028c93a066db257348f0bbf62b5f1262aecc87ce255a93b0",
+      "ds": "d9bbd6d9ee8b1490455585e12f9a1fb0e3ce42c9403ccf704171987255ab585a",
       "pixels": "a5507d96eb1c4d00cc78d1bed62a5ba25846958eefccdadf5e87baa2971db42b",
       "outcome": {
         "code": 1,
@@ -2065,9 +2065,9 @@
       "dialogueFire": true,
       "inputs": 17,
       "dialogueEvents": 1,
-      "clockEvents": 535,
+      "clockEvents": 522,
       "presentations": 82,
-      "ds": "3f24ee7d0a1c962878e6d281e601f2b073a7c8246bfe903887dacb21f3042046",
+      "ds": "2249b1e3b53319eacaee6ae01e14c66abbbb88c338ec726318f7dc928251ba6f",
       "pixels": "a5507d96eb1c4d00cc78d1bed62a5ba25846958eefccdadf5e87baa2971db42b",
       "outcome": {
         "code": 1,
@@ -2091,9 +2091,9 @@
       "dialogueFire": true,
       "inputs": 13,
       "dialogueEvents": 1,
-      "clockEvents": 480,
+      "clockEvents": 467,
       "presentations": 78,
-      "ds": "d997538afb27f9dad865a0edcbc5372611c4d9e89d54b7912e4ac895597045db",
+      "ds": "c445843287d2cc7442698ee7a09aaee8bdf8777f8d7cfa85a97284e706850c34",
       "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
       "outcome": {
         "code": 0,
@@ -2117,9 +2117,9 @@
       "dialogueFire": true,
       "inputs": 17,
       "dialogueEvents": 1,
-      "clockEvents": 535,
+      "clockEvents": 522,
       "presentations": 82,
-      "ds": "e5bb7c585de562e7fe3431220064cac2b149fdbe6f4b57b40d1416ef449c2206",
+      "ds": "d5e304086b0582190872944fa2e486f414dfa042e58cbe919835ed6b343fa8c0",
       "pixels": "ff1bb388863e80edd91870a543ab114594961bed3dcb5ce70e4963586ca9c963",
       "outcome": {
         "code": 0,
@@ -2143,9 +2143,9 @@
       "dialogueFire": true,
       "inputs": 15,
       "dialogueEvents": 1,
-      "clockEvents": 508,
+      "clockEvents": 495,
       "presentations": 80,
-      "ds": "79ca0c0e12c3168afe033832318d429512888b7d197811770bf3846d446c97d0",
+      "ds": "6a60463530a1f9b0705e5c7dc12ee3eb9f04adcf5b2db0c7ae9ad6b73a96d681",
       "pixels": "77c8edb312315f82c6301739dbd855a74abacf0778e62a71b9caf9f6f24d51d9",
       "outcome": {
         "code": 0,
@@ -2169,9 +2169,9 @@
       "dialogueFire": true,
       "inputs": 15,
       "dialogueEvents": 1,
-      "clockEvents": 508,
+      "clockEvents": 495,
       "presentations": 80,
-      "ds": "1ffd5c09751e737fc498a1c8b60cc14f668ac4f609ca875893abe0e314a1bb51",
+      "ds": "72edee50e004090b7fd49f54dd2f9a3065810f34390a4f8c231af2a81f630c33",
       "pixels": "b4d8521d32277b3ffc7fe20f022667d7ad7bf59c82a0570e670db81fb50fd983",
       "outcome": {
         "code": 0,
@@ -2182,5 +2182,210 @@
       }
     }
   ],
-  "expectedResourceCaseCount": 18
+  "expectedResourceCaseCount": 18,
+  "inputTimingCorrection": {
+    "sourceRevision": "8af6257",
+    "reason": "Original shared09f5 polls Fire before its first seven-tick wait. Neutral waits write the resident2221 base before and after waiting. See reference/photography-input.json.",
+    "scope": "Port regression endpoints corrected from static source; no original captures or authored input/dialogue streams changed. All gameplay checkpoints, locals, pixels, RNG, photos, scores and outcomes unchanged.",
+    "cases": [
+      {
+        "kind": "replay",
+        "index": 0,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 287,
+        "newDriverTick": 280,
+        "oldClockEvents": 563,
+        "newClockEvents": 550
+      },
+      {
+        "kind": "replay",
+        "index": 1,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 280,
+        "newDriverTick": 273,
+        "oldClockEvents": 549,
+        "newClockEvents": 536
+      },
+      {
+        "kind": "replay",
+        "index": 2,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 245,
+        "newDriverTick": 238,
+        "oldClockEvents": 480,
+        "newClockEvents": 467
+      },
+      {
+        "kind": "replay",
+        "index": 3,
+        "changedDSOffsets": [8737, 8738],
+        "oldDriverTick": 3956,
+        "newDriverTick": 3956,
+        "oldClockEvents": 7762,
+        "newClockEvents": 7762
+      },
+      {
+        "kind": "resource",
+        "index": 0,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 287,
+        "newDriverTick": 280,
+        "oldClockEvents": 563,
+        "newClockEvents": 550
+      },
+      {
+        "kind": "resource",
+        "index": 1,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 288,
+        "newDriverTick": 281,
+        "oldClockEvents": 565,
+        "newClockEvents": 552
+      },
+      {
+        "kind": "resource",
+        "index": 2,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 245,
+        "newDriverTick": 238,
+        "oldClockEvents": 480,
+        "newClockEvents": 467
+      },
+      {
+        "kind": "resource",
+        "index": 3,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 273,
+        "newDriverTick": 266,
+        "oldClockEvents": 535,
+        "newClockEvents": 522
+      },
+      {
+        "kind": "resource",
+        "index": 4,
+        "changedDSOffsets": [8741, 8742],
+        "oldDriverTick": 259,
+        "newDriverTick": 252,
+        "oldClockEvents": 508,
+        "newClockEvents": 495
+      },
+      {
+        "kind": "resource",
+        "index": 5,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 245,
+        "newDriverTick": 238,
+        "oldClockEvents": 480,
+        "newClockEvents": 467
+      },
+      {
+        "kind": "resource",
+        "index": 6,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 273,
+        "newDriverTick": 266,
+        "oldClockEvents": 535,
+        "newClockEvents": 522
+      },
+      {
+        "kind": "resource",
+        "index": 7,
+        "changedDSOffsets": [8741, 8742],
+        "oldDriverTick": 259,
+        "newDriverTick": 252,
+        "oldClockEvents": 508,
+        "newClockEvents": 495
+      },
+      {
+        "kind": "resource",
+        "index": 8,
+        "changedDSOffsets": [8741, 8742],
+        "oldDriverTick": 259,
+        "newDriverTick": 252,
+        "oldClockEvents": 508,
+        "newClockEvents": 495
+      },
+      {
+        "kind": "resource",
+        "index": 9,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 273,
+        "newDriverTick": 266,
+        "oldClockEvents": 535,
+        "newClockEvents": 522
+      },
+      {
+        "kind": "resource",
+        "index": 10,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 273,
+        "newDriverTick": 266,
+        "oldClockEvents": 535,
+        "newClockEvents": 522
+      },
+      {
+        "kind": "resource",
+        "index": 11,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 245,
+        "newDriverTick": 238,
+        "oldClockEvents": 480,
+        "newClockEvents": 467
+      },
+      {
+        "kind": "resource",
+        "index": 12,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 273,
+        "newDriverTick": 266,
+        "oldClockEvents": 535,
+        "newClockEvents": 522
+      },
+      {
+        "kind": "resource",
+        "index": 13,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 273,
+        "newDriverTick": 266,
+        "oldClockEvents": 535,
+        "newClockEvents": 522
+      },
+      {
+        "kind": "resource",
+        "index": 14,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 245,
+        "newDriverTick": 238,
+        "oldClockEvents": 480,
+        "newClockEvents": 467
+      },
+      {
+        "kind": "resource",
+        "index": 15,
+        "changedDSOffsets": [8741],
+        "oldDriverTick": 273,
+        "newDriverTick": 266,
+        "oldClockEvents": 535,
+        "newClockEvents": 522
+      },
+      {
+        "kind": "resource",
+        "index": 16,
+        "changedDSOffsets": [8741, 8742],
+        "oldDriverTick": 259,
+        "newDriverTick": 252,
+        "oldClockEvents": 508,
+        "newClockEvents": 495
+      },
+      {
+        "kind": "resource",
+        "index": 17,
+        "changedDSOffsets": [8741, 8742],
+        "oldDriverTick": 259,
+        "newDriverTick": 252,
+        "oldClockEvents": 508,
+        "newClockEvents": 495
+      }
+    ]
+  }
 }

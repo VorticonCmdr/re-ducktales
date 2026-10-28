@@ -113,8 +113,11 @@ Detailed scopes: [flight](flight.md),[caves](cave.md),[mountains](mountain.md),
   new original input/pause/life-flush checks and an independent controller replay.
   Jungle global-key polling now follows static call/flush locations, with six
   controller checks and a real browser pause/quit/sound route. Original full-scene
-  pause timing remains unproven. Photography global-key alignment with its
-  original animation/audio waits remains unproven.
+  pause timing remains unproven. Photography now follows its original entry,
+  control,shutter and results input calls,with eight controller cases and an
+  independent browser pause/quit/sound route. Its results Fire poll is immediate;
+  neutral timeout retains40 reads/280 ticks. Original whole-scene timing and
+  IRQ alignment remain unproven.
 - Atomic travel has5 conditional original checks,exact report pixels and an earned
   browser unlock/use route. Original sound latency,map-information and transition
   timing remain unproven. Some editions are unsupported.
@@ -187,10 +190,10 @@ in package.json. All required local artifacts are mandatory; missing/corrupt
 fixtures,skipped cases,unconsumed inputs and unsupported rendering fail. Important
 comparators include negative controls.
 
-Current milestone passes full `npm run verify`: 82 unit tests, 53 development
+Current milestone passes full `npm run verify`: 90 unit tests, 54 development
 browser scenarios and two production browser scenarios, plus all required
 original-data comparisons and the production build. Log:
-`.local/title-audio-full-verify.log`. Native browser routes cover persistent
+`.local/photography-input-full-verify.log`. Native browser routes cover persistent
 Tandy money-bin cues, mute/reset and acknowledged device closure, original
 flight-engine word dispatch, and flight → cave → pit → natural sound wait →
 results. Compiled game/viewer tests load the real original folder. Sound 001
@@ -321,3 +324,14 @@ hashes and the browser startup adaptation are in `reference/title-audio.json`;
 see `docs/tandy-audio.md`. The full suite passed unchanged campaign replays with
 zero skipped cases. The initial failed browser assertion is retained locally;
 it counted one Restart reset where the existing adapter/model emit two.
+
+
+Photography's input milestone adds eight controller cases and a native keyboard
+browser route. Entry/results reveals flush unread keys; the four shutter
+presentations defer global input; pause freezes exact rendered pixels and actor
+state while device clocks advance. Results read Fire immediately and retain an
+exact40-read/280-tick neutral timeout. The22 existing runtime cases preserve
+inputs,original artifacts,gameplay checkpoints,locals,pixels,RNG and outcomes;
+only the documented final clock endpoints/base change. The full suite passed
+with no skipped cases. See `reference/photography-input.json` and
+`docs/photography.md`. Original full-scene pause/IRQ timing remains unverified.

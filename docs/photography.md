@@ -244,7 +244,7 @@ npx playwright test tests/browser/photography.spec.js
 
 Next: extend original comparisons for special-species reactions and whole-scene
 timing. Remaining full-game work includes
-input-poll timing and remaining campaign paths. No original save/high-score path
+whole-original input-poll timing and remaining campaign paths. No original save/high-score path
 has been identified; see [the interface audit](system-controls.md). [Atomic transport](atomic-transport.md) is connected. [Normal rival progression](rival.md) is connected.
 
 
@@ -270,3 +270,63 @@ replay. `applicationChecks` in the manifest records that scope.
 The shared-score shortcut also skips the ordinary cave result dialog and its
 keyboard flush. The conditional cave success adapter instruments that flush
 effect and requires zero calls on this path. It does not simulate cave play.
+
+## Global input and results-wait correction (2026-10-28)
+
+Photography now reads retained P/Q/S flags at its original input boundary.
+Main0798 flushes the BIOS queue/key matrix after the opening reveal. Main07d2
+calls the shared global reader,07d7 retains the sampled AX in local-52, and07da
+flushes the keyboard state before rendering/updating the next frame. No reader
+runs during the four shutter presentations, so keys wait until the next loop.
+Main11b9 flushes after the results reveal, then calls shared11c4:09f5 with40.
+Ghidra also displays this results fragment as1ce1:0519; original body offsets
+and raw far operands identify the same bytes. Main's known decompiler timeout
+was handled with bounded original disassembly, not misleading recovered C.
+
+Shared09f5 flushes on entry, polls the global reader immediately at0a33 and
+checks Fire before its first wait. Each neutral read calls0dcc(0),0dcc(7),
+then increments the counter; timeout consumes exactly40 reads and280 ticks.
+The driver wait copies the consumed unsigned32-bit clock2225 into base2221
+before and after each neutral wait. Previously the port delayed its first Fire
+read by seven ticks and omitted those base writes. The corrected Fire path
+returns as soon as the completed results reveal reaches that reader.
+
+Pausing suspends that same reader. Driver/retrace providers continue while
+actors,locals,RNG,timer,film and presentations stay frozen. Dialog resume or
+cancelled quit clears pending keys and releases browser controls before returning
+to the pending call. Ordinary BIOS flushes preserve the separate physical
+joystick provider; original keyboard typematic remains unverified. Invalid
+provider results stop with a diagnostic rather than leaving a silent input wait.
+
+`reference/photography-input.json` pins six original source ranges and the
+supported build. Eight controller cases cover entry flush, pause/clock behavior,
+scan order, cancelled quit, shutter buffering, immediate Fire,40 neutral reads
+and results-reveal flushing. Negative controls remove the flush, supply an
+invalid provider and alter replay inputs/checkpoints/pixels. The new independent
+browser route travels through the actual title,office,map and flight into
+photography; it verifies shutter buffering,pause pixels,quit cancellation and
+sound control. Its8ms observation cadence can see zero or one of the four shutter
+presentations before the shot first appears, so exactly three or four remain.
+Paused pixel comparisons are exact. The existing target-photo/results/campaign
+browser route also passes.
+
+The22 existing port regressions retain all authored joystick/dialogue inputs,
+original artifacts,gameplay checkpoints,locals,pixels,photos,RNG,scores and
+outcomes. A preserved-content hash checked by the unit module enforces that
+boundary,with negative controls.21 Fire endpoints now finish seven driver ticks
+and six retraces earlier; the neutral timeout retains its clocks and corrects
+only2221. Full final DS hashes and exact clocks remain required in the runtime
+verifier. The clock-only migration is recorded in the runtime manifest; this is
+a correction to port regressions,not a newly captured original full expedition.
+No original capture was replaced or reclassified. Source call positions are
+statically inferred; original complete pause/IRQ/presentation timing is still
+unverified.
+
+The first focused unit run omitted LOOT.ARC from the conditional application's
+setup; two cases failed when they returned to rival progression. Supplying the
+existing required resource fixed the setup. Gameplay logic was not changed to
+hide those failures. The failed log and before/after clock audit remain local.
+
+Run `node --test tests/photography-input.test.js`, `npm run verify:photography`,
+and `npm run test:browser -- tests/browser/photography-input.spec.js tests/browser/photography.spec.js`.
+All are included in `npm run verify`.

@@ -30,7 +30,7 @@ const [environment, events, checkpoints, timeline] = await Promise.all([
   json("campaign-checkpoints.json"),
   json("timeline.json"),
 ]);
-assert.equal(environment.hard, true);
+assert.equal(typeof environment.hard, "boolean");
 assert.equal(environment.displayMilliseconds, 8);
 if (!diagnose)
   assert.equal(
@@ -59,6 +59,13 @@ const negative = process.argv
 if (!diagnose) {
   const contract = JSON.parse(await readFile(contractPath));
   strictContract = contract;
+  // Hard campaigns retain their original defaults. An explicitly declared
+  // entry milestone may reuse the same independent DOM/environment adapter.
+  assert.equal(environment.hard, contract.expectedHard ?? true);
+  assert.ok(
+    [undefined, "jungle-entry"].includes(contract.milestone),
+    "Unsupported recorded milestone",
+  );
   for (const name of [
     "environment",
     "captured-events",
@@ -77,9 +84,20 @@ if (!diagnose) {
     const e = events.find((e) => e.type === "keydown" && e.key === "ArrowUp");
     assert.ok(e, "Missing difficulty input");
     e.key = "ArrowDown";
+  } else if (negative === "wrong-security") {
+    const at = events.findIndex(
+      (e) => e.type === "keydown" && e.key === "ArrowRight",
+    );
+    assert.ok(at >= 0, "Missing security Right input");
+    const release = events.findIndex(
+      (e, i) => i > at && e.type === "keyup" && e.key === "ArrowRight",
+    );
+    assert.ok(release > at, "Missing security Right release");
+    events[at].key = events[release].key = "ArrowLeft";
   } else if (negative === "alter-checkpoint")
     checkpoints[0].stateSha256 = "0".repeat(64);
-  else if (negative === "omit-checkpoint") checkpoints.splice(1, 1);
+  else if (negative === "omit-checkpoint")
+    checkpoints.splice(checkpoints.length > 1 ? 1 : 0, 1);
   else assert.equal(negative, undefined, "Unknown negative control");
   assert.equal(
     events.length,
@@ -212,6 +230,9 @@ function controls() {
   }
 }
 function event(e) {
+  if (diagnose && process.argv.includes("--trace"))
+    console.error(JSON.stringify({ at: lastTime, input: e, scene: game.scene,
+      seed: game.seed, security: game.security?.snapshot() }));
   assert.ok(
     ["keydown", "keyup", "pointerdown", "pointerup"].includes(e.type),
     `Unsupported replay input ${e.type}`,
@@ -319,11 +340,21 @@ try {
   assert.equal(consumed, events.length);
   assert.equal(checked, checkpoints.length);
   if (!diagnose) assert.equal(held.size, 0, "Unreleased recorded keys");
-  assert.ok(game.scene === "ending" || diagnose, "Unfinished campaign");
+  const entryMilestone = strictContract?.milestone === "jungle-entry";
+  assert.ok(
+    game.scene === (entryMilestone ? "jungle" : "ending") || diagnose,
+    "Unfinished recorded route",
+  );
   if (!diagnose) {
-    assert.ok(game.ending.ready, "Unfinished ending input sequence");
+    if (entryMilestone) {
+      assert.equal(game.jungle.phase, "entering");
+      assert.equal(game.jungle.frames, 0);
+      assert.equal(lastTime, timeline.endAt, "Unfinished entry timeline");
+    } else assert.ok(game.ending.ready, "Unfinished ending input sequence");
     assert.ok(
-      rendered > 0 && flagAliasPresentations > 0,
+      rendered > 0 &&
+        (strictContract.expectedFlagAliasPresentations === 0 ||
+          flagAliasPresentations > 0),
       "Required flight rendering path skipped",
     );
     assert.equal(clock.events.length, 0, "Unconsumed scheduler input");

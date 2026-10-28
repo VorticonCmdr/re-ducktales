@@ -1,5 +1,11 @@
 # Linked Hard campaign with the original difficulty menu
 
+This is the historical menu-only main scenario. Its inputs and expected outputs
+are preserved. The security development branch has a separately accepted
+[security-aware campaign](hard-campaign-security.md); other branch regressions
+and the full integration gate remain pending.
+
+
 Build `dos-fb658562`, pinned by `reference/build.json`. The original-menu route
 selects Hard, completes Bermuda jungle, Yellerstone photography, Klondike cave
 and El Capitan mountain, banks its treasure and reaches the day33 losing ending:

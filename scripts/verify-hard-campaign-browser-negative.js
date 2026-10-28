@@ -2,25 +2,24 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { writeFile, mkdir } from "node:fs/promises";
 await mkdir(".local/hard-campaign-verification", { recursive: true });
-const r = spawnSync(
-  process.execPath,
-  [
-    "node_modules/@playwright/test/cli.js",
-    "test",
-    "tests/browser/hard-campaign.spec.js",
-    "--output=.local/hard-campaign-browser-negative",
-  ],
-  {
-    env: {
-      ...process.env,
-      DUCKTALES_RECORDED_NEGATIVE: "omit-hard-choice",
-      DUCKTALES_CAPTURE_HARD_CAMPAIGN: "0",
-    },
-    encoding: "utf8",
-    timeout: 60000,
-    maxBuffer: 4 * 1024 * 1024,
+const args = [
+  "node_modules/@playwright/test/cli.js",
+  "test",
+  "tests/browser/hard-campaign.spec.js",
+  "--output=.local/hard-campaign-browser-negative",
+];
+if (process.env.DUCKTALES_CAMPAIGN_TEST_CONFIG)
+  args.push("--config", process.env.DUCKTALES_CAMPAIGN_TEST_CONFIG);
+const r = spawnSync(process.execPath, args, {
+  env: {
+    ...process.env,
+    DUCKTALES_RECORDED_NEGATIVE: "omit-hard-choice",
+    DUCKTALES_CAPTURE_HARD_CAMPAIGN: "0",
   },
-);
+  encoding: "utf8",
+  timeout: 60000,
+  maxBuffer: 4 * 1024 * 1024,
+});
 const output = `${r.stdout ?? ""}\n${r.stderr ?? ""}`;
 await writeFile(
   ".local/hard-campaign-verification/browser-negative.log",

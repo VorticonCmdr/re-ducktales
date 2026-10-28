@@ -1,0 +1,394 @@
+{
+  "id": "hard-linked-campaign-original-security",
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "closed-loop port regression and independent browser scenario",
+  "evidence": "Complete security-aware Hard campaign:all4140 independent DOM events match28 exact full Game state and browser pixel checkpoints.1629 flight renders include one native-supported flag alias. Five verifier negatives and one real-browser missing-Hard-input negative pass. Full branch integration gate remains pending. Port regression,not original whole-campaign parity.",
+  "emulator": null,
+  "captureCommit": "a78eead4f7ca8218028eb928be7c63856c544880",
+  "captureTool": "tests/browser/helpers/linked-campaign.js",
+  "captureProducer": ".local/hard-campaign/security-reference-07/source-revision.json",
+  "startingRecipe": "Fresh supported originals,BIOS0,muted; opening skip,original Hard menu,security fixedRight/Fire,then all actual keyboard/canvas/buttons. No game state injection or RNG reseeding.",
+  "environment": {
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "sound": false,
+    "capturePhase": "before-target-handler"
+  },
+  "requiredInputSamples": {
+    "jungle": 447,
+    "mountain": 671
+  },
+  "expectedCheckpointCount": 28,
+  "requiredEventCount": 4140,
+  "expectedFlightPresentations": 1629,
+  "expectedFlagAliasPresentations": 1,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "mountain-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "rival-report",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedEnding": {
+    "phase": "cover",
+    "won": false,
+    "banked": 17200,
+    "rivalBanked": 61000,
+    "day": 31,
+    "remaining": 699,
+    "choice": 0,
+    "credit": -1,
+    "asset": 37,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      2,
+      31,
+      32,
+      34
+    ],
+    "rivalCollected": [
+      9,
+      10,
+      12,
+      13,
+      15,
+      21,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30
+    ]
+  },
+  "comparisonRules": "All28 canonical full Game state hashes and all28 independent320x200 browser pixel hashes,exact recorded consumed DOM inputs and observation/display times,1629 Game flight renders including one supported original raw-frame alias. No tolerance,fitted clocks or result-derived replay controls.",
+  "injections": [],
+  "fittedInputs": [],
+  "exclusions": [
+    "This is port regression and browser acceptance,not an original whole-campaign/IRQ/waveform comparison.",
+    "Intermediate native pixel parity outside dedicated source segment fixtures remains unproven."
+  ],
+  "verifyCommand": "node scripts/verify-hard-campaign.js --manifest=reference/hard-campaign-security.json",
+  "browserVerifyCommand": "DUCKTALES_CAMPAIGN_MANIFEST=reference/hard-campaign-security.json npx playwright test tests/browser/hard-campaign.spec.js",
+  "artifactRoot": ".local/hard-campaign/security-reference-07",
+  "browserCheckpoints": [
+    {
+      "name": "campaign-start",
+      "stateSha256": "6725fc744f8e9bcb3ef8ecf09d1e7b0649c0060e7821674a345e37d14f30ef8a",
+      "pixelsSha256": "74d3dbe6a273f24d58024df26a52cda5bfc1160ea93026f0f25968daef508acf"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "1ef9403c73c5c0e9c48ba806301294d3d898d1ffcc3a2ae001aa2a6b596e0a19",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "8ccffe815f27ec04957418ac4541885a362f8e67f89154b482f7ec949abb285a",
+      "pixelsSha256": "c8cd0c13735e9b5f663e7f1a6a4beec42e842f525979f1e05a3d8844a3362fb3"
+    },
+    {
+      "name": "jungle-return",
+      "stateSha256": "9192845a7778df89ee9b69e86d1f0656bc92c28e2f82915e0d7e8de7a339e699",
+      "pixelsSha256": "d497c1bc70a9cbc02141aca2ea0d22936f3b0a342986b6f5dce0c22f3aa58d89"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "b02f5b1c66a7eef8b21dff7f9a9cd7c1ede9b1c3af636c2ee6de8f791904f5f2",
+      "pixelsSha256": "ee0b8b78f596f888b92c4d3754d61f4742f429055d3d9863e2ae1cc119fd57f6"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "6ee870ced78f1565648e13793bd58ca58135a633d0f1e7b7f1c2a50e078c51a4",
+      "pixelsSha256": "12daa0164ffcdb1148bf15c4c5a21bab6dc06442ba3b749e6c92c625c1cbff15"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "931a2912e5356d26e0bd1a71597a90a4a4e208d5d40dbffd3b06551b64648362",
+      "pixelsSha256": "85d21612b3f396bc40ad003f8ecdfc40698ac0872f3751e3ca2a22f9500d4de8"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "45f735eedf2ed2df00470e5af82f3d4a856c5ca0b2e2acb2de18e060bc81f8b1",
+      "pixelsSha256": "edecd3a2d04e178542097a28f87093439acac189846a8bc6f8a8658fe7bed7d2"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "47eff79ea717931af6482a676f79b8f26178cb667c0c59d5b78901117cb3e847",
+      "pixelsSha256": "ce4a10f7880c1eb241c6f0f278c28b6b68f4fa6f83f81606b3bd4b99b24dac61"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "7fe45753fc75e415dec07523d4414b92665bff6f9f1fbc11e2a97c557568cb65",
+      "pixelsSha256": "e217c5374ae514a59710136843535ce7dd2205c65fd508c8e86019155547506f"
+    },
+    {
+      "name": "photography-return",
+      "stateSha256": "78ed0cbfa38c065a1ea2e8b22343a34aab77a6338f2c6c43363c995e8fb5012a",
+      "pixelsSha256": "b3318b8def410f76dc4ff91f8708e698160d38da2d26c2ea8b700b2b53362cc8"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "5fcb05ae6e3723457633fc2619fdeab6f3bda10699b55b63b8fda62c07704978",
+      "pixelsSha256": "e23f8312d0b01bdaa1264020e6f735d3fd5df6dd9d831054b6fbe69ff29342d1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "479131b1927f20c6a43fb06a390acbbd7e59d386f8aaa5ef6d8fd8a4af6f4fa2",
+      "pixelsSha256": "0a86d584a78418d5ced94877257e4bc14de0bb7fdf77578af0ec359550c40bf1"
+    },
+    {
+      "name": "cave-return",
+      "stateSha256": "dd03760e414643f821fe3d8e1d192ad41cde5006e30137a3cd45160f8698c2e9",
+      "pixelsSha256": "5c60f703ebdb5e46af97e6c5e901281d1a64deb84ba73a432e017964aec83e6e"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "73f24bb9f0a28efef25684b8296b0159141d89230accfe4cb791d6b00a682158",
+      "pixelsSha256": "243da4108a528195a4b0d4bfc27259271d5c0465b61110bd3d69398bfaaf6941"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "0b03db57c593ad5cf05e052e48b0ed635b27673364399e9efd76cd73b8111539",
+      "pixelsSha256": "e23f8312d0b01bdaa1264020e6f735d3fd5df6dd9d831054b6fbe69ff29342d1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "d145941926b9a9c8a3877a979c3d02d5dc035a6b62326f9396573b88f7ff31ed",
+      "pixelsSha256": "217ee5dbff4763abe21c67c227a9c65a90daa74c4a24344a55ab3e030b7ba13a"
+    },
+    {
+      "name": "mountain-return",
+      "stateSha256": "830d44300d3d060b336a0287f1051f468da94393a7f3bf8cbcafa4048db127be",
+      "pixelsSha256": "550dbd8038555234e1f77b84624706f984fbe3bb6f067de57b642b943135fb82"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "f0a4deaf9eee6f5f7954c187510878d97b97ec31738b14208c1245558bbb42ec",
+      "pixelsSha256": "c6c3a30738347a892e8c4ff5ae7a71c0639e9df2e4a340dc3a29be3e0820bf1a"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "d6c425788fbc87162f3ab1117c85e8f47222dd31fafa2e5e3913c0d113f80bdd",
+      "pixelsSha256": "59e5299ccb991726d18e3753ea998063d3cb57334bda8674e6937bc0ba2a5582"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "302d6029c62d52c57ac64008e8188c73b90ba9f5f6fb9786032b0e2eda5ae3ad",
+      "pixelsSha256": "12689587759eb781f28b3a45c6fdc971e9356a502606b41268293f23f4e3f7d6"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "05ad0f6f5e6b5fc5c7d384fb5c10ba3581c9929f667766201ea8c20346a6e9b0",
+      "pixelsSha256": "22526578806a6cbdd47c3453fb51e816d7fa6ca5cb66524740ca4045fb3ecfc4"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "fa555f54e7a4cbf732cbc3bf0039837cd56b9914d42a2392c115bd7e9dc31057",
+      "pixelsSha256": "171520b0884e87c0b5bfb65dfa3a52af65dbf74e0438ed3bb06af7de5662c74c"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "00a1fd0e662c45c8e52b0547e26be8b2b7d222bfec7a98020296733f3cfee711",
+      "pixelsSha256": "83c2c45c45ec1a7151c907ad5224307c2d481f5e2f9b7b4e41222eb70f2e87c2"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "6c870a465cbe794cae37f87cf111ea8e2ea70c63c04181572e7374bdeeaa8a26",
+      "pixelsSha256": "183ee94a5d10fffcc53e9f439e327582ac5b9c834bbc66d08e429bfef6051cdc"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "6ac25977a9e4c90c4521a72f2a73acba418b17f2b1d1d5974730aaa7ab179feb",
+      "pixelsSha256": "de843822aacf83fe975b3cde8a22932f3c12514f2d55c5de2c3bf807f2bdd728"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "6dff0d8c0180f0dcc676b54d64c880969b87ea79da0f2a6c6c458f97710aa73e",
+      "pixelsSha256": "1bb0ed9e202c264a96abf1f0e920844468f78e3a397df1666a168c1759d4c9c8"
+    },
+    {
+      "name": "ending",
+      "stateSha256": "590a0a19dd1d470e042aa1c9990f2fcbf50d902e7217d67f868789ef5ec4787e",
+      "pixelsSha256": "c78d9b1056c765caaa49256bc74380b0ee4f62d0ba1f6c1edf92ddc091a6a469"
+    }
+  ],
+  "artifacts": {
+    "capture": {
+      "path": ".local/hard-campaign/security-reference-07/capture.log",
+      "bytes": 3145,
+      "sha256": "a37ec85c2cba861988ee460e0b217d54ec1bf555d72ceb2dcea3137bf66c4af1"
+    },
+    "captured-events": {
+      "path": ".local/hard-campaign/security-reference-07/captured-events.json",
+      "bytes": 496564,
+      "sha256": "15b2222471d7a547ebe1c5433938dba6b0e59f9017392e57360aac9e8d268ab4"
+    },
+    "source-revision": {
+      "path": ".local/hard-campaign/security-reference-07/source-revision.json",
+      "bytes": 9693,
+      "sha256": "9383c6a1fb2a488395b75c420edfa6a9396b767c6b1e47a49b453f45d678d3e6"
+    },
+    "flight-4": {
+      "path": ".local/hard-campaign/security-reference-07/flight-4.json",
+      "bytes": 98210,
+      "sha256": "12d5539cdb012b30e4274a62b45e6860f77f139733816a12d7e232b740691a2f"
+    },
+    "flight-3": {
+      "path": ".local/hard-campaign/security-reference-07/flight-3.json",
+      "bytes": 122710,
+      "sha256": "e23db0e51b7c79dbf05968fdb043ec2f95d58b98900ebff3465d537acf5f1abf"
+    },
+    "capture-config": {
+      "path": ".local/hard-campaign/security-reference-07/capture-config.js",
+      "bytes": 306,
+      "sha256": "f5d7ba82784f7dcdcc0e1bf5a6ecdddb9a5522268ff5267d5e89bf56cc850a07"
+    },
+    "mountain-input-observations": {
+      "path": ".local/hard-campaign/security-reference-07/mountain-input-observations.json",
+      "bytes": 331697,
+      "sha256": "cc299d5caafb6f76e2e5e618a76037ff196de81b0d23e47643cbb8774c147493"
+    },
+    "flight-2": {
+      "path": ".local/hard-campaign/security-reference-07/flight-2.json",
+      "bytes": 166143,
+      "sha256": "53d673e0c60f5ffa2e2779fc629fc0b4c47543782683b265e1a591d0ff09748c"
+    },
+    "browser-lifecycle": {
+      "path": ".local/hard-campaign/security-reference-07/browser-lifecycle.json",
+      "bytes": 219,
+      "sha256": "123e1795ebd01abdde4031403c6910abc98368853b8b835075e0eb336c6ea486"
+    },
+    "flight-1": {
+      "path": ".local/hard-campaign/security-reference-07/flight-1.json",
+      "bytes": 122000,
+      "sha256": "e09495f0082fea2a28df65ebf97b35dfec4096e1bef53237ea979678d0ce3ce8"
+    },
+    "mixed-campaign-ending": {
+      "path": ".local/hard-campaign/security-reference-07/mixed-campaign-ending.png",
+      "bytes": 20211,
+      "sha256": "f5ba476785232d8d5739796b9519c1baea5f3a804986fab9319c425b6bc702f6"
+    },
+    "timeline": {
+      "path": ".local/hard-campaign/security-reference-07/timeline.json",
+      "bytes": 2661,
+      "sha256": "0d1f030ff6b1c540d74bbe904e23ec37ccdc87f735a22f07b6eedbc522d7060d"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/hard-campaign/security-reference-07/campaign-checkpoints.json",
+      "bytes": 157538,
+      "sha256": "298ca42bcaf78b7be44ee3c3c2b11b50ec430dffb922029a1f63d30e9ea64ab2"
+    },
+    "final-state": {
+      "path": ".local/hard-campaign/security-reference-07/final-state.json",
+      "bytes": 3289,
+      "sha256": "ac1ea9e0c992070a3789710b0a788db27e44f1b7d2d5374f5c0f3bfa9e7fff27"
+    },
+    "environment": {
+      "path": ".local/hard-campaign/security-reference-07/environment.json",
+      "bytes": 180,
+      "sha256": "9be470329f03077ae7f4376aaacbc2bd3fdb779859dd1503e50707ed001bd391"
+    },
+    "game-diagnostic": {
+      "path": ".local/hard-campaign/security-reference-07/game-diagnostic.log",
+      "bytes": 3435,
+      "sha256": "a797cea57972b8261f5086d191aead5215e60bff55007507b85530b7b9e2d34e"
+    },
+    "browser-checkpoints": {
+      "path": ".local/hard-campaign/security-browser-replay-01/campaign-checkpoints.json",
+      "bytes": 157538,
+      "sha256": "298ca42bcaf78b7be44ee3c3c2b11b50ec430dffb922029a1f63d30e9ea64ab2"
+    },
+    "browser-progress": {
+      "path": ".local/hard-campaign/security-browser-replay-01/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "01377ca1765a38cfa1b02a7d11ad9a044c3433be03c1b4e57335def7e13f7eee"
+    },
+    "browser-events": {
+      "path": ".local/hard-campaign/security-browser-replay-01/actual-events.json",
+      "bytes": 373504,
+      "sha256": "d80e7e4af42e8f615b1a8e369f47901a890618dccbba60d46c3e6acb6f92b784"
+    },
+    "browser-log": {
+      "path": ".local/hard-campaign/security-browser-replay-01/browser.log",
+      "bytes": 1882,
+      "sha256": "d8c7f0ffa0d804ef99f637436abb548f949afae05a713a7b229b6c5af4150762"
+    },
+    "browser-status": {
+      "path": ".local/hard-campaign/security-browser-replay-01/browser-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser-config": {
+      "path": ".local/hard-campaign/security-browser-replay-01/capture-config.js",
+      "bytes": 305,
+      "sha256": "12ed04aadac556e0c618648c21467ae21cf1fd1c0cf03522562c9b4a582837a9"
+    },
+    "browser-contract": {
+      "path": ".local/hard-campaign/security-browser-replay-01/verified-contract.json",
+      "bytes": 12795,
+      "sha256": "d2e2686dfb5fe1b3bb1f7d56d8eb2379f8a22b568936c56bacdacb1672a87df6"
+    },
+    "browser-source": {
+      "path": ".local/hard-campaign/security-browser-replay-01/source-revision.json",
+      "bytes": 8270,
+      "sha256": "524818a32eefb365cd5d25923a485a0eb73b2fc849e9c3b72d42f5827ef13ab6"
+    },
+    "strict-game-replay": {
+      "path": ".local/hard-campaign/security-browser-replay-01/strict-game-replay.log",
+      "bytes": 3434,
+      "sha256": "9ff4379aaa0e078cb21ec245524458aa46c11abd21e1e54641c16d5e16984df2"
+    },
+    "verification-summary": {
+      "path": ".local/hard-campaign/security-browser-replay-01/verification.log",
+      "bytes": 222,
+      "sha256": "1b47a069482f682d3991e31d32f8a4d52b9b02a1f6e6aace57ae0959071892a6"
+    },
+    "browser-negative-summary": {
+      "path": ".local/hard-campaign/security-browser-replay-01/browser-negative-summary.log",
+      "bytes": 110,
+      "sha256": "3fa9ea0f64229b57d1fc53a25cbca6c84c283d30fb8eb84233a58b01e0efd856"
+    },
+    "browser-negative": {
+      "path": ".local/hard-campaign/security-browser-replay-01/browser-negative.log",
+      "bytes": 1763,
+      "sha256": "67439dd4081e362583ba517e6511c9502bc96983b2a1b3cbd0e491c66c004c22"
+    }
+  },
+  "pendingBrowserReplay": false,
+  "fullBranchGate": "pending",
+  "browserReplayRoot": ".local/hard-campaign/security-browser-replay-01",
+  "verificationTools": {
+    "scripts/replay-hard-campaign.js": "40b6b1f2a39f13336f294f32d565172843b01fb91f89e1c7d80becd817b81fcc",
+    "scripts/verify-hard-campaign.js": "931201156cf2d3488ec53bba8d01d80fb30b5a3a7b1b12fc3b64517a1dc1cf60",
+    "scripts/verify-hard-campaign-browser-negative.js": "1c3f4b33b8f312fb5458faf362a3368283a99f578f4499a951815b2bd9bb591f",
+    "tests/browser/hard-campaign.spec.js": "c25e83216b40920cace0013b39c21652f6076df648dfb15023c8a7a324a8ab96",
+    "tests/browser/helpers/recorded-campaign.js": "107b07b3f3dfe0f0b6b475093bd9d3cb601ef8557dd747e8cc55836eae4e97d7"
+  }
+}

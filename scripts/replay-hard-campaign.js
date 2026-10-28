@@ -9,6 +9,10 @@ import { Scheduler } from "../src/game/scheduler.js";
 import { renderFlightPixels } from "../src/game/flight-raster.js";
 const root = process.argv[2],
   diagnose = process.argv.includes("--diagnose");
+const contractPath =
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+  "reference/hard-campaign.json";
+let strictContract = null;
 assert.ok(root, "SETUP: supply a recorded campaign directory");
 const json = async (n) => {
   const bytes = await readFile(`${root}/${n}`).catch(() => {
@@ -53,7 +57,8 @@ const negative = process.argv
   .find((a) => a.startsWith("--negative="))
   ?.slice(11);
 if (!diagnose) {
-  const contract = JSON.parse(await readFile("reference/hard-campaign.json"));
+  const contract = JSON.parse(await readFile(contractPath));
+  strictContract = contract;
   for (const name of [
     "environment",
     "captured-events",
@@ -322,6 +327,18 @@ try {
       "Required flight rendering path skipped",
     );
     assert.equal(clock.events.length, 0, "Unconsumed scheduler input");
+    if (strictContract.expectedFlightPresentations !== undefined)
+      assert.equal(
+        rendered,
+        strictContract.expectedFlightPresentations,
+        "Missing flight presentations",
+      );
+    if (strictContract.expectedFlagAliasPresentations !== undefined)
+      assert.equal(
+        flagAliasPresentations,
+        strictContract.expectedFlagAliasPresentations,
+        "Unexpected flag alias coverage",
+      );
   }
   console.log(
     JSON.stringify({

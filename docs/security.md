@@ -204,8 +204,12 @@ Capture06 subsequently lost the mountain race. Its first16 checkpoints and3354
 DOM events match an independent Game replay. Conditional planning from that
 carried port state reproduces the279-read/tile37 loss. A50..65 band with heading2
 wins in232 reads in the model. Continuing that model through the unchanged671
-mountain inputs reaches the summit with three lives. Capture07 is validating
-the whole route in the actual browser; no complete new campaign pass is claimed.
+mountain inputs reaches the summit with three lives. Capture07 completed the whole route in the browser. Strict independent Game and
+fresh-browser replays then consumed all4140 DOM events and matched28 exact
+state/pixel checkpoints through the day31 ending:17200 against61000. Five
+verifier negatives and one real missing-Hard-input browser negative pass. See
+[the full scenario](hard-campaign-security.md); the branch integration gate and
+other route migrations remain pending.
 These planning copies are port data segments, not original emulator machine
 checkpoints. No memory or state is injected into the browser campaign.
 

@@ -1,10 +1,17 @@
 import assert from "node:assert/strict";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
-import { spawnSync } from "node:child_process";
+import { spawnSync, execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 
+const manifestPath =
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+  "reference/hard-campaign.json";
+const verificationRoot =
+  manifestPath === "reference/hard-campaign-security.json"
+    ? ".local/hard-security-campaign-verification"
+    : ".local/hard-campaign-verification";
 const manifest = JSON.parse(
-  await readFile("reference/hard-campaign.json").catch(() => {
+  await readFile(manifestPath).catch(() => {
     throw Error("SETUP: missing accepted Hard campaign manifest");
   }),
 );
@@ -30,11 +37,56 @@ for (const [name, spec] of Object.entries(manifest.artifacts)) {
     `Corrupt ${name} artifact`,
   );
 }
-await mkdir(".local/hard-campaign-verification", { recursive: true });
+// Historical producers and current checkers are different identities. Keep
+// capture sources pinned while the current Game is actually replayed below.
+const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
+if (manifest.captureProducer) {
+  const source = JSON.parse(await readFile(manifest.captureProducer));
+  assert.equal(source.captureCommit, manifest.captureCommit);
+  assert.ok(Object.keys(source.sha256).length > 60);
+  for (const [path, hash] of Object.entries(source.sha256)) {
+    const bytes = path.startsWith(".local/")
+      ? await readFile(`${manifest.artifactRoot}/capture-config.js`)
+      : execFileSync("git", ["show", `${manifest.captureCommit}:${path}`]);
+    assert.equal(
+      digest(bytes),
+      hash,
+      `Changed campaign capture producer ${path}`,
+    );
+  }
+}
+if (manifest.browserReplayRoot) {
+  const source = JSON.parse(
+    await readFile(`${manifest.browserReplayRoot}/source-revision.json`),
+  );
+  assert.ok(Object.keys(source.sha256).length > 60);
+  for (const [path, hash] of Object.entries(source.sha256)) {
+    const bytes = manifest.replayCommit
+      ? execFileSync("git", ["show", `${manifest.replayCommit}:${path}`])
+      : await readFile(path);
+    assert.equal(
+      digest(bytes),
+      hash,
+      `Changed browser replay producer ${path}`,
+    );
+  }
+}
+for (const [path, hash] of Object.entries(manifest.verificationTools ?? {}))
+  assert.equal(
+    digest(await readFile(path)),
+    hash,
+    `Changed campaign verification tool ${path}`,
+  );
+await mkdir(verificationRoot, { recursive: true });
 function replay(extra = []) {
   const r = spawnSync(
     process.execPath,
-    ["scripts/replay-hard-campaign.js", manifest.artifactRoot, ...extra],
+    [
+      "scripts/replay-hard-campaign.js",
+      manifest.artifactRoot,
+      `--manifest=${manifestPath}`,
+      ...extra,
+    ],
     {
       encoding: "utf8",
       timeout: 60000,
@@ -49,7 +101,7 @@ function replay(extra = []) {
   };
 }
 const positive = replay();
-await writeFile(".local/hard-campaign-verification/replay.log", positive.text);
+await writeFile(`${verificationRoot}/replay.log`, positive.text);
 assert.equal(positive.status, 0, positive.text);
 const result = JSON.parse(positive.stdout);
 assert.equal(result.mode, "recorded-input replay");
@@ -119,10 +171,7 @@ for (const [mode, reason] of [
   ["omit-checkpoint", /Missing required checkpoints/],
 ]) {
   const negative = replay([`--negative=${mode}`]);
-  await writeFile(
-    `.local/hard-campaign-verification/${mode}.log`,
-    negative.text,
-  );
+  await writeFile(`${verificationRoot}/${mode}.log`, negative.text);
   assert.equal(negative.status, 1, `${mode} must fail`);
   assert.match(negative.text, reason);
   assert.doesNotMatch(

@@ -11,7 +11,11 @@ test("Hard campaign carries all four families through the final bank and result"
   const manifest = capture
     ? { expected: {} }
     : JSON.parse(
-        await readFile("reference/hard-campaign.json", "utf8").catch(() => {
+        await readFile(
+          process.env.DUCKTALES_CAMPAIGN_MANIFEST ??
+            "reference/hard-campaign.json",
+          "utf8",
+        ).catch(() => {
           throw Error(
             "SETUP: missing verified Hard campaign manifest; exploratory capture is not acceptance",
           );

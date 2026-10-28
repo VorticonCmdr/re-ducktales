@@ -78,20 +78,19 @@ missing fixtures fail setup.
 - No original save/load/high-score format has been identified. Browser persistence
   would be an explicit addition.
 
-New integration evidence: a carried Hard browser route clears security, wins
-its first race, completes Bermuda with three lives, banks2150 and completes
-photography. An independent Game diagnostic matches11 checkpoints from2316
-inputs. The next old destination had already been claimed by the rival, so a
-fresh exploratory route completed Carlsbad on day14 with6950 cash and2150
-banked. Its first16 checkpoints and3354 DOM inputs match an independent Game
-replay; the next mountain race lost. A new whole-route browser capture is testing
-an alternative flight path. No complete new campaign pass is claimed; main and
-its old fixtures remain unchanged.
+The development branch now has a complete Hard security-aware campaign: all
+four expedition families, three lives retained in jungle/mountain, normal rival
+claims/deposits and a day31 losing ending with17200 against61000. Independent
+Game and fresh-browser replays match28 exact state/pixel checkpoints and all4140
+DOM inputs;1629 flight renders include the supported flag alias. Five verifier
+negatives and the actual missing-Hard browser negative pass. See
+[the new campaign evidence](hard-campaign-security.md). Main and the older
+menu-era goldens remain unchanged; this is not native whole-campaign parity.
 
-Next: finish migrating campaign/browser input streams through the new security step and
-carry its changed shared RNG into real departures. The previous Hard replay
-currently rejects checkpoint0 at the newly recorded `securityPending` field;
-its old goldens remain unchanged. Then run the full branch gate before merging.
+Next: migrate the remaining Easy, alternate-layout and focused browser routes
+through real security and its changed shared RNG. The old default Hard recording
+is preserved; the accepted new scenario currently uses an explicit manifest.
+Then promote the new inputs and run the full branch gate before merging.
 Native security checks now cover82 RNG boundaries,16 inputs and24 pictures in
 two independent segment scenarios. Browser controls, pixel output, dialogs,
 Tandy requests and the per-campaign flag pass focused acceptance.

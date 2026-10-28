@@ -109,5 +109,17 @@
       "sha256": "8077657cb7b1b2a75612c5c8663a413f5af0abab9442642e50ed3ebbc29ab8d8",
       "role": "drawing-page-color-fill"
     }
-  ]
+  ],
+  "componentReplay": {
+    "implementation": "src/game/difficulty-menu.js",
+    "inputManifest": "reference/difficulty-inputs.json",
+    "baseCommit": "2b24acf",
+    "verification": "node scripts/verify-difficulty.js",
+    "inputCount": 9,
+    "soundCalls": 5,
+    "flushCount": 1,
+    "biosConsumptionCount": 1,
+    "sourceDerivedRetraces": 60,
+    "scope": "Closed-loop component replay from captured consumed inputs. Entry/exit/wait counts are static-rule checks, not original elapsed-time evidence. Browser integration remains pending."
+  }
 }

@@ -2,9 +2,10 @@
 
 Build `dos-fb658562`, executable/resources in `reference/build.json`. The pure
 selection and rendering helpers in `src/game/difficulty.js` match the captured
-original menu. They are not yet wired into the browser. Seven-count input waits,
-entry flush, sound-enable gating, BIOS reseed and cleanup still belong to the
-pending application integration; these helpers do not synthesize those effects.
+original menu. `src/game/difficulty-menu.js` carries the source-derived entry
+reveal, input flush, seven-count polling, sound-enable gate, BIOS seed provider
+and closing wipe as an independent component. Neither is wired into the browser
+yet; current application integration remains pending.
 
 Run `node scripts/verify-difficulty.js`. It rejects missing/corrupt private
 fixtures and unsupported originals, checks the initial menu and three selected-menu PNGs exactly,
@@ -12,6 +13,17 @@ nine consumed input bytes, five original sound API calls and the native BIOS
 consumption/write boundary. `reference/difficulty.json` pins all eight artifacts;
 `reference/difficulty-inputs.json` separates input values from expected pixels and
 state. No original binaries, decoded assets or PNGs are committed.
+
+The same command runs a closed-loop component replay through all nine captured
+input bytes, with a separately supplied BIOS input. It requires five sound36
+effects, exactly one flush and BIOS read, completion and no unused inputs. It
+checks the initial raster and the source-derived first-input boundary (six
+driver counts do not read; seven do). Its60 retraces comprise one initial flip,
+25 reveal waits, nine selected-page flips and25 exit waits. Driver/retrace
+advancement is explicit and independent of the DOM. These counts are static-rule
+regressions, not a native elapsed-time or browser comparison. The component's
+physical joystick provider survives the keyboard flush; queued tap inputs do
+not. The browser adapter still needs to make its keyboard-provider policy explicit.
 
 ## Rules and scope
 

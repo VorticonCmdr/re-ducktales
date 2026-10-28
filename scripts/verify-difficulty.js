@@ -10,6 +10,7 @@ import {
   difficultyInitialCommands,
 } from "../src/game/difficulty.js";
 import { renderFlightPixels } from "../src/game/flight-raster.js";
+import { DifficultyMenu } from "../src/game/difficulty-menu.js";
 const hash = (b) => createHash("sha256").update(b).digest("hex");
 const manifest = JSON.parse(await readFile("reference/difficulty.json"));
 const inputs = JSON.parse(await readFile("reference/difficulty-inputs.json"));
@@ -239,6 +240,98 @@ assert.equal(pixels, 4);
 assert.equal(manifest.expectedSoundCalls, cues);
 assert.equal(difficultyInput(0, 193).selection, 0, "Fire must precede Up");
 assert.throws(() => difficultyInput(3, 1), /Invalid difficulty/);
+// Component replay consumes the native input bytes in order. Clock boundaries
+// are source-derived; the debugger captures do not supply an elapsed-time oracle.
+let consumed = 0,
+  flushes = 0,
+  biosReads = 0;
+const menu = new DifficultyMenu({
+  image,
+  entries,
+  audioEnabled: true,
+  readInput: () => {
+    assert.ok(
+      consumed < inputs.bytes.length,
+      "Unfinished/extra difficulty input",
+    );
+    return inputs.bytes[consumed++];
+  },
+  flushInput: () => flushes++,
+  readBiosSeed: () => {
+    biosReads++;
+    return inputs.biosWordAtConsumption;
+  },
+});
+menu.input({ type: "fire" }); // A queued reveal tap must be discarded.
+for (let i = 0; i < 25; i++) menu.advanceRetrace();
+assert.equal(menu.ready, false);
+assert.equal(flushes, 0);
+assert.equal(consumed, 0);
+menu.advanceRetrace();
+assert.equal(flushes, 1);
+assert.equal(menu.ready, true);
+assert.equal(menu.firePulse, false);
+assert.deepEqual(
+  Buffer.from(menu.pixels()),
+  PNG.sync.read(await required(`${manifest.artifactRoot}/menu-0.png`)).data,
+);
+menu.advanceRetrace();
+for (let i = 0; i < 6; i++) menu.advanceTick();
+assert.equal(consumed, 0, "Six driver counts must not consume input");
+menu.advanceTick();
+assert.equal(consumed, 1, "Seven driver counts consume the next input");
+assert.equal(menu.selection, 2);
+let steps = 0;
+while (!menu.outcome) {
+  assert.ok(++steps < 1000, "Unfinished difficulty component replay");
+  if (menu.wait?.clock === "retrace") menu.advanceRetrace();
+  else menu.advanceTick();
+}
+assert.equal(consumed, inputs.bytes.length);
+assert.equal(menu.inputReads, 9);
+assert.equal(biosReads, 1);
+assert.equal(flushes, 1);
+assert.equal(menu.retrace, 60); // entry1 + reveal25 +9 selected flips + exit25
+assert.deepEqual(menu.outcome, {
+  code: 0,
+  selection: 0,
+  biosSeed: inputs.biosWordAtConsumption,
+});
+assert.deepEqual(
+  menu.drainEvents(),
+  Array.from({ length: 5 }, () => ({ type: "sound", id: 36 })),
+);
+// Source-derived adapter contract: an outstanding global dialog blocks the
+// input reader after its wait, while external clock observations continue.
+let allowInput = false;
+const blocked = new DifficultyMenu({
+  image,
+  entries,
+  readBiosSeed: () => 123,
+  pollInput: () => allowInput,
+});
+for (let i = 0; i < 26; i++) blocked.advanceRetrace();
+blocked.setControls({ direction: "up", fire: false });
+blocked.input({ type: "fire" });
+blocked.advanceRetrace();
+for (let i = 0; i < 10; i++) blocked.advanceTick();
+assert.equal(blocked.inputReads, 0);
+assert.equal(blocked.selection, 0);
+assert.equal(blocked.wait.clock, "input");
+allowInput = true;
+blocked.advanceTick();
+assert.equal(blocked.inputs[0].byte, 193);
+assert.equal(
+  blocked.selection,
+  0,
+  "Semantic Fire+Up must confirm before moving",
+);
+assert.equal(blocked.phase, "exit");
+for (let i = 0; i < 24; i++) blocked.advanceRetrace();
+assert.equal(blocked.outcome, null, "The final wipe cannot be skipped");
+blocked.advanceRetrace();
+assert.deepEqual(blocked.outcome, { code: 0, selection: 0, biosSeed: 123 });
+assert.deepEqual(blocked.drainEvents(), [], "Muted menu must not emit cues");
 console.log(
-  "Difficulty core: 4 exact native PNGs (initial and3 selections),9 consumed inputs,5 original sound calls, BIOS consumption boundary, fresh relocated code identity and static entry/flush contracts. Browser integration/timing still pending.",
+  "Difficulty core: 4 exact native PNGs (initial and3 selections),9 consumed inputs,5 original sound calls, BIOS consumption boundary, fresh relocated code identity and carried component replay. Source-derived entry/flush/wait/exit contracts; browser integration and original elapsed-time parity still pending.",
 );

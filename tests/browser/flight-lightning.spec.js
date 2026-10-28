@@ -1,3 +1,5 @@
+import profile from "../../reference/lightning-flight-inputs.json" with { type: "json" };
+import { replayFlightInputs } from "./helpers/flight-inputs.js";
 import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
@@ -65,39 +67,22 @@ test("natural lightning clears held flight controls and fresh keyboard input rec
   await press("ArrowRight");
   await press("Space");
   expect((await state()).departure.racing).toBe(false);
-  await page.keyboard.down("Space");
-  await until((s) => s.scene === "flight" && s.flight.speed > 4);
-  let held = null,
-    strike = null;
-  for (let n = 0; n < 600; n++) {
-    const s = await state(),
-      f = s.flight;
-    trace.push(f);
-    if (
-      s.scene !== "flight" ||
-      ["complete", "crash", "return-wait"].includes(f.phase)
-    )
-      break;
-    if (f.tile === 17 && f.y === 136) {
-      strike = f;
-      break;
-    }
-    const desired = f.y > 15 ? 2 : f.y < 0 ? 15 : 0;
-    const delta = (desired - f.heading + 16) % 16;
-    const next =
-      f.speed < 4 || !delta ? null : delta < 8 ? "ArrowDown" : "ArrowUp";
-    if (next !== held) {
-      if (held) await page.keyboard.up(held);
-      if (next) await page.keyboard.down(next);
-      held = next;
-    }
-    await until(
-      (after) =>
-        after.scene !== "flight" ||
-        after.flight.frames > f.frames ||
-        after.flight.phase !== f.phase,
-    );
-  }
+  const observed = await replayFlightInputs({
+    page,
+    until,
+    profile,
+    release: false,
+  });
+  trace.push(...observed);
+  // The last physical Space+Down hold remains. No input follows until the
+  // generated strike clears the translated keyboard matrix itself.
+  const atStrike = await until((s) => s.flight.inputReads > profile.inputCount);
+  const strike = atStrike.flight;
+  expect(strike.inputReads).toBe(112);
+  expect(strike.lastInputCode).toBe(0);
+  expect(strike.tile).toBe(manifest.browser.expectedStrike.tile);
+  expect(strike.y).toBe(manifest.browser.expectedStrike.y);
+  const held = "ArrowDown";
   await writeFile(
     info.outputPath("lightning-flight.json"),
     JSON.stringify(trace, null, 2),

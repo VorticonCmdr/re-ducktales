@@ -84,3 +84,14 @@ Hard route manifests now preserve their historical capture identities against
 Git57beb92 while pinning the current startup/input replay tools separately. No
 expedition controls, actor expectations or required divergence checkpoints changed.
 The full gate must pass on this revision before integration.
+
+The second full gate passed117 unit cases, all native/segment checks and all four
+Hard wrong-input controls, then finished70 of72 browser cases successfully.
+The two failures were a frame-observation flight controller and a mountain entry
+sample taken before page1. The lightning route now consumes111 independently
+observed baseline player values, keeps its last physical hold, and checks the
+112th read is neutralized by the original strike flush. It retains frame112,
+tile17, y136, speed/heading recovery assertions and the original RNG result.
+The mountain test observes page1 before submitting P and retains its pause,
+page2 and life-reset expectations. Both focused browser cases pass; the final
+full gate remains required. No game logic or timing rate changed for these fixes.

@@ -451,6 +451,14 @@ export class Renderer {
       return;
     }
     if (game.scene === "difficulty") {
+      if (game.difficultyMenu) {
+        this.ctx.putImageData(
+          new ImageData(game.difficultyMenu.pixels(), 320, 200),
+          0,
+          0,
+        );
+        return;
+      }
       this.draw("MAIN.ARC", 32, 0, 0, 0);
       this.text("CHOOSE DIFFICULTY:", 168, 60);
       ["Easy Money", "Standard Wages", "Hard Earned Cash"].forEach((s, i) =>

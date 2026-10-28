@@ -58,6 +58,36 @@
       "path": ".local/difficulty-native-20261028/selected2.png",
       "sha256": "0bd4d876cf92a811cc6430ff3a83ad47d69b41d171fd0c0783f51e2656e1b989",
       "role": "expected-pixels"
+    },
+    {
+      "path": ".local/difficulty-browser-accepted-20261028/browser.log",
+      "sha256": "3a97ef24b015214839ccbb278087b99262ab151258c545b4ce15e704047a02fb",
+      "role": "focused-browser-integration-receipt"
+    },
+    {
+      "path": ".local/difficulty-browser-accepted-20261028/negative.log",
+      "sha256": "c7dcebbc57f40de32f501a1d53a4bb778cc32c7fcb619613a89660c5d497a53c",
+      "role": "focused-browser-integration-receipt"
+    },
+    {
+      "path": ".local/difficulty-browser-accepted-20261028/unit.log",
+      "sha256": "524ed9276797eb91334d9b715dd81615940a813f2b905efa6f5c8d09be216af4",
+      "role": "focused-browser-integration-receipt"
+    },
+    {
+      "path": ".local/difficulty-browser-accepted-20261028/build.log",
+      "sha256": "fd119a160f56b63c1e6dd3cbf9501ef6a46f724455bc8631dd18f152c690c841",
+      "role": "focused-browser-integration-receipt"
+    },
+    {
+      "path": ".local/difficulty-browser-accepted-20261028/difficulty-hard.png",
+      "sha256": "157f6148c3b54076b69eddb44c7567b0cc70f45d2ee9fe6a2797ddb66db69b36",
+      "role": "focused-browser-integration-receipt"
+    },
+    {
+      "path": ".local/difficulty-browser-accepted-20261028/source-revision.json",
+      "sha256": "44291f7b7c6edca9219fc258ae398ba1d39f419f4f56ca21a2f8896a99d3fec3",
+      "role": "focused-browser-integration-receipt"
     }
   ],
   "expectedInputCount": 9,
@@ -121,5 +151,36 @@
     "biosConsumptionCount": 1,
     "sourceDerivedRetraces": 60,
     "scope": "Closed-loop component replay from captured consumed inputs. Entry/exit/wait counts are static-rule checks, not original elapsed-time evidence. Browser integration remains pending."
-  }
+  },
+  "browserAcceptance": {
+    "scope": "Focused isolated browser integration; no full branch gate or original elapsed-time parity.",
+    "captureToolRevision": {
+      "baseCommit": "6f7867b",
+      "scope": "Focused isolated browser integration; no full branch gate or original elapsed-time parity.",
+      "fileHashes": {
+        "src/game/application.js": "8817a9ec8378158321fca064f3c447f39e62b12767aa8c1ebd12445117438a26",
+        "src/game/difficulty-menu.js": "2808f24a5f6f2cf81029fcef744ce489e99b5725e05cd665b5d03ae43bc3bb20",
+        "src/game/renderer.js": "4c2fbebb9d44b8df5c85a114a8b921c839e31d76466d7339573a91c0be3fb248",
+        "tests/browser/difficulty.spec.js": "3c68ba317e59f8d952cc57e9e3bb5b1060341afc0e85d0df7f10974312a8dc62",
+        "tests/browser/game.spec.js": "97571d737023c598f522abfe9f80cbc893ddb2700d481aa0088c89250f629c84",
+        "tests/browser/ending.spec.js": "78ebd240d6b0bb7bbce67dfbb4e36d92325a8c4e9afe1094c4ba34f6cbb61bf4",
+        "tests/browser/helpers/scene.js": "7c185e0f65a353070c4cfb272e388ac27b13db80d408234e105a827fa9811467",
+        "scripts/verify-difficulty-browser-negative.js": "e38c8df5a23fac43eb9c8187f859d93551e252c94559522ce31239ddd64f529d"
+      },
+      "browserCases": 4,
+      "nativePixelComparisons": 5,
+      "distinctNativePictures": 4,
+      "unitCases": 117,
+      "productionBuild": "passed",
+      "negativeControl": "Omitted Up fails required Hard selection; not setup or timeout."
+    },
+    "command": "playwright test tests/browser/difficulty.spec.js tests/browser/game.spec.js tests/browser/ending.spec.js --grep \"original difficulty pictures|difficulty input polls|keyboard route loads|earned cash reaches\"",
+    "harness": "Isolated Vite5196;8ms display provider; guarded source-state waits. Standard configuration unchanged.",
+    "expectedBrowserCases": 4,
+    "expectedNativePixelComparisons": 5,
+    "expectedDistinctNativePictures": 4,
+    "negativeCommand": "node scripts/verify-difficulty-browser-negative.js",
+    "artifactRoot": ".local/difficulty-browser-accepted-20261028"
+  },
+  "expectedArtifactCount": 14
 }

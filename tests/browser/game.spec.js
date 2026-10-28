@@ -11,6 +11,13 @@ test("keyboard route loads originals, dives, banks, returns and restarts", async
   await canvas.focus();
   await page.keyboard.press("Space");
   await expect(canvas).toHaveAttribute("data-scene", "difficulty");
+  await expect
+    .poll(
+      async () =>
+        JSON.parse(await canvas.getAttribute("data-state")).difficultyMenu
+          ?.ready,
+    )
+    .toBe(true);
   await page.keyboard.press("ArrowDown");
   await expect
     .poll(

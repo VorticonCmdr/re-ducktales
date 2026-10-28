@@ -5,7 +5,13 @@ export async function waitForScene(page, canvas, scene) {
     const text = await canvas.getAttribute("data-state");
     const state = text ? JSON.parse(text) : null;
     if (state?.diagnostic) throw Error(state.diagnostic);
-    if (state?.scene === scene) return state;
+    if (
+      state?.scene === scene &&
+      (scene !== "difficulty" ||
+        !state.difficultyMenu ||
+        state.difficultyMenu.ready)
+    )
+      return state;
     await page.clock.runFor(16);
   }
   throw Error(

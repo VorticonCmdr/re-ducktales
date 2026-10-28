@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
@@ -55,7 +56,9 @@ test("earned cash reaches the winning ending and Yes starts a fresh campaign", a
   expect((await t.state()).campaign.banked).toBe(0);
   expect((await t.state()).campaign.day).toBe(1);
   expect((await t.state()).ending).toBeNull();
+  await waitForScene(page, t.canvas, "difficulty");
   await t.press("Enter");
+  await t.until((s) => s.scene === "office");
   expect((await t.state()).scene).toBe("office");
   expect((await t.state()).seed).toBe(1960);
   await expect(page.locator("#diagnostic")).toBeHidden();

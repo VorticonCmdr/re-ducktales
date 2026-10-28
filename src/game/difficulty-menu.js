@@ -53,11 +53,13 @@ export class DifficultyMenu {
     this.events = [];
     this.controls = { fire: false, direction: null };
     this.firePulse = false;
+    this.directionPulse = null;
     this.phase = "entry";
     this.frame = BLACK;
     this.pending = null;
     this.transition = null;
     this.outcome = null;
+    this.biosSeed = null;
     this.iterator = this.run();
     this.resume();
   }
@@ -78,9 +80,10 @@ export class DifficultyMenu {
     this.controls = { ...controls };
   }
   input(event) {
-    if (event.type !== "fire")
-      throw Error(`Unsupported difficulty input ${event.type}`);
-    this.firePulse = true;
+    if (event.type === "fire") this.firePulse = true;
+    else if (["up", "down"].includes(event.type))
+      this.directionPulse = event.type;
+    else throw Error(`Unsupported difficulty input ${event.type}`);
   }
   sound() {
     if (this.audioEnabled) this.events.push({ type: "sound", id: 36 });
@@ -105,10 +108,13 @@ export class DifficultyMenu {
     const byte = this.readInput
       ? this.readInput()
       : (this.controls.fire || this.firePulse ? 192 : 0) |
-        ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ?? 0);
+        ({ up: 1, right: 3, down: 5, left: 7 }[
+          this.controls.direction ?? this.directionPulse
+        ] ?? 0);
     // Validate before recording or consuming a queued Fire pulse.
     difficultyInput(this.selection, byte);
     this.firePulse = false;
+    this.directionPulse = null;
     this.inputs.push({
       index: ++this.inputReads,
       byte,
@@ -117,14 +123,19 @@ export class DifficultyMenu {
     });
     return byte;
   }
+  flushInput(release = false) {
+    this.firePulse = false;
+    this.directionPulse = null;
+    if (release) this.controls = { fire: false, direction: null };
+    this.onFlushInput(release);
+  }
   *run() {
     // Fill drawing page0, flip to black, then fill the other drawing page0.
     yield { clock: "retrace", remaining: 1 };
     this.phase = "reveal";
     yield* this.bands("reveal", difficultyInitialCommands(this.image));
     // Flush queued taps, preserving the external physical-joystick provider.
-    this.firePulse = false;
-    this.onFlushInput();
+    this.flushInput();
     this.phase = "menu";
     let byte = 0;
     while (true) {
@@ -140,6 +151,7 @@ export class DifficultyMenu {
         const biosSeed = this.readBiosSeed();
         if (!Number.isInteger(biosSeed) || biosSeed < 0 || biosSeed > 65535)
           throw Error("Invalid difficulty BIOS seed");
+        this.biosSeed = biosSeed;
         this.phase = "exit";
         yield* this.bands("wipe", BLACK);
         this.outcome = { code: 0, selection: this.selection, biosSeed };
@@ -224,6 +236,7 @@ export class DifficultyMenu {
       retrace: this.retrace,
       ready: this.ready,
       inputReads: this.inputReads,
+      biosSeed: this.biosSeed,
       wait: this.wait ? { ...this.wait } : null,
       outcome: this.outcome ? { ...this.outcome } : null,
       ...(this.transition

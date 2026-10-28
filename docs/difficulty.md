@@ -4,13 +4,16 @@ Build `dos-fb658562`, executable/resources in `reference/build.json`. The pure
 selection and rendering helpers in `src/game/difficulty.js` match the captured
 original menu. `src/game/difficulty-menu.js` carries the source-derived entry
 reveal, input flush, seven-count polling, sound-enable gate, BIOS seed provider
-and closing wipe as an independent component. Neither is wired into the browser
-yet; current application integration remains pending.
+and closing wipe as an independent component. This branch wires it into the
+browser, with [focused acceptance and remaining integration work](difficulty-browser-integration.md).
+The main checkout retains its separately verified campaign milestone until that
+integration is complete.
 
 Run `node scripts/verify-difficulty.js`. It rejects missing/corrupt private
 fixtures and unsupported originals, checks the initial menu and three selected-menu PNGs exactly,
 nine consumed input bytes, five original sound API calls and the native BIOS
-consumption/write boundary. `reference/difficulty.json` pins all eight artifacts;
+consumption/write boundary. `reference/difficulty.json` pins eight native artifacts
+and six focused browser integration receipts;
 `reference/difficulty-inputs.json` separates input values from expected pixels and
 state. No original binaries, decoded assets or PNGs are committed.
 

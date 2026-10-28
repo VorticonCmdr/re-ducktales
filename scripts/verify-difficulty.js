@@ -26,7 +26,10 @@ for (const spec of manifest.artifacts)
     spec.sha256,
     `Corrupt ${spec.path}`,
   );
-assert.equal(manifest.artifacts.length, 8);
+assert.equal(manifest.expectedArtifactCount, 14);
+assert.equal(manifest.artifacts.length, manifest.expectedArtifactCount);
+assert.equal(manifest.browserAcceptance.expectedBrowserCases, 4);
+assert.equal(manifest.browserAcceptance.expectedNativePixelComparisons, 5);
 const files = {};
 for (const name of ["DUCKTALE.EXE", "MAIN.ARC", "IT.DRV"]) {
   files[name] = await required(`game/${name}`);
@@ -333,5 +336,5 @@ blocked.advanceRetrace();
 assert.deepEqual(blocked.outcome, { code: 0, selection: 0, biosSeed: 123 });
 assert.deepEqual(blocked.drainEvents(), [], "Muted menu must not emit cues");
 console.log(
-  "Difficulty core: 4 exact native PNGs (initial and3 selections),9 consumed inputs,5 original sound calls, BIOS consumption boundary, fresh relocated code identity and carried component replay. Source-derived entry/flush/wait/exit contracts; browser integration and original elapsed-time parity still pending.",
+  "Difficulty core: 4 exact native PNGs (initial and3 selections),9 consumed inputs,5 original sound calls, BIOS consumption boundary, fresh relocated code identity and carried component replay. Source-derived entry/flush/wait/exit contracts; four focused browser receipts pinned; full branch regression and original elapsed-time parity still pending.",
 );

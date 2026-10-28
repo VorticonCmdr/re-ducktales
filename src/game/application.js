@@ -1,4 +1,5 @@
 import { Opening } from "./opening.js";
+import { DifficultyMenu } from "./difficulty-menu.js";
 import { Departure } from "./departure.js";
 import { Campaign, OFFICE, travelDays } from "./campaign.js";
 import { MoneyBin } from "./money-bin.js";
@@ -35,6 +36,7 @@ export class Game {
   } = {}) {
     this.openingResources = openingResources;
     this.opening = null;
+    this.difficultyMenu = null;
     this.expeditionResources = expeditionResources;
     this.bankResources = bankResources;
     this.bank = null;
@@ -69,6 +71,7 @@ export class Game {
     this.pendingEndingSystemKeys = new Map();
     this.pendingBankSystemKeys = new Map();
     this.pendingOpeningSystemKeys = new Map();
+    this.pendingDifficultySystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -107,10 +110,57 @@ export class Game {
     this.seed = this.opening.seed;
     this.titleMusicRequested = this.opening.musicRequested;
     if (this.opening.outcome && this.scene === "title" && !this.exiting) {
-      this.scene = "difficulty";
-      // Original0aeb flushes unread keys before its first menu input poll.
-      this.opening.flushInput();
+      this.startDifficulty();
     }
+  }
+  startDifficulty() {
+    this.scene = "difficulty";
+    this.difficulty = 0;
+    this.difficultyMenu = this.openingResources
+      ? new DifficultyMenu({
+          ...this.openingResources,
+          audioEnabled: this.audioEnabled,
+          readBiosSeed: () => this.biosSeed,
+          pollInput: () =>
+            this.pollSystemInput(this.pendingDifficultySystemKeys),
+          flushInput: (release) => this.flushDifficultyInput(release),
+        })
+      : null;
+    this.difficultyMenu?.setControls(this.controls);
+  }
+  flushDifficultyInput(release = false) {
+    this.pendingOpeningSystemKeys.clear();
+    this.pendingDifficultySystemKeys.clear();
+    if (release) {
+      this.handleInput({ type: "controls", fire: false, direction: null });
+      this.effects.push({ type: "flushControls" });
+    }
+  }
+  collectDifficulty() {
+    const menu = this.difficultyMenu;
+    this.difficulty = menu.selection;
+    this.effects.push(...menu.drainEvents());
+    if (menu.biosSeed !== null) {
+      this.seed = menu.biosSeed;
+      if (this.campaign) this.campaign.seed = menu.biosSeed;
+      this.marketMemory?.i(0x2229, menu.biosSeed);
+    }
+    if (!menu.outcome) return;
+    if (menu.outcome.code !== 0)
+      throw Error("Unsupported difficulty return37 outside global quit dialog");
+    if (this.difficultyFromEnding && this.audioEnabled)
+      this.effects.push({ type: "sound", id: 0 });
+    this.difficultyFromEnding = false;
+    this.campaign = this.locations
+      ? new Campaign(
+          this.locations,
+          this.initializeMarket(menu.outcome.biosSeed),
+        )
+      : null;
+    this.seed = this.campaign?.seed ?? menu.outcome.biosSeed;
+    this.difficultyMenu = null;
+    this.scene = "office";
+    this.settleMarket();
   }
   flushOpeningInput() {
     this.pendingOpeningSystemKeys.clear();
@@ -253,6 +303,7 @@ export class Game {
       !this.systemOverlay &&
       ([
         "money-bin",
+        ...(this.difficultyMenu ? ["difficulty"] : []),
         "flight",
         "cave",
         "mountain",
@@ -270,21 +321,23 @@ export class Game {
       const keys =
         this.scene === "title"
           ? this.pendingOpeningSystemKeys
-          : this.scene === "flight"
-            ? this.pendingFlightSystemKeys
-            : this.scene === "cave"
-              ? this.pendingCaveSystemKeys
-              : this.scene === "mountain"
-                ? this.pendingMountainSystemKeys
-                : this.scene === "jungle"
-                  ? this.pendingJungleSystemKeys
-                  : this.scene === "photography"
-                    ? this.pendingPhotographySystemKeys
-                    : this.scene === "ending"
-                      ? this.pendingEndingSystemKeys
-                      : this.scene === "bank"
-                        ? this.pendingBankSystemKeys
-                        : this.pendingBinSystemKeys;
+          : this.scene === "difficulty"
+            ? this.pendingDifficultySystemKeys
+            : this.scene === "flight"
+              ? this.pendingFlightSystemKeys
+              : this.scene === "cave"
+                ? this.pendingCaveSystemKeys
+                : this.scene === "mountain"
+                  ? this.pendingMountainSystemKeys
+                  : this.scene === "jungle"
+                    ? this.pendingJungleSystemKeys
+                    : this.scene === "photography"
+                      ? this.pendingPhotographySystemKeys
+                      : this.scene === "ending"
+                        ? this.pendingEndingSystemKeys
+                        : this.scene === "bank"
+                          ? this.pendingBankSystemKeys
+                          : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -304,6 +357,7 @@ export class Game {
         throw Error("Invalid audio setting");
       this.audioEnabled = event.enabled;
       this.opening?.setAudioEnabled(event.enabled);
+      this.difficultyMenu?.setAudioEnabled(event.enabled);
       this.cave?.setAudioEnabled(event.enabled);
       this.mountain?.setAudioEnabled(event.enabled);
       this.jungle?.setAudioEnabled(event.enabled);
@@ -326,6 +380,7 @@ export class Game {
     if (event.type === "restart") {
       this.scene = event.skipTitle === true ? "difficulty" : "title";
       this.opening = null;
+      this.difficultyMenu = null;
       this.difficulty = 0;
       this.difficultyFromEnding = event.skipTitle === true;
       this.tick = 0;
@@ -352,6 +407,7 @@ export class Game {
       this.pendingEndingSystemKeys.clear();
       this.pendingBankSystemKeys.clear();
       this.pendingOpeningSystemKeys.clear();
+      this.pendingDifficultySystemKeys.clear();
       this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
@@ -365,6 +421,7 @@ export class Game {
       this.rareCoinTaken = false;
       if (event.skipTitle !== true) this.effects.push({ type: "stopAudio" });
       this.titleMusicRequested = false;
+      if (event.skipTitle === true) this.startDifficulty();
       this.startOpening();
       this.startTitleMusic();
       return;
@@ -394,6 +451,7 @@ export class Game {
     if (event.type === "controls") {
       this.controls = { fire: event.fire, direction: event.direction };
       this.opening?.setControls(this.controls);
+      this.difficultyMenu?.setControls(this.controls);
       this.flight?.setControls(this.controls);
       this.cave?.setControls(this.controls);
       this.mountain?.setControls(this.controls);
@@ -425,7 +483,12 @@ export class Game {
     if (this.scene === "title" && event.type === "fire") {
       // The interrupted original intro sends reset0 at12f5:0a10..0a17.
       if (this.audioEnabled) this.effects.push({ type: "sound", id: 0 });
-      this.scene = "difficulty";
+      this.startDifficulty();
+      return;
+    }
+    if (this.scene === "difficulty" && this.difficultyMenu) {
+      if (["fire", "up", "down"].includes(event.type))
+        this.difficultyMenu.input(event);
       return;
     }
     if (this.scene === "difficulty") {
@@ -676,6 +739,8 @@ export class Game {
     if (this.systemOverlay) {
       if (this.scene === "title" && this.opening)
         this.opening.advanceBlockedTick();
+      if (this.scene === "difficulty" && this.difficultyMenu)
+        this.difficultyMenu.advanceBlockedTick();
       if (this.scene === "flight") this.flight.advanceBlockedTick();
       if (this.scene === "cave") this.cave.advanceBlockedTick();
       if (this.scene === "mountain") this.mountain.advanceBlockedTick();
@@ -690,6 +755,11 @@ export class Game {
     if (this.scene === "title" && this.opening) {
       this.opening.advanceTick();
       this.collectOpening();
+      return;
+    }
+    if (this.scene === "difficulty" && this.difficultyMenu) {
+      this.difficultyMenu.advanceTick();
+      this.collectDifficulty();
       return;
     }
     if (this.scene === "bank") {
@@ -794,6 +864,8 @@ export class Game {
     if (this.systemOverlay) {
       if (this.scene === "title" && this.opening)
         this.opening.advanceBlockedRetrace();
+      if (this.scene === "difficulty" && this.difficultyMenu)
+        this.difficultyMenu.advanceBlockedRetrace();
       if (this.scene === "flight") this.flight.advanceBlockedRetrace();
       if (this.scene === "cave") this.cave.advanceBlockedRetrace();
       if (this.scene === "mountain") this.mountain.advanceBlockedRetrace();
@@ -807,6 +879,11 @@ export class Game {
     if (this.scene === "title" && this.opening) {
       this.opening.advanceRetrace();
       this.collectOpening();
+      return;
+    }
+    if (this.scene === "difficulty" && this.difficultyMenu) {
+      this.difficultyMenu.advanceRetrace();
+      this.collectDifficulty();
       return;
     }
     if (this.scene === "bank") {
@@ -929,6 +1006,8 @@ export class Game {
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "title" && this.opening) this.opening.flushInput();
+    else if (this.scene === "difficulty" && this.difficultyMenu)
+      this.difficultyMenu.flushInput(true);
     else if (this.scene === "flight") this.flight.flushInput();
     else if (this.scene === "cave") this.cave.flushInput();
     else if (this.scene === "mountain") this.mountain.flushInput();
@@ -1454,6 +1533,9 @@ export class Game {
       seed: this.seed,
       tick: this.tick,
       ...(this.opening ? { opening: this.opening.snapshot() } : {}),
+      ...(this.difficultyMenu
+        ? { difficultyMenu: this.difficultyMenu.snapshot() }
+        : {}),
       bin: this.bin?.snapshot() ?? null,
       ...(this.pendingBinSystemKeys.size
         ? {

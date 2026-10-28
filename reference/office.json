@@ -2,7 +2,7 @@
   "version": 1,
   "buildManifest": "reference/build.json",
   "baseCommit": "6fc0ef4a9d23f324bb762bd6475f199acd4697a4",
-  "status": "Connected office\u2192original money-bin departure\u2192dive\u2192reward/return\u2192restart. Two focused browser cases, nine existing browser regressions and117 unit cases pass; full branch integration gate pending.",
+  "status": "Connected office→original money-bin departure→dive→reward/return→restart. Full required gate passes:117 unit,74 development browser,2 production browser cases,zero skips.",
   "artifactRoot": ".local/office-native-postwait-20261028",
   "expectedCheckpointCount": 20,
   "expectedInputObservationCount": 3,
@@ -187,7 +187,7 @@
     "No complete native office input-loop replay, allocation/whole-DS comparison or original CPU/IRQ/elapsed-time claim.",
     "Driver-count waits and sound requests are statically derived from pinned original instructions; native sound call trace and driver-count elapsed totals are not independently captured.",
     "Earlier pre-wait captures in .local/office-native-20261028 are exploratory and excluded from this acceptance.",
-    "No original control-center/investments/security acceptance and no browser integration claim."
+    "No original control-center/investments/security acceptance; browser acceptance is recorded separately."
   ],
   "injections": [],
   "fittedInputs": [],
@@ -441,14 +441,14 @@
     "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
     "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
     "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
-    "scripts/verify-office.js": "4b742403654b6faf33761367e3ee89be2979279fe5b6ccea08b67799233cd698"
+    "scripts/verify-office.js": "c6ae395afaf03ba01935e7ace41b5305ec4287651b1c483f894e500fda263e80"
   },
   "browserAcceptance": {
     "scope": "Two actual-browser scenarios;19 exact departure PNG comparisons, real keyboard and button input, queued-P/held-control flush,1000 reward/return, mid-animation restart, Tandy requests0/4/35/34/38 and nonzero samples. Nine existing game/system/audio browser scenarios pass. Hard Game replay retains25 exact checkpoints and3350 inputs; not an original whole-campaign comparison.",
     "caseCount": 2,
     "regressionCaseCount": 9,
     "unitCaseCount": 117,
-    "fullBranchGate": "pending",
+    "fullBranchGate": "passed",
     "artifactRoot": ".local/office-browser-accepted-20261028",
     "artifacts": [
       {
@@ -607,6 +607,39 @@
         "sha256": "7743c91723d8b45ccdb0ebf207b5cf3668e0cb118200867e8a90886f0670bea7"
       }
     ],
-    "expectedArtifactCount": 31
+    "expectedArtifactCount": 31,
+    "captureCommit": "6a02e893995ee4c778edb25b60098d0c12c079b2"
+  },
+  "integrationGate": {
+    "runtimeCommit": "6a02e893995ee4c778edb25b60098d0c12c079b2",
+    "command": "npm run verify",
+    "exitCode": 0,
+    "unit": 117,
+    "developmentBrowser": 74,
+    "productionBrowser": 2,
+    "skipped": 0,
+    "archive": ".local/office-integration-full-gate-20261028",
+    "artifacts": [
+      {
+        "path": ".local/office-integration-full-gate-20261028/development-status.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      {
+        "path": ".local/office-integration-full-gate-20261028/full-verify.log",
+        "bytes": 55893,
+        "sha256": "696f566d9848a980c68cee539df0f055a03fc3ce26426025ae38058fbcf2bae5"
+      },
+      {
+        "path": ".local/office-integration-full-gate-20261028/production-status.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      {
+        "path": ".local/office-integration-full-gate-20261028/source-revision.json",
+        "bytes": 352,
+        "sha256": "fe4aa0a57265c2d10bed25dae137282991b42e6eece9dff37d31b7a34a02ceb9"
+      }
+    ]
   }
 }

@@ -1,9 +1,9 @@
 # Original office transitions
 
 The browser now runs office → original money-bin departure → dive → reward/return
-→ Restart. The isolated `codex/office-transitions` branch includes the current
-menu migration and this new departure. Full branch integration remains pending;
-main retains its separately verified milestone until the complete gate passes.
+→ Restart. The complete `npm run verify` gate passes on runtime6a02e89:117 unit,
+74 development browser and2 production browser cases, zero skips. The immutable
+receipt is `.local/office-integration-full-gate-20261028/`.
 Control-center, investments, initial office reveal/selection and security
 transitions remain unfinished.
 

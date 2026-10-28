@@ -6,21 +6,19 @@ and full original-game parity are not guaranteed.
 
 ## Integration state
 
-- Main9fbb7c4 is the last fully integrated baseline:117 unit,72 development
-  browser and2 production browser cases, zero skips, with required original
-  comparisons and negative controls passing.
-- The original difficulty menu, startup waits, flight input boundaries and
-  campaign checks are integrated. Its passing runtime cd1e4dd receipt is retained
-  at .local/menu-integration-full-gate-20261028/.
-- This office branch adds the original money-bin departure. Two new browser
-  cases, nine existing browser regressions,117 unit cases, exact native/core
-  checks and the production build pass. Its full gate is pending. It has not been
-  merged into main. See [office evidence](office-transitions.md).
+- The office money-bin departure milestone passes the full `npm run verify`:
+  117 unit,74 development browser and2 production browser cases, zero skips,
+  with required original comparisons and negative controls passing.
+- Tested runtime6a02e89 is retained in
+  `.local/office-integration-full-gate-20261028/`. Subsequent changes record
+  receipts and integration metadata. See [office evidence](office-transitions.md).
+- The prior menu runtimecd1e4dd receipt remains independently retained at
+  `.local/menu-integration-full-gate-20261028/`.
 
 ## Playable routes
 
 - Original opening/intro music → difficulty → office → money-bin dive/reward.
-  The office branch adds the real19-presentation door/roof departure, its waits,
+  The browser includes the real19-presentation door/roof departure, its waits,
   sound calls and keyboard flush before entering the bin.
 - Office → map → confirmed departure → keyboard flight → landing or crash/repair
   → expedition → results → map. All35 destinations can be inspected.
@@ -36,8 +34,9 @@ and full original-game parity are not guaranteed.
 - A complete Easy route reaches the day30 winning ending with15000 against10500.
   The menu-migrated Hard route carries all four expedition families to day33,
   losing with19600 against44000. Its3350 real DOM inputs match25 exact state/pixel
-  checkpoints in independent Game and browser replays. The office branch retains
-  the25-checkpoint Game replay; its complete browser gate is still pending.
+  checkpoints in independent Game and browser replays. The complete gate retains
+  those25 checkpoints in Game and browser replays. These are port regressions,
+  not a complete original campaign comparison.
 - Tandy/PCjr audio is connected, including title Sound001 (~49s/3558 sequencer
   ticks), persistent channels, priorities, engine words and explicit completion.
   All121 public requests have viewer playback. PC speaker is the default.
@@ -73,16 +72,17 @@ missing fixtures fail setup.
 - No original save/load/high-score format has been identified. Browser persistence
   would be an explicit addition.
 
-Next: finish the connected office-departure full gate and integration. Continue with the remaining office/security transitions. The capture
-bridge's stale settings/port collision needs the focused correction documented
-in [office evidence](office-transitions.md) before another native capture.
+Next: connect the remaining office/control-center/security transitions. A fresh
+original security capture records carried RNG generation, a wrong-choice warning,
+three alarm cycles and return. Its browser implementation remains unfinished.
+A bounded capture script using the existing emulator client on an isolated port
+has avoided the bridge's cached-port limitation without altering shared sessions.
 
 ## Verification
 
 `npm run verify` is the required full gate and rejects missing/corrupt fixtures,
 zero/incomplete cases, unsupported paths, unfinished events and comparison errors.
-The connected office branch adds2 browser cases to the menu branch's72 and
-requires its native/core and missing-Up controls. No full-branch pass is claimed yet.
+The complete gate includes the office native/core and missing-Up controls.
 
 Focused commands: `npm run verify:office`, `npm run verify:difficulty`,
 `npm run verify:opening`, `npm run verify:hard-campaign`,

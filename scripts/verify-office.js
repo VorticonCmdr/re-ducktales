@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { PNG } from "pngjs";
 import { parseArchive } from "../src/assets.js";
 import { unpackImage } from "../src/game/executable.js";
@@ -226,7 +227,8 @@ assert.deepEqual(
 );
 assert.deepEqual(component.outcome, { code: 38, action: "money-bin" });
 // Independent browser receipts are required separately from native component
-// comparisons. Their source hashes pin the current connected application.
+// comparisons. Their source hashes pin the exact historical producer revision;
+// fresh browser tests in the full gate exercise the current application.
 const browser = manifest.browserAcceptance;
 assert.equal(browser.caseCount, 2);
 assert.equal(browser.regressionCaseCount, 9);
@@ -261,9 +263,9 @@ const source = await json(receipt("source-revision.json"));
 assert.ok(Object.keys(source.sha256).length > 60);
 for (const [path, hash] of Object.entries(source.sha256))
   assert.equal(
-    sha(await required(path)),
+    sha(execFileSync("git", ["show", `${browser.captureCommit}:${path}`])),
     hash,
-    `Changed current office browser source ${path}`,
+    `Changed historical office browser source ${path}`,
   );
 for (let i = 0; i < 19; i++) {
   const name =
@@ -286,6 +288,28 @@ const hard = JSON.parse(
 );
 assert.equal(hard.checked, 25);
 assert.equal(hard.consumed, 3350);
+const gate = manifest.integrationGate;
+assert.equal(gate.runtimeCommit, browser.captureCommit);
+assert.equal(gate.exitCode, 0);
+assert.deepEqual(
+  [gate.unit, gate.developmentBrowser, gate.productionBrowser, gate.skipped],
+  [117, 74, 2, 0],
+);
+assert.equal(gate.artifacts.length, 4);
+for (const f of gate.artifacts) {
+  const bytes = await required(f.path);
+  assert.equal(bytes.length, f.bytes, `Truncated gate receipt ${f.path}`);
+  assert.equal(sha(bytes), f.sha256, `Corrupt gate receipt ${f.path}`);
+}
+for (const name of ["development-status.json", "production-status.json"])
+  assert.deepEqual(await json(`${gate.archive}/${name}`), {
+    status: "passed",
+    failedTests: [],
+  });
+const gateLog = await readFile(`${gate.archive}/full-verify.log`, "utf8");
+assert.match(gateLog, /74 passed/);
+assert.match(gateLog, /2 passed/);
+assert.match(gateLog, /pass 117/);
 console.log(
-  "Office:20 exact native pictures/sprite tuples and8368 relocated bytes; carried19-flip/255-count departure,4 comparison negatives;2 browser cases/19 exact pictures,9 regressions/117 unit cases and missing-Up control pinned. Full branch/elapsed-time parity remains unproven.",
+  "Office:20 exact native pictures/sprite tuples and8368 relocated bytes; carried19-flip/255-count departure,4 comparison negatives;2 browser cases/19 exact pictures,9 regressions/117 unit cases and missing-Up control pinned. Full required gate117/74/2 passes; original elapsed-time parity remains unproven.",
 );

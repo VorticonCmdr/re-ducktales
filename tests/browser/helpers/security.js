@@ -19,3 +19,27 @@ export async function finishSecurityEntry({ page, until, state }) {
   expect(s.securityPending).toBe(false);
   return s;
 }
+
+// The same player choices with the application's real browser clock. Polls
+// observe progress; they neither advance simulation time nor inject game state.
+export async function finishSecurityEntryRealTime(page, canvas) {
+  const state = async () => JSON.parse(await canvas.getAttribute("data-state"));
+  async function until(predicate) {
+    let current;
+    await expect
+      .poll(
+        async () => {
+          current = await state();
+          if (current?.diagnostic) throw Error(current.diagnostic);
+          return Boolean(current && predicate(current));
+        },
+        {
+          message: "Original control-center/security transition",
+          timeout: 10000,
+        },
+      )
+      .toBe(true);
+    return current;
+  }
+  return finishSecurityEntry({ page, until, state });
+}

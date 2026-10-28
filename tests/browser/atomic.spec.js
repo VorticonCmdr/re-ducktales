@@ -2,6 +2,8 @@ import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import { finishSecurityEntry } from "./helpers/security.js";
+import { exploreFlight } from "./helpers/flight-policy.js";
 
 test("earn the transmitter in Too-Pei, choose atomic transport and enter the next expedition", async ({
   page,
@@ -44,6 +46,7 @@ test("earn the transmitter in Too-Pei, choose atomic transport and enter the nex
   await press("Enter");
   await waitForScene(page, canvas, "office");
   await page.locator("#map").click();
+  await finishSecurityEntry({ page, until, state });
   await until((s) => s.scene === "map");
   await point(240, 70);
   await press("Space");
@@ -51,13 +54,17 @@ test("earn the transmitter in Too-Pei, choose atomic transport and enter the nex
   await press("ArrowRight");
   await press("Space");
   expect((await state()).departure.activity).toBe("cave");
-  await page.keyboard.down("Space");
-  await page.keyboard.down("ArrowUp");
-  await until((s) => s.scene === "crash-repairs");
-  await page.keyboard.up("ArrowUp");
-  await page.keyboard.up("Space");
-  await press("Space");
+  // The security-aware first departure races even on Easy. Fly the actual
+  // two-day route; a deliberate crash now awards the transmitter to Glomgold.
+  // This observes current poses as an external player, not expected outputs.
+  await exploreFlight({
+    page,
+    state,
+    until,
+    policy: { altitude: [25, 40], climbHeading: 1 },
+  });
   await until((s) => s.scene === "expedition-briefing");
+  expect((await state()).flight.outcome.code).toBe(1);
   expect((await state()).briefing.variant).toBe(7);
   await press("Space");
   await until((s) => s.scene === "cave");

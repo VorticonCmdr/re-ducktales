@@ -1,6 +1,8 @@
 import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { nextRandom } from "../../src/game/integer.js";
+import { finishSecurityEntry } from "./helpers/security.js";
+import { exploreFlight } from "./helpers/flight-policy.js";
 
 test("photography keyboard target shot, results, campaign return and collected notice", async ({
   page,
@@ -41,7 +43,7 @@ test("photography keyboard target shot, results, campaign return and collected n
   await waitForScene(page, canvas, "office");
   await page.getByRole("checkbox", { name: "Sound (reconstructed)" }).check();
   await page.locator("#map").click();
-  await page.clock.runFor(100);
+  await finishSecurityEntry({ page, until, state });
   const bounds = await canvas.boundingBox();
   await canvas.click({
     position: { x: (bounds.width * 46) / 320, y: (bounds.height * 56) / 200 },
@@ -50,18 +52,13 @@ test("photography keyboard target shot, results, campaign return and collected n
   await press("Space");
   await press("ArrowRight");
   await press("Space");
-  await page.keyboard.down("Space");
-  await until((s) => s.scene === "flight" && s.flight.speed > 4);
-  await page.keyboard.down("ArrowDown");
-  await until((s) => s.flight.heading > 0);
-  await page.keyboard.up("ArrowDown");
-  await page.keyboard.up("Space");
+  await exploreFlight({ page, state, until });
   const arrived = await until(
     (s) => s.scene === "photography" && s.photography.phase === "playing",
   );
-  // This observed Yellerstone route crashes, then completes the original
-  // repair/arrival path. Landing is covered separately by the cave route.
-  expect(arrived.flight.outcome.code).toBe(0);
+  // Security changes the first race roll. Require a real landing and race win
+  // before photography; a crash would award this destination to Glomgold.
+  expect(arrived.flight.outcome.code).toBe(1);
   expect(arrived.flight.phase).toBe("complete");
   const day = arrived.campaign.day,
     location = arrived.campaign.location,

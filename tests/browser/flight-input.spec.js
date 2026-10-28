@@ -2,6 +2,7 @@ import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import { finishSecurityEntry } from "./helpers/security.js";
 
 test("flight P/N dialogs preserve actors, clocks continue, and crash keys flush before natural return", async ({
   page,
@@ -55,7 +56,33 @@ test("flight P/N dialogs preserve actors, clocks continue, and crash keys flush 
   await press("Enter");
   await waitForScene(page, c, "office");
   await page.locator("#map").click();
+  await finishSecurityEntry({ page, until, state });
   await until((s) => s.scene === "map");
+  // Two real bank/office detours make this a non-racing departure. The fresh
+  // security-aware route races on Easy; its crash correctly enters rival-claim
+  // instead of the crash-repair boundary this case is intended to exercise.
+  for (let trip = 0; trip < 2; trip++) {
+    const bankBounds = await c.boundingBox();
+    await c.click({
+      position: {
+        x: (bankBounds.width * 212) / 320,
+        y: (bankBounds.height * 131) / 200,
+      },
+    });
+    await press("Space");
+    await press("ArrowRight");
+    await press("Space");
+    await until((s) => s.scene === "bank");
+    await page.keyboard.down("Space");
+    await until((s) => s.scene === "map");
+    await page.keyboard.up("Space");
+    await page.locator("#back").click();
+    await until((s) => s.scene === "office");
+    expect((await state()).seed).toBe([62042, 19313][trip]);
+    await page.locator("#map").click();
+    await finishSecurityEntry({ page, until, state });
+    await until((s) => s.scene === "map");
+  }
   const bounds = await c.boundingBox();
   await c.click({
     position: { x: (bounds.width * 37) / 320, y: (bounds.height * 33) / 200 },
@@ -64,6 +91,7 @@ test("flight P/N dialogs preserve actors, clocks continue, and crash keys flush 
   await press("ArrowRight");
   await press("Space");
   await until((s) => s.scene === "departure");
+  expect((await state()).departure.racing).toBe(false);
   await press("Space");
   await until((s) => s.scene === "flight");
   await press("p");

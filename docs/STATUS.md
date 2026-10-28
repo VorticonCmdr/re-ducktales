@@ -104,6 +104,17 @@ or RNG was changed to preserve old expectations. See
 [route integration evidence](security-route-integration.md). Other expedition
 setups and the full branch gate remain pending.
 
+Expedition departures now also pass a combined17-case browser batch with zero
+skips: four activity dispatches, Hard crash/rival claim, Easy landing/cave
+failure/retry/treasure, Too-Pei transmitter/atomic travel, photography and its
+real-audio rival notice, non-racing crash-repair controls and real-clock banking.
+The native departure check retains two exact conditional checkpoints and two
+negative controls. Security's changed race roll is carried naturally: arrival
+scenarios fly their races, while the repair case uses two real bank trips.
+No simulation/RNG was changed. See
+[expedition integration evidence](security-expedition-integration.md). Remaining
+focused expedition recordings and the complete branch gate are still pending.
+
 ## Verification
 
 `npm run verify` is the required full gate and rejects missing/corrupt fixtures,

@@ -2,6 +2,10 @@ import { waitForScene, waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import {
+  finishSecurityEntry,
+  finishSecurityEntryRealTime,
+} from "./helpers/security.js";
 const state = (canvas) => canvas.getAttribute("data-state").then(JSON.parse);
 async function office(page, difficulty = 0) {
   await page.goto("/");
@@ -31,6 +35,7 @@ test("original map pixels and keyboard bank round trip", async ({ page }) => {
   await page.keyboard.down("ArrowRight");
   await page.keyboard.press("Space");
   await page.keyboard.up("ArrowRight");
+  await finishSecurityEntryRealTime(page, c);
   await expect(c).toHaveAttribute("data-scene", "map");
   const expected = PNG.sync.read(await readFile(".local/original-map.png"));
   const actual = PNG.sync.read(
@@ -117,6 +122,7 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   await waitForScene(page, c, "office");
   await until((s) => s.scene === "office");
   await page.locator("#map").click();
+  await finishSecurityEntry({ page, until, state: () => state(c) });
   await until((s) => s.scene === "map");
   await point(c, 37, 33);
   await press("Space");
@@ -130,7 +136,8 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   const prepared = await state(c);
   expect(prepared.departure.flightRequest).toEqual({ days: 1, racing: 1 });
   expect(prepared.departure.activity).toBe("cave");
-  expect(prepared.seed).toBe(54448);
+  // Carried security seed46760 followed by the original two departure draws.
+  expect(prepared.seed).toBe(54124);
   expect(prepared.departure.variant).toBe(0);
   await c.evaluate((canvas) => {
     canvas.addEventListener("gamepresent", (event) => {
@@ -202,6 +209,7 @@ for (const [name, x, y, activity] of [
   test(`departure dispatch classifies ${name}`, async ({ page }) => {
     const c = await office(page);
     await page.locator("#map").click();
+    await finishSecurityEntryRealTime(page, c);
     await expect(c).toHaveAttribute("data-scene", "map");
     await point(c, x, y);
     await page.keyboard.press("Space");
@@ -281,6 +289,7 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   await press("Enter");
   await waitForScene(page, c, "office");
   await page.locator("#map").click();
+  await finishSecurityEntry({ page, until, state: () => state(c) });
   await until((s) => s.scene === "map");
   await point(c, 37, 33);
   await press("Space");

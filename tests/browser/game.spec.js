@@ -1,5 +1,6 @@
 import { waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
+import { finishSecurityEntryRealTime } from "./helpers/security.js";
 
 test("keyboard route loads originals, dives, banks, returns and restarts", async ({
   page,
@@ -61,6 +62,7 @@ test("keyboard route loads originals, dives, banks, returns and restarts", async
     path: ".local/browser-results/office-after-dive.png",
   });
   await page.locator("#map").click();
+  await finishSecurityEntryRealTime(page, canvas);
   await expect(canvas).toHaveAttribute("data-scene", "map");
   const bounds = await canvas.boundingBox();
   await canvas.click({

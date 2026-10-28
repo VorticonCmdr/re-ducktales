@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
+import { verifyRouteTools } from "./verify-route-tools.js";
 
 const boola = process.argv.includes("--boola");
 const routeName = boola ? "Boola" : "Bermuda";
@@ -25,21 +26,7 @@ assert.equal(
   manifest.inputManifestSha256,
   "corrupt Hard route inputs",
 );
-assert.equal(
-  createHash("sha256")
-    .update(await readFile(manifest.captureTool))
-    .digest("hex"),
-  manifest.captureToolSha256,
-  "Hard capture tool identity changed",
-);
-for (const dependency of manifest.captureDependencies ?? [])
-  assert.equal(
-    createHash("sha256")
-      .update(await readFile(dependency.path))
-      .digest("hex"),
-    dependency.sha256,
-    `Changed capture dependency ${dependency.path}`,
-  );
+await verifyRouteTools(manifest);
 const events = JSON.parse(input).jungle;
 assert.equal(manifest.expectedScenarioCount, 1);
 assert.equal(events.length, packetCount);

@@ -819,16 +819,17 @@
     "tests/browser/system-controls.spec.js": "42ac03631eaf44397cba8d600ea14799e4221eaa1674f98da993d920a579b38f",
     "tests/browser/tandy-game.spec.js": "fa020b8a4c5cfb6ae55da0bac73954cfc75015a836e35b8276a52451f45e953f",
     "tests/browser/helpers/scene.js": "1a2074c71c0f95818e19e4daa334dc4d3980bd364dc65d7b64f745130f4a1ed8",
-    "scripts/verify-hard-expedition-negative.js": "c3becbd5c29b5a876ec6fb3115349b1855744a54c8c4704015d2dc3993f1fd7c",
-    "scripts/verify-hard-mountains-negative.js": "c4f45fcff9b957dc4d1e719b4664e7dea7007c48b35013ba775261c730de8b88",
-    "reference/boola-jungle-browser.json": "761512ff89e83e5aff2ff1c6d14b805f10c36f26d2403dcf226d4c22edf271ba",
-    "reference/hard-jungle-browser.json": "24a52419a2022bb6beac56984ff775be4043e0edd0145b0d58825457d479a7bf",
-    "reference/machu-mountain-browser.json": "e22319634933e33786a5db6d560dd52bd01460cd5dd9e01e030ac0cf9a1ea2c5",
-    "reference/thunderclap-mountain-browser.json": "110012b243fe55460d43d6862e2e21f5cab1874c47618a6d4f022b37a22bb19d",
+    "scripts/verify-hard-expedition-negative.js": "e9bf9d61c7c9cb914093634896a39d23296ef85a16ea4eb309601ea7c9095163",
+    "scripts/verify-hard-mountains-negative.js": "4b08279fb8ba8d70b38e950b817d63a2ba2f31596f3bbfba9e069490c8f1ad9a",
+    "reference/boola-jungle-browser.json": "e39f7b302bd41549ba5815b12d91653a1efde1020cac69ea248fe7d955fd5408",
+    "reference/hard-jungle-browser.json": "64dabe8001970b1f720ad106d1ddc25054c9bf52f9e0461ccdef48347920ccd4",
+    "reference/machu-mountain-browser.json": "4c32cb89192d13bb80a10f55ed4a271208c232a7b398b9096200c7a8669d04dc",
+    "reference/thunderclap-mountain-browser.json": "e602bac8d10c7fad1db459a87a9b827ffd6f0e96d0655249d23a403946d40b37",
     "src/game/difficulty.js": "871139d151dd3f93475e1c3093d6eb47fea5d666550ba3c60bd0defa8e918a2c",
     "src/game/difficulty-menu.js": "2808f24a5f6f2cf81029fcef744ce489e99b5725e05cd665b5d03ae43bc3bb20",
     "tests/browser/helpers/flight-inputs.js": "2ca1d95a148ec8ab3caf9f1a29351ff202944fd57cdb04056d938de1fe0e24ab",
     "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0",
-    "reference/hard-flight-inputs.json": "433f3371e83d46619131384828b93a2bc4fc9c7899d0f2710b825b064c2ef26e"
+    "reference/hard-flight-inputs.json": "433f3371e83d46619131384828b93a2bc4fc9c7899d0f2710b825b064c2ef26e",
+    "scripts/verify-route-tools.js": "584109f1465e2511693f0ef1a53cb6bad8c5198f4c87e156be729f77cf98454e"
   }
 }

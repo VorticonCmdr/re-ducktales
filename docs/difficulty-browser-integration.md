@@ -77,3 +77,10 @@ control confirmed that a new capture cannot be accepted without a new independen
 browser receipt. The full branch gate must still pass before integration into
 main; focused or exploratory results do not replace it. No original whole-campaign,
 CPU/file cost, elapsed-time or waveform parity is claimed.
+
+The first full integration gate stopped at a historical route-helper identity
+check after its native comparisons and input-stream controls passed. The four
+Hard route manifests now preserve their historical capture identities against
+Git57beb92 while pinning the current startup/input replay tools separately. No
+expedition controls, actor expectations or required divergence checkpoints changed.
+The full gate must pass on this revision before integration.

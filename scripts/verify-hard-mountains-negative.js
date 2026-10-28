@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
+import { verifyRouteTools } from "./verify-route-tools.js";
 
 const fields = [
   "x",
@@ -33,18 +34,7 @@ for (const [name, title, variant, packets, samples, checkpoints] of [
     manifest.inputManifestSha256,
     "Changed mountain input stream",
   );
-  assert.equal(
-    sha(await readFile(manifest.captureTool)),
-    manifest.captureToolSha256,
-    "Changed mountain capture tool",
-  );
-  assert.equal(manifest.captureDependencies.length, 1);
-  for (const dependency of manifest.captureDependencies)
-    assert.equal(
-      sha(await readFile(dependency.path)),
-      dependency.sha256,
-      `Changed capture dependency ${dependency.path}`,
-    );
+  await verifyRouteTools(manifest);
   const stream = JSON.parse(inputBytes).mountain,
     route = manifest.mountain;
   assert.equal(manifest.expectedScenarioCount, 1);

@@ -604,7 +604,43 @@
   ],
   "currentNegativeTool": {
     "path": "scripts/verify-hard-expedition-negative.js",
-    "sha256": "c3becbd5c29b5a876ec6fb3115349b1855744a54c8c4704015d2dc3993f1fd7c",
-    "scope": "The earlier negativeToolSha256 and receipt are historical and unchanged. This revision allows the browser test180s plus60s runner startup/teardown, and explicitly rejects timeout/interruption failures. Required divergence checkpoints and all route inputs/expected outcomes are unchanged."
-  }
+    "sha256": "e9bf9d61c7c9cb914093634896a39d23296ef85a16ea4eb309601ea7c9095163",
+    "scope": "The earlier negativeToolSha256 and receipt are historical and unchanged. This revision allows the browser test180s plus60s runner startup/teardown, and explicitly rejects timeout/interruption failures. Required divergence checkpoints and all route inputs/expected outcomes are unchanged. Historical capture dependencies are now checked against their pinned Git tree, with current replay source identities checked separately. Required divergence remains unchanged."
+  },
+  "captureToolCommit": "57beb92d1250452ee5e8ed22ec8e04b48321fe08",
+  "verificationTools": [
+    {
+      "path": "tests/browser/hard-expedition.spec.js",
+      "sha256": "1d3c8cde034c7038129ff0f981b9ff37f23eb6c3e99f61982278358b429ee59c"
+    },
+    {
+      "path": "tests/browser/hard-expedition-route.js",
+      "sha256": "14d3a89c921c7a4ede50f5a6d21e0322c618afd41f707094a4d51b7fd77565d8"
+    },
+    {
+      "path": "tests/browser/helpers/scene.js",
+      "sha256": "1a2074c71c0f95818e19e4daa334dc4d3980bd364dc65d7b64f745130f4a1ed8"
+    },
+    {
+      "path": "tests/browser/helpers/clock.js",
+      "sha256": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0"
+    },
+    {
+      "path": "tests/browser/helpers/flight-inputs.js",
+      "sha256": "2ca1d95a148ec8ab3caf9f1a29351ff202944fd57cdb04056d938de1fe0e24ab"
+    },
+    {
+      "path": "reference/hard-flight-inputs.json",
+      "sha256": "433f3371e83d46619131384828b93a2bc4fc9c7899d0f2710b825b064c2ef26e"
+    },
+    {
+      "path": "scripts/verify-route-tools.js",
+      "sha256": "584109f1465e2511693f0ef1a53cb6bad8c5198f4c87e156be729f77cf98454e"
+    },
+    {
+      "path": "scripts/verify-hard-expedition-negative.js",
+      "sha256": "e9bf9d61c7c9cb914093634896a39d23296ef85a16ea4eb309601ea7c9095163"
+    }
+  ],
+  "verificationToolScope": "Historical captureTool/captureDependencies and receipts remain unchanged and match captureToolCommit. Current replay waits for the original difficulty lifecycle and consumes an independent observed flight control stream at its input boundaries. Expedition input bytes, actor checkpoints, rewards and required negative-control divergence are unchanged. This is port regression evidence, not whole-original level parity."
 }

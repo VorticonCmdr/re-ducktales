@@ -358,6 +358,6 @@
       "sha256": "f58b555c00704883b46d799d3e246e1222e438f690fb29588b4e0f407ff700fa"
     }
   ],
-  "captureCommit": null,
+  "captureCommit": "9cfc0a39a54e4dd79d3cc95c47f3deac04654977",
   "variant": "navigation"
 }

@@ -16,7 +16,7 @@ and full original-game parity are not guaranteed.
   `.local/menu-integration-full-gate-20261028/`.
 
 The `codex/security-menu` development branch adds first-map security. Its two
-browser routes, four adjacent office/menu regressions,117 unit cases, native
+browser routes on runtime9cfc0a3, four adjacent office/menu regressions,117 unit cases, native
 segments and build pass. Main remains054ac66; security integration and the full
 branch gate await campaign replay migration. See [security evidence](security.md).
 

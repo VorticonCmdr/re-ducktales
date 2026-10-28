@@ -127,5 +127,6 @@
     }
   ],
   "expectedArtifactCount": 19,
-  "expectedRetainedPictureCount": 10
+  "expectedRetainedPictureCount": 10,
+  "captureCommit": "9cfc0a39a54e4dd79d3cc95c47f3deac04654977"
 }

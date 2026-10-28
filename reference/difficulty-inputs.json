@@ -1,0 +1,15 @@
+{
+  "evidence": "Original hardware-key returns captured at input consumption, BIOS word captured in AX before DS2229 write; not fitted from final state.",
+  "bytes": [
+    1,
+    0,
+    5,
+    0,
+    5,
+    0,
+    1,
+    0,
+    193
+  ],
+  "biosWordAtConsumption": 18293
+}

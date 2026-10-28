@@ -1,0 +1,113 @@
+{
+  "id": "difficulty-core-dos-fb658562",
+  "buildManifest": "reference/build.json",
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "captureBaseCommit": "f6e581e",
+  "emulator": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "loadBias": 501,
+    "psp": 485,
+    "ds": 5123,
+    "protectedMode": false,
+    "originalRoot": "game/",
+    "readOnly": true,
+    "audioDriver": 5,
+    "graphicsDriver": 1
+  },
+  "loadBias": 501,
+  "artifactRoot": ".local/difficulty-native-20261028",
+  "artifacts": [
+    {
+      "path": ".local/difficulty-native-20261028/evidence.json",
+      "sha256": "c3b2c8303cc5a01fc1f363fc808d7afb0c5c56fc21559e72a3789918fe4cdc54",
+      "role": "native-state-and-interface-captures"
+    },
+    {
+      "path": ".local/difficulty-native-20261028/menu-0.png",
+      "sha256": "d360d7553fc89a025a2c807bb1372bbce7ca6f6a1a63c60f514d78b97c066796",
+      "role": "expected-initial-pixels-at-first-loop-tail"
+    },
+    {
+      "path": ".local/difficulty-native-20261028/menu-2.png",
+      "sha256": "96b385ca3d123070232ed8b29ceeea7b07f113550c21e4723d39bdc4934ab168",
+      "role": "diagnostic-only"
+    },
+    {
+      "path": ".local/difficulty-native-20261028/return.png",
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851",
+      "role": "diagnostic-only"
+    },
+    {
+      "path": ".local/difficulty-native-20261028/selected0.png",
+      "sha256": "96b385ca3d123070232ed8b29ceeea7b07f113550c21e4723d39bdc4934ab168",
+      "role": "expected-pixels"
+    },
+    {
+      "path": ".local/difficulty-native-20261028/selected0b.png",
+      "sha256": "96b385ca3d123070232ed8b29ceeea7b07f113550c21e4723d39bdc4934ab168",
+      "role": "diagnostic-only"
+    },
+    {
+      "path": ".local/difficulty-native-20261028/selected1.png",
+      "sha256": "4127c6eb09897e5d54097fd5b19653c32df8eb70a26b1034738e132543f7af5c",
+      "role": "expected-pixels"
+    },
+    {
+      "path": ".local/difficulty-native-20261028/selected2.png",
+      "sha256": "0bd4d876cf92a811cc6430ff3a83ad47d69b41d171fd0c0783f51e2656e1b989",
+      "role": "expected-pixels"
+    }
+  ],
+  "expectedInputCount": 9,
+  "expectedSoundCalls": 5,
+  "expectedPixelCount": 4,
+  "recipe": "docs/difficulty.md",
+  "scope": "Conditional menu core, exact selected presentations and consumption-boundary observations; no browser integration or complete elapsed-time comparison.",
+  "comparison": "Exact pixels and integer state/API arguments; raw PNGs aligned after following input return. No pixel tolerance, injections or restores.",
+  "sourceRanges": [
+    {
+      "source": "unpacked-executable",
+      "offset": 14907,
+      "length": 670,
+      "sha256": "41085e4612605c063eefb0436d2a3a5abd31a4b1f5cf633958068936f7f9a61e",
+      "role": "complete-menu"
+    },
+    {
+      "source": "unpacked-executable",
+      "offset": 23173,
+      "length": 32,
+      "sha256": "80d700a63e3f22549f62f23eddf6c8ea690447150826ba5e8af9d97c1c8d7ced",
+      "role": "post-reveal-keyboard-flush"
+    },
+    {
+      "source": "graphics-driver-1",
+      "offset": 257,
+      "length": 84,
+      "sha256": "ac6a81f5479965ec4f437c4f62ea0dbbd6b5b969098bb3e9e3f8ece20b6331d6",
+      "role": "five-interleaved-row-passes"
+    },
+    {
+      "source": "graphics-driver-1",
+      "offset": 100,
+      "length": 14,
+      "sha256": "5301a2020afdf22c093fcbfb85132a4db447472a1b762c1429a1f2b8379bb3d8",
+      "role": "vertical-retrace-wait"
+    },
+    {
+      "source": "graphics-driver-1",
+      "offset": 341,
+      "length": 91,
+      "sha256": "7dec77e06ef11dba420a5aac8b86742ac4070fed2d246ee34493bb684ba13f08",
+      "role": "visible-striped-clear"
+    },
+    {
+      "source": "graphics-driver-1",
+      "offset": 432,
+      "length": 62,
+      "sha256": "8077657cb7b1b2a75612c5c8663a413f5af0abab9442642e50ed3ebbc29ab8d8",
+      "role": "drawing-page-color-fill"
+    }
+  ]
+}

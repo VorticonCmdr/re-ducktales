@@ -149,6 +149,21 @@ procedures. Ghidra's current stored helper body includes misdecoded jump-table
 bytes and its decompilation timed out. Resolve its007c path using original bytes
 and a native menu capture before implementing the missing background/transition.
 
+Follow-up static resolution: original helper007c..00b5 (image1cbc,58 bytes,
+SHA256`879a245495252eab6f0be6b706077ef70c6982aff2d6a1535077ae0680a63d7b`)
+loads MAIN.ARC32 through140e:175c, then joins the full-picture copy/presentation
+path004f's tail. If DS2042 is nonzero, it temporarily changes palette byte2057
+to41, calls graphics palette API2004 with nonzero1101, loads the picture, then
+restores byte2057 to1 and calls the palette API again. The EGA driver masks palette
+bytes with3f. The browser already uses MAIN.ARC32 and the original font; its row
+text starts8 pixels too far left (x160 rather than selected-prefix x168). Exact
+menu timing, input flush and sound36 dispatch still need application integration.
+The static follow-up itself made no native session changes. Subsequent native
+captures now verify four exact menu presentations, nine consumed inputs, five
+sound36 calls and the BIOS reseed boundary; see [difficulty evidence](difficulty.md).
+That core remains separate from the current browser menu, and does not establish
+entry-animation or complete elapsed-time parity.
+
 The first combined browser gate exposed old startup scripts sending Enter before
 the reveal completed. Those scripts now wait on the actual difficulty scene
 using `tests/browser/helpers/scene.js`; no inputs or simulation state are

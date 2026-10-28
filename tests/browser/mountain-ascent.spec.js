@@ -49,6 +49,7 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   await press("Space");
   await waitForScene(page, c, "difficulty");
   await press("Enter");
+  await waitForScene(page, c, "office");
   await page.locator("#map").click();
   await page.clock.runFor(100);
   const r = await c.boundingBox();

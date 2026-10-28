@@ -1,25 +1,102 @@
 {
-  "id": "hard-linked-campaign-four-families",
+  "id": "hard-linked-campaign-original-difficulty-menu",
   "buildManifest": "reference/build.json",
   "evidenceLevel": "closed-loop port regression and independent browser scenario",
-  "evidence": "Independent real-input browser replay and port regression. All24 published Game snapshots and decoded pixel hashes match the reference using all3284 DOM inputs. Full integration gate passed117 unit,70 development browser and2 production browser cases with zero skips, including the strict Hard replay and six negative controls. No original-game whole-campaign parity claimed.",
+  "evidence": "Original menu integration:25 exact published state/pixel checkpoints from3350 independent DOM events match both fresh Game replay and independent actual browser replay. Complete integration gate remains pending. Port regression, not original whole-campaign parity.",
   "emulator": null,
-  "captureTool": "tests/browser/helpers/linked-campaign.js (reference inputs); tests/browser/helpers/recorded-campaign.js (strict browser replay)",
+  "captureTool": "tests/browser/helpers/linked-campaign.js and helpers/flight-inputs.js",
   "captureToolRevision": {
-    "baseCommit": "f6e581eefb58ac4ddceebf57e39b1413eb20cd81",
+    "baseCommit": "cab7f3bce18f6f338deb0fd1ee1c842bbe27e3e6",
+    "scope": "Collected during the run; all selected producer source modification times predate log creation.",
     "fileHashes": {
-      "tests/browser/helpers/linked-campaign.js": "88a2eb4f744668774fc62a4476600cea5d57c80281845fdd0e303fc6b554c300",
-      "tests/browser/hard-campaign.spec.js": "8ecf345a696fbdbb03b14ae7517020626d794cfcf23ab5dee44d449ef706acf2",
-      "tests/helpers/original-game.js": "94748f2af89011623f6ffd091d9c601422cc4fcd09e22cbe2fcf39a502c613a4",
-      "scripts/replay-hard-campaign.js": "fa67f6f913fbce4ad71e5a8cc045f9000b9a175f4a4f5af4d0cd5ba66d137faa",
-      "scripts/verify-hard-campaign.js": "b68f7697f08de2f6c8a655acc9ae09502946b27613763e3cc4dad570fcf21f32",
+      ".local/playwright.capture.config.js": "d38417b3b6fe4ffbceddc85eb8dd842078c528905f576d2e5e95ab8697b301a3",
+      "package-lock.json": "40f74628e5076526410e932f28a75dfb91154cbedf0d3cd6dd9374e653a4e740",
+      "package.json": "0f5541014b4cbb74dbbfddebc6bd99aa5de6da8d0079d46d05727c3213fa22c9",
+      "reference/build.json": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+      "reference/hard-flight-inputs.json": "433f3371e83d46619131384828b93a2bc4fc9c7899d0f2710b825b064c2ef26e",
+      "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
+      "src/audio.js": "bce87c6dc414ffba76fca07d242b6220df3e301e0d9bd1740e201280a0f357fc",
+      "src/game/application.js": "2e06dfbf56d78aabc02ec8a5d70f7855c45b53dde7c7ad4e59d49a28a773e7c3",
+      "src/game/atomic-transport.js": "adca9cd7b2aafb313c1479dcbdba386d98c0302d343a6206d4dd99971ab077a0",
+      "src/game/bank.js": "6e8e4fff06ebd4234150b4c5fe25148baa5236d9c5f82070c91f603a80c35de6",
+      "src/game/browser.js": "90cfa1157b08cc9f60dac8e79577b24e971b2637bb19b829410ff1d3c6cdfdc1",
+      "src/game/campaign-visit.js": "d3b65f8d5f973a850b7e6bd07568bd3df18ba9283bd558158f31bb7e0f0eef44",
+      "src/game/campaign.js": "b413b309c062e92a77114cf5520a692714da6ae2d61640c7106d81bb6d220555",
+      "src/game/cave-endings.js": "864aac7ae51651f9f1ae88a2eb245d9b9643e19e016b36bdd0b835be11d51e0b",
+      "src/game/cave-scene.js": "c2d88cce7195e9503fd6c2be24cbc313b5e7d1f85219f4a5b33866639f198105",
+      "src/game/cave-transitions.js": "841abc8ffd91ce4ab0c59d925cd8dceda85e6269dfd25e55cd824f071ddcfaf8",
+      "src/game/cave.js": "686064a3a08974bc4123400df64d0ad247f0ee7bdd1e34cc723a28207ddbb8fe",
+      "src/game/departure.js": "47f1dcbd0855f331103d6c8a28785325f1741ffacbe714a1cd54e8e5c5104f71",
+      "src/game/difficulty-menu.js": "2808f24a5f6f2cf81029fcef744ce489e99b5725e05cd665b5d03ae43bc3bb20",
+      "src/game/difficulty.js": "871139d151dd3f93475e1c3093d6eb47fea5d666550ba3c60bd0defa8e918a2c",
+      "src/game/ega-palette.js": "420db99351c72ac2b42f170b9cdb5722b27a4b1b85a25aa04adeb328407cc89d",
+      "src/game/ending-presentation.js": "7664dd081d0db9cd7b5680765896e04385ce7029a521d54fb21c01efa3b95056",
+      "src/game/ending.js": "7e3ebf5077f02bfcb5401b17037e3ef6b390ef1d806ba8a9bbde8a3ddd233fa3",
+      "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
+      "src/game/expedition.js": "505acc1711691fa1336fbc26edee620538344bb44a4a8fda1bcb8355735acd20",
+      "src/game/flight-collisions.js": "2e5df837a0724a853555607767fff83118ae4de5895431c52d0220b87cc88ae7",
+      "src/game/flight-course.js": "ad0a169c432d10ddfc302ac47205a93b68167b769cadaa1e3ccc0c509cd8669d",
+      "src/game/flight-flag-raster.js": "9b57f314347c2d33eb060f9c6b6dd0fdf8bb946d50a8f3810cc5284d30230b5b",
+      "src/game/flight-objects.js": "7c514610608c074249552309ad1583f2956e801807dcc9480d63d165dcfb1f18",
+      "src/game/flight-physics.js": "4a3409ed65d6a28f6c90ba4af02290952831829df89d305bf83dc07f6d8c04b7",
+      "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
+      "src/game/flight-scene.js": "f282ea0f53535edb77e3cc68972067b6e975a556ffdb212fe9be7f604998dbaa",
+      "src/game/flight-setup.js": "97d7eab7a46a249fe1f62ac55214cab8d9f3f7d44afaaac4120341c64833f18e",
+      "src/game/flight-terrain.js": "26d33ff53a9670f9c61d066ab061d3eaee6e7883a345eb17c9239e1f79a70231",
+      "src/game/flight.js": "248104ed27d88626e4911c3606a8a7418ccb399fe6391d081e4132e21a446674",
+      "src/game/integer.js": "cb575b09c744e3fd2967ac72de96399a0e5a5b6e807c6ef0684e30a183a38776",
+      "src/game/investment-screen.js": "a888e27f7dcbe8380b5f199879f300243228d9dbdf28c7abf914dbd8e3cafb94",
+      "src/game/investments.js": "a81927f0750919077f531732413b164090f80d539eed84bd815636684598f327",
+      "src/game/jungle-animation.js": "d9955ccaae5e15c276382ad3298dcac4600ca362210b19e4686164934ab6aea4",
+      "src/game/jungle-collision.js": "fa9e33dd12dbb0dcb30371c6b6c4007a59406bb94bb601e339c869bcb9aa7b65",
+      "src/game/jungle-controls.js": "d73fed10ae58f99b130c679709e71d2dcfd529d47253d18a8151ad53177f2c64",
+      "src/game/jungle-hazards.js": "11da162f7465c3cf0e822bd71a4526e0916d5c56723004f0d3253108a6e2ccdd",
+      "src/game/jungle-initialization.js": "8440206ff8223a535114862d5c3a6c8cab6ba0ed336382507377e4f611b57f9e",
+      "src/game/jungle-map.js": "c406f1095265fb0ed6f3276c77c4edacf0e0a77c5a4eaff0c9489ccff4875e55",
+      "src/game/jungle-motion.js": "f2c7e477dde86abe1e42365581e644a5cc63e0aa8ade837d645359244d7a8eb6",
+      "src/game/jungle-presentation.js": "ffb8d6cbd0a4e9a9728e73ae9313640e51f752a02c8473ff595e7643998f1f0a",
+      "src/game/jungle-raster.js": "a7fa4e2d0639ee59458f4573fe1e8bf995df59a73352feb430616a4068cb762b",
+      "src/game/jungle-scene.js": "7493c81c02358b6d4ddf4ef93c91e46c4832c03dc9cfdfecb5274a67ccadea22",
+      "src/game/jungle-state.js": "24c073591ce3c9326c5ebf86aa759c79b79d2b02fe810b36fd47b1a3c05271d4",
+      "src/game/jungle.js": "046ed4ba4052079a4c8f7f9d716255822f0ff31f68a0573ba719ad3cb9a82129",
+      "src/game/map-pointer.js": "47696dac08b3f9a584b0ebfd4fa416564e889933153c6f8346118e50c6d481bc",
+      "src/game/money-bin.js": "352dd2f51e5073652a86ccde0ce0399ea20abd454c92ee4b197c93b22317f885",
+      "src/game/mountain-actions.js": "dd9e2d6dfabf0eb93ddc32f7cfb81d053cf846f7c7b026535ac608749e95e2f4",
+      "src/game/mountain-hazards.js": "f5ee5c0fe9e48098ae18cd97304c061badd3b3a391c17895e43630804936fb06",
+      "src/game/mountain-scene.js": "d8572ab4760ef73aed7037661e7cf464eeb100b6210186719f73eecc9d701cec",
+      "src/game/mountain.js": "e7836bacb21199e29905e48d0eec863d4f2549fe545f90c51f3243d3bf9169a4",
+      "src/game/opening.js": "ed91355bc55fc74eee726358fb207b6b66b7985b489ec0d1512410b49a60a9ab",
+      "src/game/photography-actors.js": "457bd1c81c095a5b26cc10d22593308eb0c32ea81307a646474c760f41021d5c",
+      "src/game/photography-animation.js": "0d884231754675b78ea3cdc488a51b7eeee24a1df74f71f567f46eac6525ecf1",
+      "src/game/photography-scene.js": "afbe1d57e9a44a65813b029c4cc5c944b0cf1121c6c7ca18ac7cc531ec11772a",
+      "src/game/photography.js": "9fa0cc9e989ba9692c85602cd2f1d949aac8abef8a2626189c5c1c40b1a7de74",
+      "src/game/renderer.js": "4c2fbebb9d44b8df5c85a114a8b921c839e31d76466d7339573a91c0be3fb248",
+      "src/game/resources.js": "ae329ecb3cd7f10476710994a80d87d5282d04033e8110ac6045295d17445f09",
+      "src/game/rival.js": "423f960a1934499a4a8e6686fa40770e68a8fc2f9598e9d753b14e9cc772decb",
+      "src/game/scheduler.js": "3ca6645a22fa927af3165320e151210ae81509ba3d63303c3a7ac1d2640c509f",
+      "src/game/system-controls.js": "64b7739544bddb38fa79c0bfdcff5cad5b30fa06693707192542248ec2d917ca",
+      "src/game/tandy-audio.js": "41b69129b64de8aeb3798b28353f6416fe05e40854ab44b1ddc265b1c79af8a6",
+      "src/tandy-driver.js": "be8d4b0b6b16bc52bf52cfde861b63967419a866e21c0acbf5b13d60920dd6e0",
+      "src/tandy-game-worklet.js": "cff804f000d1daf555f27ab9b7c0499a31d42d5fec8b2802e19d3830507c11f7",
+      "src/tandy-game.js": "6d0e87d668aa7a010f7a7373305788a0db47516edcaa90c408005ed5220549d0",
+      "src/tandy-live.js": "3b9284905444c1ad7c6d310d2f8428b2f04eac6ddba7ef9409a9fae2f86ee034",
+      "src/tandy-preview.js": "830fcd6d81578c2c4aaeba350e7d98783f2fc4a2bca666edee723b9cfaef5752",
+      "src/tandy-worklet.js": "de76daf35de13d63143156b0401af2971a592248426deb21706856e51d8557af",
+      "src/viewer.js": "d2506904b64c1ae166eea78c1fac30cf9fd40a02c3706a5f909d7f2a88081c74",
+      "tests/browser/hard-campaign.spec.js": "f695e2ac906f2b8e12876309b0bebc5fbc0af5357a6ed4de28982e8340db2c7e",
+      "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0",
+      "tests/browser/helpers/flight-inputs.js": "2ca1d95a148ec8ab3caf9f1a29351ff202944fd57cdb04056d938de1fe0e24ab",
+      "tests/browser/helpers/linked-campaign.js": "e5eb658ea6e449175c7f4ed7351eb1de464cb36c62c2b46515ff67fed79a1591",
+      "tests/browser/helpers/scene.js": "1a2074c71c0f95818e19e4daa334dc4d3980bd364dc65d7b64f745130f4a1ed8",
+      "vite.config.js": "8328a6db66079b7d3620b3320add4cf139c8a71367dd5f8087ed67c3b5b73073",
+      "reference/campaign-startup-browser.json": "c5db89f616657a0b9fa82671efd219a3aa6094b5dd7918e89592f51dceccbb6d",
+      "reference/mountain-ascent.json": "a10ac3ca5af03542375141112cd2e5153991ca55c92ff6fd8bdd8b5ce134e4e6",
+      "reference/hard-jungle-browser.json": "24a52419a2022bb6beac56984ff775be4043e0edd0145b0d58825457d479a7bf",
+      "reference/hard-expedition-inputs.json": "12cabd92ab5ab42a4df518570454f6c97a508026737ee3c737a386e21b8ea07e",
       "reference/hard-campaign-inputs.json": "bfdadae8ffb85b6d1a7d8649b5bcfc1df58e8b8daedec870f565dedffe74c8ce"
-    },
-    "node": "v26.8.1",
-    "playwright": "1.64.1",
-    "scope": "Historical hashes retained from capture preparation. The exact complete working tree that produced exploratory reference09 was not archived. Current accepted replay source identities are pinned separately by verificationToolRevision and browser-source; the independent captured input stream is authoritative for strict reproduction."
+    }
   },
-  "startingRecipe": "Fresh browser context; supported original game/ assets; muted; BIOS seed0; wait for opening skip enabled; Space, Up, Enter selects Hard; real keys and canvas/buttons thereafter.",
+  "startingRecipe": "Fresh supported originals, BIOS0, muted; wait for first opening skip boundary; Space; wait for original menu readiness; Up; wait for Hard selection; Enter; wait through cleanup to office. Actual keyboard/canvas/buttons thereafter.",
   "environment": {
     "clockOrigin": 1,
     "displayMilliseconds": 8,
@@ -29,63 +106,80 @@
     "capturePhase": "before-target-handler",
     "observerError": null,
     "audio": "explicitly disabled",
-    "inputs": "Authored fixed jungle/mountain streams plus fixed feedback flight/photo/cave policies. Inputs captured independently at DOM capture phase before target handlers.",
-    "browser": "Chromium, headless; default Playwright viewport",
-    "clockProvider": "Declared origin before entry-module execution; monotonic clock and8ms display schedule are external inputs. No game state is reset or injected."
+    "biosSeed": 0,
+    "flightInputBoundary": "Frozen consumed-value profiles; real keyboard events; each actual input read checked.",
+    "browser": "Chromium headless; fresh test-owned Vite server; no state restoration."
   },
-  "artifactRoot": ".local/hard-campaign/accepted-reference-09",
+  "artifactRoot": ".local/hard-campaign/accepted-menu-reference-05",
   "artifacts": {
     "environment": {
-      "path": ".local/hard-campaign/accepted-reference-09/environment.json",
+      "path": ".local/hard-campaign/accepted-menu-reference-05/environment.json",
       "sha256": "9be470329f03077ae7f4376aaacbc2bd3fdb779859dd1503e50707ed001bd391"
     },
     "captured-events": {
-      "path": ".local/hard-campaign/accepted-reference-09/captured-events.json",
-      "sha256": "9a9e026e803772640641a4f862cfdcaead724f6d8259da84009d681073d13b76"
+      "path": ".local/hard-campaign/accepted-menu-reference-05/captured-events.json",
+      "sha256": "0ad28b7ec6e35f9c81a3f6ca317ffebb5216a177dac3934b2e89a9c365e8e2a1"
     },
     "campaign-checkpoints": {
-      "path": ".local/hard-campaign/accepted-reference-09/campaign-checkpoints.json",
-      "sha256": "684b8e46c3c4c8ba78e9dc2f324f79f08652f6cf927252836c8fa8ffd4edb226"
+      "path": ".local/hard-campaign/accepted-menu-reference-05/campaign-checkpoints.json",
+      "sha256": "27ef54e8cb649c4724ff6056499739c9fc42fee4a13b767aba9d99b9e72c682a"
     },
     "browser-checkpoints": {
-      "path": ".local/hard-campaign/accepted-browser-replay-final-20261028/campaign-checkpoints.json",
-      "sha256": "684b8e46c3c4c8ba78e9dc2f324f79f08652f6cf927252836c8fa8ffd4edb226"
+      "path": ".local/hard-campaign/accepted-menu-browser-replay-01/campaign-checkpoints.json",
+      "sha256": "27ef54e8cb649c4724ff6056499739c9fc42fee4a13b767aba9d99b9e72c682a"
     },
     "timeline": {
-      "path": ".local/hard-campaign/accepted-reference-09/timeline.json",
-      "sha256": "4519454d00486566ba8c29fb6a0541fe5b662de82b173a8301226310c8611c36"
+      "path": ".local/hard-campaign/accepted-menu-reference-05/timeline.json",
+      "sha256": "a3f49db83a8dbabe931da2eee33a38c25db5ec195bdaaaa82892a3f4f887f2fa"
     },
     "browser-progress": {
-      "path": ".local/hard-campaign/accepted-browser-replay-final-20261028/replay-progress.json",
-      "sha256": "e464b697ccc44427d21cd85a36442d844a655c0ee17c85941ae2d54a5b60ffbb"
+      "path": ".local/hard-campaign/accepted-menu-browser-replay-01/replay-progress.json",
+      "sha256": "09784deabfa902125bc4927719b0e2338ae221849cad661eeffa672afa846b97"
     },
     "browser-log": {
-      "path": ".local/hard-campaign/accepted-full-gate-20261028/verify.log",
-      "sha256": "bda4b529bdee139e01d1af0487cf3c38308b31f79f58c24deb7776605438b8d3"
+      "path": ".local/hard-campaign/accepted-menu-browser-replay-01/browser.log",
+      "sha256": "348477ff3f00863eb359366074c0b0e1e01c18b245af6a7095f9dfa2499ad2f2"
     },
     "browser-actual-events": {
-      "path": ".local/hard-campaign/accepted-browser-replay-final-20261028/actual-events.json",
-      "sha256": "eaffa2422b9df4a9e35141dec84ab8fd430112a6e21618e155652d09f25136ed"
+      "path": ".local/hard-campaign/accepted-menu-browser-replay-01/actual-events.json",
+      "sha256": "eddb6edd9012868385ece19480f47a8f7b0775700d822f9a4d42bae472d3f1ce"
     },
     "browser-source": {
-      "path": ".local/hard-campaign/accepted-browser-replay-final-20261028/source-revision.json",
-      "sha256": "b36ab60542e745e2daf9db68678085cd6891769949f379e09e918e273f1d98cb"
+      "path": ".local/hard-campaign/accepted-menu-browser-replay-01/source-revision.json",
+      "sha256": "317b7188bb4ef4f44e78d36c86f2c2e11b0df74ef0a0088826a75882e6b3b3f4"
     },
-    "full-gate-receipt": {
-      "path": ".local/hard-campaign/accepted-full-gate-20261028/receipt.json",
-      "sha256": "aa793b0a4446145c4eb7ae5ca7c0bfe4def5660c6722a1655eec71f4d0220909"
+    "capture-source": {
+      "path": ".local/hard-campaign/accepted-menu-reference-05/capture-source.json",
+      "sha256": "52e5758c506d455190e6a6c2fc33dbac9175bf30ce512ff12f38bd96ad0c4c57"
+    },
+    "capture-config": {
+      "path": ".local/hard-campaign/accepted-menu-reference-05/capture-config.js",
+      "sha256": "d38417b3b6fe4ffbceddc85eb8dd842078c528905f576d2e5e95ab8697b301a3"
+    },
+    "capture-log": {
+      "path": ".local/hard-campaign/accepted-menu-reference-05/capture.log",
+      "sha256": "df60a09621ac175aaef25849d2850e60d7bccb20e2e9406893c97b32a661bde9"
+    },
+    "capture-lifecycle": {
+      "path": ".local/hard-campaign/accepted-menu-reference-05/browser-lifecycle.json",
+      "sha256": "cc480bf9e6f554304206a4b3cf9f8d80d5cf821cd5dde3e45b844910c4d3e7fb"
+    },
+    "scenario-at-replay": {
+      "path": ".local/hard-campaign/accepted-menu-browser-replay-01/scenario-at-replay.json",
+      "sha256": "e53d009a5f3babd6a3edc505c9e25c4108791514be12447a402633d246097ff3"
     }
   },
   "inputManifests": [
     "reference/hard-expedition-inputs.json",
-    "reference/hard-campaign-inputs.json"
+    "reference/hard-campaign-inputs.json",
+    "reference/hard-flight-inputs.json"
   ],
   "requiredInputSamples": {
     "jungle": 444,
     "mountain": 671
   },
-  "requiredEventCount": 3284,
-  "expectedCheckpointCount": 24,
+  "requiredEventCount": 3350,
+  "expectedCheckpointCount": 25,
   "checkpointNames": [
     "campaign-start",
     "flight-start",
@@ -103,6 +197,7 @@
     "cave-return",
     "flight-start",
     "arrival",
+    "rival-report",
     "mountain-return",
     "bank-deposited",
     "rival-report",
@@ -163,169 +258,156 @@
     "ready": true
   },
   "expectedOwnership": {
-    "playerCollected": [
-      2,
-      30,
-      31,
-      32
-    ],
-    "rivalCollected": [
-      9,
-      10,
-      13,
-      21,
-      25,
-      27,
-      28
-    ]
+    "playerCollected": [2, 30, 31, 32],
+    "rivalCollected": [9, 10, 13, 21, 25, 27, 28]
   },
   "comparisonRules": "Exact hashes of every field published by Game.snapshot at all24 observation points, and exact320x200 decoded browser pixels. Raw private memory/stack and input-reader internals are not wholly exposed by these snapshots. Events and the observation/display timeline are separate input artifacts. No state injection,fitted timing,pixel tolerance or result-derived controls.",
   "verifyCommand": "node scripts/verify-hard-campaign.js",
   "browserCheckpoints": [
     {
       "name": "campaign-start",
-      "stateSha256": "b2e9cd5b3498359d238f864f422c812b050e63fae8ba4b3e41635fa0310335ae",
+      "stateSha256": "db388dee0bc9ae2a3addf3df880ba1196ec61d49bb7c1b1103b7aad5987ed5e7",
       "pixelsSha256": "74d3dbe6a273f24d58024df26a52cda5bfc1160ea93026f0f25968daef508acf"
     },
     {
       "name": "flight-start",
-      "stateSha256": "74b524208b65dc9ebcd9bc6c79b00c60f447686326eaab2d65a4f252e2af6f11",
+      "stateSha256": "53075075976601aa816929a7c3caa357276b4db0a5c9fe970007b0b5492d9ef8",
       "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
     },
     {
       "name": "arrival",
-      "stateSha256": "18252608ffffd7a9c9798efda55fa0af2645b9f6e680ab64038ae75a97bb8202",
+      "stateSha256": "fb9f0f8de5902f70cddbc8bf8eb28b70f7fc9efd066a5e10d75a684b0165c882",
       "pixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7"
     },
     {
       "name": "jungle-return",
-      "stateSha256": "c0b4136ae45b753199737ecaf76b894a11978c1332743cc06af003dba0e40342",
+      "stateSha256": "01a9222b349f7083ad7c6c895041e3f2062f697881277d42d0ce79dc71c6aecb",
       "pixelsSha256": "27eff734bc4c99cc2c6e8c4b8647eac59a85edb2db8173388e96f1cf9c46fcce"
     },
     {
       "name": "bank-deposited",
-      "stateSha256": "bb3421401bf9cf6811170260e9344bd651934a95bd55e03a5e09dcd06ae41301",
+      "stateSha256": "e50dab8b9cb3f6369e45e6251e4afeddabbec005fbf07da4c161fdd06cd4f4f2",
       "pixelsSha256": "194f2ca4ade6eeb2004db6e0a02ceb8b0e1df9eb3fbe4116904f0f84251a9a0f"
     },
     {
       "name": "rival-report",
-      "stateSha256": "c53745c5a410a58f2cf9ec95f2f86f06a03860cab35c491202a7b22aab520971",
+      "stateSha256": "1f76b5de7eb2480941848508613c3b27eeef5d1b85b3b2e498771df3f63f080d",
       "pixelsSha256": "edecd3a2d04e178542097a28f87093439acac189846a8bc6f8a8658fe7bed7d2"
     },
     {
       "name": "rival-report",
-      "stateSha256": "95f181b6383d2f401918ef32a51febf71821d6784e82c0eb5e6e1bbac7e0e558",
+      "stateSha256": "0567ae8747e40bc8e70cd226dc8d2fbb916d3328e4e842eec690d634a28f04d4",
       "pixelsSha256": "e46d7dd4b902c51fd6d8494cb9dad5a197e2aab389b6d6a36a71c0d2aa637018"
     },
     {
       "name": "flight-start",
-      "stateSha256": "44709f6c98f7e416a3be216eda3937d5bfdb2109453db90571084af9a87b30a0",
+      "stateSha256": "8ac135c5995092d8a60a6613b09d61e7dbc40d780f4ca2d6a95411d7b4a9b34f",
       "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
     },
     {
       "name": "arrival",
-      "stateSha256": "4d223c7e0e8791a0d9114dba8370ca9de18728858a8a454ca80d47ccddf3d888",
+      "stateSha256": "a5936eb6283188c33fefdd4a4d4ad5ec3fbcd42957543a0db6cad95883577d99",
       "pixelsSha256": "0495fd95cfafa2342616a1b56aad64f93e5b9a0f5245e7d5019fdc57ad9fead6"
     },
     {
       "name": "photography-return",
-      "stateSha256": "87e52a4f44e1ac2f4e642cd96cd6ee7597853540ae6a738046fe1dc7f5bbf7dc",
+      "stateSha256": "fb1023976bd7dcb35fc18dde687eb2673028541d98ed61f81ba70b2f3e2b5015",
       "pixelsSha256": "7c589e148006b2266194367619a87d3b6edc6346440e3596cc436b99a7c49e70"
     },
     {
       "name": "rival-report",
-      "stateSha256": "fdfc59a460f6f92795c5857d8d975d60b2396ad69b40fe40be330704dbced2ca",
+      "stateSha256": "8b2f09ea451ad055abcd6ab816581e8f65c54b11b2350316c22d98e0a79a2974",
       "pixelsSha256": "f69ee4f355c8ad45feacc0de6bca714135035808a553b82d0bdd6c004b63ba62"
     },
     {
       "name": "flight-start",
-      "stateSha256": "316cf66c68f4a6e4a839dade31271362e43464f6ab074a0020d35ef21e3b1e83",
+      "stateSha256": "855ebb02d2fe17616627b2e6d931e04344dd2537c287034d0c74b19cfedf50c6",
       "pixelsSha256": "e23f8312d0b01bdaa1264020e6f735d3fd5df6dd9d831054b6fbe69ff29342d1"
     },
     {
       "name": "arrival",
-      "stateSha256": "c8ceb465f6405777378fec034c141ec4df4e5493765547699d9ed2b6cd9bed9a",
+      "stateSha256": "5fc290ace1e7cde9649ae29d6b3a9951e7e6004b3eec5f639e8610efde41a2e1",
       "pixelsSha256": "0a86d584a78418d5ced94877257e4bc14de0bb7fdf77578af0ec359550c40bf1"
     },
     {
       "name": "cave-return",
-      "stateSha256": "6607662d5bb8257b39915ef38ae637450d7cb453bcfc8cea76779e9107d05622",
+      "stateSha256": "716de7d1fe0ba8a4c7a6821ca47370af2cf3978d12d72ee49cfbf46bb17b58f0",
       "pixelsSha256": "1843fb0de1b9c20a64d8915e6462ca5b45a62cbad3c87cd1a3249192867d53db"
     },
     {
       "name": "flight-start",
-      "stateSha256": "3af933b2f5b49f7d10d2b60246e56070a12851cee816b6ea50c2e7da652c0953",
+      "stateSha256": "e769f065ab34de8e1e27060822b9ba407b84b37c31d78879c953f2002bbd27ae",
       "pixelsSha256": "ce4a10f7880c1eb241c6f0f278c28b6b68f4fa6f83f81606b3bd4b99b24dac61"
     },
     {
       "name": "arrival",
-      "stateSha256": "650b847def5faba5a7b670f23b6841de2a40529ef3fc60710f1307158b57c34f",
+      "stateSha256": "ae669fff74267325c7d4a23fd29ca4ef4f075287f30e056b58f17608ffacab18",
       "pixelsSha256": "0101d9a07af3f457963880619a037dc19e25dc7ca27e976c4d92119271c757b5"
     },
     {
+      "name": "rival-report",
+      "stateSha256": "3d0931ccaa6dada75c7859dcc037f9730a44b63246ee564d56e0ec175d11ee81",
+      "pixelsSha256": "7249f0f7ef9976c175cef56f15b8272adfff395763320cd8de3ebc6a04e9c73d"
+    },
+    {
       "name": "mountain-return",
-      "stateSha256": "8742cb678c73cbc41235f40aeaebf71a0d7cb798aecefbbd6dc221671db0a7a2",
+      "stateSha256": "cf70807238a210f9eeff80b22fe461ba89ee55f3bb093cccb87b0756fd438f37",
       "pixelsSha256": "637fce9932c967ee292b280d975da92dd9c91a9f2283148e9e53d14e8d258b99"
     },
     {
       "name": "bank-deposited",
-      "stateSha256": "9c96530779cd4cabb70b3d2bae33cae8a68f299615fd60b4d19eafe14b0f788a",
+      "stateSha256": "e72b965beece03eb962e4373dbfaa6d6912295fc3496266c84d97b01aa79be02",
       "pixelsSha256": "f2666d637a87070e72387a7c1d5ae0435098d4f3c0621349c0c2932323eda8ca"
     },
     {
       "name": "rival-report",
-      "stateSha256": "ad8be437c2b91199988d14d7472b5898c9d6d120d8c2faf1946bab3552ad95f3",
+      "stateSha256": "d28d74d313ee53c00938b53b4010043ec4118d1ad57f0442d927202cacd9ecbc",
       "pixelsSha256": "c4dc07e2045d68daa1f170d4edbdd5215c1c53e273151921ef121816bbc0c97f"
     },
     {
       "name": "bank-deposited",
-      "stateSha256": "5e6a3c8c34657e0abcc2a82cc43929bb43461f4d08589b1c146a660db89f90f8",
+      "stateSha256": "205aedb5b1b5012d94ca75257044287f5a3af7b2099d7c084a81e5f8ab16fee3",
       "pixelsSha256": "4b2a199d3256bd951ac9d7e0b90cbc5a1ab0795cdaeaa6cbf76b7685fbea7603"
     },
     {
       "name": "rival-report",
-      "stateSha256": "890f409824938d22eeb4c728728fdfa45d7281fb90be18039b0f9225507680e9",
+      "stateSha256": "a07f3679bd8fc194c24579ec956f993f5f87e5f988d47ddbf9e37d0b45f1d1e5",
       "pixelsSha256": "22526578806a6cbdd47c3453fb51e816d7fa6ca5cb66524740ca4045fb3ecfc4"
     },
     {
       "name": "rival-report",
-      "stateSha256": "5c227f4abf254e39352f5a777f3c597e027d0340713e01902fb5f69e896c2c33",
+      "stateSha256": "13a5e2f8366d3212befef429767adddf97d8cd41b33706b88dbd03cfd0be1128",
       "pixelsSha256": "243da4108a528195a4b0d4bfc27259271d5c0465b61110bd3d69398bfaaf6941"
     },
     {
       "name": "bank-deposited",
-      "stateSha256": "c2a779eb160739066acac3b9fbc1c90eefb056b25d0e2304577a389327308a1b",
+      "stateSha256": "bce49aca63c94a72aa478553f7e4bc163767f68596b6bb79f233f2cfe588def8",
       "pixelsSha256": "4ddc83e27afe4e09556f471752480978d7a5c1d5989cdc649bd04961edd0db0a"
     },
     {
       "name": "ending",
-      "stateSha256": "9496b31abf6f10e05498fac90a259d398af866a45292e86a02833b16dffb28e0",
+      "stateSha256": "45e3023f2fc79834234fe1981b1e623bbb3a92a9071419725f18c6fc4a49a0bd",
       "pixelsSha256": "c78d9b1056c765caaa49256bc74380b0ee4f62d0ba1f6c1edf92ddc091a6a469"
     }
   ],
   "verificationToolRevision": {
-    "baseCommit": "f6e581eefb58ac4ddceebf57e39b1413eb20cd81",
+    "scope": "Current strict verification of this menu-integrated recording.",
     "fileHashes": {
-      "tests/browser/helpers/linked-campaign.js": "cfec60a0edffac95b33618523c13d5823925d2afcbf8e82e7153d55ee4d26edb",
-      "tests/browser/helpers/recorded-campaign.js": "eab6ea983fe1290a6169446b399ddcedf2f514e04470026d5ae1f956b4c838bb",
+      "tests/browser/helpers/linked-campaign.js": "e5eb658ea6e449175c7f4ed7351eb1de464cb36c62c2b46515ff67fed79a1591",
+      "tests/browser/helpers/recorded-campaign.js": "107b07b3f3dfe0f0b6b475093bd9d3cb601ef8557dd747e8cc55836eae4e97d7",
+      "tests/browser/helpers/flight-inputs.js": "2ca1d95a148ec8ab3caf9f1a29351ff202944fd57cdb04056d938de1fe0e24ab",
       "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0",
-      "tests/browser/clock-contract.spec.js": "81ad751253c8d5f5476e236513408934a9abcd9252f68904c671f3f2207d4c78",
-      "tests/browser/hard-campaign.spec.js": "f695e2ac906f2b8e12876309b0bebc5fbc0af5357a6ed4de28982e8340db2c7e",
-      "tests/helpers/original-game.js": "94748f2af89011623f6ffd091d9c601422cc4fcd09e22cbe2fcf39a502c613a4",
       "scripts/replay-hard-campaign.js": "d303dd6d017facf6689a1e1138311cbbdc701f6e6780129a3d69f129df0aa9ac",
-      "scripts/verify-hard-campaign.js": "dcbde0064bac2241bbbf6c9c187e601d6f9fd284f72a36c98602756c2e37d29d",
-      "scripts/verify-hard-campaign-browser-negative.js": "56ce190f12229912d8b16244a44716cff564663ceb480c0c1bd41488190b6ced",
-      "reference/hard-campaign-inputs.json": "bfdadae8ffb85b6d1a7d8649b5bcfc1df58e8b8daedec870f565dedffe74c8ce"
+      "scripts/verify-hard-campaign.js": "5a4174174ab89654fedd4870f5f2367e77a46a70207c2fdc43e529bd07202ce5",
+      "scripts/verify-hard-campaign-browser-negative.js": "56ce190f12229912d8b16244a44716cff564663ceb480c0c1bd41488190b6ced"
     }
   },
   "inputEventComparison": "Exact event time,type,key,target. Canvas pointerdown coordinates are compared as Campaign.point consumes them: truncated and clamped logical pixels. Other coordinates are diagnostic, not consumed game inputs.",
-  "integrationGate": {
-    "command": "DUCKTALES_CAPTURE_HARD_CAMPAIGN=0 npm run verify",
-    "receiptArtifact": "full-gate-receipt",
-    "logArtifact": "browser-log",
-    "unitCases": 117,
-    "developmentBrowserCases": 70,
-    "productionBrowserCases": 2,
-    "skips": 0
-  }
+  "previousAcceptedScenario": {
+    "commit": "57beb92d1250452ee5e8ed22ec8e04b48321fe08",
+    "manifest": "reference/hard-campaign.json",
+    "artifactRoot": ".local/hard-campaign/accepted-reference-09",
+    "status": "Previous verified main baseline; retained separately."
+  },
+  "pendingBrowserReplay": false
 }

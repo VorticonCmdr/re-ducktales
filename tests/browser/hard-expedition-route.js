@@ -1,3 +1,7 @@
+import flightInputs from "../../reference/hard-flight-inputs.json" with { type: "json" };
+import { replayFlightInputs } from "./helpers/flight-inputs.js";
+import { waitForScene } from "./helpers/scene.js";
+import { openRecordedApplication } from "./helpers/clock.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 
@@ -11,8 +15,6 @@ export async function runHardExpedition({
   activity = "jungle",
 }) {
   test.setTimeout(180000);
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
   await page.addInitScript(() => {
     window.hardExpeditionEvents = [];
     for (const type of ["keydown", "keyup", "pointerdown", "pointerup"])
@@ -28,7 +30,7 @@ export async function runHardExpedition({
       setTimeout(() => callback(performance.now()), 8);
     window.cancelAnimationFrame = clearTimeout;
   });
-  await page.goto("/");
+  await openRecordedApplication(page, 1);
   await expect(page.locator("#actions")).toBeVisible();
   await expect(
     page.getByRole("checkbox", { name: "Sound (reconstructed)" }),
@@ -53,15 +55,19 @@ export async function runHardExpedition({
       await page.clock.runFor(100);
     },
   };
+  await until((s) => s.scene === "title" && s.opening?.skipEnabled);
   await canvas.focus();
   await t.press("Space");
+  await waitForScene(page, canvas, "difficulty");
   await t.press("ArrowUp");
+  await until((s) => s.difficulty === 2);
   await t.press("Enter");
+  await waitForScene(page, canvas, "office");
   async function until(predicate, max = 10000) {
     for (let n = 0; n < max; n++) {
       const s = await t.state();
-      if (s.diagnostic) throw Error(s.diagnostic);
-      if (predicate(s)) return s;
+      if (s?.diagnostic) throw Error(s.diagnostic);
+      if (s && predicate(s)) return s;
       await page.clock.runFor(8);
     }
     throw Error(
@@ -77,53 +83,20 @@ export async function runHardExpedition({
   await t.press("Space");
   expect((await t.state()).scene).toBe("departure");
   console.log("departure", JSON.stringify((await t.state()).departure));
-  expect((await page.evaluate(() => performance.now())) - readyTime).toBe(800);
-  await page.keyboard.down("Space");
-  await until((s) => s.scene === "flight" && s.flight.speed > 4);
-  let held = null,
-    steps = 0;
-  const flightTrace = [];
-  for (; steps < 1500; steps++) {
-    const s = await t.state(),
-      f = s.flight;
-    flightTrace.push(f);
-    if (s.scene !== "flight" || ["landing", "complete"].includes(f.phase))
-      break;
-    const desired =
-      f.tile > inputs.flight.approachTile
-        ? f.y < 135
-          ? 15
-          : 0
-        : f.y > inputs.flight.altitude[1]
-          ? inputs.flight.climbHeading
-          : f.y < inputs.flight.altitude[0]
-            ? 15
-            : 0;
-    const delta = (desired - f.heading + 16) % 16;
-    const next =
-      f.speed < 4 || !delta ? null : delta < 8 ? "ArrowDown" : "ArrowUp";
-    // Original obstacle routines flush the keyboard matrix. Reapply actual
-    // controls at each newly observed action rather than assuming a prior
-    // physical hold survived that routine.
-    await page.keyboard.up("Space");
-    if (held) await page.keyboard.up(held);
-    await page.keyboard.down("Space");
-    if (next) await page.keyboard.down(next);
-    held = next;
-    await until(
-      (after) =>
-        after.scene !== "flight" ||
-        after.flight.frames > f.frames ||
-        after.flight.phase !== f.phase,
-    );
-  }
-  if (held) await page.keyboard.up(held);
-  await page.keyboard.up("Space");
+  // Startup now waits on the original reveal and closing wipe. Their timing is
+  // recorded in the external event stream, not fitted to expedition outcomes.
+  expect(
+    (await page.evaluate(() => performance.now())) - readyTime,
+  ).toBeGreaterThan(800);
+  const flightTrace = await replayFlightInputs({
+    page,
+    until,
+    profile: flightInputs.profiles[0],
+  });
   await writeFile(
     info.outputPath("hard-flight.json"),
     JSON.stringify(flightTrace, null, 2),
   );
-  expect(steps).toBeLessThan(1500);
   const entry = await until(
     (s) =>
       !["flight", "crash-repairs", "expedition-briefing"].includes(s.scene),

@@ -54,6 +54,7 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
+  await waitForScene(page, canvas, "office");
   await page.locator("#money-bin").click();
   await page.clock.runFor(200);
   const moving = await state();

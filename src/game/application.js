@@ -1546,7 +1546,14 @@ export class Game {
         : {}),
       campaign: this.campaign?.snapshot() ?? null,
       departure: this.departure?.snapshot() ?? null,
-      flight: this.flight?.snapshot() ?? null,
+      flight: this.flight
+        ? {
+            ...this.flight.snapshot(),
+            // Read-only consumption boundary for independent input schedules.
+            inputReads: this.flight.inputLog.length,
+            lastInputCode: this.flight.inputLog.at(-1)?.code ?? null,
+          }
+        : null,
       ...(this.pendingFlightSystemKeys.size
         ? {
             pendingFlightSystemKeys: [...this.pendingFlightSystemKeys].sort(

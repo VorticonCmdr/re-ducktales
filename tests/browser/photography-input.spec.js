@@ -37,6 +37,7 @@ test("photography defers keys through entry and shutter, freezes pause pixels an
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
+  await waitForScene(page, canvas, "office");
   await page.locator("#map").click();
   await page.clock.runFor(100);
   const bounds = await canvas.boundingBox();

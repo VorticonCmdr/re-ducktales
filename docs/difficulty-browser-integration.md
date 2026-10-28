@@ -41,17 +41,39 @@ The native verifier rejects missing/corrupt receipts as well as native fixtures.
 These are focused results, not a passing complete application gate for this branch. Neither browser clock waits nor native captures
 establish original CPU/file costs or complete elapsed-time/waveform parity.
 
-## Remaining integration work
+## Startup and campaign migration
 
-The main campaign gate passed before this integration. Its other startup scripts
-and recorded campaigns still assume immediate difficulty input/confirmation.
-Migrate them to the real `difficultyMenu.ready` and office boundaries, and capture
-new independent event streams where restored timing changes the old stream.
-Do not shorten the reveal/wipe, inject game state, fit clocks to expected outputs
-or silently update state hashes to make the old streams pass. Preserve the
-previous accepted campaign evidence separately. Run the full gate after migration
-before merging this branch into the main checkout.
+Startup scripts now wait for `difficultyMenu.ready`, the visible selection and
+cleanup/office boundaries. Fast Up+Enter must not override the original Fire
+priority by silently forcing a selection. Eleven targeted startup/travel/audio
+cases pass, as does the complete Easy winning campaign with its existing19
+summary checkpoints. All117 unit cases pass after the migration.
 
-The temporary local browser harness uses port5196 and an isolated output folder;
-it must not reuse the main verification server on5186. The standard project
-configuration remains unchanged. No originals or private captures are committed.
+Flight frame counts precede input consumption. The new read-only `inputReads`
+and `lastInputCode` observations support real keyboard replay at input boundaries;
+[the independent control streams and their scope](flight-input-boundaries.md)
+retain the established flight outcomes and expedition actor checks. No physics,
+RNG, game clock rate, reveal or closing wipe is shortened to recover a test result.
+
+The new Hard capture completes all four families and ends on day33 with19600
+against44000. It includes a legitimate Glomgold report before mountain return,
+which is acknowledged through existing controls and recorded as an additional
+checkpoint. All3350 DOM events and25 exact published snapshots match in a fresh
+Game replay. An independent actual browser replay matches all25 state/pixel
+checkpoints, checks the actual submitted input transcript and stays on one page.
+The previous accepted24-checkpoint/3284-event capture remains separate. The new
+source/dependency snapshot pins85 files, all unchanged during capture.
+
+One earlier exploratory run loaded a fresh title document and lost its window
+recorder state; its cause was not established and it is excluded from acceptance.
+Captures now log main-document navigation and Vite messages, reject any unexpected
+navigation and preserve the prior document's captured prefix. The accepted run
+used a fresh owned server with exactly one navigation. Ordinary browser tests
+also own a fresh server rather than reuse an editor session.
+
+`npm run verify:flight-input-stream` checks all four source profiles and verifies
+that dropping a real turn fails at consumed input18. A separate pending-receipt
+control confirmed that a new capture cannot be accepted without a new independent
+browser receipt. The full branch gate must still pass before integration into
+main; focused or exploratory results do not replace it. No original whole-campaign,
+CPU/file cost, elapsed-time or waveform parity is claimed.

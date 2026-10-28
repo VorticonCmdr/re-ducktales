@@ -42,6 +42,7 @@ test("earn the transmitter in Too-Pei, choose atomic transport and enter the nex
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
+  await waitForScene(page, canvas, "office");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");
   await point(240, 70);

@@ -39,6 +39,7 @@ test("jungle defers global keys, pauses actors and resumes cancelled quit", asyn
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
+  await waitForScene(page, canvas, "office");
   await page.locator("#map").click();
   await page.clock.runFor(100);
   const bounds = await canvas.boundingBox();

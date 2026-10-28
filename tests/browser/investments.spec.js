@@ -27,6 +27,7 @@ test("calendar travel produces company news and acknowledged bulletins stay cons
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
+  await waitForScene(page, canvas, "office");
   for (let trip = 0; trip < 4; trip++) {
     await page.locator("#map").click();
     await page.clock.runFor(100);
@@ -112,6 +113,7 @@ test("original assets, earned cash, stock transactions, held Fire limit, office 
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
+  await waitForScene(page, canvas, "office");
   await until((s) => s.scene === "office");
   expect((await state()).seed).toBe(1960);
   await openInvestments();
@@ -180,6 +182,7 @@ test("original assets, earned cash, stock transactions, held Fire limit, office 
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
+  await waitForScene(page, canvas, "office");
   await openInvestments();
   expect((await state()).investments.shares).toEqual(Array(15).fill(0));
   expect((await state()).seed).toBe(1960);

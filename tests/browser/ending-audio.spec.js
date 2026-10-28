@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { campaign } from "./helpers/ending-route.js";
 
@@ -77,7 +78,9 @@ for (const choice of ["yes", "no"])
         "data-requests",
         String(firstRequests + 2),
       );
+      await waitForScene(page, t.canvas, "difficulty");
       await t.press("Enter");
+      await waitForScene(page, t.canvas, "office");
       expect((await t.state()).scene).toBe("office");
       expect((await t.state()).campaign.day).toBe(1);
       expect((await t.state()).ending).toBeNull();
@@ -93,14 +96,14 @@ for (const choice of ["yes", "no"])
     }
     await expect(device).toHaveAttribute(
       "data-requests",
-      String(firstRequests + (choice === "no" ? 4 : 3)),
+      String(firstRequests + 4),
     );
     const acks = await page.evaluate(() =>
       window.endingAudioEvents.filter((e) => e.type === "ack"),
     );
     expect(acks.map((e) => e.sequence)).toEqual(acks.map((_, i) => i + 1));
     expect(acks.slice(start).map((e) => e.argument)).toEqual(
-      choice === "no" ? [1, 1, 0, 0, 0] : [1, 1, 0, 0],
+      choice === "no" ? [1, 1, 0, 0, 0] : [1, 1, 0, 36, 0],
     );
     await expect(device).toHaveAttribute("data-pending-tokens", "0");
     expect(t.errors).toEqual([]);

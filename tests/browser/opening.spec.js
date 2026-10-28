@@ -1,3 +1,4 @@
+import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
@@ -76,8 +77,9 @@ test("original opening reveals, arrives, speaks and enters the campaign through 
     ).toBe(true);
   }
   await t.canvas.focus();
+  await waitForScene(page, t.canvas, "difficulty");
   await page.keyboard.press("Enter");
-  await page.clock.runFor(100);
+  await waitForScene(page, t.canvas, "office");
   const office = await t.state();
   expect(office.scene).toBe("office");
   expect(office.seed).toBe(1960);

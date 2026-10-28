@@ -1,4 +1,4 @@
-import { waitForScene } from "./helpers/scene.js";
+import { waitForScene, waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 
 async function tandy(page, suppliedClock = false) {
@@ -33,6 +33,7 @@ test("in-game Tandy stays alive across cues, resets on mute and closes on device
   await c.focus();
   await page.keyboard.press("Space");
   await expect(c).toHaveAttribute("data-scene", "difficulty");
+  await waitForDifficulty(c);
   await page.keyboard.press("Enter");
   await expect(c).toHaveAttribute("data-scene", "office");
   await page
@@ -87,6 +88,7 @@ test("in-game Tandy stays alive across cues, resets on mute and closes on device
   await c.focus();
   await page.keyboard.press("Space");
   await expect(c).toHaveAttribute("data-scene", "difficulty");
+  await waitForDifficulty(c);
   await page.keyboard.press("Enter");
   await expect(c).toHaveAttribute("data-scene", "office");
   await page.getByRole("checkbox", { name: "Sound (reconstructed)" }).check();
@@ -140,6 +142,7 @@ test("Tandy flight speed words and cave completion use the real persistent proce
   await press("Space");
   await waitForScene(page, c, "difficulty");
   await press("Enter");
+  await waitForScene(page, c, "office");
   await until((s) => s.scene === "office");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");

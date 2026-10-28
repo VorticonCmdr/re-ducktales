@@ -1,3 +1,5 @@
+import flightInputs from "../../../reference/hard-flight-inputs.json" with { type: "json" };
+import { replayFlightInputs } from "./flight-inputs.js";
 import { expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -8,6 +10,7 @@ import hardInitial from "../../../reference/hard-jungle-browser.json" with { typ
 import hardInputs from "../../../reference/hard-expedition-inputs.json" with { type: "json" };
 import linkedInputs from "../../../reference/hard-campaign-inputs.json" with { type: "json" };
 import { waitForScene } from "./scene.js";
+import { openRecordedApplication } from "./clock.js";
 
 // Independent input policies observe the current application, never expected outputs.
 // Capture mode is exploratory; it cannot satisfy strict acceptance.
@@ -19,7 +22,26 @@ export async function runLinkedCampaign({
   manifest,
 }) {
   const errors = [],
-    checkpoints = [];
+    checkpoints = [],
+    navigation = [],
+    hotMessages = [];
+  page.on("framenavigated", (frame) => {
+    if (frame === page.mainFrame())
+      navigation.push({ url: frame.url(), atHost: Date.now() });
+  });
+  page.on("websocket", (socket) =>
+    socket.on("framereceived", (event) => {
+      try {
+        const message = JSON.parse(String(event.payload));
+        if (message.type !== "ping")
+          hotMessages.push({
+            type: message.type,
+            path: message.path ?? null,
+            atHost: Date.now(),
+          });
+      } catch {}
+    }),
+  );
   let flightNumber = 0,
     savedEvents = [],
     lastObserved = null,
@@ -37,8 +59,6 @@ export async function runLinkedCampaign({
         : v,
     );
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
   await page.addInitScript(() => {
     window.mixedCampaignEvents = [];
     for (const type of ["keydown", "keyup", "pointerdown", "pointerup"])
@@ -66,11 +86,15 @@ export async function runLinkedCampaign({
       setTimeout(() => callback(performance.now()), 8);
     window.cancelAnimationFrame = clearTimeout;
   });
-  await page.goto("/");
+  await openRecordedApplication(page, 1);
   await expect(page.locator("#actions")).toBeVisible();
   const clockOrigin = await page.evaluate(() => performance.now());
   const canvas = page.locator("#game");
   const state = async () => {
+    if (navigation.length > 1)
+      throw Error(
+        "Unexpected document navigation reset the campaign; see browser-lifecycle.json",
+      );
     lastObserved = JSON.parse(
       await canvas.getAttribute("data-state", { timeout: 5000 }),
     );
@@ -211,11 +235,29 @@ export async function runLinkedCampaign({
     expect((await state()).scene).toBe("departure");
     flightNumber++;
     if (hard) await checkpoint("flight-start");
-    const lowFlight = hard && flightNumber === 1;
-    // The third carried course has a low obstacle corridor; the fixed45..60
-    // policy reaches the airport without resetting its shared flight memory.
-    const altitude =
-      hard && flightNumber === 3 ? [45, 60] : hard ? [100, 110] : [75, 90];
+    if (hard) {
+      const trace = await replayFlightInputs({
+        page,
+        until,
+        profile: flightInputs.profiles[flightNumber - 1],
+      });
+      await until(
+        (s) =>
+          ![
+            "departure",
+            "flight",
+            "crash-repairs",
+            "expedition-briefing",
+          ].includes(s.scene),
+      );
+      await writeFile(
+        info.outputPath(`flight-${flightNumber}.json`),
+        JSON.stringify(trace, null, 2),
+      );
+      await checkpoint("arrival");
+      return;
+    }
+    const altitude = [75, 90];
     const flightTrace = [];
     await page.keyboard.down("Space");
     await until((s) => s.scene === "flight" && s.flight.speed > 4);
@@ -238,28 +280,19 @@ export async function runLinkedCampaign({
         )
           break;
         const desired =
-          f.tile > (lowFlight ? hardInputs.flight.approachTile : f.tiles - 5)
+          f.tile > f.tiles - 5
             ? f.y < 135
               ? 15
               : 0
-            : f.y > (lowFlight ? hardInputs.flight.altitude[1] : altitude[1])
-              ? lowFlight
-                ? hardInputs.flight.climbHeading
-                : 1
-              : f.y < (lowFlight ? hardInputs.flight.altitude[0] : altitude[0])
+            : f.y > altitude[1]
+              ? 1
+              : f.y < altitude[0]
                 ? 15
                 : 0;
         const delta = (desired - f.heading + 16) % 16;
         const direction =
           f.speed < 4 || !delta ? null : delta < 8 ? "ArrowDown" : "ArrowUp";
-        if (hard) {
-          // Original collision routines flush controls: refresh only at observed actions.
-          await page.keyboard.up("Space");
-          if (held) await page.keyboard.up(held);
-          await page.keyboard.down("Space");
-          if (direction) await page.keyboard.down(direction);
-          held = direction;
-        } else if (direction !== held) {
+        if (direction !== held) {
           if (held) await page.keyboard.up(held);
           if (direction) await page.keyboard.down(direction);
           held = direction;
@@ -298,8 +331,12 @@ export async function runLinkedCampaign({
     await canvas.focus();
     await press("Space");
     await waitForScene(page, canvas, "difficulty");
-    if (hard) await press("ArrowUp");
+    if (hard) {
+      await press("ArrowUp");
+      await until((s) => s.difficulty === 2);
+    }
     await press("Enter");
+    await waitForScene(page, canvas, "office");
     expect((await state()).difficulty).toBe(hard ? 2 : 0);
     if (hard) await checkpoint("campaign-start");
     // First expedition reuses the independently authored startup keyboard
@@ -551,11 +588,14 @@ export async function runLinkedCampaign({
     if (hard) expect(summit.mountain.lives).toBe(3);
     await press("Space");
     await until((s) => {
-      expect(["expedition-result", "map"], "mountain return scene").toContain(
-        s.scene,
-      );
-      return s.scene === "map";
+      expect(
+        ["expedition-result", "map", "rival-report"],
+        "mountain return scene",
+      ).toContain(s.scene);
+      return s.scene === "map" || s.scene === "rival-report";
     });
+    await settleReports();
+    expect((await state()).scene).toBe("map");
     await checkpoint("mountain-return");
 
     // Finish through real calendar-consuming bank/office travel. A final bank
@@ -615,7 +655,15 @@ export async function runLinkedCampaign({
       JSON.stringify(checkpoints, null, 2),
     );
     let observerError = null;
+    await writeFile(
+      info.outputPath("browser-lifecycle.json"),
+      JSON.stringify({ navigation, hotMessages }, null, 2),
+    );
     try {
+      if (navigation.length > 1)
+        throw Error(
+          "Unexpected document navigation; prior-document event capture preserved",
+        );
       savedEvents = await page.evaluate(() => window.mixedCampaignEvents);
       await writeFile(
         info.outputPath("final-state.json"),

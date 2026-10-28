@@ -187,3 +187,12 @@ pinned in `reference/opening.json` under `.local/opening-acceptance/`. The
 original session remained paused at1544 with no breakpoints, freezes, scripts
 or input replay active. CPU cycle settings were not exposed in the captured
 MCP status; this is not an elapsed-CPU-time or whole-machine checkpoint claim.
+
+
+Current integration provenance: the original capture/check source hashes in
+`reference/opening.json` are retained and checked against their exact7ecd8b7 Git
+tree. Current application/checker hashes are pinned separately in
+`verificationToolRevisions`. Restoring the difficulty lifecycle changes the
+application adapter and startup scripts, not the original opening artifacts or
+inputs. All three carried cases,33 native PNGs and six native cleanup calls are
+rechecked; no expected native values were rewritten for this migration.

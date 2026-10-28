@@ -32,7 +32,7 @@ test("native map chords accelerate, retain the remaining arrow, reset on neutral
   await page.clock.runFor(100);
   await waitForScene(page, c, "difficulty");
   await page.keyboard.press("Enter");
-  await page.clock.runFor(100);
+  await waitForScene(page, c, "office");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");
   async function point(x, y) {

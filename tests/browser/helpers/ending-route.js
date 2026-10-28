@@ -79,7 +79,10 @@ export async function campaign(page, hard = false) {
   await canvas.focus();
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
-  if (hard) await press("ArrowUp");
+  if (hard) {
+    await press("ArrowUp");
+    await until((s) => s.difficulty === 2);
+  }
   await press("Enter");
   await until((s) => s.scene === "office");
   return { canvas, state, until, press, point, ending, pixels, errors };

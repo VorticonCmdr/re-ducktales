@@ -53,6 +53,7 @@ test("flight P/N dialogs preserve actors, clocks continue, and crash keys flush 
   await press("Space");
   await waitForScene(page, c, "difficulty");
   await press("Enter");
+  await waitForScene(page, c, "office");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");
   const bounds = await c.boundingBox();

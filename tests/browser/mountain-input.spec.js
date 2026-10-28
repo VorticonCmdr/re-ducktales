@@ -39,6 +39,7 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   await press("Space");
   await waitForScene(page, c, "difficulty");
   await press("Enter");
+  await waitForScene(page, c, "office");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");
   const r = await c.boundingBox();

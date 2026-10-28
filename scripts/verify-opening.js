@@ -1,5 +1,6 @@
 // Exact original pixels and deterministic state; no native CPU/IRQ timing claim.
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { PNG } from "pngjs";
@@ -23,8 +24,25 @@ for (const a of manifest.artifacts) {
 }
 assert.equal(manifest.artifacts.length, manifest.expectedArtifactCount);
 assert.ok(manifest.expectedArtifactCount > 60);
+// Preserve capture provenance while allowing separately verified application
+// integration changes. Historical hashes must still match their pinned Git tree.
+assert.ok(Object.keys(manifest.toolRevisions).length > 30);
 for (const [p, h] of Object.entries(manifest.toolRevisions))
-  assert.equal(hash(await required(p)), h, `Changed capture/check tool ${p}`);
+  assert.equal(
+    hash(execFileSync("git", ["show", `${manifest.captureToolCommit}:${p}`])),
+    h,
+    `Changed historical capture tool ${p}`,
+  );
+assert.ok(
+  Object.keys(manifest.verificationToolRevisions).length >=
+    Object.keys(manifest.toolRevisions).length,
+);
+for (const [p, h] of Object.entries(manifest.verificationToolRevisions))
+  assert.equal(
+    hash(await required(p)),
+    h,
+    `Changed current check/integration tool ${p}`,
+  );
 const originals = {};
 for (const name of ["DUCKTALE.EXE", "MAIN.ARC", "IT.DRV"]) {
   const b = await required(`game/${name}`);

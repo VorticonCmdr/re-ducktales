@@ -1,4 +1,4 @@
-import { waitForScene } from "./helpers/scene.js";
+import { waitForScene, waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
@@ -10,8 +10,10 @@ async function office(page, difficulty = 0) {
   await c.focus();
   await page.keyboard.press("Space");
   await expect(c).toHaveAttribute("data-scene", "difficulty");
+  await waitForDifficulty(c);
   if (difficulty === 2) await page.keyboard.press("ArrowUp");
   else if (difficulty === 1) await page.keyboard.press("ArrowDown");
+  await expect.poll(async () => (await state(c)).difficulty).toBe(difficulty);
   await page.keyboard.press("Enter");
   await expect(c).toHaveAttribute("data-scene", "office");
   return c;
@@ -110,7 +112,9 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   await press("Space");
   await waitForScene(page, c, "difficulty");
   await press("ArrowUp");
+  await until((s) => s.difficulty === 2);
   await press("Enter");
+  await waitForScene(page, c, "office");
   await until((s) => s.scene === "office");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");
@@ -275,6 +279,7 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   await press("Space");
   await waitForScene(page, c, "difficulty");
   await press("Enter");
+  await waitForScene(page, c, "office");
   await page.locator("#map").click();
   await until((s) => s.scene === "map");
   await point(c, 37, 33);

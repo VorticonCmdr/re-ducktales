@@ -1,99 +1,59 @@
-# Linked Hard campaign
+# Linked Hard campaign with the original difficulty menu
 
-Build `dos-fb658562`; executable and original resource identities are pinned by
-`reference/build.json`. This is an independent browser scenario and a closed-loop
-port regression. Expected states and pixels come from the port, not an original
-DOSBox campaign. Original whole-campaign parity and arbitrary-route finishability
-remain unproven.
+Build `dos-fb658562`, pinned by `reference/build.json`. The original-menu route
+selects Hard, completes Bermuda jungle, Yellerstone photography, Klondike cave
+and El Capitan mountain, banks its treasure and reaches the day33 losing ending:
+19600 against44000. Collected-location flags are `[2,30,31,32]`. The fourth flight
+crashes and follows the normal repair/arrival path; the route does not bypass it.
 
-The route selects Hard, flies to Bermuda Triangle, completes its jungle, banks
-2050, photographs nine target animals at Yellerstone, collects the cave treasure
-at Klondike, climbs El Capitan with three lives, and travels between bank and
-office until the final result. All four collected-location flags carry through
-one campaign: `[2,30,31,32]`. The last bank journey crosses the deadline and ends
-on day33 with19600 banked against Glomgold's44000. This is a completed losing
-campaign. The existing mixed Easy route covers a winning campaign.
+The new capture has3350 real DOM events and25 observations. Input values and
+clock/observation metadata are stored separately from expected Game snapshots
+and decoded320x200 pixel hashes. Strict browser replay chooses no inputs from
+expected state and compares the actual submitted transcript. Canvas pointerdown
+coordinates are compared as Campaign.point consumes them: truncated and clamped
+logical pixels. Other coordinates remain diagnostic. There is no pixel tolerance.
 
-The third flight's fixed corridor is45..60 in screen coordinates; other Hard
-flights use the authored policies in the shared browser helper. The fourth
-flight crashes after382 actions, then follows the original repair/arrival path
-before mountain entry on day17. The route does not bypass that consequence.
-Frame255 of the visible landing flag uses the original decoded-buffer alias;
-see [native conditional comparison](flight-flag-alias.md).
+`npm run test:hard-campaign` runs the strict real-input browser scenario.
+`npm run verify:hard-campaign` checks every pinned artifact, a fresh carried Game
+replay and the independent browser receipt, plus five data/comparison negatives
+and a real missing-difficulty-key control. The latter must fail at checkpoint0,
+not at setup or timeout. New captures retain a pending-receipt guard until an
+independent browser replay succeeds. Missing/corrupt fixtures, incomplete inputs,
+unsupported paths and missing checkpoints fail explicitly.
 
-Hard gives hook projectiles9 updates instead of Easy's12. The671-action mountain
-stream in `reference/hard-campaign-inputs.json` changes the throws accordingly.
-`scripts/explore-hard-mountain-route.js` preserves the bounded exploratory route
-search. It replays every candidate input prefix from a fresh conditional mountain
-contract; that search is not acceptance. The final route was then exercised from
-the campaign's carried memory, without resetting or injecting mountain state.
+The original menu reveal, queued-key flush, seven-count reads and closing wipe
+are allowed to run. Up is confirmed visibly before Enter. Hard flights use four
+independent consumed-control streams through real keyboard events; see
+[provenance and boundary checks](flight-input-boundaries.md). Their1177 values
+were observed from the previous accepted port replay, not derived from final
+actor/RNG results. Jungle444 and mountain671 authored samples retain their prior
+actor/route checks. Mountain completes with three lives.
 
-## Reproduction and verification
+The restored timing exposes a normal Glomgold report before mountain return.
+The route acknowledges it and adds a checkpoint; it does not skip or suppress it.
+The final accounts and ownership remain the same. Public snapshots include
+semantic state and input-read observations, not every private byte or reader
+stack field. No original whole-campaign parity is claimed.
 
-`npm run test:hard-campaign` replays the independent captured event stream using
-real keyboard, canvas and mouse input from a fresh browser context. The opening
-enables skipping before the recorded Space, Up, Enter.
-Original files load from `game/`; sound is explicitly disabled and BIOS seed0 is
-the browser environment provider. Driver/retrace scheduling stays separate from
-the8ms test display clock. Jungle444 and mountain671 samples are independently
-authored inputs. The feedback controller is retained only for explicitly marked
-exploratory capture (`DUCKTALES_CAPTURE_HARD_CAMPAIGN=1`). Strict acceptance reads
-no expected state to choose controls. It delivers and checks all3284 DOM events.
+The current source is `reference/hard-campaign.json`. The new immutable source
+capture is `.local/hard-campaign/accepted-menu-reference-05/`, with an85-file
+producer/dependency identity record and one main-document navigation. The strict
+independent browser receipt is `.local/hard-campaign/accepted-menu-browser-replay-01/`.
+Both fresh Game and browser runs match all25 published-state checkpoints; browser
+pixels match exactly. A full integration gate is still pending for this branch.
 
-The shared helper captures DOM events before target handlers, so focus scrolling
-cannot alter recorded logical canvas coordinates. It records input times and
-checkpoint times/counts separately from expected simulation snapshots and decoded
-320x200 pixel hashes. It fails on rendering errors, unsupported paths, unfinished
-input streams, wrong ownership, missing checkpoints and unreleased controls.
+The previous verified main milestone is retained at commit57beb92, its version
+of this manifest and `.local/hard-campaign/accepted-reference-09/`. It passed117
+unit,70 development browser and2 production browser cases, plus its six Hard
+negative controls. Its inputs/checkpoints are unchanged. Its exact initial
+exploratory producer working tree was not archived; the subsequently accepted
+replay code and receipts are pinned. That historical limitation is not attributed
+to the newly recorded source snapshot.
 
-The external observation/display clock is in a separate `timeline.json` input,
-not taken from expected simulation values. The application entry module is held
-until the clock provider is installed on the actual document. Public clock APIs
-pause timers; a relative performance origin is declared before any Game exists.
-The pre-application setup margin is not simulated game time. Two browser clock
-contract cases exercise blank and application documents, host latency and the old
-install/pause setup as a negative control. No running game is reset or restored.
-
-`npm run verify:hard-campaign` verifies every hash-pinned local fixture, then
-starts a fresh Game from the original executable/assets and consumes all3284
-recorded events. All24 published Game snapshots must match exactly. These expose
-semantic state, not every private memory byte or input-reader stack field. It
-renders1474 flight presentations, including the visible flag alias, and checks
-that every required event is consumed and the ending is ready. A separate browser
-checkpoint receipt must match all24 state and pixel hashes. Wrong difficulty,
-altered expected state, missing checkpoint, altered browser pixels and missing
-browser checkpoint are required negative controls. A sixth control omits a real
-browser difficulty key and must fail at campaign checkpoint0, not at setup or a
-timeout. The browser transcript compares times, types, keys and targets exactly.
-Canvas pointer-down coordinates are compared at Campaign.point's consumption
-boundary (clamped and truncated logical pixels); raw coordinates remain captured.
-Pointer-up coordinates do not enter game logic. There is no pixel tolerance.
-
-The versioned manifest is `reference/hard-campaign.json`; private captures remain
-in ignored `.local/`. Missing or corrupt required captures are explicit setup
-failures. The reference capture is frozen separately from the browser test's
-output directory. It contains no fitted timer values, state injections, partial
-restores or expected-output-derived input events. Audio completion, real hardware
-waveforms and original CPU/IRQ pacing are covered only by their separate evidence.
-
-For integration use `npm run verify`, which runs browser cases serially before
-checking the independent Hard receipt. The complete gate now passes117 unit,70
-development browser and2 production browser cases, zero skips. Its immutable
-receipt/log are at `.local/hard-campaign/accepted-full-gate-20261028/`; final
-Hard browser checkpoints, raw actual DOM events and source identities are at
-`.local/hard-campaign/accepted-browser-replay-final-20261028/`. Reference
-checkpoint bytes are unchanged from capture09. The earlier full attempt recorded65
-browser passes, a ten-minute feedback-controller timeout and an interruption
-before its final two cases. It is not a passing full gate. Recorded browser replay
-completed twice with all24 state/pixel checkpoints before the final full gate.
-The final run also checks actual pointer coordinates at consumption boundaries
-and completes both the Hard losing and Easy winning campaign routes. The earlier
-exploratory `--diagnose` replay mode permits an incomplete capture and a declared
-100ms tail; it cannot satisfy strict acceptance. Successful reference-capture
-creation also does not establish original-game fidelity by itself.
-
-The exact full working tree of the initial exploratory reference09 producer was
-not archived. Historical preparation hashes remain labelled as such. Strict
-reproduction uses its independent input stream with the currently pinned replay
-source and archived final browser receipt; no stronger producer provenance or
-original-game campaign fidelity is claimed.
+An earlier exploratory menu run unexpectedly loaded a new title document and is
+excluded. Current capture/replay code rejects unexpected document navigation and
+preserves diagnostics; it never restores or silently retries game state. Explicit
+capture mode (`DUCKTALES_CAPTURE_HARD_CAMPAIGN=1`) is exploratory. The earlier
+`--diagnose` helper permits an incomplete stream and declared100ms tail and cannot
+satisfy acceptance. Original hardware audio, elapsed pacing, arbitrary-route
+finishability and full-game native parity remain separate work.

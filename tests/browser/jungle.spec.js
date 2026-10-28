@@ -1,3 +1,4 @@
+import { waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 
 test("jungle departure, keyboard movement, life loss and campaign retry or rival claim", async ({
@@ -13,6 +14,7 @@ test("jungle departure, keyboard movement, life loss and campaign retry or rival
   await canvas.focus();
   await page.keyboard.press("Space");
   await expect(canvas).toHaveAttribute("data-scene", "difficulty");
+  await waitForDifficulty(canvas);
   await page.keyboard.press("Enter");
   await expect(canvas).toHaveAttribute("data-scene", "office");
   await page.locator("#map").click();

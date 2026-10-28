@@ -9,7 +9,9 @@ export default defineConfig({
   webServer: {
     command: "npm run dev -- --port 5186 --strictPort",
     url: "http://127.0.0.1:5186",
-    reuseExistingServer: !process.env.CI,
+    // Always test this checkout on a fresh owned server; do not reuse an editor
+    // session that may reload or serve another working tree.
+    reuseExistingServer: false,
   },
   reporter: "list",
   outputDir: ".local/browser-results",

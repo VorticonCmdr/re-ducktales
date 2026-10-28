@@ -1,3 +1,4 @@
+import { waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 
 test("keyboard route loads originals, dives, banks, returns and restarts", async ({
@@ -11,13 +12,7 @@ test("keyboard route loads originals, dives, banks, returns and restarts", async
   await canvas.focus();
   await page.keyboard.press("Space");
   await expect(canvas).toHaveAttribute("data-scene", "difficulty");
-  await expect
-    .poll(
-      async () =>
-        JSON.parse(await canvas.getAttribute("data-state")).difficultyMenu
-          ?.ready,
-    )
-    .toBe(true);
+  await waitForDifficulty(canvas);
   await page.keyboard.press("ArrowDown");
   await expect
     .poll(
@@ -133,6 +128,7 @@ test("office pixels match the captured original exactly", async ({ page }) => {
   await canvas.focus();
   await page.keyboard.press("Space");
   await expect(canvas).toHaveAttribute("data-scene", "difficulty");
+  await waitForDifficulty(canvas);
   await page.keyboard.press("Enter");
   await expect(canvas).toHaveAttribute("data-scene", "office");
   const url = await canvas.evaluate((c) => c.toDataURL("image/png"));
@@ -178,6 +174,7 @@ test("failed dive preserves original final pose pixels", async ({ page }) => {
   await canvas.focus();
   await page.keyboard.press("Space");
   await expect(canvas).toHaveAttribute("data-scene", "difficulty");
+  await waitForDifficulty(canvas);
   await page.keyboard.press("Enter");
   await expect(canvas).toHaveAttribute("data-scene", "office");
   await page
@@ -232,6 +229,7 @@ test("local folder loading supports investments without the development asset en
   await canvas.focus();
   await page.keyboard.press("Space");
   await expect(canvas).toHaveAttribute("data-scene", "difficulty");
+  await waitForDifficulty(canvas);
   await page.keyboard.press("Enter");
   await expect(canvas).toHaveAttribute("data-scene", "office");
   await page.keyboard.down("ArrowLeft");

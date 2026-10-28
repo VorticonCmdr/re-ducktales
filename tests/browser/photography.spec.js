@@ -38,6 +38,7 @@ test("photography keyboard target shot, results, campaign return and collected n
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
+  await waitForScene(page, canvas, "office");
   await page.getByRole("checkbox", { name: "Sound (reconstructed)" }).check();
   await page.locator("#map").click();
   await page.clock.runFor(100);

@@ -53,6 +53,7 @@ test("natural lightning clears held flight controls and fresh keyboard input rec
   await press("Space");
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
+  await waitForScene(page, canvas, "office");
   await page.locator("#map").click();
   await page.clock.runFor(100);
   const r = await canvas.boundingBox();

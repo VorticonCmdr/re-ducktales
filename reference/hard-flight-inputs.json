@@ -1,0 +1,951 @@
+{
+  "id": "hard-flight-consumed-inputs",
+  "buildManifest": "reference/build.json",
+  "scope": "External consumed controls observed during a verified port replay; not an original DOSBox capture. No expected state selects inputs.",
+  "baselineCommit": "57beb92d1250452ee5e8ed22ec8e04b48321fe08",
+  "sourceInputSha256": "9a9e026e803772640641a4f862cfdcaead724f6d8259da84009d681073d13b76",
+  "observer": {
+    "path": "scripts/observe-flight-controls.js",
+    "sha256": "e940c00f4d4fc38671d83b5a65fa47b7d04f802b9866fd68c36e8ab5e1b6d6f2",
+    "effect": "Copies completed inputLog arrays only; does not change inputs,time,memory or return values."
+  },
+  "baselineSourceHashes": {
+    "src/game/application.js": "267c51ce43f5f8e59e7b13a00d780d6c146be05a2bc128935c67734ccbf62a76",
+    "src/game/flight.js": "248104ed27d88626e4911c3606a8a7418ccb399fe6391d081e4132e21a446674",
+    "src/game/scheduler.js": "3ca6645a22fa927af3165320e151210ae81509ba3d63303c3a7ac1d2640c509f",
+    "scripts/replay-hard-campaign.js": "d303dd6d017facf6689a1e1138311cbbdc701f6e6780129a3d69f129df0aa9ac"
+  },
+  "artifacts": [
+    {
+      "path": ".local/flight-input-observation-20261028/consumed-profiles.json",
+      "sha256": "6e1a809bcfadb75de5e90ff5431bab40e2cd905a7ff30e3eda5b0cb1599be4ff"
+    },
+    {
+      "path": ".local/flight-input-observation-20261028/replay.log",
+      "sha256": "ed1609334296fe5e603ecad1de00a0096e9c95c344f92638624d2e93b5a0b990"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 1,
+      "inputCount": 226,
+      "events": [
+        {
+          "byte": 192,
+          "count": 17
+        },
+        {
+          "byte": 197,
+          "count": 3
+        },
+        {
+          "byte": 192,
+          "count": 21
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 28
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 19
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 6
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 193,
+          "count": 5
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 7
+        },
+        {
+          "byte": 197,
+          "count": 5
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 25
+        },
+        {
+          "byte": 193,
+          "count": 5
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 3
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 5
+        },
+        {
+          "byte": 192,
+          "count": 16
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 17
+        }
+      ],
+      "sha256": "a0851b9fee7092bdb960ac0f37f51364c60f8a9378774755b7961a4acf9fd897"
+    },
+    {
+      "id": 2,
+      "inputCount": 307,
+      "events": [
+        {
+          "byte": 192,
+          "count": 17
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 17
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 75
+        },
+        {
+          "byte": 197,
+          "count": 5
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 8
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 3
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 10
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 7
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 5
+        },
+        {
+          "byte": 197,
+          "count": 6
+        },
+        {
+          "byte": 192,
+          "count": 3
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 15
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 6
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 19
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 6
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 6
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 5
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 21
+        }
+      ],
+      "sha256": "79feef61e01fc89b18f2715348abdee84e4a628b70fd8e740b693ac051add907"
+    },
+    {
+      "id": 3,
+      "inputCount": 262,
+      "events": [
+        {
+          "byte": 192,
+          "count": 17
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 36
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 21
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 8
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 45
+        },
+        {
+          "byte": 193,
+          "count": 8
+        },
+        {
+          "byte": 192,
+          "count": 8
+        },
+        {
+          "byte": 197,
+          "count": 6
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 3
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 6
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 193,
+          "count": 7
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 5
+        },
+        {
+          "byte": 197,
+          "count": 6
+        },
+        {
+          "byte": 192,
+          "count": 7
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 6
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 5
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 9
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 3
+        }
+      ],
+      "sha256": "6bb7d238a825940b08e49aa483dd1c87650c5158e57a8acf940f88e69297d2cc"
+    },
+    {
+      "id": 4,
+      "inputCount": 382,
+      "events": [
+        {
+          "byte": 192,
+          "count": 17
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 16
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 20
+        },
+        {
+          "byte": 193,
+          "count": 9
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 6
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 13
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 3
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 193,
+          "count": 3
+        },
+        {
+          "byte": 192,
+          "count": 8
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 14
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 6
+        },
+        {
+          "byte": 193,
+          "count": 9
+        },
+        {
+          "byte": 192,
+          "count": 10
+        },
+        {
+          "byte": 197,
+          "count": 3
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 1
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 3
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 5
+        },
+        {
+          "byte": 193,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 13
+        },
+        {
+          "byte": 193,
+          "count": 14
+        },
+        {
+          "byte": 192,
+          "count": 8
+        },
+        {
+          "byte": 197,
+          "count": 5
+        },
+        {
+          "byte": 192,
+          "count": 8
+        },
+        {
+          "byte": 193,
+          "count": 8
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 5
+        },
+        {
+          "byte": 193,
+          "count": 2
+        },
+        {
+          "byte": 192,
+          "count": 6
+        },
+        {
+          "byte": 193,
+          "count": 5
+        },
+        {
+          "byte": 192,
+          "count": 9
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 2
+        },
+        {
+          "byte": 197,
+          "count": 2
+        },
+        {
+          "byte": 193,
+          "count": 1
+        },
+        {
+          "byte": 192,
+          "count": 3
+        },
+        {
+          "byte": 193,
+          "count": 3
+        },
+        {
+          "byte": 192,
+          "count": 3
+        },
+        {
+          "byte": 193,
+          "count": 10
+        },
+        {
+          "byte": 192,
+          "count": 4
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 14
+        },
+        {
+          "byte": 197,
+          "count": 4
+        },
+        {
+          "byte": 192,
+          "count": 7
+        },
+        {
+          "byte": 197,
+          "count": 2
+        }
+      ],
+      "sha256": "820c15080849e3da58b89ec97895713d293f5a2e8383beaee259e1c4506843b7"
+    }
+  ],
+  "sourceInputArtifact": ".local/hard-campaign/accepted-reference-09/captured-events.json"
+}

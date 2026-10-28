@@ -42,7 +42,7 @@ test("mountain arrival, keyboard movement, hook throw, life loss and direct retr
   await until((s) => s.scene === "title");
   await c.focus();
   await press("Space");
-  await until((s) => s.scene === "difficulty");
+  await until((s) => s.scene === "difficulty" && s.difficultyMenu?.ready);
   await press("Enter");
   await until((s) => s.scene === "office");
   await page.locator("#map").click();

@@ -13,7 +13,7 @@
     "prepare:analysis": "python3 scripts/prepare-analysis.py",
     "verify:reference": "node scripts/verify-reference.js",
     "verify:build": "node scripts/verify-build.js",
-    "verify": "npm run verify:build && npm run verify:opening && npm test && npm run verify:tandy && npm run verify:reference && npm run verify:campaign && npm run verify:visits && npm run verify:loot && npm run verify:investments && npm run verify:startup && npm run verify:bank && npm run verify:ending && npm run verify:rival && npm run verify:atomic && npm run verify:system-controls && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run verify:flight-scene && npm run verify:flight-runtime && npm run verify:cave && npm run verify:mountain && npm run verify:jungle && npm run verify:photography && npm run verify:mixed-campaign-negative && node scripts/verify-hard-expedition-negative.js && node scripts/verify-hard-expedition-negative.js --boola && node scripts/verify-hard-mountains-negative.js && npm run test:browser && npm run verify:hard-campaign && npm run verify:tandy-production",
+    "verify": "npm run verify:build && npm run verify:opening && npm run verify:difficulty-core && npm test && npm run verify:tandy && npm run verify:reference && npm run verify:campaign && npm run verify:visits && npm run verify:loot && npm run verify:investments && npm run verify:startup && npm run verify:bank && npm run verify:ending && npm run verify:rival && npm run verify:atomic && npm run verify:system-controls && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run verify:flight-scene && npm run verify:flight-runtime && npm run verify:cave && npm run verify:mountain && npm run verify:jungle && npm run verify:photography && npm run verify:flight-input-stream && npm run verify:mixed-campaign-negative && node scripts/verify-hard-expedition-negative.js && node scripts/verify-hard-expedition-negative.js --boola && node scripts/verify-hard-mountains-negative.js && npm run test:browser && npm run verify:hard-campaign && node scripts/verify-difficulty-browser-negative.js && npm run verify:tandy-production",
     "format": "prettier --write src/game scripts/verify-*.js tests/game.test.js tests/browser/*.js index.html playwright.config.js reference/*.json",
     "verify:campaign": "node scripts/verify-campaign.js && npm run verify:map-pointer",
     "verify:departure": "node scripts/verify-departure.js",
@@ -72,7 +72,9 @@
     "verify:opening": "npm run verify:opening-source && node scripts/verify-opening.js",
     "verify:hard-campaign": "node scripts/verify-hard-campaign.js && node scripts/verify-hard-campaign-browser-negative.js",
     "test:hard-campaign": "playwright test tests/browser/hard-campaign.spec.js",
-    "verify:difficulty-core": "node scripts/verify-difficulty.js"
+    "verify:difficulty-core": "node scripts/verify-difficulty.js",
+    "verify:flight-input-stream": "node scripts/verify-flight-control-profiles.js && node scripts/verify-flight-input-browser-negative.js",
+    "verify:difficulty": "npm run verify:difficulty-core && playwright test tests/browser/difficulty.spec.js && node scripts/verify-difficulty-browser-negative.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

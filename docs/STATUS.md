@@ -5,9 +5,12 @@ four expedition families are playable on selected routes. We still have
 unverified routes and behavior gaps; arbitrary campaigns are not yet guaranteed
 finishable. This is completion work, not only final polish.
 
-This `codex/difficulty-menu` branch adds the original menu with focused acceptance;
-its full regression migration is pending. The complete main-checkout gate below
-precedes that integration. See [branch details](difficulty-browser-integration.md).
+This `codex/difficulty-menu` branch now runs the original menu and migrated
+startup waits. The complete Easy route passes its existing expectations. A new
+Hard recording consumes3350 real DOM events and matches25 exact published state
+and pixel checkpoints in independent Game and actual browser replays. Full branch
+integration verification remains pending; the main-checkout gate below is the
+previous baseline. See [branch details](difficulty-browser-integration.md).
 
 ## Working browser routes
 

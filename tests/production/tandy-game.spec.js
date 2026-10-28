@@ -1,3 +1,4 @@
+import { waitForDifficulty } from "../browser/helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { realpath } from "node:fs/promises";
 
@@ -24,6 +25,7 @@ test("production game loads originals and plays, mutes and closes its persistent
   await c.focus();
   await page.keyboard.press("Space");
   await expect(c).toHaveAttribute("data-scene", "difficulty");
+  await waitForDifficulty(c);
   await page.keyboard.press("Enter");
   await expect(c).toHaveAttribute("data-scene", "office");
   await page

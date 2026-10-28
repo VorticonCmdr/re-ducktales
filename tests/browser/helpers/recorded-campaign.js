@@ -58,7 +58,11 @@ export async function runRecordedCampaign({
   expect(timeline.observations).toHaveLength(manifest.expectedCheckpointCount);
   expect(timeline.clockOrigin).toBe(environment.clockOrigin);
   const errors = [],
-    observed = [];
+    observed = [],
+    navigation = [];
+  page.on("framenavigated", (frame) => {
+    if (frame === page.mainFrame()) navigation.push(frame.url());
+  });
   let consumed = 0,
     lastState = null,
     actualEvents = [],
@@ -99,6 +103,10 @@ export async function runRecordedCampaign({
   expect(start, "Recorded display-clock origin").toBe(environment.clockOrigin);
   let currentTime = start;
   async function advance(at) {
+    expect(
+      navigation,
+      "Unexpected document navigation during strict campaign replay",
+    ).toHaveLength(1);
     expect(
       at,
       "Input must not arrive after its recorded timestamp",
@@ -199,6 +207,7 @@ export async function runRecordedCampaign({
     expect(lastState.scene).toBe("ending");
     expect(lastState.ending.ready).toBe(true);
     expect(lastState.ending).toEqual(manifest.expectedEnding);
+    expect(navigation).toHaveLength(1);
     expect(errors).toEqual([]);
     await expect(page.locator("#diagnostic")).toBeHidden();
     completed = true;
@@ -214,6 +223,7 @@ export async function runRecordedCampaign({
           completed,
           consumed,
           expectedEvents: events.length,
+          navigation,
           lastState,
           errors,
         },

@@ -9,6 +9,11 @@ const manifest = JSON.parse(
   }),
 );
 assert.equal(
+  manifest.pendingBrowserReplay,
+  false,
+  "SETUP: new Hard capture requires an independent browser replay receipt",
+);
+assert.equal(
   manifest.evidenceLevel,
   "closed-loop port regression and independent browser scenario",
 );

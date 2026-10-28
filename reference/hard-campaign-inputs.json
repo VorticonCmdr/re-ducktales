@@ -1,0 +1,163 @@
+{
+  "id": "hard-campaign-browser-inputs",
+  "evidence": "Authored input route discovered by exploratory port planning; not original-game expected outputs. The mountain planner used fresh memory with seed21409,day15,money9450; carried browser validation is required independently.",
+  "biosSeed": 0,
+  "displayMilliseconds": 8,
+  "mountain": {
+    "variant": 0,
+    "difficulty": 2,
+    "inputEvents": [
+      {
+        "byte": 0,
+        "count": 2
+      },
+      {
+        "byte": 64,
+        "count": 18
+      },
+      {
+        "byte": 0,
+        "count": 28
+      },
+      {
+        "byte": 64,
+        "count": 20
+      },
+      {
+        "byte": 0,
+        "count": 31
+      },
+      {
+        "byte": 7,
+        "count": 1
+      },
+      {
+        "byte": 0,
+        "count": 1
+      },
+      {
+        "byte": 64,
+        "count": 20
+      },
+      {
+        "byte": 0,
+        "count": 44
+      },
+      {
+        "byte": 64,
+        "count": 16
+      },
+      {
+        "byte": 0,
+        "count": 32
+      },
+      {
+        "byte": 7,
+        "count": 1
+      },
+      {
+        "byte": 0,
+        "count": 1
+      },
+      {
+        "byte": 64,
+        "count": 26
+      },
+      {
+        "byte": 0,
+        "count": 48
+      },
+      {
+        "byte": 64,
+        "count": 20
+      },
+      {
+        "byte": 0,
+        "count": 38
+      },
+      {
+        "byte": 3,
+        "count": 1
+      },
+      {
+        "byte": 0,
+        "count": 1
+      },
+      {
+        "byte": 64,
+        "count": 16
+      },
+      {
+        "byte": 0,
+        "count": 35
+      },
+      {
+        "byte": 64,
+        "count": 20
+      },
+      {
+        "byte": 0,
+        "count": 31
+      },
+      {
+        "byte": 64,
+        "count": 20
+      },
+      {
+        "byte": 0,
+        "count": 27
+      },
+      {
+        "byte": 64,
+        "count": 20
+      },
+      {
+        "byte": 0,
+        "count": 38
+      },
+      {
+        "byte": 64,
+        "count": 19
+      },
+      {
+        "byte": 0,
+        "count": 28
+      },
+      {
+        "byte": 1,
+        "count": 1
+      },
+      {
+        "byte": 0,
+        "count": 8
+      },
+      {
+        "byte": 64,
+        "count": 20
+      },
+      {
+        "byte": 0,
+        "count": 39
+      }
+    ],
+    "expectedInputCount": 671,
+    "macros": [
+      "hook17",
+      "hook19",
+      "left",
+      "hook19",
+      "hook15",
+      "left",
+      "hook25",
+      "hook19",
+      "right",
+      "hook15",
+      "hook19",
+      "hook19",
+      "hook19",
+      "hook18",
+      "up",
+      "hook19"
+    ]
+  }
+}

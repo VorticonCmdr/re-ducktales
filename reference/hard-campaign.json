@@ -1,0 +1,331 @@
+{
+  "id": "hard-linked-campaign-four-families",
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "closed-loop port regression and independent browser scenario",
+  "evidence": "Independent real-input browser replay and port regression. All24 published Game snapshots and decoded pixel hashes match the reference using all3284 DOM inputs. Full integration gate passed117 unit,70 development browser and2 production browser cases with zero skips, including the strict Hard replay and six negative controls. No original-game whole-campaign parity claimed.",
+  "emulator": null,
+  "captureTool": "tests/browser/helpers/linked-campaign.js (reference inputs); tests/browser/helpers/recorded-campaign.js (strict browser replay)",
+  "captureToolRevision": {
+    "baseCommit": "f6e581eefb58ac4ddceebf57e39b1413eb20cd81",
+    "fileHashes": {
+      "tests/browser/helpers/linked-campaign.js": "88a2eb4f744668774fc62a4476600cea5d57c80281845fdd0e303fc6b554c300",
+      "tests/browser/hard-campaign.spec.js": "8ecf345a696fbdbb03b14ae7517020626d794cfcf23ab5dee44d449ef706acf2",
+      "tests/helpers/original-game.js": "94748f2af89011623f6ffd091d9c601422cc4fcd09e22cbe2fcf39a502c613a4",
+      "scripts/replay-hard-campaign.js": "fa67f6f913fbce4ad71e5a8cc045f9000b9a175f4a4f5af4d0cd5ba66d137faa",
+      "scripts/verify-hard-campaign.js": "b68f7697f08de2f6c8a655acc9ae09502946b27613763e3cc4dad570fcf21f32",
+      "reference/hard-campaign-inputs.json": "bfdadae8ffb85b6d1a7d8649b5bcfc1df58e8b8daedec870f565dedffe74c8ce"
+    },
+    "node": "v26.8.1",
+    "playwright": "1.64.1",
+    "scope": "Historical hashes retained from capture preparation. The exact complete working tree that produced exploratory reference09 was not archived. Current accepted replay source identities are pinned separately by verificationToolRevision and browser-source; the independent captured input stream is authoritative for strict reproduction."
+  },
+  "startingRecipe": "Fresh browser context; supported original game/ assets; muted; BIOS seed0; wait for opening skip enabled; Space, Up, Enter selects Hard; real keys and canvas/buttons thereafter.",
+  "environment": {
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "hard": true,
+    "mode": "exploratory",
+    "completed": true,
+    "capturePhase": "before-target-handler",
+    "observerError": null,
+    "audio": "explicitly disabled",
+    "inputs": "Authored fixed jungle/mountain streams plus fixed feedback flight/photo/cave policies. Inputs captured independently at DOM capture phase before target handlers.",
+    "browser": "Chromium, headless; default Playwright viewport",
+    "clockProvider": "Declared origin before entry-module execution; monotonic clock and8ms display schedule are external inputs. No game state is reset or injected."
+  },
+  "artifactRoot": ".local/hard-campaign/accepted-reference-09",
+  "artifacts": {
+    "environment": {
+      "path": ".local/hard-campaign/accepted-reference-09/environment.json",
+      "sha256": "9be470329f03077ae7f4376aaacbc2bd3fdb779859dd1503e50707ed001bd391"
+    },
+    "captured-events": {
+      "path": ".local/hard-campaign/accepted-reference-09/captured-events.json",
+      "sha256": "9a9e026e803772640641a4f862cfdcaead724f6d8259da84009d681073d13b76"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/hard-campaign/accepted-reference-09/campaign-checkpoints.json",
+      "sha256": "684b8e46c3c4c8ba78e9dc2f324f79f08652f6cf927252836c8fa8ffd4edb226"
+    },
+    "browser-checkpoints": {
+      "path": ".local/hard-campaign/accepted-browser-replay-final-20261028/campaign-checkpoints.json",
+      "sha256": "684b8e46c3c4c8ba78e9dc2f324f79f08652f6cf927252836c8fa8ffd4edb226"
+    },
+    "timeline": {
+      "path": ".local/hard-campaign/accepted-reference-09/timeline.json",
+      "sha256": "4519454d00486566ba8c29fb6a0541fe5b662de82b173a8301226310c8611c36"
+    },
+    "browser-progress": {
+      "path": ".local/hard-campaign/accepted-browser-replay-final-20261028/replay-progress.json",
+      "sha256": "e464b697ccc44427d21cd85a36442d844a655c0ee17c85941ae2d54a5b60ffbb"
+    },
+    "browser-log": {
+      "path": ".local/hard-campaign/accepted-full-gate-20261028/verify.log",
+      "sha256": "bda4b529bdee139e01d1af0487cf3c38308b31f79f58c24deb7776605438b8d3"
+    },
+    "browser-actual-events": {
+      "path": ".local/hard-campaign/accepted-browser-replay-final-20261028/actual-events.json",
+      "sha256": "eaffa2422b9df4a9e35141dec84ab8fd430112a6e21618e155652d09f25136ed"
+    },
+    "browser-source": {
+      "path": ".local/hard-campaign/accepted-browser-replay-final-20261028/source-revision.json",
+      "sha256": "b36ab60542e745e2daf9db68678085cd6891769949f379e09e918e273f1d98cb"
+    },
+    "full-gate-receipt": {
+      "path": ".local/hard-campaign/accepted-full-gate-20261028/receipt.json",
+      "sha256": "aa793b0a4446145c4eb7ae5ca7c0bfe4def5660c6722a1655eec71f4d0220909"
+    }
+  },
+  "inputManifests": [
+    "reference/hard-expedition-inputs.json",
+    "reference/hard-campaign-inputs.json"
+  ],
+  "requiredInputSamples": {
+    "jungle": 444,
+    "mountain": 671
+  },
+  "requiredEventCount": 3284,
+  "expectedCheckpointCount": 24,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-return",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "flight-start",
+    "arrival",
+    "mountain-return",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "bank-deposited",
+    "ending"
+  ],
+  "expected": {
+    "jungle-return": {
+      "scene": "map",
+      "day": 3,
+      "money": 2050,
+      "banked": 0,
+      "seed": 37756
+    },
+    "photography-return": {
+      "scene": "map",
+      "day": 12,
+      "money": 4550,
+      "banked": 2050,
+      "seed": 56564
+    },
+    "cave-return": {
+      "scene": "map",
+      "day": 14,
+      "money": 9450,
+      "banked": 2050,
+      "seed": 57391
+    },
+    "mountain-return": {
+      "scene": "map",
+      "day": 18,
+      "money": 17550,
+      "banked": 2050,
+      "seed": 64675
+    },
+    "ending": {
+      "scene": "ending",
+      "day": 33,
+      "money": 0,
+      "banked": 19600,
+      "seed": 16272
+    }
+  },
+  "expectedEnding": {
+    "phase": "cover",
+    "won": false,
+    "banked": 19600,
+    "rivalBanked": 44000,
+    "day": 33,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 37,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      2,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      9,
+      10,
+      13,
+      21,
+      25,
+      27,
+      28
+    ]
+  },
+  "comparisonRules": "Exact hashes of every field published by Game.snapshot at all24 observation points, and exact320x200 decoded browser pixels. Raw private memory/stack and input-reader internals are not wholly exposed by these snapshots. Events and the observation/display timeline are separate input artifacts. No state injection,fitted timing,pixel tolerance or result-derived controls.",
+  "verifyCommand": "node scripts/verify-hard-campaign.js",
+  "browserCheckpoints": [
+    {
+      "name": "campaign-start",
+      "stateSha256": "b2e9cd5b3498359d238f864f422c812b050e63fae8ba4b3e41635fa0310335ae",
+      "pixelsSha256": "74d3dbe6a273f24d58024df26a52cda5bfc1160ea93026f0f25968daef508acf"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "74b524208b65dc9ebcd9bc6c79b00c60f447686326eaab2d65a4f252e2af6f11",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "18252608ffffd7a9c9798efda55fa0af2645b9f6e680ab64038ae75a97bb8202",
+      "pixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7"
+    },
+    {
+      "name": "jungle-return",
+      "stateSha256": "c0b4136ae45b753199737ecaf76b894a11978c1332743cc06af003dba0e40342",
+      "pixelsSha256": "27eff734bc4c99cc2c6e8c4b8647eac59a85edb2db8173388e96f1cf9c46fcce"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "bb3421401bf9cf6811170260e9344bd651934a95bd55e03a5e09dcd06ae41301",
+      "pixelsSha256": "194f2ca4ade6eeb2004db6e0a02ceb8b0e1df9eb3fbe4116904f0f84251a9a0f"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "c53745c5a410a58f2cf9ec95f2f86f06a03860cab35c491202a7b22aab520971",
+      "pixelsSha256": "edecd3a2d04e178542097a28f87093439acac189846a8bc6f8a8658fe7bed7d2"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "95f181b6383d2f401918ef32a51febf71821d6784e82c0eb5e6e1bbac7e0e558",
+      "pixelsSha256": "e46d7dd4b902c51fd6d8494cb9dad5a197e2aab389b6d6a36a71c0d2aa637018"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "44709f6c98f7e416a3be216eda3937d5bfdb2109453db90571084af9a87b30a0",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "4d223c7e0e8791a0d9114dba8370ca9de18728858a8a454ca80d47ccddf3d888",
+      "pixelsSha256": "0495fd95cfafa2342616a1b56aad64f93e5b9a0f5245e7d5019fdc57ad9fead6"
+    },
+    {
+      "name": "photography-return",
+      "stateSha256": "87e52a4f44e1ac2f4e642cd96cd6ee7597853540ae6a738046fe1dc7f5bbf7dc",
+      "pixelsSha256": "7c589e148006b2266194367619a87d3b6edc6346440e3596cc436b99a7c49e70"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "fdfc59a460f6f92795c5857d8d975d60b2396ad69b40fe40be330704dbced2ca",
+      "pixelsSha256": "f69ee4f355c8ad45feacc0de6bca714135035808a553b82d0bdd6c004b63ba62"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "316cf66c68f4a6e4a839dade31271362e43464f6ab074a0020d35ef21e3b1e83",
+      "pixelsSha256": "e23f8312d0b01bdaa1264020e6f735d3fd5df6dd9d831054b6fbe69ff29342d1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "c8ceb465f6405777378fec034c141ec4df4e5493765547699d9ed2b6cd9bed9a",
+      "pixelsSha256": "0a86d584a78418d5ced94877257e4bc14de0bb7fdf77578af0ec359550c40bf1"
+    },
+    {
+      "name": "cave-return",
+      "stateSha256": "6607662d5bb8257b39915ef38ae637450d7cb453bcfc8cea76779e9107d05622",
+      "pixelsSha256": "1843fb0de1b9c20a64d8915e6462ca5b45a62cbad3c87cd1a3249192867d53db"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "3af933b2f5b49f7d10d2b60246e56070a12851cee816b6ea50c2e7da652c0953",
+      "pixelsSha256": "ce4a10f7880c1eb241c6f0f278c28b6b68f4fa6f83f81606b3bd4b99b24dac61"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "650b847def5faba5a7b670f23b6841de2a40529ef3fc60710f1307158b57c34f",
+      "pixelsSha256": "0101d9a07af3f457963880619a037dc19e25dc7ca27e976c4d92119271c757b5"
+    },
+    {
+      "name": "mountain-return",
+      "stateSha256": "8742cb678c73cbc41235f40aeaebf71a0d7cb798aecefbbd6dc221671db0a7a2",
+      "pixelsSha256": "637fce9932c967ee292b280d975da92dd9c91a9f2283148e9e53d14e8d258b99"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "9c96530779cd4cabb70b3d2bae33cae8a68f299615fd60b4d19eafe14b0f788a",
+      "pixelsSha256": "f2666d637a87070e72387a7c1d5ae0435098d4f3c0621349c0c2932323eda8ca"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "ad8be437c2b91199988d14d7472b5898c9d6d120d8c2faf1946bab3552ad95f3",
+      "pixelsSha256": "c4dc07e2045d68daa1f170d4edbdd5215c1c53e273151921ef121816bbc0c97f"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "5e6a3c8c34657e0abcc2a82cc43929bb43461f4d08589b1c146a660db89f90f8",
+      "pixelsSha256": "4b2a199d3256bd951ac9d7e0b90cbc5a1ab0795cdaeaa6cbf76b7685fbea7603"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "890f409824938d22eeb4c728728fdfa45d7281fb90be18039b0f9225507680e9",
+      "pixelsSha256": "22526578806a6cbdd47c3453fb51e816d7fa6ca5cb66524740ca4045fb3ecfc4"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "5c227f4abf254e39352f5a777f3c597e027d0340713e01902fb5f69e896c2c33",
+      "pixelsSha256": "243da4108a528195a4b0d4bfc27259271d5c0465b61110bd3d69398bfaaf6941"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "c2a779eb160739066acac3b9fbc1c90eefb056b25d0e2304577a389327308a1b",
+      "pixelsSha256": "4ddc83e27afe4e09556f471752480978d7a5c1d5989cdc649bd04961edd0db0a"
+    },
+    {
+      "name": "ending",
+      "stateSha256": "9496b31abf6f10e05498fac90a259d398af866a45292e86a02833b16dffb28e0",
+      "pixelsSha256": "c78d9b1056c765caaa49256bc74380b0ee4f62d0ba1f6c1edf92ddc091a6a469"
+    }
+  ],
+  "verificationToolRevision": {
+    "baseCommit": "f6e581eefb58ac4ddceebf57e39b1413eb20cd81",
+    "fileHashes": {
+      "tests/browser/helpers/linked-campaign.js": "cfec60a0edffac95b33618523c13d5823925d2afcbf8e82e7153d55ee4d26edb",
+      "tests/browser/helpers/recorded-campaign.js": "eab6ea983fe1290a6169446b399ddcedf2f514e04470026d5ae1f956b4c838bb",
+      "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0",
+      "tests/browser/clock-contract.spec.js": "81ad751253c8d5f5476e236513408934a9abcd9252f68904c671f3f2207d4c78",
+      "tests/browser/hard-campaign.spec.js": "f695e2ac906f2b8e12876309b0bebc5fbc0af5357a6ed4de28982e8340db2c7e",
+      "tests/helpers/original-game.js": "94748f2af89011623f6ffd091d9c601422cc4fcd09e22cbe2fcf39a502c613a4",
+      "scripts/replay-hard-campaign.js": "d303dd6d017facf6689a1e1138311cbbdc701f6e6780129a3d69f129df0aa9ac",
+      "scripts/verify-hard-campaign.js": "dcbde0064bac2241bbbf6c9c187e601d6f9fd284f72a36c98602756c2e37d29d",
+      "scripts/verify-hard-campaign-browser-negative.js": "56ce190f12229912d8b16244a44716cff564663ceb480c0c1bd41488190b6ced",
+      "reference/hard-campaign-inputs.json": "bfdadae8ffb85b6d1a7d8649b5bcfc1df58e8b8daedec870f565dedffe74c8ce"
+    }
+  },
+  "inputEventComparison": "Exact event time,type,key,target. Canvas pointerdown coordinates are compared as Campaign.point consumes them: truncated and clamped logical pixels. Other coordinates are diagnostic, not consumed game inputs.",
+  "integrationGate": {
+    "command": "DUCKTALES_CAPTURE_HARD_CAMPAIGN=0 npm run verify",
+    "receiptArtifact": "full-gate-receipt",
+    "logArtifact": "browser-log",
+    "unitCases": 117,
+    "developmentBrowserCases": 70,
+    "productionBrowserCases": 2,
+    "skips": 0
+  }
+}

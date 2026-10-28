@@ -1,0 +1,39 @@
+import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
+import { writeFile, mkdir } from "node:fs/promises";
+await mkdir(".local/hard-campaign-verification", { recursive: true });
+const r = spawnSync(
+  process.execPath,
+  [
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/browser/hard-campaign.spec.js",
+    "--output=.local/hard-campaign-browser-negative",
+  ],
+  {
+    env: {
+      ...process.env,
+      DUCKTALES_RECORDED_NEGATIVE: "omit-hard-choice",
+      DUCKTALES_CAPTURE_HARD_CAMPAIGN: "0",
+    },
+    encoding: "utf8",
+    timeout: 60000,
+    maxBuffer: 4 * 1024 * 1024,
+  },
+);
+const output = `${r.stdout ?? ""}\n${r.stderr ?? ""}`;
+await writeFile(
+  ".local/hard-campaign-verification/browser-negative.log",
+  output,
+);
+assert.ifError(r.error);
+assert.equal(r.status, 1, "Missing real browser input must fail");
+assert.match(output, /Carried browser state0 campaign-start/);
+assert.match(output, /1 failed/);
+assert.doesNotMatch(
+  output,
+  /SETUP:|No tests found|Test timeout|browserType\.launch:/,
+);
+console.log(
+  "Hard browser negative control: missing native keyboard event rejected at the first campaign state checkpoint.",
+);

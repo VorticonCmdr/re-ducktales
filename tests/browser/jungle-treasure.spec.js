@@ -1,27 +1,36 @@
 import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
-import startup from "../../reference/campaign-startup-browser.json" with { type: "json" };
-import { nextRandom } from "../../src/game/integer.js";
-const route = startup.jungle;
+import { createHash } from "node:crypto";
+import { openRecordedApplication } from "./helpers/clock.js";
+import { easyJungleEntry } from "./helpers/easy-jungle-entry.js";
+import {
+  installEntryRecording,
+  observeRecordedRoute,
+  saveRecordedRoute,
+} from "./helpers/entry-recording.js";
+import inputs from "../../reference/security-jungle-treasure-inputs.json" with { type: "json" };
+import accepted from "../../reference/security-jungle-treasure.json" with { type: "json" };
+import entry from "../../reference/security-jungle-entry.json" with { type: "json" };
 
 test("keyboard jungle completion awards treasure and prevents duplicate collection", async ({
   page,
 }) => {
-  test.setTimeout(120000);
-  const errors = [];
+  test.setTimeout(180000);
+  const capture = process.env.DUCKTALES_CAPTURE_JUNGLE_TREASURE;
+  if (!capture)
+    expect(
+      accepted.pending,
+      "SETUP: treasure capture requires independent acceptance",
+    ).toBe(false);
+  const errors = [],
+    observations = [];
+  let checked = 0;
   page.on("pageerror", (e) => errors.push(e.message));
-  // Only the external clock and real keyboard adapter are supplied. The8ms
-  // display cadence observes every input sample without changing game clocks.
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.addInitScript(() => {
-    window.requestAnimationFrame = (callback) =>
-      setTimeout(() => callback(performance.now()), 8);
-    window.cancelAnimationFrame = clearTimeout;
-  });
-  await page.goto("/");
-  const canvas = page.locator("#game");
-  const state = () => canvas.getAttribute("data-state").then(JSON.parse);
+  await installEntryRecording(page);
+  await openRecordedApplication(page, 1);
+  await expect(page.locator("#actions")).toBeVisible();
+  const canvas = page.locator("#game"),
+    state = async () => JSON.parse(await canvas.getAttribute("data-state"));
   async function until(predicate, max = 3000) {
     for (let i = 0; i < max; i++) {
       const s = await state();
@@ -29,13 +38,32 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
       if (s && predicate(s)) return s;
       await page.clock.runFor(8);
     }
-    throw Error(
-      `unfinished jungle browser wait:${JSON.stringify(await state())}`,
-    );
+    throw Error(`unfinished treasure route ${JSON.stringify(await state())}`);
   }
   async function press(key) {
     await page.keyboard.press(key);
     await page.clock.runFor(100);
+  }
+  async function observe(name) {
+    const point = await observeRecordedRoute({
+      page,
+      state: await state(),
+      name,
+    });
+    observations.push(point);
+    if (!capture) {
+      const expected = accepted.checkpoints[checked++];
+      expect(expected, "Required treasure checkpoint").toBeDefined();
+      for (const key of [
+        "name",
+        "at",
+        "eventCount",
+        "stateSha256",
+        "pixelsSha256",
+      ])
+        expect(point[key], `Treasure ${name} ${key}`).toEqual(expected[key]);
+    }
+    return point;
   }
   await until((s) => s.scene === "title");
   await canvas.focus();
@@ -43,36 +71,17 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
   await waitForScene(page, canvas, "difficulty");
   await press("Enter");
   await waitForScene(page, canvas, "office");
-  await page.locator("#map").click();
-  await page.clock.runFor(100);
-  const bounds = await canvas.boundingBox();
-  await canvas.click({
-    position: { x: (bounds.width * 64) / 320, y: (bounds.height * 73) / 200 },
-  });
-  await page.clock.runFor(100);
-  await press("Space");
-  await press("ArrowRight");
-  await press("Space");
-  await page.keyboard.down("Space");
-  await until((s) => s.scene === "flight" && s.flight.speed > 4);
-  await page.keyboard.down("ArrowDown");
-  await until((s) => s.flight.heading > 0);
-  await page.keyboard.up("ArrowDown");
-  await page.keyboard.up("Space");
-  const entered = await until((s) => s.scene === "jungle");
-  expect(entered.campaign.location).toBe(1);
-  expect(entered.campaign.day).toBe(4);
-  expect(entered.money).toBe(0);
-  expect(entered.briefing.variant).toBe(0);
-  expect(entered.briefing.seed).toBe(30127);
-  expect(entered.jungle.seed).toBe(44031);
-  expect(entered.jungle.frames).toBe(0);
-  const stream = route.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
-  expect(stream).toHaveLength(857);
-  expect(route.checkpoints).toHaveLength(23);
+  await easyJungleEntry({ page, canvas, state, until, press });
+  const initial = await observe("entry");
+  expect(initial.stateSha256).toBe(entry.entryStateSha256);
+  expect(initial.pixelsSha256).toBe(entry.entryPixelsSha256);
+  const stream = inputs.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
+  expect(stream.length).toBe(860);
+  expect(createHash("sha256").update(Buffer.from(stream)).digest("hex")).toBe(
+    inputs.sha256,
+  );
   let held = new Set(),
-    used = 0,
-    checked = 0;
+    used = 0;
   for (const byte of stream) {
     const next = new Set([
       ...(byte & 64 ? ["Space"] : []),
@@ -93,42 +102,32 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
       (s) => s.scene !== "jungle" || s.jungle.frames > before.jungle.frames,
       1500,
     );
-    expect(after.jungle.frames).toBe(before.jungle.frames + 1);
+    expect(after.jungle.frames, "Exactly one jungle input frame").toBe(
+      before.jungle.frames + 1,
+    );
     used++;
-    const expected = route.checkpoints[checked];
-    if (expected?.inputCount === used) {
-      for (const field of route.browserComparisonFields)
-        expect(
-          after.jungle[field],
-          `jungle checkpoint${checked} ${field}`,
-        ).toEqual(expected.state[field]);
-      checked++;
-    }
+    if (used % 40 === 0 || used === stream.length)
+      await observe(`input-${used}`);
   }
   for (const key of held) await page.keyboard.up(key);
-  const awarded = await until((s) => s.scene !== "jungle", 1500);
-  expect(used).toBe(857);
-  expect(checked).toBe(23);
-  expect(awarded.scene).toBe("expedition-result");
-  expect(awarded.jungle.outcome.code).toBe(1);
-  expect(awarded.jungle.lives).toBe(1);
-  expect(awarded.jungle.frames).toBe(857);
-  expect(awarded.jungle.presentations).toBe(904);
-  expect(awarded.jungle.scroll).toBe(960);
-  expect(awarded.jungle.money).toBe(0);
-  expect(awarded.jungle.seed).toBe(60975);
-  expect(awarded.expeditionResult.phase).toBe("award");
-  expect(awarded.expeditionResult.value).toBe(1000);
-  expect(awarded.money).toBe(1000);
-  expect(awarded.campaign.day).toBe(5);
+  const award = await until((s) => s.scene !== "jungle", 1500);
+  expect(used).toBe(860);
+  expect(award.scene).toBe("expedition-result");
+  expect(award.jungle.outcome.code).toBe(1);
+  expect(award.expeditionResult.phase).toBe("award");
+  expect(award.expeditionResult.value).toBe(1000);
+  expect(award.money).toBe(award.jungle.money + 1000);
+  expect(award.campaign.day).toBe(initial.state.campaign.day + 1);
+  await observe("award");
   await canvas.screenshot({
     path: ".local/browser-results/jungle-treasure-award.png",
   });
   await press("Space");
   const returned = await until((s) => s.scene === "map");
   expect(returned.campaign.playerCollected).toEqual([1]);
-  expect(returned.money).toBe(1000);
+  expect(returned.money).toBe(award.money);
   expect(returned.campaign.rivalUnlockMask).toBe(1);
+  await observe("returned-map");
   const idleRival = returned.campaign.rival,
     idleSeed = returned.seed;
   await page.clock.runFor(2000);
@@ -141,23 +140,34 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
     collected.money,
     collected.campaign.day,
     collected.campaign.location,
-    collected.seed,
   ]).toEqual([
     returned.money,
     returned.campaign.day,
     returned.campaign.location,
-    // This dispatch is a rival miss: two RNG draws, with no extra report draw.
-    nextRandom(nextRandom(returned.seed)),
   ]);
+  await observe("collected-notice");
   await press("Space");
   const again = await until((s) => s.scene === "map");
-  expect(again.money).toBe(1000);
-  expect(again.campaign.day).toBe(5);
+  expect(again.money).toBe(award.money);
+  expect(again.campaign.day).toBe(award.campaign.day);
+  await observe("complete-map");
+  if (capture)
+    await saveRecordedRoute({
+      page,
+      root: capture,
+      observations,
+      scope:
+        "Exploratory complete Easy jungle treasure and duplicate-notice route; not a complete campaign",
+    });
+  else expect(checked).toBe(accepted.expectedCheckpointCount);
   await expect(page.locator("#diagnostic")).toBeHidden();
   await page.locator("#restart").click();
   await page.clock.runFor(100);
-  const restarted = await state();
-  expect(restarted.scene).toBe("title");
-  expect(restarted.jungle).toBeNull();
+  expect((await state()).scene).toBe("title");
+  expect((await state()).jungle).toBeNull();
   expect(errors).toEqual([]);
+  if (capture)
+    throw Error(
+      "EXPLORATORY treasure capture saved; this run is not acceptance",
+    );
 });

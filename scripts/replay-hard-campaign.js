@@ -63,7 +63,7 @@ if (!diagnose) {
   // entry milestone may reuse the same independent DOM/environment adapter.
   assert.equal(environment.hard, contract.expectedHard ?? true);
   assert.ok(
-    [undefined, "jungle-entry"].includes(contract.milestone),
+    [undefined, "jungle-entry", "jungle-treasure"].includes(contract.milestone),
     "Unsupported recorded milestone",
   );
   for (const name of [
@@ -231,8 +231,15 @@ function controls() {
 }
 function event(e) {
   if (diagnose && process.argv.includes("--trace"))
-    console.error(JSON.stringify({ at: lastTime, input: e, scene: game.scene,
-      seed: game.seed, security: game.security?.snapshot() }));
+    console.error(
+      JSON.stringify({
+        at: lastTime,
+        input: e,
+        scene: game.scene,
+        seed: game.seed,
+        security: game.security?.snapshot(),
+      }),
+    );
   assert.ok(
     ["keydown", "keyup", "pointerdown", "pointerup"].includes(e.type),
     `Unsupported replay input ${e.type}`,
@@ -341,8 +348,11 @@ try {
   assert.equal(checked, checkpoints.length);
   if (!diagnose) assert.equal(held.size, 0, "Unreleased recorded keys");
   const entryMilestone = strictContract?.milestone === "jungle-entry";
+  const treasureMilestone = strictContract?.milestone === "jungle-treasure";
   assert.ok(
-    game.scene === (entryMilestone ? "jungle" : "ending") || diagnose,
+    game.scene ===
+      (entryMilestone ? "jungle" : treasureMilestone ? "map" : "ending") ||
+      diagnose,
     "Unfinished recorded route",
   );
   if (!diagnose) {
@@ -350,6 +360,13 @@ try {
       assert.equal(game.jungle.phase, "entering");
       assert.equal(game.jungle.frames, 0);
       assert.equal(lastTime, timeline.endAt, "Unfinished entry timeline");
+    } else if (treasureMilestone) {
+      assert.equal(game.jungle.outcome.code, 1, "Unfinished jungle treasure");
+      assert.ok(
+        game.snapshot().campaign.playerCollected.includes(1),
+        "Missing collected treasure",
+      );
+      assert.equal(lastTime, timeline.endAt, "Unfinished treasure timeline");
     } else assert.ok(game.ending.ready, "Unfinished ending input sequence");
     assert.ok(
       rendered > 0 &&

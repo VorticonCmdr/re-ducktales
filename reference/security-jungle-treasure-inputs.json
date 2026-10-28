@@ -1,0 +1,61 @@
+{
+  "id": "security-aware-easy-jungle-treasure-inputs",
+  "inputCount": 860,
+  "sha256": "167b8c0342b79bbffb5c25cbc199ce934e7f484ef677b93e9bfd027e65f622bb",
+  "inputEvents": [
+    {
+      "byte": 0,
+      "count": 70
+    },
+    {
+      "byte": 64,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 15
+    },
+    {
+      "byte": 3,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 5,
+      "count": 722
+    },
+    {
+      "byte": 1,
+      "count": 5
+    },
+    {
+      "byte": 5,
+      "count": 2
+    },
+    {
+      "byte": 1,
+      "count": 17
+    },
+    {
+      "byte": 3,
+      "count": 2
+    }
+  ],
+  "provenance": {
+    "legacySource": "reference/campaign-startup-browser.json",
+    "legacySourceSha256": "c5db89f616657a0b9fa82671efd219a3aa6094b5dd7918e89592f51dceccbb6d",
+    "legacyInputCount": 857,
+    "authoredNeutralPrefix": 3,
+    "triedDelays": [
+      0,
+      3,
+      6,
+      9
+    ],
+    "planningCommand": "node scripts/explore-security-easy-jungle.js --delay=3",
+    "planningScope": "Conditional carried Game model success from independently verified jungle entry; requires real browser and independent recorded DOM replay. No memory or RNG injection."
+  }
+}

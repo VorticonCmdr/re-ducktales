@@ -93,50 +93,64 @@
     "skipped": 0,
     "artifacts": [
       {
-        "path": ".local/flight-lightning/full-verify.log",
+        "path": ".local/flight-lightning/accepted-486d377/full-verify.log",
         "bytes": 40128,
         "sha256": "b2f5014d6adb86ebdb1237b703cd017341fe7d891196fe3283f4ce54ade8bd63"
       },
       {
-        "path": ".local/flight-lightning/before-fix.log",
+        "path": ".local/flight-lightning/accepted-486d377/before-fix.log",
         "bytes": 1223,
         "sha256": "0643f67e56a7b56cc1c23726758e688bfa0a570995e807762fed4d523171b8b5"
       },
       {
-        "path": ".local/flight-lightning/missing-callback-negative.log",
-        "bytes": 1675,
-        "sha256": "51416d380ca502603a27e36becd52a8d48f52496f47141e3fb2c043d8da38510"
+        "path": ".local/flight-lightning/accepted-486d377/missing-callback-negative.log",
+        "bytes": 1613,
+        "sha256": "28a616d01145e355192df764462cb289dde573ff8d9d978268a6f709989b20c4"
       },
       {
-        "path": ".local/flight-lightning/ghidra-collision.json",
+        "path": ".local/flight-lightning/accepted-486d377/ghidra-collision.json",
         "bytes": 10195,
         "sha256": "62c0f4df57882e5d0a0a106bf08f20944d5047afcd503e55fb7856558533ce9d"
       },
       {
-        "path": ".local/flight-lightning/lightning-flight.json",
+        "path": ".local/flight-lightning/accepted-486d377/lightning-flight.json",
         "bytes": 28048,
         "sha256": "1a22f6180a4fffbd42df7ba60d71f5e721ea9db8fb1875054c5c57993d8f1ea5"
       },
       {
-        "path": ".local/flight-lightning/lightning-events.json",
+        "path": ".local/flight-lightning/accepted-486d377/lightning-events.json",
         "bytes": 2061,
         "sha256": "a07bc11ddc44e3c1d6f3949e29dcc5eaaf763d2b7cacc0b2149c1d82146b8942"
       },
       {
-        "path": ".local/flight-lightning/lightning-recovery.json",
+        "path": ".local/flight-lightning/accepted-486d377/lightning-recovery.json",
         "bytes": 873,
         "sha256": "e81230821701debc3ec0541b56002a7c44268266208c7b1840917f2dcd55b0ea"
       },
       {
-        "path": ".local/flight-lightning/lightning-strike.png",
+        "path": ".local/flight-lightning/accepted-486d377/lightning-strike.png",
         "bytes": 7564,
         "sha256": "7d57138c99d73c52e88c107fccaf45b07282f3aa6a0d5c248e4e35cc4639b339"
       },
       {
-        "path": ".local/flight-lightning/lightning-recovery.png",
+        "path": ".local/flight-lightning/accepted-486d377/lightning-recovery.png",
         "bytes": 6655,
         "sha256": "10399f3fa78a948837ec8264daba637b170f16a93aad9fef090e97ac81d31b05"
+      },
+      {
+        "path": ".local/flight-lightning/accepted-486d377/integrated-browser.log",
+        "bytes": 550,
+        "sha256": "a7e15d95193fba8e8345239dc340c2fa5ed5d63990c5c60bf1ab9506bd830272"
       }
-    ]
+    ],
+    "artifactScope": "Full-suite captures except missing-callback-negative.log and integrated-browser.log, which record post-integration checks of the same source identities. Accepted copies are immutable; repeat runs write to the parent directory.",
+    "integration": {
+      "implementationCommit": "486d377",
+      "baseURL": "http://127.0.0.1:5187",
+      "browserCases": 1,
+      "unitCases": 6,
+      "buildFiles": 22,
+      "negativeControlPassed": true
+    }
   }
 }

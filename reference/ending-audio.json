@@ -48,7 +48,7 @@
   "environment": {
     "audio": "Current sound-enabled flag gates source requests. Sound001 uses the persistent selected device. Completion does not advance ending phases. Muting resets through the existing browser adapter; unmuting within a phase does not restart music.",
     "choice": "Replay returns an explicit choice event to the application. Yes initializes difficulty directly, bypassing the browser title and its music. Main reset0 occurs after difficulty confirmation; No receives the replay reset0 and main reset0 before credits. Credits1098 adds a third reset0 on No; the new ending presentation controller also translates skip/exit requests.",
-    "unchanged": "Full ending presentation/input translation is described in reference/ending-presentation.json. Conditional unit/native wait-boundary checks assume completed picture calls; browser executes all bands. Bank animation and original IRQ phase remain unverified."
+    "unchanged": "Full ending presentation/input translation is described in reference/ending-presentation.json. The subsequent bank milestone is reference/bank.json. Conditional unit/native wait-boundary checks assume completed picture calls; browser executes full bank/ending presentations. Original IRQ phase remains unverified."
   },
   "scenario": {
     "unitCases": 6,

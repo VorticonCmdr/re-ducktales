@@ -60,6 +60,10 @@ test("original map pixels and keyboard bank round trip", async ({ page }) => {
   await expect.poll(async () => (await state(c)).campaign.day).toBe(4);
   expect((await state(c)).campaign.location).toBe(0);
   expect((await state(c)).campaign.banked).toBe(0);
+  await expect(c).toHaveAttribute("data-scene", "bank");
+  await page.keyboard.down("Space");
+  await expect(c).toHaveAttribute("data-scene", "map", { timeout: 10000 });
+  await page.keyboard.up("Space");
   await point(c, 46, 139);
   await page.keyboard.press("Space");
   await expect(c).toHaveAttribute("data-scene", "office");

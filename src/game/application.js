@@ -15,6 +15,7 @@ import { InvestmentScreen } from "./investment-screen.js";
 import { CampaignEnding, depositAccounts } from "./ending.js";
 import { advanceRival, RivalReport, RIVAL_UNLOCK } from "./rival.js";
 import { AtomicTransport } from "./atomic-transport.js";
+import { BankScene } from "./bank.js";
 import { SystemControls } from "./system-controls.js";
 export const DRIVER_HZ = 1193182 / (1365 * 12);
 export const RETRACE_HZ = 70.086;
@@ -28,8 +29,11 @@ export class Game {
     expeditionResources = null,
     audioEnabled = false,
     investmentResources = null,
+    bankResources = null,
   } = {}) {
     this.expeditionResources = expeditionResources;
+    this.bankResources = bankResources;
+    this.bank = null;
     this.audioEnabled = audioEnabled;
     this.audioScope = 0;
     this.visitNotice = null;
@@ -59,6 +63,7 @@ export class Game {
     this.pendingJungleSystemKeys = new Map();
     this.pendingPhotographySystemKeys = new Map();
     this.pendingEndingSystemKeys = new Map();
+    this.pendingBankSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -214,6 +219,7 @@ export class Game {
         "jungle",
         "photography",
         "ending",
+        "bank",
       ].includes(this.scene) &&
       !(this.scene === "ending" && this.ending.phase === "closed") &&
       ["pause", "quit", "toggle-sound"].includes(event.type)
@@ -233,7 +239,9 @@ export class Game {
                   ? this.pendingPhotographySystemKeys
                   : this.scene === "ending"
                     ? this.pendingEndingSystemKeys
-                    : this.pendingBinSystemKeys;
+                    : this.scene === "bank"
+                      ? this.pendingBankSystemKeys
+                      : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -260,6 +268,7 @@ export class Game {
       this.rivalReport?.setAudioEnabled(event.enabled);
       this.atomicTransport?.setAudioEnabled(event.enabled);
       this.ending?.setAudioEnabled(event.enabled);
+      this.bank?.setAudioEnabled(event.enabled);
       this.startTitleMusic();
       return;
     }
@@ -296,6 +305,8 @@ export class Game {
       this.pendingJungleSystemKeys.clear();
       this.pendingPhotographySystemKeys.clear();
       this.pendingEndingSystemKeys.clear();
+      this.pendingBankSystemKeys.clear();
+      this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
       this.briefing = null;
@@ -341,11 +352,17 @@ export class Game {
       this.jungle?.setControls(this.controls);
       this.photography?.setControls(this.controls);
       this.ending?.setControls(this.controls);
+      this.bank?.setControls(this.controls);
       return;
     }
     if (this.scene === "investments") {
       this.investments.input(event);
       this.collectInvestments();
+      return;
+    }
+    if (this.scene === "bank") {
+      this.bank.input(event);
+      this.collectBank();
       return;
     }
     if (this.scene === "ending") {
@@ -580,13 +597,7 @@ export class Game {
     c.day += days;
     c.location = target;
     if (target === 0) {
-      this.deposit();
-      this.rareCoinTaken = false;
-      if (c.day >= 30) {
-        this.beginEnding(true);
-        return;
-      }
-      this.completeCampaignAction({ type: "map" });
+      this.startBank({ toEnding: c.day >= 30 });
     } else {
       if (c.day > 30) {
         this.beginEnding();
@@ -608,8 +619,14 @@ export class Game {
       if (this.scene === "jungle") this.jungle.advanceBlockedTick();
       if (this.scene === "photography") this.photography.advanceBlockedTick();
       if (this.scene === "ending") this.ending.advanceBlockedTick();
+      if (this.scene === "bank") this.bank.advanceBlockedTick();
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
+      return;
+    }
+    if (this.scene === "bank") {
+      this.bank.advanceTick();
+      this.collectBank();
       return;
     }
     if (this.scene === "atomic-transport") {
@@ -714,6 +731,12 @@ export class Game {
       if (this.scene === "photography")
         this.photography.advanceBlockedRetrace();
       if (this.scene === "ending") this.ending.advanceBlockedRetrace();
+      if (this.scene === "bank") this.bank.advanceBlockedRetrace();
+      return;
+    }
+    if (this.scene === "bank") {
+      this.bank.advanceRetrace();
+      this.collectBank();
       return;
     }
     if (this.scene === "ending") {
@@ -826,6 +849,7 @@ export class Game {
     this.pendingJungleSystemKeys.clear();
     this.pendingPhotographySystemKeys.clear();
     this.pendingEndingSystemKeys.clear();
+    this.pendingBankSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "flight") this.flight.flushInput();
@@ -834,6 +858,7 @@ export class Game {
     else if (this.scene === "jungle") this.jungle.flushInput();
     else if (this.scene === "photography") this.photography.flushInput();
     else if (this.scene === "ending") this.ending.flushInput();
+    else if (this.scene === "bank") this.bank.flushInput(true);
     else {
       this.handleInput({ type: "controls", fire: false, direction: null });
       this.effects.push({ type: "flushControls" });
@@ -878,9 +903,23 @@ export class Game {
       this.photography.resumeInputPoll();
       this.collectPhotography();
     }
+    if (result === "resume" && this.scene === "bank") {
+      this.bank.resumeInputPoll();
+      this.collectBank();
+    }
     if (result === "resume" && this.scene === "ending") {
       this.ending.resumeInputPoll();
       this.collectEnding();
+    }
+  }
+  pollBankSystemInput() {
+    return this.pollSystemInput(this.pendingBankSystemKeys);
+  }
+  flushBankInput(release = false) {
+    this.pendingBankSystemKeys.clear();
+    if (release) {
+      this.handleInput({ type: "controls", fire: false, direction: null });
+      this.effects.push({ type: "flushControls" });
     }
   }
   pollEndingSystemInput() {
@@ -1257,9 +1296,39 @@ export class Game {
   beginEnding(alreadyDeposited = false) {
     const c = this.campaign;
     if (!c || c.day < 30) throw Error("Campaign ending before its deadline");
+    this.startBank({ toEnding: true, alreadyDeposited });
+  }
+  startBank({ toEnding = false, alreadyDeposited = false } = {}) {
+    const c = this.campaign;
     if (!alreadyDeposited) this.deposit();
     c.location = 0;
     this.rareCoinTaken = false;
+    if (!this.bankResources) throw Error("Missing bank resources");
+    this.bankToEnding = toEnding;
+    this.bank = new BankScene({
+      ...this.bankResources,
+      banked: c.banked,
+      rivalBanked: c.rival.banked ?? 0,
+      seed: this.seed,
+      audioEnabled: this.audioEnabled,
+      pollInput: () => this.pollBankSystemInput(),
+      flushInput: (release) => this.flushBankInput(release),
+    });
+    this.bank.setControls(this.controls);
+    this.scene = "bank";
+    this.collectBank();
+  }
+  collectBank() {
+    this.effects.push(...this.bank.drainEvents());
+    this.seed = this.campaign.seed = this.bank.seed;
+    if (!this.bank.complete) return;
+    const toEnding = this.bankToEnding;
+    this.bank = null;
+    if (!toEnding) {
+      this.completeCampaignAction({ type: "map" });
+      return;
+    }
+    const c = this.campaign;
     // Main0187 skips ordinary market cleanup past day30. An exact day30 bank
     // arrival performs cleanup before the winner comparison.
     if (c.day === 30) {
@@ -1351,6 +1420,14 @@ export class Game {
         : {}),
       investments: this.investments?.snapshot() ?? null,
       ending: this.ending?.snapshot() ?? null,
+      bank: this.bank?.snapshot() ?? null,
+      ...(this.pendingBankSystemKeys.size
+        ? {
+            pendingBankSystemKeys: [...this.pendingBankSystemKeys].sort(
+              (a, b) => a[0] - b[0],
+            ),
+          }
+        : {}),
       ...(this.pendingEndingSystemKeys.size
         ? {
             pendingEndingSystemKeys: [...this.pendingEndingSystemKeys].sort(

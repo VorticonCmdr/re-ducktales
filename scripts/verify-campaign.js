@@ -1,3 +1,7 @@
+import {
+  bankResources,
+  advanceBankToReturn,
+} from "../tests/helpers/bank-fixture.js";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
@@ -12,6 +16,8 @@ export const CAMPAIGN_INPUTS = [
   { type: "fire" },
   { type: "right" },
   { type: "fire" },
+  { type: "controls", fire: true, direction: null },
+  { type: "controls", fire: false, direction: null },
   { type: "point", x: 46, y: 139 },
   { type: "fire" },
 ];
@@ -25,7 +31,7 @@ export function compareCampaign(
     3,
     "incomplete original campaign checkpoints",
   );
-  const g = new Game({ locations });
+  const g = new Game({ locations, bankResources });
   let consumed = 0,
     executed = 0;
   assert.deepEqual(
@@ -65,13 +71,18 @@ export function compareCampaign(
     executed++;
   }
   compare(0);
+  g.input(inputs[7]);
+  consumed++;
+  advanceBankToReturn(g);
+  g.input(inputs[8]);
+  consumed++;
   compare(1);
-  for (const event of inputs.slice(7)) {
+  for (const event of inputs.slice(9)) {
     g.input(event);
     consumed++;
   }
   compare(2);
-  assert.equal(consumed, 9, "unconsumed campaign inputs");
+  assert.equal(consumed, 11, "unconsumed campaign inputs");
   assert.equal(executed, 3);
   assert.equal(g.scene, "office");
   return executed;
@@ -90,7 +101,7 @@ export async function verifyCampaign() {
       `corrupt campaign artifact ${a.path}`,
     );
   }
-  assert.equal(m.inputs.length, 9, "unfinished campaign input schedule");
+  assert.equal(m.inputs.length, 11, "unfinished campaign input schedule");
   assert.equal(m.expectedCheckpointCount, 3);
   const fixture = JSON.parse(await readFile(m.artifacts.trace.path, "utf8"));
   const locations = parseLocations(

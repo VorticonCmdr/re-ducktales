@@ -261,6 +261,44 @@ export class Renderer {
     return this.cache.get(key);
   }
   renderScene(game) {
+    if (game.scene === "bank") {
+      const b = game.bank;
+      const entries = this.resources.archives.get("MAC.ARC");
+      this.bankRasterCache ??= new WeakMap();
+      const render = (commands) =>
+        renderFlightPixels(
+          commands,
+          entries,
+          this.font,
+          "MAC.ARC",
+          this.bankRasterCache,
+        );
+      let pixels;
+      if (b.transition) {
+        const t = b.transition;
+        let source;
+        if (t.source) source = render(t.source);
+        else {
+          if (
+            this.bankTransitionGame !== b ||
+            this.bankTransitionToken !== t.token
+          ) {
+            this.bankTransitionGame = b;
+            this.bankTransitionToken = t.token;
+            this.bankTransitionSource = this.ctx.getImageData(
+              0,
+              0,
+              320,
+              200,
+            ).data;
+          }
+          source = this.bankTransitionSource;
+        }
+        pixels = endingTransitionPixels(t, source, render(t.target));
+      } else pixels = render(b.frame);
+      this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
+      return;
+    }
     if (game.scene === "ending") {
       const e = game.ending;
       if (e.transition) {

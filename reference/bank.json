@@ -1,0 +1,267 @@
+{
+  "id": "bank-fb658562-v1",
+  "baseRevision": "b9cad21",
+  "buildManifest": "reference/build.json",
+  "source": {
+    "format": "MZ EXEPACK resident plus appended physical overlay3; logical INT3f6. x86 LE16 real mode, no extender, far caller-cleaned C calls and device-specific far dispatch.",
+    "overlay": {
+      "fileOffset": 72704,
+      "bytes": 3830,
+      "headerBytes": 512,
+      "bodyBytes": 3318,
+      "sha256": "bd8fa987de02abbf5bf0127a3611718fded28042d4a8ad8b40652216e56201b0"
+    },
+    "caller": {
+      "offset": 4150,
+      "length": 74,
+      "sha256": "5cfd962a61a83a7cf7bdddcee7d77219344edfe89f4446c50e1be0396e9c2860"
+    },
+    "imageBase": 501,
+    "overlaySegment": 3596,
+    "dataSegment": 5123,
+    "graphicsSegment": 11991,
+    "graphicsSha256": "6ee03bd93f3979546d5b5c1511e377685e2aa5401caaf407c3308bca0b812aee"
+  },
+  "captureTool": "DOSBox MCP0.84.0-vc1 f6d9b / protocol1.14",
+  "configuration": {
+    "machine": "svga_s3",
+    "core": "normal",
+    "protectedMode": false,
+    "resourceRoot": "C: read-only game/",
+    "note": "Actual CPU cycles need host configuration confirmation; no full CPU-time comparison claimed."
+  },
+  "evidenceLevel": "Eight conditional original arithmetic cases plus zero-score original completed pixels and first RNG/Fire-return checkpoints. No whole-machine replay or nonzero full-animation native comparison.",
+  "expectedArithmeticCases": 8,
+  "expectedCleanupCases": 1,
+  "expectedPixelCheckpoints": 2,
+  "expectedRngCheckpoints": 1,
+  "caseInputs": [
+    [
+      0,
+      0
+    ],
+    [
+      9999,
+      0
+    ],
+    [
+      10000,
+      29999
+    ],
+    [
+      40000,
+      0
+    ],
+    [
+      0,
+      99999
+    ],
+    [
+      2147483647,
+      0
+    ],
+    [
+      2147483648,
+      4294967295
+    ],
+    [
+      4294957296,
+      0
+    ]
+  ],
+  "startingRecipe": "Fresh DOS launch of supported DUCKTALE, N and Space through intro/difficulty; office Right held with Fire to map, acknowledge security. Native map move right until SS1403:[40774]>=200 at overlay2:1ec8; cancel schedule/release; observe Macaroon, Fire, Right, Fire. Main1036 and overlay3:0000 identities revalidated. Stop bank05a8 after assets loaded and before arithmetic. Exact repeatable capture boundaries and current emulator state are documented in docs/bank.md.",
+  "injections": [
+    "Pure cases: authored bank/rival balances, saved CPU general/segment registers and136 stack bytes. No output-derived values or fitted RNG/timers.",
+    "EIP is not writable through this MCP API. A temporary far jump at post-comparison06c8 redirects to05a8 when stepped once; arithmetic executes original05a8..06c7 bytes. The original five bytes are restored before presentation continues. Case8 repeats zero as cleanup.",
+    "These partial restores are valid only for the bounded no-I/O/no-RNG/no-allocation arithmetic segment. CPU flags, clocks, PIC, BIOS/device state are not restored; they are not full machine checkpoints."
+  ],
+  "fittedInputs": [],
+  "comparisonRules": "Exact signed pile classes,target and loop limit; exact completed RGBA pixels, descriptor fields and seed. Conditional presentation uses explicit input-poll suspension before first RNG. No final-state-derived replay inputs or presentation tolerance. The four recorded reader-return bytes form an independent consumed-input stream. Port carries its own RNG/page state between them. The final40-poll comparison supplies a separate declared neutral provider after Fire release; no full hardware/CPU timing replay is claimed.",
+  "environment": {
+    "clocks": "Independent driver1193182/16380 Hz and retrace70.086 Hz. CPU instruction time remains outside port timing.",
+    "input": "Digital Fire/direction provider plus semantic pulses; routine flushes clear pulses and global keys while physical held joystick Fire remains readable. Browser keyboard holds supply this digital provider; DOS keyboard typematic timing is not established.",
+    "audio": "Guarded request0 on bank asset entry,67/68 at scale reflection,36 at Fire return. Device completion does not drive this routine."
+  },
+  "artifacts": {
+    "bank-before-deposit": {
+      "path": ".local/bank-before-deposit.json",
+      "sha256": "5980181f87ece74a10ad60a0170271be4f416c9883d59a477be7c57caa953fe9"
+    },
+    "bank-original-entry": {
+      "path": ".local/bank-original-entry.json",
+      "sha256": "4c22d1ca27299a326628bdfa6aed511098594d7eadbdc685e9c4d83e63b2a01b"
+    },
+    "bank-pure-start": {
+      "path": ".local/bank-pure-start.json",
+      "sha256": "f7a0f78ce9f42b46112f8a0345747a395a073cb44e185e498ec0967574060f10"
+    },
+    "bank-pure-0": {
+      "path": ".local/bank-pure-0.json",
+      "sha256": "637ed48a20440310c564085ae6919e587f0d5668cb15bedf26fd945f2dd43845"
+    },
+    "bank-pure-1": {
+      "path": ".local/bank-pure-1.json",
+      "sha256": "8a189f6625d2dd383bd2b8b15997ceb19e691fd7f9afc5e9a5b0c80d4c2790bc"
+    },
+    "bank-pure-2": {
+      "path": ".local/bank-pure-2.json",
+      "sha256": "78825a5dd36098be7b40fe25f844feb65ed6b72ad798b73c43306314439d590b"
+    },
+    "bank-pure-3": {
+      "path": ".local/bank-pure-3.json",
+      "sha256": "3fe9e0e920854e67c05df7521ace1312b687272a901f626bf2246a28c5cf591c"
+    },
+    "bank-pure-4": {
+      "path": ".local/bank-pure-4.json",
+      "sha256": "85b6ae594da8da62f54e88fb7c0ff27133b6c706b6d73c546504336992d1e43f"
+    },
+    "bank-pure-5": {
+      "path": ".local/bank-pure-5.json",
+      "sha256": "3426f98faa5756431ab73044851237b41e204e4680c65c983076724634555aec"
+    },
+    "bank-pure-6": {
+      "path": ".local/bank-pure-6.json",
+      "sha256": "10b386eff02e04d03de0424d08f2f0279318cbaca7a6e5891a9ea19e7895a4ac"
+    },
+    "bank-pure-7": {
+      "path": ".local/bank-pure-7.json",
+      "sha256": "a9d8991ece0e65f1aa0b28e129078ae85617047ab6168dd7ff2f0ef5a99f491e"
+    },
+    "bank-pure-8": {
+      "path": ".local/bank-pure-8.json",
+      "sha256": "5ce65845379ce193d8e3d2ca04d90b6c584ea1a98a385e9b163d67cc269e431b"
+    },
+    "bank-first-reveal": {
+      "path": ".local/bank-first-reveal.json",
+      "sha256": "62d821c1e9ebe81f0c4d7a182b2dbd61ff517b8d70eb7b3dd7f6af73065a11f1"
+    },
+    "bank-idle-before-input": {
+      "path": ".local/bank-idle-before-input.json",
+      "sha256": "c29819e5aea84a5c2b841f0598a0ba16957573c87569c7cb658e6c3e6cb56ebb"
+    },
+    "bank-first-random": {
+      "path": ".local/bank-first-random.json",
+      "sha256": "0df17c5cefa054a9da761d52de8088bc09c1632e9cc08b720b78d3f52d5dea6a"
+    },
+    "bank-first-reveal-png": {
+      "path": ".local/bank-first-reveal.png",
+      "sha256": "fa3c6fefab35b5dd1dbe1ac2385bab95bdadd6d819af824ee4f1c759cc351c79"
+    },
+    "bank-idle-before-input-png": {
+      "path": ".local/bank-idle-before-input.png",
+      "sha256": "7ebdf54215bec61769d58b4bddeed5614f16d4313df8b2d92f51ceea49bd1823"
+    },
+    "bank-pure-code-reset": {
+      "path": ".local/bank-pure-code-reset.json",
+      "sha256": "dd22ff72772644e09cbea8e37ccab6680b34c0ddc0c59a1c7e2946a721862ea0"
+    },
+    "bank-stream-start": {
+      "path": ".local/bank-stream-start.json",
+      "sha256": "77d0d920ec68cc103e1325c59159a16f7d9131be8f385434666f3b7aedb8da99"
+    },
+    "bank-stream-before-input": {
+      "path": ".local/bank-stream-before-input.json",
+      "sha256": "acec08d53d42ffca2837543119cc141d4cc74c92a15a5a6d9b4152b46b3e8496"
+    },
+    "bank-stream-poll-0": {
+      "path": ".local/bank-stream-poll-0.json",
+      "sha256": "253f323b22f7395407f38f559c2374a70ad6701d098f2ce76ff6062f0e764c43"
+    },
+    "bank-stream-poll-1": {
+      "path": ".local/bank-stream-poll-1.json",
+      "sha256": "6172c45139e836a688acbd4dad5fb961895e62579f082e950e36d01c7bb35eaa"
+    },
+    "bank-stream-poll-2": {
+      "path": ".local/bank-stream-poll-2.json",
+      "sha256": "ef0049162effe4724de0a7329725ab9fcfdd99bc2bfebff40b7241477f88da81"
+    },
+    "bank-stream-poll-3": {
+      "path": ".local/bank-stream-poll-3.json",
+      "sha256": "b6cacef41efce7be554742b222159bb454c75c1eca09af55e67ea97278829907"
+    },
+    "bank-stream-outro-wait": {
+      "path": ".local/bank-stream-outro-wait.json",
+      "sha256": "ed1ce3903332668955a6e30751aabb0b8d8d5b06fff02e7d898d4e32f927fd27"
+    },
+    "bank-stream-main-return": {
+      "path": ".local/bank-stream-main-return.json",
+      "sha256": "e58be995885072bfe4a7f2fb585b968cce313406bb733d22092340323fda4f37"
+    }
+  },
+  "verification": [
+    "node scripts/verify-bank.js",
+    "node --test tests/bank.test.js",
+    "npm run test:browser -- tests/browser/bank.spec.js"
+  ],
+  "limitations": [
+    "Native whole-sequence CPU/IRQ/input timing remains unverified.",
+    "Nonzero scale movement/coin sparkle pixels require further original comparison.",
+    "Two attempted outro/caller captures missed their stops and are retained only as .local/*-unfinished.json; they are not accepted artifacts.",
+    "The earlier bank-idle-return.json timed Fire observation has no recorded consumption-boundary input stream and is excluded from acceptance."
+  ],
+  "expectedArtifactCount": 26,
+  "expectedStreamInputCount": 4,
+  "streamInputs": [
+    0,
+    0,
+    0,
+    192
+  ],
+  "streamRecipe": "Second natural bank arrival from the current Macaroon marker (zero travel days), no score/memory/CPU injection. Original overlay reloaded and all3318 relocated bytes captured. Stop before first reader0aac. Stop after reader0ab1 for each consumed AL. After three neutral readers schedule hardware Space press at0ms/release10000ms; cancel/release on observed Fire. Inputs are direct CPU-return values, not inferred from RNG/checkpoint outputs. Stop helper03b9:09f5, then main1076 with no additional input.",
+  "milestoneCases": {
+    "controller": 8,
+    "browser": 2
+  },
+  "portVerification": {
+    "baseRevision": "b9cad21",
+    "node": "v26.8.1",
+    "playwright": "1.64.1",
+    "sourceHashes": {
+      "src/game/bank.js": "6e8e4fff06ebd4234150b4c5fe25148baa5236d9c5f82070c91f603a80c35de6",
+      "src/game/application.js": "271ed09935230f63cc60397d583d4376d9d357797ed8f8af78c5e0fc1c371f2d",
+      "src/game/browser.js": "f2d9a88002d081bfd783b530b82ab81bb8676b80448bf824e00401e125fe597b",
+      "src/game/renderer.js": "0cfd85fbb1536899fc21856fd2f60f6c785a7c7cc35c4e1e4f89cbfab8158021",
+      "src/game/resources.js": "ae329ecb3cd7f10476710994a80d87d5282d04033e8110ac6045295d17445f09",
+      "scripts/prepare-bank-analysis.py": "d0b2dd6a3d8171cc9fe09eae9e0fd80df2da808b05949d9d0bda299febd0b976",
+      "scripts/verify-bank.js": "3ce0f6b3cada485233d146584de7de36a773ecadf65658066d12541b5dbd109c",
+      "scripts/verify-campaign.js": "1c37b3a58dd0059e94df17f6c7f5b8463d813bdedc9bd5c543e9d03e5a680232",
+      "tests/bank.test.js": "ee4f13ac09bbeb37273ad131aa53724815eecdd7396f9109c1c6ce81fef26905",
+      "tests/helpers/bank-fixture.js": "49889277ff1e3749ceacd192264410de790948e5742094bf6b74b6238915f9e0",
+      "tests/browser/bank.spec.js": "31a670276be90518c205b222f6f4514ff7188c488c40b7443721d3541e18545d",
+      "tests/browser/helpers/ending-route.js": "eab7ee359b7b7c4bc45ca49308517f1c8444852994ac5dc4cacec42ee76dfc32",
+      "tests/browser/game.spec.js": "dd1e9e173ed49e5a61c86cc64fdf268fbaa6afcf772e4b9c32115a2165f79438",
+      "tests/browser/campaign.spec.js": "aa90a89e4b70a2117a59cbfe88de0581e5535db19d00c5c26f53803c53efaa69",
+      "tests/browser/investments.spec.js": "97e113665ceb47c00d2a22d146b9e05161dca2389d34ccae4ac09855312c905d"
+    }
+  },
+  "receipts": {
+    "scope": "Port acceptance and verification outputs. Native evidence remains the26 required artifacts above.",
+    "unitCases": 112,
+    "developmentBrowserCases": 59,
+    "productionBrowserCases": 2,
+    "skippedCases": 0,
+    "artifacts": {
+      "fullVerification": {
+        "path": ".local/bank-full-verify.log",
+        "sha256": "09c5ff6193c730077e065beec8cf05c76a8bf40632fe0f34bdaeedec21dd6db3"
+      },
+      "zeroScreenshot": {
+        "path": ".local/bank-full-zero.png",
+        "sha256": "54ef7a1cfb658d099ac5a2c8a098b68ac43a73672529e42ad1e0e8e91caab14f"
+      },
+      "earnedScreenshot": {
+        "path": ".local/bank-full-earned.png",
+        "sha256": "235dfa932fd0c3658ee28d33be7c27c6eb2991b8a20522569fd5ce3e2ae06972"
+      },
+      "earlierFailure": {
+        "path": ".local/bank-full-verify-first-failed.log",
+        "sha256": "3bf53622300c415209e5c57e13b5826a73e50e44a6a0e68c64ae8998fe19ed3a",
+        "scope": "Failed earlier test script omitted required bank Fire; not a passing receipt."
+      },
+      "correctedBasicRoute": {
+        "path": ".local/bank-basic-route-corrected.log",
+        "sha256": "58d08624b1e1c714a2e3ffc5176aa9857013194a79c2b829390d20063b519720"
+      }
+    }
+  }
+}

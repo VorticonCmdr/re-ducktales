@@ -38,6 +38,16 @@
       "type": "fire"
     },
     {
+      "type": "controls",
+      "fire": true,
+      "direction": null
+    },
+    {
+      "type": "controls",
+      "fire": false,
+      "direction": null
+    },
+    {
       "type": "point",
       "x": 46,
       "y": 139
@@ -67,5 +77,6 @@
       "sha256": "de05e837012d12561531473162859238acc2a37a98bbb53148bee52f5b7b48cb"
     }
   },
-  "verify": "npm run verify:campaign"
+  "verify": "npm run verify:campaign",
+  "bankEnvironment": "Port now advances the full bank with an explicit held digital Fire before its first reader, then release on return. Driver/retrace clocks use an independent phase-zero provider. Native artifact values and account/date comparison fields are unchanged. Original input/CPU timing and its unrecorded bank idle RNG are outside this legacy comparison."
 }

@@ -107,5 +107,6 @@
         "sha256": "38a5e567a37be87b73c08f04718f4da7c929c7015d1588c3d2541b38607c3d2a"
       }
     }
-  }
+  },
+  "followOnScope": "These receipts/source hashes describe milestoneb9cad21. The subsequent reference/bank.json translates the preceding bank sequence and caller clear/flip; current status is in docs/STATUS.md."
 }

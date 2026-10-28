@@ -39,6 +39,13 @@ test("calendar travel produces company news and acknowledged bulletins stay cons
     await press("Space");
     await press("ArrowRight");
     await press("Space");
+    expect((await state()).scene).toBe("bank");
+    await page.keyboard.down("Space");
+    for (let step = 0; step < 1000 && (await state()).scene === "bank"; step++)
+      await page.clock.runFor(16);
+    await page.keyboard.up("Space");
+    await page.clock.runFor(16);
+    expect((await state()).scene).toBe("map");
     await press("Escape");
     expect((await state()).scene).toBe("office");
     expect((await state()).campaign.day).toBe(7 + trip * 6);

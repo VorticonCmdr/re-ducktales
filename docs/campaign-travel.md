@@ -53,11 +53,12 @@ The opening map PNG matches every RGBA pixel. Location information currently
 shows original descriptions and calculated journey duration, omitting treasure
 valuation/description. The unlocked atomic aircraft choice is now connected; see
 [atomic transport](atomic-transport.md). These screens have no
-claim of full pixel parity. Door, security, bank celebration, initial map reveal,
+claim of full pixel parity. Door, security, initial map reveal,
 and other transition animations are omitted. The checked EXE's security routine
 has an unconditional branch returning success at overlay 2:0c9c–0ca5.
 
-The environment supplies semantic input and elapsed time through the scheduler.
+The bank now runs its original scales, balances and idle RNG before returning;
+see [bank evidence](bank.md). The environment supplies semantic input and elapsed time through the scheduler.
 Browser cursor clicking, buttons, and Back/Office are explicit accessibility
 adapters; original keyboard selection remains available. Rendering observes the
 simulation and never supplies results. Map polling uses two driver ticks; DOS

@@ -40,8 +40,8 @@ these are game routines,not the EXEPACK stub.
 
 `src/game/ending.js` owns account arithmetic and ending/menu clocks. Simulation
 is independent of the DOM. The existing scheduler supplies driver ticks and
-semantic input; the renderer only observes state. Complete original bank
-celebration animation and CPU-bound redraw costs are not established. Striped
+semantic input; the renderer only observes state. Bank presentation is translated with its own [conditional original evidence](bank.md).
+Nonzero complete-animation parity and CPU-bound redraw costs are not established. Striped
 picture reveals and input-poll boundaries are translated from source. Ending music dispatch is now translated
 as described below. Credits first/last text and farewell pixels now match
 the original; two isolated20-poll waits also match140 driver ticks. This does
@@ -185,8 +185,9 @@ is injected into those browser journeys. The existing earned-score winning and
 real-flight losing routes remain separate checks.
 
 The original music milestone did not translate presentation or input timing.
-The following milestone adds those source paths; bank animation, original IRQ
-phase and hardware waveform timing remain unverified.
+The following milestone adds those source paths; the later bank milestone adds
+the preceding bank sequence. Original IRQ phase and hardware waveform timing
+remain unverified.
 Run `node --test tests/ending-audio.test.js`, `npm run verify:ending`, and
 `npm run test:browser -- tests/browser/ending-audio.spec.js tests/browser/ending.spec.js`.
 These are included in `npm run verify`. Screenshots stay local at
@@ -222,8 +223,8 @@ selected page with one retrace, flushes after a direction and waits14 driver
 ticks before the next read. Committed page descriptions survive consecutive
 flips, including neutral input loops. Presentation reads those descriptions and
 cannot drive simulation. The initial wipe consumes the preceding browser frame
-as a presentation-only input. The original bank animation that would precede
-this wipe remains unported, so its incoming picture is not claimed to match DOS.
+as a presentation-only input. The subsequent bank milestone translates that sequence and its caller clear/flip;
+see [bank evidence](bank.md). The initial ending wipe now follows that black return frame.
 
 Credits1098 resets sound on entry. Its0dee helper first waits20 reads, clears
 both footer pages with one flip, then presents26 names, each with one flip and

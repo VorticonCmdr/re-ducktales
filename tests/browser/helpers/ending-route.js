@@ -31,6 +31,14 @@ export async function campaign(page, hard = false) {
     });
     await page.clock.runFor(100);
   }
+  async function finishBank() {
+    if ((await state()).scene === "bank") {
+      await page.keyboard.down("Space");
+      await until((s) => s.scene !== "bank");
+      await page.keyboard.up("Space");
+      await page.clock.runFor(16);
+    }
+  }
   async function bankRoundTrip() {
     if ((await state()).scene === "office") {
       await page.locator("#map").click();
@@ -41,7 +49,10 @@ export async function campaign(page, hard = false) {
     await press("Space");
     await press("ArrowRight");
     await press("Space");
+    await finishBank();
     if ((await state()).scene !== "ending") await press("Escape");
+    // Crossing the deadline on an office leg forces another final bank call.
+    await finishBank();
   }
   async function ending({ waitForReady = true } = {}) {
     for (let trip = 0; trip < 6 && (await state()).scene !== "ending"; trip++)

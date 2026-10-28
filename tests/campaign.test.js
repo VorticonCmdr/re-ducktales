@@ -1,3 +1,7 @@
+import {
+  bankResources,
+  finishBankWithHeldFire,
+} from "./helpers/bank-fixture.js";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -88,7 +92,7 @@ test("original location permutation and wrapped integer journey costs", () => {
   );
 });
 test("cash deposit, coin reset, cancellation and return retain closed-loop state", () => {
-  const g = new Game({ locations });
+  const g = new Game({ bankResources, locations });
   g.input({ type: "fire" });
   g.input({ type: "fire" });
   g.input({ type: "money-bin" });
@@ -111,6 +115,7 @@ test("cash deposit, coin reset, cancellation and return retain closed-loop state
   assert.equal(g.money, 0);
   assert.equal(g.rareCoinTaken, false);
   assert.equal(g.campaign.day, 4);
+  finishBankWithHeldFire(g);
   g.input({ type: "point", x: 46, y: 139 });
   g.input({ type: "fire" });
   assert.equal(g.scene, "office");
@@ -119,7 +124,7 @@ test("cash deposit, coin reset, cancellation and return retain closed-loop state
 });
 test("invalid resources and unsupported journeys fail explicitly", () => {
   assert.throws(() => parseLocations([]), /35/);
-  const g = new Game({ locations });
+  const g = new Game({ bankResources, locations });
   g.input({ type: "fire" });
   g.input({ type: "fire" });
   g.input({ type: "map" });
@@ -132,6 +137,7 @@ test("invalid resources and unsupported journeys fail explicitly", () => {
   assert.equal(g.campaign.day, 1);
   g.campaign.day = 28;
   g.travel(0);
+  finishBankWithHeldFire(g);
   assert.equal(g.campaign.day, 31);
   assert.equal(g.scene, "ending");
   assert.equal(g.ending.won, true); // Original ties favor Scrooge.

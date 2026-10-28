@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("keyboard route loads originals, dives, returns and restarts", async ({
+test("keyboard route loads originals, dives, banks, returns and restarts", async ({
   page,
 }) => {
   const errors = [];
@@ -89,6 +89,10 @@ test("keyboard route loads originals, dives, returns and restarts", async ({
   expect(banked.money).toBe(0);
   expect(banked.rareCoinTaken).toBe(false);
   expect(banked.campaign.day).toBe(4);
+  await expect(canvas).toHaveAttribute("data-scene", "bank");
+  await page.keyboard.down("Space");
+  await expect(canvas).toHaveAttribute("data-scene", "map", { timeout: 10000 });
+  await page.keyboard.up("Space");
   await page.locator("#back").click();
   await expect(canvas).toHaveAttribute("data-scene", "office");
   expect(JSON.parse(await canvas.getAttribute("data-state")).campaign.day).toBe(

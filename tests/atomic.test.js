@@ -1,3 +1,7 @@
+import {
+  bankResources,
+  finishBankWithHeldFire,
+} from "./helpers/bank-fixture.js";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -14,7 +18,7 @@ const locations = parseLocations(parseArchive(readFileSync("game/LOC.ARC"))),
   loot = parseLoot(parseArchive(readFileSync("game/LOOT.ARC"))),
   clues = parseArchive(readFileSync("game/CLUES.ARC"));
 const game = () =>
-  new Game({ locations, loot, expeditionResources: { clues } });
+  new Game({ bankResources, locations, loot, expeditionResources: { clues } });
 
 test("atomic thresholds include their boundary roll and consume exactly one rotate draw", () => {
   for (const difficulty of [0, 1, 2]) {
@@ -143,6 +147,7 @@ test("atomic travel past the deadline deposits and ends before an expedition loa
   assert.equal(g.scene, "atomic-transport");
   assert.equal(c.day, 32);
   for (let i = 0; i < 7; i++) g.advanceTick();
+  finishBankWithHeldFire(g);
   assert.equal(g.scene, "ending");
   assert.equal(g.briefing, null);
   assert.equal(c.location, 0);

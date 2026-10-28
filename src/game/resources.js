@@ -5,6 +5,7 @@ export const REQUIRED_FILES = [
   "DUCKTALE.EXE",
   "MAIN.ARC",
   "MBIN.ARC",
+  "MAC.ARC",
   "LOC.ARC",
   "PLANE.ARC",
   "LOOT.ARC",

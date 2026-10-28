@@ -1,3 +1,7 @@
+import {
+  bankResources,
+  finishBankWithHeldFire,
+} from "./helpers/bank-fixture.js";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -14,7 +18,7 @@ import {
 const locations = parseLocations(parseArchive(readFileSync("game/LOC.ARC")));
 const loot = parseLoot(parseArchive(readFileSync("game/LOOT.ARC")));
 function game() {
-  return new Game({ locations, loot });
+  return new Game({ bankResources, locations, loot });
 }
 
 test("rival policy keeps first ties, signed cash thresholds and difficulty strategies", () => {
@@ -217,6 +221,7 @@ test("exact day30 ending waits for rival cleanup and deposits each account once"
   c.rivalUnlockMask = 4;
   c.rival.money = 5000;
   g.beginEnding();
+  finishBankWithHeldFire(g);
   assert.equal(g.scene, "rival-report");
   assert.equal(g.ending, null);
   assert.deepEqual(g.pendingCampaignAction, { type: "ending" });

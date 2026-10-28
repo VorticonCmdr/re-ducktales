@@ -87,6 +87,7 @@ for (const [at, hex] of [
   [0x22d, "b82300"],
   [0x25a, "b82200"],
   [0x559, "c746f62600"],
+  [0x6bf, "9aa519"],
 ])
   assert.equal(body.subarray(at, at + hex.length / 2).toString("hex"), hex);
 const live = tool(await json(`${root}/live-overlay.json`));
@@ -224,6 +225,67 @@ assert.deepEqual(
   [4, 35, 34].map((id) => ({ type: "sound", id })),
 );
 assert.deepEqual(component.outcome, { code: 38, action: "money-bin" });
+// Independent browser receipts are required separately from native component
+// comparisons. Their source hashes pin the current connected application.
+const browser = manifest.browserAcceptance;
+assert.equal(browser.caseCount, 2);
+assert.equal(browser.regressionCaseCount, 9);
+assert.equal(browser.unitCaseCount, 117);
+assert.equal(browser.expectedArtifactCount, 31);
+assert.equal(browser.artifacts.length, browser.expectedArtifactCount);
+for (const f of browser.artifacts) {
+  const bytes = await required(f.path);
+  assert.equal(bytes.length, f.bytes, `Truncated browser receipt ${f.path}`);
+  assert.equal(sha(bytes), f.sha256, `Corrupt browser receipt ${f.path}`);
+}
+const receipt = (name) => `${browser.artifactRoot}/${name}`;
+assert.deepEqual(await json(receipt("browser-status.json")), {
+  status: "passed",
+  failedTests: [],
+});
+assert.match(await readFile(receipt("browser.log"), "utf8"), /2 passed/);
+assert.match(await readFile(receipt("regression.log"), "utf8"), /9 passed/);
+assert.match(await readFile(receipt("unit.log"), "utf8"), /pass 117/);
+assert.match(
+  await readFile(receipt("negative-summary.log"), "utf8"),
+  /missing real Up rejects departure/,
+);
+const negative = await readFile(receipt("negative-browser.log"), "utf8");
+assert.match(negative, /Unfinished office door entry/);
+assert.match(negative, /1 failed/);
+assert.doesNotMatch(
+  negative,
+  /SETUP:|Test timeout|TimeoutError|No tests found/,
+);
+const source = await json(receipt("source-revision.json"));
+assert.ok(Object.keys(source.sha256).length > 60);
+for (const [path, hash] of Object.entries(source.sha256))
+  assert.equal(
+    sha(await required(path)),
+    hash,
+    `Changed current office browser source ${path}`,
+  );
+for (let i = 0; i < 19; i++) {
+  const name =
+    i === 0
+      ? "initial"
+      : i <= 13
+        ? `pendulum-${i - 1}`
+        : ["door-open", "door-pause", "roof-1", "roof-2", "roof-3"][i - 14];
+  const actual = PNG.sync.read(await required(receipt(`office-${i}.png`)));
+  assert.equal(actual.width, 320);
+  assert.equal(actual.height, 200);
+  assert.deepEqual(
+    actual.data,
+    bitmaps.get(name).png.data,
+    `Archived original browser picture ${name}`,
+  );
+}
+const hard = JSON.parse(
+  (await readFile(receipt("hard-game-replay.log"), "utf8")).trim(),
+);
+assert.equal(hard.checked, 25);
+assert.equal(hard.consumed, 3350);
 console.log(
-  "Office:20 exact native RGBA pictures/sprite tuples,8368 relocated bytes,3 retained input observations; carried19-flip/255-count departure and4 comparison negatives. Standalone only; no browser or original elapsed-time acceptance.",
+  "Office:20 exact native pictures/sprite tuples and8368 relocated bytes; carried19-flip/255-count departure,4 comparison negatives;2 browser cases/19 exact pictures,9 regressions/117 unit cases and missing-Up control pinned. Full branch/elapsed-time parity remains unproven.",
 );

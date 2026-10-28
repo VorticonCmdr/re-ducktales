@@ -2,7 +2,7 @@
   "version": 1,
   "buildManifest": "reference/build.json",
   "baseCommit": "6fc0ef4a9d23f324bb762bd6475f199acd4697a4",
-  "status": "Standalone source-derived office input/raster and money-bin departure. Not connected to the browser application yet.",
+  "status": "Connected office\u2192original money-bin departure\u2192dive\u2192reward/return\u2192restart. Two focused browser cases, nine existing browser regressions and117 unit cases pass; full branch integration gate pending.",
   "artifactRoot": ".local/office-native-postwait-20261028",
   "expectedCheckpointCount": 20,
   "expectedInputObservationCount": 3,
@@ -437,10 +437,176 @@
   "expectedArtifactCount": 48,
   "captureToolRevision": "office-postwait-v1; DOSBox MCP bridge0.1.1, engine0.84.0-vc1 (f6d9b), protocol1.14; exact recipe in docs/office-transitions.md; raw Ghidra listings and engine status pinned as private artifacts.",
   "verificationTools": {
-    "src/game/office.js": "2286ae90c0dcdce7a41fc4b067189a6a77437bf4a02259405d7a0c660bfd21d0",
+    "src/game/office.js": "123c84918f10e81f13c930c9935aad293a8cc08846abf805540a3d33250eaf9b",
     "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
     "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
     "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
-    "scripts/verify-office.js": "73c1e841fc620e30fb18b1a2cbce8a63df25d00381222b75d3d2c35fd55d07bb"
+    "scripts/verify-office.js": "4b742403654b6faf33761367e3ee89be2979279fe5b6ccea08b67799233cd698"
+  },
+  "browserAcceptance": {
+    "scope": "Two actual-browser scenarios;19 exact departure PNG comparisons, real keyboard and button input, queued-P/held-control flush,1000 reward/return, mid-animation restart, Tandy requests0/4/35/34/38 and nonzero samples. Nine existing game/system/audio browser scenarios pass. Hard Game replay retains25 exact checkpoints and3350 inputs; not an original whole-campaign comparison.",
+    "caseCount": 2,
+    "regressionCaseCount": 9,
+    "unitCaseCount": 117,
+    "fullBranchGate": "pending",
+    "artifactRoot": ".local/office-browser-accepted-20261028",
+    "artifacts": [
+      {
+        "path": ".local/office-browser-accepted-20261028/browser-status.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/browser.log",
+        "bytes": 666,
+        "sha256": "6618c948e5adf0eb879f78e08ee284470502d77c99218af6c87298aa6c846309"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/build.log",
+        "bytes": 832,
+        "sha256": "e68f0e8573a99d09d41a453600cc2d9cb2d949263b5e07f1c41f5d9f76621756"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/capture-config.js",
+        "bytes": 442,
+        "sha256": "5444a198f4cf8a61f2067a9f01f7e2608fe7195137d7700fc29025f0771c8214"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/hard-game-replay.log",
+        "bytes": 3353,
+        "sha256": "194482125c239601e59c663644c8ec1e300307d72d770888d2deb54be4f4153f"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/native.log",
+        "bytes": 310,
+        "sha256": "5055a2062fe995d9a0b66c638ab438075d9b259802ad736ea90e63714ee812ed"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/negative-browser.log",
+        "bytes": 2373,
+        "sha256": "e18481cabc3d52baba46c1093cfcb137d5b53766d9542a3b38ccec952b37ccf5"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/negative-summary.log",
+        "bytes": 91,
+        "sha256": "0f19b7b6fed4494d6082b0426763383b4b751dac696652cf745ef7acfe1f269c"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-0.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-1.png",
+        "bytes": 32787,
+        "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-10.png",
+        "bytes": 32787,
+        "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-11.png",
+        "bytes": 32752,
+        "sha256": "ee4bc13887fe7db9b407272863760607d68b416ec65b7f981eef341981fbd63a"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-12.png",
+        "bytes": 32814,
+        "sha256": "7cb0d77b92e4ace383aff37fe6d3b9b6091951dae2a654714355eb7a598801fe"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-13.png",
+        "bytes": 32787,
+        "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-14.png",
+        "bytes": 32843,
+        "sha256": "640ccd5e4d43fafca93216dc07f5c5fc9a8871dce88d420bcd73bb649e411267"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-15.png",
+        "bytes": 32843,
+        "sha256": "640ccd5e4d43fafca93216dc07f5c5fc9a8871dce88d420bcd73bb649e411267"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-16.png",
+        "bytes": 33224,
+        "sha256": "67f83f138799d6018c9e50e4728b62a6d1095a8a122293418ff0984138c23f4a"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-17.png",
+        "bytes": 33443,
+        "sha256": "0ca5531f39cd6b9b69f1c4f2028ec540703924164be25777f1bec05c01b0eba9"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-18.png",
+        "bytes": 33280,
+        "sha256": "264a0e70e6bd9298004beb50989cc56d9e3e6ca62255b21490fbae2b0fc122ad"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-2.png",
+        "bytes": 32752,
+        "sha256": "ee4bc13887fe7db9b407272863760607d68b416ec65b7f981eef341981fbd63a"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-3.png",
+        "bytes": 32814,
+        "sha256": "7cb0d77b92e4ace383aff37fe6d3b9b6091951dae2a654714355eb7a598801fe"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-4.png",
+        "bytes": 32787,
+        "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-5.png",
+        "bytes": 32752,
+        "sha256": "ee4bc13887fe7db9b407272863760607d68b416ec65b7f981eef341981fbd63a"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-6.png",
+        "bytes": 32814,
+        "sha256": "7cb0d77b92e4ace383aff37fe6d3b9b6091951dae2a654714355eb7a598801fe"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-7.png",
+        "bytes": 32787,
+        "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-8.png",
+        "bytes": 32752,
+        "sha256": "ee4bc13887fe7db9b407272863760607d68b416ec65b7f981eef341981fbd63a"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-9.png",
+        "bytes": 32814,
+        "sha256": "7cb0d77b92e4ace383aff37fe6d3b9b6091951dae2a654714355eb7a598801fe"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/office-reward.png",
+        "bytes": 25748,
+        "sha256": "44c05736c0c6968b49ea4a84f6282efa1db71a3ac4f70dcf08afe2c13d030345"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/regression.log",
+        "bytes": 1512,
+        "sha256": "d03104b357c0f5dba09153fcb70d5c7a2e8c3a4fd8c0d0c604fd8adab0ff7728"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/source-revision.json",
+        "bytes": 8198,
+        "sha256": "e0bdb5dba23648dfe0144d0b3fb9501d1d2174cbf0c93654e96b71f393c4e534"
+      },
+      {
+        "path": ".local/office-browser-accepted-20261028/unit.log",
+        "bytes": 10911,
+        "sha256": "7743c91723d8b45ccdb0ebf207b5cf3668e0cb118200867e8a90886f0670bea7"
+      }
+    ],
+    "expectedArtifactCount": 31
   }
 }

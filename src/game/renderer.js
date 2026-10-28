@@ -471,6 +471,16 @@ export class Renderer {
       );
       return;
     }
+    if (game.scene === "office-departure") {
+      const pixels = renderFlightPixels(
+        game.officeDeparture.frame,
+        this.resources.archives.get("MAIN.ARC"),
+        this.font,
+        "MAIN.ARC",
+      );
+      this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
+      return;
+    }
     if (game.scene === "office") {
       this.draw("MAIN.ARC", 3, 0, 0, 0);
       for (const [asset, x, y] of [

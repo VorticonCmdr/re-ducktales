@@ -1,4 +1,5 @@
 import { Opening } from "./opening.js";
+import { OfficeMoneyBin } from "./office.js";
 import { DifficultyMenu } from "./difficulty-menu.js";
 import { Departure } from "./departure.js";
 import { Campaign, OFFICE, travelDays } from "./campaign.js";
@@ -37,6 +38,7 @@ export class Game {
     this.openingResources = openingResources;
     this.opening = null;
     this.difficultyMenu = null;
+    this.officeDeparture = null;
     this.expeditionResources = expeditionResources;
     this.bankResources = bankResources;
     this.bank = null;
@@ -161,6 +163,32 @@ export class Game {
     this.difficultyMenu = null;
     this.scene = "office";
     this.settleMarket();
+  }
+  startOfficeMoneyBin() {
+    if (!this.openingResources) {
+      // Component-only fixtures without original presentation resources.
+      this.completeCampaignAction({ type: "money-bin" });
+      return;
+    }
+    if (this.scene !== "office") throw Error("Money-bin door outside office");
+    if (this.audioEnabled) this.effects.push({ type: "sound", id: 0 });
+    this.officeDeparture = new OfficeMoneyBin({
+      audioEnabled: this.audioEnabled,
+    });
+    this.scene = "office-departure";
+    this.collectOfficeDeparture();
+  }
+  collectOfficeDeparture() {
+    const departure = this.officeDeparture;
+    this.effects.push(...departure.drainEvents());
+    if (!departure.outcome) return;
+    // Overlay2:06bf calls resident19a5 before returning to the dispatcher.
+    // Keys held/queued during the uninterruptible door animation are discarded.
+    this.officeDeparture = null;
+    this.pendingBinSystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
+    this.completeCampaignAction({ type: "money-bin" });
   }
   flushOpeningInput() {
     this.pendingOpeningSystemKeys.clear();
@@ -303,6 +331,7 @@ export class Game {
       !this.systemOverlay &&
       ([
         "money-bin",
+        "office-departure",
         ...(this.difficultyMenu ? ["difficulty"] : []),
         "flight",
         "cave",
@@ -358,6 +387,7 @@ export class Game {
       this.audioEnabled = event.enabled;
       this.opening?.setAudioEnabled(event.enabled);
       this.difficultyMenu?.setAudioEnabled(event.enabled);
+      this.officeDeparture?.setAudioEnabled(event.enabled);
       this.cave?.setAudioEnabled(event.enabled);
       this.mountain?.setAudioEnabled(event.enabled);
       this.jungle?.setAudioEnabled(event.enabled);
@@ -381,6 +411,7 @@ export class Game {
       this.scene = event.skipTitle === true ? "difficulty" : "title";
       this.opening = null;
       this.difficultyMenu = null;
+      this.officeDeparture = null;
       this.difficulty = 0;
       this.difficultyFromEnding = event.skipTitle === true;
       this.tick = 0;
@@ -461,6 +492,7 @@ export class Game {
       this.bank?.setControls(this.controls);
       return;
     }
+    if (this.scene === "office-departure") return;
     if (this.scene === "investments") {
       this.investments.input(event);
       this.collectInvestments();
@@ -578,7 +610,7 @@ export class Game {
         event.type === "money-bin" ||
         (event.type === "fire" && event.direction === "up")
       ) {
-        this.completeCampaignAction({ type: "money-bin" });
+        this.startOfficeMoneyBin();
         return;
       }
       if (
@@ -762,6 +794,11 @@ export class Game {
       this.collectDifficulty();
       return;
     }
+    if (this.scene === "office-departure") {
+      this.officeDeparture.advanceTick();
+      this.collectOfficeDeparture();
+      return;
+    }
     if (this.scene === "bank") {
       this.bank.advanceTick();
       this.collectBank();
@@ -884,6 +921,11 @@ export class Game {
     if (this.scene === "difficulty" && this.difficultyMenu) {
       this.difficultyMenu.advanceRetrace();
       this.collectDifficulty();
+      return;
+    }
+    if (this.scene === "office-departure") {
+      this.officeDeparture.advanceRetrace();
+      this.collectOfficeDeparture();
       return;
     }
     if (this.scene === "bank") {
@@ -1535,6 +1577,9 @@ export class Game {
       ...(this.opening ? { opening: this.opening.snapshot() } : {}),
       ...(this.difficultyMenu
         ? { difficultyMenu: this.difficultyMenu.snapshot() }
+        : {}),
+      ...(this.officeDeparture
+        ? { officeDeparture: this.officeDeparture.snapshot() }
         : {}),
       bin: this.bin?.snapshot() ?? null,
       ...(this.pendingBinSystemKeys.size

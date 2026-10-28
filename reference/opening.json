@@ -795,9 +795,9 @@
     "reference/opening-inputs.json": "6e1591e708fadcfe60d9cc382b1110ae863eeba7251da2c758bb06474275e7dd",
     "docs/opening-capture-recipe.md": "10dc05aad340bf53dd5e18ddc1bc67ab205e85606889de41265cc15d94184466",
     "src/game/opening.js": "ed91355bc55fc74eee726358fb207b6b66b7985b489ec0d1512410b49a60a9ab",
-    "src/game/application.js": "2e06dfbf56d78aabc02ec8a5d70f7855c45b53dde7c7ad4e59d49a28a773e7c3",
-    "src/game/browser.js": "90cfa1157b08cc9f60dac8e79577b24e971b2637bb19b829410ff1d3c6cdfdc1",
-    "src/game/renderer.js": "4c2fbebb9d44b8df5c85a114a8b921c839e31d76466d7339573a91c0be3fb248",
+    "src/game/application.js": "2b84248d290f4cf667e85962a3fc273b858e93c7bac5dbf5aa05d56f05eabae4",
+    "src/game/browser.js": "3c8eb5974428f34c395427e7468c54c14ef68c16c4f9774fbcfebc30899559bb",
+    "src/game/renderer.js": "29c41d5ebc42fffae988e97ad9069caf05d056c763ae2f4482359267d3b774b4",
     "tests/opening.test.js": "4bf2a1661ae8bc641543d2531ca85aff3c1af85b4b4b4603754bfbea05688851",
     "tests/browser/opening.spec.js": "d43a99eb4a4eb9cf56e8bf84c10176302c206a12ba70b3334db20d29dbffc098",
     "tests/browser/title-audio.spec.js": "91e8d62783415815e57dab0e526f0d0eddf2fe3bc4da5108a454615df317c6c2",
@@ -816,7 +816,7 @@
     "tests/browser/mountain-input.spec.js": "2a2436cfbaed713a7d764e83fb3e1a53c05552a4cf77cd8facb4d2762b128ae7",
     "tests/browser/photography-input.spec.js": "9a0b4808c7db1cada15cd16dd62a3b9f84e8e74eeb32725f1e2723020de0cb25",
     "tests/browser/photography.spec.js": "bc97f3a8552355e3537638c0b527e7fe41f68ac7678cc8b276342c9c024cb065",
-    "tests/browser/system-controls.spec.js": "42ac03631eaf44397cba8d600ea14799e4221eaa1674f98da993d920a579b38f",
+    "tests/browser/system-controls.spec.js": "11fcc402d6747564e1395490d9b2a50b2d8a498d17d0d6246fd34720e6186164",
     "tests/browser/tandy-game.spec.js": "fa020b8a4c5cfb6ae55da0bac73954cfc75015a836e35b8276a52451f45e953f",
     "tests/browser/helpers/scene.js": "1a2074c71c0f95818e19e4daa334dc4d3980bd364dc65d7b64f745130f4a1ed8",
     "scripts/verify-hard-expedition-negative.js": "e9bf9d61c7c9cb914093634896a39d23296ef85a16ea4eb309601ea7c9095163",
@@ -832,6 +832,11 @@
     "reference/hard-flight-inputs.json": "433f3371e83d46619131384828b93a2bc4fc9c7899d0f2710b825b064c2ef26e",
     "scripts/verify-route-tools.js": "584109f1465e2511693f0ef1a53cb6bad8c5198f4c87e156be729f77cf98454e",
     "reference/lightning-flight-inputs.json": "fe94d7d91ad32cf13ff05cb3f71973ba84a805b4eabf96a429a33a40aaba4e89",
-    "scripts/verify-lightning-control-profile.js": "56fa593c12e5a6aac50e212df2891bd284d0ca69133404617db9a9a299e1f413"
+    "scripts/verify-lightning-control-profile.js": "56fa593c12e5a6aac50e212df2891bd284d0ca69133404617db9a9a299e1f413",
+    "src/game/office.js": "123c84918f10e81f13c930c9935aad293a8cc08846abf805540a3d33250eaf9b",
+    "scripts/verify-office.js": "4b742403654b6faf33761367e3ee89be2979279fe5b6ccea08b67799233cd698",
+    "scripts/verify-office-browser-negative.js": "a95b71778668c3ddf525f2d83d780a9482e393a8580be35d9ac30759caa39129",
+    "tests/browser/office.spec.js": "dc9286ec0bf7e4ec49cf2baa3b585190ed7655dcb3e6c2d0f4b98ab16b6019e0",
+    "reference/office.json": "b53e54891bd71ca01b13d4539baef53c8b4e3e1daae2ddd5c3b568056ae260e2"
   }
 }

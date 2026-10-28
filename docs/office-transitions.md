@@ -1,20 +1,35 @@
 # Original office transitions
 
-`codex/office-transitions` adds a standalone translation of office selection,
-raster commands and the money-bin departure. It is based on6fc0ef4; the newer
-menu integration is still being verified separately. This component is **not
-connected to the browser application yet**. The main office still uses its
-previous immediate dispatch. Control-center, investments and security transitions
-remain unfinished.
+The browser now runs office → original money-bin departure → dive → reward/return
+→ Restart. The isolated `codex/office-transitions` branch includes the current
+menu migration and this new departure. Full branch integration remains pending;
+main retains its separately verified milestone until the complete gate passes.
+Control-center, investments, initial office reveal/selection and security
+transitions remain unfinished.
 
-Run `npm run verify:office`. Required originals and private captures must exist;
-missing or corrupt files fail setup. This check requires20 native checkpoints,
-48 pinned local artifacts and three retained native input observations. It
-compares every RGBA byte and all represented sprite x/y/frame tuples, validates
-the complete8368-byte/180-relocation office overlay, and carries the departure
-component through19 flips and255 driver counts. Altered code, an altered pixel,
-a missing checkpoint and zero checkpoints must fail. The explicit counts and
-sound literals are also checked in the original instruction bytes.
+Run `npm run verify:office` for the core, two actual browser cases and the
+missing-Up negative. `npm run verify:office-core` checks retained evidence only.
+Required originals and private captures must exist; missing or corrupt files
+fail setup. The native comparison requires20 checkpoints,48 local artifacts and
+three retained native input observations. It compares every RGBA byte and all
+represented sprite tuples, validates the complete8368-byte/180-relocation office
+overlay, and carries the departure through19 flips and255 driver counts.
+Altered code, an altered pixel, a missing checkpoint and zero checkpoints fail.
+Wait/sound literals and the exit19a5 flush call are checked in original bytes.
+
+Two browser cases compare all19 departure presentations with original pictures,
+use real Up+Fire and the visible button, discard queued P/held keys at the original
+exit boundary, earn1000 through the actual dive, return, and cancel a second
+animation with Restart. Tandy receives0,4,35,34,38 in order and produces nonzero
+samples. Nine existing game/system/audio browser cases and117 unit cases pass.
+A missing real Up must fail the required departure entry, not setup or timeout.
+The Hard Game replay retains all25 exact checkpoints and3350 inputs; this is
+port regression evidence rather than original whole-campaign parity.
+
+These focused receipts and20 browser PNGs are pinned under ignored
+`.local/office-browser-accepted-20261028/`. Their current runtime/browser source
+identities are recorded separately from native capture provenance. The complete
+application gate still must pass; focused results do not replace it.
 
 ## Rules and evidence scope
 
@@ -43,8 +58,9 @@ elapsed CPU/IRQ timing are not established by the pixel comparison.
 `OfficeMoneyBin` consumes explicit driver/retrace advancement and the sound flag.
 It has no DOM, host time, RNG, file access or skipped animation path. Its caller
 must handle the branch's pre-entry sound reset, archive ownership and subsequent
-activity dispatch. The browser integration and a fresh complete office→bin→office
-acceptance scenario are the next milestone.
+activity dispatch. The browser queues system keys during this uninterruptible path, then performs
+the source06bf keyboard flush before normal campaign dispatch. Driver and video
+clocks remain separate. The remaining office transitions are subsequent work.
 
 ## Reproduce the native capture
 

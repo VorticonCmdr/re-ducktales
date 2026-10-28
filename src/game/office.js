@@ -165,6 +165,23 @@ export class OfficeMoneyBin {
     }
     this.resume();
   }
+  setAudioEnabled(value) {
+    if (typeof value !== "boolean") throw Error("Invalid office sound flag");
+    this.audioEnabled = value;
+  }
+  drainEvents() {
+    return this.events.splice(0);
+  }
+  snapshot() {
+    return {
+      source: this.source,
+      presentations: this.presentations,
+      tick: this.tick,
+      retrace: this.retrace,
+      wait: this.wait ? { ...this.wait } : null,
+      outcome: this.outcome,
+    };
+  }
   advanceTick() {
     this.advance("driver");
   }

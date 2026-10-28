@@ -1,0 +1,156 @@
+{
+  "id": "easy-mixed-campaign-four-treasures",
+  "buildManifest": "reference/build.json",
+  "evidence": "Independent browser acceptance and port regression. Expected checkpoints were recorded from the port; this is not an original-game campaign replay.",
+  "emulator": null,
+  "startingState": "Fresh browser context, supported game/ originals, BIOS seed0, muted sound, title Space then Enter for Easy. No game memory, campaign state or RNG injections.",
+  "environment": {
+    "clockStart": "2026-01-01T00:00:01Z",
+    "displayMilliseconds": 8,
+    "input": "Real browser keyboard and canvas/button clicks. Jungle and mountain consume authored fixed streams. Flight, photography and cave use the feedback policies in the capture tool.",
+    "audio": "Explicitly disabled; real audio completion is covered by separate scenarios."
+  },
+  "captureTool": "tests/browser/mixed-campaign.spec.js",
+  "captureToolRevision": {
+    "baseCommit": "09747d727c389337f912def6208ce3fce93aee60",
+    "sha256": "e7a253de48e47615e05320c86faf90229bb575e77aa0be18baf89937116f4683",
+    "negativeControlSha256": "59d3fc695340b6b2073390e2e6745ef83d63d7d9d5f9a46a9e9294ddca557695"
+  },
+  "inputManifests": [
+    "reference/campaign-startup-browser.json",
+    "reference/mountain-ascent.json"
+  ],
+  "requiredInputSamples": {
+    "jungle": 857,
+    "mountain": 764
+  },
+  "requiredJungleCheckpoints": 23,
+  "expectedCheckpointCount": 19,
+  "expectedEnding": {
+    "won": true,
+    "banked": 15000,
+    "rivalBanked": 10500,
+    "day": 30
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      1,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  "checkpointNames": [
+    "arrival",
+    "jungle-return",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "rival-report",
+    "arrival",
+    "photography-return",
+    "arrival",
+    "cave-return",
+    "arrival",
+    "mountain-return",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "ending"
+  ],
+  "expected": {
+    "jungle-return": {
+      "scene": "map",
+      "day": 5,
+      "money": 1000,
+      "banked": 0,
+      "seed": 51861
+    },
+    "photography-return": {
+      "scene": "map",
+      "day": 13,
+      "money": 1000,
+      "banked": 1000,
+      "seed": 18580
+    },
+    "cave-return": {
+      "scene": "map",
+      "day": 14,
+      "money": 5900,
+      "banked": 1000,
+      "seed": 50733
+    },
+    "mountain-return": {
+      "scene": "map",
+      "day": 15,
+      "money": 14000,
+      "banked": 1000,
+      "seed": 57883
+    },
+    "ending": {
+      "scene": "ending",
+      "day": 30,
+      "money": 0,
+      "banked": 15000,
+      "seed": 57377
+    }
+  },
+  "comparisonRules": "Exact checkpoint names/counts and listed scalar fields. All jungle checkpoints compare the existing named fields. Every authored action consumes exactly one game sample. Dynamic feedback inputs are chosen from current public snapshots, never expected checkpoint values. Full snapshots and consumed UI events are diagnostic captures, not original expected outputs.",
+  "exclusions": "No original whole-campaign parity, other difficulties/variants, hardware waveform, wall-clock/CPU alignment or persistence claim. Pixel comparison is not part of this scenario; final canvas is captured for inspection.",
+  "injections": [],
+  "fittedInputs": [],
+  "verify": "npm run verify:mixed-campaign",
+  "artifacts": "Ignored .local/mixed-campaign/ receipt, captured-events.json, campaign-checkpoints.json and mixed-campaign-ending.png. Receipt records their SHA-256 identities. Missing originals fail verify:build before the browser starts.",
+  "receipt": {
+    "command": "npm run verify",
+    "exitCode": 0,
+    "unit": 112,
+    "developmentBrowser": 60,
+    "productionBrowser": 2,
+    "skipped": 0,
+    "negativeControl": "wrong input rejected at jungle 0 x (expected8, observed24)",
+    "artifacts": [
+      {
+        "path": ".local/mixed-campaign/captured-events.json",
+        "bytes": 29810,
+        "sha256": "571e02cfee15baf11ffdb46c314285ae683a9146615df64d7d4c4d10b1627110"
+      },
+      {
+        "path": ".local/mixed-campaign/campaign-checkpoints.json",
+        "bytes": 94936,
+        "sha256": "4fd261507b21f90d50b91a38d12096e585b9a854a8961d5187a552ecb9a32f04"
+      },
+      {
+        "path": ".local/mixed-campaign/mixed-campaign-ending.png",
+        "bytes": 17946,
+        "sha256": "36f2b088dcf10c031b568236e8a89015a48284484d53dbacbcd9cd2ea0bd6000"
+      },
+      {
+        "path": ".local/mixed-campaign/negative-control.log",
+        "bytes": 1478,
+        "sha256": "ec878c77aa83db8521d1b19908b58b0db02ca3f7ed0fdd336ccc8ed42806a4ba"
+      },
+      {
+        "path": ".local/mixed-campaign/full-verify.log",
+        "bytes": 39523,
+        "sha256": "95c2c80d202dcf527c61ca980fac025f36929486640e8716b0e505ec591f2c90"
+      }
+    ]
+  },
+  "inputManifestSha256": {
+    "reference/campaign-startup-browser.json": "c5db89f616657a0b9fa82671efd219a3aa6094b5dd7918e89592f51dceccbb6d",
+    "reference/mountain-ascent.json": "a10ac3ca5af03542375141112cd2e5153991ca55c92ff6fd8bdd8b5ce134e4e6"
+  }
+}

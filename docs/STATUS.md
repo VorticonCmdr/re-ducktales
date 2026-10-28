@@ -32,6 +32,10 @@ finishable. This is completion work, not only final polish.
 - Final bank → winner/loser pictures → replay. Ties favor Scrooge. Original row
   transitions, polling, credits and ending sound calls are connected. Yes returns
   to difficulty; No finishes credits. Explicit browser Restart opens the title.
+- One fresh Easy campaign completes the jungle, photography, cave and mountain,
+  banks treasure and carries its own state through Glomgold reports to the day30
+  winning ending:15000 banked against10500. This is a repeatable browser regression,
+  not an original whole-campaign replay. See [mixed campaign](mixed-campaign.md).
 
 P/Q/S wait for activity input polls and source flushes discard unread keys.
 Pause freezes actors/presentation while device clocks continue; quit cancellation
@@ -54,12 +58,15 @@ and actual browser controls/rendering/audio. None alone proves whole-game parity
 Manifests pin source/artifact identities, setup recipes, events and exclusions.
 Conditional injections and provider assumptions are documented, not hidden.
 
-The bank milestone passes full `npm run verify`:112 unit cases,59 development
+The mixed campaign milestone passes full `npm run verify`:112 unit cases,60 development
 and2 production browser scenarios, with zero skips, all required original-data
-comparisons and the production build. Its eight conditional original arithmetic
+comparisons and the production build. Bank coverage includes eight conditional original arithmetic
 cases, two exact native PNGs, first RNG point, four consumed input reads/carried
 checkpoints and separate280-tick outro pass. The local receipt is
-`.local/bank-full-verify.log`. [Historical notes](status-history.md) retain older
+`.local/bank-full-verify.log` for the earlier bank milestone; the current full
+receipt is `.local/mixed-campaign/full-verify.log`. The mixed route checks19
+campaign checkpoints and rejects a deliberately wrong input at the first jungle
+position comparison. [Historical notes](status-history.md) retain older
 receipts and investigations without describing them as current state.
 
 Tandy/PCjr sound is available in-game with persistent channels, priorities,
@@ -85,22 +92,25 @@ whole-game IRQ alignment remain unverified.
   unproven. Unsupported paths stop in development; no recovery demo counts as
   strict acceptance.
 
-Next playable milestone: one independent thirty-day browser campaign combining
-expeditions, rival reports, banking and an ending, without state injection.
-Investigate the first divergence or dead end it exposes. Continue targeted native
-comparisons without treating browser success as proof of original parity.
+Next playable milestone: extend linked campaigns to another difficulty and other
+expedition variants, investigating the first unsupported behavior or divergence
+against the original. The current mixed campaign has completed without a dead end;
+arbitrary routes and original whole-scene parity remain unproven.
 
 ## Exact verification commands
 
 `npm run verify` is the required full gate. It fails on missing/corrupt required
 fixtures, incomplete case/input counts, unsupported paths and comparison failures.
 It includes unit checks, original comparisons, browser scenarios and production.
+For the linked campaign run `npm run verify:mixed-campaign` and
+`npm run verify:mixed-campaign-negative`. The latter succeeds only when a wrong
+input is rejected by the intended state comparison.
 For bank work run `npm run verify:bank`, `node --test tests/bank.test.js`, and
 `npm run test:browser -- tests/browser/bank.spec.js tests/browser/ending.spec.js tests/browser/ending-audio.spec.js tests/browser/ending-presentation.spec.js`.
 For local testing run `npm run dev -- --port 5186`.
 The user's integrated checkout is served on5187. No push or deployment is authorized.
 
-Detailed evidence: [bank](bank.md), [endings](ending.md), [flight](flight.md),
+Detailed evidence: [mixed campaign](mixed-campaign.md), [bank](bank.md), [endings](ending.md), [flight](flight.md),
 [caves](cave.md), [mountains](mountain.md), [jungle](jungle.md),
 [photography](photography.md), [trading](investments.md), [rival](rival.md),
 [atomic travel](atomic-transport.md), [controls](system-controls.md),

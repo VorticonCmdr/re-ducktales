@@ -1,6 +1,6 @@
 # Current port status
 
-Updated2026-10-28. **The whole game is incomplete; this is completion work, not
+Updated2026-10-29. **The whole game is incomplete; this is completion work, not
 only fine-tuning.** Complete selected campaigns work, but arbitrary campaigns
 and full original-game parity are not guaranteed.
 

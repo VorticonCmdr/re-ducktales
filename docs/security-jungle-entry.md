@@ -48,6 +48,7 @@ originals and required private artifacts must be installed.
 ```
 node scripts/replay-hard-campaign.js .local/security-jungle-entry-accepted-02 --manifest=reference/security-jungle-entry.json
 npx playwright test tests/browser/jungle-input.spec.js
+npm run verify:security-jungle-entry
 ```
 
 Capture producer673f245 is archived under `.local/security-jungle-entry-02/`.
@@ -57,3 +58,15 @@ state hash or the checkpoint count is rejected. These are carried port and
 independent browser comparisons, not original whole-jungle timing evidence.
 Runtime remains9cfc0a3. Main and old campaign recordings remain unchanged; the
 remaining recordings and full integration gate are still pending.
+
+The focused npm command verifies all required artifacts,124 exact archived/Git
+capture sources and125 exact fresh-browser producer sources, then replays all
+inputs and checks three negative controls. It also runs the current browser case
+and the actual missing-Right security browser negative. The prefix verifier is
+now required by `npm run verify:jungle`, so missing/corrupt fixtures,zero/missing
+checkpoints,unconsumed events,unsupported rendering and absent browser acceptance
+fail the normal gate. It does not reinterpret exploratory captures as acceptance.
+Separate setup negatives temporarily removed and corrupted the derived entry
+PNG. Both were rejected at the required missing/corrupt fixture checks; the
+original checksum was restored and the positive verifier passed again. Their
+recipe and logs are in `.local/security-jungle-entry-verification/`.

@@ -58,6 +58,26 @@
       "path": ".local/security-jungle-entry-accepted-02/entry.png",
       "bytes": 19873,
       "sha256": "560613d928335a016ad40d170d1f2ed6d48c1258bbe84d47d1d19db9d6f6df3c"
+    },
+    "browser-source": {
+      "path": ".local/security-jungle-entry-accepted-02/browser-source-revision.json",
+      "bytes": 13188,
+      "sha256": "48ce3599e82d58e06938fd89046e7ce8fe24caccf33041495fd7662051fb6c4b"
+    },
+    "browser-results": {
+      "path": ".local/security-jungle-entry-accepted-02/browser-results.json",
+      "bytes": 3865,
+      "sha256": "2394a0b29f9e6ca3007a4057e87af39173967d43ed5163d9e0cb2caaf4e28e21"
+    },
+    "browser-run": {
+      "path": ".local/security-jungle-entry-accepted-02/browser-run.log",
+      "bytes": 531,
+      "sha256": "c98ad6fe390ec184b8ed6fdef1ee709fb19058e4e905f9321989ea408e9c573a"
+    },
+    "input-pause-png": {
+      "path": ".local/security-jungle-entry-accepted-02/browser-output/jungle-input-pause.png",
+      "bytes": 29679,
+      "sha256": "95015ca4d5bc8ad974e145a246e8d96d336ad2ebb53a5aee49a788046bb0d45d"
     }
   },
   "inputRecipe": "BIOS0/Easy, clock frozen through original file loading; original security fixedRight/Fire; two real bank/office trips; fixed Okeefadokie selection; keyboard takeoff/stall and non-racing crash/repair arrival. All50 external DOM events and their timestamps are independent of expected states.",
@@ -67,5 +87,24 @@
   "verifyCommand": "node scripts/replay-hard-campaign.js .local/security-jungle-entry-accepted-02 --manifest=reference/security-jungle-entry.json",
   "browserCommand": "npx playwright test tests/browser/jungle-input.spec.js",
   "captureCommit": "673f24508d98fdd42e4597fe71325456fe25c007",
-  "captureProducer": ".local/security-jungle-entry-02/source-revision.json"
+  "captureProducer": ".local/security-jungle-entry-02/source-revision.json",
+  "browserVerified": true,
+  "browserCommit": "5de047e5f678a1af4865c6e359137a112f2e0bc7",
+  "browserProducer": ".local/security-jungle-entry-accepted-02/browser-source-revision.json",
+  "fullBranchGate": "pending",
+  "verificationTools": {
+    "scripts/replay-hard-campaign.js": "e1da0883c5610e8ff78f28e8dade149114e78f66cf32524143ddff2efde4bbec",
+    "scripts/verify-security-jungle-entry.js": "cf370581e9ce3761afde0dae2f2ab66127c6f2eedeace25a6a5f83b4fee9ed6a"
+  },
+  "environmentProviders": {
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086,
+    "fileAccess": "verified supported original build; see reference/build.json",
+    "input": "recorded external DOM events captured before the target handler",
+    "completion": "explicit jungle-entry milestone; not campaign completion"
+  }
 }

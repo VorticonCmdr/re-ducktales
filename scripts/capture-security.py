@@ -24,6 +24,7 @@ parser.add_argument('--map-clock', action='store_true', help='Capture35 caller d
 parser.add_argument('--map-repeat', action='store_true', help='Use the fixed long-held Right profile to investigate external keyboard repeat')
 parser.add_argument('--map-notice', action='store_true', help='Use fixed map makes,held Fire and fresh dialogue choices to capture the destination handoff')
 parser.add_argument('--notice-video', action='store_true', help='Observe raw-frame metadata,BIOS/drawing pages and both sides of destination page flips without changing video state')
+parser.add_argument('--notice-keyboard', action='store_true', help='Use the fixed sixteen-read destination letter/keypad/combined-key profile')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 args = parser.parse_args()
 if (args.map_clock or args.map_repeat or args.map_notice) and not args.map_inputs:
@@ -32,6 +33,8 @@ if args.map_notice and args.map_repeat:
     parser.error('--map-notice and --map-repeat are separate fixed profiles')
 if args.notice_video and not args.map_notice:
     parser.error('--notice-video requires --map-notice')
+if args.notice_keyboard and (not args.map_notice or args.notice_video):
+    parser.error('--notice-keyboard requires --map-notice and is separate from --notice-video')
 out = (ROOT / args.output).resolve()
 assert out.is_relative_to((ROOT / '.local').resolve()), 'Captures must stay in ignored local storage'
 out.mkdir(parents=True, exist_ok=False)
@@ -296,7 +299,7 @@ try:
     final = state('return',stop)
     remove(return_bp)
     if args.map_inputs:
-        profile_path = ROOT / ('reference/map-notice-inputs.json' if args.map_notice else 'reference/map-keyboard-repeat-inputs.json' if args.map_repeat else 'reference/map-keyboard-inputs.json')
+        profile_path = ROOT / ('reference/destination-keyboard-inputs.json' if args.notice_keyboard else 'reference/map-notice-inputs.json' if args.map_notice else 'reference/map-keyboard-repeat-inputs.json' if args.map_repeat else 'reference/map-keyboard-inputs.json')
         profile = json.loads(profile_path.read_text())
         expected_sequences = 15 if args.map_notice else 2 if args.map_repeat else 10
         assert profile['expectedReads'] == 36 and len(profile['events']) == expected_sequences
@@ -434,7 +437,11 @@ try:
                 remove(marker)
             stages=[('flush',add(0x1e33-0xca0,map_cs)),('before',add(0x1e89-0xca0,map_cs)),('input',add(0x1e8e-0xca0,map_cs))]
             flip_stages=[('flip-before',add(0x1da1-0xca0,map_cs)),('flip-after',add(0x1da5-0xca0,map_cs))] if args.notice_video else []
-            for index in range(5):
+            notice_reads = 16 if args.notice_keyboard else 5
+            if args.notice_keyboard:
+                assert profile['noticeReads'] == notice_reads
+                assert set(profile['noticeEvents']) == {str(i) for i in range(notice_reads)}
+            for index in range(notice_reads):
                 row={'index':index}
                 for stage,bp in stages:
                     stop=resume(stop['stop_id']);assert stop['breakpoint']['id']==bp
@@ -455,11 +462,12 @@ try:
             stop=resume(stop['stop_id']);assert stop['breakpoint']['id']==ret
             data=state('notice-return',stop)
             remove(ret)
+            assert stop['registers']['eax']&65535 == 1
             replay=client.get('/api/v1/input/replay/status')
             assert not replay['active'] and replay['remaining']==0
             assert data[0x276c:0x27ec]==bytes(128)
             save('notice-consumption',notice_records)
-            save('notice-capture',{'completed':True,'inputReads':5,'returnCode':stop['registers']['eax']&65535,
+            save('notice-capture',{'completed':True,'inputReads':notice_reads,'returnCode':stop['registers']['eax']&65535,
                                    'segment':map_cs,'injections':[],'partialRestore':False,'replay':replay,
                                    'videoBoundaries':10 if args.notice_video else 0,
                                    'scope':'Natural held-Fire map-to-dialogue handoff and fresh choices;not full scene/browser timing parity.'})

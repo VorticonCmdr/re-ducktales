@@ -1,0 +1,449 @@
+{
+  "version": 1,
+  "id": "destination-ordinary-mode1-letter-keypad-combinations",
+  "expectedReads": 36,
+  "events": [
+    {
+      "beforeRead": 1,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 2,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 3,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 4,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 5,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 6,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 7,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 8,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 9,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 10,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 11,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 12,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 13,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 14,
+      "case": "diagonal-makes",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 35,
+      "case": "held-fire",
+      "keys": [
+        {
+          "key": "KBD_space",
+          "pressed": true
+        }
+      ]
+    }
+  ],
+  "noticeEvents": {
+    "0": {
+      "case": "held-map-fire-discard",
+      "keys": [],
+      "afterKeys": [
+        {
+          "key": "KBD_space",
+          "pressed": false
+        }
+      ]
+    },
+    "1": {
+      "case": "held-letter-right",
+      "keys": [
+        {
+          "key": "KBD_k",
+          "pressed": true
+        }
+      ],
+      "afterKeys": [
+        {
+          "key": "KBD_k",
+          "pressed": false
+        }
+      ]
+    },
+    "2": {
+      "case": "letter-left",
+      "keys": [
+        {
+          "key": "KBD_j",
+          "pressed": true
+        },
+        {
+          "key": "KBD_j",
+          "pressed": false
+        }
+      ]
+    },
+    "3": {
+      "case": "keypad-right",
+      "keys": [
+        {
+          "key": "KBD_kp6",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp6",
+          "pressed": false
+        }
+      ]
+    },
+    "4": {
+      "case": "keypad-left",
+      "keys": [
+        {
+          "key": "KBD_kp4",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp4",
+          "pressed": false
+        }
+      ]
+    },
+    "5": {
+      "case": "letter-up",
+      "keys": [
+        {
+          "key": "KBD_i",
+          "pressed": true
+        },
+        {
+          "key": "KBD_i",
+          "pressed": false
+        }
+      ]
+    },
+    "6": {
+      "case": "letter-down",
+      "keys": [
+        {
+          "key": "KBD_m",
+          "pressed": true
+        },
+        {
+          "key": "KBD_m",
+          "pressed": false
+        }
+      ]
+    },
+    "7": {
+      "case": "keypad-up-left",
+      "keys": [
+        {
+          "key": "KBD_kp7",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp7",
+          "pressed": false
+        }
+      ]
+    },
+    "8": {
+      "case": "keypad-up-right",
+      "keys": [
+        {
+          "key": "KBD_kp9",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp9",
+          "pressed": false
+        }
+      ]
+    },
+    "9": {
+      "case": "keypad-down-left",
+      "keys": [
+        {
+          "key": "KBD_kp1",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp1",
+          "pressed": false
+        }
+      ]
+    },
+    "10": {
+      "case": "keypad-down-right",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    "11": {
+      "case": "keypad-center",
+      "keys": [
+        {
+          "key": "KBD_kp5",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kp5",
+          "pressed": false
+        }
+      ]
+    },
+    "12": {
+      "case": "alias-clears-later-raw-arrow",
+      "keys": [
+        {
+          "key": "KBD_k",
+          "pressed": true
+        },
+        {
+          "key": "KBD_right",
+          "pressed": true
+        }
+      ],
+      "afterKeys": [
+        {
+          "key": "KBD_k",
+          "pressed": false
+        },
+        {
+          "key": "KBD_right",
+          "pressed": false
+        }
+      ]
+    },
+    "13": {
+      "case": "ascending-raw-scan-order",
+      "keys": [
+        {
+          "key": "KBD_i",
+          "pressed": true
+        },
+        {
+          "key": "KBD_i",
+          "pressed": false
+        },
+        {
+          "key": "KBD_k",
+          "pressed": true
+        },
+        {
+          "key": "KBD_k",
+          "pressed": false
+        }
+      ]
+    },
+    "14": {
+      "case": "select-flight",
+      "keys": [
+        {
+          "key": "KBD_k",
+          "pressed": true
+        },
+        {
+          "key": "KBD_k",
+          "pressed": false
+        }
+      ]
+    },
+    "15": {
+      "case": "keypad-fire-precedes-left",
+      "keys": [
+        {
+          "key": "KBD_kpenter",
+          "pressed": true
+        },
+        {
+          "key": "KBD_kpenter",
+          "pressed": false
+        },
+        {
+          "key": "KBD_j",
+          "pressed": true
+        },
+        {
+          "key": "KBD_j",
+          "pressed": false
+        }
+      ]
+    }
+  },
+  "noticeReads": 16
+}

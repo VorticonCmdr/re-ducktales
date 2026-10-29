@@ -78,7 +78,9 @@ Production visitors select their own originals. No deployment is performed.
   comparisons. It is not connected to Game/browser pacing yet.
 - Original letter/keypad browser bindings,scene-specific flush/repeat behavior
   and map pacing remain unfinished. The original map has six-count steady polls;
-  Game currently uses two. The native input comparison does not prove Game timing.
+  Game currently uses two. A30-read original hold under MCP explicit input
+  produced only one movement;browser held/repeat integration remains unfinished.
+  The native input comparison does not prove Game timing.
 - The keyboard branch corrects the investment departure status to “Opening
   investments…”. The fresh browser assertion passes;main still has the generic
   money-bin label. Its animation and trading destination work correctly.

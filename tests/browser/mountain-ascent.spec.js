@@ -1,4 +1,11 @@
 import { waitForScene } from "./helpers/scene.js";
+import { openRecordedApplication } from "./helpers/clock.js";
+import { finishSecurityEntry } from "./helpers/security.js";
+import { bankTrips } from "./helpers/bank-trips.js";
+import {
+  installEntryRecording,
+  saveEntryRecording,
+} from "./helpers/entry-recording.js";
 import { test, expect } from "@playwright/test";
 import startup from "../../reference/campaign-startup-browser.json" with { type: "json" };
 import ascent from "../../reference/mountain-ascent.json" with { type: "json" };
@@ -15,14 +22,9 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   // A controlled 125 Hz display cadence lets the test observe every 70 Hz
   // simulation sample. Only browser time and real keyboard events are supplied;
   // the game, scheduler, resource loader and renderer are unmodified.
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.addInitScript(() => {
-    window.requestAnimationFrame = (callback) =>
-      setTimeout(() => callback(performance.now()), 8);
-    window.cancelAnimationFrame = clearTimeout;
-  });
-  await page.goto("/");
+  await installEntryRecording(page);
+  await openRecordedApplication(page, 1);
+  await expect(page.locator("#actions")).toBeVisible();
   const c = page.locator("#game");
   await c.waitFor({ state: "visible" });
   const state = () => c.getAttribute("data-state").then(JSON.parse);
@@ -42,7 +44,7 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
       const s = await state();
       if (s.diagnostic) throw Error(s.diagnostic);
       if (predicate(s)) return s;
-      await page.clock.runFor(15);
+      await page.clock.runFor(8);
     }
     throw Error("unfinished wait " + JSON.stringify(await state()));
   }
@@ -51,7 +53,13 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   await press("Enter");
   await waitForScene(page, c, "office");
   await page.locator("#map").click();
-  await page.clock.runFor(100);
+  await finishSecurityEntry({ page, state, until });
+  expect(
+    await bankTrips({ page, canvas: c, state, until, press, count: 2 }),
+  ).toEqual([
+    { day: 7, seed: 62042 },
+    { day: 13, seed: 19313 },
+  ]);
   const r = await c.boundingBox();
   await c.click({
     position: { x: (r.width * 36) / 320, y: (r.height * 61) / 200 },
@@ -60,6 +68,7 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   await press("Space");
   await press("ArrowRight");
   await press("Space");
+  expect((await state()).departure.racing).toBe(false);
   await page.keyboard.down("Space");
   await until((s) => s.scene === "flight" && s.flight.speed > 4);
   await page.keyboard.down("ArrowDown");
@@ -67,6 +76,16 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   await page.keyboard.up("ArrowDown");
   await page.keyboard.up("Space");
   const entered = await until((s) => s.scene === "mountain");
+  if (process.env.DUCKTALES_CAPTURE_MOUNTAIN_ENTRY) {
+    await saveEntryRecording({
+      page,
+      canvas: c,
+      state: entered,
+      root: process.env.DUCKTALES_CAPTURE_MOUNTAIN_ENTRY,
+      name: "mountain-entry",
+    });
+    throw Error("EXPLORATORY mountain entry saved; not acceptance");
+  }
   expect(entered.mountain.lives).toBe(3);
   expect(entered.flight.outcome.status).toBe("crashed");
   expect(entered.campaign.location).toBe(31);

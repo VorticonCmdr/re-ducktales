@@ -63,7 +63,13 @@ if (!diagnose) {
   // entry milestone may reuse the same independent DOM/environment adapter.
   assert.equal(environment.hard, contract.expectedHard ?? true);
   assert.ok(
-    [undefined, "jungle-entry", "jungle-treasure"].includes(contract.milestone),
+    [
+      undefined,
+      "jungle-entry",
+      "jungle-treasure",
+      "mountain-entry",
+      "mountain-ascent",
+    ].includes(contract.milestone),
     "Unsupported recorded milestone",
   );
   for (const name of [
@@ -347,23 +353,43 @@ try {
   assert.equal(consumed, events.length);
   assert.equal(checked, checkpoints.length);
   if (!diagnose) assert.equal(held.size, 0, "Unreleased recorded keys");
-  const entryMilestone = strictContract?.milestone === "jungle-entry";
-  const treasureMilestone = strictContract?.milestone === "jungle-treasure";
+  const entryActivity =
+    strictContract?.milestone === "mountain-entry"
+      ? "mountain"
+      : strictContract?.milestone === "jungle-entry"
+        ? "jungle"
+        : null;
+  const entryMilestone = entryActivity !== null;
+  const treasureActivity =
+    strictContract?.milestone === "mountain-ascent"
+      ? "mountain"
+      : strictContract?.milestone === "jungle-treasure"
+        ? "jungle"
+        : null;
+  const treasureMilestone = treasureActivity !== null;
   assert.ok(
     game.scene ===
-      (entryMilestone ? "jungle" : treasureMilestone ? "map" : "ending") ||
+      (entryMilestone ? entryActivity : treasureMilestone ? "map" : "ending") ||
       diagnose,
     "Unfinished recorded route",
   );
   if (!diagnose) {
     if (entryMilestone) {
-      assert.equal(game.jungle.phase, "entering");
-      assert.equal(game.jungle.frames, 0);
+      assert.equal(game[entryActivity].phase, "entering");
+      assert.equal(game[entryActivity].frames, 0);
       assert.equal(lastTime, timeline.endAt, "Unfinished entry timeline");
     } else if (treasureMilestone) {
-      assert.equal(game.jungle.outcome.code, 1, "Unfinished jungle treasure");
+      assert.equal(
+        game[treasureActivity].outcome.code,
+        1,
+        "Unfinished recorded treasure",
+      );
       assert.ok(
-        game.snapshot().campaign.playerCollected.includes(1),
+        game
+          .snapshot()
+          .campaign.playerCollected.includes(
+            treasureActivity === "jungle" ? 1 : 31,
+          ),
         "Missing collected treasure",
       );
       assert.equal(lastTime, timeline.endAt, "Unfinished treasure timeline");

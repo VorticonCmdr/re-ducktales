@@ -1,0 +1,35 @@
+{
+  "id": "security-aware-easy-mountain-entry",
+  "milestone": "mountain-entry",
+  "expectedHard": false,
+  "artifactRoot": ".local/security-mountain-entry-accepted-01",
+  "expectedCheckpointCount": 1,
+  "checkpointNames": [
+    "mountain-entry"
+  ],
+  "requiredEventCount": 50,
+  "expectedFlightPresentations": 74,
+  "expectedFlagAliasPresentations": 0,
+  "artifacts": {
+    "environment": {
+      "path": ".local/security-mountain-entry-accepted-01/environment.json",
+      "bytes": 206,
+      "sha256": "d8b2e54891ac0637426f7f014b6e0941ead1860d5e0f9138a9ad08db3429b24b"
+    },
+    "captured-events": {
+      "path": ".local/security-mountain-entry-accepted-01/captured-events.json",
+      "bytes": 5699,
+      "sha256": "cda427c99b5681f64947f5fae777c7b5bf3ea5c31b0f53fefe20b8a08b6e5cf6"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/security-mountain-entry-accepted-01/campaign-checkpoints.json",
+      "bytes": 3590,
+      "sha256": "53859be603c8ddbb7c8bd1a1f3a0b358007c918dd42ff71701e866838531eea7"
+    },
+    "timeline": {
+      "path": ".local/security-mountain-entry-accepted-01/timeline.json",
+      "bytes": 180,
+      "sha256": "3a7c86df86ffc390358fafa7d5becc6c6d6121606714a5e2c880cb976a1052df"
+    }
+  }
+}

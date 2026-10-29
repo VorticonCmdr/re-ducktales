@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "completed": true,
+  "captureCommit": "04358b0a6eb5e2bb353fa67b11d20c9cdb1a7d6d",
+  "sourceFileCount": 535,
+  "expectedReads": 5,
+  "expectedPictures": 2,
+  "expectedArtifacts": 33,
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "profileSha256": "dcb9c236aa3ce256bf10d226cb4986d119794ad4d4213b36850a803f8a4941ba",
+  "captureRecipe": "scripts/capture-security.py --map-inputs --map-notice --port 8387 --output .local/map-notice-capture-01/capture",
+  "startingState": "Fresh original launch and natural control-center/security entry,14 paired keypad3 map makes then held Space;mode1 destination entry flush,independent noticeEvents make/release profile. No memory/CPU writes or restores.",
+  "inputProfile": "reference/map-notice-inputs.json",
+  "injections": [],
+  "partialRestore": false,
+  "fittedInputs": [],
+  "presentationArguments": {
+    "locationAsset": 33,
+    "treasureAsset": 22,
+    "bank": false,
+    "collected": false,
+    "days": 2,
+    "day": 1,
+    "money": 0,
+    "atomicAvailable": false
+  },
+  "pictureReadIndices": [
+    0,
+    4
+  ],
+  "comparisonRules": [
+    "All5 original AX values,128 ordinary-key flags at each flush/reader boundary,and carried selection/confirmation return compare exactly",
+    "Presentation arguments are captured internal caller context before destination drawing;resource assignment,RNG and travelDays production are conditional preconditions,not independently replayed",
+    "Pictures at reads0 and4 compare all64000 RGBA pixels exactly with choices carried from independent input events",
+    "No original clock values are injected into the model or browser;no menu timing parity is claimed"
+  ],
+  "limitations": [
+    "Intermediate read3 CPU choice is1 but captured raw scanout still shows choice0;the capture has no VGA frame identity to establish exact alignment. This screenshot remains retained pending a timing/capture investigation and is not one of the2 completed-page picture cases",
+    "Entry/selection/confirmation waits and original scanout cadence remain untranslated in browser;semantic arrow/fire adapter remains in destination dialogue",
+    "Bank,atomic,collected-value-zero and long treasure-name branches are statically inferred;not additional original runtime screenshot cases"
+  ],
+  "verificationCommand": "npm run verify:destination",
+  "artifacts": {
+    "source": {
+      "path": ".local/map-notice-capture-01/source-revision.json",
+      "bytes": 57410,
+      "sha256": "b1f782363af7f239c4ac2773834a57db63a0a54397589f43aef6678cd10a3ac9"
+    },
+    "zip": {
+      "path": ".local/map-notice-capture-01/sources.zip",
+      "bytes": 1401407,
+      "sha256": "be5e909289a846ba2fc79af365b44b3b50f4986e8d53d1c80059e35f0236b45f"
+    },
+    "runner": {
+      "path": ".local/map-notice-capture-01/runner-status.json",
+      "bytes": 493,
+      "sha256": "238785e74b67b8424cacec0e6e1116dbfb675e4505151b74394a153c1d5730ec"
+    },
+    "cleanup": {
+      "path": ".local/map-notice-capture-01/process-cleanup.json",
+      "bytes": 164,
+      "sha256": "ac2a68b17c57034d8d043c1575bbddde4b3267ad1571aa5cfcb364606d2a2a88"
+    },
+    "engine.json": {
+      "path": ".local/map-notice-capture-01/capture/engine.json",
+      "bytes": 3988,
+      "sha256": "e47f9be174a614ec345b85cec4652a6947b5d2529490a931aacfc410058376d8"
+    },
+    "configuration.json": {
+      "path": ".local/map-notice-capture-01/capture/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    "capture.json": {
+      "path": ".local/map-notice-capture-01/capture/capture.json",
+      "bytes": 377,
+      "sha256": "8772e55acd852a561174921f18851ae7275cbea001859df02268106025971293"
+    },
+    "map-live-overlay.json": {
+      "path": ".local/map-notice-capture-01/capture/map-live-overlay.json",
+      "bytes": 12155,
+      "sha256": "048d06bdc5294dd2d18c4eae2ad14afe0a4aa4b7a3088cd65dbc6a39bb7d90bf"
+    },
+    "map-resident-mapping.json": {
+      "path": ".local/map-notice-capture-01/capture/map-resident-mapping.json",
+      "bytes": 2929,
+      "sha256": "64c18260866b5f0c98ef36372aaccecd17d2a374a6cdac152ec112a3839f5ba0"
+    },
+    "notice-consumption.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-consumption.json",
+      "bytes": 2863,
+      "sha256": "03b439693a39207adbc8af2d35145f11299a5f67b36124748ba51cb079c343ff"
+    },
+    "notice-capture.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-capture.json",
+      "bytes": 436,
+      "sha256": "a5472e8a025ea3058e7ac6d94d0198e0dada51505a9d6bc607ab4300f13cd1ef"
+    },
+    "notice-before-entry-flush.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-before-entry-flush.json",
+      "bytes": 88771,
+      "sha256": "edaf0389ef5be2329a390709b14bc37ea85eae96f02b7023de7fa4f521bef7d8"
+    },
+    "notice-after-entry-flush.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-after-entry-flush.json",
+      "bytes": 88765,
+      "sha256": "1bd0c7ab2987204c02c57563bb4833380045ec514d769681747addf696e27035"
+    },
+    "notice-return.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-return.json",
+      "bytes": 88775,
+      "sha256": "096747d1729442b6775ee4f75fd0a3b1cd811e02b1f7bde26baf53dd039329fa"
+    },
+    "inputs.json": {
+      "path": ".local/map-notice-capture-01/capture/inputs.json",
+      "bytes": 8258,
+      "sha256": "93d766d9cad0cd2ffdde85b5f3ae3e236d1ed68552bb8c613926b5d62376af20"
+    },
+    "notice-000-flush.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-000-flush.json",
+      "bytes": 88775,
+      "sha256": "a7ec89716b06e9666fa2028ca7397aaeb9ff26a5098810c08d14edb6365dd924"
+    },
+    "notice-000-before.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-000-before.json",
+      "bytes": 88781,
+      "sha256": "97273f52973989c5242f635ce91116f3d4f2c4b6271a4c520a6436d799b4d5d9"
+    },
+    "notice-000-input.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-000-input.json",
+      "bytes": 88777,
+      "sha256": "52fcb837a72f0d651fc3d00afaa41efe393a684c02346018d084bf41d3811574"
+    },
+    "notice-001-flush.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-001-flush.json",
+      "bytes": 88773,
+      "sha256": "67a1871234965953c9ee73aa1053bb927bf69bce3ec0a832417d248d3ae07f10"
+    },
+    "notice-001-before.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-001-before.json",
+      "bytes": 88781,
+      "sha256": "0d093921174e0ad2fccba32be44f9772f2f040eb8eb8c40163e592cb377f29c2"
+    },
+    "notice-001-input.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-001-input.json",
+      "bytes": 88777,
+      "sha256": "a63d1b604b4e0d983db12cbfd882f81190dfb404c40b6683dc8c4e8e7bcd4fa6"
+    },
+    "notice-002-flush.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-002-flush.json",
+      "bytes": 88773,
+      "sha256": "5597bee84ef476bd8a65e9a87da7118d2d43682ad315447a4d546c797420d415"
+    },
+    "notice-002-before.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-002-before.json",
+      "bytes": 88781,
+      "sha256": "16098124b2cd86aac7b60e36c1a158b77b19ff282deb1996fa04ee1cbe0982bd"
+    },
+    "notice-002-input.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-002-input.json",
+      "bytes": 88771,
+      "sha256": "f8d7d2373659e903e8ef181f58e392fd53501477e4faeb53b6756b0cd2242ec8"
+    },
+    "notice-003-flush.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-003-flush.json",
+      "bytes": 88773,
+      "sha256": "b5e5e4645fd9fce7748b1bb55ae571a52c8ee522c3e0bc78d32413ea9963fa67"
+    },
+    "notice-003-before.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-003-before.json",
+      "bytes": 88781,
+      "sha256": "cf26125d301f6815050afb0c2f4501ca3465306274111356a3076cc86eb56c1e"
+    },
+    "notice-003-input.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-003-input.json",
+      "bytes": 88777,
+      "sha256": "e55d732f3098a0fd485b6ca8efca6d68c62c24855c4a4706bc5d098c18ad3f38"
+    },
+    "notice-004-flush.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-004-flush.json",
+      "bytes": 88773,
+      "sha256": "91506c054202809e8de6473ee843f45da956bd002e4a648cec13b83cc6f745c4"
+    },
+    "notice-004-before.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-004-before.json",
+      "bytes": 88781,
+      "sha256": "e05f93edff3b3a44dd7abd044b62629341e9a65e813d0b01b172ccfbcf81edec"
+    },
+    "notice-004-input.json": {
+      "path": ".local/map-notice-capture-01/capture/notice-004-input.json",
+      "bytes": 88775,
+      "sha256": "2c7c14499a8b9283c1b16bbe4c194b602930704b42d6cb6426cbb1a397671a2e"
+    },
+    "notice-000-flush.png": {
+      "path": ".local/map-notice-capture-01/capture/notice-000-flush.png",
+      "bytes": 6828,
+      "sha256": "3fc66545ccbaa7cc171e031913e3b3297725bf099114fa94dba828bf9660e700"
+    },
+    "notice-003-flush.png": {
+      "path": ".local/map-notice-capture-01/capture/notice-003-flush.png",
+      "bytes": 6828,
+      "sha256": "3fc66545ccbaa7cc171e031913e3b3297725bf099114fa94dba828bf9660e700"
+    },
+    "notice-004-flush.png": {
+      "path": ".local/map-notice-capture-01/capture/notice-004-flush.png",
+      "bytes": 6822,
+      "sha256": "e267a6b564c893c4029991a48e2627b46c2e0c648c5527284c46e658d9573038"
+    }
+  },
+  "verificationTools": {
+    "scripts/verify-destination-fixture-negatives.js": "b5a067099c36e29b95da7f09520857d6b8f3eb45f96cee1ff4a1cc80e3901c3f",
+    "scripts/verify-destination.js": "b4d9dc65d49a7809bce79fd078beabba996a340addf3e7239eccedb846fbeeb0",
+    "src/game/destination-input.js": "5155a20fab7ac49c267875c9a82f1eff086e823f9a491138a3032e2f5a16fee6",
+    "src/game/destination-presentation.js": "af56b5208cee92fb6d6eab4cbe30c0d1eb869c0796f0512f41fe580e06fbb8d7",
+    "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",
+    "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
+    "src/game/campaign.js": "3164d47a4119bd9c6c11617f5bd21809a05eaeb2cd1519ea1ff5b4d81fa2c8bb"
+  }
+}

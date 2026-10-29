@@ -9,8 +9,9 @@ Game's unsigned driver counter and six-count steady polls.
 
 Fire returns before the map caller flush/mode restore. Destination entry sets
 mode1 and flushes the triggering key. The next destination choice needs a fresh
-make. Destination drawing, polling and choice waits still use the older browser
-implementation and are **not** claimed as translated by this milestone.
+make. At this milestone,destination drawing,polling and choice waits still used the
+older browser implementation. Subsequent[completed-page drawing](destination.md)
+is now translated;entry/scanout/polling and choice waits remain open.
 
 ## Evidence and verification
 

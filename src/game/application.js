@@ -7,6 +7,7 @@ import { SecurityScreen } from "./security-screen.js";
 import { DifficultyMenu } from "./difficulty-menu.js";
 import { Departure } from "./departure.js";
 import { Campaign, OFFICE, travelDays } from "./campaign.js";
+import { destinationInput } from "./destination-input.js";
 import { MoneyBin } from "./money-bin.js";
 import { Flight } from "./flight.js";
 import { Cave } from "./cave.js";
@@ -730,9 +731,11 @@ export class Game {
         return;
       }
       if (c.info && ["left", "right"].includes(event.type)) {
-        const count = c.atomicAvailable ? 3 : 2;
-        c.choice =
-          (c.choice + (event.type === "right" ? 1 : count - 1)) % count;
+        c.choice = destinationInput(
+          c.choice,
+          event.type === "right" ? 3 : 7,
+          c.atomicAvailable,
+        ).choice;
         return;
       }
       if (event.type === "fire") {
@@ -748,11 +751,16 @@ export class Game {
           c.enterDestination();
           return;
         }
-        if (c.choice === 0) {
+        const selectedInput = destinationInput(
+          c.choice,
+          0xc0,
+          c.atomicAvailable,
+        );
+        if (selectedInput.returnCode === 0x24) {
           c.info = false;
           return;
         }
-        c.aircraft = c.choice === 2 ? "atomic" : "launchpad";
+        c.aircraft = selectedInput.choice === 2 ? "atomic" : "launchpad";
         this.completeCampaignAction({ type: "travel", target: c.selected });
       }
       return;

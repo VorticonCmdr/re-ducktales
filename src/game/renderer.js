@@ -8,6 +8,7 @@ import {
 import { investmentPrice } from "./investments.js";
 import { systemOverlayLayout } from "./system-controls.js";
 import { endingTransitionPixels } from "./ending-presentation.js";
+import { destinationCommands } from "./destination-presentation.js";
 export class Renderer {
   constructor(canvas, resources) {
     this.canvas = canvas;
@@ -15,6 +16,7 @@ export class Renderer {
     this.resources = resources;
     this.cache = new Map();
     this.mountainRasterCache = createMountainRasterCache();
+    this.destinationCache = null;
     if (!this.ctx) throw Error("Canvas 2D is unavailable");
     this.font = resources.archives.get("MAIN.ARC")[42].data;
   }
@@ -522,50 +524,69 @@ export class Renderer {
     if (game.scene === "map") {
       const c = game.campaign,
         selected = c.locations[c.selected];
+      if (c.info) {
+        const key = JSON.stringify([
+          c.selected,
+          c.day,
+          game.money,
+          c.choice,
+          c.atomicAvailable,
+          selected.playerCollected,
+          selected.rivalCollected,
+          c.snapshot().travelDays,
+        ]);
+        if (this.destinationCache?.key !== key) {
+          const commands = destinationCommands({
+            image: this.resources.executable,
+            location: selected,
+            treasure: game.loot?.[selected.treasure - 1],
+            bank: c.selected === 0,
+            collected: selected.playerCollected || selected.rivalCollected,
+            days: c.snapshot().travelDays,
+            day: c.day,
+            money: game.money,
+            choice: c.choice,
+            atomicAvailable: c.atomicAvailable,
+          });
+          this.destinationCache = {
+            key,
+            pixels: renderFlightPixels(
+              commands,
+              this.resources.archives.get("MAIN.ARC"),
+              this.font,
+              "MAIN.ARC",
+            ),
+          };
+        }
+        this.ctx.putImageData(
+          new ImageData(this.destinationCache.pixels, 320, 200),
+          0,
+          0,
+        );
+        return;
+      }
       this.draw("MAIN.ARC", c.location === 35 ? 20 : 21, 0, 0, 0);
-      if (!c.info) {
-        this.draw("MAIN.ARC", 22, 0, 24, 20);
-        for (const l of c.locations) {
-          this.ctx.fillStyle = "#000";
-          this.ctx.fillRect(l.x - 1, l.y - 1, 5, 5);
-          this.ctx.fillStyle = "#0000aa";
-          this.ctx.fillRect(l.x, l.y, 3, 3);
-        }
-        this.draw("MAIN.ARC", 24, 0, 22, 115, -2);
-        if (c.selected !== 35) {
-          this.ctx.fillStyle = "#ffff55";
-          this.ctx.fillRect(selected.x - 1, selected.y - 1, 5, 5);
-          this.ctx.fillStyle = "#000";
-          this.ctx.fillRect(selected.x, selected.y, 3, 3);
-        }
-      } else {
-        selected.description.forEach((line, i) =>
-          this.text(line, 32, 22 + i * 8),
-        );
-        this.text(
-          `TRAVEL TIME: ${c.snapshot().travelDays} day${c.snapshot().travelDays === 1 ? "" : "s"}`,
-          32,
-          30 + selected.description.length * 8,
-        );
-        this.draw("MAIN.ARC", 26, 0, 192, 170, -2);
-        this.draw("MAIN.ARC", 27, 0, 248, 174, -2);
-        if (c.atomicAvailable) this.draw("MAIN.ARC", 29, 0, 281, 170, -2);
-        this.ctx.strokeStyle = "#fff";
-        this.ctx.strokeRect(
-          [191, 247, 280][c.choice],
-          [169, 173, 169][c.choice],
-          [53, 34, 39][c.choice],
-          [28, 19, 28][c.choice],
-        );
+      this.draw("MAIN.ARC", 22, 0, 24, 20);
+      for (const l of c.locations) {
+        this.ctx.fillStyle = "#000";
+        this.ctx.fillRect(l.x - 1, l.y - 1, 5, 5);
+        this.ctx.fillStyle = "#0000aa";
+        this.ctx.fillRect(l.x, l.y, 3, 3);
+      }
+      this.draw("MAIN.ARC", 24, 0, 22, 115, -2);
+      if (c.selected !== 35) {
+        this.ctx.fillStyle = "#ffff55";
+        this.ctx.fillRect(selected.x - 1, selected.y - 1, 5, 5);
+        this.ctx.fillStyle = "#000";
+        this.ctx.fillRect(selected.x, selected.y, 3, 3);
       }
       const title = c.selected === 35 ? "OFFICE" : selected.name;
-      this.text(title, 160 - title.length * 4, 6, c.info ? "#0000aa" : "#fff");
+      this.text(title, 160 - title.length * 4, 6, "#fff");
       this.draw("MAIN.ARC", 25, 0, 8, 175, -2);
       this.draw("MAIN.ARC", 23, 0, 40, 172, -2);
       this.text(String(c.day), c.day < 10 ? 18 : 14, 182, "#0000aa");
       this.text(String(game.money), 176 - String(game.money).length * 8, 175);
-      if (!c.info)
-        this.draw("MAIN.ARC", 28, 0, c.cursor.x - 8, c.cursor.y - 8, -2);
+      this.draw("MAIN.ARC", 28, 0, c.cursor.x - 8, c.cursor.y - 8, -2);
       return;
     }
     if (game.scene === "atomic-transport") {

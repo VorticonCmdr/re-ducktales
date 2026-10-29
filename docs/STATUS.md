@@ -61,6 +61,14 @@ the verification command itself was not repeated or altered. Earlier
 Original routine/segment comparisons,carried port replay and actual browser
 acceptance are distinct evidence levels. Success at one does not prove another.
 
+On the caller branch,the destination page now includes the original treasure
+name,description,value and integer selection border. Five original mode1
+input/flag/choice comparisons and two complete native page comparisons pass.
+The real browser also checks original invariant labels and its whole footer
+before flight departure and Restart. Entry/selection/confirmation timing remains
+untranslated;this is not new whole-campaign acceptance.
+[Destination evidence and scope](destination.md).
+
 ## Supported build
 
 Only the22-file pairing in [build.json](../reference/build.json) is supported.
@@ -95,7 +103,7 @@ Production visitors select their own originals. No deployment is performed.
   were changed. See[map input integration](map-input-integration.md).
 - The investment departure status is “Opening investments…”,verified in the
   actual browser alongside its original animation and trading destination.
-- Original map/notice presentation and polling details,broader destination and
+- Original map/notice entry transitions,scanout and polling details,broader destination and
   difficulty finishability,and original whole-scene/campaign comparisons remain.
   A broader exploratory controller is not acceptance evidence.
 - CPU/file/IRQ/input timing and physical audio waveform/gain/filter parity remain
@@ -115,6 +123,7 @@ npm run verify:ordinary-keyboard
 npm run verify:shared-runtime
 npm run verify:map-clock
 npm run verify:map-input-browser
+npm run verify:destination
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

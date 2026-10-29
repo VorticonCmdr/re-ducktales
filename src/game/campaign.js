@@ -13,7 +13,12 @@ export function parseLoot(entries) {
       .split(/\r?\n/);
     if (!/^\d+$/.test(lines[0]) || !lines[1])
       throw Error(`Invalid loot ${asset}`);
-    return { asset, value: (Number(lines[0]) << 16) >> 16, name: lines[1] };
+    return {
+      asset,
+      value: (Number(lines[0]) << 16) >> 16,
+      name: lines[1],
+      description: lines.slice(2, 4),
+    };
   });
 }
 export function parseLocations(entries) {

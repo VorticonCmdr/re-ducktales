@@ -153,7 +153,9 @@ try:
     initial = state('initial',stop)
     remove(first_bp)
     keys(('KBD_left',False),('KBD_space',False),('KBD_p',True))
-    loop_bp = add(0x61e)
+    # Raw frame capture is latched one flip behind immediately after1fd4.
+    # Stop after each original14-count wait to observe its current pose.
+    loop_bp = add(0x635)
     checkpoints = ['initial']
     for frame in range(4):
         stop = resume(stop['stop_id'])
@@ -162,7 +164,7 @@ try:
         assert memory[0x4e24] == frame
         checkpoints.append(f'pose-{frame}')
     remove(loop_bp)
-    hold_bp = add(0x663)
+    hold_bp = add(0x67a)
     stop = resume(stop['stop_id'])
     assert stop['breakpoint']['id'] == hold_bp
     state('final-hold',stop)
@@ -188,7 +190,7 @@ try:
     keys(('KBD_p',False))
     assert not owned and len(checkpoints) == 7
     save('inputs',inputs)
-    save('capture',{'completed':True,'pid':manager.pid,'instanceId':info['instance_id'],'port':args.port,'checkpoints':checkpoints,'expectedCheckpointCount':7,'returnCode':39,'heldKeyFlushed':'KBD_p','injections':[],'partialRestore':False,'scriptSha256':sha(Path(__file__).read_bytes())})
+    save('capture',{'completed':True,'pid':manager.pid,'instanceId':info['instance_id'],'port':args.port,'checkpoints':checkpoints,'expectedCheckpointCount':7,'alignment':'initial at05cb is previous selected office;pose0 through3 captured after14-count waits at0635;final-hold at067a before finalflip;final-flip at067e. Initial new composition equals pose0 exactly.','returnCode':39,'heldKeyFlushed':'KBD_p','injections':[],'partialRestore':False,'scriptSha256':sha(Path(__file__).read_bytes())})
     print(json.dumps({'completed':True,'pid':manager.pid,'checkpoints':7,'returnCode':39,'output':str(out)}),flush=True)
 finally:
     if manager.running:

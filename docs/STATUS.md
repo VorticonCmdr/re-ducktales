@@ -20,8 +20,8 @@ completion and verification limitations below still apply.
 
 ## Current verified branch
 
-Source `c582295` connects the destination dialog to the original ordinary-key
-reader. I/J/K/M, keypad directions/center/Enter, physical releases and fresh repeat
+The keyboard milestone `c582295` connects the destination dialog to the original
+ordinary-key reader. I/J/K/M, keypad directions/center/Enter, physical releases and fresh repeat
 makes now work. Original entry, selection and confirmation waits remain connected.
 The complete focused keyboard command, both complete campaign commands and the
 production build pass, with 573 exact source files archived.
@@ -51,6 +51,21 @@ That run predates this map/destination branch. **The required broader gate has
 not passed on the current branch.** The current production build passes; no new
 production-browser acceptance is claimed.
 
+## Refreshed focused routes
+
+The destination-aware jungle and mountain contracts now have independent current
+browser replays and strict Game checks: 55 complete state/picture checkpoints,
+224 separately consumed DOM events and the unchanged 860 jungle / 764 mountain
+movement samples. Mountain returns $8,100 with three lives and both rival reports;
+jungle returns $1,050 with one life. Both reject duplicate treasure collection.
+Three manifests pin original build, capture/browser sources, raw declarations,
+actual replay events/states and required missing-movement failures. Fifteen
+fixture/setup negatives also pass. `npm run verify:destination-routes` passes
+all five fresh browser cases and both real missing-movement controls.
+These are focused port/browser checks, not
+native whole-level parity or a completed broader integration gate.
+[Evidence and reproduction](destination-route-integration.md).
+
 ## Connected gameplay and evidence
 
 - Opening/Sound 001 → difficulty → office, money-bin dive/reward/return and
@@ -67,10 +82,10 @@ production-browser acceptance is claimed.
   35 original completion calls and 70 independently captured clock results.
   Current focused browser checks include aliases, raw makes/releases and steady
   six-count polls. [Map integration](map-input-integration.md).
-- Earlier alternate Hard, natural jungle/mountain and lightning routes retain
-  their independent streams and historical receipts. Their full carried checks
-  still need migration/acceptance with the newer map timing; they are not fresh
-  current-branch results. [Earlier milestones](status-history.md).
+- Natural jungle and mountain routes now have refreshed destination-aware
+  contracts as described above. Earlier alternate Hard and lightning routes
+  retain their independent streams and historical receipts; those still need
+  migration/acceptance with the newer map timing. [Earlier milestones](status-history.md).
 - Tandy/PCjr playback includes Sound 001 (~49s/3,558 sequencer ticks), persistent
   channels, priorities, engine words, mute and completion. All 121 public requests
   have viewer playback. PC speaker remains the default; waveform parity is open.
@@ -96,6 +111,11 @@ local. Production visitors select their own originals. Nothing is deployed.
   event streams legitimately send commands during the newly implemented entry
   wipe; preserve them and produce independent replacements rather than weakening
   comparisons. The main preview stays on its accepted source until integration.
+- Investigate the reported fast expedition movement in jungle, mountain, cave
+  and safari. Browser simulation already uses
+  separate fixed driver/retrace clocks; original CPU work between explicit waits
+  is not fully represented. Do not assume a high-refresh display is the cause or
+  apply an overall speed multiplier without a timed original comparison.
 - Broader destinations/difficulties, original whole-scene/campaign comparisons
   and arbitrary-route finishability remain unproven. CPU/file/IRQ timing and
   physical audio waveform/gain/filter parity also remain open.
@@ -109,6 +129,8 @@ local. Production visitors select their own originals. Nothing is deployed.
 
 ```
 npm run verify:destination-keyboard
+npm run verify:destination-routes-core
+npm run verify:destination-routes
 npm run verify:easy-destination-campaign
 npm run verify:hard-destination-campaign
 npm run verify:destination-waits

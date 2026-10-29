@@ -3,13 +3,14 @@
   "verificationEdition": "destination",
   "milestone": "jungle-entry",
   "expectedHard": false,
-  "pending": true,
-  "browserVerified": false,
+  "pending": false,
+  "browserVerified": true,
   "artifactRoot": ".local/destination-jungle-entry-accepted-01",
   "captureRoot": ".local/destination-jungle-entry-capture-02/raw",
   "captureCommit": "dbd7f9b1cd904e4e4970c9d1f5c035c7e6d25a18",
   "sourceFileCounts": {
-    "capture": 574
+    "capture": 574,
+    "browser": 580
   },
   "expectedCheckpointCount": 1,
   "requiredEventCount": 50,
@@ -68,6 +69,41 @@
       "path": ".local/destination-jungle-entry-capture-02/raw/entry.png",
       "bytes": 19873,
       "sha256": "560613d928335a016ad40d170d1f2ed6d48c1258bbe84d47d1d19db9d6f6df3c"
+    },
+    "browser-source": {
+      "path": ".local/destination-jungle-browser-02/source-revision.json",
+      "bytes": 62495,
+      "sha256": "99c728f7d805e9291c8b68c4bc5de4b2742e52695d6ed6ae8a1506a0e3f1543f"
+    },
+    "browser-zip": {
+      "path": ".local/destination-jungle-browser-02/sources.zip",
+      "bytes": 1543041,
+      "sha256": "6fea55c5a4ee069c399f9df311695c805fa629b8fcd62234ae176947887ed8a1"
+    },
+    "browser-runner": {
+      "path": ".local/destination-jungle-browser-02/runner-status.json",
+      "bytes": 1287,
+      "sha256": "9da61334df616d32e86efe727198390ef3e0342fb2fd503cc29f00f9def86088"
+    },
+    "browser-report": {
+      "path": ".local/destination-jungle-browser-02/positive-report.json",
+      "bytes": 9173,
+      "sha256": "d96179ce04c71601c194fc5bded60aec56201c2e242eee3cb6821851a9f91b86"
+    },
+    "browser-log": {
+      "path": ".local/destination-jungle-browser-02/positive.log",
+      "bytes": 1874,
+      "sha256": "c0107f23204c8a80b51e1a19d895a0c2485dbc6a7ef8e8bc72fd2ceb700ee26b"
+    },
+    "browser-config": {
+      "path": ".local/destination-jungle-browser-02/config.mjs",
+      "bytes": 506,
+      "sha256": "d80b97872ddc721fe21d9d04ce010785d4734461bede920ee5bc3ccb047b0206"
+    },
+    "browser-negative": {
+      "path": ".local/destination-jungle-browser-02/controls/browser-negative.log",
+      "bytes": 2040,
+      "sha256": "4fe0b6e96969a659985b509aec6eb8f9c00fb121c71e03bef7d8258e342f5a88"
     }
   },
   "buildManifest": "reference/build.json",
@@ -87,7 +123,17 @@
     "All50 events consumed from a fresh Game;no held keys,pending events or diagnostic tail"
   ],
   "limitations": [
-    "Port/browser prefix,not a native whole-scene comparison",
-    "Independent Game and fresh browser verification still required"
-  ]
+    "Port/browser route,not native whole-level parity",
+    "Broader required integration gate remains incomplete"
+  ],
+  "pendingBrowserReplay": false,
+  "browserCommit": "55bff10b30daaa2cad3d081e3bbe456ae3abf5c6",
+  "verify": "node scripts/verify-destination-routes.js reference/destination-jungle-entry.json",
+  "verificationTools": {
+    "scripts/verify-destination-routes.js": "d6c538dedfc8d0c09ec258db391a8edb96ee72c22431987fbf91181e2ef45ebb",
+    "scripts/verify-destination-route-negatives.js": "69aa7d12bb33db67c606bf9a48dfee54037d006fdbd1830f0951d4539b32b92f",
+    "scripts/replay-hard-campaign.js": "222bed526cadf31045910b26c04f942fe287ac3e8215b826ed6aabb7488ca1ea",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
+    "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0"
+  }
 }

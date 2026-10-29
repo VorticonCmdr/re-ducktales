@@ -171,6 +171,25 @@ for (const path of process.argv.slice(2).length
   const m = await json(path),
     p = profiles[m.milestone];
   assert.ok(p, "Unknown destination route");
+  const toolPaths = [
+    "scripts/verify-destination-routes.js",
+    "scripts/verify-destination-route-negatives.js",
+    "scripts/replay-hard-campaign.js",
+    "tests/browser/helpers/recorded-campaign.js",
+    "tests/browser/helpers/clock.js",
+  ];
+  assert.deepEqual(
+    Object.keys(m.verificationTools ?? {}).sort(),
+    toolPaths.sort(),
+    "Missing route verification tools",
+  );
+  for (const [tool, hash] of Object.entries(m.verificationTools))
+    assert.equal(
+      sha(await required(tool)),
+      hash,
+      `Changed route verifier ${tool}`,
+    );
+
   assert.equal(m.verificationEdition, "destination");
   assert.equal(m.pending, false);
   assert.equal(m.browserVerified, true);

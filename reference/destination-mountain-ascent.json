@@ -372,5 +372,12 @@
     "Broader required integration gate remains incomplete"
   ],
   "browserCommit": "aed7674d127248be69ae0f1db4692dc9b0aa9301",
-  "verify": "node scripts/verify-destination-routes.js reference/destination-mountain-ascent.json"
+  "verify": "node scripts/verify-destination-routes.js reference/destination-mountain-ascent.json",
+  "verificationTools": {
+    "scripts/verify-destination-routes.js": "d6c538dedfc8d0c09ec258db391a8edb96ee72c22431987fbf91181e2ef45ebb",
+    "scripts/verify-destination-route-negatives.js": "69aa7d12bb33db67c606bf9a48dfee54037d006fdbd1830f0951d4539b32b92f",
+    "scripts/replay-hard-campaign.js": "222bed526cadf31045910b26c04f942fe287ac3e8215b826ed6aabb7488ca1ea",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
+    "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0"
+  }
 }

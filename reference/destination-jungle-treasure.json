@@ -3,14 +3,15 @@
   "verificationEdition": "destination",
   "milestone": "jungle-treasure",
   "expectedHard": false,
-  "pending": true,
-  "pendingBrowserReplay": true,
-  "browserVerified": false,
+  "pending": false,
+  "pendingBrowserReplay": false,
+  "browserVerified": true,
   "artifactRoot": ".local/destination-jungle-treasure-accepted-01",
   "captureRoot": ".local/destination-jungle-migration-01/raw",
   "captureCommit": "d005c761da1421dd1bab54bb033e2432fb569067",
   "sourceFileCounts": {
-    "capture": 575
+    "capture": 575,
+    "browser": 580
   },
   "expectedCheckpointCount": 27,
   "requiredEventCount": 70,
@@ -295,6 +296,56 @@
       "path": "reference/security-jungle-treasure-inputs.json",
       "bytes": 1234,
       "sha256": "b31c7acf91dcc00edb6ea89295e5f87bf448ca8e6e95e2fa2d81814148d97238"
+    },
+    "browser-source": {
+      "path": ".local/destination-jungle-browser-02/source-revision.json",
+      "bytes": 62495,
+      "sha256": "99c728f7d805e9291c8b68c4bc5de4b2742e52695d6ed6ae8a1506a0e3f1543f"
+    },
+    "browser-zip": {
+      "path": ".local/destination-jungle-browser-02/sources.zip",
+      "bytes": 1543041,
+      "sha256": "6fea55c5a4ee069c399f9df311695c805fa629b8fcd62234ae176947887ed8a1"
+    },
+    "browser-runner": {
+      "path": ".local/destination-jungle-browser-02/runner-status.json",
+      "bytes": 1287,
+      "sha256": "9da61334df616d32e86efe727198390ef3e0342fb2fd503cc29f00f9def86088"
+    },
+    "browser-report": {
+      "path": ".local/destination-jungle-browser-02/positive-report.json",
+      "bytes": 9173,
+      "sha256": "d96179ce04c71601c194fc5bded60aec56201c2e242eee3cb6821851a9f91b86"
+    },
+    "browser-log": {
+      "path": ".local/destination-jungle-browser-02/positive.log",
+      "bytes": 1874,
+      "sha256": "c0107f23204c8a80b51e1a19d895a0c2485dbc6a7ef8e8bc72fd2ceb700ee26b"
+    },
+    "browser-config": {
+      "path": ".local/destination-jungle-browser-02/config.mjs",
+      "bytes": 506,
+      "sha256": "d80b97872ddc721fe21d9d04ce010785d4734461bede920ee5bc3ccb047b0206"
+    },
+    "browser-negative": {
+      "path": ".local/destination-jungle-browser-02/controls/browser-negative.log",
+      "bytes": 2040,
+      "sha256": "4fe0b6e96969a659985b509aec6eb8f9c00fb121c71e03bef7d8258e342f5a88"
+    },
+    "browser-progress": {
+      "path": ".local/destination-jungle-browser-02/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json",
+      "bytes": 3212,
+      "sha256": "4f6d2fb837091e6d97091dcb305bfc49a73752d571cdea24cae708a6ea9a5bfa"
+    },
+    "browser-checkpoints": {
+      "path": ".local/destination-jungle-browser-02/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 95166,
+      "sha256": "b0829794ec31be48dae99075a31a627e06ab4896195ef1ec244228042e3b9777"
+    },
+    "browser-events": {
+      "path": ".local/destination-jungle-browser-02/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "bytes": 6630,
+      "sha256": "26c148c19aef74ccc0cebbe3e7f82770f35ab2a27bd5ca3c95b43039ad0280f3"
     }
   },
   "buildManifest": "reference/build.json",
@@ -318,6 +369,15 @@
   ],
   "limitations": [
     "Port/browser route,not native whole-level parity",
-    "Fresh fixed-input browser acceptance pending;broader gate incomplete"
-  ]
+    "Broader required integration gate remains incomplete"
+  ],
+  "browserCommit": "55bff10b30daaa2cad3d081e3bbe456ae3abf5c6",
+  "verify": "node scripts/verify-destination-routes.js reference/destination-jungle-treasure.json",
+  "verificationTools": {
+    "scripts/verify-destination-routes.js": "d6c538dedfc8d0c09ec258db391a8edb96ee72c22431987fbf91181e2ef45ebb",
+    "scripts/verify-destination-route-negatives.js": "69aa7d12bb33db67c606bf9a48dfee54037d006fdbd1830f0951d4539b32b92f",
+    "scripts/replay-hard-campaign.js": "222bed526cadf31045910b26c04f942fe287ac3e8215b826ed6aabb7488ca1ea",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
+    "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0"
+  }
 }

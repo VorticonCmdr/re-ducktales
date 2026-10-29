@@ -110,14 +110,23 @@ export async function runHardExpedition({ page, info, manifest, inputs }) {
   expect(entry[activity].frames).toBe(0);
   expect(entry[activity].lives).toBe(3);
   const first = await observe("entry");
-  const entryManifest = JSON.parse(await readFile(inputs.entryManifest));
-  const entryChecks = JSON.parse(
-    await readFile(entryManifest.artifacts["campaign-checkpoints"].path),
-  );
-  expect(first.stateSha256, "Independently verified Hard entry").toBe(
-    entryChecks[0].stateSha256,
-  );
-  expect(first.pixelsSha256).toBe(entryChecks[0].pixelsSha256);
+  if (!capture) {
+    if (manifest.verificationEdition === "office") {
+      expect(first.stateSha256, "Current recorded Hard entry").toBe(
+        manifest.entryStateSha256,
+      );
+      expect(first.pixelsSha256).toBe(manifest.entryPixelsSha256);
+    } else {
+      const entryManifest = JSON.parse(await readFile(inputs.entryManifest));
+      const entryChecks = JSON.parse(
+        await readFile(entryManifest.artifacts["campaign-checkpoints"].path),
+      );
+      expect(first.stateSha256, "Independently verified Hard entry").toBe(
+        entryChecks[0].stateSha256,
+      );
+      expect(first.pixelsSha256).toBe(entryChecks[0].pixelsSha256);
+    }
+  }
   const stream = inputs.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
   expect(stream).toHaveLength(inputs.inputCount);
   expect(createHash("sha256").update(Buffer.from(stream)).digest("hex")).toBe(

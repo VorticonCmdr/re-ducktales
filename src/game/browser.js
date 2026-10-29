@@ -1,3 +1,4 @@
+import { heldControlEvent, ordinaryMakeEvent } from "./keyboard-adapter.js";
 import { parseLocations, parseLoot } from "./campaign.js";
 import { Game } from "./application.js";
 import { Scheduler } from "./scheduler.js";
@@ -60,33 +61,9 @@ function mapDirection() {
   );
 }
 function flightControls() {
-  dispatch({
-    type: "controls",
-    fire: held.has("Space") || held.has("Enter"),
-    direction:
-      ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
-        .filter((k) => held.has(k))
-        .at(-1)
-        ?.slice(5)
-        .toLowerCase() ?? null,
-    ...(game?.scene === "office" && game.officeMenu
-      ? {
-          officeKeys: [...held]
-            .map(
-              (k) =>
-                ({
-                  Enter: 0x1c,
-                  Space: 0x39,
-                  ArrowUp: 0x48,
-                  ArrowLeft: 0x4b,
-                  ArrowRight: 0x4d,
-                  ArrowDown: 0x50,
-                })[k],
-            )
-            .filter((k) => k !== undefined),
-        }
-      : {}),
-  });
+  dispatch(
+    heldControlEvent(held, game?.scene === "office" && !!game.officeMenu),
+  );
   if (game?.scene === "map")
     dispatch({ type: "direction", direction: mapDirection() });
 }
@@ -283,29 +260,13 @@ window.addEventListener("keydown", (event) => {
   held.add(event.code);
   flightControls();
   if (event.repeat) return;
-  if (event.code === "Space" || event.code === "Enter")
-    dispatch({
-      type: "fire",
-      ...(game?.scene === "office" && game.officeMenu
-        ? { physicalKey: true }
-        : {}),
-      direction: held.has("ArrowUp")
-        ? "up"
-        : held.has("ArrowLeft")
-          ? "left"
-          : held.has("ArrowRight")
-            ? "right"
-            : null,
-    });
-  else if (
-    ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.code)
-  )
-    dispatch({
-      type: event.code.slice(5).toLowerCase(),
-      ...(game?.scene === "office" && game.officeMenu
-        ? { physicalKey: true }
-        : {}),
-    });
+  dispatch(
+    ordinaryMakeEvent(
+      event.code,
+      held,
+      game?.scene === "office" && !!game.officeMenu,
+    ),
+  );
 });
 window.addEventListener("keyup", (event) => {
   held.delete(event.code);

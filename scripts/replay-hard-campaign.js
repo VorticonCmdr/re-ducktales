@@ -1,3 +1,7 @@
+import {
+  heldControlEvent,
+  ordinaryMakeEvent,
+} from "../src/game/keyboard-adapter.js";
 // Replay recorded external browser events without an output-guided controller.
 // --diagnose permits an incomplete exploratory capture and a declared100ms tail;
 // that mode can locate a failure but cannot satisfy acceptance.
@@ -213,16 +217,7 @@ function advance(at) {
 }
 const send = (e) => clock.enqueue(e, lastTime);
 function controls() {
-  send({
-    type: "controls",
-    fire: held.has("Space") || held.has("Enter"),
-    direction:
-      ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
-        .filter((k) => held.has(k))
-        .at(-1)
-        ?.slice(5)
-        .toLowerCase() ?? null,
-  });
+  send(heldControlEvent(held, game.scene === "office" && !!game.officeMenu));
   if (game.scene === "map") {
     const x = Number(held.has("ArrowRight")) - Number(held.has("ArrowLeft")),
       y = Number(held.has("ArrowDown")) - Number(held.has("ArrowUp"));
@@ -273,18 +268,13 @@ function event(e) {
     }
     held.add(key);
     controls();
-    if (key === "Space" || key === "Enter")
-      send({
-        type: "fire",
-        direction: held.has("ArrowUp")
-          ? "up"
-          : held.has("ArrowLeft")
-            ? "left"
-            : held.has("ArrowRight")
-              ? "right"
-              : null,
-      });
-    else send({ type: key.slice(5).toLowerCase() });
+    send(
+      ordinaryMakeEvent(
+        key,
+        held,
+        game.scene === "office" && !!game.officeMenu,
+      ),
+    );
     return;
   }
   if (e.target === "game") {

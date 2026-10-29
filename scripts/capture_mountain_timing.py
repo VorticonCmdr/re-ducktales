@@ -185,7 +185,7 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
         for _, _, stage in stages:
             remove(stage)
         after = state('timing-mountain-last-read', stop)
-        recording = client.post('/api/v1/input/record/stop', params={'include_events': 'false'})
+        recording = client.post('/api/v1/input/record/stop')
         assert recording['event_count'] == 0 and not recording['truncated']
         save('timing-profile-recorder-completion', recording)
         save('mountain-frame-profile', {'completed': True, 'expectedFrames': 14,

@@ -795,7 +795,7 @@
     "reference/opening-inputs.json": "6e1591e708fadcfe60d9cc382b1110ae863eeba7251da2c758bb06474275e7dd",
     "docs/opening-capture-recipe.md": "10dc05aad340bf53dd5e18ddc1bc67ab205e85606889de41265cc15d94184466",
     "src/game/opening.js": "ed91355bc55fc74eee726358fb207b6b66b7985b489ec0d1512410b49a60a9ab",
-    "src/game/application.js": "ae82759d773bc0a3b4d5782e10000590a5b73b483ae174185b5565a9fb624484",
+    "src/game/application.js": "d7bb5bc4b9d8afbb98478ad8af051984f1a6c3265db9a073608b790ce6ad88fa",
     "src/game/browser.js": "f9d2b0a7c7b8a8206ebdc1c97bedcfa06c881d36535bab49028cc98ed46d34a9",
     "src/game/renderer.js": "34e5475b99b7af891050a4128ca97229cfc35fb8c6a36609102b84fe512df955",
     "tests/opening.test.js": "4bf2a1661ae8bc641543d2531ca85aff3c1af85b4b4b4603754bfbea05688851",
@@ -807,7 +807,7 @@
     "tests/browser/flight-input.spec.js": "cbd21f1ef52dbeddb41b182e47d49b707b5ccabfd6ee45744b7932adfb17cf5b",
     "tests/browser/flight-lightning.spec.js": "821580b74edcdafc4da07ec85b75634b9ab41a00c251043807fc3b90f89afcbc",
     "tests/browser/helpers/ending-route.js": "00bf4b1d471bfad5bd19820bbc1826b5443754b18d9493b97fdc148e9510bd6c",
-    "tests/browser/investments.spec.js": "9fe497e8312758bf751b47110a12facccc5c8767c6e34aef82fe5b402aa91714",
+    "tests/browser/investments.spec.js": "dff0f1b6537c78d29f93610a00eaec6cff9b04a06be1676b8f2fa406d473b8f5",
     "tests/browser/jungle-input.spec.js": "813b273941dd8d2d68afa39dac63554326590b032b1081e32286849729f90a89",
     "tests/browser/jungle-treasure.spec.js": "1cbdfe41132f8b18204b23b316f5c071c436a82ea8dda6af10d21879688ab487",
     "tests/browser/jungle.spec.js": "6bfab8363701c7bab94608ea04aae47215107327f75c14de1dfbee6dcebd6972",
@@ -833,10 +833,10 @@
     "scripts/verify-route-tools.js": "584109f1465e2511693f0ef1a53cb6bad8c5198f4c87e156be729f77cf98454e",
     "reference/lightning-flight-inputs.json": "fe94d7d91ad32cf13ff05cb3f71973ba84a805b4eabf96a429a33a40aaba4e89",
     "scripts/verify-lightning-control-profile.js": "56fa593c12e5a6aac50e212df2891bd284d0ca69133404617db9a9a299e1f413",
-    "src/game/office.js": "123c84918f10e81f13c930c9935aad293a8cc08846abf805540a3d33250eaf9b",
+    "src/game/office.js": "39319981d1a50d6973776fc9ba7afb1ceb4077e3ea16add2fcc26da931d283a6",
     "scripts/verify-office.js": "c6ae395afaf03ba01935e7ace41b5305ec4287651b1c483f894e500fda263e80",
     "scripts/verify-office-browser-negative.js": "a95b71778668c3ddf525f2d83d780a9482e393a8580be35d9ac30759caa39129",
-    "tests/browser/office.spec.js": "dc9286ec0bf7e4ec49cf2baa3b585190ed7655dcb3e6c2d0f4b98ab16b6019e0",
-    "reference/office.json": "9800bbb9ed61d0ee6d5cb95bbffb35e918ae29d54964a420f680a0c49e327d64"
+    "tests/browser/office.spec.js": "e1c224a668496a9b560247b82fbf8daf03735217dfdd7f1e7517e300cd7b2451",
+    "reference/office.json": "cefb77d08ec20d39c162619e3fbaccf6540373eaa0609fa22ec31c5c7b713308"
   }
 }

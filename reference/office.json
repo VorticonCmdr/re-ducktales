@@ -2,7 +2,7 @@
   "version": 1,
   "buildManifest": "reference/build.json",
   "baseCommit": "6fc0ef4a9d23f324bb762bd6475f199acd4697a4",
-  "status": "Connected office→original money-bin departure→dive→reward/return→restart. Full required gate passes:117 unit,74 development browser,2 production browser cases,zero skips.",
+  "status": "Connected office\u2192original money-bin departure\u2192dive\u2192reward/return\u2192restart. Full required gate passes:117 unit,74 development browser,2 production browser cases,zero skips.",
   "artifactRoot": ".local/office-native-postwait-20261028",
   "expectedCheckpointCount": 20,
   "expectedInputObservationCount": 3,
@@ -437,7 +437,7 @@
   "expectedArtifactCount": 48,
   "captureToolRevision": "office-postwait-v1; DOSBox MCP bridge0.1.1, engine0.84.0-vc1 (f6d9b), protocol1.14; exact recipe in docs/office-transitions.md; raw Ghidra listings and engine status pinned as private artifacts.",
   "verificationTools": {
-    "src/game/office.js": "123c84918f10e81f13c930c9935aad293a8cc08846abf805540a3d33250eaf9b",
+    "src/game/office.js": "39319981d1a50d6973776fc9ba7afb1ceb4077e3ea16add2fcc26da931d283a6",
     "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
     "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
     "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",

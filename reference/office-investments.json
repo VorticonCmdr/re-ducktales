@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "status": "Original post-wait comparison and connected browser preflight; dedicated browser acceptance and full gate pending.",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "captureCommit": "84f8ae7773b4415aea244bf30ece78f49ef46387",
+  "captureRecipe": "scripts/capture-office-investments.py",
+  "captureRecipeSha256": "862cf973e110e07da45399b0b9da344aa059dbe5499907f9c58f9bc40fc03002",
+  "artifactRoot": ".local/office-investment-native-02",
+  "expectedArtifactCount": 26,
+  "expectedNativePictureCount": 7,
+  "expectedLogicalFlipCount": 7,
+  "expectedDriverCounts": 70,
+  "alignment": "initial.png is the old selected office at05cb before the VGA latch. Other poses are captured after original waits. The first two new compositions are pixel-identical and both match pose-0.png. No timing tolerance or generated expected pixels.",
+  "cases": [
+    {
+      "name": "initial",
+      "ip": 1483,
+      "frameIndex": null
+    },
+    {
+      "name": "pose-0",
+      "ip": 1589,
+      "frameIndex": 1
+    },
+    {
+      "name": "pose-1",
+      "ip": 1589,
+      "frameIndex": 2
+    },
+    {
+      "name": "pose-2",
+      "ip": 1589,
+      "frameIndex": 3
+    },
+    {
+      "name": "pose-3",
+      "ip": 1589,
+      "frameIndex": 4
+    },
+    {
+      "name": "final-hold",
+      "ip": 1658,
+      "frameIndex": 5
+    },
+    {
+      "name": "final-flip",
+      "ip": 1662,
+      "frameIndex": 6
+    }
+  ],
+  "artifacts": {
+    "after-flush.json": {
+      "path": ".local/office-investment-native-02/after-flush.json",
+      "bytes": 88775,
+      "sha256": "70f8baca5f2ed9a9ef89d0c03b1c433095a124d8b613ae0c27a41d464202a6a9"
+    },
+    "capture.json": {
+      "path": ".local/office-investment-native-02/capture.json",
+      "bytes": 664,
+      "sha256": "b0906d37917217029e805709f072a7373ff915080d1e31999c953349494655c1"
+    },
+    "cleanup.json": {
+      "path": ".local/office-investment-native-02/cleanup.json",
+      "bytes": 156,
+      "sha256": "a786a3752153a297337b1f6ef08fcbb083448e4e533353ef14e517f1e2a7de4e"
+    },
+    "configuration.json": {
+      "path": ".local/office-investment-native-02/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    "engine.json": {
+      "path": ".local/office-investment-native-02/engine.json",
+      "bytes": 3988,
+      "sha256": "168b64f7a64d334a0a2265d6410c7bad36d5f3091a6c788b2acaa1b63c02853f"
+    },
+    "final-flip.json": {
+      "path": ".local/office-investment-native-02/final-flip.json",
+      "bytes": 88781,
+      "sha256": "172d14c7c64fde909b7ccb2c2ea90f68a5cc4382b8da048c64a9ed42bc662145"
+    },
+    "final-flip.png": {
+      "path": ".local/office-investment-native-02/final-flip.png",
+      "bytes": 18282,
+      "sha256": "9b39865c964ad738cdd766e4a10f367c155c018823d80f6c147bb625d05b4285"
+    },
+    "final-hold.json": {
+      "path": ".local/office-investment-native-02/final-hold.json",
+      "bytes": 88770,
+      "sha256": "ea04e5eb1f39bbe07e9d6ca07e28a35b3cfa43bcdb87baa13063b412cc9f5fda"
+    },
+    "final-hold.png": {
+      "path": ".local/office-investment-native-02/final-hold.png",
+      "bytes": 18282,
+      "sha256": "9b39865c964ad738cdd766e4a10f367c155c018823d80f6c147bb625d05b4285"
+    },
+    "initial.json": {
+      "path": ".local/office-investment-native-02/initial.json",
+      "bytes": 88780,
+      "sha256": "c5de371cd0f13b61ade44f6b5733beb68793e3dea028de74d1d96835f1e0730f"
+    },
+    "initial.png": {
+      "path": ".local/office-investment-native-02/initial.png",
+      "bytes": 17043,
+      "sha256": "b9fb37b3c4d0cde58ea9498daf1968a5ca11a40f55ba8a7611b363811b8ce7b0"
+    },
+    "inputs.json": {
+      "path": ".local/office-investment-native-02/inputs.json",
+      "bytes": 2176,
+      "sha256": "ae7e0c89104fffc7a1869b06ec09bb9cbf63089d5d4146d4de2580e6163e67a3"
+    },
+    "live-overlay.json": {
+      "path": ".local/office-investment-native-02/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "f9ed7c49a89678058a638423c9e3fb9fdd92abf487b3e324771802eb42ec47ef"
+    },
+    "office-confirm.json": {
+      "path": ".local/office-investment-native-02/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "1fa161337e0fc5b87315ae983defd1c4d08c0fe7df3a6abe0b4ea1d0f0b01ca2"
+    },
+    "office-input.json": {
+      "path": ".local/office-investment-native-02/office-input.json",
+      "bytes": 88775,
+      "sha256": "92a983abe10ede57f39f37ebf9c9895661475f0484ba3f31c88b60ec0a383faa"
+    },
+    "office-input.png": {
+      "path": ".local/office-investment-native-02/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "pose-0.json": {
+      "path": ".local/office-investment-native-02/pose-0.json",
+      "bytes": 88770,
+      "sha256": "ebd2a738e6b3022c77cbbeea3fbabfafcf601fb397653d280c56161627f9b156"
+    },
+    "pose-0.png": {
+      "path": ".local/office-investment-native-02/pose-0.png",
+      "bytes": 17964,
+      "sha256": "f2da8cabce01e79bf48b11f035d861135bea369ec9c8eddc22d471910bab548e"
+    },
+    "pose-1.json": {
+      "path": ".local/office-investment-native-02/pose-1.json",
+      "bytes": 88770,
+      "sha256": "ba1050bde57faedc190c8e178037d6434165ad093c22077d5d955d7b57d2d958"
+    },
+    "pose-1.png": {
+      "path": ".local/office-investment-native-02/pose-1.png",
+      "bytes": 18005,
+      "sha256": "de94937037e89dea154584851e355e670a8403f9e9c578691ce4719ad5a07b27"
+    },
+    "pose-2.json": {
+      "path": ".local/office-investment-native-02/pose-2.json",
+      "bytes": 88770,
+      "sha256": "720fb33968991405530c14c0351da1de2551a5178d05598b9a4f14fa23b0060e"
+    },
+    "pose-2.png": {
+      "path": ".local/office-investment-native-02/pose-2.png",
+      "bytes": 18082,
+      "sha256": "690f980e19423712d803a08eb5666591b6c9b073cc81b504957504d7c0ce85ee"
+    },
+    "pose-3.json": {
+      "path": ".local/office-investment-native-02/pose-3.json",
+      "bytes": 88770,
+      "sha256": "9720f7cf4a61b74444da8d348c1e336094a3e10c12e7234c61c19f1fc95c556f"
+    },
+    "pose-3.png": {
+      "path": ".local/office-investment-native-02/pose-3.png",
+      "bytes": 18282,
+      "sha256": "9b39865c964ad738cdd766e4a10f367c155c018823d80f6c147bb625d05b4285"
+    },
+    "return.json": {
+      "path": ".local/office-investment-native-02/return.json",
+      "bytes": 88777,
+      "sha256": "9f62d92e802bac8cc44837f7ec96a9525cdd281ae3728f5cc247e7f949d30b68"
+    },
+    "startup-inputs.json": {
+      "path": ".local/office-investment-native-02/startup-inputs.json",
+      "bytes": 1220,
+      "sha256": "36bbf41174a1a976f8250598030bbc07d15122a7a175e734f2821c6146d6b14f"
+    }
+  }
+}

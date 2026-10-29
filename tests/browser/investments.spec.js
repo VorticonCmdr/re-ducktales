@@ -69,7 +69,7 @@ test("calendar travel produces company news and acknowledged bulletins stay cons
     expect((await state()).seed).toBe(marketRoute.checkpoints[trip].seed);
   }
   await page.locator("#investments").click();
-  await page.clock.runFor(100);
+  await until((s) => s.scene === "investments");
   await canvas.focus();
   expect((await state()).investments.phase).toBe("news");
   await page.screenshot({ path: ".local/browser-results/investment-news.png" });
@@ -85,7 +85,7 @@ test("calendar travel produces company news and acknowledged bulletins stay cons
   await press("Escape");
   expect((await state()).scene).toBe("office");
   await page.locator("#investments").click();
-  await page.clock.runFor(100);
+  await until((s) => s.scene === "investments");
   expect((await state()).investments.phase).toBe("portfolio");
   expect((await state()).campaign.day).toBe(25);
   await expect(page.locator("#diagnostic")).toBeHidden();

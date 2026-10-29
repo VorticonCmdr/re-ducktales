@@ -24,6 +24,13 @@ its117/74/2 gate remain separate historical evidence in
 
 ## Working routes and evidence
 
+- Isolated development after main3973cc7: the original investment departure now
+  connects Left+Fire/button → seven-flip animation → trading → office/restart.
+  Seven original pictures and sprite tuples match with explicit VGA latch
+  alignment; five focused browser cases and117 unit cases pass. Required Left
+  omission and missing/corrupt fixture controls reject failures. Full branch
+  integration remains pending. [Investment departure](office-investments.md).
+
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
 - Office→map→departure→keyboard flight→landing or crash/repair→expedition→results

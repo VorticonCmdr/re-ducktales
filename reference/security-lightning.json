@@ -133,6 +133,143 @@
       "path": ".local/security-lightning-02/released.png",
       "bytes": 9105,
       "sha256": "c1ca6ad9c9a241d61415983e29d69da6a6c0960dac8407165ea322922d0f86e1"
+    },
+    "browser-source": {
+      "path": ".local/security-lightning-accepted-02/browser-source-revision.json",
+      "bytes": 9564,
+      "sha256": "b965be42f8a8a866431ab536d8c1f7cc39053667473e9c2b443aa95dc46c44f9"
+    },
+    "browser-results": {
+      "path": ".local/security-lightning-accepted-02/browser-report.json",
+      "bytes": 5953,
+      "sha256": "5530823d574752927327b5ebcb1f08487035e8eac1f545cd0f56189f19224bff"
+    },
+    "browser-checkpoints": {
+      "path": ".local/security-lightning-accepted-02/browser-results/flight-lightning-replay-re-f8984-t-through-throttle-recovery/campaign-checkpoints.json",
+      "bytes": 16676,
+      "sha256": "f159100853f809e6850bcc111dd70e4721f1bc46482ef6eec8ecbfa73f611cf5"
+    },
+    "browser-progress": {
+      "path": ".local/security-lightning-accepted-02/browser-results/flight-lightning-replay-re-f8984-t-through-throttle-recovery/replay-progress.json",
+      "bytes": 2522,
+      "sha256": "9ff155f14e3673225add7e7538e5bb9bcaa847d33e1de1a7dd1d973a4795e5c3"
+    },
+    "browser-events": {
+      "path": ".local/security-lightning-accepted-02/browser-results/flight-lightning-replay-re-f8984-t-through-throttle-recovery/actual-events.json",
+      "bytes": 14953,
+      "sha256": "dd7784bbda0f38a15c2cf7c18f653dfdbfca31fb6faa9ebc0b869a1337959ecf"
+    },
+    "browser-negative": {
+      "path": ".local/security-lightning-accepted-02/browser-negative-record.log",
+      "bytes": 2014,
+      "sha256": "459ae9c4c1c51608fa10df66cb95f79d9b58fbf4816f8d1420b96134cb8e9b5c"
+    },
+    "entry-reference": {
+      "path": "reference/security-lightning-entry.json",
+      "bytes": 1592,
+      "sha256": "75fba64529ccda81c576726e155837056f112f8e8f1a9466eadceb5fd9ba695a"
+    },
+    "entry-source": {
+      "path": ".local/security-lightning-entry-02/source-revision.json",
+      "bytes": 8868,
+      "sha256": "c0ecba35df74b5783b1955c779e37fc17b410cf7139155521710fb91b68babdd"
+    },
+    "entry-png": {
+      "path": ".local/security-lightning-entry-02/departure.png",
+      "bytes": 9956,
+      "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
+    },
+    "shared-browser-results": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-report.json",
+      "bytes": 16774,
+      "sha256": "82d2a594c4fbe684290f2d857a41e3861b9f21751acf4a30f017afe46d198307"
+    },
+    "shared-browser-source": {
+      "path": ".local/security-lightning-accepted-02/shared-source-revision.json",
+      "bytes": 8961,
+      "sha256": "c273ed2ea2f8508077d98b2922a8d7a4dbf378487af0ca9e36748dd5ce830564"
+    },
+    "hard-regression-checkpoints": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-results/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157538,
+      "sha256": "298ca42bcaf78b7be44ee3c3c2b11b50ec430dffb922029a1f63d30e9ea64ab2"
+    },
+    "hard-regression-progress": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-results/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "2713787e69caad562ebf807f2037b491c200dd17931886dc1324e13bc98b9c73"
+    },
+    "hard-regression-events": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-results/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373504,
+      "sha256": "d80e7e4af42e8f615b1a8e369f47901a890618dccbba60d46c3e6acb6f92b784"
+    },
+    "jungle-regression-checkpoints": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-results/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 95166,
+      "sha256": "1c3e1cdcbc1e01361ac1e0844a270de5098bac9ddadbd5ca10711c308e7c4744"
+    },
+    "jungle-regression-progress": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-results/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json",
+      "bytes": 3212,
+      "sha256": "9ed0efdfa9b797bea7530d12f75d82d982dd3212114f1ad42aa605d6cab2b020"
+    },
+    "jungle-regression-events": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-results/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "bytes": 6625,
+      "sha256": "42eb264e27696ecd48b9995ab9369074a8b870ccc2e06ff1fd2cb8b95e9ba477"
+    },
+    "mountain-regression-checkpoints": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-results/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 98558,
+      "sha256": "0629486ebeb4dbd21527787ce16957eb8901e26018708eb7fad4f1b8c1097f5b"
+    },
+    "mountain-regression-progress": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-results/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/replay-progress.json",
+      "bytes": 3302,
+      "sha256": "9bb8763f0a3d4cdea64a7c5a347b1db8254a5868f964984c0370b01f026435b3"
+    },
+    "mountain-regression-events": {
+      "path": ".local/security-lightning-accepted-02/shared-browser-results/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/actual-events.json",
+      "bytes": 9671,
+      "sha256": "f404a748dc18eee6518c2e7da7516218d37e060f35101f419db8fb7e13971036"
     }
-  }
+  },
+  "browserVerified": true,
+  "browserProducer": ".local/security-lightning-accepted-02/browser-source-revision.json",
+  "browserCommit": "3ee88ec3b6984d1766250e2ab06b869e43a59591",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "entryCommit": "ba329c354feff3e5c181a4745e71d082cc4dae99",
+  "evidenceLevel": "closed-loop port regression and independent browser scenario;not native whole-flight parity",
+  "environmentContract": {
+    "biosSeed": 0,
+    "difficulty": 0,
+    "clockOriginMilliseconds": 1,
+    "displayMilliseconds": 8,
+    "soundEnabled": false,
+    "audioCompletion": "existing explicit muted provider",
+    "keyReleaseEndpoint": "next flight input poll consumes a neutral value;no fitted delay"
+  },
+  "comparisonRules": [
+    "Exact complete application snapshot at every checkpoint",
+    "Exact decoded 320x200 RGBA pixels",
+    "Pointer coordinates normalized only at the existing clamp/truncation input boundary"
+  ],
+  "playerInputProvenance": "Altitude0..15/climb heading2 policy selected a player route from the carried port. Down make after sample35 is authored player timing chosen during that exploration;not original keyboard/IRQ timing evidence. Accepted replay reads only the independent DOM stream,never expected actor states.",
+  "originalEvidenceManifest": "reference/flight-lightning-input.json",
+  "originalEvidenceManifestSha256": "85e4b68a554eb9f70f7fd332fc275d692953c5af746a06184ef44add902bf889",
+  "injections": [],
+  "fittedInputs": [],
+  "verify": "npm run verify:security-lightning",
+  "verificationTools": {
+    "scripts/replay-hard-campaign.js": "101c4b838b61e047de65f35889b1b143e0c1769847151a88b9fafb82a9269d59",
+    "scripts/verify-security-lightning.js": "5f6f085b5c648d02aaab64aec07f834a1a61743992e77a15edc460d99d760ea4",
+    "scripts/verify-security-lightning-browser-negative.js": "c4665d2c8ef81a9f541019b36c661b17395a25466cf12a5fbd6d9961fcfb1e33",
+    "scripts/verify-security-lightning-fixture-negatives.js": "8025a9a8a904d26df08e1450857cf39ca2c7684224413e0fe61352543b94fb80",
+    "tests/browser/helpers/recorded-campaign.js": "9fb989e5249ae9028c99e4784c5111034684d682de83e7d56d5da9c439c4bdf1",
+    "tests/browser/flight-lightning.spec.js": "821580b74edcdafc4da07ec85b75634b9ab41a00c251043807fc3b90f89afcbc",
+    "tests/browser/flight-lightning-replay.spec.js": "3a2b5b52266c560812925302d27139d076214a3549c0cdc44cc1e1ee2df5df6c"
+  },
+  "sharedBrowserCommit": "3ee88ec3b6984d1766250e2ab06b869e43a59591"
 }

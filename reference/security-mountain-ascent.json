@@ -491,9 +491,9 @@
   "browserProducer": ".local/security-mountain-ascent-accepted-01/browser-source-revision.json",
   "browserCommit": "af348ac0f780b68af45269512f04b6f07af32cdc",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "0db9ba839f6ae50b0bd15b347d1ca99820af170803ae7a70f507dcae25bb12e1",
+    "scripts/replay-hard-campaign.js": "101c4b838b61e047de65f35889b1b143e0c1769847151a88b9fafb82a9269d59",
     "scripts/verify-security-mountain-ascent.js": "efabf4a5ee63dccc5fa74832527eba7fe7f120ef79b7ac1d2d0afc734f2681c0",
-    "tests/browser/helpers/recorded-campaign.js": "afe499347ea76adb780868f1d049ef7008414a4d4ffc6a8666bbea53c6c02e95",
+    "tests/browser/helpers/recorded-campaign.js": "9fb989e5249ae9028c99e4784c5111034684d682de83e7d56d5da9c439c4bdf1",
     "tests/browser/mountain-ascent-replay.spec.js": "7ef2c46967d0ab3da8bfb842d7cc946b451e26d3c47229d8a3f12225a3a38411",
     "scripts/verify-security-mountain-browser-negative.js": "cc3711f723703251ccb58aceaa51ad872e982dbf3d689d867025124cc2088064",
     "scripts/verify-security-mountain-fixture-negatives.js": "b16db10d7c69cab3b87e1ea44c55422cfa49ac9b046fac219a7b8bafe0f43a49"

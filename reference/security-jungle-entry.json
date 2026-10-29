@@ -93,7 +93,7 @@
   "browserProducer": ".local/security-jungle-entry-accepted-02/browser-source-revision.json",
   "fullBranchGate": "pending",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "0db9ba839f6ae50b0bd15b347d1ca99820af170803ae7a70f507dcae25bb12e1",
+    "scripts/replay-hard-campaign.js": "101c4b838b61e047de65f35889b1b143e0c1769847151a88b9fafb82a9269d59",
     "scripts/verify-security-jungle-entry.js": "cf370581e9ce3761afde0dae2f2ab66127c6f2eedeace25a6a5f83b4fee9ed6a"
   },
   "environmentProviders": {

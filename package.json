@@ -65,7 +65,7 @@
     "verify:mixed-campaign": "npm run verify:build && playwright test tests/browser/mixed-campaign.spec.js",
     "verify:mixed-campaign-negative": "node scripts/verify-mixed-campaign-negative.js",
     "prepare:bank-analysis": "python3 scripts/prepare-bank-analysis.py",
-    "verify:flight-lightning": "node scripts/verify-system-controls.js && node scripts/verify-flight-lightning.js && node --test tests/flight-input.test.js && playwright test tests/browser/flight-lightning.spec.js",
+    "verify:flight-lightning": "node scripts/verify-system-controls.js && node scripts/verify-flight-lightning.js && node --test tests/flight-input.test.js && npm run verify:security-lightning",
     "verify:hard-expedition": "npm run verify:build && playwright test tests/browser/hard-expedition.spec.js && node scripts/verify-hard-expedition-negative.js && node scripts/verify-hard-expedition-negative.js --boola",
     "verify:boola-expedition": "npm run verify:build && playwright test tests/browser/hard-expedition.spec.js --grep \"Hard race, Boola treasure\" && node scripts/verify-hard-expedition-negative.js --boola",
     "verify:hard-mountains": "npm run verify:build && playwright test tests/browser/hard-mountains.spec.js && node scripts/verify-hard-mountains-negative.js",
@@ -74,7 +74,7 @@
     "verify:hard-campaign": "node scripts/verify-hard-campaign.js && node scripts/verify-hard-campaign-browser-negative.js",
     "test:hard-campaign": "playwright test tests/browser/hard-campaign.spec.js",
     "verify:difficulty-core": "node scripts/verify-difficulty.js",
-    "verify:flight-input-stream": "node scripts/verify-flight-control-profiles.js && node scripts/verify-lightning-control-profile.js && node scripts/verify-flight-input-browser-negative.js",
+    "verify:flight-input-stream": "node scripts/verify-flight-control-profiles.js && node scripts/verify-lightning-control-profile.js && node scripts/verify-security-lightning.js && node scripts/verify-flight-input-browser-negative.js",
     "verify:difficulty": "npm run verify:difficulty-core && playwright test tests/browser/difficulty.spec.js && node scripts/verify-difficulty-browser-negative.js",
     "verify:office": "npm run verify:office-core && playwright test tests/browser/office.spec.js && node scripts/verify-office-browser-negative.js",
     "verify:office-core": "node scripts/verify-office.js",
@@ -84,7 +84,8 @@
     "test:hard-security-campaign": "DUCKTALES_CAMPAIGN_MANIFEST=reference/hard-campaign-security.json playwright test tests/browser/hard-campaign.spec.js",
     "verify:security-jungle-entry": "node scripts/verify-security-jungle-entry.js && playwright test tests/browser/jungle-input.spec.js && node scripts/verify-security-browser-negative.js",
     "verify:security-jungle-treasure": "node scripts/verify-security-jungle-treasure.js && playwright test tests/browser/jungle-treasure.spec.js tests/browser/jungle-treasure-replay.spec.js && node scripts/verify-security-jungle-treasure-browser-negative.js",
-    "verify:security-mountain-ascent": "node scripts/verify-security-mountain-ascent.js && playwright test tests/browser/mountain-ascent.spec.js tests/browser/mountain-ascent-replay.spec.js && node scripts/verify-security-mountain-browser-negative.js && node scripts/verify-security-mountain-fixture-negatives.js"
+    "verify:security-mountain-ascent": "node scripts/verify-security-mountain-ascent.js && playwright test tests/browser/mountain-ascent.spec.js tests/browser/mountain-ascent-replay.spec.js && node scripts/verify-security-mountain-browser-negative.js && node scripts/verify-security-mountain-fixture-negatives.js",
+    "verify:security-lightning": "node scripts/verify-security-lightning.js && playwright test tests/browser/flight-lightning.spec.js tests/browser/flight-lightning-replay.spec.js && node scripts/verify-security-lightning-browser-negative.js && node scripts/verify-security-lightning-fixture-negatives.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

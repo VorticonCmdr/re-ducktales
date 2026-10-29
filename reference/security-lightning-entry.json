@@ -33,5 +33,8 @@
       "sha256": "4e82f3fee416adbf6c82ce2b89cf7a60914092142a57b6d3a624e0ea9687963b"
     }
   },
-  "bankTrips": 3
+  "bankTrips": 3,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "evidenceLevel": "closed-loop Game departure segment;independent browser pixel/state correspondence is checked by reference/security-lightning.json"
 }

@@ -40,6 +40,11 @@ unchanged; no seed is reset to preserve old expectations.
   checkpoints and104 DOM events in independent Game and browser replays:764
   unchanged mountain samples,8100 dollars,three lives,day17. Shared campaign
   adapter regression retains the complete Hard and jungle routes. [Mountain evidence](security-mountain-ascent.md).
+- Natural lightning through security and three bank detours matches6 complete
+  state/pixel checkpoints and164 DOM events in independent Game/browser replays.
+  Strike36 clears held controls, fresh keys recover, and neutral poll43 consumes
+  final releases. All three shared recorded routes retain fresh browser acceptance.
+  [Lightning evidence](security-lightning.md).
 - Security-aware bank/endings/trading, map controls, departure dispatches, cave
   retry/treasure, Too-Pei transmitter/atomic travel, photography and real-audio
   notices have focused acceptance. [Travel integration](security-route-integration.md),
@@ -75,8 +80,8 @@ pictures and traces stay local. Production visitors select their own originals.
 
 ## Remaining work
 
-- Migrate lightning, alternate Hard expedition recordings and the
-  linked Easy campaign through security; preserve old inputs. Promote the newly
+- Migrate alternate Hard expedition recordings and the linked Easy campaign
+  through security; preserve old inputs. Promote the newly
   accepted Hard recording deliberately, then pass the full branch gate before merging.
 - Original office entry/selection, investment transitions and several map/notice
   presentations remain incomplete. Broader destination/difficulty coverage and
@@ -100,6 +105,7 @@ npm run verify:jungle
 npm run verify:security-jungle-entry
 npm run verify:security-jungle-treasure
 npm run verify:security-mountain-ascent
+npm run verify:security-lightning
 ```
 
 Other focused commands are documented with their scenarios. Missing/corrupt

@@ -79,7 +79,13 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     keys(('KBD_space', True))
     stop = resume(stop['stop_id'])
     assert stop['breakpoint']['id'] == flight
-    state('timing-flight-first-input', stop)
+    flight_data = state('timing-flight-first-input', stop)
+    bp = stop['registers']['ebp'] & 65535
+    duration, racing = struct.unpack_from('<HH', flight_data, bp + 6)
+    assert duration in [1, 2, 3] and racing in [0, 1]
+    save('timing-flight-contract', {'duration': duration, 'racing': racing,
+         'scope': 'Original caller arguments;crash setup requires a naturally nonracing flight. No flag is overwritten.'})
+    assert racing == 0, 'SETUP: racing flight cannot use the crash-to-mountain recipe'
     remove(flight)
     keys(('KBD_space', False))
     # The established original flight-input setup, with a fresh make after the

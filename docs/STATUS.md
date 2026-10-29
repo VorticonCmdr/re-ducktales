@@ -69,7 +69,9 @@ native whole-level parity or a completed broader integration gate.
 ## Movement speed investigation
 
 Retained and fresh original mountain cases both span 604.032ms across14 input
-intervals; the current component spans199.755ms, about3.024× faster. The fresh
+intervals; the current component spans199.755ms, about3.024× faster in that
+breakpoint benchmark. A denser profile demonstrates that stops perturb emulated
+execution: the exact uninterrupted speed ratio remains unverified. The fresh
 native run uses natural El Capitan entry, validates the complete12002-byte
 relocated overlay and finishes its real input release. Its two named movement/RNG
 endpoints match an independently clocked conditional component replay. A fresh
@@ -79,6 +81,11 @@ A separate completed14-frame original profile localizes33 of44 timer counts to
 drawing; erase takes5, logic/history take1 each, flip/input take4. Its strict
 `npm run verify:mountain-frame-profile` check passes with two corruption/omission
 controls. It checks evidence, not browser timing acceptance.
+The detailed profile and new sprite-work module pass `npm run verify:ega-work`:
+98 sprite operations,14 conditional native hazard comparisons and five negative
+controls. The module counts original graphics work independently of host drawing;
+it is not connected to scheduling. Debug-resume budget loss is isolated with a
+focused tool correction proposed in the timing document.
 No speed change is accepted. Jungle, cave and safari remain unmeasured.
 The original release-edge direction is also missing from the current expedition
 held-control adapter; this is a separate input-fidelity gap.

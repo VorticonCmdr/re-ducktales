@@ -246,7 +246,7 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     end = struct.unpack_from('<I', after, 0x2225)[0]
     assert end > begin
     save('mountain-timing', {'completed': True, 'measuredIntervals': 14,
-         'observedInputBoundaries': 4, 'engineCountedReads': 15,
+         'observedInputBoundaries': 17 if profile else 4, 'engineCountedReads': 15,
          'cleanupInputReads': 2,
          'firstByte': 0, 'lastByte': 3, 'releaseBytes': [3, 0],
          'counterBefore': begin, 'counterAfter': end,
@@ -256,4 +256,5 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
          'firstLives': before[0x4d34], 'lastLives': after[0x4d34],
          'destinationChoices': destination, 'replay': replay,
          'injections': [], 'partialRestore': False,
-         'scope': 'Fresh original counted mountain cadence with held Right;ignore_count internally stops/resumes and intermediate returned bytes are not captured. Not uninterrupted scanout or whole-level timing parity.'})
+         'scope': ('Fresh original section profile with15 measured input reads plus2 cleanup reads;all returned bytes observed. Breakpoints perturb emulated cadence;not uninterrupted scanout or whole-level timing parity.' if profile else
+                   'Fresh original counted mountain cadence with held Right;ignore_count internally stops/resumes and intermediate returned bytes are not captured. Not uninterrupted scanout or whole-level timing parity.')})

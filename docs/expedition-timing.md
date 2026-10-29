@@ -144,6 +144,73 @@ counter must fail. Missing/corrupt local artifacts are setup failures. The
 capture recipe; proprietary observations remain ignored local files. This
 command verifies evidence only and explicitly reports timingAcceptance:false.
 
+## Detailed work model and debugger limitation
+
+A second completed original profile, source `79ed82f`, uses eight boundaries per
+frame, records all15 input reads, and proves that the recorder's cached PIC clock
+is unchanged during a150ms host pause with identical CPU/DS. The independent
+resident counter checks every PIC sample within one resident period plus one
+cached millisecond. The initial cached duration is negative; only differences
+are meaningful. Recorder completion requires zero recorded external events and
+no truncation. Actual graphics-memory delay is queried and is `off`.
+
+The denser observations change the measured14-frame duration from44 to54 driver
+counts. **Debugger stops perturb emulated execution even though host pauses do
+not advance the clock.** Accordingly, the earlier3.024× figure describes that
+captured breakpoint benchmark, not a precise uninterrupted gameplay ratio. This
+also means section totals should not be extrapolated into a fitted global delay.
+
+The read-only emulator source checkout `7ae3dbe` identifies the likely mechanism:
+`src/debugger/debugger.cpp` has `DEBUG_EnableDebugger()` clear both `CPU_Cycles`
+and `CPU_CycleLeft`. `DEBUG_Resume()` calls `DEBUG_Run(1,false)`, which replaces
+the cycle budget. Conditional/ignored hits also traverse the debug callback.
+The normal core consumes its budget in `src/cpu/core_normal.cpp`; PIC time uses
+the remaining cycle budget. The checkout is not asserted to reproduce the exact
+installed binary; the observed stop-density effect is the runtime evidence.
+The installed binary SHA is pinned in both profile manifests. No emulator source
+or operator configuration has been changed.
+
+A focused tool correction should preserve the unspent CPU/PIC slice across
+pause/resume, evaluate ignored/conditional hits without a debug callback, and
+expose a bounded read-only address trace with precise PIC time and instruction
+count. Verify it using the same known instruction loop with zero, one and many
+observation points: elapsed emulated time must remain equal. Keep breakpoint
+counts, stop IDs and scheduled keyboard delivery covered. A general emulator or
+compiler is not required for this correction. Until then, dense breakpoint
+captures are routine/workload evidence, not uninterrupted timing references.
+
+`src/game/ega-work.js` now translates the work of the original sprite primitive
+035d..0514 into opcode and port-write counts. It handles alignment, transparency,
+left/right/top/bottom clipping and source-frame selection, independently of the
+DOM and clock. Its normal-core conversion is explicitly configured by cycles
+per millisecond and excludes interrupt work and budget-end I/O clamping. It is
+**not connected to browser scheduling yet**. No movement or audio rate changed.
+
+`npm run verify:ega-work` validates original opcode bytes and15 counted basic
+blocks, then exercises98 sprite operations across14 native segments. Each
+hazard segment starts from its original captured input memory; descriptor/table,
+actor and RNG outputs compare exactly. These are conditional routine comparisons,
+not a closed-loop replay. The sample includes aligned and shifted sprites,
+negative-Y clipping and changing player frames. Other branches are statically
+inferred, not independently runtime-validated. Footer work predicts8.694ms versus
+8.834ms in the final captured call; five hazard sprites predict21.293ms versus
+22.557ms including original hazard logic and debugger overhead. These are
+reported residuals, not accepted timing tolerances. The checker enforces opcode
+lower bounds only, with one cached millisecond of phase allowance; it does not
+claim timing equality. Three controls reject a changed descriptor, invalid frame
+and truncated sprite; the profile checker separately rejects omitted/altered
+checkpoints. [Detailed manifest](../reference/mountain-draw-work.json).
+
+Detailed capture02 is excluded because its recorder cleanup used an unsupported
+Python client argument. Capture03 failed port preflight before launch; no listener
+remained, but recent socket state prevented immediate reuse. Capture04 uses the
+separately preflighted owned8388 endpoint and completes with real release3 then
+neutral0. No partial capture is accepted and no other session was stopped. The retained
+legacy timing-summary text still describes the counted mode and says four
+observed boundaries. The profile and raw snapshots independently validate all15
+measured reads plus two cleanup reads; producer metadata is corrected for future
+runs. Retained artifacts are never rewritten to repair a summary.
+
 ## Commands and outcomes
 
 ```sh

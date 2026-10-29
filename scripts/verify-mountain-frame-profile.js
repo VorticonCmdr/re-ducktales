@@ -12,8 +12,12 @@ const load = async (path) => {
   }
 };
 const manifest = JSON.parse(
-  await load("reference/mountain-frame-profile.json"),
+  await load(
+    process.argv.find((v) => v.startsWith("--manifest="))?.slice(11) ??
+      "reference/mountain-frame-profile.json",
+  ),
 );
+assert.equal(manifest.completedTimingAcceptance, false);
 assert.equal(
   sha(await load("scripts/verify-mountain-frame-profile.js")),
   manifest.verifierSha256,
@@ -104,9 +108,19 @@ assert.equal(code.segment, code.load + 0xc17);
 assert.equal(code.ds, code.load + 0x120e);
 assert.equal(code.read.aborted, false);
 assert.deepEqual(Buffer.from(code.read.results[0].data, "base64"), original);
+const detailed = manifest.profileKind === "draw-calls-and-cached-clock";
+assert.ok(detailed || manifest.profileKind === undefined);
 const stages = [
   ["before-erase", 0x1320],
   ["after-erase", 0x132a],
+  ...(detailed
+    ? [
+        ["after-footer", 0x1335],
+        ["after-money", 0x1356],
+        ["after-hazards", 0x137d],
+        ["after-actor", 0x13a1],
+      ]
+    : []),
   ["after-draw", 0x1436],
   ["before-flip", 0x145d],
 ];
@@ -134,7 +148,7 @@ function verifyRows(p) {
   assert.equal(p.rows.length, 14);
   assert.deepEqual(p.injections, []);
   assert.equal(p.partialRestore, false);
-  const totals = [0, 0, 0, 0, 0];
+  const totals = Array(stages.length + 1).fill(0);
   for (let i = 0; i < 14; i++) {
     const row = p.rows[i],
       prefix = `frame-${String(i).padStart(2, "0")}`;
@@ -156,26 +170,69 @@ function verifyRows(p) {
     assert.equal(next.byte, 3);
     assert.equal(row.nextInputClock, next.clock);
     clocks.push(next.clock);
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < totals.length; j++) {
       assert.ok(clocks[j + 1] >= clocks[j]);
       totals[j] += clocks[j + 1] - clocks[j];
+    }
+    if (detailed) {
+      const fine = [
+        row.inputPicMilliseconds,
+        ...row.stages.map((s) => s.picMilliseconds),
+        row.nextInputPicMilliseconds,
+      ];
+      for (let j = 0; j < fine.length; j++) {
+        assert.ok(Number.isFinite(fine[j]));
+        if (j) assert.ok(fine[j] >= fine[j - 1]);
+        // Independent resident counter and cached PIC observation may differ
+        // by one resident counter phase plus one cached millisecond.
+        const ticks = ((clocks[j] - clocks[0]) * 1365 * 12 * 1000) / 1193182;
+        assert.ok(Math.abs(fine[j] - fine[0] - ticks) < 15);
+      }
+      if (i)
+        assert.equal(
+          row.inputPicMilliseconds,
+          p.rows[i - 1].nextInputPicMilliseconds,
+        );
     }
   }
   assert.deepEqual(totals, manifest.expectedSectionCounterTotals);
   assert.equal(
     totals.reduce((a, b) => a + b),
-    44,
+    manifest.expectedSectionCounterTotals.reduce((a, b) => a + b),
   );
   return totals;
 }
 const totals = verifyRows(profile);
 assert.equal(measurement.completed, true);
-assert.equal(measurement.counterDifference, 44);
+assert.equal(
+  measurement.counterDifference,
+  totals.reduce((a, b) => a + b),
+);
 assert.equal(measurement.replay.active, false);
 assert.equal(measurement.replay.remaining, 0);
 assert.deepEqual(measurement.releaseBytes, [3, 0]);
 assert.equal(state("release-edge", 0x31c).byte, 3);
 assert.equal(state("release-neutral", 0x31c).byte, 0);
+if (detailed) {
+  assert.match(
+    configuration.screen.text,
+    /config -get dosbox vmem_delay\s*\noff/,
+  );
+  const control = artifacts["clock-control"];
+  assert.equal(control.completed, true);
+  assert.deepEqual(control.before, control.after);
+  assert.equal(control.before.recording, true);
+  assert.equal(control.before.paused, false);
+  assert.equal(control.before.event_count, 0);
+  assert.equal(control.before.truncated, false);
+  assert.deepEqual(
+    artifacts["clock-before"].state,
+    artifacts["clock-after"].state,
+  );
+  assert.equal(artifacts["recorder-completion"].event_count, 0);
+  assert.equal(artifacts["recorder-completion"].truncated, false);
+  assert.deepEqual(artifacts["recorder-completion"].events, []);
+}
 // Checker controls mutate copies only; no original capture is changed.
 const omitted = structuredClone(profile);
 omitted.rows.splice(4, 1);

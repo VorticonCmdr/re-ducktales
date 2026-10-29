@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "completeCampaignAcceptance": false,
+  "producerCommit": "48cbfd254fd381f25fb5e6ffde6520a136557afc",
+  "sourceFileCount": 558,
+  "captureCommand": "DUCKTALES_CAPTURE_EASY_CAMPAIGN=1 node node_modules/@playwright/test/cli.js test tests/browser/mixed-campaign.spec.js --config CAPTURE_CONFIG",
+  "captureExitCode": 1,
+  "failure": "Second main-document navigation while polling mountain actions;cause unknown;no full-reload message observed",
+  "verifiedPrefix": {
+    "command": "node scripts/replay-hard-campaign.js .local/destination-waits-easy-exploration-01/prefix --diagnose",
+    "exitCode": 0,
+    "checkpoints": 24,
+    "events": 1824,
+    "flightPresentations": 678,
+    "expectedSource": "Same-run browser snapshots;port regression,not original full-campaign comparison",
+    "tailMilliseconds": 100
+  },
+  "exclusions": [
+    "Incomplete capture is excluded from acceptance",
+    "Diagnostic prefix is excluded from complete route acceptance"
+  ],
+  "fittedInputs": [],
+  "injections": [],
+  "partialRestore": false,
+  "artifacts": {
+    "capture/browser/.last-run.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/.last-run.json",
+      "bytes": 96,
+      "sha256": "640de19fd2a2c6b8064e900645dd01c910432d3b7f5ec04f5a565102f2e598f5"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/browser-lifecycle.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/browser-lifecycle.json",
+      "bytes": 391,
+      "sha256": "9b75160682877275b08e4ae126ec9b542ad6d853b69765b837786fb2275c77e8"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 122208,
+      "sha256": "618b99c9a170170fa9aba4396e5b5de08dddbfcefd7ac4bf14e45da530c4fd39"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/captured-events.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/captured-events.json",
+      "bytes": 417897,
+      "sha256": "88eb0e89789c9a3632e7bdf3a45136ce21c79a72801dd6a6efa4a2b1f3c839e5"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/environment.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/environment.json",
+      "bytes": 250,
+      "sha256": "1814b30e140cbfe41ddfad268c4f3ea8a58c1779fec272d8a18763dbb3c3bebb"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md",
+      "bytes": 11563,
+      "sha256": "d01fd719df824513654bef7264ca75fadb784e3798573297b165b48b91c87224"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/flight-1.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/flight-1.json",
+      "bytes": 112777,
+      "sha256": "427560d757d4a955f9a907ae4be0b04a1ebfc3641902f5d3ef5ffa909b3bc193"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/flight-2.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/flight-2.json",
+      "bytes": 102568,
+      "sha256": "963eb5cf73138f6875b77956628a74782f7106c036c6bfaa7b7318d2057881d7"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/flight-3.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/flight-3.json",
+      "bytes": 150182,
+      "sha256": "dde5ededf8ae1ebcd62fb04cf8f554ba344c57d608b1b5ec81f0ed7ab93d319e"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/flight-4.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/flight-4.json",
+      "bytes": 34520,
+      "sha256": "97211ba987ee8633353c83d6e982e3bfc42939e56dd81e65fb79ad011c60f4b4"
+    },
+    "capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/mountain-input-observations.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/mountain-input-observations.json",
+      "bytes": 309609,
+      "sha256": "1292d9473441a7fffb168f7be18b5b9c302199712732e659bc2df1bf28caddb1"
+    },
+    "capture/report.json": {
+      "path": ".local/destination-waits-easy-exploration-01/capture/report.json",
+      "bytes": 175662,
+      "sha256": "cc3a4f914d07e31d726c0c7e1afa30dbecf04fa31fa5d2a8189066eedcd3a8d5"
+    },
+    "capture-config.mjs": {
+      "path": ".local/destination-waits-easy-exploration-01/capture-config.mjs",
+      "bytes": 687,
+      "sha256": "a9d3a2653aa3172eb34ad7672a3c9ce12c5bb89587dcdb17c338f227d7d164ab"
+    },
+    "capture.log": {
+      "path": ".local/destination-waits-easy-exploration-01/capture.log",
+      "bytes": 4409,
+      "sha256": "97620d2046b2d706c22d5261c5390397fba78c634533d0162ea58cc5a5d1d77a"
+    },
+    "prefix/campaign-checkpoints.json": {
+      "path": ".local/destination-waits-easy-exploration-01/prefix/campaign-checkpoints.json",
+      "bytes": 90637,
+      "sha256": "aed782148e975e854032249b7f2b090c9673f856e5f9842aed776cf5a53fb6a9"
+    },
+    "prefix/captured-events.json": {
+      "path": ".local/destination-waits-easy-exploration-01/prefix/captured-events.json",
+      "bytes": 218476,
+      "sha256": "38b76aa3b5ae081815b8b8db51bfc8025b7f58df9ed30a7bcd711291071d1051"
+    },
+    "prefix/environment.json": {
+      "path": ".local/destination-waits-easy-exploration-01/prefix/environment.json",
+      "bytes": 158,
+      "sha256": "83ba047170a6bbcc75fbf2aca6b53f3b53ecaf5a8aa3821005f0a5a29a0af753"
+    },
+    "prefix/timeline.json": {
+      "path": ".local/destination-waits-easy-exploration-01/prefix/timeline.json",
+      "bytes": 2209,
+      "sha256": "d97b1b335bc462672ad065c1a5d8d39407f3b47a21c99cd64069967f11af9c06"
+    },
+    "prefix.log": {
+      "path": ".local/destination-waits-easy-exploration-01/prefix.log",
+      "bytes": 2592,
+      "sha256": "ad6248babeae847cab93e0749252968314673b1103ac6b362389f9fe42938fd5"
+    },
+    "source-revision.json": {
+      "path": ".local/destination-waits-easy-exploration-01/source-revision.json",
+      "bytes": 59913,
+      "sha256": "df76c249d6cda3cf7aa6c840db84a96af55067251b0863e1706f3e2dda012e80"
+    },
+    "sources.zip": {
+      "path": ".local/destination-waits-easy-exploration-01/sources.zip",
+      "bytes": 1464715,
+      "sha256": "dd3f919c5131150613247b6a0dbc59264dc1f97d8a5bfcffaf1ef19352859a89"
+    }
+  }
+}

@@ -65,13 +65,14 @@ On the caller branch,the destination page now includes the original treasure
 name,description,value and integer selection border. Five original mode1
 input/flag/choice comparisons and two complete native page comparisons pass.
 The real browser also checks original invariant labels and its whole footer
-before flight departure and Restart. Entry/selection/confirmation timing remains
-untranslated;this is not new whole-campaign acceptance.
+before flight departure and Restart. This completed-page milestone preceded the
+explicit waits described below;it is not new whole-campaign acceptance.
 [Destination evidence and scope](destination.md). A second fresh original
 scenario adds29 stable CPU/video observations,five page flips and two exact
 pictures with a different treasure. The stale highlight is explained by raw
 render-cache lag;the update counter is not a completed-scanout clock. Native
-selection/confirmation waits are observed,but are not yet connected in browser.
+selection/confirmation waits are observed;their explicit browser integration is
+described below.
 
 The caller branch now integrates explicit destination waits:25 clear retraces,
 25 reveal retraces,a flip,selection7-count/flip/1-count settling,and confirmation
@@ -81,6 +82,13 @@ semantic destination adapter;recurring raw polling and CPU/footer costs remain
 untranslated. Historical Easy/Hard inputs fail at checkpoint1 because they send
 commands during entry. Fresh campaign acceptance remains required.
 [Explicit-wait scope and commands](destination-waits.md).
+The committed focused gate passes on48cbfd2,with558 exact archived source files,
+all required original segment checks and a production build.
+[Verification receipt](../reference/destination-waits-integration.json).
+The first fresh Easy exploration reaches jungle,banking,photography,cave and
+mountain entry. An unexpected second document navigation interrupts the ascent;
+the recorder rejects it. Its independent diagnostic prefix matches24 full states
+and renders678 flight presentations;neither result is complete campaign acceptance.
 
 ## Supported build
 
@@ -140,6 +148,7 @@ npm run verify:map-input-browser
 npm run verify:destination
 npm run verify:destination-video
 npm run verify:destination-waits
+python3 scripts/verify-destination-waits-receipt.py
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

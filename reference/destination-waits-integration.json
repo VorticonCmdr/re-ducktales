@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "completed": true,
+  "sourceCommit": "48cbfd254fd381f25fb5e6ffde6520a136557afc",
+  "sourceFileCount": 558,
+  "scope": "Source-derived explicit destination waits and focused real-browser acceptance;conditional original destination/map/departure/atomic segment comparisons;not whole-campaign or exact CPU/scanout parity",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "expected": {
+    "unitCases": 123,
+    "browserCases": 4,
+    "skipped": 0,
+    "nativeInputReads": 10,
+    "nativePictures": 4
+  },
+  "nativeScenarios": [
+    {
+      "manifest": "reference/destination.json",
+      "sha256": "ce1d6375bdfe41a3015c235acbdb5b0e731549cd1e1fd9f275f3047cf4005ca9"
+    },
+    {
+      "manifest": "reference/destination-video.json",
+      "sha256": "2da574e326757d791df5bffaa38d9253803417b06289b27813b4b5982aa51039"
+    }
+  ],
+  "environment": {
+    "browserConfig": "playwright.config.js",
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "biosSeed": 0,
+    "startingState": "Fresh opening;Easy;office control-center;fixed Right security;map point100.5,100.5;Space;normal selection and confirmation",
+    "simulationInputs": "Semantic destination commands,independent unsigned driver counts and video retraces;raw recurring mode1 polling remains untranslated"
+  },
+  "comparisonRules": [
+    "Exact deterministic unit state and decoded assets",
+    "Browser checks ten original entry bands and explicit wait/confirmation deadlines,real keyboard input,labels/footer,and request36 acknowledgement",
+    "Original native snapshots retain declared caller preconditions and existing exact comparisons;they do not calibrate browser CPU costs"
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "limitations": [
+    "Historical Easy/Hard input streams fail during newly implemented entry;fresh complete campaigns required",
+    "Neutral-loop flush/read cadence,CPU/resource/footer duration,deferred system-key polling and physical scanout alignment remain open",
+    "Main preview remains on its accepted earlier source"
+  ],
+  "verificationCommands": [
+    "npm run verify:destination-waits",
+    "npm run verify:destination",
+    "npm run verify:destination-video",
+    "npm run verify:campaign",
+    "npm run verify:departure",
+    "npm run verify:atomic",
+    "npm run build",
+    "python3 scripts/verify-destination-waits-receipt.py"
+  ],
+  "artifactCount": 21,
+  "artifacts": {
+    "atomic.log": {
+      "path": ".local/destination-waits-integration-20261029-01/atomic.log",
+      "bytes": 277,
+      "sha256": "0dabb5518c00c5152ea5b68aef6aa13a2ccd4c33dc82ce93dd69f961a9537c60"
+    },
+    "browser/.last-run.json": {
+      "path": ".local/destination-waits-integration-20261029-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser/destination-destination-en-d649d-ait-gate-real-browser-input/destination-wait-observations.json": {
+      "path": ".local/destination-waits-integration-20261029-01/browser/destination-destination-en-d649d-ait-gate-real-browser-input/destination-wait-observations.json",
+      "bytes": 1086,
+      "sha256": "8d88146af779d93da537983bc23aada033d59cf81813ebf2278fe757fb0c33ef"
+    },
+    "browser/destination-destination-en-d649d-ait-gate-real-browser-input/destination-waits-departure.png": {
+      "path": ".local/destination-waits-integration-20261029-01/browser/destination-destination-en-d649d-ait-gate-real-browser-input/destination-waits-departure.png",
+      "bytes": 9711,
+      "sha256": "02ce920f8e2caa1e9bdf87dea89ec6824663ad5d942652de262f258a422b9259"
+    },
+    "browser/destination-destination-sh-4cc7a-rough-real-browser-controls/destination-bolognia.png": {
+      "path": ".local/destination-waits-integration-20261029-01/browser/destination-destination-sh-4cc7a-rough-real-browser-controls/destination-bolognia.png",
+      "bytes": 13150,
+      "sha256": "960516552ae69b954c876abe6feccfe6fa515cbe703d3723a7df491dbc55067f"
+    },
+    "browser/map-pointer-map-held-keys--2d3bd-n-flight-choice-and-restart/map-flight-choice.png": {
+      "path": ".local/destination-waits-integration-20261029-01/browser/map-pointer-map-held-keys--2d3bd-n-flight-choice-and-restart/map-flight-choice.png",
+      "bytes": 11129,
+      "sha256": "40e024418ea5fbbe59dbbbc1113f1ef58877bd53880cb0dee0ef323c3c16aafe"
+    },
+    "browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-inputs.json": {
+      "path": ".local/destination-waits-integration-20261029-01/browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-inputs.json",
+      "bytes": 210803,
+      "sha256": "18b4bdbde18c6a99069338220ac899d3b7aedffae9bf100a0af513d6c2d19a68"
+    },
+    "browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-original-inputs.png": {
+      "path": ".local/destination-waits-integration-20261029-01/browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-original-inputs.png",
+      "bytes": 24889,
+      "sha256": "e0aa34a7db5d796056b16c8cb5f6fa2bbd5a2e605145f92aaeb749b21c04e2f2"
+    },
+    "browser-negative/browser/.last-run.json": {
+      "path": ".local/destination-waits-integration-20261029-01/browser-negative/browser/.last-run.json",
+      "bytes": 96,
+      "sha256": "68975e4ea37aa7754ddf9d37de7678fe119891082e03914519a9709da55d00e6"
+    },
+    "browser-negative/browser/destination-destination-en-d649d-ait-gate-real-browser-input/error-context.md": {
+      "path": ".local/destination-waits-integration-20261029-01/browser-negative/browser/destination-destination-en-d649d-ait-gate-real-browser-input/error-context.md",
+      "bytes": 11447,
+      "sha256": "dc535b8fad64d0b8524d523119b8ec77c459b3c5b1800a12ad7b6ea50700bb34"
+    },
+    "browser-negative/omit-right.log": {
+      "path": ".local/destination-waits-integration-20261029-01/browser-negative/omit-right.log",
+      "bytes": 1609,
+      "sha256": "b232d03b7903f2e8fdbba1e8e0c55e901c53754387c6d4fb68bf84d40642a009"
+    },
+    "build.log": {
+      "path": ".local/destination-waits-integration-20261029-01/build.log",
+      "bytes": 1562,
+      "sha256": "cce491633f60d5a5751c6991065a230d37b66881d4192e6941542a74288bfa95"
+    },
+    "campaign.log": {
+      "path": ".local/destination-waits-integration-20261029-01/campaign.log",
+      "bytes": 1699,
+      "sha256": "933f7b51bf324d4cb655b6086b10f9a8242334952fbea1db0c87dbcf40b15338"
+    },
+    "departure.log": {
+      "path": ".local/destination-waits-integration-20261029-01/departure.log",
+      "bytes": 171,
+      "sha256": "745984ea3daf441ef281d4e193f9768da09eac1ee676c4b321a8fb83540f8b2a"
+    },
+    "focused.log": {
+      "path": ".local/destination-waits-integration-20261029-01/focused.log",
+      "bytes": 13111,
+      "sha256": "f52c1535423b9f7a9ec7d29ca2d09a5768fc81b0d485ad896c3de8ea2b30f641"
+    },
+    "native-video.log": {
+      "path": ".local/destination-waits-integration-20261029-01/native-video.log",
+      "bytes": 951,
+      "sha256": "0f27f1bd2b5e6fbe0d4b96375e886787cfc9e08ac5e6f70d4e3a2f4087cd33fe"
+    },
+    "native.log": {
+      "path": ".local/destination-waits-integration-20261029-01/native.log",
+      "bytes": 590,
+      "sha256": "4bb10b73ee28df3b53f44243e0c95e16387548c1e32ec71453ffd93ee735e04a"
+    },
+    "runner-status.json": {
+      "path": ".local/destination-waits-integration-20261029-01/runner-status.json",
+      "bytes": 1302,
+      "sha256": "11770c3e1db6d50c5f3ad13fb8b8b463bb1001442d45a3a4a8e0cf82aa2f2706"
+    },
+    "runner.py": {
+      "path": ".local/destination-waits-integration-20261029-01/runner.py",
+      "bytes": 2080,
+      "sha256": "7405c25e3f9d30f24426c0103767d4e6e7e6fddae90676e8ec5a9c96f362fc14"
+    },
+    "source-revision.json": {
+      "path": ".local/destination-waits-integration-20261029-01/source-revision.json",
+      "bytes": 59913,
+      "sha256": "df76c249d6cda3cf7aa6c840db84a96af55067251b0863e1706f3e2dda012e80"
+    },
+    "sources.zip": {
+      "path": ".local/destination-waits-integration-20261029-01/sources.zip",
+      "bytes": 1464715,
+      "sha256": "dd3f919c5131150613247b6a0dbc59264dc1f97d8a5bfcffaf1ef19352859a89"
+    }
+  }
+}

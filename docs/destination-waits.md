@@ -58,6 +58,23 @@ new Game wait integration has exact original CPU or scanout timing.
 
 ## Remaining work
 
+The focused gate,required native comparisons,campaign/departure/atomic segment
+checks and production build pass on48cbfd2. The receipt pins558 exact Git files
+and21 local result artifacts in`reference/destination-waits-integration.json`.
+`python3 scripts/verify-destination-waits-receipt.py` checks that historical
+receipt;it does not replace fresh campaign acceptance. Missing and corrupt
+receipt controls have also been exercised.
+
+The first fresh Easy exploratory run reaches all four expedition families,but
+an unexpected second document navigation interrupts mountain action polling.
+Only two connection messages were recorded;no full-reload message explains it.
+Its raw record remains incomplete and excluded. An independently replayed
+24-checkpoint prefix consumes1824 events and renders678 flight presentations
+without divergence;that diagnostic has a declared100ms tail and is not acceptance.
+The next recording uses a separate server/cache with watching and hot reload
+disabled;this isolates a possible development-server cause without claiming
+that cause has been established.
+
 Resource loading,CPU/footer drawing duration,the recurring mode1 flush/read
 window and neutral input loop are not translated here. The ordinary loop0/1
 bytes are checked as source,while this adapter waits for semantic commands.

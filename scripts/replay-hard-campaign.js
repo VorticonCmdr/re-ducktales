@@ -69,6 +69,8 @@ if (!diagnose) {
       "jungle-treasure",
       "mountain-entry",
       "mountain-ascent",
+      "departure-entry",
+      "flight-lightning",
     ].includes(contract.milestone),
     "Unsupported recorded milestone",
   );
@@ -360,6 +362,8 @@ try {
         ? "jungle"
         : null;
   const entryMilestone = entryActivity !== null;
+  const departureEntry = strictContract?.milestone === "departure-entry";
+  const lightningMilestone = strictContract?.milestone === "flight-lightning";
   const treasureActivity =
     strictContract?.milestone === "mountain-ascent"
       ? "mountain"
@@ -369,12 +373,26 @@ try {
   const treasureMilestone = treasureActivity !== null;
   assert.ok(
     game.scene ===
-      (entryMilestone ? entryActivity : treasureMilestone ? "map" : "ending") ||
-      diagnose,
+      (departureEntry
+        ? "departure"
+        : lightningMilestone
+          ? "flight"
+          : entryMilestone
+            ? entryActivity
+            : treasureMilestone
+              ? "map"
+              : "ending") || diagnose,
     "Unfinished recorded route",
   );
   if (!diagnose) {
-    if (entryMilestone) {
+    if (departureEntry) {
+      assert.equal(game.snapshot().departure.phase, "prepared");
+      assert.equal(lastTime, timeline.endAt, "Unfinished departure timeline");
+    } else if (lightningMilestone) {
+      assert.equal(game.flight.phase, "flying");
+      assert.ok(game.flight.frames > 0, "Unfinished lightning flight");
+      assert.equal(lastTime, timeline.endAt, "Unfinished lightning timeline");
+    } else if (entryMilestone) {
       assert.equal(game[entryActivity].phase, "entering");
       assert.equal(game[entryActivity].frames, 0);
       assert.equal(lastTime, timeline.endAt, "Unfinished entry timeline");
@@ -395,7 +413,7 @@ try {
       assert.equal(lastTime, timeline.endAt, "Unfinished treasure timeline");
     } else assert.ok(game.ending.ready, "Unfinished ending input sequence");
     assert.ok(
-      rendered > 0 &&
+      (departureEntry ? rendered === 0 : rendered > 0) &&
         (strictContract.expectedFlagAliasPresentations === 0 ||
           flagAliasPresentations > 0),
       "Required flight rendering path skipped",

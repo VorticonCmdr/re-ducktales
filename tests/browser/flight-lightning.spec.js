@@ -3,6 +3,14 @@ import { replayFlightInputs } from "./helpers/flight-inputs.js";
 import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
+import { openRecordedApplication } from "./helpers/clock.js";
+import { finishSecurityEntry } from "./helpers/security.js";
+import { bankTrips } from "./helpers/bank-trips.js";
+import {
+  installEntryRecording,
+  observeRecordedRoute,
+  saveRecordedRoute,
+} from "./helpers/entry-recording.js";
 import manifest from "../../reference/flight-lightning-input.json" with { type: "json" };
 
 test("natural lightning clears held flight controls and fresh keyboard input recovers", async ({
@@ -12,23 +20,8 @@ test("natural lightning clears held flight controls and fresh keyboard input rec
   const errors = [],
     trace = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.addInitScript(() => {
-    window.lightningEvents = [];
-    for (const type of ["keydown", "keyup"])
-      document.addEventListener(type, (event) =>
-        window.lightningEvents.push({
-          at: performance.now(),
-          type,
-          code: event.code,
-        }),
-      );
-    window.requestAnimationFrame = (callback) =>
-      setTimeout(() => callback(performance.now()), 8);
-    window.cancelAnimationFrame = clearTimeout;
-  });
-  await page.goto("/");
+  await installEntryRecording(page);
+  await openRecordedApplication(page, 1);
   await expect(page.locator("#actions")).toBeVisible();
   const canvas = page.locator("#game"),
     state = () => canvas.getAttribute("data-state").then(JSON.parse);
@@ -57,7 +50,13 @@ test("natural lightning clears held flight controls and fresh keyboard input rec
   await press("Enter");
   await waitForScene(page, canvas, "office");
   await page.locator("#map").click();
-  await page.clock.runFor(100);
+  await finishSecurityEntry({ page, until, state });
+  expect(
+    await bankTrips({ page, canvas, state, until, press, count: 2 }),
+  ).toEqual([
+    { day: 7, seed: 62042 },
+    { day: 13, seed: 19313 },
+  ]);
   const r = await canvas.boundingBox();
   await canvas.click({
     position: { x: (r.width * 68) / 320, y: (r.height * 77) / 200 },
@@ -67,6 +66,22 @@ test("natural lightning clears held flight controls and fresh keyboard input rec
   await press("ArrowRight");
   await press("Space");
   expect((await state()).departure.racing).toBe(false);
+  if (process.env.DUCKTALES_CAPTURE_LIGHTNING_ENTRY) {
+    const point = await observeRecordedRoute({
+      page,
+      state: await state(),
+      name: "departure",
+    });
+    await saveRecordedRoute({
+      page,
+      root: process.env.DUCKTALES_CAPTURE_LIGHTNING_ENTRY,
+      observations: [point],
+      scope:
+        "Exploratory security-aware nonracing lightning departure;not acceptance",
+    });
+    throw Error("EXPLORATORY lightning departure saved;not acceptance");
+  }
+
   const observed = await replayFlightInputs({
     page,
     until,

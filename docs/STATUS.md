@@ -68,14 +68,21 @@ native whole-level parity or a completed broader integration gate.
 
 ## Movement speed investigation
 
-A retained original mountain segment spans 604.032ms across 15 input reads;
-the current component consumes the same inputs in 199.755ms, about 3.024× faster,
-while named movement/RNG state still matches. A fresh original pause control
-shows that debugger host pauses do not advance its driver counter. This remains
-conditional timing evidence, not a fresh unpaused mountain benchmark or a
-calibration for the other three expedition families. No speed change is accepted.
-`npm run verify:expedition-timing-evidence` validates the retained evidence;
-`npm run diagnose:expedition-timing` exits1 for the unresolved discrepancy.
+Retained and fresh original mountain cases both span 604.032ms across14 input
+intervals; the current component spans199.755ms, about3.024× faster. The fresh
+native run uses natural El Capitan entry, validates the complete12002-byte
+relocated overlay and finishes its real input release. Its two named movement/RNG
+endpoints match an independently clocked conditional component replay. A fresh
+pause control confirms that debugger host pauses do not advance the driver.
+Neither capture is uninterrupted scanout or native whole-level timing parity.
+No speed change is accepted. Jungle, cave and safari remain unmeasured.
+The original release-edge direction is also missing from the current expedition
+held-control adapter; this is a separate input-fidelity gap.
+`npm run verify:expedition-timing-evidence` validates both evidence sets;
+`npm run diagnose:expedition-timing` and the required
+`npm run verify:expedition-timing` exit1 for the unresolved discrepancy. The full
+`npm run verify` now stops there after build validation; the older broader
+fixture/source-guard migration also remains unfinished.
 [Measurement, scope and next experiment](expedition-timing.md).
 
 ## Connected gameplay and evidence

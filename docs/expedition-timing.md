@@ -56,15 +56,67 @@ original build, retained mountain references, capture recipe revision, fresh
 runner, Git ZIP/source hashes, complete pause states, engine/configuration,
 startup input and final completion records. Proprietary artifacts remain local.
 
+## Fresh counted mountain capture
+
+Source `899f219` completes a fresh original scenario at 3000 cycles on an owned
+instance: natural map controls select **El Capitan at36,61**, a naturally
+nonracing flight crashes, and the actual mountain overlay is checked against all
+12002 bytes after68 relocations. No target, race, register or memory value is
+changed. Initial setup is separate from the measured held-Right interval.
+
+The first and fifteenth read endpoints have driver counters5039 and5083: again
+44 counts /604.032ms across14 intervals. The conditional port replay initializes
+only from this fresh native ENTRY memory/stack and original assets. Its two
+pre-action endpoints match all eight named actor/action/RNG words, while its own
+clock still spans199.755ms. No native timestamp chooses a port input or deadline.
+Intermediate native AL values are inferred from the held Right key and mode0;
+they were not individually captured, so this is not15 full native checkpoints.
+
+An engine-side `ignore_count=13` counts14 subsequent reader hits after a distinct
+post-update barrier. The bridge internally stops/resumes ignored hits; this is
+not an uninterrupted scanout capture. Its reported host duration begins after
+the first-body boundary and is not compared as the14-interval wall-clock time.
+The original driver counters are the measured quantity. Both endpoint pictures,
+code, complete DS/CPU captures, input setup, completion, source ZIP and runner
+are pinned by [mountain-pacing.json](../reference/mountain-pacing.json).
+
+The cleanup also observes an original input quirk: after physical Right release,
+the raw key flag becomes64. Mode0 deletes that flag but still returns Right3 once;
+the following read is neutral0. The recipe requires both reads and completion of
+the real release event. The current expedition browser adapter uses held controls
+and releases immediately, so this is a separate input-fidelity gap to address.
+The existing ordinary-key reader already represents the delete-then-use rule.
+
+Earlier captures01..06 are excluded:01 stopped at a destination CS alias mismatch;
+02 ended at its older observation timeout;03 followed a reused Klondike Mines
+flight setup into a cave;04 lost its racing flight and correctly returned to the
+map;05/06 reached the mountain but rejected cleanup because they incorrectly
+expected immediate neutral after release. Their source archives and raw partial
+observations remain local. Only07 has a successful complete runner and required
+release/neutral cleanup. No partial run is promoted into acceptance.
+
+Reproduce with the same prerequisites as the pause control:
+
+```sh
+DUCKTALES_DOSBOX_MCP_ROOT=/path/to/site-packages PYTHONDONTWRITEBYTECODE=1 /path/to/bridge/python scripts/capture-security.py --pause-clock-test --mountain-timing --port 8387 --output .local/new-mountain-pacing/capture
+```
+
+The crash-to-mountain setup explicitly rejects a naturally racing launch. It
+never changes the race flag to force entry. A different startup RNG requires a
+new retained scenario; a setup rejection is not movement acceptance.
+
 ## Commands and outcomes
 
 ```sh
 npm run verify:expedition-timing-evidence
 npm run diagnose:expedition-timing
+npm run verify:expedition-timing
 ```
 
 The first checks the evidence and reports the mismatch; it is not timing
-acceptance. The second deliberately exits1 on the unresolved cadence difference.
+acceptance. The strict diagnostic and verification commands deliberately exit1 on the
+unresolved cadence difference. The full `npm run verify` requires this check
+after original-build validation; it cannot silently accept the known fast cadence.
 Missing/corrupt inputs or zero cases fail before a timing result. Two checker
 controls reject an altered native timer sample and an omitted sample. Original
 fixtures are never modified. The complete12002-byte/68-relocation mountain
@@ -82,8 +134,8 @@ The recipe refuses the unrelated8386 endpoint, preflights its own port, verifies
 process/instance identity on every state and stops only its own process. Its
 normal security segment still completes after the pause experiment.
 
-Next: a fresh mountain movement timing capture with an emulator-side input
-schedule and counted loop boundaries, with setup separated from measured input.
-Then measure jungle, cave and safari and implement the missing execution-time
-boundary without changing integer movement, RNG or music clocks. Keep the
-existing speed unchanged until the measurement supports a concrete correction.
+Next: distinguish original per-frame execution/drawing cost across workloads,
+measure jungle, cave and safari, and connect the original expedition key flags.
+Implement the execution-time boundary without changing integer movement, RNG or
+music clocks. A constant three-frame delay fitted to this one walk is not an
+accepted correction.

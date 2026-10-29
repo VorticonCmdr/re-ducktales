@@ -9,6 +9,7 @@ import { unpackImage } from "../src/game/executable.js";
 import { Mountain } from "../src/game/mountain.js";
 import { FlightMemory } from "../src/game/flight-physics.js";
 import { DRIVER_HZ, RETRACE_HZ } from "../src/game/application.js";
+import { verifyFreshMountainPacing } from "./verify-mountain-pacing.js";
 const evidenceOnly = process.argv.includes("--evidence-only");
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const load = (p) =>
@@ -240,9 +241,10 @@ const result = {
   timingParity:
     Math.abs(nativeMilliseconds - portMilliseconds) <= 1000 / DRIVER_HZ,
 };
+result.freshMountain = await verifyFreshMountainPacing();
 console.log(JSON.stringify(result, null, 2));
 if (!evidenceOnly)
   assert.ok(
-    Math.abs(nativeMilliseconds - portMilliseconds) <= 1000 / DRIVER_HZ,
-    "UNRESOLVED: mountain elapsed input cadence differs from retained native evidence;do not report timing acceptance",
+    result.timingParity && result.freshMountain.timingParity,
+    "UNRESOLVED: mountain elapsed input cadence differs from retained and fresh native evidence;do not report timing acceptance",
   );

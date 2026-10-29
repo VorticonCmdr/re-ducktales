@@ -1,0 +1,157 @@
+{
+  "id": "fresh-original-mountain-counted-cadence",
+  "completed": true,
+  "completedTimingAcceptance": false,
+  "captureCommit": "899f219ce850cf594010e51b2b682ebbaf6c2522",
+  "sourceFileCount": 585,
+  "executableSha256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "buildManifest": "reference/build.json",
+  "expectedEngineReads": 15,
+  "expectedMeasuredIntervals": 14,
+  "expectedCounterDifference": 44,
+  "nativeConfiguration": {
+    "cycles": 3000,
+    "effectiveCore": "normal",
+    "machine": "svga_s3",
+    "memoryMiB": 16,
+    "engineVersion": "0.84.0-vc1 (f6d9b)",
+    "protocol": "1.14"
+  },
+  "startingRecipe": "Fresh owned original launch and fixed startup/security;natural map controls alternate makes and neutral reads to El Capitan36,61. Right then Fire chooses Travel. Requires naturally nonracing duration1;frame-based takeoff/crash setup. Full12002-byte mountain overlay/68 relocations validated. At first post-input031c return0,holdRight,cross145d,then engine-count14 subsequent031c hits. ReleaseRight,cross145d,retain release-edge3,then neutral0. No memory/register writes or restore.",
+  "environmentContract": "Fifteen component input bytes are neutral then14 Right samples,inferred for intermediate native reads from heldRight,mode0 and endpoint flags. Initial native ENTRY memory and stack are explicit conditional port providers. Native clock outputs never schedule the port.",
+  "artifacts": {
+    "measurement": {
+      "path": ".local/mountain-pacing-native-07/capture/mountain-timing.json",
+      "bytes": 993,
+      "sha256": "3ca5493e0eacd0c83175ffc1f98e6fd2dbffb163152b5e67646af7f0b3ae7442"
+    },
+    "entry": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-mountain-entry.json",
+      "bytes": 88766,
+      "sha256": "31acd7fe0b3cb370f6f430a698a593b0536c384a3b527754c1d0079c7e1c347a"
+    },
+    "first": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-mountain-first-read.json",
+      "bytes": 88772,
+      "sha256": "020ead1ecb189ac5416cec61a68260988f258ad9ce801020a0757cfcddbd1f80"
+    },
+    "first-body": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-mountain-first-body-end.json",
+      "bytes": 88779,
+      "sha256": "19f57c42315ca12d4a95d875c7a0a53b35a4fce626911d69137453f0fc44fe12"
+    },
+    "last": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-mountain-last-read.json",
+      "bytes": 88773,
+      "sha256": "2ac6cf33f29a38b55a4f983419c46c79e3eeabc7b27370ce4d8255fb9f7c6750"
+    },
+    "last-body": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-mountain-last-body-end.json",
+      "bytes": 88779,
+      "sha256": "2e43eac0d3ef431c38ba8cd64908ebe8eb9a342c152e097546d645992050cf40"
+    },
+    "release-edge": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-mountain-release-edge-read.json",
+      "bytes": 88772,
+      "sha256": "e91e242f2f63ecddcac71bee69bad23c63526590e3a8175b88999690e03eee53"
+    },
+    "release-body": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-mountain-release-body-end.json",
+      "bytes": 88779,
+      "sha256": "a5e4869347e3052e5e479b5b51f4dca1a866307aa95f437bacfb1d7bc7b5851f"
+    },
+    "release-neutral": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-mountain-release-read.json",
+      "bytes": 88772,
+      "sha256": "ba8acd0148de3ba40b83a2808bf42ad73c9bbc5e1eb2f44f4cf119975efe00a6"
+    },
+    "code": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-mountain-code.json",
+      "bytes": 16984,
+      "sha256": "7e0a7bcc790118844249c4b5a16c9a04543c2526c6bf7a01c9ab17d3cf46df6f"
+    },
+    "flight-contract": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-flight-contract.json",
+      "bytes": 150,
+      "sha256": "8b091376aaf022fe056eface72f42a64bb2cabd5eace2f95e4bdf7aa7ebea697"
+    },
+    "flight-first-input": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-flight-first-input.json",
+      "bytes": 88778,
+      "sha256": "f63ce2b6d74d4247565efdec9250821b018fa614cac3900844a9cfdd324fd916"
+    },
+    "destination": {
+      "path": ".local/mountain-pacing-native-07/capture/timing-destination-travel-read.png",
+      "bytes": 6686,
+      "sha256": "408b4a02d26b1bfa22047251e4de15653f7243ad1b62ca2f095a033f793a3143"
+    },
+    "engine": {
+      "path": ".local/mountain-pacing-native-07/capture/engine.json",
+      "bytes": 3988,
+      "sha256": "806480fc54fa82634dea6b8b23529f0e26d3e1520762701ba2597ebe8a3b955f"
+    },
+    "configuration": {
+      "path": ".local/mountain-pacing-native-07/capture/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    "capture": {
+      "path": ".local/mountain-pacing-native-07/capture/capture.json",
+      "bytes": 377,
+      "sha256": "0ad322387971d3bc542a94197985343c8aec12f494a68bb45d9a66aeff4a3b29"
+    },
+    "inputs": {
+      "path": ".local/mountain-pacing-native-07/capture/inputs.json",
+      "bytes": 33149,
+      "sha256": "40d86825f719a87689d4f1334ff6be0fd6610ea8dfb83ace5cae597d8a2c5bef"
+    },
+    "startup": {
+      "path": ".local/mountain-pacing-native-07/capture/startup-inputs.json",
+      "bytes": 1220,
+      "sha256": "1300ea830f0bcb97e965597ccddf4fad7e96a8f3821cb08d15deef433413e188"
+    },
+    "pause-proof": {
+      "path": ".local/mountain-pacing-native-07/capture/pause-clock-test.json",
+      "bytes": 1113,
+      "sha256": "e0308c85db0604ec29c7c4949a8001066100803c59115319c1e65aee67f6bc0b"
+    },
+    "runner": {
+      "path": ".local/mountain-pacing-native-07/runner-status.json",
+      "bytes": 549,
+      "sha256": "3445fd4f8cc9393356f3df45538ae3128bc956993a9d857b76488aed599063a7"
+    },
+    "source": {
+      "path": ".local/mountain-pacing-native-07/source-revision.json",
+      "bytes": 63054,
+      "sha256": "44d912f50ea2076a935338c3f79f9e78b313afd7a425f96307b650b0e29ac9c1"
+    },
+    "zip": {
+      "path": ".local/mountain-pacing-native-07/sources.zip",
+      "bytes": 1561263,
+      "sha256": "3f10a946343ef47592cf80ceefbd4b8dbd2337e9a87b22d1a694fcfe3b0fee06"
+    },
+    "log": {
+      "path": ".local/mountain-pacing-native-07/capture.log",
+      "bytes": 177,
+      "sha256": "22033b07fd045c00d41244a91f60fd2b46ccd699934b0ee77848ed108397c93e"
+    }
+  },
+  "verifierSha256": "aca7b69934a026f131f2d506fc7844f942e3b24d7d6e6f006fdff52f4f2a8904",
+  "injections": [],
+  "partialRestore": false,
+  "comparisonRules": [
+    "Exact executable/overlay and source/capture artifacts",
+    "Exact eight named actor/action/RNG words at first and fifteenth pre-action read endpoints;not complete-state parity",
+    "Native timer44 counts across14 intervals;port timing comparator allows one counter for unknown timer phase",
+    "Original release-edge Right followed by neutral is required;no input flush substitution"
+  ],
+  "limitations": [
+    "ignore_count internally stops/resumes;not uninterrupted scanout",
+    "Intermediate native AL values are not individually captured",
+    "hostMilliseconds begins after first-body-end and is not the14-interval wall-clock duration",
+    "No native whole-level timing or pixel parity;other expedition families remain unmeasured",
+    "No runtime speed correction accepted"
+  ],
+  "verify": "npm run verify:expedition-timing-evidence",
+  "diagnose": "npm run diagnose:expedition-timing (currently fails)"
+}

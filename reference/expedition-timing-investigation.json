@@ -116,6 +116,11 @@
       "path": "reference/build.json",
       "bytes": 3003,
       "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "fresh-mountain-manifest": {
+      "path": "reference/mountain-pacing.json",
+      "bytes": 7402,
+      "sha256": "f4c592fe114e0f3eabd3096f06a5e47e663bb6eae5757f54fbc7d6fcfb22f67f"
     }
   },
   "environmentContract": "Retained mountain segment uses captured initial memory/stack and independent consumed joystick bytes. Port clocks advance from their own fixed rates;native counters are expected observations only. Fresh office experiment measures paused-driver invariance,not movement.",
@@ -125,12 +130,12 @@
   },
   "partialRestore": false,
   "limitations": [
-    "No fresh unpaused mountain speed benchmark yet",
+    "Fresh counted mountain benchmark now independently confirms44 driver counts across14 intervals;not uninterrupted scanout or a native whole-level replay",
     "No timing result for jungle,cave or safari yet",
     "Debugger pause proof is fresh but retained mountain engine has version/configuration provenance rather than an executable-binary checksum",
     "No runtime speed adjustment accepted;original whole-loop instruction duration remains unmodeled"
   ],
   "verify": "node scripts/diagnose-expedition-timing.js --evidence-only",
   "diagnose": "node scripts/diagnose-expedition-timing.js (must fail while cadence differs)",
-  "diagnosticSha256": "fa3c31b8c5b67920027422dd7c6589417f5710f42116683af510e8c8a5480ce9"
+  "diagnosticSha256": "17f88d55eca46cb1bbdc37e91f6bb3b72a801cb3021fab50328efba6b1bfa4cc"
 }

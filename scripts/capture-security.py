@@ -27,7 +27,10 @@ parser.add_argument('--notice-video', action='store_true', help='Observe raw-fra
 parser.add_argument('--notice-keyboard', action='store_true', help='Use the fixed sixteen-read destination letter/keypad/combined-key profile')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 parser.add_argument('--pause-clock-test', action='store_true', help='Measure whether the resident driver clock advances during a one-second owned debugger pause;does not change game timing')
+parser.add_argument('--mountain-timing', action='store_true', help='Continue by the retained natural Klondike setup into an engine-counted mountain pacing experiment')
 args = parser.parse_args()
+if args.mountain_timing and (args.map_inputs or args.navigation):
+    parser.error('--mountain-timing owns its map setup and is separate from map/navigation profiles')
 if (args.map_clock or args.map_repeat or args.map_notice) and not args.map_inputs:
     parser.error('--map-clock,--map-repeat and --map-notice require --map-inputs')
 if args.map_notice and args.map_repeat:
@@ -92,9 +95,9 @@ def sequence(events):
 def keys(*events):
     sequence([{'type': 'key', 'key': key, 'pressed': pressed, 't': 0} for key, pressed in events])
 
-def add(ip, segment=None):
+def add(ip, segment=None, **options):
     segment = overlay if segment is None else segment
-    bp = client.post('/api/v1/debug/breakpoints', json={'type': 'execute', 'segment': segment, 'offset': ip})
+    bp = client.post('/api/v1/debug/breakpoints', json={'type': 'execute', 'segment': segment, 'offset': ip, **options})
     owned.add(bp['id'])
     owned_segments[bp['id']] = segment
     return bp['id']
@@ -316,6 +319,13 @@ try:
     assert stop['registers']['eax'] == 1
     final = state('return',stop)
     remove(return_bp)
+    if args.mountain_timing:
+        from capture_mountain_timing import capture_mountain_timing
+        capture_mountain_timing(client=client, stop=stop, load=load, ds=ds,
+                                overlay=overlay, add=add, remove=remove,
+                                resume=resume, state=state, keys=keys,
+                                sequence=sequence, wait_until=wait_until,
+                                save=save, root=ROOT)
     if args.map_inputs:
         profile_path = ROOT / ('reference/destination-keyboard-inputs.json' if args.notice_keyboard else 'reference/map-notice-inputs.json' if args.map_notice else 'reference/map-keyboard-repeat-inputs.json' if args.map_repeat else 'reference/map-keyboard-inputs.json')
         profile = json.loads(profile_path.read_text())

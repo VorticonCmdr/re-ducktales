@@ -1,5 +1,138 @@
 {
   "id": "security-aware-natural-lightning",
-  "pending": true,
-  "checkpoints": []
+  "pending": false,
+  "milestone": "flight-lightning",
+  "expectedHard": false,
+  "artifactRoot": ".local/security-lightning-accepted-01",
+  "captureRoot": ".local/security-lightning-01",
+  "captureProducer": ".local/security-lightning-01/source-revision.json",
+  "captureCommit": "ecc2b721a0acb09bcd358ca565bee92ee6598138",
+  "expectedCheckpointCount": 6,
+  "checkpointNames": [
+    "departure",
+    "before-strike",
+    "strike",
+    "slowed",
+    "recovery",
+    "released"
+  ],
+  "requiredEventCount": 164,
+  "expectedFlightPresentations": 42,
+  "expectedFlagAliasPresentations": 0,
+  "checkpoints": [
+    {
+      "name": "departure",
+      "at": 5901,
+      "eventCount": 60,
+      "stateSha256": "df27411b0a7a8e8a01ef87fadd0f2daab3d05a3a6c00ca2ddd6b06546c87fabd",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "before-strike",
+      "at": 8709,
+      "eventCount": 157,
+      "stateSha256": "6eb746332e0afb512649813a838fb58b86c1232269d044cc4e7a6c0f16ed6db0",
+      "pixelsSha256": "68fe836c9a9b6e60770eec324dbc8949f317873e9b2169619cd005e4c539ea0e"
+    },
+    {
+      "name": "strike",
+      "at": 8781,
+      "eventCount": 158,
+      "stateSha256": "49d08799b4c0eddcbbf56808851f827146b67291999bac787c0a3bebac5656e9",
+      "pixelsSha256": "f938028ea4d2d8ea3132dfd8f6145de60d9a6d57fbefc79c9ff0aed6bbbd053d"
+    },
+    {
+      "name": "slowed",
+      "at": 9029,
+      "eventCount": 158,
+      "stateSha256": "f0345d545e63321a160f98245d209f85c071cac74cea2b6341fd81f95766c79e",
+      "pixelsSha256": "09572960c12f475ad0d1385bd4e6eb079e60e054870c8929fcd4335db99616a8"
+    },
+    {
+      "name": "recovery",
+      "at": 9277,
+      "eventCount": 162,
+      "stateSha256": "70aa1de72be52c5212c3d20192455a8d2b370d2fa119f8a86393fb69b3b7837f",
+      "pixelsSha256": "3977703db74b7d36dcf5dde195d4af860169f040fe5b9b937af4d5ad1fd50188"
+    },
+    {
+      "name": "released",
+      "at": 9285,
+      "eventCount": 164,
+      "stateSha256": "9fa9bc87104be6cd3b69d4d5bba2a9d632febdd14b9d4a5f71ab9780785e44d7",
+      "pixelsSha256": "05e5ba510b2fc0b24756d9625a36dc0a3ddb74f2e586de8d6fa853af8707aeb4"
+    }
+  ],
+  "expectedOutcome": {
+    "frames": 42,
+    "presentations": 42,
+    "seed": 33809,
+    "phase": "flying",
+    "inputReads": 42,
+    "lastInputCode": 193
+  },
+  "expectedInputCount": 35,
+  "bankTrips": 3,
+  "artifacts": {
+    "environment": {
+      "path": ".local/security-lightning-accepted-01/environment.json",
+      "bytes": 264,
+      "sha256": "1bf7c83e268eb8771e3ee9436109b061b8cb2ce681cea05008822c9b570e4ff0"
+    },
+    "captured-events": {
+      "path": ".local/security-lightning-accepted-01/captured-events.json",
+      "bytes": 19093,
+      "sha256": "0130040464152e5e34e1122fb4fcd017ec43d8bf971b49f48cfc585989a95066"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/security-lightning-accepted-01/campaign-checkpoints.json",
+      "bytes": 16665,
+      "sha256": "2a5fba2594e1a803b587f9416cc42c993744f7d99500f6fe1e35896753b5b9f6"
+    },
+    "timeline": {
+      "path": ".local/security-lightning-accepted-01/timeline.json",
+      "bytes": 579,
+      "sha256": "1bd296a06b9a93f81e757bf4653754270122d1f929e819178469dd658e859ccf"
+    },
+    "capture-source": {
+      "path": ".local/security-lightning-01/source-revision.json",
+      "bytes": 9241,
+      "sha256": "c52fa739eac5b6a54a67e36106380e01505438373ec654ebaa37f234fcf364cb"
+    },
+    "input-profile": {
+      "path": "reference/security-lightning-inputs.json",
+      "bytes": 1408,
+      "sha256": "42cb010d085b54208eb07d69e653b631eba4e89915c0c8acce8b616784c4528e"
+    },
+    "png-departure": {
+      "path": ".local/security-lightning-01/departure.png",
+      "bytes": 9956,
+      "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
+    },
+    "png-before-strike": {
+      "path": ".local/security-lightning-01/before-strike.png",
+      "bytes": 9030,
+      "sha256": "5940766396d3a78ae63714b17ffdf4a89db67c89dd7ff0738079a41072c3e34c"
+    },
+    "png-strike": {
+      "path": ".local/security-lightning-01/strike.png",
+      "bytes": 9943,
+      "sha256": "886be5f6282758d01ae073e4dd7e9ab8d0e877867578fccf5ac486233361a46d"
+    },
+    "png-slowed": {
+      "path": ".local/security-lightning-01/slowed.png",
+      "bytes": 8797,
+      "sha256": "92784881984cfc50e005860113ba7fa083d3a853ca177f3061176a04da7d9b09"
+    },
+    "png-recovery": {
+      "path": ".local/security-lightning-01/recovery.png",
+      "bytes": 10004,
+      "sha256": "54333ff5c59e7aff07f0d4066cfc2ba35938fb01c1f844d9b572249046e6d845"
+    },
+    "png-released": {
+      "path": ".local/security-lightning-01/released.png",
+      "bytes": 9929,
+      "sha256": "d918da10c6b25a5f20bcc9153f2afef9a5f5b5d9c6cc8d318279a822b377e6e5"
+    }
+  }
 }

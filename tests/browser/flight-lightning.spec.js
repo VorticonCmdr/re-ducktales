@@ -131,7 +131,10 @@ test("natural lightning clears held flight controls and fresh keyboard input rec
   await observe("recovery");
   await page.keyboard.up("ArrowUp");
   await page.keyboard.up("Space");
-  await page.clock.runFor(8);
+  await until(
+    (s) =>
+      s.flight.inputReads > recovery.inputReads && s.flight.lastInputCode === 0,
+  );
   await observe("released");
   const events = await page.evaluate(() => window.entryEvents);
   const held = new Set();

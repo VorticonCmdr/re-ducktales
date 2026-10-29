@@ -43,12 +43,17 @@ export async function runRecordedCampaign({
     "jungle-treasure",
     "mountain-entry",
     "mountain-ascent",
+    "departure-entry",
+    "flight-lightning",
   ]).toContain(manifest.milestone);
   if (
     negativeMode &&
-    !["omit-hard-choice", "omit-jungle-move", "omit-mountain-move"].includes(
-      negativeMode,
-    )
+    ![
+      "omit-hard-choice",
+      "omit-jungle-move",
+      "omit-mountain-move",
+      "omit-lightning-throttle",
+    ].includes(negativeMode)
   )
     throw Error("SETUP: unknown recorded-input negative control");
   async function fixture(name) {
@@ -126,6 +131,18 @@ export async function runRecordedCampaign({
     : -1;
   if (["omit-jungle-move", "omit-mountain-move"].includes(negativeMode))
     expect(omittedMove).toBeGreaterThanOrEqual(0);
+  const recoveryPoint = checks.find((c) => c.name === "slowed");
+  const omittedRecovery =
+    negativeMode === "omit-lightning-throttle"
+      ? events.findIndex(
+          (e, i) =>
+            i >= recoveryPoint.eventCount &&
+            e.type === "keydown" &&
+            [" ", "Space"].includes(e.key),
+        )
+      : -1;
+  if (negativeMode === "omit-lightning-throttle")
+    expect(omittedRecovery).toBeGreaterThanOrEqual(0);
   async function advance(at) {
     expect(
       navigation,
@@ -179,6 +196,7 @@ export async function runRecordedCampaign({
         const event = events[consumed];
         if (!(
           consumed === omittedMove ||
+          consumed === omittedRecovery ||
           (negativeMode === "omit-hard-choice" &&
             consumed ===
               events.findIndex(
@@ -254,6 +272,25 @@ export async function runRecordedCampaign({
       expect(lastState.scene).toBe(activity);
       expect(lastState[activity].phase).toBe("entering");
       expect(lastState[activity].frames).toBe(0);
+    } else if (manifest.milestone === "flight-lightning") {
+      expect(lastState.scene).toBe("flight");
+      expect(lastState.flight.phase).toBe("flying");
+      expect(
+        Object.fromEntries(
+          [
+            "frames",
+            "presentations",
+            "seed",
+            "phase",
+            "inputReads",
+            "lastInputCode",
+          ].map((k) => [k, lastState.flight[k]]),
+        ),
+      ).toEqual(manifest.expectedOutcome);
+    } else if (manifest.milestone === "departure-entry") {
+      expect(lastState.scene).toBe("departure");
+      expect(lastState.departure.phase).toBe("prepared");
+      expect(lastState.flight).toBeNull();
     } else {
       expect(lastState.scene).toBe("ending");
       expect(lastState.ending.ready).toBe(true);

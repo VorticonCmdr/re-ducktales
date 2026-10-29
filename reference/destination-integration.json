@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "completed": true,
+  "sourceCommit": "8ee5284a48de5701ba29427aacc842b8cb7e19bd",
+  "sourceFileCount": 548,
+  "scope": "Destination completed-page presentation,shared selection rule and focused real-browser Map/flight/restart routes;not menu/scanout timing or whole-campaign acceptance",
+  "nativeManifest": "reference/destination.json",
+  "nativeManifestSha256": "2b47b2f718e9cd31c17cdc3f723d4456f196b1ab183761e7135f37a8a4adfca4",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "expected": {
+    "nativeDestinationInputs": 5,
+    "nativeCompletePictures": 2,
+    "nativeMapInputs": 36,
+    "browserCases": 3,
+    "unitCases": 117,
+    "skipped": 0
+  },
+  "environment": {
+    "browserConfig": "playwright.config.js",
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "biosSeed": 0,
+    "startingState": "Normal fresh opening,Easy confirmation,office control-center,security fixed Right choice,map fixed point100.5/100.5"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "comparisonRules": [
+    "Two original completed pages require exact64000-pixel RGBA equality under declared captured caller preconditions",
+    "Browser uses its own campaign context and compares only four invariant label regions and the complete footer to original pixels",
+    "Browser input comes from the independent original map profile and authored Map-return/reopen/flight-confirmation sequences;no expected snapshot selects an input"
+  ],
+  "limitations": [
+    "Original destination input poll/flush windows and entry/selection/confirmation timing remain untranslated in browser",
+    "Intermediate original screenshot3 alignment remains unresolved;it is retained in the native manifest,not fitted to the browser",
+    "Historical Easy/Hard campaign timing checkpoints remain unresolved as complete acceptance"
+  ],
+  "verificationCommands": {
+    "native": "npm run verify:destination",
+    "browser": "npx playwright test tests/browser/destination.spec.js tests/browser/map-pointer.spec.js",
+    "unit": "npm test",
+    "build": "npm run build"
+  },
+  "artifacts": {
+    "browser/.last-run.json": {
+      "path": ".local/destination-integration-20261029-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser/destination-destination-sh-4cc7a-rough-real-browser-controls/destination-bolognia.png": {
+      "path": ".local/destination-integration-20261029-01/browser/destination-destination-sh-4cc7a-rough-real-browser-controls/destination-bolognia.png",
+      "bytes": 13150,
+      "sha256": "960516552ae69b954c876abe6feccfe6fa515cbe703d3723a7df491dbc55067f"
+    },
+    "browser/map-pointer-map-held-keys--2d3bd-n-flight-choice-and-restart/map-flight-choice.png": {
+      "path": ".local/destination-integration-20261029-01/browser/map-pointer-map-held-keys--2d3bd-n-flight-choice-and-restart/map-flight-choice.png",
+      "bytes": 11129,
+      "sha256": "40e024418ea5fbbe59dbbbc1113f1ef58877bd53880cb0dee0ef323c3c16aafe"
+    },
+    "browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-inputs.json": {
+      "path": ".local/destination-integration-20261029-01/browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-inputs.json",
+      "bytes": 210803,
+      "sha256": "18b4bdbde18c6a99069338220ac899d3b7aedffae9bf100a0af513d6c2d19a68"
+    },
+    "browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-original-inputs.png": {
+      "path": ".local/destination-integration-20261029-01/browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-original-inputs.png",
+      "bytes": 24889,
+      "sha256": "e0aa34a7db5d796056b16c8cb5f6fa2bbd5a2e605145f92aaeb749b21c04e2f2"
+    },
+    "browser.log": {
+      "path": ".local/destination-integration-20261029-01/browser.log",
+      "bytes": 851,
+      "sha256": "5622d14d1b0b4f7c8b280f1c4c6fc3ffda24cb595387b82ecbc4746eb8a36166"
+    },
+    "build.log": {
+      "path": ".local/destination-integration-20261029-01/build.log",
+      "bytes": 831,
+      "sha256": "d37ebc1f8be04248625996d6a35f2df024e0fa34009a96c24889cde98ae34717"
+    },
+    "fixture-controls/corrupt-fixture.log": {
+      "path": ".local/destination-integration-20261029-01/fixture-controls/corrupt-fixture.log",
+      "bytes": 683,
+      "sha256": "23bb499d8411b0dc6331424cfe2fff6019932940d00ec000dd17269c6b8b8f9e"
+    },
+    "fixture-controls/missing-fixture.log": {
+      "path": ".local/destination-integration-20261029-01/fixture-controls/missing-fixture.log",
+      "bytes": 512,
+      "sha256": "46a70b3433d4681f6ad321bd0ee9c7d98bf35b7d076df3795ff281ebc0eb5237"
+    },
+    "fixture-controls/restored-positive.log": {
+      "path": ".local/destination-integration-20261029-01/fixture-controls/restored-positive.log",
+      "bytes": 297,
+      "sha256": "8ec3f72c0bfbf35501a7a0f3943f88c98c133e3d98724223424e452a0412c38a"
+    },
+    "native.log": {
+      "path": ".local/destination-integration-20261029-01/native.log",
+      "bytes": 590,
+      "sha256": "4bb10b73ee28df3b53f44243e0c95e16387548c1e32ec71453ffd93ee735e04a"
+    },
+    "runner-status.json": {
+      "path": ".local/destination-integration-20261029-01/runner-status.json",
+      "bytes": 844,
+      "sha256": "c205785bd5464f553e1972270f22a23efa6f96352f32ac14db53024502552455"
+    },
+    "source-revision.json": {
+      "path": ".local/destination-integration-20261029-01/source-revision.json",
+      "bytes": 58788,
+      "sha256": "b3491afc009f2101576af1876af0cb239f1b0260c79bc47d1be14e13ba63e0be"
+    },
+    "sources.zip": {
+      "path": ".local/destination-integration-20261029-01/sources.zip",
+      "bytes": 1430387,
+      "sha256": "7c6e8b5fe480897075bfc5b917f233c0f5cf815d1613c5f20d373b03adfa5dfd"
+    },
+    "unit.log": {
+      "path": ".local/destination-integration-20261029-01/unit.log",
+      "bytes": 10882,
+      "sha256": "9a4220ae480d3cb40513f64152f04de5999ff24b6acdd41a974ece889e2d0f79"
+    }
+  }
+}

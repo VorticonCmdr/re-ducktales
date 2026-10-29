@@ -58,6 +58,12 @@ four invariant label regions and the complete footer against the original;
 it does not claim that the differing whole pages are the same. The separate
 map test still requires all36 original input/flag/pointer comparisons.
 
+All three focused browser cases,the complete native command,117 unit checks and
+the production build passed on8ee5284 with zero skips. The
+[integration manifest](../reference/destination-integration.json) pins the exact
+producer ZIP and local results under`.local/destination-integration-20261029-01/`.
+This is focused branch acceptance; it does not replace the historical full gate.
+
 ## Timing limits and next experiment
 
 Original read3 has CPU choice1 but the captured raw screenshot still shows

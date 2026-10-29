@@ -1,116 +1,101 @@
-import flightInputs from "../../reference/hard-flight-inputs.json" with { type: "json" };
-import { replayFlightInputs } from "./helpers/flight-inputs.js";
-import { waitForScene } from "./helpers/scene.js";
-import { openRecordedApplication } from "./helpers/clock.js";
 import { test, expect } from "@playwright/test";
-import { writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { readFile, writeFile } from "node:fs/promises";
+import { openRecordedApplication } from "./helpers/clock.js";
 import { finishSecurityEntry } from "./helpers/security.js";
+import { waitForScene } from "./helpers/scene.js";
 import { exploreFlight } from "./helpers/flight-policy.js";
 import {
   installEntryRecording,
   observeRecordedRoute,
   saveRecordedRoute,
 } from "./helpers/entry-recording.js";
-import securityInputs from "../../reference/security-campaign-inputs.json" with { type: "json" };
 
-// Shared real-input route. Expected checkpoints never choose the input stream.
-export async function runHardExpedition({
-  page,
-  info,
-  manifest,
-  inputs,
-  negativeMode,
-  activity = "jungle",
-}) {
+// A fresh player-controlled browser route. Independent acceptance also replays
+// its timestamped DOM stream; expected snapshots never select an input here.
+export async function runHardExpedition({ page, info, manifest, inputs }) {
   test.setTimeout(180000);
-  const captureEntry = process.env.DUCKTALES_CAPTURE_HARD_ENTRY;
-  if (captureEntry) await installEntryRecording(page);
-  await page.addInitScript(() => {
-    window.hardExpeditionEvents = [];
-    for (const type of ["keydown", "keyup", "pointerdown", "pointerup"])
-      document.addEventListener(type, (event) =>
-        window.hardExpeditionEvents.push({
-          at: performance.now(),
-          type,
-          code: event.code ?? null,
-          target: event.target.closest?.("button,canvas")?.id ?? null,
-        }),
-      );
-    window.requestAnimationFrame = (callback) =>
-      setTimeout(() => callback(performance.now()), 8);
-    window.cancelAnimationFrame = clearTimeout;
-  });
+  const capture = process.env.DUCKTALES_CAPTURE_HARD_EXPEDITION;
+  if (!capture)
+    expect(
+      manifest.pending,
+      "SETUP: Hard route needs independent acceptance",
+    ).toBe(false);
+  const errors = [],
+    observations = [];
+  let checked = 0;
+  page.on("pageerror", (e) => errors.push(e.message));
+  await installEntryRecording(page);
   await openRecordedApplication(page, 1);
   await expect(page.locator("#actions")).toBeVisible();
   await expect(
     page.getByRole("checkbox", { name: "Sound (reconstructed)" }),
   ).not.toBeChecked();
-  const readyTime = await page.evaluate(() => performance.now());
   const canvas = page.locator("#game"),
-    errors = [];
-  page.on("pageerror", (e) => errors.push(e.message));
-  const t = {
-    canvas,
-    errors,
-    state: () => canvas.getAttribute("data-state").then(JSON.parse),
-    async press(key) {
-      await page.keyboard.press(key);
-      await page.clock.runFor(100);
-    },
-    async point(x, y) {
-      const r = await canvas.boundingBox();
-      await canvas.click({
-        position: { x: (r.width * x) / 320, y: (r.height * y) / 200 },
-      });
-      await page.clock.runFor(100);
-    },
-  };
-  await until((s) => s.scene === "title" && s.opening?.skipEnabled);
-  await canvas.focus();
-  await t.press("Space");
-  await waitForScene(page, canvas, "difficulty");
-  await t.press("ArrowUp");
-  await until((s) => s.difficulty === 2);
-  await t.press("Enter");
-  await waitForScene(page, canvas, "office");
+    state = () => canvas.getAttribute("data-state").then(JSON.parse),
+    activity = inputs.activity;
   async function until(predicate, max = 10000) {
-    for (let n = 0; n < max; n++) {
-      const s = await t.state();
+    for (let i = 0; i < max; i++) {
+      const s = await state();
       if (s?.diagnostic) throw Error(s.diagnostic);
       if (s && predicate(s)) return s;
       await page.clock.runFor(8);
     }
     throw Error(
-      `Unfinished Hard expedition: ${JSON.stringify(await t.state())}`,
+      `Unfinished Hard ${inputs.key}: ${JSON.stringify(await state())}`,
     );
   }
-  expect((await t.state()).difficulty).toBe(2);
+  async function press(key) {
+    await page.keyboard.press(key);
+    await page.clock.runFor(100);
+  }
+  async function point(x, y) {
+    const b = await canvas.boundingBox();
+    await canvas.click({
+      position: { x: (b.width * x) / 320, y: (b.height * y) / 200 },
+    });
+    await page.clock.runFor(100);
+  }
+  async function observe(name) {
+    const p = await observeRecordedRoute({ page, state: await state(), name });
+    observations.push(p);
+    if (!capture) {
+      const expected = manifest.checkpoints[checked++];
+      expect(expected, "Unexpected Hard checkpoint").toBeDefined();
+      for (const k of [
+        "name",
+        "at",
+        "eventCount",
+        "stateSha256",
+        "pixelsSha256",
+      ])
+        expect(p[k], `Hard ${inputs.key} ${name} ${k}`).toEqual(expected[k]);
+    }
+    return p;
+  }
+  await until((s) => s.scene === "title" && s.opening?.skipEnabled);
+  await canvas.focus();
+  await press("Space");
+  await waitForScene(page, canvas, "difficulty");
+  await press("ArrowUp");
+  await until((s) => s.difficulty === 2);
+  await press("Enter");
+  await waitForScene(page, canvas, "office");
   await page.locator("#map").click();
-  await finishSecurityEntry({ page, state: t.state, until });
-  await t.point(...inputs.departurePoint);
-  await t.press("Space");
-  await t.press("ArrowRight");
-  await t.press("Space");
-  expect((await t.state()).scene).toBe("departure");
-  console.log("departure", JSON.stringify((await t.state()).departure));
-  // Startup now waits on the original reveal and closing wipe. Their timing is
-  // recorded in the external event stream, not fitted to expedition outcomes.
-  expect(
-    (await page.evaluate(() => performance.now())) - readyTime,
-  ).toBeGreaterThan(800);
-  const flightTrace = captureEntry
-    ? await exploreFlight({
-        page,
-        state: t.state,
-        until,
-        hard: true,
-        policy: securityInputs.flights[0],
-      })
-    : await replayFlightInputs({
-        page,
-        until,
-        profile: flightInputs.profiles[0],
-      });
+  await finishSecurityEntry({ page, state, until });
+  await point(...inputs.departurePoint);
+  await press("Space");
+  await press("ArrowRight");
+  await press("Space");
+  expect((await state()).scene).toBe("departure");
+  expect((await state()).departure.racing).toBe(true);
+  const flightTrace = await exploreFlight({
+    page,
+    state,
+    until,
+    hard: true,
+    policy: inputs.flightPolicy,
+  });
   await writeFile(
     info.outputPath("hard-flight.json"),
     JSON.stringify(flightTrace, null, 2),
@@ -119,48 +104,33 @@ export async function runHardExpedition({
     (s) =>
       !["flight", "crash-repairs", "expedition-briefing"].includes(s.scene),
   );
-  console.log("entry", JSON.stringify(entry));
-  await writeFile(
-    info.outputPath("hard-entry.json"),
-    JSON.stringify(entry, null, 2),
-  );
-  await t.canvas.screenshot({ path: info.outputPath("hard-entry.png") });
-  if (captureEntry) {
-    expect(entry.scene).toBe(activity);
-    expect(entry.briefing.variant).toBe(manifest[activity].variant);
-    expect(entry.flight.outcome.code).toBe(1);
-    expect(entry[activity].frames).toBe(0);
-    const point = await observeRecordedRoute({
-      page,
-      state: entry,
-      name: `${activity}-entry`,
-    });
-    await saveRecordedRoute({
-      page,
-      root: `${captureEntry}/${manifest.id}`,
-      observations: [point],
-      hard: true,
-      scope: `Exploratory Hard ${activity} entry through security;not expedition acceptance`,
-    });
-    throw Error("EXPLORATORY Hard expedition entry saved;not acceptance");
-  }
   expect(entry.scene).toBe(activity);
-  expect(entry.briefing.variant).toBe(manifest[activity].variant);
+  expect(entry.briefing.variant).toBe(inputs.variant);
   expect(entry.flight.outcome.code).toBe(1);
-  expect(entry.flight.outcome.frames).toBe(manifest.flight.expectedFrames);
-  expect(entry.flight.outcome.seed).toBe(manifest.flight.expectedSeed);
-  expect(entry[activity].seed).toBe(manifest[activity].entrySeed);
-  const route = manifest[activity];
-  const stream = inputs[activity].flatMap((e) => Array(e.count).fill(e.byte));
-  expect(stream).toHaveLength(route.expectedInputCount);
-  expect(route.checkpoints).toHaveLength(route.expectedCheckpointCount);
-  if (process.env.DUCKTALES_HARD_NEGATIVE === negativeMode)
-    stream[manifest.negativeControl.inputIndex ?? 12] =
-      manifest.negativeControl.replacementByte ?? 3;
-  let keys = new Set(),
-    used = 0,
-    checked = 0;
-  const expeditionTrace = [];
+  expect(entry[activity].frames).toBe(0);
+  expect(entry[activity].lives).toBe(3);
+  const first = await observe("entry");
+  const entryManifest = JSON.parse(await readFile(inputs.entryManifest));
+  const entryChecks = JSON.parse(
+    await readFile(entryManifest.artifacts["campaign-checkpoints"].path),
+  );
+  expect(first.stateSha256, "Independently verified Hard entry").toBe(
+    entryChecks[0].stateSha256,
+  );
+  expect(first.pixelsSha256).toBe(entryChecks[0].pixelsSha256);
+  const stream = inputs.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
+  expect(stream).toHaveLength(inputs.inputCount);
+  expect(createHash("sha256").update(Buffer.from(stream)).digest("hex")).toBe(
+    inputs.sha256,
+  );
+  const boundaries = new Set();
+  let boundary = 0;
+  for (const row of inputs.inputEvents) {
+    boundary += row.count;
+    boundaries.add(boundary);
+  }
+  let held = new Set(),
+    used = 0;
   for (const byte of stream) {
     const next = new Set([
       ...(byte & 64 ? ["Space"] : []),
@@ -171,69 +141,62 @@ export async function runHardExpedition({
         7: ["ArrowLeft"],
       }[byte & 63] ?? []),
     ]);
-    for (const key of keys) if (!next.has(key)) await page.keyboard.up(key);
-    for (const key of next) if (!keys.has(key)) await page.keyboard.down(key);
-    keys = next;
-    const before = await t.state();
+    for (const key of held) if (!next.has(key)) await page.keyboard.up(key);
+    for (const key of next) if (!held.has(key)) await page.keyboard.down(key);
+    held = next;
+    const before = await state();
     expect(before.scene).toBe(activity);
     expect(before[activity].frames).toBe(used);
     const after = await until(
       (s) => s.scene !== activity || s[activity].frames > used,
     );
     used++;
-    expect(after[activity].frames).toBe(used);
-    expeditionTrace.push(after[activity]);
-    const expected = route.checkpoints[checked];
-    if (expected?.inputCount === used) {
-      for (const field of route.comparisonFields)
-        expect(
-          after[activity][field],
-          `Hard ${activity} checkpoint${used} ${field}`,
-        ).toEqual(expected.state[field]);
-      checked++;
-    }
+    expect(after[activity].frames, "Exactly one expedition input frame").toBe(
+      used,
+    );
+    if (boundaries.has(used) || used % 40 === 0) await observe(`input-${used}`);
   }
-  for (const key of keys) await page.keyboard.up(key);
-  expect(used).toBe(route.expectedInputCount);
-  expect(checked).toBe(route.expectedCheckpointCount);
+  for (const key of held) await page.keyboard.up(key);
+  expect(used).toBe(inputs.inputCount);
   const award = await until((s) => s.scene === "expedition-result");
-  expect(award[activity].outcome).toEqual(route.expectedOutcome);
+  expect(award[activity].outcome.code).toBe(1);
   expect(award[activity].lives).toBe(3);
-  expect(award.expeditionResult.value).toBe(route.treasure);
-  expect(award.money).toBe(route.expectedCampaignMoney);
-  expect(award.campaign.day).toBe(route.expectedCampaignDay);
-  await t.canvas.screenshot({
-    path: info.outputPath(`hard-${activity}-treasure.png`),
-  });
-  await writeFile(
-    info.outputPath(`hard-${activity}.json`),
-    JSON.stringify(expeditionTrace, null, 2),
+  expect(award.expeditionResult.value).toBe(inputs.treasure);
+  expect(award.money).toBe(
+    entry.money + award[activity].money + inputs.treasure,
   );
-  await t.press("Space");
+  expect(award.campaign.day).toBe(entry.campaign.day + 1);
+  await observe("award");
+  await press("Space");
   const returned = await until((s) => s.scene === "map");
-  expect(returned.campaign.playerCollected).toContain(route.location);
-  expect(returned.campaign.rivalUnlockMask).toBe(route.expectedUnlockMask ?? 1);
-  expect(returned.money).toBe(route.expectedCampaignMoney);
-  await writeFile(
-    info.outputPath("hard-return.json"),
-    JSON.stringify(returned, null, 2),
-  );
-  await t.point(212, 131);
-  await t.press("Space");
+  expect(returned.campaign.playerCollected).toContain(inputs.location);
+  expect(returned.money).toBe(award.money);
+  expect(returned.campaign.rivalUnlockMask).toBe(activity === "jungle" ? 1 : 2);
+  await observe("returned-map");
+  await point(212, 131);
+  await press("Space");
   const bank = await until((s) => s.scene === "bank");
   expect(bank.money).toBe(0);
-  expect(bank.campaign.banked).toBe(route.expectedCampaignMoney);
-  expect(bank.campaign.day).toBe(manifest.campaign.afterBank.day);
+  expect(bank.campaign.banked).toBe(entry.campaign.banked + award.money);
+  await observe("bank");
   await page.keyboard.down("Space");
   await until((s) => s.scene !== "bank");
   await page.keyboard.up("Space");
+  await page.clock.runFor(100);
   const deposited = await until((s) => s.scene === "map");
-  expect(deposited.campaign.banked).toBe(route.expectedCampaignMoney);
-  expect(deposited.campaign.playerCollected).toContain(route.location);
-  await writeFile(
-    info.outputPath("hard-bank.json"),
-    JSON.stringify(deposited, null, 2),
-  );
+  expect(deposited.campaign.banked).toBe(bank.campaign.banked);
+  expect(deposited.campaign.playerCollected).toContain(inputs.location);
+  await observe("deposited");
+  if (capture)
+    await saveRecordedRoute({
+      page,
+      root: `${capture}/${inputs.key}`,
+      observations,
+      hard: true,
+      scope:
+        "Exploratory Hard alternate expedition/treasure/bank route;not acceptance or native whole-expedition parity",
+    });
+  else expect(checked).toBe(manifest.expectedCheckpointCount);
   await page.locator("#restart").click();
   await page.clock.runFor(100);
   const fresh = await until((s) => s.scene === "title");
@@ -243,18 +206,8 @@ export async function runHardExpedition({
   expect(fresh.campaign.playerCollected).toEqual([]);
   expect(fresh[activity]).toBeNull();
   expect(fresh.flight).toBeNull();
-  const events = await page.evaluate(() => window.hardExpeditionEvents);
-  const heldKeys = new Set();
-  for (const e of events) {
-    if (e.type === "keydown") heldKeys.add(e.code);
-    if (e.type === "keyup") heldKeys.delete(e.code);
-  }
-  expect(events.length).toBeGreaterThan(0);
-  expect([...heldKeys]).toEqual([]);
-  await writeFile(
-    info.outputPath("hard-events.json"),
-    JSON.stringify(events, null, 2),
-  );
-  expect(t.errors).toEqual([]);
+  expect(errors).toEqual([]);
   await expect(page.locator("#diagnostic")).toBeHidden();
+  if (capture)
+    throw Error("EXPLORATORY Hard expedition route saved;not acceptance");
 }

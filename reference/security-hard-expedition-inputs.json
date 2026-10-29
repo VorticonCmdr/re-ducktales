@@ -1,0 +1,526 @@
+{
+  "id": "security-aware-hard-expedition-player-inputs",
+  "scope": "Original expedition control candidates after independently verified entry. Bermuda adds three authored neutral samples validated by carried planning;other streams unchanged. Flight policy is player steering,not expected actor state.",
+  "cases": [
+    {
+      "key": "bermuda",
+      "activity": "jungle",
+      "variant": 1,
+      "location": 2,
+      "treasure": 2000,
+      "departurePoint": [
+        68,
+        77
+      ],
+      "flightPolicy": {
+        "altitude": [
+          10,
+          25
+        ],
+        "climbHeading": 1
+      },
+      "inputEvents": [
+        {
+          "byte": 0,
+          "count": 3
+        },
+        {
+          "byte": 3,
+          "count": 12
+        },
+        {
+          "byte": 1,
+          "count": 10
+        },
+        {
+          "byte": 3,
+          "count": 30
+        },
+        {
+          "byte": 1,
+          "count": 10
+        },
+        {
+          "byte": 3,
+          "count": 51
+        },
+        {
+          "byte": 1,
+          "count": 15
+        },
+        {
+          "byte": 3,
+          "count": 35
+        },
+        {
+          "byte": 1,
+          "count": 15
+        },
+        {
+          "byte": 3,
+          "count": 36
+        },
+        {
+          "byte": 1,
+          "count": 10
+        },
+        {
+          "byte": 3,
+          "count": 27
+        },
+        {
+          "byte": 0,
+          "count": 20
+        },
+        {
+          "byte": 3,
+          "count": 42
+        },
+        {
+          "byte": 0,
+          "count": 6
+        },
+        {
+          "byte": 1,
+          "count": 28
+        },
+        {
+          "byte": 3,
+          "count": 84
+        },
+        {
+          "byte": 0,
+          "count": 6
+        },
+        {
+          "byte": 1,
+          "count": 7
+        }
+      ],
+      "inputCount": 447,
+      "sha256": "4e209373bf77e2780846616893a0b8e2c89d182bcce71ac841b67fc9984c8b6e",
+      "legacyInputs": "reference/hard-expedition-inputs.json",
+      "legacyInputSha256": "12cabd92ab5ab42a4df518570454f6c97a508026737ee3c737a386e21b8ea07e",
+      "legacyManifest": "reference/hard-jungle-browser.json",
+      "authoredNeutralPrefix": 3,
+      "entryManifest": "reference/security-hard-bermuda-entry.json"
+    },
+    {
+      "key": "boola",
+      "activity": "jungle",
+      "variant": 2,
+      "location": 4,
+      "treasure": 1000,
+      "departurePoint": [
+        56,
+        110
+      ],
+      "flightPolicy": {
+        "altitude": [
+          10,
+          25
+        ],
+        "climbHeading": 1
+      },
+      "inputEvents": [
+        {
+          "byte": 3,
+          "count": 12
+        },
+        {
+          "byte": 1,
+          "count": 44
+        },
+        {
+          "byte": 3,
+          "count": 34
+        },
+        {
+          "byte": 1,
+          "count": 12
+        },
+        {
+          "byte": 3,
+          "count": 120
+        },
+        {
+          "byte": 1,
+          "count": 11
+        },
+        {
+          "byte": 3,
+          "count": 39
+        },
+        {
+          "byte": 1,
+          "count": 25
+        },
+        {
+          "byte": 3,
+          "count": 63
+        },
+        {
+          "byte": 0,
+          "count": 7
+        },
+        {
+          "byte": 1,
+          "count": 20
+        },
+        {
+          "byte": 3,
+          "count": 34
+        }
+      ],
+      "inputCount": 421,
+      "sha256": "7d3a858df7d07494b291824266cc11b11b77e4caf99efc5992c99cbb28f47c62",
+      "legacyInputs": "reference/boola-expedition-inputs.json",
+      "legacyInputSha256": "950bb3fa79ddb69837c7017ee1c1aa55b32ccfd9bc6b9ed84f91bf42c238433e",
+      "legacyManifest": "reference/boola-jungle-browser.json",
+      "authoredNeutralPrefix": 0,
+      "entryManifest": "reference/security-hard-boola-entry.json"
+    },
+    {
+      "key": "thunderclap",
+      "activity": "mountain",
+      "variant": 1,
+      "location": 33,
+      "treasure": 2000,
+      "departurePoint": [
+        49,
+        62
+      ],
+      "flightPolicy": {
+        "altitude": [
+          10,
+          25
+        ],
+        "climbHeading": 1
+      },
+      "inputEvents": [
+        {
+          "byte": 0,
+          "count": 2
+        },
+        {
+          "byte": 7,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 1
+        },
+        {
+          "byte": 64,
+          "count": 22
+        },
+        {
+          "byte": 0,
+          "count": 18
+        },
+        {
+          "byte": 1,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 2
+        },
+        {
+          "byte": 1,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 4
+        },
+        {
+          "byte": 1,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 3
+        },
+        {
+          "byte": 64,
+          "count": 20
+        },
+        {
+          "byte": 0,
+          "count": 27
+        },
+        {
+          "byte": 64,
+          "count": 18
+        },
+        {
+          "byte": 0,
+          "count": 28
+        },
+        {
+          "byte": 64,
+          "count": 20
+        },
+        {
+          "byte": 0,
+          "count": 29
+        },
+        {
+          "byte": 64,
+          "count": 18
+        },
+        {
+          "byte": 0,
+          "count": 28
+        },
+        {
+          "byte": 64,
+          "count": 20
+        },
+        {
+          "byte": 0,
+          "count": 29
+        },
+        {
+          "byte": 64,
+          "count": 21
+        },
+        {
+          "byte": 0,
+          "count": 79
+        },
+        {
+          "byte": 1,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 8
+        },
+        {
+          "byte": 64,
+          "count": 18
+        },
+        {
+          "byte": 0,
+          "count": 28
+        },
+        {
+          "byte": 64,
+          "count": 17
+        },
+        {
+          "byte": 0,
+          "count": 29
+        }
+      ],
+      "inputCount": 494,
+      "sha256": "74c1a95fa6dd02c69916ae31001c2451840688f5d3bc4a2c22ad051ba06dba0f",
+      "legacyInputs": "reference/thunderclap-expedition-inputs.json",
+      "legacyInputSha256": "27f918fde7178b3287b2f483f85dd97d22f93a24987ba183d0dac1a2fa381247",
+      "legacyManifest": "reference/thunderclap-mountain-browser.json",
+      "authoredNeutralPrefix": 0,
+      "entryManifest": "reference/security-hard-thunderclap-entry.json"
+    },
+    {
+      "key": "machu",
+      "activity": "mountain",
+      "variant": 2,
+      "location": 5,
+      "treasure": 2500,
+      "departurePoint": [
+        75,
+        130
+      ],
+      "flightPolicy": {
+        "altitude": [
+          10,
+          25
+        ],
+        "climbHeading": 1
+      },
+      "inputEvents": [
+        {
+          "byte": 0,
+          "count": 2
+        },
+        {
+          "byte": 7,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 1
+        },
+        {
+          "byte": 64,
+          "count": 22
+        },
+        {
+          "byte": 0,
+          "count": 18
+        },
+        {
+          "byte": 64,
+          "count": 17
+        },
+        {
+          "byte": 0,
+          "count": 29
+        },
+        {
+          "byte": 64,
+          "count": 17
+        },
+        {
+          "byte": 0,
+          "count": 13
+        },
+        {
+          "byte": 3,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 6
+        },
+        {
+          "byte": 64,
+          "count": 18
+        },
+        {
+          "byte": 0,
+          "count": 28
+        },
+        {
+          "byte": 7,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 1
+        },
+        {
+          "byte": 64,
+          "count": 20
+        },
+        {
+          "byte": 0,
+          "count": 44
+        },
+        {
+          "byte": 7,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 1
+        },
+        {
+          "byte": 64,
+          "count": 22
+        },
+        {
+          "byte": 0,
+          "count": 15
+        },
+        {
+          "byte": 64,
+          "count": 20
+        },
+        {
+          "byte": 0,
+          "count": 38
+        },
+        {
+          "byte": 64,
+          "count": 20
+        },
+        {
+          "byte": 0,
+          "count": 46
+        },
+        {
+          "byte": 64,
+          "count": 16
+        },
+        {
+          "byte": 0,
+          "count": 21
+        },
+        {
+          "byte": 64,
+          "count": 19
+        },
+        {
+          "byte": 0,
+          "count": 27
+        },
+        {
+          "byte": 64,
+          "count": 18
+        },
+        {
+          "byte": 0,
+          "count": 28
+        },
+        {
+          "byte": 64,
+          "count": 20
+        },
+        {
+          "byte": 0,
+          "count": 27
+        },
+        {
+          "byte": 3,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 1
+        },
+        {
+          "byte": 1,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 8
+        },
+        {
+          "byte": 7,
+          "count": 1
+        },
+        {
+          "byte": 0,
+          "count": 1
+        },
+        {
+          "byte": 64,
+          "count": 17
+        },
+        {
+          "byte": 0,
+          "count": 13
+        },
+        {
+          "byte": 64,
+          "count": 21
+        },
+        {
+          "byte": 0,
+          "count": 64
+        }
+      ],
+      "inputCount": 706,
+      "sha256": "25b00c9d964179ba7cf60e98d48400c67b6e4f2e83689d4c6ff8e4e5d9877034",
+      "legacyInputs": "reference/machu-expedition-inputs.json",
+      "legacyInputSha256": "5867f63859bec4b73971fc87c3998ee3f23a687688cdc15fd9978da7f042c59a",
+      "legacyManifest": "reference/machu-mountain-browser.json",
+      "authoredNeutralPrefix": 0,
+      "entryManifest": "reference/security-hard-machu-entry.json"
+    }
+  ]
+}

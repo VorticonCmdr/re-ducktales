@@ -26,6 +26,7 @@ parser.add_argument('--map-notice', action='store_true', help='Use fixed map mak
 parser.add_argument('--notice-video', action='store_true', help='Observe raw-frame metadata,BIOS/drawing pages and both sides of destination page flips without changing video state')
 parser.add_argument('--notice-keyboard', action='store_true', help='Use the fixed sixteen-read destination letter/keypad/combined-key profile')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
+parser.add_argument('--pause-clock-test', action='store_true', help='Measure whether the resident driver clock advances during a one-second owned debugger pause;does not change game timing')
 args = parser.parse_args()
 if (args.map_clock or args.map_repeat or args.map_notice) and not args.map_inputs:
     parser.error('--map-clock,--map-repeat and --map-notice require --map-inputs')
@@ -198,10 +199,27 @@ try:
     stop = resume(paused['stop_id'])
     assert stop['registers']['ds'] == ds and stop['registers']['ss'] == ds
     state('office-input',stop)
+    if args.pause_clock_test:
+        before = state('pause-clock-before', stop, False)
+        started = time.monotonic()
+        time.sleep(1)
+        after = state('pause-clock-after', stop, False)
+        elapsed = (time.monotonic() - started) * 1000
+        paused_status = client.get('/api/v1/debug/status')
+        counter_before = struct.unpack_from('<I', before, 0x2225)[0]
+        counter_after = struct.unpack_from('<I', after, 0x2225)[0]
+        assert counter_after == counter_before, 'Driver clock advanced during debugger pause'
+        save('pause-clock-test', {'completed': True, 'hostMilliseconds': elapsed,
+                                 'counterBefore': counter_before, 'counterAfter': counter_after,
+                                 'stopId': stop['stop_id'], 'statusAfter': paused_status,
+                                 'injections': [], 'partialRestore': False,
+                                 'scope': 'Debugger pause invariance only;not a fresh mountain movement or wall-clock benchmark'})
     keys(('KBD_right',True),('KBD_space',True))
     stop = resume(stop['stop_id'])
     assert stop['registers']['eax'] & 255 == 195
-    state('office-confirm',stop,False)
+    office_confirm = state('office-confirm',stop,False)
+    if args.pause_clock_test:
+        assert struct.unpack_from('<I', office_confirm, 0x2225)[0] > counter_after, 'Driver clock did not resume'
     remove(office_bp)
     entry_bp = add(0x7ad)
     stop = resume(stop['stop_id'])

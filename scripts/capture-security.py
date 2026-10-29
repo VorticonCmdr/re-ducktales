@@ -309,8 +309,18 @@ try:
                             'x':struct.unpack_from('<h',data,x_ptr)[0],
                             'y':struct.unpack_from('<h',data,y_ptr)[0]}
                 if stage=='before' and index in by_read:
-                    event=by_read[index]
+                    raw_codes={'KBD_right':0x4d,'KBD_k':0x25,'KBD_left':0x4b,
+                               'KBD_kp3':0x51,'KBD_m':0x32,'KBD_up':0x48}
+                    for event in by_read[index]['keys']:
+                        expected=128 if event['pressed'] else 0
+                        assert data[0x276c+raw_codes[event['key']]]==expected, f'Authored key not settled before map read{index}: {event}'
+                if stage=='end' and index+1 in by_read:
+                    event=by_read[index+1]
+                    row['scheduledForRead']=index+1
                     row['scheduledInputRecord']=len(inputs)
+                    # Queue after the previous pointer's flush. The original
+                    # six-count caller wait delivers all hardware scan bytes
+                    # before the following reader,including extended arrows.
                     keys(*[(e['key'],e['pressed'])for e in event['keys']])
             map_records.append(row)
         for bp in [before_bp,input_bp,end_bp]:remove(bp)

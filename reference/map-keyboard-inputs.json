@@ -164,5 +164,5 @@
       ]
     }
   ],
-  "scope": "Authored make/release schedule at the original map input-call boundary. Outcomes and clock values are recorded separately;no injected CPU/memory values or restores."
+  "scope": "Authored make/release schedule queued at the previous pointer-return boundary,after its key flush and before the original six-count caller wait. Each beforeRead names its intended consumption call. Outcomes and clock values are separate;no CPU/memory injections or restores."
 }

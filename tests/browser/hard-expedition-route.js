@@ -4,6 +4,14 @@ import { waitForScene } from "./helpers/scene.js";
 import { openRecordedApplication } from "./helpers/clock.js";
 import { test, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
+import { finishSecurityEntry } from "./helpers/security.js";
+import { exploreFlight } from "./helpers/flight-policy.js";
+import {
+  installEntryRecording,
+  observeRecordedRoute,
+  saveRecordedRoute,
+} from "./helpers/entry-recording.js";
+import securityInputs from "../../reference/security-campaign-inputs.json" with { type: "json" };
 
 // Shared real-input route. Expected checkpoints never choose the input stream.
 export async function runHardExpedition({
@@ -15,6 +23,8 @@ export async function runHardExpedition({
   activity = "jungle",
 }) {
   test.setTimeout(180000);
+  const captureEntry = process.env.DUCKTALES_CAPTURE_HARD_ENTRY;
+  if (captureEntry) await installEntryRecording(page);
   await page.addInitScript(() => {
     window.hardExpeditionEvents = [];
     for (const type of ["keydown", "keyup", "pointerdown", "pointerup"])
@@ -76,7 +86,7 @@ export async function runHardExpedition({
   }
   expect((await t.state()).difficulty).toBe(2);
   await page.locator("#map").click();
-  await page.clock.runFor(100);
+  await finishSecurityEntry({ page, state: t.state, until });
   await t.point(...inputs.departurePoint);
   await t.press("Space");
   await t.press("ArrowRight");
@@ -88,11 +98,19 @@ export async function runHardExpedition({
   expect(
     (await page.evaluate(() => performance.now())) - readyTime,
   ).toBeGreaterThan(800);
-  const flightTrace = await replayFlightInputs({
-    page,
-    until,
-    profile: flightInputs.profiles[0],
-  });
+  const flightTrace = captureEntry
+    ? await exploreFlight({
+        page,
+        state: t.state,
+        until,
+        hard: true,
+        policy: securityInputs.flights[0],
+      })
+    : await replayFlightInputs({
+        page,
+        until,
+        profile: flightInputs.profiles[0],
+      });
   await writeFile(
     info.outputPath("hard-flight.json"),
     JSON.stringify(flightTrace, null, 2),
@@ -107,6 +125,25 @@ export async function runHardExpedition({
     JSON.stringify(entry, null, 2),
   );
   await t.canvas.screenshot({ path: info.outputPath("hard-entry.png") });
+  if (captureEntry) {
+    expect(entry.scene).toBe(activity);
+    expect(entry.briefing.variant).toBe(manifest[activity].variant);
+    expect(entry.flight.outcome.code).toBe(1);
+    expect(entry[activity].frames).toBe(0);
+    const point = await observeRecordedRoute({
+      page,
+      state: entry,
+      name: `${activity}-entry`,
+    });
+    await saveRecordedRoute({
+      page,
+      root: `${captureEntry}/${manifest.id}`,
+      observations: [point],
+      hard: true,
+      scope: `Exploratory Hard ${activity} entry through security;not expedition acceptance`,
+    });
+    throw Error("EXPLORATORY Hard expedition entry saved;not acceptance");
+  }
   expect(entry.scene).toBe(activity);
   expect(entry.briefing.variant).toBe(manifest[activity].variant);
   expect(entry.flight.outcome.code).toBe(1);

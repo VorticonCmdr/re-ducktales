@@ -102,7 +102,13 @@ export async function observeRecordedRoute({ page, state, name }) {
   };
 }
 
-export async function saveRecordedRoute({ page, root, observations, scope }) {
+export async function saveRecordedRoute({
+  page,
+  root,
+  observations,
+  scope,
+  hard = false,
+}) {
   if (!observations.length) throw Error("SETUP: empty recorded route");
   await mkdir(root, { recursive: true });
   const events = await page.evaluate(() => window.entryEvents);
@@ -114,7 +120,7 @@ export async function saveRecordedRoute({ page, root, observations, scope }) {
   }));
   const files = {
     "environment.json": {
-      hard: false,
+      hard,
       completed: false,
       clockOrigin: 1,
       displayMilliseconds: 8,

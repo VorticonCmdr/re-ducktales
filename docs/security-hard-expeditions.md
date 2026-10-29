@@ -45,7 +45,9 @@ browser replay. A carried state mismatch or the strict external-event comparison
 must reject it at an expedition checkpoint. A preliminary Right-only selector
 failed setup on the left-only Thunderclap route; that run is excluded. The corrected
 selector covers Left and Right. Setup errors, unsupported paths, timeouts, endpoint
-failures and missing tests do not count as successful negative controls.
+failures and missing tests do not count as successful negative controls. The
+shared missing-flight-turn check now rejects at consumption17; consumption18
+belongs to the unchanged pre-security baseline.
 
 Each route additionally rejects changed expected state, omitted checkpoints,
 changed expected pixels and omitted browser checkpoints. Required missing/corrupt

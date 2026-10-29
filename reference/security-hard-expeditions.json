@@ -320,7 +320,8 @@
     "tests/browser/hard-expedition-route.js": "3e14c75bcfa2045445177b9c4dd1336908ade62171e40ee61183dc0748235c47",
     "tests/browser/hard-expedition-replay.spec.js": "ad6b163be064d97753e602fb1b00b737c4a96cd3cc3305c989035d61cf4ac656",
     "tests/browser/hard-expedition.spec.js": "193b05fa89aec164c05941176a9c39085cab3c000cdc42add848b90f23704d34",
-    "tests/browser/hard-mountains.spec.js": "c4d621f7e2f7fedc3e83c19b2551dc26ccbef290a79cfc0e902f86162ac98fea"
+    "tests/browser/hard-mountains.spec.js": "c4d621f7e2f7fedc3e83c19b2551dc26ccbef290a79cfc0e902f86162ac98fea",
+    "scripts/verify-flight-input-browser-negative.js": "61f9af9747835cf202c51a67b07ce382c43f4ffa9228154033d310f116a2baa8"
   },
   "negativeComparisonRule": "Omitting the first horizontal make must fail a carried state or independent DOM-event comparison at an expedition checkpoint;setup,timeout and endpoint failures are rejected."
 }

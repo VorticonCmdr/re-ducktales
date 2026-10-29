@@ -26,12 +26,14 @@ await writeFile(
 );
 assert.ifError(result.error);
 assert.equal(result.status, 1, "Missing flight turn must fail");
-assert.match(output, /Consumed flight input18/);
+// The security-aware steering route makes its first turn at read17.
+// The historical pre-security consumed-control fixture still starts at read18.
+assert.match(output, /Consumed flight input17/);
 assert.match(output, /1 failed/);
 assert.doesNotMatch(
   output,
   /SETUP:|ENOENT|No tests found|Test timeout|browserType\.launch:|Corrupt consumed flight input stream/,
 );
 console.log(
-  "Flight browser negative: missing real turn rejected at consumed input18, before actor/result comparisons.",
+  "Flight browser negative: missing real turn rejected at consumed input17, before actor/result comparisons.",
 );

@@ -120,6 +120,26 @@ export function* officeMoneyBinFrames() {
     };
 }
 
+// Overlay2:0561..0698. MAIN19 is drawn behind the explicit MAIN5 pose.
+// The final frame3 hold and extra page flip are both present in the original.
+export function* officeInvestmentFrames() {
+  const picture = (frame, hideLeft) => [
+    ...officeCommands({ hideLeft }),
+    sprite(19, 0, 9, 16),
+    sprite(5, frame, 33, 48),
+  ];
+  yield { source: 0x05c7, commands: picture(0, false), counts: 0, sound: null };
+  for (let frame = 0; frame <= 3; frame++)
+    yield {
+      source: 0x061a,
+      commands: picture(frame, true),
+      counts: 14,
+      sound: frame === 0 ? 3 : null,
+    };
+  yield { source: 0x065f, commands: picture(3, true), counts: 14, sound: null };
+  yield { source: 0x067a, commands: picture(3, true), counts: 0, sound: null };
+}
+
 // Uninterruptible overlay2:0182 money-bin departure. The caller owns the
 // pre-entry sound reset, archive lifetime and subsequent overlay dispatch.
 export class OfficeMoneyBin {

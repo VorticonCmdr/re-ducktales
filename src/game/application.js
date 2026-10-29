@@ -1,6 +1,7 @@
 import { Opening } from "./opening.js";
 import { OfficeMoneyBin } from "./office.js";
 import { OfficeControlCenter } from "./office-control-center.js";
+import { OfficeInvestmentDeparture } from "./office-investments.js";
 import { SecurityScreen } from "./security-screen.js";
 import { DifficultyMenu } from "./difficulty-menu.js";
 import { Departure } from "./departure.js";
@@ -192,6 +193,19 @@ export class Game {
     if (this.scene !== "office") throw Error("Control center outside office");
     if (this.audioEnabled) this.effects.push({ type: "sound", id: 0 });
     this.officeDeparture = new OfficeControlCenter({
+      audioEnabled: this.audioEnabled,
+    });
+    this.scene = "office-departure";
+    this.collectOfficeDeparture();
+  }
+  startOfficeInvestments() {
+    if (!this.openingResources) {
+      this.completeCampaignAction({ type: "investments" });
+      return;
+    }
+    if (this.scene !== "office") throw Error("Investment departure outside office");
+    if (this.audioEnabled) this.effects.push({ type: "sound", id: 0 });
+    this.officeDeparture = new OfficeInvestmentDeparture({
       audioEnabled: this.audioEnabled,
     });
     this.scene = "office-departure";
@@ -687,7 +701,7 @@ export class Game {
         event.type === "investments"
       ) {
         if (!this.marketMemory) throw Error("Investment resources not loaded");
-        this.completeCampaignAction({ type: "investments" });
+        this.startOfficeInvestments();
         return;
       }
       if (event.type === "unsupported")

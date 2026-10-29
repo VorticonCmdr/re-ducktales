@@ -264,14 +264,18 @@ function replay({
   g.briefing = { activity: "mountain", variant: 0 };
   g.startExpedition();
   const m = g.mountain;
+  function advanceTo(predicate, message) {
+    for (let step = 0; step < 100 && !predicate(); step++) g.advanceRetrace();
+    assert.ok(predicate(), message);
+  }
   assert.equal(m.frames, 0);
   assert.equal(m.presentations, 0);
   if (!dropPause) g.input({ type: "pause" });
   assert.equal(g.systemOverlay, null, "mountain input waits for normal reader");
   assert.equal(g.pendingMountainSystemKeys.size, dropPause ? 0 : 1);
-  g.advanceRetrace();
+  advanceTo(() => m.presentations === 1, "Unfinished first opening page");
   assert.equal(g.systemOverlay, null);
-  g.advanceRetrace();
+  advanceTo(() => m.presentations === 2, "Unfinished second opening page");
   assert.equal(g.systemOverlay?.kind, "pause", "required mountain pause input");
   assert.equal(m.wait.clock, "input");
   assert.equal(m.inputs.length, 0);
@@ -293,13 +297,13 @@ function replay({
   assert.equal(g.systemOverlay, null);
   assert.equal(m.inputs.length, 1);
   assert.equal(m.inputs[0].input, 0);
-  g.advanceRetrace();
+  advanceTo(() => m.inputs.length === 2, "Unfinished resumed mountain input");
   assert.equal(m.inputs.length, 2, "resumed mountain input loop");
   g.input({ type: "controls", fire: false, direction: "right" });
-  g.advanceRetrace();
+  advanceTo(() => m.inputs.length === 3, "Unfinished Right input");
   assert.equal(m.inputs.at(-1).input, 3);
   g.input({ type: "quit" });
-  g.advanceRetrace();
+  advanceTo(() => g.systemOverlay !== null, "Unfinished quit input");
   assert.equal(g.systemOverlay?.kind, "quit");
   assert.equal(m.wait.clock, "input");
   assert.equal(

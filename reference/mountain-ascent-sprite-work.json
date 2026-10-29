@@ -1,0 +1,29 @@
+{
+  "id": "mountain-ascent-sprite-work-regression",
+  "baseline": "reference/mountain-ascent.json",
+  "baselineSha256": "a10ac3ca5af03542375141112cd2e5153991ca55c92ff6fd8bdd8b5ce134e4e6",
+  "expectedInputCount": 764,
+  "expectedPresentationCount": 870,
+  "clockProvider": "Legacy component regression harness advances one driver and one retrace per step. This fixture checks port logic and work accounting,not elapsed original/browser time.",
+  "expectedFinalTiming": {
+    "tick": 2368,
+    "spriteWork": {
+      "instructions": 53744,
+      "portWrites": 856,
+      "calls": 4,
+      "milliseconds": 18.485333333333333,
+      "retraces": 2
+    }
+  },
+  "limitations": [
+    "Gameplay fields and all26 checkpoints remain exact against the historical baseline.",
+    "Clock metadata has a separate new expectation;historical fixtures are not edited.",
+    "Copy/text/line and non-graphics CPU costs are not yet charged."
+  ],
+  "verify": "node scripts/verify-mountain.js",
+  "runtimeSources": {
+    "src/game/mountain.js": "643b563a28eb97eda7bf188bf2f1984eb2a4c60eebc6368f9d9d9ba2885bd398",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d"
+  }
+}

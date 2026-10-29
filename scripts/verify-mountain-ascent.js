@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { Mountain } from "../src/game/mountain.js";
 import {
   renderMountainPixels,
@@ -9,6 +10,23 @@ import {
 export async function verifyMountainAscent(resources) {
   const manifest = JSON.parse(
     await readFile("reference/mountain-ascent.json", "utf8"),
+  );
+  const timing = JSON.parse(
+    await readFile("reference/mountain-ascent-sprite-work.json", "utf8"),
+  );
+  for (const [path, hash] of Object.entries(timing.runtimeSources))
+    assert.equal(
+      createHash("sha256")
+        .update(await readFile(path))
+        .digest("hex"),
+      hash,
+      `Changed ascent timing source ${path}`,
+    );
+  assert.equal(
+    createHash("sha256")
+      .update(await readFile("reference/mountain-ascent.json"))
+      .digest("hex"),
+    timing.baselineSha256,
   );
   assert.equal(manifest.expectedInputCount, 764);
   assert.equal(manifest.expectedCheckpointCount, 26);
@@ -31,7 +49,9 @@ export async function verifyMountainAscent(resources) {
     let executed = 0,
       rendered = 0,
       presentation = -1;
-    for (let step = 0; step < 2000 && !g.outcome; step++) {
+    // Bound execution, not a one-retrace-per-input assumption. The unchanged
+    // source input sequence and all required checkpoints must still finish.
+    for (let step = 0; step < 20000 && !g.outcome; step++) {
       const index = g.inputs.length;
       const byte = stream[index] ?? 0;
       g.setControls({
@@ -69,10 +89,18 @@ export async function verifyMountainAscent(resources) {
     assert.equal(g.inputs.length, 764, "unfinished input stream");
     assert.equal(executed, 26, "skipped checkpoint");
     assert.equal(rendered, 870, "presentation count");
+    const { tick, spriteWork, ...actual } = g.snapshot();
+    const { tick: historicalTick, ...expected } = manifest.expectedFinal;
+    assert.equal(
+      historicalTick,
+      870,
+      "Changed historical one-retrace baseline",
+    );
+    assert.deepEqual(actual, expected, "summit gameplay state");
     assert.deepEqual(
-      g.snapshot(),
-      manifest.expectedFinal,
-      "summit final state",
+      { tick, spriteWork },
+      timing.expectedFinalTiming,
+      "summit graphics-work timing",
     );
     assert.equal(g.outcome.code, 1);
     return { executed, rendered };

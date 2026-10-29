@@ -71,7 +71,10 @@ function compare(
     },
     m,
   );
-  mountain.advanceRetrace();
+  // Compare the same prepared-page boundary; original initialization captures
+  // never claimed that all drawing fits in one retrace.
+  for (let step = 0; step < 100 && mountain.presentations < 1; step++)
+    mountain.advanceRetrace();
   assert.equal(mountain.inputs.length, 0, "unexpected early input");
   assert.equal(mountain.presentations, 1);
   assert.ok(mountain.pending, "missing prepared second page");

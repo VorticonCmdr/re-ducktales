@@ -133,7 +133,7 @@
     "verify:mountain-frame-profile": "node scripts/verify-mountain-frame-profile.js",
     "verify:expedition-timing-evidence": "node scripts/diagnose-expedition-timing.js --evidence-only && node scripts/verify-mountain-pages.js",
     "diagnose:expedition-timing": "node scripts/diagnose-expedition-timing.js",
-    "verify:expedition-timing": "node scripts/verify-mountain-pages.js && node scripts/diagnose-expedition-timing.js"
+    "verify:expedition-timing": "node scripts/verify-mountain-pages.js && node scripts/diagnose-expedition-timing.js && node scripts/verify-mountain-timing-negative.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

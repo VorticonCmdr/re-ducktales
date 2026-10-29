@@ -24,8 +24,7 @@ import { advanceRival, RivalReport, RIVAL_UNLOCK } from "./rival.js";
 import { AtomicTransport } from "./atomic-transport.js";
 import { BankScene } from "./bank.js";
 import { SystemControls } from "./system-controls.js";
-export const DRIVER_HZ = 1193182 / (1365 * 12);
-export const RETRACE_HZ = 70.086;
+export { DRIVER_HZ, RETRACE_HZ } from "./timing.js";
 
 export class Game {
   constructor({

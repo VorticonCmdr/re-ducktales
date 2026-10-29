@@ -1,7 +1,8 @@
 # Expedition movement timing investigation
 
 The user reports fast movement in jungle, mountain, cave and safari. This is an
-open fidelity defect; no speed adjustment has been accepted. Per-input movement
+open fidelity defect. Mountain sprite work is now charged before retrace; other
+graphics and CPU costs remain incomplete. Per-input movement
 regressions and complete port campaigns do not prove real-time pacing.
 
 ## First measured mountain discrepancy
@@ -14,7 +15,7 @@ has 15 separately captured input reads. Its relative driver counters are:
 ```
 
 Using the independently established driver rate, 1193182/(1365*12), that spans
-604.032ms from the first read to the last. The current Mountain component,
+604.032ms from the first read to the last. Before scheduling integration, the Mountain component,
 advanced with the browser's separate 72.844Hz driver and 70.086Hz retrace clocks,
 consumes the same 15 joystick values in 199.755ms. Named actor/action/location
 and RNG values match every post-update capture. The elapsed cadence differs by
@@ -68,7 +69,7 @@ The first and fifteenth read endpoints have driver counters5039 and5083: again
 44 counts /604.032ms across14 intervals. The conditional port replay initializes
 only from this fresh native ENTRY memory/stack and original assets. Its two
 pre-action endpoints match all eight named actor/action/RNG words, while its own
-clock still spans199.755ms. No native timestamp chooses a port input or deadline.
+clock initially spanned199.755ms. No native timestamp chooses a port input or deadline.
 Intermediate native AL values are inferred from the held Right key and mode0;
 they were not individually captured, so this is not15 full native checkpoints.
 
@@ -126,7 +127,7 @@ Drawing accounts for33 of44 observed counts. This localizes the missing work;
 it does not establish an instruction-cost model or a runtime correction. The
 walking path skips the full HUD helper at1744; its draw section includes the
 cash footer, money text, hazards and actor graphics. Original normal-core CPU
-execution and graphics I/O consume emulated time, while the current port treats
+execution and graphics I/O consume emulated time, while the initial port treated
 drawing as immediate before waiting for the next retrace. The loop has no
 ordinary per-frame delay beyond the flip. A fixed tick multiplier would not
 represent the observed workload dependence.
@@ -184,7 +185,8 @@ captures are routine/workload evidence, not uninterrupted timing references.
 left/right/top/bottom clipping and source-frame selection, independently of the
 DOM and clock. Its normal-core conversion is explicitly configured by cycles
 per millisecond and excludes interrupt work and budget-end I/O clamping. It is
-**not connected to browser scheduling yet**. No movement or audio rate changed.
+not connected to scheduling at that milestone. The integration below now charges
+sprite work; the copy model remains unconnected.
 
 `npm run verify:ega-work` validates original opcode bytes and15 counted basic
 blocks, then exercises98 sprite operations across14 native segments. Each
@@ -208,8 +210,7 @@ pre-erase states yield the ordinary actor rectangle56x37; its inferred copy work
 is0.611ms at3000 cycles. A320x168 restore uses13,440 word iterations and predicts
 4.549ms. These are static work calculations; individual copy arguments/times
 were not observed. Ten more basic blocks are checked against original bytes,
-and a changed REP opcode is a required negative control. This is still not
-connected to runtime scheduling or timing acceptance.
+and a changed REP opcode is a required negative control. Copy work remains unconnected to scheduling; no full timing acceptance is claimed.
 
 Detailed capture02 is excluded because its recorder cleanup used an unsupported
 Python client argument. Capture03 failed port preflight before launch; no listener
@@ -237,7 +238,7 @@ This observer records26 page transitions, detected at sample indices3,6,…,78.
 The80 samples span79 render intervals and82 resident timer counts, consistent
 with70.086Hz within one resident counter phase. Between the first and last
 transitions,25 update intervals are bracketed by74–76 display frames: mean
-42.234–43.375ms per update in this scene. The current port instead permits one
+42.234–43.375ms per update in this scene. The previous port instead permitted one
 presentation per display frame,14.268ms. This independently supports the pacing
 defect without per-update debugger pauses. It is not a native/browser timing
 match or proof of the rate of another scene or machine configuration.
@@ -260,8 +261,7 @@ page timestamp schedules the port.
 complete source/archive/engine identities,22 original files, two input events,
 zero intermediate stops and completion. It rejects an omitted sample, changed
 page and omitted release. [Manifest](../reference/mountain-pages.json). Both the
-evidence command and required timing gate include it. The timing gate still
-fails because browser scheduling has not been corrected.
+evidence command and required timing gate include it. The gate now includes the sprite-work scheduling integration described below.
 
 Observer capture01 is excluded: its Lua load used JSON where the installed
 bridge requires raw text and a separate start call. Capture02 correctly rejected
@@ -282,8 +282,9 @@ npm run verify:expedition-timing
 ```
 
 The first checks the evidence and reports the mismatch; it is not timing
-acceptance. The strict diagnostic and verification commands deliberately exit1 on the
-unresolved cadence difference. The full `npm run verify` requires this check
+acceptance. The strict diagnostic and verification commands fail on a cadence difference
+outside the declared native-counter phase tolerance. They now pass the selected
+walk, and the one-retrace bypass must fail. The full `npm run verify` requires this check
 after original-build validation; it cannot silently accept the known fast cadence.
 Missing/corrupt inputs or zero cases fail before a timing result. Two checker
 controls reject an altered native timer sample and an omitted sample. Original
@@ -307,3 +308,31 @@ measure jungle, cave and safari, and connect the original expedition key flags.
 Implement the execution-time boundary without changing integer movement, RNG or
 music clocks. A constant three-frame delay fitted to this one walk is not an
 accepted correction.
+
+## First scheduling integration
+
+Mountain now accumulates the original035d sprite opcode/port work at its actual
+source calls, then waits for the corresponding next retrace. It does not charge
+the synthetic full-HUD reconstruction used by Canvas: ordinary frames charge
+the cash footer, actual hazards, actor and hook; opening and scrolling pages
+charge their real HUD sprite calls. `timing.js` provides the explicit3000-cycle
+normal-core target and70.086Hz retrace clock independently of host rendering.
+No movement integer, RNG rule, input sample or music-clock rate changes.
+
+This is a partial graphics timing boundary: copies, text, lines, asset-loading
+and other CPU execution are not yet charged. It is not full original timing
+acceptance. The measured14-interval component walk now spans599.264ms, within
+one resident counter of the retained/fresh604.032ms benchmark. The read-only
+page observer independently brackets the scene's mean update at42.234–43.375ms.
+A required isolated process replaces presentation with the old one-retrace path;
+the elapsed-cadence checker must reject it. No production source is patched by
+the negative control.
+
+Routine/init verifiers now wait for their declared logical boundaries instead
+of assuming one retrace per update. Their original input streams and checked
+game fields are unchanged. The764-input summit regression preserves all26
+checkpoint values,870 presentations and the final gameplay state. Separate
+[clock metadata](../reference/mountain-ascent-sprite-work.json) records the new
+work budget without editing the historical fixture. That legacy harness advances
+driver/retrace together and is not an elapsed-time reference; the dedicated
+pacing check uses separate clocks. Browser integration is being refreshed.

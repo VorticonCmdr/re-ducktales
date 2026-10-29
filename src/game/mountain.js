@@ -10,6 +10,8 @@ import {
 } from "./mountain-actions.js";
 import { advanceMountainHazards } from "./mountain-hazards.js";
 import { u16 } from "./integer.js";
+import { egaSpriteWork, normalCoreGraphicsMilliseconds } from "./ega-work.js";
+import { ORIGINAL_GRAPHICS_TIMING } from "./timing.js";
 
 const SPRITES = new Map([
   [0x36f2, 1],
@@ -23,6 +25,14 @@ const SPRITES = new Map([
 
 export class Mountain {
   constructor(options, previousMemory) {
+    this.graphicsTiming = options.graphicsTiming ?? ORIGINAL_GRAPHICS_TIMING;
+    if (
+      !Number.isInteger(this.graphicsTiming.cyclesPerMillisecond) ||
+      this.graphicsTiming.cyclesPerMillisecond < 1 ||
+      !Number.isFinite(this.graphicsTiming.retraceHz) ||
+      this.graphicsTiming.retraceHz <= 0
+    )
+      throw Error("Invalid mountain graphics timing provider");
     this.pollInput = options.pollInput ?? (() => true);
     this.onFlushInput = options.flushInput ?? (() => {});
     this.controls = { fire: false, direction: null };
@@ -135,13 +145,34 @@ export class Mountain {
   }
   *present(commands) {
     this.pending = commands;
-    yield { clock: "retrace", remaining: 1 };
+    // The original starts the next update after its EGA retrace wait. Charge
+    // source sprite opcodes before that wait, rather than one host redraw.
+    // Copy/text/line and non-graphics CPU work remain an explicit timing gap.
+    const milliseconds = this.spriteWork.instructions
+      ? normalCoreGraphicsMilliseconds(
+          this.spriteWork,
+          this.graphicsTiming.cyclesPerMillisecond,
+        )
+      : 0;
+    const retraces = Math.max(
+      1,
+      Math.ceil((milliseconds * this.graphicsTiming.retraceHz) / 1000),
+    );
+    this.lastSpriteWork = { ...this.spriteWork, milliseconds, retraces };
+    yield { clock: "retrace", remaining: retraces };
   }
-  draw(commands, at) {
+  chargeSprite(asset, frame, x, y) {
+    const work = egaSpriteWork(this.entries[asset], frame, x, y);
+    this.spriteWork.instructions += work.instructions;
+    this.spriteWork.portWrites += work.portWrites;
+    this.spriteWork.calls++;
+  }
+  draw(commands, at, account = true) {
     const asset = SPRITES.get(at);
     if (asset === undefined)
       throw Error(`Unloaded mountain sprite DS:${at.toString(16)}`);
     const m = this.memory;
+    if (account) this.chargeSprite(asset, m.b(at + 18), m.i(at), m.i(at + 2));
     commands.push({
       op: "sprite",
       asset,
@@ -150,7 +181,7 @@ export class Mountain {
       frame: m.b(at + 18),
     });
   }
-  hud(commands) {
+  hud(commands, account = true) {
     const m = this.memory;
     commands.push({
       op: "fill",
@@ -169,11 +200,15 @@ export class Mountain {
       commands.push({ op: "line", color: 4, x, y, x2, y2 });
     commands.push({ op: "sprite", asset: 17, frame: 0, x: 8, y: 175 });
     commands.push({ op: "sprite", asset: 16, frame: 0, x: 40, y: 172 });
+    if (account) {
+      this.chargeSprite(17, 0, 8, 175);
+      this.chargeSprite(16, 0, 40, 172);
+    }
     m.b(0x3732, 2);
     m.i(0x3720, 200);
     m.i(0x3722, 178);
     for (let i = 0; i < m.b(0x4d34); i++) {
-      this.draw(commands, 0x3720);
+      this.draw(commands, 0x3720, account);
       m.b(0x3732, m.b(0x3732) - 1);
       m.i(0x3720, m.i(0x3720) + 32);
     }
@@ -194,7 +229,8 @@ export class Mountain {
       color: 1,
     });
   }
-  frame(offset = 0, scrolling = false) {
+  frame(offset = 0, scrolling = false, opening = false) {
+    this.spriteWork = { instructions: 0, portWrites: 0, calls: 0 };
     const m = this.memory,
       l = this.locals;
     const key = `${l.b(-0x34)}:${offset}`;
@@ -207,7 +243,10 @@ export class Mountain {
       { op: "fill", color: 0, x: 0, y: 0, width: 320, height: 200 },
       ...this.terrainCache.get(key),
     ];
-    this.hud(commands);
+    // Reconstructing an unchanged HUD for Canvas is not an original draw call.
+    // Opening pages call1744; ordinary frames draw just the cash footer1331.
+    this.hud(commands, opening);
+    if (!opening && !scrolling) this.chargeSprite(16, 0, 40, 172);
     advanceMountainHazards(
       m,
       l.b(-0x34),
@@ -234,6 +273,7 @@ export class Mountain {
       });
     }
     if (!scrolling && [4, 5].includes(m.i(0x6882))) {
+      this.chargeSprite(4, l.b(-0x2e), l.i(-0x3c), l.i(-0x40) - 3);
       commands.push({
         op: "sprite",
         asset: 4,
@@ -343,7 +383,8 @@ export class Mountain {
       m.view.setUint32(0x27f8, this.lifeDeadline, true);
       m.view.setUint32(0x27fc, 4, true);
       this.resetLife();
-      for (let i = 0; i < 2; i++) yield* this.present(this.frame());
+      for (let i = 0; i < 2; i++)
+        yield* this.present(this.frame(0, false, true));
       this.phase = "playing";
       while (true) {
         l.b(-0x28, 0);
@@ -399,6 +440,7 @@ export class Mountain {
       ...(this.wait?.clock === "input" ? { waitingForInputPoll: true } : {}),
       frames: this.frames,
       presentations: this.presentations,
+      spriteWork: this.lastSpriteWork,
       outcome: this.outcome,
     };
   }

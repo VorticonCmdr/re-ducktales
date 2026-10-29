@@ -68,7 +68,13 @@ native whole-level parity or a completed broader integration gate.
 
 ## Movement speed investigation
 
-**Pacing remains incomplete; no speed correction is applied.** A new original
+**Mountain pacing now charges original sprite execution work before retrace.**
+The captured14-interval walk now spans599.264ms, versus604.032ms in the original
+counter benchmark, with unchanged checked actor/action/RNG values. This is a
+partial correction: copy/text/line and other CPU costs remain uncharged, and
+jungle/cave/safari pacing is unchanged. Browser route refresh is in progress.
+
+ A new original
 observer uses80 render-callback samples and independently scheduled Right/release
 inputs, with zero intermediate execution stops. Its26 page changes bracket a
 mean42.234–43.375ms per update in this mountain scene, versus the port's14.268ms
@@ -78,14 +84,15 @@ wait. Other scenes and jungle/cave/safari pacing remain unmeasured.
 `npm run verify:mountain-pages` passes all80 samples and three negative controls.
 `npm run verify:ega-work` passes98 sprite operations,14 conditional hazard
 comparisons,14 inferred erase rectangles, the bulk restore path and six controls.
-Sprite/copy work is now translated independently of host rendering but is not
-connected to scheduling. Dense debugger captures remain scoped evidence: adding
+Sprite work is connected to scheduling; copy work is translated but is not yet
+charged. Dense debugger captures remain scoped evidence: adding
 stops changes emulated elapsed time despite pause-clock invariance. The original
 release-edge direction is also absent from the expedition held-control adapter.
 
 `npm run verify:expedition-timing-evidence` checks the evidence;
-`npm run verify:expedition-timing` still fails for the missing timing behavior.
-The full gate stops there; older fixture/source migrations also remain open.
+`npm run verify:expedition-timing` now passes the captured mountain cadence
+comparison and rejects an isolated one-retrace bypass. Broader fixture/source
+migrations remain open; this is not whole-game timing acceptance.
 Next: account for original drawing/execution work in the simulation scheduler,
 then repeat independent browser and original checks.
 [Evidence, source locations and reproduction](expedition-timing.md).

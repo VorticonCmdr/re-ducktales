@@ -72,7 +72,9 @@ export async function verifyMountainMovement(resources) {
       },
       m,
     );
-    g.advanceRetrace();
+    for (let step = 0; step < 100 && g.presentations < 1; step++)
+      g.advanceRetrace();
+    assert.equal(g.presentations, 1, "Unfinished opening page");
     assert.equal(g.inputs.length, 0);
     const ranges = [
       [0x5ae0, 2],
@@ -122,8 +124,12 @@ export async function verifyMountainMovement(resources) {
       );
       const byte = omitInput && i === 1 ? 0 : stream[i];
       g.setControls({ fire: false, direction: byte === 3 ? "right" : null });
-      g.advanceTick();
-      g.advanceRetrace();
+      // This routine comparison supplies the declared input at its consumption
+      // boundary. It does not supply native timer values or fit an elapsed time.
+      for (let step = 0; step < 100 && g.inputs.length === i; step++) {
+        g.advanceTick();
+        g.advanceRetrace();
+      }
       assert.equal(g.inputs.length, i + 1, "input consumption boundary");
       if (alterResult && i === 3) after.bytes[0x5ae0] ^= 1;
       for (const [at, n] of ranges)

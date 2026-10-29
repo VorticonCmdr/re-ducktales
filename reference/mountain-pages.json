@@ -1,0 +1,186 @@
+{
+  "id": "original-mountain-page-observation",
+  "captureCommit": "49cdb28be797a486a1f4979cb45c3a89ba34967f",
+  "completedTimingAcceptance": false,
+  "engineVersion": "0.84.0-vc1 (f6d9b)",
+  "engineBinarySha256": "85662a8383e0fde0734797451374b28a443166440fd9bf5823626505760d9d0f",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "expectedFlipSampleIndices": [
+    3,
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30,
+    33,
+    36,
+    39,
+    42,
+    45,
+    48,
+    51,
+    54,
+    57,
+    60,
+    63,
+    66,
+    69,
+    72,
+    75,
+    78
+  ],
+  "environment": "Original normal core,3000 cycles,svga_s3,16MiB,vmem_delay off. Same natural El Capitan/nonracing flight setup as the counted scenario. Input is independently scheduled Right make at relative rendered frame0 and break at40. Lua samples memory at80 consecutive rendered frames with no breakpoint during measurement.",
+  "startingRecipe": "Use the installed bridge Python with DUCKTALES_DOSBOX_MCP_ROOT set to its site-packages, then scripts/capture-security.py --pause-clock-test --mountain-timing --mountain-page-observer --port 8387 --output .local/new-pages/capture. Archive clean committed source and runner completion; see docs/expedition-timing.md.",
+  "comparisonRules": [
+    "Exact executable/asset identities,relocated12002-byte mountain overlay and immutable EGA flip/retrace/sprite code.",
+    "All80 samples and both required source events;zero intermediate debugger stops.",
+    "Page changes are bracketed between adjacent render samples,not timestamped at the resulting actor state.",
+    "No port input is derived from native positions,page counts or timers."
+  ],
+  "limitations": [
+    "Render callback memory samples are not instruction or completed-scanout checkpoints.",
+    "No proof of identical native and port states at individual flips;no closed-loop timing acceptance.",
+    "Reading a one-bit page flag can alias two flips;the observed fixed-scene sprite instruction lower bound exceeds two sample periods,but this bound does not cover other scenes or graphics configurations.",
+    "The80-sample elapsed span matches79 configured70.086Hz render periods within one resident timer phase;not a general host/render clock guarantee.",
+    "No speed correction is wired into the browser."
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/mountain-pages-native-03/runner-status.json",
+      "bytes": 580,
+      "sha256": "1794bd6a528b5854f29dd1c038632fe18d5c1b7e5b91054c3a8807f7294bee16"
+    },
+    "source": {
+      "path": ".local/mountain-pages-native-03/source-revision.json",
+      "bytes": 64024,
+      "sha256": "db4e27be7430e78c5dcf9514795c6e43fc87dea1531bc5c294367016e2d84c9f"
+    },
+    "zip": {
+      "path": ".local/mountain-pages-native-03/sources.zip",
+      "bytes": 1601057,
+      "sha256": "c1d0085cd8d4d2007a3d3f832ce26f77cd4ed52a194a5d6f4a8f52bda24c747a"
+    },
+    "capture": {
+      "path": ".local/mountain-pages-native-03/capture/capture.json",
+      "bytes": 376,
+      "sha256": "6a7eadf18fcb03a930cb9539ff7749f60c55be08fd9a02dbbcb01dc92c2e5e40"
+    },
+    "engine": {
+      "path": ".local/mountain-pages-native-03/capture/engine.json",
+      "bytes": 3988,
+      "sha256": "631b2adc054f1985729ab47d51709dbb36aa926830186d80fb81ef0e83611b8c"
+    },
+    "identity": {
+      "path": ".local/mountain-pages-native-03/capture/profile-tool-identity.json",
+      "bytes": 493,
+      "sha256": "615221994dfe8cdafdb9def5e828b07f29f838a100d6a0bd17b42baa8e272fd1"
+    },
+    "configuration": {
+      "path": ".local/mountain-pages-native-03/capture/configuration.json",
+      "bytes": 2727,
+      "sha256": "42db38b0a9b7d59d473ad338c21370119c258bbd6109fd70df2f1791ca9cef50"
+    },
+    "driver": {
+      "path": ".local/mountain-pages-native-03/capture/page-driver-mapping.json",
+      "bytes": 3782,
+      "sha256": "3eee2fe2b66265ae5b1816b785d16dfea470f47d7be35adcc1e68e7b319e8f1d"
+    },
+    "code": {
+      "path": ".local/mountain-pages-native-03/capture/timing-mountain-code.json",
+      "bytes": 16984,
+      "sha256": "7c09c7d8573e637079e16c3f36bd0a7109331fa53833cf85d2471055e389904d"
+    },
+    "first": {
+      "path": ".local/mountain-pages-native-03/capture/timing-mountain-first-read.json",
+      "bytes": 88772,
+      "sha256": "18ea7886854dd1709c1d69550f9dff199f8ae39d2dc4efa794a0f77d8431232c"
+    },
+    "final": {
+      "path": ".local/mountain-pages-native-03/capture/page-observer-final.json",
+      "bytes": 88537,
+      "sha256": "972c592d04c1704f147613b73aaa0f1a73fbca53fe44ed7b4c72dab94bc41e0e"
+    },
+    "breakpoints": {
+      "path": ".local/mountain-pages-native-03/capture/page-breakpoints-before.json",
+      "bytes": 38,
+      "sha256": "955923bfd038112caad234b45514d9771ade4c1e6bef7b6eefc0229da3573847"
+    },
+    "observation": {
+      "path": ".local/mountain-pages-native-03/capture/mountain-page-observation.json",
+      "bytes": 518,
+      "sha256": "f63eb5613be8cb1b13548cb8831109812831fe5ac20c380058282679cc2971f0"
+    },
+    "result": {
+      "path": ".local/mountain-pages-native-03/capture/page-observer-result.json",
+      "bytes": 22528,
+      "sha256": "0be6dc00ef12296c62625209a7ab87abbba311eae80b5e6918775ca092d112f6"
+    },
+    "script": {
+      "path": ".local/mountain-pages-native-03/capture/page-observer-script.json",
+      "bytes": 1122,
+      "sha256": "2bd52c71ed6b49ca5a478d7f36a31d5790ea372b4fd2094cbdf4b0a9a555a185"
+    },
+    "schedule": {
+      "path": ".local/mountain-pages-native-03/capture/page-observer-inputs.json",
+      "bytes": 291,
+      "sha256": "4195b0d32080bd408c93566399258837266b59745366739c992b43ae65fbf57d"
+    },
+    "loaded": {
+      "path": ".local/mountain-pages-native-03/capture/page-observer-loaded.json",
+      "bytes": 123,
+      "sha256": "25d9059c459ffd20c0e238e5e11d2b1628497626e13e491177326a2db74326a5"
+    },
+    "inputs": {
+      "path": ".local/mountain-pages-native-03/capture/inputs.json",
+      "bytes": 33052,
+      "sha256": "caa24a490b7a1201da731752257bc5ef7e1f2943a3a4e15c1d7f0852341ca9f2"
+    },
+    "startup": {
+      "path": ".local/mountain-pages-native-03/capture/startup-inputs.json",
+      "bytes": 1220,
+      "sha256": "40c3a56cf3b36e97b80056d12c0f56feb4453730bda42eaabf828f68918974d2"
+    },
+    "pause-control": {
+      "path": ".local/mountain-pages-native-03/capture/pause-clock-test.json",
+      "bytes": 1112,
+      "sha256": "ac173124f0ed976ba8c1195c4467c2a3dbb5b93f83e23ce26a8a19396569abde"
+    }
+  },
+  "verifierSha256": "9d4bce5093dfc6b68852d8dfdf69aa7eb1e1d0c83a40778112ab6c96623bbe28",
+  "verify": "npm run verify:mountain-pages",
+  "workSources": {
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/mountain-hazards.js": "f5ee5c0fe9e48098ae18cd97304c061badd3b3a391c17895e43630804936fb06"
+  },
+  "expectedInitialHazardShapes": [
+    {
+      "asset": 14,
+      "x": 255,
+      "y": 108
+    },
+    {
+      "asset": 5,
+      "x": 0,
+      "y": 50
+    },
+    {
+      "asset": 5,
+      "x": 255,
+      "y": 10
+    },
+    {
+      "asset": 6,
+      "x": 233,
+      "y": 10
+    },
+    {
+      "asset": 5,
+      "x": 160,
+      "y": -30
+    }
+  ]
+}

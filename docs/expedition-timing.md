@@ -221,6 +221,58 @@ observed boundaries. The profile and raw snapshots independently validate all15
 measured reads plus two cleanup reads; producer metadata is corrected for future
 runs. Retained artifacts are never rewritten to repair a summary.
 
+## Observation without intermediate execution stops
+
+The completed page-observer scenario, source `49cdb28`, takes80 read-only Lua
+memory samples on consecutive emulator render callbacks. An independent fixed
+input schedule presses Right at relative render frame0 and releases it at40.
+No input is chosen from actor position, page count or expected final state. The
+actual relocated mountain overlay and EGA flip, retrace-wait and sprite code are
+validated. A fresh owned session has no breakpoints during measurement; stop IDs
+advance only once, for the final manual pause after all samples. Both required
+source events finish, the physical release is consumed, and all three lives
+remain. Original artifacts stay local and unmodified.
+
+This observer records26 page transitions, detected at sample indices3,6,…,78.
+The80 samples span79 render intervals and82 resident timer counts, consistent
+with70.086Hz within one resident counter phase. Between the first and last
+transitions,25 update intervals are bracketed by74–76 display frames: mean
+42.234–43.375ms per update in this scene. The current port instead permits one
+presentation per display frame,14.268ms. This independently supports the pacing
+defect without per-update debugger pauses. It is not a native/browser timing
+match or proof of the rate of another scene or machine configuration.
+
+The original EGA flip at00e5 changes the page, then calls0064, which polls3da
+until vertical retrace ends and the next retrace starts. Thus it does synchronize
+to display refresh, but drawing work can consume multiple refresh periods before
+that wait. A constant three-retrace sleep would still misrepresent other workloads.
+
+Samples bracket page changes; their actor memory may already belong to the next
+update. They are not exact input/CPU or completed-scanout checkpoints. The page
+flag is one bit, so a missed pair of flips could alias. The verifier scopes this
+risk to the fixed scene: the translated initial hazard draw shapes and minimum
+over every sprite pose require at least32.560ms of opcode budget alone, exceeding
+two14.268ms sample periods. It checks the original geometry and bounded actor
+positions; this static bound is not generalized to another scene. No expected
+page timestamp schedules the port.
+
+`npm run verify:mountain-pages` validates all80 samples,26 transition brackets,
+complete source/archive/engine identities,22 original files, two input events,
+zero intermediate stops and completion. It rejects an omitted sample, changed
+page and omitted release. [Manifest](../reference/mountain-pages.json). Both the
+evidence command and required timing gate include it. The timing gate still
+fails because browser scheduling has not been corrected.
+
+Observer capture01 is excluded: its Lua load used JSON where the installed
+bridge requires raw text and a separate start call. Capture02 correctly rejected
+a naturally racing flight during setup. Capture03 completes with the unchanged
+nonracing prerequisite; no flag, destination or guest state was overwritten.
+Reproduce using the installed bridge Python and site-packages environment:
+
+```sh
+DUCKTALES_DOSBOX_MCP_ROOT=/path/to/site-packages PYTHONDONTWRITEBYTECODE=1 /path/to/bridge/python scripts/capture-security.py --pause-clock-test --mountain-timing --mountain-page-observer --port 8387 --output .local/new-mountain-pages/capture
+```
+
 ## Commands and outcomes
 
 ```sh

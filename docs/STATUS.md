@@ -68,34 +68,27 @@ native whole-level parity or a completed broader integration gate.
 
 ## Movement speed investigation
 
-Retained and fresh original mountain cases both span 604.032ms across14 input
-intervals; the current component spans199.755ms, about3.024× faster in that
-breakpoint benchmark. A denser profile demonstrates that stops perturb emulated
-execution: the exact uninterrupted speed ratio remains unverified. The fresh
-native run uses natural El Capitan entry, validates the complete12002-byte
-relocated overlay and finishes its real input release. Its two named movement/RNG
-endpoints match an independently clocked conditional component replay. A fresh
-pause control confirms that debugger host pauses do not advance the driver.
-Neither capture is uninterrupted scanout or native whole-level timing parity.
-A separate completed14-frame original profile localizes33 of44 timer counts to
-drawing; erase takes5, logic/history take1 each, flip/input take4. Its strict
-`npm run verify:mountain-frame-profile` check passes with two corruption/omission
-controls. It checks evidence, not browser timing acceptance.
-The detailed profile and new sprite-work module pass `npm run verify:ega-work`:
-98 sprite operations,14 conditional native hazard comparisons,14 inferred actor
-erase rectangles, the contiguous restore path and six negative
-controls. The module counts original graphics work independently of host drawing;
-it is not connected to scheduling. Debug-resume budget loss is isolated with a
-focused tool correction proposed in the timing document.
-No speed change is accepted. Jungle, cave and safari remain unmeasured.
-The original release-edge direction is also missing from the current expedition
-held-control adapter; this is a separate input-fidelity gap.
-`npm run verify:expedition-timing-evidence` validates both evidence sets;
-`npm run diagnose:expedition-timing` and the required
-`npm run verify:expedition-timing` exit1 for the unresolved discrepancy. The full
-`npm run verify` now stops there after build validation; the older broader
-fixture/source-guard migration also remains unfinished.
-[Measurement, scope and next experiment](expedition-timing.md).
+**Pacing remains incomplete; no speed correction is applied.** A new original
+observer uses80 render-callback samples and independently scheduled Right/release
+inputs, with zero intermediate execution stops. Its26 page changes bracket a
+mean42.234–43.375ms per update in this mountain scene, versus the port's14.268ms
+presentation allowance. The source confirms drawing work followed by a retrace
+wait. Other scenes and jungle/cave/safari pacing remain unmeasured.
+
+`npm run verify:mountain-pages` passes all80 samples and three negative controls.
+`npm run verify:ega-work` passes98 sprite operations,14 conditional hazard
+comparisons,14 inferred erase rectangles, the bulk restore path and six controls.
+Sprite/copy work is now translated independently of host rendering but is not
+connected to scheduling. Dense debugger captures remain scoped evidence: adding
+stops changes emulated elapsed time despite pause-clock invariance. The original
+release-edge direction is also absent from the expedition held-control adapter.
+
+`npm run verify:expedition-timing-evidence` checks the evidence;
+`npm run verify:expedition-timing` still fails for the missing timing behavior.
+The full gate stops there; older fixture/source migrations also remain open.
+Next: account for original drawing/execution work in the simulation scheduler,
+then repeat independent browser and original checks.
+[Evidence, source locations and reproduction](expedition-timing.md).
 
 ## Connected gameplay and evidence
 

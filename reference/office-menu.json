@@ -603,13 +603,14 @@
     }
   },
   "currentTools": {
-    "src/game/office-menu.js": "f4dfc4f84e65fe53fbd9668d5272d41c6e469fa404ae986d3090da198cd1e649",
+    "src/game/office-menu.js": "fb15f090c29442891740dbfba49720a1f8b243cc403c6de3a3e7a4a72e382cbd",
     "src/game/office.js": "39319981d1a50d6973776fc9ba7afb1ceb4077e3ea16add2fcc26da931d283a6",
     "src/game/ending-presentation.js": "7664dd081d0db9cd7b5680765896e04385ce7029a521d54fb21c01efa3b95056",
     "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
     "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
     "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
-    "scripts/verify-office-menu.js": "972e482da719f2b0bc6eb2388ef374cea917e4db3c9bfd3cbca05413fd3cd4b3"
+    "scripts/verify-office-menu.js": "ea6bd49ebd5736b2dd2cfee60aa93dabba0ffca4d98686aee4057e1f8b80848f",
+    "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426"
   },
   "browser": {
     "completed": true,
@@ -791,5 +792,6 @@
         "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
       }
     }
-  }
+  },
+  "ordinaryKeyboardIntegrationNote": "Office keeps its existing Map/snapshot representation and now delegates ordinary raw-key scanning to the shared native-validated core. Existing capture/pictures/inputs and historical browser producer remain unchanged;current runtime needs fresh browser regression separately."
 }

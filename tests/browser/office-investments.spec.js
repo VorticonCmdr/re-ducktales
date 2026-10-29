@@ -20,6 +20,7 @@ test("original investment departure pictures, queued input flush, Tandy cues and
     "investment departure entry",
     150,
   );
+  await expect(page.locator("#status")).toHaveText("Opening investments…");
   await page.keyboard.down("p");
   await page.clock.runFor(16);
   const queued = await t.state();

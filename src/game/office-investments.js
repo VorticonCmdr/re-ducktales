@@ -2,6 +2,10 @@ import { OfficeMoneyBin, officeInvestmentFrames } from "./office.js";
 
 // Original overlay2:0561..0698. Shared office clocks and common exit flush.
 export class OfficeInvestmentDeparture extends OfficeMoneyBin {
+  constructor(options) {
+    super(options);
+    this.action = "investments";
+  }
   *run() {
     for (const step of officeInvestmentFrames()) {
       if (step.sound !== null && this.audioEnabled)

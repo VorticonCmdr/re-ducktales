@@ -15,7 +15,7 @@ const required = (p) =>
     );
   });
 const json = async (p) => JSON.parse(await required(p));
-assert.equal(Object.keys(m.currentTools).length, 7);
+assert.equal(Object.keys(m.currentTools).length, 8);
 for (const [p, h] of Object.entries(m.currentTools))
   assert.equal(sha(await required(p)), h, `Changed office menu tool ${p}`);
 assert.equal(m.expectedArtifactCount, 117);

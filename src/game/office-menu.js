@@ -1,3 +1,4 @@
+import { isOrdinaryScanCode, readOrdinaryKeys } from "./ordinary-keyboard.js";
 import {
   officeCommands,
   officeInput,
@@ -8,8 +9,6 @@ import { endingTransitionPixels } from "./ending-presentation.js";
 
 const BLACK = [{ op: "fill", x: 0, y: 0, width: 320, height: 200, color: 0 }];
 const directions = { up: 1, right: 3, down: 5, left: 7 };
-const keyDirections = { 0x48: 1, 0x4b: 7, 0x4d: 3, 0x50: 5 };
-const keySet = new Set([0x1c, 0x39, 0x48, 0x4b, 0x4d, 0x50]);
 
 // Overlay2:02e4..0482. Input and clocks are supplied by the caller; the visible
 // page used by the entry wipe is an explicit renderer argument, never game state.
@@ -70,7 +69,7 @@ export class OfficeMenu {
     if (c.officeKeys !== undefined) {
       if (
         !Array.isArray(c.officeKeys) ||
-        c.officeKeys.some((k) => !keySet.has(k)) ||
+        c.officeKeys.some((k) => !isOrdinaryScanCode(k)) ||
         new Set(c.officeKeys).size !== c.officeKeys.length
       )
         throw Error("Invalid office keyboard flags");
@@ -136,13 +135,12 @@ export class OfficeMenu {
     let keyboardDirection = null,
       keyboardFire = false;
     if (this.keyboardFlags !== null) {
-      for (const [key, flag] of [...this.keyboardFlags].sort(
-        (a, b) => a[0] - b[0],
-      )) {
-        if (key === 0x1c || key === 0x39) keyboardFire = true;
-        else keyboardDirection = keyDirections[key];
-        if (flag === 0x40) this.keyboardFlags.delete(key);
-      }
+      const hadDirection = [...this.keyboardFlags.keys()].some(
+        (key) => key !== 0x1c && key !== 0x39,
+      );
+      const input = readOrdinaryKeys(this.keyboardFlags, 0);
+      keyboardFire = (input & 0xc0) !== 0;
+      keyboardDirection = hadDirection ? input & 63 : null;
     }
     const byte = this.readInput
       ? this.readInput()

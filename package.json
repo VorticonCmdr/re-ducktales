@@ -15,7 +15,7 @@
     "verify:build": "node scripts/verify-build.js",
     "verify": "npm run verify:build && npm run verify:opening && npm run verify:difficulty-core && npm run verify:office-core && node scripts/verify-office-investments.js && node scripts/verify-office-menu.js && npm run verify:security-core && npm test && npm run verify:tandy && npm run verify:reference && npm run verify:campaign && npm run verify:visits && npm run verify:loot && npm run verify:investments && npm run verify:startup && npm run verify:bank && npm run verify:ending && npm run verify:rival && npm run verify:atomic && npm run verify:system-controls && npm run verify:departure && npm run verify:flight && npm run verify:flight-course && npm run verify:flight-scene && npm run verify:flight-runtime && npm run verify:cave && npm run verify:mountain && npm run verify:jungle && npm run verify:photography && npm run verify:flight-input-stream && npm run verify:mixed-campaign-negative && node scripts/verify-hard-expedition-negative.js && node scripts/verify-hard-expedition-negative.js --boola && node scripts/verify-hard-mountains-negative.js && npm run test:browser && npm run verify:hard-campaign && node scripts/verify-difficulty-browser-negative.js && node scripts/verify-office-browser-negative.js && node scripts/verify-security-browser-negative.js && npm run verify:tandy-production",
     "format": "prettier --write src/game scripts/verify-*.js tests/game.test.js tests/browser/*.js index.html playwright.config.js reference/*.json",
-    "verify:campaign": "node scripts/verify-campaign.js && npm run verify:map-pointer",
+    "verify:campaign": "node scripts/verify-campaign.js && npm run verify:map-pointer && npm run verify:map-keyboard",
     "verify:departure": "node scripts/verify-departure.js",
     "verify:flight": "node scripts/verify-flight.js",
     "prepare:flight-analysis": "python3 scripts/prepare-flight-analysis.py",
@@ -113,7 +113,8 @@
     "verify:office-lightning-negative": "node scripts/verify-security-lightning-browser-negative.js",
     "verify:office-hard-expeditions": "node scripts/verify-security-hard-expeditions.js && node scripts/verify-security-hard-fixture-negatives.js",
     "test:office-hard-expeditions": "playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js tests/browser/hard-expedition-replay.spec.js",
-    "verify:office-hard-expeditions-negative": "node scripts/verify-security-hard-movement-negative.js"
+    "verify:office-hard-expeditions-negative": "node scripts/verify-security-hard-movement-negative.js",
+    "verify:map-keyboard": "node scripts/verify-map-keyboard.js && node scripts/verify-map-keyboard-fixture-negatives.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

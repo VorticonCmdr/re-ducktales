@@ -64,11 +64,17 @@ Production visitors select their own originals. No deployment is performed.
 
 ## Remaining work and next milestone
 
-- Integrate verified original letter/keypad handling and scene-specific raw-key
-  consumption,flush and repeat behavior. A conditional native investigation and
-  standalone prototype exist locally;they are not connected to the browser yet.
-- The investment departure currently uses the generic “Entering the money bin”
-  browser status label;its animation and trading destination work correctly.
+- On the isolated keyboard branch,OfficeMenu now uses the shared original
+  ordinary-key core.36 fresh native map input/flag/pointer comparisons and the
+  unchanged Easy/Hard carried campaign replays pass. Main still runs the earlier
+  verified office milestone. Fresh branch browser acceptance is pending.
+  [Input rules and reproduction](ordinary-keyboard.md).
+- Original letter/keypad browser bindings,scene-specific flush/repeat behavior
+  and map pacing remain unfinished. The original map has six-count steady polls;
+  Game currently uses two. The native input comparison does not prove Game timing.
+- The keyboard branch corrects the investment departure status to “Opening
+  investments…”. Fresh browser verification is pending;main still has the generic
+  money-bin label. Its animation and trading destination work correctly.
 - Original map/notice presentation and polling details,broader destination and
   difficulty finishability,and original whole-scene/campaign comparisons remain.
   A broader exploratory controller is not acceptance evidence.
@@ -85,6 +91,7 @@ Production visitors select their own originals. No deployment is performed.
 npm run verify
 node scripts/verify-office-integration.js
 npm run verify:office-menu
+npm run verify:map-keyboard
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

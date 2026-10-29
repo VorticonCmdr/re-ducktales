@@ -1,0 +1,832 @@
+{
+  "version": 1,
+  "completed": true,
+  "expectedReads": 36,
+  "expectedSequences": 10,
+  "expectedArtifacts": 159,
+  "captureCommit": "87273ae04b31a39a6e17c689abcb5ec47c794d24",
+  "sourceFileCount": 518,
+  "sourceArchive": ".local/map-keyboard-capture-02/sources",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "inputProfile": "reference/map-keyboard-inputs.json",
+  "injections": [],
+  "partialRestore": false,
+  "evidenceLevel": "Conditional fresh original map input/pointer segment;closed-loop ordinary-key/pointer comparison. Not whole Game/browser/native timing parity.",
+  "artifacts": {
+    "alarm-0.json": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-0.json",
+      "bytes": 88772,
+      "sha256": "d835a94d516e904ebbdeef0a2982233c59c9eb19ce7d4ed8496d330688110e7d"
+    },
+    "alarm-0.png": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-0.png",
+      "bytes": 5123,
+      "sha256": "99c349bc839856117e92ecbf1e5a402e5ac1addc2503eb4d92accca5c4a12d8c"
+    },
+    "alarm-1.json": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-1.json",
+      "bytes": 88772,
+      "sha256": "b9c776e6be2a07a354d8090ccf229eb2c7e38cdc71413b7e84b034cb002090c1"
+    },
+    "alarm-1.png": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-1.png",
+      "bytes": 4881,
+      "sha256": "ba5f3741616c40d7ef89e8f888c911bc4f74c5f0ae8774a0f13246b15f4345f4"
+    },
+    "alarm-2.json": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-2.json",
+      "bytes": 88772,
+      "sha256": "dce5bf942f1a6be8cdf0a7f9ec1afa428e3c9836dce67189cfa08baed424b7ee"
+    },
+    "alarm-2.png": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-2.png",
+      "bytes": 5123,
+      "sha256": "99c349bc839856117e92ecbf1e5a402e5ac1addc2503eb4d92accca5c4a12d8c"
+    },
+    "alarm-3.json": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-3.json",
+      "bytes": 88772,
+      "sha256": "80d0fd203f54160a5d3927898febc1a694e2efeb649d9b18f1ed2868c12469b4"
+    },
+    "alarm-3.png": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-3.png",
+      "bytes": 4881,
+      "sha256": "ba5f3741616c40d7ef89e8f888c911bc4f74c5f0ae8774a0f13246b15f4345f4"
+    },
+    "alarm-4.json": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-4.json",
+      "bytes": 88772,
+      "sha256": "d4ff675f7549e168e1b509203e0eddfb4dfd479f90594c2ef4958968ef3655c5"
+    },
+    "alarm-4.png": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-4.png",
+      "bytes": 5123,
+      "sha256": "99c349bc839856117e92ecbf1e5a402e5ac1addc2503eb4d92accca5c4a12d8c"
+    },
+    "alarm-5.json": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-5.json",
+      "bytes": 88772,
+      "sha256": "371fb54e1dd04873890634ebb432b29ddc0e3a34bcffc5d9f5e29708f10a336d"
+    },
+    "alarm-5.png": {
+      "path": ".local/map-keyboard-capture-02/capture/alarm-5.png",
+      "bytes": 4881,
+      "sha256": "ba5f3741616c40d7ef89e8f888c911bc4f74c5f0ae8774a0f13246b15f4345f4"
+    },
+    "capture.json": {
+      "path": ".local/map-keyboard-capture-02/capture/capture.json",
+      "bytes": 377,
+      "sha256": "0ee12fc37632defaa17c9799c8e51d7882e9479605a483685f14d687f04bc874"
+    },
+    "cleanup.json": {
+      "path": ".local/map-keyboard-capture-02/capture/cleanup.json",
+      "bytes": 88772,
+      "sha256": "13c15e73f13bf9aca3de336fc1a540e836a97e13df57a673299803c0bc6d1574"
+    },
+    "cleanup.png": {
+      "path": ".local/map-keyboard-capture-02/capture/cleanup.png",
+      "bytes": 4881,
+      "sha256": "ba5f3741616c40d7ef89e8f888c911bc4f74c5f0ae8774a0f13246b15f4345f4"
+    },
+    "configuration.json": {
+      "path": ".local/map-keyboard-capture-02/capture/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    "engine.json": {
+      "path": ".local/map-keyboard-capture-02/capture/engine.json",
+      "bytes": 3988,
+      "sha256": "f991e6b5e7deac3eafb7603c9f2011cbef38138cd222a0765dbf34f0b476badb"
+    },
+    "entry.json": {
+      "path": ".local/map-keyboard-capture-02/capture/entry.json",
+      "bytes": 88774,
+      "sha256": "61970c238a24471f37b7075ed670ff059ffe1e38a26254cc98ff1858671e8dd4"
+    },
+    "entry.png": {
+      "path": ".local/map-keyboard-capture-02/capture/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/map-keyboard-capture-02/capture/fire-first.json",
+      "bytes": 88769,
+      "sha256": "4bd7fc92f33413f701bce94755cda93bd7630aff8bf3702a6cd03c9a8fa4e210"
+    },
+    "fire-second.json": {
+      "path": ".local/map-keyboard-capture-02/capture/fire-second.json",
+      "bytes": 88770,
+      "sha256": "42ece4e1774805d7dc42eea265c99dc206459ceee32b5756459c02deab3b8f73"
+    },
+    "first-result.json": {
+      "path": ".local/map-keyboard-capture-02/capture/first-result.json",
+      "bytes": 88770,
+      "sha256": "58a4fad1089ab15e49ba3e62605344ee606a5290b6c1aa55ea18446a2227dc00"
+    },
+    "first-result.png": {
+      "path": ".local/map-keyboard-capture-02/capture/first-result.png",
+      "bytes": 5205,
+      "sha256": "9cfdee7ad2571726a83e1d988bee512d197bb55a5f708d1fc369279aae243c16"
+    },
+    "generated.json": {
+      "path": ".local/map-keyboard-capture-02/capture/generated.json",
+      "bytes": 88773,
+      "sha256": "f4d5246f2efeee2c52b8101f3f050c0b8e9d94a089a7c792c581b074b6121ed1"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/map-keyboard-capture-02/capture/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "f1ecf82a1af6dcc7f15709c29af98439d3eda54e9cfffdc58bd73ecb0e58e2be"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/map-keyboard-capture-02/capture/initial-poll-0.png",
+      "bytes": 4837,
+      "sha256": "57722db8bf6b8005ab5a50a573add1c623d6852d1d689e1869c2539b85bbb6e4"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/map-keyboard-capture-02/capture/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "bca31584ca4e8bb5cf3d83d931452a6aae758ee1363da74085e59e4925cde4ec"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/map-keyboard-capture-02/capture/initial-poll-1.png",
+      "bytes": 4837,
+      "sha256": "57722db8bf6b8005ab5a50a573add1c623d6852d1d689e1869c2539b85bbb6e4"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/map-keyboard-capture-02/capture/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "e76b8673dd0cabda7f9bd2e53ab1400533696696ebffcefaece501ca5af491f8"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/map-keyboard-capture-02/capture/initial-poll-2.png",
+      "bytes": 4881,
+      "sha256": "ba5f3741616c40d7ef89e8f888c911bc4f74c5f0ae8774a0f13246b15f4345f4"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/map-keyboard-capture-02/capture/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "fdd3d0e549769bc27600d0a8b5a2f47231820207d70adaa48c7bc3a51617ec9f"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/map-keyboard-capture-02/capture/initial-poll-3.png",
+      "bytes": 4881,
+      "sha256": "ba5f3741616c40d7ef89e8f888c911bc4f74c5f0ae8774a0f13246b15f4345f4"
+    },
+    "inputs.json": {
+      "path": ".local/map-keyboard-capture-02/capture/inputs.json",
+      "bytes": 5264,
+      "sha256": "e19236a7908e5b85a21359a4d1d9ef97b2391e58cd8f433fbf7aca933e23525b"
+    },
+    "live-overlay.json": {
+      "path": ".local/map-keyboard-capture-02/capture/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "f9ed7c49a89678058a638423c9e3fb9fdd92abf487b3e324771802eb42ec47ef"
+    },
+    "map-000-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-000-before.json",
+      "bytes": 88790,
+      "sha256": "c62551d4ec07be30aafb5da3e45f7f9866e9e4b99ee228f45f12bb29c053de86"
+    },
+    "map-000-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-000-end.json",
+      "bytes": 88784,
+      "sha256": "80aee220f7001751c4eb97135499e817129c4dd364ff7002c4af5999c89c49c2"
+    },
+    "map-000-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-000-input.json",
+      "bytes": 88782,
+      "sha256": "b7be39b6952e0e570761db3b824123de4a5a5e88b1ad52e1550d8ab82f5b30d8"
+    },
+    "map-001-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-001-before.json",
+      "bytes": 88790,
+      "sha256": "d9706abe92967be7af346d0db2a2256db3334d085d29d168a21cd1e48b4bef6c"
+    },
+    "map-001-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-001-end.json",
+      "bytes": 88784,
+      "sha256": "ff5ce42b5648017c08c977897f7da18c4b88415fd9000b3b27aa06807faa29fc"
+    },
+    "map-001-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-001-input.json",
+      "bytes": 88782,
+      "sha256": "e14fc14aade32c433abe22a4cb2f816003e52b0d78efb55d12203d479971d8f9"
+    },
+    "map-002-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-002-before.json",
+      "bytes": 88790,
+      "sha256": "6e8542bfe54ad5fc91df2cdd928c56c02bbaa12699199b156d958b0ef867854c"
+    },
+    "map-002-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-002-end.json",
+      "bytes": 88784,
+      "sha256": "62bcb6bfe866c9d482bb53e83b2f3acc5a94f50f499fd388aa2d4910024ad5ca"
+    },
+    "map-002-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-002-input.json",
+      "bytes": 88782,
+      "sha256": "7d2ecc56e3c22d9948d0ef15f72430f468419d03e1baf4d5085698342571bc9f"
+    },
+    "map-003-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-003-before.json",
+      "bytes": 88790,
+      "sha256": "a63446766ad6fc7aed82d9385a43cf6979f892aedd43d3fddf5b196770b65eef"
+    },
+    "map-003-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-003-end.json",
+      "bytes": 88784,
+      "sha256": "1bdacf7666423999b142d2599822af637d16ee354d4c5d136d4ffb57f7238620"
+    },
+    "map-003-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-003-input.json",
+      "bytes": 88782,
+      "sha256": "f318846e2103f9d3fdab8a5d8c339e6287d091040012f28feb2f36b43dea691d"
+    },
+    "map-004-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-004-before.json",
+      "bytes": 88790,
+      "sha256": "af7550f834dc25808af42f61bb6580e33c7ca1594ba60024c9478a1653467d2f"
+    },
+    "map-004-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-004-end.json",
+      "bytes": 88784,
+      "sha256": "138585d1cf61645c332684b9f369c8bfc7faa708342a9d7e584e2d070af009dc"
+    },
+    "map-004-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-004-input.json",
+      "bytes": 88782,
+      "sha256": "27655add8df277b1ce3afe601c04092210b6f4d1a21c9b4422d74cb7cb722f4c"
+    },
+    "map-005-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-005-before.json",
+      "bytes": 88790,
+      "sha256": "34a66120b23874c6549a447a7c28a663c108f88864ee128c0f8d40acac44467a"
+    },
+    "map-005-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-005-end.json",
+      "bytes": 88784,
+      "sha256": "5dfe044d3f928e7dadae50c6bdc47e45a1b76b058d5b31489afc4dd762eccd43"
+    },
+    "map-005-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-005-input.json",
+      "bytes": 88782,
+      "sha256": "ddf83048f8c4f45a4808755bec404eea95c20058e8aafaa648f769129af113d3"
+    },
+    "map-006-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-006-before.json",
+      "bytes": 88790,
+      "sha256": "2b6d9fd49803ad264280c50d010c047afc89bd4f43324b878b84be7d3ad78eef"
+    },
+    "map-006-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-006-end.json",
+      "bytes": 88784,
+      "sha256": "7f7df2269ac2b7f027bc6e19a4fe174f2ef79b9e864a254f1665a3504d8b7df4"
+    },
+    "map-006-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-006-input.json",
+      "bytes": 88782,
+      "sha256": "f2b29295009d2848538a9ca45fcc2168a5514faaf3c0b5bbf4316ffec57ad697"
+    },
+    "map-007-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-007-before.json",
+      "bytes": 88790,
+      "sha256": "2af6e530142b9428451021cc5169a2cc8f27907c3d05b259ac1f62677f9c2256"
+    },
+    "map-007-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-007-end.json",
+      "bytes": 88784,
+      "sha256": "c44676f01856e748b590770347797fce0ea9ec28deda6ec14c19bb64167926a0"
+    },
+    "map-007-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-007-input.json",
+      "bytes": 88782,
+      "sha256": "cd340b0159bebc9d454568ec36749f58a3b6bd97f1b67581821c507d371f891e"
+    },
+    "map-008-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-008-before.json",
+      "bytes": 88790,
+      "sha256": "c9930e0ca38fa723955895cbf58938be3461d6cfa7d74b1bc6d39c5e5ee0af3f"
+    },
+    "map-008-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-008-end.json",
+      "bytes": 88784,
+      "sha256": "abcc96b475a8da8962b99e386b1ddd7a9b5c5fd5012fd13601fea5fa1576477f"
+    },
+    "map-008-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-008-input.json",
+      "bytes": 88782,
+      "sha256": "b68fbe6053addbfe56afa5c4a3a1560c59c4956a7b037eeecc1ca048e96fd64d"
+    },
+    "map-009-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-009-before.json",
+      "bytes": 88791,
+      "sha256": "4117456cf654e4e5eea348e967255e9d2656b7580f4f9a7631f5dba4e2eeef4d"
+    },
+    "map-009-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-009-end.json",
+      "bytes": 88786,
+      "sha256": "af79d99f63068d7fa7ab5f6769f0ef027092b4d5650b42cb5ebb2dce1b9c6e10"
+    },
+    "map-009-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-009-input.json",
+      "bytes": 88784,
+      "sha256": "0ad97183cbfc6fbd8862b0c996f8d98aedef457b854dfb5ea0f0247db4f818c5"
+    },
+    "map-010-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-010-before.json",
+      "bytes": 88792,
+      "sha256": "5f60a1e57c5df208498915e7cbc0ecb55ab556d7b933226ab73793c66adb6f4a"
+    },
+    "map-010-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-010-end.json",
+      "bytes": 88786,
+      "sha256": "2320d7b7b7b4f9cad6106866de2711362d7da9c94960048bad32ae43f00688ee"
+    },
+    "map-010-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-010-input.json",
+      "bytes": 88784,
+      "sha256": "79ead90f86f4f12a9ae0d594c3407d81054cc584cd4469ee131ce47ed13e822d"
+    },
+    "map-011-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-011-before.json",
+      "bytes": 88792,
+      "sha256": "0ff060914e1a1c87eff4c4dfdf87a050b11b0d781a0bbb8af29afc1b05d4faa4"
+    },
+    "map-011-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-011-end.json",
+      "bytes": 88786,
+      "sha256": "a50f7cfc5d4a6d4fc43f519ef55bd96352f8285c115a8cf4ab8aa998fbbba503"
+    },
+    "map-011-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-011-input.json",
+      "bytes": 88784,
+      "sha256": "e03b465e74171a8d2461d8765fd919f766c6ddce6e2ae8d93a27cd20112d375c"
+    },
+    "map-012-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-012-before.json",
+      "bytes": 88792,
+      "sha256": "050703e3972e46297b8657f06d2f7e4e32fa19230a33b0d3baa69438a7de4344"
+    },
+    "map-012-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-012-end.json",
+      "bytes": 88786,
+      "sha256": "ce9bcc5666638b8289e4fcf65cd5a46efd9b74b8494f053c07db538fe537b46f"
+    },
+    "map-012-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-012-input.json",
+      "bytes": 88784,
+      "sha256": "5832f7214ad9b98bcdb22ea5771131a5033abc862c77fb93e6b4a6225ee24559"
+    },
+    "map-013-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-013-before.json",
+      "bytes": 88792,
+      "sha256": "6492ded0bc2bdfdf0aeb8bdd4698dc1964179b7efbeaa6ccb17fef19c56a2447"
+    },
+    "map-013-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-013-end.json",
+      "bytes": 88786,
+      "sha256": "d8f3b93056abbf1aa9ffcb9b3736358881d2eec76a9c41db6a0694524d23cc83"
+    },
+    "map-013-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-013-input.json",
+      "bytes": 88784,
+      "sha256": "1efacb6396cd5021eb7dc77be227bb72e863869bf442fb221e12ea7416b7cccd"
+    },
+    "map-014-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-014-before.json",
+      "bytes": 88792,
+      "sha256": "37a34066543f34f919382566f13857591254ba547a2bf417cf5b788c864a9f7a"
+    },
+    "map-014-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-014-end.json",
+      "bytes": 88786,
+      "sha256": "82ff8d1f9d1692241765be74e48506bff9c7c91e550a94f64965fa7670e0465d"
+    },
+    "map-014-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-014-input.json",
+      "bytes": 88784,
+      "sha256": "20ce44622127d7d5a803c962ba07055ddf63dfafd84b12c584530d9dfa1a37aa"
+    },
+    "map-015-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-015-before.json",
+      "bytes": 88792,
+      "sha256": "7a68313a6d3b559fdd8fa8fdc33bcee24b2a8e13a2ced827308966c4839e9fb3"
+    },
+    "map-015-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-015-end.json",
+      "bytes": 88786,
+      "sha256": "e5ab8a8d7c5cf7b3dff5ba80147ee416b86c44e721e2111e6713e4021ac4e807"
+    },
+    "map-015-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-015-input.json",
+      "bytes": 88784,
+      "sha256": "94796b96e12bc6d859c27a0924787f5e5a5149af2c887a2d66a51be29235b2c6"
+    },
+    "map-016-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-016-before.json",
+      "bytes": 88792,
+      "sha256": "136783903ef3038680b8c85f5c1d421ed7cfa09b6f91abda036a14a36052e774"
+    },
+    "map-016-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-016-end.json",
+      "bytes": 88786,
+      "sha256": "bc6e16f64707f5c7a9ce9ad8d3b4886967a8463c78d9ee72b1dd7555207b0b13"
+    },
+    "map-016-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-016-input.json",
+      "bytes": 88784,
+      "sha256": "cba44774c607e435ca60bd2338e3347d6596307b7becbdcae0d550f628888d2d"
+    },
+    "map-017-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-017-before.json",
+      "bytes": 88792,
+      "sha256": "9455bcfdea580fc5480c928344f6406bb3b1bfdb9ea2b9f4a46ae6b60a241b11"
+    },
+    "map-017-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-017-end.json",
+      "bytes": 88786,
+      "sha256": "f461561721d0e3f4a9f56a99a4b98f22ca515d59ab844807bd727c0f4ac560a7"
+    },
+    "map-017-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-017-input.json",
+      "bytes": 88784,
+      "sha256": "c6e28024501f535f40d09a77e626dcd9738826be7ea3b807489624d3f6a16a79"
+    },
+    "map-018-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-018-before.json",
+      "bytes": 88792,
+      "sha256": "77d188779b15707259d6fcaa7a15013e7fdaec983ed1f373b0584b11e0bf014e"
+    },
+    "map-018-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-018-end.json",
+      "bytes": 88786,
+      "sha256": "8093374182a67afa56186b9e1dcb198a84a2ace5d5e415333eb7d2d0d95dd1b6"
+    },
+    "map-018-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-018-input.json",
+      "bytes": 88784,
+      "sha256": "b47b605a80ff760192d52cf8b09e18a50893c029732a832dad3adcbe639cafc5"
+    },
+    "map-019-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-019-before.json",
+      "bytes": 88792,
+      "sha256": "cdd9143b3bb49f4b54912f22f3ce9e89ddca3e1943ac8a25b4fb3c589e53d1be"
+    },
+    "map-019-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-019-end.json",
+      "bytes": 88786,
+      "sha256": "b0654c34ce43eeaaf19f03f851b7a4ec2bbfc87515cb47639dc14331bf91df63"
+    },
+    "map-019-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-019-input.json",
+      "bytes": 88784,
+      "sha256": "af3056f65f9cf5c0e6283dc36abacad70e294bd34fbde4f49f6696ba40245801"
+    },
+    "map-020-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-020-before.json",
+      "bytes": 88792,
+      "sha256": "8b656070d5f825cfe251332867383b86c7458743c5c9b15671ba13bdeb3f15ad"
+    },
+    "map-020-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-020-end.json",
+      "bytes": 88786,
+      "sha256": "feb03cb0bd7c807ef2c64cdc06fe5a6709f4d596cf90343ea7e7937c52ced3ed"
+    },
+    "map-020-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-020-input.json",
+      "bytes": 88784,
+      "sha256": "a255be3d7d9f75efecd382abab827758c57a1b211299db7658922576199c1280"
+    },
+    "map-021-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-021-before.json",
+      "bytes": 88792,
+      "sha256": "b69563fce6d87d3e6c857162755245bd3f5a54edd45da30c56d40e8cc8e2c02b"
+    },
+    "map-021-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-021-end.json",
+      "bytes": 88786,
+      "sha256": "a47ce895b5df163cdd09d4ce6e5f2eed5be818229d42678637d2e21c0ca72667"
+    },
+    "map-021-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-021-input.json",
+      "bytes": 88784,
+      "sha256": "187578059736c85c8f24cfe405823cfd6bb335936b5a81750ba0ed79eeb8ff1f"
+    },
+    "map-022-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-022-before.json",
+      "bytes": 88792,
+      "sha256": "02f7bfa31018e2fb27bc6ca8da01a27dac8335eabd6c69c3b9c33354e659a8d5"
+    },
+    "map-022-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-022-end.json",
+      "bytes": 88786,
+      "sha256": "addff3b2e30d0449cf2163015849e31d8a3e95510978550a8f5a38fc4c15010e"
+    },
+    "map-022-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-022-input.json",
+      "bytes": 88784,
+      "sha256": "d3553a015166697b4c32232eb4075fa9e28f01d0763220055ddb71a0e2f23f40"
+    },
+    "map-023-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-023-before.json",
+      "bytes": 88792,
+      "sha256": "ed8330b295fe1d076592ddb7dceea50f2b6a533c1a9c676783ddd5ef008b387f"
+    },
+    "map-023-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-023-end.json",
+      "bytes": 88786,
+      "sha256": "c198313e20800e0a0ffaf7b48eda91e42d9faa793c1b4a554d87123be42f5ef5"
+    },
+    "map-023-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-023-input.json",
+      "bytes": 88784,
+      "sha256": "540524e70ce3a183eeb889162b2a2f196bb58946c68188cbd49576c8d6cd44fd"
+    },
+    "map-024-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-024-before.json",
+      "bytes": 88792,
+      "sha256": "147dafbc648fbe2d9638c3ee113b488ee552a809ddb04dc3c4a1ce4d1800d4b9"
+    },
+    "map-024-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-024-end.json",
+      "bytes": 88786,
+      "sha256": "535aaf4cacb4dbba7bfd5845bf9364e0c803de7d6b16dce86eb5a93c0c015aae"
+    },
+    "map-024-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-024-input.json",
+      "bytes": 88784,
+      "sha256": "d12d9866ef99484ab536e605b400b4058daf8bc2c5801a45a712014130f9240a"
+    },
+    "map-025-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-025-before.json",
+      "bytes": 88792,
+      "sha256": "12d422aa57868773418b67148d19cf069956ac4b970051f88b0a9f3d6c13a4aa"
+    },
+    "map-025-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-025-end.json",
+      "bytes": 88786,
+      "sha256": "1ff966fb3a74757b44c365d1d6be203b5562555e014733db55cffa1a7c75bcb8"
+    },
+    "map-025-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-025-input.json",
+      "bytes": 88784,
+      "sha256": "3ba40f4585dc4b99aa4845c88eb24a7d39b7675da1bd9326eef8145daa57ab2c"
+    },
+    "map-026-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-026-before.json",
+      "bytes": 88792,
+      "sha256": "ce2b7c5ef3c85626a336b5d52395f9dd42d4b2f36e38eb23d05cbc953a6e6b4b"
+    },
+    "map-026-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-026-end.json",
+      "bytes": 88786,
+      "sha256": "8c9130dd340eba000f262a630af3edd5282b9de45be8a309f833ace492571433"
+    },
+    "map-026-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-026-input.json",
+      "bytes": 88784,
+      "sha256": "9a31452f96078e308d956884bdc915c8abce532b314008332bddb457aaabf634"
+    },
+    "map-027-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-027-before.json",
+      "bytes": 88792,
+      "sha256": "465c1f26aed9f1e7c9cffebb333bde8130c9f362b99af86bbf4b0f95accc6b6a"
+    },
+    "map-027-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-027-end.json",
+      "bytes": 88786,
+      "sha256": "322395990d89dfc1b16f2f8d474c5c1786ad5a8a19c9f86a0d94107f0cb6c14f"
+    },
+    "map-027-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-027-input.json",
+      "bytes": 88784,
+      "sha256": "ea88bd517b10a06fb42e7e7d1a334903e5a9536ae3c81799f26b9ece914dd6f9"
+    },
+    "map-028-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-028-before.json",
+      "bytes": 88792,
+      "sha256": "11dd7fcc20763f1dd0f2d8d5c2f617844771ab36a34ffd302f7cc917447edded"
+    },
+    "map-028-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-028-end.json",
+      "bytes": 88786,
+      "sha256": "c572ddbcd8e8f1d77c22dfa53a7e14b65abe767e25560c935b406656ab913acb"
+    },
+    "map-028-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-028-input.json",
+      "bytes": 88784,
+      "sha256": "4fab8d98af331b20a8886df0b23119930a10944e751bdc5dfc168e5d3fd18e3c"
+    },
+    "map-029-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-029-before.json",
+      "bytes": 88792,
+      "sha256": "cd946063b51ac78c6c0f7acd49b1b8b3d4635ddff9a3953ffbfa4c862fd9bd34"
+    },
+    "map-029-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-029-end.json",
+      "bytes": 88786,
+      "sha256": "b21c9717316ff7773f5ba6a88084eb2c442aab70aea4fdb77d967fda6605e35c"
+    },
+    "map-029-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-029-input.json",
+      "bytes": 88784,
+      "sha256": "55d88b4cf6e7cc71dcee4f2cd0a5cbcf7a5f7fcc44a0cdddf98247352114a42d"
+    },
+    "map-030-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-030-before.json",
+      "bytes": 88792,
+      "sha256": "b2c5863812f717e47bb34e5f44539c9ac9352d5f5af0a1529a25730e8f9478fd"
+    },
+    "map-030-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-030-end.json",
+      "bytes": 88786,
+      "sha256": "cf6212e25d6cf32f4fef41429a8c214044aa4c4d91f77d8048feb5e8cd39b0dc"
+    },
+    "map-030-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-030-input.json",
+      "bytes": 88784,
+      "sha256": "ef01b8d65f886f2640793764db59a9534688a9096e113bb69cc0e7fdef033b3d"
+    },
+    "map-031-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-031-before.json",
+      "bytes": 88792,
+      "sha256": "a2cd4fbbaaf78ff2e21a4526ced7169f54e1c8af1f687cbfce128cd170eff98a"
+    },
+    "map-031-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-031-end.json",
+      "bytes": 88786,
+      "sha256": "1aade66c07dd4e76a3678949964d888e852c774a416bfecf1260cff98fb50764"
+    },
+    "map-031-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-031-input.json",
+      "bytes": 88784,
+      "sha256": "2190b343887c3436178a26da430dfc5dc3523115ea190f6289f40f8886132e0b"
+    },
+    "map-032-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-032-before.json",
+      "bytes": 88792,
+      "sha256": "4f7e42ce966e9142115eb8ae7331143ceb8786e4b6ebc89bfafbab136b1f85a3"
+    },
+    "map-032-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-032-end.json",
+      "bytes": 88786,
+      "sha256": "219d3fe012b9fdbf643f37440b27ce84daf20b92c76d28cdc6b1a42e037cb4e0"
+    },
+    "map-032-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-032-input.json",
+      "bytes": 88784,
+      "sha256": "730aae3f3c09eb76583d7fa0f86947fbdc26a20980feb4d0b3e6d105d419bad5"
+    },
+    "map-033-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-033-before.json",
+      "bytes": 88792,
+      "sha256": "635fec023628f7de49e9a8093fd104cad5b47519bb7f1f6c22e9d33fe561d6c4"
+    },
+    "map-033-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-033-end.json",
+      "bytes": 88786,
+      "sha256": "d07d7a08a86912cbe6193a351b7e2870d0552399554e90ea3e893d2560e87ad2"
+    },
+    "map-033-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-033-input.json",
+      "bytes": 88784,
+      "sha256": "272f1cd4a68367782158287e987e926b3cfccd15e7374b0ad84e1aa8fd46d199"
+    },
+    "map-034-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-034-before.json",
+      "bytes": 88792,
+      "sha256": "d323c6005457fd2b1ab6df66b6a2910866990f020db58c88fc0e4bc557e9a7e7"
+    },
+    "map-034-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-034-end.json",
+      "bytes": 88786,
+      "sha256": "b94c0e9218261470c74acb3ec07955aecbf3b54a5162f7fd0b93d658add48cb9"
+    },
+    "map-034-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-034-input.json",
+      "bytes": 88784,
+      "sha256": "2b2bdaaa04a22a22b20db2cf3b918b0961ea9dc0b52d6277c0f0b63e8f23deda"
+    },
+    "map-035-before.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-035-before.json",
+      "bytes": 88792,
+      "sha256": "2204048b17a75b708f30ae6af43930b3996043123e558271519cbd9592fcd247"
+    },
+    "map-035-end.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-035-end.json",
+      "bytes": 88786,
+      "sha256": "40ace7778283a3c7f4ec7ffc04df4485bc4a9cfcbf9f6fc508993533eec6f49d"
+    },
+    "map-035-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-035-input.json",
+      "bytes": 88784,
+      "sha256": "caa4844ab3c7a20617c905b8611879f602785c29181e276cce7e684e85113562"
+    },
+    "map-capture.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-capture.json",
+      "bytes": 671,
+      "sha256": "ad5d7e4581564f01dc02b95ce1717f9ecf70870d6994817f7258dfeef19d4989"
+    },
+    "map-consumption.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-consumption.json",
+      "bytes": 24607,
+      "sha256": "fcdc73d613ae3fad1da55319497abb625c3db72cb44c3e5dc60b87ccc17c0cb8"
+    },
+    "map-entry.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-entry.json",
+      "bytes": 88794,
+      "sha256": "1adf7654718f29df63fe600a1b4d5213aa5516e0984c7870a2e790247ee50864"
+    },
+    "map-entry.png": {
+      "path": ".local/map-keyboard-capture-02/capture/map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "map-live-overlay.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-live-overlay.json",
+      "bytes": 12155,
+      "sha256": "f97a22df2946358e2fd47a1594d289e68fc48344d7a683bae2928f1e654d9ce5"
+    },
+    "map-resident-mapping.json": {
+      "path": ".local/map-keyboard-capture-02/capture/map-resident-mapping.json",
+      "bytes": 2929,
+      "sha256": "64c18260866b5f0c98ef36372aaccecd17d2a374a6cdac152ec112a3839f5ba0"
+    },
+    "office-confirm.json": {
+      "path": ".local/map-keyboard-capture-02/capture/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "3d8cedd87545a7df1adab05837ba11106b4c1d0c6d24487c209163aaa49c8363"
+    },
+    "office-input.json": {
+      "path": ".local/map-keyboard-capture-02/capture/office-input.json",
+      "bytes": 88775,
+      "sha256": "c270d19dba4ae9109c93866e1f3f2ab00dd8de1ef07af13d93113f88a5e8e895"
+    },
+    "office-input.png": {
+      "path": ".local/map-keyboard-capture-02/capture/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "return.json": {
+      "path": ".local/map-keyboard-capture-02/capture/return.json",
+      "bytes": 88770,
+      "sha256": "6c8034f428eda95d823be3b199e912563a2f6584a5d3087867ccdb267daa3e1d"
+    },
+    "return.png": {
+      "path": ".local/map-keyboard-capture-02/capture/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/map-keyboard-capture-02/capture/rng-consumption.json",
+      "bytes": 56890,
+      "sha256": "49cf023b592fd142938719fe26897b9f82b3c3a7eea1daf615431c12ff68d6a7"
+    },
+    "startup-inputs.json": {
+      "path": ".local/map-keyboard-capture-02/capture/startup-inputs.json",
+      "bytes": 1222,
+      "sha256": "3ffc78a26737ffddd08de457757a237af349988e89ef2644a87eccd02c3ab1e2"
+    },
+    "warning-poll.json": {
+      "path": ".local/map-keyboard-capture-02/capture/warning-poll.json",
+      "bytes": 88774,
+      "sha256": "0fde7d4048bf243a12488ea3c0c5acba4d5297545a0f29c7e96356a20597a9c6"
+    },
+    "warning-poll.png": {
+      "path": ".local/map-keyboard-capture-02/capture/warning-poll.png",
+      "bytes": 5205,
+      "sha256": "9cfdee7ad2571726a83e1d988bee512d197bb55a5f708d1fc369279aae243c16"
+    },
+    "capture-source": {
+      "path": ".local/map-keyboard-capture-02/source-revision.json",
+      "bytes": 55384,
+      "sha256": "2db48166b3f75d733f6487c4cfa6a234d44e6305848092a0e6b0f168e2781cee"
+    },
+    "runner": {
+      "path": ".local/map-keyboard-capture-02/runner-status.json",
+      "bytes": 435,
+      "sha256": "943147454c6c91a0b42eef3c26213283e0dca3d4a87ac3a26c39907ef26f8be6"
+    }
+  },
+  "verificationTools": {
+    "scripts/verify-map-keyboard.js": "7f09af3822081b4525ec57ff4ac74f3768d09f8bd7ddf0ef00728f714c080c97",
+    "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",
+    "src/game/map-pointer.js": "47696dac08b3f9a584b0ebfd4fa416564e889933153c6f8346118e50c6d481bc",
+    "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
+    "scripts/capture-security.py": "486f8a2479d8de7b5501a1e13545f64415e4a79445127d72942ca3bba24ec707",
+    "reference/map-keyboard-inputs.json": "f9e2c3da4a250d81aa79e8a91c7e9425104958489ec40e1e69291e5c8e3353af",
+    "scripts/verify-map-keyboard-fixture-negatives.js": "07cca128e0161bc3e7dde02b4bfb88f7dc6fb8d13bb80a304b3733db134c8910"
+  },
+  "comparisonRules": [
+    "Exact AL andall128 key flags before/input/end;exact pointer coordinates,counter,vectors,latch,draw flag andAXreturn",
+    "Keyboard starts empty after natural map-entry flush;pointer initializes only from first independent before snapshot",
+    "Authored makes/releases select inputs;expected outputs never feed state",
+    "Clock values are observed checks only;not injected timers or Game scheduling acceptance"
+  ],
+  "exclusions": [
+    "Map rendering,CPU instruction/render costs,audio and whole campaign are outside this comparison",
+    "Earlier capture01queued atpre-read and serialized scan bytes arrived too late;retained as excluded exploration",
+    "Security/startup is conditional setup;required36map reads/10sequences complete with0remaining"
+  ]
+}

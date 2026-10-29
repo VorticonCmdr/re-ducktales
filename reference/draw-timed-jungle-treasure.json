@@ -1,0 +1,332 @@
+{
+  "id": "draw-timed-easy-jungle-treasure",
+  "verificationEdition": "destination",
+  "milestone": "jungle-treasure",
+  "expectedHard": false,
+  "pending": true,
+  "pendingBrowserReplay": true,
+  "browserVerified": false,
+  "artifactRoot": ".local/jungle-draw-route-01",
+  "captureRoot": ".local/jungle-draw-browser-capture-01/raw",
+  "captureCommit": "29ea9fa3eba43624539f187d43ebc45bb4335a28",
+  "sourceFileCounts": {
+    "capture": 610
+  },
+  "expectedCheckpointCount": 27,
+  "requiredEventCount": 70,
+  "checkpointNames": [
+    "entry",
+    "input-40",
+    "input-80",
+    "input-120",
+    "input-160",
+    "input-200",
+    "input-240",
+    "input-280",
+    "input-320",
+    "input-360",
+    "input-400",
+    "input-440",
+    "input-480",
+    "input-520",
+    "input-560",
+    "input-600",
+    "input-640",
+    "input-680",
+    "input-720",
+    "input-760",
+    "input-800",
+    "input-840",
+    "input-860",
+    "award",
+    "returned-map",
+    "collected-notice",
+    "complete-map"
+  ],
+  "expectedFlightPresentations": 74,
+  "expectedFlagAliasPresentations": 0,
+  "expectedInputCount": 860,
+  "entryStateSha256": "30253d951d61c148754497a193cb25a9916688b9601ac2aac69f8eee679eed0c",
+  "entryPixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7",
+  "expectedOutcome": {
+    "money": 1050,
+    "day": 17,
+    "playerCollected": [
+      1
+    ],
+    "frames": 860,
+    "presentations": 907,
+    "lives": 1,
+    "seed": 55093
+  },
+  "checkpoints": [
+    {
+      "name": "entry",
+      "at": 23905,
+      "eventCount": 50,
+      "stateSha256": "30253d951d61c148754497a193cb25a9916688b9601ac2aac69f8eee679eed0c",
+      "pixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7"
+    },
+    {
+      "name": "input-40",
+      "at": 26953,
+      "eventCount": 50,
+      "stateSha256": "067f5a6c38904e46864982206d0c47b37827cffcdaa8db7e509192ec88793b23",
+      "pixelsSha256": "6f73f5104e49c76350a3b2919e85bdf2d6f8f07e2b323f76421ebf0c686e126c"
+    },
+    {
+      "name": "input-80",
+      "at": 28601,
+      "eventCount": 52,
+      "stateSha256": "a78d18c6421891acd03c5e976e7a4ff08de73afca6fa0ff3035532afd21b72f9",
+      "pixelsSha256": "cb8d595dd721464fbb3d37563f5e499b10bb065d764c3f63e3997e3b8a74caed"
+    },
+    {
+      "name": "input-120",
+      "at": 30617,
+      "eventCount": 55,
+      "stateSha256": "dd64a5b9f3faa2faf530c5d473862d8a32477cdd8275a34977a45f103618edb2",
+      "pixelsSha256": "7b966c2d1a6758ec75eeb5f8d82c5fec9adaf7fd1110a0783302406765242fdc"
+    },
+    {
+      "name": "input-160",
+      "at": 36785,
+      "eventCount": 55,
+      "stateSha256": "e1bbec666bfefc8b7d7acbad232f63819e1141e3d468f60bec1a9418aab8b182",
+      "pixelsSha256": "7531daa2bb0de7b211864585aee3ae85e62257a21ec4801ed38ff422079fe066"
+    },
+    {
+      "name": "input-200",
+      "at": 42977,
+      "eventCount": 55,
+      "stateSha256": "848f9b51fe6529331f3d424cd0b04db0bee105b7236eaaf94257e091cca94d94",
+      "pixelsSha256": "448e3f91f6ff087c0e1d4b9391f3829c9aee9add1126f2c2ece2b73672998910"
+    },
+    {
+      "name": "input-240",
+      "at": 44633,
+      "eventCount": 55,
+      "stateSha256": "3dd2d6c4b8386d234863f0bdbd95c94e1901bf1085b5a59ac517e4070c0d2917",
+      "pixelsSha256": "ab8d3fb99af1c02b9d8c30d100f7e5a936360c01c21149f864291ce20546afc5"
+    },
+    {
+      "name": "input-280",
+      "at": 46305,
+      "eventCount": 55,
+      "stateSha256": "908c34f8f2f1a120d43ea129e47c11612d5d8c3f73ece8207050acef0eed644b",
+      "pixelsSha256": "661c99a6b8a5934c70e59c90d926dc52d6657ebae92d3416a93ab1a20030face"
+    },
+    {
+      "name": "input-320",
+      "at": 50201,
+      "eventCount": 55,
+      "stateSha256": "5df7df6882d9b85a2fd58e56e93ec36f5d236f774b03ba37d3a3d9a5b56d699b",
+      "pixelsSha256": "5bf86a216c05d38361f8ebba3a18300342f9e8092afeb7e9cce8c0d7ef8c3af2"
+    },
+    {
+      "name": "input-360",
+      "at": 52809,
+      "eventCount": 55,
+      "stateSha256": "4c6b6e86c5fde102fb2f1e3ac8cb6a6a0cb5208bc4900d44f0ff107cb57c379f",
+      "pixelsSha256": "3c9b37cee345390b15e81df30548b3f46dce121ccb04b16c4569759c4cae33fa"
+    },
+    {
+      "name": "input-400",
+      "at": 56337,
+      "eventCount": 55,
+      "stateSha256": "adcc9e92d17a9804d3bda12aa21cd14dba8304534cc1f0a89258e5eed4f96a55",
+      "pixelsSha256": "4fefc985b162438471618725e9bfd3320b42bab09411e57cec8a73219ec1b71e"
+    },
+    {
+      "name": "input-440",
+      "at": 60305,
+      "eventCount": 55,
+      "stateSha256": "f55937110af35103ada28559b63e2acff8ca98d396111e777879f641ea5c3182",
+      "pixelsSha256": "a903fd70d8d8e249d0b34cb44a3b2b98eefc3a51b7d91218ecff1b500c285175"
+    },
+    {
+      "name": "input-480",
+      "at": 62017,
+      "eventCount": 55,
+      "stateSha256": "87c0259b6e12b68d442ddfa7dcaf270dd4c6c6b59d9315d2d0fa6b289db2ff73",
+      "pixelsSha256": "1a3e939e43eb0a41cc61e7f2292e0a1097279db969ad45a1bef5e03e070c5375"
+    },
+    {
+      "name": "input-520",
+      "at": 65265,
+      "eventCount": 55,
+      "stateSha256": "abc21cbc6274118ecfd4e5955d100408601a6982b57c5a2e3eddcdaecd342d20",
+      "pixelsSha256": "7936ee6e0f5afab4b68ea6712a6fe29df313d8ed7a4ab2f07c02776f0188c5cf"
+    },
+    {
+      "name": "input-560",
+      "at": 67409,
+      "eventCount": 55,
+      "stateSha256": "da34f3a85737565e9b677a35938ea11c2da413007724e7ebdca618d4eb6b8640",
+      "pixelsSha256": "fb7c7494d41a578fc79fae143091ae6fbb1102d0dbed461b3f7b998db3a6c105"
+    },
+    {
+      "name": "input-600",
+      "at": 70153,
+      "eventCount": 55,
+      "stateSha256": "3f89fd2071e375e3320095e3b5844de1d6471fcedb051381a4eef250497397b6",
+      "pixelsSha256": "b3f3f4f1bd8cb2ed245f374d04154267731975769837ca0a53e9d347d8c409f0"
+    },
+    {
+      "name": "input-640",
+      "at": 74697,
+      "eventCount": 55,
+      "stateSha256": "8564c2c1a19b671a7218da96119638cee4382bc7f9bfa2981fa6d7d22001e706",
+      "pixelsSha256": "3f4382921543121b4da5f8479f60400d35de7751886f7d5758b6bc1c9fafb27a"
+    },
+    {
+      "name": "input-680",
+      "at": 76937,
+      "eventCount": 55,
+      "stateSha256": "284aa10a15109d60a21476d421d0903c2d13ae11d5f35802e8930139a2b0be9d",
+      "pixelsSha256": "f6dbb7a6bdb5b9441d79181940db400859cd2ea6b5c3ce603a47f6c951fdfb6d"
+    },
+    {
+      "name": "input-720",
+      "at": 80001,
+      "eventCount": 55,
+      "stateSha256": "04e98ab2c3b49849890824c22e2955a9ee55cb2f1a8a9ba890870f91b80e8a70",
+      "pixelsSha256": "7964868a89e07adc354bfc766d6820517c16c594c456d83e27fda5d9fc75e0df"
+    },
+    {
+      "name": "input-760",
+      "at": 82249,
+      "eventCount": 55,
+      "stateSha256": "6245b6a8902f509fbb1d4b42f03eb703b354c7ea483570a4cc925446dcce8c6c",
+      "pixelsSha256": "b5b06c8cf6fe652df8766856a5b4e24d3b337e70f6a6a431cbec0ae21a537599"
+    },
+    {
+      "name": "input-800",
+      "at": 85161,
+      "eventCount": 55,
+      "stateSha256": "a3f8ed3508e37890f64b1baaa61ec0de7ac4863d0c84cf3789226671273dd054",
+      "pixelsSha256": "e7649817eafa302ce30113c49372441b69b8a6485829bbce1435547adab01c8a"
+    },
+    {
+      "name": "input-840",
+      "at": 88009,
+      "eventCount": 59,
+      "stateSha256": "300101b9702d024ef1525b82d05714bba0e4d149c9ad00b1ac15d653532b3680",
+      "pixelsSha256": "7200c62cfdddb71209fa63f84d71e1a89eea67a343656472d50e3dc49892fc00"
+    },
+    {
+      "name": "input-860",
+      "at": 88921,
+      "eventCount": 63,
+      "stateSha256": "9525ebf13f7d94a7b9f3e8b753a72914d19aa076809092e8f5ca778623f352c1",
+      "pixelsSha256": "87f66b18e9bd962695d236845fc82085bc586c7d7343f5a52b52ece518c2d2be"
+    },
+    {
+      "name": "award",
+      "at": 89337,
+      "eventCount": 64,
+      "stateSha256": "029a0d4f2d1a8e2d6eab76378c26f8a07db9ea322cfbb33853cdc86544c529a0",
+      "pixelsSha256": "0137151bc7ad9115fe603bf75bd0b5f523c958ab526fd622b521f02205b723a9"
+    },
+    {
+      "name": "returned-map",
+      "at": 89437,
+      "eventCount": 66,
+      "stateSha256": "3667c15998f33361fcb6216e426dbb3a98c5f1d3333b658b6c5c5ad0b5eb4f54",
+      "pixelsSha256": "f37664283764314cf771fac3564abe7564a98571f0246ee6ee5ef2e31366e4e9"
+    },
+    {
+      "name": "collected-notice",
+      "at": 95345,
+      "eventCount": 68,
+      "stateSha256": "7f86895cea0d13a14ac878f3de2294c6b304de0bb5c86173b4be10f50f52b035",
+      "pixelsSha256": "554c1ca82e8661f04262dafa1f9a50515278559c68acda2e144d0516fd4840f2"
+    },
+    {
+      "name": "complete-map",
+      "at": 99293,
+      "eventCount": 70,
+      "stateSha256": "17f03717676389c97ca5d15c840443bc25b8c3f664de8859ae14e6ab9b72f17c",
+      "pixelsSha256": "f37664283764314cf771fac3564abe7564a98571f0246ee6ee5ef2e31366e4e9"
+    }
+  ],
+  "artifacts": {
+    "environment": {
+      "path": ".local/jungle-draw-route-01/environment.json",
+      "bytes": 474,
+      "sha256": "d266edfadfb327777c85f187a245c0660a4a4fd4e96c9cf0a93d5e7fa770867a"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/jungle-draw-route-01/campaign-checkpoints.json",
+      "bytes": 104241,
+      "sha256": "a2be07be2e304d763a0984c6494c087a920f8c27885dfd41314aef7d364a7bd4"
+    },
+    "captured-events": {
+      "path": ".local/jungle-draw-route-01/captured-events.json",
+      "bytes": 8131,
+      "sha256": "65891ff907328391c4d4218cc3fbb943fafb8e9d1746146b2c489aa77a3b45aa"
+    },
+    "timeline": {
+      "path": ".local/jungle-draw-route-01/timeline.json",
+      "bytes": 2310,
+      "sha256": "ef7c9459a2c842803bd8ccb25439a3a1482751a60ed7b6c707687b827d0dbb4c"
+    },
+    "capture-source": {
+      "path": ".local/jungle-draw-browser-capture-01/source-revision.json",
+      "bytes": 65807,
+      "sha256": "8c80b040409e74b33f0ee5bc3fde46775190762371d2912459c158240a6ac891"
+    },
+    "capture-zip": {
+      "path": ".local/jungle-draw-browser-capture-01/sources.zip",
+      "bytes": 1640134,
+      "sha256": "552298ae27bf7f8f1a904ab0be1e03151046499344f0bd0d4a56aa86a1ee8eb4"
+    },
+    "capture-environment": {
+      "path": ".local/jungle-draw-browser-capture-01/raw/environment.json",
+      "bytes": 241,
+      "sha256": "f31511cf3b2d2fc1cff3b74898b7722926abc5fa1a9a1f0fb022eb16af75266a"
+    },
+    "capture-report": {
+      "path": ".local/jungle-draw-browser-capture-01/report.json",
+      "bytes": 6867,
+      "sha256": "6bcb9ed727719e4a892a2963fddde8b5b8f239d02c27d38ab806c8c9219d36e0"
+    },
+    "input-profile": {
+      "path": "reference/security-jungle-treasure-inputs.json",
+      "bytes": 1234,
+      "sha256": "b31c7acf91dcc00edb6ea89295e5f87bf448ca8e6e95e2fa2d81814148d97238"
+    }
+  },
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "environmentProviders": {
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086,
+    "boundary": "actual DOM events recorded before target handlers"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "comparisonRules": [
+    "All27 full application states and all320x200 RGBA hashes exact",
+    "All70 external events and860 authored jungle samples must finish;no tail or exclusions",
+    "Original movement profile unchanged;no seed,state,timer or result injection"
+  ],
+  "limitations": [
+    "Port/browser route,not native whole-level parity",
+    "Sprite/copy work is charged;line/text and other CPU costs remain incomplete",
+    "Independent fixed-event browser acceptance pending;broader gate incomplete"
+  ],
+  "verify": "node scripts/verify-destination-routes.js reference/draw-timed-jungle-treasure.json",
+  "verificationTools": {
+    "scripts/verify-destination-routes.js": "d6c538dedfc8d0c09ec258db391a8edb96ee72c22431987fbf91181e2ef45ebb",
+    "scripts/verify-destination-route-negatives.js": "69aa7d12bb33db67c606bf9a48dfee54037d006fdbd1830f0951d4539b32b92f",
+    "scripts/replay-hard-campaign.js": "222bed526cadf31045910b26c04f942fe287ac3e8215b826ed6aabb7488ca1ea",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
+    "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0"
+  }
+}

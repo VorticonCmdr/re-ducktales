@@ -348,7 +348,7 @@
   "fittedInputs": [],
   "verify": "npm run verify:office-hard-expeditions",
   "verificationTools": {
-    "scripts/verify-security-hard-expeditions.js": "ac732c5ddbbdb56de10e68227f5f066f36ae28e33d74c38b6bd5c91a5a96534e",
+    "scripts/verify-security-hard-expeditions.js": "f818366a9a524bbca8590747da02407c7d8b60fb3bf73f71b52367890c068803",
     "scripts/verify-security-hard-movement-negative.js": "fe3a58525918da01f62c3e782e0e171fe343808286cbb8e0c2ffacf13dca3201",
     "scripts/verify-security-hard-fixture-negatives.js": "df0f9553aae9fe009cd0f2a087538d7cec068a8f6ba6eeb7bf8dbb4c79ad6e39",
     "scripts/verify-hard-expedition-negative.js": "e11cba0c5cd7022e0a21ae93f1a6d969d9d659f3ac80aadb35cc3895992ccee6",
@@ -362,7 +362,8 @@
     "tests/browser/hard-expedition.spec.js": "0345b841a21368b7db4ef8b67289caa50762b444b66a32c47074f27dc5ba6488",
     "tests/browser/hard-mountains.spec.js": "ac28045ec5fb8dfdffc6b79a01394cf49882b4d21dd1e5535d0f13413451d668",
     "scripts/verify-flight-input-browser-negative.js": "61f9af9747835cf202c51a67b07ce382c43f4ffa9228154033d310f116a2baa8",
-    "tests/browser/hard-entry-replay.spec.js": "1d4ee97b8ede0f77380c0f36b588e27b77231c2269950869fc049123190a84eb"
+    "tests/browser/hard-entry-replay.spec.js": "1d4ee97b8ede0f77380c0f36b588e27b77231c2269950869fc049123190a84eb",
+    "scripts/shared-runtime-regression.js": "308a5d6ddc9b0e40b6ca1e95a738475615c1016f51cc9af43a64e8f3ff4c0d13"
   },
   "negativeComparisonRule": "Omitting the first horizontal make must fail a carried state or independent DOM-event comparison at an expedition checkpoint;setup,timeout and endpoint failures are rejected.",
   "verificationEdition": "office",
@@ -377,5 +378,6 @@
   "captureTool": "tests/browser/hard-expedition-route.js",
   "recordedCaptureCommand": "DUCKTALES_CAPTURE_HARD_EXPEDITION=.local/office-hard-expeditions-01/capture npx playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js --output .local/office-hard-expeditions-01/browser",
   "entryBrowserCommit": "ddeb0245f090f64b513871df78884ce58f309313",
-  "entryBrowserSourceArchive": ".local/office-integration-fixes-browser-02/sources"
+  "entryBrowserSourceArchive": ".local/office-integration-fixes-browser-02/sources",
+  "currentRuntimeRegression": "reference/keyboard-campaign-regression.json"
 }

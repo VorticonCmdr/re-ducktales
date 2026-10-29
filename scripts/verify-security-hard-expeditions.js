@@ -1,3 +1,4 @@
+import { verifySharedRuntimeFile } from "./shared-runtime-regression.js";
 import assert from "node:assert/strict";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -174,10 +175,11 @@ for (const [p, h] of Object.entries(hardSource.files)) {
         "tests/browser/helpers/clock.js",
       ].includes(p))
   )
-    assert.equal(
-      hash(await load(p)),
+    await verifySharedRuntimeFile(
+      p,
       h,
-      `Changed shared runtime since retained Hard browser receipt ${p}`,
+      catalog.currentRuntimeRegression,
+      "hard",
     );
   assert.equal(
     hash(
@@ -546,5 +548,5 @@ assert.equal(checked, 169);
 assert.equal(consumed, officeEdition ? 3978 : 3970);
 assert.equal(rendered, 1584);
 console.log(
-  `Hard alternates:4 complete treasure/bank routes,169 exact Game/browser state-pixel checkpoints,${consumed} DOM events,1584 flight presentations,three lives in every route;32 comparison negatives. ${officeEdition ? "Eight complete browser cases plus four separate entry replays (within17 passing office integration cases);prior Hard28/4140 receipt checked against unchanged shared runtime." : "Four independent entry browser replays and full Hard28/4140 regression also pass."} Port evidence,not whole-native expedition parity.`,
+  `Hard alternates:4 complete treasure/bank routes,169 exact Game/browser state-pixel checkpoints,${consumed} DOM events,1584 flight presentations,three lives in every route;32 comparison negatives. ${officeEdition ? "Eight complete browser cases plus four separate entry replays (within17 passing office integration cases);historical Hard28/4140 receipt preserved;changed runtime requires a separately pinned fresh regression." : "Four independent entry browser replays and full Hard28/4140 regression also pass."} Port evidence,not whole-native expedition parity.`,
 );

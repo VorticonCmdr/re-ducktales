@@ -796,7 +796,7 @@
     "docs/opening-capture-recipe.md": "10dc05aad340bf53dd5e18ddc1bc67ab205e85606889de41265cc15d94184466",
     "src/game/opening.js": "ed91355bc55fc74eee726358fb207b6b66b7985b489ec0d1512410b49a60a9ab",
     "src/game/application.js": "7c8cf193c2c34477d71c5f47ee6032d3810cda001de673b8aa4a39baeeb9d0a8",
-    "src/game/browser.js": "63516a6d4263929f35e492960f7255b922c88cc8be5d67100d1105195494e4f1",
+    "src/game/browser.js": "7e5513a4ab31b958289293e67a2cda6878f4106960cee64d0efca62eb0739c7c",
     "src/game/renderer.js": "fbe22dbd464c47db8400da159ec74306f24cef9b758fb4314049e580d341a6b6",
     "tests/opening.test.js": "4bf2a1661ae8bc641543d2531ca85aff3c1af85b4b4b4603754bfbea05688851",
     "tests/browser/opening.spec.js": "d43a99eb4a4eb9cf56e8bf84c10176302c206a12ba70b3334db20d29dbffc098",
@@ -838,9 +838,11 @@
     "scripts/verify-office-browser-negative.js": "a95b71778668c3ddf525f2d83d780a9482e393a8580be35d9ac30759caa39129",
     "tests/browser/office.spec.js": "e1c224a668496a9b560247b82fbf8daf03735217dfdd7f1e7517e300cd7b2451",
     "reference/office.json": "cefb77d08ec20d39c162619e3fbaccf6540373eaa0609fa22ec31c5c7b713308",
-    "src/game/office-menu.js": "f4dfc4f84e65fe53fbd9668d5272d41c6e469fa404ae986d3090da198cd1e649",
+    "src/game/office-menu.js": "fb15f090c29442891740dbfba49720a1f8b243cc403c6de3a3e7a4a72e382cbd",
     "src/game/keyboard-adapter.js": "1520cfecf96b3b9e5f4cb9dc78c0b720487bb1c880243704adc8d02ed71105bd",
-    "src/game/office-investments.js": "f589cba66f6cbad40db9ea2986ca0116ad03110dd2da25340ae5cb492c34b662"
+    "src/game/office-investments.js": "0d0ce496cd67425ef349b5ca5f334f593ea6f7a4c1562f819faed2d054a0e89b",
+    "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426"
   },
-  "officeIntegrationVerificationNote": "Reviewed diffs from4b690c7: native office lifecycle/rendering,shared ordinary keyboard adapter,office readiness helper and separately verified current route manifest selections. Four fresh opening/difficulty browser cases pass on5b6acaa,including original pictures. Original opening code/data,pictures,captureToolCommit/toolRevisions and required case/checkpoint counts are unchanged. Current dependency fingerprints include the new office/keyboard modules."
+  "officeIntegrationVerificationNote": "Reviewed diffs from4b690c7: native office lifecycle/rendering,shared ordinary keyboard adapter,office readiness helper and separately verified current route manifest selections. Four fresh opening/difficulty browser cases pass on5b6acaa,including original pictures. Original opening code/data,pictures,captureToolCommit/toolRevisions and required case/checkpoint counts are unchanged. Current dependency fingerprints include the new office/keyboard modules.",
+  "ordinaryKeyboardIntegrationReview": "The reviewed integration differences since e47b24a are OfficeMenu delegation to the native-validated ordinary-key core and the investments departure status/action metadata. Opening logic and expected original inputs/pictures are unchanged. Fresh office7 browser cases on87bf2ed and shared campaign/jungle/mountain7 cases onc42799a pass. Historical opening receipt remains historical;full branch gate including fresh opening browser cases remains required."
 }

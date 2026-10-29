@@ -109,3 +109,36 @@ identity,owns all breakpoints and stops its emulator in `finally`. It never
 attaches to unrelated8386 or modifies global bridge configuration. A new capture
 has its own source/input/artifact identities;review/register those separately
 rather than overwriting the pinned capture02.
+
+
+## Renewed shared campaign regression
+
+Both actual browser commands on c42799a exited0:five complete campaign/jungle
+cases and two mountain cases. Their525 tracked producer files are archived in
+`.local/keyboard-campaign-browser-01/sources`. The fresh runs consumed all4140
+Hard and3516 Easy events,reached their expected endings,and completed the27-point
+jungle70-event and27-point mountain104-event replays. The separate authored
+jungle and mountain scenarios also exercise treasure awards and duplicate visits.
+
+`reference/keyboard-campaign-regression.json` pins22 raw reports/runner/status/
+source/event/checkpoint artifacts. `npm run verify:shared-runtime` checks their
+bytes,the exact seven case titles,actual exits,zero skips/retries,the runtime and
+test file inventory,and all525 producer files against Git. Four carried streams
+match their original expected states,pixels,times and input schedules.24 damaged
+report/event/checkpoint controls and two real missing/corrupt fixture controls
+must fail;exact restoration must pass.
+
+The four office-aware route checkers retain every historical producer and golden.
+A shared source file that changed since an older browser receipt now requires
+this separately pinned fresh regression. They do not replace the older source
+hash with a newly computed current hash. Only verification-tool metadata and the
+new receipt link may differ in referenced scenario declarations;inputs,expected
+values,comparison rules and capture identities must remain identical to c42799a.
+Ordinary keys still require the full branch gate before main integration.
+
+The event comparison uses the existing browser replay consumption boundary:
+keyboard time/type/key/target are exact;game-canvas pointerdown coordinates are
+clamped and truncated exactly as Campaign.point consumes them. Pointerup
+coordinates do not enter simulation. This exclusion is limited to these retained
+browser scenarios and their existing input adapter;it does not excuse gameplay
+state,pixel or timing differences.

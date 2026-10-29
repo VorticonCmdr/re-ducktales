@@ -515,11 +515,12 @@
   "captureProducer": ".local/office-mountain-ascent-01/source-revision.json",
   "verificationTools": {
     "scripts/replay-hard-campaign.js": "543aa6bfec35981bacf46163297ac6eb212e80e9f210701848ae433bc1239bd1",
-    "scripts/verify-security-mountain-ascent.js": "5107ec67ad4ab2ab5555c803a683314587dedc46d112fdc014126ee57e778206",
+    "scripts/verify-security-mountain-ascent.js": "4828ae86f2a93a7cd292fdf62600f69e5806be1346a287ab2b8c6be888e28a00",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "tests/browser/mountain-ascent-replay.spec.js": "2997336ea98da7d49fcaea076bc6fe141bfb741b78946a566671babe58c1d826",
     "scripts/verify-security-mountain-browser-negative.js": "4d906073c3d769bd0f7298ae54b6a4ec7a0b46478d52b65076819bbaf4bea398",
-    "scripts/verify-security-mountain-fixture-negatives.js": "e1f8030706f41b16e6c4950ca6dcdbf47c25d47b44f655af8fa50135b3943352"
+    "scripts/verify-security-mountain-fixture-negatives.js": "e1f8030706f41b16e6c4950ca6dcdbf47c25d47b44f655af8fa50135b3943352",
+    "scripts/shared-runtime-regression.js": "308a5d6ddc9b0e40b6ca1e95a738475615c1016f51cc9af43a64e8f3ff4c0d13"
   },
   "evidenceLevel": "closed-loop port regression and independent fresh browser scenario; not native whole-level parity",
   "environmentContract": {
@@ -554,5 +555,6 @@
     "jungle": ".local/office-jungle-treasure-browser-01/sources"
   },
   "regressionEvidenceScope": "Retains separately accepted Hard browser25dab04/498 sources and jungle browserd5ddee6/503 sources. Current src files,HTML,Vite config and recorded-input/clock adapters must remain byte-identical to those producers. Not new executions at the mountain browser revision.",
-  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed."
+  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed.",
+  "currentRuntimeRegression": "reference/keyboard-campaign-regression.json"
 }

@@ -510,13 +510,14 @@
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
   "verificationTools": {
     "scripts/replay-hard-campaign.js": "543aa6bfec35981bacf46163297ac6eb212e80e9f210701848ae433bc1239bd1",
-    "scripts/verify-security-jungle-treasure.js": "1115515e55381384820f057317a4c4d9888b32f59a492357de568d9425405e4a",
+    "scripts/verify-security-jungle-treasure.js": "4f44ee15ba71ba88273375ca48b5d00f75ac284847c93709cba001ab12c39f79",
     "scripts/verify-security-jungle-treasure-browser-negative.js": "a3285ed775f9533862d23d1f8668d86bd95548c8a02a010b64f3f96ed9fa325c",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "tests/browser/helpers/easy-jungle-entry.js": "e8be075a34c11b25d27647990e9d70ab695d0b20cce8a582e17302f6877934f9",
     "tests/browser/jungle-treasure.spec.js": "e938d4e18326e233fe2f51ccbf7f824cb111c4f0ace81efbac57932aacc29f4c",
     "tests/browser/jungle-treasure-replay.spec.js": "45a52c5971141af7b9530b0ff4a2d0edbd1812c51f2d44e7d570d1f69b073dd7",
-    "scripts/verify-office-jungle-treasure-fixture-negatives.js": "6b903c35b4142aef7cb5778ced8640a216499f1138bfd018f91d40d8d283a490"
+    "scripts/verify-office-jungle-treasure-fixture-negatives.js": "6b903c35b4142aef7cb5778ced8640a216499f1138bfd018f91d40d8d283a490",
+    "scripts/shared-runtime-regression.js": "308a5d6ddc9b0e40b6ca1e95a738475615c1016f51cc9af43a64e8f3ff4c0d13"
   },
   "environmentProviders": {
     "biosSeed": 0,
@@ -539,5 +540,6 @@
   "hardProducer": ".local/office-campaign-hard-browser-replay-01/source-revision.json",
   "hardSourceArchive": ".local/office-campaign-hard-browser-replay-01/sources",
   "hardRegressionScope": "Retains the prior independently accepted office-aware Hard browser receipt at25dab04. All src files,index.html,Vite config and recorded browser/clock adapters in that source must remain byte-identical to current files. This is reused evidence,not a fresh Hard run at the treasure browser revision.",
-  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed."
+  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed.",
+  "currentRuntimeRegression": "reference/keyboard-campaign-regression.json"
 }

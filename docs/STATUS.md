@@ -68,7 +68,10 @@ Production visitors select their own originals. No deployment is performed.
   ordinary-key core.36 fresh native map input/flag/pointer comparisons and the
   unchanged Easy/Hard carried campaign replays pass. Main still runs the earlier
   verified office milestone. Seven fresh office/investment/trading browser cases pass on87bf2ed;an
-  omitted real chord key is detected. Wider branch acceptance remains pending.
+  omitted real chord key is detected. Seven additional complete campaign/jungle/
+  mountain browser cases pass onc42799a with the original expected values.
+  Focused native/route verification also passes. The complete branch gate
+  remains required before main integration.
   [Input rules and reproduction](ordinary-keyboard.md).
 - Original letter/keypad browser bindings,scene-specific flush/repeat behavior
   and map pacing remain unfinished. The original map has six-count steady polls;
@@ -92,7 +95,8 @@ Production visitors select their own originals. No deployment is performed.
 npm run verify
 node scripts/verify-office-integration.js
 npm run verify:office-menu
-npm run verify:map-keyboard
+npm run verify:ordinary-keyboard
+npm run verify:shared-runtime
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "completed": true,
+  "scope": "Fresh independent browser regression of the shared runtime;historical producers/goldens preserved. Not original whole-game timing or whole branch acceptance.",
+  "sourceCommit": "c42799a119e8aa425be897b0e40bdf907815991a",
+  "sourceFileCount": 525,
+  "sourceArchive": ".local/keyboard-campaign-browser-01/sources",
+  "runs": {
+    "campaign": {
+      "source": "source",
+      "runner": "campaign/runner-status.json",
+      "report": "campaign/browser-results.json",
+      "status": "campaign/browser/.last-run.json"
+    },
+    "mountain": {
+      "source": "mountain/source-revision.json",
+      "runner": "mountain/runner-status.json",
+      "report": "mountain/browser-results.json",
+      "status": "mountain/browser/.last-run.json"
+    }
+  },
+  "replays": {
+    "hard": {
+      "reference": "reference/hard-campaign-office.json",
+      "checkpoints": "campaign/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "events": "campaign/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "progress": "campaign/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json"
+    },
+    "easy": {
+      "reference": "reference/easy-campaign-office.json",
+      "checkpoints": "campaign/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "events": "campaign/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "progress": "campaign/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json"
+    },
+    "jungle": {
+      "reference": "reference/office-jungle-treasure.json",
+      "checkpoints": "campaign/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "events": "campaign/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "progress": "campaign/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json"
+    },
+    "mountain": {
+      "reference": "reference/office-mountain-ascent.json",
+      "checkpoints": "mountain/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/campaign-checkpoints.json",
+      "events": "mountain/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/actual-events.json",
+      "progress": "mountain/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/replay-progress.json"
+    }
+  },
+  "artifacts": {
+    "campaign/browser/.last-run.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "campaign/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373521,
+      "sha256": "720bf26569a42cb00dd6af721b049a7377c09a5d6530ce088b9eda8d7476ff0c"
+    },
+    "campaign/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157873,
+      "sha256": "b6b2e6b9af48f792adc20a96ed3ac2c6d29e6b6112cd1720a45715bb393476a4"
+    },
+    "campaign/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "ef98dbac6fc5ef0d41b3c84182a07c49e30f3f4e15774175e38b7bc094f8a941"
+    },
+    "campaign/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "bytes": 6627,
+      "sha256": "e5d27eff4964164e6f288b4835b81f3fc6994b0a5c2ecf074f9444fd736d3aff"
+    },
+    "campaign/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 95166,
+      "sha256": "c76bbcf513c9f7f2e0a6d8b156566a99e85938299442100c785019d55141294e"
+    },
+    "campaign/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json",
+      "bytes": 3212,
+      "sha256": "f8c6a52867686b65820c4f200f671dd88bbb857fb960a57e3d24ad12a927ec7e"
+    },
+    "campaign/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 318455,
+      "sha256": "f5b0c97332a3fa03dd15f07f9906f62298eb3e4925f32265580c3b297a18c199"
+    },
+    "campaign/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 171772,
+      "sha256": "7f65941d3152c770b451a46908b46da82f202c0fe6f71ac70ea63b2cc52048b4"
+    },
+    "campaign/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 6225,
+      "sha256": "5228e3a2358e36eda855859a6884366cf793791ed44cc9191d1c86bc4bc99aa6"
+    },
+    "campaign/browser-results.json": {
+      "path": ".local/keyboard-campaign-browser-01/browser-results.json",
+      "bytes": 20649,
+      "sha256": "fcdc77cb1c3d76d20c65423ca4e4548f7a2a18293b1152ede2c20fbaf62b69ce"
+    },
+    "campaign/browser.log": {
+      "path": ".local/keyboard-campaign-browser-01/browser.log",
+      "bytes": 5411,
+      "sha256": "5044a5ef979874425671d6e008c29f1edc35a421082652d6bc9647ae5f5e5f83"
+    },
+    "campaign/runner-status.json": {
+      "path": ".local/keyboard-campaign-browser-01/runner-status.json",
+      "bytes": 885,
+      "sha256": "b5a203abe928f27a134694f14e4ad82639a6b2843559ee976113a6a4ff642e0e"
+    },
+    "source": {
+      "path": ".local/keyboard-campaign-browser-01/source-revision.json",
+      "bytes": 56157,
+      "sha256": "025ffbee6232f8a43ef6e64eea19e025b512bf17b799856ddf3ce5e441d88dbf"
+    },
+    "mountain/browser/.last-run.json": {
+      "path": ".local/keyboard-mountain-browser-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "mountain/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/actual-events.json": {
+      "path": ".local/keyboard-mountain-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/actual-events.json",
+      "bytes": 9671,
+      "sha256": "75d0f3ad9f8d1edea5431903e932749760d1ffd6e2b702d36599601900e904ce"
+    },
+    "mountain/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/campaign-checkpoints.json": {
+      "path": ".local/keyboard-mountain-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 98558,
+      "sha256": "f9ce93a3d0feaad43ee945fa3798a64f4533a18bdf3289fa03c626e0f18d9f02"
+    },
+    "mountain/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/replay-progress.json": {
+      "path": ".local/keyboard-mountain-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/replay-progress.json",
+      "bytes": 3302,
+      "sha256": "088096a098569d2892ba1f38901ba545370bf85b9179d1e47499bd6e30702104"
+    },
+    "mountain/browser-results.json": {
+      "path": ".local/keyboard-mountain-browser-01/browser-results.json",
+      "bytes": 8684,
+      "sha256": "4741e707190bfbca6126277728fdc330d6a4bbf513c440c401cb35a58d53c944"
+    },
+    "mountain/browser.log": {
+      "path": ".local/keyboard-mountain-browser-01/browser.log",
+      "bytes": 1913,
+      "sha256": "72395fdb4c4cd46048a5d1d5e4f2a5a9333b3cd9fa3d1a63557843878783d311"
+    },
+    "mountain/runner-status.json": {
+      "path": ".local/keyboard-mountain-browser-01/runner-status.json",
+      "bytes": 603,
+      "sha256": "0397d2c6cafc994716dcc4dc4ec461e638574bcc25f58391b0439d706bad25cf"
+    },
+    "mountain/source-revision.json": {
+      "path": ".local/keyboard-mountain-browser-01/source-revision.json",
+      "bytes": 56157,
+      "sha256": "025ffbee6232f8a43ef6e64eea19e025b512bf17b799856ddf3ce5e441d88dbf"
+    }
+  },
+  "verificationTools": {
+    "scripts/shared-runtime-regression.js": "308a5d6ddc9b0e40b6ca1e95a738475615c1016f51cc9af43a64e8f3ff4c0d13",
+    "scripts/verify-shared-runtime-regression.js": "4b5566845b426866a68739e854da8ed7ebdef8daa35cea556da46ef311269480",
+    "scripts/verify-shared-runtime-fixture-negatives.js": "aad86d1e7a24a5a62ba229df4308ff98fb477d64b993b138d39515f4f35f911b"
+  },
+  "expectedArtifacts": 22
+}

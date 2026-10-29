@@ -1,3 +1,4 @@
+import { verifySharedRuntimeFile } from "./shared-runtime-regression.js";
 import assert from "node:assert/strict";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -235,10 +236,11 @@ if (officeEdition) {
           "tests/browser/helpers/clock.js",
         ].includes(path)
       )
-        assert.equal(
-          hash(await load(path)),
+        await verifySharedRuntimeFile(
+          path,
           hashValue,
-          `Changed shared runtime since retained ${prefix} browser receipt ${path}`,
+          manifest.currentRuntimeRegression,
+          prefix,
         );
     }
     const report = JSON.parse(

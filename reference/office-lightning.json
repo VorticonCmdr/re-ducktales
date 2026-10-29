@@ -302,12 +302,13 @@
   "verify": "npm run verify:office-lightning",
   "verificationTools": {
     "scripts/replay-hard-campaign.js": "543aa6bfec35981bacf46163297ac6eb212e80e9f210701848ae433bc1239bd1",
-    "scripts/verify-security-lightning.js": "f667eecf8cdbaf6828e37f0b857b5bda43e9f5a27cb198dee9cb296c74cc4365",
+    "scripts/verify-security-lightning.js": "7ba59b2acde1583f2037b150630e74f0e897be1077cc1bf0c2c3cfb4dff56202",
     "scripts/verify-security-lightning-browser-negative.js": "045913a35503fdd339a81342f354fd997fceba0a29f06818610feb1f24171204",
     "scripts/verify-security-lightning-fixture-negatives.js": "5926514df15cb4ad12a30d2a3c5c73f4f184477fe11fc75929515a401900f518",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "tests/browser/flight-lightning.spec.js": "020c61aa80233751c468352cca8a7223d96d40cdf0e111e895a53500cb4fbee4",
-    "tests/browser/flight-lightning-replay.spec.js": "b253ce9b76f1d6d50b7dfa500dbc3e4b0caaed4d686dae2c85ea381c5284e952"
+    "tests/browser/flight-lightning-replay.spec.js": "b253ce9b76f1d6d50b7dfa500dbc3e4b0caaed4d686dae2c85ea381c5284e952",
+    "scripts/shared-runtime-regression.js": "308a5d6ddc9b0e40b6ca1e95a738475615c1016f51cc9af43a64e8f3ff4c0d13"
   },
   "verificationEdition": "office",
   "captureSourceArchive": ".local/office-lightning-01/sources",
@@ -325,5 +326,6 @@
   "captureTool": "tests/browser/flight-lightning.spec.js",
   "captureCommand": "DUCKTALES_CAPTURE_LIGHTNING=.local/office-lightning-01/capture npx playwright test tests/browser/flight-lightning.spec.js --output .local/office-lightning-01/browser",
   "currentVerifierNote": "The same-capture departure view explicitly shares the already-audited capture source path,checksum,revision and archive. Its source audit is not counted twice. Capture/browser producers and all states/pixels/events remain pinned.",
-  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed."
+  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed.",
+  "currentRuntimeRegression": "reference/keyboard-campaign-regression.json"
 }

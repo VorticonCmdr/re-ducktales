@@ -1,3 +1,4 @@
+import { verifySharedRuntimeFile } from "./shared-runtime-regression.js";
 import assert from "node:assert/strict";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { spawnSync, execFileSync } from "node:child_process";
@@ -96,10 +97,11 @@ for (const [record, commit, root, count] of [
           "tests/browser/helpers/clock.js",
         ].includes(p))
     )
-      assert.equal(
-        hash(await load(p)),
+      await verifySharedRuntimeFile(
+        p,
         h,
-        `Changed shared runtime since reused Hard browser receipt ${p}`,
+        manifest.currentRuntimeRegression,
+        "hard",
       );
     assert.equal(hash(await load(`${root}/${p}`)), h, p);
     assert.equal(hash(execFileSync("git", ["show", `${commit}:${p}`])), h, p);
@@ -288,5 +290,5 @@ for (const [mode, reason] of [
   assert.doesNotMatch(r.output, /SETUP:|ENOENT|Cannot find module|Timed out/);
 }
 console.log(
-  `Jungle treasure:27 exact carried Game and independent browser state/pixel checkpoints,all70 DOM events,860 jungle samples,1050 dollars/one life;5 comparison negatives. ${officeEdition ? "Prior28-checkpoint Hard browser receipt checked against unchanged shared runtime." : "Shared adapter retains all28 Hard browser checkpoints."} Port evidence,not native whole-level timing parity.`,
+  `Jungle treasure:27 exact carried Game and independent browser state/pixel checkpoints,all70 DOM events,860 jungle samples,1050 dollars/one life;5 comparison negatives. ${officeEdition ? "Historical28-checkpoint Hard receipt preserved;changed runtime requires a separately pinned fresh regression." : "Shared adapter retains all28 Hard browser checkpoints."} Port evidence,not native whole-level timing parity.`,
 );

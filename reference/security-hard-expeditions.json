@@ -287,6 +287,31 @@
       "path": ".local/security-hard-expeditions-accepted-01/movement-negative-records/machu.log",
       "bytes": 1910,
       "sha256": "561389e6d119ff1386808cf47d3317e3650b899f4b92d0412bf8fdbf9f785b15"
+    },
+    "shared-hard-source": {
+      "path": ".local/security-hard-expeditions-accepted-01/shared-hard-source-revision.json",
+      "bytes": 28631,
+      "sha256": "febcac838cd5b66afffa3f8271068c0abf81dfe1647e18bb1335425d6f0b22e8"
+    },
+    "shared-hard-results": {
+      "path": ".local/security-hard-expeditions-accepted-01/shared-hard-report.json",
+      "bytes": 7620,
+      "sha256": "063d8bdbd57fe7e8895b91e69d7822765e448ea3ec49d221f4e90c5f17248038"
+    },
+    "shared-hard-checkpoints": {
+      "path": ".local/security-hard-expeditions-accepted-01/shared-hard-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157538,
+      "sha256": "298ca42bcaf78b7be44ee3c3c2b11b50ec430dffb922029a1f63d30e9ea64ab2"
+    },
+    "shared-hard-progress": {
+      "path": ".local/security-hard-expeditions-accepted-01/shared-hard-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "2713787e69caad562ebf807f2037b491c200dd17931886dc1324e13bc98b9c73"
+    },
+    "shared-hard-events": {
+      "path": ".local/security-hard-expeditions-accepted-01/shared-hard-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373504,
+      "sha256": "d80e7e4af42e8f615b1a8e369f47901a890618dccbba60d46c3e6acb6f92b784"
     }
   },
   "buildManifest": "reference/build.json",
@@ -308,7 +333,7 @@
   "fittedInputs": [],
   "verify": "npm run verify:security-hard-expeditions",
   "verificationTools": {
-    "scripts/verify-security-hard-expeditions.js": "e3e4be032554de4b89291f99290a04cd2f859dd4cf2395818a8c1349046d3ef7",
+    "scripts/verify-security-hard-expeditions.js": "23f200c7b55b9841b6469c5a0017c8b0d3b5d18cf5b5164e831d9026f0001df4",
     "scripts/verify-security-hard-movement-negative.js": "68b217732503eb13cd73328f1bc8d52bb6abcce1111f249f67c2a3b769e614ab",
     "scripts/verify-security-hard-fixture-negatives.js": "5b7e56b8648d1394519fcf6bb85a82ba7dd00eea09c6d475eb06a21cc7ec58d2",
     "scripts/verify-hard-expedition-negative.js": "e11cba0c5cd7022e0a21ae93f1a6d969d9d659f3ac80aadb35cc3895992ccee6",
@@ -323,5 +348,6 @@
     "tests/browser/hard-mountains.spec.js": "c4d621f7e2f7fedc3e83c19b2551dc26ccbef290a79cfc0e902f86162ac98fea",
     "scripts/verify-flight-input-browser-negative.js": "61f9af9747835cf202c51a67b07ce382c43f4ffa9228154033d310f116a2baa8"
   },
-  "negativeComparisonRule": "Omitting the first horizontal make must fail a carried state or independent DOM-event comparison at an expedition checkpoint;setup,timeout and endpoint failures are rejected."
+  "negativeComparisonRule": "Omitting the first horizontal make must fail a carried state or independent DOM-event comparison at an expedition checkpoint;setup,timeout and endpoint failures are rejected.",
+  "sharedHardCommit": "cf5e0bbaebbfec8e64542d3e89f4e83e431f1cc9"
 }

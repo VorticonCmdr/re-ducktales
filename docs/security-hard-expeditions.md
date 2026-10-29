@@ -80,6 +80,10 @@ npm run test:security-hard-expeditions
 node scripts/verify-security-hard-movement-negative.js
 ```
 
+A fresh full Hard campaign regression also retains28 exact checkpoints and4140
+DOM events through all four families and the ending. Its266-file source archive
+is pinned to cf5e0bb; this regression is separate from the four alternate routes.
+
 The first command validates retained browser receipts against their producer
 sources, replays the current Game strictly, and tests required fixture failures.
 The second runs all eight fresh browser cases. The last reruns the four actual

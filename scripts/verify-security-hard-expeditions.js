@@ -27,7 +27,7 @@ assert.equal(catalog.expectedFullCheckpointCount, 169);
 assert.equal(catalog.expectedEventCount, 3970);
 assert.equal(
   Object.keys(catalog.artifacts).length,
-  48,
+  53,
   "Missing required evidence",
 );
 assert.deepEqual(
@@ -99,6 +99,43 @@ function report(r, count) {
 }
 report(await json(catalog.artifacts["browser-results"].path), 8);
 report(await json(catalog.artifacts["entry-browser-results"].path), 4);
+const hardSource = await json(catalog.artifacts["shared-hard-source"].path);
+assert.equal(hardSource.commit, catalog.sharedHardCommit);
+assert.equal(Object.keys(hardSource.files).length, 266);
+for (const [p, h] of Object.entries(hardSource.files)) {
+  assert.equal(
+    hash(await load(`${catalog.artifactRoot}/shared-hard-sources/${p}`)),
+    h,
+    p,
+  );
+  assert.equal(
+    hash(execFileSync("git", ["show", `${hardSource.commit}:${p}`])),
+    h,
+    p,
+  );
+}
+report(await json(catalog.artifacts["shared-hard-results"].path), 1);
+const hardReference = await json("reference/hard-campaign-security.json");
+const hardObserved = await json(
+  catalog.artifacts["shared-hard-checkpoints"].path,
+);
+assert.equal(hardObserved.length, 28);
+for (let i = 0; i < 28; i++)
+  for (const k of ["name", "stateSha256", "pixelsSha256"])
+    assert.equal(
+      hardObserved[i][k],
+      hardReference.browserCheckpoints[i][k],
+      `Shared Hard checkpoint${i} ${k}`,
+    );
+const hardProgress = await json(catalog.artifacts["shared-hard-progress"].path);
+assert.equal(hardProgress.completed, true);
+assert.equal(hardProgress.consumed, 4140);
+assert.deepEqual(hardProgress.errors, []);
+assert.equal(hardProgress.navigation.length, 1);
+assert.equal(
+  (await json(catalog.artifacts["shared-hard-events"].path)).length,
+  4140,
+);
 const inputCatalog = await json(catalog.artifacts["input-profile"].path);
 assert.equal(inputCatalog.cases.length, 4);
 const root = ".local/security-hard-expeditions-verification";
@@ -338,5 +375,5 @@ assert.equal(checked, 169);
 assert.equal(consumed, 3970);
 assert.equal(rendered, 1584);
 console.log(
-  "Hard alternates:4 complete treasure/bank routes,169 exact Game/browser state-pixel checkpoints,3970 DOM events,1584 flight presentations,three lives in every route;24 comparison negatives. Four independent entry browser replays also pass. Port evidence,not whole-native expedition parity.",
+  "Hard alternates:4 complete treasure/bank routes,169 exact Game/browser state-pixel checkpoints,3970 DOM events,1584 flight presentations,three lives in every route;24 comparison negatives. Four independent entry browser replays and full Hard28/4140 regression also pass. Port evidence,not whole-native expedition parity.",
 );

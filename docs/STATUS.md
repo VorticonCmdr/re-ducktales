@@ -48,7 +48,8 @@ unchanged; no seed is reset to preserve old expectations.
 - Hard Bermuda/Boola jungles and Thunderclap/Machu mountains retain layouts1/2,
   complete with three lives, claim treasure and deposit on day6. Independent Game
   and browser replays match169 full state/pixel checkpoints and3970 DOM events;
-  four entry replays and eight full browser cases pass.
+  four entry replays and eight full browser cases pass. The full Hard campaign
+  also passes again through its ending after the shared adapter change.
   [Alternate Hard routes](security-hard-expeditions.md).
 - Security-aware bank/endings/trading, map controls, departure dispatches, cave
   retry/treasure, Too-Pei transmitter/atomic travel, photography and real-audio

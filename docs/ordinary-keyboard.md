@@ -142,3 +142,22 @@ clamped and truncated exactly as Campaign.point consumes them. Pointerup
 coordinates do not enter simulation. This exclusion is limited to these retained
 browser scenarios and their existing input adapter;it does not excuse gameplay
 state,pixel or timing differences.
+
+
+## Next map-clock experiment
+
+The optional fresh-launch recipe adds `--map-inputs --map-clock`. It records35
+native deadline-helper completions after the initial map pointer baseline. The
+actual relocated CALLF at overlay body10ac determines CS:IP;the load:9ab8 memory
+alias alone must not be used as the executing breakpoint address.
+
+Entry,successful-wait-read,second clock-read return and helper end each have an
+independent CPU/DS snapshot. `map-clock-inputs.json` records the two external
+DX:AX values before arithmetic,at their consumption boundaries. Expected memory
+and resulting deadlines remain in separate snapshots/consumption records. Never
+recover a clock input by subtracting6 from the expected resulting deadline.
+The recipe captures neither the count nor values of earlier spin-loop polls;
+any resulting comparison is a deadline-completion abstraction,not exact original
+CPU/IRQ or whole browser timing. First pointer read0 precedes these hooks and is
+explicitly excluded;all35 subsequent completions and70 read events are required.
+This recipe has not yet established an accepted map-clock reference.

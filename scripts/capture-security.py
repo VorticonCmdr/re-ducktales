@@ -20,8 +20,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--output', required=True)
 parser.add_argument('--port', type=int, default=8387)
 parser.add_argument('--map-inputs', action='store_true', help='Continue through security into the authored natural map-keyboard scenario')
+parser.add_argument('--map-clock', action='store_true', help='Capture35 caller deadline completions and their two successful clock reads after the initial map baseline')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 args = parser.parse_args()
+if args.map_clock and not args.map_inputs:
+    parser.error('--map-clock requires --map-inputs')
 out = (ROOT / args.output).resolve()
 assert out.is_relative_to(ROOT / '.local'), 'Captures must stay in ignored local storage'
 out.mkdir(parents=True, exist_ok=False)
@@ -293,7 +296,42 @@ try:
         remove(entry_bp)
         before_bp,input_bp,end_bp = add(0x1238,map_cs),add(0x123d,map_cs),add(0x140e,map_cs)
         map_records=[]
+        clock_records=[]
+        clock_inputs=[]
+        clock_bps=[]
+        if args.map_clock:
+            # Read the actual relocated CALLF operand. The memory-read alias
+            # load:9ab8 is physically equivalent,but not the executing CS:IP.
+            assert body[0x10ac:0x10b1] == bytes.fromhex('9ad8018e09')
+            deadline_ip,deadline_cs=struct.unpack_from('<HH',relocated,0x10ad)
+            assert deadline_ip==0x1d8 and deadline_cs==load+0x98e
+            clock_bps=[(stage,add(ip,deadline_cs))for stage,ip in
+                       [('entry',0x1d8),('ready',0x1f4),('read',0x1f9),('end',0x208)]]
+            save('map-clock-mapping',{'segment':deadline_cs,'entry':deadline_ip,
+                                     'callBodyOffset':0x10ac,'liveCall':relocated[0x10ac:0x10b1].hex(),
+                                     'scope':'Two successful clock reads,not the number or values of earlier busy-wait polls.'})
         for index in range(36):
+            # The first pointer entry was reached before these hooks were armed.
+            # Subsequent calls use the untouched original six-count caller wait.
+            if args.map_clock and index:
+                clock_row={'beforeMapRead':index}
+                for stage,bp in clock_bps:
+                    stop=resume(stop['stop_id'])
+                    assert stop['breakpoint']['id']==bp
+                    name=f'map-clock-{index:03d}-{stage}'
+                    data=state(name,stop,False)
+                    clock_row[stage]={'artifact':name+'.json','stopId':stop['stop_id'],
+                                      'clock':struct.unpack_from('<I',data,0x2225)[0],
+                                      'deadline':struct.unpack_from('<I',data,0x27f8)[0],
+                                      'period':struct.unpack_from('<I',data,0x27fc)[0]}
+                    if stage in ['ready','read']:
+                        regs=stop['registers']
+                        # AX:DX are the device result at its consumption boundary,
+                        # captured before ADD/ADC. Never infer them from deadline.
+                        clock_inputs.append({'beforeMapRead':index,'phase':stage,
+                                             'value':((regs['edx']&65535)<<16)|(regs['eax']&65535),
+                                             'artifact':name+'.json','stopId':stop['stop_id']})
+                clock_records.append(clock_row)
             row={'index':index}
             for stage,bp in [('before',before_bp),('input',input_bp),('end',end_bp)]:
                 stop=resume(stop['stop_id'])
@@ -323,10 +361,17 @@ try:
                     # before the following reader,including extended arrows.
                     keys(*[(e['key'],e['pressed'])for e in event['keys']])
             map_records.append(row)
-        for bp in [before_bp,input_bp,end_bp]:remove(bp)
+        for bp in [before_bp,input_bp,end_bp]+[bp for _,bp in clock_bps]:remove(bp)
         replay=client.get('/api/v1/input/replay/status')
         assert not replay['active'] and replay['remaining']==0
         assert data[0x276c:0x27ec] == bytes(128)
+        if args.map_clock:
+            assert len(clock_records)==35 and len(clock_inputs)==70
+            save('map-clock-inputs',clock_inputs)
+            save('map-clock-consumption',clock_records)
+            save('map-clock-capture',{'completed':True,'expectedCalls':35,'expectedExternalReads':70,
+                                      'initialMapReadExcluded':0,'injections':[],'partialRestore':False,
+                                      'scope':'Deadline completion segment after a conditional fresh launch. Earlier spin-poll counts and values are not captured;not complete CPU/IRQ or browser timing parity.'})
         save('map-consumption',map_records)
         save('map-capture',{'completed':True,'inputReads':36,'authoredSequences':10,
                            'profile':str(profile_path.relative_to(ROOT)),

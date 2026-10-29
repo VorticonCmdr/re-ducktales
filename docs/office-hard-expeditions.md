@@ -2,7 +2,7 @@
 
 `reference/office-hard-expeditions.json` and its four child manifests are the
 isolated branch's current alternate Hard routes. Security-only declarations and
-entry-only receipts remain historical. These are exact port regressions and
+security-only entry receipts remain historical. These are exact port regressions and
 actual browser acceptance,not original whole-expedition or CPU/IRQ parity.
 
 Capture f3422c4 retains509 exact tracked files. Every route starts a fresh
@@ -28,8 +28,16 @@ four authored-controller routes including Restart and four independent fixed-DOM
 replays. Every route includes its entry checkpoint. Runner results show zero
 skips,retries/errors. Auxiliary entry views contain the first956 external events
 and first observation from each full capture;they are explicitly not separate
-captures or additional entry-only browser cases. Their hashes and exact event
-prefixes are validated rather than claiming four extra executions.
+captures. Their hashes and exact event prefixes are validated. At that initial
+registration there were no additional entry-only browser executions.
+
+Source ddeb024 subsequently passes17 focused browser cases with515 exact
+archived source files,zero skips,retries/errors. Four are separate entry-only
+replays consuming956 events each and matching complete entry state and pixels.
+The remaining13 cover office pixels,loading,ending/restart/audio,security and
+system controls. This is a new browser execution of the same capture prefixes,
+not four new original captures. The receipt and successful runner exit are
+pinned separately from the earlier eight full-route cases.
 
 The new flight traces observe inputReads0 before the first input poll and
 reapply the same held Space control. They contain one additional Space pair per
@@ -40,15 +48,15 @@ counters differ,with full Game offsets52..54. Three Bermuda and two Boola pictur
 differ in presentation phase;both mountain picture sets are unchanged. All new
 counters and pictures compare exactly without tolerances or fitted offsets.
 
-Strict verification checks42 parent artifacts and every child JSON/PNG,the
+Strict verification checks57 parent artifacts and every child JSON/PNG,the
 supported build,capture/browser Git and source archives,all event/sample counts,
 and complete browser progress. The previously accepted full Hard browser
 receipt at25dab04 retains its own498-file source archive and28 checkpoints/4140
 events. Reuse requires current runtime,HTML,Vite and shared recorded-input/clock
 adapters to remain byte-identical;it is not a new Hard execution at d098900.
 
-Twenty checker comparison controls and four actual missing-movement browser
-controls reject discrepancies. Original animation can defer a movement make;
+Twenty original checker comparison controls,eight added entry checkpoint/pixel
+controls and four actual missing-movement browser controls reject discrepancies. Original animation can defer a movement make;
 the required DOM-event comparison still rejects an omitted event when state
 has not diverged yet. Setup controls remove Boola's required DOM stream and
 flip one byte of Thunderclap's input2 PNG at the same length. Both fail;exact

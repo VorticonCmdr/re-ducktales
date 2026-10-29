@@ -35,7 +35,7 @@ assert.equal(catalog.expectedFullCheckpointCount, 169);
 assert.equal(catalog.expectedEventCount, officeEdition ? 3978 : 3970);
 assert.equal(
   Object.keys(catalog.artifacts).length,
-  officeEdition ? 42 : 53,
+  officeEdition ? 57 : 53,
   "Missing required evidence",
 );
 assert.deepEqual(
@@ -66,6 +66,12 @@ const producers = officeEdition
         catalog.browserCommit,
         catalog.browserSourceArchive,
         514,
+      ],
+      [
+        "entry-browser-source",
+        catalog.entryBrowserCommit,
+        catalog.entryBrowserSourceArchive,
+        515,
       ],
     ]
   : [
@@ -122,8 +128,35 @@ function report(r, count) {
   }
 }
 report(await json(catalog.artifacts["browser-results"].path), 8);
-if (!officeEdition)
-  report(await json(catalog.artifacts["entry-browser-results"].path), 4);
+const entryReport = await json(catalog.artifacts["entry-browser-results"].path);
+report(entryReport, officeEdition ? 17 : 4);
+if (officeEdition) {
+  const runner = await json(catalog.artifacts["entry-browser-runner"].path);
+  assert.equal(runner.exitCode, 0, "Entry browser runner failed");
+  assert.equal(runner.sourceCommit, catalog.entryBrowserCommit);
+  const suites = entryReport.suites;
+  assert.deepEqual(
+    suites.map((suite) => [suite.file, suite.specs.length]),
+    [
+      ["ending-audio.spec.js", 2],
+      ["ending.spec.js", 3],
+      ["game.spec.js", 5],
+      ["hard-entry-replay.spec.js", 4],
+      ["security.spec.js", 2],
+      ["system-controls.spec.js", 1],
+    ],
+    "Missing office integration browser cases",
+  );
+  assert.deepEqual(
+    suites
+      .find((suite) => suite.file === "hard-entry-replay.spec.js")
+      .specs.map((spec) => spec.title),
+    catalog.cases.map(
+      (row) =>
+        `Hard ${row.key} entry replays independent DOM input through security and the race`,
+    ),
+  );
+}
 const hardSource = await json(catalog.artifacts["shared-hard-source"].path);
 const hardSourceCommit = officeEdition
   ? hardSource.browserCommit
@@ -383,23 +416,75 @@ for (const row of catalog.cases) {
     (await json(catalog.artifacts[`${row.key}-browser-events`].path)).length,
     row.expectedEvents,
   );
-  if (!officeEdition) {
+  {
     const entryProgress = await json(
       catalog.artifacts[`${row.key}-entry-progress`].path,
     );
+    const eventCount = officeEdition ? 956 : 954;
     assert.equal(entryProgress.completed, true);
-    assert.equal(entryProgress.consumed, 954);
+    assert.equal(entryProgress.consumed, eventCount);
+    assert.equal(entryProgress.expectedEvents, eventCount);
     assert.deepEqual(entryProgress.errors, []);
+    assert.equal(entryProgress.navigation.length, 1);
     const entryBrowser = await json(
       catalog.artifacts[`${row.key}-entry-checkpoints`].path,
     );
-    assert.equal(entryBrowser.length, 1);
-    assert.equal(entryBrowser[0].stateSha256, checks[0].stateSha256);
-    assert.equal(entryBrowser[0].pixelsSha256, checks[0].pixelsSha256);
-    assert.equal(
-      (await json(catalog.artifacts[`${row.key}-entry-events`].path)).length,
-      954,
+    function compareEntry(points) {
+      assert.equal(points.length, 1, "Missing entry browser checkpoint");
+      for (const key of [
+        "name",
+        "at",
+        "eventCount",
+        "stateSha256",
+        "pixelsSha256",
+      ])
+        assert.deepEqual(
+          points[0][key],
+          // Historical independent entries have their own checkpoint label;
+          // state, pixels, timestamp and event count still match the full route.
+          key === "name" ? entryChecks[0][key] : checks[0][key],
+          `${row.key} entry browser ${key}`,
+        );
+      assert.equal(hash(canonical(points[0].state)), checks[0].stateSha256);
+    }
+    compareEntry(entryBrowser);
+    const alteredEntry = structuredClone(entryBrowser);
+    alteredEntry[0].pixelsSha256 = "0".repeat(64);
+    assert.throws(
+      () => compareEntry(alteredEntry),
+      /entry browser pixelsSha256/,
     );
+    assert.throws(() => compareEntry([]), /Missing entry browser checkpoint/);
+    assert.deepEqual(entryProgress.lastState, entryBrowser[0].state);
+    const entryEvents = await json(
+      catalog.artifacts[`${row.key}-entry-events`].path,
+    );
+    assert.equal(entryEvents.length, eventCount);
+    if (officeEdition) {
+      const boundary = ({ time, type, key, target, x, y }) => ({
+        time,
+        type,
+        key,
+        target,
+        ...(type === "pointerdown" && target === "game"
+          ? {
+              x: Math.max(32, Math.min(285, Math.trunc(x))),
+              y: Math.max(28, Math.min(151, Math.trunc(y))),
+            }
+          : {}),
+      });
+      assert.deepEqual(
+        entryEvents.map(boundary),
+        (await json(entry.artifacts["captured-events"].path)).map(boundary),
+        "Entry DOM events must equal the independent recording",
+      );
+      const held = new Set();
+      for (const event of entryEvents) {
+        if (event.type === "keydown") held.add(event.key);
+        if (event.type === "keyup") held.delete(event.key);
+      }
+      assert.deepEqual([...held], [], "Unreleased entry controls");
+    }
   }
   function replay(mode) {
     const r = spawnSync(
@@ -461,5 +546,5 @@ assert.equal(checked, 169);
 assert.equal(consumed, officeEdition ? 3978 : 3970);
 assert.equal(rendered, 1584);
 console.log(
-  `Hard alternates:4 complete treasure/bank routes,169 exact Game/browser state-pixel checkpoints,${consumed} DOM events,1584 flight presentations,three lives in every route;24 comparison negatives. ${officeEdition ? "All four entries included in eight complete browser cases;prior Hard28/4140 receipt checked against unchanged shared runtime." : "Four independent entry browser replays and full Hard28/4140 regression also pass."} Port evidence,not whole-native expedition parity.`,
+  `Hard alternates:4 complete treasure/bank routes,169 exact Game/browser state-pixel checkpoints,${consumed} DOM events,1584 flight presentations,three lives in every route;32 comparison negatives. ${officeEdition ? "Eight complete browser cases plus four separate entry replays (within17 passing office integration cases);prior Hard28/4140 receipt checked against unchanged shared runtime." : "Four independent entry browser replays and full Hard28/4140 regression also pass."} Port evidence,not whole-native expedition parity.`,
 );

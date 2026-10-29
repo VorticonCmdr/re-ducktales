@@ -252,6 +252,81 @@
       "path": ".local/office-hard-expeditions-accepted-01/negative-records/machu-movement-negative.log",
       "bytes": 1908,
       "sha256": "dbe09fbcd6288b6cf3ccc9f9d0d7a279802a7aff42caef9be3ba745b946bcdac"
+    },
+    "entry-browser-source": {
+      "path": ".local/office-integration-fixes-browser-02/source-revision.json",
+      "bytes": 55053,
+      "sha256": "df87415b0ae13aefd30f39666202cf21f3dbb501e55e3585c43748b4200103cf"
+    },
+    "entry-browser-results": {
+      "path": ".local/office-integration-fixes-browser-02/browser-results.json",
+      "bytes": 22399,
+      "sha256": "bd27303cbcef1df05f12bdb67664e0e874c27f8e75cca78c34981be646603a78"
+    },
+    "entry-browser-runner": {
+      "path": ".local/office-integration-fixes-browser-02/runner-status.json",
+      "bytes": 598,
+      "sha256": "4aafbebfcbd67e48544e2bd898d61e90b10f14e37a83ad1a2027ec20b3edc525"
+    },
+    "bermuda-entry-checkpoints": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-ber-f059b-rough-security-and-the-race/campaign-checkpoints.json",
+      "bytes": 3533,
+      "sha256": "09436e1566f1daf4ccedc0ec915f9a68515119991a5d4e745829e4aaccb37dfc"
+    },
+    "bermuda-entry-progress": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-ber-f059b-rough-security-and-the-race/replay-progress.json",
+      "bytes": 3130,
+      "sha256": "077a719282e4c65b514f5161dabf7d258366e5c1963b5d373ba8467bf22f0531"
+    },
+    "bermuda-entry-events": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-ber-f059b-rough-security-and-the-race/actual-events.json",
+      "bytes": 85467,
+      "sha256": "164a7f0d469e7d8e4c554d0a3ad06c829707435fa7561074201fc4a2f601482d"
+    },
+    "boola-entry-checkpoints": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-boo-ff8c5-rough-security-and-the-race/campaign-checkpoints.json",
+      "bytes": 3536,
+      "sha256": "55797ba9140188485113c4b357babd77810c669883b6a99d6c48fe2137853bb6"
+    },
+    "boola-entry-progress": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-boo-ff8c5-rough-security-and-the-race/replay-progress.json",
+      "bytes": 3133,
+      "sha256": "93738774f89bc80aa24f444f7975a8accf9adb9338a09211e495a2df841399b0"
+    },
+    "boola-entry-events": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-boo-ff8c5-rough-security-and-the-race/actual-events.json",
+      "bytes": 85467,
+      "sha256": "226f05a3831067370ceffeb8e47861cd4758a6159515cd27d25067f7fab89b8a"
+    },
+    "thunderclap-entry-checkpoints": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-thu-f9ef6-rough-security-and-the-race/campaign-checkpoints.json",
+      "bytes": 3610,
+      "sha256": "e2fbcced00225a06debbae27dc2654437a8893e02087a530d8de408677f11a84"
+    },
+    "thunderclap-entry-progress": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-thu-f9ef6-rough-security-and-the-race/replay-progress.json",
+      "bytes": 3199,
+      "sha256": "22424c2569745ac993c3dbf000293dd701b4c2b87e4b45e6a248e02b869d6615"
+    },
+    "thunderclap-entry-events": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-thu-f9ef6-rough-security-and-the-race/actual-events.json",
+      "bytes": 85470,
+      "sha256": "8cfe1eed63530b12c95fe0d77df2b5d8efba8a452b9aa863ac358880db7fa5be"
+    },
+    "machu-entry-checkpoints": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-mac-98e06-rough-security-and-the-race/campaign-checkpoints.json",
+      "bytes": 3608,
+      "sha256": "d38071a5cf862b4aa50ae4504559314abb8f1c088b5608364e2a3c3a77148f6b"
+    },
+    "machu-entry-progress": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-mac-98e06-rough-security-and-the-race/replay-progress.json",
+      "bytes": 3197,
+      "sha256": "6d0aa2e5ab2fb8e1737cfea3b19addf6ca8c20929f301e11474711b9d8d3f9ec"
+    },
+    "machu-entry-events": {
+      "path": ".local/office-integration-fixes-browser-02/browser/hard-entry-replay-Hard-mac-98e06-rough-security-and-the-race/actual-events.json",
+      "bytes": 85466,
+      "sha256": "59be75cb95ba1000639f987e4bd20cb2c43ea2f865d515f1569eef2a3bd7d0f0"
     }
   },
   "buildManifest": "reference/build.json",
@@ -273,7 +348,7 @@
   "fittedInputs": [],
   "verify": "npm run verify:office-hard-expeditions",
   "verificationTools": {
-    "scripts/verify-security-hard-expeditions.js": "4ddc437f8e0928b5aa59698c83b2cbe5412b585095c1d9b6b853fbe190c09fd1",
+    "scripts/verify-security-hard-expeditions.js": "ac732c5ddbbdb56de10e68227f5f066f36ae28e33d74c38b6bd5c91a5a96534e",
     "scripts/verify-security-hard-movement-negative.js": "fe3a58525918da01f62c3e782e0e171fe343808286cbb8e0c2ffacf13dca3201",
     "scripts/verify-security-hard-fixture-negatives.js": "df0f9553aae9fe009cd0f2a087538d7cec068a8f6ba6eeb7bf8dbb4c79ad6e39",
     "scripts/verify-hard-expedition-negative.js": "e11cba0c5cd7022e0a21ae93f1a6d969d9d659f3ac80aadb35cc3895992ccee6",
@@ -286,12 +361,13 @@
     "tests/browser/hard-expedition-replay.spec.js": "1cf5e7eabd84badddfd9555b6028d0a6ceb80761693bd0d56fd0056184eda3ef",
     "tests/browser/hard-expedition.spec.js": "0345b841a21368b7db4ef8b67289caa50762b444b66a32c47074f27dc5ba6488",
     "tests/browser/hard-mountains.spec.js": "ac28045ec5fb8dfdffc6b79a01394cf49882b4d21dd1e5535d0f13413451d668",
-    "scripts/verify-flight-input-browser-negative.js": "61f9af9747835cf202c51a67b07ce382c43f4ffa9228154033d310f116a2baa8"
+    "scripts/verify-flight-input-browser-negative.js": "61f9af9747835cf202c51a67b07ce382c43f4ffa9228154033d310f116a2baa8",
+    "tests/browser/hard-entry-replay.spec.js": "1d4ee97b8ede0f77380c0f36b588e27b77231c2269950869fc049123190a84eb"
   },
   "negativeComparisonRule": "Omitting the first horizontal make must fail a carried state or independent DOM-event comparison at an expedition checkpoint;setup,timeout and endpoint failures are rejected.",
   "verificationEdition": "office",
   "captureSourceArchive": ".local/office-hard-expeditions-01/sources",
-  "entryEvidenceScope": "Each auxiliary entry view is a prefix of its corresponding full capture,not an independent capture or additional browser case. Current eight full browser cases include all four entry checkpoints and every expedition checkpoint.",
+  "entryEvidenceScope": "Each auxiliary entry view is the exact first956-event/one-checkpoint prefix of its full capture,not a separate original capture. Four additional entry-only browser executions pass within17 office integration cases at entryBrowserCommit,after the eight complete cases at browserCommit. Entry view scope text describes the earlier registration stage.",
   "browserCommit": "d0989007886cbccf1e351c9da2519aaa964978ea",
   "browserSourceArchive": ".local/office-hard-expeditions-browser-01/sources",
   "sharedHardCommit": "25dab049f93cd4251988ce026a43818af64ae04b",
@@ -299,5 +375,7 @@
   "sharedHardEvidenceScope": "Retains accepted Hard25dab04/498-source browser receipt. All current src,HTML,Vite and shared recorded-input/clock adapters must remain byte-identical;not a fresh full Hard execution at this browser revision.",
   "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed.",
   "captureTool": "tests/browser/hard-expedition-route.js",
-  "recordedCaptureCommand": "DUCKTALES_CAPTURE_HARD_EXPEDITION=.local/office-hard-expeditions-01/capture npx playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js --output .local/office-hard-expeditions-01/browser"
+  "recordedCaptureCommand": "DUCKTALES_CAPTURE_HARD_EXPEDITION=.local/office-hard-expeditions-01/capture npx playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js --output .local/office-hard-expeditions-01/browser",
+  "entryBrowserCommit": "ddeb0245f090f64b513871df78884ce58f309313",
+  "entryBrowserSourceArchive": ".local/office-integration-fixes-browser-02/sources"
 }

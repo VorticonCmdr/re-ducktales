@@ -25,6 +25,15 @@ seed to preserve old expectations. Earlier main054ac66/office runtime6a02e89 and
 its117/74/2 gate remain separate historical evidence in
 `.local/office-integration-full-gate-20261028/`.
 
+The latest complete branch attempt on18d8038 ran all91 development browser
+cases:82 passed and9 failed. Its source and terminal failure are preserved in
+`.local/office-integration-full-gate-20261029-02/`; it is not acceptance.
+The failures exposed stale entry recordings and test assumptions about the
+new original office reveal,input boundary and audio cues. Corrections on
+49ed285/ddeb024 pass all17 affected focused browser cases,with515 exact source
+files and zero skips/retries. No game logic,expected native pixels or captured
+input streams changed. A fresh complete branch gate is still required.
+
 ## Working routes and evidence
 
 - Isolated development after main3973cc7: the original investment departure now
@@ -88,7 +97,9 @@ its117/74/2 gate remain separate historical evidence in
 - All four office-aware alternate Hard routes now pass169 exact Game/browser
   checkpoints,3978 DOM events and1584 flight presentations. Eight fresh browser
   cases cover entries,treasure,banking and Restart;deposits2150/1150/2100/2700
-  all reach day6 with three lives. All24 comparison/missing-movement controls
+  all reach day6 with three lives. Four additional entry-only browser replays
+  now consume956 events apiece in the passing17-case integration receipt.
+  All32 comparison/missing-movement controls
   pass;required fixture removal/corruption and restoration are checked separately.
   [Hard alternates](office-hard-expeditions.md).
 

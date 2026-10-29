@@ -1,5 +1,11 @@
 # Hard mountain completion routes
 
+> Historical pre-security evidence. The recipes and numerical results below
+> describe that earlier build. Current route commands use the security-aware
+> recordings documented in [Hard alternate expeditions](security-hard-expeditions.md).
+> Original inputs and expected results are preserved.
+
+
 Two fresh Hard Earned Cash campaigns now complete the remaining mountain layouts
 through actual browser controls, then bank and restart. Thunderclap Mountain
 (slot33, LOC asset4, flags18) uses variant1. Machu Picchu (slot5, LOC asset10,

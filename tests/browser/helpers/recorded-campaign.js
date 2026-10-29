@@ -53,6 +53,7 @@ export async function runRecordedCampaign({
       "omit-hard-choice",
       "omit-jungle-move",
       "omit-mountain-move",
+      "omit-expedition-move",
       "omit-lightning-throttle",
     ].includes(negativeMode)
   )
@@ -120,17 +121,25 @@ export async function runRecordedCampaign({
   const start = await page.evaluate(() => performance.now());
   expect(start, "Recorded display-clock origin").toBe(environment.clockOrigin);
   let currentTime = start;
-  const omittedMove = ["omit-jungle-move", "omit-mountain-move"].includes(
-    negativeMode,
-  )
+  const omittedMove = [
+    "omit-jungle-move",
+    "omit-mountain-move",
+    "omit-expedition-move",
+  ].includes(negativeMode)
     ? events.findIndex(
         (e, i) =>
           i >= checks[0].eventCount &&
           e.type === "keydown" &&
-          e.key === "ArrowRight",
+          (negativeMode === "omit-expedition-move"
+            ? ["ArrowLeft", "ArrowRight"].includes(e.key)
+            : e.key === "ArrowRight"),
       )
     : -1;
-  if (["omit-jungle-move", "omit-mountain-move"].includes(negativeMode))
+  if (
+    ["omit-jungle-move", "omit-mountain-move", "omit-expedition-move"].includes(
+      negativeMode,
+    )
+  )
     expect(omittedMove).toBeGreaterThanOrEqual(0);
   const recoveryPoint = checks.find((c) => c.name === "slowed");
   const omittedRecovery =
@@ -241,9 +250,10 @@ export async function runRecordedCampaign({
         `Carried browser pixels${i} ${checkpoint.name}`,
       ).toBe(checkpoint.pixelsSha256);
       actualEvents = await page.evaluate(() => window.recordedCampaignEvents);
-      expect(actualEvents.map(inputBoundary)).toEqual(
-        events.slice(0, consumed).map(inputBoundary),
-      );
+      expect(
+        actualEvents.map(inputBoundary),
+        "Recorded external event sequence",
+      ).toEqual(events.slice(0, consumed).map(inputBoundary));
       console.log(
         `recorded checkpoint${i} ${checkpoint.name} (${consumed} events)`,
       );

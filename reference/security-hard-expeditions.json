@@ -1,0 +1,326 @@
+{
+  "id": "security-aware-hard-alternate-expeditions",
+  "pending": false,
+  "browserVerified": true,
+  "expectedCaseCount": 4,
+  "expectedFullCheckpointCount": 169,
+  "expectedEventCount": 3970,
+  "captureRoot": ".local/security-hard-expeditions-01",
+  "captureCommit": "d670ca59fe9b361bd0500b9c2077d2c5162c3f54",
+  "artifactRoot": ".local/security-hard-expeditions-accepted-01",
+  "browserCommit": "19ec3341810d1e5737dfbf7bb1cbb571383fcc38",
+  "entryCaptureRoot": ".local/security-hard-entries-01",
+  "entryCaptureCommit": "1224c58538631b75455ba4f76da251d077b5dd6b",
+  "entryArtifactRoot": ".local/security-hard-entries-accepted-01",
+  "entryBrowserCommit": "cff6dd1e00841ce22af6a6ae7dfa3a1967f2548f",
+  "cases": [
+    {
+      "key": "bermuda",
+      "manifest": "reference/security-hard-bermuda.json",
+      "expectedInputs": 447,
+      "expectedCheckpoints": 34,
+      "expectedEvents": 992,
+      "expectedDeposit": 2150
+    },
+    {
+      "key": "boola",
+      "manifest": "reference/security-hard-boola.json",
+      "expectedInputs": 421,
+      "expectedCheckpoints": 26,
+      "expectedEvents": 984,
+      "expectedDeposit": 1150
+    },
+    {
+      "key": "thunderclap",
+      "manifest": "reference/security-hard-thunderclap.json",
+      "expectedInputs": 494,
+      "expectedCheckpoints": 46,
+      "expectedEvents": 990,
+      "expectedDeposit": 2100
+    },
+    {
+      "key": "machu",
+      "manifest": "reference/security-hard-machu.json",
+      "expectedInputs": 706,
+      "expectedCheckpoints": 63,
+      "expectedEvents": 1004,
+      "expectedDeposit": 2700
+    }
+  ],
+  "artifacts": {
+    "capture-source": {
+      "path": ".local/security-hard-expeditions-01/source-revision.json",
+      "bytes": 16158,
+      "sha256": "dd2635dee1ef8a2e6dab8f846004ca8912bb5722daff2b595c14fa89ab2a3ce3"
+    },
+    "browser-source": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-source-revision.json",
+      "bytes": 16152,
+      "sha256": "ff48ce50cff679070719028a099a05b3c45ef83e330046a32a7c69f1de4f1196"
+    },
+    "browser-results": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-report.json",
+      "bytes": 32724,
+      "sha256": "4acbf593c8e64d49b7ed56b16ebf2bb3828823c0773bb149df24fb56133e4a9d"
+    },
+    "entry-capture-source": {
+      "path": ".local/security-hard-entries-01/source-revision.json",
+      "bytes": 14871,
+      "sha256": "0913bcbb5f67eed33f8cea097651be94df6753d43e59b366c9d5c1207f28c3e1"
+    },
+    "entry-browser-source": {
+      "path": ".local/security-hard-entries-accepted-01/browser-source-revision.json",
+      "bytes": 8905,
+      "sha256": "50e3de57acc1338c0004981775c9fa51825dea7d7fee5c786ee83b3e09fbb1a5"
+    },
+    "entry-browser-results": {
+      "path": ".local/security-hard-entries-accepted-01/browser-report.json",
+      "bytes": 7696,
+      "sha256": "97e68c6d13e4016ee156265f227064a53af0b884057aca62cafd176e87f82d00"
+    },
+    "input-profile": {
+      "path": "reference/security-hard-expedition-inputs.json",
+      "bytes": 10013,
+      "sha256": "702cb5b498518e02c2804e1d30fd0e7f137737690ea89de07155484824020d63"
+    },
+    "entry-catalog": {
+      "path": "reference/security-hard-entries.json",
+      "bytes": 3540,
+      "sha256": "7f426bcb9610dcf5b9c90b1d50219ff8f62f8e05daf2923755a7e41b825bcdf3"
+    },
+    "manifest-bermuda": {
+      "path": "reference/security-hard-bermuda.json",
+      "bytes": 19148,
+      "sha256": "36026b4a9f4fe3eadc5e7c5ae0576918b4269e107e31e179dd1081cbe35c8a39"
+    },
+    "entry-manifest-bermuda": {
+      "path": "reference/security-hard-bermuda-entry.json",
+      "bytes": 1469,
+      "sha256": "a6c37fb83e67444f4dd70df6905f2e005c2c20e4ad1c1fafd178ddd83fe13f56"
+    },
+    "entry-png-bermuda": {
+      "path": ".local/security-hard-entries-01/hard-bermuda-jungle-browser/jungle-entry.png",
+      "bytes": 20324,
+      "sha256": "0640cb694cebd1b07565e4ca5629cb756cf2d11104aeaffee5430e082cbcb58d"
+    },
+    "bermuda-browser-checkpoints": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-e485b-t-through-treasure-and-bank/campaign-checkpoints.json",
+      "bytes": 121803,
+      "sha256": "b00981e468838b9e1b5e9ec5d61c248c897f011e8b7078b69707ee1d81ac50fe"
+    },
+    "bermuda-browser-progress": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-e485b-t-through-treasure-and-bank/replay-progress.json",
+      "bytes": 3280,
+      "sha256": "c6473c33011c50b2877eec1b9a3146b1126cea17f9ab2e8bede0e6cdb4a34dcf"
+    },
+    "bermuda-browser-events": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-e485b-t-through-treasure-and-bank/actual-events.json",
+      "bytes": 88933,
+      "sha256": "27c92becf1ab2b0da7b63188b07e1ed4e7ecc1f8235a0916495d82f73bde22de"
+    },
+    "bermuda-entry-checkpoints": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-ber-f059b-rough-security-and-the-race/campaign-checkpoints.json",
+      "bytes": 3540,
+      "sha256": "8a58356d31a2b9e2d4cb8bea4d19b3f3ef0c9e834c1dddd49c03cbc4d08b8187"
+    },
+    "bermuda-entry-progress": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-ber-f059b-rough-security-and-the-race/replay-progress.json",
+      "bytes": 3130,
+      "sha256": "f26aeb67d28e9a5bfccf7e69660bbf1e517bcfc97e7cc7210f1945c02d0f2a37"
+    },
+    "bermuda-entry-events": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-ber-f059b-rough-security-and-the-race/actual-events.json",
+      "bytes": 85275,
+      "sha256": "038c7b64921a81f660a70dea7aff6bbd76c3c75002b0d3cab480730294555b10"
+    },
+    "manifest-boola": {
+      "path": "reference/security-hard-boola.json",
+      "bytes": 15179,
+      "sha256": "d3411689bc3087f7da527a59e0edb6569301cf7f1a3dd984fc2f022641e29188"
+    },
+    "entry-manifest-boola": {
+      "path": "reference/security-hard-boola-entry.json",
+      "bytes": 1455,
+      "sha256": "a5a3b79c76f9b59e46f26600b9aeb71e54b416c0680f21ffe65f8aa93b00fc11"
+    },
+    "entry-png-boola": {
+      "path": ".local/security-hard-entries-01/hard-boola-jungle-browser/jungle-entry.png",
+      "bytes": 20324,
+      "sha256": "0640cb694cebd1b07565e4ca5629cb756cf2d11104aeaffee5430e082cbcb58d"
+    },
+    "boola-browser-checkpoints": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-fa267-t-through-treasure-and-bank/campaign-checkpoints.json",
+      "bytes": 93400,
+      "sha256": "0cdd97bd042957d517ebe8ee45b5479238814194624cf47f8b8e5150706b8302"
+    },
+    "boola-browser-progress": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-fa267-t-through-treasure-and-bank/replay-progress.json",
+      "bytes": 3280,
+      "sha256": "cf6113607b8dd9a714d138340d7a07d21108f600922bf37cd72e5e0abed9abf0"
+    },
+    "boola-browser-events": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-fa267-t-through-treasure-and-bank/actual-events.json",
+      "bytes": 88177,
+      "sha256": "9c3612c31f120ef92bdaf1a2a07046aa61a4421a2e9d874d6f1fbe7fe19512ed"
+    },
+    "boola-entry-checkpoints": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-boo-ff8c5-rough-security-and-the-race/campaign-checkpoints.json",
+      "bytes": 3543,
+      "sha256": "153c612bb776f367ad11b63c2e2b0b75efa93479a926ebf011efc63e5b68aefb"
+    },
+    "boola-entry-progress": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-boo-ff8c5-rough-security-and-the-race/replay-progress.json",
+      "bytes": 3133,
+      "sha256": "34f17e40dc3d8f92cec40bdf84b2c0d40248bb357f7d95974c511f67ee4e7115"
+    },
+    "boola-entry-events": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-boo-ff8c5-rough-security-and-the-race/actual-events.json",
+      "bytes": 85275,
+      "sha256": "9d97119fc68455bb2e6e74b741760adf46edd46c66a430111cfe92f35a83ddbb"
+    },
+    "manifest-thunderclap": {
+      "path": "reference/security-hard-thunderclap.json",
+      "bytes": 25200,
+      "sha256": "cd64aec0cf2e98f799bd43d155556cdac28f78c8ff2abe0b0c7bf563ec2a7305"
+    },
+    "entry-manifest-thunderclap": {
+      "path": "reference/security-hard-thunderclap-entry.json",
+      "bytes": 1503,
+      "sha256": "a71db1b5b58fd0ef06da08f97274cfe479743ea5c3392287fdad0bec0b0d3fb0"
+    },
+    "entry-png-thunderclap": {
+      "path": ".local/security-hard-entries-01/hard-thunderclap-mountain-browser/mountain-entry.png",
+      "bytes": 20338,
+      "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+    },
+    "thunderclap-browser-checkpoints": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-551ff-t-through-treasure-and-bank/campaign-checkpoints.json",
+      "bytes": 167657,
+      "sha256": "23827e89b382fff5b4dc7e43fda46e7267edfd2c39c3e5322a25e4e9edf4e41e"
+    },
+    "thunderclap-browser-progress": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-551ff-t-through-treasure-and-bank/replay-progress.json",
+      "bytes": 3340,
+      "sha256": "89a28c1f392f3326f5951f02864d1e7ff4f32600e1f03c32b8189bc48a3c9123"
+    },
+    "thunderclap-browser-events": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-551ff-t-through-treasure-and-bank/actual-events.json",
+      "bytes": 88598,
+      "sha256": "5b0365d128ba3d029adb9b429d1319ac37c2530d0449978d1a5da5da416a1695"
+    },
+    "thunderclap-entry-checkpoints": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-thu-f9ef6-rough-security-and-the-race/campaign-checkpoints.json",
+      "bytes": 3619,
+      "sha256": "0f973887bb2dd393e8fc08cb1b8694708cc74bcee9326ae9abc79c7cb1d63b9b"
+    },
+    "thunderclap-entry-progress": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-thu-f9ef6-rough-security-and-the-race/replay-progress.json",
+      "bytes": 3199,
+      "sha256": "9e20221fb4ac85ffd7c691f72657f54199aee23377c4bfc2f0d028924d472604"
+    },
+    "thunderclap-entry-events": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-thu-f9ef6-rough-security-and-the-race/actual-events.json",
+      "bytes": 85278,
+      "sha256": "6ea432466694949f0777796279fc78b86abaa2815048f4f7bae20561cc516b43"
+    },
+    "manifest-machu": {
+      "path": "reference/security-hard-machu.json",
+      "bytes": 33176,
+      "sha256": "6d9ea79a498fc7d56de8e4fc4a72cfce02d0d127ccaa1ccb16e97e659bab4c82"
+    },
+    "entry-manifest-machu": {
+      "path": "reference/security-hard-machu-entry.json",
+      "bytes": 1461,
+      "sha256": "cc033d92c19135531f5b527f3af9c7d7d38f2c31aa9b1abb2c53cdd652891172"
+    },
+    "entry-png-machu": {
+      "path": ".local/security-hard-entries-01/hard-machu-mountain-browser/mountain-entry.png",
+      "bytes": 20338,
+      "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+    },
+    "machu-browser-checkpoints": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-77830-t-through-treasure-and-bank/campaign-checkpoints.json",
+      "bytes": 229239,
+      "sha256": "bfa126bc8810a5b3c069d17e5426f8887db6048ac3ad215cef99ae34908cf211"
+    },
+    "machu-browser-progress": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-77830-t-through-treasure-and-bank/replay-progress.json",
+      "bytes": 3320,
+      "sha256": "8835a8c8fbd550f7f7b585555f76766a9786af97b0632526a8fd258b317cf592"
+    },
+    "machu-browser-events": {
+      "path": ".local/security-hard-expeditions-accepted-01/browser-results/hard-expedition-replay-Har-77830-t-through-treasure-and-bank/actual-events.json",
+      "bytes": 89860,
+      "sha256": "60e1e4c1845c133916856722f91b9598633e5e988df80493cbb3d4b7f3e07dfb"
+    },
+    "machu-entry-checkpoints": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-mac-98e06-rough-security-and-the-race/campaign-checkpoints.json",
+      "bytes": 3617,
+      "sha256": "f476ea538191a7ab2d2bc9ca8c67256cfbb570f22fcac4d5ec5c2e6c14caaecf"
+    },
+    "machu-entry-progress": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-mac-98e06-rough-security-and-the-race/replay-progress.json",
+      "bytes": 3197,
+      "sha256": "62e6255e3e55171345fa0263ed04daa171df9d20cfd17c6b6293cfe4522373e2"
+    },
+    "machu-entry-events": {
+      "path": ".local/security-hard-entries-accepted-01/browser-results/hard-entry-replay-Hard-mac-98e06-rough-security-and-the-race/actual-events.json",
+      "bytes": 85274,
+      "sha256": "36d3d603374ae3fbf32268a9defa0176d1dd7f105d57b66285a40b2a1c710a69"
+    },
+    "negative-bermuda": {
+      "path": ".local/security-hard-expeditions-accepted-01/movement-negative-records/bermuda.log",
+      "bytes": 1919,
+      "sha256": "79fc1789b88f1ed0daade5a9e70b9fe5d8af620e08b01fa2b41b9abbce1a2ac1"
+    },
+    "negative-boola": {
+      "path": ".local/security-hard-expeditions-accepted-01/movement-negative-records/boola.log",
+      "bytes": 1869,
+      "sha256": "a72f3537c1db5d45429ab9a329104d767c1728312f48cde66c395711cd6680cd"
+    },
+    "negative-thunderclap": {
+      "path": ".local/security-hard-expeditions-accepted-01/movement-negative-records/thunderclap.log",
+      "bytes": 1934,
+      "sha256": "a1430e1e8a124a51af9340e8194dfdaaab96f59b5beecba19733d4ac7824adb6"
+    },
+    "negative-machu": {
+      "path": ".local/security-hard-expeditions-accepted-01/movement-negative-records/machu.log",
+      "bytes": 1910,
+      "sha256": "561389e6d119ff1386808cf47d3317e3650b899f4b92d0412bf8fdbf9f785b15"
+    }
+  },
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "evidenceLevel": "closed-loop port regression and independent browser routes;not whole-native expedition parity",
+  "comparisonRules": [
+    "Exact complete Game state at every checkpoint",
+    "Exact decoded 320x200 RGBA browser pixels",
+    "Pointer normalization only at existing clamping/truncation consumption boundary"
+  ],
+  "environment": {
+    "biosSeed": 0,
+    "difficulty": 2,
+    "soundEnabled": false,
+    "clockOriginMilliseconds": 1,
+    "displayMilliseconds": 8
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "verify": "npm run verify:security-hard-expeditions",
+  "verificationTools": {
+    "scripts/verify-security-hard-expeditions.js": "e3e4be032554de4b89291f99290a04cd2f859dd4cf2395818a8c1349046d3ef7",
+    "scripts/verify-security-hard-movement-negative.js": "68b217732503eb13cd73328f1bc8d52bb6abcce1111f249f67c2a3b769e614ab",
+    "scripts/verify-security-hard-fixture-negatives.js": "5b7e56b8648d1394519fcf6bb85a82ba7dd00eea09c6d475eb06a21cc7ec58d2",
+    "scripts/verify-hard-expedition-negative.js": "e11cba0c5cd7022e0a21ae93f1a6d969d9d659f3ac80aadb35cc3895992ccee6",
+    "scripts/verify-hard-mountains-negative.js": "2274ace915f3ccbcecba3275c23ddd2c42d9811ce942c8e323fa49255e625e40",
+    "scripts/replay-hard-campaign.js": "4eea3c1fdb2fca8a8fba2627052efdcab592de3e91249c3762ccba2560a0b45f",
+    "tests/browser/helpers/recorded-campaign.js": "e2dba6254b13e98d54b943a09f59959a4d9f8bb1b488b930ba1264b70ef9f72f",
+    "tests/browser/helpers/entry-recording.js": "fae21ab665db3728a9f491f018d90c0ac7dd4eff9fb2db44b55703a33c0eb43c",
+    "tests/browser/helpers/flight-policy.js": "83a20623ad6885675699def84acc1b740104771c3143e8f0afbd7472c26527de",
+    "tests/browser/hard-expedition-route.js": "3e14c75bcfa2045445177b9c4dd1336908ade62171e40ee61183dc0748235c47",
+    "tests/browser/hard-expedition-replay.spec.js": "ad6b163be064d97753e602fb1b00b737c4a96cd3cc3305c989035d61cf4ac656",
+    "tests/browser/hard-expedition.spec.js": "193b05fa89aec164c05941176a9c39085cab3c000cdc42add848b90f23704d34",
+    "tests/browser/hard-mountains.spec.js": "c4d621f7e2f7fedc3e83c19b2551dc26ccbef290a79cfc0e902f86162ac98fea"
+  },
+  "negativeComparisonRule": "Omitting the first horizontal make must fail a carried state or independent DOM-event comparison at an expedition checkpoint;setup,timeout and endpoint failures are rejected."
+}

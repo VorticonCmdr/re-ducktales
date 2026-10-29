@@ -11,7 +11,14 @@
       "legacyInputs": "reference/hard-expedition-inputs.json",
       "legacyManifest": "reference/hard-jungle-browser.json",
       "activity": "jungle",
-      "variant": 1
+      "variant": 1,
+      "entryStateSha256": "1a8f0a16ece8086fdd8ba2f7d18a6857cd948ac43e5badf30bedd4e15e3b595a",
+      "entryPixelsSha256": "c8cd0c13735e9b5f663e7f1a6a4beec42e842f525979f1e05a3d8844a3362fb3",
+      "entryPng": {
+        "path": ".local/security-hard-entries-01/hard-bermuda-jungle-browser/jungle-entry.png",
+        "bytes": 20324,
+        "sha256": "0640cb694cebd1b07565e4ca5629cb756cf2d11104aeaffee5430e082cbcb58d"
+      }
     },
     {
       "key": "boola",
@@ -19,7 +26,14 @@
       "legacyInputs": "reference/boola-expedition-inputs.json",
       "legacyManifest": "reference/boola-jungle-browser.json",
       "activity": "jungle",
-      "variant": 2
+      "variant": 2,
+      "entryStateSha256": "61f1a662da65be31d8a45916f1e2f666eb0de8784021f09302a4558111ee3662",
+      "entryPixelsSha256": "c8cd0c13735e9b5f663e7f1a6a4beec42e842f525979f1e05a3d8844a3362fb3",
+      "entryPng": {
+        "path": ".local/security-hard-entries-01/hard-boola-jungle-browser/jungle-entry.png",
+        "bytes": 20324,
+        "sha256": "0640cb694cebd1b07565e4ca5629cb756cf2d11104aeaffee5430e082cbcb58d"
+      }
     },
     {
       "key": "thunderclap",
@@ -27,7 +41,14 @@
       "legacyInputs": "reference/thunderclap-expedition-inputs.json",
       "legacyManifest": "reference/thunderclap-mountain-browser.json",
       "activity": "mountain",
-      "variant": 1
+      "variant": 1,
+      "entryStateSha256": "d0e098164c7421e1f14c33ec46472296fbcd98b72a483de5b14e565321fab826",
+      "entryPixelsSha256": "97e5a21de13093580ca418822baf1d3f142eaba5c0f3baf6326e59f0cced7f6d",
+      "entryPng": {
+        "path": ".local/security-hard-entries-01/hard-thunderclap-mountain-browser/mountain-entry.png",
+        "bytes": 20338,
+        "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+      }
     },
     {
       "key": "machu",
@@ -35,7 +56,21 @@
       "legacyInputs": "reference/machu-expedition-inputs.json",
       "legacyManifest": "reference/machu-mountain-browser.json",
       "activity": "mountain",
-      "variant": 2
+      "variant": 2,
+      "entryStateSha256": "49d0598b7ecbcba1d6bec726a44ff9e6129f9cb3afad3a2f6872e224389e21cc",
+      "entryPixelsSha256": "97e5a21de13093580ca418822baf1d3f142eaba5c0f3baf6326e59f0cced7f6d",
+      "entryPng": {
+        "path": ".local/security-hard-entries-01/hard-machu-mountain-browser/mountain-entry.png",
+        "bytes": 20338,
+        "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+      }
     }
-  ]
+  ],
+  "expectedCaseCount": 4,
+  "expectedEventCount": 3816,
+  "expectedCheckpointCount": 4,
+  "browserProducer": ".local/security-hard-entries-accepted-01/browser-source-revision.json",
+  "browserCommit": "cff6dd1e00841ce22af6a6ae7dfa3a1967f2548f",
+  "browserReport": ".local/security-hard-entries-accepted-01/browser-report.json",
+  "browserVerified": true
 }

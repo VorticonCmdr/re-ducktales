@@ -884,5 +884,8 @@
       "bytes": 27601,
       "sha256": "b8d6cee4758d4a6252c19900751e1e8763b65a110f3cb61daec36e3d15e58095"
     }
-  }
+  },
+  "browserVerified": true,
+  "browserCommit": "19ec3341810d1e5737dfbf7bb1cbb571383fcc38",
+  "scope": "Current security-aware Hard expedition/treasure/banking segment;not full campaign or native whole-expedition parity"
 }

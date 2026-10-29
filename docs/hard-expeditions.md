@@ -1,5 +1,11 @@
 # Hard races and jungle expeditions
 
+> Historical pre-security evidence. The recipes and numerical results below
+> describe that earlier build. Current route commands use the security-aware
+> recordings documented in [Hard alternate expeditions](security-hard-expeditions.md).
+> Original inputs and expected results are preserved.
+
+
 The browser route starts a fresh Hard Earned Cash campaign, wins the first race
 to Bermuda Triangle, completes jungle variant1 with all three lives, returns with
 2050 cash, deposits it at Macaroon on day6, and restarts cleanly. No game state,

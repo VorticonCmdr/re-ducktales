@@ -45,6 +45,11 @@ unchanged; no seed is reset to preserve old expectations.
   Strike36 clears held controls, fresh keys recover, and neutral poll43 consumes
   final releases. All three shared recorded routes retain fresh browser acceptance.
   [Lightning evidence](security-lightning.md).
+- Hard Bermuda/Boola jungles and Thunderclap/Machu mountains retain layouts1/2,
+  complete with three lives, claim treasure and deposit on day6. Independent Game
+  and browser replays match169 full state/pixel checkpoints and3970 DOM events;
+  four entry replays and eight full browser cases pass.
+  [Alternate Hard routes](security-hard-expeditions.md).
 - Security-aware bank/endings/trading, map controls, departure dispatches, cave
   retry/treasure, Too-Pei transmitter/atomic travel, photography and real-audio
   notices have focused acceptance. [Travel integration](security-route-integration.md),
@@ -80,8 +85,7 @@ pictures and traces stay local. Production visitors select their own originals.
 
 ## Remaining work
 
-- Migrate alternate Hard expedition recordings and the linked Easy campaign
-  through security; preserve old inputs. Promote the newly
+- Migrate the linked Easy campaign through security; preserve old inputs. Promote the newly
   accepted Hard recording deliberately, then pass the full branch gate before merging.
 - Original office entry/selection, investment transitions and several map/notice
   presentations remain incomplete. Broader destination/difficulty coverage and
@@ -106,6 +110,8 @@ npm run verify:security-jungle-entry
 npm run verify:security-jungle-treasure
 npm run verify:security-mountain-ascent
 npm run verify:security-lightning
+npm run verify:security-hard-expeditions
+npm run test:security-hard-expeditions
 ```
 
 Other focused commands are documented with their scenarios. Missing/corrupt

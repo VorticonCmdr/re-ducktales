@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "id": "original-map-ordinary-key-profile",
+  "expectedReads": 36,
+  "cases": [
+    {
+      "name": "right",
+      "keys": [
+        "KBD_right"
+      ],
+      "heldReads": 3,
+      "releasedReads": 4
+    },
+    {
+      "name": "k",
+      "keys": [
+        "KBD_k"
+      ],
+      "heldReads": 3,
+      "releasedReads": 4
+    },
+    {
+      "name": "k-left",
+      "keys": [
+        "KBD_k",
+        "KBD_left"
+      ],
+      "heldReads": 3,
+      "releasedReads": 4
+    },
+    {
+      "name": "kp3",
+      "keys": [
+        "KBD_kp3"
+      ],
+      "heldReads": 3,
+      "releasedReads": 4
+    },
+    {
+      "name": "m-up",
+      "keys": [
+        "KBD_m",
+        "KBD_up"
+      ],
+      "heldReads": 3,
+      "releasedReads": 4
+    }
+  ],
+  "events": [
+    {
+      "beforeRead": 1,
+      "case": "right",
+      "keys": [
+        {
+          "key": "KBD_right",
+          "pressed": true
+        }
+      ]
+    },
+    {
+      "beforeRead": 4,
+      "case": "right",
+      "keys": [
+        {
+          "key": "KBD_right",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 8,
+      "case": "k",
+      "keys": [
+        {
+          "key": "KBD_k",
+          "pressed": true
+        }
+      ]
+    },
+    {
+      "beforeRead": 11,
+      "case": "k",
+      "keys": [
+        {
+          "key": "KBD_k",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 15,
+      "case": "k-left",
+      "keys": [
+        {
+          "key": "KBD_k",
+          "pressed": true
+        },
+        {
+          "key": "KBD_left",
+          "pressed": true
+        }
+      ]
+    },
+    {
+      "beforeRead": 18,
+      "case": "k-left",
+      "keys": [
+        {
+          "key": "KBD_k",
+          "pressed": false
+        },
+        {
+          "key": "KBD_left",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 22,
+      "case": "kp3",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": true
+        }
+      ]
+    },
+    {
+      "beforeRead": 25,
+      "case": "kp3",
+      "keys": [
+        {
+          "key": "KBD_kp3",
+          "pressed": false
+        }
+      ]
+    },
+    {
+      "beforeRead": 29,
+      "case": "m-up",
+      "keys": [
+        {
+          "key": "KBD_m",
+          "pressed": true
+        },
+        {
+          "key": "KBD_up",
+          "pressed": true
+        }
+      ]
+    },
+    {
+      "beforeRead": 32,
+      "case": "m-up",
+      "keys": [
+        {
+          "key": "KBD_m",
+          "pressed": false
+        },
+        {
+          "key": "KBD_up",
+          "pressed": false
+        }
+      ]
+    }
+  ],
+  "scope": "Authored make/release schedule at the original map input-call boundary. Outcomes and clock values are recorded separately;no injected CPU/memory values or restores."
+}

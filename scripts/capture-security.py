@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 import socket
 import struct
+import subprocess
 import sys
 import time
 
@@ -18,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument('--output', required=True)
 parser.add_argument('--port', type=int, default=8387)
+parser.add_argument('--map-inputs', action='store_true', help='Continue through security into the authored natural map-keyboard scenario')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 args = parser.parse_args()
 out = (ROOT / args.output).resolve()
@@ -56,6 +58,7 @@ def attach(url, token):
     return info
 manager = InstanceManager(cfg, attach=attach)
 owned = set()
+owned_segments = {}
 inputs = []
 
 def wait_until(read, predicate, timeout=15):
@@ -75,14 +78,17 @@ def sequence(events):
 def keys(*events):
     sequence([{'type': 'key', 'key': key, 'pressed': pressed, 't': 0} for key, pressed in events])
 
-def add(ip):
-    bp = client.post('/api/v1/debug/breakpoints', json={'type': 'execute', 'segment': overlay, 'offset': ip})
+def add(ip, segment=None):
+    segment = overlay if segment is None else segment
+    bp = client.post('/api/v1/debug/breakpoints', json={'type': 'execute', 'segment': segment, 'offset': ip})
     owned.add(bp['id'])
+    owned_segments[bp['id']] = segment
     return bp['id']
 
 def remove(bp):
     client.delete('/api/v1/debug/breakpoints', json={'id': bp})
     owned.remove(bp)
+    del owned_segments[bp]
 
 def resume(stop_id):
     resumed = client.post('/api/v1/debug/continue')
@@ -90,7 +96,7 @@ def resume(stop_id):
     stop = client.get('/api/v1/debug/wait', params={'since_stop_id': stop_id, 'timeout_ms': 15000}, timeout=20)
     assert stop['satisfied'] and stop['stop_id'] > stop_id
     assert stop['breakpoint']['id'] in owned
-    assert stop['registers']['cs'] == overlay and not stop['protected_mode']
+    assert stop['registers']['cs'] == owned_segments[stop['breakpoint']['id']] and not stop['protected_mode']
     return stop
 
 def state(name, stop, picture=True):
@@ -244,6 +250,80 @@ try:
     assert stop['registers']['eax'] == 1
     final = state('return',stop)
     remove(return_bp)
+    if args.map_inputs:
+        profile_path = ROOT / 'reference/map-keyboard-inputs.json'
+        profile = json.loads(profile_path.read_text())
+        assert profile['expectedReads'] == 36 and len(profile['events']) == 10
+        by_read = {e['beforeRead']: e for e in profile['events']}
+        assert len(by_read) == 10 and all(0 <= i < 36 for i in by_read)
+        code = "import{readFile}from'node:fs/promises';import{unpackImage}from'./src/game/executable.js';process.stdout.write(Buffer.from(unpackImage(await readFile('game/DUCKTALE.EXE'))).toString('base64'));"
+        main = bytearray(base64.b64decode(subprocess.check_output(['node','--input-type=module','-e',code],cwd=ROOT)))
+        assert len(main) == 87664
+        exe = (ROOT/'game/DUCKTALE.EXE').read_bytes()
+        eh = struct.unpack_from('<14H',exe)
+        cursor = eh[4]*16+eh[11]*16+0x125
+        for region in range(16):
+            count = struct.unpack_from('<H',exe,cursor)[0];cursor += 2
+            for i in range(count):
+                at = struct.unpack_from('<H',exe,cursor)[0]+region*65536;cursor += 2
+                struct.pack_into('<H',main,at,(struct.unpack_from('<H',main,at)[0]+load)&65535)
+        ranges=[('reader',load+0x124,2,0x1242,876),
+                ('scanner',load+0x40e,0x19c5,0x5aa5,114),
+                ('irq',load+0x40e,0x1aa9,0x5b89,173),
+                ('clock',load+0x40e,0xdc4,0x4ea4,8),
+                ('deadline',load,0x9ab8,0x9ab8,49)]
+        reads=client.post('/api/v1/batch',json={'ops':[{'op':'mem_read','segment':segment,'offset':offset,'len':length}for _,segment,offset,_,length in ranges]})
+        assert not reads['aborted'] and all(r['status']=='ok'for r in reads['results'])
+        for (name,_,_,at,length),r in zip(ranges,reads['results'],strict=True):
+            assert base64.b64decode(r['data']) == main[at:at+length],f'Resident map code mismatch {name}'
+        save('map-resident-mapping',{'load':load,'ds':ds,'ranges':[{'name':name,'segment':segment,'offset':offset,'imageOffset':at,'length':length}for name,segment,offset,at,length in ranges],'read':reads})
+        map_cs = overlay + 0xca
+        entry_bp = add(0x1228, map_cs)
+        stop = resume(stop['stop_id'])
+        assert stop['breakpoint']['id'] == entry_bp
+        live_map = client.post('/api/v1/batch', json={'ops':[{'op':'mem_read','segment':overlay,'offset':0,'len':8368}]})
+        assert not live_map['aborted'] and live_map['results'][0]['status'] == 'ok'
+        assert base64.b64decode(live_map['results'][0]['data']) == relocated
+        save('map-live-overlay', {'segment':overlay,'entrySegment':map_cs,'entryStop':stop,'read':live_map})
+        start_map = state('map-entry',stop)
+        # At the far-call entry,SS:SP+4/+6 contain the caller's cursor pointers.
+        sp = stop['registers']['esp'] & 65535
+        x_ptr,y_ptr = struct.unpack_from('<HH',start_map,sp+4)
+        assert x_ptr < 65535 and y_ptr < 65535
+        remove(entry_bp)
+        before_bp,input_bp,end_bp = add(0x1238,map_cs),add(0x123d,map_cs),add(0x140e,map_cs)
+        map_records=[]
+        for index in range(36):
+            row={'index':index}
+            for stage,bp in [('before',before_bp),('input',input_bp),('end',end_bp)]:
+                stop=resume(stop['stop_id'])
+                assert stop['breakpoint']['id'] == bp
+                name=f'map-{index:03d}-{stage}'
+                data=state(name,stop,False)
+                row[stage]={'artifact':name+'.json','stopId':stop['stop_id'],
+                            'clock':struct.unpack_from('<I',data,0x2225)[0],
+                            'deadline':struct.unpack_from('<I',data,0x27f8)[0],
+                            'period':struct.unpack_from('<I',data,0x27fc)[0],
+                            'readerMode':data[0x3c1],
+                            'ax':stop['registers']['eax'] & 65535,
+                            'x':struct.unpack_from('<h',data,x_ptr)[0],
+                            'y':struct.unpack_from('<h',data,y_ptr)[0]}
+                if stage=='before' and index in by_read:
+                    event=by_read[index]
+                    row['scheduledInputRecord']=len(inputs)
+                    keys(*[(e['key'],e['pressed'])for e in event['keys']])
+            map_records.append(row)
+        for bp in [before_bp,input_bp,end_bp]:remove(bp)
+        replay=client.get('/api/v1/input/replay/status')
+        assert not replay['active'] and replay['remaining']==0
+        assert data[0x276c:0x27ec] == bytes(128)
+        save('map-consumption',map_records)
+        save('map-capture',{'completed':True,'inputReads':36,'authoredSequences':10,
+                           'profile':str(profile_path.relative_to(ROOT)),
+                           'profileSha256':sha(profile_path.read_bytes()),
+                           'xPointer':x_ptr,'yPointer':y_ptr,'segment':map_cs,
+                           'injections':[],'partialRestore':False,'replay':replay,
+                           'scope':'Natural map input/IRQ-table/flush/clock observations after conditional fresh-launch security setup. Not browser or full native timing parity.'})
     assert not owned
     save('inputs',inputs)
     save('capture',{'completed':True,'pid':manager.pid,'instanceId':info['instance_id'],'port':args.port,'initialSeed':struct.unpack_from('<H',initial,0x2229)[0],'finalSeed':struct.unpack_from('<H',final,0x2229)[0],'rngCalls':len(draws),'wrongFirst':warned,'navigation':args.navigation and warned,'requiredInputPolls':4+(3+(2 if args.navigation else 0) if warned else 1),'injections':[],'partialRestore':False,'scriptSha256':sha(Path(__file__).read_bytes())})

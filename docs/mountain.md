@@ -10,6 +10,22 @@ Machu Picchu/variant2 also reach the summit with three lives, bank2100/2700 on
 day6 and restart. Their494/706 samples and59/73 actor/hook/RNG checkpoints are
 required; see [Hard mountain routes](hard-mountains.md).
 
+## Current timing integration
+
+The default sprite-work scheduler is newer than the historical receipts below.
+`npm run verify:mountain-sprite-timing` passes a fresh Easy summit/return/duplicate
+route and fixed-duration browser controls,including pause/quit and natural life
+reset. It preserves764 movement samples,870 presentations,$8,100 and three lives;
+27 complete states/pictures and104 recorded DOM events replay independently.
+Ordinary movement now pays original sprite opcode/port costs before retrace,
+with a captured14-interval walk at599.264ms versus604.032ms in the original
+counter benchmark. [Evidence and limitations](expedition-timing.md).
+
+This is partial timing integration: copy,text,line,loading and other CPU work
+remain uncharged. The older Hard routes and campaign receipts have not been
+refreshed for this scheduler. Their historical completion claims below are not
+current timing acceptance. Broader source/fixture migrations remain incomplete.
+
 ## Supported source and analysis
 
 Use the exact DUCKTALE.EXE and MT.ARC identities in `reference/build.json`.
@@ -190,7 +206,7 @@ pass through actual browser keyboard events and the existing scheduler; all26
 checkpoints match,using the corrected startup RNG seeds in
 `reference/campaign-startup-browser.json`. Historical conditional-seed ascent
 expectations remain in the original manifest. No state is injected. Playwright controls time and supplies
-a125Hz display cadence so every70Hz simulation consumption can be observed
+a125Hz display cadence so every70Hz simulation callback can be observed
 without two samples sharing one browser callback. This scenario verifies the
 input/render/reward/calendar adapters under that explicit display environment;
 it does not establish original wall-clock parity. The existing mountain

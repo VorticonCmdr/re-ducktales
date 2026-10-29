@@ -1,0 +1,90 @@
+{
+  "id": "first-mountain-sprite-timing-integration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "ce112a806e363b77eb2ec76b9ef064bde3ce6017",
+  "sourceFileCount": 603,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "verificationCommand": "npm run verify:mountain-sprite-timing",
+  "verificationExitCode": 0,
+  "unitCommand": "npm test",
+  "unitCases": 123,
+  "unitFailures": 0,
+  "productionBuild": "npm run build",
+  "unitBuildRuntimeSource": "3a99961;only receipt/docs changed before the combined ce112a8 verification",
+  "scope": [
+    "Original sprite opcode/port work charged before mountain retrace;no integer movement,RNG or audio-clock change",
+    "15 captured movement checkpoints and fresh named endpoints preserve checked game values;14-interval cadence599.264ms versus604.032ms native counter benchmark",
+    "80 read-only original samples bracket26 page changes;no intermediate execution stops",
+    "Complete browser summit/award/rival/duplicate/restart route:27 exact states/pictures,104 DOM events,764 movement samples,870 presentations,$8100,three lives",
+    "Independent600ms DOM hold,driver-clock progression,pause/quit and natural life reset",
+    "Required one-retrace component bypass,missing browser movement and one-retrace browser bypass all rejected"
+  ],
+  "limitations": [
+    "Copy/text/line,asset-loading and non-graphics CPU execution are not yet charged",
+    "Jungle,cave and safari pacing unchanged and unmeasured by this milestone",
+    "No native whole-level pixel/timing or arbitrary-route acceptance",
+    "Earlier Hard mountain/browser campaign receipts are not refreshed for this timing implementation",
+    "Required shared-runtime regression still fails its historical runtime-file inventory;broader integration incomplete",
+    "Original release-edge direction still absent from expedition held-controls adapter"
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/mountain-sprite-milestone-01/runner-status.json",
+      "bytes": 280,
+      "sha256": "4b52a3cc3487b524a9f9da867c5afe556ddff2ccf8fd01d35072efb3255fb996"
+    },
+    "source": {
+      "path": ".local/mountain-sprite-milestone-01/source-revision.json",
+      "bytes": 65047,
+      "sha256": "560b74b7444e79471162c9562f6a57b8b4a4e90d7a235e8fcdb3c1c69f19875f"
+    },
+    "zip": {
+      "path": ".local/mountain-sprite-milestone-01/sources.zip",
+      "bytes": 1625282,
+      "sha256": "858b69ad9b685c21c1549c5e5df08f08900a826be0ce5337fc889977e7d935fc"
+    },
+    "verification-log": {
+      "path": ".local/mountain-sprite-milestone-01/verification.log",
+      "bytes": 6676,
+      "sha256": "778bf5e3e4aeff1ff89a362e5a4aea3bbf21bab2203c50fe02ddd22403c230e4"
+    },
+    "unit-log": {
+      "path": ".local/mountain-sprite-milestone-01/unit-tests.log",
+      "bytes": 11475,
+      "sha256": "1e74742725852d6e476dbe1100533d86635f1d565530ca3ae5c77e7a81226e21"
+    },
+    "build-log": {
+      "path": ".local/mountain-sprite-milestone-01/build.log",
+      "bytes": 832,
+      "sha256": "a07087c42dd6acc75b019c41a97012ff0f09a8f55000acf132a0bbb9ce4d9fee"
+    },
+    "broader-failure": {
+      "path": ".local/mountain-sprite-milestone-01/broader-shared-runtime.log",
+      "bytes": 8854,
+      "sha256": "64874c1b9681a3ce7fbeea69b754a5879fcaaa98a93e02a5e53b7ad6a2702d99"
+    },
+    "browser-route": {
+      "path": "reference/sprite-timed-mountain-ascent.json",
+      "bytes": 14550,
+      "sha256": "1b558e927cb1111c20d17e8179924be2f5d72f7f2ef3c1a8ea57b1ec8785a10d"
+    },
+    "native-pages": {
+      "path": "reference/mountain-pages.json",
+      "bytes": 7203,
+      "sha256": "a254110996304f12ba1cb353b6c97f0623a8bb9fbb91b9b50fd24f4cfa9e7e2e"
+    },
+    "native-work": {
+      "path": "reference/mountain-draw-work.json",
+      "bytes": 37320,
+      "sha256": "ebd246e37d5d55beff2a0ef7f49730fdec95e626357d4a9408674aee3df3463f"
+    },
+    "component-ascent": {
+      "path": "reference/mountain-ascent-sprite-work.json",
+      "bytes": 1286,
+      "sha256": "7a051fcfe2a7ca437469400aed3537497707916ff2add9076080b4cd346d6c57"
+    }
+  }
+}

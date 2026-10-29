@@ -66,39 +66,28 @@ These are focused port/browser checks, not
 native whole-level parity or a completed broader integration gate.
 [Evidence and reproduction](destination-route-integration.md).
 
-## Movement speed investigation
+## Movement timing
 
-**Mountain pacing now charges original sprite execution work before retrace.**
-The captured14-interval walk now spans599.264ms, versus604.032ms in the original
-counter benchmark, with unchanged checked actor/action/RNG values. This is a
-partial correction: copy/text/line and other CPU costs remain uncharged, and
-jungle/cave/safari pacing is unchanged. The refreshed browser route now passes27 exact state/picture checkpoints with104
-recorded DOM events,764 movement samples and the same $8,100/three-life outcome.
-The600ms DOM hold check passes and rejects the one-retrace browser bypass.
+Mountain now charges original sprite execution work before retrace. The captured
+walk spans599.264ms versus604.032ms in the original counter benchmark, with the
+checked actor/action/RNG values preserved. A separate original observer takes80
+read-only samples without intermediate stops and brackets26 page changes at a
+mean42.234–43.375ms per update in that scene. Dense debugger stops perturb timing;
+they are not an uninterrupted reference.
 
- A new original
-observer uses80 render-callback samples and independently scheduled Right/release
-inputs, with zero intermediate execution stops. Its26 page changes bracket a
-mean42.234–43.375ms per update in this mountain scene, versus the port's14.268ms
-presentation allowance. The source confirms drawing work followed by a retrace
-wait. Other scenes and jungle/cave/safari pacing remain unmeasured.
+**`npm run verify:mountain-sprite-timing` passes.** It covers the original/port
+component checks,764-input summit,870 presentations,27 exact browser state/picture
+checkpoints,104 DOM events,$8,100 returned cash,three lives,600ms real DOM hold,pause/quit,
+life reset and required component/browser negatives. All123 unit cases and the
+production build also pass. [Verification receipt](../reference/mountain-sprite-timing-integration.json).
 
-`npm run verify:mountain-pages` passes all80 samples and three negative controls.
-`npm run verify:ega-work` passes98 sprite operations,14 conditional hazard
-comparisons,14 inferred erase rectangles, the bulk restore path and six controls.
-Sprite work is connected to scheduling; copy work is translated but is not yet
-charged. Dense debugger captures remain scoped evidence: adding
-stops changes emulated elapsed time despite pause-clock invariance. The original
-release-edge direction is also absent from the expedition held-control adapter.
-
-`npm run verify:expedition-timing-evidence` checks the evidence;
-`npm run verify:expedition-timing` now passes the captured mountain cadence
-comparison and rejects an isolated one-retrace bypass. Broader fixture/source
-migrations remain open; this is not whole-game timing acceptance.
-`npm run verify:mountain-sprite-timing` runs the focused integration gate. Its
-final combined run is pending. Next: charge remaining graphics/CPU work, extend
-pacing evidence to the other expedition families and migrate broader regressions.
-[Evidence, source locations and reproduction](expedition-timing.md).
+Timing remains partial: copies,text,lines,asset loading and other CPU costs are
+uncharged; jungle/cave/safari pacing is unchanged. The expedition adapter still
+misses the original release-edge direction. Earlier Hard/campaign timing receipts
+need refresh. `npm run verify:shared-runtime` still fails its historical runtime
+file inventory; the full required integration gate is not green. Next: extend
+work accounting and expedition evidence, then migrate the broader regressions.
+[Scope, source locations and reproduction](expedition-timing.md).
 
 ## Connected gameplay and evidence
 

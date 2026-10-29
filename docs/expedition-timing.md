@@ -281,8 +281,8 @@ npm run diagnose:expedition-timing
 npm run verify:expedition-timing
 ```
 
-The first checks the evidence and reports the mismatch; it is not timing
-acceptance. The strict diagnostic and verification commands fail on a cadence difference
+The first checks the evidence and reports the selected comparison; it is not
+whole-original timing acceptance. The strict diagnostic and verification commands fail on a cadence difference
 outside the declared native-counter phase tolerance. They now pass the selected
 walk, and the one-retrace bypass must fail. The full `npm run verify` requires this check
 after original-build validation; it cannot silently accept the known fast cadence.
@@ -305,7 +305,7 @@ normal security segment still completes after the pause experiment.
 
 Next: distinguish original per-frame execution/drawing cost across workloads,
 measure jungle, cave and safari, and connect the original expedition key flags.
-Implement the execution-time boundary without changing integer movement, RNG or
+Extend the execution-time boundary without changing integer movement, RNG or
 music clocks. A constant three-frame delay fitted to this one walk is not an
 accepted correction.
 
@@ -371,5 +371,9 @@ npm run verify:mountain-sprite-timing
 This focused command runs original build/clock evidence, the timing-bypass
 negative, component/init/movement/climb/palette and system-input checks, actual
 browser controls and fixed-event replay, both browser negatives, and strict source
-receipt/state/picture/event verification. Its final combined run is pending.
-It does not replace the incomplete broader integration gate.
+receipt/state/picture/event verification. The combined command passed on `ce112a8`, with both browser cases and both
+browser negatives completed. All123 unit cases and the production build also
+pass on the same runtime. The [integration receipt](../reference/mountain-sprite-timing-integration.json)
+pins the source ZIP,runner and log. The separate required shared-runtime check
+still fails its historical runtime-file inventory; the broader gate remains
+incomplete.

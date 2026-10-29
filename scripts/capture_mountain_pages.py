@@ -37,9 +37,11 @@ def capture_mountain_pages(*, client, stop, before, ds, sequence, state,
     save('page-observer-script', {'source': script,
          'templateSha256': hashlib.sha256(authored.encode()).hexdigest(),
          'ds': ds, 'ega': ega})
-    loaded = client.post('/api/v1/script/load', json={
-        'script': script, 'name': 'mountain-page-observer', 'start': True})
-    save('page-observer-loaded', loaded)
+    # Same raw-text load and separate start as the installed script_load tool.
+    loaded = client.post_text('/api/v1/script/load', script,
+                              params={'name': 'mountain-page-observer'})
+    started = client.post('/api/v1/script/start')
+    save('page-observer-loaded', {'load': loaded, 'start': started})
     # Fixed relative rendered-frame schedule: independent of actor/page outputs.
     events = [
         {'type': 'key', 'key': 'KBD_right', 'pressed': True, 'frame': 0},

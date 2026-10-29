@@ -6,18 +6,27 @@ finishability and full original-game parity remain unproven.
 
 ## Current verified milestone
 
-Original office entry/reveal,keyboard selection and all three departures now
-connect to the campaign. The complete required `npm run verify` passed on source
-`d34d194`:117 unit checks,91 development-browser cases and2 production-browser
-cases,zero skips,with the required original comparisons and negative controls.
-Receipts and all515 tested source files are retained in
-`.local/office-integration-full-gate-20261029-03/`.
-[Integration manifest](../reference/office-integration.json).
+The ordinary-key core now drives office key scanning,and the investment departure
+has the correct browser status label. The complete required `npm run verify`
+passed on source `8446d79`:117 unit checks,91 development-browser cases and2
+production-browser cases,zero skips,with the required original comparisons and
+negative controls. All529 tested source files and raw results are retained in
+`.local/keyboard-integration-full-gate-20261029-01/`.
+[Integration manifest](../reference/keyboard-integration.json).
 
-Receipt/checker and documentation commits follow that tested source. The receipt
-command below validates the historical complete run;it does not execute a fresh
-whole-game acceptance test. Earlier security integration remains separately
-recorded in [security-integration.json](../reference/security-integration.json).
+This includes36 original map input/flag/pointer comparisons and a fresh seven-case
+shared browser regression across complete Easy/Hard,jungle and mountain routes.
+The map deadline component and its original35-call comparison are separate work;
+this gate does not include their later map-caller branch. Letter/keypad browser
+bindings and faithful map polling/flush integration remain unfinished.
+
+The receipt command validates this actual complete historical run;it does not
+execute fresh whole-game acceptance. Receipt/documentation commits follow the
+tested source without runtime/test/config changes. The production output copy
+was repaired after the successful run using the configured output directory;
+the verification command itself was not repeated or altered. Earlier
+[office](../reference/office-integration.json) and
+[security](../reference/security-integration.json) receipts remain preserved.
 
 ## Working routes and evidence
 
@@ -64,14 +73,14 @@ Production visitors select their own originals. No deployment is performed.
 
 ## Remaining work and next milestone
 
-- On the isolated keyboard branch,OfficeMenu now uses the shared original
+- OfficeMenu now uses the shared original
   ordinary-key core.36 fresh native map input/flag/pointer comparisons and the
-  unchanged Easy/Hard carried campaign replays pass. Main still runs the earlier
-  verified office milestone. Seven fresh office/investment/trading browser cases pass on87bf2ed;an
+  unchanged Easy/Hard carried campaign replays pass. Seven fresh office/
+  investment/trading browser cases pass on87bf2ed;an
   omitted real chord key is detected. Seven additional complete campaign/jungle/
   mountain browser cases pass onc42799a with the original expected values.
-  Focused native/route verification also passes. The complete branch gate
-  remains required before main integration.
+  The complete keyboard gate passes on8446d79. The separate map-caller branch
+  still needs its own Game/browser integration and acceptance.
   [Input rules and reproduction](ordinary-keyboard.md).
 - On the separate map-caller branch,the deadline component passes35 original
   completion calls with70 separately captured clock results and four negative
@@ -81,9 +90,8 @@ Production visitors select their own originals. No deployment is performed.
   Game currently uses two. A30-read original hold under MCP explicit input
   produced only one movement;browser held/repeat integration remains unfinished.
   The native input comparison does not prove Game timing.
-- The keyboard branch corrects the investment departure status to “Opening
-  investments…”. The fresh browser assertion passes;main still has the generic
-  money-bin label. Its animation and trading destination work correctly.
+- The investment departure status is “Opening investments…”,verified in the
+  actual browser alongside its original animation and trading destination.
 - Original map/notice presentation and polling details,broader destination and
   difficulty finishability,and original whole-scene/campaign comparisons remain.
   A broader exploratory controller is not acceptance evidence.
@@ -98,7 +106,7 @@ Production visitors select their own originals. No deployment is performed.
 
 ```
 npm run verify
-node scripts/verify-office-integration.js
+node scripts/verify-keyboard-integration.js
 npm run verify:office-menu
 npm run verify:ordinary-keyboard
 npm run verify:shared-runtime

@@ -3,10 +3,10 @@
   "pending": false,
   "milestone": "flight-lightning",
   "expectedHard": false,
-  "artifactRoot": ".local/security-lightning-accepted-01",
-  "captureRoot": ".local/security-lightning-01",
-  "captureProducer": ".local/security-lightning-01/source-revision.json",
-  "captureCommit": "ecc2b721a0acb09bcd358ca565bee92ee6598138",
+  "artifactRoot": ".local/security-lightning-accepted-02",
+  "captureRoot": ".local/security-lightning-02",
+  "captureProducer": ".local/security-lightning-02/source-revision.json",
+  "captureCommit": "b509141062206b7cb5051153c51d4411cb00eac5",
   "expectedCheckpointCount": 6,
   "checkpointNames": [
     "departure",
@@ -17,7 +17,7 @@
     "released"
   ],
   "requiredEventCount": 164,
-  "expectedFlightPresentations": 42,
+  "expectedFlightPresentations": 43,
   "expectedFlagAliasPresentations": 0,
   "checkpoints": [
     {
@@ -57,47 +57,47 @@
     },
     {
       "name": "released",
-      "at": 9285,
+      "at": 9365,
       "eventCount": 164,
-      "stateSha256": "9fa9bc87104be6cd3b69d4d5bba2a9d632febdd14b9d4a5f71ab9780785e44d7",
-      "pixelsSha256": "05e5ba510b2fc0b24756d9625a36dc0a3ddb74f2e586de8d6fa853af8707aeb4"
+      "stateSha256": "97627ca5fd28f662dbab57c5397d75dfe0db39c6aaa21ef482fe25032e813062",
+      "pixelsSha256": "7dd28cdb8e80640ac7dbee823e7e930e1208042b9634dfe4164e22b968dbd783"
     }
   ],
   "expectedOutcome": {
-    "frames": 42,
-    "presentations": 42,
-    "seed": 33809,
+    "frames": 43,
+    "presentations": 43,
+    "seed": 8907,
     "phase": "flying",
-    "inputReads": 42,
-    "lastInputCode": 193
+    "inputReads": 43,
+    "lastInputCode": 0
   },
   "expectedInputCount": 35,
   "bankTrips": 3,
   "artifacts": {
     "environment": {
-      "path": ".local/security-lightning-accepted-01/environment.json",
-      "bytes": 264,
-      "sha256": "1bf7c83e268eb8771e3ee9436109b061b8cb2ce681cea05008822c9b570e4ff0"
+      "path": ".local/security-lightning-accepted-02/environment.json",
+      "bytes": 251,
+      "sha256": "2d2d31d09880c6bcba8a1deb9797949131106b2bca4cb5a2e5302808364cff13"
     },
     "captured-events": {
-      "path": ".local/security-lightning-accepted-01/captured-events.json",
+      "path": ".local/security-lightning-accepted-02/captured-events.json",
       "bytes": 19093,
       "sha256": "0130040464152e5e34e1122fb4fcd017ec43d8bf971b49f48cfc585989a95066"
     },
     "campaign-checkpoints": {
-      "path": ".local/security-lightning-accepted-01/campaign-checkpoints.json",
-      "bytes": 16665,
-      "sha256": "2a5fba2594e1a803b587f9416cc42c993744f7d99500f6fe1e35896753b5b9f6"
+      "path": ".local/security-lightning-accepted-02/campaign-checkpoints.json",
+      "bytes": 16677,
+      "sha256": "9891b56bc9be9c73470343896ce3e9b28e6b114d5a169c7d24679fba3dc77201"
     },
     "timeline": {
-      "path": ".local/security-lightning-accepted-01/timeline.json",
+      "path": ".local/security-lightning-accepted-02/timeline.json",
       "bytes": 579,
-      "sha256": "1bd296a06b9a93f81e757bf4653754270122d1f929e819178469dd658e859ccf"
+      "sha256": "696520f0b8906a8ac0620b21d898852ae4bf5b4c535b95da16fbfe0fa5f91b5b"
     },
     "capture-source": {
-      "path": ".local/security-lightning-01/source-revision.json",
-      "bytes": 9241,
-      "sha256": "c52fa739eac5b6a54a67e36106380e01505438373ec654ebaa37f234fcf364cb"
+      "path": ".local/security-lightning-02/source-revision.json",
+      "bytes": 9233,
+      "sha256": "fc94e2ba37898fe1e0eba0c2776d2e00748000ba7ff463e497f67d87efabda69"
     },
     "input-profile": {
       "path": "reference/security-lightning-inputs.json",
@@ -105,34 +105,34 @@
       "sha256": "42cb010d085b54208eb07d69e653b631eba4e89915c0c8acce8b616784c4528e"
     },
     "png-departure": {
-      "path": ".local/security-lightning-01/departure.png",
+      "path": ".local/security-lightning-02/departure.png",
       "bytes": 9956,
       "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
     },
     "png-before-strike": {
-      "path": ".local/security-lightning-01/before-strike.png",
+      "path": ".local/security-lightning-02/before-strike.png",
       "bytes": 9030,
       "sha256": "5940766396d3a78ae63714b17ffdf4a89db67c89dd7ff0738079a41072c3e34c"
     },
     "png-strike": {
-      "path": ".local/security-lightning-01/strike.png",
+      "path": ".local/security-lightning-02/strike.png",
       "bytes": 9943,
       "sha256": "886be5f6282758d01ae073e4dd7e9ab8d0e877867578fccf5ac486233361a46d"
     },
     "png-slowed": {
-      "path": ".local/security-lightning-01/slowed.png",
+      "path": ".local/security-lightning-02/slowed.png",
       "bytes": 8797,
       "sha256": "92784881984cfc50e005860113ba7fa083d3a853ca177f3061176a04da7d9b09"
     },
     "png-recovery": {
-      "path": ".local/security-lightning-01/recovery.png",
+      "path": ".local/security-lightning-02/recovery.png",
       "bytes": 10004,
       "sha256": "54333ff5c59e7aff07f0d4066cfc2ba35938fb01c1f844d9b572249046e6d845"
     },
     "png-released": {
-      "path": ".local/security-lightning-01/released.png",
-      "bytes": 9929,
-      "sha256": "d918da10c6b25a5f20bcc9153f2afef9a5f5b5d9c6cc8d318279a822b377e6e5"
+      "path": ".local/security-lightning-02/released.png",
+      "bytes": 9105,
+      "sha256": "c1ca6ad9c9a241d61415983e29d69da6a6c0960dac8407165ea322922d0f86e1"
     }
   }
 }

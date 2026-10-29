@@ -97,6 +97,18 @@ chords, altered pixels and altered original code. Missing/corrupt required PNGs
 also fail, and their restored originals must pass again. These comparisons do
 not substitute for the pending complete branch/campaign gate.
 
+The retained browser receipt pins29 actual canvas pictures, the seven individual
+Playwright CLI case results, passed runner status and163 runtime/test/config
+source files at5e5cb13. The checker validates the original-exact saved pictures
+again and rejects removed, skipped or incorrectly counted case reports. The
+source note distinguishes a later addition to the unused default verification
+chain from the unchanged focused command that actually ran.
+
+The current ordinary-key adapter implements arrows, Enter and Space. Original
+letter-direction aliases are not implemented here yet. Wider cross-scene key
+history and headless campaign adapters still need migration; this fixture does
+not establish complete original keyboard behavior in every context.
+
 Reproduce with the installed DOSBox MCP Python environment and the same
 `DUCKTALES_DOSBOX_MCP_ROOT` setup described for
 [investment departure](office-investments.md):

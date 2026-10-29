@@ -298,6 +298,100 @@ const changed = Buffer.from(body);
 changed[0x415] ^= 1;
 assert.throws(() => checkCode(changed), /Original office code identity/);
 compare(profile);
+const browser = m.browser;
+assert.equal(browser.completed, true);
+assert.equal(browser.expectedCaseCount, 7);
+assert.equal(browser.expectedPictureCount, 29);
+assert.equal(browser.expectedInputCount, 63);
+assert.equal(browser.sourceFileCount, 163);
+assert.equal(Object.keys(browser.artifacts).length, 34);
+for (const a of Object.values(browser.artifacts)) {
+  const b = await required(a.path);
+  assert.equal(b.length, a.bytes, `Truncated ${a.path}`);
+  assert.equal(sha(b), a.sha256, `Corrupt ${a.path}`);
+}
+const source = await json(browser.artifacts["source-revision.json"].path);
+assert.equal(source.commit, browser.sourceCommit);
+assert.equal(Object.keys(source.files).length, 163);
+const sourceRoot = browser.artifacts["source-revision.json"].path.replace(
+  /\/source-revision\.json$/,
+  "/sources",
+);
+for (const [p, h] of Object.entries(source.files)) {
+  assert.equal(sha(await required(`${sourceRoot}/${p}`)), h, p);
+  assert.equal(
+    sha(execFileSync("git", ["show", `${source.commit}:${p}`])),
+    h,
+    p,
+  );
+}
+assert.deepEqual(await json(browser.artifacts["browser-status.json"].path), {
+  status: "passed",
+  failedTests: [],
+});
+function checkBrowserLog(text) {
+  const cases = [...text.matchAll(/^  ✓\s+(\d+) (tests\/browser\/[^:]+)/gm)];
+  assert.deepEqual(
+    cases.map((c) => Number(c[1])),
+    [1, 2, 3, 4, 5, 6, 7],
+  );
+  assert.deepEqual(
+    cases.map((c) => c[2]),
+    [
+      "tests/browser/investments.spec.js",
+      "tests/browser/investments.spec.js",
+      "tests/browser/office-investments.spec.js",
+      "tests/browser/office-menu.spec.js",
+      "tests/browser/office-menu.spec.js",
+      "tests/browser/office.spec.js",
+      "tests/browser/office.spec.js",
+    ],
+  );
+  assert.match(text, /^  7 passed /m);
+  assert.doesNotMatch(text, /^\s*(?:\d+ (?:failed|skipped|flaky)|✘)/m);
+  for (const marker of [
+    "Office menu browser negative:",
+    "Office menu setup negatives:",
+  ])
+    assert.ok(text.includes(marker), `Missing focused gate segment ${marker}`);
+}
+const browserLog = (
+  await required(browser.artifacts["focused-gate.log"].path)
+).toString();
+checkBrowserLog(browserLog);
+assert.throws(() => checkBrowserLog(browserLog.replace(/^  ✓\s+4 .*\n/m, "")));
+assert.throws(() => checkBrowserLog(`${browserLog}\n  1 skipped\n`));
+assert.throws(() =>
+  checkBrowserLog(browserLog.replace("  7 passed ", "  6 passed ")),
+);
+for (const [name, native] of pictures) {
+  const png = PNG.sync.read(
+    await required(browser.artifacts[name + ".png"].path),
+  );
+  assert.deepEqual([png.width, png.height], [320, 200]);
+  assert.deepEqual(
+    png.data,
+    native,
+    `Retained original-exact browser picture ${name}`,
+  );
+}
+const bad = (
+  await required(browser.artifacts["missing-chord.log"].path)
+).toString();
+for (const pattern of [
+  /up-right-make/,
+  /Expected:\s*3/,
+  /Received:\s*1/,
+  /1 failed/,
+])
+  assert.match(bad, pattern);
+assert.doesNotMatch(
+  bad,
+  /SETUP:|No tests found|Test timeout|TimeoutError|browserType\.launch:|ETIMEDOUT|Test was interrupted/,
+);
+const unitLog = (await required(browser.artifacts["unit.log"].path)).toString();
+for (const s of ["ℹ tests 117", "ℹ pass 117", "ℹ fail 0", "ℹ skipped 0"])
+  assert.ok(unitLog.includes(s));
 console.log(
-  "Office menu core:29 exact original transition/label pictures,63 original input values from19 independent authored key events,eight direction/chord/release cases,50 entry retraces,return40 and flush;5 negative controls. Initial black-page/component scope,not full Game/browser/CPU timing parity.",
+  "Office menu:29 exact native and browser pictures,63 original input values from19 independent authored events,eight key/chord/release cases,50 entry retraces;7 browser cases/163 archived sources;8 checker negatives plus missing real chord key. Initial black-page/component and focused browser scope,not whole-Game/native CPU timing parity.",
 );

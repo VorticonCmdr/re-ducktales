@@ -7,9 +7,9 @@ receipt is `.local/office-integration-full-gate-20261028/`.
 Control-center departure and security were subsequently connected and passed
 the security-aware integration gate; see [security](security.md) and
 [current status](STATUS.md). The subsequent isolated
-[investment departure](office-investments.md) now has native/focused browser
-acceptance; its main integration and the initial office reveal/selection remain
-unfinished.
+[investment departure](office-investments.md) and [office entry/selection](office-menu.md)
+now have native/focused browser acceptance. Their full branch gate and main
+integration remain pending.
 
 Run `npm run verify:office` for the core, two actual browser cases and the
 missing-Up negative. `npm run verify:office-core` checks retained evidence only.

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "Original component comparison; dedicated browser acceptance and full branch gate pending.",
+  "status": "Original component and focused browser acceptance; campaign migration and complete branch gate pending.",
   "buildManifest": "reference/build.json",
   "buildSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
   "captureCommit": "2eb25b1",
@@ -609,6 +609,187 @@
     "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
     "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
     "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
-    "scripts/verify-office-menu.js": "5bf53308087e98fa09040cd2219d6be3c169de92ccc2f9b2008fa12c4b971f91"
+    "scripts/verify-office-menu.js": "972e482da719f2b0bc6eb2388ef374cea917e4db3c9bfd3cbca05413fd3cd4b3"
+  },
+  "browser": {
+    "completed": true,
+    "expectedCaseCount": 7,
+    "expectedPictureCount": 29,
+    "expectedInputCount": 63,
+    "sourceCommit": "5e5cb13cda71db0a23202aaa80ee58bcdcfbfb00",
+    "sourceFileCount": 163,
+    "receiptType": "Playwright CLI individual case lines plus passed runner status; not a JSON reporter conversion.",
+    "artifacts": {
+      "focused-gate.log": {
+        "path": ".local/office-menu-accepted-01/focused-gate.log",
+        "bytes": 2495,
+        "sha256": "38d045c57dcf76d5d9742017f7c4592d9f80647505fc175bcc71eb382d8091d9"
+      },
+      "browser-status.json": {
+        "path": ".local/office-menu-accepted-01/browser-status.json",
+        "bytes": 46,
+        "sha256": "fff6299efb51ba9ef550e500ecc967e972c83e86be387042c360caea7fdbae29"
+      },
+      "source-revision.json": {
+        "path": ".local/office-menu-accepted-01/source-revision.json",
+        "bytes": 17249,
+        "sha256": "76ea94d05e9c533a9d558373ca10e7f15188ce6639df758a0a4db33dfc46832b"
+      },
+      "missing-chord.log": {
+        "path": ".local/office-menu-accepted-01/missing-chord.log",
+        "bytes": 1578,
+        "sha256": "8564b9eb2e0ee6cf0b0f3206c4f0ef5b9c1f5cfabdeafb4328b1b7ec3ade5652"
+      },
+      "unit.log": {
+        "path": ".local/office-menu-accepted-01/unit.log",
+        "bytes": 10894,
+        "sha256": "5874f31b82c7202e3cd19fdaa91d6ad75a0c1f7d68c7b24ba26c09b1f55c89c4"
+      },
+      "wipe-0.png": {
+        "path": ".local/office-menu-accepted-01/wipe-0.png",
+        "bytes": 2149,
+        "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+      },
+      "wipe-1.png": {
+        "path": ".local/office-menu-accepted-01/wipe-1.png",
+        "bytes": 2149,
+        "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+      },
+      "wipe-2.png": {
+        "path": ".local/office-menu-accepted-01/wipe-2.png",
+        "bytes": 2149,
+        "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+      },
+      "wipe-3.png": {
+        "path": ".local/office-menu-accepted-01/wipe-3.png",
+        "bytes": 2149,
+        "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+      },
+      "wipe-4.png": {
+        "path": ".local/office-menu-accepted-01/wipe-4.png",
+        "bytes": 2149,
+        "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+      },
+      "reveal-0.png": {
+        "path": ".local/office-menu-accepted-01/reveal-0.png",
+        "bytes": 14221,
+        "sha256": "637762ad36dc0e073ea9409fcbda34d3850c3c5c788fd03a228232a1c7ac166d"
+      },
+      "reveal-1.png": {
+        "path": ".local/office-menu-accepted-01/reveal-1.png",
+        "bytes": 20659,
+        "sha256": "9128abef72d0e16fe95aaa2b025cbd63e5ae19835d314c135b58adf346cb1637"
+      },
+      "reveal-2.png": {
+        "path": ".local/office-menu-accepted-01/reveal-2.png",
+        "bytes": 26813,
+        "sha256": "a2f332666d8bcb58baf62ae5a48278a170162850170448dda1f797eb94e5f212"
+      },
+      "reveal-3.png": {
+        "path": ".local/office-menu-accepted-01/reveal-3.png",
+        "bytes": 32702,
+        "sha256": "5454c4182bcf2f83076b5098cb5fa5a765e6ce0e93ecc97cc9ed4e4bc76e4867"
+      },
+      "reveal-4.png": {
+        "path": ".local/office-menu-accepted-01/reveal-4.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "initial-input.png": {
+        "path": ".local/office-menu-accepted-01/initial-input.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "neutral-fire.png": {
+        "path": ".local/office-menu-accepted-01/neutral-fire.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "neutral-after-fire.png": {
+        "path": ".local/office-menu-accepted-01/neutral-after-fire.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "up-held.png": {
+        "path": ".local/office-menu-accepted-01/up-held.png",
+        "bytes": 32709,
+        "sha256": "99beb1486c505338b5005f646c5408d6190f2a80ab2e0a03b347e0f0b1c5f8b4"
+      },
+      "up-neutral.png": {
+        "path": ".local/office-menu-accepted-01/up-neutral.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "right-held.png": {
+        "path": ".local/office-menu-accepted-01/right-held.png",
+        "bytes": 33109,
+        "sha256": "ab1eb17ad9cad0b4fb665695df5b66429d0099e9bcaa9497d4de0376ccd7b1f1"
+      },
+      "right-neutral.png": {
+        "path": ".local/office-menu-accepted-01/right-neutral.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "left-held.png": {
+        "path": ".local/office-menu-accepted-01/left-held.png",
+        "bytes": 33258,
+        "sha256": "7235431ada7dde1fafcc53d83252600dc388aa356f762edef8e665cc404fab5c"
+      },
+      "left-neutral.png": {
+        "path": ".local/office-menu-accepted-01/left-neutral.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "down-held.png": {
+        "path": ".local/office-menu-accepted-01/down-held.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "down-neutral.png": {
+        "path": ".local/office-menu-accepted-01/down-neutral.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "up-right-held.png": {
+        "path": ".local/office-menu-accepted-01/up-right-held.png",
+        "bytes": 33109,
+        "sha256": "ab1eb17ad9cad0b4fb665695df5b66429d0099e9bcaa9497d4de0376ccd7b1f1"
+      },
+      "up-right-neutral.png": {
+        "path": ".local/office-menu-accepted-01/up-right-neutral.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "up-left-held.png": {
+        "path": ".local/office-menu-accepted-01/up-left-held.png",
+        "bytes": 33258,
+        "sha256": "7235431ada7dde1fafcc53d83252600dc388aa356f762edef8e665cc404fab5c"
+      },
+      "up-left-neutral.png": {
+        "path": ".local/office-menu-accepted-01/up-left-neutral.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "left-right-held.png": {
+        "path": ".local/office-menu-accepted-01/left-right-held.png",
+        "bytes": 33109,
+        "sha256": "ab1eb17ad9cad0b4fb665695df5b66429d0099e9bcaa9497d4de0376ccd7b1f1"
+      },
+      "left-right-neutral.png": {
+        "path": ".local/office-menu-accepted-01/left-right-neutral.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "up-down-held.png": {
+        "path": ".local/office-menu-accepted-01/up-down-held.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      },
+      "up-down-neutral.png": {
+        "path": ".local/office-menu-accepted-01/up-down-neutral.png",
+        "bytes": 32784,
+        "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+      }
+    }
   }
 }

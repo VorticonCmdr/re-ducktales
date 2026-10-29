@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "completed": true,
+  "scope": "Complete required ordinary-key office integration gate with selected full campaigns and scoped original comparisons. Browser letter/keypad binding,map-caller timing integration,arbitrary-route finishability and whole-game/native timing parity remain incomplete.",
+  "sourceCommit": "8446d792924692e0fcd39d0f63abc6f4182519a5",
+  "command": "npm run verify",
+  "exitCode": 0,
+  "unitCases": 117,
+  "developmentBrowserCases": 91,
+  "productionBrowserCases": 2,
+  "skips": 0,
+  "sourceFileCount": 529,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "verify.log": {
+      "path": ".local/keyboard-integration-full-gate-20261029-01/verify.log",
+      "bytes": 66126,
+      "sha256": "2372f5f272786d69a80e8de4a23da801e2d0dbd5b6fe8b3a195811c7f3cc99dc"
+    },
+    "runner-status.json": {
+      "path": ".local/keyboard-integration-full-gate-20261029-01/runner-status.json",
+      "bytes": 280,
+      "sha256": "ec17529be9de41ac583af0d59be77a38c0805c993cb1b238e7f0a12a0b91b261"
+    },
+    "source-revision.json": {
+      "path": ".local/keyboard-integration-full-gate-20261029-01/source-revision.json",
+      "bytes": 56627,
+      "sha256": "5122d51c679f5a936737d9fdc8d0feda3bed5d9b4faa0e1f795204a607b485a7"
+    },
+    "browser-collection.json": {
+      "path": ".local/keyboard-integration-full-gate-20261029-01/browser-collection.json",
+      "bytes": 64084,
+      "sha256": "756bea6af5dc4c20f39643328a02b42c43e806f4082552c6add677732b1dbdb2"
+    },
+    "development-status.json": {
+      "path": ".local/keyboard-integration-full-gate-20261029-01/development-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "production-status.json": {
+      "path": ".local/keyboard-integration-full-gate-20261029-01/production-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "collection-repair.json": {
+      "path": ".local/keyboard-integration-full-gate-20261029-01/collection-repair.json",
+      "bytes": 511,
+      "sha256": "8bf7ad7f5a3748e8731feaad17bf43f27d27aa89f59d2797b56273d3eaaaa933"
+    }
+  }
+}

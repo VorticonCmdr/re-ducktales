@@ -1,8 +1,9 @@
 # Original ordinary keys and map input
 
-The isolated keyboard branch introduces `ordinary-keyboard.js` and uses it in
-`OfficeMenu`,preserving the existing Map/snapshot representation. Main remains
-the earlier fully verified office integration until this branch is accepted.
+The shared `ordinary-keyboard.js` core is used in `OfficeMenu`,preserving the
+existing Map/snapshot representation. The complete keyboard integration gate
+passes on8446d79 with117 unit/91 development/2 production cases and529 archived
+source files. [Complete receipt](../reference/keyboard-integration.json).
 The browser's letter/keypad bindings and full map-loop translation are still
 pending;this is a shared input-core milestone,not whole keyboard parity.
 
@@ -12,8 +13,9 @@ asset loading,pixels,audio and restart,and checks the corrected investment
 status label. A separate run omitting real chord Right failed atup-right-make
 (expected3,received1),not setup or timeout. The new receipt preserves these
 results independently of the older office/investment browser receipts.
-The changed runtime still needs the wider shared campaign/browser gate before
-main integration;this focused result does not renew those older receipts.
+The wider shared regression and complete gate are recorded below and in the
+complete integration receipt. The focused result does not renew older receipts
+on its own.
 
 ## Rules and source
 
@@ -134,7 +136,8 @@ this separately pinned fresh regression. They do not replace the older source
 hash with a newly computed current hash. Only verification-tool metadata and the
 new receipt link may differ in referenced scenario declarations;inputs,expected
 values,comparison rules and capture identities must remain identical to c42799a.
-Ordinary keys still require the full branch gate before main integration.
+The complete keyboard gate subsequently passes on8446d79. Later map-caller
+changes require separate Game/browser acceptance.
 
 The event comparison uses the existing browser replay consumption boundary:
 keyboard time/type/key/target are exact;game-canvas pointerdown coordinates are

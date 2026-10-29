@@ -1,0 +1,34 @@
+{
+  "id": "security-linked-easy-campaign-player-candidates",
+  "scope": "Exploratory player controls;requires actual browser validation and independent replay. No expected state selects input.",
+  "flights": [
+    {
+      "altitude": [
+        10,
+        25
+      ],
+      "climbHeading": 1
+    },
+    {
+      "altitude": [
+        10,
+        25
+      ],
+      "climbHeading": 1
+    },
+    {
+      "altitude": [
+        10,
+        25
+      ],
+      "climbHeading": 1
+    },
+    {
+      "altitude": [
+        10,
+        25
+      ],
+      "climbHeading": 1
+    }
+  ]
+}

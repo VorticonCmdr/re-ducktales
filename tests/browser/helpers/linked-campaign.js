@@ -1,6 +1,7 @@
 import flightInputs from "../../../reference/hard-flight-inputs.json" with { type: "json" };
 import { replayFlightInputs } from "./flight-inputs.js";
 import { exploreFlight } from "./flight-policy.js";
+import easyInputs from "../../../reference/security-easy-campaign-inputs.json" with { type: "json" };
 import securityInputs from "../../../reference/security-campaign-inputs.json" with { type: "json" };
 import { finishSecurityEntry } from "./security.js";
 import { expect } from "@playwright/test";
@@ -270,7 +271,7 @@ export async function runLinkedCampaign({
         policy: hard
           ? (securityInputs.flights[flightNumber - 1] ??
             securityInputs.flights[0])
-          : null,
+          : (easyInputs.flights[flightNumber - 1] ?? easyInputs.flights[0]),
       });
       await until(
         (s) =>
@@ -376,6 +377,10 @@ export async function runLinkedCampaign({
     await fly({ crash: !hard });
     const entry = await state();
     expect(entry.scene).toBe("jungle");
+    if (!hard && capture && process.env.DUCKTALES_CAPTURE_EASY_ENTRY === "1") {
+      expect(entry.jungle.frames).toBe(0);
+      throw Error("EXPLORATORY Easy campaign entry saved;not acceptance");
+    }
     const jungleRoute = hard ? hardInitial.jungle : startup.jungle;
     if (!capture) expect(entry.jungle.seed).toBe(jungleRoute.entrySeed);
     let held = new Set(),

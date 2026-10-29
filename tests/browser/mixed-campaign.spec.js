@@ -8,5 +8,11 @@ test("one campaign carries four expeditions, rival activity and deposits through
 }, info) => {
   // Bounds the host-driven browser handoffs; simulation timing stays explicit.
   test.setTimeout(600000);
-  await runLinkedCampaign({ page, info, manifest });
+  const capture = process.env.DUCKTALES_CAPTURE_EASY_CAMPAIGN === "1";
+  await runLinkedCampaign({
+    page,
+    info,
+    manifest: capture ? { expected: {} } : manifest,
+    capture,
+  });
 });

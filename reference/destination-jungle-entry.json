@@ -1,0 +1,93 @@
+{
+  "id": "destination-aware-natural-jungle-entry",
+  "verificationEdition": "destination",
+  "milestone": "jungle-entry",
+  "expectedHard": false,
+  "pending": true,
+  "browserVerified": false,
+  "artifactRoot": ".local/destination-jungle-entry-accepted-01",
+  "captureRoot": ".local/destination-jungle-entry-capture-02/raw",
+  "captureCommit": "dbd7f9b1cd904e4e4970c9d1f5c035c7e6d25a18",
+  "sourceFileCounts": {
+    "capture": 574
+  },
+  "expectedCheckpointCount": 1,
+  "requiredEventCount": 50,
+  "checkpointNames": [
+    "jungle-entry"
+  ],
+  "expectedFlightPresentations": 74,
+  "expectedFlagAliasPresentations": 0,
+  "entry": {
+    "day": 16,
+    "money": 0,
+    "location": 1,
+    "briefingSeed": 3824,
+    "jungleSeed": 14769,
+    "frames": 0
+  },
+  "entryStateSha256": "30253d951d61c148754497a193cb25a9916688b9601ac2aac69f8eee679eed0c",
+  "entryPixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7",
+  "artifacts": {
+    "environment": {
+      "path": ".local/destination-jungle-entry-accepted-01/environment.json",
+      "bytes": 467,
+      "sha256": "a7a570d2455bdc5aee3dfb74fb7b2850ebc1a2413b75f29ba6b8a3b63703e0ab"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/destination-jungle-entry-accepted-01/campaign-checkpoints.json",
+      "bytes": 3487,
+      "sha256": "dd4387b7bdf6d32a81b24caa06e3c015fa89c8ba0675d6c6b7494c5f88451208"
+    },
+    "captured-events": {
+      "path": ".local/destination-jungle-entry-accepted-01/captured-events.json",
+      "bytes": 5698,
+      "sha256": "e7f776ed133b22ec76183ff3b97a664ef78dcf0097495206e176f53b1525762e"
+    },
+    "timeline": {
+      "path": ".local/destination-jungle-entry-accepted-01/timeline.json",
+      "bytes": 178,
+      "sha256": "4a72d0ac4decddfd5e89a82404329137524b01f1afd2833aeb0f8b9bf43c52f3"
+    },
+    "capture-source": {
+      "path": ".local/destination-jungle-entry-capture-02/source-revision.json",
+      "bytes": 61788,
+      "sha256": "62d40e911d2b82437c103b9ee3b4195c3928743c4af81d2e1151185a7021f4cd"
+    },
+    "capture-zip": {
+      "path": ".local/destination-jungle-entry-capture-02/sources.zip",
+      "bytes": 1522644,
+      "sha256": "6b9bd6276001dbcb84a7f686a793cbc517a2ebc8343ef8ae92c4a207a659f77f"
+    },
+    "capture-environment": {
+      "path": ".local/destination-jungle-entry-capture-02/raw/environment.json",
+      "bytes": 211,
+      "sha256": "ae00c7a8cc905f460667565f34e5643f963b56731dfbc0d67012f5ce6884bbd4"
+    },
+    "entry-png": {
+      "path": ".local/destination-jungle-entry-capture-02/raw/entry.png",
+      "bytes": 19873,
+      "sha256": "560613d928335a016ad40d170d1f2ed6d48c1258bbe84d47d1d19db9d6f6df3c"
+    }
+  },
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "environmentContract": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "soundEnabled": false,
+    "inputStream": "Fixed captured DOM events,before-target-handler;no expected outputs select controls"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "comparisonRules": [
+    "Exact full entry state and all320x200 RGBA pixels",
+    "All50 events consumed from a fresh Game;no held keys,pending events or diagnostic tail"
+  ],
+  "limitations": [
+    "Port/browser prefix,not a native whole-scene comparison",
+    "Independent Game and fresh browser verification still required"
+  ]
+}

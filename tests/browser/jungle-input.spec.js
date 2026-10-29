@@ -8,7 +8,13 @@ import {
   canonical,
   digest,
 } from "./helpers/entry-recording.js";
-import entry from "../../reference/office-jungle-entry.json" with { type: "json" };
+import historicalEntry from "../../reference/office-jungle-entry.json" with { type: "json" };
+import { readFile } from "node:fs/promises";
+const entry = process.env.DUCKTALES_JUNGLE_ENTRY_MANIFEST
+  ? JSON.parse(
+      await readFile(process.env.DUCKTALES_JUNGLE_ENTRY_MANIFEST, "utf8"),
+    )
+  : historicalEntry;
 import { PNG } from "pngjs";
 
 test("jungle defers global keys, pauses actors and resumes cancelled quit", async ({

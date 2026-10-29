@@ -59,6 +59,14 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   async function observe(name) {
     const p = await observeRecordedRoute({ page, state: await state(), name });
     observations.push(p);
+    if (capture)
+      await saveRecordedRoute({
+        page,
+        root: capture,
+        observations,
+        scope:
+          "Exploratory mountain route observations; incomplete until complete-map",
+      });
     if (!capture) {
       const expected = accepted.checkpoints[checked++];
       expect(expected).toBeDefined();

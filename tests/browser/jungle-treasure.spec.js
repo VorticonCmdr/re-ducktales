@@ -9,8 +9,19 @@ import {
   saveRecordedRoute,
 } from "./helpers/entry-recording.js";
 import inputs from "../../reference/security-jungle-treasure-inputs.json" with { type: "json" };
-import accepted from "../../reference/office-jungle-treasure.json" with { type: "json" };
-import entry from "../../reference/office-jungle-entry.json" with { type: "json" };
+import historicalAccepted from "../../reference/office-jungle-treasure.json" with { type: "json" };
+import historicalEntry from "../../reference/office-jungle-entry.json" with { type: "json" };
+import { readFile } from "node:fs/promises";
+const accepted = process.env.DUCKTALES_JUNGLE_TREASURE_MANIFEST
+  ? JSON.parse(
+      await readFile(process.env.DUCKTALES_JUNGLE_TREASURE_MANIFEST, "utf8"),
+    )
+  : historicalAccepted;
+const entry = process.env.DUCKTALES_JUNGLE_ENTRY_MANIFEST
+  ? JSON.parse(
+      await readFile(process.env.DUCKTALES_JUNGLE_ENTRY_MANIFEST, "utf8"),
+    )
+  : historicalEntry;
 
 test("keyboard jungle completion awards treasure and prevents duplicate collection", async ({
   page,
@@ -51,6 +62,14 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
       name,
     });
     observations.push(point);
+    if (capture)
+      await saveRecordedRoute({
+        page,
+        root: capture,
+        observations,
+        scope:
+          "Exploratory jungle route observations; incomplete until complete-map",
+      });
     if (!capture) {
       const expected = accepted.checkpoints[checked++];
       expect(expected, "Required treasure checkpoint").toBeDefined();
@@ -73,8 +92,10 @@ test("keyboard jungle completion awards treasure and prevents duplicate collecti
   await waitForScene(page, canvas, "office");
   await easyJungleEntry({ page, canvas, state, until, press });
   const initial = await observe("entry");
-  expect(initial.stateSha256).toBe(entry.entryStateSha256);
-  expect(initial.pixelsSha256).toBe(entry.entryPixelsSha256);
+  if (!capture) {
+    expect(initial.stateSha256).toBe(entry.entryStateSha256);
+    expect(initial.pixelsSha256).toBe(entry.entryPixelsSha256);
+  }
   const stream = inputs.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
   expect(stream.length).toBe(860);
   expect(createHash("sha256").update(Buffer.from(stream)).digest("hex")).toBe(

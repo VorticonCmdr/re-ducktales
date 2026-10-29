@@ -1,0 +1,468 @@
+{
+  "id": "original-mountain-frame-sections",
+  "captureCommit": "ff0554c2c29c550f216a4a670ac919b1cc07dc57",
+  "completedTimingAcceptance": false,
+  "engineVersion": "0.84.0-vc1 (f6d9b)",
+  "engineBinarySha256": "85662a8383e0fde0734797451374b28a443166440fd9bf5823626505760d9d0f",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "expectedSectionCounterTotals": [
+    1,
+    5,
+    33,
+    1,
+    4
+  ],
+  "sections": [
+    "logic",
+    "erase",
+    "draw",
+    "history",
+    "flip-and-input"
+  ],
+  "environment": "Original normal core,3000 cycles,svga_s3,16MiB;fresh natural El Capitan entry and nonracing flight;neutral then held Right. No memory/register writes or restore. All15 input reads captured.",
+  "limitations": [
+    "Breakpoint-section observations;not uninterrupted scanout.",
+    "13.728ms timer quantization;individual frame/section values include phase uncertainty.",
+    "Original-only workload localization;no port timing correction or browser acceptance."
+  ],
+  "reproduce": "Use scripts/capture-security.py --pause-clock-test --mountain-timing --mountain-profile --port 8387 --output .local/new-mountain-profile/capture with the installed bridge Python and DUCKTALES_DOSBOX_MCP_ROOT environment. Archive clean committed source before launch, retain runner completion; see docs/expedition-timing.md.",
+  "verify": "npm run verify:mountain-frame-profile",
+  "artifacts": {
+    "runner": {
+      "path": ".local/mountain-pacing-profile-01/runner-status.json",
+      "bytes": 576,
+      "sha256": "3efb07920df623a412cbe7700be5a7a2ee6b61361f10d3009b9b0f91c5bac520"
+    },
+    "source": {
+      "path": ".local/mountain-pacing-profile-01/source-revision.json",
+      "bytes": 63269,
+      "sha256": "37ec1a1fdac19f7d67f68e952e74fa284c7cc3383605c3e32c89beacded43aea"
+    },
+    "zip": {
+      "path": ".local/mountain-pacing-profile-01/sources.zip",
+      "bytes": 1569871,
+      "sha256": "1ce76e4d39994d199c396d802a39be72803ab01886077624f9d1f10308c1c642"
+    },
+    "capture": {
+      "path": ".local/mountain-pacing-profile-01/capture/capture.json",
+      "bytes": 376,
+      "sha256": "7bcbad52bacbd4183fdc0e3f31845e74319b3685080a0225023fcaff3e7f6d31"
+    },
+    "engine": {
+      "path": ".local/mountain-pacing-profile-01/capture/engine.json",
+      "bytes": 3988,
+      "sha256": "a48897463836114b9f836a17ed073ee8239d6062839e955b935d6773111e8fcc"
+    },
+    "configuration": {
+      "path": ".local/mountain-pacing-profile-01/capture/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    "identity": {
+      "path": ".local/mountain-pacing-profile-01/capture/profile-tool-identity.json",
+      "bytes": 493,
+      "sha256": "615221994dfe8cdafdb9def5e828b07f29f838a100d6a0bd17b42baa8e272fd1"
+    },
+    "code": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-mountain-code.json",
+      "bytes": 16984,
+      "sha256": "17a38b34e04394c81963fd46d117c5e8ff929cfb2230e0826af7bbe3dc71a1f8"
+    },
+    "profile": {
+      "path": ".local/mountain-pacing-profile-01/capture/mountain-frame-profile.json",
+      "bytes": 7709,
+      "sha256": "8ad00054e781520dbd5a44e6e062b22925b43e3c631b2bb957c0b8d115c2cb38"
+    },
+    "measurement": {
+      "path": ".local/mountain-pacing-profile-01/capture/mountain-timing.json",
+      "bytes": 990,
+      "sha256": "c5a61371d4e20a8e2739acf2efffa042be6213110e6072f3d7bb08d17a302239"
+    },
+    "first": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-mountain-first-read.json",
+      "bytes": 88772,
+      "sha256": "77374cd87bfd3225b75f521c5c3d48ef03058742aefa2a22bd7bf4cc8a924952"
+    },
+    "release-edge": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-mountain-release-edge-read.json",
+      "bytes": 88772,
+      "sha256": "f8a686899355d2c7c8fdd7fb30c5dcfe62223266abb733641dae301214f0ebd9"
+    },
+    "release-neutral": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-mountain-release-read.json",
+      "bytes": 88772,
+      "sha256": "7e58616756b0b1c275263218860ea7f8729483a76d3aa6f8230c9c167364b96b"
+    },
+    "frame-00-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-00-before-erase.json",
+      "bytes": 88769,
+      "sha256": "1f36586fda0c61034989255776de1d75e3aa6029595db272917a7ddd1cf53e58"
+    },
+    "frame-00-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-00-after-erase.json",
+      "bytes": 88783,
+      "sha256": "36e03bd3173471f76a6918d42c24095ee3aad866ec66173a1a560c6d254f656e"
+    },
+    "frame-00-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-00-after-draw.json",
+      "bytes": 88793,
+      "sha256": "fa6be7476c0d756d950728b158a119c1e9a9751cee2360b50d8a4417d9639a32"
+    },
+    "frame-00-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-00-before-flip.json",
+      "bytes": 88779,
+      "sha256": "1abbad5a344f5a300827166a9301d4797ec16855ac6c6f6065943c71131ff2cb"
+    },
+    "input-1": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-01-input.json",
+      "bytes": 88772,
+      "sha256": "d17a05f5470d89790859b6de734ae3c06d0827a111762605c8e6f203d0d620eb"
+    },
+    "frame-01-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-01-before-erase.json",
+      "bytes": 88765,
+      "sha256": "5affa1cb6a753dd88da8cc8948670ad312c839207af156ce753a28fb81f89d36"
+    },
+    "frame-01-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-01-after-erase.json",
+      "bytes": 88777,
+      "sha256": "8ad34365d2f0beabdcb399127b3985778692b0b7d406e9d6e566f1ced41f81bf"
+    },
+    "frame-01-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-01-after-draw.json",
+      "bytes": 88779,
+      "sha256": "ace5bb7fe07d41e75d4a814a96fa7e2d6c3c683d574af685e96ff4e85a38f71f"
+    },
+    "frame-01-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-01-before-flip.json",
+      "bytes": 88779,
+      "sha256": "3e88b60e36b93756c486b567af8267a651935c8830c7ad4a0f47729b73d7a38f"
+    },
+    "input-2": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-02-input.json",
+      "bytes": 88772,
+      "sha256": "2e7767169dec3b851297a0022dcb3a221099339eacc4ae2ba51ba21ca8dbf8e0"
+    },
+    "frame-02-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-02-before-erase.json",
+      "bytes": 88765,
+      "sha256": "4f311c764f89d934af26c4e84112213bdeb346c957eda3e10488f2e125168008"
+    },
+    "frame-02-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-02-after-erase.json",
+      "bytes": 88777,
+      "sha256": "cdd50f09f8c993229e7c32eeba0999e679e1ead4faf0005572102f7d8e98a964"
+    },
+    "frame-02-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-02-after-draw.json",
+      "bytes": 88779,
+      "sha256": "f19afbaced636d870eeef1bcd8eff5ae154d6b81cf7a3ac9a88391f2cb66cc93"
+    },
+    "frame-02-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-02-before-flip.json",
+      "bytes": 88779,
+      "sha256": "1b52d87a9872ee48de1e76ff1760f4756735e57e64e96d13f34a15fbd2bccad5"
+    },
+    "input-3": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-03-input.json",
+      "bytes": 88772,
+      "sha256": "2818ecb9701bdb5509c73d52d73a6c6d5030d2e76bd4d4698fab3d1fb0ce28a1"
+    },
+    "frame-03-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-03-before-erase.json",
+      "bytes": 88765,
+      "sha256": "800a1c0364cdde7caa2bd4ef543be95d223f2f6965de5d8c957caa6a3477fc3f"
+    },
+    "frame-03-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-03-after-erase.json",
+      "bytes": 88777,
+      "sha256": "e8bfa3925bd1b2b11e047f93922aee9ae7adeb490267a668b74734958db93a02"
+    },
+    "frame-03-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-03-after-draw.json",
+      "bytes": 88779,
+      "sha256": "8ff3156b604f770a83425f64575581f367fab2a02270d3af050ab8a4fc499949"
+    },
+    "frame-03-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-03-before-flip.json",
+      "bytes": 88779,
+      "sha256": "aabbe76f1377959819454dfce6917e9abf1c2b983ca9ba17a75ffc4cf189faa3"
+    },
+    "input-4": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-04-input.json",
+      "bytes": 88772,
+      "sha256": "208df918abf473ddb46ecfc25124f07baa5e15d14442b32b5a0304253fa082b9"
+    },
+    "frame-04-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-04-before-erase.json",
+      "bytes": 88771,
+      "sha256": "a9735513544a12ab1a905173886fa45beeee8c51b0ddebb429e0880b440f7720"
+    },
+    "frame-04-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-04-after-erase.json",
+      "bytes": 88777,
+      "sha256": "8198544c15333c4722db5afdcc0b0ece37b2b44ce9e8faef225651d271ca152e"
+    },
+    "frame-04-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-04-after-draw.json",
+      "bytes": 88779,
+      "sha256": "3994d02b1e1b742caf2ca83eed42ae593556472cac41ad21bf60af5025a1a2fe"
+    },
+    "frame-04-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-04-before-flip.json",
+      "bytes": 88779,
+      "sha256": "ae3c6fc6a2a57bd799ce614154edc10fe72c26529e8b990b33c4634f6092db8b"
+    },
+    "input-5": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-05-input.json",
+      "bytes": 88772,
+      "sha256": "dd0118458f22389d48d3964539695b37cbeeeaa452d87f171cd33f5a426bd1e1"
+    },
+    "frame-05-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-05-before-erase.json",
+      "bytes": 88765,
+      "sha256": "ce32ece08c6290ed16daad9da1a4a17aadb47e9940b1d364fbc0759b0831b170"
+    },
+    "frame-05-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-05-after-erase.json",
+      "bytes": 88777,
+      "sha256": "12aaacbb497ddb353574279d959c67dc591698daee08119c449b4c1c2463dde8"
+    },
+    "frame-05-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-05-after-draw.json",
+      "bytes": 88779,
+      "sha256": "7db7edcdc69565cf9c22c21bf081f03194b33c31c18a089a1ea8ac3dde4eb930"
+    },
+    "frame-05-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-05-before-flip.json",
+      "bytes": 88779,
+      "sha256": "7d7532159e217529ffd69ba123ddab630a4e2c9d2c0514c05f2072b4e1909cd6"
+    },
+    "input-6": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-06-input.json",
+      "bytes": 88772,
+      "sha256": "2347d3f3a2f60b1495e91c32dbd2157a58f90eff26f05681f03de8423ca9bfa5"
+    },
+    "frame-06-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-06-before-erase.json",
+      "bytes": 88769,
+      "sha256": "091837dda342471e6e3410c2f40f1dfc157e10b4299a5ed3e40b793ffef44348"
+    },
+    "frame-06-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-06-after-erase.json",
+      "bytes": 88783,
+      "sha256": "0a90f25eb7165fc4e510e25ed520f5fa778fedcfab9018a42c87212fac55c1b9"
+    },
+    "frame-06-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-06-after-draw.json",
+      "bytes": 88785,
+      "sha256": "9aeccc234b5e4bef784ee4e5eabfe36603eb57327595d3af811ff78773633b67"
+    },
+    "frame-06-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-06-before-flip.json",
+      "bytes": 88779,
+      "sha256": "addec5d8f50455bd240c2a57e35bb5029c0a1d662728ebfba6a5503395057558"
+    },
+    "input-7": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-07-input.json",
+      "bytes": 88772,
+      "sha256": "f146d6844cc22bc9318635ddf5fef15f33adfee38d32058f993b2c9f8a2f3303"
+    },
+    "frame-07-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-07-before-erase.json",
+      "bytes": 88765,
+      "sha256": "8be17c9de4d1ceb94b11608bc46820eacc698b921ea2cac94c80b786598d9a92"
+    },
+    "frame-07-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-07-after-erase.json",
+      "bytes": 88777,
+      "sha256": "8c45a7d6156b855fd3de6e42be7a858bef2510723ae5ca147209411246ac05f1"
+    },
+    "frame-07-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-07-after-draw.json",
+      "bytes": 88779,
+      "sha256": "c68d2899e85e80703c1b9053bf8137800cd384c0e3b48c8c75a0dd1b063cc98e"
+    },
+    "frame-07-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-07-before-flip.json",
+      "bytes": 88779,
+      "sha256": "513604c27e5370a3bb12c03e195074f5a294904d7bd3b6b57389efe8aa1f886b"
+    },
+    "input-8": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-08-input.json",
+      "bytes": 88772,
+      "sha256": "d788995558a4ece8ef1c3987c93a68d883c06b7a51859eedcb1294f6ca725391"
+    },
+    "frame-08-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-08-before-erase.json",
+      "bytes": 88765,
+      "sha256": "301d3cea5f68675a09f9442029bd0bccdee3aed74868e10090cb01cab967f0a7"
+    },
+    "frame-08-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-08-after-erase.json",
+      "bytes": 88777,
+      "sha256": "c938f86bbcd6f27c910fde36fb9cf242ca24e3d934cbe5ddc71255afd7fe5210"
+    },
+    "frame-08-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-08-after-draw.json",
+      "bytes": 88779,
+      "sha256": "f0cef7f43874c07c4d5de26107db437f76c20cd2685c59d643976d98c89a9a91"
+    },
+    "frame-08-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-08-before-flip.json",
+      "bytes": 88779,
+      "sha256": "065defbf5b6e694c9d41a0af71317a2d2ef03c363bcc931d2fd667aab0f55d36"
+    },
+    "input-9": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-09-input.json",
+      "bytes": 88772,
+      "sha256": "a36638e27a64daa836b2a8f481dceaa05ad2bf5fb65acbc42b1a6dfb74f0ae24"
+    },
+    "frame-09-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-09-before-erase.json",
+      "bytes": 88766,
+      "sha256": "4251faaff1210fef9473c5a2ec651bbbc3d44d4a7128b445ecc8a9863945f72b"
+    },
+    "frame-09-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-09-after-erase.json",
+      "bytes": 88778,
+      "sha256": "7c7f1ad5ceb8375ad5496f160d68b4461f111928282bc58e912c4c8529277ab8"
+    },
+    "frame-09-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-09-after-draw.json",
+      "bytes": 88780,
+      "sha256": "286253d39317c68638dd7fdd5c7d6cbb02f431a2f2f1330dc1c5361dfb4f7c5f"
+    },
+    "frame-09-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-09-before-flip.json",
+      "bytes": 88780,
+      "sha256": "aeeaf60a2dfaab1ac3b0272fd016f9483de50f8726681cc2125c6e473d8d4438"
+    },
+    "input-10": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-10-input.json",
+      "bytes": 88772,
+      "sha256": "e65207cc86ec53fefe1619c723f28772b20b6ebefedbc382f3b7b7e924604e23"
+    },
+    "frame-10-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-10-before-erase.json",
+      "bytes": 88772,
+      "sha256": "80119d5d2373c088b3e31c714c570202359a3aff3032d8ffbcacf018d959c5e0"
+    },
+    "frame-10-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-10-after-erase.json",
+      "bytes": 88778,
+      "sha256": "32aa14b8e943c0d33458a38c10b6bb3e87d1ce32cd55eef00305391f7f25f7d3"
+    },
+    "frame-10-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-10-after-draw.json",
+      "bytes": 88788,
+      "sha256": "4154cc78bc4f73096bb3d10684004d4cd7516c1311cf3aa76b6345d729881a1a"
+    },
+    "frame-10-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-10-before-flip.json",
+      "bytes": 88780,
+      "sha256": "d91036ed19d5fb38ace598b64051615a9ae244161e93d2ffdd53d7445590a7e5"
+    },
+    "input-11": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-11-input.json",
+      "bytes": 88772,
+      "sha256": "25664347fd74b1acde4d7af6ce7dc864164f1718b1ad3cee0ee95f316cebd9b6"
+    },
+    "frame-11-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-11-before-erase.json",
+      "bytes": 88766,
+      "sha256": "701400e7dc791d3de89c7a7a0bc7cd4e1047b9c855232449321d09a829d003df"
+    },
+    "frame-11-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-11-after-erase.json",
+      "bytes": 88778,
+      "sha256": "b2e46af85f60627eb83b6250d7d734be8a5373492a9b54f0ee6561a7e3e39985"
+    },
+    "frame-11-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-11-after-draw.json",
+      "bytes": 88788,
+      "sha256": "4ef2e13ae9cc76f047a55a734d400a2cc7891929db033105e37e81e05c0a4075"
+    },
+    "frame-11-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-11-before-flip.json",
+      "bytes": 88780,
+      "sha256": "809b66f5827a225545f43a886ee225e0268597dfcca5a60297549e46bc9d973a"
+    },
+    "input-12": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-12-input.json",
+      "bytes": 88772,
+      "sha256": "3372a5ae31fa4da726d2d4351d246f2ff9c90a575359e730c7ec59f74b8bc016"
+    },
+    "frame-12-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-12-before-erase.json",
+      "bytes": 88770,
+      "sha256": "16f2608e4fcede4f385cedddd87d2aab827582b75c508a017ffab4006ba6af52"
+    },
+    "frame-12-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-12-after-erase.json",
+      "bytes": 88784,
+      "sha256": "dd13d66f4166fac3295e46a601ee046d638c35ae3d236565018fa140b3411db5"
+    },
+    "frame-12-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-12-after-draw.json",
+      "bytes": 88794,
+      "sha256": "0fded1a4909533e5b0bffb3bfac1105cc117178aa379dbd1d1f1e8b5428ab057"
+    },
+    "frame-12-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-12-before-flip.json",
+      "bytes": 88780,
+      "sha256": "45f197a3a21f83df14e71f2939152d68ba16cd2e30974cc112e71d010c6d1d93"
+    },
+    "input-13": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-13-input.json",
+      "bytes": 88772,
+      "sha256": "7c688122b7bf91ca2269b1e23e86293999ee44e1ecae42054db759a1909e3a04"
+    },
+    "frame-13-before-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-13-before-erase.json",
+      "bytes": 88766,
+      "sha256": "150ee97f38b88dd8f8fba227a17936af2b3ff3c8686f6dd41b24aa3558a0c356"
+    },
+    "frame-13-after-erase": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-13-after-erase.json",
+      "bytes": 88778,
+      "sha256": "cba8978ba9da9f3a20f106a5c11fe9a4ef47877e7fffed045e77ea28b8b3d852"
+    },
+    "frame-13-after-draw": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-13-after-draw.json",
+      "bytes": 88780,
+      "sha256": "6022e9df5d54f8129210611951c02c569f2d5c227d5cdab4d0d089937d99f3be"
+    },
+    "frame-13-before-flip": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-13-before-flip.json",
+      "bytes": 88780,
+      "sha256": "104a434123be404e8be7f8d42a0dec156a553c121e90c8187de2af03b2a579bd"
+    },
+    "input-14": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-profile-14-input.json",
+      "bytes": 88772,
+      "sha256": "67678bda020e1d8b6df8eb0a0565585866ad83c5a8a2040fc78f6da48129c4aa"
+    },
+    "inputs": {
+      "path": ".local/mountain-pacing-profile-01/capture/inputs.json",
+      "bytes": 33149,
+      "sha256": "40d86825f719a87689d4f1334ff6be0fd6610ea8dfb83ace5cae597d8a2c5bef"
+    },
+    "startup-inputs": {
+      "path": ".local/mountain-pacing-profile-01/capture/startup-inputs.json",
+      "bytes": 1221,
+      "sha256": "305004e1815df9f9bfba314beb0184801b8339e586a44cc76c4a2e30415112b2"
+    },
+    "pause-clock-test": {
+      "path": ".local/mountain-pacing-profile-01/capture/pause-clock-test.json",
+      "bytes": 1112,
+      "sha256": "8b88c20c79aa2322d091a5135f60ca6063655ecb4e90040a09de628053eca785"
+    },
+    "timing-flight-contract": {
+      "path": ".local/mountain-pacing-profile-01/capture/timing-flight-contract.json",
+      "bytes": 150,
+      "sha256": "8b091376aaf022fe056eface72f42a64bb2cabd5eace2f95e4bdf7aa7ebea697"
+    }
+  },
+  "verifierSha256": "699ad68a091597343c0d3c3beea8fa2a4c14944c6f69f3dcf46477b86a576a13"
+}

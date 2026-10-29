@@ -75,6 +75,10 @@ relocated overlay and finishes its real input release. Its two named movement/RN
 endpoints match an independently clocked conditional component replay. A fresh
 pause control confirms that debugger host pauses do not advance the driver.
 Neither capture is uninterrupted scanout or native whole-level timing parity.
+A separate completed14-frame original profile localizes33 of44 timer counts to
+drawing; erase takes5, logic/history take1 each, flip/input take4. Its strict
+`npm run verify:mountain-frame-profile` check passes with two corruption/omission
+controls. It checks evidence, not browser timing acceptance.
 No speed change is accepted. Jungle, cave and safari remain unmeasured.
 The original release-edge direction is also missing from the current expedition
 held-control adapter; this is a separate input-fidelity gap.

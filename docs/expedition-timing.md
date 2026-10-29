@@ -105,6 +105,45 @@ The crash-to-mountain setup explicitly rejects a naturally racing launch. It
 never changes the race flag to force entry. A different startup RNG requires a
 new retained scenario; a setup rejection is not movement acceptance.
 
+## Original frame sections
+
+The completed original-only profile at source `ff0554c` observes all15 input
+reads and four internal boundaries for each of14 frames. Its exact relocated
+mountain code and engine binary are pinned. The run uses the same normal core,
+3000 cycles,16MiB and svga_s3 configuration and finishes release3 then neutral0.
+No guest memory or register writes, partial restore or fitted timer inputs occur.
+
+| Section | Driver counts across14 frames |
+| --- | ---: |
+| Movement logic,031c–1320 | 1 |
+| Erase previous graphics,1320–132a | 5 |
+| Draw new graphics,132a–1436 | 33 |
+| Update history,1436–145d | 1 |
+| Flip and next input,145d–031c | 4 |
+| Total | 44 |
+
+Drawing accounts for33 of44 observed counts. This localizes the missing work;
+it does not establish an instruction-cost model or a runtime correction. The
+walking path skips the full HUD helper at1744; its draw section includes the
+cash footer, money text, hazards and actor graphics. Original normal-core CPU
+execution and graphics I/O consume emulated time, while the current port treats
+drawing as immediate before waiting for the next retrace. The loop has no
+ordinary per-frame delay beyond the flip. A fixed tick multiplier would not
+represent the observed workload dependence.
+
+These are breakpoint-section observations, not uninterrupted scanout. The timer
+resolution is about13.728ms, so individual section charges include timer phase
+uncertainty. Aggregates identify the dominant section without assigning exact
+per-call costs. Jungle, cave and safari remain unmeasured.
+
+`npm run verify:mountain-frame-profile` checks all70 internal/next-input captures,
+initial input, original code, build, capture/source archive and completion. It
+also requires two negative controls: an omitted frame and an altered section
+counter must fail. Missing/corrupt local artifacts are setup failures. The
+[manifest](../reference/mountain-frame-profile.json) preserves hashes and the
+capture recipe; proprietary observations remain ignored local files. This
+command verifies evidence only and explicitly reports timingAcceptance:false.
+
 ## Commands and outcomes
 
 ```sh

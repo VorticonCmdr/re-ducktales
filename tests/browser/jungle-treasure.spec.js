@@ -10,7 +10,7 @@ import {
 } from "./helpers/entry-recording.js";
 import inputs from "../../reference/security-jungle-treasure-inputs.json" with { type: "json" };
 import accepted from "../../reference/security-jungle-treasure.json" with { type: "json" };
-import entry from "../../reference/security-jungle-entry.json" with { type: "json" };
+import entry from "../../reference/office-jungle-entry.json" with { type: "json" };
 
 test("keyboard jungle completion awards treasure and prevents duplicate collection", async ({
   page,

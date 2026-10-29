@@ -143,10 +143,12 @@ Production visitors select their own originals. No deployment is performed.
 - Original map presentation,destination CPU/scanout/polling details,broader destination and
   difficulty finishability,and original whole-scene/campaign comparisons remain.
   A broader exploratory controller is not acceptance evidence.
-- Destination letter/keypad bindings remain a concrete input gap. Seven
-  source-derived adapter cases show missing/malformed semantic events versus the
-  existing mode1 reader's direction/Fire bytes. This is not yet a new native or
-  real-browser alias comparison. [Investigation](../reference/destination-keyboard-investigation.json).
+- Destination letter/keypad bindings now use the ordinary mode1 reader. A fresh
+  original16-read case and independent Game integration compare all input bytes,
+  flags and choices. Five browser cases cover aliases,repeats,flushes and both
+  confirmation routes. The unchanged Easy/Hard input streams still match all64
+  carried states. Autonomous neutral polling and CPU draw/read timing remain open.
+  [Keyboard scope and commands](destination-keyboard.md).
 - CPU/file/IRQ/input timing and physical audio waveform/gain/filter parity remain
   unproven. Nonzero bank animation/sparkle pixels and unusual sprite aliases have
   limited native coverage. Speaker noise is approximate;its engine is omitted.
@@ -167,6 +169,7 @@ npm run verify:map-input-browser
 npm run verify:destination
 npm run verify:destination-video
 npm run verify:destination-waits
+npm run verify:destination-keyboard
 python3 scripts/verify-destination-waits-receipt.py
 npm run verify:easy-destination-campaign
 npm run verify:hard-destination-campaign

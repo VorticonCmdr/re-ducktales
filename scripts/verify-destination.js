@@ -8,6 +8,11 @@ import { destinationInput } from "../src/game/destination-input.js";
 import { destinationCommands } from "../src/game/destination-presentation.js";
 import { renderFlightPixels } from "../src/game/flight-raster.js";
 import { originalGame } from "../tests/helpers/original-game.js";
+import { Game } from "../src/game/application.js";
+import {
+  destinationReady,
+  finishDestination,
+} from "../tests/helpers/destination-fixture.js";
 import { parseLocations, parseLoot } from "../src/game/campaign.js";
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const required = (p) =>
@@ -22,8 +27,9 @@ const manifestPath =
   "reference/destination.json";
 const m = JSON.parse(await required(manifestPath));
 assert.equal(m.completed, true);
-assert.equal(m.expectedReads, 5);
-assert.equal(m.expectedPictures, 2);
+const keyboardProfile = m.kind === "keyboard-inputs";
+assert.equal(m.expectedReads, keyboardProfile ? 16 : 5);
+assert.equal(m.expectedPictures, keyboardProfile ? 0 : 2);
 assert.ok(Number.isInteger(m.sourceFileCount) && m.sourceFileCount > 0);
 assert.match(m.captureCommit, /^[a-f0-9]{40}$/);
 assert.equal(Object.keys(m.artifacts).length, m.expectedArtifacts);
@@ -86,7 +92,7 @@ for (const record of [capture, notice]) {
   assert.deepEqual(record.injections, []);
   assert.equal(record.partialRestore, false);
 }
-assert.equal(notice.inputReads, 5);
+assert.equal(notice.inputReads, m.expectedReads);
 assert.equal(notice.returnCode, 1);
 assert.equal(notice.replay.active, false);
 assert.equal(notice.replay.remaining, 0);
@@ -136,8 +142,8 @@ const entry = await snapshot("notice-before-entry-flush.json", 0xc11),
 const ret = await snapshot("notice-return.json", 0x1227);
 const consumption = await load("notice-consumption.json"),
   rows = consumption.filter((r) => r.index !== undefined);
-assert.equal(rows.length, 5);
-assert.equal(consumption.length, 7);
+assert.equal(rows.length, m.expectedReads);
+assert.equal(consumption.length, m.expectedReads + 2);
 for (const [index, row] of rows.entries())
   for (const [stage, ip] of Object.entries({
     flush: 0x1193,
@@ -152,13 +158,35 @@ for (const [index, row] of rows.entries())
     assert.equal(ds[0x3c1], row[stage].mode);
     assert.equal(ds.readUInt16LE((regs.ebp - 0x7c) & 65535), row[stage].choice);
   }
-const profile = JSON.parse(await required("reference/map-notice-inputs.json"));
-assert.equal(
-  sha(await required("reference/map-notice-inputs.json")),
-  m.profileSha256,
-);
+const profilePath = keyboardProfile
+  ? "reference/destination-keyboard-inputs.json"
+  : "reference/map-notice-inputs.json";
+assert.equal(m.inputProfile, profilePath);
+const profile = JSON.parse(await required(profilePath));
+assert.equal(sha(await required(profilePath)), m.profileSha256);
 const inputs = await load("inputs.json"),
-  scan = { KBD_space: 0x39, KBD_kp6: 0x4d };
+  scan = {
+    KBD_space: 0x39,
+    KBD_enter: 0x1c,
+    KBD_kpenter: 0x1c,
+    KBD_i: 0x17,
+    KBD_j: 0x24,
+    KBD_k: 0x25,
+    KBD_m: 0x32,
+    KBD_up: 0x48,
+    KBD_down: 0x50,
+    KBD_left: 0x4b,
+    KBD_right: 0x4d,
+    KBD_kp7: 0x47,
+    KBD_kp8: 0x48,
+    KBD_kp9: 0x49,
+    KBD_kp4: 0x4b,
+    KBD_kp5: 0x4c,
+    KBD_kp6: 0x4d,
+    KBD_kp1: 0x4f,
+    KBD_kp2: 0x50,
+    KBD_kp3: 0x51,
+  };
 const flags = (ds) => ds.subarray(0x276c, 0x27ec);
 function replay(negative) {
   const keyboard = new OrdinaryKeyboard(0);
@@ -167,8 +195,12 @@ function replay(negative) {
   for (const e of handoff.keys) keyboard.event(scan[e.key], e.pressed);
   keyboard.mode = 1;
   assert.deepEqual(Buffer.from(keyboard.bytes()), flags(entry.ds));
-  keyboard.flush();
-  assert.deepEqual(Buffer.from(keyboard.bytes()), flags(afterEntry.ds));
+  if (negative !== "omit-entry-flush") keyboard.flush();
+  assert.deepEqual(
+    Buffer.from(keyboard.bytes()),
+    flags(afterEntry.ds),
+    "Entry flush flags",
+  );
   let choice = 0,
     consumed = 0,
     result = null;
@@ -190,7 +222,7 @@ function replay(negative) {
       ["keys", row.scheduledInputRecord],
       ["afterKeys", row.afterInputRecord],
     ])
-      if (event[role]) {
+      if (event[role]?.length) {
         assert.ok(Number.isInteger(recordId));
         assert.deepEqual(
           inputs[recordId].events,
@@ -200,16 +232,22 @@ function replay(negative) {
       }
     for (const e of event.keys ?? [])
       if (
-        !(negative === "omit-choice" && index === 2) &&
-        !(negative === "omit-confirm" && index === 4)
+        !(negative === "omit-choice" && index === (keyboardProfile ? 1 : 2)) &&
+        !(negative === "omit-confirm" && index === (keyboardProfile ? 15 : 4))
       )
-        keyboard.event(scan[e.key], e.pressed);
+        keyboard.event(
+          negative === "early-alias" && index === 12 && e.key === "KBD_k"
+            ? 0x4d
+            : scan[e.key],
+          e.pressed,
+        );
     assert.deepEqual(
       Buffer.from(keyboard.bytes()),
       flags(before.ds),
       `Before flags ${index}`,
     );
-    const byte = keyboard.poll();
+    const byte =
+      keyboard.poll() ^ (negative === "alter-reader" && index === 1 ? 1 : 0);
     assert.equal(byte, input.regs.eax & 65535, `Original input ${index}`);
     assert.deepEqual(
       Buffer.from(keyboard.bytes()),
@@ -221,7 +259,7 @@ function replay(negative) {
     for (const e of event.afterKeys ?? [])
       keyboard.event(scan[e.key], e.pressed);
   }
-  assert.equal(consumed, 3);
+  assert.equal(consumed, keyboardProfile ? 18 : 3);
   assert.equal(result.returnCode, notice.returnCode);
   assert.equal(ret.regs.eax & 65535, result.returnCode);
   assert.equal(choice, 1);
@@ -230,8 +268,19 @@ function replay(negative) {
   return choices;
 }
 const choices = replay();
-assert.throws(() => replay("omit-choice"), /Before flags 2/);
-assert.throws(() => replay("omit-confirm"), /Before flags 4/);
+assert.throws(
+  () => replay("omit-choice"),
+  keyboardProfile ? /Before flags 1/ : /Before flags 2/,
+);
+assert.throws(
+  () => replay("omit-confirm"),
+  keyboardProfile ? /Before flags 15/ : /Before flags 4/,
+);
+if (keyboardProfile) {
+  assert.throws(() => replay("omit-entry-flush"), /Entry flush flags/);
+  assert.throws(() => replay("alter-reader"), /Original input 1/);
+  assert.throws(() => replay("early-alias"), /Before flags 12/);
+}
 // Capture caller/resource arguments before any destination page is drawn.
 // They are conditional segment inputs, not an independently replayed campaign.
 const ds = entry.ds,
@@ -249,13 +298,65 @@ const args = {
   atomicAvailable: !!ds[0x8eb4],
 };
 assert.deepEqual(args, m.presentationArguments);
+if (keyboardProfile) {
+  // Conditional keyboard/caller integration. This Game starts independently;
+  // original page arguments/clocks/RNG are never copied into it. One tick and
+  // one retrace per fixture step finish explicit waits,not native CPU timing.
+  const model = new Game({
+    locations: parseLocations(archives.get("LOC.ARC")),
+  });
+  model.input({ type: "fire" });
+  model.input({ type: "fire" });
+  model.input({ type: "map" });
+  model.input({ type: "point", x: 100, y: 100 });
+  model.input({ type: "fire" });
+  destinationReady(model);
+  const dialog = model.campaign.destinationWaits;
+  assert.equal(model.campaign.atomicAvailable, args.atomicAvailable);
+  for (const [index, row] of rows.entries()) {
+    const event = profile.noticeEvents[index];
+    assert.equal(model.campaign.choice, row.flush.choice);
+    assert.deepEqual(
+      Buffer.from(model.campaign.mapKeyboard.bytes()),
+      flags(snapshots.get(row.flush.artifact).ds),
+    );
+    model.input({
+      type: "destination-read",
+      keys: event.keys.map((e) => ({
+        scanCode: scan[e.key],
+        pressed: e.pressed,
+      })),
+    });
+    const trace = model.campaign.destinationReadTrace;
+    assert.equal(trace.byte, row.input.ax, `Game original input ${index}`);
+    assert.deepEqual(
+      Buffer.from(trace.beforeFlags),
+      flags(snapshots.get(row.before.artifact).ds),
+    );
+    assert.deepEqual(
+      Buffer.from(trace.readerFlags),
+      flags(snapshots.get(row.input.artifact).ds),
+    );
+    for (const e of event.afterKeys ?? [])
+      model.input({
+        type: "map-key",
+        scanCode: scan[e.key],
+        pressed: e.pressed,
+      });
+    if (index + 1 < rows.length) destinationReady(model);
+  }
+  finishDestination(model);
+  assert.equal(dialog.outcome.returnCode, notice.returnCode);
+  assert.equal(dialog.outcome.choice, 1);
+  assert.equal(model.scene, "departure");
+}
 const params = {
   ...args,
   image,
   location: parseLocations(archives.get("LOC.ARC"))[args.locationAsset],
   treasure: parseLoot(archives.get("LOOT.ARC"))[args.treasureAsset],
 };
-assert.deepEqual(m.pictureReadIndices, [0, 4]);
+assert.deepEqual(m.pictureReadIndices, keyboardProfile ? [] : [0, 4]);
 for (const index of m.pictureReadIndices) {
   const expected = PNG.sync.read(
     await required(m.artifacts[`notice-00${index}-flush.png`].path),
@@ -298,7 +399,7 @@ assert.throws(
 );
 assert.throws(() => destinationInput(2, 0, false), /Invalid destination input/);
 console.log(
-  `Destination:5 carried original mode1 input/128-flag/choice comparisons and2 exact320x200 original pictures;${m.sourceFileCount} producer files/full8368-byte relocated overlay,2 missing-make and4 pixel controls. Captured caller arguments are conditional;menu/CPU timing and intermediate scanout remain unverified.`,
+  `Destination:${m.expectedReads} carried original mode1 input/128-flag/choice comparisons and${m.expectedPictures} exact320x200 original pictures;${m.sourceFileCount} producer files/full8368-byte relocated overlay,2 missing-make and${m.expectedPictures * 2} pixel controls.${keyboardProfile ? " Three additional keyboard controls reject entry-flush,result and alias-order errors." : ""} Captured caller arguments are conditional;menu/CPU timing and intermediate scanout remain unverified.`,
 );
 
 // The video-boundary audit uses the same strict capture/producer/input/picture

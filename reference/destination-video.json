@@ -1103,13 +1103,13 @@
     }
   },
   "verificationTools": {
-    "scripts/verify-destination-fixture-negatives.js": "ff820dace18c0435521e670bfa8c96873b9d73c382e58c57a5d2ab8deb882cea",
-    "scripts/verify-destination.js": "2b353bc5aad81c59f6a3c74cb331c701a095ff1bdc421f14ddb647a61bde7799",
+    "scripts/verify-destination-fixture-negatives.js": "32a3424672719892d2cc6275cc085f23f207c341ffde7dc8ada19acde69540bb",
+    "scripts/verify-destination.js": "c06f093b37024087a19f2b98a5f3a2ceee06ec97368065ea282966a5a05fb4bd",
     "src/game/destination-input.js": "5155a20fab7ac49c267875c9a82f1eff086e823f9a491138a3032e2f5a16fee6",
     "src/game/destination-presentation.js": "af56b5208cee92fb6d6eab4cbe30c0d1eb869c0796f0512f41fe580e06fbb8d7",
     "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",
     "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
-    "src/game/campaign.js": "a6d5afdf76c01cb90c2400d38abc13a9c392dd54477eed0621c7e91636c18b37",
+    "src/game/campaign.js": "b788a821c5e74e7cd771ab650f3ad43dc0a0d9f47476b2ad80ae771c10408a3f",
     "scripts/verify-destination-video.js": "9f19884c2e0d5b160c6ee92411c2f43b6ce80220b5d94b8d8adb00c9ea729432"
   },
   "expectedVideoSnapshots": 29,

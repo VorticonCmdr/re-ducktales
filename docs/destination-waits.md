@@ -134,7 +134,7 @@ The broader integrated gate remains required before updating the accepted main
 preview. Original complete-campaign parity,recurring raw destination polling and
 CPU/scanout timing remain open.
 
-The next concrete input investigation is the dialog's original letter/keypad
+The next investigation after the original wait milestone was the dialog's letter/keypad
 bindings. Static inspection shows`browser.js` routes only the map pointer through
 `mapKeyEvent`;dialog keys still go through`ordinaryMakeEvent` without the office
 context. That adapter does not normalize those aliases for this scene. This is
@@ -143,3 +143,7 @@ Verify it through real browser input and the original mode1 reader before
 changing the input boundary;retain the already verified campaign streams.
 `reference/destination-keyboard-investigation.json` records seven source-derived
 cases,including keypad Fire,and the exact source hashes and rerunnable recipe.
+Those findings are now historical:the new[ordinary destination keyboard](destination-keyboard.md)
+connects physical aliases and repeat makes to the reader,with a fresh16-read native
+comparison and five focused browser cases. Recurring neutral polling and CPU
+draw/read windows are still open.

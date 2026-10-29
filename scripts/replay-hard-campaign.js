@@ -1,6 +1,7 @@
 import {
   heldControlEvent,
   ordinaryMakeEvent,
+  ordinaryScanCodeForKey,
   mapKeyEvent,
 } from "../src/game/keyboard-adapter.js";
 // Replay recorded external browser events without an output-guided controller.
@@ -255,19 +256,18 @@ function event(e) {
         "ArrowDown",
         "ArrowLeft",
         "ArrowRight",
-      ].includes(key),
+      ].includes(key) || ordinaryScanCodeForKey(key) !== undefined,
       `Unsupported replay key ${key}`,
     );
     if (e.type === "keyup") {
       held.delete(key);
       controls();
-      if (game.scene === "map" && !game.campaign.info)
-        send(mapKeyEvent(key, false));
+      if (game.scene === "map") send(mapKeyEvent(key, false));
       return;
     }
     held.add(key);
     controls();
-    if (game.scene === "map" && !game.campaign.info) {
+    if (game.scene === "map") {
       send(mapKeyEvent(key, true));
       return;
     }

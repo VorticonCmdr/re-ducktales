@@ -220,3 +220,117 @@ test("destination entry bands, selection wait and confirmation wait gate real br
   expect(t.errors).toEqual([]);
   await expect(page.locator("#diagnostic")).toBeHidden();
 });
+
+test("destination ordinary letters, keypad, releases and fresh repeat makes use mode1", async ({
+  page,
+}, info) => {
+  const t = await openOffice(page);
+  await page.locator("#map").click();
+  await finishSecurityEntry({ page, until: t.until, state: t.state });
+  const bounds = await t.canvas.boundingBox();
+  await t.canvas.click({
+    position: {
+      x: (100.5 * bounds.width) / 320,
+      y: (100.5 * bounds.height) / 200,
+    },
+  });
+  await page.keyboard.press("Space");
+  await t.until((s) => s.campaign.destination?.ready, "destination ready");
+  const input = async () =>
+    JSON.parse(await t.canvas.getAttribute("data-map-input"));
+  const observations = [];
+  if (process.env.DUCKTALES_DESTINATION_KEYBOARD_NEGATIVE !== "omit-k")
+    await page.keyboard.down("KeyK");
+  await page.clock.runFor(32);
+  let s = await t.state(),
+    trace = await input();
+  expect(s.campaign.choice, "Required KeyK make selects flight").toBe(1);
+  expect(trace.destinationRead.byte).toBe(3);
+  expect(trace.destinationRead.beforeFlags[0x25]).toBe(128);
+  expect(trace.destinationRead.readerFlags[0x25]).toBe(128);
+  expect(trace.destinationRead.readerFlags[0x4d]).toBe(0);
+  observations.push({ key: "KeyK", state: s.campaign.destination, trace });
+  // A repeat during the explicit wait is flushed; held state alone must not
+  // replenish it. A new physical repeat make after that flush is accepted.
+  await page.keyboard.down("KeyK");
+  await t.until(
+    (s) => s.campaign.destination.discardedDuringWait === 1,
+    "busy repeat discarded",
+  );
+  await t.until((s) => s.campaign.destination.ready, "first selection settles");
+  expect((await input()).flags.every((v) => v === 0)).toBe(true);
+  expect((await t.state()).campaign.destination.inputs).toBe(1);
+  await page.keyboard.down("KeyK");
+  await page.clock.runFor(32);
+  expect((await t.state()).campaign.choice).toBe(0);
+  await page.keyboard.up("KeyK");
+  await t.until((s) => s.campaign.destination.ready, "fresh repeat settles");
+  await page.keyboard.press("Numpad6");
+  await t.until(
+    (s) => s.campaign.choice === 1 && s.campaign.destination.ready,
+    "keypad right",
+  );
+  for (const [key, byte, choice] of [
+    ["KeyJ", 7, 0],
+    ["KeyI", 1, 0],
+    ["KeyM", 5, 0],
+    ["Numpad7", 8, 0],
+    ["Numpad9", 2, 0],
+    ["Numpad1", 6, 0],
+    ["Numpad3", 4, 0],
+    ["Numpad5", 0, 0],
+    ["Numpad8", 1, 0],
+    ["Numpad2", 5, 0],
+    ["Numpad4", 7, 1],
+    ["Numpad6", 3, 0],
+  ]) {
+    const count = (await t.state()).campaign.destination.inputs;
+    await page.keyboard.press(key);
+    await t.until(
+      (s) =>
+        s.campaign.destination.inputs === count + 1 &&
+        s.campaign.destination.ready,
+      key,
+    );
+    // data-map-input is published on video retrace;data-state also updates
+    // between retraces. Observe one complete video interval after the flush.
+    await page.clock.runFor(16);
+    s = await t.state();
+    trace = await input();
+    expect(trace.destinationRead.byte, `${key} original reader code`).toBe(
+      byte,
+    );
+    expect(s.campaign.choice, key).toBe(choice);
+    expect(
+      trace.flags.every((v) => v === 0),
+      `${key} caller flush`,
+    ).toBe(true);
+    observations.push({ key, state: s.campaign.destination, trace });
+  }
+  await page.keyboard.press("NumpadEnter");
+  await t.until(
+    (s) => s.scene === "map" && !s.campaign.info,
+    "keypad Map confirmation",
+  );
+  expect((await t.state()).campaign.day).toBe(1);
+  await page.keyboard.press("Space");
+  await t.until((s) => s.campaign.destination?.ready, "reopened dialog");
+  await page.keyboard.press("KeyK");
+  await t.until(
+    (s) => s.campaign.choice === 1 && s.campaign.destination.ready,
+    "letter travel choice",
+  );
+  await page.keyboard.press("NumpadEnter");
+  await t.until((s) => s.scene === "departure", "keypad travel confirmation");
+  await writeFile(
+    info.outputPath("destination-keyboard.json"),
+    JSON.stringify(observations, null, 2),
+  );
+  await t.canvas.screenshot({
+    path: info.outputPath("destination-keyboard-departure.png"),
+  });
+  await page.locator("#restart").click();
+  await t.until((s) => s.scene === "title", "restart");
+  expect(t.errors).toEqual([]);
+  await expect(page.locator("#diagnostic")).toBeHidden();
+});

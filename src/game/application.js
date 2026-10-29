@@ -699,9 +699,17 @@ export class Game {
     if (this.scene === "map") {
       const c = this.campaign;
       if (event.type === "map-key") {
-        if (c.info && event.pressed)
-          throw Error("Raw map make crossed the destination input boundary");
         c.mapKey(event.scanCode, event.pressed);
+        if (c.info && event.pressed) this.readDestinationInput();
+        return;
+      }
+      if (event.type === "destination-read") {
+        // Explicit reader boundary for independently scheduled ordinary IRQ
+        // groups. Browser makes use the same reader through map-key above.
+        if (!c.info || !c.destinationWaits?.ready || !Array.isArray(event.keys))
+          throw Error("Invalid destination reader boundary");
+        for (const key of event.keys) c.mapKey(key.scanCode, key.pressed);
+        this.readDestinationInput();
         return;
       }
       if (event.type === "flush-map-keys") {
@@ -1424,6 +1432,27 @@ export class Game {
     else if (code === 1)
       this.completeCampaignAction({ type: "travel", target: c.selected });
     else throw Error(`Unsupported destination return ${code}`);
+  }
+  readDestinationInput() {
+    const c = this.campaign,
+      waits = c?.destinationWaits;
+    if (!c?.info || !waits) throw Error("Missing destination reader state");
+    // Original mode1 scans raw slots before normalizing aliases. During a
+    // blocking wait IRQ flags accumulate until the caller's next flush; no
+    // reader runs there. The recurring neutral loop/CPU draw window remains
+    // separate from this explicit input-consumption boundary.
+    let byte = 0;
+    if (waits.ready) {
+      const beforeFlags = [...c.mapKeyboard.bytes()];
+      byte = c.mapKeyboard.poll();
+      c.destinationReadTrace = {
+        beforeFlags,
+        byte,
+        readerFlags: [...c.mapKeyboard.bytes()],
+      };
+    }
+    waits.input(byte, u32(this.tick));
+    this.collectDestination();
   }
   advanceDialogue(wait) {
     wait.remaining--;

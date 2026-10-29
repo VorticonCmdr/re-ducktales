@@ -228,8 +228,7 @@ window.addEventListener("keydown", (event) => {
     ].includes(event.code) &&
     !(
       ordinaryScanCodeForKey(event.code) !== undefined &&
-      (game?.scene === "office" ||
-        (game?.scene === "map" && !game.campaign.info))
+      (game?.scene === "office" || game?.scene === "map")
     )
   )
     return;
@@ -257,7 +256,7 @@ window.addEventListener("keydown", (event) => {
   }
   held.add(event.code);
   flightControls();
-  if (game?.scene === "map" && !game.campaign.info) {
+  if (game?.scene === "map") {
     dispatch(mapKeyEvent(event.code, true));
     return;
   }
@@ -273,11 +272,7 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
   held.delete(event.code);
   flightControls();
-  if (
-    game?.scene === "map" &&
-    !game.campaign.info &&
-    ordinaryScanCodeForKey(event.code) !== undefined
-  )
+  if (game?.scene === "map" && ordinaryScanCodeForKey(event.code) !== undefined)
     dispatch(mapKeyEvent(event.code, false));
 });
 $("game").addEventListener("pointerdown", (event) => {

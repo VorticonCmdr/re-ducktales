@@ -180,6 +180,7 @@ export class Campaign {
     // Original1757 sets mode1;18b1 flushes the triggering held Fire.
     this.mapKeyboard.mode = 1;
     this.mapKeyboard.flush();
+    this.destinationReadTrace = null;
     this.destinationWaits = new DestinationWaits(clock, this.atomicAvailable);
   }
   mapInputState() {
@@ -193,6 +194,9 @@ export class Campaign {
       deadline: this.mapDeadline.deadline,
       period: this.mapDeadline.period,
       read: this.mapReadTrace ? structuredClone(this.mapReadTrace) : null,
+      ...(this.info && this.destinationReadTrace
+        ? { destinationRead: structuredClone(this.destinationReadTrace) }
+        : {}),
     };
   }
   advanceTick(clock) {

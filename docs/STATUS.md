@@ -93,7 +93,14 @@ browser matches all36 states and pictures,then Restart. Five Game/fixture contro
 two real missing-input browser controls and17 other affected browser cases pass.
 [Fresh Easy contract](../reference/easy-campaign-destination.json).
 These are port/browser comparisons;full native-campaign parity remains unproven.
-Hard capture is in progress;the broader integrated gate remains open.
+The committed Easy verification command also passes in full onbf7bb3d with565
+archived source files;[gate receipt](../reference/destination-easy-campaign-gate.json).
+Fresh Hard reaches its day31 loss with17200 against61000. Independent Game and
+browser replays match28 states/pictures,4136 events and1629 flight presentations,
+including one required native-supported flag alias. Six Game/fixture controls and
+the actual missing-Hard-selection browser control pass.
+[Fresh Hard contract](../reference/hard-campaign-destination.json).
+The broader integrated gate remains open;the accepted main preview is unchanged.
 
 ## Supported build
 
@@ -114,7 +121,8 @@ Production visitors select their own originals. No deployment is performed.
   omitted real chord key is detected. Seven additional complete campaign/jungle/
   mountain browser cases pass onc42799a with the original expected values.
   The complete keyboard gate passes on8446d79. The separate map-caller branch
-  still needs its own Game/browser integration and acceptance.
+  now has focused Game/browser integration and fresh Easy/Hard campaign checks;
+  broader integration remains open.
   [Input rules and reproduction](ordinary-keyboard.md).
 - On the separate map-caller branch,the deadline component passes35 original
   completion calls with70 separately captured clock results and four negative
@@ -155,6 +163,7 @@ npm run verify:destination-video
 npm run verify:destination-waits
 python3 scripts/verify-destination-waits-receipt.py
 npm run verify:easy-destination-campaign
+npm run verify:hard-destination-campaign
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

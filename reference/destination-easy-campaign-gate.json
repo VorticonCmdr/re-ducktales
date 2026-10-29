@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "completed": true,
+  "sourceCommit": "bf7bb3db0a2183f90519d2253de9d4796a326853",
+  "sourceFileCount": 565,
+  "command": "npm run verify:easy-destination-campaign",
+  "exitCode": 0,
+  "scope": "Complete independent Easy Game/browser route through explicit destination waits;not native whole-campaign parity or full integration gate",
+  "expected": {
+    "events": 3514,
+    "checkpoints": 36,
+    "flightPresentations": 1188,
+    "browserCases": 1,
+    "browserMissingInputControls": 2,
+    "skipped": 0
+  },
+  "scenarioManifest": "reference/easy-campaign-destination.json",
+  "scenarioManifestSha256": "218b500c649a1bfb6a71de8b3ef542859d276ef62600b75386b2bfecb32b5db0",
+  "artifactCount": 21,
+  "artifacts": {
+    "browser/.last-run.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 318373,
+      "sha256": "004ce0f0ff6a1227f7525fd3205e1f36af88ba07efba23916d08d802441fbbc5"
+    },
+    "browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 171772,
+      "sha256": "1f5cab3f5b6b4ae10134e0e36462f1286cf92df5ea75df83ef48d6447e55d496"
+    },
+    "browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 6225,
+      "sha256": "48a1ad7ed35091a1d7a3a3e69e4b1daa7a52304f5c022b162d7303d4d3c3be00"
+    },
+    "browser-controls/omit-campaign-jungle-move/.last-run.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-campaign-jungle-move/.last-run.json",
+      "bytes": 96,
+      "sha256": "640de19fd2a2c6b8064e900645dd01c910432d3b7f5ec04f5a565102f2e598f5"
+    },
+    "browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 82959,
+      "sha256": "45b425ca6c90691952cfd36c19df5214b1022f3ef9455c45e02391e5cd3d8531"
+    },
+    "browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 15526,
+      "sha256": "3ec1b23c2f4faaff4a4ae904d65d4e6ba2ba812f5155120eaf56dd3093ca2d99"
+    },
+    "browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md",
+      "bytes": 12753,
+      "sha256": "482d31fe52f352b64efb8b400d7f108d272107b766ca6deda432c577a4df5658"
+    },
+    "browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 3157,
+      "sha256": "e2077b362be397e603d11aefd60b57ada72f207665dea88d66b0a37177462622"
+    },
+    "browser-controls/omit-campaign-jungle-move.log": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-campaign-jungle-move.log",
+      "bytes": 2077,
+      "sha256": "4e7f1d69089034ea104e57b983b8a36ee8a544cb114112d7285b4e4869463f09"
+    },
+    "browser-controls/omit-easy-confirm/.last-run.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-easy-confirm/.last-run.json",
+      "bytes": 96,
+      "sha256": "640de19fd2a2c6b8064e900645dd01c910432d3b7f5ec04f5a565102f2e598f5"
+    },
+    "browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 2341,
+      "sha256": "0cbe74508d2314a1d7abddf0dc44420f2c9429cb37439704cb895b4b0426227f"
+    },
+    "browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md",
+      "bytes": 12695,
+      "sha256": "6dc5862870efc19384a4da8e05b37647dd19394f55136044fa08bef1465608e6"
+    },
+    "browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 2044,
+      "sha256": "c852ac593b244cfd7e403fcde9699b06ecf2de526df03b1de232f27b3c2ce387"
+    },
+    "browser-controls/omit-easy-confirm.log": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/browser-controls/omit-easy-confirm.log",
+      "bytes": 1881,
+      "sha256": "e2be16d67250d21ad33a5d5e3207783ba9eb503bfeeab736800a65b38fb4add6"
+    },
+    "runner-status.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/runner-status.json",
+      "bytes": 283,
+      "sha256": "84daad9d6994e81f50c6132fb09c6320ab0940b4990ff212bedbf65abf0e26db"
+    },
+    "runner.py": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/runner.py",
+      "bytes": 1519,
+      "sha256": "828c34bc30410b4d7fb1b8d26840ac06f21d0dd6543447829c0eb0b5da7df057"
+    },
+    "source-revision.json": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/source-revision.json",
+      "bytes": 60718,
+      "sha256": "aa695ec03b660fbc820b644f6088b2ae7faefd9bb63e56c04a186612dff51cad"
+    },
+    "sources.zip": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/sources.zip",
+      "bytes": 1489745,
+      "sha256": "72d13260a1ecec67428d4f56725e2c4420ef9f84bf2a33ea7b839de7e8574a45"
+    },
+    "verify.log": {
+      "path": ".local/destination-easy-campaign-gate-20261029-01/verify.log",
+      "bytes": 6629,
+      "sha256": "5c107c576f3d90f12a058a05a159279eedc903b7cd535b5e73893b27f0a75d35"
+    }
+  }
+}

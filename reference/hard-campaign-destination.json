@@ -1,0 +1,237 @@
+{
+  "id": "hard-campaign-explicit-destination-waits",
+  "expectedHard": true,
+  "pendingBrowserReplay": false,
+  "evidenceLevel": "closed-loop port regression and independent browser scenario",
+  "artifactRoot": ".local/destination-waits-hard-replay-01",
+  "captureRoot": ".local/destination-waits-hard-exploration-01/capture/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result",
+  "captureCommit": "7883a07b34335d103f958b2bdaf5933b36210dcb",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "expectedCheckpointCount": 28,
+  "requiredEventCount": 4136,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "mountain-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "rival-report",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedFlightPresentations": 1629,
+  "expectedFlagAliasPresentations": 1,
+  "expectedEnding": {
+    "phase": "cover",
+    "won": false,
+    "banked": 17200,
+    "rivalBanked": 61000,
+    "day": 31,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 37,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      2,
+      31,
+      32,
+      34
+    ],
+    "rivalCollected": [
+      9,
+      10,
+      12,
+      13,
+      15,
+      21,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30
+    ],
+    "rivalUnlockMask": 15
+  },
+  "artifacts": {
+    "captured-events": {
+      "path": ".local/destination-waits-hard-replay-01/captured-events.json",
+      "bytes": 496141,
+      "sha256": "766aa5ff9f665c0291ce409789bd44699cadc9a88cba845a883f19301cd999e8"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/destination-waits-hard-replay-01/campaign-checkpoints.json",
+      "bytes": 157874,
+      "sha256": "281eb870320ab33de22e1037dd451e44a8ac7abb661952d391357e2ba159439c"
+    },
+    "environment": {
+      "path": ".local/destination-waits-hard-replay-01/environment.json",
+      "bytes": 619,
+      "sha256": "49e0ff1c5bd06b717e841cce63fda4fbfe015ee93f41109dd416a7cfbe9a022b"
+    },
+    "timeline": {
+      "path": ".local/destination-waits-hard-replay-01/timeline.json",
+      "bytes": 2530,
+      "sha256": "a4a9200013f0c36930dfc9874e2576808279761fe020b6391bae4654253523b8"
+    },
+    "strict-replay": {
+      "path": ".local/destination-waits-hard-replay-01/strict-replay.log",
+      "bytes": 3434,
+      "sha256": "184b93fadfa1107a6878e9705af5f6c1bcf67e3b96b72bcbbed8e6f91502c62a"
+    },
+    "game-controls": {
+      "path": ".local/destination-waits-hard-replay-01/controls/results.json",
+      "bytes": 2043,
+      "sha256": "16f679361d555e4969cd979e8a5cf529d68373bf20698fc32c1f01dac7d171f5"
+    },
+    "capture-source-revision": {
+      "path": ".local/destination-waits-hard-exploration-01/source-revision.json",
+      "bytes": 60278,
+      "sha256": "4922e8a0df8270702fd328f31f24b83b0e407902b0b990a2fd2f7331ad3a960c"
+    },
+    "capture-sources": {
+      "path": ".local/destination-waits-hard-exploration-01/sources.zip",
+      "bytes": 1483533,
+      "sha256": "942804feb15513f39d7febe2235e7efbe2a279d4499f640378a84d9c8dee078f"
+    },
+    "capture-config": {
+      "path": ".local/destination-waits-hard-exploration-01/capture-config.mjs",
+      "bytes": 741,
+      "sha256": "edbfd23a997f9ef5873634a9d2492d395be930a6ef0307203c512bf39f9e82bd"
+    },
+    "capture-server-config": {
+      "path": ".local/destination-waits-hard-exploration-01/vite-config.mjs",
+      "bytes": 366,
+      "sha256": "220476ff832667c528a9434ab51ff263cd8d4aafa561936bc3caddf7ec846b4f"
+    },
+    "game-negative-wrong-difficulty": {
+      "path": ".local/destination-waits-hard-replay-01/controls/wrong-difficulty.log",
+      "bytes": 859,
+      "sha256": "5ad0c049e42835bb9eff2ab4c602eb37114c42191db93d9c6633d72d4637ec27"
+    },
+    "game-negative-wrong-security": {
+      "path": ".local/destination-waits-hard-replay-01/controls/wrong-security.log",
+      "bytes": 1827,
+      "sha256": "23c3ab92a9b04be277c0704c99eb112a3f1fcb79d14f8dafdafd940abb66f34b"
+    },
+    "game-negative-alter-checkpoint": {
+      "path": ".local/destination-waits-hard-replay-01/controls/alter-checkpoint.log",
+      "bytes": 756,
+      "sha256": "2ae6167ade41a601402df3c13fd96117f03d908ae9e8ff7cdad7189e4048c164"
+    },
+    "game-negative-omit-checkpoint": {
+      "path": ".local/destination-waits-hard-replay-01/controls/omit-checkpoint.log",
+      "bytes": 409,
+      "sha256": "19fb7ef21bbc705a082911bb495f8d7b250aba8bccccdbb246ead2ca59a4e554"
+    },
+    "game-negative-missing": {
+      "path": ".local/destination-waits-hard-replay-01/controls/missing.log",
+      "bytes": 739,
+      "sha256": "0e173eed14bbde752edced23114e80ad3bf8ed1994c9129543d653621f087e21"
+    },
+    "game-negative-corrupt": {
+      "path": ".local/destination-waits-hard-replay-01/controls/corrupt.log",
+      "bytes": 687,
+      "sha256": "2a3fdec58907a6489eab5add7d0f9fb48dac5ce2ecff5af9ab7c5dd968355f21"
+    },
+    "browser-results": {
+      "path": ".local/destination-waits-hard-browser-replay-01/results/report.json",
+      "bytes": 7909,
+      "sha256": "d57b44154e4f440393c3463fdb2370c53b815417a5d97a768421bd3442dd5baa"
+    },
+    "browser-source-revision": {
+      "path": ".local/destination-waits-hard-browser-replay-01/source-revision.json",
+      "bytes": 60718,
+      "sha256": "aa695ec03b660fbc820b644f6088b2ae7faefd9bb63e56c04a186612dff51cad"
+    },
+    "browser-sources": {
+      "path": ".local/destination-waits-hard-browser-replay-01/sources.zip",
+      "bytes": 1489745,
+      "sha256": "72d13260a1ecec67428d4f56725e2c4420ef9f84bf2a33ea7b839de7e8574a45"
+    },
+    "browser-config": {
+      "path": ".local/destination-waits-hard-browser-replay-01/browser-config.mjs",
+      "bytes": 762,
+      "sha256": "4ab2ed7f2bad9783602db3b926b7bc82a795922bbc299733ae3f961cbcd882cc"
+    },
+    "browser-server-config": {
+      "path": ".local/destination-waits-hard-browser-replay-01/vite-config.mjs",
+      "bytes": 373,
+      "sha256": "88c37e02337679e8b69e15a6776bfd85e20f45361c1a0df10daefa6558787ffa"
+    },
+    "capture-environment": {
+      "path": ".local/destination-waits-hard-exploration-01/capture/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/environment.json",
+      "bytes": 181,
+      "sha256": "1286f66ac67cd9d1d43b021d95fbc583cbfcd884daaaee56618036145a05140b"
+    },
+    "browser-negative": {
+      "path": ".local/destination-waits-hard-browser-controls-01/browser-negative.log",
+      "bytes": 1838,
+      "sha256": "62a5443f2881d519bd0616935104d607e0f69bdca51113f453f5c284741847ff"
+    },
+    "browser-negative-verifier": {
+      "path": ".local/destination-waits-hard-browser-controls-01/verifier-source.js",
+      "bytes": 1715,
+      "sha256": "ee85a606e4988b354f85686b6094225a9ad8ddd22620d91bb271b20c14e429aa"
+    }
+  },
+  "environmentContract": {
+    "origin": 1,
+    "displayMilliseconds": 8,
+    "biosSeed": 0,
+    "soundEnabled": false,
+    "inputs": "Captured DOM events before target handlers;expected states never select controls",
+    "audioCompletion": "Sound-disabled synchronous provider",
+    "driverHz": "1193182 / (1365 * 12)",
+    "retraceHz": 70.086
+  },
+  "comparisonRules": [
+    "Exact full Game state at every observation",
+    "Exact logical320x200 browser canvas pixels;no exclusions or tolerance",
+    "All required events,checkpoints and flight presentations;no diagnostic tail",
+    "The one native-supported flag alias is required exactly;ending remaining counter700 is compared exactly"
+  ],
+  "limitations": [
+    "Port/browser regression;not native complete-campaign comparison",
+    "Broader integrated gate and recurring destination raw polling/CPU timing remain open",
+    "Other routes and original save/load/high-score behavior remain unproven"
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "sourceFileCounts": {
+    "capture": 561,
+    "browser": 565
+  },
+  "verificationCommands": {
+    "game": "node scripts/replay-hard-campaign.js .local/destination-waits-hard-replay-01 --manifest=reference/hard-campaign-destination.json",
+    "browser": "DUCKTALES_CAMPAIGN_MANIFEST=reference/hard-campaign-destination.json node node_modules/@playwright/test/cli.js test tests/browser/hard-campaign.spec.js --config playwright.campaign.config.js"
+  },
+  "replayCommit": "bf7bb3db0a2183f90519d2253de9d4796a326853",
+  "verificationCommand": "npm run verify:hard-destination-campaign"
+}

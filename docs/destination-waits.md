@@ -116,5 +116,18 @@ Historical campaign manifests are retained unchanged. The17 other affected
 browser scenarios also pass with their existing gameplay expectations unchanged;
 see`reference/destination-readiness-browser.json`.
 
-Fresh Hard capture and the broader integrated gate remain required before
-updating the accepted main preview.
+The committed Easy command passes onbf7bb3d,with565 archived source files and its
+fresh results in`reference/destination-easy-campaign-gate.json`.
+
+Fresh Hard also completes all four families and reaches the day31 loss with17200
+against61000. Its separate complete contract keeps4136 external events and28
+observations. Independent Game and actual fixed-input browser replay match all
+28 full states/pictures and1629 flight presentations,including exactly one
+native-supported flag alias. Six Game/fixture controls and a real omitted-Hard
+selection are rejected. `reference/hard-campaign-destination.json` retains this
+separate evidence;`npm run verify:hard-destination-campaign` reproduces the route.
+Its raw capture remains exploratory. No historical campaign fixture was edited.
+
+The broader integrated gate remains required before updating the accepted main
+preview. Original complete-campaign parity,recurring raw destination polling and
+CPU/scanout timing remain open.

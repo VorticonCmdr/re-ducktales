@@ -6,9 +6,10 @@ const manifestPath =
   "reference/hard-campaign-office.json";
 const manifest = JSON.parse(await readFile(manifestPath));
 const root =
-  manifest.verificationEdition === "office"
+  process.env.DUCKTALES_CAMPAIGN_VERIFICATION_ROOT ??
+  (manifest.verificationEdition === "office"
     ? ".local/office-campaign-hard-verification"
-    : ".local/hard-security-campaign-verification";
+    : ".local/hard-security-campaign-verification");
 await mkdir(root, { recursive: true });
 const args = [
   "node_modules/@playwright/test/cli.js",

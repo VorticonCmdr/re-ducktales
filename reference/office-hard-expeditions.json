@@ -1,0 +1,175 @@
+{
+  "id": "office-aware-hard-alternate-expeditions",
+  "pending": true,
+  "browserVerified": false,
+  "expectedCaseCount": 4,
+  "expectedFullCheckpointCount": 169,
+  "expectedEventCount": 3978,
+  "captureRoot": ".local/office-hard-expeditions-01/capture",
+  "captureCommit": "f3422c47aa558192b5179e777b921a5824058742",
+  "artifactRoot": ".local/office-hard-expeditions-accepted-01",
+  "cases": [
+    {
+      "key": "bermuda",
+      "manifest": "reference/office-hard-bermuda.json",
+      "expectedInputs": 447,
+      "expectedCheckpoints": 34,
+      "expectedEvents": 994,
+      "expectedDeposit": 2150
+    },
+    {
+      "key": "boola",
+      "manifest": "reference/office-hard-boola.json",
+      "expectedInputs": 421,
+      "expectedCheckpoints": 26,
+      "expectedEvents": 986,
+      "expectedDeposit": 1150
+    },
+    {
+      "key": "thunderclap",
+      "manifest": "reference/office-hard-thunderclap.json",
+      "expectedInputs": 494,
+      "expectedCheckpoints": 46,
+      "expectedEvents": 992,
+      "expectedDeposit": 2100
+    },
+    {
+      "key": "machu",
+      "manifest": "reference/office-hard-machu.json",
+      "expectedInputs": 706,
+      "expectedCheckpoints": 63,
+      "expectedEvents": 1006,
+      "expectedDeposit": 2700
+    }
+  ],
+  "artifacts": {
+    "capture-source": {
+      "path": ".local/office-hard-expeditions-01/source-revision.json",
+      "bytes": 54617,
+      "sha256": "fa70e399ccc97f3a913f2d38bb98f4cfb68c7ae79b5bbb885c416b9595d57a8d"
+    },
+    "input-profile": {
+      "path": "reference/security-hard-expedition-inputs.json",
+      "bytes": 10013,
+      "sha256": "702cb5b498518e02c2804e1d30fd0e7f137737690ea89de07155484824020d63"
+    },
+    "entry-manifest-bermuda": {
+      "path": ".local/office-hard-expeditions-accepted-01/bermuda/entry-view/reference.json",
+      "bytes": 1514,
+      "sha256": "45285396f7445aead6a8a3964b5646d68e26ab61e75eb99d8baadf4854f18a64"
+    },
+    "entry-png-bermuda": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/entry.png",
+      "bytes": 20324,
+      "sha256": "0640cb694cebd1b07565e4ca5629cb756cf2d11104aeaffee5430e082cbcb58d"
+    },
+    "capture-environment-bermuda": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/environment.json",
+      "bytes": 253,
+      "sha256": "e2a411d82fb0bba87fa022a5dbad552edd06ff312ec60453d789d65ce490d24f"
+    },
+    "manifest-bermuda": {
+      "path": "reference/office-hard-bermuda.json",
+      "bytes": 19474,
+      "sha256": "3527d7e57b79aee1787360f09170ded72794354950f845e59f890641427645ce"
+    },
+    "entry-manifest-boola": {
+      "path": ".local/office-hard-expeditions-accepted-01/boola/entry-view/reference.json",
+      "bytes": 1504,
+      "sha256": "a89034561d13b207c573985656a50d5ffad2da9b13ceed7d22126c3d57ba4f15"
+    },
+    "entry-png-boola": {
+      "path": ".local/office-hard-expeditions-01/capture/boola/entry.png",
+      "bytes": 20324,
+      "sha256": "0640cb694cebd1b07565e4ca5629cb756cf2d11104aeaffee5430e082cbcb58d"
+    },
+    "capture-environment-boola": {
+      "path": ".local/office-hard-expeditions-01/capture/boola/environment.json",
+      "bytes": 253,
+      "sha256": "e2a411d82fb0bba87fa022a5dbad552edd06ff312ec60453d789d65ce490d24f"
+    },
+    "manifest-boola": {
+      "path": "reference/office-hard-boola.json",
+      "bytes": 15457,
+      "sha256": "bbd3840e3dd21e105b85f1fe3be36ac9a60f9204b8b0e3eb629e957977cbea56"
+    },
+    "entry-manifest-thunderclap": {
+      "path": ".local/office-hard-expeditions-accepted-01/thunderclap/entry-view/reference.json",
+      "bytes": 1536,
+      "sha256": "08472509624056146dd6debe48256927f11118ada965762b500624dea1727cb6"
+    },
+    "entry-png-thunderclap": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/entry.png",
+      "bytes": 20338,
+      "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+    },
+    "capture-environment-thunderclap": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/environment.json",
+      "bytes": 253,
+      "sha256": "e2a411d82fb0bba87fa022a5dbad552edd06ff312ec60453d789d65ce490d24f"
+    },
+    "manifest-thunderclap": {
+      "path": "reference/office-hard-thunderclap.json",
+      "bytes": 25598,
+      "sha256": "a12e7cb7c27e0de0b003020abcc3b0d136e8fc7589f9b481ce347bd7a8e305ab"
+    },
+    "entry-manifest-machu": {
+      "path": ".local/office-hard-expeditions-accepted-01/machu/entry-view/reference.json",
+      "bytes": 1506,
+      "sha256": "02d79931f2e9167b13f7348bddf64715db8377f67780ddfb4de6ebc032101b0b"
+    },
+    "entry-png-machu": {
+      "path": ".local/office-hard-expeditions-01/capture/machu/entry.png",
+      "bytes": 20338,
+      "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+    },
+    "capture-environment-machu": {
+      "path": ".local/office-hard-expeditions-01/capture/machu/environment.json",
+      "bytes": 253,
+      "sha256": "e2a411d82fb0bba87fa022a5dbad552edd06ff312ec60453d789d65ce490d24f"
+    },
+    "manifest-machu": {
+      "path": "reference/office-hard-machu.json",
+      "bytes": 33677,
+      "sha256": "dd06cd4af97b2a7d5cf1f8ab0a9be5b4bc3d7c7bbd59a97818d14e94700046d2"
+    }
+  },
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "evidenceLevel": "Four strict recorded-input Game candidates; independent fresh browser acceptance pending. Not whole-native expedition parity.",
+  "comparisonRules": [
+    "Exact complete Game state at every checkpoint",
+    "Exact decoded 320x200 RGBA browser pixels",
+    "Pointer normalization only at existing clamping/truncation consumption boundary"
+  ],
+  "environment": {
+    "biosSeed": 0,
+    "difficulty": 2,
+    "soundEnabled": false,
+    "clockOriginMilliseconds": 1,
+    "displayMilliseconds": 8
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "verify": "npm run verify:security-hard-expeditions",
+  "verificationTools": {
+    "scripts/verify-security-hard-expeditions.js": "4ddc437f8e0928b5aa59698c83b2cbe5412b585095c1d9b6b853fbe190c09fd1",
+    "scripts/verify-security-hard-movement-negative.js": "fe3a58525918da01f62c3e782e0e171fe343808286cbb8e0c2ffacf13dca3201",
+    "scripts/verify-security-hard-fixture-negatives.js": "df0f9553aae9fe009cd0f2a087538d7cec068a8f6ba6eeb7bf8dbb4c79ad6e39",
+    "scripts/verify-hard-expedition-negative.js": "e11cba0c5cd7022e0a21ae93f1a6d969d9d659f3ac80aadb35cc3895992ccee6",
+    "scripts/verify-hard-mountains-negative.js": "2274ace915f3ccbcecba3275c23ddd2c42d9811ce942c8e323fa49255e625e40",
+    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
+    "tests/browser/helpers/entry-recording.js": "fae21ab665db3728a9f491f018d90c0ac7dd4eff9fb2db44b55703a33c0eb43c",
+    "tests/browser/helpers/flight-policy.js": "83a20623ad6885675699def84acc1b740104771c3143e8f0afbd7472c26527de",
+    "tests/browser/hard-expedition-route.js": "7942d65d90e97f79bfd5f74608c14399e76438dee725e0a38c584039048531e5",
+    "tests/browser/hard-expedition-replay.spec.js": "1cf5e7eabd84badddfd9555b6028d0a6ceb80761693bd0d56fd0056184eda3ef",
+    "tests/browser/hard-expedition.spec.js": "0345b841a21368b7db4ef8b67289caa50762b444b66a32c47074f27dc5ba6488",
+    "tests/browser/hard-mountains.spec.js": "ac28045ec5fb8dfdffc6b79a01394cf49882b4d21dd1e5535d0f13413451d668",
+    "scripts/verify-flight-input-browser-negative.js": "61f9af9747835cf202c51a67b07ce382c43f4ffa9228154033d310f116a2baa8"
+  },
+  "negativeComparisonRule": "Omitting the first horizontal make must fail a carried state or independent DOM-event comparison at an expedition checkpoint;setup,timeout and endpoint failures are rejected.",
+  "verificationEdition": "office",
+  "captureSourceArchive": ".local/office-hard-expeditions-01/sources",
+  "entryEvidenceScope": "Each auxiliary entry view is a prefix of its corresponding full capture,not an independent capture or additional browser case. Current eight full browser cases include all four entry checkpoints and every expedition checkpoint."
+}

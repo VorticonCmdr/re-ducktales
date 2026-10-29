@@ -5,7 +5,7 @@ import { spawnSync } from "node:child_process";
 const hash = (b) => createHash("sha256").update(b).digest("hex");
 export async function verifyHardMovementNegative(key) {
   const catalog = JSON.parse(
-    await readFile("reference/security-hard-expeditions.json"),
+    await readFile("reference/office-hard-expeditions.json"),
   );
   assert.equal(
     catalog.pending,
@@ -31,7 +31,7 @@ export async function verifyHardMovementNegative(key) {
       `Corrupt ${name}`,
     );
   }
-  const root = ".local/security-hard-expeditions-verification";
+  const root = ".local/office-hard-expeditions-verification";
   await mkdir(root, { recursive: true });
   const mode = "omit-expedition-move";
   const result = spawnSync(

@@ -1,0 +1,672 @@
+{
+  "id": "office-hard-thunderclap",
+  "key": "thunderclap",
+  "pending": false,
+  "milestone": "hard-expedition-bank",
+  "activity": "mountain",
+  "expectedHard": true,
+  "expectedLocation": 33,
+  "expectedVariant": 1,
+  "expectedInputCount": 494,
+  "artifactRoot": ".local/office-hard-expeditions-accepted-01/thunderclap",
+  "captureRoot": ".local/office-hard-expeditions-01/capture/thunderclap",
+  "captureProducer": ".local/office-hard-expeditions-01/source-revision.json",
+  "captureCommit": "f3422c47aa558192b5179e777b921a5824058742",
+  "expectedCheckpointCount": 46,
+  "checkpointNames": [
+    "entry",
+    "input-2",
+    "input-3",
+    "input-4",
+    "input-26",
+    "input-40",
+    "input-44",
+    "input-45",
+    "input-47",
+    "input-48",
+    "input-52",
+    "input-53",
+    "input-56",
+    "input-76",
+    "input-80",
+    "input-103",
+    "input-120",
+    "input-121",
+    "input-149",
+    "input-160",
+    "input-169",
+    "input-198",
+    "input-200",
+    "input-216",
+    "input-240",
+    "input-244",
+    "input-264",
+    "input-280",
+    "input-293",
+    "input-314",
+    "input-320",
+    "input-360",
+    "input-393",
+    "input-394",
+    "input-400",
+    "input-402",
+    "input-420",
+    "input-440",
+    "input-448",
+    "input-465",
+    "input-480",
+    "input-494",
+    "award",
+    "returned-map",
+    "bank",
+    "deposited"
+  ],
+  "requiredEventCount": 992,
+  "expectedFlightPresentations": 396,
+  "expectedFlagAliasPresentations": 0,
+  "checkpoints": [
+    {
+      "name": "entry",
+      "at": 35141,
+      "eventCount": 956,
+      "stateSha256": "53130b07f8c35d1f071353274e29e896f52e7a2a23bf9803a75b56950042ca6c",
+      "pixelsSha256": "97e5a21de13093580ca418822baf1d3f142eaba5c0f3baf6326e59f0cced7f6d"
+    },
+    {
+      "name": "input-2",
+      "at": 35181,
+      "eventCount": 956,
+      "stateSha256": "0bb542e26e45c58ee1ccd811024be310a9fc08f733180ab357e10215d063949d",
+      "pixelsSha256": "9e2ccd980aa08d7924b52985b424eb97890de9ca02c40b4b64fc3f68a770b7f7"
+    },
+    {
+      "name": "input-3",
+      "at": 35197,
+      "eventCount": 957,
+      "stateSha256": "5ac4a7ad7aa02fd79566969836f041cce792938563e32288bacd26ac48422feb",
+      "pixelsSha256": "9e2ccd980aa08d7924b52985b424eb97890de9ca02c40b4b64fc3f68a770b7f7"
+    },
+    {
+      "name": "input-4",
+      "at": 35205,
+      "eventCount": 958,
+      "stateSha256": "aae969d72bf87dd35994e67062e1d835d3cd0eb172dd24710679b4cb4ada6feb",
+      "pixelsSha256": "a97b4868c169213daaf44ef8e43260ca224b52bc5dd9ab0f6932a5bc54db653a"
+    },
+    {
+      "name": "input-26",
+      "at": 35525,
+      "eventCount": 959,
+      "stateSha256": "5438a4d62c711bfda09fbd1b1cc2e7dd8a57f7f653ddaa263c245fc18c3bda79",
+      "pixelsSha256": "bfb8a3d4852844e48e4574edcd95837a2793e03f804bf669b3a10a52cfc32344"
+    },
+    {
+      "name": "input-40",
+      "at": 35725,
+      "eventCount": 960,
+      "stateSha256": "04df9eef3195d4de29af543b2e4968212fd7f90f24a5c4b7e5d65912db83ed01",
+      "pixelsSha256": "6248680c0231f8d2af6391dbd4d3518639a177eb654700c76dacfeef864b29a8"
+    },
+    {
+      "name": "input-44",
+      "at": 35781,
+      "eventCount": 960,
+      "stateSha256": "ab9ba7afe3d8eb842f9144cca6c6505484b428899ca421e8ae55b9b48565583d",
+      "pixelsSha256": "d7f66c5a7ff5f250c2c0cf6dd3f523c580b3c355de2a1b32976a3e4b8167b630"
+    },
+    {
+      "name": "input-45",
+      "at": 35797,
+      "eventCount": 961,
+      "stateSha256": "be514cde8e8677638df8c765b9eff825933ce45426e58932e7828cf8f1256ad0",
+      "pixelsSha256": "11dac3856b7038c0f262788202feb116431525259df27bb298a7d833383e99c5"
+    },
+    {
+      "name": "input-47",
+      "at": 35821,
+      "eventCount": 962,
+      "stateSha256": "eb757d96b6c2285d288ec7fb30d4f9d25d2b24845256d35bcd78c41ed5c19d4e",
+      "pixelsSha256": "1126105c33931866fbb5cd7d1500b14a8195e1189fd487b89b4f62de88e24e29"
+    },
+    {
+      "name": "input-48",
+      "at": 35837,
+      "eventCount": 963,
+      "stateSha256": "5a971fb7fd722e24fc84f5c4bc4f242526dbf1f5b8285decf7d8a7680368dd88",
+      "pixelsSha256": "c78860f87c8cbf695ebf62dc83df53b0c90657be58e55a4e679fa4711dbd07c9"
+    },
+    {
+      "name": "input-52",
+      "at": 36061,
+      "eventCount": 964,
+      "stateSha256": "87fa4081749248e33e2ae041dfb084473b4753b8c25213988f360fa2494bed0a",
+      "pixelsSha256": "94d6d989f1875f46abe5416a30972f6d2006f0f139ab87df5b3ac3874592dbf0"
+    },
+    {
+      "name": "input-53",
+      "at": 36077,
+      "eventCount": 965,
+      "stateSha256": "6438a7c7452ce66af6f5eaddc39baf93fe6abdb35804449103f66e7acf61cf5b",
+      "pixelsSha256": "e52c2cae2091979e436580712da5b8617e51866007ffd943b316acc34f3a9cc4"
+    },
+    {
+      "name": "input-56",
+      "at": 36237,
+      "eventCount": 966,
+      "stateSha256": "5367925dbeff797aa44828df96870997a3e40944322705cdeb68e608a0917aae",
+      "pixelsSha256": "305d26d421dc7cb7cbc17bcd0f0020d8101d9ec591a0e2bb12431552213e55c1"
+    },
+    {
+      "name": "input-76",
+      "at": 36525,
+      "eventCount": 967,
+      "stateSha256": "83d1bedba629c4a2eba1b150d27b214fb619416ebd1d2e0ecd9c5f4d09e09146",
+      "pixelsSha256": "3f4329c2a014229f5829097f11b5140b8fe44b0c6a47119c943c2edcbfe088cc"
+    },
+    {
+      "name": "input-80",
+      "at": 36581,
+      "eventCount": 968,
+      "stateSha256": "2bc438a6b74e6666c1a0ea04d66d7b7076e4c6ee774e46661abed7ce03a70f63",
+      "pixelsSha256": "d737bfbb699a4ddce97567ef93370724fc99ead18555fac12ad2a90896fd9eed"
+    },
+    {
+      "name": "input-103",
+      "at": 37021,
+      "eventCount": 968,
+      "stateSha256": "e25d1365d5f9536286797be4feeb51364341c996b0124f36764c20a53802c493",
+      "pixelsSha256": "92d04fb47205bd8184a2ba150f6d2eefcaadee11aaf5c3a7ba0754eb8493fda5"
+    },
+    {
+      "name": "input-120",
+      "at": 37261,
+      "eventCount": 969,
+      "stateSha256": "cf3fb7dc8c14a77d0cd6eddca073024af2d667260e3b23273f131597e876d5dd",
+      "pixelsSha256": "3640a442cd546b7ced55b0f9a4223dc7d187faf86e47e83dc36058b73e3c4d0b"
+    },
+    {
+      "name": "input-121",
+      "at": 37277,
+      "eventCount": 969,
+      "stateSha256": "81cdaf6beb4aa8bb40b40048221d9552b8c9ae4bc9eb7a7e2220b5f1d6d8c18a",
+      "pixelsSha256": "83372dd34419159a536a182022abef65522e0fea29fe01f871d2481ac9fd249d"
+    },
+    {
+      "name": "input-149",
+      "at": 37789,
+      "eventCount": 970,
+      "stateSha256": "97f076275f22c8e1522f5a5af90d208e826962c3256c040fdf7d871027f860c6",
+      "pixelsSha256": "162e9ff863efa34d2f3294703efc9eb9d13ce6d1bc4b24d3da367c349d65eca0"
+    },
+    {
+      "name": "input-160",
+      "at": 37949,
+      "eventCount": 971,
+      "stateSha256": "74d282c2b2669e5664405e11a50965fdaa597a3e134210fe442d5300eb351e32",
+      "pixelsSha256": "df787f6b12b608cadb5fc44ca069eb035f8ed212e8020505214e6c272cb24d0d"
+    },
+    {
+      "name": "input-169",
+      "at": 38077,
+      "eventCount": 971,
+      "stateSha256": "003c3a2130ad99103719e8f52d985b998a5a39ee9b16332665219e51f74f3f40",
+      "pixelsSha256": "17ee41defe42d437f686cef17cd021bbaeea9fd6df12b5a96fef1aae651093d2"
+    },
+    {
+      "name": "input-198",
+      "at": 38605,
+      "eventCount": 972,
+      "stateSha256": "6f64f70278d9109c6895d6198f92544c4bfede9db8d1e97e33db226030a7ae96",
+      "pixelsSha256": "0632420437474c7aae1003f7141cc0b2179f8816aeceb9ea014eda4f3ae21ac8"
+    },
+    {
+      "name": "input-200",
+      "at": 38629,
+      "eventCount": 973,
+      "stateSha256": "eab0c1f54be16663b5ad6344ee7126b82aee6ea0974d662a6b50909cf6ab0599",
+      "pixelsSha256": "7c20070c02e5de4410d7c3a9d1091a5baaf4e1e78711e82d62c2af70d3729ab9"
+    },
+    {
+      "name": "input-216",
+      "at": 38861,
+      "eventCount": 973,
+      "stateSha256": "b3bf0c0c328314da4d3026e842e2dbe64e95134dbe1bd9fff98e42c948f0aa66",
+      "pixelsSha256": "7c20070c02e5de4410d7c3a9d1091a5baaf4e1e78711e82d62c2af70d3729ab9"
+    },
+    {
+      "name": "input-240",
+      "at": 39317,
+      "eventCount": 974,
+      "stateSha256": "7812312d968febbd6a4bd135f65aa0a4980b3815b87a5a9a588c691ad2eaa649",
+      "pixelsSha256": "db14f209ada91f0d94289747fec82ffa2a3b07f7d26244e9b2482463b5f3076d"
+    },
+    {
+      "name": "input-244",
+      "at": 39373,
+      "eventCount": 974,
+      "stateSha256": "78d11bab3a0ac6b855906fe09ef8c225a8b9d0abe56e1dd68e23782e8d16daf5",
+      "pixelsSha256": "4d5225fca3ba7ace093ea0713838ce8a4f6b611e9653c0825ea30d9f1eb81bef"
+    },
+    {
+      "name": "input-264",
+      "at": 39661,
+      "eventCount": 975,
+      "stateSha256": "4ff81c53dd256b1e4ea05e76d8c6b2defda38da28767e4f49c3311efc063bb99",
+      "pixelsSha256": "4270284d317c70da759d309c8e3ccd4afc6f6520a899f88063263bfdc6ed78db"
+    },
+    {
+      "name": "input-280",
+      "at": 39949,
+      "eventCount": 976,
+      "stateSha256": "f0da72b944bbc8c9232761caed0cf9e60d9639666dcfdb4801fd6e7ca98f953c",
+      "pixelsSha256": "a8bff381aab3e245733cfb4395c6dabb2cbd6b19f20307dfe385897913526eff"
+    },
+    {
+      "name": "input-293",
+      "at": 40189,
+      "eventCount": 976,
+      "stateSha256": "c0f570301dd86d967561f719f870e7071b258d8dbd0740a17cf9724006b4b3da",
+      "pixelsSha256": "5f641cf9a6c70bfec728932e9d8315dbb44f5ebcc9ad9019d1da455cf04430ed"
+    },
+    {
+      "name": "input-314",
+      "at": 40485,
+      "eventCount": 977,
+      "stateSha256": "ca6ead8941bb268abf5ba48f38688f615c2b08a40c39dc63725bf23c2efb79e7",
+      "pixelsSha256": "41a6ef81207eed98e5278221e38a79c14d05cebf3038df958c32d41369c3634f"
+    },
+    {
+      "name": "input-320",
+      "at": 40573,
+      "eventCount": 978,
+      "stateSha256": "13e5c786d512a9de359d1b53512b8ec18175c6264d81795f23e3167f277848b9",
+      "pixelsSha256": "05fa9c3f4c54403983afd18024a9b0d9960f0da6ddcd8c1f79f3e8150e920454"
+    },
+    {
+      "name": "input-360",
+      "at": 41141,
+      "eventCount": 978,
+      "stateSha256": "2f7d63dac59a0c5f714304e7763de95f8650f17c81279501a1c4f9c9b353c5ac",
+      "pixelsSha256": "f01fc6c7b72af58f85da13af94bd912b7c37d7fe8bab23a1f506f0b0e92a264b"
+    },
+    {
+      "name": "input-393",
+      "at": 41733,
+      "eventCount": 978,
+      "stateSha256": "c02ee80d6bfbc9a4b6b252e10a64c38e43f3a9a95180506b7732253a905e3ad1",
+      "pixelsSha256": "11600e88c79ac130902a3ee4ead406e67201791784ddea874245a907482af911"
+    },
+    {
+      "name": "input-394",
+      "at": 41741,
+      "eventCount": 979,
+      "stateSha256": "2d53a9b65c426e3ff7a916f0a6291880fcec5c93be9bafc00e25b07cc9239463",
+      "pixelsSha256": "53d09ac3743b4064e130bb6369c11b13be251e964f19437f839db205c6cc8a2e"
+    },
+    {
+      "name": "input-400",
+      "at": 41829,
+      "eventCount": 980,
+      "stateSha256": "33a15782adfa20b05b543324ed5c759e75ea44f5b3452aff935753dcddda75eb",
+      "pixelsSha256": "dbec5f8bb7f2543a29c52b80228db409b313e704cd0cbcffb18c35d205639587"
+    },
+    {
+      "name": "input-402",
+      "at": 41861,
+      "eventCount": 980,
+      "stateSha256": "c2fc4affaa497087f9c89d2a26d10f1b25677e5ced2eace933463c87b2913212",
+      "pixelsSha256": "608fffef204340cd0302877bd9fa42aaed76617dc8c9b98f6f1d44ee9753b11a"
+    },
+    {
+      "name": "input-420",
+      "at": 42173,
+      "eventCount": 981,
+      "stateSha256": "b5fc6d86876fb447388305c40f8a0e22ad1a34c4c5f928e8882527938e1bd5ad",
+      "pixelsSha256": "7cc64a627cff9358aa0b884bf586447124c20761ec7f929d4820d7dce3646106"
+    },
+    {
+      "name": "input-440",
+      "at": 42573,
+      "eventCount": 982,
+      "stateSha256": "6f34c92d250ad980bc63d9d71a1428ff5284eb87394c4bbecc1c708a56291380",
+      "pixelsSha256": "51d4422ce7f8f7f998fc3f8bfd9f29b82112d1b1b31a5ddff86ab2ec55fe85ee"
+    },
+    {
+      "name": "input-448",
+      "at": 42685,
+      "eventCount": 982,
+      "stateSha256": "7c1c7eaf2fe978159207f910b3818b2af42ebd17fd7842d3dfa53958f518efe1",
+      "pixelsSha256": "330eb7de3467bcf0f13f052d4ed22537d009ed19025b067b7a709082c887107c"
+    },
+    {
+      "name": "input-465",
+      "at": 42925,
+      "eventCount": 983,
+      "stateSha256": "b64bc9b3f29b3b76a81e681f0c3007df4a0ae272f09decb1ad675a9c6f78afa3",
+      "pixelsSha256": "d52d19bceff710076bdce62981cb5166898304b92fd6e9930c39849261d14009"
+    },
+    {
+      "name": "input-480",
+      "at": 43141,
+      "eventCount": 984,
+      "stateSha256": "77f517d1fda24fcce5ce609ea0ed1af53b2f6680b741857ec8356aefad77c386",
+      "pixelsSha256": "cbcc5999723dc15de478d399e9901e7661562092abe9c6d58118f7c3dceb9810"
+    },
+    {
+      "name": "input-494",
+      "at": 43453,
+      "eventCount": 984,
+      "stateSha256": "4c8acf2f880bb47541b8863bc8ca2d4eaff2ba1bd370f66040091e1e9e06c9e6",
+      "pixelsSha256": "1f994abbcd1720c698a00c804ef2540174f705b1525116bd01a85d48dbd3ad76"
+    },
+    {
+      "name": "award",
+      "at": 43469,
+      "eventCount": 984,
+      "stateSha256": "8c722118cba21ddd55d147419bd5daeee8f8218a2c6676c6dea6ec49415b7de2",
+      "pixelsSha256": "0dc93c412205047ca989419c03c3a5ad3f52a193ef3e310edbc7872efe73e830"
+    },
+    {
+      "name": "returned-map",
+      "at": 43569,
+      "eventCount": 986,
+      "stateSha256": "a75f6bc1a7a32a8d43562e3fc8a0e70ce44858b993435aaebaf216d8ca3453ab",
+      "pixelsSha256": "ac62683db42b76124bf460d06f2c6cfad5fb76403f2ff88fbf010c586ddfe37c"
+    },
+    {
+      "name": "bank",
+      "at": 43769,
+      "eventCount": 990,
+      "stateSha256": "71b4afd9d9194c0a9dba066d5055d21b607a11d0fa856bac7c060f048a6864e2",
+      "pixelsSha256": "ff726fe7f356e620df3bd3728dededa52a3b7b5e4d1df65a23e89c1e2d40faf6"
+    },
+    {
+      "name": "deposited",
+      "at": 49309,
+      "eventCount": 992,
+      "stateSha256": "992daa470732d8f930fcca9de3e82312e557e480aa81cdfe31891bf33bcd208c",
+      "pixelsSha256": "ccb9d14e87bb47c33fc8ec4cc85781c88b9e60c078913642070f75348d303eac"
+    }
+  ],
+  "expectedOutcome": {
+    "money": 0,
+    "banked": 2100,
+    "day": 6,
+    "playerCollected": [
+      33
+    ],
+    "frames": 494,
+    "presentations": 584,
+    "lives": 3,
+    "seed": 46851
+  },
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "environment": {
+      "path": ".local/office-hard-expeditions-accepted-01/thunderclap/environment.json",
+      "bytes": 267,
+      "sha256": "1b057de4f9c2ae0ea65058f06e131e73f54d684e4ed03ad846443877d0266ebc"
+    },
+    "captured-events": {
+      "path": ".local/office-hard-expeditions-accepted-01/thunderclap/captured-events.json",
+      "bytes": 118251,
+      "sha256": "d24fd555e635aee23c0cd8cc7536ce3e9bad245fbf3f3764dd380a2a1875cd81"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/office-hard-expeditions-accepted-01/thunderclap/campaign-checkpoints.json",
+      "bytes": 167658,
+      "sha256": "d7ba18f2ba2b7102e5763062329e0e674e4506c0879ffb56e430b8282d019311"
+    },
+    "timeline": {
+      "path": ".local/office-hard-expeditions-accepted-01/thunderclap/timeline.json",
+      "bytes": 3884,
+      "sha256": "6cc25ef6d3181364e91e429acea0dec05f0f8b385297acdbeca2bdb09bcf6f70"
+    },
+    "capture-source": {
+      "path": ".local/office-hard-expeditions-01/source-revision.json",
+      "bytes": 54617,
+      "sha256": "fa70e399ccc97f3a913f2d38bb98f4cfb68c7ae79b5bbb885c416b9595d57a8d"
+    },
+    "input-profile": {
+      "path": "reference/security-hard-expedition-inputs.json",
+      "bytes": 10013,
+      "sha256": "702cb5b498518e02c2804e1d30fd0e7f137737690ea89de07155484824020d63"
+    },
+    "png-entry": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/entry.png",
+      "bytes": 20338,
+      "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+    },
+    "png-input-2": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-2.png",
+      "bytes": 26451,
+      "sha256": "edbd7584b81f94ff36eced9af07bdc911b767fccb3f4591fbfb97cb38614571d"
+    },
+    "png-input-3": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-3.png",
+      "bytes": 26451,
+      "sha256": "edbd7584b81f94ff36eced9af07bdc911b767fccb3f4591fbfb97cb38614571d"
+    },
+    "png-input-4": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-4.png",
+      "bytes": 26452,
+      "sha256": "a8cd403edcc4536d8be689fabe58232523152a7a268ec34e4df453775fe2c1fb"
+    },
+    "png-input-26": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-26.png",
+      "bytes": 26566,
+      "sha256": "bb4b254378a1c7ffb35569a4c52f0f3bf1ea3e51ed74ba8b48a4c2b0ecc81940"
+    },
+    "png-input-40": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-40.png",
+      "bytes": 26588,
+      "sha256": "dedbfd8cbfc53a603bbf5a8653332dc56a04e0c9cd72b4894dc5a5e9d07bf2d9"
+    },
+    "png-input-44": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-44.png",
+      "bytes": 26488,
+      "sha256": "405d2aa1e1934d6c781ce49576bf75cc59cb3c55a2b33673df0dedd2844134f0"
+    },
+    "png-input-45": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-45.png",
+      "bytes": 26393,
+      "sha256": "48e2bb374cb340078900895c30f3ce2e026cec1e81ca0d355b896a7ba80514c8"
+    },
+    "png-input-47": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-47.png",
+      "bytes": 26227,
+      "sha256": "ea5e8455b8afdc479536c4656bcf6c1f83e5f56cdd6cb39ff68cae8ba73f9a05"
+    },
+    "png-input-48": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-48.png",
+      "bytes": 26430,
+      "sha256": "afc02e89b19ed04800738cde10adb032400b41df430467cbef7a2ad1391c0846"
+    },
+    "png-input-52": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-52.png",
+      "bytes": 27120,
+      "sha256": "5ed5564429e11a59fa2ec56b8fcc8b2f18e89f931f9a844948c8700a5d0b4bcd"
+    },
+    "png-input-53": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-53.png",
+      "bytes": 27321,
+      "sha256": "d4237196fa1de3d615c7a03184f8fef0bb9e2e8817f04b33843d6707481e4c1c"
+    },
+    "png-input-56": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-56.png",
+      "bytes": 27806,
+      "sha256": "703b30117e8cfd24840ed40ea5e44ca8d2a677e0c0d8f7001907441683d8f515"
+    },
+    "png-input-76": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-76.png",
+      "bytes": 28263,
+      "sha256": "922743af7c755a0a8c59525255b62e5ac82aca2df12ca8af45c7382bc45dd229"
+    },
+    "png-input-80": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-80.png",
+      "bytes": 28222,
+      "sha256": "326e40e833d6d89993b9c175a212a6c8cb6d689cc842d14ca75660603d54ed8e"
+    },
+    "png-input-103": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-103.png",
+      "bytes": 28204,
+      "sha256": "cac95ada3023867a7521f3b358ed4dd40e58b6795ef78737bdabdc9ba4fa4e88"
+    },
+    "png-input-120": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-120.png",
+      "bytes": 28232,
+      "sha256": "937fdc5cbab0bbda3403fed96315fb398e3b14c8c409972238907896a7710f86"
+    },
+    "png-input-121": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-121.png",
+      "bytes": 28221,
+      "sha256": "6139aa18ff2f2c4d08692ea848b63ad5e3deaaa9cae993fb70a0f115c3daed75"
+    },
+    "png-input-149": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-149.png",
+      "bytes": 27633,
+      "sha256": "359c6481bbfdfa8d2747737f6186f308abd0349952f7864eda08c7f031761d67"
+    },
+    "png-input-160": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-160.png",
+      "bytes": 27825,
+      "sha256": "13bfcdefd57308f1784b9e7474168e5bce7281d7964b859b31f045c661b28d5d"
+    },
+    "png-input-169": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-169.png",
+      "bytes": 27889,
+      "sha256": "acde742014b85fa6cba878a74ed0ebc9ad63b156bbacce5731642223cf621789"
+    },
+    "png-input-198": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-198.png",
+      "bytes": 27394,
+      "sha256": "71a289b3521e2aa7c25f05909c4005ae07881776e000e377702f50fa73ad6457"
+    },
+    "png-input-200": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-200.png",
+      "bytes": 27521,
+      "sha256": "ce141de5c60ead039e163b71076b5d725e44893fe47c773b979e8392159907a5"
+    },
+    "png-input-216": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-216.png",
+      "bytes": 27521,
+      "sha256": "ce141de5c60ead039e163b71076b5d725e44893fe47c773b979e8392159907a5"
+    },
+    "png-input-240": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-240.png",
+      "bytes": 28099,
+      "sha256": "9dd66482166e01ab44d440a5c3e2aeba85dc2a6d5f8a05d923c738541cf56046"
+    },
+    "png-input-244": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-244.png",
+      "bytes": 28053,
+      "sha256": "a31ac035f233da72791a68a9224d6dbed61e0dfe6f0958c30d4c50564dcce38c"
+    },
+    "png-input-264": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-264.png",
+      "bytes": 28280,
+      "sha256": "29e2f1f7cc4ed43096e48458894fc960b574b6d1eda26fbb95517cba669c63b9"
+    },
+    "png-input-280": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-280.png",
+      "bytes": 27801,
+      "sha256": "e7ed83d541ede748d00311b6c988b7165450375a2c3e41f082c815cebef1b517"
+    },
+    "png-input-293": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-293.png",
+      "bytes": 28435,
+      "sha256": "8678ecbcb7c481149108f71a72b466057dc5b9ad063bbf3ffab78926e9c4afe3"
+    },
+    "png-input-314": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-314.png",
+      "bytes": 28735,
+      "sha256": "4e7dcec14ddcd2fb619873e569f525f4bb04c988901791b115eecb1a90a64276"
+    },
+    "png-input-320": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-320.png",
+      "bytes": 28773,
+      "sha256": "05ebd3a6b44dfa4acca423357340bef7ae20cd78909dd88b85f0933b72d5686b"
+    },
+    "png-input-360": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-360.png",
+      "bytes": 28371,
+      "sha256": "f1f74b7e964fea5d938404ccd080b24f3a9f037969dd018a4798260471627d1a"
+    },
+    "png-input-393": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-393.png",
+      "bytes": 27696,
+      "sha256": "a7c994af0af2c4232502eff3a405cebe71893a2a0cd8589182dc2c74b54d58df"
+    },
+    "png-input-394": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-394.png",
+      "bytes": 27626,
+      "sha256": "dccbf23df015533f6202f882e38d26f390f62c619a24af51fc694ae9405c72bf"
+    },
+    "png-input-400": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-400.png",
+      "bytes": 27641,
+      "sha256": "e59a946296a76e0df807fa2ded9538207548cb961c3926923f9094e25b0cf44f"
+    },
+    "png-input-402": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-402.png",
+      "bytes": 27648,
+      "sha256": "83a0d07f692791cb3485ac0593f683669ad6823b087eeec6b95cd592c4df778d"
+    },
+    "png-input-420": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-420.png",
+      "bytes": 28224,
+      "sha256": "3bde53382cc0318476fe06abeddd25047666c438896f6e75e677bb539e2c62aa"
+    },
+    "png-input-440": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-440.png",
+      "bytes": 27301,
+      "sha256": "2e353b7494f7398623aa944cca8ad2784a0292c8a6e5b79b01958b5f56b47ec7"
+    },
+    "png-input-448": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-448.png",
+      "bytes": 27297,
+      "sha256": "e38d311308167ee6d2ef7d494cc81fbee8fffb2cc549fbb3e41044c3eef94431"
+    },
+    "png-input-465": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-465.png",
+      "bytes": 27387,
+      "sha256": "f99a4f4aa308e736992636ff8240dbe3176042e5e0f4e77fffb9c064d8c87cdf"
+    },
+    "png-input-480": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-480.png",
+      "bytes": 27200,
+      "sha256": "f8fdedc824bf807cc73bf10cee94bcc943d0dc9b4068d3865574719cfc789df9"
+    },
+    "png-input-494": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/input-494.png",
+      "bytes": 26210,
+      "sha256": "4d76bea661879efcee9ee65e0922d2d62aec245969dab1766c7dc61a00567a7c"
+    },
+    "png-award": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/award.png",
+      "bytes": 19084,
+      "sha256": "8b17e4eae5db9faf78fd9ae8885485bf940a5a86b69c3f27a346d0ec1b69dc6e"
+    },
+    "png-returned-map": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/returned-map.png",
+      "bytes": 27808,
+      "sha256": "e5004c467a31c92a3873ea678ea9c429cc3a29db8b9ec109262030f15c2068fa"
+    },
+    "png-bank": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/bank.png",
+      "bytes": 24272,
+      "sha256": "8aa35aa38f75da2fdf4bf988f084c5bde48eeb2c46f4d2deb354020a1384fdbc"
+    },
+    "png-deposited": {
+      "path": ".local/office-hard-expeditions-01/capture/thunderclap/deposited.png",
+      "bytes": 27601,
+      "sha256": "b8d6cee4758d4a6252c19900751e1e8763b65a110f3cb61daec36e3d15e58095"
+    }
+  },
+  "browserVerified": false,
+  "scope": "Current office-aware Hard expedition/treasure/bank segment;not whole-native expedition parity",
+  "verificationEdition": "office",
+  "entryStateSha256": "53130b07f8c35d1f071353274e29e896f52e7a2a23bf9803a75b56950042ca6c",
+  "entryPixelsSha256": "97e5a21de13093580ca418822baf1d3f142eaba5c0f3baf6326e59f0cced7f6d"
+}

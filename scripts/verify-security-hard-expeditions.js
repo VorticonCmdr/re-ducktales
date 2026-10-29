@@ -3,7 +3,15 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
 import { PNG } from "pngjs";
-import catalog from "../reference/security-hard-expeditions.json" with { type: "json" };
+const catalogPath =
+  process.argv.find((arg) => arg.startsWith("--manifest="))?.slice(11) ??
+  "reference/office-hard-expeditions.json";
+const catalog = JSON.parse(await readFile(catalogPath));
+assert.ok(
+  [undefined, "office"].includes(catalog.verificationEdition),
+  "Unknown Hard expedition evidence edition",
+);
+const officeEdition = catalog.verificationEdition === "office";
 const hash = (b) => createHash("sha256").update(b).digest("hex");
 const canonical = (v) =>
   JSON.stringify(v, (_, x) =>
@@ -24,10 +32,10 @@ assert.equal(catalog.pending, false);
 assert.equal(catalog.browserVerified, true);
 assert.equal(catalog.expectedCaseCount, 4);
 assert.equal(catalog.expectedFullCheckpointCount, 169);
-assert.equal(catalog.expectedEventCount, 3970);
+assert.equal(catalog.expectedEventCount, officeEdition ? 3978 : 3970);
 assert.equal(
   Object.keys(catalog.artifacts).length,
-  53,
+  officeEdition ? 42 : 53,
   "Missing required evidence",
 );
 assert.deepEqual(
@@ -45,32 +53,48 @@ for (const [name, spec] of Object.entries(catalog.artifacts)) {
 }
 for (const [p, h] of Object.entries(catalog.verificationTools))
   assert.equal(hash(await load(p)), h, `Changed verifier ${p}`);
-for (const [name, commit, archive, count] of [
-  [
-    "capture-source",
-    catalog.captureCommit,
-    `${catalog.captureRoot}/sources`,
-    152,
-  ],
-  [
-    "browser-source",
-    catalog.browserCommit,
-    `${catalog.artifactRoot}/browser-sources`,
-    153,
-  ],
-  [
-    "entry-capture-source",
-    catalog.entryCaptureCommit,
-    `${catalog.entryCaptureRoot}/sources`,
-    141,
-  ],
-  [
-    "entry-browser-source",
-    catalog.entryBrowserCommit,
-    `${catalog.entryArtifactRoot}/browser-sources`,
-    88,
-  ],
-]) {
+const producers = officeEdition
+  ? [
+      [
+        "capture-source",
+        catalog.captureCommit,
+        catalog.captureSourceArchive,
+        509,
+      ],
+      [
+        "browser-source",
+        catalog.browserCommit,
+        catalog.browserSourceArchive,
+        514,
+      ],
+    ]
+  : [
+      [
+        "capture-source",
+        catalog.captureCommit,
+        `${catalog.captureRoot}/sources`,
+        152,
+      ],
+      [
+        "browser-source",
+        catalog.browserCommit,
+        `${catalog.artifactRoot}/browser-sources`,
+        153,
+      ],
+      [
+        "entry-capture-source",
+        catalog.entryCaptureCommit,
+        `${catalog.entryCaptureRoot}/sources`,
+        141,
+      ],
+      [
+        "entry-browser-source",
+        catalog.entryBrowserCommit,
+        `${catalog.entryArtifactRoot}/browser-sources`,
+        88,
+      ],
+    ];
+for (const [name, commit, archive, count] of producers) {
   const producer = await json(catalog.artifacts[name].path);
   assert.equal(producer.captureCommit ?? producer.browserCommit, commit);
   assert.equal(Object.keys(producer.files).length, count);
@@ -98,24 +122,52 @@ function report(r, count) {
   }
 }
 report(await json(catalog.artifacts["browser-results"].path), 8);
-report(await json(catalog.artifacts["entry-browser-results"].path), 4);
+if (!officeEdition)
+  report(await json(catalog.artifacts["entry-browser-results"].path), 4);
 const hardSource = await json(catalog.artifacts["shared-hard-source"].path);
-assert.equal(hardSource.commit, catalog.sharedHardCommit);
-assert.equal(Object.keys(hardSource.files).length, 266);
+const hardSourceCommit = officeEdition
+  ? hardSource.browserCommit
+  : hardSource.commit;
+assert.equal(hardSourceCommit, catalog.sharedHardCommit);
+assert.equal(Object.keys(hardSource.files).length, officeEdition ? 498 : 266);
 for (const [p, h] of Object.entries(hardSource.files)) {
+  if (
+    officeEdition &&
+    (p.startsWith("src/") ||
+      [
+        "index.html",
+        "vite.config.js",
+        "tests/browser/helpers/recorded-campaign.js",
+        "tests/browser/helpers/clock.js",
+      ].includes(p))
+  )
+    assert.equal(
+      hash(await load(p)),
+      h,
+      `Changed shared runtime since retained Hard browser receipt ${p}`,
+    );
   assert.equal(
-    hash(await load(`${catalog.artifactRoot}/shared-hard-sources/${p}`)),
+    hash(
+      await load(
+        `${officeEdition ? catalog.sharedHardSourceArchive : `${catalog.artifactRoot}/shared-hard-sources`}/${p}`,
+      ),
+    ),
     h,
     p,
   );
   assert.equal(
-    hash(execFileSync("git", ["show", `${hardSource.commit}:${p}`])),
+    hash(execFileSync("git", ["show", `${hardSourceCommit}:${p}`])),
     h,
     p,
   );
 }
 report(await json(catalog.artifacts["shared-hard-results"].path), 1);
-const hardReference = await json("reference/hard-campaign-security.json");
+const hardReference = await json(
+  officeEdition
+    ? catalog.artifacts["shared-hard-reference"].path
+    : "reference/hard-campaign-security.json",
+);
+if (officeEdition) assert.equal(hardSourceCommit, hardReference.replayCommit);
 const hardObserved = await json(
   catalog.artifacts["shared-hard-checkpoints"].path,
 );
@@ -138,7 +190,9 @@ assert.equal(
 );
 const inputCatalog = await json(catalog.artifacts["input-profile"].path);
 assert.equal(inputCatalog.cases.length, 4);
-const root = ".local/security-hard-expeditions-verification";
+const root = officeEdition
+  ? ".local/office-hard-expeditions-verification"
+  : ".local/security-hard-expeditions-verification";
 await mkdir(root, { recursive: true });
 let checked = 0,
   consumed = 0,
@@ -167,6 +221,13 @@ for (const row of catalog.cases) {
   assert.equal(m.expectedCheckpointCount, row.expectedCheckpoints);
   assert.equal(m.requiredEventCount, row.expectedEvents);
   assert.equal(m.captureCommit, catalog.captureCommit);
+  if (officeEdition) {
+    assert.equal(m.verificationEdition, "office");
+    const env = await json(
+      catalog.artifacts[`capture-environment-${row.key}`].path,
+    );
+    assert.equal(env.completed, false);
+  }
   assert.equal(m.expectedOutcome.lives, 3);
   assert.equal(m.expectedOutcome.money, 0);
   assert.equal(m.expectedOutcome.day, 6);
@@ -237,12 +298,35 @@ for (const row of catalog.cases) {
     assert.deepEqual([png.width, png.height], [320, 200]);
     assert.equal(hash(png.data), c.pixelsSha256);
   }
+  const entryPath = officeEdition
+    ? catalog.artifacts[`entry-manifest-${row.key}`].path
+    : inputs.entryManifest;
   assert.equal(
-    hash(await load(inputs.entryManifest)),
+    hash(await load(entryPath)),
     catalog.artifacts[`entry-manifest-${row.key}`].sha256,
   );
-  const entry = await json(inputs.entryManifest),
+  const entry = await json(entryPath),
     entryChecks = await json(entry.artifacts["campaign-checkpoints"].path);
+  if (officeEdition) {
+    assert.equal(entry.requiredEventCount, 956);
+    assert.equal(entry.expectedCheckpointCount, 1);
+    for (const [name, spec] of Object.entries(entry.artifacts)) {
+      const bytes = await load(spec.path);
+      assert.equal(bytes.length, spec.bytes, `${row.key} entry ${name}`);
+      assert.equal(
+        hash(bytes),
+        spec.sha256,
+        `Corrupt ${row.key} entry ${name}`,
+      );
+    }
+    assert.deepEqual(
+      await json(entry.artifacts["captured-events"].path),
+      (await json(m.artifacts["captured-events"].path)).slice(0, 956),
+      "Entry view must retain the exact external event prefix",
+    );
+    assert.equal(m.entryStateSha256, checks[0].stateSha256);
+    assert.equal(m.entryPixelsSha256, checks[0].pixelsSha256);
+  }
   assert.equal(
     hash(
       PNG.sync.read(await load(catalog.artifacts[`entry-png-${row.key}`].path))
@@ -254,7 +338,7 @@ for (const row of catalog.cases) {
     assert.equal(
       checks[0][k],
       entryChecks[0][k],
-      `${row.key} independent entry ${k}`,
+      `${row.key} ${officeEdition ? "same-capture entry view" : "independent entry"} ${k}`,
     );
   assert.equal(checks[0].state.briefing.variant, inputs.variant);
   assert.equal(checks[0].state[inputs.activity].lives, 3);
@@ -299,22 +383,24 @@ for (const row of catalog.cases) {
     (await json(catalog.artifacts[`${row.key}-browser-events`].path)).length,
     row.expectedEvents,
   );
-  const entryProgress = await json(
-    catalog.artifacts[`${row.key}-entry-progress`].path,
-  );
-  assert.equal(entryProgress.completed, true);
-  assert.equal(entryProgress.consumed, 954);
-  assert.deepEqual(entryProgress.errors, []);
-  const entryBrowser = await json(
-    catalog.artifacts[`${row.key}-entry-checkpoints`].path,
-  );
-  assert.equal(entryBrowser.length, 1);
-  assert.equal(entryBrowser[0].stateSha256, checks[0].stateSha256);
-  assert.equal(entryBrowser[0].pixelsSha256, checks[0].pixelsSha256);
-  assert.equal(
-    (await json(catalog.artifacts[`${row.key}-entry-events`].path)).length,
-    954,
-  );
+  if (!officeEdition) {
+    const entryProgress = await json(
+      catalog.artifacts[`${row.key}-entry-progress`].path,
+    );
+    assert.equal(entryProgress.completed, true);
+    assert.equal(entryProgress.consumed, 954);
+    assert.deepEqual(entryProgress.errors, []);
+    const entryBrowser = await json(
+      catalog.artifacts[`${row.key}-entry-checkpoints`].path,
+    );
+    assert.equal(entryBrowser.length, 1);
+    assert.equal(entryBrowser[0].stateSha256, checks[0].stateSha256);
+    assert.equal(entryBrowser[0].pixelsSha256, checks[0].pixelsSha256);
+    assert.equal(
+      (await json(catalog.artifacts[`${row.key}-entry-events`].path)).length,
+      954,
+    );
+  }
   function replay(mode) {
     const r = spawnSync(
       process.execPath,
@@ -372,8 +458,8 @@ for (const row of catalog.cases) {
   rendered += result.rendered;
 }
 assert.equal(checked, 169);
-assert.equal(consumed, 3970);
+assert.equal(consumed, officeEdition ? 3978 : 3970);
 assert.equal(rendered, 1584);
 console.log(
-  "Hard alternates:4 complete treasure/bank routes,169 exact Game/browser state-pixel checkpoints,3970 DOM events,1584 flight presentations,three lives in every route;24 comparison negatives. Four independent entry browser replays and full Hard28/4140 regression also pass. Port evidence,not whole-native expedition parity.",
+  `Hard alternates:4 complete treasure/bank routes,169 exact Game/browser state-pixel checkpoints,${consumed} DOM events,1584 flight presentations,three lives in every route;24 comparison negatives. ${officeEdition ? "All four entries included in eight complete browser cases;prior Hard28/4140 receipt checked against unchanged shared runtime." : "Four independent entry browser replays and full Hard28/4140 regression also pass."} Port evidence,not whole-native expedition parity.`,
 );

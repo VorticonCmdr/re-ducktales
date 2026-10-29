@@ -1,0 +1,516 @@
+{
+  "id": "office-hard-bermuda",
+  "key": "bermuda",
+  "pending": false,
+  "milestone": "hard-expedition-bank",
+  "activity": "jungle",
+  "expectedHard": true,
+  "expectedLocation": 2,
+  "expectedVariant": 1,
+  "expectedInputCount": 447,
+  "artifactRoot": ".local/office-hard-expeditions-accepted-01/bermuda",
+  "captureRoot": ".local/office-hard-expeditions-01/capture/bermuda",
+  "captureProducer": ".local/office-hard-expeditions-01/source-revision.json",
+  "captureCommit": "f3422c47aa558192b5179e777b921a5824058742",
+  "expectedCheckpointCount": 34,
+  "checkpointNames": [
+    "entry",
+    "input-3",
+    "input-15",
+    "input-25",
+    "input-40",
+    "input-55",
+    "input-65",
+    "input-80",
+    "input-116",
+    "input-120",
+    "input-131",
+    "input-160",
+    "input-166",
+    "input-181",
+    "input-200",
+    "input-217",
+    "input-227",
+    "input-240",
+    "input-254",
+    "input-274",
+    "input-280",
+    "input-316",
+    "input-320",
+    "input-322",
+    "input-350",
+    "input-360",
+    "input-400",
+    "input-434",
+    "input-440",
+    "input-447",
+    "award",
+    "returned-map",
+    "bank",
+    "deposited"
+  ],
+  "requiredEventCount": 994,
+  "expectedFlightPresentations": 396,
+  "expectedFlagAliasPresentations": 0,
+  "checkpoints": [
+    {
+      "name": "entry",
+      "at": 35141,
+      "eventCount": 956,
+      "stateSha256": "5e820f2102ade0f324cf10e10cfaca68cf16efbf802750f6828298a7cb9f6f22",
+      "pixelsSha256": "c8cd0c13735e9b5f663e7f1a6a4beec42e842f525979f1e05a3d8844a3362fb3"
+    },
+    {
+      "name": "input-3",
+      "at": 36237,
+      "eventCount": 956,
+      "stateSha256": "93e849a40c1968eae8718cad2c53732f742039ed02a5df299b5517af822d53a1",
+      "pixelsSha256": "eebd6b739f246887744093cbcb3b6f09e3399c9f296843e204cba002e8b1c872"
+    },
+    {
+      "name": "input-15",
+      "at": 36733,
+      "eventCount": 957,
+      "stateSha256": "3d1c714dd727fc3e7e96c9dee5fb9927cebebd329d7b6c19edc3ebcade850d37",
+      "pixelsSha256": "c5e21326c64564835d9ced858f4d8f233c6439f023cf807210333f3fbd3519b9"
+    },
+    {
+      "name": "input-25",
+      "at": 37141,
+      "eventCount": 959,
+      "stateSha256": "1a1d5c6428ba64d7cf7725694cd24736d38274a99898570e1895ba2ca5707f6a",
+      "pixelsSha256": "ab437cac22ac079344c735c0433044e8b9a6f239987d3c3e5eaf9de97f4c317e"
+    },
+    {
+      "name": "input-40",
+      "at": 37757,
+      "eventCount": 961,
+      "stateSha256": "63d426bf338cf442b233d87f19c94f56e64d8fa2e026ece28c9dd8b0592031d2",
+      "pixelsSha256": "b9c9cc5ec43172ba3f50c6b5f5beefbf1fd708bada6303e465c7c29c3ac5b670"
+    },
+    {
+      "name": "input-55",
+      "at": 38381,
+      "eventCount": 961,
+      "stateSha256": "7221331555c4f99064a34350ca053000c2e9a0ac81d2a2edd70aa6b5b30322ec",
+      "pixelsSha256": "9ca12bb6dab55efb4401ebfc01775f8cb9df81a3397322a145c35a210248e729"
+    },
+    {
+      "name": "input-65",
+      "at": 38789,
+      "eventCount": 963,
+      "stateSha256": "45af868f7e42cd5f93f5c7ab83d52f85586d7298cede1e116560b01140a8d9da",
+      "pixelsSha256": "87094a6a2934c11b0c79e2765803cd9ebd34a3ad8d3cbf26d932ea4e251d77ab"
+    },
+    {
+      "name": "input-80",
+      "at": 39405,
+      "eventCount": 965,
+      "stateSha256": "56136acfd2ff44fb0e0091059af36d78d7adefe13021d0b9342e1807ee529d0d",
+      "pixelsSha256": "0a1b470f4be6aa066d7cb6c17015ecf9cc1288c97e4921c3e21b434fe40497f2"
+    },
+    {
+      "name": "input-116",
+      "at": 40893,
+      "eventCount": 965,
+      "stateSha256": "3e09e92ea07050416a3fcbe01b47f43e5b0b46fdf2b4cf3bc77b27c66efad5f9",
+      "pixelsSha256": "5f04364e96c31161778adeb1b13b731b77fb5a1ee0a2320b8bee63d7efe831ea"
+    },
+    {
+      "name": "input-120",
+      "at": 41053,
+      "eventCount": 967,
+      "stateSha256": "f80f677dab8a59b394eb48a6676318122228ace60e2bf314bd81fe28d9c746bc",
+      "pixelsSha256": "d7b5ba3153a72bb7c763e473408c5ca0e1d2c5281772eec279fb2eb11fa3c1f1"
+    },
+    {
+      "name": "input-131",
+      "at": 41509,
+      "eventCount": 967,
+      "stateSha256": "fcf84c7e19c225faa7d8c6e402daabe5434c22b1e485e4894e0eaa8b8d713e89",
+      "pixelsSha256": "874640bee1415036b42236c9e03921e81d9ac67c792cd9ec6f6433f9b1bdab50"
+    },
+    {
+      "name": "input-160",
+      "at": 42701,
+      "eventCount": 969,
+      "stateSha256": "bf46d4dafccf191042569ac4d2743b12722330a23e46dd5f4c0183e9c10e205a",
+      "pixelsSha256": "7fdce4c1c8c1a293c6f8e44528c5f3056995ed336cbe8c8c0dcc0418e7ad7701"
+    },
+    {
+      "name": "input-166",
+      "at": 42949,
+      "eventCount": 969,
+      "stateSha256": "fc899e75c64be1050203494bd39ac3ab37129cb36272f7821240e0b8d79b9a04",
+      "pixelsSha256": "0a47ee1f59c6088009c50f6ead9f1bdeefbcde96e6245f5a469ec176837f2c50"
+    },
+    {
+      "name": "input-181",
+      "at": 43565,
+      "eventCount": 971,
+      "stateSha256": "f59021bd49ca46bc9d29db344213aa9fb61c55a52301a1eff1728c0f0d017640",
+      "pixelsSha256": "c67a70eb7e75dc105383e6adabde84f674b4f51f4e74fb01c3ef643f0adbe696"
+    },
+    {
+      "name": "input-200",
+      "at": 44349,
+      "eventCount": 973,
+      "stateSha256": "77c15ef04dd1998442bca3198896ea7f5b76408ba08a48347045e0353f3385d4",
+      "pixelsSha256": "2c12733c51db2aa92a4601f10b319d16ca01548569d1f97ed399968d402efca8"
+    },
+    {
+      "name": "input-217",
+      "at": 45053,
+      "eventCount": 973,
+      "stateSha256": "e4b801d415a1edb55b97ce760b31354935e55d63677a01ab0abb9f9f80612b5a",
+      "pixelsSha256": "54e75f0d0d1c0fe473e1630565e2d129763e8a43c4ff95d3bf006337a56e67fd"
+    },
+    {
+      "name": "input-227",
+      "at": 45461,
+      "eventCount": 975,
+      "stateSha256": "4a43568ccf27302a03b27929d749148d0f5d8900f902d264ee2684d919f88dbc",
+      "pixelsSha256": "6e1d8ab9d9f68d0f8a4aba01edf1b757a2c1667c15fee1996f78e9f8bf1250d3"
+    },
+    {
+      "name": "input-240",
+      "at": 45997,
+      "eventCount": 977,
+      "stateSha256": "28d8448d52dd6581afb22657cd451a2c810b6bf33e6ce203bfee14ebbbd7a282",
+      "pixelsSha256": "fc92de6cda9205e23b3595889f3b8a678b545c900245b3593bb9d4140badca64"
+    },
+    {
+      "name": "input-254",
+      "at": 46573,
+      "eventCount": 977,
+      "stateSha256": "9fc629cf7eb9f4a21728c2f6b6b23a601c158c377b9d44e59e8ba51f886dd11d",
+      "pixelsSha256": "f30f4817595091fa6ced0fe554339dcf94033fd5fa9289abd52068a4ca30856f"
+    },
+    {
+      "name": "input-274",
+      "at": 47397,
+      "eventCount": 978,
+      "stateSha256": "85255277ad5da14bf25918a236697fbca9a5f1c63279e64f1d6d28f0fff78d24",
+      "pixelsSha256": "36bbb4f9715641e0127e4c1c51ffef5198cdb89efbb6647bb70af5b357853733"
+    },
+    {
+      "name": "input-280",
+      "at": 47645,
+      "eventCount": 979,
+      "stateSha256": "643e0ddbf9f8dfa4f11545078e0e039b37eabd4c44bba5cc87d22ab11f3d92a1",
+      "pixelsSha256": "4680da577010ea05981a3d7ebaf02eefb20ec69cbee4407140b0f2d86d6c065c"
+    },
+    {
+      "name": "input-316",
+      "at": 49125,
+      "eventCount": 979,
+      "stateSha256": "4a1df7f46e06698622e56fa2f7090d7513445fd29fd42052fa7dbeb062254fbc",
+      "pixelsSha256": "7c06709833b9db22503081e1f55083552f3fd5005da24bfb831325f5147de644"
+    },
+    {
+      "name": "input-320",
+      "at": 49293,
+      "eventCount": 980,
+      "stateSha256": "fd343b1800fd97cc7d4c154ce4f0a166332594dfc2c1821af870ee8744b5cea5",
+      "pixelsSha256": "5c99d7b923acdf054b1738192de24b4a495ebcb8dc173c05214beab93653e57e"
+    },
+    {
+      "name": "input-322",
+      "at": 49373,
+      "eventCount": 980,
+      "stateSha256": "e086e16e6bf60948dafbe66e1f10bca6b7a1b77b39274aca511e9c325e69a33c",
+      "pixelsSha256": "eee1c2c183b230d1cdb8b8798761bb71e0cfebdbfce8cb90eb9124326a201e41"
+    },
+    {
+      "name": "input-350",
+      "at": 50525,
+      "eventCount": 981,
+      "stateSha256": "e84f806652f5fbe44e53e60c026e3bdb8e827937e4894f318613f8db12849cc3",
+      "pixelsSha256": "8fbea2f2349cd0cb6ab8cd0fa9251fbb97b9d77fc9acdcec64bca8573132a377"
+    },
+    {
+      "name": "input-360",
+      "at": 50941,
+      "eventCount": 983,
+      "stateSha256": "91a484f8e670b1fd3440e4cfaa3a4e0fefdd206a208baf240d1e93f093e8de21",
+      "pixelsSha256": "9cd2efa34a03201e6dd3d5c8f89486d4e7565d7440b7f4223091e94aa6d20cc6"
+    },
+    {
+      "name": "input-400",
+      "at": 52589,
+      "eventCount": 983,
+      "stateSha256": "151c02083fd72d6909823c2a07d794bf3ed186bec8636b4f5ec702099f85fe58",
+      "pixelsSha256": "a122cfdbf722b2659bd0bccc4fe5d789f2dbfd7b9f5c37c7aac0d1083061353b"
+    },
+    {
+      "name": "input-434",
+      "at": 53989,
+      "eventCount": 983,
+      "stateSha256": "d2cf820142292a9684b5d14612504f39e18767304667bab989fb0d58835407bc",
+      "pixelsSha256": "271b58585d78c4582e2250e758e45f3751e961645801314a774621cb17fb4b1e"
+    },
+    {
+      "name": "input-440",
+      "at": 54237,
+      "eventCount": 984,
+      "stateSha256": "ae3f106b80d0aed3c8a5039179659903720129b1f7f7be04ccbd94da91a0f045",
+      "pixelsSha256": "8d2b5ae37b434d179d0c61ff454a1b5b581849bdb0707f0eba41d41dcf8f660d"
+    },
+    {
+      "name": "input-447",
+      "at": 54525,
+      "eventCount": 985,
+      "stateSha256": "a18a6f73445dddfff7614858c5949756d5787bd61d34b0723a7ea21034a14033",
+      "pixelsSha256": "1deee92c98df6d1d54cafcd49ea83af944a877681ba32ab682074d1d4baf2faf"
+    },
+    {
+      "name": "award",
+      "at": 54909,
+      "eventCount": 986,
+      "stateSha256": "d5e877bd1ee02f946eb8adc757c5d186a3ced52bbcfc1064eac53689e2838fad",
+      "pixelsSha256": "0dc93c412205047ca989419c03c3a5ad3f52a193ef3e310edbc7872efe73e830"
+    },
+    {
+      "name": "returned-map",
+      "at": 55009,
+      "eventCount": 988,
+      "stateSha256": "0e5fcb9609686e0921e0b4ce61414820f56c3048c9a69d0a2f4ddff456ed207f",
+      "pixelsSha256": "d497c1bc70a9cbc02141aca2ea0d22936f3b0a342986b6f5dce0c22f3aa58d89"
+    },
+    {
+      "name": "bank",
+      "at": 58953,
+      "eventCount": 992,
+      "stateSha256": "a724f2f1db9420bf93fc2ebeda3975bb2b148c86738b646886f930cd0de73037",
+      "pixelsSha256": "12daa0164ffcdb1148bf15c4c5a21bab6dc06442ba3b749e6c92c625c1cbff15"
+    },
+    {
+      "name": "deposited",
+      "at": 60845,
+      "eventCount": 994,
+      "stateSha256": "3eecfebbfe539e9ab50b13e569829c24c0659282b97bf8293743be227fdbe5ca",
+      "pixelsSha256": "ccb9d14e87bb47c33fc8ec4cc85781c88b9e60c078913642070f75348d303eac"
+    }
+  ],
+  "expectedOutcome": {
+    "money": 0,
+    "banked": 2150,
+    "day": 6,
+    "playerCollected": [
+      2
+    ],
+    "frames": 447,
+    "presentations": 466,
+    "lives": 3,
+    "seed": 43039
+  },
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "environment": {
+      "path": ".local/office-hard-expeditions-accepted-01/bermuda/environment.json",
+      "bytes": 267,
+      "sha256": "1b057de4f9c2ae0ea65058f06e131e73f54d684e4ed03ad846443877d0266ebc"
+    },
+    "captured-events": {
+      "path": ".local/office-hard-expeditions-accepted-01/bermuda/captured-events.json",
+      "bytes": 118646,
+      "sha256": "881fd7ff68983ed546c9ff1d7fd1f6db62067eba94bb69f2b4bfcf90976bf325"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/office-hard-expeditions-accepted-01/bermuda/campaign-checkpoints.json",
+      "bytes": 121804,
+      "sha256": "69074387e9d299a3c9b17176674b7614e00fa005c01c170371ad139a2c0b6abd"
+    },
+    "timeline": {
+      "path": ".local/office-hard-expeditions-accepted-01/bermuda/timeline.json",
+      "bytes": 2897,
+      "sha256": "bb9dfcc1fd2656930a785922b578dcf80124e4bca602b29284ad2b0522e8a9af"
+    },
+    "capture-source": {
+      "path": ".local/office-hard-expeditions-01/source-revision.json",
+      "bytes": 54617,
+      "sha256": "fa70e399ccc97f3a913f2d38bb98f4cfb68c7ae79b5bbb885c416b9595d57a8d"
+    },
+    "input-profile": {
+      "path": "reference/security-hard-expedition-inputs.json",
+      "bytes": 10013,
+      "sha256": "702cb5b498518e02c2804e1d30fd0e7f137737690ea89de07155484824020d63"
+    },
+    "png-entry": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/entry.png",
+      "bytes": 20324,
+      "sha256": "0640cb694cebd1b07565e4ca5629cb756cf2d11104aeaffee5430e082cbcb58d"
+    },
+    "png-input-3": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-3.png",
+      "bytes": 34599,
+      "sha256": "05bca8c1ba0db59e8954d25cae5642daf66adf30fa0237a422b9974b1f8c8528"
+    },
+    "png-input-15": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-15.png",
+      "bytes": 34588,
+      "sha256": "0082d7665e8cf9d096bbd4236a0f9f8bb5d3559bc952fdabec50b552c59f6943"
+    },
+    "png-input-25": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-25.png",
+      "bytes": 34572,
+      "sha256": "7812ec076db76c517a3ec333bf1b6b4926f10f766141d3feda435d5840821d20"
+    },
+    "png-input-40": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-40.png",
+      "bytes": 34892,
+      "sha256": "a9c431c0decdf73a139121916b311e0ab82d5f3d1b8b81d8856257c412f6e1ef"
+    },
+    "png-input-55": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-55.png",
+      "bytes": 34504,
+      "sha256": "0f083df1ee0973abdc22148050f01c538dbaaaaddd7801be9a4df6c9a2923398"
+    },
+    "png-input-65": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-65.png",
+      "bytes": 34480,
+      "sha256": "9963a57dbacb3220da09f0567a72af23b3a97ef1bc3cf4827dff74333cbf9557"
+    },
+    "png-input-80": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-80.png",
+      "bytes": 34486,
+      "sha256": "d6d891fdcb4209bd88f90cf2615cddceabea881605e26357fe591ccba889cfe1"
+    },
+    "png-input-116": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-116.png",
+      "bytes": 34216,
+      "sha256": "4260b824a2c2480dcbfe8f6fe0a952a0bcd61074bd14782fcd0550b5ce61944d"
+    },
+    "png-input-120": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-120.png",
+      "bytes": 34515,
+      "sha256": "a503be41d97e46cb8b269bcd1656fbb054e00aa7220f33846cacda73d8a98b93"
+    },
+    "png-input-131": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-131.png",
+      "bytes": 34503,
+      "sha256": "3a11fd8683ef9e90abc511138ce58a5014c2f25974a97d9d8abf291a4eee0472"
+    },
+    "png-input-160": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-160.png",
+      "bytes": 34380,
+      "sha256": "77f1b0426c44159696d4d3d988152f97f9d802e23a3a3abb9cdd6eba8782efad"
+    },
+    "png-input-166": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-166.png",
+      "bytes": 34689,
+      "sha256": "6881349a78c0209eea0534089f4d4bae2f14c0b06599ca943abe9f220a5662ae"
+    },
+    "png-input-181": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-181.png",
+      "bytes": 34751,
+      "sha256": "7f931fc2d77f84f170ee611b21e5a4b5d0d64c4f50347a5f0f7bab0ed4acd995"
+    },
+    "png-input-200": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-200.png",
+      "bytes": 34683,
+      "sha256": "f5a9bbf749cc468075c6c0b96c9a02fe2477849d396dfc7c47de1c8a983f683a"
+    },
+    "png-input-217": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-217.png",
+      "bytes": 34467,
+      "sha256": "b56baa78371fbeb9fda578bcb16eea225ccde838bf228285a0e5a6e39e053550"
+    },
+    "png-input-227": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-227.png",
+      "bytes": 35273,
+      "sha256": "3249ad75865f3650c353e95e5242763404a73d837d3dd046ff17f496db4aec17"
+    },
+    "png-input-240": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-240.png",
+      "bytes": 34868,
+      "sha256": "029bc5d09269763c75d0d4b9eff0fc2cf79a29669282518fcc70a14acab4c977"
+    },
+    "png-input-254": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-254.png",
+      "bytes": 35375,
+      "sha256": "a931b43ac219abefdae216eea3971ecd77da8645ab3ca6d1d2060372597f8a5f"
+    },
+    "png-input-274": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-274.png",
+      "bytes": 35580,
+      "sha256": "a9e2fa889e334b1fe499f5bd672b06fe6532514c7f4287df898d04e5e8b01374"
+    },
+    "png-input-280": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-280.png",
+      "bytes": 35112,
+      "sha256": "cfbfd476f3d28d47a57c98bcfa1cbae7e354fa9d454eafab12791a68726969d7"
+    },
+    "png-input-316": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-316.png",
+      "bytes": 35466,
+      "sha256": "a0a52ad3308b51c56628e68157c0c704ab6016b479c8b0f6da7626dab177ee8f"
+    },
+    "png-input-320": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-320.png",
+      "bytes": 35945,
+      "sha256": "bf47edb0fc5d0a77205dc042b306992a511e31e0804d03c07971a4e9a7d4b3fe"
+    },
+    "png-input-322": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-322.png",
+      "bytes": 35897,
+      "sha256": "cf5951ea4de0aff60429a4b2e38ec45ab5d86a30464004deea6b7eeac47a3740"
+    },
+    "png-input-350": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-350.png",
+      "bytes": 35486,
+      "sha256": "7b323e5212ae6dfa249e2da44b0b12ae9e34cfdb2588b357f9e9ba0f0d58a02b"
+    },
+    "png-input-360": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-360.png",
+      "bytes": 34810,
+      "sha256": "080e97db1e45107f4e2299ae94d359c97660273c4d44c3679ac346d947550289"
+    },
+    "png-input-400": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-400.png",
+      "bytes": 35240,
+      "sha256": "6dd1754755bb8c4bd831f23719dd78dd130cfa693e4a4aa57ea72eb6847cb015"
+    },
+    "png-input-434": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-434.png",
+      "bytes": 36087,
+      "sha256": "b4234e84f77e3ea2512f83c2077af068ce3ef5dc803c925479060298ec859ba3"
+    },
+    "png-input-440": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-440.png",
+      "bytes": 34982,
+      "sha256": "307c2140dc5b0ece2e4216305d88f1e1f3eb4667fcef0f2e6c425ed14f336874"
+    },
+    "png-input-447": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/input-447.png",
+      "bytes": 34636,
+      "sha256": "5084b92a71b0d8b7a8ba26970cd51c29fd3c56ebefe603ea863d1e74fb23ec88"
+    },
+    "png-award": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/award.png",
+      "bytes": 19084,
+      "sha256": "8b17e4eae5db9faf78fd9ae8885485bf940a5a86b69c3f27a346d0ec1b69dc6e"
+    },
+    "png-returned-map": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/returned-map.png",
+      "bytes": 27699,
+      "sha256": "da59b99c50402ef323a0543a47e73192b9276c716c5ca57a066ead69f56cb166"
+    },
+    "png-bank": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/bank.png",
+      "bytes": 16244,
+      "sha256": "1b58d67e3a1484c6f6944dbcdd49fc67d45c58c9e690270796a1e5db966ef820"
+    },
+    "png-deposited": {
+      "path": ".local/office-hard-expeditions-01/capture/bermuda/deposited.png",
+      "bytes": 27601,
+      "sha256": "b8d6cee4758d4a6252c19900751e1e8763b65a110f3cb61daec36e3d15e58095"
+    }
+  },
+  "browserVerified": false,
+  "scope": "Current office-aware Hard expedition/treasure/bank segment;not whole-native expedition parity",
+  "verificationEdition": "office",
+  "entryStateSha256": "5e820f2102ade0f324cf10e10cfaca68cf16efbf802750f6828298a7cb9f6f22",
+  "entryPixelsSha256": "c8cd0c13735e9b5f663e7f1a6a4beec42e842f525979f1e05a3d8844a3362fb3"
+}

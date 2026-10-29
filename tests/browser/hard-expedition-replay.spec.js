@@ -4,7 +4,7 @@ import { runRecordedCampaign } from "./helpers/recorded-campaign.js";
 import catalog from "../../reference/security-hard-expedition-inputs.json" with { type: "json" };
 for (const entry of catalog.cases) {
   const manifest = JSON.parse(
-    await readFile(`reference/security-hard-${entry.key}.json`),
+    await readFile(`reference/office-hard-${entry.key}.json`),
   );
   test(`Hard ${entry.key} expedition replays independent DOM input through treasure and bank`, async ({
     page,

@@ -21,11 +21,22 @@ export async function exploreFlight({
       altitude[1] <= 139,
   ).toBe(true);
   expect([1, 2, 3]).toContain(climbHeading);
+  const negative = process.env.DUCKTALES_FLIGHT_NEGATIVE;
+  if (negative && negative !== "omit-first-turn")
+    throw Error("SETUP: unknown flight-input negative mode");
+  let omitted = false,
+    negativeChecked = false;
   let active = [];
   async function controls(direction) {
     for (const key of active) await page.keyboard.up(key);
     active = ["Space", ...(direction ? [direction] : [])];
-    for (const key of active) await page.keyboard.down(key);
+    for (const key of active) {
+      if (negative && !omitted && key.startsWith("Arrow")) {
+        omitted = true;
+        continue;
+      }
+      await page.keyboard.down(key);
+    }
   }
   await controls(null);
   let s = await until((v) => v.scene === "flight");
@@ -61,6 +72,18 @@ export async function exploreFlight({
         v.flight.inputReads > f.inputReads ||
         v.flight.phase !== f.phase,
     );
+    if (
+      negative &&
+      omitted &&
+      !negativeChecked &&
+      s.flight.inputReads > f.inputReads
+    ) {
+      negativeChecked = true;
+      expect(
+        s.flight.lastInputCode,
+        `Consumed flight input${s.flight.inputReads}`,
+      ).toBe(192 | ({ ArrowDown: 5, ArrowUp: 1 }[direction] ?? 0));
+    }
     if (n === 1499) throw Error("Unfinished exploratory flight policy");
   }
   for (const key of active) await page.keyboard.up(key);

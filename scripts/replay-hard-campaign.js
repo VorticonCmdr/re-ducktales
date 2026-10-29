@@ -71,6 +71,7 @@ if (!diagnose) {
       "mountain-ascent",
       "departure-entry",
       "flight-lightning",
+      "hard-expedition-bank",
     ].includes(contract.milestone),
     "Unsupported recorded milestone",
   );
@@ -362,6 +363,7 @@ try {
         ? "jungle"
         : null;
   const entryMilestone = entryActivity !== null;
+  const expeditionBank = strictContract?.milestone === "hard-expedition-bank";
   const departureEntry = strictContract?.milestone === "departure-entry";
   const lightningMilestone = strictContract?.milestone === "flight-lightning";
   const treasureActivity =
@@ -373,19 +375,49 @@ try {
   const treasureMilestone = treasureActivity !== null;
   assert.ok(
     game.scene ===
-      (departureEntry
-        ? "departure"
-        : lightningMilestone
-          ? "flight"
-          : entryMilestone
-            ? entryActivity
-            : treasureMilestone
-              ? "map"
-              : "ending") || diagnose,
+      (expeditionBank
+        ? "map"
+        : departureEntry
+          ? "departure"
+          : lightningMilestone
+            ? "flight"
+            : entryMilestone
+              ? entryActivity
+              : treasureMilestone
+                ? "map"
+                : "ending") || diagnose,
     "Unfinished recorded route",
   );
   if (!diagnose) {
-    if (departureEntry) {
+    if (expeditionBank) {
+      assert.ok(["jungle", "mountain"].includes(strictContract.activity));
+      assert.equal(
+        game[strictContract.activity].outcome.code,
+        1,
+        "Unfinished expedition",
+      );
+      assert.equal(
+        game[strictContract.activity].frames,
+        strictContract.expectedInputCount,
+        "Unfinished expedition input sequence",
+      );
+      assert.equal(game.money, 0, "Undeposited expedition money");
+      assert.ok(
+        game.snapshot().campaign.banked > 0,
+        "Missing expedition deposit",
+      );
+      assert.ok(
+        game
+          .snapshot()
+          .campaign.playerCollected.includes(strictContract.expectedLocation),
+        "Missing expedition claim",
+      );
+      assert.equal(
+        lastTime,
+        timeline.endAt,
+        "Unfinished expedition-bank timeline",
+      );
+    } else if (departureEntry) {
       assert.equal(game.snapshot().departure.phase, "prepared");
       assert.equal(lastTime, timeline.endAt, "Unfinished departure timeline");
     } else if (lightningMilestone) {

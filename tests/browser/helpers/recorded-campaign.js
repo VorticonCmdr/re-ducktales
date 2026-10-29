@@ -45,6 +45,7 @@ export async function runRecordedCampaign({
     "mountain-ascent",
     "departure-entry",
     "flight-lightning",
+    "hard-expedition-bank",
   ]).toContain(manifest.milestone);
   if (
     negativeMode &&
@@ -272,6 +273,22 @@ export async function runRecordedCampaign({
       expect(lastState.scene).toBe(activity);
       expect(lastState[activity].phase).toBe("entering");
       expect(lastState[activity].frames).toBe(0);
+    } else if (manifest.milestone === "hard-expedition-bank") {
+      const expedition = lastState[manifest.activity];
+      expect(lastState.scene).toBe("map");
+      expect(expedition.outcome.code).toBe(1);
+      expect({
+        money: lastState.money,
+        banked: lastState.campaign.banked,
+        day: lastState.campaign.day,
+        playerCollected: lastState.campaign.playerCollected,
+        ...Object.fromEntries(
+          ["frames", "presentations", "lives", "seed"].map((k) => [
+            k,
+            expedition[k],
+          ]),
+        ),
+      }).toEqual(manifest.expectedOutcome);
     } else if (manifest.milestone === "flight-lightning") {
       expect(lastState.scene).toBe("flight");
       expect(lastState.flight.phase).toBe("flying");

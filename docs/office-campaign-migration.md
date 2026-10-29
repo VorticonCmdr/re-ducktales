@@ -1,6 +1,6 @@
 # Campaign migration through the original office
 
-The isolated branch uses one ordinary-key normalizer in the browser and the
+The port uses one ordinary-key normalizer in the browser and the
 independent DOM replay adapter. It supplies office key slots and marks physical
 key events, preserving the native held/release behavior already checked by the
 [office menu](office-menu.md). Other scenes keep their existing input payloads.
@@ -49,7 +49,7 @@ capture/entry/browser source archives. Seven comparison controls reject changes,
 including two actual missing-input browser runs. Removing the DOM fixture or
 corrupting the ending image fails; restoring the exact bytes passes again. The
 three independently captured office-entry checkpoints equal the full route's
-first three checkpoints. This route is now the default Easy check on the isolated branch. The historical
+first three checkpoints. This route is now the default Easy check. The historical
 security-only declaration remains separate.
 
 ```
@@ -93,8 +93,10 @@ npm run test:hard-office-campaign
 npm run verify:hard-office-campaign-negative
 ```
 
-Easy and Hard office-aware routes are now the default campaign checks on the
-isolated branch. Focused jungle entry/treasure,mountain ascent and natural
+Easy and Hard office-aware routes are now the default campaign checks. Focused jungle entry/treasure,mountain ascent and natural
 lightning and alternate Hard routes also pass their current office-aware checks.
-The complete branch gate and integration into main remain pending. Whole original-game, hardware timing and waveform
-parity are separate unfinished requirements.
+The complete gate passed on d34d194:117 unit,91 development-browser and2
+production-browser cases,zero skips,with all515 tested source files archived.
+`reference/office-integration.json` records the actual successful runner and
+complete log. Whole original-game,hardware timing and waveform parity remain
+unfinished.

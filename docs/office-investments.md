@@ -1,10 +1,10 @@
 # Office investment departure
 
-The isolated `codex/office-investment-departure` branch connects real Left+Fire
-or the Investments button to the original office animation, then trading,
-office return and Restart. Main3973cc7 remains the separately verified version.
-The full branch gate and integration are pending; office entry/reveal/selection
-and other fidelity gaps in [current status](STATUS.md) remain unfinished.
+The port connects real Left+Fire or the Investments button to the original
+office animation,then trading,office return and Restart. Office entry/reveal
+and selection are also connected. The complete d34d194 gate passes117 unit,91
+development and2 production-browser cases,zero skips;the receipt is separate
+from this focused evidence. See [current status](STATUS.md) for unfinished work.
 
 ## Rules and original evidence
 

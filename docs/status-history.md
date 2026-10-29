@@ -387,3 +387,14 @@ verification and updated ending/trading journeys are still pending. See
 [bank evidence and commands](bank.md) and `reference/bank.json`. Nonzero complete
 animation pixels, unusual signed-overflow sprite aliases and whole CPU/IRQ timing
 remain gaps. Existing whole-game limitations above still apply.
+
+
+## Office integration —2026-10-29
+
+Source d34d194 passed the complete required gate:117 unit,91 development-browser
+and2 production-browser cases,zero skips. All515 tested source files and the
+actual successful runner status are retained with the private full-run receipts.
+`reference/office-integration.json` and its strict checker record this milestone
+separately from the previous security integration. Two failed full attempts and
+the affected focused browser corrections remain separate evidence. Whole-game
+completion is not claimed.

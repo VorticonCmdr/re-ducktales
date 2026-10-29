@@ -53,9 +53,11 @@ The opening map PNG matches every RGBA pixel. Location information currently
 shows original descriptions and calculated journey duration, omitting treasure
 valuation/description. The unlocked atomic aircraft choice is now connected; see
 [atomic transport](atomic-transport.md). These screens have no
-claim of full pixel parity. Door, security, initial map reveal,
-and other transition animations are omitted. The checked EXE's security routine
-has an unconditional branch returning success at overlay 2:0c9c–0ca5.
+claim of full pixel parity. Original office doors,entry/reveal and security are
+now connected;see [office menu](office-menu.md) and [security](security.md).
+Initial map reveal and other map presentation details still need translation.
+Security's final success return at overlay2:0c9c–0ca5 also follows its second
+wrong-answer alarm;that original quirk is preserved.
 
 The bank now runs its original scales, balances and idle RNG before returning;
 see [bank evidence](bank.md). The environment supplies semantic input and elapsed time through the scheduler.
@@ -63,8 +65,9 @@ Browser cursor clicking, buttons, and Back/Office are explicit accessibility
 adapters; original keyboard selection remains available. Rendering observes the
 simulation and never supplies results. Map polling uses two driver ticks; DOS
 instruction/render costs have not been matched. Browser BIOS seed is explicitly
-0; original BIOS seeding and RNG consumption by untranslated setup/security/
-paths are not a verified full-campaign RNG stream. Stock initialization and daily
+0; original time-of-day seeding and a whole-native campaign RNG/timing stream
+remain unverified. The translated opening,office,security and market now carry
+their shared RNG through the selected verified campaign routes. Stock initialization and daily
 updates now consume the shared RNG; see `docs/investments.md`.
 
 ## Original reproduction and local artifacts

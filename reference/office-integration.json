@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "completed": true,
+  "scope": "Complete required office integration gate with selected full campaigns and scoped original segment checks. Does not prove arbitrary-route finishability or whole-game/native timing parity.",
+  "sourceCommit": "d34d1944b8faabb57a128b2646009f72f979cdca",
+  "command": "npm run verify",
+  "exitCode": 0,
+  "unitCases": 117,
+  "developmentBrowserCases": 91,
+  "productionBrowserCases": 2,
+  "skips": 0,
+  "sourceFileCount": 515,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "verify.log": {
+      "path": ".local/office-integration-full-gate-20261029-03/verify.log",
+      "bytes": 64743,
+      "sha256": "0cf3479a780e15b471a347376c41cc8516b96fd631733bd4d31f3f461372326e"
+    },
+    "runner-status.json": {
+      "path": ".local/office-integration-full-gate-20261029-03/runner-status.json",
+      "bytes": 312,
+      "sha256": "ef4cc2697b7ce23e2028057a6f8bdab79e214c7a005e5fd3fcc74e4c7fd1c2c6"
+    },
+    "source-revision.json": {
+      "path": ".local/office-integration-full-gate-20261029-03/source-revision.json",
+      "bytes": 55046,
+      "sha256": "2e6619f3953c69ee48328eea345901e8bf234180bdb7108494da99fdf2e2a74b"
+    },
+    "browser-collection.json": {
+      "path": ".local/office-integration-full-gate-20261029-03/browser-collection.json",
+      "bytes": 64084,
+      "sha256": "c60185a90bb0787e242167ffb13c738ec3ead800ea0cadf408dda91c8fa130bc"
+    },
+    "development-status.json": {
+      "path": ".local/office-integration-full-gate-20261029-03/development-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "production-status.json": {
+      "path": ".local/office-integration-full-gate-20261029-03/production-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    }
+  }
+}

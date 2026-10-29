@@ -1,9 +1,10 @@
 # Office entry and selection
 
-The isolated development branch now runs the original office clear/reveal and
-input loop before money-bin, control-center or investment departure. Main3973cc7
-remains unchanged on5187. The focused command passes; full campaign migration,
-the complete branch gate and main integration remain pending.
+The port now runs the original office clear/reveal and
+input loop before money-bin,control-center or investment departure. All planned
+campaign migrations and the complete d34d194 gate pass:117 unit,91 development
+and2 production-browser cases,zero skips. The full receipt is recorded separately
+in `reference/office-integration.json`;whole original-game parity is unproven.
 
 ```
 npm run verify:office-menu-core
@@ -95,7 +96,7 @@ cases. It rejects omission of the chord's real Right key at the original input
 boundary. Five component negatives reject missing events, lost releases, wrong
 chords, altered pixels and altered original code. Missing/corrupt required PNGs
 also fail, and their restored originals must pass again. These comparisons do
-not substitute for the pending complete branch/campaign gate.
+not substitute for the separately retained complete branch/campaign gate.
 
 The retained browser receipt pins29 actual canvas pictures, the seven individual
 Playwright CLI case results, passed runner status and163 runtime/test/config

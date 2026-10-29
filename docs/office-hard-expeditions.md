@@ -84,6 +84,8 @@ experiment,use a fresh `DUCKTALES_CAPTURE_HARD_EXPEDITION` output directory;do
 not overwrite pinned captures. Required private artifacts live under ignored
 `.local/office-hard-expeditions*`. Missing/corrupt artifacts fail explicitly.
 
-The next milestone is the complete branch regression gate and main integration.
+The complete branch gate passed on d34d194:117 unit,91 development-browser and2
+production-browser cases,zero skips. Its515-file source archive and actual
+runner exit are recorded in `reference/office-integration.json`.
 Whole original-game parity,unimplemented keyboard aliases and remaining map/
 notice/hardware timing/audio details are still unfinished work.

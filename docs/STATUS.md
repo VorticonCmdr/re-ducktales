@@ -1,213 +1,94 @@
 # Current port status
 
-Updated2026-10-29. **The whole game is incomplete; this is completion work, not
-only fine-tuning.** Selected complete campaigns work; arbitrary-route
+Updated2026-10-29. **The whole game is incomplete. This is completion work,
+not only fine-tuning.** Selected complete campaigns work; arbitrary-route
 finishability and full original-game parity remain unproven.
 
-## Integration
+## Current verified milestone
 
-Main3973cc7 on5187 remains the verified integrated version. New office work below
-is isolated on `codex/office-investment-departure` until its full branch gate passes.
+Original office entry/reveal,keyboard selection and all three departures now
+connect to the campaign. The complete required `npm run verify` passed on source
+`d34d194`:117 unit checks,91 development-browser cases and2 production-browser
+cases,zero skips,with the required original comparisons and negative controls.
+Receipts and all515 tested source files are retained in
+`.local/office-integration-full-gate-20261029-03/`.
+[Integration manifest](../reference/office-integration.json).
 
-The security-aware runtime and all migrated campaign routes passed the complete
-`npm run verify` on source e27022c:117 unit,87 development browser and2 production
-browser cases,zero skips,including required original comparisons and browser
-negative controls. Receipts and472 exact tested source files are retained in
-`.local/security-integration-full-gate-20261029/`; the versioned manifest is
-[security-integration.json](../reference/security-integration.json).
-`node scripts/verify-security-integration.js` validates that historical receipt;
-it does not replace a fresh full gate. Main integration follows this verified
-source; later receipt/documentation changes do not change its runtime.
-
-The runtime adds original control-center departure and first-map security.
-Migrated real browser routes carry its changed shared RNG without resetting the
-seed to preserve old expectations. Earlier main054ac66/office runtime6a02e89 and
-its117/74/2 gate remain separate historical evidence in
-`.local/office-integration-full-gate-20261028/`.
-
-The latest complete branch attempt on18d8038 ran all91 development browser
-cases:82 passed and9 failed. Its source and terminal failure are preserved in
-`.local/office-integration-full-gate-20261029-02/`; it is not acceptance.
-The failures exposed stale entry recordings and test assumptions about the
-new original office reveal,input boundary and audio cues. Corrections on
-49ed285/ddeb024 pass all17 affected focused browser cases,with515 exact source
-files and zero skips/retries. No game logic,expected native pixels or captured
-input streams changed. A fresh complete branch gate is still required.
+Receipt/checker and documentation commits follow that tested source. The receipt
+command below validates the historical complete run;it does not execute a fresh
+whole-game acceptance test. Earlier security integration remains separately
+recorded in [security-integration.json](../reference/security-integration.json).
 
 ## Working routes and evidence
 
-- Isolated development after main3973cc7: the original investment departure now
-  connects Left+Fire/button → seven-flip animation → trading → office/restart.
-  Seven original pictures and sprite tuples match with explicit VGA latch
-  alignment; five focused browser cases and117 unit cases pass. Required Left
-  omission and missing/corrupt fixture controls reject failures. Full branch
-  integration remains pending. [Investment departure](office-investments.md).
-- Office clear/reveal and the label/one-count input loop are connected on that
-  isolated branch.29 exact native pictures and63 input values match a component
-  driven by19 authored keyboard events, including release/chord priority. Seven
-  focused browser cases pass, including all29 pictures/63 inputs through security
-  to the map and reveal-key deferral/pause flushing. Fixture and missing-chord-key
-  controls pass. Full campaign migration/gate remain pending; this is not whole
-  original office parity. [Office menu](office-menu.md).
-- The shared browser/headless ordinary-key boundary now carries a fresh Easy
-  prefix through original office timing,security,the first race and jungle entry.
-  Strict Game and fresh browser replays match3 complete state/pixel checkpoints
-  and928 DOM events;364 flight presentations,no aliases,no tail. Jungle state
-  matches the prior route exactly; global time is53 driver ticks later. Full
-  Easy campaign now also wins onday32 with13875 against11500:36 complete
-  checkpoints,3516 DOM events,1188 flight presentations match independent Game
-  and fresh browser replay, followed by Restart. Strict receipts,seven comparison
-  controls and missing/corrupt fixture checks pass.
-- The office-aware Hard campaign also reaches its day31 loss,17200 against61000.
-  Independent Game and fresh browser match28 complete state/pixel checkpoints,
-  all4140 events and1629 flight presentations/one supported flag alias. A normal
-  post-office rival report is acknowledged by the exploratory driver. Strict
-  source receipts,missing-choice controls and missing/corrupt fixture checks pass.
-  These are the default campaign checks on the isolated branch; wider integration
-  remains pending. [Migration](office-campaign-migration.md).
-
-- The office-aware focused Easy jungle entry now also passes50 independent DOM
-  events,one complete state/pixel checkpoint and74 flight presentations. Fresh
-  browser deferral,pause,cancelled-quit and sound behavior passes;three comparison
-  controls and missing/corrupt fixture restoration checks pass. Actor/RNG state
-  matches the historical entry;full Game tick advances159 counts through three
-  office visits. [Focused entry](office-jungle-entry.md).
-
-- The office-aware focused jungle treasure/duplicate-notice route now passes27
-  exact Game/browser state/pixel checkpoints,70 events and860 unchanged control
-  samples. It returns1050 dollars onday17 with one life. Three fresh browser
-  cases,five comparison controls,the missing real movement key,and missing/corrupt
-  fixtures with restored-positive checks pass. Presentation phase changes are
-  captured and compared exactly. [Treasure](office-jungle-treasure.md).
-
-- The office-aware focused mountain summit/duplicate-notice route now passes27
-  exact Game/browser state/pixel checkpoints,104 events and764 unchanged samples.
-  It returns8100 dollars onday17 with three lives and handles both rival reports.
-  Two fresh browser cases,five comparison controls and a missing real movement
-  key pass;required PNG corruption/removal and restoration are checked separately.
-  [Mountain](office-mountain-ascent.md).
-
-- The office-aware natural lightning route now passes6 exact Game/browser state
-  and pixel checkpoints,164 events and43 flight presentations. The strike clears
-  held controls at input36;fresh keys recover and input43 consumes releases.
-  Both fresh browser cases,five comparison controls and the actual missing fresh
-  throttle pass;PNG removal/corruption and restoration are checked separately.
-  [Lightning](office-lightning.md).
-
-- All four office-aware alternate Hard routes now pass169 exact Game/browser
-  checkpoints,3978 DOM events and1584 flight presentations. Eight fresh browser
-  cases cover entries,treasure,banking and Restart;deposits2150/1150/2100/2700
-  all reach day6 with three lives. Four additional entry-only browser replays
-  now consume956 events apiece in the passing17-case integration receipt.
-  All32 comparison/missing-movement controls
-  pass;required fixture removal/corruption and restoration are checked separately.
+- Original opening/Sound001 → difficulty → office. Office clear/reveal and input
+  match29 native pictures and63 consumed input values. Money-bin departure,dive,
+  reward,return and Restart work. Left+Fire runs the seven-flip investment
+  departure before trading;Right+Fire runs control-center departure and security.
+  [Office menu](office-menu.md),[investments](office-investments.md).
+- Map → departure briefing → controlled flight → jungle,mountain,cave or
+  photography → reward/failure → map,rival reports and banking. Investments,
+  atomic transport,calendar/deadline handling and both endings are connected.
+- Complete office-aware Easy route wins onday32 with13875 against11500:
+  36 exact carried state/pixel checkpoints,3516 DOM events and1188 flight
+  presentations,then Restart. Complete Hard route loses onday31 with17200
+  against61000:28 checkpoints,4140 events and1629 flight presentations.
+  These are port/browser regressions,not full original-campaign comparisons.
+  [Campaign migration](office-campaign-migration.md).
+- Four alternate Hard expeditions return treasure and bank onday6 with three
+  lives:169 exact Game/browser checkpoints,3978 events and1584 flight
+  presentations. Eight complete browser cases and four separate entry replays
+  pass;the latter consume956 events each.32 comparison/missing-movement controls
+  and required fixture removal/corruption/restoration pass.
   [Hard alternates](office-hard-expeditions.md).
+- Focused jungle treasure,mountain summit and natural lightning routes also have
+  independent input streams,strict Game replay and actual browser acceptance.
+  Pause,quit,input deferral,life resets,duplicate notices and audio boundaries
+  have focused checks. See the linked route documents for exact scope.
+- Tandy/PCjr playback is connected,including Sound001(~49s/3558 sequencer ticks),
+  persistent channels,priorities,engine words,mute and completion. All121 public
+  requests have viewer playback. PC speaker remains the default.
 
-- Original opening/Sound001→difficulty→office→original19-presentation money-bin
-  departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
-- Office→map→departure→keyboard flight→landing or crash/repair→expedition→results
-  →map. All35 destinations can be inspected. Jungle, mountain, cave and photography
-  have completion/failure paths. Banking, investments, rival claims/reports, atomic
-  travel, calendar/deadline handling and both endings are connected.
-- The security-aware full Hard campaign covers all four expedition families and
-  finishes day 31, losing17200 against 61000. Independent Game and browser replays
-  match28 exact state/pixel checkpoints and4140 DOM events;1629 flight renders
-  include one supported flag alias. Its current browser adapter regression also
-  passes. [Hard campaign evidence](hard-campaign-security.md).
-- Easy jungle entry independently matches50 DOM events and one complete snapshot;
-  a fresh browser matches its pixels and passes pause/deferral/quit controls.
-  [Entry evidence](security-jungle-entry.md).
-- Easy Okeefadokie treasure/duplicate-notice route matches27 snapshots and pixel
-  hashes in fresh and fixed-DOM browsers plus independent Game replay:70 events,
-  860 jungle samples, 1050 dollars, one life, day 17. [Treasure evidence](security-jungle-treasure.md).
-- Easy El Capitan summit/return/duplicate-notice route matches27 state/pixel
-  checkpoints and104 DOM events in independent Game and browser replays:764
-  unchanged mountain samples,8100 dollars,three lives,day17. Shared campaign
-  adapter regression retains the complete Hard and jungle routes. [Mountain evidence](security-mountain-ascent.md).
-- Natural lightning through security and three bank detours matches6 complete
-  state/pixel checkpoints and164 DOM events in independent Game/browser replays.
-  Strike36 clears held controls, fresh keys recover, and neutral poll43 consumes
-  final releases. All three shared recorded routes retain fresh browser acceptance.
-  [Lightning evidence](security-lightning.md).
-- Hard Bermuda/Boola jungles and Thunderclap/Machu mountains retain layouts1/2,
-  complete with three lives, claim treasure and deposit on day6. Independent Game
-  and browser replays match169 full state/pixel checkpoints and3970 DOM events;
-  four entry replays and eight full browser cases pass. The full Hard campaign
-  also passes again through its ending after the shared adapter change.
-  [Alternate Hard routes](security-hard-expeditions.md).
-- A complete security-aware Easy campaign wins on day32 with13875 banked against
-  11500, collecting all four families through two flight crashes/repairs. It
-  matches36 complete state/pixel checkpoints and3516 DOM events in independent
-  Game/browser replay, then restarts. [Easy campaign](security-easy-campaign.md).
-- Security-aware bank/endings/trading, map controls, departure dispatches, cave
-  retry/treasure, Too-Pei transmitter/atomic travel, photography and real-audio
-  notices have focused acceptance. [Travel integration](security-route-integration.md),
-  [expeditions](security-expedition-integration.md).
-- Cave/camera/flight input boundaries, persistent Tandy mute/speed/completion and
-  failure handling pass. Real-time jungle life loss/return and mountain hook,
-  all three life palettes, life reset and retry pass. [Input/audio](security-input-audio-integration.md),
-  [terrain](security-terrain-integration.md).
-- Tandy/PCjr is connected: Sound001 (~49s/3558 sequencer ticks), persistent channels,
-  priorities, engine words and explicit completion. All121 public requests have
-  viewer playback. PC speaker is the default.
+Original routine/segment comparisons,carried port replay and actual browser
+acceptance are distinct evidence levels. Success at one does not prove another.
 
-Historical main routes include an Easy day 30 win 15000 against 10500 and a
-pre-security Hard day 33 loss 19600 against 44000 (3350 DOM events/25 checkpoints).
-They remain separate baselines; they do not prove those routes after security.
-Alternate jungle layouts and mountain variants1/2 also retain their earlier
-scoped evidence. [Hard routes](hard-expeditions.md), [mountains](hard-mountains.md).
+## Supported build
 
-## Supported build and limits
-
-Only the 22-file pairing in [build.json](../reference/build.json) is supported.
+Only the22-file pairing in [build.json](../reference/build.json) is supported.
 DUCKTALE.EXE SHA-256:
-fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981.
-MZ/EXEPACK, x86 LE16 real mode, overlays, no extender. Fresh relocated-code checks
-establish actual game code rather than a loader stub. Native security segments
-cover82 RNG boundaries, 16 inputs and24 pictures; native office comparisons cover
-20 pictures. [Security evidence](security.md).
+`fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
+MZ/EXEPACK,x86 LE16 real mode,overlays,no extender. Relocated original bytes
+validate actual game code and runtime correspondence. Originals remain
+untouched in ignored `game/`;private captures,images and traces remain local.
+Production visitors select their own originals. No deployment is performed.
 
-Original routines/segments, carried port replay and actual browser acceptance are
-distinct evidence levels. No complete native campaign/CPU/IRQ timing comparison
-is claimed. Originals remain authoritative in ignored game/; private fixtures,
-pictures and traces stay local. Production visitors select their own originals.
+## Remaining work and next milestone
 
-## Remaining work
+- Integrate verified original letter/keypad handling and scene-specific raw-key
+  consumption,flush and repeat behavior. A conditional native investigation and
+  standalone prototype exist locally;they are not connected to the browser yet.
+- Original map/notice presentation and polling details,broader destination and
+  difficulty finishability,and original whole-scene/campaign comparisons remain.
+  A broader exploratory controller is not acceptance evidence.
+- CPU/file/IRQ/input timing and physical audio waveform/gain/filter parity remain
+  unproven. Nonzero bank animation/sparkle pixels and unusual sprite aliases have
+  limited native coverage. Speaker noise is approximate;its engine is omitted.
+  BIOS seed0 is an explicit browser provider,not original time-of-day seeding.
+- No original save/load/high-score format has been identified. Browser
+  persistence would be an explicit addition.
 
-- Office-aware Easy/Hard campaigns are now the default isolated-branch checks.
-  The security-only full gate remains historical evidence for main3973cc7.
-- Next: pass the complete office branch regression gate,resolve any failures,
-  then integrate into main. All planned focused route migrations now pass.
-  Entry/selection and investment departure have focused acceptance on the isolated
-  branch. Several map/notice presentations,
-  broader destination/difficulty coverage and original whole-scene comparisons
-  are also needed.
-- CPU/file/IRQ/input timing, hardware audio waveform/gain/filter parity, nonzero bank
-  animation/sparkle pixels and unusual sprite aliases remain incomplete. Speaker
-  noise is approximate; its engine is omitted. BIOS seed0 is an explicit browser
-  provider. Unsupported paths stop with diagnostics.
-- No original save/load/high-score format has been identified. Browser persistence
-  would be an explicit addition.
-
-## Commands
-
-`npm run verify` is the required full gate. Relevant focused commands:
+## Verification commands
 
 ```
-npm run verify:security
-npm run verify:hard-office-campaign
-npm run test:hard-office-campaign
-npm run verify:jungle
-npm run verify:office-jungle-entry
-npm run verify:office-jungle-treasure
-npm run verify:office-mountain-ascent
-npm run verify:office-lightning
-npm run verify:office-hard-expeditions
-npm run test:office-hard-expeditions
+npm run verify
+node scripts/verify-office-integration.js
+npm run verify:office-menu
+npm run verify:office-investments
 npm run verify:easy-office-campaign
-npm run test:easy-office-campaign
+npm run verify:hard-office-campaign
+npm run verify:office-hard-expeditions
 ```
 
-Other focused commands are documented with their scenarios. Missing/corrupt
-fixtures and incomplete comparisons fail setup/verification. Local development:
-`npm run dev -- --port 5186`. No push, publication or deployment is requested.
+Missing/corrupt fixtures,incomplete inputs or required comparisons fail.
+Local development:`npm run dev -- --port 5186`. Main preview uses5187.
+[Earlier milestones](status-history.md).

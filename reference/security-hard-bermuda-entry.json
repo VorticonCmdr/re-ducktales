@@ -1,0 +1,38 @@
+{
+  "id": "security-hard-bermuda-entry",
+  "milestone": "jungle-entry",
+  "expectedHard": true,
+  "artifactRoot": ".local/security-hard-entries-accepted-01/bermuda",
+  "captureRoot": ".local/security-hard-entries-01/hard-bermuda-jungle-browser",
+  "expectedCheckpointCount": 1,
+  "checkpointNames": [
+    "jungle-entry"
+  ],
+  "requiredEventCount": 954,
+  "expectedFlightPresentations": 396,
+  "expectedFlagAliasPresentations": 0,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "environment": {
+      "path": ".local/security-hard-entries-accepted-01/bermuda/environment.json",
+      "bytes": 212,
+      "sha256": "f8c0c4d0f365a6c82cf9556ba758d2d600e1172b273f63d20acbded4dcf22b8a"
+    },
+    "captured-events": {
+      "path": ".local/security-hard-entries-accepted-01/bermuda/captured-events.json",
+      "bytes": 113656,
+      "sha256": "207c1538734afea9d4a7dcf2d1095f17a473af2e4ecada71c055bd69fa94fe6e"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/security-hard-entries-accepted-01/bermuda/campaign-checkpoints.json",
+      "bytes": 3541,
+      "sha256": "6e8ca4eb0b52a6d471345022a7fedec5854f8df134e686db9e6c31d2f35eb0b6"
+    },
+    "timeline": {
+      "path": ".local/security-hard-entries-accepted-01/bermuda/timeline.json",
+      "bytes": 179,
+      "sha256": "8dbcb69c0cb4a1b5c1b803054598acbe06c10890c576c0b4c0cabf360d2572ac"
+    }
+  }
+}

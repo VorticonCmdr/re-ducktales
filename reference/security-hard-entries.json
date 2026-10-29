@@ -1,0 +1,41 @@
+{
+  "id": "security-aware-hard-alternate-entries",
+  "captureRoot": ".local/security-hard-entries-01",
+  "captureProducer": ".local/security-hard-entries-01/source-revision.json",
+  "captureCommit": "1224c58538631b75455ba4f76da251d077b5dd6b",
+  "scope": "Browser-captured entries and independent Game replay;expedition completion remains separate",
+  "cases": [
+    {
+      "key": "bermuda",
+      "manifest": "reference/security-hard-bermuda-entry.json",
+      "legacyInputs": "reference/hard-expedition-inputs.json",
+      "legacyManifest": "reference/hard-jungle-browser.json",
+      "activity": "jungle",
+      "variant": 1
+    },
+    {
+      "key": "boola",
+      "manifest": "reference/security-hard-boola-entry.json",
+      "legacyInputs": "reference/boola-expedition-inputs.json",
+      "legacyManifest": "reference/boola-jungle-browser.json",
+      "activity": "jungle",
+      "variant": 2
+    },
+    {
+      "key": "thunderclap",
+      "manifest": "reference/security-hard-thunderclap-entry.json",
+      "legacyInputs": "reference/thunderclap-expedition-inputs.json",
+      "legacyManifest": "reference/thunderclap-mountain-browser.json",
+      "activity": "mountain",
+      "variant": 1
+    },
+    {
+      "key": "machu",
+      "manifest": "reference/security-hard-machu-entry.json",
+      "legacyInputs": "reference/machu-expedition-inputs.json",
+      "legacyManifest": "reference/machu-mountain-browser.json",
+      "activity": "mountain",
+      "variant": 2
+    }
+  ]
+}

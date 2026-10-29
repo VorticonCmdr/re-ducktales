@@ -1,0 +1,38 @@
+{
+  "id": "security-hard-thunderclap-entry",
+  "milestone": "mountain-entry",
+  "expectedHard": true,
+  "artifactRoot": ".local/security-hard-entries-accepted-01/thunderclap",
+  "captureRoot": ".local/security-hard-entries-01/hard-thunderclap-mountain-browser",
+  "expectedCheckpointCount": 1,
+  "checkpointNames": [
+    "mountain-entry"
+  ],
+  "requiredEventCount": 954,
+  "expectedFlightPresentations": 396,
+  "expectedFlagAliasPresentations": 0,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "environment": {
+      "path": ".local/security-hard-entries-accepted-01/thunderclap/environment.json",
+      "bytes": 212,
+      "sha256": "f8c0c4d0f365a6c82cf9556ba758d2d600e1172b273f63d20acbded4dcf22b8a"
+    },
+    "captured-events": {
+      "path": ".local/security-hard-entries-accepted-01/thunderclap/captured-events.json",
+      "bytes": 113659,
+      "sha256": "178305aa930edc79f33176d43c35feed8496f8fc2c10f415a586e1b05e19de70"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/security-hard-entries-accepted-01/thunderclap/campaign-checkpoints.json",
+      "bytes": 3620,
+      "sha256": "3167d39abed1da868e58a0c6aa4b4ea2591829443f204fc2c6476166bfa9bd1e"
+    },
+    "timeline": {
+      "path": ".local/security-hard-entries-accepted-01/thunderclap/timeline.json",
+      "bytes": 181,
+      "sha256": "87ad2af5e1b9639208de453fb03ffe8cb0054bb69168b14ce91ee3598cb7c79a"
+    }
+  }
+}

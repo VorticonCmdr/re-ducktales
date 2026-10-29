@@ -1,0 +1,38 @@
+{
+  "id": "security-hard-machu-entry",
+  "milestone": "mountain-entry",
+  "expectedHard": true,
+  "artifactRoot": ".local/security-hard-entries-accepted-01/machu",
+  "captureRoot": ".local/security-hard-entries-01/hard-machu-mountain-browser",
+  "expectedCheckpointCount": 1,
+  "checkpointNames": [
+    "mountain-entry"
+  ],
+  "requiredEventCount": 954,
+  "expectedFlightPresentations": 396,
+  "expectedFlagAliasPresentations": 0,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "environment": {
+      "path": ".local/security-hard-entries-accepted-01/machu/environment.json",
+      "bytes": 212,
+      "sha256": "f8c0c4d0f365a6c82cf9556ba758d2d600e1172b273f63d20acbded4dcf22b8a"
+    },
+    "captured-events": {
+      "path": ".local/security-hard-entries-accepted-01/machu/captured-events.json",
+      "bytes": 113656,
+      "sha256": "44ae56ca06cb2f61ae0a8bfbc34fc7f03937dbba8b880363f53cddd2b0f49967"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/security-hard-entries-accepted-01/machu/campaign-checkpoints.json",
+      "bytes": 3618,
+      "sha256": "c7bd728aac736769df087efd2b95336173b9c9622cdcc21f6d4beb892cbc571a"
+    },
+    "timeline": {
+      "path": ".local/security-hard-entries-accepted-01/machu/timeline.json",
+      "bytes": 181,
+      "sha256": "87ad2af5e1b9639208de453fb03ffe8cb0054bb69168b14ce91ee3598cb7c79a"
+    }
+  }
+}

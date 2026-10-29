@@ -1,0 +1,91 @@
+{
+  "id": "office-aware-easy-jungle-entry",
+  "buildManifest": "reference/build.json",
+  "milestone": "jungle-entry",
+  "expectedHard": false,
+  "artifactRoot": ".local/office-jungle-entry-accepted-01",
+  "captureRoot": ".local/office-jungle-entry-01/capture",
+  "evidenceLevel": "Independent recorded-input Game prefix and fresh browser state/pixel comparison; not native whole-level parity",
+  "expectedCheckpointCount": 1,
+  "checkpointNames": [
+    "jungle-entry"
+  ],
+  "requiredEventCount": 50,
+  "expectedFlightPresentations": 74,
+  "expectedFlagAliasPresentations": 0,
+  "entryStateSha256": "45dc28f6cf3fb16e20d237c1612b16e168fe2691f7cd354992dbeb38ad85f3ae",
+  "entryPixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7",
+  "entry": {
+    "day": 16,
+    "money": 0,
+    "location": 1,
+    "briefingSeed": 3824,
+    "jungleSeed": 14769,
+    "frames": 0
+  },
+  "artifacts": {
+    "environment": {
+      "path": ".local/office-jungle-entry-accepted-01/environment.json",
+      "bytes": 253,
+      "sha256": "e4a4a0479628a8e1d9b574501103c14bc159143723f1f93e6ecae0512ff5341a"
+    },
+    "captured-events": {
+      "path": ".local/office-jungle-entry-accepted-01/captured-events.json",
+      "bytes": 5695,
+      "sha256": "b9ac321d6beb521a72402ceb1241fa412fffc795cc3365fb3828d6ec883e4dad"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/office-jungle-entry-accepted-01/campaign-checkpoints.json",
+      "bytes": 3487,
+      "sha256": "aae417b6855d146e0b4a22eda57d7bd850e03554f612d4100e5f4a8525c1249d"
+    },
+    "timeline": {
+      "path": ".local/office-jungle-entry-accepted-01/timeline.json",
+      "bytes": 178,
+      "sha256": "ea2dbb6126e4162edcd3d62c981d7233da69bfe131bb2a52261c1d77639cbc1b"
+    },
+    "capture-source": {
+      "path": ".local/office-jungle-entry-01/source-revision.json",
+      "bytes": 53418,
+      "sha256": "032949ba3154b2032e56446b0d0677976ab592994bb22a14e1dbb1b78f0aab4d"
+    },
+    "capture-environment": {
+      "path": ".local/office-jungle-entry-01/capture/environment.json",
+      "bytes": 211,
+      "sha256": "ae00c7a8cc905f460667565f34e5643f963b56731dfbc0d67012f5ce6884bbd4"
+    },
+    "entry-png": {
+      "path": ".local/office-jungle-entry-accepted-01/entry.png",
+      "bytes": 19873,
+      "sha256": "560613d928335a016ad40d170d1f2ed6d48c1258bbe84d47d1d19db9d6f6df3c"
+    }
+  },
+  "inputRecipe": "BIOS0/Easy, clock frozen through original file loading; original security fixedRight/Fire; two real bank/office trips; fixed Okeefadokie selection; keyboard takeoff/stall and non-racing crash/repair arrival. All50 external DOM events and their timestamps are independent of expected states. Original office entry wipe/reveal and held/released keyboard boundary on each office visit.",
+  "injections": [],
+  "fittedInputs": [],
+  "comparisonRules": "Exact full Game state at jungle entry, all50 events consumed, all74 flight presentations valid, zero flag aliases, no tail/rollback/seed adjustment. Fresh browser compares full state and320x200 pixel hashes before testing original key deferral/pause/quit behavior.",
+  "verifyCommand": "node scripts/verify-security-jungle-entry.js",
+  "browserCommand": "npx playwright test tests/browser/jungle-input.spec.js",
+  "captureCommit": "1901fc5454699d6fe65f88e403eab50bb4112c34",
+  "captureProducer": ".local/office-jungle-entry-01/source-revision.json",
+  "browserVerified": false,
+  "fullBranchGate": "pending",
+  "verificationTools": {
+    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "scripts/verify-security-jungle-entry.js": "3797a1ed5a3178ba907111022150c5e1fa084fa2897444475b4475b7c80fa305"
+  },
+  "environmentProviders": {
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086,
+    "fileAccess": "verified supported original build; see reference/build.json",
+    "input": "recorded external DOM events captured before the target handler",
+    "completion": "explicit jungle-entry milestone; not campaign completion"
+  },
+  "verificationEdition": "office",
+  "captureSourceArchive": ".local/office-jungle-entry-01/sources",
+  "migrationScope": "Fresh independently recorded event times; incoming jungle state matches historical entry exactly,only full Game tick differs. No fitted timing or exclusions in strict replay."
+}

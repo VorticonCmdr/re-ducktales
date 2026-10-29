@@ -8,7 +8,7 @@ import {
   canonical,
   digest,
 } from "./helpers/entry-recording.js";
-import entry from "../../reference/security-jungle-entry.json" with { type: "json" };
+import entry from "../../reference/office-jungle-entry.json" with { type: "json" };
 import { PNG } from "pngjs";
 
 test("jungle defers global keys, pauses actors and resumes cancelled quit", async ({

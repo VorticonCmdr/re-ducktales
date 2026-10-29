@@ -3,7 +3,15 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { PNG } from "pngjs";
-import manifest from "../reference/security-jungle-entry.json" with { type: "json" };
+const manifestPath =
+  process.argv.find((arg) => arg.startsWith("--manifest="))?.slice(11) ??
+  "reference/office-jungle-entry.json";
+const manifest = JSON.parse(await readFile(manifestPath));
+assert.ok(
+  [undefined, "office"].includes(manifest.verificationEdition),
+  "Unknown jungle-entry evidence edition",
+);
+const officeEdition = manifest.verificationEdition === "office";
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 assert.equal(manifest.milestone, "jungle-entry");
 assert.equal(manifest.expectedHard, false);
@@ -48,20 +56,25 @@ for (const [record, commit, root, count] of [
   [
     manifest.captureProducer,
     manifest.captureCommit,
-    `${manifest.captureRoot}/capture-sources`,
-    124,
+    officeEdition
+      ? manifest.captureSourceArchive
+      : `${manifest.captureRoot}/capture-sources`,
+    officeEdition ? 499 : 124,
   ],
   [
     manifest.browserProducer,
     manifest.browserCommit,
-    `${manifest.artifactRoot}/browser-sources`,
-    125,
+    officeEdition
+      ? manifest.browserSourceArchive
+      : `${manifest.artifactRoot}/browser-sources`,
+    officeEdition ? 500 : 125,
   ],
 ]) {
   const producer = JSON.parse(await readFile(record));
   assert.equal(producer.captureCommit ?? producer.browserCommit, commit);
-  assert.equal(Object.keys(producer.sha256).length, count);
-  for (const [path, expected] of Object.entries(producer.sha256)) {
+  const files = officeEdition ? producer.files : producer.sha256;
+  assert.equal(Object.keys(files).length, count);
+  for (const [path, expected] of Object.entries(files)) {
     assert.equal(hash(await readFile(`${root}/${path}`)), expected, path);
     assert.equal(
       hash(execFileSync("git", ["show", `${commit}:${path}`])),
@@ -106,7 +119,9 @@ assert.equal(browserTests.length, 1);
 assert.equal(browserTests[0].status, "expected");
 assert.equal(browserTests[0].results.length, 1);
 assert.equal(browserTests[0].results[0].status, "passed");
-const root = ".local/security-jungle-entry-verification";
+const root = officeEdition
+  ? ".local/office-jungle-entry-verification"
+  : ".local/security-jungle-entry-verification";
 await mkdir(root, { recursive: true });
 function replay(mode) {
   const result = spawnSync(
@@ -114,7 +129,7 @@ function replay(mode) {
     [
       "scripts/replay-hard-campaign.js",
       manifest.artifactRoot,
-      "--manifest=reference/security-jungle-entry.json",
+      `--manifest=${manifestPath}`,
       ...(mode ? [`--negative=${mode}`] : []),
     ],
     { encoding: "utf8", timeout: 60000, maxBuffer: 4 * 1024 * 1024 },

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
-const root = ".local/security-lightning-verification";
+const root = ".local/office-lightning-verification";
 await mkdir(root, { recursive: true });
 const result = spawnSync(
   process.execPath,
@@ -29,7 +29,7 @@ assert.match(output, /Carried browser state4 recovery/);
 assert.match(output, /1 failed/);
 assert.doesNotMatch(
   output,
-  /SETUP:|ENOENT|No tests found|Test timeout|browserType\.launch/,
+  /SETUP:|ENOENT|No tests found|Test timeout|TimeoutError|browserType\.launch|Test was interrupted|ETIMEDOUT|Channel closed/,
 );
 console.log(
   "Lightning browser negative: missing fresh throttle rejected at recovery state,after unchanged departure,strike and deceleration.",

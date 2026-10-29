@@ -10,7 +10,7 @@ import {
   saveRecordedRoute,
 } from "./helpers/entry-recording.js";
 import profile from "../../reference/security-lightning-inputs.json" with { type: "json" };
-import accepted from "../../reference/security-lightning.json" with { type: "json" };
+import accepted from "../../reference/office-lightning.json" with { type: "json" };
 
 test("natural lightning clears held flight controls and fresh keyboard input recovers", async ({
   page,

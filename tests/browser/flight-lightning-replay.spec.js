@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { runRecordedCampaign } from "./helpers/recorded-campaign.js";
-import manifest from "../../reference/security-lightning.json" with { type: "json" };
+import manifest from "../../reference/office-lightning.json" with { type: "json" };
 test("recorded natural lightning carries independent DOM input through throttle recovery", async ({
   page,
 }, info) => {

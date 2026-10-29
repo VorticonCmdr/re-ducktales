@@ -2,15 +2,21 @@
 import assert from "node:assert/strict";
 import { readFile, writeFile, rename, mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
-import manifest from "../reference/security-lightning.json" with { type: "json" };
-const root = ".local/security-lightning-verification";
+const manifestPath =
+  process.argv.find((arg) => arg.startsWith("--manifest="))?.slice(11) ??
+  "reference/office-lightning.json";
+const manifest = JSON.parse(await readFile(manifestPath));
+const root =
+  manifest.verificationEdition === "office"
+    ? ".local/office-lightning-verification"
+    : ".local/security-lightning-verification";
 await mkdir(root, { recursive: true });
 const picture = manifest.artifacts["png-before-strike"].path;
 const original = await readFile(picture);
 function run() {
   const r = spawnSync(
     process.execPath,
-    ["scripts/verify-security-lightning.js"],
+    ["scripts/verify-security-lightning.js", `--manifest=${manifestPath}`],
     { encoding: "utf8", timeout: 60000, maxBuffer: 4 * 1024 * 1024 },
   );
   assert.ifError(r.error);
@@ -32,11 +38,13 @@ try {
   );
 }
 try {
-  await writeFile(picture, Buffer.concat([original, Buffer.from([0])]));
+  const corruptBytes = Buffer.from(original);
+  corruptBytes[Math.floor(corruptBytes.length / 2)] ^= 1;
+  await writeFile(picture, corruptBytes);
   const corrupt = run();
   await writeFile(`${root}/corrupt-fixture.log`, corrupt.output);
   assert.equal(corrupt.status, 1);
-  assert.match(corrupt.output, /png-before-strike/);
+  assert.match(corrupt.output, /Corrupt png-before-strike/);
 } finally {
   await writeFile(picture, original);
 }

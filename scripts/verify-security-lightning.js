@@ -3,7 +3,15 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
 import { PNG } from "pngjs";
-import manifest from "../reference/security-lightning.json" with { type: "json" };
+const manifestPath =
+  process.argv.find((arg) => arg.startsWith("--manifest="))?.slice(11) ??
+  "reference/office-lightning.json";
+const manifest = JSON.parse(await readFile(manifestPath));
+assert.ok(
+  [undefined, "office"].includes(manifest.verificationEdition),
+  "Unknown lightning evidence edition",
+);
+const officeEdition = manifest.verificationEdition === "office";
 const hash = (b) => createHash("sha256").update(b).digest("hex");
 const canonical = (v) =>
   JSON.stringify(v, (_, x) =>
@@ -32,7 +40,7 @@ assert.equal(
 );
 assert.equal(
   Object.keys(manifest.artifacts).length,
-  32,
+  officeEdition ? 40 : 32,
   "Missing required evidence",
 );
 for (const name of [
@@ -69,14 +77,18 @@ for (const [record, commit, archive, count] of [
   [
     manifest.captureProducer,
     manifest.captureCommit,
-    `${manifest.captureRoot}/sources`,
-    90,
+    officeEdition
+      ? manifest.captureSourceArchive
+      : `${manifest.captureRoot}/sources`,
+    officeEdition ? 507 : 90,
   ],
   [
     manifest.browserProducer,
     manifest.browserCommit,
-    `${manifest.artifactRoot}/browser-sources`,
-    94,
+    officeEdition
+      ? manifest.browserSourceArchive
+      : `${manifest.artifactRoot}/browser-sources`,
+    officeEdition ? 508 : 94,
   ],
 ]) {
   const source = JSON.parse(await load(record));
@@ -124,9 +136,17 @@ const entrySource = JSON.parse(
   await load(manifest.artifacts["entry-source"].path),
 );
 assert.equal(entrySource.captureCommit, manifest.entryCommit);
-assert.equal(Object.keys(entrySource.files).length, 87);
+assert.equal(Object.keys(entrySource.files).length, officeEdition ? 507 : 87);
 for (const [p, h] of Object.entries(entrySource.files)) {
-  assert.equal(hash(await load(`${entry.captureRoot}/sources/${p}`)), h, p);
+  assert.equal(
+    hash(
+      await load(
+        `${officeEdition ? manifest.entrySourceArchive : `${entry.captureRoot}/sources`}/${p}`,
+      ),
+    ),
+    h,
+    p,
+  );
   assert.equal(
     hash(execFileSync("git", ["show", `${entrySource.captureCommit}:${p}`])),
     h,
@@ -136,6 +156,12 @@ for (const [p, h] of Object.entries(entrySource.files)) {
 const checks = JSON.parse(
   await load(manifest.artifacts["campaign-checkpoints"].path),
 );
+if (officeEdition) {
+  const env = JSON.parse(
+    await load(manifest.artifacts["capture-environment"].path),
+  );
+  assert.equal(env.completed, false);
+}
 assert.equal(checks.length, 6);
 assert.equal(
   hash(PNG.sync.read(await load(manifest.artifacts["entry-png"].path)).data),
@@ -207,61 +233,134 @@ assert.match(browserNegative, /Carried browser state4 recovery/);
 assert.match(browserNegative, /1 failed/);
 assert.doesNotMatch(
   browserNegative,
-  /SETUP:|ENOENT|No tests found|Test timeout|browserType\.launch/,
+  /SETUP:|ENOENT|No tests found|Test timeout|TimeoutError|browserType\.launch|Test was interrupted|ETIMEDOUT|Channel closed/,
 );
-const sharedSource = JSON.parse(
-  await load(manifest.artifacts["shared-browser-source"].path),
-);
-assert.equal(sharedSource.commit, manifest.sharedBrowserCommit);
-assert.equal(Object.keys(sharedSource.files).length, 86);
-for (const [p, h] of Object.entries(sharedSource.files)) {
-  assert.equal(
-    hash(await load(`${manifest.artifactRoot}/shared-sources/${p}`)),
-    h,
-    p,
-  );
-  assert.equal(
-    hash(execFileSync("git", ["show", `${sharedSource.commit}:${p}`])),
-    h,
-    p,
-  );
-}
-// The shared adapter must retain both existing recorded routes.
-const sharedReport = JSON.parse(
-  await load(manifest.artifacts["shared-browser-results"].path),
-);
-assert.deepEqual(sharedReport.errors, []);
-assert.equal(sharedReport.stats.expected, 3);
-for (const key of ["unexpected", "skipped", "flaky"])
-  assert.equal(sharedReport.stats[key], 0);
-const sharedTests = [];
-function sharedVisit(s) {
-  for (const spec of s.specs ?? []) {
-    for (const t of spec.tests)
-      sharedTests.push({ title: spec.title, test: t });
+if (officeEdition) {
+  for (const [prefix, sourceCount, caseCount, requiredTitle] of [
+    ["hard", 498, 1, "Hard campaign carries"],
+    ["jungle", 503, 3, "recorded jungle treasure"],
+    ["mountain", 506, 2, "recorded mountain summit"],
+  ]) {
+    const reference = JSON.parse(
+      await load(manifest.artifacts[`${prefix}-reference`].path),
+    );
+    const source = JSON.parse(
+      await load(manifest.artifacts[`${prefix}-browser-source`].path),
+    );
+    assert.equal(
+      source.browserCommit,
+      prefix === "hard" ? reference.replayCommit : reference.browserCommit,
+    );
+    assert.equal(Object.keys(source.files).length, sourceCount);
+    for (const [path, hashValue] of Object.entries(source.files)) {
+      assert.equal(
+        hash(await load(`${manifest.regressionArchives[prefix]}/${path}`)),
+        hashValue,
+        path,
+      );
+      assert.equal(
+        hash(execFileSync("git", ["show", `${source.browserCommit}:${path}`])),
+        hashValue,
+        path,
+      );
+      if (
+        path.startsWith("src/") ||
+        [
+          "index.html",
+          "vite.config.js",
+          "tests/browser/helpers/recorded-campaign.js",
+          "tests/browser/helpers/clock.js",
+        ].includes(path)
+      )
+        assert.equal(
+          hash(await load(path)),
+          hashValue,
+          `Changed shared runtime since retained ${prefix} browser receipt ${path}`,
+        );
+    }
+    const report = JSON.parse(
+      await load(manifest.artifacts[`${prefix}-browser-results`].path),
+    );
+    assert.deepEqual(report.errors, []);
+    assert.equal(report.stats.expected, caseCount);
+    for (const key of ["unexpected", "skipped", "flaky"])
+      assert.equal(report.stats[key], 0);
+    const cases = [];
+    function visit(suite) {
+      for (const spec of suite.specs ?? [])
+        for (const test of spec.tests) cases.push({ title: spec.title, test });
+      for (const child of suite.suites ?? []) visit(child);
+    }
+    report.suites.forEach(visit);
+    assert.equal(cases.length, caseCount);
+    assert.ok(cases.some((c) => c.title.startsWith(requiredTitle)));
+    for (const { test } of cases) {
+      assert.equal(test.status, "expected");
+      assert.equal(test.results.length, 1);
+      assert.equal(test.results[0].status, "passed");
+    }
   }
-  for (const child of s.suites ?? []) sharedVisit(child);
-}
-sharedReport.suites.forEach(sharedVisit);
-assert.equal(sharedTests.length, 3);
-assert.ok(
-  sharedTests.some((s) => s.title.startsWith("recorded mountain summit")),
-);
-assert.ok(sharedTests.some((s) => s.title.startsWith("Hard campaign carries")));
-assert.ok(
-  sharedTests.some((s) => s.title.startsWith("recorded jungle treasure")),
-);
-for (const { test: t } of sharedTests) {
-  assert.equal(t.status, "expected");
-  assert.equal(t.results.length, 1);
-  assert.equal(t.results[0].status, "passed");
+} else {
+  const sharedSource = JSON.parse(
+    await load(manifest.artifacts["shared-browser-source"].path),
+  );
+  assert.equal(sharedSource.commit, manifest.sharedBrowserCommit);
+  assert.equal(Object.keys(sharedSource.files).length, 86);
+  for (const [p, h] of Object.entries(sharedSource.files)) {
+    assert.equal(
+      hash(await load(`${manifest.artifactRoot}/shared-sources/${p}`)),
+      h,
+      p,
+    );
+    assert.equal(
+      hash(execFileSync("git", ["show", `${sharedSource.commit}:${p}`])),
+      h,
+      p,
+    );
+  }
+  // The shared adapter must retain both existing recorded routes.
+  const sharedReport = JSON.parse(
+    await load(manifest.artifacts["shared-browser-results"].path),
+  );
+  assert.deepEqual(sharedReport.errors, []);
+  assert.equal(sharedReport.stats.expected, 3);
+  for (const key of ["unexpected", "skipped", "flaky"])
+    assert.equal(sharedReport.stats[key], 0);
+  const sharedTests = [];
+  function sharedVisit(s) {
+    for (const spec of s.specs ?? []) {
+      for (const t of spec.tests)
+        sharedTests.push({ title: spec.title, test: t });
+    }
+    for (const child of s.suites ?? []) sharedVisit(child);
+  }
+  sharedReport.suites.forEach(sharedVisit);
+  assert.equal(sharedTests.length, 3);
+  assert.ok(
+    sharedTests.some((s) => s.title.startsWith("recorded mountain summit")),
+  );
+  assert.ok(
+    sharedTests.some((s) => s.title.startsWith("Hard campaign carries")),
+  );
+  assert.ok(
+    sharedTests.some((s) => s.title.startsWith("recorded jungle treasure")),
+  );
+  for (const { test: t } of sharedTests) {
+    assert.equal(t.status, "expected");
+    assert.equal(t.results.length, 1);
+    assert.equal(t.results[0].status, "passed");
+  }
 }
 for (const [prefix, path, count, eventCount] of [
   ["hard", "reference/hard-campaign-security.json", 28, 4140],
   ["jungle", "reference/security-jungle-treasure.json", 27, 70],
   ["mountain", "reference/security-mountain-ascent.json", 27, 104],
 ]) {
-  const reference = JSON.parse(await load(path));
+  const reference = JSON.parse(
+    await load(
+      officeEdition ? manifest.artifacts[`${prefix}-reference`].path : path,
+    ),
+  );
   const expected = reference.browserCheckpoints ?? reference.checkpoints;
   const observed = JSON.parse(
     await load(manifest.artifacts[`${prefix}-regression-checkpoints`].path),
@@ -288,7 +387,9 @@ for (const [prefix, path, count, eventCount] of [
     eventCount,
   );
 }
-const root = ".local/security-lightning-verification";
+const root = officeEdition
+  ? ".local/office-lightning-verification"
+  : ".local/security-lightning-verification";
 await mkdir(root, { recursive: true });
 function replay(mode) {
   const r = spawnSync(
@@ -296,7 +397,7 @@ function replay(mode) {
     [
       "scripts/replay-hard-campaign.js",
       manifest.artifactRoot,
-      "--manifest=reference/security-lightning.json",
+      `--manifest=${manifestPath}`,
       ...(mode ? [`--negative=${mode}`] : []),
     ],
     { encoding: "utf8", timeout: 60000, maxBuffer: 8 * 1024 * 1024 },
@@ -333,7 +434,9 @@ const entryChecks = JSON.parse(
 assert.deepEqual(
   checks[0],
   entryChecks[0],
-  "Full flight must start at independently verified departure",
+  officeEdition
+    ? "Full flight must start at the exact same-capture external departure prefix"
+    : "Full flight must start at independently verified departure",
 );
 const points = checks.map((c) => c.state.flight);
 assert.equal(points[1].inputReads, 35);

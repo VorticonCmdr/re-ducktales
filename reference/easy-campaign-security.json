@@ -1,7 +1,7 @@
 {
   "id": "linked-easy-campaign-original-security",
   "expectedHard": false,
-  "pendingBrowserReplay": true,
+  "pendingBrowserReplay": false,
   "evidenceLevel": "closed-loop port regression and independent browser scenario",
   "buildManifest": "reference/build.json",
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
@@ -301,6 +301,56 @@
       "path": ".local/security-easy-campaign-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/mixed-campaign-ending.png",
       "bytes": 17946,
       "sha256": "36f2b088dcf10c031b568236e8a89015a48284484d53dbacbcd9cd2ea0bd6000"
+    },
+    "browser-checkpoints": {
+      "path": ".local/security-easy-campaign-browser-replay-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 171437,
+      "sha256": "f46673636a457b2d6d3c846eba7ff1bc692f985f9f43bf90fb81a02405f3397c"
+    },
+    "browser-progress": {
+      "path": ".local/security-easy-campaign-browser-replay-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 6225,
+      "sha256": "6c05c4ffa7498ef4ed52d0d4544892c7933ba239a3f27400f0960896af3d19ce"
+    },
+    "browser-events": {
+      "path": ".local/security-easy-campaign-browser-replay-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 318375,
+      "sha256": "792da10ae22e6cbc1d61af5138cca3e6d9fde4bdccee91654c02424c109c3c3f"
+    },
+    "browser-source": {
+      "path": ".local/security-easy-campaign-browser-replay-01/source-revision.json",
+      "bytes": 28722,
+      "sha256": "5fdc6ea8dd97e59abc975b87a6b4550bf0bd5b92006489c65059d8da641367b6"
+    },
+    "browser-results": {
+      "path": ".local/security-easy-campaign-browser-replay-01/browser-report.json",
+      "bytes": 8677,
+      "sha256": "32af3346d788884b5ead008e33eb26c3375eab8e6e67c15ea5f33480ebf6466c"
+    },
+    "entry-reference": {
+      "path": "reference/security-easy-campaign-entry.json",
+      "bytes": 1520,
+      "sha256": "e00fc9b007d7b0b72bd7e9996a421f84406d22876f9ba4681463200c2b445b14"
+    },
+    "entry-capture-source": {
+      "path": ".local/security-easy-campaign-entry-01/source-revision.json",
+      "bytes": 28456,
+      "sha256": "35e777012653e68cf0914632f1a7cdd1759e29f836185386c2bcec239117ad84"
+    },
+    "planning-selected": {
+      "path": ".local/security-easy-campaign-jungle-planning-delay-60.json",
+      "bytes": 180903,
+      "sha256": "a16fa084f1c4e731ffcfde9b6ec4f542f11fa4a7975697bed7385c706f7e628c"
+    },
+    "omit-easy-confirm": {
+      "path": ".local/security-easy-campaign-accepted-01/browser-negative-records/omit-easy-confirm.log",
+      "bytes": 1832,
+      "sha256": "97a08db762c7d38f9ef8fd89af78ccec78cecf945bf06563a2666216f65eebbd"
+    },
+    "omit-campaign-jungle-move": {
+      "path": ".local/security-easy-campaign-accepted-01/browser-negative-records/omit-campaign-jungle-move.log",
+      "bytes": 2028,
+      "sha256": "29be0b0517cf7173d69c1a6c716f6755fa05070768dc9856db963fb263603145"
     }
   },
   "expectedFlightPresentations": 1188,
@@ -308,5 +358,41 @@
   "requiredInputSamples": {
     "jungle": 917,
     "mountain": 764
-  }
+  },
+  "endingScreenshotDimensions": [
+    958,
+    599
+  ],
+  "endingScreenshotPurpose": "CSS-sized diagnostic;logical320x200 pixels compared exactly at each recorded canvas checkpoint",
+  "browserReplayRoot": ".local/security-easy-campaign-browser-replay-01",
+  "browserSourceArchive": ".local/security-easy-campaign-browser-replay-01/sources",
+  "replayCommit": "75ff79ae7fa56f604a0b85f1cd441632699bd6e7",
+  "verificationTools": {
+    "scripts/replay-hard-campaign.js": "4eea3c1fdb2fca8a8fba2627052efdcab592de3e91249c3762ccba2560a0b45f",
+    "scripts/verify-easy-campaign.js": "9712ccc73eed52e82ce769d33b94a7cb08c6f2d1c27c012e359007a06abc0803",
+    "scripts/verify-easy-campaign-browser-negative.js": "1ef9a5c489f0b5dae22cfd0c6ba7ba2b2b3cbc957d5f07fd7d5602b02d7a32a6",
+    "scripts/verify-mixed-campaign-negative.js": "d404367a54e8f144325187b4c761300a1aa8fc5f034727840fb594a658164350",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
+    "tests/browser/mixed-campaign.spec.js": "34510272e6f17c710955a362650ecb4864bb3024f408c136653e27bc94e6c21a",
+    "scripts/verify-easy-campaign-fixture-negatives.js": "c362027a57667c6567612cadb34687e88f2bbf922edc05367ccdd6816e44bd77"
+  },
+  "entryCaptureCommit": "480d938834b2ab1f910d8041a8f3949e10e69f66",
+  "entrySourceArchive": ".local/security-easy-campaign-entry-01/sources",
+  "startingRecipe": "Supported22-file originals,BIOS0,muted;skip opening,confirmEasy,original office departure/security withfixedRight/Fire. Four real expeditions,crashes/repairs,rewards,banking,rivals anddeadline ending. No seed reset,state injection ormemory restore.",
+  "comparisonRules": [
+    "Exact complete Game snapshot atall36 checkpoints",
+    "Exact decoded320x200 browser canvas RGBA hash;no pixel tolerance",
+    "Pointer normalization only atoriginal clamping/truncation consumption boundary"
+  ],
+  "environment": {
+    "biosSeed": 0,
+    "soundEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "capturePhase": "before-target-handler"
+  },
+  "emulator": null,
+  "injections": [],
+  "fittedInputs": [],
+  "verify": "npm run verify:easy-security-campaign"
 }

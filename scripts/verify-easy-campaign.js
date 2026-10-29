@@ -30,6 +30,11 @@ assert.equal(manifest.expectedCheckpointCount, 36);
 assert.equal(manifest.requiredEventCount, 3516);
 assert.equal(manifest.expectedFlightPresentations, 1188);
 assert.equal(manifest.expectedFlagAliasPresentations, 0);
+assert.equal(
+  Object.keys(manifest.artifacts).length,
+  18,
+  "Missing required Easy evidence",
+);
 for (const [name, spec] of Object.entries(manifest.artifacts)) {
   const bytes = await readFile(spec.path).catch(() => {
     throw Error(`SETUP: missing ${name} artifact ${spec.path}`);
@@ -46,7 +51,7 @@ const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
 if (manifest.captureProducer) {
   const source = JSON.parse(await readFile(manifest.captureProducer));
   assert.equal(source.captureCommit, manifest.captureCommit);
-  assert.ok(Object.keys(source.files).length > 60);
+  assert.equal(Object.keys(source.files).length, 268);
   for (const [path, hash] of Object.entries(source.files)) {
     const bytes = execFileSync("git", [
       "show",
@@ -69,7 +74,7 @@ if (manifest.browserReplayRoot) {
     await readFile(`${manifest.browserReplayRoot}/source-revision.json`),
   );
   assert.equal(source.browserCommit, manifest.replayCommit);
-  assert.ok(Object.keys(source.files).length > 60);
+  assert.equal(Object.keys(source.files).length, 269);
   for (const [path, hash] of Object.entries(source.files)) {
     assert.equal(
       digest(await readFile(`${manifest.browserSourceArchive}/${path}`)),
@@ -85,6 +90,70 @@ if (manifest.browserReplayRoot) {
       `Changed browser replay producer ${path}`,
     );
   }
+}
+const entrySource = JSON.parse(
+  await readFile(manifest.artifacts["entry-capture-source"].path),
+);
+assert.equal(entrySource.captureCommit, manifest.entryCaptureCommit);
+assert.equal(Object.keys(entrySource.files).length, 267);
+for (const [p, h] of Object.entries(entrySource.files)) {
+  assert.equal(
+    digest(await readFile(`${manifest.entrySourceArchive}/${p}`)),
+    h,
+    p,
+  );
+  assert.equal(
+    digest(
+      execFileSync("git", ["show", `${manifest.entryCaptureCommit}:${p}`]),
+    ),
+    h,
+    p,
+  );
+}
+const entry = JSON.parse(
+  await readFile(manifest.artifacts["entry-reference"].path),
+);
+assert.equal(entry.expectedHard, false);
+assert.equal(entry.requiredEventCount, 928);
+for (const [name, spec] of Object.entries(entry.artifacts)) {
+  const bytes = await readFile(spec.path).catch(() => {
+    throw Error(`SETUP: missing Easy entry artifact ${spec.path}`);
+  });
+  assert.equal(digest(bytes), spec.sha256, `Corrupt Easy entry ${name}`);
+}
+const entryChecks = JSON.parse(
+  await readFile(entry.artifacts["campaign-checkpoints"].path),
+);
+const fullChecks = JSON.parse(
+  await readFile(manifest.artifacts["campaign-checkpoints"].path),
+);
+const arrival = fullChecks.find(
+  (c) => c.name === "arrival" && c.state.scene === "jungle",
+);
+assert.deepEqual(
+  arrival,
+  entryChecks[0],
+  "Complete Easy route must carry independently verified entry",
+);
+const plan = JSON.parse(
+  await readFile(manifest.artifacts["planning-selected"].path),
+);
+assert.equal(plan.delay, 60);
+assert.equal(plan.used, 917);
+assert.equal(plan.final.jungle.outcome.code, 1);
+for (const mode of ["omit-easy-confirm", "omit-campaign-jungle-move"]) {
+  const output = (await readFile(manifest.artifacts[mode].path)).toString();
+  assert.match(output, /1 failed/);
+  assert.match(
+    output,
+    mode === "omit-easy-confirm"
+      ? /Carried browser state0 campaign-start/
+      : /Error: Carried browser state\d+ jungle-input-\d+|Error: Recorded external event sequence/,
+  );
+  assert.doesNotMatch(
+    output,
+    /SETUP:|ENOENT|No tests found|Test timeout|TimeoutError|browserType\.launch:/,
+  );
 }
 for (const [path, hash] of Object.entries(manifest.verificationTools ?? {}))
   assert.equal(
@@ -117,6 +186,7 @@ assert.deepEqual(inputCodes, [
   ),
 ]);
 assert.equal(inputCodes.length, 917);
+assert.deepEqual(plan.inputs, inputCodes);
 const report = JSON.parse(
   await readFile(manifest.artifacts["browser-results"].path),
 );
@@ -137,11 +207,12 @@ assert.equal(tests[0].results[0].status, "passed");
 const endingPng = PNG.sync.read(
   await readFile(manifest.artifacts["ending-png"].path),
 );
-assert.deepEqual([endingPng.width, endingPng.height], [320, 200]);
-assert.equal(
-  digest(endingPng.data),
-  manifest.browserCheckpoints.at(-1).pixelsSha256,
+assert.deepEqual(
+  [endingPng.width, endingPng.height],
+  manifest.endingScreenshotDimensions,
 );
+// This is a CSS-sized diagnostic screenshot. Logical320x200 RGBA comparisons
+// use all36 independent canvas checkpoints below, with no resize/tolerance.
 await mkdir(verificationRoot, { recursive: true });
 function replay(extra = []) {
   const r = spawnSync(
@@ -232,6 +303,12 @@ assert.equal(
   "Unfinished independent browser input stream",
 );
 assert.deepEqual(progress.errors, [], "Independent browser rendering errors");
+assert.equal(progress.expectedEvents, 3516);
+assert.equal(progress.navigation.length, 1);
+assert.equal(
+  JSON.parse(await readFile(manifest.artifacts["browser-events"].path)).length,
+  3516,
+);
 const wrongPixel = structuredClone(browser);
 wrongPixel[0].pixelsSha256 = "0".repeat(64);
 assert.throws(() => compareBrowser(wrongPixel), /Browser checkpoint0/);
@@ -261,5 +338,5 @@ for (const [mode, reason] of [
   );
 }
 console.log(
-  `Easy campaign: ${result.checked} exact carried state and independent browser pixel checkpoints, all${result.consumed} input events consumed, ${result.rendered} flight presentations; 5 negative controls rejected. Port regression, not original whole-campaign parity.`,
+  `Easy campaign: ${result.checked} exact carried state and independent browser pixel checkpoints, all${result.consumed} input events consumed, ${result.rendered} flight presentations; 7 comparison negatives rejected. Port regression, not original whole-campaign parity.`,
 );

@@ -35,7 +35,7 @@
     "verify:photography": "node scripts/verify-photography.js && node scripts/verify-photography-runtime.js",
     "verify:investments": "node scripts/verify-investments.js && node scripts/verify-investment-trading.js",
     "prepare:investment-analysis": "python3 scripts/prepare-investment-analysis.py",
-    "verify:startup": "node scripts/verify-campaign-startup.js && npm run verify:security-market-route",
+    "verify:startup": "node scripts/verify-campaign-startup.js && npm run verify:security-market-route && node scripts/verify-easy-campaign.js",
     "verify:security-market-route": "node scripts/verify-security-market-route.js",
     "verify:ending": "node scripts/verify-ending.js && node scripts/verify-credits.js",
     "verify:rival": "node scripts/verify-rival.js && npm run verify:rival-exhausted",
@@ -62,7 +62,7 @@
     "verify:tandy-corpus": "node scripts/verify-tandy-corpus.js",
     "verify:tandy-game": "node scripts/verify-tandy-game.js",
     "verify:bank": "node scripts/verify-bank.js",
-    "verify:mixed-campaign": "npm run verify:build && playwright test tests/browser/mixed-campaign.spec.js",
+    "verify:mixed-campaign": "npm run verify:build && node scripts/verify-easy-campaign.js && playwright test tests/browser/mixed-campaign.spec.js",
     "verify:mixed-campaign-negative": "node scripts/verify-mixed-campaign-negative.js",
     "prepare:bank-analysis": "python3 scripts/prepare-bank-analysis.py",
     "verify:flight-lightning": "node scripts/verify-system-controls.js && node scripts/verify-flight-lightning.js && node --test tests/flight-input.test.js && npm run verify:security-lightning",
@@ -87,7 +87,9 @@
     "verify:security-mountain-ascent": "node scripts/verify-security-mountain-ascent.js && playwright test tests/browser/mountain-ascent.spec.js tests/browser/mountain-ascent-replay.spec.js && node scripts/verify-security-mountain-browser-negative.js && node scripts/verify-security-mountain-fixture-negatives.js",
     "verify:security-lightning": "node scripts/verify-security-lightning.js && playwright test tests/browser/flight-lightning.spec.js tests/browser/flight-lightning-replay.spec.js && node scripts/verify-security-lightning-browser-negative.js && node scripts/verify-security-lightning-fixture-negatives.js",
     "verify:security-hard-expeditions": "node scripts/verify-security-hard-expeditions.js && node scripts/verify-security-hard-fixture-negatives.js",
-    "test:security-hard-expeditions": "playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js tests/browser/hard-expedition-replay.spec.js"
+    "test:security-hard-expeditions": "playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js tests/browser/hard-expedition-replay.spec.js",
+    "verify:easy-security-campaign": "node scripts/verify-easy-campaign.js && node scripts/verify-easy-campaign-fixture-negatives.js",
+    "test:easy-security-campaign": "playwright test tests/browser/mixed-campaign.spec.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

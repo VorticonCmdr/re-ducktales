@@ -51,6 +51,10 @@ unchanged; no seed is reset to preserve old expectations.
   four entry replays and eight full browser cases pass. The full Hard campaign
   also passes again through its ending after the shared adapter change.
   [Alternate Hard routes](security-hard-expeditions.md).
+- A complete security-aware Easy campaign wins on day32 with13875 banked against
+  11500, collecting all four families through two flight crashes/repairs. It
+  matches36 complete state/pixel checkpoints and3516 DOM events in independent
+  Game/browser replay, then restarts. [Easy campaign](security-easy-campaign.md).
 - Security-aware bank/endings/trading, map controls, departure dispatches, cave
   retry/treasure, Too-Pei transmitter/atomic travel, photography and real-audio
   notices have focused acceptance. [Travel integration](security-route-integration.md),
@@ -86,8 +90,8 @@ pictures and traces stay local. Production visitors select their own originals.
 
 ## Remaining work
 
-- Migrate the linked Easy campaign through security; preserve old inputs. Promote the newly
-  accepted Hard recording deliberately, then pass the full branch gate before merging.
+- Promote the accepted security-aware campaign recordings as defaults, then pass
+  the full branch gate before merging. Historical recordings remain separate.
 - Original office entry/selection, investment transitions and several map/notice
   presentations remain incomplete. Broader destination/difficulty coverage and
   original whole-scene comparisons are needed.
@@ -113,6 +117,8 @@ npm run verify:security-mountain-ascent
 npm run verify:security-lightning
 npm run verify:security-hard-expeditions
 npm run test:security-hard-expeditions
+npm run verify:easy-security-campaign
+npm run test:easy-security-campaign
 ```
 
 Other focused commands are documented with their scenarios. Missing/corrupt

@@ -1,5 +1,10 @@
 # Mixed campaign browser acceptance
 
+> Historical pre-security campaign evidence. Current winning Easy acceptance
+> and commands are documented in [Security-aware Easy campaign](security-easy-campaign.md).
+> These original inputs and expected results remain unchanged.
+
+
 This scenario starts a fresh Easy campaign and completes the Okeefadokie jungle,
 Yellerstone photography, Klondike cave and El Capitan mountain. It banks the first
 treasure, returns to the office, carries its own state through the remaining

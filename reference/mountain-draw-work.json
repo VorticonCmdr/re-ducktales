@@ -35,7 +35,8 @@
     "Adding four stops per frame changes this run to54 resident counts,versus44 in the earlier four-stop profile. Do not use either as uninterrupted cadence.",
     "Cached PIC status has up to one normal-core millisecond of phase lag;negative initial duration is retained and only differences are meaningful.",
     "Sprite work counts exclude interrupts,other game logic and budget-end I/O clamping. Not wired into browser scheduling.",
-    "The retained legacy mountain-timing summary labels observedInputBoundaries as4 and repeats the ignore-count scope. The profile/raw states independently prove15 measured reads plus2 cleanup reads;future producer metadata is corrected. No retained capture was edited."
+    "The retained legacy mountain-timing summary labels observedInputBoundaries as4 and repeats the ignore-count scope. The profile/raw states independently prove15 measured reads plus2 cleanup reads;future producer metadata is corrected. No retained capture was edited.",
+    "Erase-copy rectangle work is statically inferred from original callers and14 pre-erase captures;individual copy arguments or elapsed times were not captured at runtime."
   ],
   "reproduce": "Use scripts/capture-security.py --pause-clock-test --mountain-timing --mountain-profile --port 8388 --output .local/new-mountain-profile/capture with the installed bridge Python and DUCKTALES_DOSBOX_MCP_ROOT environment. Archive clean committed source before launch, retain runner completion; see docs/expedition-timing.md.",
   "verify": "node scripts/verify-mountain-frame-profile.js --manifest=reference/mountain-draw-work.json && node scripts/verify-ega-work.js",
@@ -779,10 +780,15 @@
       "path": ".local/mountain-pacing-profile-04/ega-sprite-disassembly.json",
       "bytes": 27914,
       "sha256": "effdcb9f1d9e77339ac73be526b5fe702ba37769c72b6bb44dfe740e36752a17"
+    },
+    "copy-disassembly": {
+      "path": ".local/mountain-pacing-profile-04/ega-copy-disassembly.json",
+      "bytes": 21666,
+      "sha256": "ffdaf37ebedf51ce2e44c0da9f88883c425b82865b5be31e7260c194813f4bb8"
     }
   },
   "verifierSha256": "b265bc41f5664cef54f74774bcc2cd1632b037382018b4163401798061ce34b2",
   "profileKind": "draw-calls-and-cached-clock",
-  "workModuleSha256": "b27ee3e2a7b9121b4ac24857821461d02b8af63ee74956746ed1b27f778e3980",
-  "workVerifierSha256": "06c69c4ac41f9a05f88229373129d8e36aa1a24e4343e126861572c2796d70b9"
+  "workModuleSha256": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+  "workVerifierSha256": "5f1fdcde30504de6105e9e341b796e82e66e3362c7e78cb5d66a7c5afee9d2ea"
 }

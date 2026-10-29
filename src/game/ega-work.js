@@ -113,22 +113,154 @@ export function egaSpriteWork(entry, frame, x, y) {
   return { instructions, portWrites };
 }
 
-// The scoped normal-core model: one budget unit per opcode, with the
+// Original copy primitive01ef..035c. The caller supplies semantic surface types;
+// the original compares descriptor addresses with the active video descriptor.
+// This scope covers the bounded nonnegative rectangles used for mountain erase.
+export function egaCopyWork({
+  width,
+  height,
+  sourceX,
+  sourceY,
+  destinationX,
+  destinationY,
+  sourceStrideBytes,
+  destinationStrideBytes,
+  sourceVideo,
+  destinationVideo,
+}) {
+  if (
+    ![
+      width,
+      height,
+      sourceX,
+      sourceY,
+      destinationX,
+      destinationY,
+      sourceStrideBytes,
+      destinationStrideBytes,
+    ].every(Number.isInteger) ||
+    width < 1 ||
+    width > 320 ||
+    height < 1 ||
+    height > 255 ||
+    sourceX < 0 ||
+    destinationX < 0 ||
+    sourceY < 0 ||
+    sourceY > 199 ||
+    destinationY < 0 ||
+    destinationY > 200 ||
+    sourceStrideBytes < 1 ||
+    sourceStrideBytes > 65535 ||
+    destinationStrideBytes < 1 ||
+    destinationStrideBytes > 65535 ||
+    sourceX + width > sourceStrideBytes * 8 ||
+    destinationX + width > destinationStrideBytes * 8 ||
+    typeof sourceVideo !== "boolean" ||
+    typeof destinationVideo !== "boolean" ||
+    (sourceVideo && sourceStrideBytes !== 40) ||
+    (destinationVideo && destinationStrideBytes !== 40)
+  )
+    throw Error("Unsupported original EGA copy rectangle");
+  let instructions = 13,
+    portWrites = 0,
+    repeatOpcodes = 0,
+    repeatIterations = 0;
+  let rows = height;
+  if (destinationY + rows > 200) {
+    instructions += 4;
+    rows = 200 - destinationY; //0209..0211
+    if (rows === 0)
+      return {
+        instructions: instructions + 7,
+        portWrites,
+        repeatOpcodes,
+        repeatIterations,
+      }; //0213,0354..035c
+  }
+  instructions += 11; //0216..023b
+  if (sourceVideo) {
+    instructions += 5;
+    portWrites++;
+  } //023d..0246
+  if (destinationVideo) {
+    instructions += 10;
+    portWrites += 4;
+  } //024e..0261
+  instructions += 11; //0264..0281
+  instructions += sourceY === 1 ? 1 : sourceY === 0 ? 3 : 2; //0283..0289
+  instructions += 14; //028b..02b3
+  if (destinationY !== 1) instructions += destinationY === 0 ? 3 : 2; //02b5..02bb
+  instructions += 8; //02bd..02ce
+  // Original SHR truncates sub-byte widths/coordinates; no transparency merge.
+  const bytes = width >> 3;
+  let flat = false;
+  if (sourceStrideBytes === bytes) {
+    instructions += 2; //02d0..02d3
+    if (bytes === 40) {
+      instructions += 2; //02d5..02d8
+      if (destinationStrideBytes === 40) {
+        instructions += 8;
+        flat = true;
+      } //02da..02e9
+    }
+  }
+  for (let plane = 0; plane < 4; plane++) {
+    instructions += 4; //02ec..02f2
+    if (sourceVideo) {
+      instructions += 4;
+      portWrites++;
+    } //02f4..02fb
+    instructions += 2; //02fc..0300
+    if (destinationVideo) {
+      instructions += 6;
+      portWrites++;
+    } //0302..030d
+    instructions += 2; //030e..0311
+    if (flat) {
+      instructions += 2;
+      repeatOpcodes++;
+      repeatIterations += rows * 20; //0313..0315
+    } else {
+      instructions += 4 + rows * 9; //0317..0335
+      repeatOpcodes += rows * 2;
+      repeatIterations += rows * ((bytes >> 1) + (bytes & 1));
+    }
+    instructions += 4; //0337..033d
+    if (!sourceVideo) instructions++; //033f
+    instructions += 2; //0343..0347
+    if (!destinationVideo) instructions++; //0349
+    instructions += 3; //034d..0352
+  }
+  instructions += 6; //0354..035c
+  return { instructions, portWrites, repeatOpcodes, repeatIterations };
+}
+
+// The scoped normal-core model: one budget unit per non-REP opcode, with the
 // emulator's additional write-I/O charge. Interrupt/device work and budget-end
 // clamping are separate platform costs, intentionally not invented here.
-export function normalCoreSpriteMilliseconds(work, cyclesPerMillisecond) {
+export function normalCoreGraphicsMilliseconds(work, cyclesPerMillisecond) {
+  const repeatOpcodes = work?.repeatOpcodes ?? 0,
+    repeatIterations = work?.repeatIterations ?? 0;
   if (
     !Number.isInteger(cyclesPerMillisecond) ||
     cyclesPerMillisecond < 1 ||
     !Number.isInteger(work?.instructions) ||
     work.instructions < 1 ||
     !Number.isInteger(work.portWrites) ||
-    work.portWrites < 0
+    work.portWrites < 0 ||
+    !Number.isInteger(repeatOpcodes) ||
+    repeatOpcodes < 0 ||
+    repeatOpcodes > work.instructions ||
+    !Number.isInteger(repeatIterations) ||
+    repeatIterations < 0
   )
-    throw Error("Invalid normal-core sprite work");
+    throw Error("Invalid normal-core graphics work");
   return (
-    (work.instructions +
+    (work.instructions -
+      repeatOpcodes +
+      repeatIterations +
       work.portWrites * Math.floor(cyclesPerMillisecond / 1365)) /
     cyclesPerMillisecond
   );
 }
+export const normalCoreSpriteMilliseconds = normalCoreGraphicsMilliseconds;

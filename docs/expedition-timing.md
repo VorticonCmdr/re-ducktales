@@ -201,6 +201,16 @@ claim timing equality. Three controls reject a changed descriptor, invalid frame
 and truncated sprite; the profile checker separately rejects omitted/altered
 checkpoints. [Detailed manifest](../reference/mountain-draw-work.json).
 
+The work module also translates the copy primitive01ef..035c for bounded
+nonnegative rectangles. It preserves the320-pixel contiguous path and accounts
+for REP iteration budgets separately from opcode counts. Fourteen captured
+pre-erase states yield the ordinary actor rectangle56x37; its inferred copy work
+is0.611ms at3000 cycles. A320x168 restore uses13,440 word iterations and predicts
+4.549ms. These are static work calculations; individual copy arguments/times
+were not observed. Ten more basic blocks are checked against original bytes,
+and a changed REP opcode is a required negative control. This is still not
+connected to runtime scheduling or timing acceptance.
+
 Detailed capture02 is excluded because its recorder cleanup used an unsupported
 Python client argument. Capture03 failed port preflight before launch; no listener
 remained, but recent socket state prevented immediate reuse. Capture04 uses the

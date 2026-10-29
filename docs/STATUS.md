@@ -82,7 +82,8 @@ drawing; erase takes5, logic/history take1 each, flip/input take4. Its strict
 `npm run verify:mountain-frame-profile` check passes with two corruption/omission
 controls. It checks evidence, not browser timing acceptance.
 The detailed profile and new sprite-work module pass `npm run verify:ega-work`:
-98 sprite operations,14 conditional native hazard comparisons and five negative
+98 sprite operations,14 conditional native hazard comparisons,14 inferred actor
+erase rectangles, the contiguous restore path and six negative
 controls. The module counts original graphics work independently of host drawing;
 it is not connected to scheduling. Debug-resume budget loss is isolated with a
 focused tool correction proposed in the timing document.

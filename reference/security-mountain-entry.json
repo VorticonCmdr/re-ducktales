@@ -31,5 +31,16 @@
       "bytes": 180,
       "sha256": "3a7c86df86ffc390358fafa7d5becc6c6d6121606714a5e2c880cb976a1052df"
     }
+  },
+  "captureCommit": "8ede5068060b25e54df3867cea5331c35fb143de",
+  "captureRoot": ".local/security-mountain-entry-01",
+  "captureProducer": ".local/security-mountain-entry-01/source-revision.json",
+  "entryStateSha256": "cfc66cd7e9623fbbfafadab2f19a375a3149ab812575ea7d3d347a724204364a",
+  "entryPixelsSha256": "217ee5dbff4763abe21c67c227a9c65a90daa74c4a24344a55ab3e030b7ba13a",
+  "entry": {
+    "day": 16,
+    "briefingSeed": 3824,
+    "mountainSeed": 5159,
+    "frames": 0
   }
 }

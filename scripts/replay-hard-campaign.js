@@ -447,4 +447,12 @@ try {
 
 // Diagnostic callers can inspect the already replayed live port state. This
 // does not change CLI verification or restore/inject any memory into the game.
-export { game, archives, clock };
+// The observation time can fall between display callbacks. Planning callers
+// must enqueue controls at that external time, not at clock.now's last frame.
+export {
+  game,
+  archives,
+  clock,
+  lastTime as replayTime,
+  nextFrame as replayFrameAt,
+};

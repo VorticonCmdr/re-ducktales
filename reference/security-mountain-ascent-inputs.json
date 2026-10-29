@@ -1,0 +1,210 @@
+{
+  "id": "security-aware-easy-mountain-inputs",
+  "inputCount": 764,
+  "sha256": "c7d277ba2847935a6b72aaca8b14b8940348ab71d7b4b2b5e0a92179891f3cee",
+  "inputEvents": [
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 64,
+      "count": 17
+    },
+    {
+      "byte": 0,
+      "count": 46
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 64,
+      "count": 15
+    },
+    {
+      "byte": 0,
+      "count": 82
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 7,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 64,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 28
+    },
+    {
+      "byte": 7,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 64,
+      "count": 26
+    },
+    {
+      "byte": 0,
+      "count": 48
+    },
+    {
+      "byte": 64,
+      "count": 20
+    },
+    {
+      "byte": 0,
+      "count": 38
+    },
+    {
+      "byte": 64,
+      "count": 16
+    },
+    {
+      "byte": 0,
+      "count": 69
+    },
+    {
+      "byte": 3,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 64,
+      "count": 17
+    },
+    {
+      "byte": 0,
+      "count": 17
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 64,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 28
+    },
+    {
+      "byte": 3,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 9
+    },
+    {
+      "byte": 64,
+      "count": 19
+    },
+    {
+      "byte": 0,
+      "count": 41
+    },
+    {
+      "byte": 64,
+      "count": 20
+    },
+    {
+      "byte": 0,
+      "count": 27
+    },
+    {
+      "byte": 3,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 7,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 64,
+      "count": 22
+    },
+    {
+      "byte": 0,
+      "count": 18
+    },
+    {
+      "byte": 64,
+      "count": 19
+    },
+    {
+      "byte": 0,
+      "count": 31
+    }
+  ],
+  "provenance": {
+    "legacySource": "reference/mountain-ascent.json",
+    "legacySourceSha256": "a10ac3ca5af03542375141112cd2e5153991ca55c92ff6fd8bdd8b5ce134e4e6",
+    "authoredNeutralPrefix": 0,
+    "planningCommand": "node scripts/explore-security-easy-mountain.js --delay=0",
+    "scope": "Conditional carried Game player planning from independently verified entry,with external observation time preserved; browser validation required."
+  }
+}

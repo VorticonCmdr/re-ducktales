@@ -15,18 +15,21 @@ process.argv = [
 ];
 const logger = console.log;
 console.log = () => {};
-let g, clock;
+let g, clock, now, nextFrame;
 try {
-  ({ game: g, clock } = await import("./replay-hard-campaign.js"));
+  ({
+    game: g,
+    clock,
+    replayTime: now,
+    replayFrameAt: nextFrame,
+  } = await import("./replay-hard-campaign.js"));
 } finally {
   console.log = logger;
 }
 assert.equal(g.scene, "mountain");
 assert.equal(g.mountain.frames, 0);
 assert.equal(g.mountain.snapshot().seed, 5159);
-const route = JSON.parse(
-  await readFile("reference/mountain-ascent.json"),
-);
+const route = JSON.parse(await readFile("reference/mountain-ascent.json"));
 const inputs = [
   ...Array(delay).fill(0),
   ...route.inputEvents.flatMap((e) => Array(e.count).fill(e.byte)),
@@ -37,18 +40,27 @@ let held = new Set(),
   actualHeld = new Set(),
   used = 0;
 function publish() {
-  g.input({
-    type: "controls",
-    fire: actualHeld.has("Space"),
-    direction:
-      ["up", "down", "left", "right"].filter((k) => actualHeld.has(k)).at(-1) ??
-      null,
-  });
+  clock.enqueue(
+    {
+      type: "controls",
+      fire: actualHeld.has("Space"),
+      direction:
+        ["up", "down", "left", "right"]
+          .filter((k) => actualHeld.has(k))
+          .at(-1) ?? null,
+    },
+    now,
+  );
 }
 function step() {
-  clock.advanceTo(clock.now + 8);
-  for (const e of g.drainEffects())
-    if (e.type === "flushControls") actualHeld.clear();
+  const target = now + 8;
+  while (nextFrame <= target) {
+    clock.advanceTo(nextFrame);
+    for (const e of g.drainEffects())
+      if (e.type === "flushControls") actualHeld.clear();
+    nextFrame += 8;
+  }
+  now = target;
 }
 for (const byte of inputs) {
   if (g.scene !== "mountain") break;

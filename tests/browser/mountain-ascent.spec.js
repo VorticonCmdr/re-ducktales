@@ -1,33 +1,41 @@
 import { waitForScene } from "./helpers/scene.js";
+import { test, expect } from "@playwright/test";
+import { readFile } from "node:fs/promises";
+import { PNG } from "pngjs";
+import { createHash } from "node:crypto";
 import { openRecordedApplication } from "./helpers/clock.js";
 import { finishSecurityEntry } from "./helpers/security.js";
 import { bankTrips } from "./helpers/bank-trips.js";
 import {
   installEntryRecording,
-  saveEntryRecording,
+  observeRecordedRoute,
+  saveRecordedRoute,
 } from "./helpers/entry-recording.js";
-import { test, expect } from "@playwright/test";
-import startup from "../../reference/campaign-startup-browser.json" with { type: "json" };
-import ascent from "../../reference/mountain-ascent.json" with { type: "json" };
-import { nextRandom } from "../../src/game/integer.js";
-import { readFile } from "node:fs/promises";
-import { PNG } from "pngjs";
+import inputs from "../../reference/security-mountain-ascent-inputs.json" with { type: "json" };
+import accepted from "../../reference/security-mountain-ascent.json" with { type: "json" };
+import entry from "../../reference/security-mountain-entry.json" with { type: "json" };
 
 test("keyboard mountain ascent awards treasure and prevents duplicate collection", async ({
   page,
 }) => {
-  test.setTimeout(120000);
-  const errors = [];
+  test.setTimeout(180000);
+  const capture = process.env.DUCKTALES_CAPTURE_MOUNTAIN_ASCENT;
+  if (!capture)
+    expect(
+      accepted.pending,
+      "SETUP: mountain capture needs independent acceptance",
+    ).toBe(false);
+  const errors = [],
+    observations = [];
+  let checked = 0,
+    reports = 0;
   page.on("pageerror", (e) => errors.push(e.message));
-  // A controlled 125 Hz display cadence lets the test observe every 70 Hz
-  // simulation sample. Only browser time and real keyboard events are supplied;
-  // the game, scheduler, resource loader and renderer are unmodified.
   await installEntryRecording(page);
   await openRecordedApplication(page, 1);
   await expect(page.locator("#actions")).toBeVisible();
   const c = page.locator("#game");
   await c.waitFor({ state: "visible" });
-  const state = () => c.getAttribute("data-state").then(JSON.parse);
+  const state = async () => JSON.parse(await c.getAttribute("data-state"));
   for (
     let i = 0;
     i < 100 && (await c.getAttribute("data-scene")) !== "title";
@@ -39,14 +47,76 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
     await page.keyboard.press(key);
     await page.clock.runFor(100);
   }
-  async function until(predicate, n = 2000) {
-    for (let i = 0; i < n; i++) {
+  async function until(p, max = 4000) {
+    for (let i = 0; i < max; i++) {
       const s = await state();
-      if (s.diagnostic) throw Error(s.diagnostic);
-      if (predicate(s)) return s;
+      if (s?.diagnostic) throw Error(s.diagnostic);
+      if (s && p(s)) return s;
       await page.clock.runFor(8);
     }
-    throw Error("unfinished wait " + JSON.stringify(await state()));
+    throw Error(`unfinished ascent ${JSON.stringify(await state())}`);
+  }
+  async function observe(name) {
+    const p = await observeRecordedRoute({ page, state: await state(), name });
+    observations.push(p);
+    if (!capture) {
+      const expected = accepted.checkpoints[checked++];
+      expect(expected).toBeDefined();
+      for (const k of [
+        "name",
+        "at",
+        "eventCount",
+        "stateSha256",
+        "pixelsSha256",
+      ])
+        expect(p[k], `Ascent ${name} ${k}`).toEqual(expected[k]);
+    }
+    return p;
+  }
+  async function report(name, action, from) {
+    const s = await state();
+    expect(s.pendingCampaignAction).toEqual(action);
+    expect(s.campaign.rival.location).toBe(from);
+    if (s.rivalReport.target > 0 && s.rivalReport.target < 35)
+      expect(s.campaign.rivalCollected).toContain(s.rivalReport.target);
+    const original = PNG.sync.read(
+      await readFile(".local/rival-value-report.png"),
+    );
+    const actual = PNG.sync.read(
+      Buffer.from(
+        (await c.evaluate((e) => e.toDataURL())).split(",")[1],
+        "base64",
+      ),
+    );
+    for (let y = 0; y < 200; y++)
+      expect(
+        Buffer.compare(
+          actual.data.subarray(y * 1280, y * 1280 + 512),
+          original.data.subarray(y * 1280, y * 1280 + 512),
+        ),
+        "Native Glomgold portrait",
+      ).toBe(0);
+    reports++;
+    await observe(name);
+    return s.rivalReport.target;
+  }
+  async function finishScene(scene, label, action, from) {
+    let seen = false,
+      target;
+    for (let i = 0; i < 5000; i++) {
+      const s = await state();
+      if (s.diagnostic) throw Error(s.diagnostic);
+      if (s.scene === "rival-report" && !seen) {
+        target = await report(label + "-rival-report", action, from);
+        seen = true;
+      }
+      if (s.scene === scene) {
+        if (seen) expect(s.campaign.rival.location).toBe(target);
+        return s;
+      }
+      await page.clock.runFor(8);
+    }
+    throw Error(`unfinished reported ${scene}`);
   }
   await press("Space");
   await waitForScene(page, c, "difficulty");
@@ -60,9 +130,9 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
     { day: 7, seed: 62042 },
     { day: 13, seed: 19313 },
   ]);
-  const r = await c.boundingBox();
+  const b = await c.boundingBox();
   await c.click({
-    position: { x: (r.width * 36) / 320, y: (r.height * 61) / 200 },
+    position: { x: (b.width * 36) / 320, y: (b.height * 61) / 200 },
   });
   await page.clock.runFor(100);
   await press("Space");
@@ -75,31 +145,23 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   await until((s) => s.flight.heading > 0);
   await page.keyboard.up("ArrowDown");
   await page.keyboard.up("Space");
-  const entered = await until((s) => s.scene === "mountain");
-  if (process.env.DUCKTALES_CAPTURE_MOUNTAIN_ENTRY) {
-    await saveEntryRecording({
-      page,
-      canvas: c,
-      state: entered,
-      root: process.env.DUCKTALES_CAPTURE_MOUNTAIN_ENTRY,
-      name: "mountain-entry",
-    });
-    throw Error("EXPLORATORY mountain entry saved; not acceptance");
-  }
-  expect(entered.mountain.lives).toBe(3);
-  expect(entered.flight.outcome.status).toBe("crashed");
-  expect(entered.campaign.location).toBe(31);
-  const route = ascent.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
-  expect(route.length).toBe(764);
-  let checkpoints = 0;
-  // Feed actual keyboard events. The first1ms observation aligns to a display
-  // callback; subsequent8ms steps visit exactly the same callback boundaries.
-  // No game state is written; every input still requires exactly one frame.
-  let held = new Set();
-  let used = 0;
+  await until((s) => s.scene === "mountain");
+  const initial = await observe("entry");
+  expect(initial.stateSha256).toBe(entry.entryStateSha256);
+  expect(initial.pixelsSha256).toBe(entry.entryPixelsSha256);
+  expect(initial.state.mountain.lives).toBe(3);
+  expect(initial.state.flight.outcome.status).toBe("crashed");
+  expect(initial.state.campaign.location).toBe(31);
+  const stream = inputs.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
+  expect(stream).toHaveLength(764);
+  expect(createHash("sha256").update(Buffer.from(stream)).digest("hex")).toBe(
+    inputs.sha256,
+  );
+  let held = new Set(),
+    used = 0;
   const rows = [];
-  for (const byte of route) {
-    const desired = new Set([
+  for (const byte of stream) {
+    const next = new Set([
       ...(byte & 64 ? ["Space"] : []),
       ...({
         1: ["ArrowUp"],
@@ -108,109 +170,84 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
         7: ["ArrowLeft"],
       }[byte & 63] ?? []),
     ]);
-    for (const key of held) if (!desired.has(key)) await page.keyboard.up(key);
-    for (const key of desired)
-      if (!held.has(key)) await page.keyboard.down(key);
-    held = desired;
+    for (const k of held) if (!next.has(k)) await page.keyboard.up(k);
+    for (const k of next) if (!held.has(k)) await page.keyboard.down(k);
+    held = next;
     const before = await state();
     expect(before.scene).toBe("mountain");
-    const frame = before.mountain.frames;
-    let after;
-    const step = used === 0 ? 1 : 8;
-    for (let i = 0; i < Math.floor(500 / step); i++) {
-      await page.clock.runFor(step);
-      after = await state();
-      if (after.diagnostic) throw Error(after.diagnostic);
-      if (after.scene !== "mountain" || after.mountain.frames > frame) break;
-    }
-    if (after.mountain.frames !== frame + 1)
-      throw Error("sample count mismatch");
+    expect(before.mountain.frames).toBe(used);
+    const after = await until(
+      (s) =>
+        s.scene !== "mountain" || s.mountain.frames > before.mountain.frames,
+      1500,
+    );
+    expect(after.mountain.frames, "Exactly one mountain input frame").toBe(
+      before.mountain.frames + 1,
+    );
     used++;
     if (rows.at(-1) !== after.mountain.row) rows.push(after.mountain.row);
-    const checkpoint = ascent.checkpoints[checkpoints];
-    if (checkpoint?.inputCount === used) {
-      for (const [key, value] of Object.entries(checkpoint))
-        if (key !== "inputCount")
-          expect(
-            after.mountain[key],
-            `checkpoint${checkpoints} ${key}`,
-          ).toEqual(
-            key === "seed"
-              ? startup.mountain.checkpointSeeds[checkpoints]
-              : value,
-          );
-      checkpoints++;
-    }
+    if (used % 40 === 0 || used === stream.length)
+      await observe(`input-${used}`);
   }
   for (const k of held) await page.keyboard.up(k);
-  const result = await until((s) => s.scene !== "mountain", 1000);
+  const award = await until((s) => s.scene !== "mountain", 1500);
+  expect(award.scene).toBe("expedition-result");
+  expect(award.mountain.outcome.code).toBe(1);
   expect(used).toBe(764);
-  expect(checkpoints).toBe(26);
-  expect(result.scene).toBe("expedition-result");
-  expect(result.mountain.outcome.code).toBe(1);
-  expect(result.mountain.lives).toBe(3);
-  expect(result.mountain.frames).toBe(764);
-  expect(result.mountain.presentations).toBe(870);
-  expect(result.mountain.money).toBe(100);
-  expect(result.expeditionResult.phase).toBe("award");
-  expect(result.expeditionResult.value).toBe(8000);
-  expect(result.money).toBe(8100);
-  expect(result.campaign.day).toBe(entered.campaign.day + 1);
-  await page.screenshot({
+  expect(award.expeditionResult.value).toBe(8000);
+  expect(award.money).toBe(award.mountain.money + 8000);
+  expect(award.campaign.day).toBe(initial.state.campaign.day + 1);
+  expect(rows).toContain(24);
+  await observe("award");
+  await c.screenshot({
     path: ".local/browser-results/mountain-summit-award.png",
   });
   await press("Space");
-  const returned = await until((s) => s.scene === "map");
+  const returned = await finishScene(
+    "map",
+    "award",
+    { type: "map" },
+    award.campaign.rival.location,
+  );
   expect(returned.campaign.playerCollected).toContain(31);
-  expect(returned.money).toBe(8100);
+  expect(returned.money).toBe(award.money);
   expect(returned.campaign.rivalUnlockMask).toBe(2);
+  await observe("returned-map");
   await press("Space");
-  const report = await state();
-  expect(report.scene).toBe("rival-report");
-  expect(report.pendingCampaignAction).toEqual({ type: "travel", target: 31 });
-  expect(report.campaign.rivalCollected).toContain(report.rivalReport.target);
-  expect(report.campaign.rival.location).toBe(returned.campaign.rival.location);
-  // Compare portrait pixels against the original report capture, independently
-  // of this browser's destination text. Presentation clocks are supplied above.
-  const expectedPortrait = PNG.sync.read(
-    await readFile(".local/rival-value-report.png"),
+  const notice = await finishScene(
+    "visit-notice",
+    "visit",
+    { type: "travel", target: 31 },
+    returned.campaign.rival.location,
   );
-  const actualPortrait = PNG.sync.read(
-    Buffer.from(
-      (await c.evaluate((c) => c.toDataURL())).split(",")[1],
-      "base64",
-    ),
+  expect(notice.visitNotice.reason).toBe("player");
+  expect([notice.money, notice.campaign.day, notice.campaign.location]).toEqual(
+    [returned.money, returned.campaign.day, returned.campaign.location],
   );
-  for (let y = 0; y < 200; y++)
-    expect(
-      Buffer.compare(
-        actualPortrait.data.subarray(y * 1280, y * 1280 + 128 * 4),
-        expectedPortrait.data.subarray(y * 1280, y * 1280 + 128 * 4),
-      ),
-    ).toBe(0);
-  await c.screenshot({
-    path: ".local/browser-results/campaign-rival-report.png",
-  });
-  const collected = await until((s) => s.scene === "visit-notice");
-  expect(collected.campaign.rival.location).toBe(report.rivalReport.target);
-  expect(collected.visitNotice.reason).toBe("player");
-  expect([
-    collected.money,
-    collected.campaign.day,
-    collected.campaign.location,
-    collected.seed,
-  ]).toEqual([
-    returned.money,
-    returned.campaign.day,
-    returned.campaign.location,
-    nextRandom(nextRandom(nextRandom(returned.seed))),
-  ]);
+  await observe("collected-notice");
   await press("Space");
-  await until((s) => s.scene === "map");
-  await expect(page.locator("#diagnostic")).toBeHidden();
+  const again = await until((s) => s.scene === "map");
+  expect(again.money).toBe(award.money);
+  expect(again.campaign.day).toBe(award.campaign.day);
+  expect(
+    reports,
+    "Required native portrait comparison executes",
+  ).toBeGreaterThan(0);
+  await observe("complete-map");
+  if (capture)
+    await saveRecordedRoute({
+      page,
+      root: capture,
+      observations,
+      scope:
+        "Exploratory Easy mountain summit and duplicate-notice route;not a complete campaign",
+    });
+  else expect(checked).toBe(accepted.expectedCheckpointCount);
   await page.locator("#restart").click();
   await page.clock.runFor(100);
   expect((await state()).scene).toBe("title");
   expect((await state()).mountain).toBeNull();
   expect(errors).toEqual([]);
+  await expect(page.locator("#diagnostic")).toBeHidden();
+  if (capture) throw Error("EXPLORATORY mountain ascent saved;not acceptance");
 });

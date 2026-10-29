@@ -58,21 +58,42 @@
       "path": ".local/office-jungle-entry-accepted-01/entry.png",
       "bytes": 19873,
       "sha256": "560613d928335a016ad40d170d1f2ed6d48c1258bbe84d47d1d19db9d6f6df3c"
+    },
+    "browser-source": {
+      "path": ".local/office-jungle-entry-browser-01/source-revision.json",
+      "bytes": 53544,
+      "sha256": "198a13fce561c4e18f912c07e0ff3f018f85c1eb760ee87350e84d06154c2d3c"
+    },
+    "browser-results": {
+      "path": ".local/office-jungle-entry-browser-01/browser-results.json",
+      "bytes": 3987,
+      "sha256": "7394dc0a4ff938004d4adadf270bb539473054630434ce87cab4aaf9d01f07e7"
+    },
+    "browser-run": {
+      "path": ".local/office-jungle-entry-browser-01.log",
+      "bytes": 4520,
+      "sha256": "59a461757bc5076c9a95c92f3941eeabbc1995c7f734d90af458d5e2513e8c69"
+    },
+    "input-pause-png": {
+      "path": ".local/office-jungle-entry-browser-01/input-pause.png",
+      "bytes": 29679,
+      "sha256": "95015ca4d5bc8ad974e145a246e8d96d336ad2ebb53a5aee49a788046bb0d45d"
     }
   },
   "inputRecipe": "BIOS0/Easy, clock frozen through original file loading; original security fixedRight/Fire; two real bank/office trips; fixed Okeefadokie selection; keyboard takeoff/stall and non-racing crash/repair arrival. All50 external DOM events and their timestamps are independent of expected states. Original office entry wipe/reveal and held/released keyboard boundary on each office visit.",
   "injections": [],
   "fittedInputs": [],
   "comparisonRules": "Exact full Game state at jungle entry, all50 events consumed, all74 flight presentations valid, zero flag aliases, no tail/rollback/seed adjustment. Fresh browser compares full state and320x200 pixel hashes before testing original key deferral/pause/quit behavior.",
-  "verifyCommand": "node scripts/verify-security-jungle-entry.js",
+  "verifyCommand": "npm run verify:office-jungle-entry",
   "browserCommand": "npx playwright test tests/browser/jungle-input.spec.js",
   "captureCommit": "1901fc5454699d6fe65f88e403eab50bb4112c34",
   "captureProducer": ".local/office-jungle-entry-01/source-revision.json",
-  "browserVerified": false,
+  "browserVerified": true,
   "fullBranchGate": "pending",
   "verificationTools": {
     "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
-    "scripts/verify-security-jungle-entry.js": "3797a1ed5a3178ba907111022150c5e1fa084fa2897444475b4475b7c80fa305"
+    "scripts/verify-security-jungle-entry.js": "3797a1ed5a3178ba907111022150c5e1fa084fa2897444475b4475b7c80fa305",
+    "scripts/verify-office-jungle-entry-fixture-negatives.js": "e4deca8dfbcf068959ca52d13758912e5a081a3dc0b53202464b70e615f34ed1"
   },
   "environmentProviders": {
     "biosSeed": 0,
@@ -87,5 +108,9 @@
   },
   "verificationEdition": "office",
   "captureSourceArchive": ".local/office-jungle-entry-01/sources",
-  "migrationScope": "Fresh independently recorded event times; incoming jungle state matches historical entry exactly,only full Game tick differs. No fitted timing or exclusions in strict replay."
+  "migrationScope": "Fresh independently recorded event times; incoming jungle state matches historical entry exactly,only full Game tick differs. No fitted timing or exclusions in strict replay.",
+  "browserCommit": "672813d7bb2ee90748b9450240af588e84f5513d",
+  "browserProducer": ".local/office-jungle-entry-browser-01/source-revision.json",
+  "browserSourceArchive": ".local/office-jungle-entry-browser-01/sources",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
 }

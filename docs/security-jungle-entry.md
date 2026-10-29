@@ -1,5 +1,9 @@
 # Recorded Easy jungle entry through security
 
+The current isolated office branch uses the separate
+[office-aware entry](office-jungle-entry.md) declaration and receipts. This
+file describes the retained security-only historical scenario.
+
 The jungle input scenario now starts from verified originals, skips the opening,
 accepts Easy, answers original security with fixed Right/Fire, makes two actual
 bank/office trips and flies/crashes/repairs into Okeefadokie. No seed, memory,

@@ -57,6 +57,13 @@ its117/74/2 gate remain separate historical evidence in
   These are the default campaign checks on the isolated branch; wider integration
   remains pending. [Migration](office-campaign-migration.md).
 
+- The office-aware focused Easy jungle entry now also passes50 independent DOM
+  events,one complete state/pixel checkpoint and74 flight presentations. Fresh
+  browser deferral,pause,cancelled-quit and sound behavior passes;three comparison
+  controls and missing/corrupt fixture restoration checks pass. Actor/RNG state
+  matches the historical entry;full Game tick advances159 counts through three
+  office visits. [Focused entry](office-jungle-entry.md).
+
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
 - Office→map→departure→keyboard flight→landing or crash/repair→expedition→results
@@ -152,7 +159,7 @@ npm run verify:security
 npm run verify:hard-office-campaign
 npm run test:hard-office-campaign
 npm run verify:jungle
-npm run verify:security-jungle-entry
+npm run verify:office-jungle-entry
 npm run verify:security-jungle-treasure
 npm run verify:security-mountain-ascent
 npm run verify:security-lightning

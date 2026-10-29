@@ -3,14 +3,15 @@
   "verificationEdition": "destination",
   "milestone": "mountain-ascent",
   "expectedHard": false,
-  "pending": true,
-  "pendingBrowserReplay": true,
-  "browserVerified": false,
+  "pending": false,
+  "pendingBrowserReplay": false,
+  "browserVerified": true,
   "artifactRoot": ".local/destination-mountain-ascent-accepted-01",
   "captureRoot": ".local/destination-mountain-migration-01/raw",
   "captureCommit": "581b3ba7f5573704d915c321d212dcd1c2e6d513",
   "sourceFileCounts": {
-    "capture": 577
+    "capture": 577,
+    "browser": 578
   },
   "expectedCheckpointCount": 27,
   "requiredEventCount": 104,
@@ -295,6 +296,56 @@
       "path": "reference/security-mountain-ascent-inputs.json",
       "bytes": 2960,
       "sha256": "897e3cc6ca61f09db7922ed672340abbb9c842240436821e8848dfe01667ab4d"
+    },
+    "browser-source": {
+      "path": ".local/destination-mountain-browser-01/source-revision.json",
+      "bytes": 62262,
+      "sha256": "2e73a01c1489f374e0f82b867e93ed7e6ced85c44699ce30c0bceadb56fc28b4"
+    },
+    "browser-zip": {
+      "path": ".local/destination-mountain-browser-01/sources.zip",
+      "bytes": 1537246,
+      "sha256": "a645d6b048f01fff122886e62fdcbb5f6f4d2c790162d4efa69a24f00bb71909"
+    },
+    "browser-runner": {
+      "path": ".local/destination-mountain-browser-01/runner-status.json",
+      "bytes": 1160,
+      "sha256": "32ae25eb14f16fa46eda2b54aa2b334a70132b85376ded1dfef2e70ed7584c6a"
+    },
+    "browser-report": {
+      "path": ".local/destination-mountain-browser-01/positive-report.json",
+      "bytes": 7961,
+      "sha256": "cb6b3642ddc605e80f41f456a46fee23a03c9fbe4e13fb5fd1068c45e4d9491a"
+    },
+    "browser-log": {
+      "path": ".local/destination-mountain-browser-01/positive.log",
+      "bytes": 1777,
+      "sha256": "a637fb519f4c68f32787453840ecc2306f9d7a5e1f849027750ddca3b33ec8ce"
+    },
+    "browser-config": {
+      "path": ".local/destination-mountain-browser-01/config.mjs",
+      "bytes": 510,
+      "sha256": "81b9a9a40a80895ea90ba27be52f3b64261c874277fecb83584f02ccba2f47e7"
+    },
+    "browser-negative": {
+      "path": ".local/destination-mountain-browser-01/controls/browser-negative.log",
+      "bytes": 2456,
+      "sha256": "6114993cef68770b03c3da5d62209b6e0c92418b26ebc98215a492436b8f6229"
+    },
+    "browser-progress": {
+      "path": ".local/destination-mountain-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/replay-progress.json",
+      "bytes": 3302,
+      "sha256": "8ad21ca2760562c8b042631c08ee3970c76d44044d2dccb23657a81cf451d758"
+    },
+    "browser-checkpoints": {
+      "path": ".local/destination-mountain-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 98558,
+      "sha256": "382524fd8e9101750f888ffee52310323def5f98b7593326656433c85278d1c5"
+    },
+    "browser-events": {
+      "path": ".local/destination-mountain-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/actual-events.json",
+      "bytes": 9675,
+      "sha256": "2677d7df8836d31f9a7a4322f1a4701b168d04fd87523084ad0a9fbb51e1f73d"
     }
   },
   "buildManifest": "reference/build.json",
@@ -318,6 +369,8 @@
   ],
   "limitations": [
     "Port/browser route,not native whole-level parity",
-    "Fresh fixed-input browser acceptance pending;broader gate incomplete"
-  ]
+    "Broader required integration gate remains incomplete"
+  ],
+  "browserCommit": "aed7674d127248be69ae0f1db4692dc9b0aa9301",
+  "verify": "node scripts/verify-destination-routes.js reference/destination-mountain-ascent.json"
 }

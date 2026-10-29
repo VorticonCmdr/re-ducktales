@@ -2,15 +2,24 @@
 import assert from "node:assert/strict";
 import { readFile, writeFile, rename, mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
-import manifest from "../reference/security-mountain-ascent.json" with { type: "json" };
-const root = ".local/security-mountain-ascent-verification";
+const manifestPath =
+  process.argv.find((arg) => arg.startsWith("--manifest="))?.slice(11) ??
+  "reference/office-mountain-ascent.json";
+const manifest = JSON.parse(await readFile(manifestPath));
+const root =
+  manifest.verificationEdition === "office"
+    ? ".local/office-mountain-ascent-verification"
+    : ".local/security-mountain-ascent-verification";
 await mkdir(root, { recursive: true });
 const picture = manifest.artifacts["png-input-40"].path;
 const original = await readFile(picture);
 function run() {
   const r = spawnSync(
     process.execPath,
-    ["scripts/verify-security-mountain-ascent.js"],
+    [
+      "scripts/verify-security-mountain-ascent.js",
+      `--manifest=${manifestPath}`,
+    ],
     { encoding: "utf8", timeout: 60000, maxBuffer: 4 * 1024 * 1024 },
   );
   assert.ifError(r.error);
@@ -32,11 +41,13 @@ try {
   );
 }
 try {
-  await writeFile(picture, Buffer.concat([original, Buffer.from([0])]));
+  const corruptBytes = Buffer.from(original);
+  corruptBytes[Math.floor(corruptBytes.length / 2)] ^= 1;
+  await writeFile(picture, corruptBytes);
   const corrupt = run();
   await writeFile(`${root}/corrupt-fixture.log`, corrupt.output);
   assert.equal(corrupt.status, 1);
-  assert.match(corrupt.output, /png-input-40/);
+  assert.match(corrupt.output, /Corrupt png-input-40/);
 } finally {
   await writeFile(picture, original);
 }

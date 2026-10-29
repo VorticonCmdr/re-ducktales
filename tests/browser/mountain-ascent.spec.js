@@ -12,7 +12,7 @@ import {
   saveRecordedRoute,
 } from "./helpers/entry-recording.js";
 import inputs from "../../reference/security-mountain-ascent-inputs.json" with { type: "json" };
-import accepted from "../../reference/security-mountain-ascent.json" with { type: "json" };
+import accepted from "../../reference/office-mountain-ascent.json" with { type: "json" };
 import entry from "../../reference/security-mountain-entry.json" with { type: "json" };
 
 test("keyboard mountain ascent awards treasure and prevents duplicate collection", async ({

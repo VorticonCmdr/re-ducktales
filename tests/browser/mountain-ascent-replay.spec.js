@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { runRecordedCampaign } from "./helpers/recorded-campaign.js";
-import manifest from "../../reference/security-mountain-ascent.json" with { type: "json" };
+import manifest from "../../reference/office-mountain-ascent.json" with { type: "json" };
 
 test("recorded mountain summit carries independent DOM input through rival reports and duplicate notice", async ({
   page,

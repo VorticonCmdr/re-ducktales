@@ -23,7 +23,8 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     assert struct.unpack_from('<hh', data, x_ptr)[0] == 46
     assert struct.unpack_from('<h', data, y_ptr)[0] == 139
     remove(marker)
-    entry = add(0x1757)
+    # The map caller uses its +0ca paragraph alias throughout the destination.
+    entry = add(0x1757 - 0xca0, map_cs)
     # Same bounded natural setup documented for the original flight-input case.
     sequence([{'type': 'key', 'key': 'KBD_up', 'pressed': True, 'frame': 0},
               {'type': 'key', 'key': 'KBD_up', 'pressed': False, 'frame': 280}])
@@ -40,7 +41,7 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     data = state('timing-destination-entry', stop)
     remove(entry)
     keys(('KBD_space', False))
-    flush, read = add(0x1e33), add(0x1e8e)
+    flush, read = add(0x1e33 - 0xca0, map_cs), add(0x1e8e - 0xca0, map_cs)
     destination = []
     for name, key, expected in [('travel', 'KBD_right', 3),
                                  ('confirm', 'KBD_space', 192)]:
@@ -55,7 +56,7 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
         destination.append({'case': name, 'byte': expected})
     remove(flush)
     remove(read)
-    marker = add(0x1ec7)
+    marker = add(0x1ec7 - 0xca0, map_cs)
     stop = resume(stop['stop_id'])
     assert stop['breakpoint']['id'] == marker
     assert stop['registers']['eax'] & 65535 == 1

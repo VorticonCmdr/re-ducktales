@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
-const root = ".local/office-mountain-ascent-verification";
+const root =
+  process.env.DUCKTALES_MOUNTAIN_VERIFICATION_ROOT ??
+  ".local/office-mountain-ascent-verification";
 await mkdir(root, { recursive: true });
 const result = spawnSync(
   process.execPath,
@@ -10,6 +12,9 @@ const result = spawnSync(
     "test",
     "tests/browser/mountain-ascent-replay.spec.js",
     `--output=${root}/browser-negative`,
+    ...(process.env.DUCKTALES_CAMPAIGN_TEST_CONFIG
+      ? ["--config", process.env.DUCKTALES_CAMPAIGN_TEST_CONFIG]
+      : []),
   ],
   {
     env: {

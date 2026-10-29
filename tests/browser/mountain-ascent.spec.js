@@ -12,8 +12,13 @@ import {
   saveRecordedRoute,
 } from "./helpers/entry-recording.js";
 import inputs from "../../reference/security-mountain-ascent-inputs.json" with { type: "json" };
-import accepted from "../../reference/office-mountain-ascent.json" with { type: "json" };
+import historicalAccepted from "../../reference/office-mountain-ascent.json" with { type: "json" };
 import entry from "../../reference/security-mountain-entry.json" with { type: "json" };
+const accepted = process.env.DUCKTALES_MOUNTAIN_ASCENT_MANIFEST
+  ? JSON.parse(
+      await readFile(process.env.DUCKTALES_MOUNTAIN_ASCENT_MANIFEST, "utf8"),
+    )
+  : historicalAccepted;
 
 test("keyboard mountain ascent awards treasure and prevents duplicate collection", async ({
   page,

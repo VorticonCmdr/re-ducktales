@@ -221,6 +221,9 @@ export async function runLinkedCampaign({
       await page.clock.runFor(100);
       await settleReports();
       await finishSecurityEntry({ page, until, state });
+      // Office departure completes its campaign action after the animation.
+      // That action may publish a rival report before returning to the map.
+      await settleReports();
     }
     expect((await state()).scene).toBe("map");
     const fromOffice = (await state()).campaign.location === 35;

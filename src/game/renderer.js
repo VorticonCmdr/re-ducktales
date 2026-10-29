@@ -261,6 +261,24 @@ export class Renderer {
     return this.cache.get(key);
   }
   renderScene(game) {
+    if (game.scene === "office" && game.officeMenu) {
+      if (this.officeMenuSource !== game.officeMenu) {
+        this.officeMenuSource = game.officeMenu;
+        // Presentation history supplies only the old visible page to the wipe.
+        // It never feeds input, clocks, RNG or simulation state.
+        this.officeMenuIncoming = this.ctx.getImageData(0, 0, 320, 200).data;
+      }
+      this.ctx.putImageData(
+        new ImageData(
+          game.officeMenu.pixels(this.officeMenuIncoming),
+          320,
+          200,
+        ),
+        0,
+        0,
+      );
+      return;
+    }
     if (game.scene === "bank") {
       const b = game.bank;
       const entries = this.resources.archives.get("MAC.ARC");

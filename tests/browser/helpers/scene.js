@@ -9,6 +9,7 @@ export async function waitForScene(page, canvas, scene) {
     if (state?.diagnostic) throw Error(state.diagnostic);
     if (
       state?.scene === scene &&
+      (scene !== "office" || !state.officeMenu || state.officeMenu.ready) &&
       (scene !== "difficulty" ||
         !state.difficultyMenu ||
         state.difficultyMenu.ready)

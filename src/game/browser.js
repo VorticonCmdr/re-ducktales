@@ -69,6 +69,23 @@ function flightControls() {
         .at(-1)
         ?.slice(5)
         .toLowerCase() ?? null,
+    ...(game?.scene === "office" && game.officeMenu
+      ? {
+          officeKeys: [...held]
+            .map(
+              (k) =>
+                ({
+                  Enter: 0x1c,
+                  Space: 0x39,
+                  ArrowUp: 0x48,
+                  ArrowLeft: 0x4b,
+                  ArrowRight: 0x4d,
+                  ArrowDown: 0x50,
+                })[k],
+            )
+            .filter((k) => k !== undefined),
+        }
+      : {}),
   });
   if (game?.scene === "map")
     dispatch({ type: "direction", direction: mapDirection() });
@@ -269,6 +286,9 @@ window.addEventListener("keydown", (event) => {
   if (event.code === "Space" || event.code === "Enter")
     dispatch({
       type: "fire",
+      ...(game?.scene === "office" && game.officeMenu
+        ? { physicalKey: true }
+        : {}),
       direction: held.has("ArrowUp")
         ? "up"
         : held.has("ArrowLeft")
@@ -277,10 +297,15 @@ window.addEventListener("keydown", (event) => {
             ? "right"
             : null,
     });
-  else if (event.code === "ArrowUp") dispatch({ type: "up" });
-  else if (event.code === "ArrowDown") dispatch({ type: "down" });
-  else if (event.code === "ArrowLeft") dispatch({ type: "left" });
-  else if (event.code === "ArrowRight") dispatch({ type: "right" });
+  else if (
+    ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.code)
+  )
+    dispatch({
+      type: event.code.slice(5).toLowerCase(),
+      ...(game?.scene === "office" && game.officeMenu
+        ? { physicalKey: true }
+        : {}),
+    });
 });
 window.addEventListener("keyup", (event) => {
   held.delete(event.code);

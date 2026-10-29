@@ -2,6 +2,7 @@ import { Opening } from "./opening.js";
 import { OfficeMoneyBin } from "./office.js";
 import { OfficeControlCenter } from "./office-control-center.js";
 import { OfficeInvestmentDeparture } from "./office-investments.js";
+import { OfficeMenu } from "./office-menu.js";
 import { SecurityScreen } from "./security-screen.js";
 import { DifficultyMenu } from "./difficulty-menu.js";
 import { Departure } from "./departure.js";
@@ -42,6 +43,7 @@ export class Game {
     this.opening = null;
     this.difficultyMenu = null;
     this.officeDeparture = null;
+    this.officeMenu = null;
     this.security = null;
     this.securityPending = true;
     this.expeditionResources = expeditionResources;
@@ -80,6 +82,7 @@ export class Game {
     this.pendingOpeningSystemKeys = new Map();
     this.pendingDifficultySystemKeys = new Map();
     this.pendingSecuritySystemKeys = new Map();
+    this.pendingOfficeSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -168,8 +171,41 @@ export class Game {
     this.seed = this.campaign?.seed ?? menu.outcome.biosSeed;
     this.difficultyMenu = null;
     this.securityPending = true;
-    this.scene = "office";
+    this.startOffice();
     this.settleMarket();
+  }
+  startOffice() {
+    this.scene = "office";
+    this.officeMenu = this.openingResources
+      ? new OfficeMenu({
+          ...this.openingResources,
+          audioEnabled: this.audioEnabled,
+          pollInput: () => this.pollSystemInput(this.pendingOfficeSystemKeys),
+          flushInput: (release) => {
+            if (release) {
+              this.handleInput({
+                type: "controls",
+                fire: false,
+                direction: null,
+              });
+              this.effects.push({ type: "flushControls" });
+            }
+          },
+        })
+      : null;
+    this.officeMenu?.setControls(this.controls);
+    if (this.officeMenu) this.collectOfficeMenu();
+  }
+  collectOfficeMenu() {
+    const menu = this.officeMenu;
+    this.effects.push(...menu.drainEvents());
+    if (!menu.outcome) return;
+    const action = menu.outcome.action;
+    this.officeMenu = null;
+    if (action === "money-bin") this.startOfficeMoneyBin();
+    else if (action === "map") this.startOfficeMap();
+    else if (action === "investments") this.startOfficeInvestments();
+    else throw Error(`Unsupported office outcome ${action}`);
   }
   startOfficeMoneyBin() {
     if (!this.openingResources) {
@@ -203,7 +239,8 @@ export class Game {
       this.completeCampaignAction({ type: "investments" });
       return;
     }
-    if (this.scene !== "office") throw Error("Investment departure outside office");
+    if (this.scene !== "office")
+      throw Error("Investment departure outside office");
     if (this.audioEnabled) this.effects.push({ type: "sound", id: 0 });
     this.officeDeparture = new OfficeInvestmentDeparture({
       audioEnabled: this.audioEnabled,
@@ -252,6 +289,7 @@ export class Game {
     // Keys held/queued during the uninterruptible door animation are discarded.
     this.officeDeparture = null;
     this.pendingBinSystemKeys.clear();
+    this.pendingOfficeSystemKeys.clear();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
     if (departure.outcome.action === "map")
@@ -368,7 +406,7 @@ export class Game {
       return;
     }
     if (action.type === "office") {
-      this.scene = "office";
+      this.startOffice();
       return;
     }
     if (action.type === "money-bin") {
@@ -403,6 +441,7 @@ export class Game {
         "money-bin",
         "office-departure",
         "security",
+        ...(this.officeMenu ? ["office"] : []),
         ...(this.difficultyMenu ? ["difficulty"] : []),
         "flight",
         "cave",
@@ -423,23 +462,25 @@ export class Game {
           ? this.pendingOpeningSystemKeys
           : this.scene === "security"
             ? this.pendingSecuritySystemKeys
-            : this.scene === "difficulty"
-              ? this.pendingDifficultySystemKeys
-              : this.scene === "flight"
-                ? this.pendingFlightSystemKeys
-                : this.scene === "cave"
-                  ? this.pendingCaveSystemKeys
-                  : this.scene === "mountain"
-                    ? this.pendingMountainSystemKeys
-                    : this.scene === "jungle"
-                      ? this.pendingJungleSystemKeys
-                      : this.scene === "photography"
-                        ? this.pendingPhotographySystemKeys
-                        : this.scene === "ending"
-                          ? this.pendingEndingSystemKeys
-                          : this.scene === "bank"
-                            ? this.pendingBankSystemKeys
-                            : this.pendingBinSystemKeys;
+            : this.scene === "office"
+              ? this.pendingOfficeSystemKeys
+              : this.scene === "difficulty"
+                ? this.pendingDifficultySystemKeys
+                : this.scene === "flight"
+                  ? this.pendingFlightSystemKeys
+                  : this.scene === "cave"
+                    ? this.pendingCaveSystemKeys
+                    : this.scene === "mountain"
+                      ? this.pendingMountainSystemKeys
+                      : this.scene === "jungle"
+                        ? this.pendingJungleSystemKeys
+                        : this.scene === "photography"
+                          ? this.pendingPhotographySystemKeys
+                          : this.scene === "ending"
+                            ? this.pendingEndingSystemKeys
+                            : this.scene === "bank"
+                              ? this.pendingBankSystemKeys
+                              : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -461,6 +502,7 @@ export class Game {
       this.opening?.setAudioEnabled(event.enabled);
       this.difficultyMenu?.setAudioEnabled(event.enabled);
       this.officeDeparture?.setAudioEnabled(event.enabled);
+      this.officeMenu?.setAudioEnabled(event.enabled);
       this.security?.setAudioEnabled(event.enabled);
       this.cave?.setAudioEnabled(event.enabled);
       this.mountain?.setAudioEnabled(event.enabled);
@@ -486,6 +528,7 @@ export class Game {
       this.opening = null;
       this.difficultyMenu = null;
       this.officeDeparture = null;
+      this.officeMenu = null;
       this.security = null;
       this.officeEntryFrame = null;
       this.securityPending = true;
@@ -517,6 +560,7 @@ export class Game {
       this.pendingOpeningSystemKeys.clear();
       this.pendingDifficultySystemKeys.clear();
       this.pendingSecuritySystemKeys.clear();
+      this.pendingOfficeSystemKeys.clear();
       this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
@@ -561,6 +605,12 @@ export class Game {
       this.controls = { fire: event.fire, direction: event.direction };
       this.opening?.setControls(this.controls);
       this.difficultyMenu?.setControls(this.controls);
+      this.officeMenu?.setControls({
+        ...this.controls,
+        ...(event.officeKeys !== undefined
+          ? { officeKeys: event.officeKeys }
+          : {}),
+      });
       this.security?.setControls(this.controls);
       this.flight?.setControls(this.controls);
       this.cave?.setControls(this.controls);
@@ -572,6 +622,24 @@ export class Game {
       return;
     }
     if (this.scene === "office-departure") return;
+    if (this.scene === "office" && this.officeMenu) {
+      if (
+        [
+          "fire",
+          "up",
+          "down",
+          "left",
+          "right",
+          "money-bin",
+          "map",
+          "investments",
+        ].includes(event.type)
+      )
+        this.officeMenu.input(event);
+      else if (event.type === "unsupported")
+        throw Error(`Untranslated office route ${event.route}`);
+      return;
+    }
     if (this.scene === "security") {
       this.security.input(event);
       return;
@@ -622,7 +690,7 @@ export class Game {
             : null;
           this.seed = this.campaign?.seed ?? this.biosSeed;
         }
-        this.scene = "office";
+        this.startOffice();
         this.settleMarket();
       }
       return;
@@ -842,7 +910,7 @@ export class Game {
         this.beginEnding();
         return;
       }
-      this.scene = "office";
+      this.startOffice();
       c.info = false;
     }
   }
@@ -864,6 +932,8 @@ export class Game {
       if (this.scene === "ending") this.ending.advanceBlockedTick();
       if (this.scene === "bank") this.bank.advanceBlockedTick();
       if (this.scene === "security") this.security.advanceBlockedTick();
+      if (this.scene === "office" && this.officeMenu)
+        this.officeMenu.advanceBlockedTick();
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
       return;
@@ -886,6 +956,11 @@ export class Game {
     if (this.scene === "office-departure") {
       this.officeDeparture.advanceTick();
       this.collectOfficeDeparture();
+      return;
+    }
+    if (this.scene === "office" && this.officeMenu) {
+      this.officeMenu.advanceTick();
+      this.collectOfficeMenu();
       return;
     }
     if (this.scene === "bank") {
@@ -1001,6 +1076,8 @@ export class Game {
       if (this.scene === "ending") this.ending.advanceBlockedRetrace();
       if (this.scene === "bank") this.bank.advanceBlockedRetrace();
       if (this.scene === "security") this.security.advanceBlockedRetrace();
+      if (this.scene === "office" && this.officeMenu)
+        this.officeMenu.advanceBlockedRetrace();
       return;
     }
     if (this.scene === "title" && this.opening) {
@@ -1021,6 +1098,11 @@ export class Game {
     if (this.scene === "office-departure") {
       this.officeDeparture.advanceRetrace();
       this.collectOfficeDeparture();
+      return;
+    }
+    if (this.scene === "office" && this.officeMenu) {
+      this.officeMenu.advanceRetrace();
+      this.collectOfficeMenu();
       return;
     }
     if (this.scene === "bank") {
@@ -1141,12 +1223,15 @@ export class Game {
     this.pendingBankSystemKeys.clear();
     this.pendingOpeningSystemKeys.clear();
     this.pendingSecuritySystemKeys.clear();
+    this.pendingOfficeSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "title" && this.opening) this.opening.flushInput();
     else if (this.scene === "difficulty" && this.difficultyMenu)
       this.difficultyMenu.flushInput(true);
     else if (this.scene === "security") this.security.flushInput();
+    else if (this.scene === "office" && this.officeMenu)
+      this.officeMenu.flushInput(true);
     else if (this.scene === "flight") this.flight.flushInput();
     else if (this.scene === "cave") this.cave.flushInput();
     else if (this.scene === "mountain") this.mountain.flushInput();
@@ -1159,6 +1244,7 @@ export class Game {
       this.effects.push({ type: "flushControls" });
     }
     if (result === "quit") {
+      this.officeMenu = null;
       this.exiting = true;
       this.pendingCampaignAction = null;
       this.ending = new CampaignEnding({
@@ -1677,6 +1763,14 @@ export class Game {
         : {}),
       ...(this.officeDeparture
         ? { officeDeparture: this.officeDeparture.snapshot() }
+        : {}),
+      ...(this.officeMenu ? { officeMenu: this.officeMenu.snapshot() } : {}),
+      ...(this.pendingOfficeSystemKeys.size
+        ? {
+            pendingOfficeSystemKeys: [...this.pendingOfficeSystemKeys].sort(
+              (a, b) => a[0] - b[0],
+            ),
+          }
         : {}),
       ...(this.openingResources
         ? { securityPending: this.securityPending }

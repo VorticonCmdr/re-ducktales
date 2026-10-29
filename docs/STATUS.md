@@ -30,6 +30,10 @@ its117/74/2 gate remain separate historical evidence in
   alignment; five focused browser cases and117 unit cases pass. Required Left
   omission and missing/corrupt fixture controls reject failures. Full branch
   integration remains pending. [Investment departure](office-investments.md).
+- Office clear/reveal and the label/one-count input loop are now connected on
+  that isolated branch. Five existing office/trading browser cases pass with
+  released-key flags and scan-code ordering. Native entry/selection capture and
+  dedicated acceptance remain pending; no whole original office parity is claimed.
 
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).

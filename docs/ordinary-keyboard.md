@@ -29,9 +29,12 @@ bytes after180 relocations,plus1220 resident bytes:the876-byte input reader,
 - Mode3c1=0 preserves held slots. Mode1 clears the normalized slot,so letter
   aliases can remain held while an arrow slot is cleared. System keys,modifier
   event handling,mouse/joystick and BIOS-queue behavior remain separate work.
-- Map pointer1ec8 clears3c1 before the reader,then calls19a5 at20a0 to flush
-  keys and restores3c1=1 at20a5. A draw-enabled snapshot outside the call does
-  not establish the input-reader mode. The caller owns this flush.
+- Map pointer1ec8 clears3c1 before the reader. The non-Fire path calls19a5
+  at20a0 to flush keys and restores3c1=1 at20a5. Fire instead returns1 via
+  1ee7→20ac,bypassing both flush and mode restoration;its caller/dialogue handoff
+  requires separate translation. This branch is statically inferred here;the
+  fresh36-read captures above contain movement/neutral inputs only. A draw-enabled
+  snapshot outside the call does not establish the input-reader mode.
 
 The core has no DOM,clock,RNG or expected-state access. Unsupported raw keys,
 modes and flag values stop with diagnostics. Mode1 also has223-read local

@@ -1,0 +1,462 @@
+{
+  "version": 1,
+  "completed": true,
+  "scope": "Focused shared ordinary-key core browser regression;original letter/keypad browser bindings and map cadence are not implemented. Not whole-game acceptance.",
+  "sourceCommit": "87bf2ed5fbb928f17ed2b335ae7724411758609a",
+  "sourceFileCount": 523,
+  "sourceArchive": ".local/map-keyboard-browser-01/sources",
+  "expectedCases": [
+    {
+      "file": "investments.spec.js",
+      "title": "calendar travel produces company news and acknowledged bulletins stay consumed"
+    },
+    {
+      "file": "investments.spec.js",
+      "title": "original assets, earned cash, stock transactions, held Fire limit, office return and restart"
+    },
+    {
+      "file": "office-investments.spec.js",
+      "title": "original investment departure pictures, queued input flush, Tandy cues and restart use real controls"
+    },
+    {
+      "file": "office-menu.spec.js",
+      "title": "office entry bands, labels and63 original key polls use real browser controls"
+    },
+    {
+      "file": "office-menu.spec.js",
+      "title": "office defers reveal keys until its reader and flushes held controls after pause"
+    },
+    {
+      "file": "office.spec.js",
+      "title": "original office door pictures lead through a real dive, reward and restart"
+    },
+    {
+      "file": "office.spec.js",
+      "title": "office door sound requests reach the persistent Tandy device in original order"
+    }
+  ],
+  "expectedCaseCount": 7,
+  "negative": "omit-right-chord",
+  "artifacts": {
+    "positive/browser/.last-run.json": {
+      "path": ".local/map-keyboard-browser-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "positive/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-0.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-0.png",
+      "bytes": 34357,
+      "sha256": "df82a864571faf6ef3209dab5bccb60a7900efa74bee15d0f96adc99471c5ac8"
+    },
+    "positive/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-1.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-1.png",
+      "bytes": 34357,
+      "sha256": "df82a864571faf6ef3209dab5bccb60a7900efa74bee15d0f96adc99471c5ac8"
+    },
+    "positive/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-2.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-2.png",
+      "bytes": 34480,
+      "sha256": "14623fd6c45fe9cf544090f21b3bfa139a8f14304c75d6b7b99a921ef7560888"
+    },
+    "positive/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-3.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-3.png",
+      "bytes": 34686,
+      "sha256": "e8f8152d6a3556c25bf6e34af8c8859a1b16f1563516c42d24167fe2f46278c5"
+    },
+    "positive/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-4.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-4.png",
+      "bytes": 34986,
+      "sha256": "1e28b2167ffa26ef3ff0218c721d497e141a36853ee227ab81ca067a6c7677d7"
+    },
+    "positive/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-5.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-investments-origina-92441-d-restart-use-real-controls/investment-5.png",
+      "bytes": 34986,
+      "sha256": "1e28b2167ffa26ef3ff0218c721d497e141a36853ee227ab81ca067a6c7677d7"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/down-held.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/down-held.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/down-neutral.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/down-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/initial-input.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/initial-input.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-held.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-held.png",
+      "bytes": 33258,
+      "sha256": "7235431ada7dde1fafcc53d83252600dc388aa356f762edef8e665cc404fab5c"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-neutral.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-right-held.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-right-held.png",
+      "bytes": 33109,
+      "sha256": "ab1eb17ad9cad0b4fb665695df5b66429d0099e9bcaa9497d4de0376ccd7b1f1"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-right-neutral.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-right-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/neutral-after-fire.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/neutral-after-fire.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/neutral-fire.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/neutral-fire.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-0.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-0.png",
+      "bytes": 14221,
+      "sha256": "637762ad36dc0e073ea9409fcbda34d3850c3c5c788fd03a228232a1c7ac166d"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-1.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-1.png",
+      "bytes": 20659,
+      "sha256": "9128abef72d0e16fe95aaa2b025cbd63e5ae19835d314c135b58adf346cb1637"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-2.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-2.png",
+      "bytes": 26813,
+      "sha256": "a2f332666d8bcb58baf62ae5a48278a170162850170448dda1f797eb94e5f212"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-3.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-3.png",
+      "bytes": 32702,
+      "sha256": "5454c4182bcf2f83076b5098cb5fa5a765e6ce0e93ecc97cc9ed4e4bc76e4867"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-4.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-4.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/right-held.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/right-held.png",
+      "bytes": 33109,
+      "sha256": "ab1eb17ad9cad0b4fb665695df5b66429d0099e9bcaa9497d4de0376ccd7b1f1"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/right-neutral.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/right-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-down-held.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-down-held.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-down-neutral.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-down-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-held.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-held.png",
+      "bytes": 32709,
+      "sha256": "99beb1486c505338b5005f646c5408d6190f2a80ab2e0a03b347e0f0b1c5f8b4"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-left-held.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-left-held.png",
+      "bytes": 33258,
+      "sha256": "7235431ada7dde1fafcc53d83252600dc388aa356f762edef8e665cc404fab5c"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-left-neutral.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-left-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-neutral.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-right-held.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-right-held.png",
+      "bytes": 33109,
+      "sha256": "ab1eb17ad9cad0b4fb665695df5b66429d0099e9bcaa9497d4de0376ccd7b1f1"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-right-neutral.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-right-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-0.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-0.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-1.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-1.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-2.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-2.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-3.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-3.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "positive/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-4.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-4.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-0.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-0.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-1.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-1.png",
+      "bytes": 32787,
+      "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-10.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-10.png",
+      "bytes": 32787,
+      "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-11.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-11.png",
+      "bytes": 32752,
+      "sha256": "ee4bc13887fe7db9b407272863760607d68b416ec65b7f981eef341981fbd63a"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-12.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-12.png",
+      "bytes": 32814,
+      "sha256": "7cb0d77b92e4ace383aff37fe6d3b9b6091951dae2a654714355eb7a598801fe"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-13.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-13.png",
+      "bytes": 32787,
+      "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-14.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-14.png",
+      "bytes": 32843,
+      "sha256": "640ccd5e4d43fafca93216dc07f5c5fc9a8871dce88d420bcd73bb649e411267"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-15.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-15.png",
+      "bytes": 32843,
+      "sha256": "640ccd5e4d43fafca93216dc07f5c5fc9a8871dce88d420bcd73bb649e411267"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-16.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-16.png",
+      "bytes": 33224,
+      "sha256": "67f83f138799d6018c9e50e4728b62a6d1095a8a122293418ff0984138c23f4a"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-17.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-17.png",
+      "bytes": 33443,
+      "sha256": "0ca5531f39cd6b9b69f1c4f2028ec540703924164be25777f1bec05c01b0eba9"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-18.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-18.png",
+      "bytes": 33280,
+      "sha256": "264a0e70e6bd9298004beb50989cc56d9e3e6ca62255b21490fbae2b0fc122ad"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-2.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-2.png",
+      "bytes": 32752,
+      "sha256": "ee4bc13887fe7db9b407272863760607d68b416ec65b7f981eef341981fbd63a"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-3.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-3.png",
+      "bytes": 32814,
+      "sha256": "7cb0d77b92e4ace383aff37fe6d3b9b6091951dae2a654714355eb7a598801fe"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-4.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-4.png",
+      "bytes": 32787,
+      "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-5.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-5.png",
+      "bytes": 32752,
+      "sha256": "ee4bc13887fe7db9b407272863760607d68b416ec65b7f981eef341981fbd63a"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-6.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-6.png",
+      "bytes": 32814,
+      "sha256": "7cb0d77b92e4ace383aff37fe6d3b9b6091951dae2a654714355eb7a598801fe"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-7.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-7.png",
+      "bytes": 32787,
+      "sha256": "f4a1dea8be96e1221ec99bbf05232c3aef71984c9dc6e7f3dae8bf3239f36d90"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-8.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-8.png",
+      "bytes": 32752,
+      "sha256": "ee4bc13887fe7db9b407272863760607d68b416ec65b7f981eef341981fbd63a"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-9.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-9.png",
+      "bytes": 32814,
+      "sha256": "7cb0d77b92e4ace383aff37fe6d3b9b6091951dae2a654714355eb7a598801fe"
+    },
+    "positive/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-reward.png": {
+      "path": ".local/map-keyboard-browser-01/browser/office-original-office-doo-4f1e4-eal-dive-reward-and-restart/office-reward.png",
+      "bytes": 20185,
+      "sha256": "ae0a35a9b47cb6283345b3c05a076f557bcd7d2283cf3a5e3a228b08086a7b24"
+    },
+    "positive/browser-results.json": {
+      "path": ".local/map-keyboard-browser-01/browser-results.json",
+      "bytes": 10974,
+      "sha256": "e45f58261c2abf8f075b2f44a9d99d008992d73495d4d61f8c71a2a5ff199c8c"
+    },
+    "positive/browser.log": {
+      "path": ".local/map-keyboard-browser-01/browser.log",
+      "bytes": 1400,
+      "sha256": "285667000c7ebf02d6ad738e5cf095d7cd8f068f1e2671ee6b022df6c0446b93"
+    },
+    "positive/runner-status.json": {
+      "path": ".local/map-keyboard-browser-01/runner-status.json",
+      "bytes": 550,
+      "sha256": "fbfddbe5c6ae55cf2613350c6c778ffb086e316d8e8051944e03e0ffc90b3196"
+    },
+    "positive/source-revision.json": {
+      "path": ".local/map-keyboard-browser-01/source-revision.json",
+      "bytes": 55922,
+      "sha256": "1aee5116c0fa06d811344e695a6c15f9f035747454492671e53f1d396a38747f"
+    },
+    "negative/browser/.last-run.json": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/.last-run.json",
+      "bytes": 96,
+      "sha256": "17eb8c0e7678d8da53cd2a8e7d5fdc0ab49ab779708da90578062a9725265cf4"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/down-held.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/down-held.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/down-neutral.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/down-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/error-context.md": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/error-context.md",
+      "bytes": 11532,
+      "sha256": "65b47c52264d63700b0f5faf80f3088ded2ad1a020f317dba4a1fea8ef1563e5"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/initial-input.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/initial-input.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-held.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-held.png",
+      "bytes": 33258,
+      "sha256": "7235431ada7dde1fafcc53d83252600dc388aa356f762edef8e665cc404fab5c"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-neutral.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/left-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-0.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-0.png",
+      "bytes": 14221,
+      "sha256": "637762ad36dc0e073ea9409fcbda34d3850c3c5c788fd03a228232a1c7ac166d"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-1.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-1.png",
+      "bytes": 20659,
+      "sha256": "9128abef72d0e16fe95aaa2b025cbd63e5ae19835d314c135b58adf346cb1637"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-2.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-2.png",
+      "bytes": 26813,
+      "sha256": "a2f332666d8bcb58baf62ae5a48278a170162850170448dda1f797eb94e5f212"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-3.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-3.png",
+      "bytes": 32702,
+      "sha256": "5454c4182bcf2f83076b5098cb5fa5a765e6ce0e93ecc97cc9ed4e4bc76e4867"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-4.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/reveal-4.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/right-held.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/right-held.png",
+      "bytes": 33109,
+      "sha256": "ab1eb17ad9cad0b4fb665695df5b66429d0099e9bcaa9497d4de0376ccd7b1f1"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/right-neutral.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/right-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-held.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-held.png",
+      "bytes": 32709,
+      "sha256": "99beb1486c505338b5005f646c5408d6190f2a80ab2e0a03b347e0f0b1c5f8b4"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-neutral.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/up-neutral.png",
+      "bytes": 32784,
+      "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-0.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-0.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-1.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-1.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-2.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-2.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-3.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-3.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "negative/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-4.png": {
+      "path": ".local/map-keyboard-browser-negative-01/browser/office-menu-office-entry-b-2d0bc-s-use-real-browser-controls/wipe-4.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "negative/browser-results.json": {
+      "path": ".local/map-keyboard-browser-negative-01/browser-results.json",
+      "bytes": 7181,
+      "sha256": "de70a53ef41c8f6bd0ecd9392eb0a90cd553eff7bc67d43cf91543e5508bf2fa"
+    },
+    "negative/browser.log": {
+      "path": ".local/map-keyboard-browser-negative-01/browser.log",
+      "bytes": 1589,
+      "sha256": "d05db0cbe9d9c7d7e66e515588292a21803339526e17a574d85d9c6f6acb973c"
+    },
+    "negative/runner-status.json": {
+      "path": ".local/map-keyboard-browser-negative-01/runner-status.json",
+      "bytes": 555,
+      "sha256": "ddb400d704e524e2c3e2b76a405325acb6116f0f806a05b5539345b859f7bfa1"
+    }
+  }
+}

@@ -243,13 +243,13 @@
   },
   "verificationTools": {
     "src/game/office.js": "39319981d1a50d6973776fc9ba7afb1ceb4077e3ea16add2fcc26da931d283a6",
-    "src/game/office-investments.js": "f589cba66f6cbad40db9ea2986ca0116ad03110dd2da25340ae5cb492c34b662",
+    "src/game/office-investments.js": "0d0ce496cd67425ef349b5ca5f334f593ea6f7a4c1562f819faed2d054a0e89b",
     "src/game/application.js": "7c8cf193c2c34477d71c5f47ee6032d3810cda001de673b8aa4a39baeeb9d0a8",
     "src/game/renderer.js": "fbe22dbd464c47db8400da159ec74306f24cef9b758fb4314049e580d341a6b6",
     "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
     "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
     "scripts/verify-office-investments.js": "156cfa0b0d17379b71d9db8112932ac70ac82d59e84bc1697344b5c5a50bac0c",
-    "tests/browser/office-investments.spec.js": "1949e090b74ee6fe9a5b53de7cee57cac93034456246a5954d858108d8c6eb0a",
+    "tests/browser/office-investments.spec.js": "3f77e1a1aa6b8131bf8f78dfcddd7a27249885903071ac57018d2971e37f584d",
     "tests/browser/helpers/office-entry.js": "41fefc1eebaded0c7c1962784ae3eda53e7e5e3ca930e472c98021c0b2e63d3b",
     "tests/browser/office.spec.js": "e1c224a668496a9b560247b82fbf8daf03735217dfdd7f1e7517e300cd7b2451",
     "tests/browser/investments.spec.js": "dff0f1b6537c78d29f93610a00eaec6cff9b04a06be1676b8f2fa406d473b8f5",
@@ -257,5 +257,6 @@
     "scripts/verify-office-investment-browser-negative.js": "0c64326c9bfe5366f1fedff3172a6e721f1e754b5698a34363d9c8a906c6b7f1",
     "scripts/verify-office-investment-fixture-negatives.js": "ec7252e37138f3a0eff37830c37c8ba4c693b7aba03b485f55c7d2689b2d6c3b"
   },
-  "currentVerificationNote": "Reviewed changes from browser producer4b690c7: office menu lifecycle,renderer incoming-page wipe and helper readiness/canvas focus. Native departure code,pictures,tuples and historical producers remain pinned. Fresh seven-case office/menu/trading browser regression passes all original picture/input checks before this fingerprint update."
+  "currentVerificationNote": "Reviewed changes from browser producer4b690c7: office menu lifecycle,renderer incoming-page wipe and helper readiness/canvas focus. Native departure code,pictures,tuples and historical producers remain pinned. Fresh seven-case office/menu/trading browser regression passes all original picture/input checks before this fingerprint update.",
+  "statusLabelReview": "The investments action metadata corrects the browser departure label and is outside serialized native state. Seven focused browser cases passed on87bf2ed with the new exact status assertion;original pictures,inputs,producer and historical browser receipt are unchanged."
 }

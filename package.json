@@ -114,7 +114,8 @@
     "verify:office-hard-expeditions": "node scripts/verify-security-hard-expeditions.js && node scripts/verify-security-hard-fixture-negatives.js",
     "test:office-hard-expeditions": "playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js tests/browser/hard-expedition-replay.spec.js",
     "verify:office-hard-expeditions-negative": "node scripts/verify-security-hard-movement-negative.js",
-    "verify:map-keyboard": "node scripts/verify-map-keyboard.js && node scripts/verify-map-keyboard-fixture-negatives.js"
+    "verify:map-keyboard": "node scripts/verify-map-keyboard.js && node scripts/verify-map-keyboard-fixture-negatives.js",
+    "verify:ordinary-keyboard": "npm run verify:map-keyboard && node scripts/verify-office-menu.js && node scripts/verify-office-investments.js && node scripts/verify-ordinary-keyboard-browser.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

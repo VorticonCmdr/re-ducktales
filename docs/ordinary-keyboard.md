@@ -6,6 +6,15 @@ the earlier fully verified office integration until this branch is accepted.
 The browser's letter/keypad bindings and full map-loop translation are still
 pending;this is a shared input-core milestone,not whole keyboard parity.
 
+Fresh browser acceptance on87bf2ed passed all seven office/investment/trading
+cases with523 exact archived tracked files. This exercises actual keyboard,
+asset loading,pixels,audio and restart,and checks the corrected investment
+status label. A separate run omitting real chord Right failed atup-right-make
+(expected3,received1),not setup or timeout. The new receipt preserves these
+results independently of the older office/investment browser receipts.
+The changed runtime still needs the wider shared campaign/browser gate before
+main integration;this focused result does not renew those older receipts.
+
 ## Rules and source
 
 Only the22-file build in `reference/build.json` is supported:MZ/EXEPACK,x86 LE16
@@ -61,7 +70,18 @@ value must not be interpreted as a wait count.
 ## Verification and reproduction
 
 ```
-npm run verify:map-keyboard
+npm run verify:ordinary-keyboard
+```
+
+This runs the36-read native comparison and fixture controls,the existing native
+office and investment comparisons,and the retained seven-case browser receipt.
+The receipt checks84 output artifacts,523 Git/source identities,the exact case
+list,zero skips/retries,actual runner exits and the omitted-key failure;four
+damaged-report controls reject missing/failed/skipped/zero cases. It does not
+execute a new browser run. To rerun the focused browser scenarios:
+
+```
+npx playwright test tests/browser/office-menu.spec.js tests/browser/office-investments.spec.js tests/browser/office.spec.js tests/browser/investments.spec.js
 ```
 
 The command requires159 pinned artifacts,all22 original identities and the518-file

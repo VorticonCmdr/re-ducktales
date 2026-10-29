@@ -37,12 +37,18 @@ export async function runRecordedCampaign({
   manifest,
   negativeMode,
 }) {
-  expect([undefined, "jungle-entry", "jungle-treasure"]).toContain(
-    manifest.milestone,
-  );
+  expect([
+    undefined,
+    "jungle-entry",
+    "jungle-treasure",
+    "mountain-entry",
+    "mountain-ascent",
+  ]).toContain(manifest.milestone);
   if (
     negativeMode &&
-    !["omit-hard-choice", "omit-jungle-move"].includes(negativeMode)
+    !["omit-hard-choice", "omit-jungle-move", "omit-mountain-move"].includes(
+      negativeMode,
+    )
   )
     throw Error("SETUP: unknown recorded-input negative control");
   async function fixture(name) {
@@ -108,16 +114,17 @@ export async function runRecordedCampaign({
   const start = await page.evaluate(() => performance.now());
   expect(start, "Recorded display-clock origin").toBe(environment.clockOrigin);
   let currentTime = start;
-  const omittedMove =
-    negativeMode === "omit-jungle-move"
-      ? events.findIndex(
-          (e, i) =>
-            i >= checks[0].eventCount &&
-            e.type === "keydown" &&
-            e.key === "ArrowRight",
-        )
-      : -1;
-  if (negativeMode === "omit-jungle-move")
+  const omittedMove = ["omit-jungle-move", "omit-mountain-move"].includes(
+    negativeMode,
+  )
+    ? events.findIndex(
+        (e, i) =>
+          i >= checks[0].eventCount &&
+          e.type === "keydown" &&
+          e.key === "ArrowRight",
+      )
+    : -1;
+  if (["omit-jungle-move", "omit-mountain-move"].includes(negativeMode))
     expect(omittedMove).toBeGreaterThanOrEqual(0);
   async function advance(at) {
     expect(
@@ -224,22 +231,29 @@ export async function runRecordedCampaign({
     }
     expect(consumed).toBe(events.length);
     expect(actualEvents).toHaveLength(events.length);
-    if (manifest.milestone === "jungle-treasure") {
+    if (["jungle-treasure", "mountain-ascent"].includes(manifest.milestone)) {
+      const activity =
+        manifest.milestone === "mountain-ascent" ? "mountain" : "jungle";
+      const expedition = lastState[activity];
       expect(lastState.scene).toBe("map");
-      expect(lastState.jungle.outcome.code).toBe(1);
+      expect(expedition.outcome.code).toBe(1);
       expect({
         money: lastState.money,
         day: lastState.campaign.day,
         playerCollected: lastState.campaign.playerCollected,
-        frames: lastState.jungle.frames,
-        presentations: lastState.jungle.presentations,
-        lives: lastState.jungle.lives,
-        seed: lastState.jungle.seed,
+        frames: expedition.frames,
+        presentations: expedition.presentations,
+        lives: expedition.lives,
+        seed: expedition.seed,
       }).toEqual(manifest.expectedOutcome);
-    } else if (manifest.milestone === "jungle-entry") {
-      expect(lastState.scene).toBe("jungle");
-      expect(lastState.jungle.phase).toBe("entering");
-      expect(lastState.jungle.frames).toBe(0);
+    } else if (
+      ["jungle-entry", "mountain-entry"].includes(manifest.milestone)
+    ) {
+      const activity =
+        manifest.milestone === "mountain-entry" ? "mountain" : "jungle";
+      expect(lastState.scene).toBe(activity);
+      expect(lastState[activity].phase).toBe("entering");
+      expect(lastState[activity].frames).toBe(0);
     } else {
       expect(lastState.scene).toBe("ending");
       expect(lastState.ending.ready).toBe(true);

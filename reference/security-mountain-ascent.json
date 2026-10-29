@@ -1,6 +1,412 @@
 {
   "id": "security-aware-easy-mountain-ascent",
-  "pending": true,
+  "pending": false,
+  "milestone": "mountain-ascent",
+  "expectedHard": false,
+  "artifactRoot": ".local/security-mountain-ascent-accepted-01",
+  "captureRoot": ".local/security-mountain-ascent-01",
+  "captureCommit": "d68d2a19031be88c18de273e6812a052ddf06d27",
+  "expectedCheckpointCount": 27,
+  "checkpointNames": [
+    "entry",
+    "input-40",
+    "input-80",
+    "input-120",
+    "input-160",
+    "input-200",
+    "input-240",
+    "input-280",
+    "input-320",
+    "input-360",
+    "input-400",
+    "input-440",
+    "input-480",
+    "input-520",
+    "input-560",
+    "input-600",
+    "input-640",
+    "input-680",
+    "input-720",
+    "input-760",
+    "input-764",
+    "award",
+    "award-rival-report",
+    "returned-map",
+    "visit-rival-report",
+    "collected-notice",
+    "complete-map"
+  ],
+  "requiredEventCount": 104,
+  "expectedFlightPresentations": 74,
+  "expectedFlagAliasPresentations": 0,
   "expectedInputCount": 764,
-  "checkpoints": []
+  "checkpoints": [
+    {
+      "name": "entry",
+      "at": 19885,
+      "eventCount": 50,
+      "stateSha256": "cfc66cd7e9623fbbfafadab2f19a375a3149ab812575ea7d3d347a724204364a",
+      "pixelsSha256": "217ee5dbff4763abe21c67c227a9c65a90daa74c4a24344a55ab3e030b7ba13a"
+    },
+    {
+      "name": "input-40",
+      "at": 20469,
+      "eventCount": 52,
+      "stateSha256": "58fb8310f8da1242c61cef714a88b9d7d096729813be3bd3ef368e87ed0007c6",
+      "pixelsSha256": "26ba6a977a032e4348d18f00534249335014577d4c277fd4c9aeb5e95bfeeeb3"
+    },
+    {
+      "name": "input-80",
+      "at": 21157,
+      "eventCount": 55,
+      "stateSha256": "2fad583fc3b69b0bc1be16473ebb168c886f369bbbd4431f359250e059f10750",
+      "pixelsSha256": "54fefa3bb3bc49f2fcdf984a7150d44d4690c2a61b6ff3599d5b9031f8b81e0d"
+    },
+    {
+      "name": "input-120",
+      "at": 21725,
+      "eventCount": 56,
+      "stateSha256": "c96d3f4f82c7a48d33a973eef9b2a9cad9e3e0d4074000faaf977f130620511b",
+      "pixelsSha256": "82d73b121435b266a089059c02273555fb91c154e62bc5a556393e5d9b35a6e9"
+    },
+    {
+      "name": "input-160",
+      "at": 22293,
+      "eventCount": 56,
+      "stateSha256": "f553142baa3a883cf09217f238c5f7d81960798b39141d9e3f1ed1eeb79becb4",
+      "pixelsSha256": "804809c8d40692a0a38113d1c450071a3f40586195518696c9ff1f39417b0b5d"
+    },
+    {
+      "name": "input-200",
+      "at": 22981,
+      "eventCount": 63,
+      "stateSha256": "f3ac012ebbce1a242a86876e7d11a70b2cbde18a99a9c0f4c0f6230d0a5d5d90",
+      "pixelsSha256": "26c126e8f9060280b13c7d4d0946c3d4a2b3beed35d13284eafebd4987014eb9"
+    },
+    {
+      "name": "input-240",
+      "at": 23669,
+      "eventCount": 67,
+      "stateSha256": "7555f19f4f63f4828d78d05ebe17d04e0778ef23e41552e26f850a8d0ee1f8bc",
+      "pixelsSha256": "b3afb91457ce08b97967f4edf52c5b9220474e77dc63ee6559f0a93f07d81f87"
+    },
+    {
+      "name": "input-280",
+      "at": 24293,
+      "eventCount": 68,
+      "stateSha256": "e5b996dfdb997bcb094bdde053696227728361386f48e4f276c33b10b455767c",
+      "pixelsSha256": "e2b12205764c606b77c16f6886fa10614ee87b213bc5fb50317e44ee1f5c0f22"
+    },
+    {
+      "name": "input-320",
+      "at": 24981,
+      "eventCount": 69,
+      "stateSha256": "c9e8452841be8762db1161eea9a1e82a8a1e611aaea298950d41df9b7c19f634",
+      "pixelsSha256": "b76d2c2a2c09c3a9198763b65eaa4de25ef8917dd9e47bfac0fc357b3aa53ce4"
+    },
+    {
+      "name": "input-360",
+      "at": 25661,
+      "eventCount": 70,
+      "stateSha256": "3c149751f69097747069c6e5123c464e32a06b130524e89bc41edc0dd4982079",
+      "pixelsSha256": "c6f6ee3eb96bbd3a2e66bb52c7178ca49bb9b3ea1d868751748275625c5c89ca"
+    },
+    {
+      "name": "input-400",
+      "at": 26237,
+      "eventCount": 72,
+      "stateSha256": "670d3e2ce80863181edd95b30723d4a3ef5aeb9bec2b6cf4fcfd5b0748dfd52a",
+      "pixelsSha256": "95b7b864b4b97620974ed15a458b38430350a12e3eb066361e1caec700b7d84e"
+    },
+    {
+      "name": "input-440",
+      "at": 26861,
+      "eventCount": 72,
+      "stateSha256": "8c918d648f87c2c892f062a076a262e29147991ee16d0f0063d2d32874d0c84d",
+      "pixelsSha256": "aaf4d9abb797749caa0fb05b02ef6dd16459b1cdc607d678cc50133b607ec626"
+    },
+    {
+      "name": "input-480",
+      "at": 27549,
+      "eventCount": 78,
+      "stateSha256": "53a71c4ba42c5e0c0c94061f904ff86910eb50512cfbd19ac2106e4702a1b16c",
+      "pixelsSha256": "9d840607061d0730e2fcb3dbf620a6587d5d3a34330f33b10d044112bb48ad66"
+    },
+    {
+      "name": "input-520",
+      "at": 28173,
+      "eventCount": 82,
+      "stateSha256": "ba68d29e2ff183651fb0500784b7459a5caf23f2a0a226d3d75bb7c434261138",
+      "pixelsSha256": "b9277b5dc476a3b8e465e64173eaf0d7434d3f50bfdf1bdb8e615b5c33350240"
+    },
+    {
+      "name": "input-560",
+      "at": 28917,
+      "eventCount": 85,
+      "stateSha256": "ea5ac0eafe3289a492767ca035857a881fa0f97e1d37e07d4e5ae501b91e139e",
+      "pixelsSha256": "64dc351b580c084f12459441b2532be54f03b0a72898c6e4f83002e7daf20836"
+    },
+    {
+      "name": "input-600",
+      "at": 29485,
+      "eventCount": 86,
+      "stateSha256": "6c4c9bd2cfed8ed20d12e1f960a5a31a78bab9594f5b239b44e2cce60b839f53",
+      "pixelsSha256": "3eccb512f92e096b36f8650fd256e7a01d737aacfba316fcc2e65b13a59a0798"
+    },
+    {
+      "name": "input-640",
+      "at": 30173,
+      "eventCount": 88,
+      "stateSha256": "dba6d1fbbe0b63150de1d432c1c0dfc3552febeae33a25de441bfb5b2a9cefd9",
+      "pixelsSha256": "59e4b0b521906b228af6694e24a878d7b59541b76195b9e141ce4fd39b323ee5"
+    },
+    {
+      "name": "input-680",
+      "at": 30917,
+      "eventCount": 95,
+      "stateSha256": "ab76b56e6b596883f5f02d870fe01e3397465c98db0fadd015997928e47a67bc",
+      "pixelsSha256": "d20d44dce1e110245eceefe33633f3a7a84af4963abd8c5ef12099da2e0aa7bb"
+    },
+    {
+      "name": "input-720",
+      "at": 31541,
+      "eventCount": 97,
+      "stateSha256": "412f44eca0ab909f1a79d5ed0c97a5c9895e3ea6a461af28d79e2456912eef68",
+      "pixelsSha256": "0e5f83113a71fb4a9c494b78af09167a1d5446af37c591bc30580827cfdd048d"
+    },
+    {
+      "name": "input-760",
+      "at": 32229,
+      "eventCount": 98,
+      "stateSha256": "7ba84b9a43bfa99270582960c4fb90dc5bb072f31edc15ed7530a4b3015781de",
+      "pixelsSha256": "f6ddfc083ec33f1c6b8e952015c39f079bad09647d86058a0268761082e59b47"
+    },
+    {
+      "name": "input-764",
+      "at": 32285,
+      "eventCount": 98,
+      "stateSha256": "ff200e3bfab48c27aa00a0ded0738d096794811f4e5223d3a99a6c871d54713d",
+      "pixelsSha256": "cde901cfc4f19de5a27a22ba181988d109d4c7f02f0488f483c36b9ff59a5b8e"
+    },
+    {
+      "name": "award",
+      "at": 32301,
+      "eventCount": 98,
+      "stateSha256": "efab2e6c606c81235eb80aa0576a988faf1dd5cf4ee9a312cffa149970d1c03c",
+      "pixelsSha256": "69651e8bb247e12f7913a8359c6ed6d3c0124017d85403f41842d878362a307a"
+    },
+    {
+      "name": "award-rival-report",
+      "at": 32401,
+      "eventCount": 100,
+      "stateSha256": "25cfb7b8cdfb85599d5882571ab74d0d5d3704ecd321493257917372d193f48a",
+      "pixelsSha256": "b0a0de6a8e3828f3f9b9b7bba600b33127e9d9ae65a1ee8a2bcd49f79ae3c435"
+    },
+    {
+      "name": "returned-map",
+      "at": 36233,
+      "eventCount": 100,
+      "stateSha256": "be7ddc7f782339ee9a6c9e1247174b011a7b912f275db2adff1d8228673d03ca",
+      "pixelsSha256": "c5d59e1375f626c63cd46943b52c596937840fad5127b1a9cc0423ff8b33b235"
+    },
+    {
+      "name": "visit-rival-report",
+      "at": 36333,
+      "eventCount": 102,
+      "stateSha256": "aed20120efa4b8b2f820c1d6d9cc7e951041542f055f3beab93c8bc2ef74b837",
+      "pixelsSha256": "2f66c77208a0e19e5f6faa948a9d380617a27f0d0bade9b4d472f198668c58b8"
+    },
+    {
+      "name": "collected-notice",
+      "at": 40085,
+      "eventCount": 102,
+      "stateSha256": "d40cee5133a3c1c0424752ebe5792ff033136f7fd490c94a590f11f49367e26d",
+      "pixelsSha256": "554c1ca82e8661f04262dafa1f9a50515278559c68acda2e144d0516fd4840f2"
+    },
+    {
+      "name": "complete-map",
+      "at": 40185,
+      "eventCount": 104,
+      "stateSha256": "17604b83e4d47bc05bf19a79de127c56ab427faee622f2eb8b985f7fa730d8c3",
+      "pixelsSha256": "c5d59e1375f626c63cd46943b52c596937840fad5127b1a9cc0423ff8b33b235"
+    }
+  ],
+  "expectedOutcome": {
+    "money": 8100,
+    "day": 17,
+    "playerCollected": [
+      31
+    ],
+    "frames": 764,
+    "presentations": 870,
+    "lives": 3,
+    "seed": 62669
+  },
+  "artifacts": {
+    "environment": {
+      "path": ".local/security-mountain-ascent-accepted-01/environment.json",
+      "bytes": 230,
+      "sha256": "d0926ce2e52de89f28a8510217196d6f5ae26ff8b02db569513a16a32c621beb"
+    },
+    "captured-events": {
+      "path": ".local/security-mountain-ascent-accepted-01/captured-events.json",
+      "bytes": 12191,
+      "sha256": "37df69538b488f32adf751fe196ada4d676e1e473537ede8cf65f999d4fbc6a8"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/security-mountain-ascent-accepted-01/campaign-checkpoints.json",
+      "bytes": 98559,
+      "sha256": "bc2453de644a9ef921d0aa5a3392d4d364bc72cceb612950fd0b627f1f2ce01a"
+    },
+    "timeline": {
+      "path": ".local/security-mountain-ascent-accepted-01/timeline.json",
+      "bytes": 2333,
+      "sha256": "b6949e03b06f5573e37753407312622127a1bd50c6e7312fc2f7f87b55bfcd96"
+    },
+    "capture-source": {
+      "path": ".local/security-mountain-ascent-01/source-revision.json",
+      "bytes": 13761,
+      "sha256": "b62672599c880ec8bab91bde798322e8837eb471d80929b79b659ff0c680c6dd"
+    },
+    "input-profile": {
+      "path": "reference/security-mountain-ascent-inputs.json",
+      "bytes": 2960,
+      "sha256": "897e3cc6ca61f09db7922ed672340abbb9c842240436821e8848dfe01667ab4d"
+    },
+    "png-entry": {
+      "path": ".local/security-mountain-ascent-01/entry.png",
+      "bytes": 20596,
+      "sha256": "278544aade356d9987f04ef8674be9af45452d07b63906f6a99b6147a3425c18"
+    },
+    "png-input-40": {
+      "path": ".local/security-mountain-ascent-01/input-40.png",
+      "bytes": 27916,
+      "sha256": "189eeac1a631ac213e786830b70e1b61a2066bc338a784af8d2aa93b67797727"
+    },
+    "png-input-80": {
+      "path": ".local/security-mountain-ascent-01/input-80.png",
+      "bytes": 28016,
+      "sha256": "377f4300574699badf6c20e76ac09afa5d4f1492429b20b7b6242bef84dfc26e"
+    },
+    "png-input-120": {
+      "path": ".local/security-mountain-ascent-01/input-120.png",
+      "bytes": 28089,
+      "sha256": "b4822ac0e45284e1f60a9a81af9e3cf8f864aacd61acd78891e17a1ba461d797"
+    },
+    "png-input-160": {
+      "path": ".local/security-mountain-ascent-01/input-160.png",
+      "bytes": 27926,
+      "sha256": "207c23709982d9b6870a9d521f790efcba60df510bccd4b2aef8f49cfd61cd6d"
+    },
+    "png-input-200": {
+      "path": ".local/security-mountain-ascent-01/input-200.png",
+      "bytes": 27392,
+      "sha256": "fd1b544f8b0681f3c228979e841959fce43c14306e3ed30d8141155a38f7fef9"
+    },
+    "png-input-240": {
+      "path": ".local/security-mountain-ascent-01/input-240.png",
+      "bytes": 28194,
+      "sha256": "ea88274705269f71753d1e828a0a32bd7c47462b39ea09b2237cda26ec789d50"
+    },
+    "png-input-280": {
+      "path": ".local/security-mountain-ascent-01/input-280.png",
+      "bytes": 27194,
+      "sha256": "acd20c8d42f3227b774df9404b13e160393417dfe9d920597e3bb522abd9df81"
+    },
+    "png-input-320": {
+      "path": ".local/security-mountain-ascent-01/input-320.png",
+      "bytes": 28758,
+      "sha256": "5be0f172d1f6fa2430d7f71d68adb7146b690311691cf9f13c914e2231d2db91"
+    },
+    "png-input-360": {
+      "path": ".local/security-mountain-ascent-01/input-360.png",
+      "bytes": 27953,
+      "sha256": "bf6a90620cc85849f58175d1cd7de25ce7801423ef47707adc485c158b302dc6"
+    },
+    "png-input-400": {
+      "path": ".local/security-mountain-ascent-01/input-400.png",
+      "bytes": 27849,
+      "sha256": "104bd2f53982cfcdada5f52900b952ca71a76ebb5c1ba7a89129b073be28ebf8"
+    },
+    "png-input-440": {
+      "path": ".local/security-mountain-ascent-01/input-440.png",
+      "bytes": 28194,
+      "sha256": "47facd6be96928246d368f0b2e3855c891966c34711355502f2163e3473583df"
+    },
+    "png-input-480": {
+      "path": ".local/security-mountain-ascent-01/input-480.png",
+      "bytes": 28179,
+      "sha256": "b0ad6626322ca798b06c2514d8282e06412f141b4844949be69319e185f736df"
+    },
+    "png-input-520": {
+      "path": ".local/security-mountain-ascent-01/input-520.png",
+      "bytes": 28637,
+      "sha256": "89013f21470e638ddab3db8429e10f4a510c0e753da41ec090e5402e6838a66c"
+    },
+    "png-input-560": {
+      "path": ".local/security-mountain-ascent-01/input-560.png",
+      "bytes": 27774,
+      "sha256": "4f05f753336ab049021c3424320a974ee617bb0882289d24cd9eadabe9088c67"
+    },
+    "png-input-600": {
+      "path": ".local/security-mountain-ascent-01/input-600.png",
+      "bytes": 27711,
+      "sha256": "9a8814503ec11e8ce35441acd69ecb2422074838cba0bdbd21ce2d42fb97858e"
+    },
+    "png-input-640": {
+      "path": ".local/security-mountain-ascent-01/input-640.png",
+      "bytes": 28225,
+      "sha256": "bebc723dc8bdd8e4a3a4c7770927f31c42957a1afbfabf367d1615d1fee462bb"
+    },
+    "png-input-680": {
+      "path": ".local/security-mountain-ascent-01/input-680.png",
+      "bytes": 27795,
+      "sha256": "df5d6b6f8d813cd90ffd027466eaa7cb7f13116c2304db566d135f916ebcb1a0"
+    },
+    "png-input-720": {
+      "path": ".local/security-mountain-ascent-01/input-720.png",
+      "bytes": 28381,
+      "sha256": "63481e76fff1ecf05e353278d1101983558c01210a28aca3d7422ae1531c9002"
+    },
+    "png-input-760": {
+      "path": ".local/security-mountain-ascent-01/input-760.png",
+      "bytes": 26940,
+      "sha256": "177797989d854c3a38bc2bb0170bf36abf1e3c3555cb23a124dd64bbdcbbd1e8"
+    },
+    "png-input-764": {
+      "path": ".local/security-mountain-ascent-01/input-764.png",
+      "bytes": 26912,
+      "sha256": "8bec8e85e25d7140743e49509b64e6bfa361d3c46e851aa49e4ea230a3e91e34"
+    },
+    "png-award": {
+      "path": ".local/security-mountain-ascent-01/award.png",
+      "bytes": 19085,
+      "sha256": "4980ed893d9706514dae2a40b13a19b15e69378f45c2285a2b714dbb41cce1bf"
+    },
+    "png-award-rival-report": {
+      "path": ".local/security-mountain-ascent-01/award-rival-report.png",
+      "bytes": 15495,
+      "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+    },
+    "png-returned-map": {
+      "path": ".local/security-mountain-ascent-01/returned-map.png",
+      "bytes": 27584,
+      "sha256": "6bc7db6b5d5877cfb5011cd9daf13dc55a74daec37a60af4d8a205daa354b56f"
+    },
+    "png-visit-rival-report": {
+      "path": ".local/security-mountain-ascent-01/visit-rival-report.png",
+      "bytes": 15451,
+      "sha256": "2fdd5cb9ed0cbadc671253a5a34e96a6fee628fd73fba2f65199ffcea75fdb7a"
+    },
+    "png-collected-notice": {
+      "path": ".local/security-mountain-ascent-01/collected-notice.png",
+      "bytes": 10841,
+      "sha256": "716f42c70d070075d5f7cd1db3ccff243bf9df10a7c72fb14bcd7809a19a54b8"
+    },
+    "png-complete-map": {
+      "path": ".local/security-mountain-ascent-01/complete-map.png",
+      "bytes": 27584,
+      "sha256": "6bc7db6b5d5877cfb5011cd9daf13dc55a74daec37a60af4d8a205daa354b56f"
+    }
+  }
 }

@@ -2,19 +2,36 @@ import assert from "node:assert/strict";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { spawnSync, execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
+import { PNG } from "pngjs";
 
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
   "reference/hard-campaign-security.json";
-const verificationRoot =
-  manifestPath === "reference/hard-campaign-security.json"
-    ? ".local/hard-security-campaign-verification"
-    : ".local/hard-campaign-verification";
 const manifest = JSON.parse(
   await readFile(manifestPath).catch(() => {
     throw Error("SETUP: missing accepted Hard campaign manifest");
   }),
 );
+assert.ok(
+  [undefined, "office"].includes(manifest.verificationEdition),
+  "Unknown Hard evidence edition",
+);
+const officeEdition = manifest.verificationEdition === "office";
+const verificationRoot = officeEdition
+  ? ".local/office-campaign-hard-verification"
+  : manifestPath === "reference/hard-campaign-security.json"
+    ? ".local/hard-security-campaign-verification"
+    : ".local/hard-campaign-verification";
+if (officeEdition) {
+  assert.equal(manifest.expectedCheckpointCount, 28);
+  assert.equal(manifest.requiredEventCount, 4140);
+  assert.equal(manifest.expectedHard, true);
+  assert.equal(
+    Object.keys(manifest.artifacts).length,
+    18,
+    "Missing required Hard evidence",
+  );
+}
 assert.equal(
   manifest.pendingBrowserReplay,
   false,
@@ -40,35 +57,123 @@ for (const [name, spec] of Object.entries(manifest.artifacts)) {
 // Historical producers and current checkers are different identities. Keep
 // capture sources pinned while the current Game is actually replayed below.
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
-if (manifest.captureProducer) {
-  const source = JSON.parse(await readFile(manifest.captureProducer));
-  assert.equal(source.captureCommit, manifest.captureCommit);
-  assert.ok(Object.keys(source.sha256).length > 60);
-  for (const [path, hash] of Object.entries(source.sha256)) {
-    const bytes = path.startsWith(".local/")
-      ? await readFile(`${manifest.artifactRoot}/capture-config.js`)
-      : execFileSync("git", ["show", `${manifest.captureCommit}:${path}`]);
+if (officeEdition) {
+  for (const [role, count, revision, archive] of [
+    [
+      "capture-source",
+      497,
+      manifest.captureCommit,
+      manifest.captureSourceArchive,
+    ],
+    [
+      "browser-source",
+      498,
+      manifest.replayCommit,
+      manifest.browserSourceArchive,
+    ],
+  ]) {
+    const source = JSON.parse(await readFile(manifest.artifacts[role].path));
     assert.equal(
-      digest(bytes),
-      hash,
-      `Changed campaign capture producer ${path}`,
+      source[role === "capture-source" ? "captureCommit" : "browserCommit"],
+      revision,
+    );
+    assert.equal(Object.keys(source.files).length, count);
+    for (const [path, hash] of Object.entries(source.files)) {
+      assert.equal(
+        digest(await readFile(`${archive}/${path}`)),
+        hash,
+        `Changed ${role} archive ${path}`,
+      );
+      assert.equal(
+        digest(execFileSync("git", ["show", `${revision}:${path}`])),
+        hash,
+        `Changed ${role} producer ${path}`,
+      );
+    }
+    const config = source.externalConfiguration;
+    assert.equal(
+      digest(await readFile(config.archive)),
+      config.sha256,
+      `Changed ${role} configuration`,
+    );
+    assert.equal(
+      config.archive,
+      manifest.artifacts[
+        role === "capture-source" ? "capture-config" : "browser-config"
+      ].path,
     );
   }
-}
-if (manifest.browserReplayRoot) {
-  const source = JSON.parse(
-    await readFile(`${manifest.browserReplayRoot}/source-revision.json`),
+  const env = JSON.parse(
+    await readFile(manifest.artifacts["capture-environment"].path),
   );
-  assert.ok(Object.keys(source.sha256).length > 60);
-  for (const [path, hash] of Object.entries(source.sha256)) {
-    const bytes = manifest.replayCommit
-      ? execFileSync("git", ["show", `${manifest.replayCommit}:${path}`])
-      : await readFile(path);
-    assert.equal(
-      digest(bytes),
-      hash,
-      `Changed browser replay producer ${path}`,
+  assert.equal(env.completed, false);
+  assert.equal(env.mode, "exploratory");
+  assert.equal(env.observerError, null);
+  const lifecycle = JSON.parse(
+    await readFile(manifest.artifacts["capture-lifecycle"].path),
+  );
+  assert.equal(lifecycle.navigation.length, 1);
+  const report = JSON.parse(
+    await readFile(manifest.artifacts["browser-results"].path),
+  );
+  assert.deepEqual(report.errors, []);
+  assert.equal(report.stats.expected, 1);
+  for (const key of ["unexpected", "skipped", "flaky"])
+    assert.equal(report.stats[key], 0);
+  const tests = [];
+  function visit(suite) {
+    for (const spec of suite.specs ?? []) tests.push(...spec.tests);
+    for (const child of suite.suites ?? []) visit(child);
+  }
+  report.suites.forEach(visit);
+  assert.equal(tests.length, 1);
+  assert.equal(tests[0].status, "expected");
+  assert.equal(tests[0].results.length, 1);
+  assert.equal(tests[0].results[0].status, "passed");
+  const png = PNG.sync.read(
+    await readFile(manifest.artifacts["ending-png"].path),
+  );
+  assert.deepEqual([png.width, png.height], [958, 599]);
+  const negative = (
+    await readFile(manifest.artifacts["browser-negative"].path)
+  ).toString();
+  assert.match(negative, /1 failed/);
+  assert.match(negative, /Carried browser state0 campaign-start/);
+  assert.doesNotMatch(
+    negative,
+    /SETUP:|ENOENT|No tests found|Test timeout|TimeoutError|browserType\.launch:|ETIMEDOUT|Channel closed/,
+  );
+} else {
+  if (manifest.captureProducer) {
+    const source = JSON.parse(await readFile(manifest.captureProducer));
+    assert.equal(source.captureCommit, manifest.captureCommit);
+    assert.ok(Object.keys(source.sha256).length > 60);
+    for (const [path, hash] of Object.entries(source.sha256)) {
+      const bytes = path.startsWith(".local/")
+        ? await readFile(`${manifest.artifactRoot}/capture-config.js`)
+        : execFileSync("git", ["show", `${manifest.captureCommit}:${path}`]);
+      assert.equal(
+        digest(bytes),
+        hash,
+        `Changed campaign capture producer ${path}`,
+      );
+    }
+  }
+  if (manifest.browserReplayRoot) {
+    const source = JSON.parse(
+      await readFile(`${manifest.browserReplayRoot}/source-revision.json`),
     );
+    assert.ok(Object.keys(source.sha256).length > 60);
+    for (const [path, hash] of Object.entries(source.sha256)) {
+      const bytes = manifest.replayCommit
+        ? execFileSync("git", ["show", `${manifest.replayCommit}:${path}`])
+        : await readFile(path);
+      assert.equal(
+        digest(bytes),
+        hash,
+        `Changed browser replay producer ${path}`,
+      );
+    }
   }
 }
 for (const [path, hash] of Object.entries(manifest.verificationTools ?? {}))
@@ -108,6 +213,18 @@ assert.equal(result.mode, "recorded-input replay");
 assert.equal(result.checked, manifest.expectedCheckpointCount);
 assert.equal(result.consumed, manifest.requiredEventCount);
 assert.ok(result.rendered > 0 && result.flagAliasPresentations > 0);
+if (officeEdition) {
+  assert.equal(result.rendered, 1629);
+  assert.equal(result.flagAliasPresentations, 1);
+  assert.deepEqual(result.heldAtExploratoryEndpoint, []);
+  assert.equal(result.state.difficulty, 2);
+  assert.equal(result.state.jungle.frames, 447);
+  assert.equal(result.state.mountain.frames, 671);
+  assert.equal(result.state.jungle.outcome.code, 1);
+  assert.equal(result.state.mountain.outcome.code, 1);
+  assert.equal(result.state.cave.outcome.status, "treasure");
+  assert.equal(result.state.campaign.rivalUnlockMask, 15);
+}
 assert.deepEqual(result.state.ending, manifest.expectedEnding);
 assert.deepEqual(
   result.state.campaign.playerCollected,
@@ -154,6 +271,15 @@ assert.equal(
   "Unfinished independent browser input stream",
 );
 assert.deepEqual(progress.errors, [], "Independent browser rendering errors");
+if (officeEdition) {
+  assert.equal(progress.expectedEvents, 4140);
+  assert.equal(progress.navigation.length, 1);
+  assert.equal(
+    JSON.parse(await readFile(manifest.artifacts["browser-events"].path))
+      .length,
+    4140,
+  );
+}
 const wrongPixel = structuredClone(browser);
 wrongPixel[0].pixelsSha256 = "0".repeat(64);
 assert.throws(() => compareBrowser(wrongPixel), /Browser checkpoint0/);

@@ -58,5 +58,42 @@ npm run test:easy-office-campaign
 npm run verify:easy-office-campaign-negative
 ```
 
-Hard and focused route migrations, the complete branch gate and integration into
-main remain pending.
+The fresh Hard route uses sourcee27efbe with497 archived files. It reaches all
+four families and loses onday31 with17200 banked against61000. Its independent
+Game replay and fresh fixed-input browser replay source25dab04 (498 archived
+files) match all28 complete state/pixel checkpoints and4140 DOM events, with1629
+flight presentations and one supported native flag alias. All required events
+are consumed at237157ms, with no held keys or diagnostic tail. The ending's
+remaining counter is700 at this observed first-ready sample; it is compared
+exactly rather than fitted to historical699. Mountain return has one fewer
+component tick than the historical recording, and that field is also exact in
+the new Game/browser comparisons.
+
+Two exploratory attempts are retained and excluded. Run01 received a second
+main-document navigation during the third flight; no full-reload message was
+recorded and its cause remains unresolved. Run02 used an isolated5197 server and
+one navigation, but its driver expected the map before acknowledging a normal
+post-office Glomgold report onday19. The bounded driver fix acknowledges that
+report through actual Space down/up events. No simulation logic, input samples,
+RNG, checkpoint tolerance or state restoration changed. Run03 completed from a
+fresh game; its raw `completed:false` record remains separate from the accepted
+replay declaration.
+
+The Hard browser receipt has one passed case and zero errors/skips/retries.
+Strict registration checks18 artifact hashes, both exact Git/source archives,
+the capture/server configuration, five comparison negatives and the actual
+missing-Hard-selection browser failure. Missing/corrupt fixture controls must
+also restore the original bytes and pass strict verification again.
+
+```
+# Local fixtures are required. Recreate the recorded isolated server recipe:
+cp .local/office-campaign-hard-03/capture-config.js .local/office-hard-capture.config.js
+npm run verify:hard-office-campaign
+npm run test:hard-office-campaign
+npm run verify:hard-office-campaign-negative
+```
+
+Easy and Hard office-aware routes are available explicitly. Default route
+promotion, focused route migrations, the complete branch gate and integration
+into main remain pending. Whole original-game, hardware timing and waveform
+parity are separate unfinished requirements.

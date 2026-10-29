@@ -48,7 +48,13 @@ its117/74/2 gate remain separate historical evidence in
   Easy campaign now also wins onday32 with13875 against11500:36 complete
   checkpoints,3516 DOM events,1188 flight presentations match independent Game
   and fresh browser replay, followed by Restart. Strict receipts,seven comparison
-  controls and missing/corrupt fixture checks pass. Hard migration remains pending. [Migration](office-campaign-migration.md).
+  controls and missing/corrupt fixture checks pass.
+- The office-aware Hard campaign also reaches its day31 loss,17200 against61000.
+  Independent Game and fresh browser match28 complete state/pixel checkpoints,
+  all4140 events and1629 flight presentations/one supported flag alias. A normal
+  post-office rival report is acknowledged by the exploratory driver. Strict
+  source receipts,missing-choice controls and missing/corrupt fixture checks pass.
+  Default promotion and wider integration remain pending. [Migration](office-campaign-migration.md).
 
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
@@ -123,7 +129,7 @@ pictures and traces stay local. Production visitors select their own originals.
 
 - Security-aware Easy/Hard campaigns are the default current checks and passed
   the complete integration gate; historical recordings remain separate.
-- Next: migrate Hard/focused recordings
+- Next: promote office-aware Easy/Hard defaults and migrate focused recordings
   through the original office timing and key-slot boundary, then pass the full branch gate.
   Entry/selection and investment departure have focused acceptance on the isolated
   branch. Several map/notice presentations,

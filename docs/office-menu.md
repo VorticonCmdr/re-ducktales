@@ -106,8 +106,10 @@ chain from the unchanged focused command that actually ran.
 
 The current ordinary-key adapter implements arrows, Enter and Space. Original
 letter-direction aliases are not implemented here yet. Wider cross-scene key
-history and headless campaign adapters still need migration; this fixture does
-not establish complete original keyboard behavior in every context.
+history remains unverified. The shared browser/headless adapter and complete
+Easy/Hard campaign replays now pass separately; see
+[campaign migration](office-campaign-migration.md). This focused native fixture
+does not establish complete original keyboard behavior in every context.
 
 Reproduce with the installed DOSBox MCP Python environment and the same
 `DUCKTALES_DOSBOX_MCP_ROOT` setup described for

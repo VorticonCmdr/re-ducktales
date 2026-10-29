@@ -52,11 +52,22 @@ test("natural lightning clears held flight controls and fresh keyboard input rec
   await page.locator("#map").click();
   await finishSecurityEntry({ page, until, state });
   expect(
-    await bankTrips({ page, canvas, state, until, press, count: 2 }),
-  ).toEqual([
-    { day: 7, seed: 62042 },
-    { day: 13, seed: 19313 },
-  ]);
+    await bankTrips({
+      page,
+      canvas,
+      state,
+      until,
+      press,
+      count: Number(process.env.DUCKTALES_LIGHTNING_BANK_TRIPS ?? 3),
+    }),
+  ).toEqual(
+    [
+      { day: 7, seed: 62042 },
+      { day: 13, seed: 19313 },
+      { day: 19, seed: 6124 },
+      { day: 25, seed: 54134 },
+    ].slice(0, Number(process.env.DUCKTALES_LIGHTNING_BANK_TRIPS ?? 3)),
+  );
   const r = await canvas.boundingBox();
   await canvas.click({
     position: { x: (r.width * 68) / 320, y: (r.height * 77) / 200 },
@@ -65,7 +76,8 @@ test("natural lightning clears held flight controls and fresh keyboard input rec
   await press("Space");
   await press("ArrowRight");
   await press("Space");
-  expect((await state()).departure.racing).toBe(false);
+  if (!process.env.DUCKTALES_CAPTURE_LIGHTNING_ENTRY)
+    expect((await state()).departure.racing).toBe(false);
   if (process.env.DUCKTALES_CAPTURE_LIGHTNING_ENTRY) {
     const point = await observeRecordedRoute({
       page,

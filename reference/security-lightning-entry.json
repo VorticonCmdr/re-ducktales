@@ -2,35 +2,36 @@
   "id": "security-aware-lightning-departure",
   "milestone": "departure-entry",
   "expectedHard": false,
-  "artifactRoot": ".local/security-lightning-entry-accepted-01",
-  "captureRoot": ".local/security-lightning-entry-01",
+  "artifactRoot": ".local/security-lightning-entry-accepted-02",
+  "captureRoot": ".local/security-lightning-entry-02",
   "expectedCheckpointCount": 1,
   "checkpointNames": [
     "departure"
   ],
-  "requiredEventCount": 46,
+  "requiredEventCount": 60,
   "expectedFlightPresentations": 0,
   "expectedFlagAliasPresentations": 0,
   "artifacts": {
     "environment": {
-      "path": ".local/security-lightning-entry-accepted-01/environment.json",
-      "bytes": 237,
-      "sha256": "b434eae409213e53926716a6f94ba85484a57655a72adaa636a275cd34888c73"
+      "path": ".local/security-lightning-entry-accepted-02/environment.json",
+      "bytes": 227,
+      "sha256": "6de55ba615fbc5faaef069292646b25f4b67357e48bd51debf59c91a682d6dc3"
     },
     "captured-events": {
-      "path": ".local/security-lightning-entry-accepted-01/captured-events.json",
-      "bytes": 5213,
-      "sha256": "c7c071cde8e1818d308d64a5548e0bafbd42e414664ea04811470d68e7b7b0aa"
+      "path": ".local/security-lightning-entry-accepted-02/captured-events.json",
+      "bytes": 6817,
+      "sha256": "96dd3d95f1443ee1289e7816440b576ae421b7da4d9d72077506e26e187a83fd"
     },
     "campaign-checkpoints": {
-      "path": ".local/security-lightning-entry-accepted-01/campaign-checkpoints.json",
-      "bytes": 2455,
-      "sha256": "bf99d72ca4853247eba941ab0d4f6c6ac76ab382165e8ce0990d56232ffe4f66"
+      "path": ".local/security-lightning-entry-accepted-02/campaign-checkpoints.json",
+      "bytes": 2456,
+      "sha256": "389e49d4433d3ad0d3b42324e55fafbd1b8da3c9d350405e330a9a2eb06a54b3"
     },
     "timeline": {
-      "path": ".local/security-lightning-entry-accepted-01/timeline.json",
+      "path": ".local/security-lightning-entry-accepted-02/timeline.json",
       "bytes": 173,
-      "sha256": "edb67a08bc74ac96f8d146fb21bd840274ee7da34c0c729d1a66b52c80c4ae60"
+      "sha256": "4e82f3fee416adbf6c82ce2b89cf7a60914092142a57b6d3a624e0ea9687963b"
     }
-  }
+  },
+  "bankTrips": 3
 }

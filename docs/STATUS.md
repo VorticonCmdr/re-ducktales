@@ -40,6 +40,12 @@ its117/74/2 gate remain separate historical evidence in
   to the map and reveal-key deferral/pause flushing. Fixture and missing-chord-key
   controls pass. Full campaign migration/gate remain pending; this is not whole
   original office parity. [Office menu](office-menu.md).
+- The shared browser/headless ordinary-key boundary now carries a fresh Easy
+  prefix through original office timing,security,the first race and jungle entry.
+  Strict Game and fresh browser replays match3 complete state/pixel checkpoints
+  and928 DOM events;364 flight presentations,no aliases,no tail. Jungle state
+  matches the prior route exactly; global time is53 driver ticks later. Full
+  campaign migration is pending. [Migration](office-campaign-migration.md).
 
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).

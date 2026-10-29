@@ -1,0 +1,41 @@
+{
+  "id": "office-aware-easy-first-jungle-entry",
+  "milestone": "jungle-entry",
+  "expectedHard": false,
+  "artifactRoot": ".local/office-campaign-easy-entry-accepted-01",
+  "captureRoot": ".local/office-campaign-easy-entry-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+  "captureCommit": "a0e084d",
+  "expectedCheckpointCount": 3,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival"
+  ],
+  "requiredEventCount": 928,
+  "expectedFlightPresentations": 364,
+  "expectedFlagAliasPresentations": 0,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "environment": {
+      "path": ".local/office-campaign-easy-entry-accepted-01/environment.json",
+      "bytes": 273,
+      "sha256": "0ba33a8e7829771e5aaeff8f74f7164c73cc1a6c15b32454a39853807a875eb0"
+    },
+    "captured-events": {
+      "path": ".local/office-campaign-easy-entry-accepted-01/captured-events.json",
+      "bytes": 110705,
+      "sha256": "b14666084a236ee1af378194a8060e2064b6c3a4f62050fca39d7b1098d6cbaa"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/office-campaign-easy-entry-accepted-01/campaign-checkpoints.json",
+      "bytes": 8395,
+      "sha256": "46ba6a6149732f67ec799c1842a7305d73c52b21fe5683a12b6fab83333ea6c8"
+    },
+    "timeline": {
+      "path": ".local/office-campaign-easy-entry-accepted-01/timeline.json",
+      "bytes": 343,
+      "sha256": "82e405a679ac19343efa81ca4ba0f2bc3aa5aa23dc9089038b5d07d572a72f5a"
+    }
+  }
+}

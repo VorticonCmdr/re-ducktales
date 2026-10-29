@@ -42,6 +42,7 @@ export async function campaign(page, hard = false) {
     }
   }
   async function enterMap() {
+    await waitForScene(page, canvas, "office");
     await page.locator("#map").click();
     await finishSecurityEntry({ page, until, state });
     return until((s) => s.scene === "map");
@@ -89,7 +90,7 @@ export async function campaign(page, hard = false) {
     await until((s) => s.difficulty === 2);
   }
   await press("Enter");
-  await until((s) => s.scene === "office");
+  await waitForScene(page, canvas, "office");
   return {
     canvas,
     state,

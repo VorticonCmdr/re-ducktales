@@ -133,6 +133,16 @@ test("office pixels match the captured original exactly", async ({ page }) => {
   await waitForDifficulty(canvas);
   await page.keyboard.press("Enter");
   await expect(canvas).toHaveAttribute("data-scene", "office");
+  await expect
+    .poll(
+      async () => {
+        const state = JSON.parse(await canvas.getAttribute("data-state"));
+        if (state.diagnostic) throw Error(state.diagnostic);
+        return state.scene === "office" && state.officeMenu?.ready === true;
+      },
+      { message: "Office reveal completed before native pixel comparison" },
+    )
+    .toBe(true);
   const url = await canvas.evaluate((c) => c.toDataURL("image/png"));
   const data = Buffer.from(url.split(",")[1], "base64");
   await writeFile(".local/browser-results/office-native.png", data);

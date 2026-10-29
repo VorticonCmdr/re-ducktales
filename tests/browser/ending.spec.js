@@ -17,10 +17,10 @@ test("earned cash reaches the winning ending and Yes starts a fresh campaign", a
       s.bin?.phase === "idle" && s.bin.nextPose === 3 && s.bin.remaining >= 10,
   );
   await t.press("Space");
-  await t.until((s) => s.scene === "office");
+  await waitForScene(page, t.canvas, "office");
   expect((await t.state()).money).toBe(1000);
   await page.locator("#investments").click();
-  await page.clock.runFor(100);
+  await t.until((s) => s.scene === "investments");
   await t.canvas.focus();
   await t.press("Space");
   await t.press("ArrowRight");
@@ -30,7 +30,7 @@ test("earned cash reaches the winning ending and Yes starts a fresh campaign", a
   await t.press("Escape");
   await t.press("Escape");
   await t.press("Space");
-  await t.until((s) => s.scene === "office");
+  await waitForScene(page, t.canvas, "office");
   const result = await t.ending();
   expect(result.ending).toMatchObject({
     won: true,
@@ -58,7 +58,7 @@ test("earned cash reaches the winning ending and Yes starts a fresh campaign", a
   expect((await t.state()).ending).toBeNull();
   await waitForScene(page, t.canvas, "difficulty");
   await t.press("Enter");
-  await t.until((s) => s.scene === "office");
+  await waitForScene(page, t.canvas, "office");
   expect((await t.state()).scene).toBe("office");
   expect((await t.state()).seed).toBe(1960);
   await expect(page.locator("#diagnostic")).toBeHidden();

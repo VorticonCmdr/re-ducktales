@@ -96,14 +96,14 @@ for (const choice of ["yes", "no"])
     }
     await expect(device).toHaveAttribute(
       "data-requests",
-      String(firstRequests + 4),
+      String(firstRequests + (choice === "yes" ? 6 : 4)),
     );
     const acks = await page.evaluate(() =>
       window.endingAudioEvents.filter((e) => e.type === "ack"),
     );
     expect(acks.map((e) => e.sequence)).toEqual(acks.map((_, i) => i + 1));
     expect(acks.slice(start).map((e) => e.argument)).toEqual(
-      choice === "no" ? [1, 1, 0, 0, 0] : [1, 1, 0, 36, 0],
+      choice === "no" ? [1, 1, 0, 0, 0] : [1, 1, 0, 36, 0, 0, 6],
     );
     await expect(device).toHaveAttribute("data-pending-tokens", "0");
     expect(t.errors).toEqual([]);

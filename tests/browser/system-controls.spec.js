@@ -124,7 +124,7 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
     await press(key);
     expect((await state()).systemOverlay).toBeNull();
   }
-  await until((s) => s.scene === "office");
+  await waitForScene(page, canvas, "office");
   expect((await state()).money).toBe(1000);
   await expect(page.locator("#audio")).not.toBeChecked();
   await page.locator("#map").click();
@@ -143,7 +143,7 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
   expect((await state()).scene).toBe("map");
   expect((await state()).systemOverlay).toBeNull();
   await page.locator("#back").click();
-  await until((s) => s.scene === "office");
+  await waitForScene(page, canvas, "office");
   await press("F1");
   expect((await state()).systemOverlay.kind).toBe("quit");
   await press("y");

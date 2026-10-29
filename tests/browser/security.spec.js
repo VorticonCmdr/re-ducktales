@@ -88,7 +88,10 @@ async function openOffice(page) {
   await page.keyboard.press("Space");
   await until((s) => s.difficultyMenu?.ready, "difficulty");
   await page.keyboard.press("Enter");
-  await until((s) => s.scene === "office", "office");
+  await until(
+    (s) => s.scene === "office" && s.officeMenu?.ready === true,
+    "office input ready",
+  );
   expect((await state()).seed).toBe(1960);
   return { canvas, state, until, errors };
 }

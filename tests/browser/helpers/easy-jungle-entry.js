@@ -19,8 +19,11 @@ export async function easyJungleEntry({ page, canvas, state, until, press }) {
   });
   await page.clock.runFor(100);
   await press("Space");
+  await until((s) => s.campaign.destination?.ready);
   await press("ArrowRight");
+  await until((s) => s.campaign.choice === 1 && s.campaign.destination?.ready);
   await press("Space");
+  await until((s) => s.scene === "departure");
   expect((await state()).departure.racing).toBe(false);
   await page.keyboard.down("Space");
   await until((s) => s.scene === "flight" && s.flight.speed > 4);

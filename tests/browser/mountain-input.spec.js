@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
 import { finishSecurityEntry } from "./helpers/security.js";
 import { bankTrips } from "./helpers/bank-trips.js";
+import { openRecordedApplication } from "./helpers/clock.js";
 
 test("mountain polls system keys after opening pages, pauses clocks correctly and clears held keys on life reset", async ({
   page,
@@ -11,14 +12,24 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   test.setTimeout(60000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.addInitScript(() => {
-    window.requestAnimationFrame = (callback) =>
-      setTimeout(() => callback(performance.now()), 8);
-    window.cancelAnimationFrame = clearTimeout;
-  });
-  await page.goto("/");
+  if (process.env.DUCKTALES_MOUNTAIN_TIMING_BROWSER_NEGATIVE) {
+    expect(process.env.DUCKTALES_MOUNTAIN_TIMING_BROWSER_NEGATIVE).toBe(
+      "one-retrace",
+    );
+    await page.route("**/src/game/mountain.js*", async (route) => {
+      const response = await route.fetch(),
+        body = await response.text();
+      const source = 'yield { clock: "retrace", remaining: retraces };';
+      expect(body, "SETUP: missing mountain timing negative hook").toContain(
+        source,
+      );
+      await route.fulfill({
+        response,
+        body: body.replace(source, 'yield { clock: "retrace", remaining: 1 };'),
+      });
+    });
+  }
+  await openRecordedApplication(page, 1);
   const c = page.locator("#game"),
     state = () => c.getAttribute("data-state").then(JSON.parse);
   async function until(predicate, max = 5000) {
@@ -56,7 +67,9 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
     position: { x: (r.width * 36) / 320, y: (r.height * 61) / 200 },
   });
   await press("Space");
+  await until((s) => s.campaign.destination?.ready);
   await press("ArrowRight");
+  await until((s) => s.campaign.choice === 1 && s.campaign.destination?.ready);
   await press("Space");
   await until((s) => s.scene === "departure");
   expect((await state()).departure.racing).toBe(false);
@@ -113,6 +126,26 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   await until((s) => s.systemOverlay === null);
   expect((await state()).mountain.lives).toBe(3);
   await page.keyboard.down("ArrowRight");
+  const start = await state();
+  await page.clock.runFor(600);
+  const paced = await state(),
+    frames = paced.mountain.frames - start.mountain.frames;
+  // Independent fixed-duration DOM input, not an expected-state-timed release.
+  expect(frames, "Mountain timed DOM movement").toBeGreaterThanOrEqual(13);
+  expect(frames, "Mountain timed DOM movement").toBeLessThanOrEqual(15);
+  expect(
+    paced.tick - start.tick,
+    "Driver clock remains independent",
+  ).toBeGreaterThanOrEqual(43);
+  expect(
+    paced.tick - start.tick,
+    "Driver clock remains independent",
+  ).toBeLessThanOrEqual(45);
+  expect(paced.mountain.spriteWork.calls).toBe(7);
+  expect(paced.mountain.spriteWork.retraces).toBe(3);
+  await c.screenshot({
+    path: ".local/browser-results/mountain-sprite-pacing.png",
+  });
   await until((s) => s.mountain.lives === 2);
   const reset = await until((s) => s.mountain.phase === "playing");
   expect(reset.mountain.action).toBe(0);

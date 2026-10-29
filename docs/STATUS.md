@@ -6,6 +6,9 @@ finishability and full original-game parity remain unproven.
 
 ## Integration
 
+Main3973cc7 on5187 remains the verified integrated version. New office work below
+is isolated on `codex/office-investment-departure` until its full branch gate passes.
+
 The security-aware runtime and all migrated campaign routes passed the complete
 `npm run verify` on source e27022c:117 unit,87 development browser and2 production
 browser cases,zero skips,including required original comparisons and browser
@@ -30,10 +33,13 @@ its117/74/2 gate remain separate historical evidence in
   alignment; five focused browser cases and117 unit cases pass. Required Left
   omission and missing/corrupt fixture controls reject failures. Full branch
   integration remains pending. [Investment departure](office-investments.md).
-- Office clear/reveal and the label/one-count input loop are now connected on
-  that isolated branch. Five existing office/trading browser cases pass with
-  released-key flags and scan-code ordering. Native entry/selection capture and
-  dedicated acceptance remain pending; no whole original office parity is claimed.
+- Office clear/reveal and the label/one-count input loop are connected on that
+  isolated branch.29 exact native pictures and63 input values match a component
+  driven by19 authored keyboard events, including release/chord priority. Seven
+  focused browser cases pass, including all29 pictures/63 inputs through security
+  to the map and reveal-key deferral/pause flushing. Fixture and missing-chord-key
+  controls pass. Full campaign migration/gate remain pending; this is not whole
+  original office parity. [Office menu](office-menu.md).
 
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
@@ -108,11 +114,10 @@ pictures and traces stay local. Production visitors select their own originals.
 
 - Security-aware Easy/Hard campaigns are the default current checks and passed
   the complete integration gate; historical recordings remain separate.
-- Next: original office entry/selection. Static review confirms its striped
-  clear/reveal callbacks and per-poll selection labels; integration and original
-  comparisons remain to be implemented. Investment departure has focused
-  acceptance on the isolated development branch; the full branch gate remains
-  pending before main integration. Several map/notice presentations,
+- Next: migrate campaign/headless input adapters and recordings through the
+  original office timing and key-slot boundary, then pass the full branch gate.
+  Entry/selection and investment departure have focused acceptance on the isolated
+  branch. Several map/notice presentations,
   broader destination/difficulty coverage and original whole-scene comparisons
   are also needed.
 - CPU/file/IRQ/input timing, hardware audio waveform/gain/filter parity, nonzero bank

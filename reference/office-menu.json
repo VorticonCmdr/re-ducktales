@@ -1,0 +1,614 @@
+{
+  "version": 1,
+  "status": "Original component comparison; dedicated browser acceptance and full branch gate pending.",
+  "buildManifest": "reference/build.json",
+  "buildSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "captureCommit": "2eb25b1",
+  "captureRecipe": "scripts/capture-office-menu.py",
+  "captureRecipeSha256": "572199ec17f9732286c480b4d436ed44be3f70e83a5dab2342983332060f0814",
+  "inputProfile": "reference/office-menu-inputs.json",
+  "inputProfileSha256": "ebef5e5c679a57f1d3554e016b2c6492f7420e2abb305ad96887a5b888348b95",
+  "artifactRoot": ".local/office-menu-native-03",
+  "expectedArtifactCount": 117,
+  "expectedInputCount": 63,
+  "expectedInputEventCount": 19,
+  "expectedPixelCount": 29,
+  "expectedEntryRetraces": 50,
+  "scope": "Conditional first office entry after the difficulty exit, whose incoming page is independently authored black. Source copy-group pixels compared at post-wait native stops; model copy-group pixels sampled before the corresponding wait. Clock counts checked separately from CPU/IRQ time.",
+  "artifacts": {
+    "capture.json": {
+      "path": ".local/office-menu-native-03/capture.json",
+      "bytes": 511,
+      "sha256": "bb4d518a1b34f44bb18b256d25d6158abd676ce7c662faa4e5a966d11226515b"
+    },
+    "cleanup.json": {
+      "path": ".local/office-menu-native-03/cleanup.json",
+      "bytes": 177,
+      "sha256": "602d10aae8555ee3e5b7f4b729288ce9907b4d5b0c3dd3a024747a4d5fbfd767"
+    },
+    "configuration.json": {
+      "path": ".local/office-menu-native-03/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    "consumption.json": {
+      "path": ".local/office-menu-native-03/consumption.json",
+      "bytes": 5530,
+      "sha256": "343729b30c60cce0f21faa36b7f53fa7356abb1cf631c2d883481f78875ad48b"
+    },
+    "down-held-1.json": {
+      "path": ".local/office-menu-native-03/down-held-1.json",
+      "bytes": 88773,
+      "sha256": "e85db894ceadbdd2889f62f321b7681f15d402668cfd7e350b62eda87695b9d2"
+    },
+    "down-held.json": {
+      "path": ".local/office-menu-native-03/down-held.json",
+      "bytes": 88773,
+      "sha256": "e35c40c38cb62daabadc967293119d981307db82c76a2a16fabd304048559aab"
+    },
+    "down-held.png": {
+      "path": ".local/office-menu-native-03/down-held.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "down-make.json": {
+      "path": ".local/office-menu-native-03/down-make.json",
+      "bytes": 88773,
+      "sha256": "b362aed730ec769140c872aa6d1850e6223256c7ef830fcd084330262a1a3391"
+    },
+    "down-neutral-0.json": {
+      "path": ".local/office-menu-native-03/down-neutral-0.json",
+      "bytes": 88773,
+      "sha256": "8c4ef0526e6d70864df5880e628ecc5be0810143f13e23fac1cc30f73688573c"
+    },
+    "down-neutral-1.json": {
+      "path": ".local/office-menu-native-03/down-neutral-1.json",
+      "bytes": 88773,
+      "sha256": "b12a9c597a03042f9b32073656fb754e949da354061654a117bed2826d0c3d75"
+    },
+    "down-neutral.json": {
+      "path": ".local/office-menu-native-03/down-neutral.json",
+      "bytes": 88773,
+      "sha256": "317e521ed1deb1e8a674c755f26f3386f882fd89dd28381a65a2e9ab92434163"
+    },
+    "down-neutral.png": {
+      "path": ".local/office-menu-native-03/down-neutral.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "down-released.json": {
+      "path": ".local/office-menu-native-03/down-released.json",
+      "bytes": 88773,
+      "sha256": "3b6dcf1096157194e34fbdb89b7eb0eae224dd936140cc1c0fa5f452a9839164"
+    },
+    "driver-mapping.json": {
+      "path": ".local/office-menu-native-03/driver-mapping.json",
+      "bytes": 540,
+      "sha256": "fba67ee93b1753d3cba3fe6b0697a415514abaadfbbc4e62f13ed38933933f11"
+    },
+    "engine.json": {
+      "path": ".local/office-menu-native-03/engine.json",
+      "bytes": 3988,
+      "sha256": "fdacf48b9f5b68ecbc2626a8c4eaa92453e97fe8f16de693aa925b0fb64d26bb"
+    },
+    "entry-before.json": {
+      "path": ".local/office-menu-native-03/entry-before.json",
+      "bytes": 88782,
+      "sha256": "cf7d475904919a99b77c907a2f2cb0c7b23037491f3a1feeffd4b22264259854"
+    },
+    "entry-before.png": {
+      "path": ".local/office-menu-native-03/entry-before.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "initial-input.json": {
+      "path": ".local/office-menu-native-03/initial-input.json",
+      "bytes": 88772,
+      "sha256": "60c215bfd3688fd92ca41d0bdc6a61daa10430a647d417ec21093cd8a2a75e03"
+    },
+    "initial-input.png": {
+      "path": ".local/office-menu-native-03/initial-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "input-cleanup.json": {
+      "path": ".local/office-menu-native-03/input-cleanup.json",
+      "bytes": 622,
+      "sha256": "d3b3398a84bde9ea197ec71f16a22a00edfd789d0733b8cf708cb8dc3c5aed99"
+    },
+    "inputs.json": {
+      "path": ".local/office-menu-native-03/inputs.json",
+      "bytes": 6987,
+      "sha256": "f08b0f0bee7aaa79439497f6aadf23e16e500c93bec018c974ecfc658a1011bb"
+    },
+    "left-held-1.json": {
+      "path": ".local/office-menu-native-03/left-held-1.json",
+      "bytes": 88773,
+      "sha256": "c66ae9348af4092b3e0fe54d5c960f72ea0113463061dbb0d4b4aaa2f63338a2"
+    },
+    "left-held.json": {
+      "path": ".local/office-menu-native-03/left-held.json",
+      "bytes": 88773,
+      "sha256": "780fe4f196617e7d4c9bbb2ba8cf819ff72ea2f690d14b5094975bdb0038b401"
+    },
+    "left-held.png": {
+      "path": ".local/office-menu-native-03/left-held.png",
+      "bytes": 17043,
+      "sha256": "b9fb37b3c4d0cde58ea9498daf1968a5ca11a40f55ba8a7611b363811b8ce7b0"
+    },
+    "left-make.json": {
+      "path": ".local/office-menu-native-03/left-make.json",
+      "bytes": 88773,
+      "sha256": "f2817da5843bbd6273bca9006295935c549b440419a2cbc22fbe24eb5a920dbb"
+    },
+    "left-neutral-0.json": {
+      "path": ".local/office-menu-native-03/left-neutral-0.json",
+      "bytes": 88773,
+      "sha256": "c94359d13d41f0471f450ee5f1ef9306a9cfd52b084550966592b68abd26e2f5"
+    },
+    "left-neutral-1.json": {
+      "path": ".local/office-menu-native-03/left-neutral-1.json",
+      "bytes": 88773,
+      "sha256": "00d2e92795307da992068e2b8282f12beabd16d195436ead56aafe2df4c48759"
+    },
+    "left-neutral.json": {
+      "path": ".local/office-menu-native-03/left-neutral.json",
+      "bytes": 88773,
+      "sha256": "f18595bce80aeec322d681c81383cc764fbe103d07d201f53e94e6d37e55b2a0"
+    },
+    "left-neutral.png": {
+      "path": ".local/office-menu-native-03/left-neutral.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "left-released.json": {
+      "path": ".local/office-menu-native-03/left-released.json",
+      "bytes": 88773,
+      "sha256": "ab84b04ce50a80b4762e080c555c6d5fb4457d07942c5eecfa4f6216ac300968"
+    },
+    "left-right-held-1.json": {
+      "path": ".local/office-menu-native-03/left-right-held-1.json",
+      "bytes": 88773,
+      "sha256": "bb371cf97dc09020e66a046fa22af355698a8553d781bf6b733a6790ff81afe1"
+    },
+    "left-right-held.json": {
+      "path": ".local/office-menu-native-03/left-right-held.json",
+      "bytes": 88773,
+      "sha256": "16605da58d06be362d90be9b0fb2dc72c3458179aeb1a5b2817854eb857187bb"
+    },
+    "left-right-held.png": {
+      "path": ".local/office-menu-native-03/left-right-held.png",
+      "bytes": 16945,
+      "sha256": "dadb71bb7820c6372b4879431d5056f69716421811b3fd6b5fe7976fea507c75"
+    },
+    "left-right-make.json": {
+      "path": ".local/office-menu-native-03/left-right-make.json",
+      "bytes": 88773,
+      "sha256": "2e0fd2a30ef9f461a9bcf9b921bbe0ceb97def34a9582188805757e664ed9f30"
+    },
+    "left-right-neutral-0.json": {
+      "path": ".local/office-menu-native-03/left-right-neutral-0.json",
+      "bytes": 88773,
+      "sha256": "97f4f64fd675f715df3cb41b5f8f567df6d05fe8a78c88137e0a9f31b3cf15e8"
+    },
+    "left-right-neutral-1.json": {
+      "path": ".local/office-menu-native-03/left-right-neutral-1.json",
+      "bytes": 88773,
+      "sha256": "4037479d19bb182754e230b40b2b5a0926868b03d7bfd816dd2535201e28d018"
+    },
+    "left-right-neutral.json": {
+      "path": ".local/office-menu-native-03/left-right-neutral.json",
+      "bytes": 88773,
+      "sha256": "1827a733f0f098eee322f91a39b4f789be6e8440a8c22bc19fc32ae51cc04885"
+    },
+    "left-right-neutral.png": {
+      "path": ".local/office-menu-native-03/left-right-neutral.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "left-right-released.json": {
+      "path": ".local/office-menu-native-03/left-right-released.json",
+      "bytes": 88773,
+      "sha256": "2a9336123ac7d15765688d18e00b12871f895586a0cd5f95151555bbe3910a07"
+    },
+    "live-overlay.json": {
+      "path": ".local/office-menu-native-03/live-overlay.json",
+      "bytes": 12206,
+      "sha256": "9fa25dc8a7d38babbc3160d6704d727f9527c1c2a68ec5aab498f676e88dcdaa"
+    },
+    "map-fire.json": {
+      "path": ".local/office-menu-native-03/map-fire.json",
+      "bytes": 88777,
+      "sha256": "dbf2ca557e4a699cc4e9cf24fbc69d5bf66d17a6fd474db01adb51c1202f8493"
+    },
+    "neutral-after-fire-0.json": {
+      "path": ".local/office-menu-native-03/neutral-after-fire-0.json",
+      "bytes": 88773,
+      "sha256": "a9beef15b5c5e1d001ad985166525ce1eb703e62811cb4ba188a526f58f9575b"
+    },
+    "neutral-after-fire.json": {
+      "path": ".local/office-menu-native-03/neutral-after-fire.json",
+      "bytes": 88773,
+      "sha256": "995dca51768e61af2a56f49b79f905fa373b261e7fe623156f478c61c9b98f58"
+    },
+    "neutral-after-fire.png": {
+      "path": ".local/office-menu-native-03/neutral-after-fire.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "neutral-fire-0.json": {
+      "path": ".local/office-menu-native-03/neutral-fire-0.json",
+      "bytes": 88777,
+      "sha256": "062c3cd4dd0ec1554c96db9e88dac29f1cfaece626cf041d889313ef9cbf7d45"
+    },
+    "neutral-fire-release.json": {
+      "path": ".local/office-menu-native-03/neutral-fire-release.json",
+      "bytes": 88777,
+      "sha256": "727966f71e67a463338f7c86fa80dedd02e13587b119c5b821242e1aeee1a66b"
+    },
+    "neutral-fire.json": {
+      "path": ".local/office-menu-native-03/neutral-fire.json",
+      "bytes": 88777,
+      "sha256": "a71ea3121e8b477d06f8a6775c9218d2ee0df665156153c9bca0df10355bb97f"
+    },
+    "neutral-fire.png": {
+      "path": ".local/office-menu-native-03/neutral-fire.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "resident-mapping.json": {
+      "path": ".local/office-menu-native-03/resident-mapping.json",
+      "bytes": 165,
+      "sha256": "5427a9be36822c67c2eccdfe017adf32ff666f1e56ec1af0985ad3ee6cffa3e0"
+    },
+    "return-map.json": {
+      "path": ".local/office-menu-native-03/return-map.json",
+      "bytes": 88777,
+      "sha256": "1189082089e43725874dbef86a8850f2d1ff8b8ea97405b5ca8c33770e31244b"
+    },
+    "reveal-0.json": {
+      "path": ".local/office-menu-native-03/reveal-0.json",
+      "bytes": 88781,
+      "sha256": "4a6fd8dec02668ebcbf3b33fb4657e9d9f3c84d0526bed15ee9a54a35b5638ef"
+    },
+    "reveal-0.png": {
+      "path": ".local/office-menu-native-03/reveal-0.png",
+      "bytes": 4393,
+      "sha256": "1715811a27758be393171d910fe34804eb7f30df09b7430c20fb8ba51659456f"
+    },
+    "reveal-1.json": {
+      "path": ".local/office-menu-native-03/reveal-1.json",
+      "bytes": 88782,
+      "sha256": "82aa56ccd75cb3ca9e1569e375e918ca2d35cf6956aff396aa8a454294c34436"
+    },
+    "reveal-1.png": {
+      "path": ".local/office-menu-native-03/reveal-1.png",
+      "bytes": 7873,
+      "sha256": "78ebb8806ccc3d3f050e98d57fa8d3f83a07aa45ed7aefc55c909003f3d07c4b"
+    },
+    "reveal-2.json": {
+      "path": ".local/office-menu-native-03/reveal-2.json",
+      "bytes": 88782,
+      "sha256": "5b25e1a5b9b68b45cd17016ddbd4fdfd8f78b19663e73eaefdf5abbc6d662aa6"
+    },
+    "reveal-2.png": {
+      "path": ".local/office-menu-native-03/reveal-2.png",
+      "bytes": 11261,
+      "sha256": "8ce3d8415edbb780d65821885cc1a14df64385b1a07af8318587fc34e1b0e42f"
+    },
+    "reveal-3.json": {
+      "path": ".local/office-menu-native-03/reveal-3.json",
+      "bytes": 88782,
+      "sha256": "3ea6a49a2cf1f4fcd90042353cd7317fda64c53e14a7a6086a1072a21bd7c756"
+    },
+    "reveal-3.png": {
+      "path": ".local/office-menu-native-03/reveal-3.png",
+      "bytes": 14164,
+      "sha256": "d3523d6b4deca06eff3ef31e1c62540af1beef41c8cec291358038dc2a82dfca"
+    },
+    "reveal-4.json": {
+      "path": ".local/office-menu-native-03/reveal-4.json",
+      "bytes": 88782,
+      "sha256": "a666c3207e0a903ca93752b6634cab2507a96b9add0393fc421e797545c967d4"
+    },
+    "reveal-4.png": {
+      "path": ".local/office-menu-native-03/reveal-4.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "right-held-1.json": {
+      "path": ".local/office-menu-native-03/right-held-1.json",
+      "bytes": 88773,
+      "sha256": "e7bad33533ab461d5f834fe4699c4af82700439695a448672462fb6c602faf90"
+    },
+    "right-held.json": {
+      "path": ".local/office-menu-native-03/right-held.json",
+      "bytes": 88773,
+      "sha256": "ef609a87e143bf1c2d0caa7c1094d83aa10ae86d250bc815ad04e7aee8560aac"
+    },
+    "right-held.png": {
+      "path": ".local/office-menu-native-03/right-held.png",
+      "bytes": 16945,
+      "sha256": "dadb71bb7820c6372b4879431d5056f69716421811b3fd6b5fe7976fea507c75"
+    },
+    "right-make.json": {
+      "path": ".local/office-menu-native-03/right-make.json",
+      "bytes": 88772,
+      "sha256": "c9fcae7cfdd66ce758eee30381f74148df96bdb922c0a18bf405780e836a6773"
+    },
+    "right-neutral-0.json": {
+      "path": ".local/office-menu-native-03/right-neutral-0.json",
+      "bytes": 88773,
+      "sha256": "48aa8087a2546b09ef490f0db172ef8095f39e49fecc2c0de3e86a3db32d84f7"
+    },
+    "right-neutral-1.json": {
+      "path": ".local/office-menu-native-03/right-neutral-1.json",
+      "bytes": 88773,
+      "sha256": "b1267c762cc4c4ade68e3fac943ac4145d5d47e0bcd3197d047110ebda2640ab"
+    },
+    "right-neutral.json": {
+      "path": ".local/office-menu-native-03/right-neutral.json",
+      "bytes": 88773,
+      "sha256": "95fcaa32023b4c2e4cd39a35f63ada77cf7f6f642d865aff332b4987e4cd6e25"
+    },
+    "right-neutral.png": {
+      "path": ".local/office-menu-native-03/right-neutral.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "right-released.json": {
+      "path": ".local/office-menu-native-03/right-released.json",
+      "bytes": 88773,
+      "sha256": "daec40ca0fdbff80698d6d0b16ae4d0f25a5d9146b46146b2b6b00bae60d4a65"
+    },
+    "startup-cancel-diagnostic.json": {
+      "path": ".local/office-menu-native-03/startup-cancel-diagnostic.json",
+      "bytes": 459,
+      "sha256": "e9bfe18a373c45baf9d140019e2b1b8e5ca09c33bde92da098328b5f784a834f"
+    },
+    "startup-inputs.json": {
+      "path": ".local/office-menu-native-03/startup-inputs.json",
+      "bytes": 2438,
+      "sha256": "fe2a6ab74afef45c9ee80588ee784d9175e72205b22759e90e742355d79c77fa"
+    },
+    "up-down-held-1.json": {
+      "path": ".local/office-menu-native-03/up-down-held-1.json",
+      "bytes": 88773,
+      "sha256": "2e936344c111db62de7f24ee84d3744c3383f950e5176f94dfb00867a346801d"
+    },
+    "up-down-held.json": {
+      "path": ".local/office-menu-native-03/up-down-held.json",
+      "bytes": 88773,
+      "sha256": "5daf58d1dccebef6c501636ffad4d55fd242797000a9080af0ba21b895286fd5"
+    },
+    "up-down-held.png": {
+      "path": ".local/office-menu-native-03/up-down-held.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "up-down-make.json": {
+      "path": ".local/office-menu-native-03/up-down-make.json",
+      "bytes": 88773,
+      "sha256": "ec5bbeddb03960eff2a1387d7072d70472a3b84f9630864ebfe3a36c025306ab"
+    },
+    "up-down-neutral-0.json": {
+      "path": ".local/office-menu-native-03/up-down-neutral-0.json",
+      "bytes": 88773,
+      "sha256": "c2e2557a049a8d6551838cf077655ea3a726b13db36bfc7ceb0f96ee5a8072ce"
+    },
+    "up-down-neutral-1.json": {
+      "path": ".local/office-menu-native-03/up-down-neutral-1.json",
+      "bytes": 88773,
+      "sha256": "ec16cea9a507efd5e24341c6b612ea42eac5dde2df831c735710af3fa2864c68"
+    },
+    "up-down-neutral.json": {
+      "path": ".local/office-menu-native-03/up-down-neutral.json",
+      "bytes": 88773,
+      "sha256": "380e8fb63bc06b114bed35d08a33656215731314233efc0f65e2c24c96ff6ac9"
+    },
+    "up-down-neutral.png": {
+      "path": ".local/office-menu-native-03/up-down-neutral.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "up-down-released.json": {
+      "path": ".local/office-menu-native-03/up-down-released.json",
+      "bytes": 88773,
+      "sha256": "afe71f057af7e945df64674e4a65511171e458b3fa5deaae0a377368781782fd"
+    },
+    "up-held-1.json": {
+      "path": ".local/office-menu-native-03/up-held-1.json",
+      "bytes": 88772,
+      "sha256": "77d3409306ab3eaa56db780c2f4b855e5eba94bb29777c3e712921dabd6001d3"
+    },
+    "up-held.json": {
+      "path": ".local/office-menu-native-03/up-held.json",
+      "bytes": 88772,
+      "sha256": "e3cf174633e876b349adc77f368445aab7313723bbbd9ba2db822aad3769a309"
+    },
+    "up-held.png": {
+      "path": ".local/office-menu-native-03/up-held.png",
+      "bytes": 16736,
+      "sha256": "a597e8c7967a9a0c8888048e7d563205d5bb253a9e5b87d6be3005622d4a84b6"
+    },
+    "up-left-held-1.json": {
+      "path": ".local/office-menu-native-03/up-left-held-1.json",
+      "bytes": 88773,
+      "sha256": "96303a9b17392ecd1e116a723fccbb492025760903b74016fcf1eb4c13e1223c"
+    },
+    "up-left-held.json": {
+      "path": ".local/office-menu-native-03/up-left-held.json",
+      "bytes": 88773,
+      "sha256": "63f44e08534d9f3a91f7d9892991ee7508ec96b3316e3cabb5030f539bc260c3"
+    },
+    "up-left-held.png": {
+      "path": ".local/office-menu-native-03/up-left-held.png",
+      "bytes": 17043,
+      "sha256": "b9fb37b3c4d0cde58ea9498daf1968a5ca11a40f55ba8a7611b363811b8ce7b0"
+    },
+    "up-left-make.json": {
+      "path": ".local/office-menu-native-03/up-left-make.json",
+      "bytes": 88773,
+      "sha256": "272d132b16354c4ee88d37e360e2ccb87bea727192f2aa76e722a8d87ef04f37"
+    },
+    "up-left-neutral-0.json": {
+      "path": ".local/office-menu-native-03/up-left-neutral-0.json",
+      "bytes": 88773,
+      "sha256": "db444d6e4132faf546e025b33e3bae7a7b0392f9c91ee650ba563a3f3c247b47"
+    },
+    "up-left-neutral-1.json": {
+      "path": ".local/office-menu-native-03/up-left-neutral-1.json",
+      "bytes": 88773,
+      "sha256": "2bf9413a63c32d9419bcb38c486d65e89408d1b1db78fbb68d74bd63fdba8597"
+    },
+    "up-left-neutral.json": {
+      "path": ".local/office-menu-native-03/up-left-neutral.json",
+      "bytes": 88773,
+      "sha256": "b551a1c6fa0dd06f0b19909bba1b2ffb22744637143c7b0c3334914eafb59dfb"
+    },
+    "up-left-neutral.png": {
+      "path": ".local/office-menu-native-03/up-left-neutral.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "up-left-released.json": {
+      "path": ".local/office-menu-native-03/up-left-released.json",
+      "bytes": 88773,
+      "sha256": "2cc6ca216d3e97798f8d49795c7245f926010bc6eb0331c807c94a8c7fe3cfba"
+    },
+    "up-make.json": {
+      "path": ".local/office-menu-native-03/up-make.json",
+      "bytes": 88772,
+      "sha256": "8511a88518849275d5c847d13a9769712ae30516ef29830cd105e2baf15ef69b"
+    },
+    "up-neutral-0.json": {
+      "path": ".local/office-menu-native-03/up-neutral-0.json",
+      "bytes": 88772,
+      "sha256": "4c537fedf4677154fc25a348386cbc7fb774a8976d5a9850835a6021309a410c"
+    },
+    "up-neutral-1.json": {
+      "path": ".local/office-menu-native-03/up-neutral-1.json",
+      "bytes": 88772,
+      "sha256": "2c7c9eb6d26d80c750cbd9bf4cb56b3f1e0af5713b78bf900ee92f8d46563f09"
+    },
+    "up-neutral.json": {
+      "path": ".local/office-menu-native-03/up-neutral.json",
+      "bytes": 88772,
+      "sha256": "af4aad0946dd4dbc0aa0b5136732d363d21fae82872774515e1feeaf900bb82f"
+    },
+    "up-neutral.png": {
+      "path": ".local/office-menu-native-03/up-neutral.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "up-released.json": {
+      "path": ".local/office-menu-native-03/up-released.json",
+      "bytes": 88772,
+      "sha256": "0d60dea3edd98b874b1ad31fd49a9877819bb56946b35d3ca61732e20bf53c54"
+    },
+    "up-right-held-1.json": {
+      "path": ".local/office-menu-native-03/up-right-held-1.json",
+      "bytes": 88773,
+      "sha256": "1a07baf254335bcc57f939c8a1d8d48ad0a8d0de447f0aadef34212d3b8717f4"
+    },
+    "up-right-held.json": {
+      "path": ".local/office-menu-native-03/up-right-held.json",
+      "bytes": 88773,
+      "sha256": "913cc2f36350add8c08b550a814d53aeddc8ab6fcc4a5cc08794b9878d7630cb"
+    },
+    "up-right-held.png": {
+      "path": ".local/office-menu-native-03/up-right-held.png",
+      "bytes": 16945,
+      "sha256": "dadb71bb7820c6372b4879431d5056f69716421811b3fd6b5fe7976fea507c75"
+    },
+    "up-right-make.json": {
+      "path": ".local/office-menu-native-03/up-right-make.json",
+      "bytes": 88773,
+      "sha256": "2353430650e25487cb8719a8695344a19767d0d538daa0bfafdc84a574b370f6"
+    },
+    "up-right-neutral-0.json": {
+      "path": ".local/office-menu-native-03/up-right-neutral-0.json",
+      "bytes": 88773,
+      "sha256": "990547523679ad69e56d330bfbf25126bbb17636cd81df1965dd54efdef3bbb2"
+    },
+    "up-right-neutral-1.json": {
+      "path": ".local/office-menu-native-03/up-right-neutral-1.json",
+      "bytes": 88773,
+      "sha256": "6b459dee0076e31195a957720569c3b96890d920556ac441445c12b6fe653e11"
+    },
+    "up-right-neutral.json": {
+      "path": ".local/office-menu-native-03/up-right-neutral.json",
+      "bytes": 88773,
+      "sha256": "4e6de01ac7117e9540807a39095c3440d72c183f7182c6628086191907739f64"
+    },
+    "up-right-neutral.png": {
+      "path": ".local/office-menu-native-03/up-right-neutral.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "up-right-released.json": {
+      "path": ".local/office-menu-native-03/up-right-released.json",
+      "bytes": 88773,
+      "sha256": "e60b502c823d590c8b6106e44da066ff554ca89d998c7c3f8977ac1aeea0e5a1"
+    },
+    "wipe-0.json": {
+      "path": ".local/office-menu-native-03/wipe-0.json",
+      "bytes": 88773,
+      "sha256": "03ddc0e5d5ba857a6c2881eb8c1ba0ea378407f7caaca52b39ebacc51c6f00a7"
+    },
+    "wipe-0.png": {
+      "path": ".local/office-menu-native-03/wipe-0.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "wipe-1.json": {
+      "path": ".local/office-menu-native-03/wipe-1.json",
+      "bytes": 88773,
+      "sha256": "cda3905153d1f4d7ab0ab4cc155c76bcac3ea46044c0a133b4c0f898a9ac04a7"
+    },
+    "wipe-1.png": {
+      "path": ".local/office-menu-native-03/wipe-1.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "wipe-2.json": {
+      "path": ".local/office-menu-native-03/wipe-2.json",
+      "bytes": 88773,
+      "sha256": "6c0adee234893c8284d6b83dff92f701107eaf2a4b45b5b97ac6ae1452cebe13"
+    },
+    "wipe-2.png": {
+      "path": ".local/office-menu-native-03/wipe-2.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "wipe-3.json": {
+      "path": ".local/office-menu-native-03/wipe-3.json",
+      "bytes": 88773,
+      "sha256": "7e8b39f6df2457c351e16a78492e12c0e1e4cf308aeab5184b357664caaab7e8"
+    },
+    "wipe-3.png": {
+      "path": ".local/office-menu-native-03/wipe-3.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "wipe-4.json": {
+      "path": ".local/office-menu-native-03/wipe-4.json",
+      "bytes": 88773,
+      "sha256": "b43a335d451983fd0f5db96a332c1b94d363efafa2ec833b5f3f9208374b01a8"
+    },
+    "wipe-4.png": {
+      "path": ".local/office-menu-native-03/wipe-4.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    }
+  },
+  "currentTools": {
+    "src/game/office-menu.js": "f4dfc4f84e65fe53fbd9668d5272d41c6e469fa404ae986d3090da198cd1e649",
+    "src/game/office.js": "39319981d1a50d6973776fc9ba7afb1ceb4077e3ea16add2fcc26da931d283a6",
+    "src/game/ending-presentation.js": "7664dd081d0db9cd7b5680765896e04385ce7029a521d54fb21c01efa3b95056",
+    "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
+    "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
+    "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
+    "scripts/verify-office-menu.js": "5bf53308087e98fa09040cd2219d6be3c169de92ccc2f9b2008fa12c4b971f91"
+  }
+}

@@ -1,7 +1,10 @@
 import { expect } from "@playwright/test";
 import { openRecordedApplication } from "./clock.js";
 
-export async function openOffice(page) {
+export async function openOffice(
+  page,
+  { beforeConfirm = async () => {} } = {},
+) {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.addInitScript(() => {
@@ -44,6 +47,8 @@ export async function openOffice(page) {
   await canvas.focus();
   await page.keyboard.press("Space");
   await until((s) => s.difficultyMenu?.ready, "difficulty");
+  await beforeConfirm();
+  await canvas.focus();
   await page.keyboard.press("Enter");
   await until(
     (s) => s.scene === "office" && (!s.officeMenu || s.officeMenu.ready),

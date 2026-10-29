@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "provenance": "Fixed keyboard schedule authored in capture-office-menu.py at2eb25b1 before original capture03; no expected pixels or final state select these inputs.",
+  "inputContract": "Keyboard key slots supplied at the original office read boundary. Press stores80, release of a present slot stores40; released slots are consumed once. Startup is a separately recorded conditional recipe.",
+  "expectedPollCount": 63,
+  "initialKeys": [],
+  "events": [
+    {
+      "beforeRead": 2,
+      "keys": [
+        72
+      ],
+      "name": "up-make"
+    },
+    {
+      "beforeRead": 5,
+      "keys": [],
+      "name": "up-release"
+    },
+    {
+      "beforeRead": 9,
+      "keys": [
+        77
+      ],
+      "name": "right-make"
+    },
+    {
+      "beforeRead": 12,
+      "keys": [],
+      "name": "right-release"
+    },
+    {
+      "beforeRead": 16,
+      "keys": [
+        75
+      ],
+      "name": "left-make"
+    },
+    {
+      "beforeRead": 19,
+      "keys": [],
+      "name": "left-release"
+    },
+    {
+      "beforeRead": 23,
+      "keys": [
+        80
+      ],
+      "name": "down-make"
+    },
+    {
+      "beforeRead": 26,
+      "keys": [],
+      "name": "down-release"
+    },
+    {
+      "beforeRead": 30,
+      "keys": [
+        72,
+        77
+      ],
+      "name": "up-right-make"
+    },
+    {
+      "beforeRead": 33,
+      "keys": [],
+      "name": "up-right-release"
+    },
+    {
+      "beforeRead": 37,
+      "keys": [
+        72,
+        75
+      ],
+      "name": "up-left-make"
+    },
+    {
+      "beforeRead": 40,
+      "keys": [],
+      "name": "up-left-release"
+    },
+    {
+      "beforeRead": 44,
+      "keys": [
+        75,
+        77
+      ],
+      "name": "left-right-make"
+    },
+    {
+      "beforeRead": 47,
+      "keys": [],
+      "name": "left-right-release"
+    },
+    {
+      "beforeRead": 51,
+      "keys": [
+        72,
+        80
+      ],
+      "name": "up-down-make"
+    },
+    {
+      "beforeRead": 54,
+      "keys": [],
+      "name": "up-down-release"
+    },
+    {
+      "beforeRead": 58,
+      "keys": [
+        57
+      ],
+      "name": "neutral-fire-make"
+    },
+    {
+      "beforeRead": 60,
+      "keys": [],
+      "name": "neutral-fire-release"
+    },
+    {
+      "beforeRead": 63,
+      "keys": [
+        57,
+        77
+      ],
+      "name": "map-fire"
+    }
+  ]
+}

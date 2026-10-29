@@ -1,0 +1,136 @@
+{
+  "id": "expedition-movement-timing-investigation",
+  "completedMovementTimingAcceptance": false,
+  "expectedMountainInputs": 15,
+  "pauseCaptureCommit": "aaf33a9dade6b1f7b374ed0f343917857430b087",
+  "nativeMountainRelativeCounters": [
+    0,
+    3,
+    7,
+    10,
+    13,
+    16,
+    19,
+    22,
+    25,
+    28,
+    32,
+    35,
+    38,
+    41,
+    44
+  ],
+  "comparisonClock": {
+    "numerator": 1193182,
+    "divisors": [
+      1365,
+      12
+    ],
+    "retraceHz": 70.086,
+    "toleranceCounters": 1,
+    "alignment": "Constant origin subtraction at first independently captured input;no per-frame fitting"
+  },
+  "nativeConfiguration": {
+    "cpuCycles": 3000,
+    "effectiveCore": "normal",
+    "machine": "svga_s3",
+    "memoryMiB": 16
+  },
+  "artifacts": {
+    "pause-proof": {
+      "path": ".local/expedition-clock-pause-01/capture/pause-clock-test.json",
+      "bytes": 1113,
+      "sha256": "eaa2e7bb9c36027f5e4348f3ce2def831804c3e5f75c1759c9b4811e0886bb5e"
+    },
+    "pause-before": {
+      "path": ".local/expedition-clock-pause-01/capture/pause-clock-before.json",
+      "bytes": 88775,
+      "sha256": "e8464359a4ef7695117b17cf97fd6bf306f9957e33114902431c56eaa622139c"
+    },
+    "pause-after": {
+      "path": ".local/expedition-clock-pause-01/capture/pause-clock-after.json",
+      "bytes": 88775,
+      "sha256": "e8464359a4ef7695117b17cf97fd6bf306f9957e33114902431c56eaa622139c"
+    },
+    "pause-resumed": {
+      "path": ".local/expedition-clock-pause-01/capture/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "a0647b85f1cb237a3eeb7b6d2ebb604be12d76cf629a0df4221e3d6d3648d0ee"
+    },
+    "pause-engine": {
+      "path": ".local/expedition-clock-pause-01/capture/engine.json",
+      "bytes": 3987,
+      "sha256": "5d264f73786a17370de35d6d8603a313d098a8038264619af801c705b6f9b124"
+    },
+    "pause-configuration": {
+      "path": ".local/expedition-clock-pause-01/capture/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    "pause-capture": {
+      "path": ".local/expedition-clock-pause-01/capture/capture.json",
+      "bytes": 376,
+      "sha256": "adb5199d2ca9149920d0b9e88c3f73f15f1a43f2da38d371494b45f6077b0021"
+    },
+    "pause-overlay": {
+      "path": ".local/expedition-clock-pause-01/capture/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "f9ed7c49a89678058a638423c9e3fb9fdd92abf487b3e324771802eb42ec47ef"
+    },
+    "pause-runner": {
+      "path": ".local/expedition-clock-pause-01/runner-status.json",
+      "bytes": 524,
+      "sha256": "468777ed0deb317ace705eee95431b6ee12facdb3c85e304281d4093e9c3f0a4"
+    },
+    "pause-source": {
+      "path": ".local/expedition-clock-pause-01/source-revision.json",
+      "bytes": 62608,
+      "sha256": "5907e046de79fb58383b917b2494b8df1fe9d1752ee3acdb9ebf162da3cb0528"
+    },
+    "pause-zip": {
+      "path": ".local/expedition-clock-pause-01/sources.zip",
+      "bytes": 1548988,
+      "sha256": "5a63fde6611d6f3467a2562a8f61562afb5d3147e1da22d68f048bf483a5491e"
+    },
+    "pause-inputs": {
+      "path": ".local/expedition-clock-pause-01/capture/inputs.json",
+      "bytes": 2721,
+      "sha256": "5391faa83b5bcde7d4f0387d15f27ac21a963758168767f135c75ba8474203de"
+    },
+    "pause-startup": {
+      "path": ".local/expedition-clock-pause-01/capture/startup-inputs.json",
+      "bytes": 1223,
+      "sha256": "5bb421f3437f423804a3776c40d3d9f5cfe94c51a65cba92ffe4391998faae94"
+    },
+    "mountain-reference": {
+      "path": "reference/mountain-movement.json",
+      "bytes": 7733,
+      "sha256": "267de72829878f20d950f430282af0eb4957164940c903be95e635c8f449f2af"
+    },
+    "mountain-entry-reference": {
+      "path": "reference/mountain-entry.json",
+      "bytes": 3191,
+      "sha256": "6e78d06fa0071864f8e12a0dd5566fdda93205a25242e0b326b842b10130977f"
+    },
+    "build": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    }
+  },
+  "environmentContract": "Retained mountain segment uses captured initial memory/stack and independent consumed joystick bytes. Port clocks advance from their own fixed rates;native counters are expected observations only. Fresh office experiment measures paused-driver invariance,not movement.",
+  "injections": {
+    "retainedMountain": "Before travel only: original target33 replaced with24; initial native ENTRY memory/stack is a conditional comparison provider. No intermediate state or timer injected.",
+    "freshPause": []
+  },
+  "partialRestore": false,
+  "limitations": [
+    "No fresh unpaused mountain speed benchmark yet",
+    "No timing result for jungle,cave or safari yet",
+    "Debugger pause proof is fresh but retained mountain engine has version/configuration provenance rather than an executable-binary checksum",
+    "No runtime speed adjustment accepted;original whole-loop instruction duration remains unmodeled"
+  ],
+  "verify": "node scripts/diagnose-expedition-timing.js --evidence-only",
+  "diagnose": "node scripts/diagnose-expedition-timing.js (must fail while cadence differs)",
+  "diagnosticSha256": "fa3c31b8c5b67920027422dd7c6589417f5710f42116683af510e8c8a5480ce9"
+}

@@ -66,6 +66,18 @@ These are focused port/browser checks, not
 native whole-level parity or a completed broader integration gate.
 [Evidence and reproduction](destination-route-integration.md).
 
+## Movement speed investigation
+
+A retained original mountain segment spans 604.032ms across 15 input reads;
+the current component consumes the same inputs in 199.755ms, about 3.024× faster,
+while named movement/RNG state still matches. A fresh original pause control
+shows that debugger host pauses do not advance its driver counter. This remains
+conditional timing evidence, not a fresh unpaused mountain benchmark or a
+calibration for the other three expedition families. No speed change is accepted.
+`npm run verify:expedition-timing-evidence` validates the retained evidence;
+`npm run diagnose:expedition-timing` exits1 for the unresolved discrepancy.
+[Measurement, scope and next experiment](expedition-timing.md).
+
 ## Connected gameplay and evidence
 
 - Opening/Sound 001 → difficulty → office, money-bin dive/reward/return and

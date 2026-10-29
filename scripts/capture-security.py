@@ -27,7 +27,7 @@ parser.add_argument('--notice-video', action='store_true', help='Observe raw-fra
 parser.add_argument('--notice-keyboard', action='store_true', help='Use the fixed sixteen-read destination letter/keypad/combined-key profile')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 parser.add_argument('--pause-clock-test', action='store_true', help='Measure whether the resident driver clock advances during a one-second owned debugger pause;does not change game timing')
-parser.add_argument('--mountain-timing', action='store_true', help='Continue by the retained natural Klondike setup into an engine-counted mountain pacing experiment')
+parser.add_argument('--mountain-timing', action='store_true', help='Continue by the natural El Capitan setup into an engine-counted mountain pacing experiment')
 args = parser.parse_args()
 if args.mountain_timing and (args.map_inputs or args.navigation):
     parser.error('--mountain-timing owns its map setup and is separate from map/navigation profiles')

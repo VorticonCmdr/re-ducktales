@@ -1,7 +1,7 @@
 """One bounded, original-only mountain cadence experiment.
 
 Called only by capture-security.py's single owned emulator session. Setup follows
-reference/flight-input.json's natural Up-to-Klondike route; no guest writes or
+the original map controls to select El Capitan at36,61; no guest writes or
 restores. Breakpoint ignore_count is engine-side, but does internally stop/resume:
 this is explicitly a counted-boundary benchmark, not uninterrupted scanout.
 """
@@ -25,19 +25,31 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     remove(marker)
     # The map caller uses its +0ca paragraph alias throughout the destination.
     entry = add(0x1757 - 0xca0, map_cs)
-    # Same bounded natural setup documented for the original flight-input case.
-    sequence([{'type': 'key', 'key': 'KBD_up', 'pressed': True, 'frame': 0},
-              {'type': 'key', 'key': 'KBD_up', 'pressed': False, 'frame': 280}])
-    running = client.post('/api/v1/debug/continue')
-    assert running['resumed_from_stop_id'] == stop['stop_id']
-    replay = wait_until(lambda: client.get('/api/v1/input/replay/status'),
-                        lambda r: not r['active'])
-    assert replay['remaining'] == 0 and replay['dispatched'] == 2
+    end = add(0x140e, map_cs)
+    stop = resume(stop['stop_id'])
+    reset = False
+    reached = False
+    # Feedback is setup only. Alternate one-pixel makes with neutral polls to
+    # reset original acceleration; never write the cursor or target slot.
+    for index in range(200):
+        assert stop['breakpoint']['id'] == end
+        data = state(f'timing-map-step-{index:03d}', stop, False)
+        x, y = struct.unpack_from('<h', data, x_ptr)[0], struct.unpack_from('<h', data, y_ptr)[0]
+        if (x, y) == (36, 61):
+            reached = True
+            break
+        if reset:
+            reset = False
+        else:
+            key = ('KBD_right' if x < 36 else 'KBD_left') if x != 36 else ('KBD_down' if y < 61 else 'KBD_up')
+            keys((key, True), (key, False))
+            reset = True
+        stop = resume(stop['stop_id'])
+    assert reached, 'Unfinished natural El Capitan map selection'
+    remove(end)
     keys(('KBD_space', True))
-    next_stop = client.get('/api/v1/debug/wait', params={
-        'since_stop_id': stop['stop_id'], 'timeout_ms': 15000}, timeout=20)
-    assert next_stop['satisfied'] and next_stop['breakpoint']['id'] == entry
-    stop = next_stop
+    stop = resume(stop['stop_id'])
+    assert stop['breakpoint']['id'] == entry
     data = state('timing-destination-entry', stop)
     remove(entry)
     keys(('KBD_space', False))

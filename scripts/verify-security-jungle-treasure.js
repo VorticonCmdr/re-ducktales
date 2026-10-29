@@ -40,7 +40,7 @@ assert.equal(manifest.requiredEventCount, 70);
 assert.equal(manifest.expectedInputCount, 860);
 assert.equal(
   Object.keys(manifest.artifacts).length,
-  officeEdition ? 50 : 49,
+  officeEdition ? 51 : 49,
   "Missing required evidence",
 );
 assert.equal(
@@ -85,6 +85,22 @@ for (const [record, commit, root, count] of [
   const files = officeEdition ? s.files : s.sha256;
   assert.equal(Object.keys(files).length, count);
   for (const [p, h] of Object.entries(files)) {
+    if (
+      officeEdition &&
+      record === manifest.hardProducer &&
+      (p.startsWith("src/") ||
+        [
+          "index.html",
+          "vite.config.js",
+          "tests/browser/helpers/recorded-campaign.js",
+          "tests/browser/helpers/clock.js",
+        ].includes(p))
+    )
+      assert.equal(
+        hash(await load(p)),
+        h,
+        `Changed shared runtime since reused Hard browser receipt ${p}`,
+      );
     assert.equal(hash(await load(`${root}/${p}`)), h, p);
     assert.equal(hash(execFileSync("git", ["show", `${commit}:${p}`])), h, p);
   }
@@ -116,6 +132,21 @@ const legacyInputs = JSON.parse(legacyBytes).jungle.inputEvents.flatMap((row) =>
   Array(row.count).fill(row.byte),
 );
 assert.deepEqual(codes, [0, 0, 0, ...legacyInputs]);
+if (officeEdition) {
+  const rawEnvironment = JSON.parse(
+    await load(manifest.artifacts["capture-environment"].path),
+  );
+  assert.equal(rawEnvironment.completed, false);
+  const missingMovement = (
+    await load(manifest.artifacts["browser-negative"].path)
+  ).toString();
+  assert.match(missingMovement, /1 failed/);
+  assert.match(missingMovement, /Carried browser state3 input-120/);
+  assert.doesNotMatch(
+    missingMovement,
+    /SETUP:|ENOENT|No tests found|Test timeout|TimeoutError|browserType\.launch|Test was interrupted|ETIMEDOUT|Channel closed/,
+  );
+}
 assert.equal(checkpoints.length, 27);
 for (const point of checkpoints) {
   assert.equal(hash(canonical(point.state)), point.stateSha256);
@@ -182,6 +213,10 @@ const hardProgress = JSON.parse(
 );
 assert.equal(hardProgress.completed, true);
 assert.equal(hardProgress.consumed, 4140);
+if (officeEdition) {
+  assert.equal(hardProgress.navigation.length, 1);
+  assert.equal(hardProgress.expectedEvents, 4140);
+}
 assert.deepEqual(hardProgress.errors, []);
 assert.equal(
   JSON.parse(await load(manifest.artifacts["hard-browser-events"].path)).length,
@@ -253,5 +288,5 @@ for (const [mode, reason] of [
   assert.doesNotMatch(r.output, /SETUP:|ENOENT|Cannot find module|Timed out/);
 }
 console.log(
-  "Jungle treasure:27 exact carried Game and independent browser state/pixel checkpoints,all70 DOM events,860 jungle samples,1050 dollars/one life;5 comparison negatives. Shared adapter retains all28 Hard browser checkpoints. Port evidence,not native whole-level timing parity.",
+  `Jungle treasure:27 exact carried Game and independent browser state/pixel checkpoints,all70 DOM events,860 jungle samples,1050 dollars/one life;5 comparison negatives. ${officeEdition ? "Prior28-checkpoint Hard browser receipt checked against unchanged shared runtime." : "Shared adapter retains all28 Hard browser checkpoints."} Port evidence,not native whole-level timing parity.`,
 );

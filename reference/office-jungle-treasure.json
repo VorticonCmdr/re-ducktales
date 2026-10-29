@@ -405,6 +405,86 @@
       "path": ".local/office-jungle-treasure-01/capture/complete-map.png",
       "bytes": 27755,
       "sha256": "08bb76c1d14b9338bf91f66c2ac1afa8235ea5f5d71a742398a1d77e6789caf6"
+    },
+    "capture-environment": {
+      "path": ".local/office-jungle-treasure-01/capture/environment.json",
+      "bytes": 241,
+      "sha256": "f31511cf3b2d2fc1cff3b74898b7722926abc5fa1a9a1f0fb022eb16af75266a"
+    },
+    "browser-source": {
+      "path": ".local/office-jungle-treasure-browser-01/source-revision.json",
+      "bytes": 53901,
+      "sha256": "ecc30eae4231037002c5e1a6a4102e125ab735da764845e55bbc49aaf7738444"
+    },
+    "browser-results": {
+      "path": ".local/office-jungle-treasure-browser-01/browser-results.json",
+      "bytes": 9915,
+      "sha256": "63ef2d390a591ef8bca76265a1fdf53f9df2532451d008637774e8491278da5c"
+    },
+    "browser-run": {
+      "path": ".local/office-jungle-treasure-browser-01.log",
+      "bytes": 11929,
+      "sha256": "dd0e8bb9b6ac4b7c892c992c41c56aa5d8457f62c817754b055490f5703d29d5"
+    },
+    "browser-checkpoints": {
+      "path": ".local/office-jungle-treasure-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 95166,
+      "sha256": "c76bbcf513c9f7f2e0a6d8b156566a99e85938299442100c785019d55141294e"
+    },
+    "browser-progress": {
+      "path": ".local/office-jungle-treasure-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json",
+      "bytes": 3212,
+      "sha256": "f8c6a52867686b65820c4f200f671dd88bbb857fb960a57e3d24ad12a927ec7e"
+    },
+    "browser-events": {
+      "path": ".local/office-jungle-treasure-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "bytes": 6627,
+      "sha256": "e5d27eff4964164e6f288b4835b81f3fc6994b0a5c2ecf074f9444fd736d3aff"
+    },
+    "hard-reference": {
+      "path": ".local/office-jungle-treasure-accepted-01/hard-reference.json",
+      "bytes": 15632,
+      "sha256": "3113111c18541f00d05f93823ace2474ec1c41f322d1306ada04fde6f9c97a45"
+    },
+    "hard-source": {
+      "path": ".local/office-campaign-hard-browser-replay-01/source-revision.json",
+      "bytes": 53518,
+      "sha256": "67d87b8b716f1b8129e4764856f999e6eacebcda26794452085080f24e595d76"
+    },
+    "hard-browser-results": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser-report.json",
+      "bytes": 7677,
+      "sha256": "cc59727487bcda85fa1835a9d5dc97a64454d7a89fa4cb9aa7b9efca8ecc7120"
+    },
+    "hard-browser-run": {
+      "path": ".local/office-campaign-hard-browser-replay-01.log",
+      "bytes": 9559,
+      "sha256": "107f07c668f895887409b78d4e41ff31489acb0ffd2d88b94e6e49efdf442edc"
+    },
+    "hard-browser-checkpoints": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157873,
+      "sha256": "b6b2e6b9af48f792adc20a96ed3ac2c6d29e6b6112cd1720a45715bb393476a4"
+    },
+    "hard-browser-progress": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "50e9ee858c8381d7e99ccf80f9145d0ac3e5ae1c200057b6edcc2ad45bff3d86"
+    },
+    "hard-browser-events": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373521,
+      "sha256": "720bf26569a42cb00dd6af721b049a7377c09a5d6530ce088b9eda8d7476ff0c"
+    },
+    "browser-negative": {
+      "path": ".local/office-jungle-treasure-accepted-01/browser-negative.log",
+      "bytes": 1988,
+      "sha256": "06dbc2f4947790bb9a73b6535bdade1d59599e3beb7341357c52d62fb1f917fc"
+    },
+    "negative-verification": {
+      "path": ".local/office-jungle-treasure-accepted-01/negative-verification.log",
+      "bytes": 136,
+      "sha256": "82d4f4faab50847aa1e0eca80e7ec06f378b75019fed4e2b11734ab3c740c8fe"
     }
   },
   "captureCommit": "42a15733aea622e639be823f372d40278abc8dae",
@@ -421,21 +501,22 @@
     "seed": 55093
   },
   "buildManifest": "reference/build.json",
-  "evidenceLevel": "Strict recorded-input Game candidate; independent fresh browser acceptance pending. Not original whole-level parity.",
+  "evidenceLevel": "Recorded-input Game and independent fresh browser state/pixel route; not native whole-level parity.",
   "fullBranchGate": "pending",
   "injections": [],
   "fittedInputs": [],
   "inputRecipe": "Original BIOS0/Easy startup,security fixedRight/Fire,two real bank trips,non-racing crash/repair arrival,three neutral jungle samples then the original857-input route,award,map,idle,duplicate notice,map. Inputs and times are independently recorded; no seed/state injection. Original office wipe/reveal and key-slot boundary; player input profile is unchanged.",
-  "browserVerified": false,
+  "browserVerified": true,
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
   "verificationTools": {
     "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
-    "scripts/verify-security-jungle-treasure.js": "ed170dd61ab9b8505676af6286281897a43f3934c014ebc5f0696e9c66b88fa8",
+    "scripts/verify-security-jungle-treasure.js": "1115515e55381384820f057317a4c4d9888b32f59a492357de568d9425405e4a",
     "scripts/verify-security-jungle-treasure-browser-negative.js": "a3285ed775f9533862d23d1f8668d86bd95548c8a02a010b64f3f96ed9fa325c",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "tests/browser/helpers/easy-jungle-entry.js": "e8be075a34c11b25d27647990e9d70ab695d0b20cce8a582e17302f6877934f9",
     "tests/browser/jungle-treasure.spec.js": "e938d4e18326e233fe2f51ccbf7f824cb111c4f0ace81efbac57932aacc29f4c",
-    "tests/browser/jungle-treasure-replay.spec.js": "45a52c5971141af7b9530b0ff4a2d0edbd1812c51f2d44e7d570d1f69b073dd7"
+    "tests/browser/jungle-treasure-replay.spec.js": "45a52c5971141af7b9530b0ff4a2d0edbd1812c51f2d44e7d570d1f69b073dd7",
+    "scripts/verify-office-jungle-treasure-fixture-negatives.js": "6b903c35b4142aef7cb5778ced8640a216499f1138bfd018f91d40d8d283a490"
   },
   "environmentProviders": {
     "biosSeed": 0,
@@ -447,9 +528,15 @@
     "boundary": "actual DOM events captured before target handlers; muted device status; file access verified against the supported build"
   },
   "comparisonRules": "All27 full application snapshots and all320x200 pixel hashes compare exactly. All70 events and860 authored control samples must finish; no tail,rollback or seed adjustment. Source/capture identities are required. Pointer normalization remains the original clamped/truncated consumption boundary.",
-  "verifyCommand": "node scripts/verify-security-jungle-treasure.js",
-  "browserCommand": "npx playwright test tests/browser/jungle-treasure.spec.js tests/browser/jungle-treasure-replay.spec.js",
+  "verifyCommand": "npm run verify:office-jungle-treasure",
+  "browserCommand": "npm run test:office-jungle-treasure",
   "verificationEdition": "office",
   "captureSourceArchive": ".local/office-jungle-treasure-01/sources",
-  "planningScope": "Historical delay3 planning is retained only as provenance of authored player controls; its outcome and any conditional environment assumptions are not evidence for this build."
+  "planningScope": "Historical delay3 planning is retained only as provenance of authored player controls; its outcome and any conditional environment assumptions are not evidence for this build.",
+  "browserCommit": "d5ddee66fc92a9c30cc3414bd2f0062666e19ae1",
+  "browserProducer": ".local/office-jungle-treasure-browser-01/source-revision.json",
+  "browserSourceArchive": ".local/office-jungle-treasure-browser-01/sources",
+  "hardProducer": ".local/office-campaign-hard-browser-replay-01/source-revision.json",
+  "hardSourceArchive": ".local/office-campaign-hard-browser-replay-01/sources",
+  "hardRegressionScope": "Retains the prior independently accepted office-aware Hard browser receipt at25dab04. All src files,index.html,Vite config and recorded browser/clock adapters in that source must remain byte-identical to current files. This is reused evidence,not a fresh Hard run at the treasure browser revision."
 }

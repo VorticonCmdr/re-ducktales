@@ -1,5 +1,9 @@
 # Security-aware Easy jungle treasure
 
+The isolated office branch now uses the separate
+[office-aware treasure route](office-jungle-treasure.md). This document retains
+the security-only historical evidence.
+
 The browser completes Okeefadokie from a fresh supported build through original
 security and two real bank/office trips. It flies/crashes/repairs into the jungle,
 collects the treasure, returns to the map, remains idle without advancing rival

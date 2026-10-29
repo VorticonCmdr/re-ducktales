@@ -23,12 +23,15 @@ parser.add_argument('--map-inputs', action='store_true', help='Continue through 
 parser.add_argument('--map-clock', action='store_true', help='Capture35 caller deadline completions and their two successful clock reads after the initial map baseline')
 parser.add_argument('--map-repeat', action='store_true', help='Use the fixed long-held Right profile to investigate external keyboard repeat')
 parser.add_argument('--map-notice', action='store_true', help='Use fixed map makes,held Fire and fresh dialogue choices to capture the destination handoff')
+parser.add_argument('--notice-video', action='store_true', help='Observe completed-frame metadata,BIOS/drawing pages and both sides of destination page flips without changing video state')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 args = parser.parse_args()
 if (args.map_clock or args.map_repeat or args.map_notice) and not args.map_inputs:
     parser.error('--map-clock,--map-repeat and --map-notice require --map-inputs')
 if args.map_notice and args.map_repeat:
     parser.error('--map-notice and --map-repeat are separate fixed profiles')
+if args.notice_video and not args.map_notice:
+    parser.error('--notice-video requires --map-notice')
 out = (ROOT / args.output).resolve()
 assert out.is_relative_to((ROOT / '.local').resolve()), 'Captures must stay in ignored local storage'
 out.mkdir(parents=True, exist_ok=False)
@@ -112,15 +115,48 @@ def state(name, stop, picture=True):
     batch = client.post('/api/v1/batch', json={'ops': [{'op': 'cpu_read'}, {'op': 'mem_read', 'segment': ds, 'offset': 0, 'len': 65536}]})
     assert not batch['aborted'] and len(batch['results']) == 2
     assert all(r['status'] == 'ok' for r in batch['results'])
-    save(name, {'stop': stop, 'state': batch})
+    record = {'stop': stop, 'state': batch}
+    if args.notice_video and name.startswith('notice'):
+        # All observations occur at the same owned CPU stop. The raw image is
+        # the renderer's last completed scanout, not a fresh VRAM rendering.
+        # Read existing metadata/pages;never write VGA index or plane registers.
+        data = base64.b64decode(batch['results'][1]['data'])
+        driver_segment = struct.unpack_from('<H',data,0x1fd6)[0]
+        assert 0x1000 <= driver_segment < 0xa000
+        status_before = client.get('/api/v1/status')
+        frame_before = client.get('/api/v1/video/frame/info',params={'mode':'raw'})
+        video_memory = client.post('/api/v1/batch',json={'ops':[
+            {'op':'mem_read','segment':0x40,'offset':0x4e,'len':21},
+            {'op':'mem_read','segment':driver_segment,'offset':0,'len':2599}]})
+        assert not video_memory['aborted'] and all(r['status']=='ok' for r in video_memory['results'])
+        driver = base64.b64decode(video_memory['results'][1]['data'])
+        assert driver[0xe5:0x101] == bytes.fromhex('b4052ea02700cd102e80362700012e8b1e1e008177060002e864ffcb'), 'Unexpected live EGA flip routine'
+        surface = struct.unpack_from('<H',driver,0x1e)[0]
+        assert surface+12 <= len(data)
+        record['video'] = {'statusBefore':status_before,'frameBefore':frame_before,
+                           'memory':video_memory,'driverSegment':driver_segment,
+                           'drawingSurfacePointer':surface,
+                           'drawingSurfaceWords':list(struct.unpack_from('<6H',data,surface)),
+                           'driverNextPage':driver[0x27]}
     if picture:
         (out / (name + '.png')).write_bytes(client.get('/api/v1/video/frame', params={'format': 'png', 'mode': 'raw'}))
+    if 'video' in record:
+        record['video']['frameAfter'] = client.get('/api/v1/video/frame/info',params={'mode':'raw'})
+        record['video']['statusAfter'] = client.get('/api/v1/status')
+        assert record['video']['statusBefore']['frame'] == record['video']['statusAfter']['frame'], 'Frame advanced at a paused CPU boundary'
+        assert record['video']['frameBefore']['frame_hash'] == record['video']['frameAfter']['frame_hash'], 'Raw image changed at a paused CPU boundary'
+    save(name, record)
     return base64.b64decode(batch['results'][1]['data'])
 
 try:
     info = manager.start()
     client = clients[-1]
     save('engine', info)
+    if args.notice_video:
+        executable = Path(manager.build_argv()[0]).resolve()
+        save('video-tool-identity',{'executable':str(executable),'executableSha256':sha(executable.read_bytes()),
+                                    'bridgeClientSha256':sha((bridge/'dosbox_mcp/client.py').read_bytes()),
+                                    'scope':'Read-only raw frame/status,BIOS and EGA-driver snapshots at owned CPU stops;no VGA-register writes or fitted timing.'})
     client.post('/api/v1/drive/mount', json={'drive': 'C', 'path': str((ROOT/'game').resolve()), 'readonly': True})
     commands = 'config -get cpu cpu_cycles\nconfig -get cpu core\nconfig -get dosbox memsize\nconfig -get dosbox machine\n'
     client.post('/api/v1/input/type', json={'text': commands, 'cps': 200})
@@ -395,6 +431,7 @@ try:
                 notice_records.append(notice_snapshot(name,stop))
                 remove(marker)
             stages=[('flush',add(0x1e33-0xca0,map_cs)),('before',add(0x1e89-0xca0,map_cs)),('input',add(0x1e8e-0xca0,map_cs))]
+            flip_stages=[('flip-before',add(0x1da1-0xca0,map_cs)),('flip-after',add(0x1da5-0xca0,map_cs))] if args.notice_video else []
             for index in range(5):
                 row={'index':index}
                 for stage,bp in stages:
@@ -407,8 +444,11 @@ try:
                     if stage=='input' and event.get('afterKeys'):
                         row['afterInputRecord']=len(inputs)
                         keys(*[(e['key'],e['pressed'])for e in event['afterKeys']])
+                for stage,bp in flip_stages:
+                    stop=resume(stop['stop_id']);assert stop['breakpoint']['id']==bp
+                    row[stage]=notice_snapshot(f'notice-{index:03d}-{stage}',stop,True)
                 notice_records.append(row)
-            for _,bp in stages:remove(bp)
+            for _,bp in stages+flip_stages:remove(bp)
             ret=add(0x1ec7-0xca0,map_cs)
             stop=resume(stop['stop_id']);assert stop['breakpoint']['id']==ret
             data=state('notice-return',stop)
@@ -419,6 +459,7 @@ try:
             save('notice-consumption',notice_records)
             save('notice-capture',{'completed':True,'inputReads':5,'returnCode':stop['registers']['eax']&65535,
                                    'segment':map_cs,'injections':[],'partialRestore':False,'replay':replay,
+                                   'videoBoundaries':10 if args.notice_video else 0,
                                    'scope':'Natural held-Fire map-to-dialogue handoff and fresh choices;not full scene/browser timing parity.'})
         else:
             assert data[0x276c:0x27ec] == bytes(128)

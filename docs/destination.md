@@ -78,3 +78,26 @@ The next capture needs a video frame identity/VRAM page observation at these
 boundaries so an old scanout cannot be mistaken for current CPU drawing state.
 Complete campaign acceptance remains pending on the map-caller branch; the main
 preview still uses its previously accepted build.
+
+## Frame/page capture extension
+
+`--map-inputs --map-notice --notice-video` preserves the same authored inputs
+and adds observations at1000:1da1/1da5 (before/after each of five menu page flips).
+Each notice snapshot records `/api/v1/status.frame`, raw frame metadata/hash,
+BIOS page/start information, the live EGA driver and its drawing-surface/page
+fields. Frame count and raw hash must stay unchanged while each CPU stop is
+observed. The live flip routine must match the original28 bytes at driver:e5.
+The recipe uses only memory reads; it never changes VGA register selection or
+read planes. No memory/CPU restore, timer fitting or new input event is added.
+The emulator binary and bridge-client hashes are recorded alongside engine
+configuration. The capture remains an investigation until its actual results
+are checked and the page/frame relationship is established.
+
+Installed bridge `screen_info` uses`/api/v1/video/frame/info`; its counter is
+available separately through`/api/v1/status.frame`. The inspected emulator source
+copies completed raw frames in`RENDER_EndUpdate` and increments the frame count
+in`GFX_EndUpdate`; changing the BIOS page is separate. This source supports the
+investigation; the binary hash and fresh live observations determine its scope.
+The source's resident140e:0dcc waits against the baseline atDS2223:2221, updates
+that baseline from2227:2225, and uses unsigned high/low comparisons. A wait0
+resets that baseline; it is not an independent constant-period menu scheduler.

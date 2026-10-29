@@ -218,4 +218,11 @@ a new make,release,fresh keypad6 choice,neutral,and fresh Fire. Each menu make i
 queued after its original per-poll flush,before drawing and the input reader.
 It stops at the original dialogue return and requires all release events consumed.
 No memory/CPU writes,restores or expected-output-derived inputs are used. This
-new capture procedure is pending execution and separate acceptance.
+capture on04358b0 completed with535 archived source files. Its five menu AX
+values are0,0,3,0,192 and it returns1 after fresh flight confirmation. Held Space
+remains128 after the map Fire return;the destination entry setsmode1 and its
+entry flush clears that slot. The first two neutral menu reads do not confirm.
+This is observed native evidence pending a registered carried model and browser
+comparison. Actual read clocks1696,1699,1702,1711,1713 include additional choice
+waits and presentation work;they are not fitted input delays or a constant
+menu period. All explicit release events finish and the owned emulator exits.

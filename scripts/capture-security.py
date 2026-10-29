@@ -23,7 +23,7 @@ parser.add_argument('--map-inputs', action='store_true', help='Continue through 
 parser.add_argument('--map-clock', action='store_true', help='Capture35 caller deadline completions and their two successful clock reads after the initial map baseline')
 parser.add_argument('--map-repeat', action='store_true', help='Use the fixed long-held Right profile to investigate external keyboard repeat')
 parser.add_argument('--map-notice', action='store_true', help='Use fixed map makes,held Fire and fresh dialogue choices to capture the destination handoff')
-parser.add_argument('--notice-video', action='store_true', help='Observe completed-frame metadata,BIOS/drawing pages and both sides of destination page flips without changing video state')
+parser.add_argument('--notice-video', action='store_true', help='Observe raw-frame metadata,BIOS/drawing pages and both sides of destination page flips without changing video state')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 args = parser.parse_args()
 if (args.map_clock or args.map_repeat or args.map_notice) and not args.map_inputs:
@@ -118,7 +118,9 @@ def state(name, stop, picture=True):
     record = {'stop': stop, 'state': batch}
     if args.notice_video and name.startswith('notice'):
         # All observations occur at the same owned CPU stop. The raw image is
-        # the renderer's last completed scanout, not a fresh VRAM rendering.
+        # the renderer's last shared image, not a fresh VRAM rendering. The
+        # status frame counter also counts aborted render updates; it is not
+        # a precise completed-scanout clock.
         # Read existing metadata/pages;never write VGA index or plane registers.
         data = base64.b64decode(batch['results'][1]['data'])
         driver_segment = struct.unpack_from('<H',data,0x1fd6)[0]

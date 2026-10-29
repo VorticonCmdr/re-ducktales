@@ -208,8 +208,8 @@
     }
   },
   "verificationTools": {
-    "scripts/verify-destination-fixture-negatives.js": "b5a067099c36e29b95da7f09520857d6b8f3eb45f96cee1ff4a1cc80e3901c3f",
-    "scripts/verify-destination.js": "b4d9dc65d49a7809bce79fd078beabba996a340addf3e7239eccedb846fbeeb0",
+    "scripts/verify-destination-fixture-negatives.js": "ff820dace18c0435521e670bfa8c96873b9d73c382e58c57a5d2ab8deb882cea",
+    "scripts/verify-destination.js": "2b353bc5aad81c59f6a3c74cb331c701a095ff1bdc421f14ddb647a61bde7799",
     "src/game/destination-input.js": "5155a20fab7ac49c267875c9a82f1eff086e823f9a491138a3032e2f5a16fee6",
     "src/game/destination-presentation.js": "af56b5208cee92fb6d6eab4cbe30c0d1eb869c0796f0512f41fe580e06fbb8d7",
     "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",

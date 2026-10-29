@@ -1,0 +1,1152 @@
+{
+  "version": 1,
+  "completed": true,
+  "captureCommit": "66a98f098329615449972a57c2a310e4c4ae071d",
+  "sourceFileCount": 549,
+  "expectedReads": 5,
+  "expectedPictures": 2,
+  "expectedArtifacts": 211,
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "profileSha256": "dcb9c236aa3ce256bf10d226cb4986d119794ad4d4213b36850a803f8a4941ba",
+  "captureRecipe": "scripts/capture-security.py --map-inputs --map-notice --notice-video --port 8387 --output .local/map-notice-video-capture-01/capture",
+  "startingState": "Fresh original launch and natural control-center/security entry,14 paired keypad3 map makes then held Space;mode1 destination entry flush,independent noticeEvents make/release profile. No memory/CPU writes or restores.",
+  "inputProfile": "reference/map-notice-inputs.json",
+  "injections": [],
+  "partialRestore": false,
+  "fittedInputs": [],
+  "presentationArguments": {
+    "locationAsset": 33,
+    "treasureAsset": 14,
+    "bank": false,
+    "collected": false,
+    "days": 2,
+    "day": 1,
+    "money": 0,
+    "atomicAvailable": false
+  },
+  "pictureReadIndices": [
+    0,
+    4
+  ],
+  "comparisonRules": [
+    "All5 original AX values,128 ordinary-key flags at each flush/reader boundary,and carried selection/confirmation return compare exactly",
+    "Presentation arguments are captured internal caller context before destination drawing;resource assignment,RNG and travelDays production are conditional preconditions,not independently replayed",
+    "Pictures at reads0 and4 compare all64000 RGBA pixels exactly with choices carried from independent input events",
+    "No original clock values are injected into the model or browser;no menu timing parity is claimed",
+    "All29 CPU stops require stable raw hash and update count while observed;five actual flips toggle BIOS page and the opposite drawing surface",
+    "Original IT.DRV2599 bytes match outside26 runtime data bytes and8 checked self-modified immediate bytes;patch operands compare exact source/target rectangle strides",
+    "Choice1 is carried from independent read2;raw hash remains old before/after that flip and at the next flush,then becomes new before the next reader;no fixed timing alignment is inferred",
+    "Observed seven-count selection and confirmation segments compare only in this non-wrapping captured interval;they are not generated browser clock inputs"
+  ],
+  "limitations": [
+    "status.frame counts render updates,including aborted updates;it is not an exact completed-scanout identity or clock",
+    "The raw cache can lag BIOS page/CPU choice;no one-frame delay or fitted capture alignment is used",
+    "Original draw/poll/entry/confirmation timing in Game/browser remains unfinished",
+    "Caller resource/number context is captured internal state;whole-campaign resource assignment,RNG and travel arithmetic are not independently replayed"
+  ],
+  "verificationCommand": "npm run verify:destination-video",
+  "artifacts": {
+    "source": {
+      "path": ".local/map-notice-video-capture-01/source-revision.json",
+      "bytes": 58949,
+      "sha256": "7adcdd91fa4d1c360fda0a52c4e3e80e7acc9961304a5a715d0743b074655127"
+    },
+    "zip": {
+      "path": ".local/map-notice-video-capture-01/sources.zip",
+      "bytes": 1434367,
+      "sha256": "f221779470c0e45047d1e4ea60031fe138e04eb5091b543fd8ae203fd527f199"
+    },
+    "runner": {
+      "path": ".local/map-notice-video-capture-01/runner-status.json",
+      "bytes": 521,
+      "sha256": "e580e12206712867078d46ec0b4501b8c006f0418653a86ba0321f12a66c07a0"
+    },
+    "cleanup": {
+      "path": ".local/map-notice-video-capture-01/process-cleanup.json",
+      "bytes": 166,
+      "sha256": "059b4cefae8d09f7adb899fe61c9d81b81ea617b30e706d72cc4c8e48cdd011d"
+    },
+    "log": {
+      "path": ".local/map-notice-video-capture-01/capture.log",
+      "bytes": 179,
+      "sha256": "ef15a98fa9e3cbae7b6a59f1a7a99150e870918781014deb03f7bc0b71d9b993"
+    },
+    "alarm-0.json": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-0.json",
+      "bytes": 88772,
+      "sha256": "30943b0505d5788b04795f7e846fcf0d568fad559a378a6a0f4c0778f85a5b2f"
+    },
+    "alarm-0.png": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-0.png",
+      "bytes": 5122,
+      "sha256": "0452b95d70a348bca7bc1c50676faf11a90dcf22b7b94cc2ceb25385926ded86"
+    },
+    "alarm-1.json": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-1.json",
+      "bytes": 88772,
+      "sha256": "ee78ab6fbbc17bb6f91d333d55234e9a9150af158fa4e35ebd58ff7c1b83aa88"
+    },
+    "alarm-1.png": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-1.png",
+      "bytes": 4882,
+      "sha256": "eda79f984b38f8e860e29bd65fb149458a44327530696b952d7c8322c17f3f5b"
+    },
+    "alarm-2.json": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-2.json",
+      "bytes": 88772,
+      "sha256": "9ed85a568ca6b0ac65005e8995de0f0e0d283bb7a98aeee9db67f4dd0c561053"
+    },
+    "alarm-2.png": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-2.png",
+      "bytes": 5122,
+      "sha256": "0452b95d70a348bca7bc1c50676faf11a90dcf22b7b94cc2ceb25385926ded86"
+    },
+    "alarm-3.json": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-3.json",
+      "bytes": 88772,
+      "sha256": "a9fa441e008ca3b8de3fba47388081da71f7279bf0126d1937e193676fc9fd43"
+    },
+    "alarm-3.png": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-3.png",
+      "bytes": 4882,
+      "sha256": "eda79f984b38f8e860e29bd65fb149458a44327530696b952d7c8322c17f3f5b"
+    },
+    "alarm-4.json": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-4.json",
+      "bytes": 88772,
+      "sha256": "58ab9a0f789a63ceca3a18272a93344006feacc4de8245c57c476219a63f22ca"
+    },
+    "alarm-4.png": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-4.png",
+      "bytes": 5122,
+      "sha256": "0452b95d70a348bca7bc1c50676faf11a90dcf22b7b94cc2ceb25385926ded86"
+    },
+    "alarm-5.json": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-5.json",
+      "bytes": 88772,
+      "sha256": "3aac297244d0050f9a529954e1450097f6855ed2f787b2754330f4f56c266ed2"
+    },
+    "alarm-5.png": {
+      "path": ".local/map-notice-video-capture-01/capture/alarm-5.png",
+      "bytes": 4882,
+      "sha256": "eda79f984b38f8e860e29bd65fb149458a44327530696b952d7c8322c17f3f5b"
+    },
+    "capture.json": {
+      "path": ".local/map-notice-video-capture-01/capture/capture.json",
+      "bytes": 377,
+      "sha256": "d8362a8854ad4c901d02fd2110799a836d6823fbdd595803c6647cb77129f6ce"
+    },
+    "cleanup.json": {
+      "path": ".local/map-notice-video-capture-01/capture/cleanup.json",
+      "bytes": 88772,
+      "sha256": "0776217ee1a657c1ceaadffa32ba5ab34b5cd28414a20535e232adde59c77860"
+    },
+    "cleanup.png": {
+      "path": ".local/map-notice-video-capture-01/capture/cleanup.png",
+      "bytes": 4882,
+      "sha256": "eda79f984b38f8e860e29bd65fb149458a44327530696b952d7c8322c17f3f5b"
+    },
+    "configuration.json": {
+      "path": ".local/map-notice-video-capture-01/capture/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    "engine.json": {
+      "path": ".local/map-notice-video-capture-01/capture/engine.json",
+      "bytes": 3988,
+      "sha256": "a7e98476d21a245f8146265affe88daf34b32c1221f0ae7961c02369770c19b8"
+    },
+    "entry.json": {
+      "path": ".local/map-notice-video-capture-01/capture/entry.json",
+      "bytes": 88774,
+      "sha256": "12bbae08fc30b5c233844c342eb71a9908fd8574ab3e26793aa63173af8b3098"
+    },
+    "entry.png": {
+      "path": ".local/map-notice-video-capture-01/capture/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/map-notice-video-capture-01/capture/fire-first.json",
+      "bytes": 88769,
+      "sha256": "fae0b8208de0913221c9b02c4db63e6117e5d249f7467ca1797d27cb159f0313"
+    },
+    "fire-second.json": {
+      "path": ".local/map-notice-video-capture-01/capture/fire-second.json",
+      "bytes": 88770,
+      "sha256": "50921e1f72f298556dcfb7f4558702d47ad36c7632ea40c967a4ff516bd85c65"
+    },
+    "first-result.json": {
+      "path": ".local/map-notice-video-capture-01/capture/first-result.json",
+      "bytes": 88770,
+      "sha256": "986dfc974a1289954d81a46d1cefb3edde7674fd8da3bf7bb27219b2243e9599"
+    },
+    "first-result.png": {
+      "path": ".local/map-notice-video-capture-01/capture/first-result.png",
+      "bytes": 5205,
+      "sha256": "4e47641e486cce35df09aad876dd2c96401b9675c74c96a18aba6ba29544c6aa"
+    },
+    "generated.json": {
+      "path": ".local/map-notice-video-capture-01/capture/generated.json",
+      "bytes": 88773,
+      "sha256": "fafa80e0b48f552a7ed7821e483d5923a88df798ffe943a5eb096d52d8defa42"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/map-notice-video-capture-01/capture/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "b1b5053aa46f0a37410cfc865250bdd00472aa056b4b8ea53fafde9e70cd5b52"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/map-notice-video-capture-01/capture/initial-poll-0.png",
+      "bytes": 4854,
+      "sha256": "32eab2fcaaeb555a619b48e295534d91464f26f988e2ee48d55ddfd64f838bf1"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/map-notice-video-capture-01/capture/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "4719237bf8c20390ac4fbfb90e3c7062bbe8ff0461a76b796b95f55698acd87c"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/map-notice-video-capture-01/capture/initial-poll-1.png",
+      "bytes": 4882,
+      "sha256": "eda79f984b38f8e860e29bd65fb149458a44327530696b952d7c8322c17f3f5b"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/map-notice-video-capture-01/capture/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "d9d90ff8a76a9d1404daa987e6c1c035b2030943ce525881615b06cb44e7603a"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/map-notice-video-capture-01/capture/initial-poll-2.png",
+      "bytes": 4882,
+      "sha256": "eda79f984b38f8e860e29bd65fb149458a44327530696b952d7c8322c17f3f5b"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/map-notice-video-capture-01/capture/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "81da601411fbfd6c4cd725cdea4371df65213a68d8b507a4eddd0e2aaf440de6"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/map-notice-video-capture-01/capture/initial-poll-3.png",
+      "bytes": 4882,
+      "sha256": "eda79f984b38f8e860e29bd65fb149458a44327530696b952d7c8322c17f3f5b"
+    },
+    "inputs.json": {
+      "path": ".local/map-notice-video-capture-01/capture/inputs.json",
+      "bytes": 8258,
+      "sha256": "93d766d9cad0cd2ffdde85b5f3ae3e236d1ed68552bb8c613926b5d62376af20"
+    },
+    "live-overlay.json": {
+      "path": ".local/map-notice-video-capture-01/capture/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "f9ed7c49a89678058a638423c9e3fb9fdd92abf487b3e324771802eb42ec47ef"
+    },
+    "map-000-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-000-before.json",
+      "bytes": 88790,
+      "sha256": "0ab6c9772ac709bedd904c7ae59ec8bd49e8bb4bd990c4dcb081e70451c59128"
+    },
+    "map-000-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-000-end.json",
+      "bytes": 88784,
+      "sha256": "d2178e7f022782d5a66d020b8e176844238fe0bd1049071e1e63a51cdfe11ce0"
+    },
+    "map-000-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-000-input.json",
+      "bytes": 88782,
+      "sha256": "27ef6d604b02ca2f2e303676373e3eae1929b9677d713044ac0a9c1ead9a36b5"
+    },
+    "map-001-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-001-before.json",
+      "bytes": 88790,
+      "sha256": "aa69bf64f513b84e3c016e705a61b30f1086cfe3666bf1a2cf6793fd59abc3dd"
+    },
+    "map-001-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-001-end.json",
+      "bytes": 88784,
+      "sha256": "c21c9fb2e8e72eef47c7c198b7fcde09b5fd2f7573432a464beb500be953d36e"
+    },
+    "map-001-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-001-input.json",
+      "bytes": 88782,
+      "sha256": "a2debda0a0e884ea6049cdba00140a509009b9dc88935d341b61bdf89d1b40c1"
+    },
+    "map-002-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-002-before.json",
+      "bytes": 88790,
+      "sha256": "543f1635ad87ee44d314265ce2d5745ebb4d06e908b5c142eca744d326a23a0f"
+    },
+    "map-002-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-002-end.json",
+      "bytes": 88784,
+      "sha256": "f5671d3ce57ea0c5dda16c7d1e30634b30742459bf76a97f011598436fb2ade3"
+    },
+    "map-002-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-002-input.json",
+      "bytes": 88782,
+      "sha256": "567f23702934db5fcf88d41cf4d5d112b651aa9bd79c9fc07cdc31197d28da52"
+    },
+    "map-003-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-003-before.json",
+      "bytes": 88790,
+      "sha256": "ca6ac31c1f937907e74cff70418553b642381ed8605bf4a0aa84478162a74027"
+    },
+    "map-003-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-003-end.json",
+      "bytes": 88784,
+      "sha256": "9bc5e5db30cf1362250634aacfb7436d6bc331f07658c0395a4a4780f2594139"
+    },
+    "map-003-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-003-input.json",
+      "bytes": 88782,
+      "sha256": "3af6649f456015e1a8da22f2446202f74a42b6648c8e0d8ad07b67c089bba78e"
+    },
+    "map-004-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-004-before.json",
+      "bytes": 88790,
+      "sha256": "ca15253a03829cc3253d70428957fffbdf04f987a7588dcc3281cecade3e5d1f"
+    },
+    "map-004-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-004-end.json",
+      "bytes": 88784,
+      "sha256": "966c37544403713151aa9bbd9e13785089932dbb308a05968699a15df0db49b8"
+    },
+    "map-004-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-004-input.json",
+      "bytes": 88782,
+      "sha256": "d9d65ba596f4196d55272453963eac7b4fdcaad24d0e7d649ead21763b7a50ca"
+    },
+    "map-005-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-005-before.json",
+      "bytes": 88790,
+      "sha256": "e0544cf981d073aac93b1a659941c262d212f061057ee075cb931bc488a1fb8b"
+    },
+    "map-005-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-005-end.json",
+      "bytes": 88784,
+      "sha256": "bdfff24a4ded34d3bbe23f03f594061e574f7eb455fc2ad857871db0d611f686"
+    },
+    "map-005-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-005-input.json",
+      "bytes": 88782,
+      "sha256": "75dc9354606d3e933cb068de3fcf08a28c5a97ea4e9588758838aa94c9280079"
+    },
+    "map-006-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-006-before.json",
+      "bytes": 88790,
+      "sha256": "fdae2c41fa79665b9cc9503ca7a711b79b60729eec98c86add6f902bda9bd8de"
+    },
+    "map-006-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-006-end.json",
+      "bytes": 88784,
+      "sha256": "35e9b6e7ef21b78f9998fe29902bc203296210a50094b8fbe4f0c265b78a7c98"
+    },
+    "map-006-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-006-input.json",
+      "bytes": 88782,
+      "sha256": "bfe150c7cfd6c2b2f30ff092441a013961dd9cf398ec72ae9d4739a0a3280235"
+    },
+    "map-007-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-007-before.json",
+      "bytes": 88790,
+      "sha256": "dc001289ae1c4fe3611512e12f4dff6c86af60d25963d4f75f0db1197fdbed5e"
+    },
+    "map-007-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-007-end.json",
+      "bytes": 88784,
+      "sha256": "9657b1b8b412e9084a51230f62c237d3c31b42bf3050541e528288ed7751ce08"
+    },
+    "map-007-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-007-input.json",
+      "bytes": 88782,
+      "sha256": "0e9e6d2cb30796cc8ebd3d0b68afb57754382aa88b86ae67baf1c4afa4e27e31"
+    },
+    "map-008-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-008-before.json",
+      "bytes": 88790,
+      "sha256": "bfda9a2891d4756f50e91f76eabfcc81a096cdb34adadb74d10178c7bed79035"
+    },
+    "map-008-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-008-end.json",
+      "bytes": 88784,
+      "sha256": "c9f1106d6bd2317644cb7d4f6d1b09239d0d4175759d5cef08b9f6669fa1d61c"
+    },
+    "map-008-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-008-input.json",
+      "bytes": 88782,
+      "sha256": "30d1a46330e79e264c502fdf3348e1ec077fef52dc59f3dbe27f5dd27d54b7af"
+    },
+    "map-009-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-009-before.json",
+      "bytes": 88791,
+      "sha256": "cf67e9232bfb5c42f8f31bb6beddca5116fb54fc35e57c4858aadf87c606f1ad"
+    },
+    "map-009-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-009-end.json",
+      "bytes": 88785,
+      "sha256": "53cee39d2b7eb9c8aeda0d367888327ad57743051563a8c9b84169a5ce16600c"
+    },
+    "map-009-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-009-input.json",
+      "bytes": 88783,
+      "sha256": "4f69b51365620a020581569e6439b4c62eefbe653a34e786fac2bfd00e1e892d"
+    },
+    "map-010-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-010-before.json",
+      "bytes": 88791,
+      "sha256": "43c199515f7add8156c5e4aa591181c35d1db422cf3235a69b9a0f14fcd6813b"
+    },
+    "map-010-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-010-end.json",
+      "bytes": 88785,
+      "sha256": "4ad962acaf37ee8dab7806edfaf375c10d115605f04042cbd405ed46c4c145e5"
+    },
+    "map-010-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-010-input.json",
+      "bytes": 88783,
+      "sha256": "f728a968a288bef30bdbb59b6b8a04665c9609750ebf503447c468471bccdcee"
+    },
+    "map-011-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-011-before.json",
+      "bytes": 88792,
+      "sha256": "9857b8deffaabd700bbe0cb88268bfee1d812a208a212b778384dee03e57d60b"
+    },
+    "map-011-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-011-end.json",
+      "bytes": 88786,
+      "sha256": "df98b04a789e44171d5cc8ca901f6d5b3c4a582b82428329668fa0f978760f55"
+    },
+    "map-011-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-011-input.json",
+      "bytes": 88784,
+      "sha256": "46e2a86a0ff9caedac080e4d0c8988a604afc3cfd5b308323d7d98eea0bae3c4"
+    },
+    "map-012-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-012-before.json",
+      "bytes": 88792,
+      "sha256": "1a5ecdbcb722630e7272564a0351e319662c82bdef7709dfe2234f195ef12168"
+    },
+    "map-012-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-012-end.json",
+      "bytes": 88786,
+      "sha256": "abbd3d0950d3814cc0413d412242d5b66c88d2d539f7e53a3907c387d949040d"
+    },
+    "map-012-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-012-input.json",
+      "bytes": 88784,
+      "sha256": "1215caab37c26839db412ec56f58ab8a521367ac97c6fd9cf28b308d046ac0d0"
+    },
+    "map-013-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-013-before.json",
+      "bytes": 88792,
+      "sha256": "97d6602e0e57c8094c57672f9dc6224dcccedae2f26ff676468f9d1aa412252d"
+    },
+    "map-013-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-013-end.json",
+      "bytes": 88786,
+      "sha256": "249f5d15b8644ab6632dda0a357aaa8a6af66c8482f8cdf067dc4511b82efb3b"
+    },
+    "map-013-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-013-input.json",
+      "bytes": 88784,
+      "sha256": "72c56a3c1cb857e35c3d983b586c5ccfefff008f5f2df2b081e89adf034c5167"
+    },
+    "map-014-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-014-before.json",
+      "bytes": 88792,
+      "sha256": "9a2dca354a0ce03fb2e6e2fde73ab9243646860e0d5b91d968faa882b37579d9"
+    },
+    "map-014-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-014-end.json",
+      "bytes": 88786,
+      "sha256": "116354d9c771fe7f82c631678c27fe8b5f22c3ef264beacbcf4ca85acd7004a4"
+    },
+    "map-014-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-014-input.json",
+      "bytes": 88784,
+      "sha256": "632d9cd4fc4495edb6495158986486d22b88b76eeac8e4fdffbf8b3bcb6648ef"
+    },
+    "map-015-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-015-before.json",
+      "bytes": 88792,
+      "sha256": "c284c202cbe98a7e608395c00a6804bd109d296f0d18faade4290d4045076151"
+    },
+    "map-015-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-015-end.json",
+      "bytes": 88786,
+      "sha256": "44a56bc06ced5b837ce14d88faa8023211ee9ebec447e092b66008176cc3599e"
+    },
+    "map-015-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-015-input.json",
+      "bytes": 88784,
+      "sha256": "ef0e4bd29bf637a2952dee1bb0f10bbdcd182e6257eb584473abab8373609fbf"
+    },
+    "map-016-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-016-before.json",
+      "bytes": 88792,
+      "sha256": "2026619cffa795a63f691bbe520a82d13e8164034bf4e6a39e06319e3d175137"
+    },
+    "map-016-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-016-end.json",
+      "bytes": 88786,
+      "sha256": "58a8f2c1819aa5483985bd1d81ba483200d3e8a665e50ac14799e668c5eebc62"
+    },
+    "map-016-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-016-input.json",
+      "bytes": 88784,
+      "sha256": "6702e35ebaf4576428c36edd8934930954761340da0b85d8960fd54a932044b7"
+    },
+    "map-017-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-017-before.json",
+      "bytes": 88792,
+      "sha256": "5ae263b42ec8236641e7607f013394852cc828237f23f2dc02911c8f0886d662"
+    },
+    "map-017-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-017-end.json",
+      "bytes": 88786,
+      "sha256": "98a13053bcf5e0ba43528bc9aa8b57b49ffa87c52b6ebf56dd2cd080b4cb2730"
+    },
+    "map-017-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-017-input.json",
+      "bytes": 88784,
+      "sha256": "39468f91e479551aafb5e95131d105390b35d18e98cabde60ac4b2eed2bde067"
+    },
+    "map-018-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-018-before.json",
+      "bytes": 88792,
+      "sha256": "2b28e632b78d24cbd9620535598669c17917a6621140d93c80b70e3f15c0ea54"
+    },
+    "map-018-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-018-end.json",
+      "bytes": 88786,
+      "sha256": "034cd3cd668a67ef01517cab184a590e7f2489ecd8e4b911286690f0cdbdb7b4"
+    },
+    "map-018-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-018-input.json",
+      "bytes": 88784,
+      "sha256": "7f79ada01488c11eb75c535c43d13637d152ee4294e27f1bd0f897167580b1bc"
+    },
+    "map-019-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-019-before.json",
+      "bytes": 88792,
+      "sha256": "af2d7234b6b8920a74ceb78c8b4609aca3fe2a5d82a2d6395ce92124f7deddb4"
+    },
+    "map-019-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-019-end.json",
+      "bytes": 88786,
+      "sha256": "b353a7156fd60f33952c0c6577d7b516c2e122173aa4efe9d85edd44dbb8f919"
+    },
+    "map-019-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-019-input.json",
+      "bytes": 88784,
+      "sha256": "95d4d71c626eb32a0d0ff6c7fb44e2209ce481b12e3f442863459c14ca323f3b"
+    },
+    "map-020-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-020-before.json",
+      "bytes": 88792,
+      "sha256": "99a1a1b697188c163d81fe51d4451d14c09b77b4906035a2b11188e0be52e875"
+    },
+    "map-020-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-020-end.json",
+      "bytes": 88786,
+      "sha256": "5bed2611023c533370f0a2a8c587bc1ca14a4ee94a4caede84634a81d779a1f3"
+    },
+    "map-020-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-020-input.json",
+      "bytes": 88784,
+      "sha256": "41dbc437301ef7897f8b323384673f9fa0b40bf9827bca1b1dd6be5c4f77fa41"
+    },
+    "map-021-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-021-before.json",
+      "bytes": 88792,
+      "sha256": "7ec108a7784fe7a558bf1097e3b7003a87bf93681f555aeda6bcfde97e266d53"
+    },
+    "map-021-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-021-end.json",
+      "bytes": 88786,
+      "sha256": "0c2e4d71e4daa59343ae21d8454fdd370a7714b8f1a45826842155e57c2c4130"
+    },
+    "map-021-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-021-input.json",
+      "bytes": 88784,
+      "sha256": "3e09af049d48e8d519d5349df5f264a38d5b5e36eb8126a4f2d549a9c4be37ff"
+    },
+    "map-022-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-022-before.json",
+      "bytes": 88792,
+      "sha256": "bc13eb34c62f06f09d783556856eb5d3fe528af929dd9dfa72645c7e3d90ce2e"
+    },
+    "map-022-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-022-end.json",
+      "bytes": 88786,
+      "sha256": "147f4007ca852d1c3f24a8f367f162f319f54a8408046b294873b8791d8208aa"
+    },
+    "map-022-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-022-input.json",
+      "bytes": 88784,
+      "sha256": "eb90ffb924260f920d249c98d7053a535381e8ba7e7e7803b7d8792eb978c7cd"
+    },
+    "map-023-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-023-before.json",
+      "bytes": 88792,
+      "sha256": "6d8b15f3ad8ea35e29d3c96af97f73f3467ef680e68ad1745dcb0f23cf0d9ded"
+    },
+    "map-023-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-023-end.json",
+      "bytes": 88786,
+      "sha256": "23bb0d89838d0fe4ae548ab1ac5f6627be709794f7c99fbe30b6486a69e9a98d"
+    },
+    "map-023-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-023-input.json",
+      "bytes": 88784,
+      "sha256": "9f40ff1ec08174b99f49878660473816487656612323b7f4110a059a8226b9ed"
+    },
+    "map-024-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-024-before.json",
+      "bytes": 88792,
+      "sha256": "782cb15ce96bf99fe1ac0a8b715be549e3f3116c67adeb6a3a3b84a999fcc92c"
+    },
+    "map-024-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-024-end.json",
+      "bytes": 88786,
+      "sha256": "24c3dcdac6f0de5888eac0d16c127b6c9034bd97b21132121a9f52e0b79258d4"
+    },
+    "map-024-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-024-input.json",
+      "bytes": 88784,
+      "sha256": "d2c623c93637461321f060e98b6acebf23252a1220fbc362227329f0bd8605ed"
+    },
+    "map-025-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-025-before.json",
+      "bytes": 88792,
+      "sha256": "a450727d02dac2cb6a246fc0907dde389fa8606210ef13c8d09f3986996c912c"
+    },
+    "map-025-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-025-end.json",
+      "bytes": 88786,
+      "sha256": "8af261e1913f8605dc3f74c25fe04d52741512ee94bbcf437272bae4b05f8031"
+    },
+    "map-025-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-025-input.json",
+      "bytes": 88784,
+      "sha256": "9366d10ab5ece810112fa117961dbc90ff7712062c81bc3b6e13d1656c3960ee"
+    },
+    "map-026-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-026-before.json",
+      "bytes": 88792,
+      "sha256": "09747d4f30a845b805e34d5f8577a203346fcae5eaadec6f59e734db96bfa97b"
+    },
+    "map-026-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-026-end.json",
+      "bytes": 88786,
+      "sha256": "b7d7c8236aeab4c35b9758dc2b2b397b830b9e50719d137d1a259d1bdf075b64"
+    },
+    "map-026-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-026-input.json",
+      "bytes": 88784,
+      "sha256": "597096a06fe04e1a4842bbcf60b8d05318dc58edb3226a3b7855665ab07e3978"
+    },
+    "map-027-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-027-before.json",
+      "bytes": 88792,
+      "sha256": "70a615e6fbeedb0402b46a47cde7384e17d956b5ef45a84cded8489683dd6f29"
+    },
+    "map-027-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-027-end.json",
+      "bytes": 88786,
+      "sha256": "872e2ff3e9dcf03fd84b550b4c74b93f6153f07e2186c7a2aecc2b3daf0b3c68"
+    },
+    "map-027-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-027-input.json",
+      "bytes": 88784,
+      "sha256": "c5f286c83cfbccb0ce3b3d1dec8f371da6e894e1126fdf5923b77430e7f1b3fb"
+    },
+    "map-028-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-028-before.json",
+      "bytes": 88792,
+      "sha256": "93da469ab185822efff2486c7fe272b7df75c2233278a61c82231e11ec961b9a"
+    },
+    "map-028-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-028-end.json",
+      "bytes": 88786,
+      "sha256": "39149523e5cf29d5ddbbda40623d4910116b88982df493e0b9a7218343575c83"
+    },
+    "map-028-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-028-input.json",
+      "bytes": 88784,
+      "sha256": "3f0bddadca1a89dbcd2cc856750c9ebe54f363e3e4e391443bac153233abe2cb"
+    },
+    "map-029-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-029-before.json",
+      "bytes": 88792,
+      "sha256": "8117fe307bfd799f61da477b628ecd04c1b2f7b41c6ba7306bc814edee3bb792"
+    },
+    "map-029-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-029-end.json",
+      "bytes": 88786,
+      "sha256": "fb21b1028824db65fdced0dc23356b550f512375ca647299a98babc0ed3cb5d1"
+    },
+    "map-029-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-029-input.json",
+      "bytes": 88784,
+      "sha256": "15dce76668dbe29910ef9098593f84e36d6bf992f83147f2206193a802ec05d6"
+    },
+    "map-030-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-030-before.json",
+      "bytes": 88792,
+      "sha256": "0641f5ab828e528e545fe48b33c3a98f6c95d4ffd8c92ba37d27477c52000eff"
+    },
+    "map-030-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-030-end.json",
+      "bytes": 88786,
+      "sha256": "815a26f862948454472f1dabc6bda0297719462cf29e00206316580cc7e840fb"
+    },
+    "map-030-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-030-input.json",
+      "bytes": 88784,
+      "sha256": "b7797d5cf6fadf3526b627fa136c2394b6bca440c946531b6991a0137aae647f"
+    },
+    "map-031-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-031-before.json",
+      "bytes": 88792,
+      "sha256": "39efafc688d4e31bfe575f529096d006fb86e45f02a2939cabe11fffa1b89287"
+    },
+    "map-031-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-031-end.json",
+      "bytes": 88786,
+      "sha256": "11f5f32b48ce51dde71b45e2d52c3ecd982f96d284ffbf04e5164ca36118b624"
+    },
+    "map-031-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-031-input.json",
+      "bytes": 88784,
+      "sha256": "ca7e3a9e08e7f1bc2dc1124f546dc765821fc0b5ac3fd0acc547e0ed371bff2a"
+    },
+    "map-032-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-032-before.json",
+      "bytes": 88792,
+      "sha256": "11a3f356ac19107822dd8deb3ee38be1b2a5beaa23c5ef72cfb9d2e92cd0ae18"
+    },
+    "map-032-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-032-end.json",
+      "bytes": 88786,
+      "sha256": "5266c725aede9de1f5b74fbab063d91d6c6774af12c205f0adba8369ddfeddd0"
+    },
+    "map-032-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-032-input.json",
+      "bytes": 88784,
+      "sha256": "7a3b2b293ae4cbf8d292eccbdb9ee8e2f7bce62746a92365663f1aef86d86c42"
+    },
+    "map-033-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-033-before.json",
+      "bytes": 88792,
+      "sha256": "151014fc310c120f936a66e7c45a462e2b95421d394cf7b9cb0ba8e869ce143e"
+    },
+    "map-033-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-033-end.json",
+      "bytes": 88786,
+      "sha256": "d2d6b36ca6f37a9e42bd3257f920130a3b04202a933a270a4eb27ff864c270e5"
+    },
+    "map-033-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-033-input.json",
+      "bytes": 88784,
+      "sha256": "67433f5815c5c404d77cafdb5dad79273f6e77a6096479370c670895eb634aed"
+    },
+    "map-034-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-034-before.json",
+      "bytes": 88792,
+      "sha256": "8d151914aebd7605f08e97d779dd93d27787c1b4ec38591ecc168f181cac8732"
+    },
+    "map-034-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-034-end.json",
+      "bytes": 88786,
+      "sha256": "2ca2639a9bc31b0828bfa2d63c9af302b9731ec5a10d81960640a642f845890c"
+    },
+    "map-034-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-034-input.json",
+      "bytes": 88784,
+      "sha256": "9bfa2127b4405d374c8fd621dd18b727f7fd1e92143e63eb916cb19cb82efc8d"
+    },
+    "map-035-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-035-before.json",
+      "bytes": 88792,
+      "sha256": "2c892e66a032954f1622f06dbc42078942d1c8f6f4768c4f7fa279a7abc63618"
+    },
+    "map-035-end.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-035-end.json",
+      "bytes": 88784,
+      "sha256": "c9c2e9325e57c36151bc7c8c6a8764d7353358b42ef4cde8146660f308559ac3"
+    },
+    "map-035-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-035-input.json",
+      "bytes": 88788,
+      "sha256": "8369e69bdbca0cd1167dec9a0385798b4f4a2a24f5b8c71362aabb95ea7a00fe"
+    },
+    "map-capture.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-capture.json",
+      "bytes": 669,
+      "sha256": "fab18fae116cc1b8a7586f11bf9ca8e81e4f00fac1c4864f81fd1fc09464d1a6"
+    },
+    "map-consumption.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-consumption.json",
+      "bytes": 24983,
+      "sha256": "3b0e520f47ad291cd54cca589067d75f2ec02facf9ac54f7cd71d9265971c3f5"
+    },
+    "map-entry.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-entry.json",
+      "bytes": 88794,
+      "sha256": "e0ad5b0cb1fa87209e394834401abaff8be6ba77eb218038170f5d0b02a8409e"
+    },
+    "map-entry.png": {
+      "path": ".local/map-notice-video-capture-01/capture/map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "map-live-overlay.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-live-overlay.json",
+      "bytes": 12155,
+      "sha256": "c886d73a194b4e6570cbe8a6e200aab3797d19dcf361d5fd018ecb65f4c33d8d"
+    },
+    "map-resident-mapping.json": {
+      "path": ".local/map-notice-video-capture-01/capture/map-resident-mapping.json",
+      "bytes": 2929,
+      "sha256": "64c18260866b5f0c98ef36372aaccecd17d2a374a6cdac152ec112a3839f5ba0"
+    },
+    "notice-000-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-000-before.json",
+      "bytes": 94459,
+      "sha256": "a646d1ff3ef77db33a63792376a5af48770232550a6e57d84ceea92d74699fb6"
+    },
+    "notice-000-flip-after.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-000-flip-after.json",
+      "bytes": 94461,
+      "sha256": "bdf4475f756580efa741ba19142d0e9ef84b3b1dd184001ec449b25ea41b42f9"
+    },
+    "notice-000-flip-after.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-000-flip-after.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-000-flip-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-000-flip-before.json",
+      "bytes": 94455,
+      "sha256": "b49af4246e2e861b53093d12174d759db4f5fccc18bd9f1863de819d405c6b07"
+    },
+    "notice-000-flip-before.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-000-flip-before.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-000-flush.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-000-flush.json",
+      "bytes": 94453,
+      "sha256": "8fba326582d2ef4f581d9c15052cfe4abb37a888ff98add5ef96bb287262bf99"
+    },
+    "notice-000-flush.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-000-flush.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-000-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-000-input.json",
+      "bytes": 94455,
+      "sha256": "2329039f0175daa5ee2ff52ee916d4e65576fe2f44c471ffe2a3f1cc879ac5b5"
+    },
+    "notice-001-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-001-before.json",
+      "bytes": 94459,
+      "sha256": "4cc80021a0948832a8a92a9580828b5e28cd521f4ff93aae7442d1ec9cc99e2d"
+    },
+    "notice-001-flip-after.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-001-flip-after.json",
+      "bytes": 94461,
+      "sha256": "139e68a55d271b5abddda2171f3dde1a3351e249159a5e2f97559dc3d1cd0dce"
+    },
+    "notice-001-flip-after.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-001-flip-after.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-001-flip-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-001-flip-before.json",
+      "bytes": 94455,
+      "sha256": "bcc15328640b171817ac0d30650eff12e684ba9cbd6821521445c168f2b58566"
+    },
+    "notice-001-flip-before.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-001-flip-before.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-001-flush.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-001-flush.json",
+      "bytes": 94451,
+      "sha256": "8e852a947b6e634603e55297d88265ef676096ba525ad3a1819a741f64ce78a8"
+    },
+    "notice-001-flush.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-001-flush.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-001-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-001-input.json",
+      "bytes": 94455,
+      "sha256": "81fc32dac15f00caa89279f5ad067f72ee967e4ab8ed4f77de3d87595ff985a6"
+    },
+    "notice-002-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-002-before.json",
+      "bytes": 94459,
+      "sha256": "bf2df195a8e2b295aa3c1007062c8f1e6d3eeddd12450eae97dfc08b32cce9e6"
+    },
+    "notice-002-flip-after.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-002-flip-after.json",
+      "bytes": 94461,
+      "sha256": "bdfb0f228ffa32408a24e230c06f7045eacf49721e43936f69027a249cd1d10b"
+    },
+    "notice-002-flip-after.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-002-flip-after.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-002-flip-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-002-flip-before.json",
+      "bytes": 94455,
+      "sha256": "2e82ea1bf2e2266fd4f9de91c436b370c252b986f3856617f7e08adf68849e4d"
+    },
+    "notice-002-flip-before.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-002-flip-before.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-002-flush.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-002-flush.json",
+      "bytes": 94451,
+      "sha256": "ebe06557ffa64b506905fca664289e3f17890230f2b96646e7891b2177260587"
+    },
+    "notice-002-flush.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-002-flush.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-002-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-002-input.json",
+      "bytes": 94449,
+      "sha256": "c6b54979c353781026d532c219dc0e4568be3dcdae7eddd0615e50e91e4063b7"
+    },
+    "notice-003-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-003-before.json",
+      "bytes": 94459,
+      "sha256": "3cae3bff7659ea9860250b1f5b7135269e07cf7f83e22ddce20a0892f210890f"
+    },
+    "notice-003-flip-after.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-003-flip-after.json",
+      "bytes": 94461,
+      "sha256": "d72cbcfd8144ea5cde624f3ce76b273a933e2e4cbfc118452d5e4cc0a4231ab1"
+    },
+    "notice-003-flip-after.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-003-flip-after.png",
+      "bytes": 6739,
+      "sha256": "e8c1b0937b34c6f1471466fb799bd61a993e51fb9397dbcaeb13a48f23fa6976"
+    },
+    "notice-003-flip-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-003-flip-before.json",
+      "bytes": 94455,
+      "sha256": "7c96a8ab734420ddf24dea9283286881e4b2b4b2be9dd52af4e059381ca74e94"
+    },
+    "notice-003-flip-before.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-003-flip-before.png",
+      "bytes": 6739,
+      "sha256": "e8c1b0937b34c6f1471466fb799bd61a993e51fb9397dbcaeb13a48f23fa6976"
+    },
+    "notice-003-flush.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-003-flush.json",
+      "bytes": 94451,
+      "sha256": "ac21ea1c0d833ea8dd42a290d1794d6d8da64417114b6b603a43ba3e1ad47994"
+    },
+    "notice-003-flush.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-003-flush.png",
+      "bytes": 6745,
+      "sha256": "4e728a872e1d8ae47c45eab7feae8e79238323b710350cf351f187d03c68dae4"
+    },
+    "notice-003-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-003-input.json",
+      "bytes": 94455,
+      "sha256": "3822499bbddb1632fce77f5a8d43c855d1cb6f0688d08b484aba58bc6b0546b9"
+    },
+    "notice-004-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-004-before.json",
+      "bytes": 94459,
+      "sha256": "d9ea3349541acb90bbe5b437eb99acd2bb50ac81e9ea40c2d7fd8cb7dd14509d"
+    },
+    "notice-004-flip-after.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-004-flip-after.json",
+      "bytes": 94461,
+      "sha256": "e300c8a11d003dcdf0d9db0c53ab32fdb3190d204261e653cdedcd6a75d8465f"
+    },
+    "notice-004-flip-after.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-004-flip-after.png",
+      "bytes": 6739,
+      "sha256": "e8c1b0937b34c6f1471466fb799bd61a993e51fb9397dbcaeb13a48f23fa6976"
+    },
+    "notice-004-flip-before.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-004-flip-before.json",
+      "bytes": 94455,
+      "sha256": "a71ff611b24336592b06b278f0901b1174a668e8420bd1ce8861d666ff3a9100"
+    },
+    "notice-004-flip-before.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-004-flip-before.png",
+      "bytes": 6739,
+      "sha256": "e8c1b0937b34c6f1471466fb799bd61a993e51fb9397dbcaeb13a48f23fa6976"
+    },
+    "notice-004-flush.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-004-flush.json",
+      "bytes": 94451,
+      "sha256": "9e676244679a740f2e79f3c80167d6ea5c79b0309ca293a6b292c8e2d6c30c2d"
+    },
+    "notice-004-flush.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-004-flush.png",
+      "bytes": 6739,
+      "sha256": "e8c1b0937b34c6f1471466fb799bd61a993e51fb9397dbcaeb13a48f23fa6976"
+    },
+    "notice-004-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-004-input.json",
+      "bytes": 94453,
+      "sha256": "d3895c243cc8d03c105f765bdf0e8c84236e2170c1ca2c793b5240aaff72d598"
+    },
+    "notice-after-entry-flush.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-after-entry-flush.json",
+      "bytes": 94443,
+      "sha256": "29121c405d3ab1c3a21592c3ab9f1e0dc13bbbd75162029bf84f662379a69483"
+    },
+    "notice-before-entry-flush.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-before-entry-flush.json",
+      "bytes": 94449,
+      "sha256": "3175b11ed01f0f4122518297d3da2ed12aeae801167c82b6554d5aa9806ddbc9"
+    },
+    "notice-capture.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-capture.json",
+      "bytes": 463,
+      "sha256": "f8c863faf2aac679886441efa32184d9b6478e26c5644f816fd5bb64db91ff62"
+    },
+    "notice-consumption.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-consumption.json",
+      "bytes": 4558,
+      "sha256": "826cc768624b4046bba2366f6c8f6719a417c7474b7c8b06b948763f742de868"
+    },
+    "notice-entry.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-entry.json",
+      "bytes": 94463,
+      "sha256": "c14feeb685ae8daddc5cf40c95eb8c8a85fb396714ebe4e54587248336ddab22"
+    },
+    "notice-entry.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-entry.png",
+      "bytes": 16149,
+      "sha256": "1b9b1e86d82cc88a8935b03b7526372ec33edf1d8286f1a29e84cb568c570a0e"
+    },
+    "notice-return.json": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-return.json",
+      "bytes": 94453,
+      "sha256": "498d5174ab4d350d9a792a9f99cab233b0ea74018a952f4bf04b5ceb71e70bf5"
+    },
+    "notice-return.png": {
+      "path": ".local/map-notice-video-capture-01/capture/notice-return.png",
+      "bytes": 6739,
+      "sha256": "e8c1b0937b34c6f1471466fb799bd61a993e51fb9397dbcaeb13a48f23fa6976"
+    },
+    "office-confirm.json": {
+      "path": ".local/map-notice-video-capture-01/capture/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "2ee3adf4442a99b078637f06607362ab40e6c1240676b93486e01bcef69a447d"
+    },
+    "office-input.json": {
+      "path": ".local/map-notice-video-capture-01/capture/office-input.json",
+      "bytes": 88775,
+      "sha256": "63ccc18386bb25e934c13721d856b0b1f6f08cd9224a642f891213e487292eb2"
+    },
+    "office-input.png": {
+      "path": ".local/map-notice-video-capture-01/capture/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "return.json": {
+      "path": ".local/map-notice-video-capture-01/capture/return.json",
+      "bytes": 88770,
+      "sha256": "5a0f22f893bcb0677d0a3cb592ed799ac9172f0f411f9101f3046fbb594a8194"
+    },
+    "return.png": {
+      "path": ".local/map-notice-video-capture-01/capture/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/map-notice-video-capture-01/capture/rng-consumption.json",
+      "bytes": 50843,
+      "sha256": "1136ec28ff0fa575ac8f95f8ed5d048199309059020f93e8ae6b38d2028d8664"
+    },
+    "startup-inputs.json": {
+      "path": ".local/map-notice-video-capture-01/capture/startup-inputs.json",
+      "bytes": 1223,
+      "sha256": "fc82556f50399a9d8faabbf0dcd9805c1c86206df1a70e3a5fe2b51956267453"
+    },
+    "video-tool-identity.json": {
+      "path": ".local/map-notice-video-capture-01/capture/video-tool-identity.json",
+      "bytes": 439,
+      "sha256": "00fdb6ae818e06604641bb8096feab1e72664c9ace6f5db4ca5e5b27367505be"
+    },
+    "warning-poll.json": {
+      "path": ".local/map-notice-video-capture-01/capture/warning-poll.json",
+      "bytes": 88774,
+      "sha256": "7cc00fa8d1d134e91a5ebc30334b78f4c8e8b4bffbc2f0a3433152d8e9c047a1"
+    },
+    "warning-poll.png": {
+      "path": ".local/map-notice-video-capture-01/capture/warning-poll.png",
+      "bytes": 5205,
+      "sha256": "4e47641e486cce35df09aad876dd2c96401b9675c74c96a18aba6ba29544c6aa"
+    }
+  },
+  "verificationTools": {
+    "scripts/verify-destination-fixture-negatives.js": "ff820dace18c0435521e670bfa8c96873b9d73c382e58c57a5d2ab8deb882cea",
+    "scripts/verify-destination.js": "2b353bc5aad81c59f6a3c74cb331c701a095ff1bdc421f14ddb647a61bde7799",
+    "src/game/destination-input.js": "5155a20fab7ac49c267875c9a82f1eff086e823f9a491138a3032e2f5a16fee6",
+    "src/game/destination-presentation.js": "af56b5208cee92fb6d6eab4cbe30c0d1eb869c0796f0512f41fe580e06fbb8d7",
+    "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",
+    "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
+    "src/game/campaign.js": "3164d47a4119bd9c6c11617f5bd21809a05eaeb2cd1519ea1ff5b4d81fa2c8bb",
+    "scripts/verify-destination-video.js": "9f19884c2e0d5b160c6ee92411c2f43b6ce80220b5d94b8d8adb00c9ea729432"
+  },
+  "expectedVideoSnapshots": 29,
+  "expectedFlipPairs": 5,
+  "evidenceLevel": "Conditional carried destination input/presentation segment plus observed CPU/BIOS-page/raw-cache relationships;not independent Game/browser or CPU/video timing parity",
+  "driverMutableData": [
+    {
+      "offset": 30,
+      "length": 10,
+      "reason": "Runtime surface/color pointers,flags and next-page byte"
+    },
+    {
+      "offset": 40,
+      "length": 16,
+      "reason": "Runtime EGA palette table"
+    }
+  ],
+  "driverPatchWords": [
+    {
+      "offset": 813,
+      "writer": 680,
+      "meaning": "Destination row skip"
+    },
+    {
+      "offset": 817,
+      "writer": 630,
+      "meaning": "Source row skip"
+    },
+    {
+      "offset": 833,
+      "writer": 618,
+      "meaning": "Source plane stride"
+    },
+    {
+      "offset": 843,
+      "writer": 666,
+      "meaning": "Destination plane stride"
+    }
+  ]
+}

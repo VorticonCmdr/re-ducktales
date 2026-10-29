@@ -67,7 +67,11 @@ input/flag/choice comparisons and two complete native page comparisons pass.
 The real browser also checks original invariant labels and its whole footer
 before flight departure and Restart. Entry/selection/confirmation timing remains
 untranslated;this is not new whole-campaign acceptance.
-[Destination evidence and scope](destination.md).
+[Destination evidence and scope](destination.md). A second fresh original
+scenario adds29 stable CPU/video observations,five page flips and two exact
+pictures with a different treasure. The stale highlight is explained by raw
+render-cache lag;the update counter is not a completed-scanout clock. Native
+selection/confirmation waits are observed,but are not yet connected in browser.
 
 ## Supported build
 
@@ -124,6 +128,7 @@ npm run verify:shared-runtime
 npm run verify:map-clock
 npm run verify:map-input-browser
 npm run verify:destination
+npm run verify:destination-video
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

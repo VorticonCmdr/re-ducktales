@@ -67,15 +67,17 @@ This is focused branch acceptance; it does not replace the historical full gate.
 ## Timing limits and next experiment
 
 Original read3 has CPU choice1 but the captured raw screenshot still shows
-choice0; read4 shows choice1. The intermediate screenshot remains pinned as
-unresolved scanout evidence. No fitted frame alignment or pixel exclusions are
-introduced. The two completed-page cases are explicitly0 and4.
+choice0; read4 shows choice1. The intermediate screenshot remains pinned. The frame/page extension below
+explains its cached-image lag;exact scanout phase remains unknown. No fitted
+frame alignment or pixel exclusions are introduced. The original two
+completed-page cases are explicitly0 and4.
 
 The original clear/reveal, buffer-flip/input boundaries, selection wait0/7 and
 confirmation wait0/7 remain to be translated. Static source is1000:1757..1ec7;
 selector lines are16e1..1756; signed-long decimal text is resident11c4:0227..02a6.
-The next capture needs a video frame identity/VRAM page observation at these
-boundaries so an old scanout cannot be mistaken for current CPU drawing state.
+The frame/page capture below separates BIOS page state from cached pixels. The
+next timing experiment needs exact completed/aborted scanout identity or a
+non-stopping observation at these boundaries.
 Complete campaign acceptance remains pending on the map-caller branch; the main
 preview still uses its previously accepted build.
 
@@ -101,3 +103,40 @@ investigation; the binary hash and fresh live observations determine its scope.
 The source's resident140e:0dcc waits against the baseline atDS2223:2221, updates
 that baseline from2227:2225, and uses unsigned high/low comparisons. A wait0
 resets that baseline; it is not an independent constant-period menu scheduler.
+
+The extension completed on66a98f0 with549 archived producer files. The owned
+emulator80976 is confirmed absent. `npm run verify:destination-video` validates
+all211 local artifacts,all29 stable CPU snapshots and five BIOS/drawing-page
+flips,alongside the existing five-read carried model and two exact pictures.
+This natural run assigned a different treasure (LOOT14 rather than22);the same
+renderer matches both new pages exactly under their captured caller arguments.
+
+The changed selection is1 before flip2. After that real BIOS flip,the raw image
+still has the old selection0. It remains old at flush3 and is new before reader3.
+This explains the earlier stale highlight;it does not establish a fixed frame
+or timer offset. The selection/confirmation paths each exhibit their explicit
+seven-count wait in this captured non-wrapping interval. No observed clock is
+used as a fitted browser input or a constant menu period.
+
+Driver identity checks cover the2599-byte original resource. Runtime pointer/
+flag/palette data occupies001e..0037. The rectangle copier patches four WORD
+immediates at032d,0331,0341,034b through original stores at02a8,0276,026a,029a.
+Those operands compare exact source/destination row and plane strides for the
+captured map/complete-page copies;all other instruction/jump-table bytes match.
+The five negative controls alter an opcode,a patch operand,a BIOS page,a paused
+raw hash and a seven-count wait. Real missing flip-snapshot/corrupt-picture
+controls fail;restored originals pass. See[the manifest](../reference/destination-video.json).
+
+Correction to the capture recipe's initial terminology: `status.frame` is a
+**render update counter**,including aborted updates. It is not a precise count
+of completed scanouts. The raw image is the latest shared render cache;neither
+the current BIOS page nor a change in that counter identifies its exact video
+phase. Both metadata observations must remain stable during each owned CPU stop.
+The earlier intermediate screenshot is explained as cache lag,but exact
+scanout timing and browser destination polling remain unfinished.
+
+A focused tool improvement would expose an atomic raw-buffer revision,completed
+versus aborted status,emulated PIC time and latched display-page identity in
+`video/frame/info`,recorded when that buffer is produced. This would make exact
+alignment observable without guessing from `status.frame`. No emulator source
+or global bridge configuration was changed for this investigation.

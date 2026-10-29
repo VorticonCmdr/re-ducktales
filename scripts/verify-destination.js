@@ -16,11 +16,16 @@ const required = (p) =>
       `SETUP: missing destination evidence ${p};see docs/destination.md`,
     );
   });
-const m = JSON.parse(await required("reference/destination.json"));
+const manifestPath =
+  new URL(import.meta.url).searchParams.get("manifest") ??
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+  "reference/destination.json";
+const m = JSON.parse(await required(manifestPath));
 assert.equal(m.completed, true);
 assert.equal(m.expectedReads, 5);
 assert.equal(m.expectedPictures, 2);
-assert.equal(m.sourceFileCount, 535);
+assert.ok(Number.isInteger(m.sourceFileCount) && m.sourceFileCount > 0);
+assert.match(m.captureCommit, /^[a-f0-9]{40}$/);
 assert.equal(Object.keys(m.artifacts).length, m.expectedArtifacts);
 assert.deepEqual(m.injections, []);
 assert.equal(m.partialRestore, false);
@@ -39,7 +44,7 @@ for (const [name, s] of Object.entries(m.artifacts)) {
 const load = async (name) => JSON.parse(await required(m.artifacts[name].path));
 const source = await load("source");
 assert.equal(source.captureCommit, m.captureCommit);
-assert.equal(Object.keys(source.files).length, 535);
+assert.equal(Object.keys(source.files).length, m.sourceFileCount);
 assert.deepEqual(
   Object.keys(source.files).sort(),
   execFileSync("git", ["ls-tree", "-r", "--name-only", m.captureCommit], {
@@ -108,7 +113,7 @@ assert.deepEqual(Buffer.from(overlay.read.results[0].data, "base64"), body);
 assert.equal(notice.segment, overlay.entrySegment);
 assert.equal(overlay.entrySegment, overlay.segment + 0xca);
 const snapshots = new Map();
-async function snapshot(name, ip) {
+async function snapshot(name, ip, mode = 1) {
   const s = await load(name),
     regs = s.state.results[0].registers,
     ds = Buffer.from(s.state.results[1].data, "base64");
@@ -121,7 +126,7 @@ async function snapshot(name, ip) {
   assert.equal(regs.ss, mapping.ds);
   assert.equal(regs.eip, ip);
   assert.equal(ds.length, 65536);
-  assert.equal(ds[0x3c1], 1, "Original destination reader mode");
+  assert.equal(ds[0x3c1], mode, "Original destination reader mode");
   const record = { s, regs, ds };
   snapshots.set(name, record);
   return record;
@@ -293,5 +298,21 @@ assert.throws(
 );
 assert.throws(() => destinationInput(2, 0, false), /Invalid destination input/);
 console.log(
-  "Destination:5 carried original mode1 input/128-flag/choice comparisons and2 exact320x200 original pictures;535 producer files/full8368-byte relocated overlay,2 missing-make and4 pixel controls. Captured caller arguments are conditional;menu/CPU timing and intermediate scanout remain unverified.",
+  `Destination:5 carried original mode1 input/128-flag/choice comparisons and2 exact320x200 original pictures;${m.sourceFileCount} producer files/full8368-byte relocated overlay,2 missing-make and4 pixel controls. Captured caller arguments are conditional;menu/CPU timing and intermediate scanout remain unverified.`,
 );
+
+// The video-boundary audit uses the same strict capture/producer/input/picture
+// checks with its own explicit manifest. No result is fed back into Game.
+export {
+  m as manifest,
+  load,
+  snapshot,
+  snapshots,
+  rows,
+  entry,
+  ret,
+  choices,
+  archives,
+  image,
+  body,
+};

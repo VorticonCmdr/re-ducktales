@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "scope": "Exploratory read-only method-boundary observation of unchanged historical campaign events. Current source fails strict checkpoint comparisons; this is causal timing evidence, not acceptance.",
+  "acceptedSourceCommit": "59af3c60e39ceb95f1cc33b985c133a56d74b1a1",
+  "currentSourceCommit": "bcaaa9928dc627dd817e6821f9e399e829a30512",
+  "inputManifests": [
+    "reference/easy-campaign-office.json",
+    "reference/hard-campaign-office.json"
+  ],
+  "captureTool": {
+    "path": ".local/map-handoff-investigation-20261029-01/trace-map-handoff.mjs",
+    "bytes": 1065,
+    "sha256": "88187c0fdebe4db00ebf5eb6a2fb3d64d4c80a5f28b0135b6b98c3f6dcb2a9e7"
+  },
+  "gameStateInjections": [],
+  "inputChanges": [],
+  "fittedInputs": [],
+  "expectedChanges": [],
+  "observations": {
+    "acceptedEasy": {
+      "checked": 36,
+      "events": 3516,
+      "flightPresentations": 1188,
+      "exitCode": 0
+    },
+    "acceptedHard": {
+      "checked": 28,
+      "events": 4140,
+      "flightPresentations": 1629,
+      "exitCode": 0
+    },
+    "currentEasy": {
+      "failedCheckpoint": 16,
+      "name": "bank-deposited",
+      "path": ".bank.transition.band",
+      "actual": 0,
+      "expected": 1,
+      "bankEntryTick": 5896,
+      "acceptedBankEntryTick": 5891
+    },
+    "currentHard": {
+      "failedCheckpoint": 4,
+      "name": "rival-report",
+      "path": ".rivalReport.remaining",
+      "actual": 279,
+      "expected": 273,
+      "reportEntryTick": 4019,
+      "acceptedReportEntryTick": 4013
+    }
+  },
+  "recipe": "From each checkout,run its scripts/replay-hard-campaign.js on unchanged office campaign fixtures with --manifest=reference/{easy,hard}-campaign-office.json and --import pointing to the pinned local trace-map-handoff.mjs;set DUCKTALES_TRACE_OUTPUT to a fresh local JSON path. The observer wraps four methods,records scene/action transitions and calls the original functions with unchanged this/arguments/return values. Node exit retains observations even on the expected strict comparison failure.",
+  "comparisonRules": [
+    "No checkpoint differences are excluded or accepted",
+    "Accepted checkout independently completes both unchanged replay contracts",
+    "Current checkout stops at first exact discrepancy; no claims about subsequent checkpoints"
+  ],
+  "nextExperiment": "Translate destination input/presentation waits,then obtain fresh independent campaign browser recordings and strict carried replays before integrating.",
+  "artifacts": {
+    "map-handoff-accepted.log": {
+      "path": ".local/map-handoff-investigation-20261029-01/map-handoff-accepted.log",
+      "bytes": 3434,
+      "sha256": "05c2d34cfd470eff1311ae750cc7c8df6ee90c25a3c21fad08c028ccb4036ddb"
+    },
+    "map-handoff-new.json": {
+      "path": ".local/map-handoff-investigation-20261029-01/map-handoff-new.json",
+      "bytes": 4457,
+      "sha256": "18d3180c76767c46ef8b05ab8f15d5806770e324651c72827ef9f7d24af62d20"
+    },
+    "map-handoff-easy-accepted.json": {
+      "path": ".local/map-handoff-investigation-20261029-01/map-handoff-easy-accepted.json",
+      "bytes": 17287,
+      "sha256": "b8e7c879e18bc2980bc23203176ffb4cca8934ab96f77dd1c3181b43837253b1"
+    },
+    "map-handoff-new-02.log": {
+      "path": ".local/map-handoff-investigation-20261029-01/map-handoff-new-02.log",
+      "bytes": 813,
+      "sha256": "80f75981a0be0b16e3060bfbade72190292f4b03d23d057a8d1371549e62c38f"
+    },
+    "trace-map-handoff.mjs": {
+      "path": ".local/map-handoff-investigation-20261029-01/trace-map-handoff.mjs",
+      "bytes": 1065,
+      "sha256": "88187c0fdebe4db00ebf5eb6a2fb3d64d4c80a5f28b0135b6b98c3f6dcb2a9e7"
+    },
+    "map-handoff-easy-new.log": {
+      "path": ".local/map-handoff-investigation-20261029-01/map-handoff-easy-new.log",
+      "bytes": 814,
+      "sha256": "9ed228f9c126707af2f74a2eed4a13ddbec4cd18cfb94bee3c47c3ab09a95cf3"
+    },
+    "map-handoff-easy-new.json": {
+      "path": ".local/map-handoff-investigation-20261029-01/map-handoff-easy-new.json",
+      "bytes": 4343,
+      "sha256": "53430fcbba2ba7c921b66a9384b6113ff46a22a4e40f864d486c8f192ab4a99b"
+    },
+    "map-handoff-easy-accepted.log": {
+      "path": ".local/map-handoff-investigation-20261029-01/map-handoff-easy-accepted.log",
+      "bytes": 3350,
+      "sha256": "6720b4e3d4a94d97ac309e4906aeab82b13710cff9520e87c58330812b38308e"
+    },
+    "map-handoff-accepted.json": {
+      "path": ".local/map-handoff-investigation-20261029-01/map-handoff-accepted.json",
+      "bytes": 19949,
+      "sha256": "e5a46c928627dca4e61d1abe6415417cef5862589cdc00cb26de3e1b1b67a956"
+    }
+  }
+}

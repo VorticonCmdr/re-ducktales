@@ -27,6 +27,12 @@ implementation and are **not** claimed as translated by this milestone.
 - Two actual browser negative controls: omit the K make and omit the repeated
   Right make. Both must fail exact value comparisons rather than time out.
 
+The complete focused command,117 unit cases and production build passed on
+`bcaaa99`. [The run manifest](../reference/map-input-browser.json) pins its539
+producer files in a ZIP, terminal statuses, positive/negative logs,36 browser
+observations and two screenshots. The14 local artifacts are retained under
+`.local/map-input-browser-20261029-01/`; no proprietary artifact is committed.
+
 The browser compares original input bytes, all128 flags before/after reader and
 caller, pointer coordinates/acceleration/vectors/latch, modes and return codes.
 It also requires six driver counts between every browser poll. Original steady
@@ -52,3 +58,13 @@ its input poll; expected snapshots have not been rewritten or exclusions added.
 Locate their causal timing boundary, then obtain fresh independent Game/browser
 replays before integrating. The old full verification receipt remains historical
 evidence for its original source only.
+
+Read-only method-boundary traces now identify the first differences. Hard enters
+the rival report at4019 instead of4013, exactly explaining its six-count remaining
+timer difference at4020. Easy enters the bank at5896 instead of5891; its checkpoint
+at5899 consequently observes the preceding five-retrace wipe band. The accepted
+checkout independently still completes both unchanged replay contracts. No
+inputs, clock values, expected snapshots or comparison rules were changed.
+[The investigation manifest](../reference/map-handoff-investigation.json) pins
+the observer and nine local artifacts. This explains the first divergences;
+it does not establish acceptance of subsequent current-build checkpoints.

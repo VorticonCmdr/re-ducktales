@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "completed": true,
+  "scope": "Focused map raw input and caller integration; not complete campaign, destination polling/presentation or whole native timing acceptance",
+  "sourceCommit": "bcaaa9928dc627dd817e6821f9e399e829a30512",
+  "sourceFileCount": 539,
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "nativeManifests": [
+    "reference/map-keyboard.json",
+    "reference/map-clock.json"
+  ],
+  "inputProfile": "reference/map-keyboard-inputs.json",
+  "browserConfig": "playwright.config.js",
+  "environment": {
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "biosSeed": 0,
+    "input": "Real Playwright DOM keyboard/mouse events; original independent make/release profile",
+    "startingState": "Fresh application, skip enabled title, confirm Easy, control-center departure, fixed Right security choice, first neutral map poll"
+  },
+  "expected": {
+    "browserCases": 2,
+    "originalMapReads": 36,
+    "authoredMapSequences": 10,
+    "missingMakeControls": 2,
+    "unitCases": 117,
+    "unitSkipped": 0
+  },
+  "injections": [],
+  "partialRestore": false,
+  "comparisonRules": [
+    "Exact original bytes,128 key flags before/input/end,pointer coordinates/acceleration/vectors/latch,modes and return codes",
+    "All browser poll intervals are six unsigned driver counts; native intervals from index2 onward are exactly six",
+    "Thirty held reads do not create new makes; one fresh browser repeat produces one movement",
+    "Held Fire returns before flush;destination entry flushes Fire;fresh choice and confirmation reach departure,Restart reaches title"
+  ],
+  "exclusions": [
+    "Native initial interval is5 because drawing consumes1 count;browser first interval is6 and is not native CPU-drawing timing parity",
+    "Destination menu drawing,polling and selection/confirmation delays remain legacy behavior",
+    "Historical Easy/Hard recordings fail downstream exact checkpoints;retained failure logs are unresolved evidence,not acceptance"
+  ],
+  "commands": {
+    "freshVerification": "npm run verify:map-input-browser",
+    "unit": "npm test",
+    "build": "npm run build"
+  },
+  "artifacts": {
+    "browser/.last-run.json": {
+      "path": ".local/map-input-browser-20261029-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser/map-pointer-map-held-keys--2d3bd-n-flight-choice-and-restart/map-flight-choice.png": {
+      "path": ".local/map-input-browser-20261029-01/browser/map-pointer-map-held-keys--2d3bd-n-flight-choice-and-restart/map-flight-choice.png",
+      "bytes": 9141,
+      "sha256": "2b78aacdb0362c92c55d2575138fc05b22c9f069cc94e0ad1a924d334fa642d5"
+    },
+    "browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-inputs.json": {
+      "path": ".local/map-input-browser-20261029-01/browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-inputs.json",
+      "bytes": 210803,
+      "sha256": "18b4bdbde18c6a99069338220ac899d3b7aedffae9bf100a0af513d6c2d19a68"
+    },
+    "browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-original-inputs.png": {
+      "path": ".local/map-input-browser-20261029-01/browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-original-inputs.png",
+      "bytes": 24889,
+      "sha256": "e0aa34a7db5d796056b16c8cb5f6fa2bbd5a2e605145f92aaeb749b21c04e2f2"
+    },
+    "build.log": {
+      "path": ".local/map-input-browser-20261029-01/build.log",
+      "bytes": 832,
+      "sha256": "47a683d08545794d25b40ab4ec397c70459df29fe462e1be9afb3be3b89ad666"
+    },
+    "focused.log": {
+      "path": ".local/map-input-browser-20261029-01/focused.log",
+      "bytes": 2181,
+      "sha256": "c5ef4626b33661c5a144dc4d515406a80966bebfdb72858c6d02e9f17e775ba1"
+    },
+    "historical-easy-failure.log": {
+      "path": ".local/map-input-browser-20261029-01/historical-easy-failure.log",
+      "bytes": 814,
+      "sha256": "9ed228f9c126707af2f74a2eed4a13ddbec4cd18cfb94bee3c47c3ab09a95cf3"
+    },
+    "historical-hard-failure.log": {
+      "path": ".local/map-input-browser-20261029-01/historical-hard-failure.log",
+      "bytes": 813,
+      "sha256": "80f75981a0be0b16e3060bfbade72190292f4b03d23d057a8d1371549e62c38f"
+    },
+    "omit-letter.log": {
+      "path": ".local/map-input-browser-20261029-01/omit-letter.log",
+      "bytes": 1687,
+      "sha256": "9b0b5040238a71c7dd4daa63ea799fd0200bbdfb9b2553c62b7d1a769c445b04"
+    },
+    "omit-repeat.log": {
+      "path": ".local/map-input-browser-20261029-01/omit-repeat.log",
+      "bytes": 1659,
+      "sha256": "a00b87b96c5039c8fdebc2c11da375e7e16beaed8629aa6ae9ed7e548c8e608d"
+    },
+    "runner-status.json": {
+      "path": ".local/map-input-browser-20261029-01/runner-status.json",
+      "bytes": 596,
+      "sha256": "4c2ec24cae89ed566e312fb93dbe3980b692d3855961e8a0f06c697125b87a85"
+    },
+    "source-revision.json": {
+      "path": ".local/map-input-browser-20261029-01/source-revision.json",
+      "bytes": 57813,
+      "sha256": "6b51dfeafda24fcdf1b81d8fbcc35c7821a30bc5efe95d94165df279cb35bf05"
+    },
+    "sources.zip": {
+      "path": ".local/map-input-browser-20261029-01/sources.zip",
+      "bytes": 1410924,
+      "sha256": "c1c0093cfb8ab76b386f47fe9244a99e9893070bed49227cf8d143320efa9bd5"
+    },
+    "unit.log": {
+      "path": ".local/map-input-browser-20261029-01/unit.log",
+      "bytes": 10912,
+      "sha256": "7253466f6e43ff61e580f323b8c50012e7c99e940fd07b92c2b9615e651053ac"
+    }
+  }
+}

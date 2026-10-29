@@ -147,8 +147,17 @@ test("keyboard mountain ascent awards treasure and prevents duplicate collection
   await page.keyboard.up("Space");
   await until((s) => s.scene === "mountain");
   const initial = await observe("entry");
-  expect(initial.stateSha256).toBe(entry.entryStateSha256);
-  expect(initial.pixelsSha256).toBe(entry.entryPixelsSha256);
+  // Exploratory capture records the complete new entry before any gameplay.
+  // Acceptance compares it through the declared current route, never a fitted
+  // timer or a normalized historical hash.
+  if (!capture) {
+    expect(initial.stateSha256).toBe(
+      accepted.entryStateSha256 ?? entry.entryStateSha256,
+    );
+    expect(initial.pixelsSha256).toBe(
+      accepted.entryPixelsSha256 ?? entry.entryPixelsSha256,
+    );
+  }
   expect(initial.state.mountain.lives).toBe(3);
   expect(initial.state.flight.outcome.status).toBe("crashed");
   expect(initial.state.campaign.location).toBe(31);

@@ -1,0 +1,1562 @@
+{
+  "version": 1,
+  "completed": true,
+  "evidenceLevel": "Conditional native deadline-completion segment with separate consumed clock values;not full spin-loop,Game or browser timing parity.",
+  "captureCommit": "6bfb0d430346894a3b88f9d52163e61b3414c6fa",
+  "sourceFileCount": 529,
+  "expectedCalls": 35,
+  "expectedExternalReads": 70,
+  "initialMapReadExcluded": 0,
+  "injections": [],
+  "partialRestore": false,
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "verifyCommand": "npm run verify:map-clock",
+  "artifacts": {
+    "alarm-0.json": {
+      "path": ".local/map-clock-capture-01/capture/alarm-0.json",
+      "bytes": 88772,
+      "sha256": "cc0da2cb9f90fc8feb45cba0628c6cfe17f8691853175c1efab3727c007ab0f8"
+    },
+    "alarm-0.png": {
+      "path": ".local/map-clock-capture-01/capture/alarm-0.png",
+      "bytes": 5103,
+      "sha256": "03d5d8b341269cbef29773e5aba937726eeb5c989bbdc763b94dd0a9b07615df"
+    },
+    "alarm-1.json": {
+      "path": ".local/map-clock-capture-01/capture/alarm-1.json",
+      "bytes": 88772,
+      "sha256": "464905a81191976ef9843a1d3cf8e3e58229847c412f17b042c99488e9e93647"
+    },
+    "alarm-1.png": {
+      "path": ".local/map-clock-capture-01/capture/alarm-1.png",
+      "bytes": 4861,
+      "sha256": "8319b336d8e4cd892d3a6c6dbfced962c81d00075f19b5284be96599cd375ee3"
+    },
+    "alarm-2.json": {
+      "path": ".local/map-clock-capture-01/capture/alarm-2.json",
+      "bytes": 88772,
+      "sha256": "a9bf6416d44ac3cfbf249bf814d43585c45370e870439cedd3c3b6c841754bbf"
+    },
+    "alarm-2.png": {
+      "path": ".local/map-clock-capture-01/capture/alarm-2.png",
+      "bytes": 5103,
+      "sha256": "03d5d8b341269cbef29773e5aba937726eeb5c989bbdc763b94dd0a9b07615df"
+    },
+    "alarm-3.json": {
+      "path": ".local/map-clock-capture-01/capture/alarm-3.json",
+      "bytes": 88772,
+      "sha256": "ab7b18eadcfa535f1bff3c1c34d3233df924f5c3c131752569d1c1fc1c34404e"
+    },
+    "alarm-3.png": {
+      "path": ".local/map-clock-capture-01/capture/alarm-3.png",
+      "bytes": 4861,
+      "sha256": "8319b336d8e4cd892d3a6c6dbfced962c81d00075f19b5284be96599cd375ee3"
+    },
+    "alarm-4.json": {
+      "path": ".local/map-clock-capture-01/capture/alarm-4.json",
+      "bytes": 88772,
+      "sha256": "65e88699ca91e65d64e6abb2cb15552b03c5ae7c3be68e8d98f76986bab5afb6"
+    },
+    "alarm-4.png": {
+      "path": ".local/map-clock-capture-01/capture/alarm-4.png",
+      "bytes": 5103,
+      "sha256": "03d5d8b341269cbef29773e5aba937726eeb5c989bbdc763b94dd0a9b07615df"
+    },
+    "alarm-5.json": {
+      "path": ".local/map-clock-capture-01/capture/alarm-5.json",
+      "bytes": 88772,
+      "sha256": "edb68b0299266f594c871f6965990f6f209c9479f89a11317833e2390a69068b"
+    },
+    "alarm-5.png": {
+      "path": ".local/map-clock-capture-01/capture/alarm-5.png",
+      "bytes": 4861,
+      "sha256": "8319b336d8e4cd892d3a6c6dbfced962c81d00075f19b5284be96599cd375ee3"
+    },
+    "capture.json": {
+      "path": ".local/map-clock-capture-01/capture/capture.json",
+      "bytes": 377,
+      "sha256": "299206bd4cd0bf71c2b845367f427c46a6fa061b8604e8a2763052fcb4b4a3e3"
+    },
+    "cleanup.json": {
+      "path": ".local/map-clock-capture-01/capture/cleanup.json",
+      "bytes": 88772,
+      "sha256": "cff78bab7d3a685fac83545275a111689301e6e6d85d7ef810e0eadc2c554cd4"
+    },
+    "cleanup.png": {
+      "path": ".local/map-clock-capture-01/capture/cleanup.png",
+      "bytes": 4861,
+      "sha256": "8319b336d8e4cd892d3a6c6dbfced962c81d00075f19b5284be96599cd375ee3"
+    },
+    "configuration.json": {
+      "path": ".local/map-clock-capture-01/capture/configuration.json",
+      "bytes": 2695,
+      "sha256": "4041ce94c68e5754efd3885ff92c1c24fa4e8cbe6354427e05014fa35aad2862"
+    },
+    "engine.json": {
+      "path": ".local/map-clock-capture-01/capture/engine.json",
+      "bytes": 3988,
+      "sha256": "bc3af1d90fee31f9cd479cd34943a8ca024f99d7d593073760ade119e666cd3d"
+    },
+    "entry.json": {
+      "path": ".local/map-clock-capture-01/capture/entry.json",
+      "bytes": 88774,
+      "sha256": "fd285c3eed10b35419e196768f3c6ea56bfa985d66c0bb8ef064bf1db233f2aa"
+    },
+    "entry.png": {
+      "path": ".local/map-clock-capture-01/capture/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/map-clock-capture-01/capture/fire-first.json",
+      "bytes": 88769,
+      "sha256": "e3edd35d547f2c3c1644c3f47f958dda871545ee7d6def4e91d452538bd2fa86"
+    },
+    "fire-second.json": {
+      "path": ".local/map-clock-capture-01/capture/fire-second.json",
+      "bytes": 88770,
+      "sha256": "25992091e48add781ffb7e4532c465825fdbd118cb2cb86f53021e75788125ea"
+    },
+    "first-result.json": {
+      "path": ".local/map-clock-capture-01/capture/first-result.json",
+      "bytes": 88770,
+      "sha256": "1cab506cca8fd0f1f995f0cdc9527fe560a3147968d71ce3db30fe9e3025dc87"
+    },
+    "first-result.png": {
+      "path": ".local/map-clock-capture-01/capture/first-result.png",
+      "bytes": 5184,
+      "sha256": "d2777bc4edc29195ace41ba963327c909e99453005155e5e79627366ee607909"
+    },
+    "generated.json": {
+      "path": ".local/map-clock-capture-01/capture/generated.json",
+      "bytes": 88773,
+      "sha256": "3e3960e89ca270ab3662e3ed7267ff8f6e5c9679dccd5b7c0886005a200c1aca"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/map-clock-capture-01/capture/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "bdb6d906e6d7c0734f5777a029bbfea385dcf217280d3f37661027800a863798"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/map-clock-capture-01/capture/initial-poll-0.png",
+      "bytes": 4838,
+      "sha256": "739dd8b623c7cad2b0e4c249683c16e1e1040fda76123f029c8eca3a479482c7"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/map-clock-capture-01/capture/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "d18312e3a84710d2cf6e8ebcb802f19da49ed6a353c3a5231eac3f22d54c1aee"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/map-clock-capture-01/capture/initial-poll-1.png",
+      "bytes": 4861,
+      "sha256": "8319b336d8e4cd892d3a6c6dbfced962c81d00075f19b5284be96599cd375ee3"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/map-clock-capture-01/capture/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "ecc1c78d51c9813e79c57dbac55012290dfd19c2524206829f8410370bf581ec"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/map-clock-capture-01/capture/initial-poll-2.png",
+      "bytes": 4861,
+      "sha256": "8319b336d8e4cd892d3a6c6dbfced962c81d00075f19b5284be96599cd375ee3"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/map-clock-capture-01/capture/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "69ae2db9f40de100c166c67d8e9bd3f46bd45424d5d971067e15e7b874f60d2e"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/map-clock-capture-01/capture/initial-poll-3.png",
+      "bytes": 4861,
+      "sha256": "8319b336d8e4cd892d3a6c6dbfced962c81d00075f19b5284be96599cd375ee3"
+    },
+    "inputs.json": {
+      "path": ".local/map-clock-capture-01/capture/inputs.json",
+      "bytes": 5264,
+      "sha256": "e19236a7908e5b85a21359a4d1d9ef97b2391e58cd8f433fbf7aca933e23525b"
+    },
+    "live-overlay.json": {
+      "path": ".local/map-clock-capture-01/capture/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "f9ed7c49a89678058a638423c9e3fb9fdd92abf487b3e324771802eb42ec47ef"
+    },
+    "map-000-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-000-before.json",
+      "bytes": 88790,
+      "sha256": "ff836ce45baf4ecc54605c53ea2c654528e62da0fd3f6c19540c99e95c4b94ce"
+    },
+    "map-000-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-000-end.json",
+      "bytes": 88784,
+      "sha256": "29f9702fd3c9b14df833d1d27d2094db4974731391fa0edad2b3a3add093b466"
+    },
+    "map-000-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-000-input.json",
+      "bytes": 88782,
+      "sha256": "c27788509354aa1476dbb7aee63a1e86fac5de4a4315b08a28b768a7921aa688"
+    },
+    "map-001-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-001-before.json",
+      "bytes": 88790,
+      "sha256": "f7a393b74aea286eaac9a4bcca8e92f27c607d58cca3bab6bf8e0893c6513012"
+    },
+    "map-001-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-001-end.json",
+      "bytes": 88784,
+      "sha256": "349b7b7bef5102c6dbe15bb2b3a63f7997dcbda8da7c31245e5ceccddfdb578c"
+    },
+    "map-001-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-001-input.json",
+      "bytes": 88782,
+      "sha256": "91fabeca973a020b1ce9dd0e8d78a759e312a08d88a18703cdf46addd0e61535"
+    },
+    "map-002-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-002-before.json",
+      "bytes": 88790,
+      "sha256": "bb4bfcd5fe601f1916bd6618df930b9907fdf392c21aa4ce6f65512fadbafc5b"
+    },
+    "map-002-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-002-end.json",
+      "bytes": 88784,
+      "sha256": "2f49dac985a17569bf0f5e4b0de342375093f357ecd9ee65850a4a1709c5f904"
+    },
+    "map-002-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-002-input.json",
+      "bytes": 88782,
+      "sha256": "985ed346a591bde9274d9ed207170b8e623384d14140dcd344deb14d0a001111"
+    },
+    "map-003-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-003-before.json",
+      "bytes": 88790,
+      "sha256": "8a46279c2d7f6cf084de4f83a9e4dfc555643ea8c461efc3c54b3a3ad9bd5245"
+    },
+    "map-003-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-003-end.json",
+      "bytes": 88784,
+      "sha256": "785990872bec066c58b95a48889b0c46c78d57a6fba918505611e51c38c9ee03"
+    },
+    "map-003-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-003-input.json",
+      "bytes": 88782,
+      "sha256": "281b636061cb674aec909aec77d489c404215a99142e764b9f770f87ef41f767"
+    },
+    "map-004-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-004-before.json",
+      "bytes": 88790,
+      "sha256": "4ac4612910137cc13d8ee7a8f1794d337f1817d1279ac577cf7d6d71c1779afe"
+    },
+    "map-004-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-004-end.json",
+      "bytes": 88784,
+      "sha256": "228121ddc9d52005c02af9b60368bfdd77af11b67a1524ed75a5125d6d64637d"
+    },
+    "map-004-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-004-input.json",
+      "bytes": 88782,
+      "sha256": "efc35ff3e4b7e7d81466df79cc71dcf922dc0251277c5a6eb57f1072b2fa48be"
+    },
+    "map-005-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-005-before.json",
+      "bytes": 88791,
+      "sha256": "77245c06e90303da0d98683eb10fc7a2f49ae8700e418d95464e04752c64c562"
+    },
+    "map-005-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-005-end.json",
+      "bytes": 88785,
+      "sha256": "b42ffe7409c6c03d5bcbee207788fd6e8024d1b7f286b2ca187be5d270eb1da9"
+    },
+    "map-005-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-005-input.json",
+      "bytes": 88783,
+      "sha256": "2a74190f3e0ecc96c228906a43bcf2c851b5c9164bfd49fe72de53ca35388857"
+    },
+    "map-006-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-006-before.json",
+      "bytes": 88791,
+      "sha256": "31322fd384fd5e3bd8031a5b20a310650d66c996396f223379755f8d1792ab40"
+    },
+    "map-006-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-006-end.json",
+      "bytes": 88785,
+      "sha256": "d883c168b1ce59c97a1fd6860513b25a1e0eccaec69d757dc6e8e0e0b338e7a6"
+    },
+    "map-006-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-006-input.json",
+      "bytes": 88783,
+      "sha256": "f4d0f5e3e6cf0851485157796dbdc3441bd171c9d33948518c05c9d8f65f4275"
+    },
+    "map-007-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-007-before.json",
+      "bytes": 88791,
+      "sha256": "7c696708572eccfd7c92b989b7105377a9f53f293910b3c835b4c22beedbdfd2"
+    },
+    "map-007-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-007-end.json",
+      "bytes": 88785,
+      "sha256": "fff1465ffdfcf68d8e428ce0c8ee282d7e0c12a05dcd52d74720a256ce05b99e"
+    },
+    "map-007-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-007-input.json",
+      "bytes": 88783,
+      "sha256": "610f4a440fbeea2f7096678507d6be7342007737848d1260d4228f1a170a57b1"
+    },
+    "map-008-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-008-before.json",
+      "bytes": 88791,
+      "sha256": "30a321743167a55d29501735779c4ef484d3bb6923b5a80029578a9ea9dbaee8"
+    },
+    "map-008-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-008-end.json",
+      "bytes": 88785,
+      "sha256": "fe5fbaa0d8d0773620e2a043a35ff2f5d8267fb181b8af0e10c9b9d09e3cbe0f"
+    },
+    "map-008-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-008-input.json",
+      "bytes": 88783,
+      "sha256": "1e66460d860f2e2286c6143a9c9cf70a2eb0f8b757270f26d7fd6b70ac3916b4"
+    },
+    "map-009-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-009-before.json",
+      "bytes": 88792,
+      "sha256": "bc85d727dad6fc5b8ac69de13f3b04fe15d96b05a313dd6c5b4122f7a16b0847"
+    },
+    "map-009-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-009-end.json",
+      "bytes": 88786,
+      "sha256": "d2efdb904e86ff853e5fa72dfd4f55ee2d9635378f6f80f4d184794b28f7045b"
+    },
+    "map-009-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-009-input.json",
+      "bytes": 88784,
+      "sha256": "27c2a8a50ece0028b0879364af070da63b6abe077f0e2cd22177e474e9e21983"
+    },
+    "map-010-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-010-before.json",
+      "bytes": 88792,
+      "sha256": "4dbced5955d52d9c5e059d96a598d34a09c7908e658787924e5557b11cbc731b"
+    },
+    "map-010-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-010-end.json",
+      "bytes": 88786,
+      "sha256": "9b31efc289fb7813b01bd3692829f418ce9ac0f248a7b338f573aec03f2f4ab4"
+    },
+    "map-010-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-010-input.json",
+      "bytes": 88784,
+      "sha256": "c1286855f7bcd3f58b9b3bbdef879109ef926718d5b19a6abedd77d4ad274efd"
+    },
+    "map-011-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-011-before.json",
+      "bytes": 88792,
+      "sha256": "290a00c89819d2b7a6cc3c747289e2755422c0ab010edba30179b5031367632c"
+    },
+    "map-011-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-011-end.json",
+      "bytes": 88786,
+      "sha256": "557545f5beee21dd2b6e6d3de5822e9537a73a5b8a83c5d4dc108628446083ae"
+    },
+    "map-011-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-011-input.json",
+      "bytes": 88784,
+      "sha256": "602493b4676977430414e14a4e65fc3172e109e172904dac37871199a31f293d"
+    },
+    "map-012-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-012-before.json",
+      "bytes": 88792,
+      "sha256": "f1a4737f782a12059426f44cd2f268415b643eda45fa947236fb08c5ed713f3c"
+    },
+    "map-012-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-012-end.json",
+      "bytes": 88786,
+      "sha256": "7191f7ddf3b992a1e31f6bbfad88c830f31fbc418256b01b6ad728831475a646"
+    },
+    "map-012-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-012-input.json",
+      "bytes": 88784,
+      "sha256": "1be0c43d508980e90eadb0f4c833dcd29e302a4090ac6e1298055d7fea0dbbb7"
+    },
+    "map-013-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-013-before.json",
+      "bytes": 88792,
+      "sha256": "70889c4209b960da48dc69c6c2be20b66d879b2aee30460ba7ae51ed1407482f"
+    },
+    "map-013-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-013-end.json",
+      "bytes": 88786,
+      "sha256": "33a13503f82a718a32981d89a995e9ea2c950eab359bb1908d13f591bd395fc8"
+    },
+    "map-013-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-013-input.json",
+      "bytes": 88784,
+      "sha256": "d08734ffc95b99ce8acaf4b41aaf0b8a7de3df8b70345d511144a913cad447b4"
+    },
+    "map-014-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-014-before.json",
+      "bytes": 88792,
+      "sha256": "59add525dd1832530d379d6a06a7ccd45084cd8316809069c0cc3f1447bbf85a"
+    },
+    "map-014-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-014-end.json",
+      "bytes": 88786,
+      "sha256": "2effa947f8365cdd34a6f126ebda01187c236550ec996fd382b20fb9a4c54ae0"
+    },
+    "map-014-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-014-input.json",
+      "bytes": 88784,
+      "sha256": "a5d53f67cdee69afb7c577c2d51ef601f64748755a02067e057dbcf74b4ee2b6"
+    },
+    "map-015-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-015-before.json",
+      "bytes": 88792,
+      "sha256": "d56287f9b3c29b6644c51929df05588fc8183755fcc2f39a89dcba16337f4d6e"
+    },
+    "map-015-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-015-end.json",
+      "bytes": 88786,
+      "sha256": "8b54eb8251dc515eaec0702152205546568c50cac41ef00f45fd1c8d7ad96550"
+    },
+    "map-015-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-015-input.json",
+      "bytes": 88784,
+      "sha256": "3bb8bf75d48d9aa2b70fdbae43cfd3fbbd6e5f85f74bac651778beb21e25c180"
+    },
+    "map-016-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-016-before.json",
+      "bytes": 88792,
+      "sha256": "7806378da0c1cb86aa11ed4066b29eac4f4b3224811675784cebe275e8bdf68c"
+    },
+    "map-016-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-016-end.json",
+      "bytes": 88786,
+      "sha256": "375f0269ba79164e02c2a82266e2d46792b76a8029713ad6fcba70a0a766eeae"
+    },
+    "map-016-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-016-input.json",
+      "bytes": 88784,
+      "sha256": "5adb7b8623fe13fbac57c82017e01450fd7c075f46223b2055c5bc9646539898"
+    },
+    "map-017-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-017-before.json",
+      "bytes": 88792,
+      "sha256": "b23148c342f6130a01061dcd8fab1376e280b24ce4f896c7f801f5144b27a651"
+    },
+    "map-017-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-017-end.json",
+      "bytes": 88786,
+      "sha256": "1a001faf66ed635b55ba2f0ce11615869fcd87f29eb7dc59fa8a20e0271ed6d5"
+    },
+    "map-017-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-017-input.json",
+      "bytes": 88784,
+      "sha256": "27cb11d902c00baaf12e55295edec5214110f316f22777749476788eb5820056"
+    },
+    "map-018-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-018-before.json",
+      "bytes": 88792,
+      "sha256": "1ed32794a6e4be1990fd6b7a536f1644640147b913d3e69c2303dd4ff508c595"
+    },
+    "map-018-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-018-end.json",
+      "bytes": 88786,
+      "sha256": "74c209ce040720d2f38f5722bf3c98c8136dcb43bc7db47161cbfd1bfd948910"
+    },
+    "map-018-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-018-input.json",
+      "bytes": 88784,
+      "sha256": "3e0ddab69891e834695b69e5dd3032dc56a55cd5b607462aa104e0d5dbf62154"
+    },
+    "map-019-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-019-before.json",
+      "bytes": 88792,
+      "sha256": "b19426fc118437460ab539c0b21d91af8d1c0a9c7e34e9ad62aaae25faa0950d"
+    },
+    "map-019-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-019-end.json",
+      "bytes": 88786,
+      "sha256": "508d18108b00e59101898e922b1e76848a6ffd27b8830d281e3234c175648d0a"
+    },
+    "map-019-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-019-input.json",
+      "bytes": 88784,
+      "sha256": "0dfd603faba2a4778ab85d9a27bcff2cb0f728449f5afd56d9638a99ad03444a"
+    },
+    "map-020-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-020-before.json",
+      "bytes": 88792,
+      "sha256": "a7bc31073329c4827c04353df06e393354eef58fba64578190d66a1a6f2e7937"
+    },
+    "map-020-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-020-end.json",
+      "bytes": 88786,
+      "sha256": "1df94e1b4b14e0e714948f729e05c31c4eed0b8fb03614c5ae1b4c691a9b1e22"
+    },
+    "map-020-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-020-input.json",
+      "bytes": 88784,
+      "sha256": "36272bd86da56dadd4260a31b8f3342e678958bc98b2666981f2269cb0ce19ec"
+    },
+    "map-021-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-021-before.json",
+      "bytes": 88792,
+      "sha256": "ff06e42176e1552909b9201851a8d4e6584437e26597d57c560b38dea84e3e79"
+    },
+    "map-021-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-021-end.json",
+      "bytes": 88786,
+      "sha256": "0c2a153478b383b556149c918041979141131b0d375e068bc4962e90a4e46a05"
+    },
+    "map-021-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-021-input.json",
+      "bytes": 88784,
+      "sha256": "50d189e38b5ed692fcabd4854f85e80ee9cbe7507c1fd18a5663b68ceb099426"
+    },
+    "map-022-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-022-before.json",
+      "bytes": 88792,
+      "sha256": "a1d70f1ec9047de03e9152f51ab6ffa219949f4f3203c78695d41c97c3886df8"
+    },
+    "map-022-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-022-end.json",
+      "bytes": 88786,
+      "sha256": "1ec5669ee6c4ff648d84ef595d86eb78a4cfd3cdf248c1f89b80773a0539a438"
+    },
+    "map-022-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-022-input.json",
+      "bytes": 88784,
+      "sha256": "f9f2256991a6efc3b3b4f94c5f677454169f94d17b87bf3b8b5f89ca166b6e66"
+    },
+    "map-023-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-023-before.json",
+      "bytes": 88792,
+      "sha256": "3916e00b0cd221d3f8f7496393316f6986dc364e48f5537d2f09087d214426c8"
+    },
+    "map-023-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-023-end.json",
+      "bytes": 88786,
+      "sha256": "cb1ac206ca2be75f2715c4c5fef5f418e9f35e83efc4e1f7bc6e71b1afe309a7"
+    },
+    "map-023-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-023-input.json",
+      "bytes": 88784,
+      "sha256": "1e3916d139948a9efdcc04c833862bb3a7ddb011182885fd84ffe4251a20b155"
+    },
+    "map-024-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-024-before.json",
+      "bytes": 88792,
+      "sha256": "e65bee4fdc64cc4f04a8f6876eab5fc39dfa90badfb11d69ed05ebe193a84d6f"
+    },
+    "map-024-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-024-end.json",
+      "bytes": 88786,
+      "sha256": "451b4d193017d023bbe124b45da7fd8138380c0d6ebc4c7595320b74332baa44"
+    },
+    "map-024-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-024-input.json",
+      "bytes": 88784,
+      "sha256": "ce2cf9f624903212dad7452189990e36f3940183d3fddfe1e8d45c3b36cd3e8f"
+    },
+    "map-025-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-025-before.json",
+      "bytes": 88792,
+      "sha256": "c1768fbc4d8e9a9c15925191f32f62a0b52afe7350ea495fe112f0e576d1d9f3"
+    },
+    "map-025-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-025-end.json",
+      "bytes": 88786,
+      "sha256": "0c6639d1d796491868fc4cadbe3c75a12b4a1846a489fc3059acbe7e1e3c0351"
+    },
+    "map-025-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-025-input.json",
+      "bytes": 88784,
+      "sha256": "0620b1aadcb45e3853df7a9c32dba9c305f02dc5dbd5cf89e98356f15b43069c"
+    },
+    "map-026-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-026-before.json",
+      "bytes": 88792,
+      "sha256": "281806be02177f83a567aecba3827dc12222e7644e344083c2711fbf65ed714f"
+    },
+    "map-026-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-026-end.json",
+      "bytes": 88786,
+      "sha256": "b8c38b7ce39ad8e563dfe011538a6983d95a2da555e73811a28b4160a51c231e"
+    },
+    "map-026-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-026-input.json",
+      "bytes": 88784,
+      "sha256": "2a2fc4586dabd81dbba9fa4ab8f11dbbc554677e6a340121da79a3abacbf32d7"
+    },
+    "map-027-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-027-before.json",
+      "bytes": 88792,
+      "sha256": "d8e5aafa448c5213cff51777ca7a4b70cd604cc231ea409ea4192ef3aa3d9bfb"
+    },
+    "map-027-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-027-end.json",
+      "bytes": 88786,
+      "sha256": "2f8586efe7e64ada17cb949c4b6d18b203ef367fdc631a3772cca9f5a878eaf7"
+    },
+    "map-027-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-027-input.json",
+      "bytes": 88784,
+      "sha256": "1c9ff2e066827af45ce6cb583b9851eeb6e8af259f98dff9d4e22c5ee1a60b69"
+    },
+    "map-028-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-028-before.json",
+      "bytes": 88792,
+      "sha256": "c620a94016525b201c6d362b8af71a88f8bcf3be2d512f5f41e6b936843fd88f"
+    },
+    "map-028-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-028-end.json",
+      "bytes": 88786,
+      "sha256": "4b82e7465a633cf2e024ce85217c703dc3d08aaa1a961661154084d46ca0838d"
+    },
+    "map-028-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-028-input.json",
+      "bytes": 88784,
+      "sha256": "94566abba28e9fbdf16b9ee291e10ee4cb090a9cb9ebd1fb18f58b46e6216baf"
+    },
+    "map-029-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-029-before.json",
+      "bytes": 88792,
+      "sha256": "9eb8237880b18d99998897b48442879b502dad1df3b00684636a5c224e3a2518"
+    },
+    "map-029-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-029-end.json",
+      "bytes": 88786,
+      "sha256": "48ccdc96d8cfaeec82f7860b6c3d7ea2a9fb79b63456a72d0adcb5f786aac47a"
+    },
+    "map-029-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-029-input.json",
+      "bytes": 88784,
+      "sha256": "5a419e778a56fb73e63e409bd7482193714ccdc2471c395ee04aacb418b6641d"
+    },
+    "map-030-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-030-before.json",
+      "bytes": 88792,
+      "sha256": "a1ac71214cd45cc817fbf618b610adaa23c5fcdef104d1e287da0b778cb94bcd"
+    },
+    "map-030-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-030-end.json",
+      "bytes": 88786,
+      "sha256": "96639bed1b46fdcdc65194620a0dd580b9d25233196b9a968d08d9dac32e563d"
+    },
+    "map-030-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-030-input.json",
+      "bytes": 88784,
+      "sha256": "66c36711bdb0dce4e23e671df5ee5d14f904c783b8ad6d2d0182e7508c35f3c3"
+    },
+    "map-031-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-031-before.json",
+      "bytes": 88792,
+      "sha256": "26036b31db88c83996ccb1b43b34cdb1ea2d75f0f1277b5ab02532ead524c7c5"
+    },
+    "map-031-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-031-end.json",
+      "bytes": 88786,
+      "sha256": "716add9044960de6d562743914618cda72abeada902543977df752d5d277c673"
+    },
+    "map-031-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-031-input.json",
+      "bytes": 88784,
+      "sha256": "eff22b15b8ae562442d457e383bf7ea8b640366bb24f3d5919efd4833ef6b3d1"
+    },
+    "map-032-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-032-before.json",
+      "bytes": 88792,
+      "sha256": "f3a1020c352a930907dbe919cb46b392e2c84898908d2c7b6734dace8396bb56"
+    },
+    "map-032-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-032-end.json",
+      "bytes": 88786,
+      "sha256": "91086961fbbd8960c5cca5e1b9cb20bff03ed8800b5d952315cd00a29f82143f"
+    },
+    "map-032-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-032-input.json",
+      "bytes": 88784,
+      "sha256": "30143709eca34a0bed75d12f2ea5d33f328baef210cf4b333d9c5a4474e026ab"
+    },
+    "map-033-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-033-before.json",
+      "bytes": 88792,
+      "sha256": "87455ed9058d564b05ffaf47d8e4265f49562367c5c80e21c77335518bcf5796"
+    },
+    "map-033-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-033-end.json",
+      "bytes": 88786,
+      "sha256": "e164a5b547e1f3c214cf54bf6ebf510b4e26d3836d33ca5e714bad459c162283"
+    },
+    "map-033-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-033-input.json",
+      "bytes": 88784,
+      "sha256": "b5905b1ae8762e4ecb8e9beb156df91583485cc7be9ecc3ee0cc71b31b594ecd"
+    },
+    "map-034-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-034-before.json",
+      "bytes": 88792,
+      "sha256": "cfeb127f2ceaa521ed1b9a490918388fd3ec9e65e4ec0b14c8bb8851ae10ab82"
+    },
+    "map-034-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-034-end.json",
+      "bytes": 88786,
+      "sha256": "e29f836df63a57306e6f0b7ac4b881fdfc6541b0ffb13ccd6c39c9ec36af1b0d"
+    },
+    "map-034-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-034-input.json",
+      "bytes": 88784,
+      "sha256": "a6d9e1cb02159111499e338dff839b232b7b83b61269bca2e0606aac4b7a4268"
+    },
+    "map-035-before.json": {
+      "path": ".local/map-clock-capture-01/capture/map-035-before.json",
+      "bytes": 88792,
+      "sha256": "01186f3f5d8ac904d3f20cf005ae2a89806832d4202b0546bb199a24b5f94806"
+    },
+    "map-035-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-035-end.json",
+      "bytes": 88786,
+      "sha256": "1bd41135c5e3756b5753599673260dc230d4addc0889db194cae4a70ad98b19e"
+    },
+    "map-035-input.json": {
+      "path": ".local/map-clock-capture-01/capture/map-035-input.json",
+      "bytes": 88784,
+      "sha256": "bec353efaef377269f4f2989c4c77b2078a48e82c2b21e48d0f43c046937992b"
+    },
+    "map-capture.json": {
+      "path": ".local/map-clock-capture-01/capture/map-capture.json",
+      "bytes": 671,
+      "sha256": "cbf7ae12f3f369caec2c68ac6fb127e31d9090f918890ce507f0ceda4c5810ea"
+    },
+    "map-clock-001-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-001-end.json",
+      "bytes": 88779,
+      "sha256": "363a7e6beef6093468d240d760f5f55d8edb51d81e03d3578d880d367877da89"
+    },
+    "map-clock-001-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-001-entry.json",
+      "bytes": 88777,
+      "sha256": "e84abe24c7881d3bd186a151136c03df6eb73390789d5f4a31bc4ec2f507e96d"
+    },
+    "map-clock-001-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-001-read.json",
+      "bytes": 88779,
+      "sha256": "d4689b791906c974527e113bdb6ef245047d8c4385cf7be4dd4706a2f00443ea"
+    },
+    "map-clock-001-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-001-ready.json",
+      "bytes": 88779,
+      "sha256": "11b3dbb2a88548b935a69f9df0152458d11a260d252aadaa0b2006eaee6bccc0"
+    },
+    "map-clock-002-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-002-end.json",
+      "bytes": 88779,
+      "sha256": "98cd06c57269b61264bad79fbcdb22b1bd73cfa9017a330f55067caa7ad6aa6b"
+    },
+    "map-clock-002-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-002-entry.json",
+      "bytes": 88777,
+      "sha256": "a43026392249b19bc6c01f86fdab4056688d13a6fddcb0787c60f383a91e4798"
+    },
+    "map-clock-002-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-002-read.json",
+      "bytes": 88779,
+      "sha256": "065484db34b16702bd73e74bd46c61ea8009fed59652c5e8c14bb4460ef48cc3"
+    },
+    "map-clock-002-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-002-ready.json",
+      "bytes": 88779,
+      "sha256": "4c6564c58dce0a87c5b4924e0c280db26dcc1363d7af25c2322ac1d1aa35db3f"
+    },
+    "map-clock-003-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-003-end.json",
+      "bytes": 88779,
+      "sha256": "2505dce8c11997b25f1c9582dc597bd01b353d072ab3cfd7bfeb26ba79407022"
+    },
+    "map-clock-003-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-003-entry.json",
+      "bytes": 88777,
+      "sha256": "ed2c05d0cab46238851f489b43492f0349fdf3a5eec5bc1b7919624ff89a83fe"
+    },
+    "map-clock-003-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-003-read.json",
+      "bytes": 88779,
+      "sha256": "4d4602e9e98532ac4f5f5b465d4cff07c170bc3f416b55db68eb8672f49585e3"
+    },
+    "map-clock-003-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-003-ready.json",
+      "bytes": 88779,
+      "sha256": "9f86b0d0462a8395073f64c6ecf95ea788e18613fed528598848d0c03c70cf06"
+    },
+    "map-clock-004-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-004-end.json",
+      "bytes": 88779,
+      "sha256": "a104eb1147126c4f8e1c03df88a5832e2cc9b6480ce9b2ca86a62ce1ae09010a"
+    },
+    "map-clock-004-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-004-entry.json",
+      "bytes": 88777,
+      "sha256": "b071b656c865658580415412d36f66d45d8df73d6d9f9f8fd5df90804a692f7a"
+    },
+    "map-clock-004-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-004-read.json",
+      "bytes": 88779,
+      "sha256": "2ea4ebf2efd9c19d50da219f837412abfa32be8e43f2f7eaf0aa20003030ffec"
+    },
+    "map-clock-004-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-004-ready.json",
+      "bytes": 88779,
+      "sha256": "867149d57bdc9606d9f8031f1faa81f81a9d287f75c003faed6868bbeac041be"
+    },
+    "map-clock-005-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-005-end.json",
+      "bytes": 88780,
+      "sha256": "4ba1e3ec17aab3f15ef72114003fd7cf608582d62efb9bd16168aa925cd3592c"
+    },
+    "map-clock-005-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-005-entry.json",
+      "bytes": 88777,
+      "sha256": "5e973849d0907622282569ad570e47dce55ad581582fb9284ff5edd1c54932f1"
+    },
+    "map-clock-005-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-005-read.json",
+      "bytes": 88780,
+      "sha256": "ae830ee4b19901d7a824bb2654e40e7fe7387eb7969681c14391b2ee53b8b389"
+    },
+    "map-clock-005-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-005-ready.json",
+      "bytes": 88779,
+      "sha256": "409c0d04efbe0fcbd53a0232321c37646b94f00be5b5cca4b024564c328073b6"
+    },
+    "map-clock-006-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-006-end.json",
+      "bytes": 88780,
+      "sha256": "8600b8a00f6fce311d47ff28a702744ada8c1d4aaa5480f394dee05a501aa82e"
+    },
+    "map-clock-006-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-006-entry.json",
+      "bytes": 88778,
+      "sha256": "1cda176b49a51aaee620ebc8d549c86e147646278c9b839f6382bd85aea2eb84"
+    },
+    "map-clock-006-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-006-read.json",
+      "bytes": 88780,
+      "sha256": "5ade1e6c6923af7948eadd46329919cc9df1aafee5dd5f5dc6fbe37c1bf90f7d"
+    },
+    "map-clock-006-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-006-ready.json",
+      "bytes": 88780,
+      "sha256": "2baca9cf9a7313c265935452a1650a7a8afe20e229fb1d2c130a737ce8bd3c8d"
+    },
+    "map-clock-007-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-007-end.json",
+      "bytes": 88780,
+      "sha256": "2d57ce3a9cdff96773240391566d3d2dcf0d0e6f70749be4112ef65eef0c66a8"
+    },
+    "map-clock-007-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-007-entry.json",
+      "bytes": 88778,
+      "sha256": "b9cc1412988c7025e62576e3f96aefd52aef89b4afeb1d6d8612bb0bb986face"
+    },
+    "map-clock-007-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-007-read.json",
+      "bytes": 88780,
+      "sha256": "b61193a7af5bcf3b6b9f81e3069b6c22e2643190ef9a1fa3a6ee6c1180428c9a"
+    },
+    "map-clock-007-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-007-ready.json",
+      "bytes": 88780,
+      "sha256": "14219ad6c4bd2260fe8c277171d8c56217e1a145fa99dcb772d1134c3344c879"
+    },
+    "map-clock-008-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-008-end.json",
+      "bytes": 88780,
+      "sha256": "fdbc4cce7454873cddb2cfaffea54ca83dd5a3cd6d54a1884ffe929b467ccf63"
+    },
+    "map-clock-008-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-008-entry.json",
+      "bytes": 88778,
+      "sha256": "474a9e340827782ca2b0b92ca925aa1fe7760f7e7d560a4c34aa89b39341c850"
+    },
+    "map-clock-008-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-008-read.json",
+      "bytes": 88780,
+      "sha256": "e11bb2c8c5e5086be53822720575c09b35ed82330ef9993b8bf932a7dbdb20fc"
+    },
+    "map-clock-008-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-008-ready.json",
+      "bytes": 88780,
+      "sha256": "55f49de0e813851d679d4ff773c35d43a3719f766eb34cb4cc587420c1f13bf7"
+    },
+    "map-clock-009-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-009-end.json",
+      "bytes": 88780,
+      "sha256": "9cfe2d377ee1a516017544747493ee7a47854a2d084d7f41557a6a11ab03f3ad"
+    },
+    "map-clock-009-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-009-entry.json",
+      "bytes": 88778,
+      "sha256": "eb4a561a533acb1fd09c7b7262a9ffa8ab557149d03962ac0e13f0107c322fe5"
+    },
+    "map-clock-009-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-009-read.json",
+      "bytes": 88780,
+      "sha256": "afadbb78a1016dc700ba2b5c9438e3b347a31e2ff252c614c7c074978ab3b3ae"
+    },
+    "map-clock-009-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-009-ready.json",
+      "bytes": 88780,
+      "sha256": "81750eaee0eeb248bed2ba36192b55c9ef2f082c5399fb955a9b50d7964c22f0"
+    },
+    "map-clock-010-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-010-end.json",
+      "bytes": 88781,
+      "sha256": "15265032d33231421b2fbd2cb3948905546d10035a6ea12be261cc801e607a5e"
+    },
+    "map-clock-010-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-010-entry.json",
+      "bytes": 88779,
+      "sha256": "f25e45c7a38bd3584b5ea2f02ef50dd18f209179ed152b16ef355cc143a95601"
+    },
+    "map-clock-010-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-010-read.json",
+      "bytes": 88781,
+      "sha256": "e583fc8b4b53756262c8c0afe3ab9b54eacbc54a317e97e90e9d79d94613b84a"
+    },
+    "map-clock-010-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-010-ready.json",
+      "bytes": 88781,
+      "sha256": "680f302ee220ddb981789b955f6f276fd71cdb7336ac571a3326a778248922e7"
+    },
+    "map-clock-011-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-011-end.json",
+      "bytes": 88781,
+      "sha256": "aa4c31233a4bc99fa144a9196d6450dda3a43922bb6ee1497472c1fd2fcc7138"
+    },
+    "map-clock-011-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-011-entry.json",
+      "bytes": 88779,
+      "sha256": "7bd8e457ff3d5c3a7111250ad558c8f8ced36fb032203acc3e369494d90f9eed"
+    },
+    "map-clock-011-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-011-read.json",
+      "bytes": 88781,
+      "sha256": "643239719724dfd584ac1a85b7b348a3fce6fd47379d32d4c7fd6648589641e9"
+    },
+    "map-clock-011-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-011-ready.json",
+      "bytes": 88781,
+      "sha256": "39a69cef639c39137006028c316fb35b0c56e5a20eaadef8e17662d4b3a5a680"
+    },
+    "map-clock-012-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-012-end.json",
+      "bytes": 88781,
+      "sha256": "753044c9a060c79cc84e637195b6411ffa67dae41ca38bc26b41313a05544252"
+    },
+    "map-clock-012-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-012-entry.json",
+      "bytes": 88779,
+      "sha256": "b7e5d640c6cbad9b8bb0b928c517eda9bd3db07f96b97ad388192ab5bfb60f16"
+    },
+    "map-clock-012-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-012-read.json",
+      "bytes": 88781,
+      "sha256": "5011d9c0ee5c85a72a9b5233fa22d45623b9a741ca59fcfd9da3468b55bdf5a2"
+    },
+    "map-clock-012-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-012-ready.json",
+      "bytes": 88781,
+      "sha256": "8bde99dff6fd69ce46d83a08d8dba737bff326e04b8df530c673907a6b461f49"
+    },
+    "map-clock-013-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-013-end.json",
+      "bytes": 88781,
+      "sha256": "8a7c6454ed7f5b1b30c0f89c30752f728ba713ba91fbf7603737c1935f216b64"
+    },
+    "map-clock-013-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-013-entry.json",
+      "bytes": 88779,
+      "sha256": "fe2a8629ab1bb1bc1c77ab752ceec13b1fe8602ade835e86e261c837c76a7991"
+    },
+    "map-clock-013-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-013-read.json",
+      "bytes": 88781,
+      "sha256": "f173efc2230d4f68471fe6791c3c2157ae0198889326991c42ca29f4c7db13ee"
+    },
+    "map-clock-013-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-013-ready.json",
+      "bytes": 88781,
+      "sha256": "b9884924e20bba9313d778c1e59c8a9a0ca9346224b9cbaffed91e22aab330b9"
+    },
+    "map-clock-014-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-014-end.json",
+      "bytes": 88781,
+      "sha256": "1ae10f2f2851b3dd187f4b184f8e777df12b31f22bf35745ea1cb7efec3c20fc"
+    },
+    "map-clock-014-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-014-entry.json",
+      "bytes": 88779,
+      "sha256": "42f78bed6c8be54f5f7fe6859df41c574fe7aae0dbf15257d5d0e601d570e65f"
+    },
+    "map-clock-014-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-014-read.json",
+      "bytes": 88781,
+      "sha256": "e32e8c0eaea1ecad2560a2daf99dc39fd90c2fae9144311aadb37f56cd16cf5d"
+    },
+    "map-clock-014-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-014-ready.json",
+      "bytes": 88781,
+      "sha256": "6f9139ecbb2c05702e33db551dfcd84637948188719f4c57768a97c6a54d9e29"
+    },
+    "map-clock-015-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-015-end.json",
+      "bytes": 88781,
+      "sha256": "391c52bca6e2f6850058d74b8818364eb177044e51e444a64ddcf77e17511464"
+    },
+    "map-clock-015-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-015-entry.json",
+      "bytes": 88779,
+      "sha256": "ff9912f8a551005449393f60af41900bc0a6e9a6f832b314f14d312a196359a7"
+    },
+    "map-clock-015-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-015-read.json",
+      "bytes": 88781,
+      "sha256": "c9584be5dba5802b6f3cdf3f26b2b260de3b2ec4f940aa85351cfda48568b680"
+    },
+    "map-clock-015-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-015-ready.json",
+      "bytes": 88781,
+      "sha256": "ed18e81111a05a16b908561180919d3f505f2bb34039cd8b1a5180a63148e610"
+    },
+    "map-clock-016-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-016-end.json",
+      "bytes": 88781,
+      "sha256": "a729e13efc1b52b320bb99e5f276b682acd9fdf93c1acb211a6392f9aba89b95"
+    },
+    "map-clock-016-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-016-entry.json",
+      "bytes": 88779,
+      "sha256": "0f2837b1b71395d007bbe9766fa8fe3a14c30eb070b3e54e5fa85c2d428aec5c"
+    },
+    "map-clock-016-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-016-read.json",
+      "bytes": 88781,
+      "sha256": "6d7c0f4259bcc3ab5ceb91b4253fe2165561389357f47e2918fddfc3d66f8f89"
+    },
+    "map-clock-016-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-016-ready.json",
+      "bytes": 88781,
+      "sha256": "a6e54bb1f9c492a5131398adaef157a4e9ec0c24a7922bc712f26476842c7b16"
+    },
+    "map-clock-017-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-017-end.json",
+      "bytes": 88781,
+      "sha256": "3a1b35c8334cea958c8502ecfdafaf42805a41363bc4912d09ad6dd057f7800b"
+    },
+    "map-clock-017-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-017-entry.json",
+      "bytes": 88779,
+      "sha256": "24ee9e90e74fca42e45a3b134166f9641e404dea5f200451feaa45af05fef2a0"
+    },
+    "map-clock-017-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-017-read.json",
+      "bytes": 88781,
+      "sha256": "c1ca6b512c9df54c1af0b378597f51ca543cdf07f15b4edc61749ede3a042e90"
+    },
+    "map-clock-017-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-017-ready.json",
+      "bytes": 88781,
+      "sha256": "b33a50676a3590c297ac53c3a69407d2e3267d6304f91ace258a098a27a849d1"
+    },
+    "map-clock-018-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-018-end.json",
+      "bytes": 88781,
+      "sha256": "a839fc1e8a85886e46f96a5492d5b4750242f9262481c217b4e3bbcbc113db0c"
+    },
+    "map-clock-018-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-018-entry.json",
+      "bytes": 88779,
+      "sha256": "dfe3cd262c7ffa61c24bf2f9cebad679fca590a73568b20883b8ca9a12128698"
+    },
+    "map-clock-018-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-018-read.json",
+      "bytes": 88781,
+      "sha256": "9118b8cfecce9c8b33cd0535c1708a6069c4312e74b08362fae110eb9e8af38f"
+    },
+    "map-clock-018-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-018-ready.json",
+      "bytes": 88781,
+      "sha256": "495f80034d03491eb1abe3334e11cb4cc08f64f910d62a8fbb5c630a131e1a5d"
+    },
+    "map-clock-019-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-019-end.json",
+      "bytes": 88781,
+      "sha256": "14a38c7d4a92ad90910e94edc0671a1642941971558cbbf676cad2d50e9efbba"
+    },
+    "map-clock-019-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-019-entry.json",
+      "bytes": 88779,
+      "sha256": "d9a90f8bb0125259f81f34818ad7a656b2b4157e36b3e4a574ba0642ed519991"
+    },
+    "map-clock-019-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-019-read.json",
+      "bytes": 88781,
+      "sha256": "3b710839fbd2494c8be1bf37e985895efe5a7ec0c1fb4a5c694cd2414f7b448a"
+    },
+    "map-clock-019-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-019-ready.json",
+      "bytes": 88781,
+      "sha256": "be3c92d7a61033a00bae87abf5f7bc4b02bf301201036edc4eadc4e13fda146f"
+    },
+    "map-clock-020-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-020-end.json",
+      "bytes": 88781,
+      "sha256": "1ade603f346aaed81640f2634d3e764c13dc86c554eab1fe420b71c276e1c875"
+    },
+    "map-clock-020-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-020-entry.json",
+      "bytes": 88779,
+      "sha256": "5335270c39f40b219a785aa70442f666e5a25f194c062e64fc4701a8d9fe1058"
+    },
+    "map-clock-020-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-020-read.json",
+      "bytes": 88781,
+      "sha256": "4096cb75713b828fd265830a05b9c76ebdd6b58bb5a7e97721bf1bce067b3aaa"
+    },
+    "map-clock-020-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-020-ready.json",
+      "bytes": 88781,
+      "sha256": "adb2ec42bde34769379f8445690ed7f2c8cee6e07d1e2b9e8aa31d6e9e9951da"
+    },
+    "map-clock-021-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-021-end.json",
+      "bytes": 88781,
+      "sha256": "dd8536964cabbf298b07919c9c1ae746b178caa8933e5a832165a57f13fac9bb"
+    },
+    "map-clock-021-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-021-entry.json",
+      "bytes": 88779,
+      "sha256": "454961d897a3163598d80975bc6dc416a0fbf4600c1c4cecdb2a92cf0da5f62e"
+    },
+    "map-clock-021-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-021-read.json",
+      "bytes": 88781,
+      "sha256": "52ba192eec301eeee8e8d6410eb94d316a65f0e4466e28bffcc106cc1f04c583"
+    },
+    "map-clock-021-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-021-ready.json",
+      "bytes": 88781,
+      "sha256": "ce377d272e92a115819aeaf3a55b467017485d3e87be0b3b54083780f1890930"
+    },
+    "map-clock-022-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-022-end.json",
+      "bytes": 88781,
+      "sha256": "747e7bb620461fe0a3f21807ab4f8886dcb6d4baa1afd45b50ab96e4decded4d"
+    },
+    "map-clock-022-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-022-entry.json",
+      "bytes": 88779,
+      "sha256": "0fe99c3e06f9f7b5844303a793bf71ebe08645a22fbb7b07928c6e66acb833c4"
+    },
+    "map-clock-022-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-022-read.json",
+      "bytes": 88781,
+      "sha256": "7eacbc4cde3733b7d5948eac123ebafd5037e0fa1156b86a03116dfe968425e6"
+    },
+    "map-clock-022-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-022-ready.json",
+      "bytes": 88781,
+      "sha256": "1e66078a42b96f876ad46964260c05fea289982e0de615ba5ff10615504c89f0"
+    },
+    "map-clock-023-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-023-end.json",
+      "bytes": 88781,
+      "sha256": "00ab92a9bd18f08a12646da2f1a53e271f986b0236f307db2608e397a2547fb6"
+    },
+    "map-clock-023-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-023-entry.json",
+      "bytes": 88779,
+      "sha256": "a59398d99e646f4baf93bad5dea2ea8109e161b655017f4058e5aa0bf9c4dad6"
+    },
+    "map-clock-023-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-023-read.json",
+      "bytes": 88781,
+      "sha256": "f74faa330f742e9ea79c3f6886e94d0d38be822b690bb74aeafc101c5bd71f5e"
+    },
+    "map-clock-023-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-023-ready.json",
+      "bytes": 88781,
+      "sha256": "f6f5e96c70b7ab0e119793a3f162805ac19ae2ab8cfe40477072e5663fdbb060"
+    },
+    "map-clock-024-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-024-end.json",
+      "bytes": 88781,
+      "sha256": "9334828d359a49571f10fdd2b629548d4b21a2632127406947c1b593637a649e"
+    },
+    "map-clock-024-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-024-entry.json",
+      "bytes": 88779,
+      "sha256": "6aba3db0ed71bc08814ccd3226944e84e8036c054ea8ce9d5214e1e9116cb0e0"
+    },
+    "map-clock-024-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-024-read.json",
+      "bytes": 88781,
+      "sha256": "96911884dc6dd2a52a19e816fb0a609a026f1b69d87c600dac3b89781d48660e"
+    },
+    "map-clock-024-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-024-ready.json",
+      "bytes": 88781,
+      "sha256": "2aea8894cb50aff0c8a59d0d492db533ee53ee1c2a5cb1cadcbc54b7fd71aa5f"
+    },
+    "map-clock-025-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-025-end.json",
+      "bytes": 88781,
+      "sha256": "c0870ab85a1a0d3015af24cbf239c7bd2fc81a530f66b2e0c4d785ae0a14ea80"
+    },
+    "map-clock-025-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-025-entry.json",
+      "bytes": 88779,
+      "sha256": "15c0d5adf8d32f518a67dc37c189ed6bc3b411a5aac20df38e2d6d4c93208a1f"
+    },
+    "map-clock-025-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-025-read.json",
+      "bytes": 88781,
+      "sha256": "7ae9e684f17ad92aa734a72e86c8d5eff68a8b177b215fe0cc3153677d9af696"
+    },
+    "map-clock-025-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-025-ready.json",
+      "bytes": 88781,
+      "sha256": "51347022f7fbc0768380680fc285d189c6f1dd93a3fe15c0f669c7b828b47579"
+    },
+    "map-clock-026-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-026-end.json",
+      "bytes": 88781,
+      "sha256": "7790e1c61d1c6bac82784f29199a677cc564bccd88e3e7bae4878d0b9a1dd8c3"
+    },
+    "map-clock-026-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-026-entry.json",
+      "bytes": 88779,
+      "sha256": "a72d2f9486df735310d910eb152b396053062288fa681b3a1ac5897196183f24"
+    },
+    "map-clock-026-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-026-read.json",
+      "bytes": 88781,
+      "sha256": "9c33fc519f7c9fdc1119215b7b7f4e4c02a43262f39aa4733a7dd3f29fd7603d"
+    },
+    "map-clock-026-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-026-ready.json",
+      "bytes": 88781,
+      "sha256": "8b80f623e683787eaf259a2c11837bc2bb4ed2245d2ed7dbb7b5fea46cfdf0e9"
+    },
+    "map-clock-027-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-027-end.json",
+      "bytes": 88781,
+      "sha256": "a47ba4679576722b42704259ae6bab6701531ac24c72e38c1fab579e2bfcca01"
+    },
+    "map-clock-027-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-027-entry.json",
+      "bytes": 88779,
+      "sha256": "604a34dda81b107df32f93a1604475d00719c1443a9ba8b5bc97eece4acf21a6"
+    },
+    "map-clock-027-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-027-read.json",
+      "bytes": 88781,
+      "sha256": "4fc80f40a765abaf2f1bbf1286d2e289ef288ecb8a334aff4f72d08035d5d481"
+    },
+    "map-clock-027-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-027-ready.json",
+      "bytes": 88781,
+      "sha256": "96fc07db16660f36b8ff6587922c631ec05c9fa2f77535c4e989054c8d4429cd"
+    },
+    "map-clock-028-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-028-end.json",
+      "bytes": 88781,
+      "sha256": "2628ab8fb58ebfc0d82ccbd6c2cdb18dddfffb76456cf4c4d4ce1e211266ae53"
+    },
+    "map-clock-028-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-028-entry.json",
+      "bytes": 88779,
+      "sha256": "1d5125ae54f9a3d12361d1ae4c247dcaa345557643bb3b29dff7be017fb9f988"
+    },
+    "map-clock-028-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-028-read.json",
+      "bytes": 88781,
+      "sha256": "7080efc078fa1a0337135faf57a806fd99b652157f72bfdb1a0623015f5c5ffe"
+    },
+    "map-clock-028-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-028-ready.json",
+      "bytes": 88781,
+      "sha256": "a9fe738a49ae73d94ab7cf6bf0e34d31649203edcaff7f42c146be7439eb365e"
+    },
+    "map-clock-029-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-029-end.json",
+      "bytes": 88781,
+      "sha256": "923ff7e232b4d96af2b10b43f980d474e29d1479eb93c9ae9f5dc55c8ffd9361"
+    },
+    "map-clock-029-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-029-entry.json",
+      "bytes": 88779,
+      "sha256": "319ac9279a8019640b878f9b72da425de64e1d0f0bd16534bcba32fdc0a1d5ab"
+    },
+    "map-clock-029-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-029-read.json",
+      "bytes": 88781,
+      "sha256": "fbef2b010d25bb784f45304477bdff9dc759b77f792d2550c922e7606ebcbd61"
+    },
+    "map-clock-029-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-029-ready.json",
+      "bytes": 88781,
+      "sha256": "5acc544f82573b74bd255f89d24ff45463b7df66a6ce18fe9e540b6685224d50"
+    },
+    "map-clock-030-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-030-end.json",
+      "bytes": 88781,
+      "sha256": "5f9fc269c8a8f9fda6196ef83d25b087d0c2c891ccd6a16af733394d36081370"
+    },
+    "map-clock-030-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-030-entry.json",
+      "bytes": 88779,
+      "sha256": "fed5afa2000945ed0d8047374ce66114e733221d7ecddebfed67f920306f43ce"
+    },
+    "map-clock-030-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-030-read.json",
+      "bytes": 88781,
+      "sha256": "94c728d9b9d9e695ab0df323deec50b4183bbcc2315c18bc94c0b16ed020ebfe"
+    },
+    "map-clock-030-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-030-ready.json",
+      "bytes": 88781,
+      "sha256": "6f70995823245edbd245ee69580053f185fa14ca31a46831d912d29586478842"
+    },
+    "map-clock-031-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-031-end.json",
+      "bytes": 88781,
+      "sha256": "e3419026414e3ce8dae7a90c081e4dc9ced07c3ae62fd271ec8f305e173708b1"
+    },
+    "map-clock-031-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-031-entry.json",
+      "bytes": 88779,
+      "sha256": "a4bb5ee056be38a301416a8bb414b7f9c9f384124e5ea0f1254c245c669d7728"
+    },
+    "map-clock-031-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-031-read.json",
+      "bytes": 88781,
+      "sha256": "7b9372bec2dc843cf407cfa15e58126e976e6d5a69bead4946fab83e2b291303"
+    },
+    "map-clock-031-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-031-ready.json",
+      "bytes": 88781,
+      "sha256": "badb6c6a0b2e58e54e6e509724e62004f02523b31646d65341e58db7ec824623"
+    },
+    "map-clock-032-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-032-end.json",
+      "bytes": 88781,
+      "sha256": "a64f2fd0b632310c064e4861c3e5a426e97ea8122cdcba66168d6bf7f22b0abf"
+    },
+    "map-clock-032-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-032-entry.json",
+      "bytes": 88779,
+      "sha256": "8e48b8ccf5c4c357e3c82b69c0fb4d5f14d1611c752987cad0ee5356322d5aae"
+    },
+    "map-clock-032-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-032-read.json",
+      "bytes": 88781,
+      "sha256": "13680b3fdc2f13f15f51a434f25ef03157098c2d5c368b3e341b86c5a2f5120a"
+    },
+    "map-clock-032-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-032-ready.json",
+      "bytes": 88781,
+      "sha256": "8e77bb227503fd269d168aded67e90f5b5816af0ac83e840edf778e89fe0e64e"
+    },
+    "map-clock-033-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-033-end.json",
+      "bytes": 88781,
+      "sha256": "09d9235ab72ea76cec868c39573101e3147040d1e416762af72e990c87026e23"
+    },
+    "map-clock-033-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-033-entry.json",
+      "bytes": 88779,
+      "sha256": "47f2ae8798d03d61c11e4a94e58f6b27d29b0d0ec1bde76d59617e0e644bbcdf"
+    },
+    "map-clock-033-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-033-read.json",
+      "bytes": 88781,
+      "sha256": "71948491dbdc43381c732dda56514ecc5e180eb3a64bb65f31d0dec7cf42d96c"
+    },
+    "map-clock-033-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-033-ready.json",
+      "bytes": 88781,
+      "sha256": "42c0c37449b4c8bb0c83805a072847fca15fba520973906938b57ee994bc24b3"
+    },
+    "map-clock-034-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-034-end.json",
+      "bytes": 88781,
+      "sha256": "d8266697d67f07e4fc5e006e49fc2fa3868dad09a93e990e0c7f3d97010b5dbc"
+    },
+    "map-clock-034-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-034-entry.json",
+      "bytes": 88779,
+      "sha256": "7bff894b11c4e76f539e4e741858cb65b7f382f353cc1e53556e06d7173250a8"
+    },
+    "map-clock-034-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-034-read.json",
+      "bytes": 88781,
+      "sha256": "0ac9d3f77cc8069da5e506c8189680f4552f8b3df8abf69ebbf04b637d206e3f"
+    },
+    "map-clock-034-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-034-ready.json",
+      "bytes": 88781,
+      "sha256": "1c4cf673a1b73188a7a32589d41288799cc688a367157a31bc6e81cfc6806b6b"
+    },
+    "map-clock-035-end.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-035-end.json",
+      "bytes": 88781,
+      "sha256": "15ac2fc0dbf937b9c6f3a25c62aa3ccb1f66891e548b88b35c2d14f3aba5bff4"
+    },
+    "map-clock-035-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-035-entry.json",
+      "bytes": 88779,
+      "sha256": "4dbfdd210f55dc208c6527921c7db64b90f83be89c6ebcb54376e11fbbaceef0"
+    },
+    "map-clock-035-read.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-035-read.json",
+      "bytes": 88781,
+      "sha256": "9eb20baba3ad13e83778bed1bba09ff749627e03522dd73ed7867a9fa5bdf58c"
+    },
+    "map-clock-035-ready.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-035-ready.json",
+      "bytes": 88781,
+      "sha256": "50cddcddda297b4103e9374d334b7ea57aba03f9dda7862ac25c324d3e28a53d"
+    },
+    "map-clock-capture.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-capture.json",
+      "bytes": 332,
+      "sha256": "99387afe644c4211aead40661b6fb19fb3b9ded4889cc7b743030a4173d85672"
+    },
+    "map-clock-consumption.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-consumption.json",
+      "bytes": 22201,
+      "sha256": "59f554965f02ed70b228a602a345e62626acaee9086d73794d503bbfbd991cb4"
+    },
+    "map-clock-inputs.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-inputs.json",
+      "bytes": 9496,
+      "sha256": "a441129cbd27028c2a946233cb7d84a4045d28e67b3897b1a26658018e37a308"
+    },
+    "map-clock-mapping.json": {
+      "path": ".local/map-clock-capture-01/capture/map-clock-mapping.json",
+      "bytes": 186,
+      "sha256": "e2fd8657b622ed19bc3b596a8e2348e3fa1796f9733c82a7cb1037c17340550a"
+    },
+    "map-consumption.json": {
+      "path": ".local/map-clock-capture-01/capture/map-consumption.json",
+      "bytes": 24620,
+      "sha256": "0c457cbc5abb14eff913b112fc7cca67bfc2fe3e903e9c571e33056fed429862"
+    },
+    "map-entry.json": {
+      "path": ".local/map-clock-capture-01/capture/map-entry.json",
+      "bytes": 88794,
+      "sha256": "9bf9a2517fbce76b37c0dc28e489ac81b54d73ef6b21237a5056b88b298dfc8e"
+    },
+    "map-entry.png": {
+      "path": ".local/map-clock-capture-01/capture/map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "map-live-overlay.json": {
+      "path": ".local/map-clock-capture-01/capture/map-live-overlay.json",
+      "bytes": 12155,
+      "sha256": "c886d73a194b4e6570cbe8a6e200aab3797d19dcf361d5fd018ecb65f4c33d8d"
+    },
+    "map-resident-mapping.json": {
+      "path": ".local/map-clock-capture-01/capture/map-resident-mapping.json",
+      "bytes": 2929,
+      "sha256": "64c18260866b5f0c98ef36372aaccecd17d2a374a6cdac152ec112a3839f5ba0"
+    },
+    "office-confirm.json": {
+      "path": ".local/map-clock-capture-01/capture/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "1fe9dabfc8777a19769fe622bd1171a7108189339d2684087931709e9bc62b38"
+    },
+    "office-input.json": {
+      "path": ".local/map-clock-capture-01/capture/office-input.json",
+      "bytes": 88775,
+      "sha256": "968d48c84b0f6dab77936125249fc24d1b955ec2db7d60608214bf71db7cb63d"
+    },
+    "office-input.png": {
+      "path": ".local/map-clock-capture-01/capture/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "return.json": {
+      "path": ".local/map-clock-capture-01/capture/return.json",
+      "bytes": 88770,
+      "sha256": "1b8e419904fbff70a319c1233655d7a7255e6b6f323cd3181cc077194cc95803"
+    },
+    "return.png": {
+      "path": ".local/map-clock-capture-01/capture/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/map-clock-capture-01/capture/rng-consumption.json",
+      "bytes": 50837,
+      "sha256": "04948541bc113531737300844281b6fbbcdc028df08f804784214bca10ee1caf"
+    },
+    "startup-inputs.json": {
+      "path": ".local/map-clock-capture-01/capture/startup-inputs.json",
+      "bytes": 1218,
+      "sha256": "c99c1f00285f569ef30d8f585459ec07eab0b2dfa8d8597d6b89254a903c7dc0"
+    },
+    "warning-poll.json": {
+      "path": ".local/map-clock-capture-01/capture/warning-poll.json",
+      "bytes": 88774,
+      "sha256": "26d84ccdb390d1cb7d09c99649843da71a464512ba34b97424eadf824d70c6fe"
+    },
+    "warning-poll.png": {
+      "path": ".local/map-clock-capture-01/capture/warning-poll.png",
+      "bytes": 5184,
+      "sha256": "d2777bc4edc29195ace41ba963327c909e99453005155e5e79627366ee607909"
+    },
+    "source": {
+      "path": ".local/map-clock-capture-01/source-revision.json",
+      "bytes": 56873,
+      "sha256": "7f4cb4f2cb0a02bf1b4d7d22de128e2dc7cd5099394f6ba17590a2d48c442108"
+    },
+    "zip": {
+      "path": ".local/map-clock-capture-01/sources.zip",
+      "bytes": 1376326,
+      "sha256": "9f82e98bdf36afce4a02136549addbfa8ca461a38aafde4c2196f53cece01352"
+    },
+    "runner": {
+      "path": ".local/map-clock-capture-01/runner-status.json",
+      "bytes": 491,
+      "sha256": "6447ce24c08748acf99c70ca2a6b5bfa149033e9356763cb4e0146dfd75e3e7f"
+    },
+    "cleanup": {
+      "path": ".local/map-clock-capture-01/process-cleanup.json",
+      "bytes": 219,
+      "sha256": "309619fc75c539ac44d59f8ae13113dbfe7756a6650635d3228afd3191012265"
+    },
+    "capture-log": {
+      "path": ".local/map-clock-capture-01/capture.log",
+      "bytes": 172,
+      "sha256": "6b508cbd0cc97c77d663fdc0c8eb27ba024e60babec4c46d16159c7bef7be66e"
+    }
+  },
+  "verificationTools": {
+    "src/game/map-deadline.js": "14fe8435fb34d07c2a4d22e19e826768080859f4a6cf99ca4efd760b80ad428e",
+    "src/game/integer.js": "cb575b09c744e3fd2967ac72de96399a0e5a5b6e807c6ef0684e30a183a38776",
+    "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
+    "scripts/verify-map-clock.js": "4c9e43e7c2dd1b177f505f8a2969ff30b66160d04037a8f4df011e3cdba1238a",
+    "scripts/verify-map-clock-fixture-negatives.js": "afa3873c6c862d19c49adca0409cd8682cb40d2cc924c002e35fb8577745b934"
+  },
+  "expectedArtifacts": 306,
+  "fittedInputs": [],
+  "captureRecipe": "scripts/capture-security.py",
+  "inputProfile": "reference/map-keyboard-inputs.json",
+  "environmentContract": "Clock inputs are DX:AX captured at the successful wait-read and second-read return,before ADD/ADC. Earlier spin polls are outside this completion abstraction. Only the initial independent entry snapshot supplies deadline state;later expected states never supply input values.",
+  "comparisonRules": "Exact35 carried deadline words,70 consumed external read values,CPU locations,period6 and unchanged RNG;no numeric or timing tolerances. Full Game/browser pacing and earlier CPU spin counts are separate.",
+  "exclusions": [
+    "Initial map pointer read0 precedes the hooks. All35 subsequent deadline completions and70 successful read values are mandatory."
+  ]
+}

@@ -73,6 +73,9 @@ Production visitors select their own originals. No deployment is performed.
   Focused native/route verification also passes. The complete branch gate
   remains required before main integration.
   [Input rules and reproduction](ordinary-keyboard.md).
+- On the separate map-caller branch,the deadline component passes35 original
+  completion calls with70 separately captured clock results and four negative
+  comparisons. It is not connected to Game/browser pacing yet.
 - Original letter/keypad browser bindings,scene-specific flush/repeat behavior
   and map pacing remain unfinished. The original map has six-count steady polls;
   Game currently uses two. The native input comparison does not prove Game timing.
@@ -97,6 +100,7 @@ node scripts/verify-office-integration.js
 npm run verify:office-menu
 npm run verify:ordinary-keyboard
 npm run verify:shared-runtime
+npm run verify:map-clock
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

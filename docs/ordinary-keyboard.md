@@ -160,4 +160,26 @@ The recipe captures neither the count nor values of earlier spin-loop polls;
 any resulting comparison is a deadline-completion abstraction,not exact original
 CPU/IRQ or whole browser timing. First pointer read0 precedes these hooks and is
 explicitly excluded;all35 subsequent completions and70 read events are required.
-This recipe has not yet established an accepted map-clock reference.
+The fresh capture on6bfb0d4 completed successfully with no memory/CPU writes or
+restores. `reference/map-clock.json` pins306 local artifacts,all22 original
+identities,the full8368-byte overlay and1220 resident bytes.529 exact producer
+files are retained in a ZIP to avoid preview reloads from watched HTML files.
+The capture's owned emulator process is confirmed absent after cleanup.
+
+`MapDeadline` translates the original unsigned32 comparison and ADD/ADC,including
+the second clock read,zero-period bypass and modulo32 carry. It uses an explicit
+clock provider and no browser clock,DOM or RNG. `npm run verify:map-clock` carries
+its deadline across all35 original completions and consumes all70 separately
+captured values. Four altered/missing stream/checkpoint controls and source-derived
+unsigned/carry/two-read/zero-period edges pass. Missing and same-size corrupt
+clock-stream fixture controls fail;exact restoration passes.
+
+All captured adjacent successful/base reads are equal,and completions are six
+counts apart. These observations alone cannot distinguish reusing the first
+read or advancing the old deadline. The disassembled second CALLF and ADD/ADC
+establish the rule;independent source-derived edge cases exercise the distinction.
+Those edges are not represented as additional original runtime scenarios.
+
+The timer is not yet connected to Campaign or browser controls. Game still
+polls the map every2 driver counts. This deadline-completion component,its
+closed-loop native segment and browser timing acceptance are separate levels.

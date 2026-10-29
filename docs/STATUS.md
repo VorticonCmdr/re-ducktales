@@ -36,6 +36,10 @@ unchanged; no seed is reset to preserve old expectations.
 - Easy Okeefadokie treasure/duplicate-notice route matches27 snapshots and pixel
   hashes in fresh and fixed-DOM browsers plus independent Game replay:70 events,
   860 jungle samples, 1050 dollars, one life, day 17. [Treasure evidence](security-jungle-treasure.md).
+- Easy El Capitan summit/return/duplicate-notice route matches27 state/pixel
+  checkpoints and104 DOM events in independent Game and browser replays:764
+  unchanged mountain samples,8100 dollars,three lives,day17. Shared campaign
+  adapter regression is in progress. [Mountain evidence](security-mountain-ascent.md).
 - Security-aware bank/endings/trading, map controls, departure dispatches, cave
   retry/treasure, Too-Pei transmitter/atomic travel, photography and real-audio
   notices have focused acceptance. [Travel integration](security-route-integration.md),
@@ -71,7 +75,7 @@ pictures and traces stay local. Production visitors select their own originals.
 
 ## Remaining work
 
-- Migrate mountain-ascent, lightning, alternate Hard expedition recordings and the
+- Migrate lightning, alternate Hard expedition recordings and the
   linked Easy campaign through security; preserve old inputs. Promote the newly
   accepted Hard recording deliberately, then pass the full branch gate before merging.
 - Original office entry/selection, investment transitions and several map/notice
@@ -95,6 +99,7 @@ npm run test:hard-security-campaign
 npm run verify:jungle
 npm run verify:security-jungle-entry
 npm run verify:security-jungle-treasure
+npm run verify:security-mountain-ascent
 ```
 
 Other focused commands are documented with their scenarios. Missing/corrupt

@@ -502,10 +502,10 @@
   "hardProducer": ".local/security-jungle-treasure-accepted-01/hard-source-revision.json",
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "708f991c2dc01aa2c1a05e855c0f4350132d6cff9081d8b7e33bd107f0747480",
+    "scripts/replay-hard-campaign.js": "0db9ba839f6ae50b0bd15b347d1ca99820af170803ae7a70f507dcae25bb12e1",
     "scripts/verify-security-jungle-treasure.js": "cd2dec374fd7764d61daec5e859de8a4758101a7cd424d2eeb0937a1234c6172",
     "scripts/verify-security-jungle-treasure-browser-negative.js": "480c20d1abf461425a0a85034495d26d8b0b349845a400a937b7061297fe03e1",
-    "tests/browser/helpers/recorded-campaign.js": "0157dcf79c10c2a60a9dd03c2c19992c51ed20098acda8d353e6dd36d415e389",
+    "tests/browser/helpers/recorded-campaign.js": "afe499347ea76adb780868f1d049ef7008414a4d4ffc6a8666bbea53c6c02e95",
     "tests/browser/helpers/easy-jungle-entry.js": "e8be075a34c11b25d27647990e9d70ab695d0b20cce8a582e17302f6877934f9",
     "tests/browser/jungle-treasure.spec.js": "1cbdfe41132f8b18204b23b316f5c071c436a82ea8dda6af10d21879688ab487",
     "tests/browser/jungle-treasure-replay.spec.js": "1a603f4d4894173eff26674d7c661a83a1f22d8798d5f16c63cde20034a6179d"

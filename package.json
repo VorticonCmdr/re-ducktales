@@ -28,7 +28,7 @@
     "verify:visits": "node scripts/verify-visits.js",
     "prepare:mountain-analysis": "python3 scripts/prepare-mountain-analysis.py",
     "verify:mountain-terrain": "node scripts/verify-mountain-terrain.js",
-    "verify:mountain": "node scripts/verify-mountain.js && npm run verify:mountain-input",
+    "verify:mountain": "node scripts/verify-mountain.js && npm run verify:mountain-input && node scripts/verify-security-mountain-ascent.js",
     "prepare:jungle-analysis": "python3 scripts/prepare-jungle-analysis.py",
     "verify:jungle": "node scripts/verify-jungle.js && python3 scripts/verify-jungle-oracle.py && node scripts/verify-security-jungle-entry.js && node scripts/verify-security-jungle-treasure.js",
     "prepare:photography-analysis": "python3 scripts/prepare-photography-analysis.py",
@@ -83,7 +83,8 @@
     "verify:hard-security-campaign": "node scripts/verify-hard-campaign.js --manifest=reference/hard-campaign-security.json && DUCKTALES_CAMPAIGN_MANIFEST=reference/hard-campaign-security.json node scripts/verify-hard-campaign-browser-negative.js",
     "test:hard-security-campaign": "DUCKTALES_CAMPAIGN_MANIFEST=reference/hard-campaign-security.json playwright test tests/browser/hard-campaign.spec.js",
     "verify:security-jungle-entry": "node scripts/verify-security-jungle-entry.js && playwright test tests/browser/jungle-input.spec.js && node scripts/verify-security-browser-negative.js",
-    "verify:security-jungle-treasure": "node scripts/verify-security-jungle-treasure.js && playwright test tests/browser/jungle-treasure.spec.js tests/browser/jungle-treasure-replay.spec.js && node scripts/verify-security-jungle-treasure-browser-negative.js"
+    "verify:security-jungle-treasure": "node scripts/verify-security-jungle-treasure.js && playwright test tests/browser/jungle-treasure.spec.js tests/browser/jungle-treasure-replay.spec.js && node scripts/verify-security-jungle-treasure-browser-negative.js",
+    "verify:security-mountain-ascent": "node scripts/verify-security-mountain-ascent.js && playwright test tests/browser/mountain-ascent.spec.js tests/browser/mountain-ascent-replay.spec.js && node scripts/verify-security-mountain-browser-negative.js && node scripts/verify-security-mountain-fixture-negatives.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

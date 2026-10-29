@@ -407,6 +407,76 @@
       "path": ".local/security-mountain-ascent-01/complete-map.png",
       "bytes": 27584,
       "sha256": "6bc7db6b5d5877cfb5011cd9daf13dc55a74daec37a60af4d8a205daa354b56f"
+    },
+    "browser-source": {
+      "path": ".local/security-mountain-ascent-accepted-01/browser-source-revision.json",
+      "bytes": 13772,
+      "sha256": "075889e98097dd44c4878b0ab2447d273278ce6174730d55be3c51e94d938d4f"
+    },
+    "browser-results": {
+      "path": ".local/security-mountain-ascent-accepted-01/browser-report.json",
+      "bytes": 8563,
+      "sha256": "72f9612978d0aa77fe5fdb7c016d31796263478b005df99676bc52ef15c25bff"
+    },
+    "browser-checkpoints": {
+      "path": ".local/security-mountain-ascent-accepted-01/browser-results/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 98558,
+      "sha256": "0629486ebeb4dbd21527787ce16957eb8901e26018708eb7fad4f1b8c1097f5b"
+    },
+    "browser-progress": {
+      "path": ".local/security-mountain-ascent-accepted-01/browser-results/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/replay-progress.json",
+      "bytes": 3302,
+      "sha256": "9bb8763f0a3d4cdea64a7c5a347b1db8254a5868f964984c0370b01f026435b3"
+    },
+    "browser-events": {
+      "path": ".local/security-mountain-ascent-accepted-01/browser-results/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/actual-events.json",
+      "bytes": 9671,
+      "sha256": "f404a748dc18eee6518c2e7da7516218d37e060f35101f419db8fb7e13971036"
+    },
+    "browser-negative": {
+      "path": ".local/security-mountain-ascent-accepted-01/browser-negative-record.log",
+      "bytes": 2403,
+      "sha256": "3ee72babe5b11850a86b41ed49b71463b289af3bb2d4ba609a480ba861a67e62"
+    },
+    "native-portrait-reference": {
+      "path": ".local/rival-value-report.png",
+      "bytes": 8965,
+      "sha256": "6bed2853deb730098264f9bbc0a0fdb88299ecbacf443b3d233323da2707a90a"
     }
-  }
+  },
+  "browserVerified": true,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "captureProducer": ".local/security-mountain-ascent-01/source-revision.json",
+  "browserProducer": ".local/security-mountain-ascent-accepted-01/browser-source-revision.json",
+  "browserCommit": "af348ac0f780b68af45269512f04b6f07af32cdc",
+  "verificationTools": {
+    "scripts/replay-hard-campaign.js": "0db9ba839f6ae50b0bd15b347d1ca99820af170803ae7a70f507dcae25bb12e1",
+    "scripts/verify-security-mountain-ascent.js": "b77b4cffb6f07c5f6f2146605a1d353905729ebe726201612fdfea309a9808ca",
+    "tests/browser/helpers/recorded-campaign.js": "afe499347ea76adb780868f1d049ef7008414a4d4ffc6a8666bbea53c6c02e95",
+    "tests/browser/mountain-ascent-replay.spec.js": "7ef2c46967d0ab3da8bfb842d7cc946b451e26d3c47229d8a3f12225a3a38411",
+    "scripts/verify-security-mountain-browser-negative.js": "cc3711f723703251ccb58aceaa51ad872e982dbf3d689d867025124cc2088064",
+    "scripts/verify-security-mountain-fixture-negatives.js": "b16db10d7c69cab3b87e1ea44c55422cfa49ac9b046fac219a7b8bafe0f43a49"
+  },
+  "evidenceLevel": "closed-loop port regression and independent browser scenario; not native whole-level parity",
+  "environmentContract": {
+    "clockOriginMilliseconds": 1,
+    "displayMilliseconds": 8,
+    "biosSeed": 0,
+    "soundEnabled": false,
+    "audioCompletion": "existing explicit muted provider",
+    "inputs": "timestamped DOM keyboard/pointer events captured before target handler",
+    "entryObservationMilliseconds": 19885,
+    "entryLastDisplayMilliseconds": 19881,
+    "scope": "No injected game state, fitted timers or memory restore; every replay starts at application startup."
+  },
+  "comparisonRules": [
+    "Exact complete application snapshot at every checkpoint",
+    "Exact decoded 320x200 RGBA pixels in browser comparisons",
+    "Pointer normalization only at existing clamp/truncation consumption boundary",
+    "Native rival portrait comparison covers only original left128 columns; not native whole-report parity"
+  ],
+  "verify": "npm run verify:security-mountain-ascent",
+  "injections": [],
+  "fittedInputs": []
 }

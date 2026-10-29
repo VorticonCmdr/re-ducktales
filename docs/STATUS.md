@@ -67,6 +67,8 @@ Production visitors select their own originals. No deployment is performed.
 - Integrate verified original letter/keypad handling and scene-specific raw-key
   consumption,flush and repeat behavior. A conditional native investigation and
   standalone prototype exist locally;they are not connected to the browser yet.
+- The investment departure currently uses the generic “Entering the money bin”
+  browser status label;its animation and trading destination work correctly.
 - Original map/notice presentation and polling details,broader destination and
   difficulty finishability,and original whole-scene/campaign comparisons remain.
   A broader exploratory controller is not acceptance evidence.

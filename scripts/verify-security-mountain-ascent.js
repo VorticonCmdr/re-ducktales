@@ -26,6 +26,11 @@ assert.equal(manifest.expectedHard, false);
 assert.equal(manifest.expectedCheckpointCount, 27);
 assert.equal(manifest.requiredEventCount, 104);
 assert.equal(manifest.expectedInputCount, 764);
+assert.equal(
+  Object.keys(manifest.artifacts).length,
+  48,
+  "Missing required evidence",
+);
 for (const name of [
   "environment",
   "captured-events",
@@ -174,6 +179,81 @@ assert.doesNotMatch(
   browserNegative,
   /SETUP:|ENOENT|No tests found|Test timeout|browserType\.launch/,
 );
+const sharedSource = JSON.parse(
+  await load(manifest.artifacts["shared-browser-source"].path),
+);
+assert.equal(sharedSource.commit, manifest.sharedBrowserCommit);
+assert.equal(Object.keys(sharedSource.files).length, 84);
+for (const [p, h] of Object.entries(sharedSource.files)) {
+  assert.equal(
+    hash(await load(`${manifest.artifactRoot}/shared-sources/${p}`)),
+    h,
+    p,
+  );
+  assert.equal(
+    hash(execFileSync("git", ["show", `${sharedSource.commit}:${p}`])),
+    h,
+    p,
+  );
+}
+// The shared adapter must retain both existing recorded routes.
+const sharedReport = JSON.parse(
+  await load(manifest.artifacts["shared-browser-results"].path),
+);
+assert.deepEqual(sharedReport.errors, []);
+assert.equal(sharedReport.stats.expected, 2);
+for (const key of ["unexpected", "skipped", "flaky"])
+  assert.equal(sharedReport.stats[key], 0);
+const sharedTests = [];
+function sharedVisit(s) {
+  for (const spec of s.specs ?? []) {
+    for (const t of spec.tests)
+      sharedTests.push({ title: spec.title, test: t });
+  }
+  for (const child of s.suites ?? []) sharedVisit(child);
+}
+sharedReport.suites.forEach(sharedVisit);
+assert.equal(sharedTests.length, 2);
+assert.ok(sharedTests.some((s) => s.title.startsWith("Hard campaign carries")));
+assert.ok(
+  sharedTests.some((s) => s.title.startsWith("recorded jungle treasure")),
+);
+for (const { test: t } of sharedTests) {
+  assert.equal(t.status, "expected");
+  assert.equal(t.results.length, 1);
+  assert.equal(t.results[0].status, "passed");
+}
+for (const [prefix, path, count, eventCount] of [
+  ["hard", "reference/hard-campaign-security.json", 28, 4140],
+  ["jungle", "reference/security-jungle-treasure.json", 27, 70],
+]) {
+  const reference = JSON.parse(await load(path));
+  const expected = reference.browserCheckpoints ?? reference.checkpoints;
+  const observed = JSON.parse(
+    await load(manifest.artifacts[`${prefix}-regression-checkpoints`].path),
+  );
+  assert.equal(observed.length, count);
+  for (let i = 0; i < count; i++)
+    for (const key of ["name", "stateSha256", "pixelsSha256"])
+      assert.equal(
+        observed[i][key],
+        expected[i][key],
+        `${prefix} regression checkpoint${i} ${key}`,
+      );
+  const progress = JSON.parse(
+    await load(manifest.artifacts[`${prefix}-regression-progress`].path),
+  );
+  assert.equal(progress.completed, true);
+  assert.equal(progress.consumed, eventCount);
+  assert.deepEqual(progress.errors, []);
+  assert.equal(progress.navigation.length, 1);
+  assert.equal(
+    JSON.parse(
+      await load(manifest.artifacts[`${prefix}-regression-events`].path),
+    ).length,
+    eventCount,
+  );
+}
 const root = ".local/security-mountain-ascent-verification";
 await mkdir(root, { recursive: true });
 function replay(mode) {

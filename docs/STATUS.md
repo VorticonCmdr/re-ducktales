@@ -39,7 +39,7 @@ unchanged; no seed is reset to preserve old expectations.
 - Easy El Capitan summit/return/duplicate-notice route matches27 state/pixel
   checkpoints and104 DOM events in independent Game and browser replays:764
   unchanged mountain samples,8100 dollars,three lives,day17. Shared campaign
-  adapter regression is in progress. [Mountain evidence](security-mountain-ascent.md).
+  adapter regression retains the complete Hard and jungle routes. [Mountain evidence](security-mountain-ascent.md).
 - Security-aware bank/endings/trading, map controls, departure dispatches, cave
   retry/treasure, Too-Pei transmitter/atomic travel, photography and real-audio
   notices have focused acceptance. [Travel integration](security-route-integration.md),

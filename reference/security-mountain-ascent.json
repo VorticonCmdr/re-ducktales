@@ -442,6 +442,46 @@
       "path": ".local/rival-value-report.png",
       "bytes": 8965,
       "sha256": "6bed2853deb730098264f9bbc0a0fdb88299ecbacf443b3d233323da2707a90a"
+    },
+    "shared-browser-results": {
+      "path": ".local/security-mountain-ascent-accepted-01/shared-browser-report.json",
+      "bytes": 12097,
+      "sha256": "2b72d0d8f795b6c4fcbd0ccaa68e5eb9dba1fb43beba1a578bdc69b1bf784e95"
+    },
+    "shared-browser-source": {
+      "path": ".local/security-mountain-ascent-accepted-01/shared-source-revision.json",
+      "bytes": 8809,
+      "sha256": "bfb4321f7ecc0f943296a1a82c968ded364b67813d20165885a3a861eba98d37"
+    },
+    "hard-regression-checkpoints": {
+      "path": ".local/security-mountain-ascent-accepted-01/shared-browser-results/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157538,
+      "sha256": "298ca42bcaf78b7be44ee3c3c2b11b50ec430dffb922029a1f63d30e9ea64ab2"
+    },
+    "hard-regression-progress": {
+      "path": ".local/security-mountain-ascent-accepted-01/shared-browser-results/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "2713787e69caad562ebf807f2037b491c200dd17931886dc1324e13bc98b9c73"
+    },
+    "hard-regression-events": {
+      "path": ".local/security-mountain-ascent-accepted-01/shared-browser-results/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373504,
+      "sha256": "d80e7e4af42e8f615b1a8e369f47901a890618dccbba60d46c3e6acb6f92b784"
+    },
+    "jungle-regression-checkpoints": {
+      "path": ".local/security-mountain-ascent-accepted-01/shared-browser-results/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 95166,
+      "sha256": "1c3e1cdcbc1e01361ac1e0844a270de5098bac9ddadbd5ca10711c308e7c4744"
+    },
+    "jungle-regression-progress": {
+      "path": ".local/security-mountain-ascent-accepted-01/shared-browser-results/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json",
+      "bytes": 3212,
+      "sha256": "9ed0efdfa9b797bea7530d12f75d82d982dd3212114f1ad42aa605d6cab2b020"
+    },
+    "jungle-regression-events": {
+      "path": ".local/security-mountain-ascent-accepted-01/shared-browser-results/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "bytes": 6625,
+      "sha256": "42eb264e27696ecd48b9995ab9369074a8b870ccc2e06ff1fd2cb8b95e9ba477"
     }
   },
   "browserVerified": true,
@@ -452,7 +492,7 @@
   "browserCommit": "af348ac0f780b68af45269512f04b6f07af32cdc",
   "verificationTools": {
     "scripts/replay-hard-campaign.js": "0db9ba839f6ae50b0bd15b347d1ca99820af170803ae7a70f507dcae25bb12e1",
-    "scripts/verify-security-mountain-ascent.js": "b77b4cffb6f07c5f6f2146605a1d353905729ebe726201612fdfea309a9808ca",
+    "scripts/verify-security-mountain-ascent.js": "efabf4a5ee63dccc5fa74832527eba7fe7f120ef79b7ac1d2d0afc734f2681c0",
     "tests/browser/helpers/recorded-campaign.js": "afe499347ea76adb780868f1d049ef7008414a4d4ffc6a8666bbea53c6c02e95",
     "tests/browser/mountain-ascent-replay.spec.js": "7ef2c46967d0ab3da8bfb842d7cc946b451e26d3c47229d8a3f12225a3a38411",
     "scripts/verify-security-mountain-browser-negative.js": "cc3711f723703251ccb58aceaa51ad872e982dbf3d689d867025124cc2088064",
@@ -478,5 +518,6 @@
   ],
   "verify": "npm run verify:security-mountain-ascent",
   "injections": [],
-  "fittedInputs": []
+  "fittedInputs": [],
+  "sharedBrowserCommit": "92c971af06c1f2450cf6a8db1438384abd372981"
 }

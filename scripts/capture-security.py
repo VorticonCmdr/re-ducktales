@@ -26,7 +26,7 @@ args = parser.parse_args()
 if args.map_clock and not args.map_inputs:
     parser.error('--map-clock requires --map-inputs')
 out = (ROOT / args.output).resolve()
-assert out.is_relative_to(ROOT / '.local'), 'Captures must stay in ignored local storage'
+assert out.is_relative_to((ROOT / '.local').resolve()), 'Captures must stay in ignored local storage'
 out.mkdir(parents=True, exist_ok=False)
 bridge = Path(os.environ['DUCKTALES_DOSBOX_MCP_ROOT']).resolve()
 sys.path.insert(0, str(bridge))

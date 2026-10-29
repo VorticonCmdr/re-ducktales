@@ -153,13 +153,133 @@
       "path": ".local/office-lightning-01/capture/released.png",
       "bytes": 9105,
       "sha256": "c1ca6ad9c9a241d61415983e29d69da6a6c0960dac8407165ea322922d0f86e1"
+    },
+    "browser-source": {
+      "path": ".local/office-lightning-browser-01/source-revision.json",
+      "bytes": 54490,
+      "sha256": "e8f629368524228bdc0b44362dea680f7582a6e03a0d605f464d1e5e51825f6a"
+    },
+    "browser-results": {
+      "path": ".local/office-lightning-browser-01/browser-results.json",
+      "bytes": 6065,
+      "sha256": "7b8fdf020109f0a96918dbf94df09ecebc790d9cedb8a9ab734452b2cc583645"
+    },
+    "browser-checkpoints": {
+      "path": ".local/office-lightning-browser-01/browser/flight-lightning-replay-re-f8984-t-through-throttle-recovery/campaign-checkpoints.json",
+      "bytes": 16681,
+      "sha256": "142533e4045111cac765c8afad5e84400cc3a129e2b988c66f737c73a354ba2d"
+    },
+    "browser-progress": {
+      "path": ".local/office-lightning-browser-01/browser/flight-lightning-replay-re-f8984-t-through-throttle-recovery/replay-progress.json",
+      "bytes": 2522,
+      "sha256": "a0661a45b2d7c04b4aca67a15efa2772bc171cfd9a231cfd0748b33349cd5497"
+    },
+    "browser-events": {
+      "path": ".local/office-lightning-browser-01/browser/flight-lightning-replay-re-f8984-t-through-throttle-recovery/actual-events.json",
+      "bytes": 15026,
+      "sha256": "359bdf7334d8177705c37c9a3c6e39a3c8c38931c75cfc79868066262eabff8b"
+    },
+    "hard-reference": {
+      "path": ".local/office-lightning-accepted-01/hard-reference.json",
+      "bytes": 15632,
+      "sha256": "3113111c18541f00d05f93823ace2474ec1c41f322d1306ada04fde6f9c97a45"
+    },
+    "hard-browser-source": {
+      "path": ".local/office-campaign-hard-browser-replay-01/source-revision.json",
+      "bytes": 53518,
+      "sha256": "67d87b8b716f1b8129e4764856f999e6eacebcda26794452085080f24e595d76"
+    },
+    "hard-browser-results": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser-report.json",
+      "bytes": 7677,
+      "sha256": "cc59727487bcda85fa1835a9d5dc97a64454d7a89fa4cb9aa7b9efca8ecc7120"
+    },
+    "hard-regression-checkpoints": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157873,
+      "sha256": "b6b2e6b9af48f792adc20a96ed3ac2c6d29e6b6112cd1720a45715bb393476a4"
+    },
+    "hard-regression-progress": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "50e9ee858c8381d7e99ccf80f9145d0ac3e5ae1c200057b6edcc2ad45bff3d86"
+    },
+    "hard-regression-events": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373521,
+      "sha256": "720bf26569a42cb00dd6af721b049a7377c09a5d6530ce088b9eda8d7476ff0c"
+    },
+    "jungle-reference": {
+      "path": ".local/office-lightning-accepted-01/jungle-reference.json",
+      "bytes": 23010,
+      "sha256": "219117fbf362e7543d3126b59bca5ff464bbbae3474c9bc5870ec9f454312594"
+    },
+    "jungle-browser-source": {
+      "path": ".local/office-jungle-treasure-browser-01/source-revision.json",
+      "bytes": 53901,
+      "sha256": "ecc30eae4231037002c5e1a6a4102e125ab735da764845e55bbc49aaf7738444"
+    },
+    "jungle-browser-results": {
+      "path": ".local/office-jungle-treasure-browser-01/browser-results.json",
+      "bytes": 9915,
+      "sha256": "63ef2d390a591ef8bca76265a1fdf53f9df2532451d008637774e8491278da5c"
+    },
+    "jungle-regression-checkpoints": {
+      "path": ".local/office-jungle-treasure-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 95166,
+      "sha256": "c76bbcf513c9f7f2e0a6d8b156566a99e85938299442100c785019d55141294e"
+    },
+    "jungle-regression-progress": {
+      "path": ".local/office-jungle-treasure-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json",
+      "bytes": 3212,
+      "sha256": "f8c6a52867686b65820c4f200f671dd88bbb857fb960a57e3d24ad12a927ec7e"
+    },
+    "jungle-regression-events": {
+      "path": ".local/office-jungle-treasure-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "bytes": 6627,
+      "sha256": "e5d27eff4964164e6f288b4835b81f3fc6994b0a5c2ecf074f9444fd736d3aff"
+    },
+    "mountain-reference": {
+      "path": ".local/office-lightning-accepted-01/mountain-reference.json",
+      "bytes": 23230,
+      "sha256": "e6bbb0843e7125c183cad703646bb47bcbba8fb5d4ec411d232bab40e71bec1d"
+    },
+    "mountain-browser-source": {
+      "path": ".local/office-mountain-ascent-browser-01/source-revision.json",
+      "bytes": 54257,
+      "sha256": "d4374e54698a754591239caa8f7b0f722360c97289b2e0263ed92929fe782e9d"
+    },
+    "mountain-browser-results": {
+      "path": ".local/office-mountain-ascent-browser-01/browser-results.json",
+      "bytes": 8691,
+      "sha256": "acf21d16b475cc7382fd0aeac0b18883b9fd6d48241d4339a9e750d856d769de"
+    },
+    "mountain-regression-checkpoints": {
+      "path": ".local/office-mountain-ascent-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 98558,
+      "sha256": "f9ce93a3d0feaad43ee945fa3798a64f4533a18bdf3289fa03c626e0f18d9f02"
+    },
+    "mountain-regression-progress": {
+      "path": ".local/office-mountain-ascent-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/replay-progress.json",
+      "bytes": 3302,
+      "sha256": "088096a098569d2892ba1f38901ba545370bf85b9179d1e47499bd6e30702104"
+    },
+    "mountain-regression-events": {
+      "path": ".local/office-mountain-ascent-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/actual-events.json",
+      "bytes": 9671,
+      "sha256": "75d0f3ad9f8d1edea5431903e932749760d1ffd6e2b702d36599601900e904ce"
+    },
+    "browser-negative": {
+      "path": ".local/office-lightning-accepted-01/browser-negative.log",
+      "bytes": 2013,
+      "sha256": "e01df1cff7839280beb46c26790ce63e0f5b1ec3c06f2717420485b995437c4f"
     }
   },
-  "browserVerified": false,
+  "browserVerified": true,
   "buildManifest": "reference/build.json",
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
   "entryCommit": "d96ed66d1e5115b52e8dce6f7beda1e9e74c8aac",
-  "evidenceLevel": "Strict recorded-input Game candidate; independent fresh browser acceptance pending. Not native whole-flight parity.",
+  "evidenceLevel": "closed-loop port regression and independent fresh browser scenario;not native whole-flight parity",
   "environmentContract": {
     "biosSeed": 0,
     "difficulty": 0,
@@ -179,10 +299,10 @@
   "originalEvidenceManifestSha256": "85e4b68a554eb9f70f7fd332fc275d692953c5af746a06184ef44add902bf889",
   "injections": [],
   "fittedInputs": [],
-  "verify": "npm run verify:security-lightning",
+  "verify": "npm run verify:office-lightning",
   "verificationTools": {
     "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
-    "scripts/verify-security-lightning.js": "8a3de7418b406fd3a52e92c78224994e24187deec618de6df0bac31f06f7208b",
+    "scripts/verify-security-lightning.js": "f667eecf8cdbaf6828e37f0b857b5bda43e9f5a27cb198dee9cb296c74cc4365",
     "scripts/verify-security-lightning-browser-negative.js": "045913a35503fdd339a81342f354fd997fceba0a29f06818610feb1f24171204",
     "scripts/verify-security-lightning-fixture-negatives.js": "5926514df15cb4ad12a30d2a3c5c73f4f184477fe11fc75929515a401900f518",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
@@ -192,5 +312,17 @@
   "verificationEdition": "office",
   "captureSourceArchive": ".local/office-lightning-01/sources",
   "entrySourceArchive": ".local/office-lightning-01/sources",
-  "entryEvidenceScope": "The first60 independently recorded DOM events and first observation from the same full capture;not a separately captured prefix. No new events,fitted times or injected state."
+  "entryEvidenceScope": "The first60 independently recorded DOM events and first observation from the same full capture;not a separately captured prefix. No new events,fitted times or injected state.",
+  "browserCommit": "c80023c018776842188a45d3d936507c5ae0b5e0",
+  "browserProducer": ".local/office-lightning-browser-01/source-revision.json",
+  "browserSourceArchive": ".local/office-lightning-browser-01/sources",
+  "regressionArchives": {
+    "hard": ".local/office-campaign-hard-browser-replay-01/sources",
+    "jungle": ".local/office-jungle-treasure-browser-01/sources",
+    "mountain": ".local/office-mountain-ascent-browser-01/sources"
+  },
+  "regressionEvidenceScope": "Retains separately accepted Hard25dab04/498 sources,jungle d5ddee6/503 sources and mountain c4b1e57/506 sources. Current src,HTML,Vite and shared recorded-input/clock adapters must remain byte-identical. These are reused receipts,not fresh runs at the lightning browser revision.",
+  "captureTool": "tests/browser/flight-lightning.spec.js",
+  "captureCommand": "DUCKTALES_CAPTURE_LIGHTNING=.local/office-lightning-01/capture npx playwright test tests/browser/flight-lightning.spec.js --output .local/office-lightning-01/browser",
+  "currentVerifierNote": "The same-capture departure view explicitly shares the already-audited capture source path,checksum,revision and archive. Its source audit is not counted twice. Capture/browser producers and all states/pixels/events remain pinned."
 }

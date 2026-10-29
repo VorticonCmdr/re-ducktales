@@ -1,5 +1,9 @@
 # Security-aware natural lightning
 
+The isolated office branch now uses the separate
+[office-aware lightning route](office-lightning.md). This document retains the
+security-only historical evidence.
+
 The browser now reaches a generated storm through the actual campaign:
 opening skip → Easy → office departure/security → three bank/office trips →
 Bermuda Triangle departure → flight → lightning → fresh-key recovery → restart.

@@ -78,6 +78,13 @@ its117/74/2 gate remain separate historical evidence in
   key pass;required PNG corruption/removal and restoration are checked separately.
   [Mountain](office-mountain-ascent.md).
 
+- The office-aware natural lightning route now passes6 exact Game/browser state
+  and pixel checkpoints,164 events and43 flight presentations. The strike clears
+  held controls at input36;fresh keys recover and input43 consumes releases.
+  Both fresh browser cases,five comparison controls and the actual missing fresh
+  throttle pass;PNG removal/corruption and restoration are checked separately.
+  [Lightning](office-lightning.md).
+
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
 - Office→map→departure→keyboard flight→landing or crash/repair→expedition→results
@@ -176,7 +183,7 @@ npm run verify:jungle
 npm run verify:office-jungle-entry
 npm run verify:office-jungle-treasure
 npm run verify:office-mountain-ascent
-npm run verify:security-lightning
+npm run verify:office-lightning
 npm run verify:security-hard-expeditions
 npm run test:security-hard-expeditions
 npm run verify:easy-office-campaign

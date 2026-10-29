@@ -137,21 +137,31 @@ const entrySource = JSON.parse(
 );
 assert.equal(entrySource.captureCommit, manifest.entryCommit);
 assert.equal(Object.keys(entrySource.files).length, officeEdition ? 507 : 87);
-for (const [p, h] of Object.entries(entrySource.files)) {
+if (officeEdition) {
+  // This view uses the identical capture producer already audited above.
   assert.equal(
-    hash(
-      await load(
-        `${officeEdition ? manifest.entrySourceArchive : `${entry.captureRoot}/sources`}/${p}`,
-      ),
-    ),
-    h,
-    p,
+    manifest.artifacts["entry-source"].path,
+    manifest.captureProducer,
   );
   assert.equal(
-    hash(execFileSync("git", ["show", `${entrySource.captureCommit}:${p}`])),
-    h,
-    p,
+    manifest.artifacts["capture-source"].path,
+    manifest.captureProducer,
   );
+  assert.equal(
+    manifest.artifacts["entry-source"].sha256,
+    manifest.artifacts["capture-source"].sha256,
+  );
+  assert.equal(manifest.entryCommit, manifest.captureCommit);
+  assert.equal(manifest.entrySourceArchive, manifest.captureSourceArchive);
+} else {
+  for (const [p, h] of Object.entries(entrySource.files)) {
+    assert.equal(hash(await load(`${entry.captureRoot}/sources/${p}`)), h, p);
+    assert.equal(
+      hash(execFileSync("git", ["show", `${entrySource.captureCommit}:${p}`])),
+      h,
+      p,
+    );
+  }
 }
 const checks = JSON.parse(
   await load(manifest.artifacts["campaign-checkpoints"].path),

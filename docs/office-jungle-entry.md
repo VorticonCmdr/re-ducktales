@@ -45,5 +45,6 @@ npm run test:office-jungle-entry
 
 Local proprietary fixtures are required; missing/corrupt evidence fails setup.
 The full branch gate and integration into main remain pending. Treasure,
-mountain, lightning and alternate Hard focused recordings still need migration
-through the office boundary before that gate can pass.
+mountain and lightning focused routes have also passed their office migration.
+Alternate Hard routes and the complete branch gate still remain before main
+integration.

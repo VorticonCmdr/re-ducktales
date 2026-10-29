@@ -94,6 +94,7 @@ npm run verify:hard-office-campaign-negative
 ```
 
 Easy and Hard office-aware routes are now the default campaign checks on the
-isolated branch. Focused route migrations, the complete branch gate and
-integration into main remain pending. Whole original-game, hardware timing and waveform
+isolated branch. Focused jungle entry/treasure,mountain ascent and natural
+lightning also pass their current office-aware checks. Alternate Hard focused
+routes,the complete branch gate and integration into main remain pending. Whole original-game, hardware timing and waveform
 parity are separate unfinished requirements.

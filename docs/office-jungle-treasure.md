@@ -58,6 +58,7 @@ npm run verify:office-jungle-treasure-negative
 
 Required private fixtures live under ignored `.local/office-jungle-treasure*`;
 missing/corrupt artifacts fail explicitly. Main integration and the complete
-branch gate remain pending. Next focused migrations are mountain ascent,
-natural lightning and alternate Hard routes. Original whole-scene parity and
+branch gate remain pending. Mountain ascent and natural lightning now also pass
+their focused migrations. Alternate Hard routes remain before the full gate.
+Original whole-scene parity and
 unimplemented keyboard aliases remain broader completion work.

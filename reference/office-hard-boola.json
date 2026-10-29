@@ -404,9 +404,10 @@
       "sha256": "b8d6cee4758d4a6252c19900751e1e8763b65a110f3cb61daec36e3d15e58095"
     }
   },
-  "browserVerified": false,
+  "browserVerified": true,
   "scope": "Current office-aware Hard expedition/treasure/bank segment;not whole-native expedition parity",
   "verificationEdition": "office",
   "entryStateSha256": "501d97bd5114d03bafd712404b498d9dc60f81813e36dde7af65b96ac483598b",
-  "entryPixelsSha256": "c8cd0c13735e9b5f663e7f1a6a4beec42e842f525979f1e05a3d8844a3362fb3"
+  "entryPixelsSha256": "c8cd0c13735e9b5f663e7f1a6a4beec42e842f525979f1e05a3d8844a3362fb3",
+  "browserCommit": "d0989007886cbccf1e351c9da2519aaa964978ea"
 }

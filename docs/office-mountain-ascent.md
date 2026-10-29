@@ -56,5 +56,5 @@ npm run verify:office-mountain-ascent-negative
 Required private evidence lives under ignored `.local/office-mountain-ascent*`;
 missing/corrupt artifacts fail explicitly. Full branch integration remains
 pending. Natural lightning now also passes its focused migration. Alternate Hard
-routes remain before the full gate;whole original-game parity and unsupported
+routes now also pass;the complete branch gate remains before integration;whole original-game parity and unsupported
 keyboard aliases remain separate completion work.

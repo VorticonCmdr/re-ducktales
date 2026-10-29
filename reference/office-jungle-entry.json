@@ -91,7 +91,7 @@
   "browserVerified": true,
   "fullBranchGate": "pending",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "scripts/replay-hard-campaign.js": "543aa6bfec35981bacf46163297ac6eb212e80e9f210701848ae433bc1239bd1",
     "scripts/verify-security-jungle-entry.js": "3797a1ed5a3178ba907111022150c5e1fa084fa2897444475b4475b7c80fa305",
     "scripts/verify-office-jungle-entry-fixture-negatives.js": "e4deca8dfbcf068959ca52d13758912e5a081a3dc0b53202464b70e615f34ed1"
   },
@@ -112,5 +112,6 @@
   "browserCommit": "672813d7bb2ee90748b9450240af588e84f5513d",
   "browserProducer": ".local/office-jungle-entry-browser-01/source-revision.json",
   "browserSourceArchive": ".local/office-jungle-entry-browser-01/sources",
-  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed."
 }

@@ -509,7 +509,7 @@
   "browserVerified": true,
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "scripts/replay-hard-campaign.js": "543aa6bfec35981bacf46163297ac6eb212e80e9f210701848ae433bc1239bd1",
     "scripts/verify-security-jungle-treasure.js": "1115515e55381384820f057317a4c4d9888b32f59a492357de568d9425405e4a",
     "scripts/verify-security-jungle-treasure-browser-negative.js": "a3285ed775f9533862d23d1f8668d86bd95548c8a02a010b64f3f96ed9fa325c",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
@@ -538,5 +538,6 @@
   "browserSourceArchive": ".local/office-jungle-treasure-browser-01/sources",
   "hardProducer": ".local/office-campaign-hard-browser-replay-01/source-revision.json",
   "hardSourceArchive": ".local/office-campaign-hard-browser-replay-01/sources",
-  "hardRegressionScope": "Retains the prior independently accepted office-aware Hard browser receipt at25dab04. All src files,index.html,Vite config and recorded browser/clock adapters in that source must remain byte-identical to current files. This is reused evidence,not a fresh Hard run at the treasure browser revision."
+  "hardRegressionScope": "Retains the prior independently accepted office-aware Hard browser receipt at25dab04. All src files,index.html,Vite config and recorded browser/clock adapters in that source must remain byte-identical to current files. This is reused evidence,not a fresh Hard run at the treasure browser revision.",
+  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed."
 }

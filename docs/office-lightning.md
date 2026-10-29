@@ -63,6 +63,6 @@ The source recipe is `tests/browser/flight-lightning.spec.js`,with
 records the command used for this immutable capture;use a new directory for
 another experiment. Missing/corrupt private artifacts fail explicitly.
 
-Alternate Hard focused routes and the complete branch gate remain pending before
-main integration. Original whole-game parity,broader keyboard aliases and
+Alternate Hard focused routes now also pass. The complete branch gate remains
+pending before main integration. Original whole-game parity,broader keyboard aliases and
 hardware timing/audio fidelity remain separate completion work.

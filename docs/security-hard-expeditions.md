@@ -1,5 +1,9 @@
 # Hard alternate expeditions through security
 
+The isolated office branch now uses the separate
+[office-aware Hard alternate routes](office-hard-expeditions.md). This document
+retains the security-only historical evidence.
+
 The current browser routes start with original opening/difficulty/office/security,
 win the first race, complete the selected expedition with three lives, claim its
 treasure, return to the map, deposit the proceeds, and restart. The destination

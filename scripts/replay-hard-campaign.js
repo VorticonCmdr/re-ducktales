@@ -199,7 +199,17 @@ const clock = new Scheduler(game, environment.clockOrigin, {
 function effects() {
   for (const e of game.drainEffects()) {
     if (e.type === "flushControls") held.clear();
-    else
+    else if (e.type === "return") {
+      // MoneyBin emits this notification after Game.collectEffects has already
+      // applied its reward/office continuation. Browser effects() supplies no
+      // feedback for it. Validate that exact informational contract here.
+      assert.deepEqual(Object.keys(e).sort(), ["tick", "type", "won"]);
+      assert.equal(typeof e.won, "boolean");
+      assert.ok(
+        Number.isInteger(e.tick) && e.tick >= 0,
+        "Invalid money-bin return tick",
+      );
+    } else
       assert.ok(
         ["sound", "stopAudio", "flushControls"].includes(e.type),
         `Unsupported replay effect ${e.type}`,

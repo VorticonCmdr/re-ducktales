@@ -110,7 +110,10 @@
     "verify:office-mountain-ascent-negative": "node scripts/verify-security-mountain-browser-negative.js",
     "verify:office-lightning": "node scripts/verify-security-lightning.js && node scripts/verify-security-lightning-fixture-negatives.js",
     "test:office-lightning": "playwright test tests/browser/flight-lightning.spec.js tests/browser/flight-lightning-replay.spec.js",
-    "verify:office-lightning-negative": "node scripts/verify-security-lightning-browser-negative.js"
+    "verify:office-lightning-negative": "node scripts/verify-security-lightning-browser-negative.js",
+    "verify:office-hard-expeditions": "node scripts/verify-security-hard-expeditions.js && node scripts/verify-security-hard-fixture-negatives.js",
+    "test:office-hard-expeditions": "playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js tests/browser/hard-expedition-replay.spec.js",
+    "verify:office-hard-expeditions-negative": "node scripts/verify-security-hard-movement-negative.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

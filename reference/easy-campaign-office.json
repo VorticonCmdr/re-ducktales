@@ -390,7 +390,7 @@
     }
   ],
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "scripts/replay-hard-campaign.js": "543aa6bfec35981bacf46163297ac6eb212e80e9f210701848ae433bc1239bd1",
     "scripts/verify-easy-campaign.js": "bcb4fb06079c11eee049b0c94a49ba44df0cf30a4190f4901b479d14e966c142",
     "scripts/verify-easy-campaign-browser-negative.js": "c82100258219d41c530c6867609efd4aab811c829f69f1675b988fad33da0405",
     "scripts/verify-mixed-campaign-negative.js": "d404367a54e8f144325187b4c761300a1aa8fc5f034727840fb594a658164350",
@@ -398,5 +398,6 @@
     "tests/browser/mixed-campaign.spec.js": "b14e21e9a4bc670f7eea90df05531ee16381c31daef5a98f6ee5934dc4927173",
     "scripts/verify-easy-campaign-fixture-negatives.js": "7bb39d2dd3b24f25860d774377e11fbb75c8c2bb229db7de4f7b67a733d02486"
   },
-  "currentVerificationNote": "Default route promotion only; capture/replay producers,original inputs and expected state/pixels remain pinned. Current verifier fingerprints cover explicit manifest selection."
+  "currentVerificationNote": "Default route promotion only; capture/replay producers,original inputs and expected state/pixels remain pinned. Current verifier fingerprints cover explicit manifest selection.",
+  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed."
 }

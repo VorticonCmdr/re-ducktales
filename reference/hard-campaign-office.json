@@ -344,7 +344,7 @@
   "verificationTools": {
     "scripts/verify-hard-campaign.js": "3f82deb88e3ba029b063976cc5ae075d44cbfeb0461b3f0771fe91d4ab189c0d",
     "scripts/verify-hard-campaign-browser-negative.js": "4f93be97cdd8277d302aed415c89b258b8c5c44bf0e55e78b49b94edebb8c5f6",
-    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "scripts/replay-hard-campaign.js": "543aa6bfec35981bacf46163297ac6eb212e80e9f210701848ae433bc1239bd1",
     "tests/browser/hard-campaign.spec.js": "47e85a9dceb12a7225290846f651aeac119b8268a7f65c6f531707d702ebb7e8",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "src/game/keyboard-adapter.js": "1520cfecf96b3b9e5f4cb9dc78c0b720487bb1c880243704adc8d02ed71105bd",
@@ -352,5 +352,6 @@
   },
   "fullBranchGate": "pending",
   "evidence": "Complete office-aware Hard port regression:28 exact complete state/browser pixel checkpoints,4140 independent DOM events,1629 flight presentations/one supported flag alias. Five comparison negatives,one actual omitted-Hard-choice browser failure and missing/corrupt fixture/restored-positive controls pass. No original whole-campaign parity claim.",
-  "currentVerificationNote": "Default route promotion only; capture/replay producers,original inputs and expected state/pixels remain pinned. Current verifier fingerprints cover explicit manifest selection."
+  "currentVerificationNote": "Default route promotion only; capture/replay producers,original inputs and expected state/pixels remain pinned. Current verifier fingerprints cover explicit manifest selection.",
+  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed."
 }

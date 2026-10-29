@@ -85,6 +85,13 @@ its117/74/2 gate remain separate historical evidence in
   throttle pass;PNG removal/corruption and restoration are checked separately.
   [Lightning](office-lightning.md).
 
+- All four office-aware alternate Hard routes now pass169 exact Game/browser
+  checkpoints,3978 DOM events and1584 flight presentations. Eight fresh browser
+  cases cover entries,treasure,banking and Restart;deposits2150/1150/2100/2700
+  all reach day6 with three lives. All24 comparison/missing-movement controls
+  pass;required fixture removal/corruption and restoration are checked separately.
+  [Hard alternates](office-hard-expeditions.md).
+
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
 - Office→map→departure→keyboard flight→landing or crash/repair→expedition→results
@@ -158,8 +165,8 @@ pictures and traces stay local. Production visitors select their own originals.
 
 - Office-aware Easy/Hard campaigns are now the default isolated-branch checks.
   The security-only full gate remains historical evidence for main3973cc7.
-- Next: migrate focused recordings
-  through the original office timing and key-slot boundary, then pass the full branch gate.
+- Next: pass the complete office branch regression gate,resolve any failures,
+  then integrate into main. All planned focused route migrations now pass.
   Entry/selection and investment departure have focused acceptance on the isolated
   branch. Several map/notice presentations,
   broader destination/difficulty coverage and original whole-scene comparisons
@@ -184,8 +191,8 @@ npm run verify:office-jungle-entry
 npm run verify:office-jungle-treasure
 npm run verify:office-mountain-ascent
 npm run verify:office-lightning
-npm run verify:security-hard-expeditions
-npm run test:security-hard-expeditions
+npm run verify:office-hard-expeditions
+npm run test:office-hard-expeditions
 npm run verify:easy-office-campaign
 npm run test:easy-office-campaign
 ```

@@ -1,7 +1,7 @@
 {
   "id": "office-aware-hard-alternate-expeditions",
-  "pending": true,
-  "browserVerified": false,
+  "pending": false,
+  "browserVerified": true,
   "expectedCaseCount": 4,
   "expectedFullCheckpointCount": 169,
   "expectedEventCount": 3978,
@@ -70,8 +70,8 @@
     },
     "manifest-bermuda": {
       "path": "reference/office-hard-bermuda.json",
-      "bytes": 19474,
-      "sha256": "3527d7e57b79aee1787360f09170ded72794354950f845e59f890641427645ce"
+      "bytes": 19536,
+      "sha256": "142a67869af14478791d0ca25489b9347a0ac326e9a2e5cfa95adfb0f252b932"
     },
     "entry-manifest-boola": {
       "path": ".local/office-hard-expeditions-accepted-01/boola/entry-view/reference.json",
@@ -90,8 +90,8 @@
     },
     "manifest-boola": {
       "path": "reference/office-hard-boola.json",
-      "bytes": 15457,
-      "sha256": "bbd3840e3dd21e105b85f1fe3be36ac9a60f9204b8b0e3eb629e957977cbea56"
+      "bytes": 15519,
+      "sha256": "f572175adf46e891fd85550dd12231f689b194aebd4e3e1e02f4a093816e6d56"
     },
     "entry-manifest-thunderclap": {
       "path": ".local/office-hard-expeditions-accepted-01/thunderclap/entry-view/reference.json",
@@ -110,8 +110,8 @@
     },
     "manifest-thunderclap": {
       "path": "reference/office-hard-thunderclap.json",
-      "bytes": 25598,
-      "sha256": "a12e7cb7c27e0de0b003020abcc3b0d136e8fc7589f9b481ce347bd7a8e305ab"
+      "bytes": 25660,
+      "sha256": "78d3288d42c97761d5fb86f96d9bf66edd37c2db899f12d35d4c06b94f862f5b"
     },
     "entry-manifest-machu": {
       "path": ".local/office-hard-expeditions-accepted-01/machu/entry-view/reference.json",
@@ -130,13 +130,133 @@
     },
     "manifest-machu": {
       "path": "reference/office-hard-machu.json",
-      "bytes": 33677,
-      "sha256": "dd06cd4af97b2a7d5cf1f8ab0a9be5b4bc3d7c7bbd59a97818d14e94700046d2"
+      "bytes": 33739,
+      "sha256": "958c2b01ce58d05a7e85dac74bfd78fc267172455821c9d211bd3ad3e309c3f7"
+    },
+    "browser-source": {
+      "path": ".local/office-hard-expeditions-browser-01/source-revision.json",
+      "bytes": 55169,
+      "sha256": "436965b8ae3e3267d8c8c5eef6ff2bd52df3c06fcbacdf342d00e5d2da326215"
+    },
+    "browser-results": {
+      "path": ".local/office-hard-expeditions-browser-01/browser-results.json",
+      "bytes": 32865,
+      "sha256": "3888e5c359793ce17e209d2ab86d611e28b51e9df811484ade347a58df7d8104"
+    },
+    "bermuda-browser-checkpoints": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-e485b-t-through-treasure-and-bank/campaign-checkpoints.json",
+      "bytes": 121803,
+      "sha256": "c0c80a31d6624c7c793834e88a98a0cf0c082987b1aee7afef6eb5aef63f384f"
+    },
+    "bermuda-browser-progress": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-e485b-t-through-treasure-and-bank/replay-progress.json",
+      "bytes": 3280,
+      "sha256": "90b938f3bbe9771a80ad2f312e796690f18efd07a21688687de340937f28a466"
+    },
+    "bermuda-browser-events": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-e485b-t-through-treasure-and-bank/actual-events.json",
+      "bytes": 89125,
+      "sha256": "c254ce9a21b0bf89a88d44c299e303877be79d47761402fd474c90f990e0e860"
+    },
+    "boola-browser-checkpoints": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-fa267-t-through-treasure-and-bank/campaign-checkpoints.json",
+      "bytes": 93400,
+      "sha256": "2f43c83a46532c392560473caff3e4c1dc28976723f9e9c239562f3103baeb78"
+    },
+    "boola-browser-progress": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-fa267-t-through-treasure-and-bank/replay-progress.json",
+      "bytes": 3280,
+      "sha256": "271c41dca351145299d7d9587b42d07f12dda3c35f2c48cc1d0c3d74f13fc1d2"
+    },
+    "boola-browser-events": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-fa267-t-through-treasure-and-bank/actual-events.json",
+      "bytes": 88369,
+      "sha256": "b11a6124d66e10f4c2036169500f6675f97e31506d6865ebc29ed33bc7b264ed"
+    },
+    "thunderclap-browser-checkpoints": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-551ff-t-through-treasure-and-bank/campaign-checkpoints.json",
+      "bytes": 167657,
+      "sha256": "220577948eca889f9a514a9ac601fa91754855a0dfd7db7edc1046fe9f5a8d61"
+    },
+    "thunderclap-browser-progress": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-551ff-t-through-treasure-and-bank/replay-progress.json",
+      "bytes": 3340,
+      "sha256": "9d48661c98887deac38f185930c70efe21fe6af7ff200f6cc22f23209e0afb4b"
+    },
+    "thunderclap-browser-events": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-551ff-t-through-treasure-and-bank/actual-events.json",
+      "bytes": 88790,
+      "sha256": "cd9ee7802083e097cee1cc43cd1a36eaea8c71a4659fd3c6898fa9e3362950dc"
+    },
+    "machu-browser-checkpoints": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-77830-t-through-treasure-and-bank/campaign-checkpoints.json",
+      "bytes": 229240,
+      "sha256": "111de978fbee1ecaafc42144060ae47887097adcb0565b351d870e7333e3cd14"
+    },
+    "machu-browser-progress": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-77830-t-through-treasure-and-bank/replay-progress.json",
+      "bytes": 3320,
+      "sha256": "e17a5eb31f5ad9d024bbe31afbfa9e9ebef5a97271bc3e5f219bd229104d0311"
+    },
+    "machu-browser-events": {
+      "path": ".local/office-hard-expeditions-browser-01/browser/hard-expedition-replay-Har-77830-t-through-treasure-and-bank/actual-events.json",
+      "bytes": 90052,
+      "sha256": "e578233deb3065cbaa017b31207aa724bf0041e55ffe9cd6fd439c5cf22b1943"
+    },
+    "shared-hard-reference": {
+      "path": ".local/office-hard-expeditions-accepted-01/shared-hard-reference.json",
+      "bytes": 15632,
+      "sha256": "3113111c18541f00d05f93823ace2474ec1c41f322d1306ada04fde6f9c97a45"
+    },
+    "shared-hard-source": {
+      "path": ".local/office-campaign-hard-browser-replay-01/source-revision.json",
+      "bytes": 53518,
+      "sha256": "67d87b8b716f1b8129e4764856f999e6eacebcda26794452085080f24e595d76"
+    },
+    "shared-hard-results": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser-report.json",
+      "bytes": 7677,
+      "sha256": "cc59727487bcda85fa1835a9d5dc97a64454d7a89fa4cb9aa7b9efca8ecc7120"
+    },
+    "shared-hard-checkpoints": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157873,
+      "sha256": "b6b2e6b9af48f792adc20a96ed3ac2c6d29e6b6112cd1720a45715bb393476a4"
+    },
+    "shared-hard-progress": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "50e9ee858c8381d7e99ccf80f9145d0ac3e5ae1c200057b6edcc2ad45bff3d86"
+    },
+    "shared-hard-events": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373521,
+      "sha256": "720bf26569a42cb00dd6af721b049a7377c09a5d6530ce088b9eda8d7476ff0c"
+    },
+    "negative-bermuda": {
+      "path": ".local/office-hard-expeditions-accepted-01/negative-records/bermuda-movement-negative.log",
+      "bytes": 1917,
+      "sha256": "e2d276783198c48998fbd35864590587c6cd88c2ae049b029b98ea32248c2ad1"
+    },
+    "negative-boola": {
+      "path": ".local/office-hard-expeditions-accepted-01/negative-records/boola-movement-negative.log",
+      "bytes": 1867,
+      "sha256": "a4249cf656222a4cedcfcc49a52d7ae501b5fc18133503484a8d64e6ae0f13cc"
+    },
+    "negative-thunderclap": {
+      "path": ".local/office-hard-expeditions-accepted-01/negative-records/thunderclap-movement-negative.log",
+      "bytes": 1932,
+      "sha256": "9fbff1312d394722e8fbeea17412fd285c7b0e38c792aadc7100efadf922df22"
+    },
+    "negative-machu": {
+      "path": ".local/office-hard-expeditions-accepted-01/negative-records/machu-movement-negative.log",
+      "bytes": 1908,
+      "sha256": "dbe09fbcd6288b6cf3ccc9f9d0d7a279802a7aff42caef9be3ba745b946bcdac"
     }
   },
   "buildManifest": "reference/build.json",
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
-  "evidenceLevel": "Four strict recorded-input Game candidates; independent fresh browser acceptance pending. Not whole-native expedition parity.",
+  "evidenceLevel": "closed-loop port regression and independent fresh browser routes;not whole-native expedition parity",
   "comparisonRules": [
     "Exact complete Game state at every checkpoint",
     "Exact decoded 320x200 RGBA browser pixels",
@@ -151,14 +271,14 @@
   },
   "injections": [],
   "fittedInputs": [],
-  "verify": "npm run verify:security-hard-expeditions",
+  "verify": "npm run verify:office-hard-expeditions",
   "verificationTools": {
     "scripts/verify-security-hard-expeditions.js": "4ddc437f8e0928b5aa59698c83b2cbe5412b585095c1d9b6b853fbe190c09fd1",
     "scripts/verify-security-hard-movement-negative.js": "fe3a58525918da01f62c3e782e0e171fe343808286cbb8e0c2ffacf13dca3201",
     "scripts/verify-security-hard-fixture-negatives.js": "df0f9553aae9fe009cd0f2a087538d7cec068a8f6ba6eeb7bf8dbb4c79ad6e39",
     "scripts/verify-hard-expedition-negative.js": "e11cba0c5cd7022e0a21ae93f1a6d969d9d659f3ac80aadb35cc3895992ccee6",
     "scripts/verify-hard-mountains-negative.js": "2274ace915f3ccbcecba3275c23ddd2c42d9811ce942c8e323fa49255e625e40",
-    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "scripts/replay-hard-campaign.js": "543aa6bfec35981bacf46163297ac6eb212e80e9f210701848ae433bc1239bd1",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "tests/browser/helpers/entry-recording.js": "fae21ab665db3728a9f491f018d90c0ac7dd4eff9fb2db44b55703a33c0eb43c",
     "tests/browser/helpers/flight-policy.js": "83a20623ad6885675699def84acc1b740104771c3143e8f0afbd7472c26527de",
@@ -171,5 +291,13 @@
   "negativeComparisonRule": "Omitting the first horizontal make must fail a carried state or independent DOM-event comparison at an expedition checkpoint;setup,timeout and endpoint failures are rejected.",
   "verificationEdition": "office",
   "captureSourceArchive": ".local/office-hard-expeditions-01/sources",
-  "entryEvidenceScope": "Each auxiliary entry view is a prefix of its corresponding full capture,not an independent capture or additional browser case. Current eight full browser cases include all four entry checkpoints and every expedition checkpoint."
+  "entryEvidenceScope": "Each auxiliary entry view is a prefix of its corresponding full capture,not an independent capture or additional browser case. Current eight full browser cases include all four entry checkpoints and every expedition checkpoint.",
+  "browserCommit": "d0989007886cbccf1e351c9da2519aaa964978ea",
+  "browserSourceArchive": ".local/office-hard-expeditions-browser-01/sources",
+  "sharedHardCommit": "25dab049f93cd4251988ce026a43818af64ae04b",
+  "sharedHardSourceArchive": ".local/office-campaign-hard-browser-replay-01/sources",
+  "sharedHardEvidenceScope": "Retains accepted Hard25dab04/498-source browser receipt. All current src,HTML,Vite and shared recorded-input/clock adapters must remain byte-identical;not a fresh full Hard execution at this browser revision.",
+  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed.",
+  "captureTool": "tests/browser/hard-expedition-route.js",
+  "recordedCaptureCommand": "DUCKTALES_CAPTURE_HARD_EXPEDITION=.local/office-hard-expeditions-01/capture npx playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js --output .local/office-hard-expeditions-01/browser"
 }

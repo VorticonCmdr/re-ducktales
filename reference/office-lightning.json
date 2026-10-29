@@ -301,7 +301,7 @@
   "fittedInputs": [],
   "verify": "npm run verify:office-lightning",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "scripts/replay-hard-campaign.js": "543aa6bfec35981bacf46163297ac6eb212e80e9f210701848ae433bc1239bd1",
     "scripts/verify-security-lightning.js": "f667eecf8cdbaf6828e37f0b857b5bda43e9f5a27cb198dee9cb296c74cc4365",
     "scripts/verify-security-lightning-browser-negative.js": "045913a35503fdd339a81342f354fd997fceba0a29f06818610feb1f24171204",
     "scripts/verify-security-lightning-fixture-negatives.js": "5926514df15cb4ad12a30d2a3c5c73f4f184477fe11fc75929515a401900f518",
@@ -324,5 +324,6 @@
   "regressionEvidenceScope": "Retains separately accepted Hard25dab04/498 sources,jungle d5ddee6/503 sources and mountain c4b1e57/506 sources. Current src,HTML,Vite and shared recorded-input/clock adapters must remain byte-identical. These are reused receipts,not fresh runs at the lightning browser revision.",
   "captureTool": "tests/browser/flight-lightning.spec.js",
   "captureCommand": "DUCKTALES_CAPTURE_LIGHTNING=.local/office-lightning-01/capture npx playwright test tests/browser/flight-lightning.spec.js --output .local/office-lightning-01/browser",
-  "currentVerifierNote": "The same-capture departure view explicitly shares the already-audited capture source path,checksum,revision and archive. Its source audit is not counted twice. Capture/browser producers and all states/pixels/events remain pinned."
+  "currentVerifierNote": "The same-capture departure view explicitly shares the already-audited capture source path,checksum,revision and archive. Its source audit is not counted twice. Capture/browser producers and all states/pixels/events remain pinned.",
+  "replayEffectContractNote": "Reviewed Game.collectEffects/MoneyBin producer and browser effects: return{tick,won} is informational after the model applies its own continuation. Replay now validates that exact shape without external feedback; other unknown effects still fail. No Game/runtime,inputs or expected state/pixels changed."
 }

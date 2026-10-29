@@ -411,13 +411,33 @@ function frame() {
       effects();
       renderer.render(game);
       const overlay = game.systemOverlay;
+      const destination =
+        game.scene === "map" ? game.campaign.destinationWaits : null;
+      const mapTitle = !destination
+        ? "World map"
+        : destination.confirming
+          ? "Preparing departure…"
+          : destination.ready
+            ? "Choose how to travel"
+            : ["wipe", "reveal", "entry-flip"].includes(destination.phase)
+              ? "Opening destination…"
+              : "Changing travel choice…";
       for (const id of ["fire", "up", "down", "left", "right"])
-        $(id).disabled = !!overlay;
+        $(id).disabled =
+          !!overlay ||
+          !!(
+            game.scene === "map" &&
+            game.campaign.destinationWaits &&
+            !game.campaign.destinationWaits.ready
+          );
       $("money-bin").disabled = !!overlay || game.scene !== "office";
       $("map").disabled = !!overlay || game.scene !== "office";
       $("investments").disabled = !!overlay || game.scene !== "office";
       $("back").disabled =
         !!overlay ||
+        !!(
+          game.scene === "map" && game.campaign.destinationWaits?.confirming
+        ) ||
         [
           "departure",
           "ending",
@@ -505,7 +525,7 @@ function frame() {
                                         : game.scene === "money-bin"
                                           ? `Money bin · ${game.bin.phase} · Fire to dive`
                                           : game.scene === "map"
-                                            ? `World map · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
+                                            ? `${mapTitle} · Day ${game.campaign.day} · Cash $${game.money} · Banked $${game.campaign.banked} · ${game.campaign.selected === 35 ? "Office" : game.campaign.locations[game.campaign.selected].name} · ${game.campaign.snapshot().travelDays} travel days`
                                             : `${game.scene === "office" ? "Office" : game.scene === "difficulty" ? "Choose difficulty" : game.opening ? "Opening · Space or Enter to skip" : "Press Space or Enter to start"} · Cash $${game.money.toLocaleString()}${game.rareCoinTaken ? " · Rare coin found" : ""}`;
       $("game").dataset.scene = game.scene;
       $("game").dataset.overlay = overlay?.kind ?? "";

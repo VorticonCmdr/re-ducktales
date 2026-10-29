@@ -8,6 +8,10 @@ import assert from "node:assert/strict";
 import { Game } from "../src/game/application.js";
 import { parseArchive } from "../src/assets.js";
 import { parseLocations } from "../src/game/campaign.js";
+import {
+  destinationReady,
+  finishDestination,
+} from "../tests/helpers/destination-fixture.js";
 export const CAMPAIGN_INPUTS = [
   { type: "fire" },
   { type: "fire" },
@@ -43,6 +47,8 @@ export function compareCampaign(
     if (dropDeparture && i === 6) continue;
     g.input(event);
     consumed++;
+    if (i === 4 || i === 5) destinationReady(g);
+    if (i === 6) finishDestination(g);
   }
   function compare(index) {
     const raw = fixture.checkpoints[index];

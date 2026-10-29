@@ -525,11 +525,17 @@ export class Renderer {
       const c = game.campaign,
         selected = c.locations[c.selected];
       if (c.info) {
+        const waits = c.destinationWaits;
+        if (!waits) throw Error("Missing destination presentation timing");
+        if (this.destinationSource !== waits) {
+          this.destinationSource = waits;
+          this.destinationIncoming = this.ctx.getImageData(0, 0, 320, 200).data;
+        }
         const key = JSON.stringify([
           c.selected,
           c.day,
           game.money,
-          c.choice,
+          waits.visibleChoice,
           c.atomicAvailable,
           selected.playerCollected,
           selected.rivalCollected,
@@ -545,7 +551,7 @@ export class Renderer {
             days: c.snapshot().travelDays,
             day: c.day,
             money: game.money,
-            choice: c.choice,
+            choice: waits.visibleChoice,
             atomicAvailable: c.atomicAvailable,
           });
           this.destinationCache = {
@@ -558,11 +564,14 @@ export class Renderer {
             ),
           };
         }
-        this.ctx.putImageData(
-          new ImageData(this.destinationCache.pixels, 320, 200),
-          0,
-          0,
-        );
+        const pixels = waits.transition
+          ? endingTransitionPixels(
+              waits.transition,
+              this.destinationIncoming,
+              this.destinationCache.pixels,
+            )
+          : this.destinationCache.pixels;
+        this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
         return;
       }
       this.draw("MAIN.ARC", c.location === 35 ? 20 : 21, 0, 0, 0);

@@ -233,9 +233,13 @@ export async function runLinkedCampaign({
     // The office offers an aircraft choice. Expeditions departing from other
     // locations start directly with the already selected aircraft.
     if (fromOffice) {
-      await until((s) => s.scene === "map" && s.campaign.info);
+      await until((s) => s.scene === "map" && s.campaign.destination?.ready);
       await press("ArrowRight");
+      await until(
+        (s) => s.campaign.destination?.ready && s.campaign.choice === 1,
+      );
       await press("Space");
+      await until((s) => s.scene !== "map");
       await settleReports();
     }
   }

@@ -1,4 +1,8 @@
 import {
+  destinationReady,
+  confirmDestination,
+} from "./helpers/destination-fixture.js";
+import {
   bankResources,
   finishBankWithHeldFire,
 } from "./helpers/bank-fixture.js";
@@ -106,11 +110,14 @@ test("cash deposit, coin reset, cancellation and return retain closed-loop state
   g.input({ type: "map" });
   g.input({ type: "point", x: 212, y: 131 });
   g.input({ type: "fire" });
-  g.input({ type: "fire" });
+  destinationReady(g);
+  confirmDestination(g);
   assert.equal(g.campaign.day, 1);
   g.input({ type: "fire" });
+  destinationReady(g);
   g.input({ type: "right" });
-  g.input({ type: "fire" });
+  destinationReady(g);
+  confirmDestination(g);
   assert.equal(g.campaign.banked, 1000);
   assert.equal(g.money, 0);
   assert.equal(g.rareCoinTaken, false);
@@ -130,8 +137,10 @@ test("invalid resources and unsupported journeys fail explicitly", () => {
   g.input({ type: "map" });
   g.input({ type: "point", x: 37, y: 33 });
   g.input({ type: "fire" });
+  destinationReady(g);
   g.input({ type: "right" });
-  g.input({ type: "fire" });
+  destinationReady(g);
+  confirmDestination(g);
   assert.equal(g.scene, "departure");
   assert.throws(() => g.input({ type: "fire" }), /Flight resources not loaded/);
   assert.equal(g.campaign.day, 1);

@@ -1,3 +1,7 @@
+import {
+  destinationReady,
+  confirmDestination,
+} from "./helpers/destination-fixture.js";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -60,13 +64,16 @@ test("inspection and cancellation do not consume RNG; confirming preserves cash/
   const seed = g.seed;
   g.input({ type: "point", x: 37, y: 33 });
   g.input({ type: "fire" });
-  g.input({ type: "fire" });
+  destinationReady(g);
+  confirmDestination(g);
   assert.equal(g.seed, seed);
   assert.equal(g.campaign.day, 1);
   assert.equal(g.scene, "map");
   g.input({ type: "fire" });
+  destinationReady(g);
   g.input({ type: "right" });
-  g.input({ type: "fire" });
+  destinationReady(g);
+  confirmDestination(g);
   assert.equal(g.scene, "departure");
   assert.equal(g.departure.activity, "cave");
   assert.equal(g.campaign.day, 1);
@@ -113,8 +120,10 @@ test("an earned coin is retained as cash while confirming an expedition resets i
   g.input({ type: "map" });
   g.input({ type: "point", x: 37, y: 33 });
   g.input({ type: "fire" });
+  destinationReady(g);
   g.input({ type: "right" });
-  g.input({ type: "fire" });
+  destinationReady(g);
+  confirmDestination(g);
   assert.equal(g.scene, "departure");
   assert.equal(g.money, 1000);
   assert.equal(g.rareCoinTaken, false);

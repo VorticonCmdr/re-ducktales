@@ -147,3 +147,8 @@ the verifier source archive and terminal results. Runtime,browser tests,build
 configuration and dependencies are byte-identical to the focused8ee5284 browser
 milestone;the changes in this step are capture/comparison tools and evidence.
 No new browser timing or whole-campaign acceptance is claimed.
+
+The later[explicit-wait integration](destination-waits.md) now connects the
+entry,selection and confirmation waits in Game/browser. The statements above
+that these waits were untranslated describe the earlier drawing/video milestones.
+Recurring raw polling,CPU drawing cost and exact scanout timing remain open.

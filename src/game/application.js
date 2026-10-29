@@ -7,7 +7,6 @@ import { SecurityScreen } from "./security-screen.js";
 import { DifficultyMenu } from "./difficulty-menu.js";
 import { Departure } from "./departure.js";
 import { Campaign, OFFICE, travelDays } from "./campaign.js";
-import { destinationInput } from "./destination-input.js";
 import { MoneyBin } from "./money-bin.js";
 import { Flight } from "./flight.js";
 import { Cave } from "./cave.js";
@@ -726,16 +725,23 @@ export class Game {
         return;
       }
       if (event.type === "back") {
-        if (c.info) c.info = false;
-        else this.completeCampaignAction({ type: "travel", target: OFFICE });
+        if (c.info) {
+          if (c.destinationWaits?.confirming) return;
+          c.info = false;
+          c.destinationWaits = null;
+        } else this.completeCampaignAction({ type: "travel", target: OFFICE });
         return;
       }
-      if (c.info && ["left", "right"].includes(event.type)) {
-        c.choice = destinationInput(
-          c.choice,
-          event.type === "right" ? 3 : 7,
-          c.atomicAvailable,
-        ).choice;
+      if (
+        c.info &&
+        ["left", "right", "up", "down", "fire"].includes(event.type)
+      ) {
+        if (!c.destinationWaits) throw Error("Missing destination wait state");
+        c.destinationWaits.input(
+          { left: 7, right: 3, up: 1, down: 5, fire: 0xc0 }[event.type],
+          u32(this.tick),
+        );
+        this.collectDestination();
         return;
       }
       if (event.type === "fire") {
@@ -748,20 +754,9 @@ export class Game {
             this.completeCampaignAction({ type: "travel", target: c.selected });
             return;
           }
-          c.enterDestination();
+          c.enterDestination(u32(this.tick));
           return;
         }
-        const selectedInput = destinationInput(
-          c.choice,
-          0xc0,
-          c.atomicAvailable,
-        );
-        if (selectedInput.returnCode === 0x24) {
-          c.info = false;
-          return;
-        }
-        c.aircraft = selectedInput.choice === 2 ? "atomic" : "launchpad";
-        this.completeCampaignAction({ type: "travel", target: c.selected });
       }
       return;
     }
@@ -951,6 +946,8 @@ export class Game {
       if (this.scene === "security") this.security.advanceBlockedTick();
       if (this.scene === "office" && this.officeMenu)
         this.officeMenu.advanceBlockedTick();
+      if (this.scene === "map" && this.campaign.destinationWaits)
+        this.campaign.destinationWaits.advanceBlockedTick(u32(this.tick));
       this.systemOverlay.advanceTick();
       this.finishSystemOverlay();
       return;
@@ -1074,8 +1071,13 @@ export class Game {
       return;
     }
     if (this.scene === "map") {
-      const input = this.campaign.advanceTick(u32(this.tick));
-      if (input?.fire) this.handleInput({ type: "fire" });
+      if (this.campaign.destinationWaits) {
+        this.campaign.destinationWaits.advanceTick(u32(this.tick));
+        this.collectDestination();
+      } else {
+        const input = this.campaign.advanceTick(u32(this.tick));
+        if (input?.fire) this.handleInput({ type: "fire" });
+      }
     }
     if (this.scene !== "money-bin") return;
     this.bin.advanceTick();
@@ -1123,6 +1125,11 @@ export class Game {
     if (this.scene === "office" && this.officeMenu) {
       this.officeMenu.advanceRetrace();
       this.collectOfficeMenu();
+      return;
+    }
+    if (this.scene === "map" && this.campaign.destinationWaits) {
+      this.campaign.destinationWaits.advanceRetrace(u32(this.tick));
+      this.collectDestination();
       return;
     }
     if (this.scene === "bank") {
@@ -1394,6 +1401,29 @@ export class Game {
       if (this.systemOverlay) return false;
     }
     return true;
+  }
+  collectDestination() {
+    const c = this.campaign,
+      waits = c.destinationWaits;
+    if (!waits) return;
+    c.choice = waits.choice;
+    for (const event of waits.drainEvents()) {
+      if (event.type === "sound") {
+        if (this.audioEnabled) this.effects.push(event);
+      } else if (event.type === "transport") c.aircraft = event.aircraft;
+      else if (event.type === "flush") {
+        c.flushMapKeys();
+        this.handleInput({ type: "controls", fire: false, direction: null });
+        this.effects.push({ type: "flushControls" });
+      } else throw Error(`Unsupported destination effect ${event.type}`);
+    }
+    if (!waits.outcome) return;
+    const code = waits.outcome.returnCode;
+    c.destinationWaits = null;
+    if (code === 0x24) c.info = false;
+    else if (code === 1)
+      this.completeCampaignAction({ type: "travel", target: c.selected });
+    else throw Error(`Unsupported destination return ${code}`);
   }
   advanceDialogue(wait) {
     wait.remaining--;

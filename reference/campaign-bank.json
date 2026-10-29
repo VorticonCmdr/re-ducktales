@@ -57,7 +57,7 @@
     }
   ],
   "rules": {
-    "comparison": "Exact day, location, cash, banked cash, and coin latch. Map PNG exact RGBA.",
+    "comparison": "Exact day,location,cash,banked cash,and coin latch. The original map PNG is retained and checksum-checked;this command does not compare browser map pixels.",
     "level": "Original routine/state comparison; independent closed-loop browser scenario separately.",
     "exclusions": [
       "Zero cash reference does not prove nonzero deposit against the original.",
@@ -78,5 +78,6 @@
     }
   },
   "verify": "npm run verify:campaign",
-  "bankEnvironment": "Port now advances the full bank with an explicit held digital Fire before its first reader, then release on return. Driver/retrace clocks use an independent phase-zero provider. Native artifact values and account/date comparison fields are unchanged. Original input/CPU timing and its unrecorded bank idle RNG are outside this legacy comparison."
+  "bankEnvironment": "Port now advances the full bank with an explicit held digital Fire before its first reader, then release on return. Driver/retrace clocks use an independent phase-zero provider. Native artifact values and account/date comparison fields are unchanged. Original input/CPU timing and its unrecorded bank idle RNG are outside this legacy comparison.",
+  "destinationEnvironment": "The11 authored semantic commands are unchanged. Between destination entry/selection commands,the unit-fixture provider advances one driver tick then one retrace until ready;after confirmation it completes that explicit wait before continuation. These clocks are independent of expected account/date values. This legacy comparison does not prove native destination/CPU timing."
 }

@@ -20,13 +20,19 @@ test("destination shows original treasure labels and flight selector through rea
     position: { x: (100.5 * b.width) / 320, y: (100.5 * b.height) / 200 },
   });
   await page.keyboard.press("Space");
-  await t.until((s) => s.campaign.info, "destination page");
+  await t.until((s) => s.campaign.destination?.ready, "destination page");
   await page.keyboard.press("Space");
   await t.until((s) => !s.campaign.info, "Map confirmation returns to pointer");
   await page.keyboard.press("Space");
-  await t.until((s) => s.campaign.info, "reopened destination page");
+  await t.until(
+    (s) => s.campaign.destination?.ready,
+    "reopened destination page",
+  );
   await page.keyboard.press("ArrowRight");
-  await t.until((s) => s.campaign.choice === 1, "flight selection");
+  await t.until(
+    (s) => s.campaign.choice === 1 && s.campaign.destination?.ready,
+    "flight selection",
+  );
   // One complete70.086Hz video interval lets this observer see the new page.
   await page.clock.runFor(16);
   const state = await t.state();
@@ -70,6 +76,145 @@ test("destination shows original treasure labels and flight selector through rea
   await writeFile(info.outputPath("destination-bolognia.png"), actualBytes);
   await page.keyboard.press("Space");
   await t.until((s) => s.scene === "departure", "flight departure");
+  await page.locator("#restart").click();
+  await t.until((s) => s.scene === "title", "restart");
+  expect(t.errors).toEqual([]);
+  await expect(page.locator("#diagnostic")).toBeHidden();
+});
+
+test("destination entry bands, selection wait and confirmation wait gate real browser input", async ({
+  page,
+}, info) => {
+  await page.addInitScript(() => {
+    window.destinationEntry = [];
+    window.destinationAudio = [];
+    const seen = new Set();
+    document.addEventListener("gameaudio", (e) =>
+      window.destinationAudio.push(e.detail),
+    );
+    document.addEventListener(
+      "gamepresent",
+      (e) => {
+        const d = e.detail.campaign?.destination;
+        if (!d?.transition) return;
+        const name = `${d.transition.kind}-${d.transition.band}`;
+        if (seen.has(name)) return;
+        seen.add(name);
+        window.destinationEntry.push({
+          name,
+          retraces: d.retraces,
+          ready: d.ready,
+        });
+      },
+      true,
+    );
+  });
+  const t = await openOffice(page);
+  await page.locator("#map").click();
+  await finishSecurityEntry({ page, until: t.until, state: t.state });
+  const b = await t.canvas.boundingBox();
+  await t.canvas.click({
+    position: { x: (100.5 * b.width) / 320, y: (100.5 * b.height) / 200 },
+  });
+  await page.keyboard.press("Space");
+  await t.until(
+    (s) => s.campaign.destination?.phase === "wipe",
+    "destination wipe",
+  );
+  await page.keyboard.press("ArrowRight");
+  let s = await t.until(
+    (s) => s.campaign.destination?.discardedDuringWait === 1,
+    "entry ignores input before its flush",
+  );
+  expect(s.campaign.choice).toBe(0);
+  await expect(page.locator("#fire")).toBeDisabled();
+  s = await t.until((s) => s.campaign.destination?.ready, "entry complete");
+  expect(s.campaign.destination.retraces).toBe(51);
+  const entry = await page.evaluate(() => window.destinationEntry);
+  expect(entry.map((v) => v.name)).toEqual(
+    ["wipe", "reveal"].flatMap((kind) =>
+      Array.from({ length: 5 }, (_, i) => `${kind}-${i}`),
+    ),
+  );
+  expect(entry.map((v) => v.retraces)).toEqual([
+    1, 5, 10, 15, 20, 25, 30, 35, 40, 45,
+  ]);
+  expect(entry.every((v) => v.ready === false)).toBe(true);
+  await expect(page.locator("#fire")).toBeEnabled();
+  await page.getByLabel("Sound device", { exact: true }).selectOption("tandy");
+  await page.getByRole("checkbox", { name: "Sound (reconstructed)" }).check();
+  await page.clock.runFor(32);
+  await t.canvas.focus();
+  if (process.env.DUCKTALES_DESTINATION_WAIT_NEGATIVE !== "omit-right")
+    await page.keyboard.press("ArrowRight");
+  // Two driver periods are enough to consume the key and remain strictly
+  // inside the seven-count selection wait. This is an authored test interval.
+  await page.clock.runFor(32);
+  s = await t.state();
+  expect(s.campaign.choice, "Required Right make selects flight").toBe(1);
+  let d = s.campaign.destination;
+  expect(d.phase).toBe("selection-wait");
+  expect(d.visibleChoice).toBe(0);
+  expect(d.driverDeadline - d.lastInputClock).toBe(7);
+  const selectionDeadline = d.driverDeadline;
+  await page.keyboard.press("Space");
+  s = await t.until(
+    (s) => s.campaign.destination?.discardedDuringWait === 2,
+    "selection wait ignores early Fire",
+  );
+  expect(s.scene).toBe("map");
+  await t.until(
+    (s) => s.campaign.destination?.clock === selectionDeadline - 1,
+    "last selection count",
+  );
+  expect((await t.state()).campaign.destination.visibleChoice).toBe(0);
+  s = await t.until(
+    (s) => s.campaign.destination?.ready,
+    "new selection displayed and settled",
+  );
+  expect(s.campaign.destination.visibleChoice).toBe(1);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          window.destinationAudio.filter(
+            (v) => v.type === "ack" && v.argument === 36,
+          ).length,
+      ),
+    )
+    .toBe(1);
+  const audio = await page.evaluate(() => window.destinationAudio);
+  await page.keyboard.press("Space");
+  s = await t.until(
+    (s) => s.campaign.destination?.phase === "confirm-wait",
+    "confirmation post-flip wait",
+  );
+  d = s.campaign.destination;
+  const confirmationDeadline = d.driverDeadline;
+  expect(s.scene).toBe("map");
+  expect(d.ready).toBe(false);
+  await expect(page.locator("#back")).toBeDisabled();
+  await t.until(
+    (s) => s.campaign.destination?.clock === confirmationDeadline - 1,
+    "last confirmation count",
+  );
+  expect((await t.state()).scene).toBe("map");
+  s = await t.until(
+    (s) => s.scene === "departure",
+    "completed confirmation hands off",
+  );
+  expect(s.tick).toBe(confirmationDeadline);
+  await writeFile(
+    info.outputPath("destination-wait-observations.json"),
+    JSON.stringify(
+      { entry, selectionDeadline, confirmationDeadline, audio },
+      null,
+      2,
+    ),
+  );
+  await t.canvas.screenshot({
+    path: info.outputPath("destination-waits-departure.png"),
+  });
   await page.locator("#restart").click();
   await t.until((s) => s.scene === "title", "restart");
   expect(t.errors).toEqual([]);

@@ -1,5 +1,6 @@
 import { OrdinaryKeyboard } from "./ordinary-keyboard.js";
 import { MapDeadline } from "./map-deadline.js";
+import { DestinationWaits } from "./destination-waits.js";
 import { nextRandom, u16 } from "./integer.js";
 import { advanceMapPointer, MAP_DIRECTION_CODES } from "./map-pointer.js";
 
@@ -140,6 +141,7 @@ export class Campaign {
     this.mapPolls = 0;
     this.lastMapInput = null;
     this.mapReadTrace = null;
+    this.destinationWaits = null;
   }
   nearest() {
     const { x, y } = this.cursor;
@@ -171,14 +173,14 @@ export class Campaign {
     this.mapKeyboard.flush();
     this.direction = null;
   }
-  enterDestination() {
+  enterDestination(clock) {
     this.info = true;
     this.choice = 0;
     this.direction = null;
-    // Original1757 sets mode1;18b1 flushes the triggering held Fire. Full
-    // resource/page-transition timing remains a separate translation.
+    // Original1757 sets mode1;18b1 flushes the triggering held Fire.
     this.mapKeyboard.mode = 1;
     this.mapKeyboard.flush();
+    this.destinationWaits = new DestinationWaits(clock, this.atomicAvailable);
   }
   mapInputState() {
     return {
@@ -261,6 +263,9 @@ export class Campaign {
       asset:
         this.selected === OFFICE ? null : this.locations[this.selected].asset,
       info: this.info,
+      ...(this.destinationWaits
+        ? { destination: this.destinationWaits.snapshot() }
+        : {}),
       choice: this.choice,
       travelDays: travelDays(this.locations, this.location, this.selected),
     };

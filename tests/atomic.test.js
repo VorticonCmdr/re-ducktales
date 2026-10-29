@@ -1,4 +1,8 @@
 import {
+  destinationReady,
+  confirmDestination,
+} from "./helpers/destination-fixture.js";
+import {
   bankResources,
   finishBankWithHeldFire,
 } from "./helpers/bank-fixture.js";
@@ -105,11 +109,13 @@ test("atomic choice persists on expedition maps, bypasses flights and resets on 
   c.atomicAvailable = true;
   g.scene = "map";
   c.selected = 31;
-  c.info = true;
+  g.input({ type: "fire" });
+  destinationReady(g);
   g.input({ type: "left" });
+  destinationReady(g);
   assert.equal(c.choice, 2);
   const seed = g.seed;
-  g.input({ type: "fire" });
+  confirmDestination(g);
   assert.equal(c.aircraft, "atomic");
   assert.equal(g.scene, "atomic-transport");
   assert.equal(g.departure, null);

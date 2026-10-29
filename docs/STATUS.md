@@ -73,6 +73,15 @@ pictures with a different treasure. The stale highlight is explained by raw
 render-cache lag;the update counter is not a completed-scanout clock. Native
 selection/confirmation waits are observed,but are not yet connected in browser.
 
+The caller branch now integrates explicit destination waits:25 clear retraces,
+25 reveal retraces,a flip,selection7-count/flip/1-count settling,and confirmation
+flip/7-count return.123 unit checks and four focused browser scenarios pass,
+including early input and the Tandy request36 boundary. This still uses the
+semantic destination adapter;recurring raw polling and CPU/footer costs remain
+untranslated. Historical Easy/Hard inputs fail at checkpoint1 because they send
+commands during entry. Fresh campaign acceptance remains required.
+[Explicit-wait scope and commands](destination-waits.md).
+
 ## Supported build
 
 Only the22-file pairing in [build.json](../reference/build.json) is supported.
@@ -102,12 +111,13 @@ Production visitors select their own originals. No deployment is performed.
   all36 original input/flag/pointer comparisons and six-count steady polls,
   one make across30 held reads, fresh repeat and Fire handoff into flight choice.
   Two omitted-make browser controls fail as required. The original first drawing
-  interval and destination menu timing remain untranslated. Historical Easy/Hard
-  input replays fail at later presentation/timer checkpoints; no expected values
-  were changed. See[map input integration](map-input-integration.md).
+  interval and recurring destination input/CPU timing remain untranslated. With
+  explicit destination entry,the historical Easy/Hard
+  input replays now fail at their first flight checkpoint because their commands
+  arrive during the wipe;no expected values were changed. See[map input integration](map-input-integration.md).
 - The investment departure status is “Opening investments…”,verified in the
   actual browser alongside its original animation and trading destination.
-- Original map/notice entry transitions,scanout and polling details,broader destination and
+- Original map presentation,destination CPU/scanout/polling details,broader destination and
   difficulty finishability,and original whole-scene/campaign comparisons remain.
   A broader exploratory controller is not acceptance evidence.
 - CPU/file/IRQ/input timing and physical audio waveform/gain/filter parity remain
@@ -129,6 +139,7 @@ npm run verify:map-clock
 npm run verify:map-input-browser
 npm run verify:destination
 npm run verify:destination-video
+npm run verify:destination-waits
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

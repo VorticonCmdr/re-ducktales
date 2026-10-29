@@ -1,4 +1,8 @@
 import {
+  destinationReady,
+  confirmDestination,
+} from "./helpers/destination-fixture.js";
+import {
   bankResources,
   finishBankWithHeldFire,
 } from "./helpers/bank-fixture.js";
@@ -128,12 +132,14 @@ test("a normal rival report suspends travel and rechecks the newly claimed desti
     day: 10,
     rivalUnlockMask: 4,
     selected: 1,
-    info: true,
-    choice: 1,
   });
   g.scene = "map";
   g.seed = 56;
   g.input({ type: "fire" });
+  destinationReady(g);
+  g.input({ type: "right" });
+  destinationReady(g);
+  confirmDestination(g);
   assert.equal(g.scene, "rival-report");
   assert.equal(c.rival.location, 35, "location is published after the report");
   assert.equal(c.locations[1].rivalCollected, true);
@@ -162,7 +168,9 @@ test("campaign idle time and map inspection never catch up rival turns", () => {
   for (let i = 0; i < 1000; i++) g.advanceTick();
   c.selected = 2;
   g.input({ type: "fire" });
-  g.input({ type: "fire" });
+  destinationReady(g);
+  confirmDestination(g);
+  assert.equal(c.info, false);
   assert.deepEqual(c.rival, initial);
   assert.equal(g.seed, 56);
   g.completeCampaignAction({ type: "map" });

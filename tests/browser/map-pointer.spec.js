@@ -161,8 +161,15 @@ test("map held keys need fresh makes and Fire reaches destination, flight choice
   await page.clock.runFor(400);
   expect((await t.state()).campaign.choice).toBe(0);
   await page.keyboard.up("Space");
+  await t.until(
+    (s) => s.campaign.destination?.ready,
+    "destination entry finished",
+  );
   await page.keyboard.press("ArrowRight");
-  await t.until((s) => s.campaign.choice === 1, "flight choice");
+  await t.until(
+    (s) => s.campaign.choice === 1 && s.campaign.destination?.ready,
+    "flight choice",
+  );
   await t.canvas.screenshot({ path: info.outputPath("map-flight-choice.png") });
   await page.keyboard.press("Space");
   await t.until((s) => s.scene === "departure", "departure");

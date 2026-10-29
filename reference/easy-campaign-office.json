@@ -1,0 +1,105 @@
+{
+  "id": "linked-easy-campaign-original-office-entry",
+  "expectedHard": false,
+  "pendingBrowserReplay": true,
+  "evidenceLevel": "Port campaign regression; original whole-campaign parity is not claimed.",
+  "artifactRoot": ".local/office-campaign-easy-accepted-01",
+  "captureRoot": ".local/office-campaign-easy-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+  "captureCommit": "6d7c19a",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "expectedCheckpointCount": 36,
+  "requiredEventCount": 3516,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-input-80",
+    "jungle-input-160",
+    "jungle-input-240",
+    "jungle-input-320",
+    "jungle-input-400",
+    "jungle-input-480",
+    "jungle-input-560",
+    "jungle-input-640",
+    "jungle-input-720",
+    "jungle-input-800",
+    "jungle-input-880",
+    "jungle-input-917",
+    "jungle-return",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "rival-report",
+    "mountain-return",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedFlightPresentations": 1188,
+  "expectedFlagAliasPresentations": 0,
+  "expectedEnding": {
+    "phase": "cover",
+    "won": true,
+    "banked": 13875,
+    "rivalBanked": 11500,
+    "day": 32,
+    "remaining": 699,
+    "choice": 0,
+    "credit": -1,
+    "asset": 36,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      1,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "rivalUnlockMask": 15
+  },
+  "artifacts": {
+    "environment": {
+      "path": ".local/office-campaign-easy-accepted-01/environment.json",
+      "bytes": 266,
+      "sha256": "dcd4dc4d887dfcd0cd8a4280c198ccb4db96b2503b3aa19f572469596883af69"
+    },
+    "captured-events": {
+      "path": ".local/office-campaign-easy-accepted-01/captured-events.json",
+      "bytes": 423035,
+      "sha256": "0548ac9c29232b61d113329dfff80b09db958285dfade3fce59a70ff3e80522a"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/office-campaign-easy-accepted-01/campaign-checkpoints.json",
+      "bytes": 171772,
+      "sha256": "7f65941d3152c770b451a46908b46da82f202c0fe6f71ac70ea63b2cc52048b4"
+    },
+    "timeline": {
+      "path": ".local/office-campaign-easy-accepted-01/timeline.json",
+      "bytes": 3257,
+      "sha256": "8e8446ca1008e12717ce3d2df66ba6873317dfeb0f7b06ef81f213e2524963d7"
+    }
+  }
+}

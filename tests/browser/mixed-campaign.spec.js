@@ -2,12 +2,18 @@ import { test, expect } from "@playwright/test";
 import manifest from "../../reference/easy-campaign-security.json" with { type: "json" };
 import { runLinkedCampaign } from "./helpers/linked-campaign.js";
 import { runRecordedCampaign } from "./helpers/recorded-campaign.js";
+import { readFile } from "node:fs/promises";
 
 test("one campaign carries four expeditions, rival activity and deposits through the deadline", async ({
   page,
 }, info) => {
   test.setTimeout(600000);
   const capture = process.env.DUCKTALES_CAPTURE_EASY_CAMPAIGN === "1";
+  const replayManifest = process.env.DUCKTALES_EASY_CAMPAIGN_MANIFEST
+    ? JSON.parse(
+        await readFile(process.env.DUCKTALES_EASY_CAMPAIGN_MANIFEST, "utf8"),
+      )
+    : manifest;
   if (capture)
     await runLinkedCampaign({
       page,
@@ -19,7 +25,7 @@ test("one campaign carries four expeditions, rival activity and deposits through
     await runRecordedCampaign({
       page,
       info,
-      manifest,
+      manifest: replayManifest,
       negativeMode: process.env.DUCKTALES_EASY_RECORDED_NEGATIVE,
     });
     await page.locator("#restart").click();

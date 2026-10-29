@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "completed": true,
+  "producerCommit": "7883a07b34335d103f958b2bdaf5933b36210dcb",
+  "sourceFileCount": 561,
+  "browserCases": 17,
+  "skipped": 0,
+  "scope": "Existing normal-browser bank,dive,loading,atomic,departure,cave,jungle and mountain scenarios updated to wait for real destination readiness;gameplay expectations unchanged",
+  "commands": [
+    "node node_modules/@playwright/test/cli.js test tests/browser/campaign.spec.js tests/browser/game.spec.js tests/browser/atomic.spec.js --config CAMPAIGN_CONFIG",
+    "node node_modules/@playwright/test/cli.js test tests/browser/jungle.spec.js tests/browser/mountain.spec.js --config EXPEDITIONS_CONFIG"
+  ],
+  "startingState": "Normal fresh browser game for each case;existing declared conditional original pixel fixtures remain conditional",
+  "comparisonRules": [
+    "Original existing exact assertions unchanged;only wait conditions follow destination entry and selection completion"
+  ],
+  "excludedEvidence": [
+    "Baseline bank scenario failure retained separately;it sent confirmation during entry and is not acceptance"
+  ],
+  "fittedInputs": [],
+  "injections": [],
+  "partialRestore": false,
+  "artifacts": {
+    "baseline-failure.log": {
+      "path": ".local/destination-readiness-browser-20261029-01/baseline-failure.log",
+      "bytes": 1700,
+      "sha256": "3a82a08096ad2590d1168a5f7b34ff0166ad0405f49c0913be400f1d2808d163"
+    },
+    "campaign/browser/.last-run.json": {
+      "path": ".local/destination-readiness-browser-20261029-01/campaign/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "campaign/report.json": {
+      "path": ".local/destination-readiness-browser-20261029-01/campaign/report.json",
+      "bytes": 19163,
+      "sha256": "08193494feada521233051df1b880b548254ebb4d1c5e7167d1c60af5b6bd40a"
+    },
+    "campaign-config.mjs": {
+      "path": ".local/destination-readiness-browser-20261029-01/campaign-config.mjs",
+      "bytes": 743,
+      "sha256": "4f167dcbe1f307d897c0e1babc1ea9204899b661ebe37d93b054b1e1af2f317a"
+    },
+    "campaign.log": {
+      "path": ".local/destination-readiness-browser-20261029-01/campaign.log",
+      "bytes": 2107,
+      "sha256": "5dce02c2ff3a16f93e5f56a25e493798a66ff9ba45754c69efb4633c979c72c2"
+    },
+    "expeditions/browser/.last-run.json": {
+      "path": ".local/destination-readiness-browser-20261029-01/expeditions/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "expeditions/report.json": {
+      "path": ".local/destination-readiness-browser-20261029-01/expeditions/report.json",
+      "bytes": 5529,
+      "sha256": "14227aebeb1269e9044a62d2a583f1443a2529e10cc364ed7dae59a32a0f5f4b"
+    },
+    "expeditions-config.mjs": {
+      "path": ".local/destination-readiness-browser-20261029-01/expeditions-config.mjs",
+      "bytes": 749,
+      "sha256": "df75672703e1e64b675087130027e717a22b1b48272b853bb5367d080b677361"
+    },
+    "expeditions.log": {
+      "path": ".local/destination-readiness-browser-20261029-01/expeditions.log",
+      "bytes": 670,
+      "sha256": "f0686ffd89dbaeff5b1b28033d2a2d6c515eba2c4ea832e4b7f02a4698732835"
+    },
+    "source-revision.json": {
+      "path": ".local/destination-readiness-browser-20261029-01/source-revision.json",
+      "bytes": 60385,
+      "sha256": "d75c9ffa15383a8da1ab7c461b9169404e98a7b6240f0012adc05dd4a3e5d91e"
+    },
+    "sources.zip": {
+      "path": ".local/destination-readiness-browser-20261029-01/sources.zip",
+      "bytes": 1483533,
+      "sha256": "942804feb15513f39d7febe2235e7efbe2a279d4499f640378a84d9c8dee078f"
+    },
+    "vite-config.mjs": {
+      "path": ".local/destination-readiness-browser-20261029-01/vite-config.mjs",
+      "bytes": 372,
+      "sha256": "0e86613abcfedc438dd4dc30babb3a9181b5f578f58ae409d60eff2376c6a058"
+    }
+  }
+}

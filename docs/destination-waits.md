@@ -91,3 +91,30 @@ independent recordings can be made. Fresh carried Game/browser campaigns and the
 relevant integrated gate are still required before updating the accepted main
 preview. The older later bank/report timing investigations remain historical
 evidence for their earlier source.
+
+## Fresh campaign verification
+
+The isolated second Easy capture reaches the ready win onday32 with13875
+against11500,one document navigation and no diagnostic. Its raw environment
+remains`completed:false`/exploratory. A separate complete replay contract retains
+the same3514 DOM events and36 observed states/pictures;only its declaration and
+timeline are added. No input,expected state,RNG or timer is fitted or edited.
+The ending counter is naturally700 here and is compared exactly.
+
+Fresh independent Game replay consumes every event,checks all36 full states and
+renders1188 flight presentations with zero flag aliases,no held keys and no
+pending events. A separate fresh browser matches all36 states and logical canvas
+pictures exactly,then exercises Restart. Five Game/fixture controls and two real
+browser input omissions are rejected. This is closed-loop port/browser evidence,
+not a whole native-game campaign comparison.
+
+`reference/easy-campaign-destination.json` pins the contract and local evidence.
+`npm run verify:easy-destination-campaign` runs the strict Game replay,the full
+browser route and its two missing-input controls. The versioned campaign server
+configuration gives that run a private cache and disables watching/hot reload.
+Historical campaign manifests are retained unchanged. The17 other affected
+browser scenarios also pass with their existing gameplay expectations unchanged;
+see`reference/destination-readiness-browser.json`.
+
+Fresh Hard capture and the broader integrated gate remain required before
+updating the accepted main preview.

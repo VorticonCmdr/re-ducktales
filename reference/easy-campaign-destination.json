@@ -1,0 +1,236 @@
+{
+  "id": "easy-campaign-explicit-destination-waits",
+  "expectedHard": false,
+  "pendingBrowserReplay": false,
+  "evidenceLevel": "closed-loop port regression and independent browser scenario",
+  "artifactRoot": ".local/destination-waits-easy-replay-01",
+  "captureRoot": ".local/destination-waits-easy-exploration-02/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+  "captureCommit": "3a63981072c7707e55eaf23d398a68dedff9489e",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "expectedCheckpointCount": 36,
+  "requiredEventCount": 3514,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-input-80",
+    "jungle-input-160",
+    "jungle-input-240",
+    "jungle-input-320",
+    "jungle-input-400",
+    "jungle-input-480",
+    "jungle-input-560",
+    "jungle-input-640",
+    "jungle-input-720",
+    "jungle-input-800",
+    "jungle-input-880",
+    "jungle-input-917",
+    "jungle-return",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "rival-report",
+    "mountain-return",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedFlightPresentations": 1188,
+  "expectedFlagAliasPresentations": 0,
+  "expectedEnding": {
+    "phase": "cover",
+    "won": true,
+    "banked": 13875,
+    "rivalBanked": 11500,
+    "day": 32,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 36,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      1,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "rivalUnlockMask": 15
+  },
+  "artifacts": {
+    "captured-events": {
+      "path": ".local/destination-waits-easy-replay-01/captured-events.json",
+      "bytes": 422893,
+      "sha256": "3ab7d15569bf70db809c58aea4569395e04e4805e204f56d95cfb7e0bd7e48e3"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/destination-waits-easy-replay-01/campaign-checkpoints.json",
+      "bytes": 171772,
+      "sha256": "1f5cab3f5b6b4ae10134e0e36462f1286cf92df5ea75df83ef48d6447e55d496"
+    },
+    "environment": {
+      "path": ".local/destination-waits-easy-replay-01/environment.json",
+      "bytes": 620,
+      "sha256": "806d89f443e83665475c4e50bfb12ea79f958a854ebb56f52f4089274b5e1e3f"
+    },
+    "timeline": {
+      "path": ".local/destination-waits-easy-replay-01/timeline.json",
+      "bytes": 3257,
+      "sha256": "52ed5d294faca6c3adbcc15f9a74ebc25c7f333863588e3c873995e363b45a81"
+    },
+    "browser-results": {
+      "path": ".local/destination-waits-easy-browser-replay-01/results/report.json",
+      "bytes": 8980,
+      "sha256": "46883945764b6ae7cbd3b7f4656b0c19b1e09d56325a98aafde5f7d25967fa03"
+    },
+    "browser-source-revision": {
+      "path": ".local/destination-waits-easy-browser-replay-01/source-revision.json",
+      "bytes": 60278,
+      "sha256": "4922e8a0df8270702fd328f31f24b83b0e407902b0b990a2fd2f7331ad3a960c"
+    },
+    "browser-sources": {
+      "path": ".local/destination-waits-easy-browser-replay-01/sources.zip",
+      "bytes": 1483533,
+      "sha256": "942804feb15513f39d7febe2235e7efbe2a279d4499f640378a84d9c8dee078f"
+    },
+    "capture-environment": {
+      "path": ".local/destination-waits-easy-exploration-02/capture/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/environment.json",
+      "bytes": 182,
+      "sha256": "75b6c55a7d3477a1eefcef74cb6840413fede0e01ca37caa51bbf03fbf0cc785"
+    },
+    "strict-replay": {
+      "path": ".local/destination-waits-easy-replay-01/strict-replay.log",
+      "bytes": 3350,
+      "sha256": "9f712999bbe5667eb1f3bea8c8579e93f4652cb160af853a5b25754a5e0b6c62"
+    },
+    "game-controls": {
+      "path": ".local/destination-waits-easy-replay-01/controls/results.json",
+      "bytes": 1697,
+      "sha256": "6a420ba7d27139d48eb878d48501d3c9f1b3c150e5fb8e2751699450c6266014"
+    },
+    "capture-source-revision": {
+      "path": ".local/destination-waits-easy-exploration-02/source-revision.json",
+      "bytes": 60278,
+      "sha256": "e795e5c83a56a2f3918d7312a2b498c0c90c539b4af099a9bbf03c1fe4f349ea"
+    },
+    "capture-sources": {
+      "path": ".local/destination-waits-easy-exploration-02/sources.zip",
+      "bytes": 1483390,
+      "sha256": "14aae526edcba37c33573bc45fa1ab43e8cd6ad2e154ae48bdbfb04a4ac28885"
+    },
+    "capture-config": {
+      "path": ".local/destination-waits-easy-exploration-02/capture-config.mjs",
+      "bytes": 745,
+      "sha256": "6b4da4f39b47e705d41e81d06369d1f5e369ae0380bd6b0a0658941a66d4eaf4"
+    },
+    "capture-server-config": {
+      "path": ".local/destination-waits-easy-exploration-02/vite-config.mjs",
+      "bytes": 366,
+      "sha256": "3d31f9b3a7808e97e6f7bff2bf92aa41e1d29f896a2fb8099090b0698d04290e"
+    },
+    "browser-config": {
+      "path": ".local/destination-waits-easy-browser-replay-01/browser-config.mjs",
+      "bytes": 757,
+      "sha256": "1126c2db9da214140c91e7376f5c7444f6ed2f4c331a8503541093642704c978"
+    },
+    "browser-server-config": {
+      "path": ".local/destination-waits-easy-browser-replay-01/vite-config.mjs",
+      "bytes": 368,
+      "sha256": "947d01e5c6e9fca8f6c221d3f2e5bdb6bb1888287e8f483d1aeb0b7d27299a5e"
+    },
+    "browser-negative-verifier": {
+      "path": ".local/destination-waits-easy-browser-controls-01/verifier-source.js",
+      "bytes": 2812,
+      "sha256": "79f173621fd749125229f5dcdc7a16a5925f5effc3a3ad00e944f69ea4d3042c"
+    },
+    "game-negative-wrong-security": {
+      "path": ".local/destination-waits-easy-replay-01/controls/wrong-security.log",
+      "bytes": 1827,
+      "sha256": "140404309d86630798b886e164848f556ff60f3dc6b58ac5c816689546b52716"
+    },
+    "game-negative-alter-checkpoint": {
+      "path": ".local/destination-waits-easy-replay-01/controls/alter-checkpoint.log",
+      "bytes": 756,
+      "sha256": "8d1db1252d3da5d67e21694a44ac0ffdb5fbf00679badedafdb9f6a811dcbc01"
+    },
+    "game-negative-omit-checkpoint": {
+      "path": ".local/destination-waits-easy-replay-01/controls/omit-checkpoint.log",
+      "bytes": 409,
+      "sha256": "856e5a4f6e7b7deb32577f2d5975fe7deb2ab135bdb9f1bd62f6b692224ef93e"
+    },
+    "game-negative-missing": {
+      "path": ".local/destination-waits-easy-replay-01/controls/missing.log",
+      "bytes": 739,
+      "sha256": "91970ca9e953899cf6bd1b0f3304fb92d3677f8f0eb9291cfa7d2852ff045911"
+    },
+    "game-negative-corrupt": {
+      "path": ".local/destination-waits-easy-replay-01/controls/corrupt.log",
+      "bytes": 687,
+      "sha256": "11c06cff1a253a7b3183a959562b28ad5eebfb81ef048e200924f48ad80c079f"
+    },
+    "omit-easy-confirm": {
+      "path": ".local/destination-waits-easy-browser-controls-01/omit-easy-confirm.log",
+      "bytes": 1885,
+      "sha256": "5086e17a77809b818d246af5b276e335d56106fa364de0cd823c2ce12cf447f3"
+    },
+    "omit-campaign-jungle-move": {
+      "path": ".local/destination-waits-easy-browser-controls-01/omit-campaign-jungle-move.log",
+      "bytes": 2081,
+      "sha256": "e87d20f6c07c2ff1c24e0c65d2c5eff0b00d08869edf6ed0dacbdb6f2637138b"
+    }
+  },
+  "environmentContract": {
+    "origin": 1,
+    "displayMilliseconds": 8,
+    "biosSeed": 0,
+    "soundEnabled": false,
+    "inputs": "Captured DOM events before target handlers;expected states never select controls",
+    "audioCompletion": "Sound-disabled synchronous provider",
+    "driverHz": "1193182 / (1365 * 12)",
+    "retraceHz": 70.086
+  },
+  "comparisonRules": [
+    "Exact full Game state at every observation",
+    "Exact logical320x200 browser canvas pixels;no exclusions or tolerance",
+    "All required events,checkpoints and flight presentations;no diagnostic tail",
+    "Ending remaining counter is700 at this naturally observed ready checkpoint;no699 compatibility adjustment"
+  ],
+  "limitations": [
+    "Port/browser regression;not native complete-campaign comparison",
+    "Raw capture remains exploratory;strict replay acceptance is separate",
+    "Other difficulties and arbitrary routes still require verification"
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "replayCommit": "7883a07b34335d103f958b2bdaf5933b36210dcb",
+  "sourceFileCounts": {
+    "capture": 561,
+    "browser": 561
+  },
+  "verificationCommand": "npm run verify:easy-destination-campaign",
+  "browserConfig": "playwright.campaign.config.js"
+}

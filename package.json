@@ -121,7 +121,8 @@
     "verify:map-input-browser": "npm run verify:map-keyboard && npm run verify:map-clock && playwright test tests/browser/map-pointer.spec.js && node scripts/verify-map-input-browser-negative.js",
     "verify:destination": "node scripts/verify-destination.js && node scripts/verify-destination-fixture-negatives.js",
     "verify:destination-video": "node scripts/verify-destination-video.js && node scripts/verify-destination-fixture-negatives.js --video",
-    "verify:destination-waits": "node scripts/verify-destination-waits-source.js && npm test && playwright test tests/browser/destination.spec.js tests/browser/map-pointer.spec.js && node scripts/verify-destination-waits-browser-negative.js"
+    "verify:destination-waits": "node scripts/verify-destination-waits-source.js && npm test && playwright test tests/browser/destination.spec.js tests/browser/map-pointer.spec.js && node scripts/verify-destination-waits-browser-negative.js",
+    "verify:easy-destination-campaign": "npm run verify:build && node scripts/replay-hard-campaign.js .local/destination-waits-easy-replay-01 --manifest=reference/easy-campaign-destination.json && DUCKTALES_EASY_CAMPAIGN_MANIFEST=reference/easy-campaign-destination.json playwright test tests/browser/mixed-campaign.spec.js --config playwright.campaign.config.js && DUCKTALES_EASY_CAMPAIGN_MANIFEST=reference/easy-campaign-destination.json DUCKTALES_EASY_CAMPAIGN_VERIFICATION_ROOT=.local/destination-easy-campaign-verification DUCKTALES_CAMPAIGN_TEST_CONFIG=playwright.campaign.config.js node scripts/verify-easy-campaign-browser-negative.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

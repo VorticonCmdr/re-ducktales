@@ -28,18 +28,22 @@ export async function verifyEasyNegative(mode) {
     );
   }
   const root =
-    manifest.verificationEdition === "office"
+    process.env.DUCKTALES_EASY_CAMPAIGN_VERIFICATION_ROOT ??
+    (manifest.verificationEdition === "office"
       ? ".local/office-campaign-easy-verification"
-      : ".local/security-easy-campaign-verification";
+      : ".local/security-easy-campaign-verification");
   await mkdir(root, { recursive: true });
+  const args = [
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/browser/mixed-campaign.spec.js",
+    `--output=${root}/${mode}`,
+  ];
+  if (process.env.DUCKTALES_CAMPAIGN_TEST_CONFIG)
+    args.push("--config", process.env.DUCKTALES_CAMPAIGN_TEST_CONFIG);
   const r = spawnSync(
     process.execPath,
-    [
-      "node_modules/@playwright/test/cli.js",
-      "test",
-      "tests/browser/mixed-campaign.spec.js",
-      `--output=${root}/${mode}`,
-    ],
+    args,
     {
       env: {
         ...process.env,

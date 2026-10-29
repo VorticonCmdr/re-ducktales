@@ -85,10 +85,15 @@ commands during entry. Fresh campaign acceptance remains required.
 The committed focused gate passes on48cbfd2,with558 exact archived source files,
 all required original segment checks and a production build.
 [Verification receipt](../reference/destination-waits-integration.json).
-The first fresh Easy exploration reaches jungle,banking,photography,cave and
-mountain entry. An unexpected second document navigation interrupts the ascent;
-the recorder rejects it. Its independent diagnostic prefix matches24 full states
-and renders678 flight presentations;neither result is complete campaign acceptance.
+The first fresh Easy exploration is excluded after an unexpected document
+navigation. The isolated second run completes all four expedition families and
+wins onday32 with13875 against11500. Independent Game replay consumes3514 events,
+checks36 complete states and renders1188 flight presentations. A fresh fixed-input
+browser matches all36 states and pictures,then Restart. Five Game/fixture controls,
+two real missing-input browser controls and17 other affected browser cases pass.
+[Fresh Easy contract](../reference/easy-campaign-destination.json).
+These are port/browser comparisons;full native-campaign parity remains unproven.
+Hard capture is in progress;the broader integrated gate remains open.
 
 ## Supported build
 
@@ -149,6 +154,7 @@ npm run verify:destination
 npm run verify:destination-video
 npm run verify:destination-waits
 python3 scripts/verify-destination-waits-receipt.py
+npm run verify:easy-destination-campaign
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

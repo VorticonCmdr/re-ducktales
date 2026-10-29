@@ -1,8 +1,22 @@
 # Current port status
 
-Updated 2026-10-29. **The whole game is incomplete. This is completion work,
+Updated 2026-10-30. **The whole game is incomplete. This is completion work,
 not only fine-tuning.** Selected complete campaigns are playable and verified;
 arbitrary-route finishability and full original-game parity remain unproven.
+
+## Movement pacing investigation
+
+Mountain sprite work is integrated and its focused climb/browser gate passes;
+remaining original execution costs are still omitted. Jungle investigation now
+has six reproducible original drawing comparisons: ordinary restoration costs
+about 27 ms, while full redraws cost about 162–178 ms and exceed the original
+three-count movement deadline. The new source-effect work observer and four
+negative controls pass `npm run verify:jungle-work`.
+[Jungle evidence and limits](jungle-timing.md). This evidence milestone does not
+yet change jungle runtime speed. Next: connect the measured work to explicit
+simulation time and verify a fresh browser route. Cave and safari pacing remain
+open. The broader required gate is still not green; this does not change the
+whole-game status above.
 
 ## Optional security restoration
 

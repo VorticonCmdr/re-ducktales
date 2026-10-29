@@ -1,0 +1,135 @@
+{
+  "id": "jungle-conditional-draw-work-fb658562",
+  "buildManifest": "reference/build.json",
+  "parent": {
+    "path": "reference/jungle-presentation.json",
+    "sha256": "c57aee7b3998242cae0033f52f945028fab0d2501ac3437e2f0396d8bbbafa0a"
+  },
+  "primitiveEvidence": "reference/mountain-draw-work.json",
+  "acceptanceLevel": "conditional-native-drawing-work",
+  "runtimeIntegrated": false,
+  "expectedCaseCount": 6,
+  "expectedCaseIds": [
+    "00",
+    "01",
+    "02",
+    "03",
+    "04",
+    "05"
+  ],
+  "cyclesPerMillisecond": 3000,
+  "timerQuantizationCounts": 1,
+  "injections": [],
+  "fittedInputs": [],
+  "sources": {
+    "src/game/jungle-work.js": "5f01c638be3980bfaf165fb088f899401a0f05ee12a9e9043e29de5de542e1e0",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/jungle-presentation.js": "ffb8d6cbd0a4e9a9728e73ae9313640e51f752a02c8473ff595e7643998f1f0a",
+    "src/game/jungle-scene.js": "7493c81c02358b6d4ddf4ef93c91e46c4832c03dc9cfdfecb5274a67ccadea22",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d",
+    "scripts/verify-jungle-work.js": "df88d70ca6ef1a4dcd1b713bdd38462c17cf382469c81ad396658577a3a12662",
+    "reference/build.json": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "startingRecipe": "Use the six separately captured original BEFORE main032b / AFTER047c presentation states from the unchanged parent manifest. Its hashes, code identity, configuration and setup recipe are required and verified. No timer values are supplied to translated logic.",
+  "inputContract": "Each independent case consumes its BEFORE DS, drawing color and authoritative archive bytes. AFTER DS supplies only the observed counter difference for a diagnostic bracket. No final-state-derived scheduling inputs.",
+  "comparisonRules": "Exact sprite/copy opcode, write-I/O and REP iteration counts against these declarations; original counter difference exact. Model milliseconds must lie inside the counter quantization bracket of observed counts plus/minus one driver period. This conditional agreement is not uninterrupted timing acceptance. All source effects must reach the downstream sink; no case may be skipped.",
+  "limitations": [
+    "Original debugger stops discard CPU budget; boundary timing is conditional evidence.",
+    "Line, text, caller, interrupt and remaining-slice I/O clamp work are omitted.",
+    "The copy model normalizes X for cost only because original01ef..035c has no X-dependent branches. Rendering receives original arguments; general 16-bit wrap/overlap paths are unsupported.",
+    "No runtime scheduling change, browser acceptance or complete input-loop cadence comparison is claimed."
+  ],
+  "cases": [
+    {
+      "id": "00",
+      "observedDriverCounts": 2,
+      "work": {
+        "instructions": 78898,
+        "portWrites": 888,
+        "repeatOpcodes": 2080,
+        "repeatIterations": 2976,
+        "sprites": 2,
+        "copies": 6,
+        "omittedLines": 2,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1
+      }
+    },
+    {
+      "id": "01",
+      "observedDriverCounts": 2,
+      "work": {
+        "instructions": 79150,
+        "portWrites": 888,
+        "repeatOpcodes": 2136,
+        "repeatIterations": 3068,
+        "sprites": 2,
+        "copies": 6,
+        "omittedLines": 2,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1
+      }
+    },
+    {
+      "id": "02",
+      "observedDriverCounts": 13,
+      "work": {
+        "instructions": 513777,
+        "portWrites": 5564,
+        "repeatOpcodes": 5632,
+        "repeatIterations": 15488,
+        "sprites": 25,
+        "copies": 4,
+        "omittedLines": 27,
+        "omittedTexts": 2,
+        "rowCrossingCopies": 0
+      }
+    },
+    {
+      "id": "03",
+      "observedDriverCounts": 13,
+      "work": {
+        "instructions": 489601,
+        "portWrites": 5564,
+        "repeatOpcodes": 5632,
+        "repeatIterations": 15488,
+        "sprites": 25,
+        "copies": 4,
+        "omittedLines": 27,
+        "omittedTexts": 2,
+        "rowCrossingCopies": 0
+      }
+    },
+    {
+      "id": "04",
+      "observedDriverCounts": 12,
+      "work": {
+        "instructions": 449414,
+        "portWrites": 4941,
+        "repeatOpcodes": 5636,
+        "repeatIterations": 31488,
+        "sprites": 20,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0
+      }
+    },
+    {
+      "id": "05",
+      "observedDriverCounts": 3,
+      "work": {
+        "instructions": 129847,
+        "portWrites": 1468,
+        "repeatOpcodes": 1224,
+        "repeatIterations": 2784,
+        "sprites": 5,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1
+      }
+    }
+  ],
+  "verify": "npm run verify:jungle-work"
+}

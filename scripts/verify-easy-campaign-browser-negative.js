@@ -7,7 +7,7 @@ export async function verifyEasyNegative(mode) {
   assert.ok(["omit-easy-confirm", "omit-campaign-jungle-move"].includes(mode));
   const manifestPath =
     process.env.DUCKTALES_EASY_CAMPAIGN_MANIFEST ??
-    "reference/easy-campaign-security.json";
+    "reference/easy-campaign-office.json";
   const manifest = JSON.parse(await readFile(manifestPath));
   assert.equal(
     manifest.pendingBrowserReplay,

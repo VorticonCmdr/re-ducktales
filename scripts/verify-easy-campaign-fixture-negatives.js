@@ -3,7 +3,7 @@ import { readFile, writeFile, rename, rm, mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 const manifestPath =
   process.env.DUCKTALES_EASY_CAMPAIGN_MANIFEST ??
-  "reference/easy-campaign-security.json";
+  "reference/easy-campaign-office.json";
 const manifest = JSON.parse(await readFile(manifestPath));
 const officeEdition = manifest.verificationEdition === "office";
 const root = officeEdition

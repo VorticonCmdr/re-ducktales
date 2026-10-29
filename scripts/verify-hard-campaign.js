@@ -6,7 +6,7 @@ import { PNG } from "pngjs";
 
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/hard-campaign-security.json";
+  "reference/hard-campaign-office.json";
 const manifest = JSON.parse(
   await readFile(manifestPath).catch(() => {
     throw Error("SETUP: missing accepted Hard campaign manifest");

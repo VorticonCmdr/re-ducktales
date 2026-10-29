@@ -15,7 +15,7 @@ const root = process.argv[2],
   diagnose = process.argv.includes("--diagnose");
 const contractPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/hard-campaign-security.json";
+  "reference/hard-campaign-office.json";
 let strictContract = null;
 assert.ok(root, "SETUP: supply a recorded campaign directory");
 const json = async (n) => {

@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import manifest from "../../reference/easy-campaign-security.json" with { type: "json" };
+import manifest from "../../reference/easy-campaign-office.json" with { type: "json" };
 import { runLinkedCampaign } from "./helpers/linked-campaign.js";
 import { runRecordedCampaign } from "./helpers/recorded-campaign.js";
 import { readFile } from "node:fs/promises";

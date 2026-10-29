@@ -54,7 +54,8 @@ its117/74/2 gate remain separate historical evidence in
   all4140 events and1629 flight presentations/one supported flag alias. A normal
   post-office rival report is acknowledged by the exploratory driver. Strict
   source receipts,missing-choice controls and missing/corrupt fixture checks pass.
-  Default promotion and wider integration remain pending. [Migration](office-campaign-migration.md).
+  These are the default campaign checks on the isolated branch; wider integration
+  remains pending. [Migration](office-campaign-migration.md).
 
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
@@ -127,9 +128,9 @@ pictures and traces stay local. Production visitors select their own originals.
 
 ## Remaining work
 
-- Security-aware Easy/Hard campaigns are the default current checks and passed
-  the complete integration gate; historical recordings remain separate.
-- Next: promote office-aware Easy/Hard defaults and migrate focused recordings
+- Office-aware Easy/Hard campaigns are now the default isolated-branch checks.
+  The security-only full gate remains historical evidence for main3973cc7.
+- Next: migrate focused recordings
   through the original office timing and key-slot boundary, then pass the full branch gate.
   Entry/selection and investment departure have focused acceptance on the isolated
   branch. Several map/notice presentations,
@@ -148,8 +149,8 @@ pictures and traces stay local. Production visitors select their own originals.
 
 ```
 npm run verify:security
-npm run verify:hard-security-campaign
-npm run test:hard-security-campaign
+npm run verify:hard-office-campaign
+npm run test:hard-office-campaign
 npm run verify:jungle
 npm run verify:security-jungle-entry
 npm run verify:security-jungle-treasure
@@ -157,8 +158,8 @@ npm run verify:security-mountain-ascent
 npm run verify:security-lightning
 npm run verify:security-hard-expeditions
 npm run test:security-hard-expeditions
-npm run verify:easy-security-campaign
-npm run test:easy-security-campaign
+npm run verify:easy-office-campaign
+npm run test:easy-office-campaign
 ```
 
 Other focused commands are documented with their scenarios. Missing/corrupt

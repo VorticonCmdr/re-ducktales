@@ -49,8 +49,8 @@ capture/entry/browser source archives. Seven comparison controls reject changes,
 including two actual missing-input browser runs. Removing the DOM fixture or
 corrupting the ending image fails; restoring the exact bytes passes again. The
 three independently captured office-entry checkpoints equal the full route's
-first three checkpoints. This route is available explicitly; the default remains
-the historical security route until the wider migration is ready.
+first three checkpoints. This route is now the default Easy check on the isolated branch. The historical
+security-only declaration remains separate.
 
 ```
 npm run verify:easy-office-campaign
@@ -93,7 +93,7 @@ npm run test:hard-office-campaign
 npm run verify:hard-office-campaign-negative
 ```
 
-Easy and Hard office-aware routes are available explicitly. Default route
-promotion, focused route migrations, the complete branch gate and integration
-into main remain pending. Whole original-game, hardware timing and waveform
+Easy and Hard office-aware routes are now the default campaign checks on the
+isolated branch. Focused route migrations, the complete branch gate and
+integration into main remain pending. Whole original-game, hardware timing and waveform
 parity are separate unfinished requirements.

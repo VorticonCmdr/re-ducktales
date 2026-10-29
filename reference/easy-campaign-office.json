@@ -390,12 +390,13 @@
     }
   ],
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "5862f2c2c35055e459b41540977c56c772eea1edfbe631191d75e05aab6bda30",
-    "scripts/verify-easy-campaign.js": "6b96a47b3e43f84b2a4d8874d0f5e733bb2829d29ae63b3e4a982c6383596cd2",
-    "scripts/verify-easy-campaign-browser-negative.js": "894826d16c0b9942f698ade5a0f5e2ec34b1b4f954ecceabca401b2dde170925",
+    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "scripts/verify-easy-campaign.js": "bcb4fb06079c11eee049b0c94a49ba44df0cf30a4190f4901b479d14e966c142",
+    "scripts/verify-easy-campaign-browser-negative.js": "c82100258219d41c530c6867609efd4aab811c829f69f1675b988fad33da0405",
     "scripts/verify-mixed-campaign-negative.js": "d404367a54e8f144325187b4c761300a1aa8fc5f034727840fb594a658164350",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
-    "tests/browser/mixed-campaign.spec.js": "0ed60d543f40d6afde9285b36a83e3f94ecc1194853029e6e84dfc94525244ba",
-    "scripts/verify-easy-campaign-fixture-negatives.js": "efb879b7945b30374ae10255f38dbaa65671c788654b3a843991bc949372e7b0"
-  }
+    "tests/browser/mixed-campaign.spec.js": "b14e21e9a4bc670f7eea90df05531ee16381c31daef5a98f6ee5934dc4927173",
+    "scripts/verify-easy-campaign-fixture-negatives.js": "7bb39d2dd3b24f25860d774377e11fbb75c8c2bb229db7de4f7b67a733d02486"
+  },
+  "currentVerificationNote": "Default route promotion only; capture/replay producers,original inputs and expected state/pixels remain pinned. Current verifier fingerprints cover explicit manifest selection."
 }

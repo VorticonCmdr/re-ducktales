@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 const manifestPath =
   process.env.DUCKTALES_CAMPAIGN_MANIFEST ??
-  "reference/hard-campaign-security.json";
+  "reference/hard-campaign-office.json";
 const manifest = JSON.parse(await readFile(manifestPath));
 const root =
   manifest.verificationEdition === "office"

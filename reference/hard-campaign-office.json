@@ -342,14 +342,15 @@
     }
   ],
   "verificationTools": {
-    "scripts/verify-hard-campaign.js": "a140b5a801318f5ebd983a1a051b9d85820e5a6811d778fa87f86e8be9b93da2",
-    "scripts/verify-hard-campaign-browser-negative.js": "b974be86c208e31c905bd1276982ea5201eb0b413e74ac872dfbeb402c430e4a",
-    "scripts/replay-hard-campaign.js": "5862f2c2c35055e459b41540977c56c772eea1edfbe631191d75e05aab6bda30",
-    "tests/browser/hard-campaign.spec.js": "46bf8dc98a9639417333c6adefb9a0e26c10ad7440b160d8f114cae5d5420a53",
+    "scripts/verify-hard-campaign.js": "3f82deb88e3ba029b063976cc5ae075d44cbfeb0461b3f0771fe91d4ab189c0d",
+    "scripts/verify-hard-campaign-browser-negative.js": "4f93be97cdd8277d302aed415c89b258b8c5c44bf0e55e78b49b94edebb8c5f6",
+    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "tests/browser/hard-campaign.spec.js": "47e85a9dceb12a7225290846f651aeac119b8268a7f65c6f531707d702ebb7e8",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "src/game/keyboard-adapter.js": "1520cfecf96b3b9e5f4cb9dc78c0b720487bb1c880243704adc8d02ed71105bd",
     "scripts/verify-hard-campaign-fixture-negatives.js": "12749b786a690bd269b959825e4064e29783dfd4540241fbe881ded08da54ded"
   },
   "fullBranchGate": "pending",
-  "evidence": "Complete office-aware Hard port regression:28 exact complete state/browser pixel checkpoints,4140 independent DOM events,1629 flight presentations/one supported flag alias. Five comparison negatives,one actual omitted-Hard-choice browser failure and missing/corrupt fixture/restored-positive controls pass. No original whole-campaign parity claim."
+  "evidence": "Complete office-aware Hard port regression:28 exact complete state/browser pixel checkpoints,4140 independent DOM events,1629 flight presentations/one supported flag alias. Five comparison negatives,one actual omitted-Hard-choice browser failure and missing/corrupt fixture/restored-positive controls pass. No original whole-campaign parity claim.",
+  "currentVerificationNote": "Default route promotion only; capture/replay producers,original inputs and expected state/pixels remain pinned. Current verifier fingerprints cover explicit manifest selection."
 }

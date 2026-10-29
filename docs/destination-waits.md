@@ -86,9 +86,9 @@ claimed. This is explicit-wait integration,not complete destination-routine pari
 Unchanged historical Easy/Hard office event streams now fail at checkpoint1
 `flight-start`:their Right and Fire arrive during the entry wipe and are counted
 as early inputs. Expected states and inputs have not been rewritten or excluded.
-The exploratory linked-campaign controller now waits for actual readiness so new
-independent recordings can be made. Fresh carried Game/browser campaigns and the
-relevant integrated gate are still required before updating the accepted main
+The exploratory linked-campaign controller now waits for actual readiness;the
+fresh recordings and independent campaign checks are described below. The
+relevant integrated gate is still required before updating the accepted main
 preview. The older later bank/report timing investigations remain historical
 evidence for their earlier source.
 
@@ -127,7 +127,19 @@ native-supported flag alias. Six Game/fixture controls and a real omitted-Hard
 selection are rejected. `reference/hard-campaign-destination.json` retains this
 separate evidence;`npm run verify:hard-destination-campaign` reproduces the route.
 Its raw capture remains exploratory. No historical campaign fixture was edited.
+The complete committed Hard command passes onb50cd3e,with567 archived source
+files;see`reference/destination-hard-campaign-gate.json`.
 
 The broader integrated gate remains required before updating the accepted main
 preview. Original complete-campaign parity,recurring raw destination polling and
 CPU/scanout timing remain open.
+
+The next concrete input investigation is the dialog's original letter/keypad
+bindings. Static inspection shows`browser.js` routes only the map pointer through
+`mapKeyEvent`;dialog keys still go through`ordinaryMakeEvent` without the office
+context. That adapter does not normalize those aliases for this scene. This is
+a statically identified unsupported path,not a new observed original-game case.
+Verify it through real browser input and the original mode1 reader before
+changing the input boundary;retain the already verified campaign streams.
+`reference/destination-keyboard-investigation.json` records seven source-derived
+cases,including keypad Fire,and the exact source hashes and rerunnable recipe.

@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "completed": true,
+  "sourceCommit": "b50cd3ed6eae06c42972ac89e7467e9cecab0d42",
+  "sourceFileCount": 567,
+  "command": "npm run verify:hard-destination-campaign",
+  "exitCode": 0,
+  "scope": "Complete independent Hard Game/browser route through explicit destination waits;not native whole-campaign parity or full integration gate",
+  "expected": {
+    "events": 4136,
+    "checkpoints": 28,
+    "flightPresentations": 1629,
+    "flagAliasPresentations": 1,
+    "browserCases": 1,
+    "browserMissingInputControls": 1,
+    "skipped": 0
+  },
+  "scenarioManifest": "reference/hard-campaign-destination.json",
+  "scenarioManifestSha256": "2c28d21d96dc76ef2e9bd63256bcb3022f20c9df25d64624165eca28b1b24c6d",
+  "artifactCount": 15,
+  "artifacts": {
+    "browser/.last-run.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373201,
+      "sha256": "3422671bd96faad2b2bb5294225609ec17eaed40c358e2b40a23940401ed12f8"
+    },
+    "browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157874,
+      "sha256": "281eb870320ab33de22e1037dd451e44a8ac7abb661952d391357e2ba159439c"
+    },
+    "browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "04b69fcb3be26ef79b79d60d8c253567d58b5f0352129724a9b2fc037aab093f"
+    },
+    "browser-controls/browser-negative/.last-run.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser-controls/browser-negative/.last-run.json",
+      "bytes": 96,
+      "sha256": "4b297e2217707d7d25dc489b8c58e70913d3217d32a3046120e08a7612e97e32"
+    },
+    "browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 2361,
+      "sha256": "629eace83bcdb927e55067420560058f0b50d9e2c3aa8364fecb4241105959f7"
+    },
+    "browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/error-context.md": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/error-context.md",
+      "bytes": 12635,
+      "sha256": "605eeadd9a152860edd3ab730d0f64ff1f154c6fc516deea2cd13249e5a10719"
+    },
+    "browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 2062,
+      "sha256": "e2516c35fadf403c6d3a9c728f6dfd4dd600d0ade856d1152910db58fc06ecbc"
+    },
+    "browser-controls/browser-negative.log": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/browser-controls/browser-negative.log",
+      "bytes": 1834,
+      "sha256": "c42686e006485771537aeb0cc3951ff227b028f6c3a95453160c5335b44b3d77"
+    },
+    "runner-status.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/runner-status.json",
+      "bytes": 283,
+      "sha256": "61b130a937db47354188ab8080019559c7cebd990418772f7842df89a4262d42"
+    },
+    "runner.py": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/runner.py",
+      "bytes": 1519,
+      "sha256": "38b87beb78875d2a869986c41022cffc22363b4b5078eb68f1e1997aa143b823"
+    },
+    "source-revision.json": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/source-revision.json",
+      "bytes": 60955,
+      "sha256": "c388ecd69a320d68d87913edcd36a57012208a341e4d51233a94d48f3657f89a"
+    },
+    "sources.zip": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/sources.zip",
+      "bytes": 1495318,
+      "sha256": "f9357e6099e907c3cdc1a794fed9f1f62386eba329cc3523b0e358775e78e957"
+    },
+    "verify.log": {
+      "path": ".local/destination-hard-campaign-gate-20261029-01/verify.log",
+      "bytes": 6210,
+      "sha256": "b6e4880dfb19aec53bfc1a96842ca7eb74b1cf8a0851b8dcbd5d34fa457ac39e"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "evidenceLevel": "Source-derived port boundary comparison;not native or real-browser acceptance",
+  "sourceCommit": "b50cd3ed6eae06c42972ac89e7467e9cecab0d42",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "scenario": "One ordinary physical make per fresh table;compare legacy non-office semantic adapter with existing ordinary mode1 reader",
+  "command": "node .local/destination-keyboard-investigation-01/boundary.mjs",
+  "nativeExecution": false,
+  "browserExecution": false,
+  "cases": [
+    {
+      "key": "KeyI",
+      "semanticEvent": {
+        "type": ""
+      },
+      "ordinaryMode1Byte": 1
+    },
+    {
+      "key": "KeyJ",
+      "semanticEvent": {
+        "type": ""
+      },
+      "ordinaryMode1Byte": 7
+    },
+    {
+      "key": "KeyK",
+      "semanticEvent": {
+        "type": ""
+      },
+      "ordinaryMode1Byte": 3
+    },
+    {
+      "key": "KeyM",
+      "semanticEvent": {
+        "type": ""
+      },
+      "ordinaryMode1Byte": 5
+    },
+    {
+      "key": "Numpad4",
+      "semanticEvent": {
+        "type": "d4"
+      },
+      "ordinaryMode1Byte": 7
+    },
+    {
+      "key": "Numpad6",
+      "semanticEvent": {
+        "type": "d6"
+      },
+      "ordinaryMode1Byte": 3
+    },
+    {
+      "key": "NumpadEnter",
+      "semanticEvent": {
+        "type": "denter"
+      },
+      "ordinaryMode1Byte": 192
+    }
+  ],
+  "sourceFiles": {
+    "src/game/browser.js": "73d137cc9b5192f98c5c55df81f27af4b6552ad374dc9d653317a404ea23fab7",
+    "src/game/application.js": "efa544d38c83a981f024b899052ce3922e3b872c115bdee9857f1987c4182abd",
+    "src/game/keyboard-adapter.js": "b67c178b124fd6a569ad90207824977f63a060d3ef193c68aeb1d702b6733565",
+    "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426"
+  },
+  "artifacts": {
+    "boundary.log": {
+      "path": ".local/destination-keyboard-investigation-01/boundary.log",
+      "bytes": 480,
+      "sha256": "418027c40b0b7580439f4995ba3c9621e05c8c74e3e154f44afdae1c8552edda"
+    },
+    "boundary.mjs": {
+      "path": ".local/destination-keyboard-investigation-01/boundary.mjs",
+      "bytes": 553,
+      "sha256": "78610132d1381b380ed4af1cad99d521ad1b4a91d33c9e5d60108754c6f6ee6d"
+    }
+  },
+  "limitations": [
+    "No claim about original flush/read or CPU timing",
+    "No new original alias capture or browser interaction yet",
+    "Input-boundary repair must retain independent campaign streams"
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false
+}

@@ -100,6 +100,8 @@ browser replays match28 states/pictures,4136 events and1629 flight presentations
 including one required native-supported flag alias. Six Game/fixture controls and
 the actual missing-Hard-selection browser control pass.
 [Fresh Hard contract](../reference/hard-campaign-destination.json).
+The complete committed Hard command passes onb50cd3e with567 archived source files;
+[gate receipt](../reference/destination-hard-campaign-gate.json).
 The broader integrated gate remains open;the accepted main preview is unchanged.
 
 ## Supported build
@@ -141,6 +143,10 @@ Production visitors select their own originals. No deployment is performed.
 - Original map presentation,destination CPU/scanout/polling details,broader destination and
   difficulty finishability,and original whole-scene/campaign comparisons remain.
   A broader exploratory controller is not acceptance evidence.
+- Destination letter/keypad bindings remain a concrete input gap. Seven
+  source-derived adapter cases show missing/malformed semantic events versus the
+  existing mode1 reader's direction/Fire bytes. This is not yet a new native or
+  real-browser alias comparison. [Investigation](../reference/destination-keyboard-investigation.json).
 - CPU/file/IRQ/input timing and physical audio waveform/gain/filter parity remain
   unproven. Nonzero bank animation/sparkle pixels and unusual sprite aliases have
   limited native coverage. Speaker noise is approximate;its engine is omitted.

@@ -81,3 +81,12 @@ This migration proves that the scoped timing change preserves these two port
 routes. It does not prove original whole-level timing/scanout parity or arbitrary
 route finishability. Line, text and remaining CPU/device work are still omitted.
 Cave and safari pacing remain separate work.
+
+
+The expanded combined gate passed on `f6d0f05`, including all 127 unit cases,
+two browser cases, both browser negatives, the independent map oracle and
+production build. The [migration receipt](../reference/jungle-component-migration.json)
+pins its 620-file source archive, runner/log, both old and new contracts, fresh
+negative logs and separate broader failures. It verifies that both historical
+fixtures and the earlier saved negative logs remain byte-identical. Runtime and
+browser code are unchanged from the prior accepted jungle pacing milestone.

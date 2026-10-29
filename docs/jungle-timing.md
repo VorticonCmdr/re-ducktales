@@ -103,3 +103,10 @@ The combined gate passed on `cc716c1`, with zero skipped unit/browser cases.
 both browser negative logs and the two regression failures recorded at that
 milestone. The component failure is now migrated as described above; the broader
 source-receipt failure remains open. Only status/evidence documentation changed after that verification.
+
+
+The expanded gate also passes on `f6d0f05`, now including both migrated component
+regressions and the independent Python map oracle. The
+[component migration receipt](../reference/jungle-component-migration.json)
+records the fresh combined run and preserved earlier evidence. The game/browser
+runtime is unchanged by that test migration; broader source receipts remain open.

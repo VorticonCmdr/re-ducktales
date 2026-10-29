@@ -422,3 +422,11 @@ The combined jungle gate passed on `cc716c1`; its
 the exact source archive, complete runner/log and scoped limitations. It includes
 127 unit cases and two passing browser cases with no skips, both required
 browser negatives, strict route/source verification and the production build.
+
+
+The explicit component migration and expanded combined jungle gate passed on
+`f6d0f05`. Its [receipt](../reference/jungle-component-migration.json) preserves
+both historical contracts and separately checks the new timing; all 1,616 source
+input-boundary states and 1,714 ordered presentation payloads/modes are covered.
+The game/browser runtime is unchanged, and the remaining broader source-receipt
+failures are recorded without waivers.

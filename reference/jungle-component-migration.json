@@ -1,0 +1,131 @@
+{
+  "id": "jungle-component-drawing-time-migration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "f6d0f05c403420d6996507d35878f85cde88e74c",
+  "sourceFileCount": 620,
+  "gameRuntimeChanged": false,
+  "runtimeComparisonBase": "87c6650207b4eb672c029830c77a114130fbf97c",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "captureTools": {
+    "node": "v26.8.1",
+    "playwright": "1.64.1"
+  },
+  "verificationCommand": "npm run verify:jungle-draw-timing",
+  "verificationExitCode": 0,
+  "componentCommand": "npm run verify:jungle-core",
+  "historicalRevision": "c406dc4fe1ad8e28283de327dbc54588faa958a6",
+  "fixtureProducerRevision": "3366651d20c6b07a35e355435c90800d97aa1774",
+  "componentScenarios": 2,
+  "sourceInputComparisons": 1616,
+  "orderedPresentationComparisons": 1714,
+  "gameplayCheckpoints": 40,
+  "componentNegativeControls": 17,
+  "unitCases": 127,
+  "unitFailures": 0,
+  "unitSkipped": 0,
+  "browserCases": 2,
+  "browserCheckpoints": 27,
+  "consumedBrowserEvents": 70,
+  "browserMovementSamples": 860,
+  "browserNegativeControls": 2,
+  "historicalArtifactsPreserved": true,
+  "scope": [
+    "Retained original map/routine/pixel/native-contact comparisons and their negatives,plus independent Python map oracle.",
+    "Historical port expectations fully reproduce with the recorded old Jungle class;all18 shared source identities checked before use.",
+    "Current replays preserve every DS byte at1616 input boundaries and both final outcomes except three separately checked timer words;no RNG/page-selector exclusions.",
+    "All1714 ordered RGBA payloads,modes and wipe tokens match the validated historical source;multiple source publications per clock event are individually observed.",
+    "New exact timer/presentation-time trace hashes,40 timing checkpoints and final timers are expected outputs,never scheduling inputs.",
+    "Full current browser route and existing timing/movement browser negatives remain green;game source and browser tests unchanged by this migration."
+  ],
+  "limitations": [
+    "Cross-version port regression is not native whole-level timing or original scanout parity.",
+    "Line,text,other CPU/interrupt and end-of-slice I/O clamping costs remain omitted; cave/safari pacing remains unchanged.",
+    "Required shared-runtime gate still rejects its historical runtime inventory;office-era jungle-entry receipt still rejects the newer replay verifier hash. Neither failure is waived.",
+    "Older mountain/campaign browser source receipts still need refresh;arbitrary-route finishability and the whole-game goal remain incomplete."
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/jungle-component-migration-01/runner-status.json",
+      "bytes": 1087,
+      "sha256": "d785a5bc7773bbd1bafb00f67139130d9d0a3a09bcd40aa7af7e9a04ebf8653d"
+    },
+    "runner-source": {
+      "path": ".local/jungle-component-migration-01/runner.py",
+      "bytes": 2112,
+      "sha256": "292389caf014d504df18a433e2b017153fd6aaa17bccfee8aa3c7f19a030ae20"
+    },
+    "source": {
+      "path": ".local/jungle-component-migration-01/source-revision.json",
+      "bytes": 66963,
+      "sha256": "a24cc7c84ff27875a35ab6013f046e9fd6277048efbda8fa3c327da271bd750c"
+    },
+    "source-zip": {
+      "path": ".local/jungle-component-migration-01/sources.zip",
+      "bytes": 1672005,
+      "sha256": "c29f6410f48c68972d81deefbf02698d34b76c60ed702f942da660fa61a6b047"
+    },
+    "verification-log": {
+      "path": ".local/jungle-component-migration-01/verification.log",
+      "bytes": 22069,
+      "sha256": "c0bf322684062b3f4b123b56de5091bce0ceecd732af306a3e2c4866b628aa8f"
+    },
+    "broader-status": {
+      "path": ".local/jungle-component-migration-01/broader-status.json",
+      "bytes": 477,
+      "sha256": "6ec5b609ff5d1c9a01efe22cee729b5699325547e54db9c683ea8ede51ff4500"
+    },
+    "shared-runtime-failure": {
+      "path": ".local/jungle-component-migration-01/shared-runtime.log",
+      "bytes": 8921,
+      "sha256": "0695b8bfdf19b11ad9ab2cf59cf024412df099eafaa5911c9ed87333d3605bac"
+    },
+    "office-jungle-entry-failure": {
+      "path": ".local/jungle-component-migration-01/office-jungle-entry.log",
+      "bytes": 712,
+      "sha256": "e6d8bccccae5fd4ae43b8c33e29b90dfba2ab27b499f44ee23331454344d6d1f"
+    },
+    "movement-negative": {
+      "path": ".local/jungle-component-migration-01/movement-controls/browser-negative.log",
+      "bytes": 2047,
+      "sha256": "640fc94a739a09dd900e8fd8e6cd0579b219cb85e9a7716347d20bbfe7e3520a"
+    },
+    "timing-negative": {
+      "path": ".local/jungle-component-migration-01/timing-controls/browser-negative.log",
+      "bytes": 1471,
+      "sha256": "799857d1ac00f7a56ab48dcb5bf21548689b1aba8328a94e4b58b834ec85dcd6"
+    },
+    "historical-runtime": {
+      "path": "reference/jungle-runtime.json",
+      "bytes": 17247,
+      "sha256": "3f80e2c38af1ea9b1704e465e47ad85323df5708c5572995753d9f8ed45fc9aa"
+    },
+    "historical-treasure": {
+      "path": "reference/jungle-treasure.json",
+      "bytes": 19558,
+      "sha256": "eb1cb8b0f78bd6158f541cc36f87f581b1c124caf2967beefbb768447f41d033"
+    },
+    "current-runtime": {
+      "path": "reference/jungle-component-drawing-time.json",
+      "bytes": 14588,
+      "sha256": "a75f99a4806cf0055f67145fd1ae4eed805bfce747869a963c6140bc6ab8e0e0"
+    },
+    "current-treasure": {
+      "path": "reference/jungle-treasure-drawing-time.json",
+      "bytes": 14637,
+      "sha256": "5a270cb5bc03f49bdb14fd99a5adcfcd6c560f6a48e276729104134ab2ea2263"
+    },
+    "accepted-browser-route": {
+      "path": "reference/draw-timed-jungle-treasure.json",
+      "bytes": 14419,
+      "sha256": "2183270a0d064d7377f14a08d22e4b19bb7d6f47058ad1bd8f81760512c5c717"
+    },
+    "native-work": {
+      "path": "reference/jungle-draw-work.json",
+      "bytes": 4871,
+      "sha256": "80cc859f562b1fb31341d154f434071fd92145a277304c46650ad6b1cc3b08b1"
+    }
+  }
+}

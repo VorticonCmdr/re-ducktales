@@ -27,7 +27,7 @@
     "src/game/jungle-presentation.js": "ffb8d6cbd0a4e9a9728e73ae9313640e51f752a02c8473ff595e7643998f1f0a",
     "src/game/jungle-scene.js": "7493c81c02358b6d4ddf4ef93c91e46c4832c03dc9cfdfecb5274a67ccadea22",
     "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d",
-    "scripts/verify-jungle-work.js": "df88d70ca6ef1a4dcd1b713bdd38462c17cf382469c81ad396658577a3a12662",
+    "scripts/verify-jungle-work.js": "d9b8c31520d08acb649c9c9f7a1bc913a4d46b90ba2722c872c6d6c213b71855",
     "reference/build.json": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
   },
   "startingRecipe": "Use the six separately captured original BEFORE main032b / AFTER047c presentation states from the unchanged parent manifest. Its hashes, code identity, configuration and setup recipe are required and verified. No timer values are supplied to translated logic.",

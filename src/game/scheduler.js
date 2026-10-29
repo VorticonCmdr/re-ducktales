@@ -1,4 +1,4 @@
-import { DRIVER_HZ, RETRACE_HZ } from "./application.js";
+import { DRIVER_HZ, RETRACE_HZ } from "./timing.js";
 // The browser supplies elapsed milliseconds and semantic input events. Rendering
 // is an observer. Long animation frames catch up every simulation step.
 export class Scheduler {
@@ -6,6 +6,10 @@ export class Scheduler {
     this.present = present;
     this.game = game;
     this.now = start;
+    this.origin = start;
+    this.pausedMilliseconds = 0;
+    this.elapsed = 0;
+    game.setSimulationClock?.(() => this.elapsed);
     this.tickAt = start + 1000 / DRIVER_HZ;
     this.retraceAt = start + 1000 / RETRACE_HZ;
     this.events = [];
@@ -19,6 +23,7 @@ export class Scheduler {
     if (now < this.now) throw Error("Clock moved backwards");
     while (Math.min(this.tickAt, this.retraceAt) <= now) {
       const at = Math.min(this.tickAt, this.retraceAt);
+      this.elapsed = at - this.origin - this.pausedMilliseconds;
       while (this.events.length && this.events[0].at <= at) {
         const entry = this.events.shift();
         this.game.input(entry.event);
@@ -34,9 +39,11 @@ export class Scheduler {
       }
     }
     this.now = now;
+    this.elapsed = now - this.origin - this.pausedMilliseconds;
   }
   pauseDuration(ms) {
     if (ms < 0) throw Error("Invalid pause duration");
+    this.pausedMilliseconds += ms;
     this.tickAt += ms;
     this.retraceAt += ms;
     this.now += ms;

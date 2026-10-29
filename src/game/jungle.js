@@ -26,6 +26,9 @@ import {
 import { JungleRaster } from "./jungle-raster.js";
 import { junglePalette } from "./jungle-scene.js";
 import { u16 } from "./integer.js";
+import { DRIVER_HZ, RETRACE_HZ, ORIGINAL_GRAPHICS_TIMING } from "./timing.js";
+import { jungleWorkEffects } from "./jungle-work.js";
+import { normalCoreGraphicsMilliseconds } from "./ega-work.js";
 
 export class Jungle {
   constructor(options, previousMemory) {
@@ -40,6 +43,18 @@ export class Jungle {
     this.tick = 0;
     this.retrace = 0;
     this.logicalTick = 0;
+    // Direct component callers have an explicit zero-phase synthetic provider.
+    // The browser/replay Scheduler supplies actual simulation milliseconds.
+    this.clock =
+      options.clock ??
+      (() =>
+        Math.max(
+          (this.tick * 1000) / DRIVER_HZ,
+          (this.retrace * 1000) / RETRACE_HZ,
+        ));
+    if (typeof this.clock !== "function") throw Error("Invalid jungle clock");
+    this.lastClock = -Infinity;
+    this.lastDrawingWork = null;
     this.frames = 0;
     this.presentations = 0;
     this.audioEnabled = options.audioEnabled === true;
@@ -61,6 +76,23 @@ export class Jungle {
     initializeJungleEntry(this.memory, this.effects);
     this.iterator = this.run();
     this.resume();
+  }
+  setClock(clock) {
+    if (typeof clock !== "function" || this.wait?.clock === "graphics")
+      throw Error("Cannot replace active jungle graphics clock");
+    this.clock = clock;
+    this.lastClock = -Infinity;
+  }
+  now() {
+    const milliseconds = this.clock();
+    if (
+      !Number.isFinite(milliseconds) ||
+      milliseconds < 0 ||
+      milliseconds < this.lastClock
+    )
+      throw Error("Invalid or backwards jungle simulation clock");
+    this.lastClock = milliseconds;
+    return milliseconds;
   }
   setControls(controls) {
     if (
@@ -114,11 +146,18 @@ export class Jungle {
       return;
     }
     if (
-      !["driver", "retrace", "input"].includes(result.value.clock) ||
+      !["driver", "retrace", "input", "graphics"].includes(
+        result.value.clock,
+      ) ||
       !Number.isInteger(result.value.remaining) ||
       result.value.remaining < 1
     )
       throw Error("Invalid jungle clock wait");
+    if (
+      result.value.clock === "graphics" &&
+      !Number.isFinite(result.value.until)
+    )
+      throw Error("Invalid jungle graphics deadline");
     this.wait = result.value;
   }
   advanceTick() {
@@ -176,6 +215,13 @@ export class Jungle {
     this.advance("retrace");
   }
   advance(clock) {
+    if (this.wait?.clock === "graphics") {
+      if (this.now() < this.wait.until) return;
+      this.wait = null;
+      this.resume();
+      // Drawing finishes before the retrace observed by this clock event.
+      // The original page routine can use that retrace, not one frame later.
+    }
     if (!this.wait || this.wait.clock !== clock || --this.wait.remaining)
       return;
     if (this.pending) {
@@ -203,11 +249,21 @@ export class Jungle {
     }
   }
   *frame(first) {
-    const effects = this.raster.begin(this.memory, this.color, this.effects);
+    const { effects, work } = jungleWorkEffects(
+      this.memory,
+      this.resources,
+      this.raster.begin(this.memory, this.color, this.effects),
+    );
     presentJungleFrame(this.memory, effects);
     this.color = effects.color;
     this.raster.finish({ copyToOtherPage: first });
     yield* this.settle();
+    const milliseconds = normalCoreGraphicsMilliseconds(
+      work,
+      ORIGINAL_GRAPHICS_TIMING.cyclesPerMillisecond,
+    );
+    this.lastDrawingWork = { ...work, milliseconds };
+    yield { clock: "graphics", remaining: 1, until: this.now() + milliseconds };
     const pixels = this.raster.pixels(junglePalette(this.memory));
     if (first) {
       yield* this.wipe();
@@ -306,6 +362,7 @@ export class Jungle {
     const m = this.memory;
     return {
       phase: this.phase,
+      ...(this.lastDrawingWork ? { drawingWork: this.lastDrawingWork } : {}),
       ...(this.wait?.clock === "input" ? { waitingForInputPoll: true } : {}),
       x: m.i(0x5f46),
       y: m.i(0x6858),

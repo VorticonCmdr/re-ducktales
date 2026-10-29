@@ -40,7 +40,7 @@ has no X-dependent control flow. Actual pixel addresses remain the renderer's
 responsibility, including its existing per-bit validity checks. General wrapping
 or overlapping copies are unsupported.
 
-## Verification and remaining integration
+## Runtime boundary and verification
 
 Run `npm run verify:jungle-work`. Missing/corrupt originals, local captures,
 changed source files, missing cases, different exact work counts or a cost
@@ -48,10 +48,34 @@ outside the declared counter bracket fail. The command also runs the original
 presentation and primitive checks. Four added negative controls reject a missing
 case, altered sprite work, altered REP work and zero drawing time.
 
-This milestone adds the reusable work observer and executable evidence only.
-**Jungle runtime scheduling is not changed yet.** The next implementation must
-charge this work against an explicit simulation-time provider before the next
-retrace, respecting the three-count deadline and its phase. It must not round
-each update independently to a fixed number of retraces. A fresh browser route
-and strict input-removal controls are required before claiming acceptance of the
-changed jungle pacing. Cave and safari timing remain separate investigations.
+The runtime now wraps actual `presentJungleFrame` effects with this observer.
+It charges the resulting sprite/copy work after any pending logical driver wait,
+before the page/reveal operation. A graphics wait holds publication and the next
+input until completion; the next retrace can then finish the page. The existing
+three-count deadline still applies after presentation. The work summary is
+available in jungle diagnostic state as `drawingWork`.
+
+`Scheduler` supplies elapsed simulation milliseconds through an explicit clock
+provider installed on `Game` and forwarded to `Jungle`. The provider advances
+before each driver/retrace event and queued input. Its origin is the scheduler's
+start, and hidden-page pauses are subtracted; host rendering time never feeds
+back into logic. Direct component callers retain a declared zero-phase provider
+based on their independently advanced driver/retrace counts. That synthetic
+provider is not evidence of original elapsed-time parity.
+
+Run `npm run verify:jungle-timing` for the focused gate. Four added timing cases
+check withheld publication, the next retrace, catch-up batch invariance, a pause
+during drawing, invalid time, and a work-bypass negative. The actual browser route
+measures the first and second redraws, then checks pause, quit cancellation,
+audio and rendering. Its eight-millisecond observation grid and retrace phase
+bound the duration checks. A separate real-browser negative removes only the
+work deadline and must fail the first-redraw duration assertion; a setup failure
+or timeout is rejected as invalid negative evidence.
+
+The six native drawing comparisons remain conditional evidence, with their
+original manifest's `runtimeIntegrated:false` describing the earlier evidence
+milestone. This new scheduling integration still omits the work listed above.
+**A fresh complete treasure route and independent fixed-input browser replay
+are pending.** Historical time-based route contracts have not been rewritten to
+force passing. Full original input-loop/scanout timing, cave and safari pacing,
+and the broader required integration gate remain unverified.

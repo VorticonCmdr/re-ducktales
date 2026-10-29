@@ -7,16 +7,18 @@ arbitrary-route finishability and full original-game parity remain unproven.
 ## Movement pacing investigation
 
 Mountain sprite work is integrated and its focused climb/browser gate passes;
-remaining original execution costs are still omitted. Jungle investigation now
-has six reproducible original drawing comparisons: ordinary restoration costs
+remaining original execution costs are still omitted. Jungle now charges actual
+sprite/copy work against an explicit simulation clock before presentation. The
+six original conditional drawing comparisons show ordinary restoration costs
 about 27 ms, while full redraws cost about 162–178 ms and exceed the original
-three-count movement deadline. The new source-effect work observer and four
-negative controls pass `npm run verify:jungle-work`.
-[Jungle evidence and limits](jungle-timing.md). This evidence milestone does not
-yet change jungle runtime speed. Next: connect the measured work to explicit
-simulation time and verify a fresh browser route. Cave and safari pacing remain
-open. The broader required gate is still not green; this does not change the
-whole-game status above.
+three-count movement deadline. Focused browser redraw-duration, pause, quit and
+audio checks pass; removing the graphics wait fails the browser duration check.
+All 127 unit cases and the production build pass.
+[Jungle evidence and runtime boundary](jungle-timing.md).
+A new complete treasure route and independent fixed-event browser replay are
+still pending. Historical elapsed-time fixtures and the broader required gate
+have not been migrated or passed. Cave and safari pacing remain open. This does
+not change the whole-game status above.
 
 ## Optional security restoration
 

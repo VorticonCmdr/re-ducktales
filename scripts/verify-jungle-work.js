@@ -171,5 +171,5 @@ assert.throws(
   /Outside conditional timer bracket/,
 );
 console.log(
-  "Verified six conditional original jungle drawing segments and four negative controls; runtime timing remains unintegrated.",
+  "Verified six conditional original jungle drawing segments and four negative controls; runtime integration is outside this check.",
 );

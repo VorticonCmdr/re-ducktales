@@ -105,6 +105,13 @@ export class Game {
     this.startOpening();
     this.startTitleMusic();
   }
+  // The environment owns elapsed time. It excludes explicit scheduler pauses
+  // and advances independently of the renderer and the game's driver counter.
+  setSimulationClock(clock) {
+    if (typeof clock !== "function") throw Error("Invalid simulation clock");
+    this.simulationClock = clock;
+    this.jungle?.setClock(clock);
+  }
   startOpening() {
     this.opening =
       this.scene === "title" && this.openingResources
@@ -1679,6 +1686,7 @@ export class Game {
         {
           ...this.expeditionResources,
           entries: this.expeditionResources.jungleEntries,
+          clock: this.simulationClock,
           pollInput: () => this.pollJungleSystemInput(),
           flushInput: (release) => this.flushJungleInput(release),
           variant: this.briefing.variant,

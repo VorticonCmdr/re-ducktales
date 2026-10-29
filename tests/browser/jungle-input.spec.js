@@ -23,6 +23,21 @@ test("jungle defers global keys, pauses actors and resumes cancelled quit", asyn
   test.setTimeout(120000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
+  if (process.env.DUCKTALES_JUNGLE_TIMING_BROWSER_NEGATIVE) {
+    expect(process.env.DUCKTALES_JUNGLE_TIMING_BROWSER_NEGATIVE).toBe(
+      "zero-work",
+    );
+    await page.route("**/src/game/jungle.js*", async (route) => {
+      const response = await route.fetch(),
+        body = await response.text();
+      const source = "until: this.now() + milliseconds";
+      expect(body, "SETUP: missing jungle timing hook").toContain(source);
+      await route.fulfill({
+        response,
+        body: body.replace(source, "until: this.now()"),
+      });
+    });
+  }
   // Only the external clock and real keyboard adapter are supplied. The8ms
   // display cadence observes every input sample without changing game clocks.
   await installEntryRecording(page);
@@ -81,9 +96,39 @@ test("jungle defers global keys, pauses actors and resumes cancelled quit", asyn
   );
   expect(digest(pixels.data)).toBe(entry.entryPixelsSha256);
   expect(entered.briefing.variant).toBe(0);
+  const firstDrawing = await until((s) => s.jungle.frames === 1);
+  expect(firstDrawing.jungle.drawingWork.milliseconds).toBeGreaterThan(140);
+  const drawingAt = await page.evaluate(() => performance.now());
   await page.keyboard.press("p");
   await page.keyboard.press("s");
-  await page.clock.runFor(1200);
+  const secondDrawing = await until((s) => s.jungle.frames === 2);
+  const secondAt = await page.evaluate(() => performance.now());
+  // First drawing precedes two 25-retrace page sequences. Capture alignment
+  // is bounded by the external 8 ms observer and one retrace/driver interval.
+  expect(
+    secondAt - drawingAt,
+    "Jungle first redraw duration",
+  ).toBeGreaterThanOrEqual(
+    firstDrawing.jungle.drawingWork.milliseconds + (49 * 1000) / 70.086 - 8,
+  );
+  expect(
+    secondAt - drawingAt,
+    "Jungle first redraw duration",
+  ).toBeLessThanOrEqual(
+    firstDrawing.jungle.drawingWork.milliseconds + (50 * 1000) / 70.086 + 22,
+  );
+  await until((s) => s.jungle.frames === 3);
+  const thirdAt = await page.evaluate(() => performance.now());
+  expect(
+    thirdAt - secondAt,
+    "Jungle ordinary redraw duration",
+  ).toBeGreaterThanOrEqual(secondDrawing.jungle.drawingWork.milliseconds - 8);
+  expect(
+    thirdAt - secondAt,
+    "Jungle ordinary redraw duration",
+  ).toBeLessThanOrEqual(
+    secondDrawing.jungle.drawingWork.milliseconds + 1000 / 70.086 + 8,
+  );
   let current = await state();
   expect(current.scene).toBe("jungle");
   expect(current.systemOverlay).toBeNull();

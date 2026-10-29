@@ -86,7 +86,11 @@ test("first-page reveal discards global keys without releasing the joystick prov
   g.input({ type: "pause" });
   g.input({ type: "toggle-sound" });
   assert.equal(g.pendingJungleSystemKeys.size, 2);
-  clock.advanceTo(1200);
+  // Drawing work precedes the reveal. Wait for its source input boundary,
+  // rather than assuming that the first page is finished by 1200 ms.
+  for (let at = clock.now + 8; at <= 2000 && j.frames < 2; at += 8)
+    clock.advanceTo(at);
+  assert.equal(j.frames, 2, "Unfinished first-page reveal");
   assert.equal(g.systemOverlay, null);
   assert.equal(g.pendingJungleSystemKeys.size, 0);
   assert.equal(g.audioEnabled, false);

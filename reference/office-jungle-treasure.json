@@ -1,0 +1,455 @@
+{
+  "id": "office-aware-easy-jungle-treasure",
+  "pending": false,
+  "milestone": "jungle-treasure",
+  "expectedHard": false,
+  "artifactRoot": ".local/office-jungle-treasure-accepted-01",
+  "captureRoot": ".local/office-jungle-treasure-01/capture",
+  "expectedCheckpointCount": 27,
+  "checkpointNames": [
+    "entry",
+    "input-40",
+    "input-80",
+    "input-120",
+    "input-160",
+    "input-200",
+    "input-240",
+    "input-280",
+    "input-320",
+    "input-360",
+    "input-400",
+    "input-440",
+    "input-480",
+    "input-520",
+    "input-560",
+    "input-600",
+    "input-640",
+    "input-680",
+    "input-720",
+    "input-760",
+    "input-800",
+    "input-840",
+    "input-860",
+    "award",
+    "returned-map",
+    "collected-notice",
+    "complete-map"
+  ],
+  "requiredEventCount": 70,
+  "expectedFlightPresentations": 74,
+  "expectedFlagAliasPresentations": 0,
+  "expectedInputCount": 860,
+  "checkpoints": [
+    {
+      "name": "entry",
+      "at": 21753,
+      "eventCount": 50,
+      "stateSha256": "45dc28f6cf3fb16e20d237c1612b16e168fe2691f7cd354992dbeb38ad85f3ae",
+      "pixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7"
+    },
+    {
+      "name": "input-40",
+      "at": 24369,
+      "eventCount": 50,
+      "stateSha256": "a4247a3ec5c80f7806221bfb91ff77a6661d0d3287c51a3e7b913469513fbbd0",
+      "pixelsSha256": "6f73f5104e49c76350a3b2919e85bdf2d6f8f07e2b323f76421ebf0c686e126c"
+    },
+    {
+      "name": "input-80",
+      "at": 26017,
+      "eventCount": 52,
+      "stateSha256": "b50460c729ce9fcf378d96aa88ad48f9f85b1cc1604afbaf5f7aeabafe17a600",
+      "pixelsSha256": "cb8d595dd721464fbb3d37563f5e499b10bb065d764c3f63e3997e3b8a74caed"
+    },
+    {
+      "name": "input-120",
+      "at": 27665,
+      "eventCount": 55,
+      "stateSha256": "006a8c50b33a5a94c955e1774d6e3c585dc4714369d0a1f4c12b64a6b6080d99",
+      "pixelsSha256": "7b966c2d1a6758ec75eeb5f8d82c5fec9adaf7fd1110a0783302406765242fdc"
+    },
+    {
+      "name": "input-160",
+      "at": 33321,
+      "eventCount": 55,
+      "stateSha256": "54809b27325b36bfc7575534bbc291d51b83a0baf6839e90a993002d67164273",
+      "pixelsSha256": "7531daa2bb0de7b211864585aee3ae85e62257a21ec4801ed38ff422079fe066"
+    },
+    {
+      "name": "input-200",
+      "at": 39017,
+      "eventCount": 55,
+      "stateSha256": "19efa515aa3cb2fc5c7b4f50f76e45e4d0fc42240987c4d017e7beb8b6103a47",
+      "pixelsSha256": "448e3f91f6ff087c0e1d4b9391f3829c9aee9add1126f2c2ece2b73672998910"
+    },
+    {
+      "name": "input-240",
+      "at": 40665,
+      "eventCount": 55,
+      "stateSha256": "e3e669597a1b303ea960c62222cdd90bcdfe6fef869e63bbc51d1ad36ad561a2",
+      "pixelsSha256": "ab8d3fb99af1c02b9d8c30d100f7e5a936360c01c21149f864291ce20546afc5"
+    },
+    {
+      "name": "input-280",
+      "at": 42313,
+      "eventCount": 55,
+      "stateSha256": "1b1409a608e07294ebdf8fab50721fede247f6a4aae66fdd26583049bfcad276",
+      "pixelsSha256": "661c99a6b8a5934c70e59c90d926dc52d6657ebae92d3416a93ab1a20030face"
+    },
+    {
+      "name": "input-320",
+      "at": 43961,
+      "eventCount": 55,
+      "stateSha256": "411fa0e5f5e1d25fad12a047b0e04edc2533349c0b72953eb39dac88c1d27770",
+      "pixelsSha256": "5bf86a216c05d38361f8ebba3a18300342f9e8092afeb7e9cce8c0d7ef8c3af2"
+    },
+    {
+      "name": "input-360",
+      "at": 45609,
+      "eventCount": 55,
+      "stateSha256": "25814971cf4470760157f2b79bcadc29952abf3331fd8104c01bea21ceb41b3f",
+      "pixelsSha256": "3c9b37cee345390b15e81df30548b3f46dce121ccb04b16c4569759c4cae33fa"
+    },
+    {
+      "name": "input-400",
+      "at": 47257,
+      "eventCount": 55,
+      "stateSha256": "fd213af4d7e7e49daafc5ed9a98d16659bd09700c635a2a57a7438004cc811b2",
+      "pixelsSha256": "4fefc985b162438471618725e9bfd3320b42bab09411e57cec8a73219ec1b71e"
+    },
+    {
+      "name": "input-440",
+      "at": 48905,
+      "eventCount": 55,
+      "stateSha256": "8388c616c2321f1828ec8904e3c8b3304f4d3f6894c5d460fb44b54f502f7a1e",
+      "pixelsSha256": "a903fd70d8d8e249d0b34cb44a3b2b98eefc3a51b7d91218ecff1b500c285175"
+    },
+    {
+      "name": "input-480",
+      "at": 50553,
+      "eventCount": 55,
+      "stateSha256": "1b95db1fad85afbaf536c323d41faea07e6730522222d6f5dab0c667be8d6f27",
+      "pixelsSha256": "1a3e939e43eb0a41cc61e7f2292e0a1097279db969ad45a1bef5e03e070c5375"
+    },
+    {
+      "name": "input-520",
+      "at": 52201,
+      "eventCount": 55,
+      "stateSha256": "7bcee1cb4def302071da4abd40127109c3db09dc88692ded94e265ff6a87e1cf",
+      "pixelsSha256": "7936ee6e0f5afab4b68ea6712a6fe29df313d8ed7a4ab2f07c02776f0188c5cf"
+    },
+    {
+      "name": "input-560",
+      "at": 53849,
+      "eventCount": 55,
+      "stateSha256": "7df7b1c463c449245e079418980898a268d8dffbbfb70632d00c46ab4b61cf86",
+      "pixelsSha256": "fb7c7494d41a578fc79fae143091ae6fbb1102d0dbed461b3f7b998db3a6c105"
+    },
+    {
+      "name": "input-600",
+      "at": 55497,
+      "eventCount": 55,
+      "stateSha256": "61efc811a48785756041039f89edec695b773f229d64c08aa6aff1636f032ec3",
+      "pixelsSha256": "e06789960d7edfa6a5a70405029fd39235d05880e95c66793ee99325a8e61878"
+    },
+    {
+      "name": "input-640",
+      "at": 57193,
+      "eventCount": 55,
+      "stateSha256": "88bbb2b6e4b55dac90349bec65fa9b15b010132c534c1af7ce05bfadf1ef3105",
+      "pixelsSha256": "3f4382921543121b4da5f8479f60400d35de7751886f7d5758b6bc1c9fafb27a"
+    },
+    {
+      "name": "input-680",
+      "at": 58897,
+      "eventCount": 55,
+      "stateSha256": "e9af03205d666a968ef331a5f7166eac5c8554c9c93d408f154e46718c8fcf94",
+      "pixelsSha256": "f6dbb7a6bdb5b9441d79181940db400859cd2ea6b5c3ce603a47f6c951fdfb6d"
+    },
+    {
+      "name": "input-720",
+      "at": 60545,
+      "eventCount": 55,
+      "stateSha256": "804b260379972fdd57a488d0b9a3b1c7fff0bdb37fa7752ae79324ee71b93fa5",
+      "pixelsSha256": "7964868a89e07adc354bfc766d6820517c16c594c456d83e27fda5d9fc75e0df"
+    },
+    {
+      "name": "input-760",
+      "at": 62193,
+      "eventCount": 55,
+      "stateSha256": "74a49a1c857ebff43694be424c9e6b8c749614a1bfbbceabf9363917bedd5817",
+      "pixelsSha256": "b5b06c8cf6fe652df8766856a5b4e24d3b337e70f6a6a431cbec0ae21a537599"
+    },
+    {
+      "name": "input-800",
+      "at": 63841,
+      "eventCount": 55,
+      "stateSha256": "f9294b5ad11e7f9161a4e132ea3d9304019affd395f8d12518b7c79d8b6897bc",
+      "pixelsSha256": "ea588c0cb1f3c42b6315c98754fbc6743370258f441137ca76db61027a2d27a1"
+    },
+    {
+      "name": "input-840",
+      "at": 65489,
+      "eventCount": 59,
+      "stateSha256": "a889fdcc9ac998de80a6879e0c2bb1f19befad3e68bf00700922e5ffb3114d40",
+      "pixelsSha256": "7200c62cfdddb71209fa63f84d71e1a89eea67a343656472d50e3dc49892fc00"
+    },
+    {
+      "name": "input-860",
+      "at": 66313,
+      "eventCount": 63,
+      "stateSha256": "12287cfbafb3df6a06c37fd3676fd5cf0b29e11528d7f1d520ae349699fe4645",
+      "pixelsSha256": "87f66b18e9bd962695d236845fc82085bc586c7d7343f5a52b52ece518c2d2be"
+    },
+    {
+      "name": "award",
+      "at": 66705,
+      "eventCount": 64,
+      "stateSha256": "2194bc9b3153525fbe52c95ed80a56db983f51a7c211e9ea995e91751dbcf9f2",
+      "pixelsSha256": "0137151bc7ad9115fe603bf75bd0b5f523c958ab526fd622b521f02205b723a9"
+    },
+    {
+      "name": "returned-map",
+      "at": 66805,
+      "eventCount": 66,
+      "stateSha256": "f70e228a46fa069841d5e609409a44ce74d0530f548d0f7d9d3a6d175610118a",
+      "pixelsSha256": "f37664283764314cf771fac3564abe7564a98571f0246ee6ee5ef2e31366e4e9"
+    },
+    {
+      "name": "collected-notice",
+      "at": 72641,
+      "eventCount": 68,
+      "stateSha256": "bb9c9eb4ac2f8cd061e28874998e9fea96d42d4f1f9fc44c3f236f1e36fed59d",
+      "pixelsSha256": "554c1ca82e8661f04262dafa1f9a50515278559c68acda2e144d0516fd4840f2"
+    },
+    {
+      "name": "complete-map",
+      "at": 76581,
+      "eventCount": 70,
+      "stateSha256": "53f6f0b3d0b049c01d9634001a32f2c277a1fb2a5006171c2ef79baea2b5eabd",
+      "pixelsSha256": "f37664283764314cf771fac3564abe7564a98571f0246ee6ee5ef2e31366e4e9"
+    }
+  ],
+  "artifacts": {
+    "environment": {
+      "path": ".local/office-jungle-treasure-accepted-01/environment.json",
+      "bytes": 253,
+      "sha256": "2d132480ac7f518a2787463e51e95ab394cede7d2e2e92d5a5566c0c0b01fed4"
+    },
+    "captured-events": {
+      "path": ".local/office-jungle-treasure-accepted-01/captured-events.json",
+      "bytes": 8127,
+      "sha256": "3cac5d15de99c6f9fabf913c9e430d643f82aec7ac3a829575824303a23dc56e"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/office-jungle-treasure-accepted-01/campaign-checkpoints.json",
+      "bytes": 95167,
+      "sha256": "acd47cf2f56e70287323250798802567653ecbbaeae5bcab43b1743c990429b6"
+    },
+    "timeline": {
+      "path": ".local/office-jungle-treasure-accepted-01/timeline.json",
+      "bytes": 2310,
+      "sha256": "591c145d791967b93770aa9d186786ca7b4a9f94d4738fa30c48b0e7f554f0c9"
+    },
+    "capture-source": {
+      "path": ".local/office-jungle-treasure-01/source-revision.json",
+      "bytes": 53836,
+      "sha256": "b45fac67a09d10f3f16653a63cd8b02901ba286392ff061c26abf96d69346754"
+    },
+    "input-profile": {
+      "path": "reference/security-jungle-treasure-inputs.json",
+      "bytes": 1234,
+      "sha256": "b31c7acf91dcc00edb6ea89295e5f87bf448ca8e6e95e2fa2d81814148d97238"
+    },
+    "planning": {
+      "path": ".local/security-jungle-treasure-accepted-01/planning/security-easy-jungle-planning-delay-3.json",
+      "bytes": 21900,
+      "sha256": "1a83f9e41dc7977c28e702ba446fdb7859a8dde6a251b49c3933d26b692d8ae0"
+    },
+    "build-manifest": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "png-entry": {
+      "path": ".local/office-jungle-treasure-01/capture/entry.png",
+      "bytes": 19873,
+      "sha256": "560613d928335a016ad40d170d1f2ed6d48c1258bbe84d47d1d19db9d6f6df3c"
+    },
+    "png-input-40": {
+      "path": ".local/office-jungle-treasure-01/capture/input-40.png",
+      "bytes": 37227,
+      "sha256": "0acc9ce0cde123f39dfa6279e4bee9e76a56f63afbe62e45d5c9e94d22febfb0"
+    },
+    "png-input-80": {
+      "path": ".local/office-jungle-treasure-01/capture/input-80.png",
+      "bytes": 37077,
+      "sha256": "aee3eb23e8d33c2f51bf4862c890164a83ca5525cfa6a3808e302349a9c02cab"
+    },
+    "png-input-120": {
+      "path": ".local/office-jungle-treasure-01/capture/input-120.png",
+      "bytes": 36680,
+      "sha256": "6ccb3f22b4dde366e44c40c58332f544f71e3428973a2f99d86b58263afaa527"
+    },
+    "png-input-160": {
+      "path": ".local/office-jungle-treasure-01/capture/input-160.png",
+      "bytes": 36702,
+      "sha256": "c44580871442f3f9d764af36327007af3161923264d62acf64252cd333e35a0f"
+    },
+    "png-input-200": {
+      "path": ".local/office-jungle-treasure-01/capture/input-200.png",
+      "bytes": 36817,
+      "sha256": "8c3d91a497d3fc2ccbdc5d7c4cd13eb0ff0708cb0722ca24f57a8120ff69b58e"
+    },
+    "png-input-240": {
+      "path": ".local/office-jungle-treasure-01/capture/input-240.png",
+      "bytes": 35886,
+      "sha256": "eb5fafbbec746cfd002f8258e433fba914dccb1ee45759c40b1b661e13ddf398"
+    },
+    "png-input-280": {
+      "path": ".local/office-jungle-treasure-01/capture/input-280.png",
+      "bytes": 36063,
+      "sha256": "bc937d2c74d8b793a9a1f45c90a3fb2f12b9e84730813a9a69f49a5b4693652c"
+    },
+    "png-input-320": {
+      "path": ".local/office-jungle-treasure-01/capture/input-320.png",
+      "bytes": 36733,
+      "sha256": "b09dcf95965cb2679ee6d9ad837c136a35ceeba2052c2860f8fee338af294371"
+    },
+    "png-input-360": {
+      "path": ".local/office-jungle-treasure-01/capture/input-360.png",
+      "bytes": 36695,
+      "sha256": "d694afe597b85f62ae4bc28eceb4d402fad7cc2cad1c311a9904204228fc9100"
+    },
+    "png-input-400": {
+      "path": ".local/office-jungle-treasure-01/capture/input-400.png",
+      "bytes": 35725,
+      "sha256": "c4e985be0c12a614340d18463360a60b705563ce9db8d79e3da910bb2cbd288c"
+    },
+    "png-input-440": {
+      "path": ".local/office-jungle-treasure-01/capture/input-440.png",
+      "bytes": 35905,
+      "sha256": "8adaec9e35d448d3c5649a8b15fa3e247c8a6d5af55aae721e4bf7198781eb6a"
+    },
+    "png-input-480": {
+      "path": ".local/office-jungle-treasure-01/capture/input-480.png",
+      "bytes": 35749,
+      "sha256": "4582054ec9976a342b28640daf25212cb6d007cdf8a4b9bfbbe5c7ffc18a6e4e"
+    },
+    "png-input-520": {
+      "path": ".local/office-jungle-treasure-01/capture/input-520.png",
+      "bytes": 36136,
+      "sha256": "e9356693c36df05780a0008affbd5be6f27bcd2b23055ac7eb7ecefdd0fd8f6e"
+    },
+    "png-input-560": {
+      "path": ".local/office-jungle-treasure-01/capture/input-560.png",
+      "bytes": 36160,
+      "sha256": "9e7a9230527c832d1d1a619c00b64bf7cd25cb10e8db3e8eb4f1e4c85b50ece0"
+    },
+    "png-input-600": {
+      "path": ".local/office-jungle-treasure-01/capture/input-600.png",
+      "bytes": 36833,
+      "sha256": "54402df18d2ed0059d382784d47e624cbd2ac7af1c0d23a3d4d6f5714b8418c9"
+    },
+    "png-input-640": {
+      "path": ".local/office-jungle-treasure-01/capture/input-640.png",
+      "bytes": 36982,
+      "sha256": "2711711930acd02b9ae96c990385e0bb4636766f585bf6dcbe6c65c69c62c327"
+    },
+    "png-input-680": {
+      "path": ".local/office-jungle-treasure-01/capture/input-680.png",
+      "bytes": 35362,
+      "sha256": "bb7d6f28c468e65ad47b7046fd26b83f46ec0c16319cb6660d23c3785e8ef359"
+    },
+    "png-input-720": {
+      "path": ".local/office-jungle-treasure-01/capture/input-720.png",
+      "bytes": 35223,
+      "sha256": "78ce29b2d9320718015910f38dd13409634b508f9bc4f80924d990eacf19f387"
+    },
+    "png-input-760": {
+      "path": ".local/office-jungle-treasure-01/capture/input-760.png",
+      "bytes": 34678,
+      "sha256": "7fba22a7207bc93131c20c77486df4963a76928e3be326a6816f93ea08c7a5cb"
+    },
+    "png-input-800": {
+      "path": ".local/office-jungle-treasure-01/capture/input-800.png",
+      "bytes": 34313,
+      "sha256": "9c6f0a80453e4870e2eb0e848ffcab92afc95fae794b39ab452fb0e89f5b30d2"
+    },
+    "png-input-840": {
+      "path": ".local/office-jungle-treasure-01/capture/input-840.png",
+      "bytes": 33790,
+      "sha256": "ecb0521cef1a882b359773229c2e7ee1552683d799523cd49ab669a6618a459d"
+    },
+    "png-input-860": {
+      "path": ".local/office-jungle-treasure-01/capture/input-860.png",
+      "bytes": 33855,
+      "sha256": "d5390cff7ca43e5144ac0e6519bd3ec13c9ffcb73d4919777ba2e1e6c2159db3"
+    },
+    "png-award": {
+      "path": ".local/office-jungle-treasure-01/capture/award.png",
+      "bytes": 19095,
+      "sha256": "66a844d09f8339fd2fd8869dfdf801c19cef32dba0f43df9324cd8f69c32fbdc"
+    },
+    "png-returned-map": {
+      "path": ".local/office-jungle-treasure-01/capture/returned-map.png",
+      "bytes": 27755,
+      "sha256": "08bb76c1d14b9338bf91f66c2ac1afa8235ea5f5d71a742398a1d77e6789caf6"
+    },
+    "png-collected-notice": {
+      "path": ".local/office-jungle-treasure-01/capture/collected-notice.png",
+      "bytes": 10841,
+      "sha256": "716f42c70d070075d5f7cd1db3ccff243bf9df10a7c72fb14bcd7809a19a54b8"
+    },
+    "png-complete-map": {
+      "path": ".local/office-jungle-treasure-01/capture/complete-map.png",
+      "bytes": 27755,
+      "sha256": "08bb76c1d14b9338bf91f66c2ac1afa8235ea5f5d71a742398a1d77e6789caf6"
+    }
+  },
+  "captureCommit": "42a15733aea622e639be823f372d40278abc8dae",
+  "captureProducer": ".local/office-jungle-treasure-01/source-revision.json",
+  "expectedOutcome": {
+    "money": 1050,
+    "day": 17,
+    "playerCollected": [
+      1
+    ],
+    "frames": 860,
+    "presentations": 907,
+    "lives": 1,
+    "seed": 55093
+  },
+  "buildManifest": "reference/build.json",
+  "evidenceLevel": "Strict recorded-input Game candidate; independent fresh browser acceptance pending. Not original whole-level parity.",
+  "fullBranchGate": "pending",
+  "injections": [],
+  "fittedInputs": [],
+  "inputRecipe": "Original BIOS0/Easy startup,security fixedRight/Fire,two real bank trips,non-racing crash/repair arrival,three neutral jungle samples then the original857-input route,award,map,idle,duplicate notice,map. Inputs and times are independently recorded; no seed/state injection. Original office wipe/reveal and key-slot boundary; player input profile is unchanged.",
+  "browserVerified": false,
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "verificationTools": {
+    "scripts/replay-hard-campaign.js": "68c19636de5d1d12f5c11fdf16b4743ac63b59ff761dfcc64854f5cb5e29bc9a",
+    "scripts/verify-security-jungle-treasure.js": "ed170dd61ab9b8505676af6286281897a43f3934c014ebc5f0696e9c66b88fa8",
+    "scripts/verify-security-jungle-treasure-browser-negative.js": "a3285ed775f9533862d23d1f8668d86bd95548c8a02a010b64f3f96ed9fa325c",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
+    "tests/browser/helpers/easy-jungle-entry.js": "e8be075a34c11b25d27647990e9d70ab695d0b20cce8a582e17302f6877934f9",
+    "tests/browser/jungle-treasure.spec.js": "e938d4e18326e233fe2f51ccbf7f824cb111c4f0ace81efbac57932aacc29f4c",
+    "tests/browser/jungle-treasure-replay.spec.js": "45a52c5971141af7b9530b0ff4a2d0edbd1812c51f2d44e7d570d1f69b073dd7"
+  },
+  "environmentProviders": {
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086,
+    "boundary": "actual DOM events captured before target handlers; muted device status; file access verified against the supported build"
+  },
+  "comparisonRules": "All27 full application snapshots and all320x200 pixel hashes compare exactly. All70 events and860 authored control samples must finish; no tail,rollback or seed adjustment. Source/capture identities are required. Pointer normalization remains the original clamped/truncated consumption boundary.",
+  "verifyCommand": "node scripts/verify-security-jungle-treasure.js",
+  "browserCommand": "npx playwright test tests/browser/jungle-treasure.spec.js tests/browser/jungle-treasure-replay.spec.js",
+  "verificationEdition": "office",
+  "captureSourceArchive": ".local/office-jungle-treasure-01/sources",
+  "planningScope": "Historical delay3 planning is retained only as provenance of authored player controls; its outcome and any conditional environment assumptions are not evidence for this build."
+}

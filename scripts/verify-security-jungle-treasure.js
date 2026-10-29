@@ -3,8 +3,16 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { spawnSync, execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { PNG } from "pngjs";
-import manifest from "../reference/security-jungle-treasure.json" with { type: "json" };
-import hard from "../reference/hard-campaign-security.json" with { type: "json" };
+const manifestPath =
+  process.argv.find((arg) => arg.startsWith("--manifest="))?.slice(11) ??
+  "reference/office-jungle-treasure.json";
+const manifest = JSON.parse(await readFile(manifestPath));
+assert.ok(
+  [undefined, "office"].includes(manifest.verificationEdition),
+  "Unknown jungle-treasure evidence edition",
+);
+const officeEdition = manifest.verificationEdition === "office";
+import historicalHard from "../reference/hard-campaign-security.json" with { type: "json" };
 const hash = (b) => createHash("sha256").update(b).digest("hex");
 const canonical = (v) =>
   JSON.stringify(v, (_, x) =>
@@ -20,6 +28,9 @@ const load = async (p) =>
   readFile(p).catch(() => {
     throw Error(`SETUP: missing treasure artifact ${p}`);
   });
+const hard = officeEdition
+  ? JSON.parse(await load(manifest.artifacts["hard-reference"].path))
+  : historicalHard;
 assert.equal(manifest.pending, false);
 assert.equal(manifest.browserVerified, true);
 assert.equal(manifest.milestone, "jungle-treasure");
@@ -29,7 +40,7 @@ assert.equal(manifest.requiredEventCount, 70);
 assert.equal(manifest.expectedInputCount, 860);
 assert.equal(
   Object.keys(manifest.artifacts).length,
-  49,
+  officeEdition ? 50 : 49,
   "Missing required evidence",
 );
 assert.equal(
@@ -47,26 +58,33 @@ for (const [record, commit, root, count] of [
   [
     manifest.captureProducer,
     manifest.captureCommit,
-    `${manifest.captureRoot}/capture-sources`,
-    127,
+    officeEdition
+      ? manifest.captureSourceArchive
+      : `${manifest.captureRoot}/capture-sources`,
+    officeEdition ? 502 : 127,
   ],
   [
     manifest.browserProducer,
     manifest.browserCommit,
-    `${manifest.artifactRoot}/browser-sources`,
-    128,
+    officeEdition
+      ? manifest.browserSourceArchive
+      : `${manifest.artifactRoot}/browser-sources`,
+    officeEdition ? 503 : 128,
   ],
   [
     manifest.hardProducer,
-    manifest.browserCommit,
-    `${manifest.artifactRoot}/hard-sources`,
-    126,
+    officeEdition ? hard.replayCommit : manifest.browserCommit,
+    officeEdition
+      ? manifest.hardSourceArchive
+      : `${manifest.artifactRoot}/hard-sources`,
+    officeEdition ? 498 : 126,
   ],
 ]) {
   const s = JSON.parse(await load(record));
   assert.equal(s.captureCommit ?? s.browserCommit ?? s.commit, commit);
-  assert.equal(Object.keys(s.sha256).length, count);
-  for (const [p, h] of Object.entries(s.sha256)) {
+  const files = officeEdition ? s.files : s.sha256;
+  assert.equal(Object.keys(files).length, count);
+  for (const [p, h] of Object.entries(files)) {
     assert.equal(hash(await load(`${root}/${p}`)), h, p);
     assert.equal(hash(execFileSync("git", ["show", `${commit}:${p}`])), h, p);
   }
@@ -180,7 +198,9 @@ for (let i = 0; i < 28; i++)
       hard.browserCheckpoints[i][k],
       `Hard regression checkpoint${i} ${k}`,
     );
-const root = ".local/security-jungle-treasure-verification";
+const root = officeEdition
+  ? ".local/office-jungle-treasure-verification"
+  : ".local/security-jungle-treasure-verification";
 await mkdir(root, { recursive: true });
 function replay(mode) {
   const r = spawnSync(
@@ -188,7 +208,7 @@ function replay(mode) {
     [
       "scripts/replay-hard-campaign.js",
       manifest.artifactRoot,
-      "--manifest=reference/security-jungle-treasure.json",
+      `--manifest=${manifestPath}`,
       ...(mode ? [`--negative=${mode}`] : []),
     ],
     { encoding: "utf8", timeout: 60000, maxBuffer: 8 * 1024 * 1024 },

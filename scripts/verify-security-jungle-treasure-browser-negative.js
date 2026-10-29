@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
-const root = ".local/security-jungle-treasure-verification";
+const root = ".local/office-jungle-treasure-verification";
 await mkdir(root, { recursive: true });
 const result = spawnSync(
   process.execPath,

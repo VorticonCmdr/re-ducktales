@@ -1,0 +1,38 @@
+{
+  "id": "security-linked-easy-first-jungle-entry",
+  "milestone": "jungle-entry",
+  "expectedHard": false,
+  "artifactRoot": ".local/security-easy-campaign-entry-accepted-01",
+  "captureRoot": ".local/security-easy-campaign-entry-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+  "expectedCheckpointCount": 1,
+  "checkpointNames": [
+    "arrival"
+  ],
+  "requiredEventCount": 928,
+  "expectedFlightPresentations": 364,
+  "expectedFlagAliasPresentations": 0,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "environment": {
+      "path": ".local/security-easy-campaign-entry-accepted-01/environment.json",
+      "bytes": 279,
+      "sha256": "94b229a2e14e15c859341caadf74f90751e8486ea805c3bab2cfa41a343771da"
+    },
+    "captured-events": {
+      "path": ".local/security-easy-campaign-entry-accepted-01/captured-events.json",
+      "bytes": 110685,
+      "sha256": "972f0c31693bc8e19ae0be2c8becf8a6f3cedb3d2122bba6b6ade738bcafb45e"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/security-easy-campaign-entry-accepted-01/campaign-checkpoints.json",
+      "bytes": 3553,
+      "sha256": "32b3a34a24a1710bc8200ae951945805250ae5aabc8ed52912f9cb0deab72ee0"
+    },
+    "timeline": {
+      "path": ".local/security-easy-campaign-entry-accepted-01/timeline.json",
+      "bytes": 174,
+      "sha256": "3bb7a6486cecf5a74d0520ec39f436f59db34db3c620e85dc89fceec0e65dd6d"
+    }
+  }
+}

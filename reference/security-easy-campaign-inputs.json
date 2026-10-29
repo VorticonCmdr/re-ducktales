@@ -30,5 +30,63 @@
       ],
       "climbHeading": 1
     }
-  ]
+  ],
+  "jungle": [
+    {
+      "byte": 0,
+      "count": 60
+    },
+    {
+      "byte": 0,
+      "count": 65
+    },
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 64,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 15
+    },
+    {
+      "byte": 3,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 5,
+      "count": 722
+    },
+    {
+      "byte": 1,
+      "count": 5
+    },
+    {
+      "byte": 5,
+      "count": 2
+    },
+    {
+      "byte": 1,
+      "count": 17
+    },
+    {
+      "byte": 3,
+      "count": 2
+    }
+  ],
+  "requiredJungleInputs": 917,
+  "jungleProvenance": {
+    "legacySource": "reference/campaign-startup-browser.json",
+    "legacySourceSha256": "c5db89f616657a0b9fa82671efd219a3aa6094b5dd7918e89592f51dceccbb6d",
+    "authoredNeutralPrefix": 60,
+    "planningCommand": "node scripts/explore-security-easy-campaign-jungle.js 60",
+    "scope": "Bounded carried-player planning found60/69 successful;capture and independent replay required. No device timers or RNG values fitted."
+  }
 }

@@ -239,7 +239,7 @@ export async function runLinkedCampaign({
   async function fly({ crash = false } = {}) {
     expect((await state()).scene).toBe("departure");
     flightNumber++;
-    if (hard) await checkpoint("flight-start");
+    if (hard || capture) await checkpoint("flight-start");
     if (hard && !capture) {
       const trace = await replayFlightInputs({
         page,
@@ -370,7 +370,7 @@ export async function runLinkedCampaign({
     await press("Enter");
     await waitForScene(page, canvas, "office");
     expect((await state()).difficulty).toBe(hard ? 2 : 0);
-    if (hard) await checkpoint("campaign-start");
+    if (hard || capture) await checkpoint("campaign-start");
     // First expedition reuses the independently authored startup keyboard
     // stream. Later expeditions carry the resulting state, not fresh fixtures.
     await depart(...(hard ? hardInputs.departurePoint : [64, 73]));
@@ -391,10 +391,18 @@ export async function runLinkedCampaign({
         ? capture
           ? securityInputs.jungle
           : hardInputs.jungle
-        : startup.jungle.inputEvents
+        : capture
+          ? easyInputs.jungle
+          : startup.jungle.inputEvents
     ).flatMap((e) => Array(e.count).fill(e.byte));
     expect(stream).toHaveLength(
-      hard ? (capture ? securityInputs.requiredJungleInputs : 444) : 857,
+      hard
+        ? capture
+          ? securityInputs.requiredJungleInputs
+          : 444
+        : capture
+          ? easyInputs.requiredJungleInputs
+          : 857,
     );
     // Deliberately wrong external input for the separate negative-control run.
     // Counts remain unchanged: an actual state comparison must reject it.
@@ -421,6 +429,8 @@ export async function runLinkedCampaign({
       );
       used++;
       expect(after.jungle.frames).toBe(used);
+      if (!hard && capture && (used % 80 === 0 || used === stream.length))
+        await checkpoint(`jungle-input-${used}`);
       const expected = jungleRoute.checkpoints[checked];
       if (!capture && expected?.inputCount === used) {
         for (const field of hard
@@ -701,6 +711,8 @@ export async function runLinkedCampaign({
     });
     expect(errors).toEqual([]);
     await expect(page.locator("#diagnostic")).toBeHidden();
+    if (capture)
+      throw Error("EXPLORATORY linked campaign saved;not acceptance");
     completed = true;
   } finally {
     await writeFile(

@@ -28,9 +28,12 @@ parser.add_argument('--notice-keyboard', action='store_true', help='Use the fixe
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 parser.add_argument('--pause-clock-test', action='store_true', help='Measure whether the resident driver clock advances during a one-second owned debugger pause;does not change game timing')
 parser.add_argument('--mountain-timing', action='store_true', help='Continue by the natural El Capitan setup into an engine-counted mountain pacing experiment')
+parser.add_argument('--mountain-profile', action='store_true', help='Observe original walking logic,erase,draw and flip boundaries during the mountain timing scenario')
 args = parser.parse_args()
 if args.mountain_timing and (args.map_inputs or args.navigation):
     parser.error('--mountain-timing owns its map setup and is separate from map/navigation profiles')
+if args.mountain_profile and not args.mountain_timing:
+    parser.error('--mountain-profile requires --mountain-timing')
 if (args.map_clock or args.map_repeat or args.map_notice) and not args.map_inputs:
     parser.error('--map-clock,--map-repeat and --map-notice require --map-inputs')
 if args.map_notice and args.map_repeat:
@@ -175,6 +178,13 @@ try:
     info = manager.start()
     client = clients[-1]
     save('engine', info)
+    if args.mountain_profile:
+        binary = Path(manager.build_argv()[0]).resolve()
+        save('profile-tool-identity', {'executable': str(binary),
+             'executableSha256': sha(binary.read_bytes()),
+             'bridgeClientSha256': sha((bridge/'dosbox_mcp/client.py').read_bytes()),
+             'lifecycleSha256': sha((bridge/'dosbox_mcp/lifecycle.py').read_bytes()),
+             'scope': 'Binary and bridge identities read at owned launch;no engine or tool modifications'})
     if args.notice_video:
         executable = Path(manager.build_argv()[0]).resolve()
         save('video-tool-identity',{'executable':str(executable),'executableSha256':sha(executable.read_bytes()),
@@ -339,7 +349,7 @@ try:
                                 overlay=overlay, add=add, remove=remove,
                                 resume=resume, state=state, keys=keys,
                                 sequence=sequence, wait_until=wait_until,
-                                save=save, root=ROOT)
+                                save=save, root=ROOT, profile=args.mountain_profile)
     if args.map_inputs:
         profile_path = ROOT / ('reference/destination-keyboard-inputs.json' if args.notice_keyboard else 'reference/map-notice-inputs.json' if args.map_notice else 'reference/map-keyboard-repeat-inputs.json' if args.map_repeat else 'reference/map-keyboard-inputs.json')
         profile = json.loads(profile_path.read_text())

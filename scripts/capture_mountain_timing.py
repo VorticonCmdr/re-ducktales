@@ -11,7 +11,7 @@ import time
 
 
 def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
-                            resume, state, keys, sequence, wait_until, save, root):
+                            resume, state, keys, sequence, wait_until, save, root, profile=False):
     initial_stop = stop['stop_id']
     map_cs = overlay + 0xca
     marker = add(0x1228, map_cs)
@@ -127,25 +127,60 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     before = state('timing-mountain-first-read', stop)
     remove(marker)
     keys(('KBD_right', True))
-    # Replacing a breakpoint at the currently paused IP can re-hit that same
-    # instruction. Cross the known post-update boundary before arming a counted
-    # reader breakpoint; otherwise hit_count would include a duplicate read.
-    barrier = add(0x145d)
-    stop = resume(stop['stop_id'])
-    assert stop['breakpoint']['id'] == barrier
-    state('timing-mountain-first-body-end', stop, False)
-    remove(barrier)
-    # Fourteen subsequent read boundaries; no model-driven polling or inputs
-    # occur between them. Skipped hits still count and are retained in the stop.
-    marker = add(0x31c, ignore_count=13)
-    started = time.monotonic()
-    stop = resume(stop['stop_id'])
-    host_ms = (time.monotonic() - started) * 1000
-    assert stop['breakpoint']['id'] == marker
-    assert stop['breakpoint']['hit_count'] == 14
-    assert stop['registers']['eax'] & 255 == 3
-    after = state('timing-mountain-last-read', stop)
-    remove(marker)
+    if profile:
+        stages = [(name, ip, add(ip)) for name, ip in [
+            ('before-erase', 0x1320), ('after-erase', 0x132a),
+            ('after-draw', 0x1436), ('before-flip', 0x145d)]]
+        rows = []
+        current = before
+        started = time.monotonic()
+        for index in range(14):
+            row = {'index': index, 'inputClock': struct.unpack_from('<I', current, 0x2225)[0],
+                   'inputByte': stop['registers']['eax'] & 255, 'stages': []}
+            assert row['inputByte'] == (0 if index == 0 else 3)
+            for name, ip, stage in stages:
+                stop = resume(stop['stop_id'])
+                assert stop['breakpoint']['id'] == stage
+                data = state(f'timing-profile-{index:02d}-{name}', stop, False)
+                row['stages'].append({'name': name, 'ip': ip,
+                    'clock': struct.unpack_from('<I', data, 0x2225)[0]})
+                if index == 0 and name == 'before-flip':
+                    state('timing-mountain-first-body-end', stop, False)
+            marker = add(0x31c)
+            stop = resume(stop['stop_id'])
+            assert stop['breakpoint']['id'] == marker
+            current = state(f'timing-profile-{index+1:02d}-input', stop, False)
+            assert stop['registers']['eax'] & 255 == 3
+            row['nextInputClock'] = struct.unpack_from('<I', current, 0x2225)[0]
+            rows.append(row)
+            remove(marker)
+        host_ms = (time.monotonic() - started) * 1000
+        for _, _, stage in stages:
+            remove(stage)
+        after = state('timing-mountain-last-read', stop)
+        save('mountain-frame-profile', {'completed': True, 'expectedFrames': 14,
+             'rows': rows, 'injections': [], 'partialRestore': False,
+             'scope': 'Conditional per-section original timer observations,not CPU instruction counts or uninterrupted scanout'})
+    else:
+        # Replacing a breakpoint at the currently paused IP can re-hit that same
+        # instruction. Cross the known post-update boundary before arming a counted
+        # reader breakpoint; otherwise hit_count would include a duplicate read.
+        barrier = add(0x145d)
+        stop = resume(stop['stop_id'])
+        assert stop['breakpoint']['id'] == barrier
+        state('timing-mountain-first-body-end', stop, False)
+        remove(barrier)
+        # Fourteen subsequent read boundaries; no model-driven polling or inputs
+        # occur between them. Skipped hits still count and are retained in the stop.
+        marker = add(0x31c, ignore_count=13)
+        started = time.monotonic()
+        stop = resume(stop['stop_id'])
+        host_ms = (time.monotonic() - started) * 1000
+        assert stop['breakpoint']['id'] == marker
+        assert stop['breakpoint']['hit_count'] == 14
+        assert stop['registers']['eax'] & 255 == 3
+        after = state('timing-mountain-last-read', stop)
+        remove(marker)
     assert before[0x4d34] == after[0x4d34] == 3, 'Life reset invalidates this segment'
     assert before[0x5b3c] == after[0x5b3c], 'Destination changed'
     keys(('KBD_right', False))

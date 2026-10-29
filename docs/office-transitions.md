@@ -4,8 +4,10 @@ The browser now runs office → original money-bin departure → dive → reward
 → Restart. The complete `npm run verify` gate passes on runtime6a02e89:117 unit,
 74 development browser and2 production browser cases, zero skips. The immutable
 receipt is `.local/office-integration-full-gate-20261028/`.
-Control-center, investments, initial office reveal/selection and security
-transitions remain unfinished.
+Control-center departure and security were subsequently connected and passed
+the security-aware integration gate; see [security](security.md) and
+[current status](STATUS.md). Investments departure and the initial office
+reveal/selection remain unfinished.
 
 Run `npm run verify:office` for the core, two actual browser cases and the
 missing-Up negative. `npm run verify:office-core` checks retained evidence only.

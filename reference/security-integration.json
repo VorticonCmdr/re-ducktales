@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "completed": true,
+  "scope": "Complete required port integration gate; selected campaign browser regressions plus scoped original segment comparisons. Does not prove whole-game/native campaign parity.",
+  "sourceCommit": "e27022c1a996c3f5ec98b44b7df097e320fa6e1d",
+  "command": "npm run verify",
+  "exitCode": 0,
+  "unitCases": 117,
+  "developmentBrowserCases": 87,
+  "productionBrowserCases": 2,
+  "skips": 0,
+  "sourceFileCount": 472,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "verify-attempt03.log": {
+      "path": ".local/security-integration-full-gate-20261029/verify-attempt03.log",
+      "bytes": 62963,
+      "sha256": "2a59f344020affafaf564a05b34aae988bedb44b688ea49ff959485341f28e1e"
+    },
+    "development-status.json": {
+      "path": ".local/security-integration-full-gate-20261029/development-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "production-status.json": {
+      "path": ".local/security-integration-full-gate-20261029/production-status.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "source-revision.json": {
+      "path": ".local/security-integration-full-gate-20261029/source-revision.json",
+      "bytes": 50436,
+      "sha256": "41f809506fa67c01742c96dd1a7c6c336e47e4022c98624083cb1501d219bec0"
+    }
+  }
+}

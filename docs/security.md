@@ -1,10 +1,11 @@
 # First-map security challenge
 
-The development branch now connects office → control-center departure →
-security → map. Two actual-browser routes pass, with four adjacent office/menu
-regressions,117 unit cases, a production build and a missing-Right negative
-control. Main remains at the separately verified office milestone054ac66 while
-campaign replays are migrated. The full branch gate has not passed.
+The port connects office → control-center departure → security → map. The
+security-aware Easy/Hard campaigns and focused routes passed the complete
+`npm run verify` on source e27022c:117 unit,87 development browser and2 production
+browser cases,zero skips. [Current status](STATUS.md) records remaining work;
+[the integration receipt](../reference/security-integration.json) preserves the
+full gate separately from original segment evidence.
 
 Run `npm run verify:security` for both native segments, focused receipts, fresh
 browser cases and the negative control. `npm run verify:security-core` requires
@@ -208,8 +209,8 @@ mountain inputs reaches the summit with three lives. Capture07 completed the who
 fresh-browser replays then consumed all4140 DOM events and matched28 exact
 state/pixel checkpoints through the day31 ending:17200 against61000. Five
 verifier negatives and one real missing-Hard-input browser negative pass. See
-[the full scenario](hard-campaign-security.md); the branch integration gate and
-other route migrations remain pending.
+[the full scenario](hard-campaign-security.md). The subsequent complete integration
+gate and migrated Easy/alternate routes are recorded in [current status](STATUS.md).
 These planning copies are port data segments, not original emulator machine
 checkpoints. No memory or state is injected into the browser campaign.
 

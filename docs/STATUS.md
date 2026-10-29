@@ -6,16 +6,21 @@ finishability and full original-game parity remain unproven.
 
 ## Integration
 
-Main remains 054ac66, served on5187. Its last full gate passed117 unit, 74 development
-browser and2 production cases, zero skips, including required original comparisons
-and negatives. Runtime6a02e89 and its receipts are retained in
-`.local/office-integration-full-gate-20261028/`; see [office evidence](office-transitions.md).
+The security-aware runtime and all migrated campaign routes passed the complete
+`npm run verify` on source e27022c:117 unit,87 development browser and2 production
+browser cases,zero skips,including required original comparisons and browser
+negative controls. Receipts and472 exact tested source files are retained in
+`.local/security-integration-full-gate-20261029/`; the versioned manifest is
+[security-integration.json](../reference/security-integration.json).
+`node scripts/verify-security-integration.js` validates that historical receipt;
+it does not replace a fresh full gate. Main integration follows this verified
+source; later receipt/documentation changes do not change its runtime.
 
-Development branch `codex/security-menu` adds original control-center departure
-and first-map security. Runtime remains 9cfc0a3; subsequent work migrates real
-browser routes and recordings through its changed shared RNG. The full branch
-gate and integration into main are pending. Originals and old recordings remain
-unchanged; no seed is reset to preserve old expectations.
+The runtime adds original control-center departure and first-map security.
+Migrated real browser routes carry its changed shared RNG without resetting the
+seed to preserve old expectations. Earlier main054ac66/office runtime6a02e89 and
+its117/74/2 gate remain separate historical evidence in
+`.local/office-integration-full-gate-20261028/`.
 
 ## Working routes and evidence
 
@@ -90,11 +95,14 @@ pictures and traces stay local. Production visitors select their own originals.
 
 ## Remaining work
 
-- Security-aware Easy/Hard campaigns are now the default current checks. Pass the
-  full branch gate before merging; historical recordings remain separate.
-- Original office entry/selection, investment transitions and several map/notice
-  presentations remain incomplete. Broader destination/difficulty coverage and
-  original whole-scene comparisons are needed.
+- Security-aware Easy/Hard campaigns are the default current checks and passed
+  the complete integration gate; historical recordings remain separate.
+- Next: original office entry/selection and investment departure. Static review
+  confirms the striped clear/reveal callbacks, per-poll selection labels and
+  five14-count investment animation waits; browser integration and representative
+  original comparisons remain to be implemented. Several map/notice presentations,
+  broader destination/difficulty coverage and original whole-scene comparisons
+  are also needed.
 - CPU/file/IRQ/input timing, hardware audio waveform/gain/filter parity, nonzero bank
   animation/sparkle pixels and unusual sprite aliases remain incomplete. Speaker
   noise is approximate; its engine is omitted. BIOS seed0 is an explicit browser

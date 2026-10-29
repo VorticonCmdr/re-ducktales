@@ -1,0 +1,312 @@
+{
+  "id": "linked-easy-campaign-original-security",
+  "expectedHard": false,
+  "pendingBrowserReplay": true,
+  "evidenceLevel": "closed-loop port regression and independent browser scenario",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifactRoot": ".local/security-easy-campaign-accepted-01",
+  "captureRoot": ".local/security-easy-campaign-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+  "captureProducer": ".local/security-easy-campaign-01/source-revision.json",
+  "captureCommit": "1de383b1cff431a5be404b3e6dcf59f3ed83b658",
+  "captureSourceArchive": ".local/security-easy-campaign-01/sources",
+  "expectedCheckpointCount": 36,
+  "requiredEventCount": 3516,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-input-80",
+    "jungle-input-160",
+    "jungle-input-240",
+    "jungle-input-320",
+    "jungle-input-400",
+    "jungle-input-480",
+    "jungle-input-560",
+    "jungle-input-640",
+    "jungle-input-720",
+    "jungle-input-800",
+    "jungle-input-880",
+    "jungle-input-917",
+    "jungle-return",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "rival-report",
+    "mountain-return",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedEnding": {
+    "phase": "cover",
+    "won": true,
+    "banked": 13875,
+    "rivalBanked": 11500,
+    "day": 32,
+    "remaining": 699,
+    "choice": 0,
+    "credit": -1,
+    "asset": 36,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      1,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "browserCheckpoints": [
+    {
+      "name": "campaign-start",
+      "stateSha256": "8b530d972f3cdd179f4622821c950071efd09bc1866ac10a22e4e0eb894252fc",
+      "pixelsSha256": "74d3dbe6a273f24d58024df26a52cda5bfc1160ea93026f0f25968daef508acf"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "30149eceb536bb73bcfa157eb4a722762baa3118ab7170db1cc2891b57dfda90",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "b48f08bec6ff55d407cfe2676eb4fc767e8ab98569351a67551b19e018715c45",
+      "pixelsSha256": "4dd63d0918378d20797e9dae1ac50029398b3886327ac667bce075ddddac0100"
+    },
+    {
+      "name": "jungle-input-80",
+      "stateSha256": "f3d3a2f7790c766b2f4bc610385d43ffd8a655c4f3224face6fdcd574c8c6bb4",
+      "pixelsSha256": "0d215241f9f6f89c398dccc50f45608ba3bd89e472f767433ce42b7a629b0a6f"
+    },
+    {
+      "name": "jungle-input-160",
+      "stateSha256": "f928bb5999aee4fb03c5842b45ded0224fdf8e9961314d866dc47366adc184f9",
+      "pixelsSha256": "d4b99e85ab04fe91c50505d339876d6820d16d76d551d29ca0b629dc6c7b5111"
+    },
+    {
+      "name": "jungle-input-240",
+      "stateSha256": "6e2a1182c4a3e03bf473088b4243e15cdb9e525e5a90a9488000d535649a5db2",
+      "pixelsSha256": "b54ca5b71a2ce87d2d04a618c37bc5614948b6e78257b3653383bcb7c4c6f9ad"
+    },
+    {
+      "name": "jungle-input-320",
+      "stateSha256": "16ba9acff81ba32788849edd085277b017b6598b6afc44d754a3f9970b3452d9",
+      "pixelsSha256": "fd8fd9df42a6b8ab4064e9f67a58d9b5cccb82c9c228c47dd635f781a57160b7"
+    },
+    {
+      "name": "jungle-input-400",
+      "stateSha256": "9fdea1d145e2f6db44dcda96a6c9f05da4c6b7482ecfd1569d95ff05e8a0d874",
+      "pixelsSha256": "e9d2f19aae0a63ebf964b6966752b2e5aaf9e6e31c5127d3933a8eec9c6ab124"
+    },
+    {
+      "name": "jungle-input-480",
+      "stateSha256": "5b82437e868f10e1a194804310886960e8a37cfde2e4fba93933a57ad3fdb14c",
+      "pixelsSha256": "b01a3c13c811389a6af19c6cabed8d6fc7e41b52786248135a31d9e4287824cf"
+    },
+    {
+      "name": "jungle-input-560",
+      "stateSha256": "a14a1c8f45926ad23ffea9a920f489e6bb39b4ecd8b3f58eab762b295d77b7c3",
+      "pixelsSha256": "33d130dc5c67770b177e40757886a9bce196940d7ac64427bcb8b431b5d5ecd9"
+    },
+    {
+      "name": "jungle-input-640",
+      "stateSha256": "0e0311da5930bd67ebc89210cdec63d3f7ef94e878dcf97d7549c906dbac3987",
+      "pixelsSha256": "0b858822cdb043462d9e919a1c716666c86f9f4e19ed31865153d22d8c32f4a0"
+    },
+    {
+      "name": "jungle-input-720",
+      "stateSha256": "1277aedbc7f73e9564e43633f73a61d40c32080455b18e0ac87156f04e777bf3",
+      "pixelsSha256": "1d77c5e185aeb71ac38f9c739c395313291e59795206fa8f6a89ce8fc684c795"
+    },
+    {
+      "name": "jungle-input-800",
+      "stateSha256": "a5f8e465daae9cabe004ea927987fd0a50c230ab3f1af9d231aa0aa02ae1b910",
+      "pixelsSha256": "079aaad9739a014f9ec53fdaface5e7186509b5fabd2e6feb1c23aada1dc2f83"
+    },
+    {
+      "name": "jungle-input-880",
+      "stateSha256": "c0edd3c24c2b53249b82812a986a459d14f789d85d6a28b36b2b49e1a7e51fc5",
+      "pixelsSha256": "98a1eeed856760c703e95f150dc69e71395ae6c34cbd60f238712375d47221f7"
+    },
+    {
+      "name": "jungle-input-917",
+      "stateSha256": "8882d8e0803a2d4e6e1f5361eff42aa68ba312a534a470687096c4421c34d220",
+      "pixelsSha256": "66fe21e37b45d5e24087b09cc93cf059d5c839b372fff1ab1a117d3b4bdac4aa"
+    },
+    {
+      "name": "jungle-return",
+      "stateSha256": "7b2a9172482ea082d9409072898ae3c1aad689cc25fe6105215f3ef9e36c59d8",
+      "pixelsSha256": "6d3fe7ae709f161cdd23c030c923a5ae5dda5fc811c87a6fe19b5c4137caf604"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "0068d884adca6b217ab97997f73b2c23250ec78ae06e1994d32fc018b500c42c",
+      "pixelsSha256": "e7845efa785ff48c2a912bca790bf584a0028d0c3355eb7aca441fcbf338f888"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "1af9fa396276c360fa0f69692edb901fb7fbd2f232287c0e62bdf1a2880bfa88",
+      "pixelsSha256": "2f66c77208a0e19e5f6faa948a9d380617a27f0d0bade9b4d472f198668c58b8"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "4ba6b02e7e70bb8d3ee58f9bd550371589730dfa6f26ad5deea52ea27ce015a5",
+      "pixelsSha256": "ebb299f53f40303326098c482345eb6b99eee3be0c50ce68022d3f43f2294bd7"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "e0c0717f53060d8a9c7e47656cf3367210418e4c7d9b98498cd92bb2e0dda052",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "d2c2a611ba19137e494c873ccf285f8163154af82581c4a144d7d66263284e79",
+      "pixelsSha256": "6319851d484550a82495518b242f13215a474e2ca80a17c9324f998bfb205d45"
+    },
+    {
+      "name": "photography-return",
+      "stateSha256": "cd0859968ace3adc06dfe69c3352f01d3d3be58afab3e62074f1408e8549201b",
+      "pixelsSha256": "a2ccb9315e123e3fdabb74a1bdfdbf748584e863d497762330125a8bc168eabd"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "ecde498826b6fefc6721742de2be6189419a607e9cc69c201430fef815618163",
+      "pixelsSha256": "1fc37a53f0ff09e6afa4649db6a4edb3147df9f96a24c6e12c01596b3bb7d6f3"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "26f1ce62820015d3916e028d166483842cfec69033115ca38ef2ba6c8e42314f",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "00127db8e1a547a80a97b30efb33cd318a1805e0b8e6ca581d2154000d9523ba",
+      "pixelsSha256": "4a06a81c91ac6fb170bc4a3d1ac7632ea8e0db7b8706f9969a70258047493da1"
+    },
+    {
+      "name": "cave-return",
+      "stateSha256": "8d76fde34fe0ffa6972d6bd0023e273ce7d1bf121f4cfd2bb9d9b28def099d70",
+      "pixelsSha256": "e38149334abc16d5dc641c7b1c5da1fd240b8db10c876c1c490ad112280d3379"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "d588483e8b9634eac3358faea3edfa090f59155558481526d432db848877b35f",
+      "pixelsSha256": "512a683eedd5622f23c506184e16a3374522f23783d9133af3820165e6b58260"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "bfe71d9321b16c922f254af14ec6ce182f356285ccc1ffd723abf66b33c7d390",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "279cd40b5095bae21a74e76dc8f9a977e6159088b89bc49bde8975e1f08bc0ab",
+      "pixelsSha256": "83aca8f523802dfabc576933a1792561f232e6dbd725f1c8123a7e179db135b9"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "a56fb0fc19bcbe6592d7fe981cf13152ddc8a9d6427526f022bccaabbe835573",
+      "pixelsSha256": "4239c4e69f6f3d7215e7d532441518de3422d08d13b6b454155a95c41dc81bc1"
+    },
+    {
+      "name": "mountain-return",
+      "stateSha256": "90506088bc836ea9eb3b64549ad2cccaa407ce19e41e49e6dbf9aa92122c8202",
+      "pixelsSha256": "2efa4ab45f42ec9a23e4feac7bff54474be31a989dec7b0a1c7ff42bdf118488"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "8753e53a7146d1a87204c30b87bebbef5b6531df239e664e7a0ea0f0539bb139",
+      "pixelsSha256": "209c8df052e363add0b951175861ba11a34054c5d24559e028804c1f143a15ba"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "7d3207b4a228c93242a055c3b65c63667832454fd73c3cd98187d8af3c055649",
+      "pixelsSha256": "73908061828e527e4c79f8a07ba2b8edd1c2c1ffd28123865b0e526561ee5e50"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "677c11919c5203726cdce7154b74ab6ffc7dfc6538b74e1aedeab73fd4458552",
+      "pixelsSha256": "32b9069577da6750d96257dbf9daa97b0f926c7c4fe470cb111c7f0928afde3d"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "9bafcbae42b3a753a7981b131a418506cf36a1cbe8da8f10afaa6ad927749b97",
+      "pixelsSha256": "3155a12aa97ebc1cd7233244b036b9aa2b67605f2e7694e94d1e20451b6aa912"
+    },
+    {
+      "name": "ending",
+      "stateSha256": "e724f0c57d90731aff9af7168001baf47a83eca7795989515f449c0c01977085",
+      "pixelsSha256": "842a028c59e26a5f94de1a9c2893ec102f6112991d81135ce1fa42d775fe83ab"
+    }
+  ],
+  "artifacts": {
+    "environment": {
+      "path": ".local/security-easy-campaign-accepted-01/environment.json",
+      "bytes": 268,
+      "sha256": "51a93db25260baebbaf153dc8dd9d4804fe9f23e0fe5c2e3ad56496a64b03d66"
+    },
+    "captured-events": {
+      "path": ".local/security-easy-campaign-accepted-01/captured-events.json",
+      "bytes": 422955,
+      "sha256": "0f927abf9501e066e2a3afa61795c068f027d6ad34cece6349d1297bd83088b1"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/security-easy-campaign-accepted-01/campaign-checkpoints.json",
+      "bytes": 171437,
+      "sha256": "f46673636a457b2d6d3c846eba7ff1bc692f985f9f43bf90fb81a02405f3397c"
+    },
+    "timeline": {
+      "path": ".local/security-easy-campaign-accepted-01/timeline.json",
+      "bytes": 3256,
+      "sha256": "a3e035e6ea14d8dbd66b708f767309c51e4dbd6fcbd7b52636d1394c8dae1c4a"
+    },
+    "capture-source": {
+      "path": ".local/security-easy-campaign-01/source-revision.json",
+      "bytes": 28635,
+      "sha256": "a418fe639dd63f01856680d2f8051b4a61e423b28d4ba0e789b736a521d67c96"
+    },
+    "capture-environment": {
+      "path": ".local/security-easy-campaign-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/environment.json",
+      "bytes": 182,
+      "sha256": "75b6c55a7d3477a1eefcef74cb6840413fede0e01ca37caa51bbf03fbf0cc785"
+    },
+    "input-profile": {
+      "path": "reference/security-easy-campaign-inputs.json",
+      "bytes": 1643,
+      "sha256": "9ac16027fa11d2579f69201d8b660ba222d39a8edc6bd5d73cbef5b86d9fe369"
+    },
+    "ending-png": {
+      "path": ".local/security-easy-campaign-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/mixed-campaign-ending.png",
+      "bytes": 17946,
+      "sha256": "36f2b088dcf10c031b568236e8a89015a48284484d53dbacbcd9cd2ea0bd6000"
+    }
+  },
+  "expectedFlightPresentations": 1188,
+  "expectedFlagAliasPresentations": 0,
+  "requiredInputSamples": {
+    "jungle": 917,
+    "mountain": 764
+  }
+}

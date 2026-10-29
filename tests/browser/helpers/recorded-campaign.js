@@ -54,6 +54,8 @@ export async function runRecordedCampaign({
       "omit-jungle-move",
       "omit-mountain-move",
       "omit-expedition-move",
+      "omit-campaign-jungle-move",
+      "omit-easy-confirm",
       "omit-lightning-throttle",
     ].includes(negativeMode)
   )
@@ -121,14 +123,25 @@ export async function runRecordedCampaign({
   const start = await page.evaluate(() => performance.now());
   expect(start, "Recorded display-clock origin").toBe(environment.clockOrigin);
   let currentTime = start;
+  const campaignJungleEntry =
+    negativeMode === "omit-campaign-jungle-move"
+      ? checks.find((c) => c.name === "arrival" && c.state.scene === "jungle")
+      : null;
+  if (negativeMode === "omit-campaign-jungle-move")
+    expect(
+      campaignJungleEntry,
+      "SETUP: missing campaign jungle entry",
+    ).toBeDefined();
+  const movementStart = campaignJungleEntry?.eventCount ?? checks[0].eventCount;
   const omittedMove = [
     "omit-jungle-move",
     "omit-mountain-move",
     "omit-expedition-move",
+    "omit-campaign-jungle-move",
   ].includes(negativeMode)
     ? events.findIndex(
         (e, i) =>
-          i >= checks[0].eventCount &&
+          i >= movementStart &&
           e.type === "keydown" &&
           (negativeMode === "omit-expedition-move"
             ? ["ArrowLeft", "ArrowRight"].includes(e.key)
@@ -136,11 +149,20 @@ export async function runRecordedCampaign({
       )
     : -1;
   if (
-    ["omit-jungle-move", "omit-mountain-move", "omit-expedition-move"].includes(
-      negativeMode,
-    )
+    [
+      "omit-jungle-move",
+      "omit-mountain-move",
+      "omit-expedition-move",
+      "omit-campaign-jungle-move",
+    ].includes(negativeMode)
   )
     expect(omittedMove).toBeGreaterThanOrEqual(0);
+  const omittedConfirm =
+    negativeMode === "omit-easy-confirm"
+      ? events.findIndex((e) => e.type === "keydown" && e.key === "Enter")
+      : -1;
+  if (negativeMode === "omit-easy-confirm")
+    expect(omittedConfirm).toBeGreaterThanOrEqual(0);
   const recoveryPoint = checks.find((c) => c.name === "slowed");
   const omittedRecovery =
     negativeMode === "omit-lightning-throttle"
@@ -207,6 +229,7 @@ export async function runRecordedCampaign({
         if (!(
           consumed === omittedMove ||
           consumed === omittedRecovery ||
+          consumed === omittedConfirm ||
           (negativeMode === "omit-hard-choice" &&
             consumed ===
               events.findIndex(

@@ -1,0 +1,323 @@
+{
+  "id": "destination-aware-easy-mountain-ascent",
+  "verificationEdition": "destination",
+  "milestone": "mountain-ascent",
+  "expectedHard": false,
+  "pending": true,
+  "pendingBrowserReplay": true,
+  "browserVerified": false,
+  "artifactRoot": ".local/destination-mountain-ascent-accepted-01",
+  "captureRoot": ".local/destination-mountain-migration-01/raw",
+  "captureCommit": "581b3ba7f5573704d915c321d212dcd1c2e6d513",
+  "sourceFileCounts": {
+    "capture": 577
+  },
+  "expectedCheckpointCount": 27,
+  "requiredEventCount": 104,
+  "checkpointNames": [
+    "entry",
+    "input-40",
+    "input-80",
+    "input-120",
+    "input-160",
+    "input-200",
+    "input-240",
+    "input-280",
+    "input-320",
+    "input-360",
+    "input-400",
+    "input-440",
+    "input-480",
+    "input-520",
+    "input-560",
+    "input-600",
+    "input-640",
+    "input-680",
+    "input-720",
+    "input-760",
+    "input-764",
+    "award",
+    "award-rival-report",
+    "returned-map",
+    "visit-rival-report",
+    "collected-notice",
+    "complete-map"
+  ],
+  "expectedFlightPresentations": 79,
+  "expectedFlagAliasPresentations": 0,
+  "expectedInputCount": 764,
+  "entryStateSha256": "f02fa602bd8f12f26c627d0c72d0c039a9cb1240ceedc6db17ccaa8e08e7877d",
+  "entryPixelsSha256": "23c6ddfb31b95f30c4cdaf5f0515d299dbaac937121b755cb7e424916a0c1aa4",
+  "expectedOutcome": {
+    "money": 8100,
+    "day": 17,
+    "playerCollected": [
+      31
+    ],
+    "frames": 764,
+    "presentations": 870,
+    "lives": 3,
+    "seed": 62669
+  },
+  "checkpoints": [
+    {
+      "name": "entry",
+      "at": 24749,
+      "eventCount": 50,
+      "stateSha256": "f02fa602bd8f12f26c627d0c72d0c039a9cb1240ceedc6db17ccaa8e08e7877d",
+      "pixelsSha256": "23c6ddfb31b95f30c4cdaf5f0515d299dbaac937121b755cb7e424916a0c1aa4"
+    },
+    {
+      "name": "input-40",
+      "at": 25317,
+      "eventCount": 52,
+      "stateSha256": "70cee2b5562f3a8e5e0a8f16e9ecd0732f17fb6e60f881abaf0141a1c1e896ef",
+      "pixelsSha256": "26ba6a977a032e4348d18f00534249335014577d4c277fd4c9aeb5e95bfeeeb3"
+    },
+    {
+      "name": "input-80",
+      "at": 26005,
+      "eventCount": 55,
+      "stateSha256": "20bfab8bb9c8ab4a681569e0db3f3ad83fe4e60766b0ab93e80ae970b778375f",
+      "pixelsSha256": "54fefa3bb3bc49f2fcdf984a7150d44d4690c2a61b6ff3599d5b9031f8b81e0d"
+    },
+    {
+      "name": "input-120",
+      "at": 26573,
+      "eventCount": 56,
+      "stateSha256": "65e75b1895e99855eb56176f65a388c17bf1d2d58dd537a315dd4d483ed8b5ce",
+      "pixelsSha256": "82d73b121435b266a089059c02273555fb91c154e62bc5a556393e5d9b35a6e9"
+    },
+    {
+      "name": "input-160",
+      "at": 27149,
+      "eventCount": 56,
+      "stateSha256": "67707e546cc4c393d87e076e4dd7cb5ebfb62248912a5e0f662a3dc7ace1a4f7",
+      "pixelsSha256": "804809c8d40692a0a38113d1c450071a3f40586195518696c9ff1f39417b0b5d"
+    },
+    {
+      "name": "input-200",
+      "at": 27829,
+      "eventCount": 63,
+      "stateSha256": "d3c17e271844f5c3685bf174b3014cbfef0eedd66d2600df191a33226a6c6689",
+      "pixelsSha256": "26c126e8f9060280b13c7d4d0946c3d4a2b3beed35d13284eafebd4987014eb9"
+    },
+    {
+      "name": "input-240",
+      "at": 28517,
+      "eventCount": 67,
+      "stateSha256": "d9ad111f61f87c7fcb2a93689f1f855cfa9d418cad6b86fc91e5d394a42ac8ad",
+      "pixelsSha256": "b3afb91457ce08b97967f4edf52c5b9220474e77dc63ee6559f0a93f07d81f87"
+    },
+    {
+      "name": "input-280",
+      "at": 29141,
+      "eventCount": 68,
+      "stateSha256": "d570b3434701826f1aa67d7e7c0d9c35bbe909e35b64a6130c4609638168a661",
+      "pixelsSha256": "e2b12205764c606b77c16f6886fa10614ee87b213bc5fb50317e44ee1f5c0f22"
+    },
+    {
+      "name": "input-320",
+      "at": 29829,
+      "eventCount": 69,
+      "stateSha256": "6849bf8a05311d7ba3af1c91f0deff021688d324af2718ea06bfb5e2c5f0d28f",
+      "pixelsSha256": "b76d2c2a2c09c3a9198763b65eaa4de25ef8917dd9e47bfac0fc357b3aa53ce4"
+    },
+    {
+      "name": "input-360",
+      "at": 30517,
+      "eventCount": 70,
+      "stateSha256": "14df4c034407df1e7d9f01a3046789e5ce65095f5cc7a03b94c98b44f4e66412",
+      "pixelsSha256": "c6f6ee3eb96bbd3a2e66bb52c7178ca49bb9b3ea1d868751748275625c5c89ca"
+    },
+    {
+      "name": "input-400",
+      "at": 31085,
+      "eventCount": 72,
+      "stateSha256": "053797b04496674e0e50f16072cfb2c6e102573580c969272995bf49faef87b8",
+      "pixelsSha256": "95b7b864b4b97620974ed15a458b38430350a12e3eb066361e1caec700b7d84e"
+    },
+    {
+      "name": "input-440",
+      "at": 31709,
+      "eventCount": 72,
+      "stateSha256": "3bfe2bf4054bcb85e853413920a6b97477ba37b86b03534fb4f85eb24f395240",
+      "pixelsSha256": "aaf4d9abb797749caa0fb05b02ef6dd16459b1cdc607d678cc50133b607ec626"
+    },
+    {
+      "name": "input-480",
+      "at": 32397,
+      "eventCount": 78,
+      "stateSha256": "bb601b3087bd1051dcbde503f544491a9c24918826dc5ee1cf64ca9911b19fee",
+      "pixelsSha256": "9d840607061d0730e2fcb3dbf620a6587d5d3a34330f33b10d044112bb48ad66"
+    },
+    {
+      "name": "input-520",
+      "at": 33029,
+      "eventCount": 82,
+      "stateSha256": "b4c0f254daacbde7d2f0b094166f5e6767bd163997b492c2ab9e0b33b94a0f82",
+      "pixelsSha256": "b9277b5dc476a3b8e465e64173eaf0d7434d3f50bfdf1bdb8e615b5c33350240"
+    },
+    {
+      "name": "input-560",
+      "at": 33765,
+      "eventCount": 85,
+      "stateSha256": "0d7fc7cb4ce6daa405806c54fb049927021b03786a9587b64193c38e60f87703",
+      "pixelsSha256": "64dc351b580c084f12459441b2532be54f03b0a72898c6e4f83002e7daf20836"
+    },
+    {
+      "name": "input-600",
+      "at": 34341,
+      "eventCount": 86,
+      "stateSha256": "2b6a81fe790ef705dbd4d8f3c4c3bba43df269accd07925383206b070cfdeff4",
+      "pixelsSha256": "3eccb512f92e096b36f8650fd256e7a01d737aacfba316fcc2e65b13a59a0798"
+    },
+    {
+      "name": "input-640",
+      "at": 35021,
+      "eventCount": 88,
+      "stateSha256": "f051903ad7c19d9ab459acdd21726f725258672c06c097c36b1532c2cea2a645",
+      "pixelsSha256": "59e4b0b521906b228af6694e24a878d7b59541b76195b9e141ce4fd39b323ee5"
+    },
+    {
+      "name": "input-680",
+      "at": 35765,
+      "eventCount": 95,
+      "stateSha256": "1f6bbb528319e177c024b3ba9208fb4e8c19c5a41d9379c6c8c568f9e374b360",
+      "pixelsSha256": "d20d44dce1e110245eceefe33633f3a7a84af4963abd8c5ef12099da2e0aa7bb"
+    },
+    {
+      "name": "input-720",
+      "at": 36389,
+      "eventCount": 97,
+      "stateSha256": "401003cb9e106d2dbc664c8fea4364e1f5dfd6f6ce47a7d1222299d2abeb39c6",
+      "pixelsSha256": "0e5f83113a71fb4a9c494b78af09167a1d5446af37c591bc30580827cfdd048d"
+    },
+    {
+      "name": "input-760",
+      "at": 37077,
+      "eventCount": 98,
+      "stateSha256": "57a4c03a2a15002ac54c679fd3bf6ffb2ec5d7e33b6da06075cd6d4acd02ce4a",
+      "pixelsSha256": "f6ddfc083ec33f1c6b8e952015c39f079bad09647d86058a0268761082e59b47"
+    },
+    {
+      "name": "input-764",
+      "at": 37133,
+      "eventCount": 98,
+      "stateSha256": "0e56d54b22f88e1d052cfa9186edc4d441754b850952cbd9589cdc0b5ce75537",
+      "pixelsSha256": "cde901cfc4f19de5a27a22ba181988d109d4c7f02f0488f483c36b9ff59a5b8e"
+    },
+    {
+      "name": "award",
+      "at": 37149,
+      "eventCount": 98,
+      "stateSha256": "108a5ce2cd5a705d0872c4c8bd82e8f7ae96b11d40d4e5e4ec3dd004452d79ad",
+      "pixelsSha256": "69651e8bb247e12f7913a8359c6ed6d3c0124017d85403f41842d878362a307a"
+    },
+    {
+      "name": "award-rival-report",
+      "at": 37249,
+      "eventCount": 100,
+      "stateSha256": "e016918e96d0acecddc36c0cf7605080971678e299e2ac88eee0815730e6b486",
+      "pixelsSha256": "b0a0de6a8e3828f3f9b9b7bba600b33127e9d9ae65a1ee8a2bcd49f79ae3c435"
+    },
+    {
+      "name": "returned-map",
+      "at": 41081,
+      "eventCount": 100,
+      "stateSha256": "787309a4b0e3df8242d754670c5b76395042afa193bd142c9e0949fa11cbc5bb",
+      "pixelsSha256": "c5d59e1375f626c63cd46943b52c596937840fad5127b1a9cc0423ff8b33b235"
+    },
+    {
+      "name": "visit-rival-report",
+      "at": 41181,
+      "eventCount": 102,
+      "stateSha256": "553b7f598d7fa2a2575cb0c2595c1a8d4ebbc317b330e1167fbeb1ef0530e6f8",
+      "pixelsSha256": "2f66c77208a0e19e5f6faa948a9d380617a27f0d0bade9b4d472f198668c58b8"
+    },
+    {
+      "name": "collected-notice",
+      "at": 44941,
+      "eventCount": 102,
+      "stateSha256": "b002ab359a7c228b1ab5bd9aaef69b270d9f58d8b907d6d209933c761f2abbe9",
+      "pixelsSha256": "554c1ca82e8661f04262dafa1f9a50515278559c68acda2e144d0516fd4840f2"
+    },
+    {
+      "name": "complete-map",
+      "at": 45041,
+      "eventCount": 104,
+      "stateSha256": "4330b30c6b3b5c46087156eb3da4babf6dfb74bdfbf85e95f70c1af96365ce1e",
+      "pixelsSha256": "c5d59e1375f626c63cd46943b52c596937840fad5127b1a9cc0423ff8b33b235"
+    }
+  ],
+  "artifacts": {
+    "environment": {
+      "path": ".local/destination-mountain-ascent-accepted-01/environment.json",
+      "bytes": 499,
+      "sha256": "594aeb9f50af24f79153e735638b76e78280e6b6115efdb85d866c1d8b039f82"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/destination-mountain-ascent-accepted-01/campaign-checkpoints.json",
+      "bytes": 98559,
+      "sha256": "a7c324f9a7ebe32099ac555e7c50268bcf15fb0fb1a697510dd221e355bc7601"
+    },
+    "captured-events": {
+      "path": ".local/destination-mountain-ascent-accepted-01/captured-events.json",
+      "bytes": 12195,
+      "sha256": "c4433e30eca67b03bab446339c519258074566921adf3eba43ec898cd6aaa15d"
+    },
+    "timeline": {
+      "path": ".local/destination-mountain-ascent-accepted-01/timeline.json",
+      "bytes": 2333,
+      "sha256": "05a18fb236b7869f889277c15d673a99df41d07b8847eb5595d37909def3c3d0"
+    },
+    "capture-source": {
+      "path": ".local/destination-mountain-migration-01/source-revision.json",
+      "bytes": 62144,
+      "sha256": "828f45e9f684f2f1b5231d250adcaabfa031f23db56cf055b6f6e1ca296211b7"
+    },
+    "capture-zip": {
+      "path": ".local/destination-mountain-migration-01/sources.zip",
+      "bytes": 1532844,
+      "sha256": "f036d1d2b0bb6a4eb90d56de4b1c773490aa0d1df5bc8334508ec5ed47324e34"
+    },
+    "capture-environment": {
+      "path": ".local/destination-mountain-migration-01/raw/environment.json",
+      "bytes": 231,
+      "sha256": "cd1c92d5f855ca759e046cb0986c5ff5a02d370dc757fbc7d54d0051c7631ff0"
+    },
+    "capture-report": {
+      "path": ".local/destination-mountain-migration-01/report.json",
+      "bytes": 6903,
+      "sha256": "e78a95b3ff0813f6e603f1da234556c0d24f20828b465ed6974deae363b65657"
+    },
+    "input-profile": {
+      "path": "reference/security-mountain-ascent-inputs.json",
+      "bytes": 2960,
+      "sha256": "897e3cc6ca61f09db7922ed672340abbb9c842240436821e8848dfe01667ab4d"
+    }
+  },
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "environmentProviders": {
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086,
+    "boundary": "actual DOM events recorded before target handlers"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "comparisonRules": [
+    "All27 full application states and all320x200 RGBA hashes exact",
+    "All104 external events and764 authored mountain samples must finish;no tail or exclusions",
+    "Original movement profile unchanged;no seed,state,timer or result injection"
+  ],
+  "limitations": [
+    "Port/browser route,not native whole-level parity",
+    "Fresh fixed-input browser acceptance pending;broader gate incomplete"
+  ]
+}

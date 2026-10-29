@@ -77,7 +77,7 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
               {'type': 'key', 'key': 'KBD_down', 'pressed': False, 'frame': 100},
               {'type': 'key', 'key': 'KBD_space', 'pressed': False, 'frame': 160}])
     mountain = add(0)
-    stop = resume(stop['stop_id'])
+    stop = resume(stop['stop_id'], wait_seconds=60)
     assert stop['breakpoint']['id'] == mountain
     data = state('timing-mountain-entry', stop)
     # Always validate the actual overlay, not its reused address or a loader.

@@ -107,10 +107,24 @@ def remove(bp):
     owned.remove(bp)
     del owned_segments[bp]
 
-def resume(stop_id):
+def resume(stop_id, wait_seconds=15):
     resumed = client.post('/api/v1/debug/continue')
     assert resumed['resumed_from_stop_id'] == stop_id
-    stop = client.get('/api/v1/debug/wait', params={'since_stop_id': stop_id, 'timeout_ms': 15000}, timeout=20)
+    deadline = time.monotonic() + wait_seconds
+    while True:
+        stop = client.get('/api/v1/debug/wait', params={'since_stop_id': stop_id, 'timeout_ms': 15000}, timeout=20)
+        if stop['satisfied']:
+            break
+        if time.monotonic() >= deadline:
+            # An observation timeout is not a new execution. Retain the same
+            # continuation until the bounded scenario limit, then save a stable
+            # diagnostic state before the owner's finally block stops its child.
+            diagnostic_stop = client.post('/api/v1/debug/pause')['stop']
+            save('unfinished-owned-wait', {'wait': stop, 'paused': diagnostic_stop,
+                 'expectedBreakpoints': sorted(owned), 'waitSeconds': wait_seconds,
+                 'replay': client.get('/api/v1/input/replay/status')})
+            state('unfinished-owned-wait-state', diagnostic_stop)
+            raise AssertionError('Unfinished owned execution;stable diagnostic captured')
     assert stop['satisfied'] and stop['stop_id'] > stop_id
     assert stop['breakpoint']['id'] in owned
     assert stop['registers']['cs'] == owned_segments[stop['breakpoint']['id']] and not stop['protected_mode']

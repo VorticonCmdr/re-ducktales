@@ -335,4 +335,41 @@ checkpoint values,870 presentations and the final gameplay state. Separate
 [clock metadata](../reference/mountain-ascent-sprite-work.json) records the new
 work budget without editing the historical fixture. That legacy harness advances
 driver/retrace together and is not an elapsed-time reference; the dedicated
-pacing check uses separate clocks. Browser integration is being refreshed.
+pacing check uses separate clocks. Browser integration has a separate new contract and independent receipt:
+[sprite-timed-mountain-ascent.json](../reference/sprite-timed-mountain-ascent.json).
+The exploratory controller follows the unchanged764-byte movement profile and
+records104 actual DOM events. A fresh browser independently replays that fixed
+event stream from startup: all27 complete states and320x200 picture hashes match,
+with870 mountain presentations, three lives and $8,100 on return. Omitting a
+required Right event fails at input-480. Twenty-six pictures also match the prior
+route; the entry picture changes while the first mountain page waits for work.
+Old captures and contracts are preserved.
+
+The source of that exploratory capture is `b02a64c`; its intentional final
+EXPLORATORY exception is kept in the raw failed report. The declaration tool
+requires exactly that exception after complete-map, all27 checkpoints and104
+events, and the unchanged gameplay outcome. It creates a separate pending
+contract. Source `3a99961` then passes the independent fixed-event browser replay
+and real missing-input negative. The registration tool audits a provisional
+receipt with the strict checker before marking it verified; raw files are never
+rewritten. Sources, runner/report, events, full states, pictures and negative logs
+are pinned in the manifest.
+
+The actual browser control test additionally holds Right for an independently
+authored600ms. It requires13–15 movement updates and43–45 driver ticks, verifies
+seven ordinary source sprite calls and a three-retrace budget, and continues
+through pause/quit handling and natural life loss/reset. It uses the established
+pre-application clock barrier and waits for the original destination readiness;
+its old100ms-only dialog sequence sent controls during the original wait. An
+isolated response override of presentation to one retrace must fail the600ms
+movement assertion. This browser negative never changes production files.
+
+```sh
+npm run verify:mountain-sprite-timing
+```
+
+This focused command runs original build/clock evidence, the timing-bypass
+negative, component/init/movement/climb/palette and system-input checks, actual
+browser controls and fixed-event replay, both browser negatives, and strict source
+receipt/state/picture/event verification. Its final combined run is pending.
+It does not replace the incomplete broader integration gate.

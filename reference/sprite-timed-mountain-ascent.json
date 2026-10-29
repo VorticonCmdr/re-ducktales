@@ -3,14 +3,15 @@
   "verificationEdition": "destination",
   "milestone": "mountain-ascent",
   "expectedHard": false,
-  "pending": true,
-  "pendingBrowserReplay": true,
-  "browserVerified": false,
+  "pending": false,
+  "pendingBrowserReplay": false,
+  "browserVerified": true,
   "artifactRoot": ".local/mountain-sprite-route-01",
   "captureRoot": ".local/mountain-sprite-browser-capture-01/raw",
   "captureCommit": "b02a64cb5c182261e1b72f641dd62e0b3f01817c",
   "sourceFileCounts": {
-    "capture": 599
+    "capture": 599,
+    "browser": 602
   },
   "expectedCheckpointCount": 27,
   "requiredEventCount": 104,
@@ -295,6 +296,56 @@
       "path": "reference/security-mountain-ascent-inputs.json",
       "bytes": 2960,
       "sha256": "897e3cc6ca61f09db7922ed672340abbb9c842240436821e8848dfe01667ab4d"
+    },
+    "browser-source": {
+      "path": ".local/mountain-sprite-browser-replay-01/source-revision.json",
+      "bytes": 64928,
+      "sha256": "6e0284183d795d651a5268e26f25d19b81b77556ab0478e0c5c9be6b4a05f866"
+    },
+    "browser-zip": {
+      "path": ".local/mountain-sprite-browser-replay-01/sources.zip",
+      "bytes": 1622055,
+      "sha256": "817cda45eb96e03969bf925e0e5abfbf5bb656b28b449981554fde28c6f6d3de"
+    },
+    "browser-runner": {
+      "path": ".local/mountain-sprite-browser-replay-01/runner-status.json",
+      "bytes": 1167,
+      "sha256": "f77c97282f0727e00f35fc8838c6293e7e2137f9aa442670c80787ca5ec86867"
+    },
+    "browser-report": {
+      "path": ".local/mountain-sprite-browser-replay-01/positive-report.json",
+      "bytes": 7972,
+      "sha256": "84e354dc0d3bc7394b68facba48a03bcefcf9f309f8200b4b378d2d2eb61fe4d"
+    },
+    "browser-log": {
+      "path": ".local/mountain-sprite-browser-replay-01/positive.log",
+      "bytes": 1777,
+      "sha256": "2f624571741f6d15a71b296d4307b93a18d4502170a7c04628de6d0823b7c59d"
+    },
+    "browser-config": {
+      "path": ".local/mountain-sprite-browser-replay-01/config.mjs",
+      "bytes": 514,
+      "sha256": "2d20412067097abdc6a62c0a17eb349cb36e0920f794a7eb72f6d67bb57634ca"
+    },
+    "browser-negative": {
+      "path": ".local/mountain-sprite-browser-replay-01/controls/browser-negative.log",
+      "bytes": 2458,
+      "sha256": "4a0e592f0ba4c75cba5f45f9bfa5ab52f73305ad006b4e08a041ccde76c9d543"
+    },
+    "browser-progress": {
+      "path": ".local/mountain-sprite-browser-replay-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/replay-progress.json",
+      "bytes": 3478,
+      "sha256": "f8fa9ee9bc506e2fe8f3ed9d77acd7d4dafefa2669dc2a53da16f409c1ad10fa"
+    },
+    "browser-checkpoints": {
+      "path": ".local/mountain-sprite-browser-replay-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 103629,
+      "sha256": "7532390205b9008961b0b21cf8a02822542b735d38e27315adcd430159b4d6b5"
+    },
+    "browser-events": {
+      "path": ".local/mountain-sprite-browser-replay-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/actual-events.json",
+      "bytes": 9675,
+      "sha256": "c416496b496ea244ea061c08ef61b77dd346547f41b05104b375cf41335bd292"
     }
   },
   "buildManifest": "reference/build.json",
@@ -319,7 +370,7 @@
   "limitations": [
     "Port/browser route,not native whole-level parity",
     "Sprite work is charged;copy/text/line and other CPU costs remain incomplete",
-    "Independent fixed-event browser acceptance pending;broader gate incomplete"
+    "Broader required integration gate remains incomplete"
   ],
   "verify": "node scripts/verify-destination-routes.js reference/sprite-timed-mountain-ascent.json",
   "verificationTools": {
@@ -328,5 +379,6 @@
     "scripts/replay-hard-campaign.js": "222bed526cadf31045910b26c04f942fe287ac3e8215b826ed6aabb7488ca1ea",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0"
-  }
+  },
+  "browserCommit": "3a999618244bfdb97436f823933ee8036a665acc"
 }

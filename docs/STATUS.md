@@ -72,7 +72,9 @@ native whole-level parity or a completed broader integration gate.
 The captured14-interval walk now spans599.264ms, versus604.032ms in the original
 counter benchmark, with unchanged checked actor/action/RNG values. This is a
 partial correction: copy/text/line and other CPU costs remain uncharged, and
-jungle/cave/safari pacing is unchanged. Browser route refresh is in progress.
+jungle/cave/safari pacing is unchanged. The refreshed browser route now passes27 exact state/picture checkpoints with104
+recorded DOM events,764 movement samples and the same $8,100/three-life outcome.
+The600ms DOM hold check passes and rejects the one-retrace browser bypass.
 
  A new original
 observer uses80 render-callback samples and independently scheduled Right/release
@@ -93,8 +95,9 @@ release-edge direction is also absent from the expedition held-control adapter.
 `npm run verify:expedition-timing` now passes the captured mountain cadence
 comparison and rejects an isolated one-retrace bypass. Broader fixture/source
 migrations remain open; this is not whole-game timing acceptance.
-Next: account for original drawing/execution work in the simulation scheduler,
-then repeat independent browser and original checks.
+`npm run verify:mountain-sprite-timing` runs the focused integration gate. Its
+final combined run is pending. Next: charge remaining graphics/CPU work, extend
+pacing evidence to the other expedition families and migrate broader regressions.
 [Evidence, source locations and reproduction](expedition-timing.md).
 
 ## Connected gameplay and evidence

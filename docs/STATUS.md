@@ -19,15 +19,18 @@ The complete treasure route now also passes independent Game and fixed-event
 browser replays: 27 exact states/pictures, 70 DOM events, all 860 movement
 samples, $1,050 and one life. Required movement removal fails. Its new contract
 is `reference/draw-timed-jungle-treasure.json`; the full scoped command is
-`npm run verify:jungle-draw-timing`. Historical elapsed-time component fixtures
-and the broader required gate have not been migrated or passed. Cave and safari pacing remain open. This does
+`npm run verify:jungle-draw-timing`. The historical component contracts are now
+explicitly migrated:1,616 input-boundary DS comparisons,1,714 ordered images and
+40 gameplay checkpoints remain exact apart from separately checked timing.
+Seventeen negative controls pass. [Migration](jungle-component-timing.md).
+The broader required gate and older source receipts still need migration. Cave and safari pacing remain open. This does
 not change the whole-game status above.
 
 The combined command passed on `cc716c1`: six original drawing cases, 127 unit
 cases, both browser routes, both browser negatives, exact source/state/picture
 receipt verification and production build. [Integration receipt](../reference/jungle-draw-timing-integration.json).
-Next: migrate the old 824-input jungle component contract explicitly, then
-measure cave/safari work before changing their pacing.
+Next: measure cave/safari work before changing their pacing, then refresh the
+broader source receipts and complete campaign regressions.
 
 ## Optional security restoration
 

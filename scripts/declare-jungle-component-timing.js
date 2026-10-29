@@ -49,8 +49,8 @@ for (const scenario of scenarios) {
       polls++;
     },
     onPresentation(p) {
-      assert.equal(
-        p.sha256,
+      assert.deepEqual(
+        p,
         old.images[p.index - 1],
         `Authoring image ${p.index}`,
       );

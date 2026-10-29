@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
-import { Jungle } from "../src/game/jungle.js";
+import { verifyJungleComponentTiming } from "./verify-jungle-component-timing.js";
 import {
   prepareJungle,
   initializeJungleEntry,
@@ -302,103 +302,8 @@ export async function verifyJungleRuntime(resources) {
     () => frame({ wrongInput: true }),
     /whole jungle frame DS divergence/,
   );
-  function replay({
-    omitFire = false,
-    omitInput = false,
-    omitCheckpoint = false,
-    extraInput = false,
-    alterPixel = false,
-  } = {}) {
-    const stream = manifest.inputEvents.flatMap((e) => {
-      assert.ok(Number.isInteger(e.count) && e.count > 0);
-      return Array(e.count).fill(e.byte);
-    });
-    assert.equal(stream.length, 824);
-    if (omitInput) stream.pop();
-    if (extraInput) stream.push(0);
-    const checkpoints = structuredClone(manifest.checkpoints);
-    if (omitCheckpoint) checkpoints.pop();
-    assert.equal(checkpoints.length, 20, "missing jungle checkpoint");
-    const j = new Jungle({ ...resources, ...manifest.initial });
-    let driver = 0,
-      retrace = 0,
-      events = 0,
-      executed = 0,
-      presentation = 0;
-    while (!j.outcome && events < 10000) {
-      const count = j.inputs.length,
-        byte = stream[count];
-      if (byte !== undefined)
-        j.setControls({
-          direction:
-            { 1: "up", 3: "right", 5: "down", 7: "left" }[byte & 63] ?? null,
-          fire: !omitFire && !!(byte & 64),
-        });
-      if ((driver + 1) / (1193182 / (1365 * 12)) <= (retrace + 1) / 70.086) {
-        driver++;
-        j.advanceTick();
-      } else {
-        retrace++;
-        j.advanceRetrace();
-      }
-      events++;
-      assert.ok(j.inputs.length - count <= 1, "missed jungle input boundary");
-      if (j.presentations !== presentation) {
-        assert.equal(
-          j.presentations,
-          presentation + 1,
-          "skipped jungle presentation",
-        );
-        assert.equal(j.current.length, 256000);
-        presentation++;
-      }
-      if (j.inputs.length > count) {
-        assert.notEqual(byte, undefined, "unfinished jungle input stream");
-        assert.equal(j.inputs.at(-1).input, omitFire ? byte & 63 : byte);
-        const expected = checkpoints[executed];
-        if (expected?.inputCount === j.inputs.length) {
-          const current = j.current ? Uint8Array.from(j.current) : null;
-          if (alterPixel && current) current[0] ^= 1;
-          assert.deepEqual(
-            {
-              inputCount: j.inputs.length,
-              ...j.snapshot(),
-              memorySha256: hash(j.memory.bytes),
-              pixelSha256: current ? hash(current) : null,
-            },
-            expected,
-            `jungle replay checkpoint${executed}`,
-          );
-          executed++;
-        }
-      }
-    }
-    assert.equal(executed, 20, "unfinished jungle checkpoints");
-    assert.equal(events, 6405, "jungle clock event count");
-    assert.equal(presentation, 875, "jungle presentation count");
-    assert.equal(
-      j.inputs.length,
-      stream.length,
-      "unconsumed jungle input event",
-    );
-    assert.deepEqual(j.snapshot(), manifest.final, "jungle replay final");
-  }
-  replay();
-  assert.throws(() => replay({ omitFire: true }), /jungle replay checkpoint/);
-  assert.throws(
-    () => replay({ omitInput: true }),
-    /unfinished jungle input stream/,
-  );
-  assert.throws(
-    () => replay({ omitCheckpoint: true }),
-    /missing jungle checkpoint/,
-  );
-  assert.throws(
-    () => replay({ extraInput: true }),
-    /unconsumed jungle input event/,
-  );
-  assert.throws(() => replay({ alterPixel: true }), /jungle replay checkpoint/);
+  await verifyJungleComponentTiming(resources, "runtime");
   console.log(
-    "Jungle runtime:conditional loader arrays/tuples/descriptors and one exact original whole-frame DS comparison;20 independent carried checkpoints,824 inputs,6405 clock events,875 presentations,failure after scroll960;8 negative controls. Independent expected values are port regressions,not original full-level captures.",
+    "Jungle runtime: original conditional routine comparisons and their negative controls remain exact; historical and drawing-time component contracts verified separately. No native whole-level timing claim.",
   );
 }

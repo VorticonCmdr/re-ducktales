@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { FlightMemory } from "../src/game/flight-physics.js";
-import { Jungle } from "../src/game/jungle.js";
+import { verifyJungleComponentTiming } from "./verify-jungle-component-timing.js";
 import { collideJungleTransport } from "../src/game/jungle-hazards.js";
 import { jungleActorCenter } from "../src/game/jungle-collision.js";
 import { restoreJunglePalette } from "../src/game/jungle-state.js";
@@ -214,103 +214,8 @@ export async function verifyJungleTreasure(resources) {
   }
   returned();
   assert.throws(() => returned(true), /treasure palette mutation scope/);
-  function replay({
-    omitClimb = false,
-    alterPixel = false,
-    omitCheckpoint = false,
-    extraInput = false,
-  } = {}) {
-    const stream = manifest.inputEvents.flatMap((e) =>
-      Array(e.count).fill(e.byte),
-    );
-    assert.equal(stream.length, 792);
-    if (extraInput) stream.push(0);
-    const checks = structuredClone(manifest.checkpoints);
-    if (omitCheckpoint) checks.pop();
-    assert.equal(checks.length, 20, "missing treasure checkpoint");
-    assert.deepEqual(
-      checks.map((c) => c.inputCount),
-      manifest.checkpointIds,
-    );
-    const j = new Jungle({ ...resources, ...manifest.initial });
-    let driver = 0,
-      retrace = 0,
-      events = 0,
-      executed = 0,
-      presentation = 0;
-    while (!j.outcome && events < 10000) {
-      const n = j.inputs.length,
-        byte = stream[n],
-        input = omitClimb && byte === 1 ? 0 : byte;
-      if (input !== undefined)
-        j.setControls({
-          direction:
-            { 1: "up", 3: "right", 5: "down", 7: "left" }[input & 63] ?? null,
-          fire: !!(input & 64),
-        });
-      if ((driver + 1) / (1193182 / (1365 * 12)) <= (retrace + 1) / 70.086) {
-        driver++;
-        j.advanceTick();
-      } else {
-        retrace++;
-        j.advanceRetrace();
-      }
-      events++;
-      assert.ok(j.inputs.length - n <= 1, "missed treasure input boundary");
-      if (j.presentations !== presentation) {
-        assert.equal(
-          j.presentations,
-          presentation + 1,
-          "skipped treasure presentation",
-        );
-        assert.equal(j.current.length, 256000);
-        presentation++;
-      }
-      if (j.inputs.length > n) {
-        assert.notEqual(input, undefined, "unfinished treasure input stream");
-        assert.equal(j.inputs.at(-1).input, input);
-        const expected = checks[executed];
-        if (expected?.inputCount === j.inputs.length) {
-          const pixels = Uint8Array.from(j.current);
-          if (alterPixel) pixels[0] ^= 1;
-          assert.deepEqual(
-            {
-              inputCount: j.inputs.length,
-              state: j.snapshot(),
-              memorySha256: hash(j.memory.bytes),
-              pixelSha256: hash(pixels),
-            },
-            expected,
-            `treasure checkpoint${executed}`,
-          );
-          executed++;
-        }
-      }
-    }
-    assert.equal(executed, 20, "unfinished treasure checkpoints");
-    assert.equal(events, 6026, "treasure clock count");
-    assert.equal(presentation, 839, "treasure display count");
-    assert.equal(j.inputs.length, stream.length, "unconsumed treasure input");
-    assert.deepEqual(j.snapshot(), manifest.final, "treasure final");
-    assert.equal(
-      hash(j.memory.bytes),
-      manifest.finalMemorySha256,
-      "treasure final DS",
-    );
-    assert.equal(j.outcome.code, 1);
-  }
-  replay();
-  assert.throws(() => replay({ omitClimb: true }), /treasure checkpoint/);
-  assert.throws(() => replay({ alterPixel: true }), /treasure checkpoint/);
-  assert.throws(
-    () => replay({ omitCheckpoint: true }),
-    /missing treasure checkpoint/,
-  );
-  assert.throws(
-    () => replay({ extraInput: true }),
-    /unconsumed treasure input/,
-  );
+  await verifyJungleComponentTiming(resources, "treasure");
   console.log(
-    "Jungle treasure:one exact conditional original chest-contact DS case and return/palette contract;20 independent carried checkpoints,792 inputs,6026 clock events,839 display updates,success with one life;9 negative controls. Whole original level/timing and other variants remain unverified.",
+    "Jungle treasure: original conditional routine comparisons and their negative controls remain exact; historical and drawing-time component contracts verified separately. No native whole-level timing claim.",
   );
 }

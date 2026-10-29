@@ -1,0 +1,461 @@
+{
+  "id": "jungle-runtime-original-drawing-time",
+  "acceptanceLevel": "closed-loop-port-regression",
+  "producerRevision": "3366651d20c6b07a35e355435c90800d97aa1774",
+  "parent": {
+    "path": "reference/jungle-runtime.json",
+    "sha256": "3f80e2c38af1ea9b1704e465e47ad85323df5708c5572995753d9f8ed45fc9aa"
+  },
+  "historicalRevision": "c406dc4fe1ad8e28283de327dbc54588faa958a6",
+  "historicalSourceGraph": {
+    "src/game/jungle.js": "046ed4ba4052079a4c8f7f9d716255822f0ff31f68a0573ba719ad3cb9a82129",
+    "src/game/jungle-state.js": "24c073591ce3c9326c5ebf86aa759c79b79d2b02fe810b36fd47b1a3c05271d4",
+    "src/game/jungle-map.js": "c406f1095265fb0ed6f3276c77c4edacf0e0a77c5a4eaff0c9489ccff4875e55",
+    "src/game/flight-physics.js": "4a3409ed65d6a28f6c90ba4af02290952831829df89d305bf83dc07f6d8c04b7",
+    "src/game/integer.js": "cb575b09c744e3fd2967ac72de96399a0e5a5b6e807c6ef0684e30a183a38776",
+    "src/game/jungle-animation.js": "d9955ccaae5e15c276382ad3298dcac4600ca362210b19e4686164934ab6aea4",
+    "src/game/jungle-scene.js": "7493c81c02358b6d4ddf4ef93c91e46c4832c03dc9cfdfecb5274a67ccadea22",
+    "src/game/ega-palette.js": "420db99351c72ac2b42f170b9cdb5722b27a4b1b85a25aa04adeb328407cc89d",
+    "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
+    "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
+    "src/game/flight-flag-raster.js": "9b57f314347c2d33eb060f9c6b6dd0fdf8bb946d50a8f3810cc5284d30230b5b",
+    "src/game/jungle-initialization.js": "8440206ff8223a535114862d5c3a6c8cab6ba0ed336382507377e4f611b57f9e",
+    "src/game/jungle-collision.js": "fa9e33dd12dbb0dcb30371c6b6c4007a59406bb94bb601e339c869bcb9aa7b65",
+    "src/game/jungle-controls.js": "d73fed10ae58f99b130c679709e71d2dcfd529d47253d18a8151ad53177f2c64",
+    "src/game/jungle-hazards.js": "11da162f7465c3cf0e822bd71a4526e0916d5c56723004f0d3253108a6e2ccdd",
+    "src/game/jungle-motion.js": "f2c7e477dde86abe1e42365581e644a5cc63e0aa8ade837d645359244d7a8eb6",
+    "src/game/jungle-presentation.js": "ffb8d6cbd0a4e9a9728e73ae9313640e51f752a02c8473ff595e7643998f1f0a",
+    "src/game/jungle-raster.js": "a7fa4e2d0639ee59458f4573fe1e8bf995df59a73352feb430616a4068cb762b"
+  },
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "expectedInputCount": 824,
+  "expectedPresentationCount": 875,
+  "expectedCheckpointCount": 20,
+  "expectedClockEventCount": 9187,
+  "clockProvider": {
+    "driverNumerator": 1193182,
+    "driverDivisors": [
+      1365,
+      12
+    ],
+    "retraceHz": 70.086,
+    "tieOrder": "driver-first"
+  },
+  "memoryClockRanges": [
+    [
+      8737,
+      8745
+    ],
+    [
+      10232,
+      10236
+    ]
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "runtimeSources": {
+    "src/game/jungle.js": "131ff6da20cee808609ee8c4efa6a331548fea42748b90e2e1d3b2bc9958a760",
+    "src/game/jungle-work.js": "5f01c638be3980bfaf165fb088f899401a0f05ee12a9e9043e29de5de542e1e0",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d"
+  },
+  "inputContract": "Unchanged parent authored824-byte stream,consumed at successive source input reads. Independent zero-phase driver/retrace schedule;driver wins ties. No expected timer,state or image supplies a scheduling input.",
+  "startingRecipe": "Load authoritative static executable data and archives with parent campaign options. Load only the historical Jungle class from the declared Git revision;verify every shared dependency byte against that revision. Reproduce all20 original historical full snapshots/memory/image hashes and final state before comparing current logic.",
+  "comparisonRules": "At all824 source readInput boundaries and final outcome,all65536 DS bytes compare exactly to the validated historical replay except2221..2228(two32-bit timer words) and27f8..27fb(next deadline). These timers are independently checked by the exact current clock-trace digest and20 timing checkpoints. All875 presentation payload hashes compare exactly by publication order;their separate timing trace is exact. All20 gameplay snapshots/final values remain exact. No page-selector or RNG exclusion;no skipped input/image/checkpoint allowed.",
+  "expectedOutputsScope": "New timing outputs recorded once from the declared producer. Port regression expectations,not original elapsed-time captures and never consumed as inputs. Native drawing evidence remains a separate six-case comparison.",
+  "clockTraceSha256": "4fac9a792b47418b760127602c9618f7cf180b7dfce9388e3e36ac7422a6492d",
+  "presentationTimingSha256": "cb4b602e9c47706105458aa203242b2a8f76e72856b5b96630a883de803dfcf1",
+  "checkpoints": [
+    {
+      "inputCount": 1,
+      "tick": 25,
+      "retrace": 25,
+      "presentations": 5,
+      "drawingWork": {
+        "instructions": 457285,
+        "portWrites": 4780,
+        "repeatOpcodes": 5632,
+        "repeatIterations": 15488,
+        "sprites": 21,
+        "copies": 4,
+        "omittedLines": 27,
+        "omittedTexts": 2,
+        "rowCrossingCopies": 0,
+        "milliseconds": 158.90033333333332
+      }
+    },
+    {
+      "inputCount": 3,
+      "tick": 101,
+      "retrace": 98,
+      "presentations": 16,
+      "drawingWork": {
+        "instructions": 439446,
+        "portWrites": 4157,
+        "repeatOpcodes": 5636,
+        "repeatIterations": 31488,
+        "sprites": 16,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 157.87066666666666
+      }
+    },
+    {
+      "inputCount": 5,
+      "tick": 117,
+      "retrace": 113,
+      "presentations": 18,
+      "drawingWork": {
+        "instructions": 37556,
+        "portWrites": 508,
+        "repeatOpcodes": 1224,
+        "repeatIterations": 3276,
+        "sprites": 3,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 13.541333333333334
+      }
+    },
+    {
+      "inputCount": 16,
+      "tick": 150,
+      "retrace": 144,
+      "presentations": 29,
+      "drawingWork": {
+        "instructions": 37191,
+        "portWrites": 564,
+        "repeatOpcodes": 1224,
+        "repeatIterations": 3144,
+        "sprites": 3,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 13.413
+      }
+    },
+    {
+      "inputCount": 19,
+      "tick": 159,
+      "retrace": 152,
+      "presentations": 32,
+      "drawingWork": {
+        "instructions": 52363,
+        "portWrites": 564,
+        "repeatOpcodes": 1224,
+        "repeatIterations": 3144,
+        "sprites": 3,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 18.470333333333333
+      }
+    },
+    {
+      "inputCount": 24,
+      "tick": 174,
+      "retrace": 168,
+      "presentations": 37,
+      "drawingWork": {
+        "instructions": 102984,
+        "portWrites": 1220,
+        "repeatOpcodes": 1608,
+        "repeatIterations": 4044,
+        "sprites": 5,
+        "copies": 6,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1,
+        "milliseconds": 35.95333333333333
+      }
+    },
+    {
+      "inputCount": 36,
+      "tick": 210,
+      "retrace": 202,
+      "presentations": 49,
+      "drawingWork": {
+        "instructions": 51723,
+        "portWrites": 820,
+        "repeatOpcodes": 1224,
+        "repeatIterations": 3276,
+        "sprites": 3,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 18.471666666666668
+      }
+    },
+    {
+      "inputCount": 38,
+      "tick": 216,
+      "retrace": 207,
+      "presentations": 51,
+      "drawingWork": {
+        "instructions": 72443,
+        "portWrites": 820,
+        "repeatOpcodes": 1224,
+        "repeatIterations": 3276,
+        "sprites": 3,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 25.378333333333334
+      }
+    },
+    {
+      "inputCount": 69,
+      "tick": 617,
+      "retrace": 594,
+      "presentations": 96,
+      "drawingWork": {
+        "instructions": 467847,
+        "portWrites": 5008,
+        "repeatOpcodes": 5632,
+        "repeatIterations": 15488,
+        "sprites": 20,
+        "copies": 4,
+        "omittedLines": 27,
+        "omittedTexts": 2,
+        "rowCrossingCopies": 0,
+        "milliseconds": 162.573
+      }
+    },
+    {
+      "inputCount": 100,
+      "tick": 1038,
+      "retrace": 999,
+      "presentations": 141,
+      "drawingWork": {
+        "instructions": 479985,
+        "portWrites": 4916,
+        "repeatOpcodes": 5632,
+        "repeatIterations": 15488,
+        "sprites": 19,
+        "copies": 4,
+        "omittedLines": 27,
+        "omittedTexts": 2,
+        "rowCrossingCopies": 0,
+        "milliseconds": 166.55766666666668
+      }
+    },
+    {
+      "inputCount": 121,
+      "tick": 1126,
+      "retrace": 1083,
+      "presentations": 162,
+      "drawingWork": {
+        "instructions": 139612,
+        "portWrites": 1476,
+        "repeatOpcodes": 1608,
+        "repeatIterations": 4044,
+        "sprites": 5,
+        "copies": 6,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1,
+        "milliseconds": 48.333333333333336
+      }
+    },
+    {
+      "inputCount": 150,
+      "tick": 1213,
+      "retrace": 1167,
+      "presentations": 191,
+      "drawingWork": {
+        "instructions": 41453,
+        "portWrites": 560,
+        "repeatOpcodes": 1224,
+        "repeatIterations": 2796,
+        "sprites": 2,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1,
+        "milliseconds": 14.715
+      }
+    },
+    {
+      "inputCount": 200,
+      "tick": 1363,
+      "retrace": 1312,
+      "presentations": 241,
+      "drawingWork": {
+        "instructions": 115999,
+        "portWrites": 1212,
+        "repeatOpcodes": 1368,
+        "repeatIterations": 3324,
+        "sprites": 5,
+        "copies": 5,
+        "omittedLines": 1,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1,
+        "milliseconds": 40.126333333333335
+      }
+    },
+    {
+      "inputCount": 300,
+      "tick": 1976,
+      "retrace": 1902,
+      "presentations": 341,
+      "drawingWork": {
+        "instructions": 174523,
+        "portWrites": 1872,
+        "repeatOpcodes": 2320,
+        "repeatIterations": 4860,
+        "sprites": 6,
+        "copies": 7,
+        "omittedLines": 2,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 60.269
+      }
+    },
+    {
+      "inputCount": 400,
+      "tick": 2474,
+      "retrace": 2380,
+      "presentations": 441,
+      "drawingWork": {
+        "instructions": 51925,
+        "portWrites": 560,
+        "repeatOpcodes": 1920,
+        "repeatIterations": 3004,
+        "sprites": 2,
+        "copies": 5,
+        "omittedLines": 2,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1,
+        "milliseconds": 18.043
+      }
+    },
+    {
+      "inputCount": 500,
+      "tick": 2995,
+      "retrace": 2881,
+      "presentations": 541,
+      "drawingWork": {
+        "instructions": 67945,
+        "portWrites": 804,
+        "repeatOpcodes": 864,
+        "repeatIterations": 1296,
+        "sprites": 3,
+        "copies": 3,
+        "omittedLines": 2,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 23.328333333333333
+      }
+    },
+    {
+      "inputCount": 600,
+      "tick": 3550,
+      "retrace": 3415,
+      "presentations": 641,
+      "drawingWork": {
+        "instructions": 65914,
+        "portWrites": 1068,
+        "repeatOpcodes": 1416,
+        "repeatIterations": 2620,
+        "sprites": 3,
+        "copies": 4,
+        "omittedLines": 2,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 23.084666666666667
+      }
+    },
+    {
+      "inputCount": 700,
+      "tick": 4044,
+      "retrace": 3891,
+      "presentations": 741,
+      "drawingWork": {
+        "instructions": 127894,
+        "portWrites": 1472,
+        "repeatOpcodes": 2464,
+        "repeatIterations": 4120,
+        "sprites": 4,
+        "copies": 6,
+        "omittedLines": 3,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 0,
+        "milliseconds": 44.16466666666667
+      }
+    },
+    {
+      "inputCount": 800,
+      "tick": 4466,
+      "retrace": 4297,
+      "presentations": 841,
+      "drawingWork": {
+        "instructions": 101898,
+        "portWrites": 1200,
+        "repeatOpcodes": 2256,
+        "repeatIterations": 3400,
+        "sprites": 4,
+        "copies": 6,
+        "omittedLines": 3,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1,
+        "milliseconds": 35.147333333333336
+      }
+    },
+    {
+      "inputCount": 824,
+      "tick": 4558,
+      "retrace": 4386,
+      "presentations": 865,
+      "drawingWork": {
+        "instructions": 107316,
+        "portWrites": 956,
+        "repeatOpcodes": 2304,
+        "repeatIterations": 3876,
+        "sprites": 3,
+        "copies": 6,
+        "omittedLines": 3,
+        "omittedTexts": 0,
+        "rowCrossingCopies": 1,
+        "milliseconds": 36.93333333333333
+      }
+    }
+  ],
+  "finalTiming": {
+    "inputCount": 824,
+    "tick": 4682,
+    "retrace": 4505,
+    "presentations": 875,
+    "drawingWork": {
+      "instructions": 107316,
+      "portWrites": 956,
+      "repeatOpcodes": 2304,
+      "repeatIterations": 3876,
+      "sprites": 3,
+      "copies": 6,
+      "omittedLines": 3,
+      "omittedTexts": 0,
+      "rowCrossingCopies": 1,
+      "milliseconds": 36.93333333333333
+    },
+    "clockWords": [
+      4631,
+      4682,
+      4561
+    ]
+  },
+  "limitations": [
+    "Cross-version port regression does not prove native whole-level timing or full scanout parity.",
+    "Presentation payloads include alpha wipe masks;their sequence comparison does not replace independent browser canvas checks. Constructor publication is observed at time zero;all subsequent source publications are observed individually,including multiple within one clock event.",
+    "Historical Git revision and unchanged transitive dependencies are required;missing history is a setup failure.",
+    "Line,text,caller/interrupt and remaining-slice I/O costs are still omitted."
+  ],
+  "verify": "node scripts/verify-jungle-component-timing.js"
+}

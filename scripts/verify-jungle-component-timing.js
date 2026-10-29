@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 import {
@@ -76,7 +77,7 @@ export async function baselineJungleReplay(
     manifest: parent,
     JungleClass: historical.Jungle,
     onPoll: (p) => polls.push(p.bytes),
-    onPresentation: (p) => images.push(p.sha256),
+    onPresentation: (p) => images.push(p),
     onCheckpoint: (p) =>
       assert.deepEqual(
         p,
@@ -128,6 +129,8 @@ export function compareCurrentJungle(
   const stream = parent.inputEvents.flatMap((e) => Array(e.count).fill(e.byte));
   if (fault === "missing-input") stream.pop();
   if (fault === "extra-input") stream.push(0);
+  if (fault === "missing-climb")
+    for (let i = 0; i < stream.length; i++) if (stream[i] === 1) stream[i] = 0;
   const current = replayJungleComponent({
     resources,
     manifest: parent,
@@ -157,8 +160,8 @@ export function compareCurrentJungle(
     },
     onPresentation(point) {
       assert.equal(point.index, ++imageCount, "Skipped image checkpoint");
-      assert.equal(
-        point.sha256,
+      assert.deepEqual(
+        point,
         old.images[point.index - 1],
         `Jungle image ${point.index}`,
       );
@@ -234,6 +237,31 @@ export async function verifyJungleComponentTiming(
   assert.deepEqual(fixture.injections, []);
   assert.deepEqual(fixture.fittedInputs, []);
   assert.equal(fixture.partialRestore, false);
+  assert.deepEqual(fixture.clockProvider, {
+    driverNumerator: 1193182,
+    driverDivisors: [1365, 12],
+    retraceHz: 70.086,
+    tieOrder: "driver-first",
+  });
+  assert.deepEqual(Object.keys(fixture.runtimeSources).sort(), [
+    "src/game/ega-work.js",
+    "src/game/jungle-work.js",
+    "src/game/jungle.js",
+    "src/game/timing.js",
+  ]);
+  assert.match(fixture.producerRevision, /^[a-f0-9]{40}$/);
+  try {
+    execFileSync(
+      "git",
+      ["cat-file", "-e", `${fixture.producerRevision}^{commit}`],
+      { stdio: "pipe" },
+    );
+  } catch {
+    throw Error(
+      `SETUP: missing fixture producer revision ${fixture.producerRevision}`,
+    );
+  }
+
   assert.equal(fixture.parent.path, profile.parent);
   const parentBytes = await readFile(fixture.parent.path);
   assert.equal(
@@ -266,15 +294,21 @@ export async function verifyJungleComponentTiming(
     null,
     profile,
   );
-  for (const [fault, reason] of [
-    ["missing-fire", /Jungle input \d+: DS/],
+  const negativeCases = [
+    ["missing-fire", /Jungle gameplay checkpoint 1/],
     ["rng", /Jungle input 4: DS 2229/],
     ["page", /Jungle input 4: DS a407/],
     ["clock", /Jungle timer trace/],
     ["image", /Jungle image 1/],
     ["missing-input", /Unfinished jungle input stream/],
     ["extra-input", /Unconsumed jungle input events/],
-  ])
+  ];
+  if (scenario === "treasure")
+    negativeCases.push([
+      "missing-climb",
+      /Jungle (input \d+: DS|image \d+|gameplay checkpoint \d+)/,
+    ]);
+  for (const [fault, reason] of negativeCases)
     assert.throws(
       () =>
         compareCurrentJungle(resources, parent, fixture, old, fault, profile),
@@ -287,7 +321,7 @@ export async function verifyJungleComponentTiming(
     /Missing jungle timing checkpoints/,
   );
   console.log(
-    `Jungle ${scenario} drawing-time regression:${profile.inputs} exact source-boundary DS comparisons except three separately checked timer words,${profile.images} identical ordered image payloads,20 unchanged gameplay checkpoints;${current.events} current clock events;historical${profile.historicalEvents}-event/20-checkpoint contract preserved;8 negative controls. Port regression,not native whole-level timing parity.`,
+    `Jungle ${scenario} drawing-time regression:${profile.inputs} exact source-boundary DS comparisons except three separately checked timer words,${profile.images} identical ordered image payloads,20 unchanged gameplay checkpoints;${current.events} current clock events;historical${profile.historicalEvents}-event/20-checkpoint contract preserved;${negativeCases.length + 1} negative controls. Port regression,not native whole-level timing parity.`,
   );
 }
 if (

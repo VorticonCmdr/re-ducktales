@@ -407,9 +407,11 @@ separate declaration and fresh passing browser receipt establish acceptance.
 npm run verify:jungle-draw-timing
 ```
 
-This is scoped port/browser acceptance. The old824-input component regression
-still expects an immediate first wipe and fails at checkpoint0; its expected
-outputs have not been overwritten. The shared-runtime inventory guard and older
+This is scoped port/browser acceptance. Both older component contracts now
+have an explicit [timing migration](jungle-component-timing.md): historical
+expectations remain intact, and the current class preserves all1,616 input-boundary
+DS states except three independently checked timer words,1,714 ordered image
+payloads/modes/wipe tokens and40 gameplay checkpoints. The shared-runtime inventory guard and older
 mountain/browser campaign source receipts also need migration. The broader
 required gate, arbitrary-route finishability and complete original elapsed-time
 parity remain unverified. [Detailed contract](jungle-timing.md).

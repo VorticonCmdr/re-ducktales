@@ -87,16 +87,19 @@ Run `npm run verify:jungle-draw-timing` for the combined original-work, unit,
 complete browser route, required-movement negative, timing-bypass negative,
 strict source/receipt and production-build gate.
 
-Historical time-based route contracts have not been rewritten to force passing.
-`node scripts/verify-jungle.js` still rejects its old 824-input regression at the
-first checkpoint: it expects the wipe to begin before drawing completes. Its
-native routine stages pass before that failure. That separate component contract
-still needs an explicit migration; this failure is not waived. Full original input-loop/scanout timing, cave and safari pacing,
-and the broader required integration gate remain unverified.
-
+The historical 824-input failure and 792-input success contracts are now
+preserved and explicitly migrated. The old class first reproduces all original
+port expectations, then the current class must preserve all 1,616 source-boundary
+memory comparisons (apart from three independently checked timer words), 1,714
+ordered payloads/modes/wipe tokens and 40 gameplay checkpoints. New timing
+contracts are separate. Seventeen negative controls check both comparisons.
+[Migration boundary and commands](jungle-component-timing.md).
+Full original input-loop/scanout timing, cave/safari pacing and the broader
+required integration gate remain unverified.
 
 The combined gate passed on `cc716c1`, with zero skipped unit/browser cases.
 [Integration receipt](../reference/jungle-draw-timing-integration.json) pins its
 613-file source archive, runner, raw log, native work evidence, accepted route,
-both browser negative logs and the two separately recorded unwaived regression
-failures. Only status/evidence documentation changed after that verification.
+both browser negative logs and the two regression failures recorded at that
+milestone. The component failure is now migrated as described above; the broader
+source-receipt failure remains open. Only status/evidence documentation changed after that verification.

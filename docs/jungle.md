@@ -686,7 +686,7 @@ RNG,descriptors,histories,dirty lists and all game globals compare exactly.
 No new input schedule,injection,register write or restore was used. This neutral
 initial-viewport frame does not establish original life-reset or scrolling loops.
 
-A separate independent replay starts only from original static files,authored
+The retained historical independent replay starts only from original static files,authored
 campaign seed2725/$44/day23/Easy/variant0,virtual descriptors and its own driver/
 retrace providers. Its five input runs total824 samples:neutral2,Fire1,neutral15,
 Right18,Down788. It carries all game state through20 exact snapshots/full-memory
@@ -695,6 +695,17 @@ requires an exact final failure state at scroll960. Fish travel covers much of
 the level. Expected values are authored port regression data,not original capture
 outputs. Eight negatives corrupt seed,input,dirty invalidation,pixels or required
 case/event counts;missing/corrupt artifacts and unsupported paths fail explicitly.
+
+Both historical component clocks are now preserved by a separate cross-version
+check. The current drawing-time runtime uses new contracts rather than changing
+the old expected values:9,187 clock events for the824-input failure and8,795 for
+the792-input success. All1,616 source input-boundary DS states compare except
+three separately checked timer words,all1,714 ordered payloads/modes/wipe tokens
+match,and all40 gameplay snapshots remain exact. Seventeen added negative
+controls pass. Run `npm run verify:jungle-core`; see
+[jungle-component-timing.md](jungle-component-timing.md) for boundaries,source
+provenance,required history and remaining limits. The native cases above retain
+their own stricter per-routine comparison rules.
 
 `tests/browser/jungle.spec.js` exercises actual verified file loading,keyboard
 flight,jungle jump/walk/drop,life loss,calendar/map return,direct same-location
@@ -736,7 +747,7 @@ outside the browser's virtual allocator boundary. This fixes the previously
 retained life palette in carried campaign state;the visible screen is black
 before the next scene renders,so the omission was not exposed by the old PNGs.
 
-An independent full-level route starts from variant0/Easy,seed11324,$0/day4 and
+The retained historical full-level route starts from variant0/Easy,seed11324,$0/day4 and
 static original files. The inputs total792 samples:neutral2,Fire1,neutral15,
 Right18,neutral8,Down722,Up5,Down2,Up17,Right2. It carries its own state through20
 exact snapshots/full-DS/presentation-payload hashes,6026 driver/retrace events and

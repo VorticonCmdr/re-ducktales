@@ -164,7 +164,16 @@ export function replayJungleComponent({
       "Invalid jungle presentation payload",
     );
     presentation = value;
-    const point = { index: presentation, sha256: sha(jungle.current) };
+    assert.ok(
+      ["overlay", "replace"].includes(jungle.presentationMode),
+      "Unsupported jungle presentation mode",
+    );
+    const point = {
+      index: presentation,
+      sha256: sha(jungle.current),
+      mode: jungle.presentationMode,
+      wipeToken: jungle.wipeToken,
+    };
     mutateObservation?.({ kind: "presentation", point });
     onPresentation(point);
     presentationTiming.push([presentation, driver, retrace, jungle.frames]);

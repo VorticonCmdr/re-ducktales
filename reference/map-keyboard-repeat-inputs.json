@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "id": "original-map-long-held-right",
+  "expectedReads": 36,
+  "cases": [
+    {
+      "name": "right-long-hold",
+      "keys": [
+        "KBD_right"
+      ],
+      "heldReads": 30,
+      "releasedReads": 5
+    }
+  ],
+  "events": [
+    {
+      "beforeRead": 1,
+      "case": "right-long-hold",
+      "keys": [
+        {
+          "key": "KBD_right",
+          "pressed": true
+        }
+      ]
+    },
+    {
+      "beforeRead": 31,
+      "case": "right-long-hold",
+      "keys": [
+        {
+          "key": "KBD_right",
+          "pressed": false
+        }
+      ]
+    }
+  ]
+}

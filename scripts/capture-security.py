@@ -21,10 +21,11 @@ parser.add_argument('--output', required=True)
 parser.add_argument('--port', type=int, default=8387)
 parser.add_argument('--map-inputs', action='store_true', help='Continue through security into the authored natural map-keyboard scenario')
 parser.add_argument('--map-clock', action='store_true', help='Capture35 caller deadline completions and their two successful clock reads after the initial map baseline')
+parser.add_argument('--map-repeat', action='store_true', help='Use the fixed long-held Right profile to investigate external keyboard repeat')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 args = parser.parse_args()
-if args.map_clock and not args.map_inputs:
-    parser.error('--map-clock requires --map-inputs')
+if (args.map_clock or args.map_repeat) and not args.map_inputs:
+    parser.error('--map-clock and --map-repeat require --map-inputs')
 out = (ROOT / args.output).resolve()
 assert out.is_relative_to((ROOT / '.local').resolve()), 'Captures must stay in ignored local storage'
 out.mkdir(parents=True, exist_ok=False)
@@ -254,11 +255,12 @@ try:
     final = state('return',stop)
     remove(return_bp)
     if args.map_inputs:
-        profile_path = ROOT / 'reference/map-keyboard-inputs.json'
+        profile_path = ROOT / ('reference/map-keyboard-repeat-inputs.json' if args.map_repeat else 'reference/map-keyboard-inputs.json')
         profile = json.loads(profile_path.read_text())
-        assert profile['expectedReads'] == 36 and len(profile['events']) == 10
+        expected_sequences = 2 if args.map_repeat else 10
+        assert profile['expectedReads'] == 36 and len(profile['events']) == expected_sequences
         by_read = {e['beforeRead']: e for e in profile['events']}
-        assert len(by_read) == 10 and all(0 <= i < 36 for i in by_read)
+        assert len(by_read) == expected_sequences and all(0 <= i < 36 for i in by_read)
         code = "import{readFile}from'node:fs/promises';import{unpackImage}from'./src/game/executable.js';process.stdout.write(Buffer.from(unpackImage(await readFile('game/DUCKTALE.EXE'))).toString('base64'));"
         main = bytearray(base64.b64decode(subprocess.check_output(['node','--input-type=module','-e',code],cwd=ROOT)))
         assert len(main) == 87664
@@ -350,8 +352,8 @@ try:
                     raw_codes={'KBD_right':0x4d,'KBD_k':0x25,'KBD_left':0x4b,
                                'KBD_kp3':0x51,'KBD_m':0x32,'KBD_up':0x48}
                     for event in by_read[index]['keys']:
-                        expected=128 if event['pressed'] else 0
-                        assert data[0x276c+raw_codes[event['key']]]==expected, f'Authored key not settled before map read{index}: {event}'
+                        expected=[128] if event['pressed'] else ([0,64] if args.map_repeat else [0])
+                        assert data[0x276c+raw_codes[event['key']]] in expected, f'Authored key not settled before map read{index}: {event}'
                 if stage=='end' and index+1 in by_read:
                     event=by_read[index+1]
                     row['scheduledForRead']=index+1
@@ -373,7 +375,7 @@ try:
                                       'initialMapReadExcluded':0,'injections':[],'partialRestore':False,
                                       'scope':'Deadline completion segment after a conditional fresh launch. Earlier spin-poll counts and values are not captured;not complete CPU/IRQ or browser timing parity.'})
         save('map-consumption',map_records)
-        save('map-capture',{'completed':True,'inputReads':36,'authoredSequences':10,
+        save('map-capture',{'completed':True,'inputReads':36,'authoredSequences':expected_sequences,
                            'profile':str(profile_path.relative_to(ROOT)),
                            'profileSha256':sha(profile_path.read_bytes()),
                            'xPointer':x_ptr,'yPointer':y_ptr,'segment':map_cs,

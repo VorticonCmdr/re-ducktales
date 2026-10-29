@@ -29,11 +29,14 @@ parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left 
 parser.add_argument('--pause-clock-test', action='store_true', help='Measure whether the resident driver clock advances during a one-second owned debugger pause;does not change game timing')
 parser.add_argument('--mountain-timing', action='store_true', help='Continue by the natural El Capitan setup into an engine-counted mountain pacing experiment')
 parser.add_argument('--mountain-profile', action='store_true', help='Observe original walking logic,erase,draw and flip boundaries during the mountain timing scenario')
+parser.add_argument('--mountain-page-observer', action='store_true', help='Observe80 rendered-frame samples of the original page byte without execution breakpoints during measurement')
 args = parser.parse_args()
 if args.mountain_timing and (args.map_inputs or args.navigation):
     parser.error('--mountain-timing owns its map setup and is separate from map/navigation profiles')
 if args.mountain_profile and not args.mountain_timing:
     parser.error('--mountain-profile requires --mountain-timing')
+if args.mountain_page_observer and (not args.mountain_timing or args.mountain_profile):
+    parser.error('--mountain-page-observer requires --mountain-timing and is separate from --mountain-profile')
 if (args.map_clock or args.map_repeat or args.map_notice) and not args.map_inputs:
     parser.error('--map-clock,--map-repeat and --map-notice require --map-inputs')
 if args.map_notice and args.map_repeat:
@@ -178,7 +181,7 @@ try:
     info = manager.start()
     client = clients[-1]
     save('engine', info)
-    if args.mountain_profile:
+    if args.mountain_profile or args.mountain_page_observer:
         binary = Path(manager.build_argv()[0]).resolve()
         save('profile-tool-identity', {'executable': str(binary),
              'executableSha256': sha(binary.read_bytes()),
@@ -192,7 +195,7 @@ try:
                                     'scope':'Read-only raw frame/status,BIOS and EGA-driver snapshots at owned CPU stops;no VGA-register writes or fitted timing.'})
     client.post('/api/v1/drive/mount', json={'drive': 'C', 'path': str((ROOT/'game').resolve()), 'readonly': True})
     commands = 'config -get cpu cpu_cycles\nconfig -get cpu core\nconfig -get dosbox memsize\n'
-    if args.mountain_profile:
+    if args.mountain_profile or args.mountain_page_observer:
         commands += 'config -get dosbox vmem_delay\n'
     commands += 'config -get dosbox machine\n'
     client.post('/api/v1/input/type', json={'text': commands, 'cps': 200})
@@ -352,7 +355,8 @@ try:
                                 overlay=overlay, add=add, remove=remove,
                                 resume=resume, state=state, keys=keys,
                                 sequence=sequence, wait_until=wait_until,
-                                save=save, root=ROOT, profile=args.mountain_profile)
+                                save=save, root=ROOT, profile=args.mountain_profile,
+                                page_observer=args.mountain_page_observer)
     if args.map_inputs:
         profile_path = ROOT / ('reference/destination-keyboard-inputs.json' if args.notice_keyboard else 'reference/map-notice-inputs.json' if args.map_notice else 'reference/map-keyboard-repeat-inputs.json' if args.map_repeat else 'reference/map-keyboard-inputs.json')
         profile = json.loads(profile_path.read_text())

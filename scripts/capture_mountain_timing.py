@@ -11,7 +11,8 @@ import time
 
 
 def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
-                            resume, state, keys, sequence, wait_until, save, root, profile=False):
+                            resume, state, keys, sequence, wait_until, save, root, profile=False,
+                            page_observer=False):
     initial_stop = stop['stop_id']
     map_cs = overlay + 0xca
     marker = add(0x1228, map_cs)
@@ -126,6 +127,12 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     assert stop['registers']['eax'] & 255 == 0, 'Nonneutral first mountain input'
     before = state('timing-mountain-first-read', stop)
     remove(marker)
+    if page_observer:
+        from capture_mountain_pages import capture_mountain_pages
+        capture_mountain_pages(client=client, stop=stop, before=before, ds=ds,
+                               sequence=sequence, state=state, wait_until=wait_until,
+                               save=save, root=root)
+        return
     keys(('KBD_right', True))
     if profile:
         # Recorder status exposes the engine's cached emulated PIC clock. It is

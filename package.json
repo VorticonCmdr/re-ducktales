@@ -104,7 +104,10 @@
     "test:office-jungle-entry": "playwright test tests/browser/jungle-input.spec.js",
     "verify:office-jungle-treasure": "node scripts/verify-security-jungle-treasure.js && node scripts/verify-office-jungle-treasure-fixture-negatives.js",
     "test:office-jungle-treasure": "playwright test tests/browser/jungle-input.spec.js tests/browser/jungle-treasure.spec.js tests/browser/jungle-treasure-replay.spec.js",
-    "verify:office-jungle-treasure-negative": "node scripts/verify-security-jungle-treasure-browser-negative.js"
+    "verify:office-jungle-treasure-negative": "node scripts/verify-security-jungle-treasure-browser-negative.js",
+    "verify:office-mountain-ascent": "node scripts/verify-security-mountain-ascent.js && node scripts/verify-security-mountain-fixture-negatives.js",
+    "test:office-mountain-ascent": "playwright test tests/browser/mountain-ascent.spec.js tests/browser/mountain-ascent-replay.spec.js",
+    "verify:office-mountain-ascent-negative": "node scripts/verify-security-mountain-browser-negative.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

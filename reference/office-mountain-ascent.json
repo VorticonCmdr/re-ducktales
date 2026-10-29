@@ -417,9 +417,99 @@
       "path": ".local/office-mountain-ascent-01/capture/complete-map.png",
       "bytes": 27584,
       "sha256": "6bc7db6b5d5877cfb5011cd9daf13dc55a74daec37a60af4d8a205daa354b56f"
+    },
+    "browser-source": {
+      "path": ".local/office-mountain-ascent-browser-01/source-revision.json",
+      "bytes": 54257,
+      "sha256": "d4374e54698a754591239caa8f7b0f722360c97289b2e0263ed92929fe782e9d"
+    },
+    "browser-results": {
+      "path": ".local/office-mountain-ascent-browser-01/browser-results.json",
+      "bytes": 8691,
+      "sha256": "acf21d16b475cc7382fd0aeac0b18883b9fd6d48241d4339a9e750d856d769de"
+    },
+    "browser-checkpoints": {
+      "path": ".local/office-mountain-ascent-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 98558,
+      "sha256": "f9ce93a3d0feaad43ee945fa3798a64f4533a18bdf3289fa03c626e0f18d9f02"
+    },
+    "browser-progress": {
+      "path": ".local/office-mountain-ascent-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/replay-progress.json",
+      "bytes": 3302,
+      "sha256": "088096a098569d2892ba1f38901ba545370bf85b9179d1e47499bd6e30702104"
+    },
+    "browser-events": {
+      "path": ".local/office-mountain-ascent-browser-01/browser/mountain-ascent-replay-rec-e7a92-eports-and-duplicate-notice/actual-events.json",
+      "bytes": 9671,
+      "sha256": "75d0f3ad9f8d1edea5431903e932749760d1ffd6e2b702d36599601900e904ce"
+    },
+    "hard-reference": {
+      "path": ".local/office-mountain-ascent-accepted-01/hard-reference.json",
+      "bytes": 15632,
+      "sha256": "3113111c18541f00d05f93823ace2474ec1c41f322d1306ada04fde6f9c97a45"
+    },
+    "hard-browser-source": {
+      "path": ".local/office-campaign-hard-browser-replay-01/source-revision.json",
+      "bytes": 53518,
+      "sha256": "67d87b8b716f1b8129e4764856f999e6eacebcda26794452085080f24e595d76"
+    },
+    "hard-browser-results": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser-report.json",
+      "bytes": 7677,
+      "sha256": "cc59727487bcda85fa1835a9d5dc97a64454d7a89fa4cb9aa7b9efca8ecc7120"
+    },
+    "hard-regression-checkpoints": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157873,
+      "sha256": "b6b2e6b9af48f792adc20a96ed3ac2c6d29e6b6112cd1720a45715bb393476a4"
+    },
+    "hard-regression-progress": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "50e9ee858c8381d7e99ccf80f9145d0ac3e5ae1c200057b6edcc2ad45bff3d86"
+    },
+    "hard-regression-events": {
+      "path": ".local/office-campaign-hard-browser-replay-01/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373521,
+      "sha256": "720bf26569a42cb00dd6af721b049a7377c09a5d6530ce088b9eda8d7476ff0c"
+    },
+    "jungle-reference": {
+      "path": ".local/office-mountain-ascent-accepted-01/jungle-reference.json",
+      "bytes": 23010,
+      "sha256": "219117fbf362e7543d3126b59bca5ff464bbbae3474c9bc5870ec9f454312594"
+    },
+    "jungle-browser-source": {
+      "path": ".local/office-jungle-treasure-browser-01/source-revision.json",
+      "bytes": 53901,
+      "sha256": "ecc30eae4231037002c5e1a6a4102e125ab735da764845e55bbc49aaf7738444"
+    },
+    "jungle-browser-results": {
+      "path": ".local/office-jungle-treasure-browser-01/browser-results.json",
+      "bytes": 9915,
+      "sha256": "63ef2d390a591ef8bca76265a1fdf53f9df2532451d008637774e8491278da5c"
+    },
+    "jungle-regression-checkpoints": {
+      "path": ".local/office-jungle-treasure-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 95166,
+      "sha256": "c76bbcf513c9f7f2e0a6d8b156566a99e85938299442100c785019d55141294e"
+    },
+    "jungle-regression-progress": {
+      "path": ".local/office-jungle-treasure-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json",
+      "bytes": 3212,
+      "sha256": "f8c6a52867686b65820c4f200f671dd88bbb857fb960a57e3d24ad12a927ec7e"
+    },
+    "jungle-regression-events": {
+      "path": ".local/office-jungle-treasure-browser-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "bytes": 6627,
+      "sha256": "e5d27eff4964164e6f288b4835b81f3fc6994b0a5c2ecf074f9444fd736d3aff"
+    },
+    "browser-negative": {
+      "path": ".local/office-mountain-ascent-accepted-01/browser-negative.log",
+      "bytes": 2402,
+      "sha256": "2d83a4fd0203067019c483237f1cebe414d390c8b84a7f51337c4addfad453d3"
     }
   },
-  "browserVerified": false,
+  "browserVerified": true,
   "buildManifest": "reference/build.json",
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
   "captureProducer": ".local/office-mountain-ascent-01/source-revision.json",
@@ -431,7 +521,7 @@
     "scripts/verify-security-mountain-browser-negative.js": "4d906073c3d769bd0f7298ae54b6a4ec7a0b46478d52b65076819bbaf4bea398",
     "scripts/verify-security-mountain-fixture-negatives.js": "e1f8030706f41b16e6c4950ca6dcdbf47c25d47b44f655af8fa50135b3943352"
   },
-  "evidenceLevel": "Strict recorded-input Game candidate; independent fresh browser acceptance pending. Not native whole-level parity.",
+  "evidenceLevel": "closed-loop port regression and independent fresh browser scenario; not native whole-level parity",
   "environmentContract": {
     "clockOriginMilliseconds": 1,
     "displayMilliseconds": 8,
@@ -449,11 +539,19 @@
     "Pointer normalization only at existing clamp/truncation consumption boundary",
     "Native rival portrait comparison covers only original left128 columns; not native whole-report parity"
   ],
-  "verify": "npm run verify:security-mountain-ascent",
+  "verify": "npm run verify:office-mountain-ascent",
   "injections": [],
   "fittedInputs": [],
   "verificationEdition": "office",
   "captureSourceArchive": ".local/office-mountain-ascent-01/sources",
   "entryStateSha256": "cdc3dfe71c201313f66919d8efe0d77e8b9e9e73ded4597f5d0866ab22247261",
-  "entryPixelsSha256": "217ee5dbff4763abe21c67c227a9c65a90daa74c4a24344a55ab3e030b7ba13a"
+  "entryPixelsSha256": "217ee5dbff4763abe21c67c227a9c65a90daa74c4a24344a55ab3e030b7ba13a",
+  "browserCommit": "c4b1e57b290e39b306e59940e92923d0213f7323",
+  "browserProducer": ".local/office-mountain-ascent-browser-01/source-revision.json",
+  "browserSourceArchive": ".local/office-mountain-ascent-browser-01/sources",
+  "regressionArchives": {
+    "hard": ".local/office-campaign-hard-browser-replay-01/sources",
+    "jungle": ".local/office-jungle-treasure-browser-01/sources"
+  },
+  "regressionEvidenceScope": "Retains separately accepted Hard browser25dab04/498 sources and jungle browserd5ddee6/503 sources. Current src files,HTML,Vite config and recorded-input/clock adapters must remain byte-identical to those producers. Not new executions at the mountain browser revision."
 }

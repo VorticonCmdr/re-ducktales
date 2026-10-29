@@ -71,6 +71,13 @@ its117/74/2 gate remain separate historical evidence in
   fixtures with restored-positive checks pass. Presentation phase changes are
   captured and compared exactly. [Treasure](office-jungle-treasure.md).
 
+- The office-aware focused mountain summit/duplicate-notice route now passes27
+  exact Game/browser state/pixel checkpoints,104 events and764 unchanged samples.
+  It returns8100 dollars onday17 with three lives and handles both rival reports.
+  Two fresh browser cases,five comparison controls and a missing real movement
+  key pass;required PNG corruption/removal and restoration are checked separately.
+  [Mountain](office-mountain-ascent.md).
+
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
 - Office→map→departure→keyboard flight→landing or crash/repair→expedition→results
@@ -168,7 +175,7 @@ npm run test:hard-office-campaign
 npm run verify:jungle
 npm run verify:office-jungle-entry
 npm run verify:office-jungle-treasure
-npm run verify:security-mountain-ascent
+npm run verify:office-mountain-ascent
 npm run verify:security-lightning
 npm run verify:security-hard-expeditions
 npm run test:security-hard-expeditions

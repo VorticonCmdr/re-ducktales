@@ -1,5 +1,9 @@
 # Security-aware Easy mountain summit
 
+The isolated office branch now uses the separate
+[office-aware mountain route](office-mountain-ascent.md). This document retains
+the security-only historical evidence.
+
 The original 764-sample El Capitan controls now work through the first-map
 security challenge and its carried random state. No game state, seeds or timer
 values are injected. Historical `reference/mountain-ascent.json` remains unchanged.

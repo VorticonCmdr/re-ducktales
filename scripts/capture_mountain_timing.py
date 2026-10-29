@@ -127,6 +127,14 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     before = state('timing-mountain-first-read', stop)
     remove(marker)
     keys(('KBD_right', True))
+    # Replacing a breakpoint at the currently paused IP can re-hit that same
+    # instruction. Cross the known post-update boundary before arming a counted
+    # reader breakpoint; otherwise hit_count would include a duplicate read.
+    barrier = add(0x145d)
+    stop = resume(stop['stop_id'])
+    assert stop['breakpoint']['id'] == barrier
+    state('timing-mountain-first-body-end', stop, False)
+    remove(barrier)
     # Fourteen subsequent read boundaries; no model-driven polling or inputs
     # occur between them. Skipped hits still count and are retained in the stop.
     marker = add(0x31c, ignore_count=13)
@@ -141,6 +149,11 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     assert before[0x4d34] == after[0x4d34] == 3, 'Life reset invalidates this segment'
     assert before[0x5b3c] == after[0x5b3c], 'Destination changed'
     keys(('KBD_right', False))
+    barrier = add(0x145d)
+    stop = resume(stop['stop_id'])
+    assert stop['breakpoint']['id'] == barrier
+    state('timing-mountain-last-body-end', stop, False)
+    remove(barrier)
     marker = add(0x31c)
     stop = resume(stop['stop_id'])
     assert stop['breakpoint']['id'] == marker

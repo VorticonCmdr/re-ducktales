@@ -1,0 +1,127 @@
+{
+  "buildManifest": "reference/build.json",
+  "startingRecipe": "Fresh supported originals,BIOS0,muted; opening skip,original Hard menu,security fixedRight/Fire,then all actual keyboard/canvas/buttons. No game state injection or RNG reseeding. Original office wipe/reveal and held/released key slots; acknowledge reports after delayed office departures. No simulation changes or fitted control samples.",
+  "environment": {
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "sound": false,
+    "capturePhase": "before-target-handler"
+  },
+  "requiredInputSamples": {
+    "jungle": 447,
+    "mountain": 671
+  },
+  "comparisonRules": "All28 canonical full Game state hashes and all28 independent320x200 browser pixel hashes,exact recorded consumed DOM inputs and observation/display times,1629 Game flight renders including one supported original raw-frame alias. No tolerance,fitted clocks or result-derived replay controls.",
+  "injections": [],
+  "fittedInputs": [],
+  "exclusions": [
+    "This is port regression and browser acceptance,not an original whole-campaign/IRQ/waveform comparison.",
+    "Intermediate native pixel parity outside dedicated source segment fixtures remains unproven.",
+    "Hard run01 unexpected second navigation and run02 incomplete rival-report acknowledgement are retained locally and excluded.",
+    "Ending is observed at first ready sample with remaining700; historical699 is not fitted or used as a timing tolerance."
+  ],
+  "emulator": null,
+  "id": "hard-linked-campaign-original-office",
+  "verificationEdition": "office",
+  "expectedHard": true,
+  "pendingBrowserReplay": true,
+  "evidenceLevel": "Port campaign candidate; independent browser replay pending.",
+  "artifactRoot": ".local/office-campaign-hard-accepted-01",
+  "captureRoot": ".local/office-campaign-hard-03/browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result",
+  "captureProducer": ".local/office-campaign-hard-03/source-revision.json",
+  "captureSourceArchive": ".local/office-campaign-hard-03/sources",
+  "captureCommit": "e27efbefc011db7abdb06e886fe72659c3099554",
+  "expectedCheckpointCount": 28,
+  "requiredEventCount": 4140,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "mountain-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "rival-report",
+    "rival-report",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedFlightPresentations": 1629,
+  "expectedFlagAliasPresentations": 1,
+  "expectedEnding": {
+    "phase": "cover",
+    "won": false,
+    "banked": 17200,
+    "rivalBanked": 61000,
+    "day": 31,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 37,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      2,
+      31,
+      32,
+      34
+    ],
+    "rivalCollected": [
+      9,
+      10,
+      12,
+      13,
+      15,
+      21,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30
+    ],
+    "rivalUnlockMask": 15
+  },
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "artifacts": {
+    "environment": {
+      "path": ".local/office-campaign-hard-accepted-01/environment.json",
+      "bytes": 265,
+      "sha256": "cb2144f523cd3b732b7cf0d7b9a6931be53c8c67c6dedea8241665ea4115defd"
+    },
+    "captured-events": {
+      "path": ".local/office-campaign-hard-accepted-01/captured-events.json",
+      "bytes": 496581,
+      "sha256": "420c9d9f28fcdabc62d2d8fad9daf7435b8a33a80a79f5e92a621e8c8b4fe11a"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/office-campaign-hard-accepted-01/campaign-checkpoints.json",
+      "bytes": 157873,
+      "sha256": "b6b2e6b9af48f792adc20a96ed3ac2c6d29e6b6112cd1720a45715bb393476a4"
+    },
+    "timeline": {
+      "path": ".local/office-campaign-hard-accepted-01/timeline.json",
+      "bytes": 2529,
+      "sha256": "a750175c7f9b7b90c815a36ee763a4093430a8775fe0590d5cfc3a0483ca715d"
+    }
+  }
+}

@@ -54,16 +54,23 @@ test("original map pixels and keyboard bank round trip", async ({ page }) => {
   await point(c, 212, 131);
   await expect.poll(async () => (await state(c)).campaign.asset).toBe(0);
   await page.keyboard.press("Space");
-  await expect.poll(async () => (await state(c)).campaign.info).toBe(true);
+  await expect
+    .poll(async () => (await state(c)).campaign.destination?.ready)
+    .toBe(true);
   expect((await state(c)).campaign.travelDays).toBe(3);
   // Default is Map: inspecting and cancelling never advances the calendar.
   await page.keyboard.press("Space");
   await expect.poll(async () => (await state(c)).campaign.info).toBe(false);
   expect((await state(c)).campaign.day).toBe(1);
   await page.keyboard.press("Space");
-  await expect.poll(async () => (await state(c)).campaign.info).toBe(true);
+  await expect
+    .poll(async () => (await state(c)).campaign.destination?.ready)
+    .toBe(true);
   await page.keyboard.press("ArrowRight");
   await expect.poll(async () => (await state(c)).campaign.choice).toBe(1);
+  await expect
+    .poll(async () => (await state(c)).campaign.destination?.ready)
+    .toBe(true);
   await page.keyboard.press("Space");
   await expect.poll(async () => (await state(c)).campaign.day).toBe(4);
   expect((await state(c)).campaign.location).toBe(0);
@@ -126,9 +133,9 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
   await until((s) => s.scene === "map");
   await point(c, 37, 33);
   await press("Space");
-  await until((s) => s.campaign.info);
+  await until((s) => s.campaign.destination?.ready);
   await press("ArrowRight");
-  await until((s) => s.campaign.choice === 1);
+  await until((s) => s.campaign.choice === 1 && s.campaign.destination?.ready);
   await press("Space");
   await until((s) => s.scene === "departure");
   await expect(page.locator("#diagnostic")).toBeHidden();
@@ -213,9 +220,14 @@ for (const [name, x, y, activity] of [
     await expect(c).toHaveAttribute("data-scene", "map");
     await point(c, x, y);
     await page.keyboard.press("Space");
-    await expect.poll(async () => (await state(c)).campaign.info).toBe(true);
+    await expect
+      .poll(async () => (await state(c)).campaign.destination?.ready)
+      .toBe(true);
     await page.keyboard.press("ArrowRight");
     await expect.poll(async () => (await state(c)).campaign.choice).toBe(1);
+    await expect
+      .poll(async () => (await state(c)).campaign.destination?.ready)
+      .toBe(true);
     await page.keyboard.press("Space");
     await expect(c).toHaveAttribute("data-scene", "departure");
     expect((await state(c)).departure.activity).toBe(activity);
@@ -293,9 +305,9 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   await until((s) => s.scene === "map");
   await point(c, 37, 33);
   await press("Space");
-  await until((s) => s.campaign.info);
+  await until((s) => s.campaign.destination?.ready);
   await press("ArrowRight");
-  await until((s) => s.campaign.choice === 1);
+  await until((s) => s.campaign.choice === 1 && s.campaign.destination?.ready);
   await press("Space");
   await until((s) => s.scene === "departure");
   await page.keyboard.down("Space");

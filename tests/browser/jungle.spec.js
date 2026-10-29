@@ -54,9 +54,14 @@ test("jungle departure, keyboard movement, life loss and campaign retry or rival
     position: { x: (bounds.width * 64) / 320, y: (bounds.height * 73) / 200 },
   });
   await page.keyboard.press("Space");
-  await expect.poll(async () => (await state()).campaign.info).toBe(true);
+  await expect
+    .poll(async () => (await state()).campaign.destination?.ready)
+    .toBe(true);
   await page.keyboard.press("ArrowRight");
   await expect.poll(async () => (await state()).campaign.choice).toBe(1);
+  await expect
+    .poll(async () => (await state()).campaign.destination?.ready)
+    .toBe(true);
   await page.keyboard.press("Space");
   await expect(canvas).toHaveAttribute("data-scene", "departure");
   expect((await state()).departure.racing).toBe(false);

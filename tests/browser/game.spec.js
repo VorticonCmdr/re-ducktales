@@ -72,7 +72,8 @@ test("keyboard route loads originals, dives, banks, returns and restarts", async
   await expect
     .poll(
       async () =>
-        JSON.parse(await canvas.getAttribute("data-state")).campaign.info,
+        JSON.parse(await canvas.getAttribute("data-state")).campaign.destination
+          ?.ready,
     )
     .toBe(true);
   await page.keyboard.press("ArrowRight");
@@ -82,6 +83,13 @@ test("keyboard route loads originals, dives, banks, returns and restarts", async
         JSON.parse(await canvas.getAttribute("data-state")).campaign.choice,
     )
     .toBe(1);
+  await expect
+    .poll(
+      async () =>
+        JSON.parse(await canvas.getAttribute("data-state")).campaign.destination
+          ?.ready,
+    )
+    .toBe(true);
   await page.keyboard.press("Space");
   await expect
     .poll(

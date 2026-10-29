@@ -50,9 +50,12 @@ test("earn the transmitter in Too-Pei, choose atomic transport and enter the nex
   await until((s) => s.scene === "map");
   await point(240, 70);
   await press("Space");
+  await until((s) => s.campaign.destination?.ready);
   expect((await state()).campaign.choice).toBe(0);
   await press("ArrowRight");
+  await until((s) => s.campaign.choice === 1 && s.campaign.destination?.ready);
   await press("Space");
+  await until((s) => s.scene === "departure");
   expect((await state()).departure.activity).toBe("cave");
   // The security-aware first departure races even on Easy. Fly the actual
   // two-day route; a deliberate crash now awards the transmitter to Glomgold.
@@ -158,8 +161,10 @@ test("earn the transmitter in Too-Pei, choose atomic transport and enter the nex
   await until((s) => s.scene === "map");
   await point(39, 48);
   await press("Space");
+  await until((s) => s.campaign.destination?.ready);
   expect((await state()).campaign.choice).toBe(0);
   await press("ArrowLeft");
+  await until((s) => s.campaign.choice === 2 && s.campaign.destination?.ready);
   expect((await state()).campaign.choice).toBe(2);
   await canvas.screenshot({ path: ".local/browser-results/atomic-choice.png" });
   await page.keyboard.press("Space");

@@ -68,9 +68,9 @@ test("mountain arrival, keyboard movement, hook throw, life loss and direct retr
     position: { x: (r.width * 36) / 320, y: (r.height * 61) / 200 },
   });
   await press("Space");
-  await until((s) => s.campaign.info);
+  await until((s) => s.campaign.destination?.ready);
   await press("ArrowRight");
-  await until((s) => s.campaign.choice === 1);
+  await until((s) => s.campaign.choice === 1 && s.campaign.destination?.ready);
   await press("Space");
   await until((s) => s.scene === "departure");
   expect((await state(c)).departure.racing).toBe(false);

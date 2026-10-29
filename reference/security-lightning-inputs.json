@@ -1,0 +1,72 @@
+{
+  "id": "security-aware-lightning-external-controls",
+  "inputCount": 35,
+  "sha256": "1e88d6e1c4c2b584fc45dee4c47bc41c08c10776321dabb6a5363ac39631ebd0",
+  "events": [
+    {
+      "byte": 192,
+      "count": 16
+    },
+    {
+      "byte": 197,
+      "count": 3
+    },
+    {
+      "byte": 192,
+      "count": 1
+    },
+    {
+      "byte": 193,
+      "count": 2
+    },
+    {
+      "byte": 192,
+      "count": 1
+    },
+    {
+      "byte": 197,
+      "count": 2
+    },
+    {
+      "byte": 192,
+      "count": 1
+    },
+    {
+      "byte": 193,
+      "count": 2
+    },
+    {
+      "byte": 192,
+      "count": 1
+    },
+    {
+      "byte": 197,
+      "count": 2
+    },
+    {
+      "byte": 192,
+      "count": 1
+    },
+    {
+      "byte": 193,
+      "count": 2
+    },
+    {
+      "byte": 192,
+      "count": 1
+    }
+  ],
+  "provenance": {
+    "scope": "Player route candidate from carried port planning;not a native input recording. Browser and independent DOM replay required.",
+    "entryManifest": "reference/security-lightning-entry.json",
+    "planningCommand": "node scripts/explore-security-lightning.js --policy=0,15,2",
+    "policy": {
+      "altitude": [
+        0,
+        15
+      ],
+      "climbHeading": 2
+    },
+    "postSamples": "Hold Space,make ArrowDown after sample35,then issue no input through natural strike36 and three further frames. Internal neutral input36 is not an external event."
+  }
+}

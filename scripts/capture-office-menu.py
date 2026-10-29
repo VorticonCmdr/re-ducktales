@@ -160,9 +160,15 @@ try:
     sequence(startup)
     stop = resume(paused['stop_id'])
     assert stop['breakpoint']['id'] == main_bp and stop['registers']['cs'] == load
-    replay = wait_until(lambda:client.get('/api/v1/input/replay/status'),lambda v:not v['active'])
-    assert replay['dispatched'] == 10 and replay['remaining'] == 0
-    save('startup-inputs',{'events':startup,'receipt':replay,'stopBeforeOfficeDispatch':stop,'scope':'Remaining startup events are deliberately dispatched while stopped before the office call; queued keys remain original input flags.'})
+    # Setup is conditional on the verified source call boundary. A timed
+    # sequence stops advancing while paused; cancel its now-unneeded tail.
+    # Required office scenario inputs start only after this setup boundary.
+    prefix = client.get('/api/v1/input/replay/status')
+    cancelled = client.delete('/api/v1/input/replay')
+    after_cancel = client.get('/api/v1/input/replay/status')
+    assert not after_cancel['active'] and after_cancel['remaining'] == 0
+    save('startup-inputs',{'plannedSetupEvents':startup,'dispatchedPrefix':prefix,'cancelledSetupTail':cancelled,'afterCancel':after_cancel,'stopBeforeOfficeDispatch':stop,'scope':'Conditional setup ends at the original office-call boundary. Cancelled setup tail is explicit, not part of the required office experiment.'})
+    keys(('KBD_n',False),('KBD_space',False),('KBD_enter',False))
     remove(main_bp)
     helper_bp = add(0x1e9e,helper,{'register':'ax','op':'eq','value':10})
     for attempt in range(32):
@@ -244,9 +250,16 @@ try:
     assert final[0x276c:0x27ec] == bytes(128)
     assert struct.unpack_from('<H',initial,0x2229)[0] == struct.unpack_from('<H',final,0x2229)[0]
     remove(return_bp)
+    # The compared endpoint is already captured. Resume only to dispatch
+    # cleanup key releases; subsequent guest execution is outside the segment.
+    before_cleanup = client.get('/api/v1/input/replay/status')
+    assert not before_cleanup['active'] and before_cleanup['remaining'] == 0
     keys(('KBD_right',False),('KBD_space',False))
+    cleanup_resume = client.post('/api/v1/debug/continue')
+    assert cleanup_resume['resumed_from_stop_id'] == stop['stop_id']
     replay = wait_until(lambda:client.get('/api/v1/input/replay/status'),lambda v:not v['active'])
     assert replay['remaining'] == 0
+    save('input-cleanup',{'beforeCleanup':before_cleanup,'resume':cleanup_resume,'releaseReceipt':replay,'scope':'Post-capture execution only delivers final key releases and is excluded from compared office state.'})
     assert not owned and len(consumption) == 63
     save('inputs',inputs)
     save('consumption',consumption)

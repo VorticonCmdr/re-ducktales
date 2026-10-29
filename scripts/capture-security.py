@@ -191,7 +191,10 @@ try:
                                     'bridgeClientSha256':sha((bridge/'dosbox_mcp/client.py').read_bytes()),
                                     'scope':'Read-only raw frame/status,BIOS and EGA-driver snapshots at owned CPU stops;no VGA-register writes or fitted timing.'})
     client.post('/api/v1/drive/mount', json={'drive': 'C', 'path': str((ROOT/'game').resolve()), 'readonly': True})
-    commands = 'config -get cpu cpu_cycles\nconfig -get cpu core\nconfig -get dosbox memsize\nconfig -get dosbox machine\n'
+    commands = 'config -get cpu cpu_cycles\nconfig -get cpu core\nconfig -get dosbox memsize\n'
+    if args.mountain_profile:
+        commands += 'config -get dosbox vmem_delay\n'
+    commands += 'config -get dosbox machine\n'
     client.post('/api/v1/input/type', json={'text': commands, 'cps': 200})
     config_screen = wait_until(lambda: client.get('/api/v1/video/text'), lambda v: 'svga_s3' in json.dumps(v))
     save('configuration', {'commands': commands, 'screen': config_screen, 'argv': manager.build_argv()})

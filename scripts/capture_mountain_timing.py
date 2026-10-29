@@ -128,14 +128,38 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     remove(marker)
     keys(('KBD_right', True))
     if profile:
+        # Recorder status exposes the engine's cached emulated PIC clock. It is
+        # an observer, not a timer injected into the guest. First prove that it
+        # is invariant while the CPU is paused. The stop response's duration is
+        # based on recorded events and is NOT an elapsed-clock observation.
+        client.post('/api/v1/input/record/start')
+        def clock():
+            value = client.get('/api/v1/input/record/status')
+            assert value['recording'] and not value['paused']
+            assert value['event_count'] == 0 and not value['truncated']
+            return value
+        clock_before = clock()
+        paused_before = state('timing-profile-clock-before', stop, False)
+        time.sleep(0.15)
+        clock_after = clock()
+        paused_after = state('timing-profile-clock-after', stop, False)
+        assert clock_before == clock_after and paused_before == paused_after
+        save('timing-profile-clock-control', {'completed': True,
+             'before': clock_before, 'after': clock_after,
+             'hostPauseMillisecondsMinimum': 150,
+             'scope': 'Cached PIC clock;bounded by independent resident timer,not exact per-instruction time'})
         stages = [(name, ip, add(ip)) for name, ip in [
             ('before-erase', 0x1320), ('after-erase', 0x132a),
+            ('after-footer', 0x1335), ('after-money', 0x1356),
+            ('after-hazards', 0x137d), ('after-actor', 0x13a1),
             ('after-draw', 0x1436), ('before-flip', 0x145d)]]
         rows = []
         current = before
+        current_pic_ms = clock_after['duration_ms']
         started = time.monotonic()
         for index in range(14):
             row = {'index': index, 'inputClock': struct.unpack_from('<I', current, 0x2225)[0],
+                   'inputPicMilliseconds': current_pic_ms,
                    'inputByte': stop['registers']['eax'] & 255, 'stages': []}
             assert row['inputByte'] == (0 if index == 0 else 3)
             for name, ip, stage in stages:
@@ -143,6 +167,7 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
                 assert stop['breakpoint']['id'] == stage
                 data = state(f'timing-profile-{index:02d}-{name}', stop, False)
                 row['stages'].append({'name': name, 'ip': ip,
+                    'picMilliseconds': clock()['duration_ms'],
                     'clock': struct.unpack_from('<I', data, 0x2225)[0]})
                 if index == 0 and name == 'before-flip':
                     state('timing-mountain-first-body-end', stop, False)
@@ -152,12 +177,17 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
             current = state(f'timing-profile-{index+1:02d}-input', stop, False)
             assert stop['registers']['eax'] & 255 == 3
             row['nextInputClock'] = struct.unpack_from('<I', current, 0x2225)[0]
+            current_pic_ms = clock()['duration_ms']
+            row['nextInputPicMilliseconds'] = current_pic_ms
             rows.append(row)
             remove(marker)
         host_ms = (time.monotonic() - started) * 1000
         for _, _, stage in stages:
             remove(stage)
         after = state('timing-mountain-last-read', stop)
+        recording = client.post('/api/v1/input/record/stop', params={'include_events': 'false'})
+        assert recording['event_count'] == 0 and not recording['truncated']
+        save('timing-profile-recorder-completion', recording)
         save('mountain-frame-profile', {'completed': True, 'expectedFrames': 14,
              'rows': rows, 'injections': [], 'partialRestore': False,
              'scope': 'Conditional per-section original timer observations,not CPU instruction counts or uninterrupted scanout'})

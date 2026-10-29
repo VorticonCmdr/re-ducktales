@@ -263,11 +263,11 @@
   "fittedInputs": [],
   "verify": "npm run verify:security-lightning",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "4eea3c1fdb2fca8a8fba2627052efdcab592de3e91249c3762ccba2560a0b45f",
+    "scripts/replay-hard-campaign.js": "422489dc5ab92e7f7397304719c4dfd491fca760351082f12be06407c2cc4fe4",
     "scripts/verify-security-lightning.js": "5f6f085b5c648d02aaab64aec07f834a1a61743992e77a15edc460d99d760ea4",
     "scripts/verify-security-lightning-browser-negative.js": "c4665d2c8ef81a9f541019b36c661b17395a25466cf12a5fbd6d9961fcfb1e33",
     "scripts/verify-security-lightning-fixture-negatives.js": "8025a9a8a904d26df08e1450857cf39ca2c7684224413e0fe61352543b94fb80",
-    "tests/browser/helpers/recorded-campaign.js": "e2dba6254b13e98d54b943a09f59959a4d9f8bb1b488b930ba1264b70ef9f72f",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "tests/browser/flight-lightning.spec.js": "821580b74edcdafc4da07ec85b75634b9ab41a00c251043807fc3b90f89afcbc",
     "tests/browser/flight-lightning-replay.spec.js": "3a2b5b52266c560812925302d27139d076214a3549c0cdc44cc1e1ee2df5df6c"
   },

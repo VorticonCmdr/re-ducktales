@@ -368,7 +368,7 @@
   "browserSourceArchive": ".local/security-easy-campaign-browser-replay-01/sources",
   "replayCommit": "75ff79ae7fa56f604a0b85f1cd441632699bd6e7",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "4eea3c1fdb2fca8a8fba2627052efdcab592de3e91249c3762ccba2560a0b45f",
+    "scripts/replay-hard-campaign.js": "422489dc5ab92e7f7397304719c4dfd491fca760351082f12be06407c2cc4fe4",
     "scripts/verify-easy-campaign.js": "9712ccc73eed52e82ce769d33b94a7cb08c6f2d1c27c012e359007a06abc0803",
     "scripts/verify-easy-campaign-browser-negative.js": "1ef9a5c489f0b5dae22cfd0c6ba7ba2b2b3cbc957d5f07fd7d5602b02d7a32a6",
     "scripts/verify-mixed-campaign-negative.js": "d404367a54e8f144325187b4c761300a1aa8fc5f034727840fb594a658164350",

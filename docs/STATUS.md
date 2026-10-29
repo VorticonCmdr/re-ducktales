@@ -90,8 +90,8 @@ pictures and traces stay local. Production visitors select their own originals.
 
 ## Remaining work
 
-- Promote the accepted security-aware campaign recordings as defaults, then pass
-  the full branch gate before merging. Historical recordings remain separate.
+- Security-aware Easy/Hard campaigns are now the default current checks. Pass the
+  full branch gate before merging; historical recordings remain separate.
 - Original office entry/selection, investment transitions and several map/notice
   presentations remain incomplete. Broader destination/difficulty coverage and
   original whole-scene comparisons are needed.

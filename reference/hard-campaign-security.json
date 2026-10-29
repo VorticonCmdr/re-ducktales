@@ -395,11 +395,11 @@
   "fullBranchGate": "pending",
   "browserReplayRoot": ".local/hard-campaign/security-browser-replay-01",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "4eea3c1fdb2fca8a8fba2627052efdcab592de3e91249c3762ccba2560a0b45f",
-    "scripts/verify-hard-campaign.js": "931201156cf2d3488ec53bba8d01d80fb30b5a3a7b1b12fc3b64517a1dc1cf60",
-    "scripts/verify-hard-campaign-browser-negative.js": "1c3f4b33b8f312fb5458faf362a3368283a99f578f4499a951815b2bd9bb591f",
-    "tests/browser/hard-campaign.spec.js": "c25e83216b40920cace0013b39c21652f6076df648dfb15023c8a7a324a8ab96",
-    "tests/browser/helpers/recorded-campaign.js": "e2dba6254b13e98d54b943a09f59959a4d9f8bb1b488b930ba1264b70ef9f72f"
+    "scripts/replay-hard-campaign.js": "422489dc5ab92e7f7397304719c4dfd491fca760351082f12be06407c2cc4fe4",
+    "scripts/verify-hard-campaign.js": "8b46e37082aa7facbf603cfe6db666634ba82e337f43835925c427e79effadc9",
+    "scripts/verify-hard-campaign-browser-negative.js": "a9b46c6983b713250edf8d4eb6fde6f8ce6fa35d4f45fff0140e22aff3e67433",
+    "tests/browser/hard-campaign.spec.js": "46bf8dc98a9639417333c6adefb9a0e26c10ad7440b160d8f114cae5d5420a53",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e"
   },
   "replayCommit": "3c935850f084b36305cba54307c500259ea3aa1b",
   "verificationToolCommit": "805f950b81ddc45a4ecb04c8285d3f3ecd86877d",

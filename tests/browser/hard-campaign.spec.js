@@ -13,7 +13,7 @@ test("Hard campaign carries all four families through the final bank and result"
     : JSON.parse(
         await readFile(
           process.env.DUCKTALES_CAMPAIGN_MANIFEST ??
-            "reference/hard-campaign.json",
+            "reference/hard-campaign-security.json",
           "utf8",
         ).catch(() => {
           throw Error(

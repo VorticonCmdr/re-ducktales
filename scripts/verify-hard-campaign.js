@@ -5,7 +5,7 @@ import { createHash } from "node:crypto";
 
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/hard-campaign.json";
+  "reference/hard-campaign-security.json";
 const verificationRoot =
   manifestPath === "reference/hard-campaign-security.json"
     ? ".local/hard-security-campaign-verification"

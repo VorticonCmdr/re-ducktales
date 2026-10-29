@@ -18,6 +18,7 @@ export class SecurityScreen {
     day,
     money,
     audioEnabled = false,
+    originalSecurity = false,
     pollInput = () => true,
     readInput = null,
     flushInput = () => {},
@@ -34,6 +35,7 @@ export class SecurityScreen {
       throw Error("Missing original security resources");
     if (
       typeof audioEnabled !== "boolean" ||
+      typeof originalSecurity !== "boolean" ||
       typeof pollInput !== "function" ||
       (readInput !== null && typeof readInput !== "function") ||
       typeof flushInput !== "function"
@@ -51,6 +53,7 @@ export class SecurityScreen {
       day,
       money,
       audioEnabled,
+      originalSecurity,
       pollInput,
       readInput,
       onFlushInput: flushInput,
@@ -231,7 +234,14 @@ export class SecurityScreen {
     yield* this.bands("wipe", BLACK);
     this.sound(33);
     this.flushInput();
-    this.outcome = { code: 1, seed: this.seed };
+    // Restore the comparison bypassed by Overlay2:0c9c EB04 only on opt-in.
+    this.outcome = {
+      code:
+        this.originalSecurity && this.selection !== this.setup.targetRow
+          ? 0
+          : 1,
+      seed: this.seed,
+    };
     this.phase = "complete";
   }
   resume() {

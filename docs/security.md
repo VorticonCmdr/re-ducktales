@@ -13,6 +13,48 @@ the retained native/browser artifacts; missing or corrupt local files fail setup
 The development capture used an isolated5197 server; the standard command owns
 its normal5186 test server.
 
+## Optional restoration
+
+Below the game screen, **Original security system** is unchecked on a fresh
+page. The default preserves this build's patched behavior: the warning and
+three alarm flashes play after wrong choices, but entry still succeeds.
+Checking it restores rejection after two wrong answers. A correct answer on
+either attempt succeeds. A rejected session stays stopped until Restart;
+unchecking after rejection does not reopen it. The preference survives Restart
+within the page, and changing it during an active challenge changes the final
+check without resetting attempts or consuming RNG. It is not stored across
+page reloads. The browser logs `Security System: correct code is XXXX` once per
+challenge, in both modes. Logging is an observer and adds no replay events.
+
+Restoration is **statically inferred from surviving code**, not validated against
+an independently sourced unpatched edition. For the exact executable hash below:
+
+- Overlay2 `0c96`: `8b46fc 3946ee eb04 2bc0 eb03 b80100` loads the
+  selected row, compares the correct row, then unconditionally jumps over the
+  zero return. Restoring the equality decision corresponds to `74 04` in place
+  of `eb 04`; the JavaScript opt-in returns 0 when the final row is wrong.
+- Overlay2 `0f0a` calls the challenge; `0f0f: 09ed` tests BP, followed by
+  `0f11: 7529`. The surviving failure path is reached by testing AX instead
+  (the inferred original test is `09c0`). It cleans up and calls resident
+  `198e:013a`, which prints its message and terminates through DOS exit helper
+  `140e:1dd6`. The browser stops on the black cleanup frame and displays a
+  restart message below it; it does not reproduce a DOS terminal.
+- Ghidra programs: `OFFICE_MAP.EXE` `1000:07ad` and `1000:0f0a`,
+  `DUCK_UNPACKED.EXE` `198e:013a` / `140e:1dd6`. Check raw bytes when interpreting
+  the return comparison: the decompiler removes its patched unreachable block,
+  and dry-run far-call formatting has known relocation/decoding limitations.
+- Supported `DUCKTALE.EXE` SHA-256:
+  `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
+  Originals are never patched or overwritten.
+
+Run `npm run verify:security-restoration`. Its three real-browser cases cover
+correct-answer opt-in, default forced success with all six alarm pictures and
+Tandy acknowledgments, and restored rejection/console hint/restart. A fourth
+intentional browser run omits the checkbox input and must fail the rejection
+checkpoint. Native comparisons in `verify:security-core` remain comparisons
+against the supplied **patched** executable. They do not establish native
+unpatched-failure timing or DOS terminal presentation parity.
+
 ## Evidence and behavior
 
 Only the supported22-file build in `reference/build.json` is covered. The

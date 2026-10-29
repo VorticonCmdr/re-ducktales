@@ -53,6 +53,7 @@ function unlockTandyAudio() {
   }
 }
 const held = new Set();
+const reportedSecurityCodes = new WeakSet();
 function flightControls() {
   dispatch(
     heldControlEvent(held, game?.scene === "office" && !!game.officeMenu),
@@ -104,6 +105,7 @@ async function load(read) {
         entries: resources.archives.get("MAC.ARC"),
       },
       audioEnabled: $("audio").checked,
+      originalSecurity: $("original-security").checked,
       locations: parseLocations(resources.archives.get("LOC.ARC")),
       loot: parseLoot(resources.archives.get("LOOT.ARC")),
       investmentResources: {
@@ -181,6 +183,11 @@ $("back").onclick = () => {
   $("game").focus();
 };
 $("pause").onclick = () => dispatch({ type: "pause" });
+$("original-security").onchange = () =>
+  dispatch({
+    type: "original-security",
+    enabled: $("original-security").checked,
+  });
 $("quit").onclick = () => dispatch({ type: "quit" });
 $("quit-yes").onclick = () => dispatch({ type: "quit-yes" });
 $("quit-no").onclick = () => dispatch({ type: "quit-no" });
@@ -332,6 +339,13 @@ function stopSound() {
   }
 }
 function effects() {
+  // A browser hint only: never add a diagnostic event to deterministic replays.
+  if (game.security?.setup && !reportedSecurityCodes.has(game.security)) {
+    console.log(
+      `Security System: correct code is ${game.security.setup.target}`,
+    );
+    reportedSecurityCodes.add(game.security);
+  }
   for (const event of game.drainEffects()) {
     if (event.type === "flushControls") held.clear();
     if (event.type === "stopAudio") stopSound();
@@ -420,6 +434,7 @@ function frame() {
       for (const id of ["fire", "up", "down", "left", "right"])
         $(id).disabled =
           !!overlay ||
+          game.security?.outcome?.code === 0 ||
           !!(
             game.scene === "map" &&
             game.campaign.destinationWaits &&
@@ -475,7 +490,9 @@ function frame() {
               ? "Opening investments…"
               : "Entering the money bin…"
           : game.scene === "security"
-            ? "Security system · Arrows choose · Fire confirms"
+            ? game.security.outcome?.code === 0
+              ? "Security check failed · Restart to play again"
+              : "Security system · Arrows choose · Fire confirms"
             : game.scene === "bank"
               ? `Macaroon bank · Banked $${game.bank.banked} · Glomgold $${game.bank.rivalBanked} · ${game.bank.ready ? "Fire to continue" : "Counting deposits"}`
               : game.scene === "ending"

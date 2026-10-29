@@ -4,6 +4,20 @@ Updated 2026-10-29. **The whole game is incomplete. This is completion work,
 not only fine-tuning.** Selected complete campaigns are playable and verified;
 arbitrary-route finishability and full original-game parity remain unproven.
 
+## Optional security restoration
+
+The working branch adds an unchecked **Original security system** option below
+the screen. It restores the surviving failure path after two wrong answers;
+default play retains the supplied executable's forced success. The correct code
+is logged once per challenge. Restart starts a new session and retains the
+page's preference. [Behavior and source evidence](security.md#optional-restoration).
+`npm run verify:security-restoration` passes, including three browser cases and
+the missing-checkbox negative control. All 123 unit cases and both existing
+complete Game campaign replays also pass (64 state/picture checkpoints).
+This restoration is statically inferred from the patched executable, not a
+comparison against an independently obtained unpatched edition. Broader port
+completion and verification limitations below still apply.
+
 ## Current verified branch
 
 Source `c582295` connects the destination dialog to the original ordinary-key

@@ -38,7 +38,11 @@ export class Game {
     investmentResources = null,
     bankResources = null,
     openingResources = null,
+    originalSecurity = false,
   } = {}) {
+    if (typeof originalSecurity !== "boolean")
+      throw Error("Invalid security setting");
+    this.originalSecurity = originalSecurity;
     this.openingResources = openingResources;
     this.opening = null;
     this.difficultyMenu = null;
@@ -259,6 +263,7 @@ export class Game {
       day: this.campaign.day,
       money: this.money,
       audioEnabled: this.audioEnabled,
+      originalSecurity: this.originalSecurity,
       pollInput: () => this.pollSystemInput(this.pendingSecuritySystemKeys),
       flushInput: () => this.flushSecurityInput(),
     });
@@ -277,6 +282,13 @@ export class Game {
     this.effects.push(...screen.drainEvents());
     this.seed = this.campaign.seed = screen.seed;
     if (!screen.outcome) return;
+    if (screen.outcome.code === 0) {
+      // Restore the AX return test bypassed by Overlay2:0f0f OR BP,BP.
+      // The original failure branch terminates through resident198e:013a.
+      if (!this.exiting) this.effects.push({ type: "stopAudio" });
+      this.exiting = true;
+      return;
+    }
     if (screen.outcome.code !== 1) throw Error("Unsupported security return");
     this.security = null;
     this.scene = "map";
@@ -434,6 +446,19 @@ export class Game {
   }
   handleInput(event, fromActivityPoll = false) {
     if (this.diagnostic) throw Error(this.diagnostic);
+    if (event.type === "original-security") {
+      if (typeof event.enabled !== "boolean")
+        throw Error("Invalid security setting");
+      this.originalSecurity = event.enabled;
+      if (this.security && !this.security.outcome)
+        this.security.originalSecurity = event.enabled;
+      return;
+    }
+    if (
+      this.security?.outcome?.code === 0 &&
+      !["restart", "audio-enabled", "audio-status"].includes(event.type)
+    )
+      return;
     if (
       !fromActivityPoll &&
       !this.systemOverlay &&
@@ -1859,6 +1884,7 @@ export class Game {
         ? { securityPending: this.securityPending }
         : {}),
       ...(this.security ? { security: this.security.snapshot() } : {}),
+      ...(this.originalSecurity ? { originalSecurity: true } : {}),
       ...(this.pendingSecuritySystemKeys.size
         ? {
             pendingSecuritySystemKeys: [...this.pendingSecuritySystemKeys].sort(

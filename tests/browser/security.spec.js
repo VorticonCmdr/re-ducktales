@@ -100,6 +100,9 @@ test("first control-center entry consumes original security RNG, accepts a decod
   page,
 }, info) => {
   const t = await openOffice(page);
+  await page
+    .getByRole("checkbox", { name: "Original security system", exact: true })
+    .check();
   await t.canvas.focus();
   await page.keyboard.down("ArrowRight");
   await page.keyboard.down("Space");
@@ -186,6 +189,8 @@ test("first control-center entry consumes original security RNG, accepts a decod
   expect(again.security).toBeUndefined();
   await page.getByRole("button", { name: "Restart", exact: true }).click();
   const restart = await t.until((s) => s.scene === "title", "restart");
+  await expect(page.locator("#original-security")).toBeChecked();
+  expect(restart.originalSecurity).toBe(true);
   expect(restart.securityPending).toBe(true);
   expect(restart.security).toBeUndefined();
   expect(t.errors).toEqual([]);
@@ -196,6 +201,12 @@ test("two fixed wrong choices show warning and three alarms, reach Tandy and ret
   page,
 }, info) => {
   const t = await openOffice(page);
+  await expect(
+    page.getByRole("checkbox", {
+      name: "Original security system",
+      exact: true,
+    }),
+  ).not.toBeChecked();
   await page.getByLabel("Sound device", { exact: true }).selectOption("tandy");
   await page.getByRole("checkbox", { name: "Sound (reconstructed)" }).check();
   await page.clock.runFor(16);
@@ -265,6 +276,66 @@ test("two fixed wrong choices show warning and three alarms, reach Tandy and ret
       Number(await page.locator("#sound").getAttribute("data-signal-samples")),
     )
     .toBeGreaterThan(0);
+  expect(t.errors).toEqual([]);
+  await expect(page.locator("#diagnostic")).toBeHidden();
+});
+
+test("optional original security rejects two wrong codes, logs the answer once and restarts cleanly", async ({
+  page,
+}) => {
+  const hints = [];
+  page.on("console", (message) => {
+    if (
+      message.type() === "log" &&
+      message.text().startsWith("Security System:")
+    )
+      hints.push(message.text());
+  });
+  const t = await openOffice(page);
+  const checkbox = page.getByRole("checkbox", {
+    name: "Original security system",
+    exact: true,
+  });
+  await expect(checkbox).not.toBeChecked();
+  if (process.env.DUCKTALES_SECURITY_NEGATIVE !== "omit-restoration")
+    await checkbox.check();
+  await page
+    .getByRole("button", { name: "Control center", exact: true })
+    .click();
+  await t.until((s) => s.security?.ready, "restored challenge");
+  expect(hints).toEqual(["Security System: correct code is METK"]);
+  await page.getByRole("button", { name: "Start / Fire", exact: true }).click();
+  await t.until(
+    (s) => s.security?.failures === 1 && s.security.ready,
+    "restored warning",
+  );
+  await page.getByRole("button", { name: "Start / Fire", exact: true }).click();
+  const failed = await t.until(
+    (s) => s.security?.outcome?.code === 0,
+    "restored rejection",
+  );
+  expect([
+    failed.scene,
+    failed.exiting,
+    failed.seed,
+    failed.security.failures,
+  ]).toEqual(["security", true, 46760, 2]);
+  await expect(page.locator("#status")).toHaveText(
+    "Security check failed · Restart to play again",
+  );
+  await t.canvas.press("Enter");
+  await checkbox.uncheck();
+  await page.clock.runFor(100);
+  expect((await t.state()).security.outcome.code).toBe(0);
+  expect(hints).toEqual(["Security System: correct code is METK"]);
+  await page.getByRole("button", { name: "Restart", exact: true }).click();
+  const restarted = await t.until(
+    (s) => s.scene === "title",
+    "restart after rejection",
+  );
+  expect(restarted.exiting).toBe(false);
+  expect(restarted.securityPending).toBe(true);
+  expect(restarted.security).toBeUndefined();
   expect(t.errors).toEqual([]);
   await expect(page.locator("#diagnostic")).toBeHidden();
 });

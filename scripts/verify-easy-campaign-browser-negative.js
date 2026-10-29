@@ -5,9 +5,10 @@ import { spawnSync } from "node:child_process";
 const hash = (b) => createHash("sha256").update(b).digest("hex");
 export async function verifyEasyNegative(mode) {
   assert.ok(["omit-easy-confirm", "omit-campaign-jungle-move"].includes(mode));
-  const manifest = JSON.parse(
-    await readFile("reference/easy-campaign-security.json"),
-  );
+  const manifestPath =
+    process.env.DUCKTALES_EASY_CAMPAIGN_MANIFEST ??
+    "reference/easy-campaign-security.json";
+  const manifest = JSON.parse(await readFile(manifestPath));
   assert.equal(
     manifest.pendingBrowserReplay,
     false,
@@ -26,7 +27,10 @@ export async function verifyEasyNegative(mode) {
       `Corrupt ${name}`,
     );
   }
-  const root = ".local/security-easy-campaign-verification";
+  const root =
+    manifest.verificationEdition === "office"
+      ? ".local/office-campaign-easy-verification"
+      : ".local/security-easy-campaign-verification";
   await mkdir(root, { recursive: true });
   const r = spawnSync(
     process.execPath,
@@ -39,6 +43,7 @@ export async function verifyEasyNegative(mode) {
     {
       env: {
         ...process.env,
+        DUCKTALES_EASY_CAMPAIGN_MANIFEST: manifestPath,
         DUCKTALES_CAPTURE_EASY_CAMPAIGN: "0",
         DUCKTALES_CAPTURE_EASY_ENTRY: "0",
         DUCKTALES_EASY_RECORDED_NEGATIVE: mode,

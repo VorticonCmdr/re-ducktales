@@ -45,7 +45,10 @@ its117/74/2 gate remain separate historical evidence in
   Strict Game and fresh browser replays match3 complete state/pixel checkpoints
   and928 DOM events;364 flight presentations,no aliases,no tail. Jungle state
   matches the prior route exactly; global time is53 driver ticks later. Full
-  campaign migration is pending. [Migration](office-campaign-migration.md).
+  Easy campaign now also wins onday32 with13875 against11500:36 complete
+  checkpoints,3516 DOM events,1188 flight presentations match independent Game
+  and fresh browser replay, followed by Restart. Strict receipts,seven comparison
+  controls and missing/corrupt fixture checks pass. Hard migration remains pending. [Migration](office-campaign-migration.md).
 
 - Original opening/Sound001→difficulty→office→original19-presentation money-bin
   departure→dive/reward→return/restart. [Opening](opening-investigation.md), [office](office-transitions.md).
@@ -120,8 +123,8 @@ pictures and traces stay local. Production visitors select their own originals.
 
 - Security-aware Easy/Hard campaigns are the default current checks and passed
   the complete integration gate; historical recordings remain separate.
-- Next: migrate campaign/headless input adapters and recordings through the
-  original office timing and key-slot boundary, then pass the full branch gate.
+- Next: migrate Hard/focused recordings
+  through the original office timing and key-slot boundary, then pass the full branch gate.
   Entry/selection and investment departure have focused acceptance on the isolated
   branch. Several map/notice presentations,
   broader destination/difficulty coverage and original whole-scene comparisons

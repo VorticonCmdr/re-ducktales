@@ -1,20 +1,36 @@
 import assert from "node:assert/strict";
 import { readFile, writeFile, rename, rm, mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
-import manifest from "../reference/easy-campaign-security.json" with { type: "json" };
-const root = ".local/security-easy-campaign-verification";
+const manifestPath =
+  process.env.DUCKTALES_EASY_CAMPAIGN_MANIFEST ??
+  "reference/easy-campaign-security.json";
+const manifest = JSON.parse(await readFile(manifestPath));
+const officeEdition = manifest.verificationEdition === "office";
+const root = officeEdition
+  ? ".local/office-campaign-easy-verification"
+  : ".local/security-easy-campaign-verification";
 await mkdir(root, { recursive: true });
 function run() {
-  const r = spawnSync(process.execPath, ["scripts/verify-easy-campaign.js"], {
-    encoding: "utf8",
-    timeout: 180000,
-    maxBuffer: 8 * 1024 * 1024,
-  });
+  const r = spawnSync(
+    process.execPath,
+    ["scripts/verify-easy-campaign.js", `--manifest=${manifestPath}`],
+    {
+      encoding: "utf8",
+      timeout: 180000,
+      maxBuffer: 8 * 1024 * 1024,
+    },
+  );
   assert.ifError(r.error);
   return { ...r, output: r.stdout + "\n" + r.stderr };
 }
 const events = manifest.artifacts["captured-events"].path;
-assert.ok(events.startsWith(".local/security-easy-campaign-accepted-01/"));
+assert.ok(
+  events.startsWith(
+    officeEdition
+      ? ".local/office-campaign-easy-accepted-01/"
+      : ".local/security-easy-campaign-accepted-01/",
+  ),
+);
 const savedEvents = await readFile(events);
 try {
   await rename(events, `${events}.negative-backup`);
@@ -27,7 +43,13 @@ try {
   await rm(`${events}.negative-backup`, { force: true });
 }
 const picture = manifest.artifacts["ending-png"].path;
-assert.ok(picture.startsWith(".local/security-easy-campaign-01/"));
+assert.ok(
+  picture.startsWith(
+    officeEdition
+      ? ".local/office-campaign-easy-01/"
+      : ".local/security-easy-campaign-01/",
+  ),
+);
 const savedPicture = await readFile(picture);
 try {
   await writeFile(picture, Buffer.concat([savedPicture, Buffer.from([0])]));

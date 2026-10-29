@@ -7,12 +7,22 @@ import { PNG } from "pngjs";
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
   "reference/easy-campaign-security.json";
-const verificationRoot = ".local/security-easy-campaign-verification";
 const manifest = JSON.parse(
   await readFile(manifestPath).catch(() => {
     throw Error("SETUP: missing accepted Easy campaign manifest");
   }),
 );
+assert.ok(
+  [undefined, "office"].includes(manifest.verificationEdition),
+  "Unknown Easy evidence edition",
+);
+const officeEdition = manifest.verificationEdition === "office";
+const sourceCounts = officeEdition
+  ? { capture: 496, browser: 497, entry: 493 }
+  : { capture: 268, browser: 269, entry: 267 };
+const verificationRoot = officeEdition
+  ? ".local/office-campaign-easy-verification"
+  : ".local/security-easy-campaign-verification";
 assert.equal(
   manifest.pendingBrowserReplay,
   false,
@@ -51,7 +61,7 @@ const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
 if (manifest.captureProducer) {
   const source = JSON.parse(await readFile(manifest.captureProducer));
   assert.equal(source.captureCommit, manifest.captureCommit);
-  assert.equal(Object.keys(source.files).length, 268);
+  assert.equal(Object.keys(source.files).length, sourceCounts.capture);
   for (const [path, hash] of Object.entries(source.files)) {
     const bytes = execFileSync("git", [
       "show",
@@ -74,7 +84,7 @@ if (manifest.browserReplayRoot) {
     await readFile(`${manifest.browserReplayRoot}/source-revision.json`),
   );
   assert.equal(source.browserCommit, manifest.replayCommit);
-  assert.equal(Object.keys(source.files).length, 269);
+  assert.equal(Object.keys(source.files).length, sourceCounts.browser);
   for (const [path, hash] of Object.entries(source.files)) {
     assert.equal(
       digest(await readFile(`${manifest.browserSourceArchive}/${path}`)),
@@ -95,7 +105,7 @@ const entrySource = JSON.parse(
   await readFile(manifest.artifacts["entry-capture-source"].path),
 );
 assert.equal(entrySource.captureCommit, manifest.entryCaptureCommit);
-assert.equal(Object.keys(entrySource.files).length, 267);
+assert.equal(Object.keys(entrySource.files).length, sourceCounts.entry);
 for (const [p, h] of Object.entries(entrySource.files)) {
   assert.equal(
     digest(await readFile(`${manifest.entrySourceArchive}/${p}`)),
@@ -132,9 +142,21 @@ const arrival = fullChecks.find(
 );
 assert.deepEqual(
   arrival,
-  entryChecks[0],
+  officeEdition
+    ? entryChecks.find(
+        (c) => c.name === "arrival" && c.state.scene === "jungle",
+      )
+    : entryChecks[0],
   "Complete Easy route must carry independently verified entry",
 );
+if (officeEdition) {
+  assert.equal(entryChecks.length, 3);
+  assert.deepEqual(
+    fullChecks.slice(0, 3),
+    entryChecks,
+    "Full route must carry all independently verified office entry checkpoints",
+  );
+}
 const plan = JSON.parse(
   await readFile(manifest.artifacts["planning-selected"].path),
 );

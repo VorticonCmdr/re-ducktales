@@ -1,11 +1,11 @@
 {
   "id": "linked-easy-campaign-original-office-entry",
   "expectedHard": false,
-  "pendingBrowserReplay": true,
-  "evidenceLevel": "Port campaign regression; original whole-campaign parity is not claimed.",
+  "pendingBrowserReplay": false,
+  "evidenceLevel": "closed-loop port regression and independent browser scenario",
   "artifactRoot": ".local/office-campaign-easy-accepted-01",
   "captureRoot": ".local/office-campaign-easy-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
-  "captureCommit": "6d7c19a",
+  "captureCommit": "6d7c19a32502bd6ef825d7b1cd9cf73e03e04bd8",
   "buildManifest": "reference/build.json",
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
   "expectedCheckpointCount": 36,
@@ -100,6 +100,302 @@
       "path": ".local/office-campaign-easy-accepted-01/timeline.json",
       "bytes": 3257,
       "sha256": "8e8446ca1008e12717ce3d2df66ba6873317dfeb0f7b06ef81f213e2524963d7"
+    },
+    "capture-source": {
+      "path": ".local/office-campaign-easy-01/source-revision.json",
+      "bytes": 52922,
+      "sha256": "3612bf56100b1956573f372c7ad920aa908abfe2bce365d039f56a8d1cebedd6"
+    },
+    "capture-environment": {
+      "path": ".local/office-campaign-easy-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/environment.json",
+      "bytes": 182,
+      "sha256": "75b6c55a7d3477a1eefcef74cb6840413fede0e01ca37caa51bbf03fbf0cc785"
+    },
+    "input-profile": {
+      "path": "reference/security-easy-campaign-inputs.json",
+      "bytes": 1643,
+      "sha256": "9ac16027fa11d2579f69201d8b660ba222d39a8edc6bd5d73cbef5b86d9fe369"
+    },
+    "ending-png": {
+      "path": ".local/office-campaign-easy-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/mixed-campaign-ending.png",
+      "bytes": 17946,
+      "sha256": "36f2b088dcf10c031b568236e8a89015a48284484d53dbacbcd9cd2ea0bd6000"
+    },
+    "browser-checkpoints": {
+      "path": ".local/office-campaign-easy-browser-replay-01/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 171772,
+      "sha256": "7f65941d3152c770b451a46908b46da82f202c0fe6f71ac70ea63b2cc52048b4"
+    },
+    "browser-progress": {
+      "path": ".local/office-campaign-easy-browser-replay-01/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 6225,
+      "sha256": "5228e3a2358e36eda855859a6884366cf793791ed44cc9191d1c86bc4bc99aa6"
+    },
+    "browser-events": {
+      "path": ".local/office-campaign-easy-browser-replay-01/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 318455,
+      "sha256": "f5b0c97332a3fa03dd15f07f9906f62298eb3e4925f32265580c3b297a18c199"
+    },
+    "browser-source": {
+      "path": ".local/office-campaign-easy-browser-replay-01/source-revision.json",
+      "bytes": 53190,
+      "sha256": "27914a4a02194ccec7d002547f86826aa434e2764a5cd22909f48f3d48ce3ac1"
+    },
+    "browser-results": {
+      "path": ".local/office-campaign-easy-browser-replay-01/browser-report.json",
+      "bytes": 8657,
+      "sha256": "b9177839ed010c7e4b737c184b5a1ee82df5cccb27b9fe7a90769ac8db005de8"
+    },
+    "entry-reference": {
+      "path": "reference/office-easy-campaign-entry.json",
+      "bytes": 1577,
+      "sha256": "cb5ebf36e4c04b32c80b366e226734450dbf7b5948c827d47ec84eeb6876dd7a"
+    },
+    "entry-capture-source": {
+      "path": ".local/office-campaign-easy-entry-01/source-revision.json",
+      "bytes": 52577,
+      "sha256": "f2c864ed5b4e8da1e5d6592694441e56b3b26cfd25369403be4d6f300f1d2aed"
+    },
+    "planning-selected": {
+      "path": ".local/security-easy-campaign-jungle-planning-delay-60.json",
+      "bytes": 180903,
+      "sha256": "a16fa084f1c4e731ffcfde9b6ec4f542f11fa4a7975697bed7385c706f7e628c"
+    },
+    "omit-easy-confirm": {
+      "path": ".local/office-campaign-easy-accepted-01/browser-negative-records/omit-easy-confirm.log",
+      "bytes": 1830,
+      "sha256": "b04bccaedd6e6b197f5cbdaa459941b88e29e783a39af42643bd83fb89a38bc1"
+    },
+    "omit-campaign-jungle-move": {
+      "path": ".local/office-campaign-easy-accepted-01/browser-negative-records/omit-campaign-jungle-move.log",
+      "bytes": 2026,
+      "sha256": "9a1cd6a1e151ef00ebb7c4b7cb889a288c293aa45c2ddee7427cbb7f2bcea2c6"
     }
+  },
+  "requiredInputSamples": {
+    "jungle": 917,
+    "mountain": 764
+  },
+  "endingScreenshotDimensions": [
+    958,
+    599
+  ],
+  "endingScreenshotPurpose": "CSS-sized diagnostic;logical320x200 pixels compared exactly at each recorded canvas checkpoint",
+  "startingRecipe": "Supported22-file originals,BIOS0,muted;skip opening,confirmEasy,original office departure/security withfixedRight/Fire. Four real expeditions,crashes/repairs,rewards,banking,rivals anddeadline ending. No seed reset,state injection ormemory restore. Original office wipe/reveal and key-slot input boundary; independently verified three-checkpoint prefix.",
+  "comparisonRules": [
+    "Exact complete Game snapshot atall36 checkpoints",
+    "Exact decoded320x200 browser canvas RGBA hash;no pixel tolerance",
+    "Pointer normalization only atoriginal clamping/truncation consumption boundary"
+  ],
+  "environment": {
+    "biosSeed": 0,
+    "soundEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "capturePhase": "before-target-handler"
+  },
+  "emulator": null,
+  "injections": [],
+  "fittedInputs": [],
+  "verificationEdition": "office",
+  "captureProducer": ".local/office-campaign-easy-01/source-revision.json",
+  "captureSourceArchive": ".local/office-campaign-easy-01/sources",
+  "browserReplayRoot": ".local/office-campaign-easy-browser-replay-01",
+  "browserSourceArchive": ".local/office-campaign-easy-browser-replay-01/sources",
+  "replayCommit": "937d23cb28d9eda2ef2e11872861b6477231fe78",
+  "entryCaptureCommit": "a0e084d845a91e86e5045d881b96b74c79d22e29",
+  "entrySourceArchive": ".local/office-campaign-easy-entry-01/sources",
+  "verify": "npm run verify:easy-office-campaign",
+  "planningScope": "Historical planning artifact supplies the unchanged authored 917-sample player input profile only; its outcome is not evidence for this build.",
+  "browserCheckpoints": [
+    {
+      "name": "campaign-start",
+      "stateSha256": "952001aa219163fe5d6f50b6803e37482f6a625df52ada80e211d877f710b016",
+      "pixelsSha256": "74d3dbe6a273f24d58024df26a52cda5bfc1160ea93026f0f25968daef508acf"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "e8a2085e0799877e547c4c5ff715ff4e426435d1b998aa1505972c4e9093dee0",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "4990f2d68d16819b3d43854b610283fd3bfc14e54b87cb291623d0729e3e7f04",
+      "pixelsSha256": "4dd63d0918378d20797e9dae1ac50029398b3886327ac667bce075ddddac0100"
+    },
+    {
+      "name": "jungle-input-80",
+      "stateSha256": "294c75848b1136ed6bb6bc61fd69aa88a72b5002f65576bf56ec6251b3271713",
+      "pixelsSha256": "0d215241f9f6f89c398dccc50f45608ba3bd89e472f767433ce42b7a629b0a6f"
+    },
+    {
+      "name": "jungle-input-160",
+      "stateSha256": "44f7745ea8745912b7d0b9470946a34c4f45224d753181b46f7391c05f6ad48d",
+      "pixelsSha256": "d4b99e85ab04fe91c50505d339876d6820d16d76d551d29ca0b629dc6c7b5111"
+    },
+    {
+      "name": "jungle-input-240",
+      "stateSha256": "88b9fbbe0e793b4890701e695b6bac943eae959cf0e0030458c7a74ba5e1d592",
+      "pixelsSha256": "b54ca5b71a2ce87d2d04a618c37bc5614948b6e78257b3653383bcb7c4c6f9ad"
+    },
+    {
+      "name": "jungle-input-320",
+      "stateSha256": "0cbef4657499b83a2fcccd9b20698a0a61e6f512a25e90062447bf115c92ca51",
+      "pixelsSha256": "fd8fd9df42a6b8ab4064e9f67a58d9b5cccb82c9c228c47dd635f781a57160b7"
+    },
+    {
+      "name": "jungle-input-400",
+      "stateSha256": "c0ab98500bf2b1a732455a03b90c2cee0ad3659d3866f9d2e23d0a4b5a401d56",
+      "pixelsSha256": "e9d2f19aae0a63ebf964b6966752b2e5aaf9e6e31c5127d3933a8eec9c6ab124"
+    },
+    {
+      "name": "jungle-input-480",
+      "stateSha256": "3866260256d40f409685cf99e87e7075b47413bd8eaab3b8dccd7da8c795eb3f",
+      "pixelsSha256": "b01a3c13c811389a6af19c6cabed8d6fc7e41b52786248135a31d9e4287824cf"
+    },
+    {
+      "name": "jungle-input-560",
+      "stateSha256": "49c63be6af1c063cb35969a11fcaf561caab19ef663171c70f79bb6cebc4f399",
+      "pixelsSha256": "33d130dc5c67770b177e40757886a9bce196940d7ac64427bcb8b431b5d5ecd9"
+    },
+    {
+      "name": "jungle-input-640",
+      "stateSha256": "3caa1bffd26799b13031b4607a6866369e36637f3cb176715114cf308e78f2bf",
+      "pixelsSha256": "0b858822cdb043462d9e919a1c716666c86f9f4e19ed31865153d22d8c32f4a0"
+    },
+    {
+      "name": "jungle-input-720",
+      "stateSha256": "019ab53ee0e199c586e46a2e7aa42f66ae50ede3cad47320f23091411447e64c",
+      "pixelsSha256": "1d77c5e185aeb71ac38f9c739c395313291e59795206fa8f6a89ce8fc684c795"
+    },
+    {
+      "name": "jungle-input-800",
+      "stateSha256": "f4ee0b8ebb1a4a92f8fc74817685a603b28c0afcbf8db5473ffeaed1c3148b38",
+      "pixelsSha256": "079aaad9739a014f9ec53fdaface5e7186509b5fabd2e6feb1c23aada1dc2f83"
+    },
+    {
+      "name": "jungle-input-880",
+      "stateSha256": "e531c27d7b55b056222fa9eeb26e6bf851578a1a85f3d65664c26ce34709ad57",
+      "pixelsSha256": "98a1eeed856760c703e95f150dc69e71395ae6c34cbd60f238712375d47221f7"
+    },
+    {
+      "name": "jungle-input-917",
+      "stateSha256": "a0263d942430c137362c198e6d54a91ed6b83ef37b5df6023ef444b8f049d614",
+      "pixelsSha256": "66fe21e37b45d5e24087b09cc93cf059d5c839b372fff1ab1a117d3b4bdac4aa"
+    },
+    {
+      "name": "jungle-return",
+      "stateSha256": "506e0bd742449455b6678a27a9cd58e1141f25f61c0e54597af77946032647ec",
+      "pixelsSha256": "6d3fe7ae709f161cdd23c030c923a5ae5dda5fc811c87a6fe19b5c4137caf604"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "e988f495f3ea6b18bbc07be1c82d9cac9a235e0ea40c9f9749f388e754f5fe0a",
+      "pixelsSha256": "e7845efa785ff48c2a912bca790bf584a0028d0c3355eb7aca441fcbf338f888"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "d72caba5964bf33469e1c7c8df603b0401a83d1d0904894fa4a39853ec4927fc",
+      "pixelsSha256": "2f66c77208a0e19e5f6faa948a9d380617a27f0d0bade9b4d472f198668c58b8"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "6fe47515bfb95f7f0788a393f5ef41040f0daa494e3b3606ec4c75d92bbf3d61",
+      "pixelsSha256": "ebb299f53f40303326098c482345eb6b99eee3be0c50ce68022d3f43f2294bd7"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "de3c99daa9f8a3d87bd9dfef8cfe87e42b49ebef09b35d52574627f3f762a2bd",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "80a4b67045088a8a8cdf59e3e24bd0e3b081c95e5b537103072212d7e241e15b",
+      "pixelsSha256": "6319851d484550a82495518b242f13215a474e2ca80a17c9324f998bfb205d45"
+    },
+    {
+      "name": "photography-return",
+      "stateSha256": "0027caad3c08e3f3aa77d9aade26e9f28145beb9cc5603dc90224bc77d94f79d",
+      "pixelsSha256": "a2ccb9315e123e3fdabb74a1bdfdbf748584e863d497762330125a8bc168eabd"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "ae43b07ffc6fdc1b7c918f131988c4900a6fb743564e697a0c1be6020b20a932",
+      "pixelsSha256": "1fc37a53f0ff09e6afa4649db6a4edb3147df9f96a24c6e12c01596b3bb7d6f3"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "423a085ab833763673f91ac1922d564bf12bacee11f828c617591803b9e8cb44",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "fad6df6d10450962b266ab802d17abbe7192c7dd65bb96f7fb9c511ae35c4143",
+      "pixelsSha256": "508b8e7c8f3ed129b21345bf57f0e07dfc3086b8584137acfb4c0a71ba9d63f4"
+    },
+    {
+      "name": "cave-return",
+      "stateSha256": "1d2dadb3e5174a0ddc920fc35d8ef0808ae0e6ee0698eeea7adbc323217598ef",
+      "pixelsSha256": "e38149334abc16d5dc641c7b1c5da1fd240b8db10c876c1c490ad112280d3379"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "2f02d3698bffa4816a2264f6d2054e12c23222051faf7b850887848fbafa3b05",
+      "pixelsSha256": "512a683eedd5622f23c506184e16a3374522f23783d9133af3820165e6b58260"
+    },
+    {
+      "name": "flight-start",
+      "stateSha256": "de68998e054eced922e388c6c5e442ea85d7bdbac47db700f52000d389cd8c00",
+      "pixelsSha256": "34eb0b131ca5ed54c03f7b62bbe45438c97df136f8577c6727f46e06e23a80b1"
+    },
+    {
+      "name": "arrival",
+      "stateSha256": "5fb4b51617c21500f260107d9e5e083797301fcba7c4be6c2c6e401a89a3ae5f",
+      "pixelsSha256": "83aca8f523802dfabc576933a1792561f232e6dbd725f1c8123a7e179db135b9"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "fa04127b91ae0e322fb4110c01954bbd3c33cdb50ca41816aaaac8b1a45d06a1",
+      "pixelsSha256": "4239c4e69f6f3d7215e7d532441518de3422d08d13b6b454155a95c41dc81bc1"
+    },
+    {
+      "name": "mountain-return",
+      "stateSha256": "289abd56f3e29707957919d5071034aea3066bad71f5b04c8f3cc7bce40befcf",
+      "pixelsSha256": "2efa4ab45f42ec9a23e4feac7bff54474be31a989dec7b0a1c7ff42bdf118488"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "22d33d621b27e68ce549feb40b4ed8af2f91df92fb1121645d0e9136731156ca",
+      "pixelsSha256": "209c8df052e363add0b951175861ba11a34054c5d24559e028804c1f143a15ba"
+    },
+    {
+      "name": "rival-report",
+      "stateSha256": "7ee70150795beee6d54a0fac2e531382030c94aebae60148d8254957af52002e",
+      "pixelsSha256": "73908061828e527e4c79f8a07ba2b8edd1c2c1ffd28123865b0e526561ee5e50"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "5f2aefe551010882feaecbc97be059ac27b294607916c4d1dbb316915462a26e",
+      "pixelsSha256": "32b9069577da6750d96257dbf9daa97b0f926c7c4fe470cb111c7f0928afde3d"
+    },
+    {
+      "name": "bank-deposited",
+      "stateSha256": "40af23cd6d28bc7ba8458c1ca5bd01001f80155f9e2185ba3a4036880a0335fd",
+      "pixelsSha256": "3155a12aa97ebc1cd7233244b036b9aa2b67605f2e7694e94d1e20451b6aa912"
+    },
+    {
+      "name": "ending",
+      "stateSha256": "83cd3a0d534c029f9d8dc2125f6e1830d90bb0ee9d9d2c56d4cbc714418bcd5f",
+      "pixelsSha256": "842a028c59e26a5f94de1a9c2893ec102f6112991d81135ce1fa42d775fe83ab"
+    }
+  ],
+  "verificationTools": {
+    "scripts/replay-hard-campaign.js": "5862f2c2c35055e459b41540977c56c772eea1edfbe631191d75e05aab6bda30",
+    "scripts/verify-easy-campaign.js": "6b96a47b3e43f84b2a4d8874d0f5e733bb2829d29ae63b3e4a982c6383596cd2",
+    "scripts/verify-easy-campaign-browser-negative.js": "894826d16c0b9942f698ade5a0f5e2ec34b1b4f954ecceabca401b2dde170925",
+    "scripts/verify-mixed-campaign-negative.js": "d404367a54e8f144325187b4c761300a1aa8fc5f034727840fb594a658164350",
+    "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
+    "tests/browser/mixed-campaign.spec.js": "0ed60d543f40d6afde9285b36a83e3f94ecc1194853029e6e84dfc94525244ba",
+    "scripts/verify-easy-campaign-fixture-negatives.js": "efb879b7945b30374ae10255f38dbaa65671c788654b3a843991bc949372e7b0"
   }
 }

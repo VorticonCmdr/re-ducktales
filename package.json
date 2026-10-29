@@ -93,7 +93,10 @@
     "verify:office-investment-core": "npm run verify:build && node scripts/verify-office-investments.js",
     "verify:office-investments": "npm run verify:office-investment-core && playwright test tests/browser/office-investments.spec.js tests/browser/office.spec.js tests/browser/investments.spec.js && node scripts/verify-office-investment-browser-negative.js && node scripts/verify-office-investment-fixture-negatives.js",
     "verify:office-menu-core": "npm run verify:build && node scripts/verify-office-menu.js",
-    "verify:office-menu": "npm run verify:office-menu-core && playwright test tests/browser/office-menu.spec.js tests/browser/office-investments.spec.js tests/browser/office.spec.js tests/browser/investments.spec.js && node scripts/verify-office-menu-browser-negative.js && node scripts/verify-office-menu-fixture-negatives.js"
+    "verify:office-menu": "npm run verify:office-menu-core && playwright test tests/browser/office-menu.spec.js tests/browser/office-investments.spec.js tests/browser/office.spec.js tests/browser/investments.spec.js && node scripts/verify-office-menu-browser-negative.js && node scripts/verify-office-menu-fixture-negatives.js",
+    "verify:easy-office-campaign": "node scripts/verify-easy-campaign.js --manifest=reference/easy-campaign-office.json && DUCKTALES_EASY_CAMPAIGN_MANIFEST=reference/easy-campaign-office.json node scripts/verify-easy-campaign-fixture-negatives.js",
+    "test:easy-office-campaign": "DUCKTALES_EASY_CAMPAIGN_MANIFEST=reference/easy-campaign-office.json playwright test tests/browser/mixed-campaign.spec.js",
+    "verify:easy-office-campaign-negative": "DUCKTALES_EASY_CAMPAIGN_MANIFEST=reference/easy-campaign-office.json node scripts/verify-easy-campaign-browser-negative.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

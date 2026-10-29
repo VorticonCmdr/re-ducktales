@@ -1,0 +1,100 @@
+{
+  "id": "first-jungle-drawing-time-integration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "cc716c1870cdd92897d967d829d74fb9b8b6575d",
+  "sourceFileCount": 613,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "verificationCommand": "npm run verify:jungle-draw-timing",
+  "verificationExitCode": 0,
+  "unitCases": 127,
+  "unitFailures": 0,
+  "unitSkipped": 0,
+  "browserCases": 2,
+  "productionBuild": "npm run build",
+  "scope": [
+    "Actual jungle source sprite/copy effects consume original normal-core work before page/reveal publication; existing three-driver-count minimum deadline retained.",
+    "Explicit scheduler elapsed-time provider preserves driver/retrace phase and excludes hidden-page pauses; no DOM clock enters simulation logic.",
+    "Six unchanged conditional native presentation cases match exact primitive counts and quantized original timer brackets; original code/build and pixel evidence verified.",
+    "Complete independent Game/browser treasure route:27 exact states/pictures,70 DOM events,860 movement samples,907 presentations,$1050,one life; duplicate prevention and Restart checked.",
+    "Four additional timing unit cases cover publication,phase,batch catch-up,hidden-page pause,invalid time and a work-deadline bypass.",
+    "Actual browser redraw-duration/control check passes; required movement removal and a separate graphics-wait browser bypass are rejected."
+  ],
+  "limitations": [
+    "Line,text,caller/other CPU work,interrupt costs and end-of-slice I/O clamping remain omitted.",
+    "Conditional native drawing comparisons do not establish uninterrupted input-loop cadence or full scanout timing parity.",
+    "Legacy824-input jungle component regression still fails checkpoint0 because it expects immediate pre-work wipe publication; contract migration remains required and is not waived.",
+    "Required shared-runtime regression still fails its historical runtime-file inventory; older mountain/campaign browser source receipts require refresh after shared-clock integration.",
+    "Cave and safari pacing remain unchanged; original release-edge expedition direction remains absent.",
+    "No whole-game/arbitrary-route finishability or complete original timing acceptance is claimed."
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/jungle-draw-milestone-01/runner-status.json",
+      "bytes": 276,
+      "sha256": "d05ba96fad321f7e14405653c5822d446f525938b7ef1ef59774d50591ec3547"
+    },
+    "source": {
+      "path": ".local/jungle-draw-milestone-01/source-revision.json",
+      "bytes": 66151,
+      "sha256": "108e42428c6fc46e86f87444c27f305064b9ed95e202011a60380a9ebb227235"
+    },
+    "zip": {
+      "path": ".local/jungle-draw-milestone-01/sources.zip",
+      "bytes": 1649750,
+      "sha256": "8683e5703a05f83c4c317a759bb4b4b10dc8fe16981dfb5e8c6892eed491d132"
+    },
+    "verification-log": {
+      "path": ".local/jungle-draw-milestone-01/verification.log",
+      "bytes": 17942,
+      "sha256": "b35976cefceb9f402cac6ac75f4e8b7e1dc283496b63c1818262b82a75a8e081"
+    },
+    "broader-failure": {
+      "path": ".local/jungle-draw-milestone-01/broader-shared-runtime.log",
+      "bytes": 8921,
+      "sha256": "0695b8bfdf19b11ad9ab2cf59cf024412df099eafaa5911c9ed87333d3605bac"
+    },
+    "broader-result": {
+      "path": ".local/jungle-draw-milestone-01/broader-result.json",
+      "bytes": 85,
+      "sha256": "d70f5e090b25ca9e5d4cee10a9694dad5423b6acca624930f5e8492df5782263"
+    },
+    "legacy-jungle-failure": {
+      "path": ".local/jungle-draw-milestone-01/legacy-jungle.log",
+      "bytes": 5384,
+      "sha256": "4759ddafda15412a601d016109c575d475dc61f5d52f14f56c62ae0d65d8e107"
+    },
+    "legacy-jungle-result": {
+      "path": ".local/jungle-draw-milestone-01/legacy-jungle-result.json",
+      "bytes": 162,
+      "sha256": "e71e564868992eeb76501988877942168c37698c897b614c25b58e80f11b49e7"
+    },
+    "browser-route": {
+      "path": "reference/draw-timed-jungle-treasure.json",
+      "bytes": 14419,
+      "sha256": "2183270a0d064d7377f14a08d22e4b19bb7d6f47058ad1bd8f81760512c5c717"
+    },
+    "native-work": {
+      "path": "reference/jungle-draw-work.json",
+      "bytes": 4871,
+      "sha256": "80cc859f562b1fb31341d154f434071fd92145a277304c46650ad6b1cc3b08b1"
+    },
+    "native-presentation": {
+      "path": "reference/jungle-presentation.json",
+      "bytes": 8397,
+      "sha256": "c57aee7b3998242cae0033f52f945028fab0d2501ac3437e2f0396d8bbbafa0a"
+    },
+    "browser-movement-negative": {
+      "path": ".local/jungle-draw-timing-verification/browser-negative.log",
+      "bytes": 2033,
+      "sha256": "ba797045a94d077166f1e2de8ac96c482688588604867bf39a7c5a3d4d310a9f"
+    },
+    "browser-timing-negative": {
+      "path": ".local/jungle-drawing-timing-verification/browser-negative.log",
+      "bytes": 1462,
+      "sha256": "ffe6cc0d8108f8394c09375eed9ad55f3b75305b101a06bfc71871245a1c5c16"
+    }
+  }
+}

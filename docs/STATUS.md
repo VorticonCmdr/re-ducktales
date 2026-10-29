@@ -6,8 +6,8 @@ arbitrary-route finishability and full original-game parity remain unproven.
 
 ## Movement pacing investigation
 
-Mountain sprite work is integrated and its focused climb/browser gate passes;
-remaining original execution costs are still omitted. Jungle now charges actual
+Mountain sprite work is integrated; its focused climb/browser gate passed at
+its milestone. Remaining original execution costs are still omitted. Jungle now charges actual
 sprite/copy work against an explicit simulation clock before presentation. The
 six original conditional drawing comparisons show ordinary restoration costs
 about 27 ms, while full redraws cost about 162–178 ms and exceed the original
@@ -22,6 +22,12 @@ is `reference/draw-timed-jungle-treasure.json`; the full scoped command is
 `npm run verify:jungle-draw-timing`. Historical elapsed-time component fixtures
 and the broader required gate have not been migrated or passed. Cave and safari pacing remain open. This does
 not change the whole-game status above.
+
+The combined command passed on `cc716c1`: six original drawing cases, 127 unit
+cases, both browser routes, both browser negatives, exact source/state/picture
+receipt verification and production build. [Integration receipt](../reference/jungle-draw-timing-integration.json).
+Next: migrate the old 824-input jungle component contract explicitly, then
+measure cave/safari work before changing their pacing.
 
 ## Optional security restoration
 
@@ -94,14 +100,17 @@ read-only samples without intermediate stops and brackets26 page changes at a
 mean42.234–43.375ms per update in that scene. Dense debugger stops perturb timing;
 they are not an uninterrupted reference.
 
-**`npm run verify:mountain-sprite-timing` passes.** It covers the original/port
+**`npm run verify:mountain-sprite-timing` passed at `ce112a8`.** It covered the original/port
 component checks,764-input summit,870 presentations,27 exact browser state/picture
 checkpoints,104 DOM events,$8,100 returned cash,three lives,600ms real DOM hold,pause/quit,
 life reset and required component/browser negatives. All123 unit cases and the
 production build also pass. [Verification receipt](../reference/mountain-sprite-timing-integration.json).
 
-Timing remains partial: copies,text,lines,asset loading and other CPU costs are
-uncharged; jungle/cave/safari pacing is unchanged. The expedition adapter still
+Mountain timing remains partial: copies,text,lines,asset loading and other CPU
+costs are uncharged. Jungle sprite/copy pacing is now integrated and verified by
+the fresh route above; cave/safari pacing remains unchanged. The historical
+mountain browser source receipt needs refresh after the jungle/shared-clock
+changes, even though the mountain implementation is unchanged. The expedition adapter still
 misses the original release-edge direction. Earlier Hard/campaign timing receipts
 need refresh. `npm run verify:shared-runtime` still fails its historical runtime
 file inventory; the full required integration gate is not green. Next: extend

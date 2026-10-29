@@ -93,3 +93,10 @@ first checkpoint: it expects the wipe to begin before drawing completes. Its
 native routine stages pass before that failure. That separate component contract
 still needs an explicit migration; this failure is not waived. Full original input-loop/scanout timing, cave and safari pacing,
 and the broader required integration gate remain unverified.
+
+
+The combined gate passed on `cc716c1`, with zero skipped unit/browser cases.
+[Integration receipt](../reference/jungle-draw-timing-integration.json) pins its
+613-file source archive, runner, raw log, native work evidence, accepted route,
+both browser negative logs and the two separately recorded unwaived regression
+failures. Only status/evidence documentation changed after that verification.

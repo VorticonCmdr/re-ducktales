@@ -1,8 +1,8 @@
 # Expedition movement timing investigation
 
 The user reports fast movement in jungle, mountain, cave and safari. This is an
-open fidelity defect. Mountain sprite work is now charged before retrace; other
-graphics and CPU costs remain incomplete. Per-input movement
+open fidelity defect. Mountain sprite work and jungle sprite/copy work are now
+charged before presentation; other graphics and CPU costs remain incomplete. Per-input movement
 regressions and complete port campaigns do not prove real-time pacing.
 
 ## First measured mountain discrepancy
@@ -49,8 +49,9 @@ The engine reports DOSBox0.84.0-vc1(f6d9b), protocol1.14, effective normal core,
 3000 configured cycles,16MiB and svga_s3. The retained mountain metadata names
 the same version/configuration. It lacks an engine-binary checksum, so the pause
 control supports the interpretation of those observations but is not a new
-unpaused mountain benchmark. No timing conclusion is yet established for jungle,
-cave or safari.
+unpaused mountain benchmark. At this initial investigation stage, no timing
+conclusion had been established for jungle, cave or safari. The later jungle
+work and runtime evidence is described in [jungle-timing.md](jungle-timing.md).
 
 [Investigation manifest](../reference/expedition-timing-investigation.json) pins
 original build, retained mountain references, capture recipe revision, fresh
@@ -135,7 +136,8 @@ represent the observed workload dependence.
 These are breakpoint-section observations, not uninterrupted scanout. The timer
 resolution is about13.728ms, so individual section charges include timer phase
 uncertainty. Aggregates identify the dominant section without assigning exact
-per-call costs. Jungle, cave and safari remain unmeasured.
+per-call costs. Jungle, cave and safari were unmeasured at this mountain
+profiling milestone; jungle work has since been measured and integrated.
 
 `npm run verify:mountain-frame-profile` checks all70 internal/next-input captures,
 initial input, original code, build, capture/source archive and completion. It
@@ -304,7 +306,7 @@ process/instance identity on every state and stops only its own process. Its
 normal security segment still completes after the pause experiment.
 
 Next: distinguish original per-frame execution/drawing cost across workloads,
-measure jungle, cave and safari, and connect the original expedition key flags.
+complete jungle verification, measure cave and safari, and connect the original expedition key flags.
 Extend the execution-time boundary without changing integer movement, RNG or
 music clocks. A constant three-frame delay fitted to this one walk is not an
 accepted correction.
@@ -377,3 +379,44 @@ pass on the same runtime. The [integration receipt](../reference/mountain-sprite
 pins the source ZIP,runner and log. The separate required shared-runtime check
 still fails its historical runtime-file inventory; the broader gate remains
 incomplete.
+
+
+## Jungle sprite/copy scheduling
+
+Jungle already has a minimum three-driver-count deadline, but original drawing
+can exceed it. Six unchanged BEFORE/AFTER presentation cases independently
+support the sprite/copy work model: about27ms for two dirty-restore cases,
+162–178ms for three full redraws, and45ms for the next restoration. These agree
+with the quantized original counter brackets, not an uninterrupted input-loop
+measurement. Lines, text and remaining CPU/device costs are still omitted.
+
+The runtime observes actual source effects, then waits against elapsed simulation
+time before presenting. The scheduler supplies this explicit provider, excluding
+hidden-page pauses. It retains driver/retrace phase rather than rounding every
+update to an independent fixed retrace count. Catch-up and hidden-page pause
+checks pass. A browser deadline bypass must fail the redraw-duration assertion.
+
+The new complete treasure route has independent Game and fixed-event browser
+replays of all27 full states/pictures and70 DOM events, with860 movement samples,
+907 presentations, $1,050 returned and one life. Required Right removal fails at
+input120. The original exploratory exception remains in its raw report; a
+separate declaration and fresh passing browser receipt establish acceptance.
+`reference/draw-timed-jungle-treasure.json` records the sources and artifacts.
+
+```sh
+npm run verify:jungle-draw-timing
+```
+
+This is scoped port/browser acceptance. The old824-input component regression
+still expects an immediate first wipe and fails at checkpoint0; its expected
+outputs have not been overwritten. The shared-runtime inventory guard and older
+mountain/browser campaign source receipts also need migration. The broader
+required gate, arbitrary-route finishability and complete original elapsed-time
+parity remain unverified. [Detailed contract](jungle-timing.md).
+
+
+The combined jungle gate passed on `cc716c1`; its
+[integration receipt](../reference/jungle-draw-timing-integration.json) preserves
+the exact source archive, complete runner/log and scoped limitations. It includes
+127 unit cases and two passing browser cases with no skips, both required
+browser negatives, strict route/source verification and the production build.

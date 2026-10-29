@@ -22,10 +22,13 @@ parser.add_argument('--port', type=int, default=8387)
 parser.add_argument('--map-inputs', action='store_true', help='Continue through security into the authored natural map-keyboard scenario')
 parser.add_argument('--map-clock', action='store_true', help='Capture35 caller deadline completions and their two successful clock reads after the initial map baseline')
 parser.add_argument('--map-repeat', action='store_true', help='Use the fixed long-held Right profile to investigate external keyboard repeat')
+parser.add_argument('--map-notice', action='store_true', help='Use fixed map makes,held Fire and fresh dialogue choices to capture the destination handoff')
 parser.add_argument('--navigation', action='store_true', help='Fixed Right/Left after the first warning, returning to row0')
 args = parser.parse_args()
-if (args.map_clock or args.map_repeat) and not args.map_inputs:
-    parser.error('--map-clock and --map-repeat require --map-inputs')
+if (args.map_clock or args.map_repeat or args.map_notice) and not args.map_inputs:
+    parser.error('--map-clock,--map-repeat and --map-notice require --map-inputs')
+if args.map_notice and args.map_repeat:
+    parser.error('--map-notice and --map-repeat are separate fixed profiles')
 out = (ROOT / args.output).resolve()
 assert out.is_relative_to((ROOT / '.local').resolve()), 'Captures must stay in ignored local storage'
 out.mkdir(parents=True, exist_ok=False)
@@ -255,9 +258,9 @@ try:
     final = state('return',stop)
     remove(return_bp)
     if args.map_inputs:
-        profile_path = ROOT / ('reference/map-keyboard-repeat-inputs.json' if args.map_repeat else 'reference/map-keyboard-inputs.json')
+        profile_path = ROOT / ('reference/map-notice-inputs.json' if args.map_notice else 'reference/map-keyboard-repeat-inputs.json' if args.map_repeat else 'reference/map-keyboard-inputs.json')
         profile = json.loads(profile_path.read_text())
-        expected_sequences = 2 if args.map_repeat else 10
+        expected_sequences = 15 if args.map_notice else 2 if args.map_repeat else 10
         assert profile['expectedReads'] == 36 and len(profile['events']) == expected_sequences
         by_read = {e['beforeRead']: e for e in profile['events']}
         assert len(by_read) == expected_sequences and all(0 <= i < 36 for i in by_read)
@@ -350,10 +353,15 @@ try:
                             'y':struct.unpack_from('<h',data,y_ptr)[0]}
                 if stage=='before' and index in by_read:
                     raw_codes={'KBD_right':0x4d,'KBD_k':0x25,'KBD_left':0x4b,
-                               'KBD_kp3':0x51,'KBD_m':0x32,'KBD_up':0x48}
+                               'KBD_kp3':0x51,'KBD_m':0x32,'KBD_up':0x48,'KBD_space':0x39}
+                    expected_flags={}
                     for event in by_read[index]['keys']:
-                        expected=[128] if event['pressed'] else ([0,64] if args.map_repeat else [0])
-                        assert data[0x276c+raw_codes[event['key']]] in expected, f'Authored key not settled before map read{index}: {event}'
+                        key=event['key']
+                        if event['pressed']:expected_flags[key]=[128]
+                        elif key in expected_flags:expected_flags[key]=[64]
+                        else:expected_flags[key]=[0,64] if args.map_repeat else [0]
+                    for key,expected in expected_flags.items():
+                        assert data[0x276c+raw_codes[key]] in expected, f'Authored key not settled before map read{index}: {key}'
                 if stage=='end' and index+1 in by_read:
                     event=by_read[index+1]
                     row['scheduledForRead']=index+1
@@ -366,7 +374,54 @@ try:
         for bp in [before_bp,input_bp,end_bp]+[bp for _,bp in clock_bps]:remove(bp)
         replay=client.get('/api/v1/input/replay/status')
         assert not replay['active'] and replay['remaining']==0
-        assert data[0x276c:0x27ec] == bytes(128)
+        if args.map_notice:
+            # Held Fire returns before the pointer's normal flush/mode reset.
+            assert stop['registers']['eax']&65535==1 and data[0x3c1]==0
+            assert data[0x276c+0x39]==128
+            entry=add(0x1757-0xca0,map_cs)
+            stop=resume(stop['stop_id']);assert stop['breakpoint']['id']==entry
+            state('notice-entry',stop);remove(entry)
+            notice_records=[]
+            def notice_snapshot(name,stop,picture=False):
+                data=state(name,stop,picture)
+                bp=stop['registers']['ebp']&65535
+                return {'artifact':name+'.json','stopId':stop['stop_id'],
+                        'clock':struct.unpack_from('<I',data,0x2225)[0],
+                        'mode':data[0x3c1],'choice':struct.unpack_from('<H',data,(bp-0x7c)&65535)[0],
+                        'ax':stop['registers']['eax']&65535}
+            for name,ip in [('notice-before-entry-flush',0x18b1),('notice-after-entry-flush',0x18b6)]:
+                marker=add(ip-0xca0,map_cs)
+                stop=resume(stop['stop_id']);assert stop['breakpoint']['id']==marker
+                notice_records.append(notice_snapshot(name,stop))
+                remove(marker)
+            stages=[('flush',add(0x1e33-0xca0,map_cs)),('before',add(0x1e89-0xca0,map_cs)),('input',add(0x1e8e-0xca0,map_cs))]
+            for index in range(5):
+                row={'index':index}
+                for stage,bp in stages:
+                    stop=resume(stop['stop_id']);assert stop['breakpoint']['id']==bp
+                    row[stage]=notice_snapshot(f'notice-{index:03d}-{stage}',stop,stage=='flush')
+                    event=profile['noticeEvents'].get(str(index),{})
+                    if stage=='flush' and event.get('keys'):
+                        row['scheduledInputRecord']=len(inputs)
+                        keys(*[(e['key'],e['pressed'])for e in event['keys']])
+                    if stage=='input' and event.get('afterKeys'):
+                        row['afterInputRecord']=len(inputs)
+                        keys(*[(e['key'],e['pressed'])for e in event['afterKeys']])
+                notice_records.append(row)
+            for _,bp in stages:remove(bp)
+            ret=add(0x1ec7-0xca0,map_cs)
+            stop=resume(stop['stop_id']);assert stop['breakpoint']['id']==ret
+            data=state('notice-return',stop)
+            remove(ret)
+            replay=client.get('/api/v1/input/replay/status')
+            assert not replay['active'] and replay['remaining']==0
+            assert data[0x276c:0x27ec]==bytes(128)
+            save('notice-consumption',notice_records)
+            save('notice-capture',{'completed':True,'inputReads':5,'returnCode':stop['registers']['eax']&65535,
+                                   'segment':map_cs,'injections':[],'partialRestore':False,'replay':replay,
+                                   'scope':'Natural held-Fire map-to-dialogue handoff and fresh choices;not full scene/browser timing parity.'})
+        else:
+            assert data[0x276c:0x27ec] == bytes(128)
         if args.map_clock:
             assert len(clock_records)==35 and len(clock_inputs)==70
             save('map-clock-inputs',clock_inputs)

@@ -206,3 +206,13 @@ This is observed provider-specific evidence,not yet a newly registered strict
 carried comparison or proof of physical keyboard typematic behavior. The browser
 must consume arriving make events rather than continuously replenish flushed
 slots from a held-key set;repeat-provider timing remains a separate boundary.
+
+
+The next Fire-handoff recipe is `--map-inputs --map-notice`. Its independent
+profile issues14 paired keypad3 presses,then holds Fire through the map return.
+It captures destination entry,entry flush and five menu polls:held Fire without
+a new make,release,fresh keypad6 choice,neutral,and fresh Fire. Each menu make is
+queued after its original per-poll flush,before drawing and the input reader.
+It stops at the original dialogue return and requires all release events consumed.
+No memory/CPU writes,restores or expected-output-derived inputs are used. This
+new capture procedure is pending execution and separate acceptance.

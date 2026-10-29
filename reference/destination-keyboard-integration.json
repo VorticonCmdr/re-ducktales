@@ -1,0 +1,411 @@
+{
+  "version": 1,
+  "completed": true,
+  "sourceCommit": "c5822954aae2c21b1728d299bbabab41e7f7ac8e",
+  "sourceFileCount": 573,
+  "scope": "Original ordinary destination reader integration,focused browser controls and complete Easy/Hard port regressions;not native whole-campaign or CPU/poll/scanout parity",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "nativeManifests": [
+    {
+      "path": "reference/destination.json",
+      "sha256": "625439ca6ec898bf3701b525e5e3c2ec06f8d982969418d4389ddd5da97f1854"
+    },
+    {
+      "path": "reference/destination-video.json",
+      "sha256": "a3763479da07f2c7c210176cda8dc1f3abaf84a5bba8586639437e2500ba9bf9"
+    },
+    {
+      "path": "reference/destination-keyboard.json",
+      "sha256": "54c16481edbed120f0f08c9f09393254179c1679b6b3fe30d2656695e1c53e9b"
+    }
+  ],
+  "expected": {
+    "unitCases": 123,
+    "focusedBrowserCases": 5,
+    "campaignBrowserCases": 2,
+    "campaignCheckpoints": 64,
+    "campaignDOMEvents": 7650,
+    "campaignFlightPresentations": 2817,
+    "nativeReaderCases": 26,
+    "conditionalGameReaderCases": 16,
+    "nativePictures": 4,
+    "nativeVideoSnapshots": 29,
+    "browserMissingInputControls": 4,
+    "skipped": 0,
+    "additionalAtomicBrowserCases": 2,
+    "conditionalNativeAtomicCases": 5
+  },
+  "verificationCommands": [
+    "npm run verify:destination-keyboard",
+    "npm run verify:easy-destination-campaign",
+    "npm run verify:hard-destination-campaign",
+    "npm run build"
+  ],
+  "comparisonRules": [
+    "All original key bytes,128 flag slots and carried choices exact at declared consumption boundaries",
+    "Conditional Game keyboard comparison uses independent one-tick/one-retrace fixture waits;original clocks or expected state are never injected",
+    "All64 full-campaign browser state and logical canvas hashes exact,all7650 required DOM events consumed;no diagnostic tail or exclusions",
+    "Debug flag observations align to a full16ms video interval after readiness;no state tolerance",
+    "Production build passed;build-browser is only a retained duplicate of the last Hard browser result"
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "limitations": [
+    "Consumption in the browser is still prompted by external makes;neutral polling,CPU draw/read timing and deferred system-key polling remain open",
+    "No new complete native campaign comparison or production-browser acceptance",
+    "Broader integrated gate still required;accepted main preview remains59af3c6"
+  ],
+  "artifactCount": 69,
+  "artifacts": {
+    "additional-atomic/atomic-choice.png": {
+      "path": ".local/destination-keyboard-integration-20261029-01/additional-atomic/atomic-choice.png",
+      "bytes": 11838,
+      "sha256": "051f052361c50ba315723a1ac9f6d06230242f0b4eb9cb543329b1b6970b4337"
+    },
+    "additional-atomic/browser/.last-run.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/additional-atomic/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "additional-atomic/browser.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/additional-atomic/browser.log",
+      "bytes": 657,
+      "sha256": "b5e6d3088c3fbd849b28ab6aed93f18a0a5cd086d3a60d986a5023cf19adb690"
+    },
+    "additional-atomic/native.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/additional-atomic/native.log",
+      "bytes": 277,
+      "sha256": "0dabb5518c00c5152ea5b68aef6aa13a2ccd4c33dc82ce93dd69f961a9537c60"
+    },
+    "additional-atomic/scope.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/additional-atomic/scope.json",
+      "bytes": 598,
+      "sha256": "11c8d905549e560c7d5ed5e6e3c3ac45f80cd1ea17fbf03982793e62278a3ea8"
+    },
+    "build-browser/.last-run.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/build-browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "build-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/build-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373201,
+      "sha256": "3422671bd96faad2b2bb5294225609ec17eaed40c358e2b40a23940401ed12f8"
+    },
+    "build-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/build-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157874,
+      "sha256": "281eb870320ab33de22e1037dd451e44a8ac7abb661952d391357e2ba159439c"
+    },
+    "build-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/build-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "04b69fcb3be26ef79b79d60d8c253567d58b5f0352129724a9b2fc037aab093f"
+    },
+    "build.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/build.log",
+      "bytes": 1518,
+      "sha256": "1d49c3d545155bf7067f0bd23fcd323fafe36993270f09c5b0c1154a833f58bc"
+    },
+    "collection-note.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/collection-note.json",
+      "bytes": 199,
+      "sha256": "40491a626c56a7fc0ef7f57b224ffb5790ae7a14ccf341b76848221b0e4f085f"
+    },
+    "easy-browser/.last-run.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "easy-browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 318373,
+      "sha256": "004ce0f0ff6a1227f7525fd3205e1f36af88ba07efba23916d08d802441fbbc5"
+    },
+    "easy-browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 171772,
+      "sha256": "1f5cab3f5b6b4ae10134e0e36462f1286cf92df5ea75df83ef48d6447e55d496"
+    },
+    "easy-browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 6225,
+      "sha256": "48a1ad7ed35091a1d7a3a3e69e4b1daa7a52304f5c022b162d7303d4d3c3be00"
+    },
+    "easy-browser-controls/omit-campaign-jungle-move/.last-run.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-campaign-jungle-move/.last-run.json",
+      "bytes": 96,
+      "sha256": "640de19fd2a2c6b8064e900645dd01c910432d3b7f5ec04f5a565102f2e598f5"
+    },
+    "easy-browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 82959,
+      "sha256": "45b425ca6c90691952cfd36c19df5214b1022f3ef9455c45e02391e5cd3d8531"
+    },
+    "easy-browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 15526,
+      "sha256": "3ec1b23c2f4faaff4a4ae904d65d4e6ba2ba812f5155120eaf56dd3093ca2d99"
+    },
+    "easy-browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md",
+      "bytes": 12767,
+      "sha256": "94e0f316c465f9bf7d8abf3ee1e4078628be0c66faa73ec805b3c835100c7dcd"
+    },
+    "easy-browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-campaign-jungle-move/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 3157,
+      "sha256": "e2077b362be397e603d11aefd60b57ada72f207665dea88d66b0a37177462622"
+    },
+    "easy-browser-controls/omit-campaign-jungle-move.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-campaign-jungle-move.log",
+      "bytes": 2077,
+      "sha256": "fcf3625bf940fbf8328b08a42b1113b319446ea75262b5d793f8f0fb9a5af600"
+    },
+    "easy-browser-controls/omit-easy-confirm/.last-run.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-easy-confirm/.last-run.json",
+      "bytes": 96,
+      "sha256": "640de19fd2a2c6b8064e900645dd01c910432d3b7f5ec04f5a565102f2e598f5"
+    },
+    "easy-browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "easy-browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 2341,
+      "sha256": "0cbe74508d2314a1d7abddf0dc44420f2c9429cb37439704cb895b4b0426227f"
+    },
+    "easy-browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md",
+      "bytes": 12709,
+      "sha256": "91b8daf62c913e7348da2d89cc79d2e9cf690ee94a828384cc070fbde7abcd0f"
+    },
+    "easy-browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-easy-confirm/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 2044,
+      "sha256": "c852ac593b244cfd7e403fcde9699b06ecf2de526df03b1de232f27b3c2ce387"
+    },
+    "easy-browser-controls/omit-easy-confirm.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy-browser-controls/omit-easy-confirm.log",
+      "bytes": 1881,
+      "sha256": "d47531832f6af33ad8a49eff0a6ff9eae1ae57134105661167a069f1c31c4ee3"
+    },
+    "easy.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/easy.log",
+      "bytes": 6629,
+      "sha256": "5854d1d04bcae799c2e7aa3833fea19c73e4d983735892ed142eec9f6dc0f594"
+    },
+    "hard-browser/.last-run.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "hard-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373201,
+      "sha256": "3422671bd96faad2b2bb5294225609ec17eaed40c358e2b40a23940401ed12f8"
+    },
+    "hard-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157874,
+      "sha256": "281eb870320ab33de22e1037dd451e44a8ac7abb661952d391357e2ba159439c"
+    },
+    "hard-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "04b69fcb3be26ef79b79d60d8c253567d58b5f0352129724a9b2fc037aab093f"
+    },
+    "hard-browser-controls/browser-negative/.last-run.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser-controls/browser-negative/.last-run.json",
+      "bytes": 96,
+      "sha256": "4b297e2217707d7d25dc489b8c58e70913d3217d32a3046120e08a7612e97e32"
+    },
+    "hard-browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "hard-browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 2361,
+      "sha256": "629eace83bcdb927e55067420560058f0b50d9e2c3aa8364fecb4241105959f7"
+    },
+    "hard-browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/error-context.md": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/error-context.md",
+      "bytes": 12649,
+      "sha256": "afacf639f02837b9b3c1aeac8a9cdc7dda133bba0db94d92ace86ca6634cc7ef"
+    },
+    "hard-browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser-controls/browser-negative/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 2062,
+      "sha256": "e2516c35fadf403c6d3a9c728f6dfd4dd600d0ade856d1152910db58fc06ecbc"
+    },
+    "hard-browser-controls/browser-negative.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard-browser-controls/browser-negative.log",
+      "bytes": 1834,
+      "sha256": "1c7fdbc7063c7365b08c298db8d451d6b87af9954efac5219c460565a928730a"
+    },
+    "hard.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/hard.log",
+      "bytes": 6210,
+      "sha256": "c56d548c39dcb0c5b9af5fbffccc3c860cabdc191c78a955dc76627a0cbb9e92"
+    },
+    "keyboard-browser/.last-run.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "keyboard-browser/destination-destination-en-d649d-ait-gate-real-browser-input/destination-wait-observations.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser/destination-destination-en-d649d-ait-gate-real-browser-input/destination-wait-observations.json",
+      "bytes": 1084,
+      "sha256": "02bb7ea169e9359d3ba3df91a4eaa1a1d319a12adf370011844d85f8730baaaa"
+    },
+    "keyboard-browser/destination-destination-en-d649d-ait-gate-real-browser-input/destination-waits-departure.png": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser/destination-destination-en-d649d-ait-gate-real-browser-input/destination-waits-departure.png",
+      "bytes": 9711,
+      "sha256": "02ce920f8e2caa1e9bdf87dea89ec6824663ad5d942652de262f258a422b9259"
+    },
+    "keyboard-browser/destination-destination-or-70d1d-resh-repeat-makes-use-mode1/destination-keyboard-departure.png": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser/destination-destination-or-70d1d-resh-repeat-makes-use-mode1/destination-keyboard-departure.png",
+      "bytes": 9711,
+      "sha256": "02ce920f8e2caa1e9bdf87dea89ec6824663ad5d942652de262f258a422b9259"
+    },
+    "keyboard-browser/destination-destination-or-70d1d-resh-repeat-makes-use-mode1/destination-keyboard.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser/destination-destination-or-70d1d-resh-repeat-makes-use-mode1/destination-keyboard.json",
+      "bytes": 140497,
+      "sha256": "40235e204e15853d8ca3c12effc5d38e75ebe78f5731ff7eaeb04389e4dcb3ea"
+    },
+    "keyboard-browser/destination-destination-sh-4cc7a-rough-real-browser-controls/destination-bolognia.png": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser/destination-destination-sh-4cc7a-rough-real-browser-controls/destination-bolognia.png",
+      "bytes": 13150,
+      "sha256": "960516552ae69b954c876abe6feccfe6fa515cbe703d3723a7df491dbc55067f"
+    },
+    "keyboard-browser/map-pointer-map-held-keys--2d3bd-n-flight-choice-and-restart/map-flight-choice.png": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser/map-pointer-map-held-keys--2d3bd-n-flight-choice-and-restart/map-flight-choice.png",
+      "bytes": 11129,
+      "sha256": "40e024418ea5fbbe59dbbbc1113f1ef58877bd53880cb0dee0ef323c3c16aafe"
+    },
+    "keyboard-browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-inputs.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-inputs.json",
+      "bytes": 210803,
+      "sha256": "18b4bdbde18c6a99069338220ac899d3b7aedffae9bf100a0af513d6c2d19a68"
+    },
+    "keyboard-browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-original-inputs.png": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser/map-pointer-original-map-s-22700-ls-use-real-keyboard-events/map-original-inputs.png",
+      "bytes": 24889,
+      "sha256": "e0aa34a7db5d796056b16c8cb5f6fa2bbd5a2e605145f92aaeb749b21c04e2f2"
+    },
+    "keyboard-browser-controls/browser/.last-run.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser-controls/browser/.last-run.json",
+      "bytes": 96,
+      "sha256": "f977df2846f27019a90f707242dc8321d760aa02b2d0dc6438e13e02e2a8a93d"
+    },
+    "keyboard-browser-controls/browser/destination-destination-or-70d1d-resh-repeat-makes-use-mode1/error-context.md": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser-controls/browser/destination-destination-or-70d1d-resh-repeat-makes-use-mode1/error-context.md",
+      "bytes": 12352,
+      "sha256": "f92c926e313098301b7c883ceae2256f7b545537a791a5fd069f494c5c99ba96"
+    },
+    "keyboard-browser-controls/omit-k.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-browser-controls/omit-k.log",
+      "bytes": 1651,
+      "sha256": "1ac00e9679015b89a30c98d1a263c3349086cd28a244234341248ee14a633af8"
+    },
+    "keyboard-fixture-controls/corrupt-fixture.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-fixture-controls/corrupt-fixture.log",
+      "bytes": 684,
+      "sha256": "7ce4d99d5b32da55b2955a42f15858964f41f500c247a40d88308a17f4ad71e9"
+    },
+    "keyboard-fixture-controls/missing-fixture.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-fixture-controls/missing-fixture.log",
+      "bytes": 522,
+      "sha256": "b635fab19928129cfa1bd9875222d44d87edf604b0baa790468c8365499f54aa"
+    },
+    "keyboard-fixture-controls/restored-positive.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-fixture-controls/restored-positive.log",
+      "bytes": 383,
+      "sha256": "deb97a1df59ba14d5ab3deb8b550937e3a5fe0d60289f9d247009e474ba1786c"
+    },
+    "keyboard-original-controls/corrupt-fixture.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-original-controls/corrupt-fixture.log",
+      "bytes": 683,
+      "sha256": "c909fd2e337129b50902d5ef8cb67c990d2342129bb805ed955c3f07b9f8371a"
+    },
+    "keyboard-original-controls/missing-fixture.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-original-controls/missing-fixture.log",
+      "bytes": 512,
+      "sha256": "bdfbc934b650ba15dc41a88a15cf1eea8fb6c905f111c1d4dedf2b16c7956c67"
+    },
+    "keyboard-original-controls/restored-positive.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-original-controls/restored-positive.log",
+      "bytes": 297,
+      "sha256": "8ec3f72c0bfbf35501a7a0f3943f88c98c133e3d98724223424e452a0412c38a"
+    },
+    "keyboard-video-controls/corrupt-fixture.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-video-controls/corrupt-fixture.log",
+      "bytes": 725,
+      "sha256": "c364fc72aecf0d308bee9f7edd4351c8319a491f105fe291301c1f0f8d5b16b1"
+    },
+    "keyboard-video-controls/missing-fixture.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-video-controls/missing-fixture.log",
+      "bytes": 649,
+      "sha256": "9ccb3e1281a6d7eeee890414497fd72d66e051bbe35a0d67d89644f76118188f"
+    },
+    "keyboard-video-controls/restored-positive.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard-video-controls/restored-positive.log",
+      "bytes": 638,
+      "sha256": "9a33b272da1169a80002ad4285dab0af5741615919fac239a5a321376e26f052"
+    },
+    "keyboard.log": {
+      "path": ".local/destination-keyboard-integration-20261029-01/keyboard.log",
+      "bytes": 15357,
+      "sha256": "5a5505cb6590f945a28513cb683773a306a20f140ea7525a954eb3a3ab7e7d04"
+    },
+    "manual/after.png": {
+      "path": ".local/destination-keyboard-integration-20261029-01/manual/after.png",
+      "bytes": 70861,
+      "sha256": "74fcc6739f3963e5df16d2c5fc2390a871aa6709c878495c3a15ee57d1984437"
+    },
+    "manual/before.png": {
+      "path": ".local/destination-keyboard-integration-20261029-01/manual/before.png",
+      "bytes": 112537,
+      "sha256": "4b54806cb0a22ba3c3746efe36440ac228ae5771526aa5b0b39a9b6c0bda6f04"
+    },
+    "manual/observations.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/manual/observations.json",
+      "bytes": 846,
+      "sha256": "6337052711937b93640793033bbd124bb735b4156926991db2a8f87af77140da"
+    },
+    "poll-window-observations.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/poll-window-observations.json",
+      "bytes": 4348,
+      "sha256": "15e7aa5a7e8bb1e1410892ec2d32bf1c11edb517e33af16b245f908f08cff336"
+    },
+    "runner-status.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/runner-status.json",
+      "bytes": 887,
+      "sha256": "c3443de429746dca63517dea260257a28765ac8d9e90b7e8ee0a52fe414e9c79"
+    },
+    "runner.py": {
+      "path": ".local/destination-keyboard-integration-20261029-01/runner.py",
+      "bytes": 2225,
+      "sha256": "58a8bef79a7b38912d25c25570f3cca23c66afeebf72447cad82ba2655d4d2ba"
+    },
+    "source-revision.json": {
+      "path": ".local/destination-keyboard-integration-20261029-01/source-revision.json",
+      "bytes": 61665,
+      "sha256": "a9ee360432a870c29df6222a50f60e09cc5f016f65071e2bc57aff5dc076ffcd"
+    },
+    "sources.zip": {
+      "path": ".local/destination-keyboard-integration-20261029-01/sources.zip",
+      "bytes": 1518346,
+      "sha256": "488082bdeb612643afe2621099007364d4724773f18834c6356e7c4804a9f7b2"
+    }
+  },
+  "additionalVerificationCommands": [
+    "node node_modules/@playwright/test/cli.js test tests/browser/atomic.spec.js --config playwright.campaign.config.js",
+    "npm run verify:atomic"
+  ]
+}

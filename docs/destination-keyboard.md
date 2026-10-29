@@ -74,6 +74,18 @@ npm run verify:hard-destination-campaign
 
 Missing/corrupt native fixtures,zero cases,incomplete inputs and mismatches fail.
 The keyboard command includes the original destination/video checks,all unit
-checks,five focused browser cases and real missing-input controls. Full campaign
-browser regression and the broader integrated gate remain required for promotion
-to the accepted main preview.
+checks,five focused browser cases and real missing-input controls. The committed integration run on c582295 passes both complete campaign commands
+and the production build as well. It retains573 exact source files and all results
+in`reference/destination-keyboard-integration.json`. No new production-browser
+acceptance is claimed. The broader integrated gate remains required before
+promotion to the accepted main preview.
+Two additional atomic browser cases pass on the same runtime, including natural
+transmitter acquisition, third-choice selection and transport. Five conditional
+original atomic comparisons also pass; they retain their separate scope.
+
+The same original capture provides quantized counter observations for the next
+polling investigation: footer-to-reader differences are one counter increment
+in this scenario; intervals after neutral/nonhorizontal reads vary between two
+and three increments. This does not establish exact execution duration or a
+fixed period. The observations are retained with the integration receipt and
+are never fed back as simulation inputs.

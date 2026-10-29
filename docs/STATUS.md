@@ -1,184 +1,108 @@
 # Current port status
 
-Updated2026-10-29. **The whole game is incomplete. This is completion work,
-not only fine-tuning.** Selected complete campaigns work; arbitrary-route
-finishability and full original-game parity remain unproven.
+Updated 2026-10-29. **The whole game is incomplete. This is completion work,
+not only fine-tuning.** Selected complete campaigns are playable and verified;
+arbitrary-route finishability and full original-game parity remain unproven.
 
-## Current verified milestone
+## Current verified branch
 
-The ordinary-key core now drives office key scanning,and the investment departure
-has the correct browser status label. The complete required `npm run verify`
-passed on source `8446d79`:117 unit checks,91 development-browser cases and2
-production-browser cases,zero skips,with the required original comparisons and
-negative controls. All529 tested source files and raw results are retained in
-`.local/keyboard-integration-full-gate-20261029-01/`.
-[Integration manifest](../reference/keyboard-integration.json).
+Source `c582295` connects the destination dialog to the original ordinary-key
+reader. I/J/K/M, keypad directions/center/Enter, physical releases and fresh repeat
+makes now work. Original entry, selection and confirmation waits remain connected.
+The complete focused keyboard command, both complete campaign commands and the
+production build pass, with 573 exact source files archived.
+[Verification receipt](../reference/destination-keyboard-integration.json).
 
-This includes36 original map input/flag/pointer comparisons and a fresh seven-case
-shared browser regression across complete Easy/Hard,jungle and mountain routes.
-The map deadline component and its original35-call comparison are separate work;
-this gate does not include their later map-caller branch. The separate branch now has focused browser acceptance for letter/keypad
-bindings and raw map polling/flush behavior; broader integration remains open.
+Fresh checks cover 123 unit cases, five focused browser cases and two complete
+browser campaigns, with zero skips. Easy wins on day 32 with 13,875 against 11,500;
+Hard loses on day 31 with 17,200 against 61,000. Independent Game and real browser
+replays consume all 7,650 events and compare all 64 full states/pictures, with
+2,817 flight presentations. No captured inputs, timestamps or expected states
+were edited for the keyboard repair. Required input omissions fail.
+Two additional atomic browser cases and five conditional original atomic checks
+also pass, covering the unlocked third transport choice.
 
-The receipt command validates this actual complete historical run;it does not
-execute fresh whole-game acceptance. Receipt/documentation commits follow the
-tested source without runtime/test/config changes. The production output copy
-was repaired after the successful run using the configured output directory;
-the verification command itself was not repeated or altered. Earlier
-[office](../reference/office-integration.json) and
-[security](../reference/security-integration.json) receipts remain preserved.
+Original comparisons separately check 26 destination reads and their full key
+flags, four complete destination pictures, and 29 CPU/video observations. The new
+16-read case also runs through an independently initialized Game with declared
+fixture clocks. These are scoped native routine/caller comparisons, not a native
+complete-campaign comparison or proof of CPU/scanout timing parity.
+[Keyboard scope](destination-keyboard.md), [explicit waits](destination-waits.md).
 
-## Working routes and evidence
+The main checkout remains clean at `59af3c6`; its preview on port 5187 is unchanged.
+The last complete historical `npm run verify` passed on `8446d79`: 117 unit,
+91 development-browser and two production-browser cases, zero skips.
+[Historical full-gate receipt](../reference/keyboard-integration.json).
+That run predates this map/destination branch. **The required broader gate has
+not passed on the current branch.** The current production build passes; no new
+production-browser acceptance is claimed.
 
-- Original opening/Sound001 → difficulty → office. Office clear/reveal and input
-  match29 native pictures and63 consumed input values. Money-bin departure,dive,
-  reward,return and Restart work. Left+Fire runs the seven-flip investment
-  departure before trading;Right+Fire runs control-center departure and security.
-  [Office menu](office-menu.md),[investments](office-investments.md).
-- Map → departure briefing → controlled flight → jungle,mountain,cave or
-  photography → reward/failure → map,rival reports and banking. Investments,
-  atomic transport,calendar/deadline handling and both endings are connected.
-- Complete office-aware Easy route wins onday32 with13875 against11500:
-  36 exact carried state/pixel checkpoints,3516 DOM events and1188 flight
-  presentations,then Restart. Complete Hard route loses onday31 with17200
-  against61000:28 checkpoints,4140 events and1629 flight presentations.
-  These are port/browser regressions,not full original-campaign comparisons.
-  [Campaign migration](office-campaign-migration.md).
-- Four alternate Hard expeditions return treasure and bank onday6 with three
-  lives:169 exact Game/browser checkpoints,3978 events and1584 flight
-  presentations. Eight complete browser cases and four separate entry replays
-  pass;the latter consume956 events each.32 comparison/missing-movement controls
-  and required fixture removal/corruption/restoration pass.
-  [Hard alternates](office-hard-expeditions.md).
-- Focused jungle treasure,mountain summit and natural lightning routes also have
-  independent input streams,strict Game replay and actual browser acceptance.
-  Pause,quit,input deferral,life resets,duplicate notices and audio boundaries
-  have focused checks. See the linked route documents for exact scope.
-- Tandy/PCjr playback is connected,including Sound001(~49s/3558 sequencer ticks),
-  persistent channels,priorities,engine words,mute and completion. All121 public
-  requests have viewer playback. PC speaker remains the default.
+## Connected gameplay and evidence
 
-Original routine/segment comparisons,carried port replay and actual browser
-acceptance are distinct evidence levels. Success at one does not prove another.
-
-On the caller branch,the destination page now includes the original treasure
-name,description,value and integer selection border. Five original mode1
-input/flag/choice comparisons and two complete native page comparisons pass.
-The real browser also checks original invariant labels and its whole footer
-before flight departure and Restart. This completed-page milestone preceded the
-explicit waits described below;it is not new whole-campaign acceptance.
-[Destination evidence and scope](destination.md). A second fresh original
-scenario adds29 stable CPU/video observations,five page flips and two exact
-pictures with a different treasure. The stale highlight is explained by raw
-render-cache lag;the update counter is not a completed-scanout clock. Native
-selection/confirmation waits are observed;their explicit browser integration is
-described below.
-
-The caller branch now integrates explicit destination waits:25 clear retraces,
-25 reveal retraces,a flip,selection7-count/flip/1-count settling,and confirmation
-flip/7-count return.123 unit checks and four focused browser scenarios pass,
-including early input and the Tandy request36 boundary. This still uses the
-semantic destination adapter;recurring raw polling and CPU/footer costs remain
-untranslated. Historical Easy/Hard inputs fail at checkpoint1 because they send
-commands during entry. Fresh campaign acceptance remains required.
-[Explicit-wait scope and commands](destination-waits.md).
-The committed focused gate passes on48cbfd2,with558 exact archived source files,
-all required original segment checks and a production build.
-[Verification receipt](../reference/destination-waits-integration.json).
-The first fresh Easy exploration is excluded after an unexpected document
-navigation. The isolated second run completes all four expedition families and
-wins onday32 with13875 against11500. Independent Game replay consumes3514 events,
-checks36 complete states and renders1188 flight presentations. A fresh fixed-input
-browser matches all36 states and pictures,then Restart. Five Game/fixture controls,
-two real missing-input browser controls and17 other affected browser cases pass.
-[Fresh Easy contract](../reference/easy-campaign-destination.json).
-These are port/browser comparisons;full native-campaign parity remains unproven.
-The committed Easy verification command also passes in full onbf7bb3d with565
-archived source files;[gate receipt](../reference/destination-easy-campaign-gate.json).
-Fresh Hard reaches its day31 loss with17200 against61000. Independent Game and
-browser replays match28 states/pictures,4136 events and1629 flight presentations,
-including one required native-supported flag alias. Six Game/fixture controls and
-the actual missing-Hard-selection browser control pass.
-[Fresh Hard contract](../reference/hard-campaign-destination.json).
-The complete committed Hard command passes onb50cd3e with567 archived source files;
-[gate receipt](../reference/destination-hard-campaign-gate.json).
-The broader integrated gate remains open;the accepted main preview is unchanged.
+- Opening/Sound 001 → difficulty → office, money-bin dive/reward/return and
+  Restart. Investments have their original seven-flip departure and trading.
+  [Office menu](office-menu.md), [investments](office-investments.md).
+- Control center/security → map → destination/aircraft choice → departure →
+  controlled flight → jungle, mountain, cave or photography → reward/failure →
+  map, rival reports and banking. Calendar/deadline handling, atomic transport
+  and both endings are connected. Both complete current campaign routes exercise
+  all four expedition families.
+  [Easy contract](../reference/easy-campaign-destination.json),
+  [Hard contract](../reference/hard-campaign-destination.json).
+- Map input has 36 original flag/pointer comparisons; its deadline component has
+  35 original completion calls and 70 independently captured clock results.
+  Current focused browser checks include aliases, raw makes/releases and steady
+  six-count polls. [Map integration](map-input-integration.md).
+- Earlier alternate Hard, natural jungle/mountain and lightning routes retain
+  their independent streams and historical receipts. Their full carried checks
+  still need migration/acceptance with the newer map timing; they are not fresh
+  current-branch results. [Earlier milestones](status-history.md).
+- Tandy/PCjr playback includes Sound 001 (~49s/3,558 sequencer ticks), persistent
+  channels, priorities, engine words, mute and completion. All 121 public requests
+  have viewer playback. PC speaker remains the default; waveform parity is open.
 
 ## Supported build
 
-Only the22-file pairing in [build.json](../reference/build.json) is supported.
+Only the 22-file pairing in [build.json](../reference/build.json) is supported.
 DUCKTALE.EXE SHA-256:
 `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
-MZ/EXEPACK,x86 LE16 real mode,overlays,no extender. Relocated original bytes
-validate actual game code and runtime correspondence. Originals remain
-untouched in ignored `game/`;private captures,images and traces remain local.
-Production visitors select their own originals. No deployment is performed.
+MZ/EXEPACK, x86 LE16 real mode, overlays, no extender. Relocated original bytes
+validate actual game code and runtime correspondence on native launches.
+Originals remain untouched in ignored `game/`; captures, pictures and traces stay
+local. Production visitors select their own originals. Nothing is deployed.
 
 ## Remaining work and next milestone
 
-- OfficeMenu now uses the shared original
-  ordinary-key core.36 fresh native map input/flag/pointer comparisons and the
-  unchanged Easy/Hard carried campaign replays pass. Seven fresh office/
-  investment/trading browser cases pass on87bf2ed;an
-  omitted real chord key is detected. Seven additional complete campaign/jungle/
-  mountain browser cases pass onc42799a with the original expected values.
-  The complete keyboard gate passes on8446d79. The separate map-caller branch
-  now has focused Game/browser integration and fresh Easy/Hard campaign checks;
-  broader integration remains open.
-  [Input rules and reproduction](ordinary-keyboard.md).
-- On the separate map-caller branch,the deadline component passes35 original
-  completion calls with70 separately captured clock results and four negative
-  comparisons. It is now connected on that branch with focused browser checks.
-- Original letter/keypad browser bindings,scene-specific flush/repeat behavior
-  and map pacing now have focused Game/browser checks on the caller branch:
-  all36 original input/flag/pointer comparisons and six-count steady polls,
-  one make across30 held reads, fresh repeat and Fire handoff into flight choice.
-  Two omitted-make browser controls fail as required. The original first drawing
-  interval and recurring destination input/CPU timing remain untranslated. With
-  explicit destination entry,the historical Easy/Hard
-  input replays now fail at their first flight checkpoint because their commands
-  arrive during the wipe;no expected values were changed. See[map input integration](map-input-integration.md).
-- The investment departure status is “Opening investments…”,verified in the
-  actual browser alongside its original animation and trading destination.
-- Original map presentation,destination CPU/scanout/polling details,broader destination and
-  difficulty finishability,and original whole-scene/campaign comparisons remain.
-  A broader exploratory controller is not acceptance evidence.
-- Destination letter/keypad bindings now use the ordinary mode1 reader. A fresh
-  original16-read case and independent Game integration compare all input bytes,
-  flags and choices. Five browser cases cover aliases,repeats,flushes and both
-  confirmation routes. The unchanged Easy/Hard input streams still match all64
-  carried states. Autonomous neutral polling and CPU draw/read timing remain open.
-  [Keyboard scope and commands](destination-keyboard.md).
-- CPU/file/IRQ/input timing and physical audio waveform/gain/filter parity remain
-  unproven. Nonzero bank animation/sparkle pixels and unusual sprite aliases have
-  limited native coverage. Speaker noise is approximate;its engine is omitted.
-  BIOS seed0 is an explicit browser provider,not original time-of-day seeding.
-- No original save/load/high-score format has been identified. Browser
-  persistence would be an explicit addition.
+- Finish the destination's autonomous neutral polling, CPU draw/flush/read window
+  and deferred system-key polling. The browser currently prompts reads from
+  external makes. It does not implement the original recurring loop or invent a
+  fixed drawing cost. Original first-map drawing and exact video/cache phase
+  alignment also remain open.
+- Integrate the refreshed routes with the full required regression suite. Older
+  event streams legitimately send commands during the newly implemented entry
+  wipe; preserve them and produce independent replacements rather than weakening
+  comparisons. The main preview stays on its accepted source until integration.
+- Broader destinations/difficulties, original whole-scene/campaign comparisons
+  and arbitrary-route finishability remain unproven. CPU/file/IRQ timing and
+  physical audio waveform/gain/filter parity also remain open.
+- Nonzero bank/sparkle pixels and unusual sprite aliases have limited native
+  coverage. Speaker noise is approximate and its engine is omitted. BIOS seed 0
+  is an explicit browser provider; original time-of-day seeding is pending.
+- No original save/load/high-score format has been identified. Browser persistence
+  would be an explicit addition unless original behavior is established.
 
-## Verification commands
+## Verification
 
 ```
-npm run verify
-node scripts/verify-keyboard-integration.js
-npm run verify:office-menu
-npm run verify:ordinary-keyboard
-npm run verify:shared-runtime
-npm run verify:map-clock
-npm run verify:map-input-browser
-npm run verify:destination
-npm run verify:destination-video
-npm run verify:destination-waits
 npm run verify:destination-keyboard
-python3 scripts/verify-destination-waits-receipt.py
 npm run verify:easy-destination-campaign
 npm run verify:hard-destination-campaign
-npm run verify:office-investments
-npm run verify:easy-office-campaign
-npm run verify:hard-office-campaign
-npm run verify:office-hard-expeditions
+npm run verify:destination-waits
+npm run verify:map-input-browser
+npm run build
 ```
 
-Missing/corrupt fixtures,incomplete inputs or required comparisons fail.
-Local development:`npm run dev -- --port 5186`. Main preview uses5187.
-[Earlier milestones](status-history.md).
+Missing/corrupt fixtures, zero cases, incomplete required input and mismatches
+fail. `npm run verify` remains the required broader integration gate; its older
+fixtures and source guards have not yet been migrated for this branch.
+Local development: `npm run dev -- --port 5186`. Main preview: port 5187.

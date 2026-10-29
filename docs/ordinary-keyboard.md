@@ -226,3 +226,12 @@ This is observed native evidence pending a registered carried model and browser
 comparison. Actual read clocks1696,1699,1702,1711,1713 include additional choice
 waits and presentation work;they are not fitted input delays or a constant
 menu period. All explicit release events finish and the owned emulator exits.
+
+## Current Game/browser work
+
+The separate caller branch now connects the deadline and raw slots to Game and
+browser input. Its focused original-profile and held/repeat/departure scenarios
+pass, with two actual missing-make controls. The original first drawing interval,
+destination timing and complete campaign acceptance remain open. See
+[map input integration](map-input-integration.md) for precise scope and commands.
+The earlier “not connected” statements above describe the component milestone.

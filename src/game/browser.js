@@ -1,4 +1,9 @@
-import { heldControlEvent, ordinaryMakeEvent } from "./keyboard-adapter.js";
+import {
+  heldControlEvent,
+  ordinaryMakeEvent,
+  ordinaryScanCodeForKey,
+  mapKeyEvent,
+} from "./keyboard-adapter.js";
 import { parseLocations, parseLoot } from "./campaign.js";
 import { Game } from "./application.js";
 import { Scheduler } from "./scheduler.js";
@@ -48,24 +53,10 @@ function unlockTandyAudio() {
   }
 }
 const held = new Set();
-function mapDirection() {
-  const x = Number(held.has("ArrowRight")) - Number(held.has("ArrowLeft"));
-  const y = Number(held.has("ArrowDown")) - Number(held.has("ArrowUp"));
-  return (
-    [
-      y < 0 ? "up" : y > 0 ? "down" : null,
-      x < 0 ? "left" : x > 0 ? "right" : null,
-    ]
-      .filter(Boolean)
-      .join("-") || null
-  );
-}
 function flightControls() {
   dispatch(
     heldControlEvent(held, game?.scene === "office" && !!game.officeMenu),
   );
-  if (game?.scene === "map")
-    dispatch({ type: "direction", direction: mapDirection() });
 }
 function fatal(error) {
   if (game) game.fail(error);
@@ -89,6 +80,8 @@ function dispatch(event) {
 }
 function present(state) {
   renderer.render(state);
+  $("game").dataset.mapInput =
+    state.scene === "map" ? JSON.stringify(state.campaign.mapInputState()) : "";
   $("game").dispatchEvent(
     new CustomEvent("gamepresent", { detail: state.snapshot() }),
   );
@@ -232,7 +225,12 @@ window.addEventListener("keydown", (event) => {
       "KeyY",
       "KeyN",
       "F1",
-    ].includes(event.code)
+    ].includes(event.code) &&
+    !(
+      ordinaryScanCodeForKey(event.code) !== undefined &&
+      (game?.scene === "office" ||
+        (game?.scene === "map" && !game.campaign.info))
+    )
   )
     return;
   if (event.target instanceof HTMLInputElement) return;
@@ -259,6 +257,10 @@ window.addEventListener("keydown", (event) => {
   }
   held.add(event.code);
   flightControls();
+  if (game?.scene === "map" && !game.campaign.info) {
+    dispatch(mapKeyEvent(event.code, true));
+    return;
+  }
   if (event.repeat) return;
   dispatch(
     ordinaryMakeEvent(
@@ -271,6 +273,12 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
   held.delete(event.code);
   flightControls();
+  if (
+    game?.scene === "map" &&
+    !game.campaign.info &&
+    ordinaryScanCodeForKey(event.code) !== undefined
+  )
+    dispatch(mapKeyEvent(event.code, false));
 });
 $("game").addEventListener("pointerdown", (event) => {
   if (game?.scene !== "map" || game.campaign.info) return;
@@ -285,11 +293,12 @@ $("game").addEventListener("pointerdown", (event) => {
 window.addEventListener("blur", () => {
   held.clear();
   flightControls();
-  dispatch({ type: "direction", direction: null });
+  if (game?.scene === "map") dispatch({ type: "flush-map-keys" });
 });
 document.addEventListener("visibilitychange", () => {
   held.clear();
   flightControls();
+  if (game?.scene === "map") dispatch({ type: "flush-map-keys" });
   const now = performance.now();
   if (document.hidden) {
     pausedAt = now;

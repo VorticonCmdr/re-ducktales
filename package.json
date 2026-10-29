@@ -117,7 +117,8 @@
     "verify:map-keyboard": "node scripts/verify-map-keyboard.js && node scripts/verify-map-keyboard-fixture-negatives.js",
     "verify:ordinary-keyboard": "npm run verify:map-keyboard && node scripts/verify-office-menu.js && node scripts/verify-office-investments.js && node scripts/verify-ordinary-keyboard-browser.js",
     "verify:shared-runtime": "node scripts/verify-shared-runtime-regression.js && node scripts/verify-shared-runtime-fixture-negatives.js",
-    "verify:map-clock": "node scripts/verify-map-clock.js && node scripts/verify-map-clock-fixture-negatives.js"
+    "verify:map-clock": "node scripts/verify-map-clock.js && node scripts/verify-map-clock-fixture-negatives.js",
+    "verify:map-input-browser": "npm run verify:map-keyboard && npm run verify:map-clock && playwright test tests/browser/map-pointer.spec.js && node scripts/verify-map-input-browser-negative.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

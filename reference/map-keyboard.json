@@ -810,11 +810,10 @@
     }
   },
   "verificationTools": {
-    "scripts/verify-map-keyboard.js": "7f09af3822081b4525ec57ff4ac74f3768d09f8bd7ddf0ef00728f714c080c97",
+    "scripts/verify-map-keyboard.js": "ad629076c7d00f31bca96eb811326807de059413de9b4c40a64ff413efb49b67",
     "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",
     "src/game/map-pointer.js": "47696dac08b3f9a584b0ebfd4fa416564e889933153c6f8346118e50c6d481bc",
     "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
-    "scripts/capture-security.py": "486f8a2479d8de7b5501a1e13545f64415e4a79445127d72942ca3bba24ec707",
     "reference/map-keyboard-inputs.json": "f9e2c3da4a250d81aa79e8a91c7e9425104958489ec40e1e69291e5c8e3353af",
     "scripts/verify-map-keyboard-fixture-negatives.js": "07cca128e0161bc3e7dde02b4bfb88f7dc6fb8d13bb80a304b3733db134c8910"
   },
@@ -828,5 +827,6 @@
     "Map rendering,CPU instruction/render costs,audio and whole campaign are outside this comparison",
     "Earlier capture01queued atpre-read and serialized scan bytes arrived too late;retained as excluded exploration",
     "Security/startup is conditional setup;required36map reads/10sequences complete with0remaining"
-  ]
+  ],
+  "captureScriptSha256": "486f8a2479d8de7b5501a1e13545f64415e4a79445127d72942ca3bba24ec707"
 }

@@ -86,6 +86,11 @@ assert.equal(
     ]),
   ),
 );
+// Capture tooling can gain new scenarios after an immutable capture. Validate
+// this producer against both its archived source and Git, rather than requiring
+// the current capture tool to remain frozen. The archive is checked above.
+assert.equal(capture.scriptSha256, manifest.captureScriptSha256);
+assert.equal(capture.scriptSha256, source.files["scripts/capture-security.py"]);
 for (const c of [capture, map]) {
   assert.deepEqual(c.injections, []);
   assert.equal(c.partialRestore, false);

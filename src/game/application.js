@@ -633,6 +633,7 @@ export class Game {
           "money-bin",
           "map",
           "investments",
+          "ordinary-key",
         ].includes(event.type)
       )
         this.officeMenu.input(event);
@@ -697,6 +698,16 @@ export class Game {
     }
     if (this.scene === "map") {
       const c = this.campaign;
+      if (event.type === "map-key") {
+        if (c.info && event.pressed)
+          throw Error("Raw map make crossed the destination input boundary");
+        c.mapKey(event.scanCode, event.pressed);
+        return;
+      }
+      if (event.type === "flush-map-keys") {
+        c.flushMapKeys();
+        return;
+      }
       if (event.type === "step" && !c.info) {
         const v = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] }[
           event.direction
@@ -734,9 +745,7 @@ export class Game {
             this.completeCampaignAction({ type: "travel", target: c.selected });
             return;
           }
-          c.info = true;
-          c.choice = 0;
-          c.direction = null;
+          c.enterDestination();
           return;
         }
         if (c.choice === 0) {
@@ -1056,7 +1065,10 @@ export class Game {
       this.finishRepairs();
       return;
     }
-    if (this.scene === "map") this.campaign.advanceTick();
+    if (this.scene === "map") {
+      const input = this.campaign.advanceTick(u32(this.tick));
+      if (input?.fire) this.handleInput({ type: "fire" });
+    }
     if (this.scene !== "money-bin") return;
     this.bin.advanceTick();
     this.collectEffects();
@@ -1232,7 +1244,11 @@ export class Game {
     else if (this.scene === "security") this.security.flushInput();
     else if (this.scene === "office" && this.officeMenu)
       this.officeMenu.flushInput(true);
-    else if (this.scene === "flight") this.flight.flushInput();
+    else if (this.scene === "map") {
+      this.campaign.flushMapKeys();
+      this.handleInput({ type: "controls", fire: false, direction: null });
+      this.effects.push({ type: "flushControls" });
+    } else if (this.scene === "flight") this.flight.flushInput();
     else if (this.scene === "cave") this.cave.flushInput();
     else if (this.scene === "mountain") this.mountain.flushInput();
     else if (this.scene === "jungle") this.jungle.flushInput();

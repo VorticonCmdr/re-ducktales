@@ -1,6 +1,7 @@
 import {
   heldControlEvent,
   ordinaryMakeEvent,
+  mapKeyEvent,
 } from "../src/game/keyboard-adapter.js";
 // Replay recorded external browser events without an output-guided controller.
 // --diagnose permits an incomplete exploratory capture and a declared100ms tail;
@@ -228,20 +229,6 @@ function advance(at) {
 const send = (e) => clock.enqueue(e, lastTime);
 function controls() {
   send(heldControlEvent(held, game.scene === "office" && !!game.officeMenu));
-  if (game.scene === "map") {
-    const x = Number(held.has("ArrowRight")) - Number(held.has("ArrowLeft")),
-      y = Number(held.has("ArrowDown")) - Number(held.has("ArrowUp"));
-    send({
-      type: "direction",
-      direction:
-        [
-          y < 0 ? "up" : y > 0 ? "down" : null,
-          x < 0 ? "left" : x > 0 ? "right" : null,
-        ]
-          .filter(Boolean)
-          .join("-") || null,
-    });
-  }
 }
 function event(e) {
   if (diagnose && process.argv.includes("--trace"))
@@ -274,10 +261,16 @@ function event(e) {
     if (e.type === "keyup") {
       held.delete(key);
       controls();
+      if (game.scene === "map" && !game.campaign.info)
+        send(mapKeyEvent(key, false));
       return;
     }
     held.add(key);
     controls();
+    if (game.scene === "map" && !game.campaign.info) {
+      send(mapKeyEvent(key, true));
+      return;
+    }
     send(
       ordinaryMakeEvent(
         key,

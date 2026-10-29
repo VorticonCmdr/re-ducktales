@@ -1,3 +1,5 @@
+import { OrdinaryKeyboard } from "./ordinary-keyboard.js";
+import { MapDeadline } from "./map-deadline.js";
 import { nextRandom, u16 } from "./integer.js";
 import { advanceMapPointer, MAP_DIRECTION_CODES } from "./map-pointer.js";
 
@@ -128,7 +130,11 @@ export class Campaign {
     this.info = false;
     this.choice = 0;
     this.direction = null;
-    this.pollTicks = 0;
+    this.mapKeyboard = new OrdinaryKeyboard(0);
+    this.mapDeadline = new MapDeadline();
+    this.mapPolls = 0;
+    this.lastMapInput = null;
+    this.mapReadTrace = null;
   }
   nearest() {
     const { x, y } = this.cursor;
@@ -153,17 +159,67 @@ export class Campaign {
     };
     this.selected = this.nearest();
   }
-  advanceTick() {
-    if (this.info || ++this.pollTicks < 2) return;
-    this.pollTicks = 0;
-    const code =
-      this.direction === null ? 0 : MAP_DIRECTION_CODES[this.direction];
-    if (code === undefined)
-      throw Error(`Unsupported map direction ${this.direction}`);
+  mapKey(scanCode, pressed) {
+    this.mapKeyboard.event(scanCode, pressed);
+  }
+  flushMapKeys() {
+    this.mapKeyboard.flush();
+    this.direction = null;
+  }
+  enterDestination() {
+    this.info = true;
+    this.choice = 0;
+    this.direction = null;
+    // Original1757 sets mode1;18b1 flushes the triggering held Fire. Full
+    // resource/page-transition timing remains a separate translation.
+    this.mapKeyboard.mode = 1;
+    this.mapKeyboard.flush();
+  }
+  mapInputState() {
+    return {
+      cursor: { ...this.cursor },
+      pointerMotion: { ...this.pointerMotion },
+      polls: this.mapPolls,
+      lastInput: this.lastMapInput,
+      mode: this.mapKeyboard.mode,
+      flags: [...this.mapKeyboard.bytes()],
+      deadline: this.mapDeadline.deadline,
+      period: this.mapDeadline.period,
+      read: this.mapReadTrace ? structuredClone(this.mapReadTrace) : null,
+    };
+  }
+  advanceTick(clock) {
+    if (!Number.isInteger(clock) || clock < 0 || clock > 0xffffffff)
+      throw Error("Map requires an explicit unsigned driver clock");
+    if (this.info || !this.mapDeadline.poll(() => clock)) return null;
+    this.mapKeyboard.mode = 0;
+    this.mapReadTrace = {
+      clock,
+      beforeFlags: [...this.mapKeyboard.bytes()],
+      readerMode: 0,
+    };
+    let code = this.mapKeyboard.poll();
+    this.mapReadTrace.readerFlags = [...this.mapKeyboard.bytes()];
+    // Retain the explicit injected direction provider for routine/joystick
+    // callers. Browser keyboard events use raw slots and never set direction.
+    if (this.direction !== null && !(code & 63)) {
+      const direction = MAP_DIRECTION_CODES[this.direction];
+      if (direction === undefined)
+        throw Error(`Unsupported map direction ${this.direction}`);
+      code = (code & 0xc0) | direction;
+    }
+    this.lastMapInput = code;
+    this.mapPolls++;
     const next = advanceMapPointer(
       { ...this.cursor, ...this.pointerMotion },
       code,
     );
+    if (next.fire) {
+      this.mapReadTrace.endFlags = [...this.mapKeyboard.bytes()];
+      this.mapReadTrace.endMode = 0;
+      this.mapReadTrace.returnCode = 1;
+      return { fire: true };
+    } // Original returns1 before flush/restore.
     this.pointerMotion = {
       acceleration: next.acceleration,
       dx: next.dx,
@@ -171,6 +227,12 @@ export class Campaign {
       firstPollLatch: next.firstPollLatch,
     };
     this.point(next.x, next.y);
+    this.mapKeyboard.flush();
+    this.mapKeyboard.mode = 1;
+    this.mapReadTrace.endFlags = [...this.mapKeyboard.bytes()];
+    this.mapReadTrace.endMode = 1;
+    this.mapReadTrace.returnCode = 0;
+    return { fire: false };
   }
 
   snapshot() {

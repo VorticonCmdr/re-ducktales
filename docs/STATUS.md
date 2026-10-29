@@ -17,8 +17,8 @@ negative controls. All529 tested source files and raw results are retained in
 This includes36 original map input/flag/pointer comparisons and a fresh seven-case
 shared browser regression across complete Easy/Hard,jungle and mountain routes.
 The map deadline component and its original35-call comparison are separate work;
-this gate does not include their later map-caller branch. Letter/keypad browser
-bindings and faithful map polling/flush integration remain unfinished.
+this gate does not include their later map-caller branch. The separate branch now has focused browser acceptance for letter/keypad
+bindings and raw map polling/flush behavior; broader integration remains open.
 
 The receipt command validates this actual complete historical run;it does not
 execute fresh whole-game acceptance. Receipt/documentation commits follow the
@@ -84,12 +84,15 @@ Production visitors select their own originals. No deployment is performed.
   [Input rules and reproduction](ordinary-keyboard.md).
 - On the separate map-caller branch,the deadline component passes35 original
   completion calls with70 separately captured clock results and four negative
-  comparisons. It is not connected to Game/browser pacing yet.
+  comparisons. It is now connected on that branch with focused browser checks.
 - Original letter/keypad browser bindings,scene-specific flush/repeat behavior
-  and map pacing remain unfinished. The original map has six-count steady polls;
-  Game currently uses two. A30-read original hold under MCP explicit input
-  produced only one movement;browser held/repeat integration remains unfinished.
-  The native input comparison does not prove Game timing.
+  and map pacing now have focused Game/browser checks on the caller branch:
+  all36 original input/flag/pointer comparisons and six-count steady polls,
+  one make across30 held reads, fresh repeat and Fire handoff into flight choice.
+  Two omitted-make browser controls fail as required. The original first drawing
+  interval and destination menu timing remain untranslated. Historical Easy/Hard
+  input replays fail at later presentation/timer checkpoints; no expected values
+  were changed. See[map input integration](map-input-integration.md).
 - The investment departure status is “Opening investments…”,verified in the
   actual browser alongside its original animation and trading destination.
 - Original map/notice presentation and polling details,broader destination and
@@ -111,6 +114,7 @@ npm run verify:office-menu
 npm run verify:ordinary-keyboard
 npm run verify:shared-runtime
 npm run verify:map-clock
+npm run verify:map-input-browser
 npm run verify:office-investments
 npm run verify:easy-office-campaign
 npm run verify:hard-office-campaign

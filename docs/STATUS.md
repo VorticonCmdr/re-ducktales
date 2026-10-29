@@ -104,10 +104,11 @@ pictures and traces stay local. Production visitors select their own originals.
 
 - Security-aware Easy/Hard campaigns are the default current checks and passed
   the complete integration gate; historical recordings remain separate.
-- Next: original office entry/selection and investment departure. Static review
-  confirms the striped clear/reveal callbacks, per-poll selection labels and
-  five14-count investment animation waits; browser integration and representative
-  original comparisons remain to be implemented. Several map/notice presentations,
+- Next: original office entry/selection. Static review confirms its striped
+  clear/reveal callbacks and per-poll selection labels; integration and original
+  comparisons remain to be implemented. Investment departure has focused
+  acceptance on the isolated development branch; the full branch gate remains
+  pending before main integration. Several map/notice presentations,
   broader destination/difficulty coverage and original whole-scene comparisons
   are also needed.
 - CPU/file/IRQ/input timing, hardware audio waveform/gain/filter parity, nonzero bank

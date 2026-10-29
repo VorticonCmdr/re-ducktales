@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "Original post-wait comparison and connected browser preflight; dedicated browser acceptance and full gate pending.",
+  "status": "Focused original/core and browser acceptance; whole branch gate and main integration pending.",
   "buildManifest": "reference/build.json",
   "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
   "captureCommit": "84f8ae7773b4415aea244bf30ece78f49ef46387",
@@ -180,5 +180,81 @@
       "bytes": 1220,
       "sha256": "36bbf41174a1a976f8250598030bbc07d15122a7a175e734f2821c6146d6b14f"
     }
+  },
+  "browser": {
+    "completed": true,
+    "sourceCommit": "4b690c7ccfc5f88145de685407e6556e432ef0af",
+    "sourceFileCount": 131,
+    "expectedCaseCount": 5,
+    "expectedPictureCount": 6,
+    "scope": "Real browser controls and six office presentation states; seventh logical flip is checked by core, not claimed as a separate browser observation.",
+    "artifacts": {
+      "browser-report.json": {
+        "path": ".local/office-investment-accepted-01/browser-report.json",
+        "bytes": 8641,
+        "sha256": "9d18fcf93e010206e2c28f488c25e6bdcd89d5c9dbe9f7719ac587f3c650cb36"
+      },
+      "browser-source.json": {
+        "path": ".local/office-investment-accepted-01/browser-source.json",
+        "bytes": 13827,
+        "sha256": "39421d6fc3d95cc2eb72d4b4a6046ec603747481ab429911295bb102beec63ad"
+      },
+      "missing-left.log": {
+        "path": ".local/office-investment-accepted-01/missing-left.log",
+        "bytes": 2599,
+        "sha256": "197ac6b532d22814154542e897539db7dc57fe1a762681152683f4275f6bbd81"
+      },
+      "unit.log": {
+        "path": ".local/office-investment-accepted-01/unit.log",
+        "bytes": 10899,
+        "sha256": "34bfaf081c89b18044e698ba2ba0b98158464784891ee9f9f218e9ec40082477"
+      },
+      "investment-0.png": {
+        "path": ".local/office-investment-accepted-01/investment-0.png",
+        "bytes": 34357,
+        "sha256": "df82a864571faf6ef3209dab5bccb60a7900efa74bee15d0f96adc99471c5ac8"
+      },
+      "investment-1.png": {
+        "path": ".local/office-investment-accepted-01/investment-1.png",
+        "bytes": 34357,
+        "sha256": "df82a864571faf6ef3209dab5bccb60a7900efa74bee15d0f96adc99471c5ac8"
+      },
+      "investment-2.png": {
+        "path": ".local/office-investment-accepted-01/investment-2.png",
+        "bytes": 34480,
+        "sha256": "14623fd6c45fe9cf544090f21b3bfa139a8f14304c75d6b7b99a921ef7560888"
+      },
+      "investment-3.png": {
+        "path": ".local/office-investment-accepted-01/investment-3.png",
+        "bytes": 34686,
+        "sha256": "e8f8152d6a3556c25bf6e34af8c8859a1b16f1563516c42d24167fe2f46278c5"
+      },
+      "investment-4.png": {
+        "path": ".local/office-investment-accepted-01/investment-4.png",
+        "bytes": 34986,
+        "sha256": "1e28b2167ffa26ef3ff0218c721d497e141a36853ee227ab81ca067a6c7677d7"
+      },
+      "investment-5.png": {
+        "path": ".local/office-investment-accepted-01/investment-5.png",
+        "bytes": 34986,
+        "sha256": "1e28b2167ffa26ef3ff0218c721d497e141a36853ee227ab81ca067a6c7677d7"
+      }
+    }
+  },
+  "verificationTools": {
+    "src/game/office.js": "39319981d1a50d6973776fc9ba7afb1ceb4077e3ea16add2fcc26da931d283a6",
+    "src/game/office-investments.js": "f589cba66f6cbad40db9ea2986ca0116ad03110dd2da25340ae5cb492c34b662",
+    "src/game/application.js": "d7bb5bc4b9d8afbb98478ad8af051984f1a6c3265db9a073608b790ce6ad88fa",
+    "src/game/renderer.js": "34e5475b99b7af891050a4128ca97229cfc35fb8c6a36609102b84fe512df955",
+    "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
+    "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
+    "scripts/verify-office-investments.js": "156cfa0b0d17379b71d9db8112932ac70ac82d59e84bc1697344b5c5a50bac0c",
+    "tests/browser/office-investments.spec.js": "1949e090b74ee6fe9a5b53de7cee57cac93034456246a5954d858108d8c6eb0a",
+    "tests/browser/helpers/office-entry.js": "b3cb86ef67145c6f41b145bdb469a9b5197fe0fafba793656fcf7cbe02e6a8f3",
+    "tests/browser/office.spec.js": "e1c224a668496a9b560247b82fbf8daf03735217dfdd7f1e7517e300cd7b2451",
+    "tests/browser/investments.spec.js": "dff0f1b6537c78d29f93610a00eaec6cff9b04a06be1676b8f2fa406d473b8f5",
+    "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0",
+    "scripts/verify-office-investment-browser-negative.js": "0c64326c9bfe5366f1fedff3172a6e721f1e754b5698a34363d9c8a906c6b7f1",
+    "scripts/verify-office-investment-fixture-negatives.js": "ec7252e37138f3a0eff37830c37c8ba4c693b7aba03b485f55c7d2689b2d6c3b"
   }
 }

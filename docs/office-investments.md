@@ -48,6 +48,10 @@ It rejects altered code/pixels and missing/zero cases. Separate setup controls
 remove/corrupt a required PNG, restore its original bytes and require a positive
 rerun. Missing local artifacts are setup failures.
 
+Pinned browser receipts retain131 exact runtime/test sources, all individual
+results and six actual canvas pictures. The checker rejects skipped, failed,
+flaky and missing-case reports independently of the native pixel controls.
+
 Five focused browser cases pass: two existing trading routes, two existing
 money-bin office routes, and the new departure/flush/Tandy/return/restart route.
 The latter compares all six observable office presentation states byte-for-byte

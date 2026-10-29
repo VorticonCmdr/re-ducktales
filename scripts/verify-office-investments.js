@@ -20,6 +20,13 @@ const required = (p) =>
     );
   });
 const json = async (p) => JSON.parse(await required(p));
+assert.equal(Object.keys(m.verificationTools).length, 14);
+for (const [p, h] of Object.entries(m.verificationTools))
+  assert.equal(
+    sha(await required(p)),
+    h,
+    `Changed current office investment tool ${p}`,
+  );
 assert.equal(m.expectedArtifactCount, 26);
 assert.equal(Object.keys(m.artifacts).length, m.expectedArtifactCount);
 for (const a of Object.values(m.artifacts)) {
@@ -217,6 +224,84 @@ const changed = Buffer.from(body);
 changed[0x638] ^= 1;
 assert.throws(() => sameCode(changed), /Original office overlay identity/);
 compare(m.cases);
+const browser = m.browser;
+assert.equal(browser.completed, true);
+assert.equal(browser.expectedCaseCount, 5);
+assert.equal(browser.expectedPictureCount, 6);
+assert.equal(browser.sourceFileCount, 131);
+assert.equal(Object.keys(browser.artifacts).length, 10);
+for (const a of Object.values(browser.artifacts)) {
+  const b = await required(a.path);
+  assert.equal(b.length, a.bytes, `Truncated ${a.path}`);
+  assert.equal(sha(b), a.sha256, `Corrupt ${a.path}`);
+}
+const source = await json(browser.artifacts["browser-source.json"].path);
+assert.equal(source.commit, browser.sourceCommit);
+assert.equal(Object.keys(source.files).length, 131);
+const sourceRoot = browser.artifacts["browser-source.json"].path.replace(
+  /\/browser-source\.json$/,
+  "/sources",
+);
+for (const [p, h] of Object.entries(source.files)) {
+  assert.equal(sha(await required(`${sourceRoot}/${p}`)), h, p);
+  assert.equal(
+    sha(execFileSync("git", ["show", `${source.commit}:${p}`])),
+    h,
+    p,
+  );
+}
+function checkReport(r) {
+  assert.deepEqual(r.errors, []);
+  assert.equal(r.stats.expected, 5);
+  for (const k of ["unexpected", "skipped", "flaky"])
+    assert.equal(r.stats[k], 0);
+  const tests = [];
+  function visit(s) {
+    for (const spec of s.specs ?? []) tests.push(...spec.tests);
+    for (const child of s.suites ?? []) visit(child);
+  }
+  r.suites.forEach(visit);
+  assert.equal(tests.length, 5);
+  for (const t of tests) {
+    assert.equal(t.status, "expected");
+    assert.equal(t.results.length, 1);
+    assert.equal(t.results[0].status, "passed");
+  }
+}
+const report = await json(browser.artifacts["browser-report.json"].path);
+checkReport(report);
+for (const k of ["skipped", "unexpected", "flaky"]) {
+  const changed = structuredClone(report);
+  changed.stats[k] = 1;
+  assert.throws(() => checkReport(changed));
+}
+const missingCases = structuredClone(report);
+missingCases.suites = [];
+assert.throws(() => checkReport(missingCases));
+const names = ["pose-0", "pose-0", "pose-1", "pose-2", "pose-3", "final-hold"];
+for (const [i, name] of names.entries()) {
+  const png = PNG.sync.read(
+    await required(browser.artifacts[`investment-${i}.png`].path),
+  );
+  assert.deepEqual([png.width, png.height], [320, 200]);
+  assert.deepEqual(
+    png.data,
+    pictures.get(name),
+    `Retained browser investment pixels ${i}`,
+  );
+}
+const omitted = (
+  await required(browser.artifacts["missing-left.log"].path)
+).toString();
+assert.match(omitted, /Unfinished office investment departure entry/);
+assert.match(omitted, /1 failed/);
+assert.doesNotMatch(
+  omitted,
+  /SETUP:|No tests found|Test timeout|TimeoutError|browserType\.launch:|Test was interrupted|ETIMEDOUT/,
+);
+const units = (await required(browser.artifacts["unit.log"].path)).toString();
+for (const s of ["ℹ tests 117", "ℹ pass 117", "ℹ fail 0", "ℹ skipped 0"])
+  assert.ok(units.includes(s));
 console.log(
-  "Office investment departure:7 exact native pictures with explicit VGA latch alignment,7 logical flips/70 driver counts,original sprite tuples,held-key flush and return39;4 comparison negatives. Native whole-scene/CPU/audio timing parity not claimed.",
+  "Office investment departure:7 exact native pictures with explicit VGA latch alignment,7 logical flips/70 driver counts,sprite tuples,held-key flush and return39;5 browser cases/6 native-exact browser pictures/131 archived sources;8 comparison negatives plus actual missing-Left control. Native whole-scene/CPU/audio timing parity not claimed.",
 );

@@ -157,8 +157,23 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     marker = add(0x31c)
     stop = resume(stop['stop_id'])
     assert stop['breakpoint']['id'] == marker
-    assert stop['registers']['eax'] & 255 == 0
+    # Mode0 consumes a break-marked direction once before removing its slot.
+    # readOrdinaryKeys has the same delete-then-use order. Do not flush away
+    # this real original input just to manufacture an immediate neutral read.
+    edge = state('timing-mountain-release-edge-read', stop)
+    assert stop['registers']['eax'] & 255 == 3
+    assert edge[0x27b9] == 0
+    remove(marker)
+    barrier = add(0x145d)
+    stop = resume(stop['stop_id'])
+    assert stop['breakpoint']['id'] == barrier
+    state('timing-mountain-release-body-end', stop, False)
+    remove(barrier)
+    marker = add(0x31c)
+    stop = resume(stop['stop_id'])
+    assert stop['breakpoint']['id'] == marker
     state('timing-mountain-release-read', stop)
+    assert stop['registers']['eax'] & 255 == 0
     remove(marker)
     replay = client.get('/api/v1/input/replay/status')
     assert not replay['active'] and replay['remaining'] == 0
@@ -166,8 +181,9 @@ def capture_mountain_timing(*, client, stop, load, ds, overlay, add, remove,
     end = struct.unpack_from('<I', after, 0x2225)[0]
     assert end > begin
     save('mountain-timing', {'completed': True, 'measuredIntervals': 14,
-         'observedInputBoundaries': 2, 'engineCountedReads': 15,
-         'firstByte': 0, 'lastByte': 3, 'releaseByte': 0,
+         'observedInputBoundaries': 4, 'engineCountedReads': 15,
+         'cleanupInputReads': 2,
+         'firstByte': 0, 'lastByte': 3, 'releaseBytes': [3, 0],
          'counterBefore': begin, 'counterAfter': end,
          'counterDifference': end - begin, 'hostMilliseconds': host_ms,
          'firstX': struct.unpack_from('<h', before, 0x5ae0)[0],

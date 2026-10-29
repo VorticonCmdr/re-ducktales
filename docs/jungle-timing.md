@@ -75,7 +75,21 @@ or timeout is rejected as invalid negative evidence.
 The six native drawing comparisons remain conditional evidence, with their
 original manifest's `runtimeIntegrated:false` describing the earlier evidence
 milestone. This new scheduling integration still omits the work listed above.
-**A fresh complete treasure route and independent fixed-input browser replay
-are pending.** Historical time-based route contracts have not been rewritten to
-force passing. Full original input-loop/scanout timing, cave and safari pacing,
+The fresh complete treasure route now has independent Game and real-browser
+replays: 27 exact full-state/picture checkpoints, 70 consumed DOM events and 860
+movement samples. It returns $1,050 on day 17 with one life, 907 presentations,
+unchanged treasure/duplicate behavior and a working Restart. The required first
+Right omission fails at input 120. The raw exploratory capture still records its
+intentional final exception; the declared contract and passing browser receipt
+are separate. See `reference/draw-timed-jungle-treasure.json`.
+
+Run `npm run verify:jungle-draw-timing` for the combined original-work, unit,
+complete browser route, required-movement negative, timing-bypass negative,
+strict source/receipt and production-build gate.
+
+Historical time-based route contracts have not been rewritten to force passing.
+`node scripts/verify-jungle.js` still rejects its old 824-input regression at the
+first checkpoint: it expects the wipe to begin before drawing completes. Its
+native routine stages pass before that failure. That separate component contract
+still needs an explicit migration; this failure is not waived. Full original input-loop/scanout timing, cave and safari pacing,
 and the broader required integration gate remain unverified.

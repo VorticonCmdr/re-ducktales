@@ -15,9 +15,12 @@ three-count movement deadline. Focused browser redraw-duration, pause, quit and
 audio checks pass; removing the graphics wait fails the browser duration check.
 All 127 unit cases and the production build pass.
 [Jungle evidence and runtime boundary](jungle-timing.md).
-A new complete treasure route and independent fixed-event browser replay are
-still pending. Historical elapsed-time fixtures and the broader required gate
-have not been migrated or passed. Cave and safari pacing remain open. This does
+The complete treasure route now also passes independent Game and fixed-event
+browser replays: 27 exact states/pictures, 70 DOM events, all 860 movement
+samples, $1,050 and one life. Required movement removal fails. Its new contract
+is `reference/draw-timed-jungle-treasure.json`; the full scoped command is
+`npm run verify:jungle-draw-timing`. Historical elapsed-time component fixtures
+and the broader required gate have not been migrated or passed. Cave and safari pacing remain open. This does
 not change the whole-game status above.
 
 ## Optional security restoration

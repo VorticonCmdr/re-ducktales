@@ -3,14 +3,15 @@
   "verificationEdition": "destination",
   "milestone": "jungle-treasure",
   "expectedHard": false,
-  "pending": true,
-  "pendingBrowserReplay": true,
-  "browserVerified": false,
+  "pending": false,
+  "pendingBrowserReplay": false,
+  "browserVerified": true,
   "artifactRoot": ".local/jungle-draw-route-01",
   "captureRoot": ".local/jungle-draw-browser-capture-01/raw",
   "captureCommit": "29ea9fa3eba43624539f187d43ebc45bb4335a28",
   "sourceFileCounts": {
-    "capture": 610
+    "capture": 610,
+    "browser": 613
   },
   "expectedCheckpointCount": 27,
   "requiredEventCount": 70,
@@ -295,6 +296,56 @@
       "path": "reference/security-jungle-treasure-inputs.json",
       "bytes": 1234,
       "sha256": "b31c7acf91dcc00edb6ea89295e5f87bf448ca8e6e95e2fa2d81814148d97238"
+    },
+    "browser-source": {
+      "path": ".local/jungle-draw-browser-replay-01/source-revision.json",
+      "bytes": 66151,
+      "sha256": "737ee9cc0d13d27e339f1bf6b50aa16b2b433d804e3886a3496a04b91f847f22"
+    },
+    "browser-zip": {
+      "path": ".local/jungle-draw-browser-replay-01/sources.zip",
+      "bytes": 1648567,
+      "sha256": "aa06c26eb3a8020335bd5a1b1e6913511b3d351bf6d1c0121d5d442df6ca3b55"
+    },
+    "browser-runner": {
+      "path": ".local/jungle-draw-browser-replay-01/runner-status.json",
+      "bytes": 1286,
+      "sha256": "a593d075b2e44aaba85c9f4660a3296aa6db930ee261da312530e65ec3968caa"
+    },
+    "browser-report": {
+      "path": ".local/jungle-draw-browser-replay-01/positive-report.json",
+      "bytes": 9173,
+      "sha256": "5ba4cc9de95ec5a4383ea06620a9d4956023d5c76f6c8286ec249a389442bd68"
+    },
+    "browser-log": {
+      "path": ".local/jungle-draw-browser-replay-01/positive.log",
+      "bytes": 1874,
+      "sha256": "93f0ef9f1c428113be409014d80762e3cf95bce14e92f1df02eb3737bcad10bb"
+    },
+    "browser-config": {
+      "path": ".local/jungle-draw-browser-replay-01/config.mjs",
+      "bytes": 506,
+      "sha256": "193255de79b22b695997b110880a01ad0a3dd8a78dd5e91d15a40a1342b204d1"
+    },
+    "browser-negative": {
+      "path": ".local/jungle-draw-browser-replay-01/controls/browser-negative.log",
+      "bytes": 2040,
+      "sha256": "c6b9a4c4f38e911d16d2b97e06995d37a3be60a4655f09f45e2a856398d5dd8b"
+    },
+    "browser-progress": {
+      "path": ".local/jungle-draw-browser-replay-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json",
+      "bytes": 3541,
+      "sha256": "34225077aadf48893cd50f66224034864e63051568f174f4aa3f431243b815ad"
+    },
+    "browser-checkpoints": {
+      "path": ".local/jungle-draw-browser-replay-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 104240,
+      "sha256": "f8dfdac8584cb88dc5bb71734e544ad6ce6d4271cc36bb83c4907e0e30ac5916"
+    },
+    "browser-events": {
+      "path": ".local/jungle-draw-browser-replay-01/browser/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "bytes": 6631,
+      "sha256": "77f9758fbe1745c80d15d30f2214dc2b021c7917f6cda298766998ca6e7265f1"
     }
   },
   "buildManifest": "reference/build.json",
@@ -319,7 +370,7 @@
   "limitations": [
     "Port/browser route,not native whole-level parity",
     "Sprite/copy work is charged;line/text and other CPU costs remain incomplete",
-    "Independent fixed-event browser acceptance pending;broader gate incomplete"
+    "Broader required integration gate remains incomplete"
   ],
   "verify": "node scripts/verify-destination-routes.js reference/draw-timed-jungle-treasure.json",
   "verificationTools": {
@@ -328,5 +379,6 @@
     "scripts/replay-hard-campaign.js": "222bed526cadf31045910b26c04f942fe287ac3e8215b826ed6aabb7488ca1ea",
     "tests/browser/helpers/recorded-campaign.js": "a6a2fbd7852b16d47cb331aacdc0ae9e9781ccfcb604a1078d2dc5927d9eec0e",
     "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0"
-  }
+  },
+  "browserCommit": "6ed35a879becd41819978c6741a0d95fc3342c13"
 }

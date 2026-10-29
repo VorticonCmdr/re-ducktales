@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "completed": true,
+  "sourceCommit": "11ac7127949ee648c2fc78c39bd118203a65b062",
+  "sourceFileCount": 551,
+  "scope": "Two conditional original destination segments and live page/raw-cache relationships;no new browser or whole-campaign timing acceptance",
+  "captureSourceCommit": "66a98f098329615449972a57c2a310e4c4ae071d",
+  "nativeManifests": {
+    "reference/destination.json": "284e2c6f9cfcacb953a9d959138e6b4a5ed43d02e4b2ec16785abe92d0188c0d",
+    "reference/destination-video.json": "0b9cbdf1f18357f5775354b2e5a0c2710e9503181c1eaa3a5bb2da978a952345"
+  },
+  "runtimeAndBrowserTestsUnchangedFrom": "8ee5284a48de5701ba29427aacc842b8cb7e19bd",
+  "unchangedPaths": [
+    "src",
+    "tests",
+    "index.html",
+    "viewer.html",
+    "vite.config.js",
+    "playwright.config.js",
+    "playwright.production.config.js",
+    "package-lock.json"
+  ],
+  "dependencyFieldsUnchanged": true,
+  "previousRuntimeReceipt": "reference/destination-integration.json",
+  "expected": {
+    "nativeInputReadsAcrossCaptures": 10,
+    "fullPagePicturesAcrossCaptures": 4,
+    "videoSnapshots": 29,
+    "pageFlipPairs": 5,
+    "fixtureNegativeCasesAcrossCaptures": 4
+  },
+  "comparisonRules": [
+    "Exact original pixels,carried input flags/choices,full relocated map overlay and source/driver identities as specified by the two native manifests",
+    "Raw hash and update count stay stable at each owned CPU stop;actual BIOS and drawing pages toggle at all five flips",
+    "Raw-cache lag is observed,not fitted to a fixed frame offset or converted into browser input timing"
+  ],
+  "limitations": [
+    "status.frame includes aborted render updates;it is not a completed-scanout clock",
+    "Captured internal caller arguments remain conditional;resource assignment and whole-campaign replay are separate",
+    "Game/browser destination polling/entry/selection/confirmation timing remains unfinished"
+  ],
+  "verificationCommands": [
+    "npm run verify:destination",
+    "npm run verify:destination-video"
+  ],
+  "artifacts": {
+    "existing-fixture-controls/corrupt-fixture.log": {
+      "path": ".local/destination-video-verification-run-20261029-01/existing-fixture-controls/corrupt-fixture.log",
+      "bytes": 683,
+      "sha256": "ed6ebe5c9ab255a3960765d53443097018c0211ad5e0c9dc17f001aab3ce1584"
+    },
+    "existing-fixture-controls/missing-fixture.log": {
+      "path": ".local/destination-video-verification-run-20261029-01/existing-fixture-controls/missing-fixture.log",
+      "bytes": 512,
+      "sha256": "5cf38803f1be2356a0fecacc6cd51e32ce4d735ef9998cb45fbc53b165be6129"
+    },
+    "existing-fixture-controls/restored-positive.log": {
+      "path": ".local/destination-video-verification-run-20261029-01/existing-fixture-controls/restored-positive.log",
+      "bytes": 297,
+      "sha256": "8ec3f72c0bfbf35501a7a0f3943f88c98c133e3d98724223424e452a0412c38a"
+    },
+    "existing.log": {
+      "path": ".local/destination-video-verification-run-20261029-01/existing.log",
+      "bytes": 590,
+      "sha256": "4bb10b73ee28df3b53f44243e0c95e16387548c1e32ec71453ffd93ee735e04a"
+    },
+    "runner-status.json": {
+      "path": ".local/destination-video-verification-run-20261029-01/runner-status.json",
+      "bytes": 818,
+      "sha256": "a6dfb8ac63993af3168521fd09d468225cc10df4274be21bf90ba4702c97a1b8"
+    },
+    "source-revision.json": {
+      "path": ".local/destination-video-verification-run-20261029-01/source-revision.json",
+      "bytes": 59121,
+      "sha256": "3866c88751bdfbccde702f45c25a2ef1939b06070a50f7cf7acdc4acdf0ef964"
+    },
+    "sources.zip": {
+      "path": ".local/destination-video-verification-run-20261029-01/sources.zip",
+      "bytes": 1451561,
+      "sha256": "2524495c8e9c3b800ce368235314ac708b203d426f8f65d4856e01d065e9f69e"
+    },
+    "video-fixture-controls/corrupt-fixture.log": {
+      "path": ".local/destination-video-verification-run-20261029-01/video-fixture-controls/corrupt-fixture.log",
+      "bytes": 725,
+      "sha256": "7a8625077faca2dc8526d0c7f500839e3998c69e84ebcdd07c1e7546a1db4ed9"
+    },
+    "video-fixture-controls/missing-fixture.log": {
+      "path": ".local/destination-video-verification-run-20261029-01/video-fixture-controls/missing-fixture.log",
+      "bytes": 649,
+      "sha256": "759357a0a04f44511d386ea8384883737ba4f1eb625490dcd6f885d9f20c9e01"
+    },
+    "video-fixture-controls/restored-positive.log": {
+      "path": ".local/destination-video-verification-run-20261029-01/video-fixture-controls/restored-positive.log",
+      "bytes": 638,
+      "sha256": "9a33b272da1169a80002ad4285dab0af5741615919fac239a5a321376e26f052"
+    },
+    "video.log": {
+      "path": ".local/destination-video-verification-run-20261029-01/video.log",
+      "bytes": 951,
+      "sha256": "0f27f1bd2b5e6fbe0d4b96375e886787cfc9e08ac5e6f70d4e3a2f4087cd33fe"
+    }
+  }
+}

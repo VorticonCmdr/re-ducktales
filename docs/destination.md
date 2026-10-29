@@ -140,3 +140,10 @@ versus aborted status,emulated PIC time and latched display-page identity in
 `video/frame/info`,recorded when that buffer is produced. This would make exact
 alignment observable without guessing from `status.frame`. No emulator source
 or global bridge configuration was changed for this investigation.
+
+Both native commands and their real fixture controls passed on11ac712. The
+[verification receipt](../reference/destination-video-verification.json) pins
+the verifier source archive and terminal results. Runtime,browser tests,build
+configuration and dependencies are byte-identical to the focused8ee5284 browser
+milestone;the changes in this step are capture/comparison tools and evidence.
+No new browser timing or whole-campaign acceptance is claimed.

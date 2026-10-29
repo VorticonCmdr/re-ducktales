@@ -93,7 +93,7 @@
   "browserProducer": ".local/security-jungle-entry-accepted-02/browser-source-revision.json",
   "fullBranchGate": "pending",
   "verificationTools": {
-    "scripts/replay-hard-campaign.js": "e1da0883c5610e8ff78f28e8dade149114e78f66cf32524143ddff2efde4bbec",
+    "scripts/replay-hard-campaign.js": "708f991c2dc01aa2c1a05e855c0f4350132d6cff9081d8b7e33bd107f0747480",
     "scripts/verify-security-jungle-entry.js": "cf370581e9ce3761afde0dae2f2ab66127c6f2eedeace25a6a5f83b4fee9ed6a"
   },
   "environmentProviders": {
@@ -106,5 +106,7 @@
     "fileAccess": "verified supported original build; see reference/build.json",
     "input": "recorded external DOM events captured before the target handler",
     "completion": "explicit jungle-entry milestone; not campaign completion"
-  }
+  },
+  "verificationToolCommit": "805f950b81ddc45a4ecb04c8285d3f3ecd86877d",
+  "verificationToolNote": "Explicit jungle-treasure endpoint and missing-movement negative added. Existing Easy entry and full Hard state/pixel replays pass; historical capture/replay producers and expected outputs remain unchanged."
 }

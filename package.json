@@ -30,7 +30,7 @@
     "verify:mountain-terrain": "node scripts/verify-mountain-terrain.js",
     "verify:mountain": "node scripts/verify-mountain.js && npm run verify:mountain-input",
     "prepare:jungle-analysis": "python3 scripts/prepare-jungle-analysis.py",
-    "verify:jungle": "node scripts/verify-jungle.js && python3 scripts/verify-jungle-oracle.py && node scripts/verify-security-jungle-entry.js",
+    "verify:jungle": "node scripts/verify-jungle.js && python3 scripts/verify-jungle-oracle.py && node scripts/verify-security-jungle-entry.js && node scripts/verify-security-jungle-treasure.js",
     "prepare:photography-analysis": "python3 scripts/prepare-photography-analysis.py",
     "verify:photography": "node scripts/verify-photography.js && node scripts/verify-photography-runtime.js",
     "verify:investments": "node scripts/verify-investments.js && node scripts/verify-investment-trading.js",
@@ -82,7 +82,8 @@
     "verify:security": "npm run verify:security-core && playwright test tests/browser/security.spec.js && node scripts/verify-security-browser-negative.js",
     "verify:hard-security-campaign": "node scripts/verify-hard-campaign.js --manifest=reference/hard-campaign-security.json && DUCKTALES_CAMPAIGN_MANIFEST=reference/hard-campaign-security.json node scripts/verify-hard-campaign-browser-negative.js",
     "test:hard-security-campaign": "DUCKTALES_CAMPAIGN_MANIFEST=reference/hard-campaign-security.json playwright test tests/browser/hard-campaign.spec.js",
-    "verify:security-jungle-entry": "node scripts/verify-security-jungle-entry.js && playwright test tests/browser/jungle-input.spec.js && node scripts/verify-security-browser-negative.js"
+    "verify:security-jungle-entry": "node scripts/verify-security-jungle-entry.js && playwright test tests/browser/jungle-input.spec.js && node scripts/verify-security-browser-negative.js",
+    "verify:security-jungle-treasure": "node scripts/verify-security-jungle-treasure.js && playwright test tests/browser/jungle-treasure.spec.js tests/browser/jungle-treasure-replay.spec.js && node scripts/verify-security-jungle-treasure-browser-negative.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

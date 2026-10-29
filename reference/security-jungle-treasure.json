@@ -262,9 +262,219 @@
       "sha256": "b31c7acf91dcc00edb6ea89295e5f87bf448ca8e6e95e2fa2d81814148d97238"
     },
     "planning": {
-      "path": ".local/security-easy-jungle-planning-delay-3.json",
+      "path": ".local/security-jungle-treasure-accepted-01/planning/security-easy-jungle-planning-delay-3.json",
       "bytes": 21900,
       "sha256": "1a83f9e41dc7977c28e702ba446fdb7859a8dde6a251b49c3933d26b692d8ae0"
+    },
+    "png-entry": {
+      "path": ".local/security-jungle-treasure-01/entry.png",
+      "bytes": 19873,
+      "sha256": "560613d928335a016ad40d170d1f2ed6d48c1258bbe84d47d1d19db9d6f6df3c"
+    },
+    "png-input-40": {
+      "path": ".local/security-jungle-treasure-01/input-40.png",
+      "bytes": 37358,
+      "sha256": "fd2dcbaf4e7c7ce58831fc7840fc791ce7a3d897985a28290792ba613991007d"
+    },
+    "png-input-80": {
+      "path": ".local/security-jungle-treasure-01/input-80.png",
+      "bytes": 37077,
+      "sha256": "aee3eb23e8d33c2f51bf4862c890164a83ca5525cfa6a3808e302349a9c02cab"
+    },
+    "png-input-120": {
+      "path": ".local/security-jungle-treasure-01/input-120.png",
+      "bytes": 36680,
+      "sha256": "6ccb3f22b4dde366e44c40c58332f544f71e3428973a2f99d86b58263afaa527"
+    },
+    "png-input-160": {
+      "path": ".local/security-jungle-treasure-01/input-160.png",
+      "bytes": 36702,
+      "sha256": "c44580871442f3f9d764af36327007af3161923264d62acf64252cd333e35a0f"
+    },
+    "png-input-200": {
+      "path": ".local/security-jungle-treasure-01/input-200.png",
+      "bytes": 36817,
+      "sha256": "8c3d91a497d3fc2ccbdc5d7c4cd13eb0ff0708cb0722ca24f57a8120ff69b58e"
+    },
+    "png-input-240": {
+      "path": ".local/security-jungle-treasure-01/input-240.png",
+      "bytes": 35886,
+      "sha256": "eb5fafbbec746cfd002f8258e433fba914dccb1ee45759c40b1b661e13ddf398"
+    },
+    "png-input-280": {
+      "path": ".local/security-jungle-treasure-01/input-280.png",
+      "bytes": 36063,
+      "sha256": "bc937d2c74d8b793a9a1f45c90a3fb2f12b9e84730813a9a69f49a5b4693652c"
+    },
+    "png-input-320": {
+      "path": ".local/security-jungle-treasure-01/input-320.png",
+      "bytes": 36666,
+      "sha256": "5a85e32942368c7e9e53329da0d468ae1dc0bb1fc67b7c58e8a68cf7941f21c1"
+    },
+    "png-input-360": {
+      "path": ".local/security-jungle-treasure-01/input-360.png",
+      "bytes": 36695,
+      "sha256": "d694afe597b85f62ae4bc28eceb4d402fad7cc2cad1c311a9904204228fc9100"
+    },
+    "png-input-400": {
+      "path": ".local/security-jungle-treasure-01/input-400.png",
+      "bytes": 35593,
+      "sha256": "44508eb2bc70092710c80c78970c2250924dedc2a3c7bace1bc6a0bfa67f094b"
+    },
+    "png-input-440": {
+      "path": ".local/security-jungle-treasure-01/input-440.png",
+      "bytes": 35905,
+      "sha256": "8adaec9e35d448d3c5649a8b15fa3e247c8a6d5af55aae721e4bf7198781eb6a"
+    },
+    "png-input-480": {
+      "path": ".local/security-jungle-treasure-01/input-480.png",
+      "bytes": 35789,
+      "sha256": "0434c7db2ac64d71d86e078d9f46067df5df75464fe9ee90d1c25f77e7d75d98"
+    },
+    "png-input-520": {
+      "path": ".local/security-jungle-treasure-01/input-520.png",
+      "bytes": 36136,
+      "sha256": "e9356693c36df05780a0008affbd5be6f27bcd2b23055ac7eb7ecefdd0fd8f6e"
+    },
+    "png-input-560": {
+      "path": ".local/security-jungle-treasure-01/input-560.png",
+      "bytes": 36382,
+      "sha256": "25a2d6c9dc9200b8fdbdc908ac5e92fc835aa44ec614692e26191b1ac5b6ae0b"
+    },
+    "png-input-600": {
+      "path": ".local/security-jungle-treasure-01/input-600.png",
+      "bytes": 36913,
+      "sha256": "9c3f3d442322462ed9c133433ab253e6d6f39b9b05c7e099624248f8538b964a"
+    },
+    "png-input-640": {
+      "path": ".local/security-jungle-treasure-01/input-640.png",
+      "bytes": 36982,
+      "sha256": "2711711930acd02b9ae96c990385e0bb4636766f585bf6dcbe6c65c69c62c327"
+    },
+    "png-input-680": {
+      "path": ".local/security-jungle-treasure-01/input-680.png",
+      "bytes": 35362,
+      "sha256": "bb7d6f28c468e65ad47b7046fd26b83f46ec0c16319cb6660d23c3785e8ef359"
+    },
+    "png-input-720": {
+      "path": ".local/security-jungle-treasure-01/input-720.png",
+      "bytes": 35223,
+      "sha256": "78ce29b2d9320718015910f38dd13409634b508f9bc4f80924d990eacf19f387"
+    },
+    "png-input-760": {
+      "path": ".local/security-jungle-treasure-01/input-760.png",
+      "bytes": 34678,
+      "sha256": "7fba22a7207bc93131c20c77486df4963a76928e3be326a6816f93ea08c7a5cb"
+    },
+    "png-input-800": {
+      "path": ".local/security-jungle-treasure-01/input-800.png",
+      "bytes": 34313,
+      "sha256": "9c6f0a80453e4870e2eb0e848ffcab92afc95fae794b39ab452fb0e89f5b30d2"
+    },
+    "png-input-840": {
+      "path": ".local/security-jungle-treasure-01/input-840.png",
+      "bytes": 33790,
+      "sha256": "ecb0521cef1a882b359773229c2e7ee1552683d799523cd49ab669a6618a459d"
+    },
+    "png-input-860": {
+      "path": ".local/security-jungle-treasure-01/input-860.png",
+      "bytes": 33855,
+      "sha256": "d5390cff7ca43e5144ac0e6519bd3ec13c9ffcb73d4919777ba2e1e6c2159db3"
+    },
+    "png-award": {
+      "path": ".local/security-jungle-treasure-01/award.png",
+      "bytes": 19095,
+      "sha256": "66a844d09f8339fd2fd8869dfdf801c19cef32dba0f43df9324cd8f69c32fbdc"
+    },
+    "png-returned-map": {
+      "path": ".local/security-jungle-treasure-01/returned-map.png",
+      "bytes": 27755,
+      "sha256": "08bb76c1d14b9338bf91f66c2ac1afa8235ea5f5d71a742398a1d77e6789caf6"
+    },
+    "png-collected-notice": {
+      "path": ".local/security-jungle-treasure-01/collected-notice.png",
+      "bytes": 10841,
+      "sha256": "716f42c70d070075d5f7cd1db3ccff243bf9df10a7c72fb14bcd7809a19a54b8"
+    },
+    "png-complete-map": {
+      "path": ".local/security-jungle-treasure-01/complete-map.png",
+      "bytes": 27755,
+      "sha256": "08bb76c1d14b9338bf91f66c2ac1afa8235ea5f5d71a742398a1d77e6789caf6"
+    },
+    "browser-results": {
+      "path": ".local/security-jungle-treasure-accepted-01/browser-results.json",
+      "bytes": 9786,
+      "sha256": "2f6c58cf0ce833806425251bc7f6eca868ef3663edcf849ba9d0778a8d4664c8"
+    },
+    "browser-source": {
+      "path": ".local/security-jungle-treasure-accepted-01/browser-source-revision.json",
+      "bytes": 13541,
+      "sha256": "2a2a19c66e80be8b42bc31ab115a947b19c892fa71bcb5629f1dfa0e52caf2ea"
+    },
+    "browser-run": {
+      "path": ".local/security-jungle-treasure-accepted-01/browser-run.log",
+      "bytes": 2014,
+      "sha256": "3454aa31a2357542a28cff57d24de0d4348d08d9edd704581197d03035ee1893"
+    },
+    "browser-checkpoints": {
+      "path": ".local/security-jungle-treasure-accepted-01/browser-output/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/campaign-checkpoints.json",
+      "bytes": 95166,
+      "sha256": "1c3e1cdcbc1e01361ac1e0844a270de5098bac9ddadbd5ca10711c308e7c4744"
+    },
+    "browser-progress": {
+      "path": ".local/security-jungle-treasure-accepted-01/browser-output/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/replay-progress.json",
+      "bytes": 3212,
+      "sha256": "9ed0efdfa9b797bea7530d12f75d82d982dd3212114f1ad42aa605d6cab2b020"
+    },
+    "browser-events": {
+      "path": ".local/security-jungle-treasure-accepted-01/browser-output/jungle-treasure-replay-rec-0ba16--award-and-duplicate-notice/actual-events.json",
+      "bytes": 6625,
+      "sha256": "42eb264e27696ecd48b9995ab9369074a8b870ccc2e06ff1fd2cb8b95e9ba477"
+    },
+    "hard-source": {
+      "path": ".local/security-jungle-treasure-accepted-01/hard-source-revision.json",
+      "bytes": 13238,
+      "sha256": "dc8f8dbe4e79065cf017f540c8f471a82bab60f0214bca95a6067229f224158a"
+    },
+    "hard-browser-results": {
+      "path": ".local/security-jungle-treasure-accepted-01/hard-browser-results.json",
+      "bytes": 7461,
+      "sha256": "2f07ae4340d24201bf6ac51e97bbe17efe6c512b7633cbea25fd1dca4e60a702"
+    },
+    "hard-browser-run": {
+      "path": ".local/security-jungle-treasure-accepted-01/hard-browser.log",
+      "bytes": 1882,
+      "sha256": "70ad2caf2c603a4055c0ef1b31722c968479b42e07f9073b1639d5a9b6e1af64"
+    },
+    "hard-browser-checkpoints": {
+      "path": ".local/security-jungle-treasure-accepted-01/hard-browser-output/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 157538,
+      "sha256": "298ca42bcaf78b7be44ee3c3c2b11b50ec430dffb922029a1f63d30e9ea64ab2"
+    },
+    "hard-browser-progress": {
+      "path": ".local/security-jungle-treasure-accepted-01/hard-browser-output/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/replay-progress.json",
+      "bytes": 6390,
+      "sha256": "2713787e69caad562ebf807f2037b491c200dd17931886dc1324e13bc98b9c73"
+    },
+    "hard-browser-events": {
+      "path": ".local/security-jungle-treasure-accepted-01/hard-browser-output/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/actual-events.json",
+      "bytes": 373504,
+      "sha256": "d80e7e4af42e8f615b1a8e369f47901a890618dccbba60d46c3e6acb6f92b784"
+    },
+    "build-manifest": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "browser-negative": {
+      "path": ".local/security-jungle-treasure-accepted-01/browser-negative-record.log",
+      "bytes": 1990,
+      "sha256": "8e27022ac2e5cabe1d1a808b420c2f79eb0838bfdb09830317c407e717346d6e"
+    },
+    "negative-verification": {
+      "path": ".local/security-jungle-treasure-accepted-01/browser-negative-verification.log",
+      "bytes": 136,
+      "sha256": "82d4f4faab50847aa1e0eca80e7ec06f378b75019fed4e2b11734ab3c740c8fe"
     }
   },
   "captureCommit": "98f0cb6028b9a70e1aa2d099be0594174ae8edb1",
@@ -285,5 +495,31 @@
   "fullBranchGate": "pending",
   "injections": [],
   "fittedInputs": [],
-  "inputRecipe": "Original BIOS0/Easy startup,security fixedRight/Fire,two real bank trips,non-racing crash/repair arrival,three neutral jungle samples then the original857-input route,award,map,idle,duplicate notice,map. Inputs and times are independently recorded; no seed/state injection."
+  "inputRecipe": "Original BIOS0/Easy startup,security fixedRight/Fire,two real bank trips,non-racing crash/repair arrival,three neutral jungle samples then the original857-input route,award,map,idle,duplicate notice,map. Inputs and times are independently recorded; no seed/state injection.",
+  "browserVerified": true,
+  "browserCommit": "805f950b81ddc45a4ecb04c8285d3f3ecd86877d",
+  "browserProducer": ".local/security-jungle-treasure-accepted-01/browser-source-revision.json",
+  "hardProducer": ".local/security-jungle-treasure-accepted-01/hard-source-revision.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "verificationTools": {
+    "scripts/replay-hard-campaign.js": "708f991c2dc01aa2c1a05e855c0f4350132d6cff9081d8b7e33bd107f0747480",
+    "scripts/verify-security-jungle-treasure.js": "cd2dec374fd7764d61daec5e859de8a4758101a7cd424d2eeb0937a1234c6172",
+    "scripts/verify-security-jungle-treasure-browser-negative.js": "480c20d1abf461425a0a85034495d26d8b0b349845a400a937b7061297fe03e1",
+    "tests/browser/helpers/recorded-campaign.js": "0157dcf79c10c2a60a9dd03c2c19992c51ed20098acda8d353e6dd36d415e389",
+    "tests/browser/helpers/easy-jungle-entry.js": "e8be075a34c11b25d27647990e9d70ab695d0b20cce8a582e17302f6877934f9",
+    "tests/browser/jungle-treasure.spec.js": "1cbdfe41132f8b18204b23b316f5c071c436a82ea8dda6af10d21879688ab487",
+    "tests/browser/jungle-treasure-replay.spec.js": "1a603f4d4894173eff26674d7c661a83a1f22d8798d5f16c63cde20034a6179d"
+  },
+  "environmentProviders": {
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "driverHz": "1193182/(1365*12)",
+    "retraceHz": 70.086,
+    "boundary": "actual DOM events captured before target handlers; muted device status; file access verified against the supported build"
+  },
+  "comparisonRules": "All27 full application snapshots and all320x200 pixel hashes compare exactly. All70 events and860 authored control samples must finish; no tail,rollback or seed adjustment. Source/capture identities are required. Pointer normalization remains the original clamped/truncated consumption boundary.",
+  "verifyCommand": "node scripts/verify-security-jungle-treasure.js",
+  "browserCommand": "npx playwright test tests/browser/jungle-treasure.spec.js tests/browser/jungle-treasure-replay.spec.js"
 }

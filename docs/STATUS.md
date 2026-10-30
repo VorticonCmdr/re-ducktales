@@ -27,8 +27,11 @@ The cave now charges original party-helper and sprite work before continuing,
 including overwritten draws. Focused checks pass: the conditional original
 input/deadline interval, code/state/image comparisons, passage/ending replays,
 132 unit cases, the full browser flight/failure/retry/treasure route, browser
-Pause/input checks and an omitted-work negative. The combined gate and source
-receipt are being recorded. [Cave timing contract](cave-timing.md).
+Pause/input checks and an omitted-work negative. `npm run verify:cave-timing`
+passed on `1dc1285`, including the production build, with zero skipped cases.
+The 627-file source archive, runner and logs are pinned in the
+[verification receipt](../reference/cave-drawing-integration.json).
+[Cave timing contract](cave-timing.md).
 
 `npm run verify:jungle-draw-timing` passed on `f6d0f05`: original jungle
 map/routine/pixel comparisons, the independent Python map oracle, both migrated

@@ -1,0 +1,104 @@
+{
+  "id": "cave-source-drawing-time-integration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "1dc128516bbf56bac002ac3c582cbb2772e469a5",
+  "sourceFileCount": 627,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "drawingWorkManifest": "reference/cave-draw-work.json",
+  "drawingWorkManifestSha256": "261777970f64082e34fb2e923800ca28c4d0e2003e915d72b6602ed19d3ba626",
+  "verificationCommand": "npm run verify:cave-timing",
+  "verificationExitCode": 0,
+  "unitCases": 132,
+  "unitFailures": 0,
+  "unitSkipped": 0,
+  "browserCases": 2,
+  "browserSkipped": 0,
+  "browserTimingNegativeControls": 1,
+  "nativeDrawingCases": 1,
+  "nativeDrawingNegativeControls": 5,
+  "historicalArtifactsPreserved": true,
+  "captureTools": {
+    "node": "v26.8.1",
+    "playwright": "1.64.1",
+    "native": "unchanged reference/cave-input.json",
+    "static": "explicit CAVE_CODE.EXE; revision and exact bytes pinned in reference/cave-draw-work.json"
+  },
+  "inputContract": {
+    "native": "Parent BEFORE state and neutral joystick return are conditional routine preconditions; expected AFTER counters/descriptors/RNG are never inputs. No partial machine restore.",
+    "component": "Authored controller records source-input ordinals and controls; independent replay consumes every event. Synthetic driver/retrace loop is declared.",
+    "browser": "Original assets, actual DOM keyboard/focus and rendering with an explicitly injected browser clock. Feedback pilot/controller is independent of expected final outputs; browser acceptance is not a captured native replay."
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "scope": [
+    "Source party-helper RAM restore and five/six sprites; individually emitted sprite calls in normal movement, passages and endings. Unpresented calls still delay later sounds/logic.",
+    "One conditional native ten-count segment:126.374ms partial work,seven source sprites,one copy,42 complete descriptors/RNG outputs and728 helper bytes after exact relocations and declared analysis prologue. Counter bracket allows one driver period of phase uncertainty.",
+    "Original cave entry/runtime/input comparisons and exact loop14 and popup pixel checks remain intact. Four source-input route replays and C-drive four-direction/revisit circuit strictly render every presentation.",
+    "Five new clock cases cover exact completion,catch-up batching,hidden-page pause,Restart at completion and sound ordering after unpresented drawing.",
+    "Actual browser flight/landing,$50 pickup,pit failure,same-location retry,treasure award,campaign map/duplicate protection and Restart; separate browser Pause/quit/input-flush/cadence case.",
+    "Served-module work bypass must fail the cadence assertion; setup errors,timeouts and zero tests are rejected.",
+    "npm run verify:jungle-core and npm run verify:photography also passed separately on the integration sources."
+  ],
+  "limitations": [
+    "Partial source work: minimap fills,room composition,copies outside party helper,text,caller/interrupt work and remaining-slice I/O clamping remain omitted.",
+    "Conditional native budget comparison and independent browser scenarios do not establish uninterrupted original whole-level cadence or full scanout/audio parity.",
+    "Cave first treasure reveal still uses normal presentation instead of original stripes.",
+    "Safari drawing time is not integrated. Existing source receipts for jungle/mountain and complete campaigns require refresh after shared runtime changes.",
+    "Full npm run verify remains non-green at historical shared-runtime inventory/office-era replay receipt checks; not waived. Whole-game and arbitrary-route finishability remain incomplete."
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/cave-drawing-integration-01/runner-status.json",
+      "bytes": 24373,
+      "sha256": "ad9f2e5ed896290946279afc864e9eaf96926472b8bf6e727d73d50c61f81cd1"
+    },
+    "runner-source": {
+      "path": ".local/cave-drawing-integration-01/runner.py",
+      "bytes": 2511,
+      "sha256": "d003002a6419e666fb769c90ceef65b18e4f4318fb797ae18e67dbba165b339f"
+    },
+    "source": {
+      "path": ".local/cave-drawing-integration-01/source-revision.json",
+      "bytes": 67703,
+      "sha256": "1c4bb2458f954d10f68e6f66d06cc43020e7b09aa46475b04037fd71b2737bb3"
+    },
+    "source-zip": {
+      "path": ".local/cave-drawing-integration-01/sources.zip",
+      "bytes": 1691053,
+      "sha256": "ab54e9b581807845ca2aeaafe1a32442fc7faa3c99ff95a62087566e231b3c89"
+    },
+    "verification-log": {
+      "path": ".local/cave-drawing-integration-01/verification.log",
+      "bytes": 17108,
+      "sha256": "1860cddc43e980e5de2e7d677fe89555dedd407f4f681c5fec34c574720b03d4"
+    },
+    "browser-timing-negative": {
+      "path": ".local/cave-drawing-integration-01/timing-controls/browser-negative.log",
+      "bytes": 1631,
+      "sha256": "f50963ec3f007d511eb58b82fa440ffa941b8116491032c3fecc525466076a91"
+    },
+    "browser-flight-landing": {
+      "path": ".local/cave-drawing-integration-01/flight-landing.png",
+      "bytes": 23020,
+      "sha256": "6fb6855728d63574187e7139eb5ab7f92ff29f6a04cab7ef101ae66950f0a6f8"
+    },
+    "browser-cave-treasure-award": {
+      "path": ".local/cave-drawing-integration-01/cave-treasure-award.png",
+      "bytes": 34586,
+      "sha256": "71608970b2228c7865c6764115ad52172c351db3deb02586ca8e74dd04cd5ae2"
+    },
+    "browser-collected-notice": {
+      "path": ".local/cave-drawing-integration-01/collected-notice.png",
+      "bytes": 24928,
+      "sha256": "de730a93d230c3c924e84247ae33f75821b1864171ca410f96f99db1f2aa2abe"
+    },
+    "browser-cave-pause": {
+      "path": ".local/cave-drawing-integration-01/cave-pause.png",
+      "bytes": 32751,
+      "sha256": "e5c747b392e2e79c3d3bf2f735fa4be3a72cb8c333482fad62b6711b1618956a"
+    }
+  }
+}

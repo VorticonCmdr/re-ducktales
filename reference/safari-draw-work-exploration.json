@@ -1,0 +1,73 @@
+{
+  "id": "safari-drawing-time-exploration-01",
+  "acceptance": false,
+  "runtimeChanged": false,
+  "wholeGameComplete": false,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "parent": "reference/photography-runtime.json",
+  "parentSha256": "2d11b5d5acda6118a3e10300f6e6dcf0234f7d57d88df398522f93e08c0604ca",
+  "originalRecipe": "docs/photography.md#animation-and-browser-extension",
+  "scope": "Exploratory next-mechanic investigation; not an acceptance fixture or original whole-level timing comparison.",
+  "sourceRevision": "1dc128516bbf56bac002ac3c582cbb2772e469a5",
+  "staticProgram": "PHOTOGRAPHY_CODE.EXE",
+  "staticToNative": "Ghidra body1c17:0000, native0e0c:0000; helper Ghidra1d39/native0f2e. All93 relocations adjusted from native load01f5 to analysis1000. HUD stack probe normalized only in analysis,as recorded in exploratory-code-correspondence.json.",
+  "findings": [
+    "Three active helper passes8..10 emit four source sprites each:ordinary23,rare39,foreground8,foreground7. EGA partial work28.157333ms versus two observed driver counts per captured helper. Eight empty passes emit zero sprites and span zero recorded counts; their CPU work is not estimated.",
+    "Original main07df..07f8 copies320x176 RAM buffer to video,then invokes HUD helper12d2 before testing the shutter. This work also occurs when a subsequent negative film count exits without presenting.",
+    "Original shutter main09de..0a24 performs four copy/HUD/animal/Scrooge/page-flip passes. The pre-shutter copy/HUD is additional unpresented work; charging only four rendered frames would omit it.",
+    "Normal main0ad8..0b09 invokes animals,Scrooge and aim sprite before flip; postincremented timer update follows. Preserve seven-count deadline,source order and explicit audio/input boundaries.",
+    "Existing npm run verify:photography passes separately:11 original conditional animal passes,two exact PNGs,four carried port replays,18 resource cases. No Safari drawing-time change is accepted yet."
+  ],
+  "nextExperiment": "Construct source call work boundaries for pre-shutter copy/HUD and the normal/four-shot branches. Keep previous expectations intact,then exercise real Safari input/rendering and an omitted-work negative. Original full-loop cadence remains unknown.",
+  "dependencies": [
+    "Existing captures contain the three explicit map shortcut CAS injections declared in the parent manifest; they are conditional routine evidence.",
+    "No new original emulator session,restore or input schedule was used. Probe outputs and AFTER clocks are observations,never scheduling inputs."
+  ],
+  "artifacts": {
+    "exploratory-animal-work": {
+      "path": ".local/safari-draw-work-01/exploratory-animal-work.json",
+      "bytes": 3888,
+      "sha256": "01f118f1f804e3d7d8aead5d83762852a9fefc32936ec63f236b079cb5e7e35c"
+    },
+    "exploratory-code-correspondence": {
+      "path": ".local/safari-draw-work-01/exploratory-code-correspondence.json",
+      "bytes": 1029,
+      "sha256": "39d87d0faf6b6abd6fe25c4c70a6d9f2ec8845999bfeff459f4d43fff2b56dd2"
+    },
+    "exploratory-code-probe": {
+      "path": ".local/safari-draw-work-01/exploratory-code-probe.mjs",
+      "bytes": 2273,
+      "sha256": "0b7d457868c3664409d514dca8e308cbda9fcb301a214b92edb2987e9399af22"
+    },
+    "exploratory-probe": {
+      "path": ".local/safari-draw-work-01/exploratory-probe.mjs",
+      "bytes": 2273,
+      "sha256": "092bc09ecd5347405fdef9262eecc31b4d789c25ce7fa9058bf0d646a5729e37"
+    },
+    "hud-function": {
+      "path": ".local/safari-draw-work-01/hud-function.json",
+      "bytes": 1254,
+      "sha256": "697dae28d2256dd0a0ca0d3c12299c8ca9a811ab48e023231e44a3723a2a24c2"
+    },
+    "hud-instructions": {
+      "path": ".local/safari-draw-work-01/hud-instructions.json",
+      "bytes": 7207,
+      "sha256": "44b4cb994453a245fb53d53f9e1d482e535aa737a907fe57ad55fb24b7263924"
+    },
+    "main-input-and-shutter": {
+      "path": ".local/safari-draw-work-01/main-input-and-shutter.json",
+      "bytes": 27543,
+      "sha256": "94aa7a5b80bb06da3c594f92b283181743d239e7cc3ae2e12ba752942754df67"
+    },
+    "main-normal-tail": {
+      "path": ".local/safari-draw-work-01/main-normal-tail.json",
+      "bytes": 9643,
+      "sha256": "f3e47ab66b7e177d964d60ddf97602df37445814d2e0f7c36a76a9457396e6c4"
+    }
+  },
+  "reproduceExploratory": [
+    "node .local/safari-draw-work-01/exploratory-code-probe.mjs",
+    "node .local/safari-draw-work-01/exploratory-probe.mjs"
+  ]
+}

@@ -9,7 +9,7 @@ test("jungle departure, keyboard movement, life loss and campaign retry or rival
   test.setTimeout(120000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const canvas = page.locator("#game");
   const state = () => canvas.getAttribute("data-state").then(JSON.parse);
   async function until(predicate) {

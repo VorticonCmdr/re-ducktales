@@ -7,7 +7,7 @@ test("keyboard route loads originals, dives, banks, returns and restarts", async
 }) => {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const canvas = page.locator("#game");
   await expect(canvas).toHaveAttribute("data-scene", "title");
   await canvas.focus();
@@ -119,7 +119,7 @@ test("corrupt original assets stop loading", async ({ page }) => {
   await page.route("**/game/MBIN.ARC", (route) =>
     route.fulfill({ body: "corrupt" }),
   );
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   await expect(page.locator("#diagnostic")).toContainText(
     "Unsupported or corrupt MBIN.ARC",
   );
@@ -132,7 +132,7 @@ test("office pixels match the captured original exactly", async ({ page }) => {
   const original = PNG.sync.read(await readFile(".local/original-office.png"));
   expect(original.width).toBe(320);
   expect(original.height).toBe(200);
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const canvas = page.locator("#game");
   await expect(canvas).toHaveAttribute("data-scene", "title");
   await canvas.focus();
@@ -188,7 +188,7 @@ test("failed dive preserves original final pose pixels", async ({ page }) => {
       });
     });
   });
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const canvas = page.locator("#game");
   await expect(canvas).toHaveAttribute("data-scene", "title");
   await canvas.focus();
@@ -238,7 +238,7 @@ test("local folder loading supports investments without the development asset en
   await page.route("**/game/DUCKTALE.EXE", (route) =>
     route.fulfill({ status: 404, body: "" }),
   );
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   await expect(page.locator("#diagnostic")).toContainText("Missing game/");
   // Chromium directory upload does not traverse a directory symlink. Managed
   // worktrees link the authoritative originals; select the actual folder.

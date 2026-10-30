@@ -34,7 +34,7 @@ async function open(page) {
   });
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const canvas = page.locator("#game");
   await expect(page.locator("#actions")).toBeVisible();
   return {

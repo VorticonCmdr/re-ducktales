@@ -11,7 +11,7 @@ import {
 } from "./helpers/security.js";
 const state = (canvas) => canvas.getAttribute("data-state").then(JSON.parse);
 async function office(page, difficulty = 0) {
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const c = page.locator("#game");
   await expect(c).toHaveAttribute("data-scene", "title");
   await c.focus();
@@ -102,7 +102,7 @@ test("expedition briefing, keyboard takeoff, crash, rival claim and campaign ret
       setTimeout(() => callback(performance.now()), 8);
     window.cancelAnimationFrame = clearTimeout;
   });
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const c = page.locator("#game");
   async function until(predicate, max = 2500) {
     for (let i = 0; i < max; i++) {

@@ -16,7 +16,7 @@ test("mountain arrival, keyboard movement, hook throw, life loss and direct retr
       setTimeout(() => callback(performance.now()), 8);
     window.cancelAnimationFrame = clearTimeout;
   });
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const c = page.locator("#game");
   async function until(predicate, max = 1250) {
     for (let i = 0; i < max; i++) {

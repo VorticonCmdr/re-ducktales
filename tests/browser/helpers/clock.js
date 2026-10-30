@@ -13,7 +13,11 @@ export async function installRecordedClock(page, origin) {
 // Configure the clock on the actual document before any translated game code
 // executes. A new document can replay the framework's clock setup logs with a
 // different absolute performance origin; the application consumes relative time.
-export async function openRecordedApplication(page, origin) {
+export async function openRecordedApplication(
+  page,
+  origin,
+  { biosSeed = 0 } = {},
+) {
   await installRecordedClock(page, origin);
   let release;
   let reached;
@@ -28,7 +32,9 @@ export async function openRecordedApplication(page, origin) {
     await ready;
     await route.continue();
   });
-  await page.goto("/", { waitUntil: "commit" });
+  await page.goto(biosSeed === null ? "/" : `/?bios-seed=${biosSeed}`, {
+    waitUntil: "commit",
+  });
   let timer;
   try {
     await Promise.race([

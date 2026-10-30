@@ -11,7 +11,7 @@ test("conditional exhausted rival report matches original pixels and keyboard Fi
   page.on("pageerror", (e) => errors.push(e.message));
   await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
   await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   await page.evaluate(async () => {
     const { verifiedResources } = await import("/src/game/resources.js"),
       { Renderer } = await import("/src/game/renderer.js"),

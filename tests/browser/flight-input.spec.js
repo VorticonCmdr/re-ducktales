@@ -18,7 +18,7 @@ test("flight P/N dialogs preserve actors, clocks continue, and crash keys flush 
       setTimeout(() => callback(performance.now()), 8);
     window.cancelAnimationFrame = clearTimeout;
   });
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const c = page.locator("#game"),
     state = () => c.getAttribute("data-state").then(JSON.parse);
   async function until(predicate, max = 10000, step = 4) {

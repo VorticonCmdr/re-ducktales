@@ -32,6 +32,7 @@ export { DRIVER_HZ, RETRACE_HZ } from "./timing.js";
 export class Game {
   constructor({
     biosSeed = 0,
+    readBiosSeed = null,
     locations = null,
     flightResources = null,
     loot = null,
@@ -111,14 +112,17 @@ export class Game {
     this.pendingOfficeSystemKeys = new Map();
     this.pendingDestinationSystemKeys = new Map();
     this.exiting = false;
-    const campaignSeed = this.initializeMarket(biosSeed);
+    if (readBiosSeed !== null && typeof readBiosSeed !== "function")
+      throw Error("Invalid BIOS seed provider");
+    this.readBiosSeed = readBiosSeed ?? (() => biosSeed);
+    const startupSeed = this.consumeBiosSeed("startup");
+    const campaignSeed = this.initializeMarket(startupSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
     this.scene = "title";
     this.difficulty = 0;
     this.difficultyFromEnding = false;
     this.money = 0;
     this.rareCoinTaken = false;
-    this.biosSeed = u16(biosSeed);
     this.seed = this.campaign?.seed ?? this.biosSeed;
     this.tick = 0;
     this.bin = null;
@@ -244,6 +248,15 @@ export class Game {
         : null;
     if (this.opening) this.collectOpening();
   }
+  consumeBiosSeed(boundary) {
+    if (!["startup", "difficulty"].includes(boundary))
+      throw Error("Unsupported BIOS seed boundary");
+    const value = this.readBiosSeed(boundary);
+    if (!Number.isInteger(value) || value < 0 || value > 65535)
+      throw Error("Invalid BIOS seed word");
+    this.biosSeed = value;
+    return value;
+  }
   collectOpening() {
     this.effects.push(...this.opening.drainEvents());
     this.seed = this.opening.seed;
@@ -259,7 +272,7 @@ export class Game {
       ? new DifficultyMenu({
           ...this.openingResources,
           audioEnabled: this.audioEnabled,
-          readBiosSeed: () => this.biosSeed,
+          readBiosSeed: () => this.consumeBiosSeed("difficulty"),
           pollInput: () =>
             this.pollSystemInput(this.pendingDifficultySystemKeys),
           flushInput: (release) => this.flushDifficultyInput(release),
@@ -693,6 +706,7 @@ export class Game {
       return;
     }
     if (event.type === "restart") {
+      if (event.skipTitle !== true) this.consumeBiosSeed("startup");
       this.scene = event.skipTitle === true ? "difficulty" : "title";
       this.opening = null;
       this.difficultyMenu = null;

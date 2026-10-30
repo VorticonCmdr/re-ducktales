@@ -14,11 +14,13 @@ import { parseCaveMaps } from "./cave-scene.js";
 import { investmentResources } from "./investments.js";
 import { GameTandyAudio } from "./tandy-audio.js";
 import { GameSpeakerAudio } from "./speaker-audio.js";
+import { BiosClock, parseBiosSeedOverride } from "./bios-clock.js";
 const $ = (id) => document.getElementById(id);
 let game,
   renderer,
   resources,
   scheduler,
+  biosClock,
   pausedAt = null;
 let gameAudio,
   deviceGeneration = 0,
@@ -102,8 +104,24 @@ async function load(read) {
     gameAudio?.close();
     gameAudio = null;
     pendingAudioInput = null;
+    const date = new Date();
+    biosClock = new BiosClock({
+      clock: () => performance.now(),
+      initialMilliseconds:
+        ((date.getHours() * 60 + date.getMinutes()) * 60 + date.getSeconds()) *
+          1000 +
+        date.getMilliseconds(),
+      fixedWord: parseBiosSeedOverride(
+        new URLSearchParams(location.search).get("bios-seed"),
+      ),
+    });
+    const readBiosSeed = (boundary) => {
+      const value = biosClock.readWord(boundary);
+      $("game").dataset.biosClock = JSON.stringify(biosClock.snapshot());
+      return value;
+    };
     game = new Game({
-      biosSeed: 0,
+      readBiosSeed,
       expeditionInput: "keyboard",
       destinationInput: "keyboard",
       openingResources: {
@@ -348,6 +366,7 @@ document.addEventListener("visibilitychange", () => {
     gameAudio?.setSuspended(true);
   } else if (pausedAt !== null) {
     scheduler?.pauseDuration(now - pausedAt);
+    biosClock?.pauseDuration(now - pausedAt);
     pausedAt = null;
     gameAudio?.setSuspended(false);
   }

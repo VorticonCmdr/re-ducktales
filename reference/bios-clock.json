@@ -1,0 +1,91 @@
+{
+  "id": "original-bios-seed-boundaries",
+  "build": "dos-fb658562",
+  "executableSHA256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "artifacts": {
+    "bios-source.cpp": {
+      "path": ".local/bios-clock-evidence-01/bios-source.cpp",
+      "bytes": 46800,
+      "sha256": "32f35b16ea9d7725caaa1db91b637a40033223151c7646d5f1a81871fc553440"
+    },
+    "confirm.json": {
+      "path": ".local/bios-clock-evidence-01/confirm.json",
+      "bytes": 330,
+      "sha256": "985d86f34f12e40a9304c3d2d5a89ed0314358301e48254e8da21de25b68e0bd"
+    },
+    "helper.json": {
+      "path": ".local/bios-clock-evidence-01/helper.json",
+      "bytes": 683,
+      "sha256": "bc395bfd9ce9922856445b963e66f5c5e9365f7cb6d3c459353ec25adfa0e1a1"
+    },
+    "startup.json": {
+      "path": ".local/bios-clock-evidence-01/startup.json",
+      "bytes": 330,
+      "sha256": "3f2ed8eb3c66386922d1e3046eb96aea5da980f54f4362b54045cbf921669539"
+    },
+    "timer-source.h": {
+      "path": ".local/bios-clock-evidence-01/timer-source.h",
+      "bytes": 4458,
+      "sha256": "9b30613ba9271e0677ba537d2ad3cd21b481c1fbc2fac4577834aa8305e7e820"
+    }
+  },
+  "parents": [
+    {
+      "path": "reference/build.json",
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    {
+      "path": "reference/difficulty.json",
+      "sha256": "02f41b0023d6523d7cc2095d124b423204b8df84816ef23506b3336446aa28dc"
+    },
+    {
+      "path": "reference/difficulty-inputs.json",
+      "sha256": "0292bda3d98d2884525767afc1cc7c74da33109f5b6752fbe42c03504feda2e0"
+    }
+  ],
+  "expectedArtifactCount": 5,
+  "expectedUnitCases": 8,
+  "staticRanges": [
+    {
+      "role": "helper.json",
+      "offset": 20193,
+      "bytes": "b840008ec026a16c00a32922cb"
+    },
+    {
+      "role": "startup.json",
+      "offset": 19041,
+      "bytes": "9a010e0e04"
+    },
+    {
+      "role": "confirm.json",
+      "offset": 15557,
+      "bytes": "9a010e0e04"
+    }
+  ],
+  "analysisLoadSegment": 4096,
+  "nativeInputWord": 18293,
+  "nativeScenario": "reference/difficulty.json",
+  "environment": {
+    "externalValues": [
+      "local milliseconds since midnight at provider creation",
+      "monotonic elapsed milliseconds",
+      "explicit hidden-page pause durations",
+      "optional fixed unsigned16 replay word"
+    ],
+    "consumptionBoundaries": ["startup", "difficulty confirmation"],
+    "pitHz": 1193182,
+    "divisor": 65536,
+    "midnightTicks": 1573040,
+    "phase": "nominal zero at provider creation; original sub-tick phase unknown",
+    "clockSync": "RTC resynchronization not implemented or claimed"
+  },
+  "provenance": {
+    "staticTool": "Ghidra MCP disassemble, DUCK_UNPACKED.EXE",
+    "referenceTimerSources": "Local DOSBox automation source src/ints/bios.cpp and src/hardware/timer.h; archived hashes below",
+    "nativeRecipe": "docs/difficulty.md and reference/difficulty.json; AX captured before DS2229 write",
+    "setup": "Provide the supported ignored game/ pairing and immutable local artifacts; no downloaded or regenerated expected output is substituted."
+  },
+  "comparisonRules": "Exact bytes, input words, integer counters and required case counts; no tolerance, exclusion, fitted input or injected final state. Nominal browser clock is an environment provider, not proof of original timer phase.",
+  "toolLimitation": "Ghidra MCP prints AX, ES for bytes 8ec0; x86 encoding is MOV ES, AX. Bytes are authoritative.",
+  "verify": "npm run verify:bios-clock"
+}

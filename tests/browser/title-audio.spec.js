@@ -9,7 +9,7 @@ async function open(page, device) {
       window.titleAudioEvents.push(e.detail),
     );
   });
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   await expect(page.locator("#game")).toHaveAttribute("data-scene", "title");
   await page.getByLabel("Sound device", { exact: true }).selectOption(device);
   return {

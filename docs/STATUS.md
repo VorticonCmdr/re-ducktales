@@ -3,7 +3,22 @@
 Updated 2026-10-30. **The whole game is incomplete; this remains completion work,
 not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
-## Current runtime milestone
+## Current work: BIOS seed provider
+
+The browser now samples a clock-derived unsigned16 seed at startup and again at
+original difficulty confirmation, instead of fixing every campaign to zero.
+The clock is injected into simulation and records upstream values separately.
+Explicit `/?bios-seed=0` preserves historical replay inputs. Original helper and
+two caller bytes plus the previously captured native input word18293 are checked.
+Eight focused units, three browser cases and a cached-word failure control have
+passed during development. Clean-source focused acceptance is pending;
+`npm run verify:bios-clock` runs it. See [environment contract](bios-clock.md).
+
+The full-campaign acceptance below is historical while this change is integrated.
+Its current-source guards intentionally reject changed sources. A new independent
+browser comparison against the unchanged recorded inputs is still required.
+
+## Last accepted runtime milestone
 
 The fresh mountain copy/HUD/phase Easy campaign now passes independent headless
 and actual-browser replay:34 full state/pixel checkpoints,4,981 DOM events,
@@ -26,8 +41,7 @@ and all186 units pass; the complete ascent and browser controls still pass.
 The clean-source combined phase gate passed for `5eca408`, including all four
 browser omission controls and the production build. Its saved record pins735
 source files and five immutable artifacts. The receipt command is
-`node scripts/verify-mountain-phase-receipt.js`. Next: a new independent complete
-Easy browser campaign for the copy/HUD/phase runtime.
+`node scripts/verify-mountain-phase-receipt.js`. The complete Easy campaign was subsequently accepted as described above.
 [Phase contract, original evidence and commands](mountain-phase.md).
 
 The current gate also requires34 production restoration cases,16 native signed
@@ -131,8 +145,9 @@ Physical waveform/gain/filter parity remains unverified. [Sound evidence](speake
   whole-reveal timing remains unverified.
 - Cross-scene queued physical keyboard delivery, remaining system/modifier/BIOS
   behavior, mouse/joystick parity and wider difficulty/destination coverage remain.
-- BIOS seed0 is an explicit browser provider; original time-of-day seeding is
-  pending. Original save/load/high-score behavior/formats have not been established.
+- Nominal time-of-day seeding is implemented; exact original PIT sub-tick phase
+  and optional RTC synchronization are unverified. Original save/load/high-score
+  behavior/formats have not been established.
 - Arbitrary-route finishability and full original-game parity remain unproven.
 
 ## Supported build and commands

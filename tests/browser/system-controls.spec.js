@@ -12,7 +12,7 @@ test("P pauses actual activity, S controls sound, and Escape/F1 quit with No and
   page.on("pageerror", (e) => errors.push(e.message));
   await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
   await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const canvas = page.locator("#game"),
     state = () => canvas.getAttribute("data-state").then(JSON.parse);
   async function until(predicate, max = 2000) {

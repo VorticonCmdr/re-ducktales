@@ -4,7 +4,7 @@ import { finishSecurityEntry } from "./helpers/security.js";
 import { bankTrips } from "./helpers/bank-trips.js";
 
 async function openAudio(page, deviceName = "tandy") {
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   await expect(page.locator("#actions")).toBeVisible();
   await expect(page.locator("#game")).toHaveAttribute("data-scene", "title");
   await page
@@ -302,7 +302,7 @@ for (const deviceName of ["tandy", "speaker"]) {
         });
       },
     );
-    await page.goto("/");
+    await page.goto("/?bios-seed=0");
     await expect(page.locator("#game")).toHaveAttribute("data-scene", "title");
     await page
       .getByLabel("Sound device", { exact: true })

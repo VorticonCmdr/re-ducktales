@@ -29,7 +29,7 @@ test("original difficulty pictures, reveal flush, wrapping and Fire priority use
       true,
     );
   });
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   await expect(page.locator("#actions")).toBeVisible();
   const canvas = page.locator("#game");
   const state = async () => JSON.parse(await canvas.getAttribute("data-state"));
@@ -125,7 +125,7 @@ test("difficulty input polls pause, flush resumed controls and deliver Tandy men
       window.menuAudioEvents.push(e.detail),
     );
   });
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   await expect(page.locator("#actions")).toBeVisible();
   const canvas = page.locator("#game"),
     device = page.locator("#sound");

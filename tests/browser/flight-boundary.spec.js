@@ -10,7 +10,7 @@ test("seeded flight crosses the visible left boundary and completes after native
   page.on("pageerror", (e) => errors.push(e.message));
   await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
   await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.goto("/");
+  await page.goto("/?bios-seed=0");
   const c = inputs.cases[0];
   await page.evaluate(async (options) => {
     const { verifiedResources } = await import("/src/game/resources.js"),

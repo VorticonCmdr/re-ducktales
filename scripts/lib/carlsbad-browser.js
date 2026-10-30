@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createServer } from "vite";
-import { chromium } from "@playwright/test";
+import { chromium, expect } from "@playwright/test";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -69,6 +69,9 @@ export async function withCarlsbadBrowser(fn) {
     });
     await installEntryRecording(page);
     await openRecordedApplication(page, 1);
+    // Network completion is an upstream readiness boundary, not simulation time.
+    await expect(page.locator("#actions")).toBeVisible();
+    await page.locator("#game").focus();
     const canvas = page.locator("#game"),
       state = async () => JSON.parse(await canvas.getAttribute("data-state"));
     async function until(predicate) {

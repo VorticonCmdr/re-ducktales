@@ -1,0 +1,149 @@
+{
+  "id": "original-ega-signed-copy-work",
+  "evidenceLevel": "conditional-original-primitive-instruction-OUT-REP-comparison",
+  "expectedCases": 16,
+  "expectedNegativeControls": 8,
+  "driverSHA256": "6ee03bd93f3979546d5b5c1511e377685e2aa5401caaf407c3308bca0b812aee",
+  "containerSHA256": "3a421e0b11706baad2bc2c25520f0edcf2b4246f20d767320968535a55ae4ff2",
+  "executableSHA256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "artifacts": {
+    "capture": {
+      "path": ".local/ega-signed-copy-native-01/capture.json",
+      "bytes": 559,
+      "sha256": "39c9d6418a63421422a98f42dd361fa75213ba7a36497f9441ddd66d81d9e0f4"
+    },
+    "inputs": {
+      "path": ".local/ega-signed-copy-native-01/inputs.json",
+      "bytes": 4524,
+      "sha256": "8cab39df0579c5b1a901433b57f3d5663ff902e0245626cfa0ec9bd013727351"
+    },
+    "engine": {
+      "path": ".local/ega-signed-copy-native-01/engine.json",
+      "bytes": 3988,
+      "sha256": "cbeea38944ca24f3f6300caf53c1ff6671ef886da2043b58d4e136f2222590b3"
+    },
+    "allocations": {
+      "path": ".local/ega-signed-copy-native-01/allocations.json",
+      "bytes": 112,
+      "sha256": "8f9f716cb14d5f4190b43c651afa946db7eab4a9c3872c0c8039aeb69d91a3df"
+    },
+    "source": {
+      "path": ".local/ega-signed-copy-native-01/capture-source.py",
+      "bytes": 7234,
+      "sha256": "4ff1d7297479911b4f1c59c3878fb594a3d497d22c2c450b9cbf0eb86a7e14e4"
+    },
+    "configuration": {
+      "path": ".local/ega-signed-copy-native-01/configuration.json",
+      "bytes": 1704,
+      "sha256": "9bb6cbc6ca782b8630979d8d0e357c255efda85ac61876d32dbde004586e5873"
+    },
+    "case-00": {
+      "path": ".local/ega-signed-copy-native-01/case-00.json",
+      "bytes": 13127,
+      "sha256": "809a379281c4358fa79019a2135975fbe0cfe826a8aeb6d30b0faa177a5e9d96"
+    },
+    "case-01": {
+      "path": ".local/ega-signed-copy-native-01/case-01.json",
+      "bytes": 30524,
+      "sha256": "25c27e1ac5712277abd5f28d1d155243ff80e486a73fd0f32ce704d05edcc157"
+    },
+    "case-02": {
+      "path": ".local/ega-signed-copy-native-01/case-02.json",
+      "bytes": 274762,
+      "sha256": "bc957418a78a6e835b9be0b4d9b92548861ba4e865b92248a389e6d0b801c7e7"
+    },
+    "case-03": {
+      "path": ".local/ega-signed-copy-native-01/case-03.json",
+      "bytes": 307131,
+      "sha256": "ee7b70b7af1c845068a9d10415beeddbbdf4c78d29f4efc0313e2add588e8aa9"
+    },
+    "case-04": {
+      "path": ".local/ega-signed-copy-native-01/case-04.json",
+      "bytes": 724617,
+      "sha256": "56972e2864133a63dabe9434621de888ec503881760cd2b98fd153c073c786d1"
+    },
+    "case-05": {
+      "path": ".local/ega-signed-copy-native-01/case-05.json",
+      "bytes": 478007,
+      "sha256": "4dd51c06a518c63810f7c3762d5179dc051987dcaa23530ad8211d490d9d12a7"
+    },
+    "case-06": {
+      "path": ".local/ega-signed-copy-native-01/case-06.json",
+      "bytes": 30265,
+      "sha256": "b542b4a6bfe88be14a5148fa242cd0680ac681aa843451970d979efd48a353eb"
+    },
+    "case-07": {
+      "path": ".local/ega-signed-copy-native-01/case-07.json",
+      "bytes": 14435,
+      "sha256": "5e219b13821086c43767d57e58651a59a85978a5d191f5f21cbde2af3c83480d"
+    },
+    "case-08": {
+      "path": ".local/ega-signed-copy-native-01/case-08.json",
+      "bytes": 6044,
+      "sha256": "7aea5a8a9f678cd5b6c8fcf825750eba312ecc41ead22529facccd75bf4d3f01"
+    },
+    "case-09": {
+      "path": ".local/ega-signed-copy-native-01/case-09.json",
+      "bytes": 6048,
+      "sha256": "46eaaf324b03e6c638cbabec5be558f6503027796456af6189c37b4602642ff1"
+    },
+    "case-10": {
+      "path": ".local/ega-signed-copy-native-01/case-10.json",
+      "bytes": 15442,
+      "sha256": "a0813f42f0a29b5e00072b7a754b09fe6b260d88944c158740251fb5399db138"
+    },
+    "case-11": {
+      "path": ".local/ega-signed-copy-native-01/case-11.json",
+      "bytes": 12630,
+      "sha256": "59430967aef27c1da34f6eb249975b986bc2bd5196590481afab83152027161e"
+    },
+    "case-12": {
+      "path": ".local/ega-signed-copy-native-01/case-12.json",
+      "bytes": 13703,
+      "sha256": "8dec77e9b60ef1e580966b4bf36a6e245bbd8151f1732ff3b1e226cc27326267"
+    },
+    "case-13": {
+      "path": ".local/ega-signed-copy-native-01/case-13.json",
+      "bytes": 15068,
+      "sha256": "83552c314a2bb27a0c28e5e54bc30de5891ababbf1594401fe744b0e7d45a8e0"
+    },
+    "case-14": {
+      "path": ".local/ega-signed-copy-native-01/case-14.json",
+      "bytes": 6058,
+      "sha256": "cfcd4ba051631e9ed521eb2fc76426db5db833c171162c0c698051bd24f692af"
+    },
+    "case-15": {
+      "path": ".local/ega-signed-copy-native-01/case-15.json",
+      "bytes": 6066,
+      "sha256": "d9fbda464a7215d85a07e8b04ac6e6bcaf466fefde85ddf1c6cbb69972ee95f0"
+    },
+    "disassembly": {
+      "path": ".local/mountain-pacing-profile-04/ega-copy-disassembly.json",
+      "bytes": 21666,
+      "sha256": "ffdaf37ebedf51ce2e44c0da9f88883c425b82865b5be31e7260c194813f4bb8"
+    }
+  },
+  "sources": {
+    "scripts/capture-ega-copies.py": "4ff1d7297479911b4f1c59c3878fb594a3d497d22c2c450b9cbf0eb86a7e14e4",
+    "scripts/lib/ega-signed-copy-work.js": "1dc314f79dfe90cc07e4cb903ba7b0b3e4e49845c3a5fa7da1bdb6314561f944",
+    "scripts/verify-ega-signed-copies.js": "f6152b5537bd5a5ee14307bc2f0f3ba06148a3dbf3f9e196e25bcfc2e83b12cf",
+    "scripts/verify-mountain-copy-work.js": "28a5c2db72077ac7c7f2b203af81ace9893bf519e0649ff2d82519dab688b33e",
+    "reference/mountain-erase-work.json": "81c5911b4e817b3e87fd4adcb4bb244e5043b35f7f47dee455389bc03491f531",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9"
+  },
+  "injections": [
+    "Independent direct far-call words,private CS/DS/ES/SS/SP;IF/DF clear.",
+    "Active/inactive descriptor identities select original surface branches;all far pointers target private conventional RAM.",
+    "Source/destination strides40,plane spans8000,data offsets1000. No full machine checkpoint or elapsed-time comparison."
+  ],
+  "comparisonRules": "Exact native-derived opcode/OUT/REP counters;every visited IP must be a validated original instruction boundary. Exact ordered OUT ports/words,all2599 driver bytes with only the declared video-descriptor word and four source-defined self-modified immediate words. No byte exclusions. The model predicts work counters,not the full instruction-address sequence.",
+  "limitations": [
+    "No EGA pixel or natural timing/browser acceptance.",
+    "Width1..320,height1..255 only;all coordinates signed16. No claim for other call widths/heights.",
+    "Original executable is identity checked but not executed;the original IT.DRV resource1 primitive is called directly.",
+    "Independent routine cases,not game continuation or partial machine restore."
+  ],
+  "captureRecipe": "DUCKTALES_DOSBOX_MCP_ROOT=/path/to/dosbox-mcp /path/to/dosbox-mcp/.venv/bin/python scripts/capture-ega-copies.py --output .local/ega-signed-copy-native-NEW --port 8400",
+  "verify": "node scripts/verify-ega-signed-copies.js",
+  "composedVerify": "node scripts/verify-mountain-copy-work.js"
+}

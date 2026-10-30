@@ -101,7 +101,13 @@ because that primitive has no X-dependent control flow; original call arguments
 remain compared unchanged. Synthetic signed/overscan rectangles are preserved as
 arguments, but are outside that bounded cost model.
 
-Next: establish signed-copy work where needed, connect actual source copies and
+The [new native primitive comparison](ega-signed-copy-work.md) now covers signed
+coordinates and identifies two omitted instructions per copy in that older
+counter. Its composed command covers all 191 calls with actual coordinates; the
+corrected walking-copy estimate is 2.816 ms. The original receipt above remains
+preserved, not rewritten as stronger evidence.
+
+Next: connect actual source copies and
 HUD text/lines to mountain scheduling, and correct graphics-deadline/retrace
 phase. Recheck natural walking, ascent, actual browser controls and the full Easy
 campaign. Avoid charging reconstructed Canvas terrain as source drawing.

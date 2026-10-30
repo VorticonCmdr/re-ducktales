@@ -34,8 +34,11 @@ The next non-Hard milestone is mountain timing. Its original erase/copy plan now
 passes 34 conditional native routine cases (191 exact copy calls), eight failure
 controls and named state comparisons across 14 original frame segments. The
 walking path makes six source copies per frame. This evidence is **not connected
-to the browser runtime yet**; signed-copy costs, HUD text/lines and retrace-phase
-integration remain. [Scope and reproduction](mountain-erase-work.md).
+to the browser runtime yet**. Signed-copy work now passes 16 original primitive
+cases with exact instruction/OUT/REP counts and eight failure controls; the
+composed check covers all 191 calls. HUD text/lines and retrace-phase integration
+remain. [Erase evidence](mountain-erase-work.md),
+[signed primitive evidence](ega-signed-copy-work.md).
 
 ## Working gameplay and full-campaign evidence
 
@@ -108,6 +111,7 @@ node scripts/verify-runtime-campaign.js --fresh-browser
 node scripts/verify-jungle-texts.js
 node scripts/verify-jungle-text-campaign-receipt.js
 node scripts/verify-mountain-erase.js
+node scripts/verify-mountain-copy-work.js
 node scripts/verify-hud-number.js
 node scripts/verify-jungle-text-work.js
 node scripts/jungle-text-timing.js

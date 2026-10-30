@@ -42,6 +42,9 @@ finishability remain unproven. The broader `npm run verify` remains red at older
 source receipts. [Scenario](../reference/current-physical-campaign.json),
 [current evidence and limits](current-campaign.md).
 
+[Current Hard investigation](current-hard-campaign.md) separately tests an
+anticipatory physical-key pilot;only its carried model is verified so far.
+
 This work changes player controllers and verification, not game mechanics. The
 old mountain controller released keys one source read too late; the corrected
 physical schedule preserves the original mode0 release-edge consumption.

@@ -1,0 +1,94 @@
+{
+  "id": "current-hard-physical-flight-and-jungle-investigation",
+  "scope": "Exploratory port model,not browser or independent native acceptance. Every candidate starts originalGame fresh with verified originals;no checkpoint restore or output-derived actor,RNG,timer initialization.",
+  "baseCommit": "0bffef478486b73059f94927a7944aa9080af9da",
+  "environment": {
+    "physicalKeyboard": true,
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8
+  },
+  "flightRule": "Use published frames/inputReads to account for the preceding sampled turn before requesting another. A last one-step turn is make/break,consumed once by original mode0. This is a player controller,not a translated mechanic.",
+  "observations": {
+    "legacyFeedback": "Four candidate policies lose the opening race;the rival-claim path is entered without unsupported diagnostics. Earlier local controller revisions were not archived and are not claimed reproducible.",
+    "anticipatoryFlight": {
+      "status": "arrived",
+      "frames": 262,
+      "day": 2,
+      "seed": 43827
+    },
+    "jungleBaseline": {
+      "authoredInputCount": 447,
+      "executed": 405,
+      "outcome": 0,
+      "money": 200,
+      "limitation": "The preserved historical route loses lives after reachingx671. Its different RNG/timing environment is not assumed equivalent."
+    },
+    "ledgeJump": {
+      "executed": 447,
+      "outcome": 0,
+      "money": 250,
+      "limitation": "A bounded replacement of the20-neutral ledge wait with10Up/10Right also fails. No success claimed."
+    }
+  },
+  "inputs": {
+    "flightPolicy": {
+      "altitude": [10, 25],
+      "climbHeading": 1
+    },
+    "jungleSource": "reference/security-campaign-inputs.json",
+    "jungleSourceSha256": "5456d55ec2a1fb3d1d8d9161e4cf6a367839d75caed83fec074010ca1081d88f"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "artifacts": [
+    {
+      "path": ".local/current-hard-planning-01/anticipate-06/result.json",
+      "bytes": 396840,
+      "sha256": "9067101419ed9d1c939a6fc4e6c0fc52cdfef10aa5c0f336f3d97e2cff83f789"
+    },
+    {
+      "path": ".local/current-hard-planning-01/anticipate-06/producer.mjs",
+      "bytes": 8090,
+      "sha256": "b614a786f0839cf36880d566d4ccdea9134e467e025153da55ddd0d96eacac4c"
+    },
+    {
+      "path": ".local/current-hard-planning-01/ledge-07/result.json",
+      "bytes": 415892,
+      "sha256": "d761ee98d7d6baaa20289062721e99d21f1b69243643c736a20f05eb8c30294b"
+    },
+    {
+      "path": ".local/current-hard-planning-01/ledge-07/producer.mjs",
+      "bytes": 8188,
+      "sha256": "5496d9eb359e1ba01e17bfb625f8c9d91c4d9aa456bae9df3fc316627443bd2d"
+    },
+    {
+      "path": ".local/current-hard-planning-01/shared-08/result.json",
+      "bytes": 396840,
+      "sha256": "573b1ffd199364ff53381a76e79a2852d1cecd23d2ddf2e2bf459541b41ddd4b"
+    },
+    {
+      "path": ".local/current-hard-planning-01/shared-08/producer.mjs",
+      "bytes": 8309,
+      "sha256": "255556f12d9a9dff2dab5c90ec4421b7f54daa2964a1577f44a7792bfbcd5457"
+    }
+  ],
+  "nextExperiment": "Run the anticipatory pilot through actual browser input,record Hard arrival and investigate the first divergence in the carried jungle route.",
+  "buildManifest": {
+    "path": "reference/build.json",
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "sharedControllerModel": {
+    "scope": "Conditional port model,not browser acceptance",
+    "sameCompleteInputStream": true,
+    "sameFinalState": true,
+    "firstFlightActions": 262,
+    "jungleFailureAction": 405
+  },
+  "controllerSources": {
+    "tests/browser/helpers/flight-policy.js": "0fc03749ccd13a7d5cdff2a742b1c47ede34aff2303a05029d161205584e19f7",
+    "tests/browser/helpers/linked-campaign.js": "6a8a1f562533f644832df22a60991c4bddf0274a3c4dbd203e8b382caa2b5ecd"
+  }
+}

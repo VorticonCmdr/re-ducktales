@@ -1,0 +1,188 @@
+{
+  "id": "original-automatic-launchpad-departure-integration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "ba6a36f9bb3a9977b80ea179cca4d5c38282d993",
+  "sourceFileCount": 673,
+  "verificationCommand": "npm run verify:departure-sequence",
+  "verificationExitCode": 0,
+  "unitCases": 167,
+  "unitFailures": 0,
+  "unitSkipped": 0,
+  "browserCases": 6,
+  "browserSkipped": 0,
+  "browserNegativeControls": 1,
+  "originalSourceInstructions": 181,
+  "originalSourceBytes": 463,
+  "requiredDepartureRetraces": 50,
+  "originalDepartureRngCheckpoints": 2,
+  "departureNativeNegativeControls": 6,
+  "preservedDestinationReads": 16,
+  "preservedDestinationFlagCheckpoints": 48,
+  "preservedHardwareEvents": 37,
+  "conditionalNativeFooterBudgets": 16,
+  "destinationNativeNegativeControls": 6,
+  "refreshContractNegativeControls": 2,
+  "historicalArtifactsPreserved": true,
+  "protectedArtifactCount": 758,
+  "injections": [],
+  "fittedInputs": [],
+  "captureTools": {
+    "node": "v26.8.1",
+    "playwright": "1.64.1",
+    "static": "Ghidra MCP disassemble_bytes,explicit original resident and EGA driver programs,bounded ranges,no followed flow. Retained packet does not expose the server revision;all181 instructions match exact original relocated bytes.",
+    "native": "Unchanged original departure capture426729d,DOSBox0.84.0-vc1 f6d9b,normal core3000 cycles,svga_s3. No new emulator launch,live state change,or partial machine restore."
+  },
+  "inputContract": {
+    "conditionalNative": "Declared parent routineInput initializes the component before first RNG. No event occurs inside the departure program. Independent driver/retrace/work providers advance its own state. Native outputs and timer values never drive inputs. Check original RNG/race/route/flight call and final portrait.",
+    "browser": "Six actual DOM/renderer scenarios earn entry through office/security/map. The full flight controller observes its own current flight state;the cave controller plans from its own current map and waits for room-entry lamp advancement plus exploring phase before fresh physical input. No captured expected output drives it. Wipe/reveal checks use source-derived masks;not a new native intermediate-frame replay."
+  },
+  "scope": [
+    "Automatic source fill/wipe/portrait copy/flush/first RNG/reveal/second RNG/optional race stores/flight overlay handoff. No extra Fire gate.",
+    "Exact50 consumed retraces,two source work completions,all five wipe and reveal bands,all five browser reveal masks,and exact completed native320x200 portrait.",
+    "RNG writes occur at source sites. Same-time continuation follows the final visible publication. Tests cover catch-up,hidden pause,source flush,racing and Restart cancellation.",
+    "Browser checks automatic handoff,takeoff,deferred Pause,Restart,unchanged destination reader/system behavior,bank round trip,and full cave landing/failure/retry/treasure/reward/return.",
+    "Stalling automatic handoff fails the required flight assertion without timeout. Missing source flush,race stores,short reveal,bad RNG,changed bytes or pixels are rejected.",
+    "Runtime-refresh manifest preserves every historical destination expectation,event and comparison rule. Two negative controls reject changed expectations/rules."
+  ],
+  "limitations": [
+    "Resource loading,text and striped writes,and remaining CPU/IRQ/device work are uncharged;partial source work budget is not native whole-scene elapsed-time acceptance.",
+    "Flight still uses held digital controls. Ordinary flight reader,cross-scene physical IRQ delivery and remaining environment providers need translation.",
+    "Native departure evidence is a conditional segment,not an uninterrupted whole-campaign replay or new native intermediate scanout capture.",
+    "The full npm run verify remains red at historical shared-runtime inventory and older source guards. No old expected fixture,trace,or comparison exclusion is changed.",
+    "Whole-game fidelity,arbitrary-route finishability and original persistence remain unproven."
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/departure-sequence-integration-01/runner-status.json",
+      "bytes": 99515,
+      "sha256": "2c9bf3fd09eeb21c8cf98c87db40446d44d7e865522176c7f3fabc0027572d19"
+    },
+    "runner-source": {
+      "path": ".local/departure-sequence-integration-01/runner.py",
+      "bytes": 3052,
+      "sha256": "86ae8e50794b7d74b7639310cb3cb409405ecb99e42aff1c290b2ae454a34736"
+    },
+    "source": {
+      "path": ".local/departure-sequence-integration-01/source-revision.json",
+      "bytes": 72929,
+      "sha256": "9ebb6181a0ee76c87748edadcbb079667a35aedeee85a0d0eaab1020950f2583"
+    },
+    "source-zip": {
+      "path": ".local/departure-sequence-integration-01/sources.zip",
+      "bytes": 1803902,
+      "sha256": "a09a91dd9824da0b8ddb9757d51b2c84cd8c5620b2f90ec8fc65bd512b173df0"
+    },
+    "verification-log": {
+      "path": ".local/departure-sequence-integration-01/verification.log",
+      "bytes": 22777,
+      "sha256": "bc40b9571e53e85b86de3284ab7b35a28dd332140d038dcdd97a7571ad7d230e"
+    },
+    "browser-negative": {
+      "path": ".local/departure-sequence-integration-01/controls/browser-negative.log",
+      "bytes": 1606,
+      "sha256": "6e8769b05f94603f493b54496c0758ffd7166e89bd559e99f0543c1d4d6120a9"
+    },
+    "browser/departure-full.png": {
+      "path": ".local/departure-sequence-integration-01/departure-full.png",
+      "bytes": 9956,
+      "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
+    },
+    "browser/departure-flight.png": {
+      "path": ".local/departure-sequence-integration-01/departure-flight.png",
+      "bytes": 9106,
+      "sha256": "a288e4b0f4677d7100286e027c2a3e30daa6d9e145f77e2f08c2232e44d778c2"
+    },
+    "browser/departure-sequence.json": {
+      "path": ".local/departure-sequence-integration-01/departure-sequence.json",
+      "bytes": 136788,
+      "sha256": "83ff32dec7335544ac60807cde51bcfeeecc5eb5932f5037201b31323265472e"
+    },
+    "browser/departure-pause.json": {
+      "path": ".local/departure-sequence-integration-01/departure-pause.json",
+      "bytes": 2231,
+      "sha256": "8e1f8e020f361804319e8625add80fb1641bf839bb712b0264a882df05a92c5d"
+    },
+    "browser/destination-loop.json": {
+      "path": ".local/departure-sequence-integration-01/destination-loop.json",
+      "bytes": 11610,
+      "sha256": "f51a0274ef63a9eb8bd1ebe8d30c454d0d9d9d9a20cb5ce7c8f74812e0951d4f"
+    },
+    "browser/destination-system.json": {
+      "path": ".local/departure-sequence-integration-01/destination-system.json",
+      "bytes": 1637,
+      "sha256": "fb3c247cc71276689a1c81e0a782e064b5611e10daa2f80be8673eebf0c487f7"
+    },
+    "browser/destination-loop-footer.png": {
+      "path": ".local/departure-sequence-integration-01/destination-loop-footer.png",
+      "bytes": 11129,
+      "sha256": "40e024418ea5fbbe59dbbbc1113f1ef58877bd53880cb0dee0ef323c3c16aafe"
+    },
+    "browser/destination-loop-map.png": {
+      "path": ".local/departure-sequence-integration-01/destination-loop-map.png",
+      "bytes": 24948,
+      "sha256": "a24803d3b953bc292e5d063c122f28f9bcc7a1d0107b9afd0525e98085c0f693"
+    },
+    "browser/destination-loop-flight.png": {
+      "path": ".local/departure-sequence-integration-01/destination-loop-flight.png",
+      "bytes": 9711,
+      "sha256": "02ce920f8e2caa1e9bdf87dea89ec6824663ad5d942652de262f258a422b9259"
+    },
+    "browser/flight-landing.png": {
+      "path": ".local/departure-sequence-integration-01/flight-landing.png",
+      "bytes": 23027,
+      "sha256": "ac8f5c99895e3a7238dc80c751e0fbd3dd8510e2406366ed2d1f3ad8d347b347"
+    },
+    "browser/cave-treasure-award.png": {
+      "path": ".local/departure-sequence-integration-01/cave-treasure-award.png",
+      "bytes": 34538,
+      "sha256": "996ec77c48de4194302e5bfa11345332b1a4ad1a211ef7948d129b3193631e7c"
+    },
+    "browser/collected-notice.png": {
+      "path": ".local/departure-sequence-integration-01/collected-notice.png",
+      "bytes": 24928,
+      "sha256": "de730a93d230c3c924e84247ae33f75821b1864171ca410f96f99db1f2aa2abe"
+    },
+    "reference/build.json": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "reference/departure-sequence.json": {
+      "path": "reference/departure-sequence.json",
+      "bytes": 3884,
+      "sha256": "0100ad77671926cb769ad474225ebf475851e46062d3e49d10b02a24a4d48ae5"
+    },
+    "reference/departure-destination-loop.json": {
+      "path": "reference/departure-destination-loop.json",
+      "bytes": 3833,
+      "sha256": "0040c7208a8456ff781ac463942eeb63717ac3a2f4efccf74d31eac4597522b4"
+    },
+    "reference/expedition-departure.json": {
+      "path": "reference/expedition-departure.json",
+      "bytes": 2383,
+      "sha256": "36963f5cf4720663d1f3debc782ccc1d7fb9fc6354b96f9d29c81359de0be709"
+    },
+    "reference/destination-loop.json": {
+      "path": "reference/destination-loop.json",
+      "bytes": 2952,
+      "sha256": "05029a36ade39768f9fa3cbc9998d737ac0613d477baf044893f8935cbd4c7a5"
+    },
+    "reference/destination-keyboard.json": {
+      "path": "reference/destination-keyboard.json",
+      "bytes": 55215,
+      "sha256": "54c16481edbed120f0f08c9f09393254179c1679b6b3fe30d2656695e1c53e9b"
+    },
+    "reference/destination.json": {
+      "path": "reference/destination.json",
+      "bytes": 10259,
+      "sha256": "625439ca6ec898bf3701b525e5e3c2ec06f8d982969418d4389ddd5da97f1854"
+    },
+    "reference/destination-video.json": {
+      "path": "reference/destination-video.json",
+      "bytes": 50952,
+      "sha256": "a3763479da07f2c7c210176cda8dc1f3abaf84a5bba8586639437e2500ba9bf9"
+    }
+  }
+}

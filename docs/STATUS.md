@@ -21,16 +21,20 @@ Tandy/PCjr includes Sound 001, persistent channels, priorities, engine words, mu
 and completion; all 121 public requests have viewer playback. Speaker playback
 is the default. Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 
-## Current departure work
+## Current departure milestone
 
 Launchpad's briefing now runs automatically through the original page wipe,
 portrait copy, input flush, speech reveal, two RNG commit sites and flight call.
 The manual Fire gate has been removed. Source comparison passes181 instructions /
 463 bytes,50 required retraces,two native RNG/call checkpoints and exact final
-portrait pixels. All167 unit cases pass. The full browser integration is still
-being verified; this paragraph does not claim a completed milestone.
-[Evidence and limitations](departure-sequence.md). The focused command is
-`npm run verify:departure-sequence`.
+portrait pixels. `npm run verify:departure-sequence` passed from clean commit
+`ba6a36f`: all167 unit cases,six actual browser scenarios,the stalled-handoff
+negative and production build,with zero skipped cases. This includes takeoff,
+deferred Pause/Restart,bank travel and the full cave failure/retry/treasure/return
+route. All758 protected historical artifacts remain unchanged. The673-file
+source archive and results are pinned by the
+[focused receipt](../reference/departure-sequence-integration.json).
+[Evidence and limitations](departure-sequence.md).
 
 Flight's held-control provider still needs its ordinary keyboard translation.
 Loading, speech drawing, striped writes and other remaining CPU/device costs

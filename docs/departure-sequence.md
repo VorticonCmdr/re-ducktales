@@ -43,6 +43,13 @@ artifacts cause explicit failure. No original file or previous expected stream
 is rewritten. No emulator launch or partial memory restore is needed by this
 command.
 
+The clean run on `ba6a36f` passed all167 unit cases,six browser scenarios,the
+stalled-handoff browser negative and production build,with no skipped cases.
+Its673-file source archive,logs and browser evidence are pinned in
+`reference/departure-sequence-integration.json`;all758 protected historical
+artifacts remained unchanged. This verifies the focused milestone,not whole-game
+completion or original whole-scene elapsed timing.
+
 `reference/departure-sequence.json` pins six ignored static exports in
 `.local/departure-sequence-01/`, all current runtime sources and the unchanged
 native departure and keyboard manifests. The verifier reconstructs EXEPACK

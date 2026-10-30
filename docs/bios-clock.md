@@ -56,7 +56,7 @@ node scripts/verify-bios-clock.js
 The focused gate requires a clean commit, all194 unit cases, original build and
 seed evidence, three actual-browser clock/override/error cases, a browser failure
 control that deliberately caches the startup word, the fixed-word mountain input
-route and production build. It archives source and results under a fresh ignored
+route, four opening/difficulty browser cases and production build. It archives source and results under a fresh ignored
 `.local/bios-clock-integration-*` directory. Missing/corrupt fixtures, zero or
 skipped required cases and an unexpectedly passing failure control fail the gate.
 Byte corruption and missing-code controls are also required. No expected output
@@ -87,3 +87,13 @@ The combined gate also repeats native drawing checks, long jungle routes,
 mountain controls and required omissions, the fresh focused BIOS cases and build.
 The saved combined receipt is separate from a fresh gate. A whole variable-seed
 campaign and complete original IRQ/RTC timing remain unverified.
+
+
+The first combined attempt stopped on historical browser source guards, before
+simulation checks. The new cave contract preserves every original expected field
+and source except the verifier's manifest selection/provenance checks and the two
+browser navigation URLs. Reversing just `/?bios-seed=0` must restore the original
+browser file checksum. Sound acceptance was freshly repeated: seven actual
+browser cases, including both devices, title Sound001 and flight/cave completion;
+three stream cases and three report failure controls. Separate BIOS-specific
+manifests retain the older cave and sound records unchanged.

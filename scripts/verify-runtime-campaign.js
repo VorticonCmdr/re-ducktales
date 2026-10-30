@@ -31,11 +31,16 @@ function run(command, args, extra = {}) {
   return r.stdout ?? "";
 }
 run("npm", ["run", "verify:build"]);
-run(process.execPath, ["scripts/verify-cave-reveal.js"]);
+run(process.execPath, [
+  "scripts/verify-cave-reveal.js",
+  ...(biosRuntime ? ["--manifest=reference/bios-clock-cave-reveal.json"] : []),
+]);
 run(process.execPath, ["scripts/verify-speaker-engine.js"]);
 run(process.execPath, [
   "scripts/verify-speaker-playback-receipt.js",
-  "--manifest=reference/speaker-playback-current.json",
+  biosRuntime
+    ? "--manifest=reference/bios-clock-speaker-playback.json"
+    : "--manifest=reference/speaker-playback-current.json",
 ]);
 if (textTiming) {
   run(process.execPath, ["scripts/verify-ega-text.js"]);

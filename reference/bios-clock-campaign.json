@@ -248,6 +248,16 @@
       "path": "reference/bios-clock.json",
       "bytes": 3491,
       "sha256": "ef62fffe07f9eb510b64aaf598ab35fdd4d9c5c13a8ff38dade8bc17fc237f93"
+    },
+    "bios-clock-cave-contract": {
+      "path": "reference/bios-clock-cave-reveal.json",
+      "bytes": 2810,
+      "sha256": "035c7cfc784ca2596e7728758f6760840137e38a75513cb426e9359fa361855d"
+    },
+    "bios-clock-sound-contract": {
+      "path": "reference/bios-clock-speaker-playback.json",
+      "bytes": 3091,
+      "sha256": "808f1aac2166305a1b7632565711d0f0248c691e5b82f0113465f82201bd45e6"
     }
   },
   "verificationSources": {
@@ -265,7 +275,7 @@
     "package.json": "929bf655380e349e22663c717899d1c6145d611d89f7ad6d79a6a3782925d829",
     "scripts/register-mountain-phase-campaign.py": "bbf17772b86dca55d486cdee11b5020f3c0c60369038020f7f23b096b1de301f",
     "scripts/accept-mountain-phase-campaign.py": "5b766d7ba4d6293e145bfec2d358ed4e83796ff6d985f8c1002efbc2eb53c6b3",
-    "scripts/verify-runtime-campaign.js": "650e3e87b013a67142283da2d5d4a2bdc1d0ca3d1aa1ff0b4e896a29c5b4e3ab",
+    "scripts/verify-runtime-campaign.js": "662da63cf1a3853bd57732ff8de0b5d2d50dbd0a1956f880bb6f1ac5f10069d8",
     "scripts/jungle-text-timing.js": "4a23bc1ae7eae6521a8e978d52fcbe9dccb2ef3f38a5f3504fcd88e4c49d4b50",
     "scripts/verify-jungle-text-work.js": "d1d77f2e6391a5f150556b488d66709c48078fe55d795aaeb3b6db484e2cfd3f",
     "scripts/verify-jungle-line-browser-negative.js": "ee9f7928062049f5859310429a1e3a1b8ef61b4f2c8e7d9a211c11e014d369ef",
@@ -278,13 +288,14 @@
     "tests/mountain-phase.test.js": "89ed20a2ad4d5c16089c749c84c33a472abc92730205f6f0fd368db4730b25c3",
     "tests/browser/mountain-input.spec.js": "5d7e67338c8eab5d0719298b0d200f498052c2447eb8e5e99c86313a593d6035",
     "scripts/capture-runtime-campaign.py": "abcdb389a30a17b9ef8cd867242dc5bf0fbe4c335cd291d0f0b8f1b26825bbde",
-    "scripts/register-runtime-campaign.py": "392321fd8809b3e3694c03cc49c96c4e8f8452f13f6325265e6706c88633784a",
+    "scripts/register-runtime-campaign.py": "e373cb798a111e80d1b8d7a7741258bc635d4de75fd638d1215ea2eac06be230",
     "scripts/verify-bios-clock.js": "a59997a1b5a0c39a91e21422e1b1e312855f8088e97229ee957b51a024d57367",
-    "scripts/verify-bios-clock-integration.js": "ef04da31e55052ef0fcd1a2edbe5fe3fef8386531306f0afb2dd330ed41e7c07",
-    "scripts/verify-bios-clock-campaign-receipt.js": "7cbd6da190f4730cade25802e1d3de270e2203e96314e8a6a0c95549384be266",
-    "scripts/capture-mountain-phase-integration.py": "22d38c59804b27325e538a399afc665212c8267a43e25a11af9542d3b6856db3",
+    "scripts/verify-bios-clock-integration.js": "a7152b9fc2ec1b8d248e31e5c92bf9a9a58e01ccb25b389446ebbc27b2fd2187",
+    "scripts/verify-bios-clock-campaign-receipt.js": "4bbd9bb56c336dc0d5726b1c4ca8249cbc849c1619d35c581820bbed5458d0f7",
+    "scripts/capture-mountain-phase-integration.py": "294ba22bd2a80db2874c60d10c39b4aa5e5b03bdd0d303a3a6d4bd8105602437",
     "tests/bios-clock.test.js": "46f82d4dc43b8699aaa86102c21dd9d301163dab55e5f6f74b668facbc45abb3",
-    "tests/browser/bios-clock.spec.js": "6a9e767e67e2e7ad8bdad4200d06a52efef8a40e3e9c3ab0cd57f7aa86212cca"
+    "tests/browser/bios-clock.spec.js": "6a9e767e67e2e7ad8bdad4200d06a52efef8a40e3e9c3ab0cd57f7aa86212cca",
+    "scripts/verify-cave-reveal.js": "2f5c0e5c0d51992979cd687ecfcc258cb4c69f5ee7ad9b8b3ae7a8df357c38da"
   },
   "consumerCommit": "5d219325b719c8ab00050fee1c622e984d1df278",
   "browserReplayRoot": ".local/bios-clock-campaign-consumer-01/browser",

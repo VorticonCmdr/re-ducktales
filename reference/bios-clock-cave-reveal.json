@@ -1,0 +1,68 @@
+{
+  "id": "bios-clock-cave-reveal",
+  "build": "reference/build.json",
+  "scope": "Original source-byte validation plus independent presentation mechanism;browser route checked separately. No native whole-cave timing or waveform parity.",
+  "captureTool": "Ghidra MCP disassemble_bytes; explicit program, bounded ranges, no flow following; 2026-10-30. Tool server revision unavailable in response.",
+  "startingRecipe": "npm originalGame validates all22 original identities. Cave route starts startup through DOM inputs in campaign.spec.js; mechanism fixture uses distinct synthetic source/target rows and is not a machine checkpoint.",
+  "expectedSourceInstructions": 78,
+  "expectedSourceBytes": 186,
+  "expectedGroups": 5,
+  "expectedRetraces": 25,
+  "injections": [],
+  "fittedInputs": [],
+  "comparisonRules": "Exact original instruction bytes and every RGBA byte of five320x200 mechanism publications. No pixel tolerance. Synthetic boundary fixture is separate from browser route and native evidence.",
+  "staticArtifacts": {
+    "caller-flips": {
+      "path": ".local/cave-reveal-01/static/caller-flips.json",
+      "bytes": 3938,
+      "sha256": "e010e8c3f114734d4cbc497cd48ce717b6d770593524279ccb242ea6189889bd"
+    },
+    "caller-reveal": {
+      "path": ".local/cave-reveal-01/static/caller-reveal.json",
+      "bytes": 1108,
+      "sha256": "ff520fdcdad6de9fd6a5dc5c120e07f5877bfe4a920344d8a883ed351bffdc5f"
+    },
+    "ega-reveal": {
+      "path": ".local/cave-reveal-01/static/ega-reveal.json",
+      "bytes": 4428,
+      "sha256": "0a73706009fcd93a753a754f6b68311822b637dc50269ab98b597168a47a472b"
+    }
+  },
+  "sources": [
+    {
+      "path": "src/game/cave.js",
+      "bytes": 16767,
+      "sha256": "ebf1d57df11d8729e27af4fbef5607e67cc7dd6d46a08012561d9939c8ccb69e"
+    },
+    {
+      "path": "src/game/cave-endings.js",
+      "bytes": 5720,
+      "sha256": "9d1e1cb85e4468bfc8f64e45c977a68bddcffe63a6af738697f55bb74ba853ee"
+    },
+    {
+      "path": "src/game/flight-raster.js",
+      "bytes": 5956,
+      "sha256": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838"
+    },
+    {
+      "path": "scripts/verify-cave-reveal.js",
+      "bytes": 9346,
+      "sha256": "2f5c0e5c0d51992979cd687ecfcc258cb4c69f5ee7ad9b8b3ae7a8df357c38da"
+    },
+    {
+      "path": "scripts/verify-cave-routes.js",
+      "bytes": 11565,
+      "sha256": "ca0a6752e63d08e49939342a0fa08d02a396fff141308ab645026386f5d79817"
+    },
+    {
+      "path": "tests/browser/campaign.spec.js",
+      "bytes": 23883,
+      "sha256": "a3ad387690c08c32946c3c138db1df751ffb814c22ce87609d723f0aeda1ad28"
+    }
+  ],
+  "verifyCommand": "npm run verify:cave-reveal",
+  "parentContract": {
+    "path": "reference/cave-reveal.json",
+    "sha256": "76a36d3deb448b83b79405a0f434e8fc123b106a4db6ca698c021166d4a0cf5a"
+  }
+}

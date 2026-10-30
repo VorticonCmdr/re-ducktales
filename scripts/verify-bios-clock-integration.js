@@ -97,6 +97,15 @@ try {
     ]),
     /1 passed/,
   );
+  assert.match(
+    run([
+      ...browser,
+      "tests/browser/opening.spec.js",
+      "tests/browser/difficulty.spec.js",
+      "--output=" + output + "/opening-difficulty",
+    ]),
+    /4 passed/,
+  );
   run(["node_modules/vite/bin/vite.js", "build"]);
   for (const [p, h] of Object.entries(files))
     assert.equal(sha(await readFile(p)), h, "Changed loaded source " + p);
@@ -110,7 +119,7 @@ try {
         completed: complete,
         commit,
         units: 194,
-        browserCases: 4,
+        browserCases: 8,
         browserFailureControls: 1,
         sourceFileCount: paths.length,
         output,

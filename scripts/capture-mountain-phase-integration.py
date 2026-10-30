@@ -12,7 +12,7 @@ with zipfile.ZipFile(out/'sources.zip')as z:files={n:sha(z.read(n))for n in z.na
 captureSource=Path(__file__).read_bytes();(out/'capture-source.py').write_bytes(captureSource)
 old=Path('.local/mountain-phase-campaign-integration-01/runner-status.json' if a.bios_clock else '.local/jungle-text-campaign-integration-01/runner-status.json');assert old.exists(),'SETUP: missing historical protected inventory'
 protected=dict(json.loads(old.read_text())['protectedArtifacts']);protected.update({str(p):sha(p.read_bytes())for p in Path('reference').glob('*.json')})
-for name in ['mountain-phase-campaign','mountain-phase','mountain-hud-work','mountain-erase-work','ega-signed-copy-work','mountain-phase-runtime','speaker-playback-current','speaker-engine','hud-number-work','ega-text-native','jungle-text-campaign']+(['bios-clock','bios-clock-campaign']if a.bios_clock else []):
+for name in ['mountain-phase-campaign','mountain-phase','mountain-hud-work','mountain-erase-work','ega-signed-copy-work','mountain-phase-runtime','speaker-playback-current','speaker-engine','hud-number-work','ega-text-native','jungle-text-campaign']+(['bios-clock','bios-clock-campaign','bios-clock-speaker-playback']if a.bios_clock else []):
  for spec in json.loads(Path('reference/'+name+'.json').read_text())['artifacts'].values():
   f=Path(spec['path']);assert f.exists(),'SETUP: missing '+str(f);protected[str(f)]=sha(f.read_bytes())
 for name,h in protected.items():assert sha(Path(name).read_bytes())==h,'Prior evidence changed:'+name

@@ -24,8 +24,47 @@ while (at < exe.length) {
 }
 assert.ok(overlay, "Missing cave overlay");
 const manifest = JSON.parse(
-  await readFile("reference/cave-reveal.json", "utf8"),
+  await readFile(
+    process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+      "reference/cave-reveal.json",
+    "utf8",
+  ),
 );
+if (manifest.parentContract) {
+  const bytes = await readFile(manifest.parentContract.path);
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    manifest.parentContract.sha256,
+  );
+  const parent = JSON.parse(bytes);
+  for (const key of Object.keys(parent))
+    if (!["id", "sources"].includes(key))
+      assert.deepEqual(
+        manifest[key],
+        parent[key],
+        "Changed original cave expectation " + key,
+      );
+  assert.equal(manifest.sources.length, parent.sources.length);
+  for (let i = 0; i < parent.sources.length; i++) {
+    const old = parent.sources[i],
+      current = manifest.sources[i];
+    assert.equal(current.path, old.path);
+    if (old.path === "tests/browser/campaign.spec.js") {
+      const text = await readFile(current.path, "utf8");
+      assert.equal(text.split('page.goto("/?bios-seed=0")').length - 1, 2);
+      const normalized = Buffer.from(
+        text.replaceAll('page.goto("/?bios-seed=0")', 'page.goto("/")'),
+      );
+      assert.equal(normalized.length, old.bytes);
+      assert.equal(
+        createHash("sha256").update(normalized).digest("hex"),
+        old.sha256,
+        "Changed cave browser behavior beyond explicit historical BIOS input",
+      );
+    } else if (old.path !== "scripts/verify-cave-reveal.js")
+      assert.deepEqual(current, old, "Changed native cave source contract");
+  }
+}
 assert.equal(manifest.expectedSourceInstructions, 78);
 assert.equal(manifest.expectedSourceBytes, 186);
 assert.equal(manifest.expectedGroups, 5);

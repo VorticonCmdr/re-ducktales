@@ -86,7 +86,7 @@ assert.ok(
     (r) =>
       r.completed === true &&
       r.units === 194 &&
-      r.browserCases === 4 &&
+      r.browserCases === 8 &&
       r.browserFailureControls === 1,
   ),
   "Missing focused BIOS result",

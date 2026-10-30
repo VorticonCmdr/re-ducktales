@@ -7,8 +7,10 @@ import { readFile } from "node:fs/promises";
 test("one campaign carries four expeditions, rival activity and deposits through the deadline", async ({
   page,
 }, info) => {
-  test.setTimeout(600000);
   const capture = process.env.DUCKTALES_CAPTURE_EASY_CAMPAIGN === "1";
+  // Exploratory per-frame player interaction needs more host time than replay.
+  // This watchdog never advances or supplies the simulation clock.
+  test.setTimeout(capture ? 900000 : 600000);
   const replayManifest = process.env.DUCKTALES_EASY_CAMPAIGN_MANIFEST
     ? JSON.parse(
         await readFile(process.env.DUCKTALES_EASY_CAMPAIGN_MANIFEST, "utf8"),

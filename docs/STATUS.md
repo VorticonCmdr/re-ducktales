@@ -26,6 +26,14 @@ Next non-Hard milestone: locate and account for the missing original cave room
 composition/minimap drawing work, then compare its observable movement timing.
 This is an evidence target, not a claim of a complete native timing model.
 
+Minimap call recovery is now verified as an analysis component: four original
+code ranges and809 source-inferred point paths match the native primitive.
+The initial cache needs776 points and one copy; ordinary Easy frames need33
+marker points. Charging the browser's whole reconstructed map every frame would
+overcount cached work. The prototype is not connected to gameplay yet; room
+composition and fresh browser acceptance are next. The accepted runtime above
+is unchanged. [Minimap evidence and command](cave-minimap-work.md).
+
 ## Previous accepted runtime milestone
 
 The fresh mountain copy/HUD/phase Easy campaign now passes independent headless

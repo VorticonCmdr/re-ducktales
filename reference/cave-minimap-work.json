@@ -1,0 +1,126 @@
+{
+  "id": "original-cave-minimap-call-work",
+  "supportedBuild": "dos-fb658562",
+  "executableSHA256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "scope": "Source-inferred EGA call plans at independent original DS inputs, composed with native-validated point/copy primitives. Not a native caller execution, browser integration or elapsed-time comparison.",
+  "expectedSourceRanges": 4,
+  "ranges": [
+    {
+      "role": "dot-listing",
+      "start": 6950,
+      "end": 7368,
+      "prologue": "81ec040090"
+    },
+    {
+      "role": "cache-listing",
+      "start": 7368,
+      "end": 7679,
+      "prologue": "81ec080090"
+    },
+    {
+      "role": "marker-listing",
+      "start": 7679,
+      "end": 8249,
+      "prologue": "81ec080090"
+    },
+    {
+      "role": "initial-caller",
+      "start": 947,
+      "end": 1010
+    }
+  ],
+  "parents": [
+    {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    {
+      "path": "reference/cave-input.json",
+      "bytes": 7133,
+      "sha256": "aa0ddc3d9f42c88b45f42ee05fe0838d40e02795b91602cd06bda26699de09a9"
+    },
+    {
+      "path": "reference/ega-line-runtime-work.json",
+      "bytes": 10523,
+      "sha256": "ab646a0cc548f1951b6967aba8f2018f3d09167837e1f584046583202662f845"
+    },
+    {
+      "path": "reference/ega-signed-copy-work.json",
+      "bytes": 7018,
+      "sha256": "f7000f4de962828b12e9eb0497ba99b6ca2378b6a7af559670223b8f5e676ec2"
+    }
+  ],
+  "artifacts": {
+    "cache-function": {
+      "path": ".local/cave-minimap-work-01/cache-function.json",
+      "bytes": 1749,
+      "sha256": "90d71c07aa493848dafc9cfe26653f4f5edaa6e74b701d1fc50b99a7a7e3b259"
+    },
+    "cache-listing": {
+      "path": ".local/cave-minimap-work-01/cache-listing.json",
+      "bytes": 11440,
+      "sha256": "ca8a93fdc9383e7e312462a447ab5e10ce09128b105e7e7f4cb47058f796ee0a"
+    },
+    "dot-function": {
+      "path": ".local/cave-minimap-work-01/dot-function.json",
+      "bytes": 2872,
+      "sha256": "8fe91341ae5df919ba8167bd8d2d39e335e3626ba90e3a2993c21dd58ffe1a6a"
+    },
+    "dot-listing": {
+      "path": ".local/cave-minimap-work-01/dot-listing.json",
+      "bytes": 15704,
+      "sha256": "7bf6a8fe7d0fe17e5a449b2f9fcb95ca17b926d97b2d602be90653df197aaabc"
+    },
+    "initial-caller": {
+      "path": ".local/cave-minimap-work-01/initial-caller.json",
+      "bytes": 2436,
+      "sha256": "f83fce7d879bd58c536471224fd52ff8688b215f78faf787900909e87dfe2b1e"
+    },
+    "marker-function": {
+      "path": ".local/cave-minimap-work-01/marker-function.json",
+      "bytes": 3770,
+      "sha256": "1df0e62895a51e32bebfa7f06b5a837456796503cbb8344a3f296e3827c51c3f"
+    },
+    "marker-listing": {
+      "path": ".local/cave-minimap-work-01/marker-listing.json",
+      "bytes": 21005,
+      "sha256": "67333080fa6c5e61aa3d2876e4b8c1fe8e099889887612a98c0b7724caf524bd"
+    }
+  },
+  "sources": {
+    "scripts/lib/cave-minimap-work.js": "95b1ba544e150f195f657de94c67c6d64cd21598189e92e5133a1211d74d0161",
+    "scripts/verify-cave-minimap-work.js": "025e9ddf3d049112cc78f48c1d7d7a38ae042914df0bd48cd0b27bfc2ec2e7cf",
+    "src/game/cave-scene.js": "c2d88cce7195e9503fd6c2be24cbc313b5e7d1f85219f4a5b33866639f198105",
+    "src/game/ega-line-work.js": "342b96a373bd4628549becbe64fa3aa7da191d2f677e03fc721651af9a213d09",
+    "src/game/ega-copy-work.js": "1dc314f79dfe90cc07e4cb903ba7b0b3e4e49845c3a5fa7da1bdb6314561f944",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d"
+  },
+  "expectedPartyPrimitiveWork": {
+    "instructions": 1782,
+    "portWrites": 165,
+    "repeatOpcodes": 0,
+    "repeatIterations": 0,
+    "points": 33,
+    "copies": 0,
+    "milliseconds": 0.704
+  },
+  "expectedInitialPrimitiveWork": {
+    "instructions": 44351,
+    "portWrites": 3885,
+    "repeatOpcodes": 504,
+    "repeatIterations": 1008,
+    "points": 776,
+    "copies": 1,
+    "milliseconds": 17.541666666666668
+  },
+  "captureToolRevision": "Ghidra MCP revision1793375177424:b4380501:51171; explicit CAVE_CODE.EXE real16 analysis image; source snapshots hash-pinned.",
+  "recipe": "Use unchanged cave-input pauseReturn DS snapshot as input. Full original11054-byte runtime body and196 relocations checked by parent verifier. Compare analysis listings after exact load-base difference and declared stack-probe normalization. Original files are not executed from the analysis image.",
+  "inputContract": "Only original pauseReturn DS is consumed; no after-state, timer count, fitted input, partial restore or injected output.",
+  "comparisonRules": "Exact source bytes, point order/color/coordinates and native primitive opcode/port paths. Primitive work values are source-inferred aggregates, not measured native caller totals. Caller/resident costs remain omitted. Initial cached map is not charged on each party redraw.",
+  "injections": [],
+  "fittedInputs": [],
+  "runtimeIntegrated": false,
+  "verify": "node scripts/verify-cave-minimap-work.js"
+}

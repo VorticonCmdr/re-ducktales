@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/jungle-line-campaign.json";
+  "reference/jungle-text-campaign.json";
 await mkdir(".local/current-campaign-verification", {
   recursive: true,
 });

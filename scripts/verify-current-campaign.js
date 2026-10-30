@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/jungle-line-campaign.json";
+  "reference/jungle-text-campaign.json";
 const manifest = JSON.parse(await readFile(manifestPath));
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const checkpointCount = {
@@ -14,6 +14,7 @@ const checkpointCount = {
   "cave-reveal-easy-complete-campaign": 34,
   "speaker-runtime-easy-complete-campaign": 34,
   "jungle-line-easy-complete-campaign": 35,
+  "jungle-text-easy-complete-campaign": 34,
 }[manifest.id];
 assert.ok(
   Number.isInteger(checkpointCount),
@@ -27,8 +28,22 @@ assert.equal(
   "SETUP: independent browser replay pending",
 );
 assert.equal(manifest.expectedCheckpointCount, checkpointCount);
-assert.equal(manifest.requiredEventCount, 4981);
+const eventCount = manifest.requiredEventCount;
+assert.ok(Number.isInteger(eventCount) && eventCount > 0);
+if (manifest.id === "jungle-text-easy-complete-campaign")
+  assert.ok(
+    eventCount >= 4000 && eventCount < 10000,
+    "Unexpected fresh campaign event count",
+  );
+else assert.equal(eventCount, 4981);
 assert.equal(manifest.expectedEnding.won, true);
+assert.deepEqual(manifest.injections, []);
+assert.deepEqual(manifest.fittedInputs, []);
+assert.equal(manifest.partialRestore, false);
+assert.equal(manifest.captureTools.biosSeed, 0);
+assert.equal(manifest.captureTools.audioEnabled, false);
+assert.equal(manifest.captureTools.clockOrigin, 1);
+assert.equal(manifest.captureTools.displayMilliseconds, 8);
 assert.equal(
   sha(await readFile(manifest.buildManifest.path)),
   manifest.buildManifest.sha256,
@@ -228,7 +243,12 @@ with zipfile.ZipFile(sys.argv[1]) as z:
     undefined,
     "Unsupported runtime comparison",
   );
-if (manifest.id === "jungle-line-easy-complete-campaign") {
+if (
+  [
+    "jungle-line-easy-complete-campaign",
+    "jungle-text-easy-complete-campaign",
+  ].includes(manifest.id)
+) {
   assert.equal(manifest.completeSourceInventory, true);
   assert.equal(producer.captureCompleted, true);
   assert.equal(producer.loadedSourcesUnchanged, true);
@@ -247,6 +267,16 @@ if (manifest.id === "jungle-line-easy-complete-campaign") {
     "expectedFlightPresentations",
     "completeSourceInventory",
     "buildManifest",
+    ...(manifest.id === "jungle-text-easy-complete-campaign"
+      ? [
+          "capturePrefix",
+          "injections",
+          "fittedInputs",
+          "partialRestore",
+          "captureTools",
+          "comparisonRules",
+        ]
+      : []),
   ])
     assert.deepEqual(
       manifest[key],
@@ -277,13 +307,28 @@ if (manifest.id === "jungle-line-easy-complete-campaign") {
       .sort(),
     srcFiles,
   );
-  const partialSource = await json("partial-producer-source");
-  for (const p of srcFiles)
-    assert.equal(
-      partialSource.files[p],
-      source.files[p],
-      `Input-only prefix game source differs ${p}`,
+  if (manifest.id === "jungle-line-easy-complete-campaign") {
+    const partialSource = await json("partial-producer-source");
+    for (const p of srcFiles)
+      assert.equal(
+        partialSource.files[p],
+        source.files[p],
+        `Input-only prefix game source differs ${p}`,
+      );
+  } else {
+    assert.equal(manifest.capturePrefix, false);
+    assert.deepEqual(
+      producer.environment,
+      {
+        DUCKTALES_CAPTURE_EASY_CAMPAIGN: "1",
+        DUCKTALES_CAMPAIGN_PHYSICAL: "1",
+        DUCKTALES_CAMPAIGN_PLAYER_WAYPOINTS: "1",
+      },
+      "Unexpected fresh capture environment or prefix restore",
     );
+    assert.equal(manifest.artifacts["producer-prefix-replay"], undefined);
+    assert.equal(manifest.artifacts["partial-producer-source"], undefined);
+  }
   for (const p of srcFiles)
     assert.equal(
       consumer.files[p],
@@ -301,11 +346,13 @@ if (manifest.id === "jungle-line-easy-complete-campaign") {
     srcFiles,
     "Unexpected or missing complete campaign source",
   );
-  const prefix = await json("producer-prefix-replay");
-  assert.equal(prefix.checkpoints, 27);
-  assert.equal(prefix.recordedTailEvents, 0);
-  assert.equal(prefix.lastCheckpoint, "arrival");
-  assert.equal(prefix.inputCaptureTruncated, true);
+  if (manifest.id === "jungle-line-easy-complete-campaign") {
+    const prefix = await json("producer-prefix-replay");
+    assert.equal(prefix.checkpoints, 27);
+    assert.equal(prefix.recordedTailEvents, 0);
+    assert.equal(prefix.lastCheckpoint, "arrival");
+    assert.equal(prefix.inputCaptureTruncated, true);
+  }
   const bytes = await readFile(manifest.artifacts["consumer-archive"].path);
   assert.equal(sha(bytes), consumer.archiveSha256);
   const git = spawnSync(
@@ -376,18 +423,18 @@ if (manifest.completeSourceInventory) {
       assert.equal(
         checks[i][key],
         previous[i][key],
-        `Changed pre-line prefix checkpoint${i} ${key}`,
+        `Changed pre-timing prefix checkpoint${i} ${key}`,
       );
 }
 
-if (manifest.completeSourceInventory)
+if (manifest.id === "jungle-line-easy-complete-campaign")
   for (const key of ["at", "eventCount", "stateSha256", "pixelsSha256"])
     assert.equal(
       checks[26][key],
       checks[27][key],
       "Only an identical extra mountain-entry marker is allowed",
     );
-assert.equal(events.length, 4981);
+assert.equal(events.length, eventCount);
 assert.deepEqual(
   checks.map((c) => c.name),
   manifest.checkpointNames,
@@ -420,7 +467,7 @@ assert.equal(
   true,
   "Incomplete independent browser receipt",
 );
-assert.equal(acceptedProgress.consumed, 4981);
+assert.equal(acceptedProgress.consumed, eventCount);
 assert.deepEqual(acceptedProgress.errors, []);
 assert.equal(acceptedChecks.length, checkpointCount);
 assert.equal(acceptedStatus.status, "passed");
@@ -432,7 +479,7 @@ for (let i = 0; i < checks.length; i++)
       checks[i][key],
       `Accepted browser checkpoint${i} ${key}`,
     );
-assert.equal((await json("accepted-browser-events")).length, 4981);
+assert.equal((await json("accepted-browser-events")).length, eventCount);
 const browserRoot = process.argv
   .find((a) => a.startsWith("--browser="))
   ?.slice(10);
@@ -445,8 +492,8 @@ if (browserRoot) {
   const result = await read("replay-progress.json"),
     observed = await read("campaign-checkpoints.json");
   assert.equal(result.completed, true);
-  assert.equal(result.consumed, 4981);
-  assert.equal(result.expectedEvents, 4981);
+  assert.equal(result.consumed, eventCount);
+  assert.equal(result.expectedEvents, eventCount);
   assert.deepEqual(result.errors, []);
   assert.equal(result.navigation.length, 1);
   assert.equal(observed.length, checkpointCount);
@@ -464,12 +511,12 @@ if (browserRoot) {
         `Browser checkpoint${i} ${key}`,
       );
   assert.deepEqual(result.lastState.ending, manifest.expectedEnding);
-  assert.equal((await read("actual-events.json")).length, 4981);
+  assert.equal((await read("actual-events.json")).length, eventCount);
   const run = JSON.parse(await readFile(`${browserRoot}/.last-run.json`));
   assert.equal(run.status, "passed");
   assert.deepEqual(run.failedTests, []);
   console.log(
-    `Current campaign browser:${checkpointCount} full states/pixel digests,4981 actual DOM events,four expeditions,winning deadline ending and restart.`,
+    `Current campaign browser:${checkpointCount} full states/pixel digests,${eventCount} actual DOM events,four expeditions,winning deadline ending and restart.`,
   );
 } else {
   await mkdir(".local/current-campaign-verification", { recursive: true });
@@ -506,7 +553,7 @@ if (browserRoot) {
       const result = JSON.parse(r.stdout.trim());
       assert.equal(result.mode, "recorded-input replay");
       assert.equal(result.checked, checkpointCount);
-      assert.equal(result.consumed, 4981);
+      assert.equal(result.consumed, eventCount);
       assert.equal(result.rendered, manifest.expectedFlightPresentations);
       assert.equal(result.flagAliasPresentations, 0);
       assert.deepEqual(result.state.ending, manifest.expectedEnding);
@@ -514,6 +561,6 @@ if (browserRoot) {
   }
   await Promise.all(logs);
   console.log(
-    `Current campaign replay:${checkpointCount} carried states,4981 required inputs,four expeditions,winning ending;omitted checkpoint,altered ending and unfinished timeline rejected. Reports:${root}`,
+    `Current campaign replay:${checkpointCount} carried states,${eventCount} required inputs,four expeditions,winning ending;omitted checkpoint,altered ending and unfinished timeline rejected. Reports:${root}`,
   );
 }

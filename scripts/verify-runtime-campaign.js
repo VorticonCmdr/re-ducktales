@@ -5,8 +5,9 @@ import { readFile, mkdir, readdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 const manifest =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/jungle-line-campaign.json";
+  "reference/jungle-text-campaign.json";
 const m = JSON.parse(await readFile(manifest));
+const textTiming = m.id === "jungle-text-easy-complete-campaign";
 function run(command, args, extra = {}) {
   const r = spawnSync(command, args, {
     encoding: "utf8",
@@ -30,8 +31,31 @@ run(process.execPath, [
   "scripts/verify-speaker-playback-receipt.js",
   "--manifest=reference/speaker-playback-current.json",
 ]);
+if (textTiming) {
+  run(process.execPath, ["scripts/verify-ega-text.js"]);
+  const native = JSON.parse(await readFile("reference/ega-text-native.json"));
+  const inputs = JSON.parse(await readFile(native.artifacts.inputs.path));
+  assert.equal(inputs.cases.length, 14);
+  const { egaTransparentTextWork } =
+    await import("../src/game/ega-text-work.js");
+  for (let i = 0; i < 14; i++) {
+    const spec = native.artifacts["case-" + String(i).padStart(2, "0")];
+    const expected = JSON.parse(await readFile(spec.path)),
+      trace = [];
+    const work = egaTransparentTextWork(inputs.cases[i], {
+      instruction: (ip) => trace.push(ip),
+    });
+    assert.deepEqual(trace, expected.trace, "Current runtime native text path");
+    assert.equal(work.instructions, expected.trace.length);
+    assert.equal(work.portWrites, expected.ports.length);
+  }
+}
 if (m.completeSourceInventory)
-  run(process.execPath, ["scripts/jungle-line-timing.js"]);
+  run(process.execPath, [
+    textTiming
+      ? "scripts/jungle-text-timing.js"
+      : "scripts/jungle-line-timing.js",
+  ]);
 run(process.execPath, [
   "scripts/verify-current-campaign-fixtures.js",
   `--manifest=${manifest}`,
@@ -114,7 +138,9 @@ run(process.execPath, [
 ]);
 if (m.completeSourceInventory)
   run(process.execPath, ["scripts/verify-jungle-line-browser-negative.js"]);
+if (textTiming)
+  run(process.execPath, ["scripts/verify-jungle-text-browser-negative.js"]);
 run("npm", ["run", "build"]);
 console.log(
-  `Current runtime gate passed:22 originals,180 units,${m.expectedCheckpointCount} carried state/pixel checkpoints,${m.requiredEventCount} independent DOM events,9 campaign negatives,7 cave controls and registered7-case actual sound acceptance${m.completeSourceInventory ? ",17 jungle component controls and actual jungle deadline negative" : ""}. Full Hard and native whole-game timing remain unproven.`,
+  `Current runtime gate passed:22 originals,180 units,${m.expectedCheckpointCount} carried state/pixel checkpoints,${m.requiredEventCount} independent DOM events,9 campaign negatives,7 cave controls and registered7-case actual sound acceptance${m.completeSourceInventory ? `,17 jungle component controls and actual jungle deadline negative${textTiming ? " and omitted-text-work negative" : ""}` : ""}. Full Hard and native whole-game timing remain unproven.`,
 );

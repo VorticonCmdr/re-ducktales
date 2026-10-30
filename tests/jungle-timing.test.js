@@ -57,13 +57,25 @@ test("jungle drawing holds publication until its work completes and uses the nex
     { jungle: j, clock } = c;
   until(c, (j) => j.wait.clock === "graphics");
   const first = j.lastDrawingWork;
-  assert.equal(first.instructions - first.lineInstructions, 457285);
+  assert.equal(
+    first.instructions - first.lineInstructions - first.textInstructions,
+    457285,
+  );
   assert.equal(first.lineInstructions, 5434);
   assert.equal(first.linePortWrites, 160);
   assert.equal(first.lines, 27);
   assert.equal(first.omittedLines, 0);
+  // Two source HUD calls: native formatter463 opcodes + EGA text642/72 OUTs.
+  assert.equal(first.texts, 2);
+  assert.equal(first.textInstructions, 1105);
+  assert.equal(first.textFormatterInstructions, 463);
+  assert.equal(first.textDriverInstructions, 642);
+  assert.equal(first.textPortWrites, 72);
+  assert.equal(first.omittedTexts, 0);
   assert.ok(
-    Math.abs(first.milliseconds - (158.90033333333332 + 1.918)) < 1e-12,
+    Math.abs(
+      first.milliseconds - (158.90033333333332 + 1.918 + 0.41633333333333333),
+    ) < 1e-12,
   );
   const deadline = j.wait.until,
     before = state(j);

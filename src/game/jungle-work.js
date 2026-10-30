@@ -1,6 +1,7 @@
 import { JUNGLE_SPRITES } from "./jungle-scene.js";
 import { egaSpriteWork, egaCopyWork } from "./ega-work.js";
 import { egaLinePrimitiveWork } from "./ega-line-work.js";
+import { originalHudNumberWork } from "./hud-number-work.js";
 
 // Observe actual source drawing calls, before a renderer consumes them. This
 // does not count Canvas reconstruction, alter commands, or read expected output.
@@ -22,6 +23,11 @@ export function jungleWorkEffects(m, resources, sink) {
     lineInstructions: 0,
     linePortWrites: 0,
     omittedLines: 0,
+    texts: 0,
+    textInstructions: 0,
+    textFormatterInstructions: 0,
+    textDriverInstructions: 0,
+    textPortWrites: 0,
     omittedTexts: 0,
     rowCrossingCopies: 0,
   };
@@ -98,7 +104,37 @@ export function jungleWorkEffects(m, resources, sink) {
       sink.line(command);
     },
     text(command) {
-      work.omittedTexts++;
+      if (
+        m.b(0x2046) !== 0 ||
+        resources.font?.length !== 2056 ||
+        resources.font[2] !== 8 ||
+        resources.font[4] !== 8
+      )
+        throw Error("Unsupported jungle HUD font/scale");
+      let input;
+      if (command.y === 180 && command.color === 14)
+        input = {
+          value: m.view.getUint32(0x8cc0, true),
+          x: 175,
+          rightAlign: true,
+        };
+      else if (command.y === 185 && command.color === 0) {
+        const day = m.signedByte(0x4e0e);
+        input = { value: day, x: day < 10 ? 18 : 14 };
+      } else throw Error("Unsupported jungle numeric text call");
+      const cost = originalHudNumberWork({
+        ...input,
+        surfaceOffset: word(video + 4),
+        backPage: m.b(0x2052) !== 0,
+      });
+      if (command.text !== cost.text || command.x !== cost.x)
+        throw Error("Jungle numeric formatter command mismatch");
+      add(cost);
+      work.texts++;
+      work.textInstructions += cost.instructions;
+      work.textFormatterInstructions += cost.formatterInstructions;
+      work.textDriverInstructions += cost.driverInstructions;
+      work.textPortWrites += cost.portWrites;
       sink.text(command);
     },
   };

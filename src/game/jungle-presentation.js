@@ -1,3 +1,4 @@
+import { formatOriginalHudNumber } from "./hud-number-work.js";
 import { s16 } from "./integer.js";
 import { rememberJungleActor } from "./jungle-animation.js";
 import {
@@ -218,12 +219,15 @@ export function presentJungleHud(m, effects) {
       m.b(resource + 18, m.b(resource + 18) - 1);
       m.i(resource, m.i(resource) + 32);
     }
-    const money = String(m.view.getUint32(0x8cc0, true)),
-      day = m.signedByte(0x4e0e);
-    effects.text({ text: money, x: 175 - money.length * 8, y: 180, color: 14 });
+    const money = formatOriginalHudNumber({
+      value: m.view.getUint32(0x8cc0, true),
+      x: 175,
+      rightAlign: true,
+    });
+    const day = m.signedByte(0x4e0e);
+    effects.text({ ...money, y: 180, color: 14 });
     effects.text({
-      text: String(day),
-      x: day < 10 ? 18 : 14,
+      ...formatOriginalHudNumber({ value: day, x: day < 10 ? 18 : 14 }),
       y: 185,
       color: 0,
     });

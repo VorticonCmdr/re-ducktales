@@ -68,6 +68,17 @@ test("line-inclusive jungle drawing waits, pauses and resumes cancelled quit thr
         ),
       });
     });
+  if (process.env.DUCKTALES_JUNGLE_TEXT_NEGATIVE === "omit-work")
+    await page.route("**/src/game/jungle-work.js*", async (route) => {
+      const response = await route.fetch(),
+        body = await response.text();
+      const target = "add(cost);\n      work.texts++;";
+      expect(body).toContain(target);
+      await route.fulfill({
+        response,
+        body: body.replace(target, "work.texts++;"),
+      });
+    });
   await entry(page, info);
   const canvas = page.locator("#game"),
     state = async () => JSON.parse(await canvas.getAttribute("data-state"));
@@ -90,6 +101,18 @@ test("line-inclusive jungle drawing waits, pauses and resumes cancelled quit thr
   expect(first.jungle.drawingWork.lines).toBeGreaterThan(0);
   expect(first.jungle.drawingWork.lineInstructions).toBeGreaterThan(0);
   expect(first.jungle.drawingWork.omittedLines).toBe(0);
+  // This fixed startup/flight prefix arrives with zero money and a one-digit day.
+  // Original formatter137/132 + EGA186/186 instructions,20 OUTs per call.
+  expect(first.jungle.drawingWork.texts).toBe(2);
+  expect(first.jungle.drawingWork.textInstructions).toBe(641);
+  expect(first.jungle.drawingWork.textFormatterInstructions).toBe(269);
+  expect(first.jungle.drawingWork.textDriverInstructions).toBe(372);
+  expect(first.jungle.drawingWork.textPortWrites).toBe(40);
+  expect(first.jungle.drawingWork.omittedTexts).toBe(0);
+  expect(
+    first.jungle.drawingWork.instructions,
+    "Native-counted jungle HUD budget",
+  ).toBe(476355 + 641);
   // Observe the exact declared first draw deadline before either wipe starts.
   const started = await page.evaluate(() => performance.now());
   const duration = first.jungle.drawingWork.milliseconds;

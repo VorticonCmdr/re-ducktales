@@ -29,7 +29,7 @@ pinned in the [integration record](../reference/jungle-line-campaign-integration
 It includes 180 passing unit cases, fresh jungle walking/Pause/Quit, both browser
 failure controls and the production build. The complete positive campaign browser
 run is the separately registered independent replay, not another fresh run in
-this combined gate.
+this combined gate. This receipt predates the text timing integration below.
 
 `npm run verify:current-campaign` and `npm run verify:runtime-campaign` now target
 this scenario. `--fresh-browser` additionally repeats its complete positive
@@ -132,8 +132,12 @@ four HUD number calls, adding0.262ms per HUD redraw before formatting overhead.
 The numeric formatter now also matches16 private native calls:12,197 instruction
 addresses,800 port writes,actual generated strings/arguments and all45,056 code
 bytes. Signed32 formatting quirks are preserved in the translated helper. This
-is evidence/tooling progress; gameplay deadlines are unchanged. Next integrate
-the combined formatter/text count and independently replay text timing.
+now connects the formatter and transparent text work to jungle redraw deadlines,
+including the original signed32 display quirk. Six preserved source drawings and
+all16 native formatter paths match; all180 unit cases and the production build
+pass. Initial actual-browser walking/Pause/Quit passes. New component contracts
+and focused browser controls are in verification. The previous full campaign
+receipt predates this change; a new complete campaign comparison is pending.
 [Formatter evidence](hud-number-work.md). [Text evidence and repeatable recipe](ega-text-work.md).
 
 ## Supported build and commands

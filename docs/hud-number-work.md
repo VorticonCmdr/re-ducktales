@@ -58,5 +58,9 @@ the shared session is untouched. Failed attempts preserve a diagnostic record.
 
 This is conditional native work/formatting evidence with a RAM surface. It is not
 screen pixel, natural IRQ/scanout cadence, original whole-campaign, or browser
-acceptance. The runtime still needs to consume this count and use the original
-formatting rules. Opaque text remains a separate uncounted path.
+acceptance. The jungle runtime now consumes this count and uses the original formatting
+rules. The copies under `scripts/lib/` remain frozen evidence for this historical
+manifest; production uses `src/game/ega-text-work.js` and `hud-number-work.js`.
+`node scripts/verify-jungle-text-work.js` compares the production paths against
+all16 native traces and six original drawing boundaries. New timing contracts
+and browser/full-campaign acceptance are separate integration work. Opaque text remains a separate uncounted path.

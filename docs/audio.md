@@ -104,7 +104,8 @@ and implement alternate driver renditions. Current output has not been
 waveform-matched against original hardware or an emulator.
 
 
-The[persistent PC-speaker core](speaker-audio.md) now has a strict conditional
-native engine comparison. It is not yet wired into browser playback;the current
-PC-speaker game path still uses this document's WAV rendition and omits the
-flight engine. No new in-game sound completion is claimed by the core work.
+The [persistent PC-speaker game device](speaker-audio.md) now replaces the game
+path's WAV rendition and consumes flight-engine requests. This document's older
+bounded rendition remains the asset viewer's audition implementation. Its limits
+do not describe the persistent game device. Physical waveform parity remains
+unverified.

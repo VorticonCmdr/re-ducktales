@@ -106,13 +106,14 @@ test("keyboard sound enables title music before skip with both sound devices", a
   await page.keyboard.press("s");
   await expect(checkbox).toBeChecked();
   await expect
-    .poll(() => device.evaluate((a) => a.currentTime))
-    .toBeGreaterThan(0);
+    .poll(async () => Number(await device.getAttribute("data-signal-samples")))
+    .toBeGreaterThan(1024);
+  await expect(device).toHaveAttribute("data-device", "speaker");
+  await expect(device).toHaveAttribute("data-last-argument", "1");
   await page.keyboard.press("Enter");
   await expect(canvas).toHaveAttribute("data-scene", "difficulty");
-  await expect
-    .poll(() => device.evaluate((a) => a.paused || a.ended))
-    .toBe(true);
+  await expect(device).toHaveAttribute("data-last-argument", "0");
+  await expect(device).toHaveAttribute("data-playback-status", "0");
   expect(errors).toEqual([]);
   await expect(page.locator("#diagnostic")).toBeHidden();
 });

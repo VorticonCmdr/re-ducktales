@@ -19,7 +19,10 @@ fresh game. Independent simulation matches34 full states and1,470 flight
 presentations. Actual-browser replay matches every state and320x200 pixel digest
 from4,981 DOM events.
 
-**`npm run verify:current-campaign` passes from clean commit`79e2bb0`.** The gate
+**Historical full-campaign pass: clean commit`79e2bb0`.**
+The current PC-speaker browser adapter changes source identities; this receipt
+is not current-source acceptance. `npm run verify:current-campaign` deliberately
+rejects these changes until a new independent full-route comparison is registered. The gate
 includes22 exact original identities,177 unit cases with zero failures/skips,
 one complete actual-browser route and restart,six campaign negative controls,
 seven cave reveal source/mechanism controls,and the production build. All834
@@ -49,7 +52,9 @@ acceptance result. [Current Hard evidence](current-hard-campaign.md).
 Hard campaign work is deferred at the user's request. Prioritize the remaining
 timing,input and audio behavior. The persistent PC-speaker core now passes a
 conditional native engine regression:12 checkpoints,408 scheduled IRQs and1,128
-port writes. Browser playback/in-game integration is still pending;
+port writes. Persistent browser playback now replaces the old WAV game path
+and includes flight start/speed words. Its focused acceptance passes:7 actual browser cases,3 stream regressions,
+native comparisons and production build;
 [speaker evidence and next work](speaker-audio.md). A later Hard route still
 requires full independent replay and actual-browser acceptance.
 
@@ -62,7 +67,10 @@ not comparison with an independently obtained unpatched edition. [Evidence](secu
 
 Tandy/PCjr includes Sound001,persistent channels,priorities,flight engine words,
 mute and completion;all121 public requests have viewer playback. Speaker remains
-the default;its noise is approximate and its flight-engine rendition is omitted.
+the default. Its game device now preserves original RNG, IRQ state, priorities
+and parameterized flight engine words; digital output phase/gain and analog
+waveform fidelity remain unverified. The viewer retains its older approximate
+audition renderer.
 Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 
 ## Known gaps and verification limits
@@ -86,6 +94,13 @@ Physical waveform/gain/filter parity remains open. [Audio](audio.md).
   seeding is pending. Original save/load/high-score behavior/formats have not
   been established;browser persistence would be an explicit addition.
 
+## Next milestone
+
+Keep Hard deferred. Independently replay the complete Easy input stream with the changed
+browser adapter and register new source/evidence identities. Continue with the
+remaining expedition timing and keyboard-delivery gaps; do not classify them
+as cosmetic tuning.
+
 ## Supported build and commands
 
 Only the22-file executable/resource pairing in[build.json](../reference/build.json)
@@ -96,8 +111,10 @@ and native address correspondence were checked;the analysis image is never run.
 No native emulator state changed during the current campaign/reveal work.
 
 ```sh
+npm run verify:speaker-game
+# Historical campaign gate (requires a fresh source comparison after audio work):
 npm run verify:current-campaign
-# Same focused gate,explicit name:
+# Same historical gate,explicit name:
 npm run verify:reveal-campaign
 npm run verify:cave-reveal
 npm test

@@ -10,45 +10,49 @@ import { Game } from "./application.js";
 import { Scheduler } from "./scheduler.js";
 import { Renderer } from "./renderer.js";
 import { verifiedResources, REQUIRED_FILES } from "./resources.js";
-import { renderSound, wavFile } from "../audio.js";
 import { parseCaveMaps } from "./cave-scene.js";
 import { investmentResources } from "./investments.js";
 import { GameTandyAudio } from "./tandy-audio.js";
+import { GameSpeakerAudio } from "./speaker-audio.js";
 const $ = (id) => document.getElementById(id);
 let game,
   renderer,
   resources,
-  playing,
   scheduler,
-  resumeAudio = false,
   pausedAt = null;
-let tandyAudio,
-  tandyGeneration = 0,
+let gameAudio,
+  deviceGeneration = 0,
   pendingAudioInput = null;
-function ensureTandyAudio() {
-  if (tandyAudio?.disposed) tandyAudio = null;
-  if (!tandyAudio && resources) {
-    const generation = ++tandyGeneration;
-    tandyAudio = new GameTandyAudio(resources.archives.get("IT.DRV")[4].data, {
-      status: (token, busy) => dispatch({ type: "audio-status", token, busy }),
-      stats: (values) => {
-        if (generation !== tandyGeneration) return;
-        $("sound").dataset.device = $("audio-device").value;
-        for (const [key, value] of Object.entries(values))
-          if (value !== undefined) $("sound").dataset[key] = String(value);
+function ensureGameAudio() {
+  if (gameAudio?.disposed) gameAudio = null;
+  if (!gameAudio && resources) {
+    const generation = ++deviceGeneration;
+    const isTandy = $("audio-device").value === "tandy";
+    const Device = isTandy ? GameTandyAudio : GameSpeakerAudio;
+    gameAudio = new Device(
+      resources.archives.get("IT.DRV")[isTandy ? 4 : 5].data,
+      {
+        status: (token, busy) =>
+          dispatch({ type: "audio-status", token, busy }),
+        stats: (values) => {
+          if (generation !== deviceGeneration) return;
+          $("sound").dataset.device = $("audio-device").value;
+          for (const [key, value] of Object.entries(values))
+            if (value !== undefined) $("sound").dataset[key] = String(value);
+        },
+        fail: fatal,
+        observe: (event) =>
+          $("sound").dispatchEvent(
+            new CustomEvent("gameaudio", { detail: event, bubbles: true }),
+          ),
       },
-      fail: fatal,
-      observe: (event) =>
-        $("sound").dispatchEvent(
-          new CustomEvent("gameaudio", { detail: event, bubbles: true }),
-        ),
-    });
+    );
   }
-  return tandyAudio;
+  return gameAudio;
 }
-function unlockTandyAudio() {
+function unlockGameAudio() {
   try {
-    if ($("audio-device").value === "tandy") ensureTandyAudio()?.unlock();
+    ensureGameAudio()?.unlock();
   } catch (error) {
     fatal(error);
   }
@@ -69,8 +73,7 @@ function fatal(error) {
   $("diagnostic").hidden = false;
   $("diagnostic").textContent =
     `Stopped: ${error.message}\nRestart after resolving this diagnostic.`;
-  playing?.pause();
-  tandyAudio?.close();
+  gameAudio?.close();
 }
 function dispatch(event) {
   if (!game) return;
@@ -96,8 +99,8 @@ async function load(read) {
   try {
     $("status").textContent = "Checking original files…";
     resources = await verifiedResources(read);
-    tandyAudio?.close();
-    tandyAudio = null;
+    gameAudio?.close();
+    gameAudio = null;
     pendingAudioInput = null;
     game = new Game({
       biosSeed: 0,
@@ -266,7 +269,7 @@ window.addEventListener("keydown", (event) => {
     return;
   if (event.target instanceof HTMLInputElement) return;
   if (event.target instanceof HTMLSelectElement) return;
-  if ($("audio").checked || event.code === "KeyS") unlockTandyAudio();
+  if ($("audio").checked || event.code === "KeyS") unlockGameAudio();
   event.preventDefault();
   const systemKey = {
     KeyP: "pause",
@@ -342,39 +345,15 @@ document.addEventListener("visibilitychange", () => {
   const now = performance.now();
   if (document.hidden) {
     pausedAt = now;
-    resumeAudio = !!playing && !playing.paused;
-    audioGeneration++;
-    playing?.pause();
-    tandyAudio?.setSuspended(true);
+    gameAudio?.setSuspended(true);
   } else if (pausedAt !== null) {
     scheduler?.pauseDuration(now - pausedAt);
     pausedAt = null;
-    if (resumeAudio && $("audio").checked) {
-      const generation = audioGeneration;
-      playing?.play().catch((e) => audioFailure(e, generation));
-    }
-    resumeAudio = false;
-    tandyAudio?.setSuspended(false);
+    gameAudio?.setSuspended(false);
   }
 });
-const sounds = new Map();
-let activeAudioToken = null;
-let audioGeneration = 0;
-function audioFailure(error, generation) {
-  // A newer sound,explicit stop,or visibility pause cancels the old request.
-  // The original driver has one channel too. Only that known cancellation
-  // is expected; failures of the current playback still stop development.
-  if (error.name === "AbortError" && generation !== audioGeneration) return;
-  fatal(new Error(`Audio playback: ${error.message}`));
-}
 function stopSound() {
-  audioGeneration++;
-  playing?.pause();
-  if (tandyAudio && !tandyAudio.disposed) tandyAudio.request(0);
-  if (activeAudioToken !== null) {
-    dispatch({ type: "audio-status", token: activeAudioToken, busy: false });
-    activeAudioToken = null;
-  }
+  if (gameAudio && !gameAudio.disposed) gameAudio.request(0);
 }
 function effects() {
   // A browser hint only: never add a diagnostic event to deterministic replays.
@@ -388,52 +367,15 @@ function effects() {
     if (event.type === "flushControls") held.clear();
     if (event.type === "stopAudio") stopSound();
     if (event.type === "sound" && game.audioEnabled) {
-      if ($("audio-device").value === "tandy") {
-        ensureTandyAudio().request(
-          event.argument ?? event.id,
-          event.token ?? null,
-        );
-        continue;
-      }
-      // The existing speaker audition omits its parameterized engine. Tandy
-      // receives the real start/speed words through its persistent device.
-      if (event.engine) continue;
-      if (!sounds.has(event.id))
-        sounds.set(
-          event.id,
-          URL.createObjectURL(
-            new Blob(
-              [
-                wavFile(
-                  renderSound(
-                    resources.archives.get("IT.DRV")[5].data,
-                    event.id,
-                  ),
-                ),
-              ],
-              { type: "audio/wav" },
-            ),
-          ),
-        );
-      stopSound();
-      playing = $("sound");
-      activeAudioToken = event.token ?? null;
-      const token = activeAudioToken;
-      const generation = audioGeneration;
-      playing.onended = () => {
-        if (token !== null)
-          dispatch({ type: "audio-status", token, busy: false });
-        if (activeAudioToken === token) activeAudioToken = null;
-      };
-      playing.onerror = () => fatal(new Error("Audio playback failed"));
-      playing.src = sounds.get(event.id);
-      playing.volume = 0.35;
-      playing.play().catch((e) => audioFailure(e, generation));
+      ensureGameAudio().request(
+        event.argument ?? event.id,
+        event.token ?? null,
+      );
     }
   }
 }
 $("audio").onchange = () => {
-  if ($("audio").checked) unlockTandyAudio();
+  if ($("audio").checked) unlockGameAudio();
   const event = { type: "audio-enabled", enabled: $("audio").checked };
   pendingAudioInput = { event, from: scheduler?.consumed.length ?? 0 };
   dispatch(event);
@@ -444,12 +386,12 @@ $("audio-device").onchange = () => {
     fatal(Error("Switch sound off before changing its device"));
     return;
   }
-  const previous = tandyAudio;
-  tandyAudio = null;
+  const previous = gameAudio;
+  gameAudio = null;
   previous?.stopAndClose().catch(fatal);
   $("sound").dataset.device = $("audio-device").value;
 };
-window.addEventListener("pagehide", () => tandyAudio?.close());
+window.addEventListener("pagehide", () => gameAudio?.close());
 function frame() {
   const now = performance.now();
   try {

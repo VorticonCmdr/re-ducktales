@@ -1,0 +1,51 @@
+{
+  "id": "persistent-speaker-browser-playback",
+  "build": "dos-fb658562",
+  "completed": true,
+  "streamCases": 3,
+  "browserCases": 7,
+  "nativeReference": "reference/speaker-engine.json",
+  "captureToolRevision": "Exact sources pinned in artifact sources; inventory verified unchanged over browser run.",
+  "startingState": "Fresh page, BIOS seed0, sound enabled by user gesture. Native fixture has separate conditional allocation/IRQ recipe.",
+  "inputs": "Headless schedules in tests/speaker-game.test.js; browser controls in tandy-game.spec.js and title-audio.spec.js. Real-clock menus use recorded bounded make attempts.",
+  "comparison": "Exact stream PCM across block sizes, all driver bytes vs core, IRQ accounting, original speed words and finite cue completion. Seven browser cases with no skipped/retried/unfinished result. Physical waveform, fixed-input campaign parity and complete native sequence coverage not claimed.",
+  "injections": [
+    "Explicit 48000 Hz provider for stream checks; browser supplies actual sampleRate/audio frames.",
+    "Reset delivery barrier waits for original high-priority stop sequence.",
+    "No game-state writes, fitted audio durations, substituted engine or injected completions."
+  ],
+  "verify": "npm run verify:speaker-game; node scripts/verify-speaker-playback-receipt.js",
+  "artifacts": {
+    "sources": {
+      "path": ".local/speaker-playback-1793381546571/sources.json",
+      "bytes": 1297,
+      "sha256": "19821fddd71946157a0dc8be45b50bfc5211d3530bedb05c5ea63e56728be6af"
+    },
+    "receipt": {
+      "path": ".local/speaker-playback-1793381546571/receipt.json",
+      "bytes": 320,
+      "sha256": "eb7936da8b9fd31d76e8de81c1a07c51bc6eac7d07809d8b55216e6dda545318"
+    },
+    "browser": {
+      "path": ".local/speaker-playback-1793381546571/browser.json",
+      "bytes": 59122,
+      "sha256": "bb2a52aeaa18a23ff48ad88e4a1d4d5ec1b6c6d19d4f894f8e4e19ca54d000d3"
+    },
+    "tandy-route": {
+      "path": ".local/speaker-playback-1793381546571/tandy-boundary.json",
+      "bytes": 16612,
+      "sha256": "5ef782b960502cf32ab85d32b8e0ce92168ac6c4de12f3ae976cf027f45d6a45"
+    },
+    "speaker-route": {
+      "path": ".local/speaker-playback-1793381546571/speaker-boundary.json",
+      "bytes": 19251,
+      "sha256": "7bcdf4f0b7ddd09c6524621f7153683695a6416bdd18223a6bee84cd219b67eb"
+    }
+  },
+  "verificationSources": {
+    "scripts/verify-speaker-playback-receipt.js": "99b48734e52241b92b19a6beff739d6bc791eb8dabf1963c7faf6c8321bfa4bb",
+    "package.json": "b3ecffdded3de9a739590826f88c075c16f95cc4f5027b01f3ee968eb5dbd172",
+    "playwright.campaign.config.js": "b56cac17deb33d80d6b12899144c1c680ba91bdc332ba63b3a4dd4f8f1581280",
+    "playwright.config.js": "3887a66a05b3764cdc434ac53aaba2500f1270c5dba60cf280ab99243778263f"
+  }
+}

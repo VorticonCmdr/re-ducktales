@@ -46,10 +46,12 @@ reproduces the browser's entire final state exactly;additional player strategies
 still lose. This is not established as a port-mechanic defect or a complete Hard
 acceptance result. [Current Hard evidence](current-hard-campaign.md).
 
-Next:continue Hard coverage,including recovery after a legitimate race loss and
-other available destinations. Require a full independent input replay and actual
-browser acceptance before calling a Hard route complete. Continue targeted
-original timing,input and audio work alongside that coverage.
+Hard campaign work is deferred at the user's request. Prioritize the remaining
+timing,input and audio behavior. The persistent PC-speaker core now passes a
+conditional native engine regression:12 checkpoints,408 scheduled IRQs and1,128
+port writes. Browser playback/in-game integration is still pending;
+[speaker evidence and next work](speaker-audio.md). A later Hard route still
+requires full independent replay and actual-browser acceptance.
 
 ## Restored security and sound
 

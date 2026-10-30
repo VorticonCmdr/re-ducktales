@@ -66,28 +66,19 @@ ordinal, game clock, delay or expected outcome changed. The full outcome/replay
 suite passes; no ending is skipped and no gameplay timer is fitted.
 
 `reference/cave-composition-work.json` pins sources and parent evidence. Originals
-and dumps remain ignored. This focused level does not refresh the complete Easy
-contract: its old source guards correctly reject this runtime. A fresh complete
-route and independent browser replay remain required for full campaign acceptance.
+and dumps remain ignored. Clean focused acceptance passed at `bfaa371`, with856
+archived source files,13 artifacts, all194 units, four component outcomes/replays,
+the actual browser route and all three omission controls. That receipt remains a
+historical source snapshot; later verification-tool changes trigger its guards.
 
-
-Clean focused acceptance passed at `bfaa371`, with856 archived source files,
-13 saved artifacts, all194 units, four component outcomes/replays, the actual
-browser route and all three omission controls. Check the saved record with:
-
-```sh
-node scripts/verify-cave-composition-receipt.js
-```
-
-`reference/cave-composition-integration.json` pins that record. It is distinct
-from running a fresh gate and makes no complete-campaign acceptance claim.
-The next capture starts from the real application with the independent Easy
-player; its deliberate exploratory sentinel is not a passing acceptance test:
+The complete campaign was subsequently refreshed and independently replayed.
+[Current full route and combined acceptance](cave-composition-campaign.md) now
+repeat this focused gate too. Use these current commands:
 
 ```sh
-python3 scripts/capture-easy-campaign.py --output=.local/cave-composition-campaign-producer-01
+npm run verify:cave-composition
+npm run verify:current-campaign
+node scripts/verify-cave-composition-campaign-receipt.js
 ```
 
-Register and independently replay its new input stream before updating the
-current campaign gate. Keep prior expected states, images, inputs and receipts
-unchanged.
+Prior native expected states/images and older campaign inputs remain unchanged.

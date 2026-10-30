@@ -3,24 +3,32 @@
 Updated 2026-10-31. **The whole game is incomplete; this remains completion work,
 not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
-## Current accepted focused milestone: cave drawing time
+## Current accepted campaign: cave drawing runtime
 
-The runtime now charges initial minimap construction, both room-cache copies
-and overlays, and marker pixels. All194 units, conditional native cave checks,
-four independent outcomes/replays and actual cave controls passed from clean
-`bfaa371`. Source comparison checks598 new original bytes and512 room branches.
-`npm run verify:cave-composition` passed, including three browser omission controls
-and the production build. Its saved record pins856 source files and13 artifacts;
-`node scripts/verify-cave-composition-receipt.js` checks the record.
+The fresh full Easy route passes independent headless and actual-browser replay:
+34 exact state/image checkpoints,4981 DOM events and1470 flight presentations,
+through all four expedition families, the winning day31 ending and Restart.
+Bank14550 versus12500 and all three mountain lives are preserved. Producer
+`5523bc8` and consumer `3bd04f2` have identical src/ bytes; all22 pre-cave
+checkpoints remain identical to the earlier route.
 
-The fresh full Easy route and independent browser replay now pass34 exact
-state/image checkpoints and4981 DOM events, through the winning day31 ending
-and Restart. The first22 pre-cave checkpoints remain identical to the older
-route; bank14550 versus12500 and all three mountain lives are preserved.
-Producer `5523bc8` and consumer `3bd04f2` have identical src/ bytes. Headless replay
-also passes. The combined clean-source gate is being refreshed. Hard stays deferred.
-[Full campaign evidence and commands](cave-composition-campaign.md).
-[Current workload, evidence and limits](cave-composition-work.md).
+**`npm run verify:current-campaign` passed from clean `533f661`.** The combined
+record pins863 source files,96 evidence artifacts and1229 preserved historical
+artifacts. It freshly repeats original/source/component checks, all194 units,
+jungle and mountain controls, eight clock/menu cases, cave controls and required
+omission negatives, plus the production build. Seven fresh sound browser cases
+have separate complete source provenance. This does not prove native whole-game
+cadence or arbitrary-route parity.
+
+`node scripts/verify-cave-composition-campaign-receipt.js` validates the saved
+record. `--fresh-browser` repeats the complete positive browser consumer.
+[Full route evidence and commands](cave-composition-campaign.md).
+[Drawing workload and limitations](cave-composition-work.md).
+
+Next non-Hard milestone: broaden Easy destination coverage across the original
+resource variants and investigate unsupported behavior before returning to Hard.
+Earlier focused/campaign receipts below remain historical source snapshots;
+changing their guarded source is correctly rejected rather than silently waived.
 
 ## Previous accepted milestone: BIOS seed provider
 
@@ -196,17 +204,15 @@ experiments leave the shared8386 session untouched and close their owned instanc
 
 ```sh
 npm run verify:current-campaign
-npm run verify:cave-composition
-node scripts/verify-cave-composition-receipt.js
-npm run verify:bios-clock
-node scripts/verify-bios-clock-campaign-receipt.js
-node scripts/verify-mountain-phase-campaign-receipt.js
+node scripts/verify-cave-composition-campaign-receipt.js
 node scripts/verify-runtime-campaign.js --fresh-browser
+npm run verify:cave-composition
+npm run verify:bios-clock
 node scripts/verify-mountain-phase-integration.js --bios-clock
 node scripts/verify-mountain-phase.js
 node scripts/verify-mountain-hud-runtime.js
 node scripts/verify-mountain-copy-runtime.js
-node scripts/verify-speaker-playback-receipt.js
+node scripts/verify-speaker-playback-receipt.js --manifest=reference/cave-composition-speaker-playback.json
 npm test
 npm run build
 npm run dev

@@ -6,7 +6,7 @@ three mountain lives. An independent browser consumer at `3bd04f2` replayed all
 4981 DOM events and matched34 complete state/image checkpoints, then Restart.
 The source inventories and every src/ byte match between producer and consumer.
 The separate headless replay also matched34 checkpoints and1470 flight images,
-with zero flag aliases. Combined clean-source acceptance is being refreshed.
+with zero flag aliases. Combined clean-source acceptance passed at `533f661`.
 
 ## Separate evidence levels
 
@@ -73,3 +73,22 @@ python3 scripts/accept-mountain-phase-campaign.py --pending=.local/new-cave-camp
 Only the22-file pairing in `reference/build.json` is supported. Full Hard,
 variable-seed whole campaigns, arbitrary-route finishability and original whole-game
 cadence remain unproven. This is progress toward the complete port, not completion.
+
+
+The [saved combined record](../reference/cave-composition-campaign-integration.json)
+pins863 source files,96 artifacts and1229 preserved historical artifacts. It
+freshly repeats required native/source/component checks, all194 units, jungle,
+mountain, clock/menu and cave browser controls/omissions, and the production
+build. The full positive browser consumer is independently registered at
+`3bd04f2`; the default gate validates its exact provenance and results, while
+`--fresh-browser` runs the whole positive route again. Validate the saved record:
+
+```sh
+node scripts/verify-cave-composition-campaign-receipt.js
+```
+
+A new combined capture uses a fresh ignored directory and a clean commit:
+
+```sh
+python3 scripts/capture-mountain-phase-integration.py --cave-composition --output=.local/NEW-cave-campaign-integration
+```

@@ -12,6 +12,16 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   test.setTimeout(60000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
+  if (process.env.DUCKTALES_MOUNTAIN_COPY_NEGATIVE) {
+    expect(process.env.DUCKTALES_MOUNTAIN_COPY_NEGATIVE).toBe("omit-copies");
+    await page.route("**/src/game/mountain.js*", async (route) => {
+      const response = await route.fetch(),
+        body = await response.text();
+      const hook = "this.chargeCopy(c)";
+      expect(body.split(hook).length, "SETUP: mountain copy hook").toBe(2);
+      await route.fulfill({ response, body: body.replace(hook, "void c") });
+    });
+  }
   if (process.env.DUCKTALES_MOUNTAIN_TIMING_BROWSER_NEGATIVE) {
     expect(process.env.DUCKTALES_MOUNTAIN_TIMING_BROWSER_NEGATIVE).toBe(
       "one-retrace",
@@ -94,6 +104,11 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   await until((s) => s.scene === "departure");
   expect((await state()).departure.racing).toBe(false);
   await page.keyboard.down("Space");
+  // Flight initializes its keyboard matrix after the departure transition.
+  // Refresh the physical hold after that boundary,as current flight replays do.
+  await until((s) => s.scene === "flight" && s.flight.inputReads >= 1);
+  await page.keyboard.up("Space");
+  await page.keyboard.down("Space");
   await until((s) => s.scene === "flight" && s.flight.speed > 4);
   await page.keyboard.down("ArrowDown");
   await until((s) => s.flight.heading > 0);
@@ -163,6 +178,15 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   ).toBeLessThanOrEqual(45);
   expect(paced.mountain.spriteWork.calls).toBe(7);
   expect(paced.mountain.spriteWork.retraces).toBe(3);
+  expect(
+    paced.mountain.drawingWork.copyCalls,
+    "Original mountain copy work",
+  ).toBeGreaterThan(0);
+  expect(paced.mountain.drawingWork.copyInstructions).toBeGreaterThan(0);
+  expect(paced.mountain.drawingWork.instructions).toBe(
+    paced.mountain.spriteWork.instructions +
+      paced.mountain.drawingWork.copyInstructions,
+  );
   await c.screenshot({
     path: ".local/browser-results/mountain-sprite-pacing.png",
   });

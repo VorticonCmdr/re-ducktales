@@ -5,13 +5,27 @@ not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
 ## Current runtime milestone
 
+Mountain restoration now calls the original erase planner and charges signed EGA
+copy work alongside sprites. The focused command is
+`node scripts/verify-mountain-copy-integration.js`: 34 production erase/charge
+cases, 16 native primitive cases, the complete 764-input/26-checkpoint ascent,
+180 units, an actual browser route and an omitted-copy browser failure control.
+The summit retains all three lives. HUD text/lines and retrace-phase scheduling
+remain incomplete. [Current scope and commands](mountain-copy-runtime.md).
+
+**Whole-campaign acceptance has not been refreshed for the mountain changes.**
+The source-pinned Easy receipt below remains historical; current source guards
+correctly reject it. Do not report `verify:current-campaign` as currently passing.
+
+## Last full-campaign milestone
+
 Jungle redraws now include original number formatting and transparent EGA text
 work. Original signed32 formatting,16-bit alignment and remainder-glyph quirks are
 preserved. Six original drawing boundaries retain exact commands/state/color;
 two HUD redraws add0.416333ms each at the declared reference platform. No fixed
 slowdown or fitted input is used. This does not establish complete original speed.
 
-**`npm run verify:current-campaign` passes from clean `a54c8ec`.** It requires:
+**`npm run verify:current-campaign` passed from clean `a54c8ec`.** It required:
 
 - Original native text/formatter comparisons, including16 formatter cases,
   12,197 instruction addresses,800 exact port writes and all45,056 code bytes.
@@ -30,11 +44,11 @@ controls and failure cases. `--fresh-browser` repeats the whole positive route.
 [Campaign provenance and limits](jungle-text-campaign.md).
 [Formatter/text timing integration](jungle-text-timing.md).
 
-The next non-Hard milestone is mountain timing. Its original erase/copy plan now
+The mountain erase/copy plan
 passes 34 conditional native routine cases (191 exact copy calls), eight failure
 controls and named state comparisons across 14 original frame segments. The
-walking path makes six source copies per frame. This evidence is **not connected
-to the browser runtime yet**. Signed-copy work now passes 16 original primitive
+walking path makes six source copies per frame. This is now connected to the
+browser runtime. Signed-copy work passes 16 original primitive
 cases with exact instruction/OUT/REP counts and eight failure controls; the
 composed check covers all 191 calls. HUD text/lines and retrace-phase integration
 remain. [Erase evidence](mountain-erase-work.md),
@@ -55,8 +69,9 @@ startup capture has 34 unique checkpoints; the prior duplicate mountain-entry
 marker is absent, with no unique boundary omitted. The fresh
 independent browser replay also verifies Restart. [Current full route](jungle-text-campaign.md).
 
-`npm run verify:current-campaign` and `verify:runtime-campaign` now target the new
-text-inclusive contract and pass the combined clean gate. Prior line,
+`npm run verify:current-campaign` and `verify:runtime-campaign` target the
+text-inclusive contract that passed the combined clean gate before mountain
+copy integration. They require a new independent campaign for current source. Prior line,
 speaker and cave receipts remain historical and untouched. Broader historical
 `npm run verify` receipts also require current regressions; this focused gate
 does not waive them.
@@ -107,6 +122,7 @@ experiments leave the shared8386 session untouched and close their owned instanc
 
 ```sh
 npm run verify:current-campaign
+node scripts/verify-mountain-copy-integration.js
 node scripts/verify-runtime-campaign.js --fresh-browser
 node scripts/verify-jungle-texts.js
 node scripts/verify-jungle-text-campaign-receipt.js

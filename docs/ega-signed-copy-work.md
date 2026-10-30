@@ -79,6 +79,7 @@ Each of 14 walking cases has six copies: 7,412 instructions, 48 OUTs, 1,392 REP
 opcodes and 2,332 iterations. The corrected estimate is **2.816 ms at
 cycles=3000**, replacing the earlier 2.812 ms estimate. It is not a fitted slowdown.
 
-Next connect source calls, HUD text/lines and graphics/retrace scheduling to
-mountain runtime; then verify natural walking, ascent, browser controls and the
-full Easy route. Gameplay and the saved campaign contract are unchanged here.
+The subsequent [runtime integration](mountain-copy-runtime.md) now charges these
+restoration calls and verifies ascent and browser controls. HUD text/lines,
+graphics/retrace phase and a fresh full Easy route remain. The primitive record
+above does not itself establish those broader behaviors.

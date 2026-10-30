@@ -12,6 +12,16 @@ import { advanceMountainHazards } from "./mountain-hazards.js";
 import { u16 } from "./integer.js";
 import { egaSpriteWork, normalCoreGraphicsMilliseconds } from "./ega-work.js";
 import { ORIGINAL_GRAPHICS_TIMING } from "./timing.js";
+import { eraseMountainSource } from "./mountain-erase.js";
+import { egaSignedCopyWork } from "./ega-copy-work.js";
+
+const emptyCopyWork = () => ({
+  instructions: 0,
+  portWrites: 0,
+  repeatOpcodes: 0,
+  repeatIterations: 0,
+  calls: 0,
+});
 
 const SPRITES = new Map([
   [0x36f2, 1],
@@ -66,6 +76,7 @@ export class Mountain {
     this.memory.b(0x4e0e, options.day);
     this.audioEnabled = options.audioEnabled === true;
     this.events = [];
+    this.pendingCopyWork = emptyCopyWork();
     this.inputs = [];
     this.tick = 0;
     this.retrace = 0;
@@ -156,10 +167,17 @@ export class Mountain {
     this.pending = commands;
     // The original starts the next update after its EGA retrace wait. Charge
     // source sprite opcodes before that wait, rather than one host redraw.
-    // Copy/text/line and non-graphics CPU work remain an explicit timing gap.
-    const milliseconds = this.spriteWork.instructions
+    // Erase copies use original source calls, including signed coordinates.
+    // Composition copies,text/line and caller CPU remain explicit timing gaps.
+    const work = {
+      instructions: this.spriteWork.instructions + this.copyWork.instructions,
+      portWrites: this.spriteWork.portWrites + this.copyWork.portWrites,
+      repeatOpcodes: this.copyWork.repeatOpcodes,
+      repeatIterations: this.copyWork.repeatIterations,
+    };
+    const milliseconds = work.instructions
       ? normalCoreGraphicsMilliseconds(
-          this.spriteWork,
+          work,
           this.graphicsTiming.cyclesPerMillisecond,
         )
       : 0;
@@ -167,7 +185,29 @@ export class Mountain {
       1,
       Math.ceil((milliseconds * this.graphicsTiming.retraceHz) / 1000),
     );
-    this.lastSpriteWork = { ...this.spriteWork, milliseconds, retraces };
+    const spriteMilliseconds = this.spriteWork.instructions
+      ? normalCoreGraphicsMilliseconds(
+          this.spriteWork,
+          this.graphicsTiming.cyclesPerMillisecond,
+        )
+      : 0;
+    this.lastSpriteWork = {
+      ...this.spriteWork,
+      milliseconds: spriteMilliseconds,
+      retraces: Math.max(
+        1,
+        Math.ceil((spriteMilliseconds * this.graphicsTiming.retraceHz) / 1000),
+      ),
+    };
+    this.lastDrawingWork = {
+      ...work,
+      spriteCalls: this.spriteWork.calls,
+      copyCalls: this.copyWork.calls,
+      copyInstructions: this.copyWork.instructions,
+      copyPortWrites: this.copyWork.portWrites,
+      milliseconds,
+      retraces,
+    };
     yield { clock: "retrace", remaining: retraces };
   }
   chargeSprite(asset, frame, x, y) {
@@ -240,6 +280,8 @@ export class Mountain {
   }
   frame(offset = 0, scrolling = false, opening = false) {
     this.spriteWork = { instructions: 0, portWrites: 0, calls: 0 };
+    this.copyWork = this.pendingCopyWork;
+    this.pendingCopyWork = emptyCopyWork();
     const m = this.memory,
       l = this.locals;
     const key = `${l.b(-0x34)}:${offset}`;
@@ -309,19 +351,31 @@ export class Mountain {
     m.b(0x370a, index ^ 1);
   }
   eraseEffects() {
-    const m = this.memory,
-      scroll = this.locals.b(-0x34);
-    const old = m.i(0x3706 + m.b(0x370a) * 2);
-    if ([5, 6].includes(old) || m.i(0x4cf2) > 0) {
-      m.i(0x4cf2, m.i(0x4cf2) - 1);
-      return;
-    }
-    // Helper282a has one logical effect amid its framebuffer copies.
-    for (let row = scroll; row < scroll + 5 && row < 25; row++) {
-      const at = u16(m.i(0x5d26) + row * 6);
-      if (m.b(at) === 9 && [1, 2].includes(m.b(at + 1)))
-        m.b(at + 1, m.b(at + 1) + 1);
-    }
+    eraseMountainSource(this.memory, this.locals.b(-0x34), (c) =>
+      this.chargeCopy(c),
+    );
+  }
+  chargeCopy(c) {
+    const work = egaSignedCopyWork({
+      width: c.width,
+      height: c.height,
+      sourceX: c.sourceX,
+      sourceY: c.sourceY,
+      destinationX: c.x,
+      destinationY: c.y,
+      sourceStrideBytes: 40,
+      destinationStrideBytes: 40,
+      sourceVideo: false,
+      destinationVideo: true,
+    });
+    for (const k of [
+      "instructions",
+      "portWrites",
+      "repeatOpcodes",
+      "repeatIterations",
+    ])
+      this.pendingCopyWork[k] += work[k];
+    this.pendingCopyWork.calls++;
   }
   resetLife() {
     const m = this.memory,
@@ -450,6 +504,7 @@ export class Mountain {
       frames: this.frames,
       presentations: this.presentations,
       spriteWork: this.lastSpriteWork,
+      drawingWork: this.lastDrawingWork,
       outcome: this.outcome,
     };
   }

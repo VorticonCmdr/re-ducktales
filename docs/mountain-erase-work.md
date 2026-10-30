@@ -1,8 +1,10 @@
 # Mountain background restoration
 
 The original mountain erase path is translated in
-`scripts/lib/mountain-erase.js`. **This is verified routine evidence, not a runtime
-integration or a completed speed fix.** Hard campaigns remain deferred.
+`scripts/lib/mountain-erase.js`. **This record establishes routine evidence, not
+complete original speed.** The subsequent
+[runtime integration](mountain-copy-runtime.md) uses this planner and the signed
+primitive model. Hard campaigns remain deferred.
 
 ## Identity and source
 
@@ -107,7 +109,7 @@ counter. Its composed command covers all 191 calls with actual coordinates; the
 corrected walking-copy estimate is 2.816 ms. The original receipt above remains
 preserved, not rewritten as stronger evidence.
 
-Next: connect actual source copies and
+Runtime now connects these erase copies. Next connect
 HUD text/lines to mountain scheduling, and correct graphics-deadline/retrace
 phase. Recheck natural walking, ascent, actual browser controls and the full Easy
 campaign. Avoid charging reconstructed Canvas terrain as source drawing.

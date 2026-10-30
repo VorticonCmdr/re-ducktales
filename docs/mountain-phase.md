@@ -90,7 +90,8 @@ It saves source archive/inventory, log, result and runner status in a fresh igno
 directory and rejects edits during the run. Missing local evidence, skipped cases,
 unsupported behavior and failures outside the intended omissions stop acceptance.
 
-Whole-campaign acceptance still needs an independent new startup-to-ending route.
-The old text-inclusive Easy and copy/HUD receipts are historical source snapshots.
+The subsequent [whole Easy campaign](mountain-phase-campaign.md) now completes
+independent headless/browser replay and clean combined acceptance with this
+runtime. The old text-inclusive Easy and copy/HUD receipts remain historical.
 This phase milestone does not establish arbitrary-route finishability, native
 whole-level timing or whole-game completion. Hard campaigns remain deferred.

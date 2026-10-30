@@ -73,6 +73,23 @@ omissions and production build. Default uses the registered complete positive
 browser receipt; `--fresh-browser` repeats that full route too. A passing combined
 record must be saved separately from the exploratory capture and positive replay.
 
+**The combined gate passed at clean `6c7203b`.**
+`reference/mountain-phase-campaign-integration.json` pins its833-file source
+archive,74 evidence artifacts and1,148 preserved historical artifacts. The whole
+positive browser pass is the independent registered consumer at `5d21932`; the
+combined gate freshly runs the jungle and mountain routes/omission controls and
+uses that source-pinned complete positive receipt. This distinction is explicit.
+
+```sh
+node scripts/verify-mountain-phase-campaign-receipt.js
+```
+
+The saved-receipt command validates source/archive/inventory identities, all
+registered artifacts, protected historical data, positive browser report and
+required gate results, with checksum/size failure controls. It does not execute
+another full positive browser campaign. `--fresh-browser` is the explicit fresh
+option on `scripts/verify-runtime-campaign.js`.
+
 Remaining work includes original whole-game cadence, omitted CPU/device/drawing
 work, broader routes/difficulties, keyboard/environment behavior and original
 save/high-score semantics. This complete Easy route does not prove those paths.

@@ -9,7 +9,13 @@ The fresh mountain copy/HUD/phase Easy campaign now passes independent headless
 and actual-browser replay:34 full state/pixel checkpoints,4,981 DOM events,
 1,470 flight presentations, all four expedition families, winning ending and
 Restart. The mountain retains all three lives; day31 banking remains$14,550
-against$12,500. Combined clean-source regression is the next required check.
+against$12,500. **`npm run verify:current-campaign` passes from clean `6c7203b`.**
+The combined record pins833 source files,74 evidence artifacts and1,148 preserved
+historical artifacts. It freshly checks jungle/mountain controls and their
+required failures; the complete positive browser run is independently registered
+at `5d21932` with identical game sources. `--fresh-browser` repeats the whole
+positive route. `node scripts/verify-mountain-phase-campaign-receipt.js` validates
+the [saved combined record](../reference/mountain-phase-campaign-integration.json).
 [Current campaign provenance and commands](mountain-phase-campaign.md).
 
 ## Focused mountain evidence
@@ -31,8 +37,9 @@ presentations and all three lives at the summit. Earlier
 [HUD](mountain-hud-work.md) and [copy](mountain-copy-runtime.md) receipts remain
 historical source snapshots; their current-source guards reject later changes.
 
-Whole-route replay is refreshed, but the combined gate has not yet passed this
-integration source. Earlier receipts below remain historical and unchanged.
+Whole-route replay and combined acceptance are refreshed. Earlier receipts below
+remain historical and unchanged; no full Hard or original whole-game timing
+acceptance is claimed.
 
 ## Last full-campaign milestone
 
@@ -86,9 +93,8 @@ startup capture has 34 unique checkpoints; the prior duplicate mountain-entry
 marker is absent, with no unique boundary omitted. The fresh
 independent browser replay also verifies Restart. [Current full route](jungle-text-campaign.md).
 
-`npm run verify:current-campaign` and `verify:runtime-campaign` target the
-text-inclusive contract that passed the combined clean gate before mountain
-copy integration. They require a new independent campaign for current source. Prior line,
+`npm run verify:current-campaign` and `verify:runtime-campaign` now target the
+mountain copy/HUD/phase contract and pass the combined clean gate. Prior line,
 speaker and cave receipts remain historical and untouched. Broader historical
 `npm run verify` receipts also require current regressions; this focused gate
 does not waive them.
@@ -139,25 +145,14 @@ correspondence are checked; analysis executables are never run. Private emulator
 experiments leave the shared8386 session untouched and close their owned instances.
 
 ```sh
-node scripts/verify-mountain-hud-integration.js
-node scripts/verify-mountain-phase-integration.js
-node scripts/verify-mountain-phase-receipt.js
-node scripts/verify-mountain-hud-receipt.js
-npm run verify:current-campaign # Requires a fresh full-campaign contract first.
-node scripts/verify-mountain-copy-integration.js
-node scripts/verify-mountain-copy-receipt.js
+npm run verify:current-campaign
+node scripts/verify-mountain-phase-campaign-receipt.js
 node scripts/verify-runtime-campaign.js --fresh-browser
-node scripts/verify-jungle-texts.js
-node scripts/verify-jungle-text-campaign-receipt.js
-node scripts/verify-mountain-erase.js
-node scripts/verify-mountain-copy-work.js
-node scripts/verify-hud-number.js
-node scripts/verify-jungle-text-work.js
-node scripts/jungle-text-timing.js
-node scripts/verify-ega-text.js
+node scripts/verify-mountain-phase-integration.js
+node scripts/verify-mountain-phase.js
+node scripts/verify-mountain-hud-runtime.js
+node scripts/verify-mountain-copy-runtime.js
 node scripts/verify-speaker-playback-receipt.js
-npm run verify:speaker-game
-npm run verify:cave-reveal
 npm test
 npm run build
 npm run dev

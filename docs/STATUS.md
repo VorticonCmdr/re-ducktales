@@ -23,14 +23,19 @@ is the default. Physical waveform/gain/filter parity remains open. [Audio](audio
 
 ## Current campaign work
 
-The most recent complete physical-keyboard Easy verification, before the cave
-reveal correction described below, runs from startup through all four expedition
-families and the winning deadline ending. It recovers jungle,
+The current post-reveal physical-keyboard Easy scenario completes startup,
+all four expedition families and the winning deadline ending. Independent
+simulation and actual-browser replay match all34 full states and pixel digests
+from4,981 DOM inputs;restart returns to a fresh game. The combined clean gate
+is the next integration check. [Refreshed scenario](cave-reveal-campaign.md).
+
+The historical complete Easy verification before the reveal correction also
+runs through all four expedition families and the winning deadline ending. It recovers jungle,
 cave and mountain treasure, earns Safari photo money, handles rival reports and
 banking, then wins on day31 with$14,550 banked against$12,500. Mountain recovery
 retains all three lives. Restart returns to a fresh game.
 
-The clean `npm run verify:current-campaign` gate passed on commit`42ff402`:
+The historical clean `npm run verify:current-campaign` gate passed on commit`42ff402`:
 177 unit cases,one complete actual-browser route,restart,five negative controls
 and the production build,with zero skips. Independent replay matches35 full
 states from4,981 events and renders1,470 flight presentations. Browser replay
@@ -76,10 +81,11 @@ the cave regressions,177 unit cases,the actual-browser treasure/return/restart
 route with all five groups,and the production build. This is a specific presentation/timing correction;
 whole-cave cadence and native reveal timing remain unverified.
 
-The complete Easy receipt above predates this correction. Its historical inputs,
-expectations and captures remain unchanged;full campaign acceptance must be
-refreshed from startup for the new cave timing before it is claimed green on
-the current implementation.
+The historical Easy receipt above predates this correction. Its inputs,
+expectations and captures remain unchanged. The fresh post-reveal scenario
+already passes independent full replay and actual-browser acceptance;its clean
+combined gate remains pending. The stable `npm run verify:current-campaign`
+command now selects `npm run verify:reveal-campaign`.
 
 ## Latest verified flight input milestone
 
@@ -236,7 +242,7 @@ refresh. Historical passes do not establish a green current broader gate.
 - Original save/load/high-score behavior/formats have not been established.
   Browser persistence would be an explicit addition without original evidence.
 
-Next: refresh full Easy campaign acceptance after the cave reveal correction,
+Next: complete the clean combined Easy gate after the cave reveal correction,
 then extend physical campaign acceptance to Hard and the remaining registered
 routes while preserving historical streams. Investigate the first failed
 gameplay behavior rather than treating a failed player strategy as a port bug. Continue remaining drawing/device costs and cross-scene input windows

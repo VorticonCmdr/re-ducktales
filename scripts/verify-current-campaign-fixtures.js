@@ -4,9 +4,10 @@ import assert from "node:assert/strict";
 import { readFile, mkdir, mkdtemp, writeFile } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-const m = JSON.parse(
-  await readFile("reference/current-physical-campaign.json"),
-);
+const manifestPath =
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+  "reference/current-physical-campaign.json";
+const m = JSON.parse(await readFile(manifestPath));
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const originals = {};
 for (const [role, spec] of Object.entries(m.artifacts))

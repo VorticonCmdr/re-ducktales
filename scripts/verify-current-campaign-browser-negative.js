@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
+const manifestPath =
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+  "reference/current-physical-campaign.json";
 await mkdir(".local/current-campaign-verification", {
   recursive: true,
 });
@@ -20,8 +23,7 @@ const r = spawnSync(
   {
     env: {
       ...process.env,
-      DUCKTALES_EASY_CAMPAIGN_MANIFEST:
-        "reference/current-physical-campaign.json",
+      DUCKTALES_EASY_CAMPAIGN_MANIFEST: manifestPath,
       DUCKTALES_EASY_RECORDED_NEGATIVE: "omit-easy-confirm",
     },
     encoding: "utf8",

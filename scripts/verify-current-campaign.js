@@ -9,6 +9,14 @@ const manifestPath =
   "reference/current-physical-campaign.json";
 const manifest = JSON.parse(await readFile(manifestPath));
 const sha = (b) => createHash("sha256").update(b).digest("hex");
+const checkpointCount = {
+  "current-physical-easy-complete-campaign": 35,
+  "cave-reveal-easy-complete-campaign": 34,
+}[manifest.id];
+assert.ok(
+  Number.isInteger(checkpointCount),
+  "Unsupported complete campaign contract",
+);
 assert.equal(manifest.expectedHard, false);
 assert.equal(manifest.physicalKeyboard, true);
 assert.equal(
@@ -16,7 +24,7 @@ assert.equal(
   false,
   "SETUP: independent browser replay pending",
 );
-assert.equal(manifest.expectedCheckpointCount, 35);
+assert.equal(manifest.expectedCheckpointCount, checkpointCount);
 assert.equal(manifest.requiredEventCount, 4981);
 assert.equal(manifest.expectedEnding.won, true);
 assert.equal(
@@ -103,7 +111,7 @@ for (const [path, expected] of Object.entries(source.files))
     );
 const checks = await json("campaign-checkpoints"),
   events = await json("captured-events");
-assert.equal(checks.length, 35);
+assert.equal(checks.length, checkpointCount);
 assert.equal(events.length, 4981);
 assert.deepEqual(
   checks.map((c) => c.name),
@@ -139,7 +147,7 @@ assert.equal(
 );
 assert.equal(acceptedProgress.consumed, 4981);
 assert.deepEqual(acceptedProgress.errors, []);
-assert.equal(acceptedChecks.length, 35);
+assert.equal(acceptedChecks.length, checkpointCount);
 assert.equal(acceptedStatus.status, "passed");
 assert.deepEqual(acceptedStatus.failedTests, []);
 for (let i = 0; i < checks.length; i++)
@@ -166,7 +174,7 @@ if (browserRoot) {
   assert.equal(result.expectedEvents, 4981);
   assert.deepEqual(result.errors, []);
   assert.equal(result.navigation.length, 1);
-  assert.equal(observed.length, 35);
+  assert.equal(observed.length, checkpointCount);
   for (let i = 0; i < checks.length; i++)
     for (const key of [
       "name",
@@ -186,7 +194,7 @@ if (browserRoot) {
   assert.equal(run.status, "passed");
   assert.deepEqual(run.failedTests, []);
   console.log(
-    "Current campaign browser:35 full states/pixel digests,4981 actual DOM events,four expeditions,winning deadline ending and restart.",
+    `Current campaign browser:${checkpointCount} full states/pixel digests,4981 actual DOM events,four expeditions,winning deadline ending and restart.`,
   );
 } else {
   await mkdir(".local/current-campaign-verification", { recursive: true });
@@ -194,6 +202,7 @@ if (browserRoot) {
   const logs = [];
   for (const [name, negative, pattern] of [
     ["positive", null, null],
+    ["omit-checkpoint", "omit-checkpoint", /Missing required checkpoints/],
     ["alter-ending", "alter-ending", /Recorded ending mismatch/],
     ["extend-timeline", "extend-timeline", /Unfinished ending timeline/],
   ]) {
@@ -221,7 +230,7 @@ if (browserRoot) {
       assert.equal(r.status, 0, output.slice(-3000));
       const result = JSON.parse(r.stdout.trim());
       assert.equal(result.mode, "recorded-input replay");
-      assert.equal(result.checked, 35);
+      assert.equal(result.checked, checkpointCount);
       assert.equal(result.consumed, 4981);
       assert.equal(result.rendered, manifest.expectedFlightPresentations);
       assert.equal(result.flagAliasPresentations, 0);
@@ -230,6 +239,6 @@ if (browserRoot) {
   }
   await Promise.all(logs);
   console.log(
-    `Current campaign replay:35 carried states,4981 required inputs,four expeditions,winning ending;altered ending and unfinished timeline rejected. Reports:${root}`,
+    `Current campaign replay:${checkpointCount} carried states,4981 required inputs,four expeditions,winning ending;omitted checkpoint,altered ending and unfinished timeline rejected. Reports:${root}`,
   );
 }

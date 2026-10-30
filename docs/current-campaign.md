@@ -1,14 +1,16 @@
 # Current campaign investigation
 
-The whole game remains incomplete. The production game is still the physical
-flight-input runtime verified at `d36dc95`; this investigation changes player
-controllers and replay tooling, not mechanics, RNG or original assets.
+The whole game remains incomplete. The production game now includes the original
+striped cave treasure reveal from `d8d5442`,following the physical flight-input
+runtime verified at `d36dc95`. [The refreshed campaign scenario](cave-reveal-campaign.md)
+uses a fresh complete capture;the historical scenario below predates that reveal
+correction. Original assets and historical expectations remain unchanged.
 Only the 22-file build in `reference/build.json` is supported, EXE SHA-256
 `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`,
 MZ/EXEPACK, x86 LE16 real mode, overlays, no extender. No native emulator state
 has been changed during this work.
 
-## Complete current Easy route
+## Historical Easy route before the cave reveal
 
 `reference/current-physical-campaign.json` declares startup, all four expedition
 families, rival progression, banking, the winning deadline ending and restart.
@@ -32,8 +34,12 @@ This is a port regression and browser acceptance, not independent native
 whole-campaign parity or proof for every difficulty,route or audio setting.
 
 ```sh
+# Historical gate from the archived42ff402 source:
 npm run verify:current-campaign
 ```
+
+On current source,this stable command selects the refreshed34-checkpoint
+post-reveal scenario documented in[cave-reveal-campaign.md](cave-reveal-campaign.md).
 
 The command fails on broken fixtures,source identity,unfinished events,wrong
 states/pixels,render errors or an unready ending. It also checks the producer

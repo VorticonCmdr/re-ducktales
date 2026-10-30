@@ -1,0 +1,111 @@
+{
+  "id": "current-physical-three-family-campaign-progress",
+  "milestone": "campaign-progress",
+  "scope": "Complete declared startup-to-cave-return scenario;not complete campaign or whole-native parity. Historical goldens remain unchanged.",
+  "physicalKeyboard": true,
+  "expectedHard": false,
+  "pendingBrowserReplay": false,
+  "artifactRoot": ".local/current-campaign-progress-01",
+  "expectedCheckpointCount": 24,
+  "requiredEventCount": 3804,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-input-80",
+    "jungle-input-160",
+    "jungle-input-240",
+    "jungle-input-320",
+    "jungle-input-400",
+    "jungle-input-480",
+    "jungle-input-560",
+    "jungle-input-640",
+    "jungle-input-720",
+    "jungle-input-800",
+    "jungle-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "cave-return"
+  ],
+  "expectedFlagAliasPresentations": 0,
+  "expectedOutcome": {
+    "scene": "map",
+    "day": 14,
+    "money": 5400,
+    "banked": 1050,
+    "playerCollected": [
+      1,
+      30,
+      32
+    ],
+    "jungle": 1,
+    "photography": 1,
+    "cave": "treasure"
+  },
+  "artifacts": {
+    "environment": {
+      "path": ".local/current-campaign-progress-01/environment.json",
+      "bytes": 600,
+      "sha256": "25df914ed22c3771cde2bc0251424e06fb2866fc553946b33c5851a9dcd7da51"
+    },
+    "captured-events": {
+      "path": ".local/current-campaign-progress-01/captured-events.json",
+      "bytes": 462606,
+      "sha256": "f15ef76cc2c54074a64869bbf2c9b42cae90b35d69f965ad17f3a4c6e773b1ee"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/current-campaign-progress-01/campaign-checkpoints.json",
+      "bytes": 137598,
+      "sha256": "318ff8f1d95d3a6f45bb7344c75274ed667d620dadd610a9bb1f1ac2dc409d38"
+    },
+    "timeline": {
+      "path": ".local/current-campaign-progress-01/timeline.json",
+      "bytes": 2220,
+      "sha256": "1e32c23936b6c9bb844af7e24024739bc67f5ee6afdd32e9f281dadc9fa478fa"
+    }
+  },
+  "buildManifest": {
+    "path": "reference/build.json",
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "gameRuntimeCommit": "d36dc952fb8c2d830b1e6466ca467c16bf660bb5",
+  "producer": {
+    "runtime": "Unchanged physical game runtime d36dc95;Playwright1.64.1 controller on working tree based373f6aa. Producer controller edits were uncommitted;fresh replay/verification source identities are recorded separately.",
+    "rawCapture": ".local/current-campaign-exploration-04/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+    "rawSourceCompleted": false,
+    "rawSourceEnded": "Host600-second timeout during fourth flight;declared scenario stops before it atcave-return.",
+    "inputPolicy": "Historical player controls and source geometry informed an exploratory waypoint policy;expected states/RNG/timers do not choose inputs during recorded replay."
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "comparisonRules": "Exact full state hashes,all checkpoint names/times/counts,complete independent DOM event stream,and every320x200 browser pixel digest. Pointer comparison uses only original clamped/truncated logical coordinates. No state fields or timer values excluded.",
+  "verify": "npm run verify:current-campaign-progress",
+  "expectedFlightPresentations": 1149,
+  "verificationSources": {
+    "scripts/replay-hard-campaign.js": "241477afb2b885ac9a30134a0c01a1f6b0d4ee2d1e3c7079d5f6189052f18060",
+    "scripts/verify-current-campaign-progress.js": "8d893a5dda44740d9b63476dc94720b39bd2683e3492f21d2418eabbd9045084",
+    "scripts/verify-current-campaign-progress-browser-negative.js": "05f7d495241e10ea27dc28cfcfe44605a8a98dce250b15a470cf93d771ff4a45",
+    "tests/helpers/original-game.js": "0b894ad5a1498fa58a070d4e576e9add244d729b7d8c48e0f53243097f9347d3",
+    "tests/browser/helpers/recorded-campaign.js": "3466bc61f1abe9f51c4ff96b8fd8e6ae1d9179eda644c36fc86449a1a8dcf934",
+    "tests/browser/helpers/recorded-dom-input.js": "196e2b76608e64b58daab9d2424ad34fcc28d6580af6cf48f6fffd04530a0fd8",
+    "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0",
+    "tests/browser/current-campaign-progress.spec.js": "d3a8c2b588896ab7701143e545d1807b2167222cab870ca8e59dbdb50e452f15",
+    "playwright.campaign.config.js": "b56cac17deb33d80d6b12899144c1c680ba91bdc332ba63b3a4dd4f8f1581280",
+    "vite.campaign.config.js": "ec88fffd4b81ed3b171bfb948bf9bcdaf47b99913c01ba8eda8c66212924431b"
+  },
+  "browserEvidence": {
+    "root": ".local/current-campaign-progress-browser-01",
+    "cases": 1,
+    "checkpoints": 24,
+    "events": 3804,
+    "scope": "Actual DOM input and320x200 pixels at every checkpoint;audio disabled. Closed-loop from startup,not native whole-campaign acceptance."
+  }
+}

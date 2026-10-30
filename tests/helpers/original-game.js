@@ -8,7 +8,8 @@ import { Game } from "../../src/game/application.js";
 import { parseLocations, parseLoot } from "../../src/game/campaign.js";
 import { parseCaveMaps } from "../../src/game/cave-scene.js";
 import { investmentResources } from "../../src/game/investments.js";
-export async function originalGame() {
+export async function originalGame({ physicalKeyboard = false } = {}) {
+  assert.equal(typeof physicalKeyboard, "boolean");
   const archives = new Map();
   let image;
   for (const [name, expected] of Object.entries(build.files)) {
@@ -27,6 +28,8 @@ export async function originalGame() {
   }
   const a = (name) => archives.get(name);
   const game = new Game({
+    expeditionInput: physicalKeyboard ? "keyboard" : "digital",
+    destinationInput: physicalKeyboard ? "keyboard" : "boundary",
     biosSeed: 0,
     audioEnabled: false,
     openingResources: { image, entries: a("MAIN.ARC") },

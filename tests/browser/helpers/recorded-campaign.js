@@ -3,6 +3,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { PNG } from "pngjs";
 import { openRecordedApplication } from "./clock.js";
+import { recordedDOMInput } from "./recorded-dom-input.js";
 
 const hash = (b) => createHash("sha256").update(b).digest("hex");
 const canonical = (v) =>
@@ -46,6 +47,7 @@ export async function runRecordedCampaign({
     "departure-entry",
     "flight-lightning",
     "hard-expedition-bank",
+    "campaign-progress",
   ]).toContain(manifest.milestone);
   if (
     negativeMode &&
@@ -189,30 +191,9 @@ export async function runRecordedCampaign({
   }
   async function input(event) {
     await advance(event.time);
-    if (event.type === "keydown" || event.type === "keyup") {
-      const key = event.key === " " ? "Space" : event.key;
-      if (event.type === "keydown") await page.keyboard.down(key);
-      else await page.keyboard.up(key);
-      return;
-    }
-    expect(["pointerdown", "pointerup"]).toContain(event.type);
-    expect(["game", "map", "back"]).toContain(event.target);
-    const target = page.locator(`#${event.target}`);
-    if (event.type === "pointerdown") await target.scrollIntoViewIfNeeded();
-    const bounds = await target.boundingBox();
-    expect(bounds).not.toBeNull();
-    const x =
-        event.target === "game"
-          ? bounds.x + (event.x * bounds.width) / 320
-          : bounds.x + bounds.width / 2,
-      y =
-        event.target === "game"
-          ? bounds.y + (event.y * bounds.height) / 200
-          : bounds.y + bounds.height / 2;
-    await page.mouse.move(x, y);
-    if (event.type === "pointerdown") await page.mouse.down();
-    else await page.mouse.up();
+    await recordedDOMInput(page, event);
   }
+
   try {
     for (let i = 0; i < checks.length; i++) {
       const checkpoint = checks[i];
@@ -283,7 +264,20 @@ export async function runRecordedCampaign({
     }
     expect(consumed).toBe(events.length);
     expect(actualEvents).toHaveLength(events.length);
-    if (["jungle-treasure", "mountain-ascent"].includes(manifest.milestone)) {
+    if (manifest.milestone === "campaign-progress") {
+      expect({
+        scene: lastState.scene,
+        day: lastState.campaign.day,
+        money: lastState.money,
+        banked: lastState.campaign.banked,
+        playerCollected: lastState.campaign.playerCollected,
+        jungle: lastState.jungle.outcome.code,
+        photography: lastState.photography.outcome.code,
+        cave: lastState.cave.outcome.status,
+      }).toEqual(manifest.expectedOutcome);
+    } else if (
+      ["jungle-treasure", "mountain-ascent"].includes(manifest.milestone)
+    ) {
       const activity =
         manifest.milestone === "mountain-ascent" ? "mountain" : "jungle";
       const expedition = lastState[activity];

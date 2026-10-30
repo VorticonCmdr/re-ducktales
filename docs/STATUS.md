@@ -21,7 +21,18 @@ Tandy/PCjr includes Sound 001, persistent channels, priorities, engine words, mu
 and completion; all 121 public requests have viewer playback. Speaker playback
 is the default. Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 
-## Current flight input milestone
+## Current campaign work
+
+The physical campaign has completed jungle treasure recovery, a$1,050 deposit,
+Safari with$500 earnings, and cave treasure return (day14,$5,400 carried).
+Strict startup replay matches24 full states from3,804 external events; seven
+negative controls reject deliberately broken inputs/fixtures. Actual browser replay matches all24 states/pixel digests and all3,804 DOM events. Mountain entry works; its old player controller fails, while a
+corrected physical-release schedule recovers treasure in startup reconstruction.
+Actual browser mountain/ending verification and a complete registered current
+campaign regression remain pending. No game mechanics changed in this work.
+[Current evidence, commands and limits](current-campaign.md).
+
+## Latest verified flight input milestone
 
 Flight now uses physical ordinary-key flags, including aliases, release-edge
 consumption, mode0 and its existing source flushes. Reveal keys carry from

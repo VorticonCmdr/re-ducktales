@@ -1,0 +1,58 @@
+{
+  "id": "physical-easy-campaign-player-candidate",
+  "scope": "Exploratory controller;actual browser and independent recorded replay required. No expected state, RNG, timer or memory supplies inputs.",
+  "jungle": {
+    "variant": 0,
+    "initial": [
+      {
+        "byte": 0,
+        "count": 67
+      },
+      {
+        "byte": 64,
+        "count": 1
+      },
+      {
+        "byte": 0,
+        "count": 15
+      },
+      {
+        "byte": 3,
+        "count": 18
+      },
+      {
+        "byte": 0,
+        "count": 8
+      }
+    ],
+    "downLimit": 1200,
+    "downUntilX": 1108,
+    "upLimit": 40,
+    "upUntilY": 96,
+    "upUntilAction": 5,
+    "rightLimit": 40,
+    "geometry": "Original variant0 final platform column21 has left edge21*53-2;actor center offset4 plus one pixel clearance gives1108. Original chest rectangle1125,85..1173,115 tests actor center/Y+16. These are player waypoints,not expected runtime checkpoints.",
+    "repeatPolicy": "Fresh physical make for every held key before each observed source frame;release removed keys. This is an authored controller,not a fitted claim about original typematic rate."
+  },
+  "provenance": {
+    "initialPlayerRecipe": {
+      "path": "reference/security-easy-campaign-inputs.json",
+      "sha256": "9ac16027fa11d2579f69201d8b660ba222d39a8edc6bd5d73cbef5b86d9fe369"
+    },
+    "historicalPlayerRoute": {
+      "path": "reference/campaign-startup-browser.json",
+      "sha256": "c5db89f616657a0b9fa82671efd219a3aa6094b5dd7918e89592f51dceccbb6d"
+    },
+    "waypointDesign": "Historical player observations suggested the1108 approach;it was then checked against original platform-edge and actor-center geometry. It is an exploratory policy choice,not independent original input evidence.",
+    "replayBoundary": "Strict recorded replay consumes a separate immutable DOM event stream. No expected checkpoint is consulted to choose an input during replay;no native output-derived timers,RNG,allocator or actor memory initialize it."
+  },
+  "mountain": {
+    "variant": 0,
+    "inputRecipe": {
+      "path": "reference/mountain-ascent.json",
+      "sha256": "a10ac3ca5af03542375141112cd2e5153991ca55c92ff6fd8bdd8b5ce134e4e6"
+    },
+    "releasePolicy": "For each authored action byte, repeat makes for desired keys. When a key is absent from the following authored byte, send its break before this last desired source read. Original mode0 consumes that release once and clears it. No actor/RNG/timer mutation.",
+    "evidence": "Reconstruction from startup through28 prior checkpoints in current-campaign-exploration-06. Original legacy physical schedule loses treasure;release-before-last completes764 actions with outcome1. Browser continuation pending."
+  }
+}

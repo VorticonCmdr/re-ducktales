@@ -15,6 +15,9 @@ import hardInputs from "../../../reference/hard-expedition-inputs.json" with { t
 import linkedInputs from "../../../reference/hard-campaign-inputs.json" with { type: "json" };
 import { waitForScene } from "./scene.js";
 import { openRecordedApplication } from "./clock.js";
+import { pressDestinationKey } from "./destination-input.js";
+import { replayCampaignPrefix } from "./campaign-prefix.js";
+import physicalPlayer from "../../../reference/current-campaign-player.json" with { type: "json" };
 
 // Independent input policies observe the current application, never expected outputs.
 // Capture mode is exploratory; it cannot satisfy strict acceptance.
@@ -25,6 +28,23 @@ export async function runLinkedCampaign({
   capture = false,
   manifest,
 }) {
+  const physical = process.env.DUCKTALES_CAMPAIGN_PHYSICAL === "1";
+  if (physical && !capture)
+    throw Error(
+      "SETUP: physical campaign controller is exploratory until independently replayed",
+    );
+  const waypoints = process.env.DUCKTALES_CAMPAIGN_PLAYER_WAYPOINTS === "1";
+  if (waypoints && (!physical || hard))
+    throw Error(
+      "SETUP: physical player waypoints support exploratory Easy only",
+    );
+  const prefixRoot = process.env.DUCKTALES_CAMPAIGN_REPLAY_PREFIX;
+  const prefixThrough =
+    process.env.DUCKTALES_CAMPAIGN_REPLAY_THROUGH ?? "photography-return";
+  if (!["photography-return", "all-recorded"].includes(prefixThrough))
+    throw Error("SETUP: unsupported campaign prefix target");
+  if (prefixRoot && (!physical || !capture || hard))
+    throw Error("SETUP: prefix continuation is exploratory physical Easy only");
   const errors = [],
     checkpoints = [],
     navigation = [],
@@ -49,8 +69,10 @@ export async function runLinkedCampaign({
   let flightNumber = 0,
     savedEvents = [],
     lastObserved = null,
-    completed = false;
-  const mountainObservations = [];
+    completed = false,
+    routeCompleted = false;
+  const mountainObservations = [],
+    jungleObservations = [];
   const hash = (value) => createHash("sha256").update(value).digest("hex");
   const canonical = (value) =>
     JSON.stringify(value, (_, v) =>
@@ -165,6 +187,7 @@ export async function runLinkedCampaign({
           clockOrigin,
           displayMilliseconds: 8,
           hard,
+          physical,
           mode: capture ? "exploratory" : "acceptance",
           completed: false,
           capturePhase: "before-target-handler",
@@ -183,6 +206,7 @@ export async function runLinkedCampaign({
         seed: s.seed,
       }),
     );
+    return checkpoints.at(-1);
   }
   async function point(x, y) {
     const r = await canvas.boundingBox();
@@ -234,19 +258,22 @@ export async function runLinkedCampaign({
     // locations start directly with the already selected aircraft.
     if (fromOffice) {
       await until((s) => s.scene === "map" && s.campaign.destination?.ready);
-      await press("ArrowRight");
+      if (physical)
+        await pressDestinationKey({ page, state, until }, "ArrowRight");
+      else await press("ArrowRight");
       await until(
         (s) => s.campaign.destination?.ready && s.campaign.choice === 1,
       );
-      await press("Space");
+      if (physical) await pressDestinationKey({ page, state, until }, "Space");
+      else await press("Space");
       await until((s) => s.scene !== "map");
       await settleReports();
     }
   }
-  async function fly({ crash = false } = {}) {
+  async function fly({ crash = false, resume = false } = {}) {
     expect((await state()).scene).toBe("departure");
     flightNumber++;
-    if (hard || capture) await checkpoint("flight-start");
+    if ((hard || capture) && !resume) await checkpoint("flight-start");
     if (hard && !capture) {
       const trace = await replayFlightInputs({
         page,
@@ -270,6 +297,7 @@ export async function runLinkedCampaign({
       return;
     }
     if (capture) {
+      if (physical) await until((s) => s.scene === "flight");
       const trace = await exploreFlight({
         page,
         state,
@@ -362,239 +390,351 @@ export async function runLinkedCampaign({
     );
     await checkpoint("arrival");
   }
+  let held = new Set();
   try {
-    await until((s) => s.scene === "title" && (!hard || s.opening.skipEnabled));
-    await expect(
-      page.getByRole("checkbox", { name: "Sound (reconstructed)" }),
-    ).not.toBeChecked();
-    await canvas.focus();
-    await press("Space");
-    await waitForScene(page, canvas, "difficulty");
-    if (hard) {
-      await press("ArrowUp");
-      await until((s) => s.difficulty === 2);
-    }
-    await press("Enter");
-    await waitForScene(page, canvas, "office");
-    expect((await state()).difficulty).toBe(hard ? 2 : 0);
-    if (hard || capture) await checkpoint("campaign-start");
-    // First expedition reuses the independently authored startup keyboard
-    // stream. Later expeditions carry the resulting state, not fresh fixtures.
-    await depart(...(hard ? hardInputs.departurePoint : [64, 73]));
-    await fly({ crash: !hard });
-    const entry = await state();
-    expect(entry.scene).toBe("jungle");
-    if (!hard && capture && process.env.DUCKTALES_CAPTURE_EASY_ENTRY === "1") {
-      expect(entry.jungle.frames).toBe(0);
-      throw Error("EXPLORATORY Easy campaign entry saved;not acceptance");
-    }
-    const jungleRoute = hard ? hardInitial.jungle : startup.jungle;
-    if (!capture) expect(entry.jungle.seed).toBe(jungleRoute.entrySeed);
-    let held = new Set(),
-      used = 0,
-      checked = 0;
-    const stream = (
-      hard
-        ? capture
-          ? securityInputs.jungle
-          : hardInputs.jungle
-        : capture
-          ? easyInputs.jungle
-          : startup.jungle.inputEvents
-    ).flatMap((e) => Array(e.count).fill(e.byte));
-    expect(stream).toHaveLength(
-      hard
-        ? capture
-          ? securityInputs.requiredJungleInputs
-          : 444
-        : capture
-          ? easyInputs.requiredJungleInputs
-          : 857,
-    );
-    // Deliberately wrong external input for the separate negative-control run.
-    // Counts remain unchanged: an actual state comparison must reject it.
-    if (process.env.DUCKTALES_MIXED_NEGATIVE === "wrong-jungle-input")
-      stream[0] = 3;
-    for (const byte of stream) {
-      const next = new Set([
-        ...(byte & 64 ? ["Space"] : []),
-        ...({
-          1: ["ArrowUp"],
-          3: ["ArrowRight"],
-          5: ["ArrowDown"],
-          7: ["ArrowLeft"],
-        }[byte & 63] ?? []),
-      ]);
-      for (const key of held) if (!next.has(key)) await page.keyboard.up(key);
-      for (const key of next) if (!held.has(key)) await page.keyboard.down(key);
-      held = next;
-      const before = await state();
-      expect(before.scene).toBe("jungle");
-      expect(before.jungle.frames).toBe(used);
-      const after = await until(
-        (s) => s.scene !== "jungle" || s.jungle.frames > used,
+    if (prefixRoot) {
+      const prefix = await replayCampaignPrefix({
+        page,
+        root: prefixRoot,
+        through: prefixThrough,
+        checkpoint,
+      });
+      await writeFile(
+        info.outputPath("prefix-replay.json"),
+        JSON.stringify(prefix, null, 2),
       );
-      used++;
-      expect(after.jungle.frames).toBe(used);
-      if (!hard && capture && (used % 80 === 0 || used === stream.length))
-        await checkpoint(`jungle-input-${used}`);
-      const expected = jungleRoute.checkpoints[checked];
-      if (!capture && expected?.inputCount === used) {
-        for (const field of hard
-          ? jungleRoute.comparisonFields
-          : jungleRoute.browserComparisonFields)
-          expect(after.jungle[field], `jungle ${checked} ${field}`).toEqual(
-            expected.state[field],
-          );
-        checked++;
-      }
-    }
-    for (const key of held) await page.keyboard.up(key);
-    if (!capture) expect(checked).toBe(hard ? 26 : 23);
-    await until((s) => s.scene === "expedition-result");
-    if (!capture) expect((await state()).money).toBe(hard ? 2050 : 1000);
-    const firstReward = (await state()).money;
-    await press("Space");
-    await until((s) => s.scene === "map");
-    await checkpoint("jungle-return");
-    await depart(212, 131);
-    await finishBank();
-    expect((await state()).campaign.banked).toBe(
-      capture ? firstReward : hard ? 2050 : 1000,
-    );
-    await page.locator("#back").click();
-    await page.clock.runFor(100);
-    await settleReports();
-    expect((await state()).scene).toBe("office");
-
-    await depart(46, 56);
-    await fly();
-    expect(
-      (await state()).scene,
-      "photography arrival; a lost race is not a photo visit",
-    ).toBe("photography");
-    await until(
-      (s) => s.scene === "photography" && s.photography.phase === "playing",
-    );
-    const photoEntry = await state();
-    let targetShot = false;
-    for (
-      let shot = 0;
-      shot < (hard ? 12 : 8) && (hard || !targetShot);
-      shot++
-    ) {
-      const ready = await until(
-        (s) =>
-          s.photography.phase === "results" ||
-          (s.photography.phase === "playing" &&
-            s.photography.animals.some(
-              (a) =>
-                a.place && a.animal === s.photography.target && a.frame === 0,
-            )),
-      );
-      if (ready.photography.phase === "results") break;
-      expect(ready.photography.phase).toBe("playing");
-      const column = ready.photography.animals.findIndex(
-        (a) =>
-          a.place && a.animal === ready.photography.target && a.frame === 0,
-      );
-      const key = ["ArrowLeft", "ArrowUp", "ArrowRight"][column];
-      await page.keyboard.down(key);
-      await until((s) => s.photography.column === column);
-      await page.keyboard.up(key);
-      const count = (await state()).photography.photoCount;
-      const film = (await state()).photography.film;
-      await page.keyboard.down("Space");
-      await until(
-        (s) =>
-          s.photography.photoCount > count ||
-          s.photography.film < film ||
-          s.photography.phase !== "playing",
-      );
-      await page.keyboard.up("Space");
-      targetShot = (await state()).photography.photos.includes(
-        ready.photography.target,
-      );
-    }
-    expect(targetShot).toBe(true);
-    await page.keyboard.down("Space");
-    const photos = await until((s) => s.photography.phase === "results");
-    await page.keyboard.up("Space");
-    const reward = photos.photography.photos.reduce(
-      (sum, p) => sum + (p === photos.photography.target ? 500 : p ? 50 : 0),
-      0,
-    );
-    await until((s) => s.scene === "map");
-    expect((await state()).money).toBe(photoEntry.money + reward);
-    expect((await state()).campaign.day).toBe(photoEntry.campaign.day + 2);
-    await checkpoint("photography-return");
-
-    await depart(
-      ...(hard && capture ? securityInputs.destinations.cave : [37, 33]),
-    );
-    await fly();
-    expect((await state()).scene).toBe("cave");
-    for (let move = 0; move < 64 && (await state()).scene === "cave"; move++) {
-      const now = await until(
-        (s) =>
-          s.scene !== "cave" ||
-          ["exploring", "treasure", "complete"].includes(s.cave.phase),
-      );
-      if (now.scene !== "cave" || now.cave.phase !== "exploring") break;
-      const { room, goal, rooms, enemy } = now.cave;
-      let route;
-      for (const margin of [1, 0, -1]) {
-        const queue = [[room, []]],
-          seen = new Set([room]);
-        while (queue.length) {
-          const [at, path] = queue.shift();
-          if (at === goal) {
-            route = path;
-            break;
-          }
-          const danger =
-            margin === 1
-              ? [enemy, enemy - 8, enemy + 8, enemy - 1, enemy + 1]
-              : margin === 0
-                ? [enemy]
-                : [];
-          for (const [key, bit, delta] of [
-            ["ArrowUp", 8, -8],
-            ["ArrowRight", 2, 1],
-            ["ArrowDown", 4, 8],
-            ["ArrowLeft", 1, -1],
-          ]) {
-            const next = at + delta;
-            if (
-              !(rooms[at] & bit) ||
-              next < 0 ||
-              next >= 64 ||
-              rooms[next] & 64 ||
-              seen.has(next) ||
-              (next !== goal && danger.includes(next))
-            )
-              continue;
-            seen.add(next);
-            queue.push([next, [...path, key]]);
-          }
+      flightNumber = prefixThrough === "all-recorded" ? 4 : 2;
+      if (prefixThrough === "all-recorded") {
+        if ((await state()).scene === "departure") {
+          flightNumber = 3;
+          await fly({ resume: true });
         }
-        if (route?.length) break;
+        await until((s) => s.scene === "mountain");
+        if (
+          (await state()).mountain.frames === 0 &&
+          flightNumber === 4 &&
+          prefix.lastCheckpoint !== "mountain-entry"
+        )
+          await checkpoint("mountain-entry");
       }
-      expect(route?.length, "cave path").toBeGreaterThan(0);
-      await page.keyboard.down(route[0]);
-      await page.keyboard.down("Space");
-      await until((s) => s.scene !== "cave" || s.cave.room !== room);
-      await page.keyboard.up("Space");
-      await page.keyboard.up(route[0]);
-    }
-    const caveAward = await until((s) => s.scene === "expedition-result");
-    expect(caveAward.cave.outcome.status).toBe("treasure");
-    await press("Space");
-    await until((s) => s.scene === "map");
-    await checkpoint("cave-return");
+    } else {
+      await until(
+        (s) => s.scene === "title" && (!hard || s.opening.skipEnabled),
+      );
+      await expect(
+        page.getByRole("checkbox", { name: "Sound (reconstructed)" }),
+      ).not.toBeChecked();
+      await canvas.focus();
+      await press("Space");
+      await waitForScene(page, canvas, "difficulty");
+      if (hard) {
+        await press("ArrowUp");
+        await until((s) => s.difficulty === 2);
+      }
+      await press("Enter");
+      await waitForScene(page, canvas, "office");
+      expect((await state()).difficulty).toBe(hard ? 2 : 0);
+      if (hard || capture) await checkpoint("campaign-start");
+      // First expedition reuses the independently authored startup keyboard
+      // stream. Later expeditions carry the resulting state, not fresh fixtures.
+      await depart(...(hard ? hardInputs.departurePoint : [64, 73]));
+      await fly({ crash: !hard });
+      const entry = await state();
+      expect(entry.scene).toBe("jungle");
+      if (
+        !hard &&
+        capture &&
+        process.env.DUCKTALES_CAPTURE_EASY_ENTRY === "1"
+      ) {
+        expect(entry.jungle.frames).toBe(0);
+        throw Error("EXPLORATORY Easy campaign entry saved;not acceptance");
+      }
+      const jungleRoute = hard ? hardInitial.jungle : startup.jungle;
+      if (!capture) expect(entry.jungle.seed).toBe(jungleRoute.entrySeed);
+      let used = 0,
+        checked = 0;
+      const stream = (
+        hard
+          ? capture
+            ? securityInputs.jungle
+            : hardInputs.jungle
+          : capture
+            ? easyInputs.jungle
+            : startup.jungle.inputEvents
+      ).flatMap((e) => Array(e.count).fill(e.byte));
+      expect(stream).toHaveLength(
+        hard
+          ? capture
+            ? securityInputs.requiredJungleInputs
+            : 444
+          : capture
+            ? easyInputs.requiredJungleInputs
+            : 857,
+      );
+      let downStart, downEnd, upEnd;
+      if (waypoints) {
+        const policy = physicalPlayer.jungle;
+        stream.splice(
+          0,
+          stream.length,
+          ...policy.initial.flatMap((e) => Array(e.count).fill(e.byte)),
+        );
+        downStart = stream.length;
+        stream.push(...Array(policy.downLimit).fill(5));
+        downEnd = stream.length;
+        stream.push(...Array(policy.upLimit).fill(1));
+        upEnd = stream.length;
+        stream.push(...Array(policy.rightLimit).fill(3));
+      }
+      // Deliberately wrong external input for the separate negative-control run.
+      // Counts remain unchanged: an actual state comparison must reject it.
+      if (process.env.DUCKTALES_MIXED_NEGATIVE === "wrong-jungle-input")
+        stream[0] = 3;
+      for (let cursor = 0; cursor < stream.length;) {
+        const byte = stream[cursor];
+        const next = new Set([
+          ...(byte & 64 ? ["Space"] : []),
+          ...({
+            1: ["ArrowUp"],
+            3: ["ArrowRight"],
+            5: ["ArrowDown"],
+            7: ["ArrowLeft"],
+          }[byte & 63] ?? []),
+        ]);
+        for (const key of held) if (!next.has(key)) await page.keyboard.up(key);
+        for (const key of next)
+          if (physical || !held.has(key)) await page.keyboard.down(key);
+        held = next;
+        const before = await state();
+        expect(before.scene).toBe("jungle");
+        expect(before.jungle.frames).toBe(used);
+        const after = await until(
+          (s) => s.scene !== "jungle" || s.jungle.frames > used,
+        );
+        if (
+          waypoints &&
+          after.scene !== "jungle" &&
+          after.jungle.frames === used
+        )
+          break;
+        used++;
+        expect(after.jungle.frames).toBe(used);
+        if (physical)
+          jungleObservations.push({
+            frame: used,
+            requested: byte,
+            consumed: after.expeditionKeys?.byte,
+            x: after.jungle.x,
+            y: after.jungle.y,
+            lives: after.jungle.lives,
+          });
+        if (!hard && capture && (used % 80 === 0 || used === stream.length))
+          await checkpoint(`jungle-input-${used}`);
+        const expected = jungleRoute.checkpoints[checked];
+        if (!capture && expected?.inputCount === used) {
+          for (const field of hard
+            ? jungleRoute.comparisonFields
+            : jungleRoute.browserComparisonFields)
+            expect(after.jungle[field], `jungle ${checked} ${field}`).toEqual(
+              expected.state[field],
+            );
+          checked++;
+        }
+        if (
+          waypoints &&
+          cursor >= downStart &&
+          cursor < downEnd &&
+          after.jungle.x >= physicalPlayer.jungle.downUntilX
+        )
+          cursor = downEnd;
+        else if (
+          waypoints &&
+          cursor >= downEnd &&
+          cursor < upEnd &&
+          after.jungle.y <= physicalPlayer.jungle.upUntilY &&
+          after.jungle.action === physicalPlayer.jungle.upUntilAction
+        )
+          cursor = upEnd;
+        else cursor++;
+      }
+      for (const key of held) await page.keyboard.up(key);
+      if (waypoints)
+        expect(
+          (await state()).jungle.outcome?.code,
+          "Physical jungle route reaches its chest",
+        ).toBe(1);
+      if (!capture) expect(checked).toBe(hard ? 26 : 23);
+      await until((s) => s.scene === "expedition-result");
+      if (!capture) expect((await state()).money).toBe(hard ? 2050 : 1000);
+      const firstReward = (await state()).money;
+      await press("Space");
+      await until((s) => s.scene === "map");
+      await checkpoint("jungle-return");
+      await depart(212, 131);
+      await finishBank();
+      expect((await state()).campaign.banked).toBe(
+        capture ? firstReward : hard ? 2050 : 1000,
+      );
+      await page.locator("#back").click();
+      await page.clock.runFor(100);
+      await settleReports();
+      expect((await state()).scene).toBe("office");
 
-    await depart(36, 61);
-    await fly();
+      await depart(46, 56);
+      await fly();
+      expect(
+        (await state()).scene,
+        "photography arrival; a lost race is not a photo visit",
+      ).toBe("photography");
+      await until(
+        (s) => s.scene === "photography" && s.photography.phase === "playing",
+      );
+      const photoEntry = await state();
+      let targetShot = false;
+      for (
+        let shot = 0;
+        shot < (hard ? 12 : 8) && (hard || !targetShot);
+        shot++
+      ) {
+        const ready = await until(
+          (s) =>
+            s.photography.phase === "results" ||
+            (s.photography.phase === "playing" &&
+              s.photography.animals.some(
+                (a) =>
+                  a.place && a.animal === s.photography.target && a.frame === 0,
+              )),
+        );
+        if (ready.photography.phase === "results") break;
+        expect(ready.photography.phase).toBe("playing");
+        const column = ready.photography.animals.findIndex(
+          (a) =>
+            a.place && a.animal === ready.photography.target && a.frame === 0,
+        );
+        const key = ["ArrowLeft", "ArrowUp", "ArrowRight"][column];
+        await page.keyboard.down(key);
+        await until((s) => s.photography.column === column);
+        await page.keyboard.up(key);
+        const count = (await state()).photography.photoCount;
+        const film = (await state()).photography.film;
+        await page.keyboard.down("Space");
+        await until(
+          (s) =>
+            s.photography.photoCount > count ||
+            s.photography.film < film ||
+            s.photography.phase !== "playing",
+        );
+        await page.keyboard.up("Space");
+        targetShot = (await state()).photography.photos.includes(
+          ready.photography.target,
+        );
+      }
+      expect(targetShot).toBe(true);
+      if (physical) {
+        for (
+          let remaining = 0;
+          remaining < 13 && (await state()).photography.phase === "playing";
+          remaining++
+        ) {
+          const film = (await state()).photography.film;
+          await page.keyboard.down("Space");
+          await until(
+            (s) =>
+              s.photography.phase !== "playing" || s.photography.film < film,
+          );
+        }
+      } else await page.keyboard.down("Space");
+      const photos = await until((s) => s.photography.phase === "results");
+      await page.keyboard.up("Space");
+      const reward = photos.photography.photos.reduce(
+        (sum, p) => sum + (p === photos.photography.target ? 500 : p ? 50 : 0),
+        0,
+      );
+      await until((s) => s.scene === "map");
+      expect((await state()).money).toBe(photoEntry.money + reward);
+      expect((await state()).campaign.day).toBe(photoEntry.campaign.day + 2);
+      await checkpoint("photography-return");
+    }
+
+    if (prefixThrough !== "all-recorded" || !prefixRoot) {
+      await depart(
+        ...(hard && capture ? securityInputs.destinations.cave : [37, 33]),
+      );
+      await fly();
+      expect((await state()).scene).toBe("cave");
+      for (
+        let move = 0;
+        move < 64 && (await state()).scene === "cave";
+        move++
+      ) {
+        const now = await until(
+          (s) =>
+            s.scene !== "cave" ||
+            ["exploring", "treasure", "complete"].includes(s.cave.phase),
+        );
+        if (now.scene !== "cave" || now.cave.phase !== "exploring") break;
+        const { room, goal, rooms, enemy } = now.cave;
+        let route;
+        for (const margin of [1, 0, -1]) {
+          const queue = [[room, []]],
+            seen = new Set([room]);
+          while (queue.length) {
+            const [at, path] = queue.shift();
+            if (at === goal) {
+              route = path;
+              break;
+            }
+            const danger =
+              margin === 1
+                ? [enemy, enemy - 8, enemy + 8, enemy - 1, enemy + 1]
+                : margin === 0
+                  ? [enemy]
+                  : [];
+            for (const [key, bit, delta] of [
+              ["ArrowUp", 8, -8],
+              ["ArrowRight", 2, 1],
+              ["ArrowDown", 4, 8],
+              ["ArrowLeft", 1, -1],
+            ]) {
+              const next = at + delta;
+              if (
+                !(rooms[at] & bit) ||
+                next < 0 ||
+                next >= 64 ||
+                rooms[next] & 64 ||
+                seen.has(next) ||
+                (next !== goal && danger.includes(next))
+              )
+                continue;
+              seen.add(next);
+              queue.push([next, [...path, key]]);
+            }
+          }
+          if (route?.length) break;
+        }
+        expect(route?.length, "cave path").toBeGreaterThan(0);
+        await page.keyboard.down(route[0]);
+        await page.keyboard.down("Space");
+        await until((s) => s.scene !== "cave" || s.cave.room !== room);
+        await page.keyboard.up("Space");
+        await page.keyboard.up(route[0]);
+        if (physical)
+          await until(
+            (s) =>
+              s.scene !== "cave" ||
+              s.cave.phase === "treasure" ||
+              (s.cave.torch > now.cave.torch && s.cave.phase === "exploring"),
+          );
+      }
+      const caveAward = await until((s) => s.scene === "expedition-result");
+      expect(caveAward.cave.outcome.status).toBe("treasure");
+      await press("Space");
+      await until((s) => s.scene === "map");
+      await checkpoint("cave-return");
+
+      await depart(36, 61);
+      await fly();
+    }
     expect((await state()).scene).toBe("mountain");
     const ascentInputs = (
       hard ? linkedInputs.mountain.inputEvents : ascent.inputEvents
@@ -604,7 +744,7 @@ export async function runLinkedCampaign({
     );
     held = new Set();
     let climbed = 0;
-    for (const byte of ascentInputs) {
+    for (const [inputIndex, byte] of ascentInputs.entries()) {
       const next = new Set([
         ...(byte & 64 ? ["Space"] : []),
         ...({
@@ -615,8 +755,29 @@ export async function runLinkedCampaign({
         }[byte & 63] ?? []),
       ]);
       for (const key of held) if (!next.has(key)) await page.keyboard.up(key);
-      for (const key of next) if (!held.has(key)) await page.keyboard.down(key);
+      for (const key of next)
+        if (physical || !held.has(key)) await page.keyboard.down(key);
       held = next;
+      // Mode0 consumes a break flag once, then clears it. Release before
+      // the last intended read; the following source read must be neutral.
+      // This translates authored player controls, never game behavior.
+      if (physical) {
+        const following = ascentInputs[inputIndex + 1] ?? 0;
+        const followingKeys = new Set([
+          ...(following & 64 ? ["Space"] : []),
+          ...({
+            1: ["ArrowUp"],
+            3: ["ArrowRight"],
+            5: ["ArrowDown"],
+            7: ["ArrowLeft"],
+          }[following & 63] ?? []),
+        ]);
+        for (const key of next)
+          if (!followingKeys.has(key)) {
+            await page.keyboard.up(key);
+            held.delete(key);
+          }
+      }
       const before = await state();
       expect(before.scene).toBe("mountain");
       const after = await until(
@@ -718,6 +879,7 @@ export async function runLinkedCampaign({
     });
     expect(errors).toEqual([]);
     await expect(page.locator("#diagnostic")).toBeHidden();
+    routeCompleted = true;
     if (capture)
       throw Error("EXPLORATORY linked campaign saved;not acceptance");
     completed = true;
@@ -755,6 +917,10 @@ export async function runLinkedCampaign({
       JSON.stringify(mountainObservations, null, 2),
     );
     await writeFile(
+      info.outputPath("jungle-input-observations.json"),
+      JSON.stringify(jungleObservations, null, 2),
+    );
+    await writeFile(
       info.outputPath("environment.json"),
       JSON.stringify(
         {
@@ -763,6 +929,8 @@ export async function runLinkedCampaign({
           hard,
           mode: capture ? "exploratory" : "acceptance",
           completed,
+          routeCompleted,
+          physical,
           capturePhase: "before-target-handler",
           observerError,
         },

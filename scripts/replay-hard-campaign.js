@@ -3,6 +3,7 @@ import {
   ordinaryMakeEvent,
   ordinaryScanCodeForKey,
   mapKeyEvent,
+  expeditionKeyEvent,
 } from "../src/game/keyboard-adapter.js";
 // Replay recorded external browser events without an output-guided controller.
 // --diagnose permits an incomplete exploratory capture and a declared100ms tail;
@@ -36,6 +37,17 @@ const [environment, events, checkpoints, timeline] = await Promise.all([
   json("campaign-checkpoints.json"),
   json("timeline.json"),
 ]);
+const through = process.argv.find((a) => a.startsWith("--through="))?.slice(10);
+if (through) {
+  assert.equal(diagnose, true, "Partial campaign replay is diagnostic only");
+  const index = checkpoints.findIndex((c) => c.name === through);
+  assert.ok(index >= 0, "Missing diagnostic checkpoint");
+  events.splice(checkpoints[index].eventCount);
+  checkpoints.splice(index + 1);
+  timeline.observations.splice(index + 1);
+}
+if (environment.physical !== undefined)
+  assert.equal(typeof environment.physical, "boolean");
 assert.equal(typeof environment.hard, "boolean");
 assert.equal(environment.displayMilliseconds, 8);
 if (!diagnose)
@@ -62,9 +74,19 @@ const hash = (v) => createHash("sha256").update(v).digest("hex");
 const negative = process.argv
   .find((a) => a.startsWith("--negative="))
   ?.slice(11);
+if (diagnose)
+  assert.equal(
+    negative,
+    undefined,
+    "Negative controls require a strict contract",
+  );
 if (!diagnose) {
   const contract = JSON.parse(await readFile(contractPath));
   strictContract = contract;
+  assert.equal(
+    environment.physical ?? false,
+    contract.physicalKeyboard ?? false,
+  );
   // Hard campaigns retain their original defaults. An explicitly declared
   // entry milestone may reuse the same independent DOM/environment adapter.
   assert.equal(environment.hard, contract.expectedHard ?? true);
@@ -78,6 +100,7 @@ if (!diagnose) {
       "departure-entry",
       "flight-lightning",
       "hard-expedition-bank",
+      "campaign-progress",
     ].includes(contract.milestone),
     "Unsupported recorded milestone",
   );
@@ -146,7 +169,9 @@ if (!diagnose) {
     );
   assert.equal(environment.capturePhase, "before-target-handler");
 }
-const { game, archives } = await originalGame(),
+const { game, archives } = await originalGame({
+    physicalKeyboard: environment.physical ?? false,
+  }),
   held = new Set();
 let nextFrame = environment.clockOrigin + 8,
   consumed = 0,
@@ -262,11 +287,16 @@ function event(e) {
     if (e.type === "keyup") {
       held.delete(key);
       controls();
-      if (game.scene === "map") send(mapKeyEvent(key, false));
+      if (game.usesExpeditionKeyboard) send(expeditionKeyEvent(key, false));
+      else if (game.scene === "map") send(mapKeyEvent(key, false));
       return;
     }
     held.add(key);
     controls();
+    if (game.usesExpeditionKeyboard) {
+      send(expeditionKeyEvent(key, true));
+      return;
+    }
     if (game.scene === "map") {
       send(mapKeyEvent(key, true));
       return;
@@ -345,7 +375,7 @@ try {
     event(e);
     consumed++;
   }
-  if (diagnose) advance(lastTime + 100); // exploratory tail only, never a fitted acceptance input
+  if (diagnose && !through) advance(lastTime + 100); // exploratory tail only, never a fitted acceptance input
   assert.equal(consumed, events.length);
   assert.equal(checked, checkpoints.length);
   if (!diagnose) assert.equal(held.size, 0, "Unreleased recorded keys");
@@ -357,6 +387,7 @@ try {
         : null;
   const entryMilestone = entryActivity !== null;
   const expeditionBank = strictContract?.milestone === "hard-expedition-bank";
+  const campaignProgress = strictContract?.milestone === "campaign-progress";
   const departureEntry = strictContract?.milestone === "departure-entry";
   const lightningMilestone = strictContract?.milestone === "flight-lightning";
   const treasureActivity =
@@ -368,7 +399,7 @@ try {
   const treasureMilestone = treasureActivity !== null;
   assert.ok(
     game.scene ===
-      (expeditionBank
+      (expeditionBank || campaignProgress
         ? "map"
         : departureEntry
           ? "departure"
@@ -382,7 +413,28 @@ try {
     "Unfinished recorded route",
   );
   if (!diagnose) {
-    if (expeditionBank) {
+    if (campaignProgress) {
+      const s = game.snapshot();
+      assert.deepEqual(
+        {
+          scene: s.scene,
+          day: s.campaign.day,
+          money: s.money,
+          banked: s.campaign.banked,
+          playerCollected: s.campaign.playerCollected,
+          jungle: s.jungle.outcome.code,
+          photography: s.photography.outcome.code,
+          cave: s.cave.outcome.status,
+        },
+        strictContract.expectedOutcome,
+        "Unfinished physical campaign progress",
+      );
+      assert.equal(
+        lastTime,
+        timeline.endAt,
+        "Unfinished physical campaign timeline",
+      );
+    } else if (expeditionBank) {
       assert.ok(["jungle", "mountain"].includes(strictContract.activity));
       assert.equal(
         game[strictContract.activity].outcome.code,
@@ -460,6 +512,7 @@ try {
   console.log(
     JSON.stringify({
       mode: diagnose ? "EXPLORATORY diagnostic" : "recorded-input replay",
+      ...(through ? { diagnosticThrough: through } : {}),
       consumed,
       checked,
       rendered,

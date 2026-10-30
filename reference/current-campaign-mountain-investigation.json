@@ -1,0 +1,94 @@
+{
+  "id": "current-physical-mountain-release-investigation",
+  "scope": "Exploratory startup reconstruction and player controller;not independent native ascent or browser acceptance.",
+  "runtimeCommit": "d36dc952fb8c2d830b1e6466ca467c16bf660bb5",
+  "initialStateRecipe": "Start originalGame with physical keyboard,destination keyboard,BIOS seed0 and audio off. Replay immutable external events from startup through mountain-entry. Compare all28 preceding states. No memory restore,RNG/timer fitting or actor initialization.",
+  "expectedPrefixCheckpointCount": 28,
+  "expectedPrefixEventCount": 4678,
+  "displayMilliseconds": 8,
+  "clockOrigin": 1,
+  "rule": "Mode0 release flags are consumed once then cleared. A player schedule sends each break before the last desired source read,not before the following neutral read. Game mechanics are unchanged.",
+  "legacyComparison": {
+    "browserRoot": ".local/current-campaign-exploration-06",
+    "observations": 39,
+    "fields": [
+      "x",
+      "y",
+      "row",
+      "column",
+      "scroll",
+      "action",
+      "frame",
+      "facing",
+      "lives",
+      "hook",
+      "seed",
+      "frames",
+      "presentations",
+      "tick"
+    ],
+    "differences": 0,
+    "limitation": "Legacy controller764 actions end with one life,without treasure. Browser subsequently loses final life. No completed campaign claim."
+  },
+  "correctedResult": {
+    "actions": 764,
+    "scene": "expedition-result",
+    "outcome": {
+      "code": 1,
+      "money": 5500,
+      "seed": 20501
+    },
+    "browserAcceptance": "pending"
+  },
+  "commands": [
+    "node scripts/explore-current-mountain.js release-before-last",
+    "node scripts/explore-current-mountain.js legacy"
+  ],
+  "artifacts": [
+    {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    {
+      "path": "reference/mountain-ascent.json",
+      "bytes": 10244,
+      "sha256": "a10ac3ca5af03542375141112cd2e5153991ca55c92ff6fd8bdd8b5ce134e4e6"
+    },
+    {
+      "path": "reference/current-campaign-player.json",
+      "bytes": 2724,
+      "sha256": "a71f05282be6136b82ea95170961cfa062357bf3d620e200ab9cd1b0f1563600"
+    },
+    {
+      "path": ".local/current-campaign-mountain-entry-replay-01/environment.json",
+      "bytes": 202,
+      "sha256": "81819418b42e85c8728ef78847c819ca0ebe443bc05dd38694ecee5b8940a5ec"
+    },
+    {
+      "path": ".local/current-campaign-mountain-entry-replay-01/captured-events.json",
+      "bytes": 599732,
+      "sha256": "dc9455860858eaa9d75464c211d6db45ab86e41ecf86e854e8420e59753b2f2e"
+    },
+    {
+      "path": ".local/current-campaign-mountain-entry-replay-01/campaign-checkpoints.json",
+      "bytes": 175351,
+      "sha256": "4edccabd071c937d66ed21b65db3ec6501b087bbf9bf777eeb8133194f04f8eb"
+    },
+    {
+      "path": ".local/current-campaign-mountain-entry-replay-01/timeline.json",
+      "bytes": 2569,
+      "sha256": "1b3315013e9ff7657b4f92c4791c1ee65b0ad7eff9da0f9e8300f00ab9e51485"
+    },
+    {
+      "path": ".local/current-mountain-plans-01/legacy/result.json",
+      "bytes": 455579,
+      "sha256": "3b111b593562b2c14b2c3f1dffe2b05060b05b1b3876b66ee2b150db86d4a281"
+    },
+    {
+      "path": ".local/current-mountain-plans-01/release-before-last/result.json",
+      "bytes": 454370,
+      "sha256": "5b328b9a2694179e0b0e2641389312606ec7fed44cc4f9015fcc0e6cc2dbfa9b"
+    }
+  ]
+}

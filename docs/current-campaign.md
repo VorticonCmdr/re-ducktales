@@ -163,3 +163,9 @@ combined integration gate or a finished whole campaign. The full real-browser co
 local source archive in`.local/current-campaign-continuation-07/`. It completes
 the four-family winning route;the independent replay is recorded separately in
 `.local/current-physical-campaign-browser-01/`.
+
+The [clean full-route receipt](../reference/current-physical-campaign-integration.json)
+records `npm run verify:current-campaign` exiting0 from commit`42ff402`,including
+177 unit cases,one complete browser route,restart,five negative controls and
+build,with zero skips. All828 protected artifacts remain unchanged. This is
+separate from the earlier individual-command three-family receipt.

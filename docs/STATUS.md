@@ -29,13 +29,17 @@ cave and mountain treasure, earns Safari photo money, handles rival reports and
 banking, then wins on day31 with$14,550 banked against$12,500. Mountain recovery
 retains all three lives. Restart returns to a fresh game.
 
-Independent recorded-input replay matches35 full states from4,981 external
-events and renders1,470 flight presentations without errors. A separate actual
-browser run matches every checkpoint's full state and320x200 pixels, consumes the
-complete DOM event sequence and passes restart. Full original/native campaign
-parity, Hard campaigns and arbitrary-route finishability are still unproven.
-The broader `npm run verify` remains red at older source receipts.
-[Scenario and verification command](../reference/current-physical-campaign.json),
+The clean `npm run verify:current-campaign` gate passed on commit`42ff402`:
+177 unit cases,one complete actual-browser route,restart,five negative controls
+and the production build,with zero skips. Independent replay matches35 full
+states from4,981 events and renders1,470 flight presentations. Browser replay
+matches every checkpoint's state and320x200 pixels. All828 protected historical
+artifacts remain unchanged. The source archive and results are pinned by the
+[clean focused receipt](../reference/current-physical-campaign-integration.json).
+
+Full original/native campaign parity,Hard campaigns and arbitrary-route
+finishability remain unproven. The broader `npm run verify` remains red at older
+source receipts. [Scenario](../reference/current-physical-campaign.json),
 [current evidence and limits](current-campaign.md).
 
 This work changes player controllers and verification, not game mechanics. The

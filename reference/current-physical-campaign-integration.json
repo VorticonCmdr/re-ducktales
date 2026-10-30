@@ -1,0 +1,132 @@
+{
+  "id": "current-physical-easy-complete-clean-integration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "42ff402953ab36ea44108408fc0bb0fef4906eba",
+  "sourceFileCount": 701,
+  "verificationCommand": "npm run verify:current-campaign",
+  "verificationExitCode": 0,
+  "unitCases": 177,
+  "unitFailures": 0,
+  "unitSkipped": 0,
+  "browserCases": 1,
+  "browserSkipped": 0,
+  "headlessNegativeControls": 2,
+  "fixtureNegativeControls": 2,
+  "browserNegativeControls": 1,
+  "requiredEvents": 4981,
+  "fullStateCheckpoints": 35,
+  "browserPixelCheckpoints": 35,
+  "flightPresentations": 1470,
+  "originalFileIdentities": 22,
+  "protectedArtifactCount": 828,
+  "historicalArtifactsPreserved": true,
+  "producerCommit": "cfcf193ccbefc9ba71388f85ee35896be72b046a",
+  "producerScope": "Clean source archive;actual browser controls reconstruct all preceding input events and continue through all four families. Raw capture deliberately exits1 as exploratory. Separate independent browser replay exits0.",
+  "scenario": "reference/current-physical-campaign.json",
+  "expectedEnding": {
+    "phase": "cover",
+    "won": true,
+    "banked": 14550,
+    "rivalBanked": 12500,
+    "day": 31,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 36,
+    "result": null,
+    "ready": true
+  },
+  "environment": {
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "limitations": [
+    "Current port Easy four-family route,not independent native whole-campaign parity.",
+    "Hard and arbitrary routes,remaining original CPU/device timing and broader historical source receipts remain open.",
+    "No deployment or publication."
+  ],
+  "artifacts": {
+    "runner.py": {
+      "path": ".local/current-campaign-integration-01/runner.py",
+      "bytes": 2552,
+      "sha256": "93c7ddd8fe852abe171924a6cdf0a6671b02eb5ee450b8e0ca835ce562607aa4"
+    },
+    "runner-status.json": {
+      "path": ".local/current-campaign-integration-01/runner-status.json",
+      "bytes": 107744,
+      "sha256": "89d85f00fbe302e040200e2a3434317306478bff2fbb51a5f10a2ae96e5c3b23"
+    },
+    "source-revision.json": {
+      "path": ".local/current-campaign-integration-01/source-revision.json",
+      "bytes": 76193,
+      "sha256": "bdab271e7ab9dbf4abdbece59ca4cbbaf4510da95d9c3a6050dfe7a5f667edef"
+    },
+    "sources.zip": {
+      "path": ".local/current-campaign-integration-01/sources.zip",
+      "bytes": 1866800,
+      "sha256": "f5868386bdfa66cb212ebdf912ba6dab0ea8a2a78cf5b97cd3d76a3b403519d0"
+    },
+    "verification.log": {
+      "path": ".local/current-campaign-integration-01/verification.log",
+      "bytes": 20954,
+      "sha256": "3261e26bbdd9c0cdb5a6e91b5ca5d075c4fe53a0ebce5c19aa28a050796c2d15"
+    },
+    "browser/campaign-checkpoints.json": {
+      "path": ".local/current-physical-campaign-browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 236190,
+      "sha256": "ba7e96a89f6401db8170e2c0e7df8764c916a246464cb77386f113c8964fe913"
+    },
+    "browser/replay-progress.json": {
+      "path": ".local/current-physical-campaign-browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 7733,
+      "sha256": "695b801cebf35961447f363ed52c714f6bd8505181ae779f2571f6912a6b4244"
+    },
+    "browser/actual-events.json": {
+      "path": ".local/current-physical-campaign-browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 456062,
+      "sha256": "044a47cba974784d51ef292b5e0de6414967a36ac08193b1d0b751f578c0673f"
+    },
+    "browser/status.json": {
+      "path": ".local/current-physical-campaign-browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "fixture-negatives-dGHrzJ/missing-source-archive.log": {
+      "path": ".local/current-campaign-verification/fixture-negatives-dGHrzJ/missing-source-archive.log",
+      "bytes": 571,
+      "sha256": "e5cfc738a0a061122a99cebde31a84f3413697a497eb5af2377bab954ff816a5"
+    },
+    "fixture-negatives-dGHrzJ/corrupt-ending-picture.log": {
+      "path": ".local/current-campaign-verification/fixture-negatives-dGHrzJ/corrupt-ending-picture.log",
+      "bytes": 687,
+      "sha256": "de820145861417635cddcf19202f2a4cff5db0979fc2a698da1869d74a858538"
+    },
+    "run-nifTdX/alter-ending.log": {
+      "path": ".local/current-campaign-verification/run-nifTdX/alter-ending.log",
+      "bytes": 957,
+      "sha256": "34c3e1ef4b7cebedef10b6c62041c7ede78c5cad137ea71392c7317b4260b848"
+    },
+    "run-nifTdX/positive.log": {
+      "path": ".local/current-campaign-verification/run-nifTdX/positive.log",
+      "bytes": 4344,
+      "sha256": "40169b0cf61f49a794c136b9cb3be28a26d9026157dcb0483bb8b783833e3af3"
+    },
+    "run-nifTdX/extend-timeline.log": {
+      "path": ".local/current-campaign-verification/run-nifTdX/extend-timeline.log",
+      "bytes": 424,
+      "sha256": "9a0ff8c5f6dab38cdf52c44ad40d670e3040dd73d627c890a4022414f43ae929"
+    },
+    "browser-negative-SHYtvj/runner.log": {
+      "path": ".local/current-campaign-verification/browser-negative-SHYtvj/runner.log",
+      "bytes": 1878,
+      "sha256": "80275a52501d51d69095e95378ee86a8e312a69d09ec852feb767a705545235c"
+    }
+  }
+}

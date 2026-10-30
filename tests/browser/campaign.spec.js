@@ -256,11 +256,25 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   // network/host latency chooses the clock origin before the first input.
   await expect(page.locator("#actions")).toBeVisible();
   const c = page.locator("#game");
+  const began = Date.now();
   async function until(predicate, max = 10000) {
     for (let i = 0; i < max; i++) {
       const s = await state(c);
       if (s?.diagnostic) throw Error(s.diagnostic);
       if (s && predicate(s)) return s;
+      if (i === 1000)
+        console.info("Long cave browser wait", {
+          wallMilliseconds: Date.now() - began,
+          scene: s.scene,
+          cave: s.cave && {
+            phase: s.cave.phase,
+            room: s.cave.room,
+            goal: s.cave.goal,
+            torch: s.cave.torch,
+            reads: s.cave.inputReads,
+          },
+          keys: s.expeditionKeys,
+        });
       // Observe at the supplied8ms display cadence; shorter polls cannot
       // expose another rendered state. Simulation remains at its own70Hz.
       await page.clock.runFor(8);
@@ -276,12 +290,26 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   async function move(key, target) {
     await until((s) => s.scene !== "cave" || s.cave.phase === "exploring");
     expect((await state(c)).scene).toBe("cave");
+    const torch = (await state(c)).cave.torch;
     await page.keyboard.down(key);
     await page.keyboard.down("Space");
     await until((s) => s.scene !== "cave" || s.cave.room === target);
     await page.keyboard.up("Space");
     await page.keyboard.up(key);
     expect((await state(c)).cave.room).toBe(target);
+    await enteredRoom(torch);
+  }
+  async function enteredRoom(previousTorch) {
+    // The room index changes before the next entry coroutine starts. Its
+    // previous "exploring" phase can still be published at that boundary.
+    // Entry advances the lamp counter, animates, then flushes ordinary keys.
+    // Wait for that actual entry before supplying the next make/break pair.
+    await until(
+      (s) =>
+        s.scene !== "cave" ||
+        s.cave.phase === "treasure" ||
+        (s.cave.torch > previousTorch && s.cave.phase === "exploring"),
+    );
   }
   await until((s) => s.scene === "title");
   expect(
@@ -303,8 +331,10 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   await until((s) => s.campaign.choice === 1 && s.campaign.destination?.ready);
   await press("Space");
   await until((s) => s.scene === "departure");
-  await page.keyboard.down("Space");
+  // Launchpad's program now calls the overlay automatically. Begin a fresh
+  // throttle make after its final source flush and handoff.
   await until((s) => s.scene === "flight");
+  await page.keyboard.down("Space");
   let lastFrame = -1,
     heldDirection = null,
     steps = 0,
@@ -462,12 +492,21 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
       if (route?.length) break;
     }
     expect(route?.length, "safe path to the treasure").toBeGreaterThan(0);
+    console.info("Cave browser move", {
+      wallMilliseconds: Date.now() - began,
+      room,
+      goal,
+      torch: now.cave.torch,
+      key: route[0],
+      routeLength: route.length,
+    });
     await page.keyboard.down(route[0]);
     await page.keyboard.down("Space");
     await until((s) => s.scene !== "cave" || s.cave.room !== room);
     await page.keyboard.up("Space");
     await page.keyboard.up(route[0]);
     expect((await state(c)).diagnostic).toBeNull();
+    await enteredRoom(now.cave.torch);
   }
   expect(moves).toBeLessThan(64);
   await until((s) => s.scene === "expedition-result");

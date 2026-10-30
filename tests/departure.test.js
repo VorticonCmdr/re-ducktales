@@ -20,6 +20,7 @@ const input = {
   seed: 0xa2fd,
 };
 const locations = parseLocations(parseArchive(readFileSync("game/LOC.ARC")));
+const departureEntries = parseArchive(readFileSync("game/MAIN.ARC"));
 test("read-only executable assets match independently unpacked original image", () => {
   const original = readFileSync("game/DUCKTALE.EXE"),
     saved = Buffer.from(original);
@@ -57,7 +58,7 @@ test("departure consumes two original RNG draws and retains exact flight contrac
   assert.throws(() => new Departure({ ...input, difficulty: 3 }), /difficulty/);
 });
 test("inspection and cancellation do not consume RNG; confirming preserves cash/day and clears coin latch", () => {
-  const g = new Game({ locations });
+  const g = new Game({ locations, departureEntries });
   g.input({ type: "fire" });
   g.input({ type: "fire" });
   g.input({ type: "map" });
@@ -80,8 +81,15 @@ test("inspection and cancellation do not consume RNG; confirming preserves cash/
   assert.equal(g.campaign.location, 35);
   assert.equal(g.money, 0);
   const prepared = g.snapshot();
-  assert.throws(() => g.input({ type: "fire" }), /Flight resources not loaded/);
+  g.input({ type: "fire" }); // No source reader exists in the briefing.
+  assert.equal(g.scene, "departure");
   assert.deepEqual(g.snapshot(), prepared);
+  assert.throws(() => {
+    for (let i = 0; i < 200; i++) {
+      g.advanceTick();
+      g.advanceRetrace();
+    }
+  }, /Flight resources not loaded/);
   g.input({ type: "restart" });
   assert.equal(g.departure, null);
   assert.equal(g.seed, seed);
@@ -105,7 +113,7 @@ test("strict difficulty thresholds use the second draw and suppress already-coll
   }
 });
 test("an earned coin is retained as cash while confirming an expedition resets its latch", () => {
-  const g = new Game({ locations });
+  const g = new Game({ locations, departureEntries });
   g.input({ type: "fire" });
   g.input({ type: "fire" });
   g.input({ type: "money-bin" });

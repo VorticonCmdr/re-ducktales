@@ -1,3 +1,4 @@
+import { DepartureScene } from "./departure-scene.js";
 import { DestinationLoop } from "./destination-loop.js";
 import { Opening } from "./opening.js";
 import { OfficeMoneyBin } from "./office.js";
@@ -39,6 +40,7 @@ export class Game {
     investmentResources = null,
     bankResources = null,
     openingResources = null,
+    departureEntries = null,
     originalSecurity = false,
     expeditionInput = "digital",
     // Component fixtures supply already-decoded read boundaries. Production
@@ -59,6 +61,11 @@ export class Game {
     this.lastExpeditionKeyByte = null;
     this.originalSecurity = originalSecurity;
     this.openingResources = openingResources;
+    this.departureEntries =
+      departureEntries ??
+      openingResources?.entries ??
+      expeditionResources?.mainEntries ??
+      null;
     this.opening = null;
     this.difficultyMenu = null;
     this.officeDeparture = null;
@@ -116,6 +123,7 @@ export class Game {
     this.tick = 0;
     this.bin = null;
     this.departure = null;
+    this.departureScene = null;
     this.effects = [];
     this.diagnostic = null;
     this.titleMusicRequested = false;
@@ -130,33 +138,43 @@ export class Game {
     this.jungle?.setClock(clock);
     this.cave?.setClock(clock);
     this.photography?.setClock(clock);
+    this.departureScene?.setClock(clock);
   }
   nextSimulationWake() {
     const component =
-      this.scene === "cave"
-        ? this.cave
-        : this.scene === "photography"
-          ? this.photography
-          : this.scene === "map" && this.destinationInput === "keyboard"
-            ? this.campaign?.destinationWaits
-            : null;
-    return !this.systemOverlay && component?.wait?.clock === "graphics"
+      this.scene === "departure"
+        ? this.departureScene
+        : this.scene === "cave"
+          ? this.cave
+          : this.scene === "photography"
+            ? this.photography
+            : this.scene === "map" && this.destinationInput === "keyboard"
+              ? this.campaign?.destinationWaits
+              : null;
+    return !this.systemOverlay &&
+      ["graphics", "continuation"].includes(component?.wait?.clock)
       ? component.wait.until
       : null;
   }
   advanceSimulationWake() {
     const component =
-      this.scene === "cave"
-        ? this.cave
-        : this.scene === "photography"
-          ? this.photography
-          : this.scene === "map" && this.destinationInput === "keyboard"
-            ? this.campaign?.destinationWaits
-            : null;
-    if (this.systemOverlay || component?.wait?.clock !== "graphics")
+      this.scene === "departure"
+        ? this.departureScene
+        : this.scene === "cave"
+          ? this.cave
+          : this.scene === "photography"
+            ? this.photography
+            : this.scene === "map" && this.destinationInput === "keyboard"
+              ? this.campaign?.destinationWaits
+              : null;
+    if (
+      this.systemOverlay ||
+      !["graphics", "continuation"].includes(component?.wait?.clock)
+    )
       throw Error("Unexpected simulation work boundary");
     component.advanceGraphics();
-    if (this.scene === "cave") this.collectCave();
+    if (this.scene === "departure") this.collectDeparture();
+    else if (this.scene === "cave") this.collectCave();
     else if (this.scene === "photography") this.collectPhotography();
     else this.collectDestination();
   }
@@ -574,6 +592,7 @@ export class Game {
         ...(this.officeMenu ? ["office"] : []),
         ...(this.difficultyMenu ? ["difficulty"] : []),
         "flight",
+        "departure",
         "cave",
         "mountain",
         "jungle",
@@ -601,7 +620,7 @@ export class Game {
               ? this.pendingOfficeSystemKeys
               : this.scene === "difficulty"
                 ? this.pendingDifficultySystemKeys
-                : this.scene === "flight"
+                : ["flight", "departure"].includes(this.scene)
                   ? this.pendingFlightSystemKeys
                   : this.scene === "cave"
                     ? this.pendingCaveSystemKeys
@@ -674,6 +693,7 @@ export class Game {
       this.tick = 0;
       this.bin = null;
       this.departure = null;
+      this.departureScene = null;
       this.flight = null;
       this.flightMemory = null;
       this.cave = null;
@@ -978,28 +998,9 @@ export class Game {
         );
       return;
     }
-    if (this.scene === "departure") {
-      if (event.type === "fire") {
-        if (!this.flightResources) throw Error("Flight resources not loaded");
-        this.keyboardMode = 0; // Flight entry clears ordinary-reader mode.
-        this.flight = new Flight(
-          {
-            ...this.flightResources,
-            ...this.departure.flightRequest,
-            difficulty: this.difficulty,
-            seed: this.seed,
-            day: this.campaign.day,
-            money: this.money,
-            pollInput: () => this.pollFlightSystemInput(),
-            flushInput: () => this.flushFlightInput(),
-          },
-          this.flightMemory,
-        );
-        this.flight.setControls(this.controls);
-        this.scene = "flight";
-      }
-      return;
-    }
+    // Main06d9..084d contains no input reader. Departure progresses on its
+    // source graphics/retrace boundaries; Fire cannot create an early call.
+    if (this.scene === "departure") return;
     if (this.scene === "flight") {
       if (event.type === "fire") this.flight.requestFire();
       return;
@@ -1062,6 +1063,7 @@ export class Game {
       if (days === 0) {
         this.flight = null;
         this.departure = null;
+        this.departureScene = null;
         this.effects.push({ type: "stopAudio" });
         this.arrive(target, destination.flags);
         return;
@@ -1069,6 +1071,7 @@ export class Game {
       if (c.aircraft === "atomic") {
         if (!c.atomicAvailable) throw Error("Atomic transport is not unlocked");
         this.departure = null;
+        this.departureScene = null;
         this.flight = null;
         this.atomicTransport = new AtomicTransport({
           from: c.location,
@@ -1094,8 +1097,21 @@ export class Game {
         rivalCollected: !!c.locations[target].rivalCollected,
       });
       this.departure = departure;
-      this.seed = departure.seed;
-      c.seed = this.seed;
+      this.departureScene = new DepartureScene({
+        prepared: departure,
+        entries: this.departureEntries,
+        clock: this.simulationClock,
+        onSeed: (seed) => {
+          this.seed = c.seed = seed;
+        },
+        flushInput: () => this.flushDepartureInput(),
+        registerRace: ({ from, target }) => {
+          c.rival.location = from;
+          const memory = this.flightMemory ?? this.marketMemory;
+          memory?.b(0x581, from);
+          memory?.b(0x358e, target);
+        },
+      });
       this.rareCoinTaken = false;
       c.direction = null;
       this.scene = "departure";
@@ -1114,6 +1130,37 @@ export class Game {
       this.startOffice();
       c.info = false;
     }
+  }
+  collectDeparture() {
+    const scene = this.departureScene;
+    if (!scene?.outcome) return;
+    this.startDepartureFlight();
+  }
+  startDepartureFlight() {
+    if (this.scene !== "departure" || !this.departureScene?.outcome)
+      throw Error("Unexpected departure continuation");
+    if (!this.flightResources) throw Error("Flight resources not loaded");
+    this.keyboardMode = 0; // Flight entry clears ordinary-reader mode.
+    this.flight = new Flight(
+      {
+        ...this.flightResources,
+        ...this.departure.flightRequest,
+        difficulty: this.difficulty,
+        seed: this.seed,
+        day: this.campaign.day,
+        money: this.money,
+        pollInput: () => this.pollFlightSystemInput(),
+        flushInput: () => this.flushFlightInput(),
+      },
+      this.flightMemory,
+    );
+    this.flight.setControls(this.controls);
+    this.scene = "flight";
+  }
+  flushDepartureInput() {
+    this.pendingFlightSystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
   }
   advanceTick() {
     this.advanceDriverTick();
@@ -1154,6 +1201,11 @@ export class Game {
     if (this.scene === "security") {
       this.security.advanceTick();
       this.collectSecurity();
+      return;
+    }
+    if (this.scene === "departure") {
+      this.departureScene.advanceTick();
+      this.collectDeparture();
       return;
     }
     if (this.scene === "office-departure") {
@@ -1304,6 +1356,11 @@ export class Game {
     if (this.scene === "security") {
       this.security.advanceRetrace();
       this.collectSecurity();
+      return;
+    }
+    if (this.scene === "departure") {
+      this.departureScene.advanceRetrace();
+      this.collectDeparture();
       return;
     }
     if (this.scene === "office-departure") {
@@ -2119,6 +2176,9 @@ export class Game {
         : {}),
       campaign: this.campaign?.snapshot() ?? null,
       departure: this.departure?.snapshot() ?? null,
+      ...(this.scene === "departure" && this.departureScene
+        ? { departureScene: this.departureScene.snapshot() }
+        : {}),
       flight: this.flight
         ? {
             ...this.flight.snapshot(),

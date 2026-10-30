@@ -455,6 +455,7 @@ function frame() {
         $(id).disabled =
           !!overlay ||
           game.security?.outcome?.code === 0 ||
+          game.scene === "departure" ||
           !!(
             game.scene === "map" &&
             game.campaign.destinationWaits &&
@@ -536,7 +537,7 @@ function frame() {
                         : game.scene === "atomic-transport"
                           ? `Atomic transport · ${game.atomicTransport.phase === "report" ? "Misdirected to " + game.campaign.locations[game.atomicTransport.target].name + " · Fire to continue" : "Transporting"} · Day ${game.campaign.day}`
                           : game.scene === "departure"
-                            ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · Fire to fly`
+                            ? `Departure confirmed · ${game.campaign.locations[game.departure.target].name} · ${game.departure.days} travel day(s) · Preparing flight…`
                             : game.scene === "cave"
                               ? `Cave · ${game.cave.phase === "exploring" ? "Hold an arrow to point; press Space to move" : game.cave.phase} · Lamp ${game.cave.snapshot().torch}/${game.cave.snapshot().limit} · Cash $${game.cave.snapshot().money}`
                               : game.scene === "expedition-result"

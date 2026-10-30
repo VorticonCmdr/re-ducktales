@@ -21,12 +21,13 @@ current location, and campaign day are preserved. The rare-coin latch resets.
 
 The complete seed-0 initialization now produces briefing variant0 and race
 roll61; only Hard difficulty races. The preparation state contains destination, activity family, full location
-flags, travel duration, updated RNG seed, race flag, and rival route. Fire after
-the briefing starts the translated flight with original assets and controls. Restart resets the campaign and departure state.
+flags, travel duration, updated RNG seed, race flag, and rival route. The briefing
+now starts the translated flight automatically after its source wipe/reveal.
+Restart resets the campaign and departure state.
 
-The pause at this boundary is explicit: the original immediately enters its
-flight overlay while the speech remains visible during resource loading. The
-port lets the user inspect this briefing before requesting the next activity.
+The earlier manual pause at this boundary has been removed. The source sequence,
+RNG commit sites, input flush and remaining timing omissions are documented in
+[Automatic Launchpad departure](departure-sequence.md).
 The flight determines its own outcome. A cave arrival now reaches the original
 guide, cave gameplay and result screens returning to the map. A confirmed
 journey cannot be cancelled during flight; Restart is available.

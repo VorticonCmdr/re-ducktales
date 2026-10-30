@@ -21,7 +21,24 @@ Tandy/PCjr includes Sound 001, persistent channels, priorities, engine words, mu
 and completion; all 121 public requests have viewer playback. Speaker playback
 is the default. Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 
-## Current destination milestone
+## Current departure work
+
+Launchpad's briefing now runs automatically through the original page wipe,
+portrait copy, input flush, speech reveal, two RNG commit sites and flight call.
+The manual Fire gate has been removed. Source comparison passes181 instructions /
+463 bytes,50 required retraces,two native RNG/call checkpoints and exact final
+portrait pixels. All167 unit cases pass. The full browser integration is still
+being verified; this paragraph does not claim a completed milestone.
+[Evidence and limitations](departure-sequence.md). The focused command is
+`npm run verify:departure-sequence`.
+
+Flight's held-control provider still needs its ordinary keyboard translation.
+Loading, speech drawing, striped writes and other remaining CPU/device costs
+are not included in the departure budget. Whole-original elapsed timing is
+unverified. The cave browser controller now waits for actual room entry and its
+source flush before issuing the next move; a changed room index alone is early.
+
+## Earlier verified destination milestone
 
 Destination selection now repeats its original flush/footer/read/flip/wait loop
 without waiting for external makes. Physical events update flags; the shared
@@ -143,6 +160,7 @@ MZ/EXEPACK, x86 LE16 real mode, overlays, no extender. Actual relocated game byt
 and native addresses were checked; the analysis image is never executed.
 
 ```sh
+npm run verify:departure-sequence
 npm run verify:destination-loop
 npm run verify:expedition-keyboard
 npm run verify:jungle-core

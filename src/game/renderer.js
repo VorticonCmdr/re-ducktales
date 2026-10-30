@@ -458,6 +458,38 @@ export class Renderer {
         );
       return;
     }
+    if (
+      game.scene === "departure" &&
+      game.departureScene &&
+      this.departureSource !== game.departureScene
+    ) {
+      this.departureSource = game.departureScene;
+      this.departureIncoming = this.ctx.getImageData(0, 0, 320, 200).data;
+      this.departureTarget = renderFlightPixels(
+        [
+          {
+            op: "copy",
+            asset: 30,
+            x: 0,
+            y: 0,
+            sourceX: 0,
+            sourceY: 0,
+            width: 320,
+            height: 200,
+          },
+          ...game.departure.speechOffsets.map((at, i) => ({
+            op: "text",
+            text: executableText(this.resources.executable, at),
+            x: 168,
+            y: 60 + i * 16,
+            color: 15,
+          })),
+        ],
+        this.resources.archives.get("MAIN.ARC"),
+        this.font,
+        "MAIN.ARC",
+      );
+    }
     this.ctx.fillStyle = "#000";
     this.ctx.fillRect(0, 0, 320, 200);
     if (game.scene === "title") {
@@ -618,6 +650,24 @@ export class Renderer {
       return;
     }
     if (game.scene === "departure") {
+      const scene = game.departureScene;
+      if (scene) {
+        const transition =
+          scene.phase === "copying-portrait"
+            ? { kind: "wipe", band: 4 }
+            : scene.transition;
+        const pixels = transition
+          ? endingTransitionPixels(
+              transition,
+              this.departureIncoming,
+              this.departureTarget,
+            )
+          : scene.phase === "clearing-page"
+            ? this.departureIncoming
+            : this.departureTarget;
+        this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
+        return;
+      }
       this.draw("MAIN.ARC", 30, 0, 0, 0);
       game.departure.speechOffsets.forEach((offset, i) =>
         this.text(

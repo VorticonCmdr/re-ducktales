@@ -20,6 +20,7 @@ import {
 } from "../src/game/campaign.js";
 import { Game } from "../src/game/application.js";
 const locations = parseLocations(parseArchive(readFileSync("game/LOC.ARC")));
+const departureEntries = parseArchive(readFileSync("game/MAIN.ARC"));
 test("original random treasure probing reserves future fixed IDs and skips37 on wrap", () => {
   const synthetic = Array.from({ length: 35 }, (_, i) => ({
     treasure: i === 0 || i === 2 ? 0 : i === 1 ? 36 : i === 3 ? 1 : i - 1,
@@ -96,7 +97,7 @@ test("original location permutation and wrapped integer journey costs", () => {
   );
 });
 test("cash deposit, coin reset, cancellation and return retain closed-loop state", () => {
-  const g = new Game({ bankResources, locations });
+  const g = new Game({ bankResources, locations, departureEntries });
   g.input({ type: "fire" });
   g.input({ type: "fire" });
   g.input({ type: "money-bin" });
@@ -131,7 +132,7 @@ test("cash deposit, coin reset, cancellation and return retain closed-loop state
 });
 test("invalid resources and unsupported journeys fail explicitly", () => {
   assert.throws(() => parseLocations([]), /35/);
-  const g = new Game({ bankResources, locations });
+  const g = new Game({ bankResources, locations, departureEntries });
   g.input({ type: "fire" });
   g.input({ type: "fire" });
   g.input({ type: "map" });
@@ -142,7 +143,14 @@ test("invalid resources and unsupported journeys fail explicitly", () => {
   destinationReady(g);
   confirmDestination(g);
   assert.equal(g.scene, "departure");
-  assert.throws(() => g.input({ type: "fire" }), /Flight resources not loaded/);
+  g.input({ type: "fire" }); // No source reader exists in the briefing.
+  assert.equal(g.scene, "departure");
+  assert.throws(() => {
+    for (let i = 0; i < 200; i++) {
+      g.advanceTick();
+      g.advanceRetrace();
+    }
+  }, /Flight resources not loaded/);
   assert.equal(g.campaign.day, 1);
   g.campaign.day = 28;
   g.travel(0);

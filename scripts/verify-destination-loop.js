@@ -17,7 +17,49 @@ const checked = async (p, h) => {
   assert.equal(sha(b), h, "Changed evidence " + p);
   return b;
 };
-const manifest = JSON.parse(await readFile("reference/destination-loop.json"));
+const manifestPath =
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+  "reference/destination-loop.json";
+const manifest = JSON.parse(await readFile(manifestPath));
+if (manifestPath !== "reference/destination-loop.json") {
+  const refresh = manifest.runtimeRefresh;
+  assert.equal(refresh?.parent.path, "reference/destination-loop.json");
+  assert.equal(refresh.expectedValuesChanged, false);
+  const prior = JSON.parse(
+    await checked(refresh.parent.path, refresh.parent.sha256),
+  );
+  const { sources: oldSources, ...oldContract } = prior;
+  const { sources: newSources, runtimeRefresh, ...newContract } = manifest;
+  function exactContract(contract) {
+    assert.deepEqual(
+      contract,
+      oldContract,
+      "Changed historical destination expectation",
+    );
+  }
+  exactContract(newContract);
+  const missingRead = structuredClone(newContract);
+  missingRead.expectedReads--;
+  assert.throws(
+    () => exactContract(missingRead),
+    /Changed historical destination expectation/,
+  );
+  const changedRules = structuredClone(newContract);
+  changedRules.comparisonRules = "relaxed";
+  assert.throws(
+    () => exactContract(changedRules),
+    /Changed historical destination expectation/,
+  );
+  assert.deepEqual(Object.keys(newSources), Object.keys(oldSources));
+  await checked("scripts/verify-destination-loop.js", refresh.verifierSha256);
+  assert.deepEqual(Object.keys(refresh.additionalSources), [
+    "src/game/departure-scene.js",
+    "src/game/departure-work.js",
+    "src/game/renderer.js",
+  ]);
+  for (const [p, h] of Object.entries(refresh.additionalSources))
+    await checked(p, h);
+}
 assert.equal(manifest.expectedReads, 16);
 assert.equal(manifest.expectedFlagCheckpoints, 48);
 assert.equal(manifest.expectedNativeWorkCases, 16);

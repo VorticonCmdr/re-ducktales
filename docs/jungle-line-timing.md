@@ -72,3 +72,12 @@ artifacts unchanged after the run. The walking stage supplies twenty independent
 exclude only the two clocks that the original intentionally keeps advancing.
 The direct helper failure, earlier overbroad pause assertion, and interrupted
 exploratory attempt remain separate from acceptance evidence.
+
+The clean focused gate passed at`39f3b80`:752 archived source files,180 unit
+cases,1,616 component inputs,1,714 ordered images,40 gameplay/timing checkpoints,
+17 component controls, the actual browser walking/Pause/Quit scenario, its
+deadline control and production build. The versioned receipt is
+`reference/jungle-line-integration.json`; run
+`node scripts/verify-jungle-line-receipt.js` to check exact saved evidence and
+current relevant source identities. This does not replace the still-required
+fresh complete-campaign comparison.

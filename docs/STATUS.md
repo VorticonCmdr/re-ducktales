@@ -121,11 +121,13 @@ unit checks, build, browser pause/quit controls and actual drawing-deadline
 negative control pass. New longer component contracts are being declared and
 independently verified. Both long component scenarios now pass:1,616 inputs,
 1,714 ordered images,40 gameplay/timer checkpoints and17 negative controls.
-Browser walking after Pause/cancelled Quit also passes. The clean focused gate
-is the remaining integration check.
+Browser walking after Pause/cancelled Quit also passes.
+**`node scripts/verify-jungle-lines.js` passes from clean commit`39f3b80`.**
+The752-file archive, component/browsing results and negative controls are pinned
+by the[focused receipt](../reference/jungle-line-integration.json).
 [Integration and limits](jungle-line-timing.md). Keep Hard deferred.
-Next finish new carried timer traces and real browser controls, then a fresh
-full campaign comparison. Resident/color,
+Next run a fresh full campaign comparison with the changed timing.
+Resident/color,
 text and remaining CPU/device work still need evidence. The existing native
 menu comparison confirms that makes arriving before its flush can be discarded;
 do not replace that original behavior with invented typematic or retries.
@@ -146,6 +148,7 @@ node scripts/verify-runtime-campaign.js --fresh-browser
 npm run verify:speaker-game
 node scripts/verify-ega-lines.js
 node scripts/verify-jungle-lines.js
+node scripts/verify-jungle-line-receipt.js
 node scripts/inspect-jungle-line-work.js
 node scripts/verify-speaker-playback-receipt.js
 npm run verify:cave-reveal

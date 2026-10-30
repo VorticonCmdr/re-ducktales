@@ -1,8 +1,9 @@
 # Original line drawing work
 
-This work recovers a missing expedition timing cost. It does **not** yet change
-browser scheduling or prove that game movement speed is correct. The counted
-model is `scripts/lib/ega-line-work.js`; runtime integration is the next step.
+This work recovers a missing expedition timing cost. The counted model has
+moved to `src/game/ega-line-work.js` and is connected to jungle redraws.
+[Runtime integration and its separate acceptance](jungle-line-timing.md).
+It does not prove that complete game movement speed is correct.
 No fixed slowdown or output-fitted delay has been introduced.
 
 Only the22-file executable/resource pairing in `reference/build.json` is used.
@@ -96,7 +97,6 @@ as `jungleAnalysis`, not used as a replay input or an original timing golden.
 Resident dispatch/color changes, text, remaining game/IRQ/device execution and
 normal-core I/O slice clamping remain outside these primitive counts.
 
-Next:charge original line calls at their source boundaries, preserve the
-historical component expectations, and compare new closed-loop timer traces and
-actual browser controls. Only then claim a movement-timing change. The existing
-current Easy campaign and audio sources are unchanged by this analysis work.
+Next:finish the new closed-loop timer and browser comparisons, preserving all
+historical expectations. The earlier complete Easy campaign receipt predates
+this runtime timing change and is not current-source acceptance.

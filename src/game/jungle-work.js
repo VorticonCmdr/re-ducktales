@@ -1,5 +1,6 @@
 import { JUNGLE_SPRITES } from "./jungle-scene.js";
 import { egaSpriteWork, egaCopyWork } from "./ega-work.js";
+import { egaLinePrimitiveWork } from "./ega-line-work.js";
 
 // Observe actual source drawing calls, before a renderer consumes them. This
 // does not count Canvas reconstruction, alter commands, or read expected output.
@@ -17,6 +18,9 @@ export function jungleWorkEffects(m, resources, sink) {
     repeatIterations: 0,
     sprites: 0,
     copies: 0,
+    lines: 0,
+    lineInstructions: 0,
+    linePortWrites: 0,
     omittedLines: 0,
     omittedTexts: 0,
     rowCrossingCopies: 0,
@@ -86,7 +90,11 @@ export function jungleWorkEffects(m, resources, sink) {
       sink.copy(command);
     },
     line(command) {
-      work.omittedLines++;
+      const cost = egaLinePrimitiveWork(command, m.b(0x2046));
+      add(cost);
+      work.lines++;
+      work.lineInstructions += cost.instructions;
+      work.linePortWrites += cost.portWrites;
       sink.line(command);
     },
     text(command) {

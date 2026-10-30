@@ -7,9 +7,14 @@ import { originalGame } from "../tests/helpers/original-game.js";
 import {
   egaDriverLineWork,
   egaLinePrimitiveWork,
-} from "./lib/ega-line-work.js";
+} from "../src/game/ega-line-work.js";
 const sha = (b) => createHash("sha256").update(b).digest("hex");
-const m = JSON.parse(await readFile("reference/ega-line-work.json"));
+const m = JSON.parse(
+  await readFile(
+    process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+      "reference/ega-line-runtime-work.json",
+  ),
+);
 assert.equal(m.expectedCases, 32);
 assert.equal(m.expectedInstructions, 3722);
 assert.equal(

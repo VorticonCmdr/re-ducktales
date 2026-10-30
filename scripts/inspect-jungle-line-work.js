@@ -5,13 +5,15 @@ import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { FlightMemory } from "../src/game/flight-physics.js";
 import { presentJungleFrame } from "../src/game/jungle-presentation.js";
-import { egaLinePrimitiveWork } from "./lib/ega-line-work.js";
+import { egaLinePrimitiveWork } from "../src/game/ega-line-work.js";
 import { normalCoreGraphicsMilliseconds } from "../src/game/ega-work.js";
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const parent = JSON.parse(await readFile("reference/jungle-presentation.json"));
 const work = JSON.parse(await readFile("reference/jungle-draw-work.json"));
 assert.equal(work.expectedCaseCount, 6);
-for (const [p, h] of Object.entries(work.sources))
+for (const [p, h] of Object.entries(work.sources).filter(([p]) =>
+  ["src/game/jungle-presentation.js", "src/game/ega-work.js"].includes(p),
+))
   assert.equal(sha(await readFile(p)), h, `Changed jungle source ${p}`);
 const rows = [];
 for (const c of work.cases) {

@@ -1,0 +1,244 @@
+{
+  "id": "original-ega-line-runtime-work",
+  "build": "dos-fb658562",
+  "driverResource": 1,
+  "driverSHA256": "6ee03bd93f3979546d5b5c1511e377685e2aa5401caaf407c3308bca0b812aee",
+  "expectedCases": 32,
+  "expectedInstructions": 3722,
+  "expectedPortWrites": 140,
+  "startingState": "Fresh private65535-byte DOS allocation;original2599-byte driver;CS1e points to private descriptor;CS24 color6;surface points to private RAM;IF/DF clear. Explicit far-call word inputs;no expected memory/timing injection.",
+  "scope": "Exact executed opcode IP paths and OUT sites/counts;original driver code plus its intentional self-modifying operands. Conditional private-function evidence,not EGA raster output,natural cadence or restored machine checkpoint.",
+  "captureSource": "scripts/capture-ega-lines.py",
+  "reproduce": "DUCKTALES_DOSBOX_MCP_ROOT=/path/to/dosbox-mcp /path/to/dosbox-mcp/.venv/bin/python scripts/capture-ega-lines.py --output=.local/new-ega-lines --port=8396",
+  "verify": "node scripts/verify-ega-lines.js",
+  "artifacts": {
+    "case-05": {
+      "path": ".local/ega-line-native-02/case-05.json",
+      "bytes": 5446,
+      "sha256": "96bd4aad98a105bcd84b5bcc2eb5d904709befc0cab95d6e8d5eeeb6fecae823"
+    },
+    "case-13": {
+      "path": ".local/ega-line-native-02/case-13.json",
+      "bytes": 5675,
+      "sha256": "6d4c192c78f0679b52b27dbb178b930b62dcf092787fb799a334c3f14a2d790b"
+    },
+    "case-29": {
+      "path": ".local/ega-line-native-02/case-29.json",
+      "bytes": 8553,
+      "sha256": "fcc97ab88abb4b51935c61dcc69aef14c8c1f7ad85fc9fe0f458514012958eda"
+    },
+    "case-09": {
+      "path": ".local/ega-line-native-02/case-09.json",
+      "bytes": 4465,
+      "sha256": "e228b03c4021fa07c9a1430e131cf8c9fa17764be242938a8c77fec24fa00ac7"
+    },
+    "case-25": {
+      "path": ".local/ega-line-native-02/case-25.json",
+      "bytes": 8227,
+      "sha256": "3464a34cfe9296de8552f6cacb17b13c87f7582bef6ee954ce3756b3776b8481"
+    },
+    "case-24": {
+      "path": ".local/ega-line-native-02/case-24.json",
+      "bytes": 5681,
+      "sha256": "f555aa532c25a889298f501c3c16a08a99cb57fe219c9d75a19af2d6485012e4"
+    },
+    "case-08": {
+      "path": ".local/ega-line-native-02/case-08.json",
+      "bytes": 5427,
+      "sha256": "4d08b0a51c9612f7cbb3aa950d6d5ca79dbc0efb166e4a1c633fc4ecd2ddbf92"
+    },
+    "case-28": {
+      "path": ".local/ega-line-native-02/case-28.json",
+      "bytes": 8594,
+      "sha256": "df18c3575c2ed10db53a7881450cf9a949fb6d59b8ee6a0700ed4d2a69bb9548"
+    },
+    "case-12": {
+      "path": ".local/ega-line-native-02/case-12.json",
+      "bytes": 4557,
+      "sha256": "68cea54d9cf323f50bbe401cf0d2594b9629e22d3043f64d0fd3a38b00b737fc"
+    },
+    "case-04": {
+      "path": ".local/ega-line-native-02/case-04.json",
+      "bytes": 4421,
+      "sha256": "62f2d4e59cc635acc15a2b3aac2c0a98c437b60b18f7145d728329e96182aa41"
+    },
+    "case-19": {
+      "path": ".local/ega-line-native-02/case-19.json",
+      "bytes": 4638,
+      "sha256": "d4360eb709f1532a61e06cbae4bfe443390a2e8aafe6d9841988cc6e4bc40942"
+    },
+    "case-23": {
+      "path": ".local/ega-line-native-02/case-23.json",
+      "bytes": 5673,
+      "sha256": "33ccbcddb38bb0eae9dbf9476e463e88fa13c72fd3852f74a8532ff74c01e520"
+    },
+    "case-03": {
+      "path": ".local/ega-line-native-02/case-03.json",
+      "bytes": 4403,
+      "sha256": "7e2df88a116ef9b6f73d01c8be36d84f84c96877f89f46ceef6e3cee88af9d10"
+    },
+    "disassembly": {
+      "path": ".local/ega-line-native-02/disassembly.json",
+      "bytes": 32365,
+      "sha256": "360e42bc13d22ae8ddec445be63b0e00bd02fbbccd9bd45b9f94cbe5f1f17d65"
+    },
+    "case-15": {
+      "path": ".local/ega-line-native-02/case-15.json",
+      "bytes": 5483,
+      "sha256": "241931b46dd58580e846810f4d554118315bd2dd53f1fd2c33f3be38ea317e8b"
+    },
+    "engine": {
+      "path": ".local/ega-line-native-02/engine.json",
+      "bytes": 3988,
+      "sha256": "8320a650abb17d7d256d293f018e193d400d8893d17278a6653b530b355a1dfb"
+    },
+    "capture": {
+      "path": ".local/ega-line-native-02/capture.json",
+      "bytes": 488,
+      "sha256": "4a216b01f38bbb131371b4f69c15c19b14cf3e03b1801994793dc2812524759a"
+    },
+    "case-14": {
+      "path": ".local/ega-line-native-02/case-14.json",
+      "bytes": 5665,
+      "sha256": "181d2ae4767892cd4f5abc95d934acec150102b53a24c4e8ddd6150fc6e791d6"
+    },
+    "case-02": {
+      "path": ".local/ega-line-native-02/case-02.json",
+      "bytes": 4460,
+      "sha256": "13c838ccfd2b3f60fcb03f1733dab970b8099a0b2bfe0df321b97ab760fcc648"
+    },
+    "case-22": {
+      "path": ".local/ega-line-native-02/case-22.json",
+      "bytes": 5596,
+      "sha256": "1c7d5606e8d4c2227e9773ec1d9db4e2a55ebe99cc5bc65f592c3733867e872a"
+    },
+    "case-18": {
+      "path": ".local/ega-line-native-02/case-18.json",
+      "bytes": 4515,
+      "sha256": "e5773eb8aafdd3f60efa7222beacbee8aa45cbe930eecf395c33bd4cf79cdfa9"
+    },
+    "case-21": {
+      "path": ".local/ega-line-native-02/case-21.json",
+      "bytes": 6767,
+      "sha256": "9229204c5ecf7b485b9357f448c0e0051a40c9d13905a66b7d78af40aca3f509"
+    },
+    "case-17": {
+      "path": ".local/ega-line-native-02/case-17.json",
+      "bytes": 4496,
+      "sha256": "24413eb93d6cdf0ee9e9c32567acbdeec4fb152c5b4dd7a760a0efab4726a032"
+    },
+    "inputs": {
+      "path": ".local/ega-line-native-02/inputs.json",
+      "bytes": 3669,
+      "sha256": "12b86e2c9b7d7e55fd3d043a1767a4c7c7b7b05122701f6487a2b7293dc924a0"
+    },
+    "case-01": {
+      "path": ".local/ega-line-native-02/case-01.json",
+      "bytes": 4442,
+      "sha256": "c7af65be347c8b3f7ac7d6aefbe2073d983ad9ef734aff5a04242342272a02c9"
+    },
+    "case-00": {
+      "path": ".local/ega-line-native-02/case-00.json",
+      "bytes": 5153,
+      "sha256": "7bc31dd9cb5e50428766fb37cdd966a3943657f8562971284478f007d1ef5165"
+    },
+    "case-16": {
+      "path": ".local/ega-line-native-02/case-16.json",
+      "bytes": 5697,
+      "sha256": "d51b47777aae06538163d62aa89e9398ad01b2366ba0981778b92a1b48639dee"
+    },
+    "allocation": {
+      "path": ".local/ega-line-native-02/allocation.json",
+      "bytes": 19,
+      "sha256": "b3ea0b9cfa5a0c143d93e6613f169c5ad911bface38172cdb50835bff165cde5"
+    },
+    "case-20": {
+      "path": ".local/ega-line-native-02/case-20.json",
+      "bytes": 4610,
+      "sha256": "77d654753d0f04eb515f4cb805f83be4650cf048e45383823fc236ce8185a010"
+    },
+    "case-11": {
+      "path": ".local/ega-line-native-02/case-11.json",
+      "bytes": 4589,
+      "sha256": "a3fa6f590cf8bbdd050e0055a4ade60df909610a3bc1b5aa022f713ea23a7b60"
+    },
+    "case-07": {
+      "path": ".local/ega-line-native-02/case-07.json",
+      "bytes": 5424,
+      "sha256": "65a9ea923a73ef0d10486b1c1a3516a8d7295cd92e1b07c95cda464dc124ecbd"
+    },
+    "case-27": {
+      "path": ".local/ega-line-native-02/case-27.json",
+      "bytes": 8504,
+      "sha256": "051ed0d5a66569d78d908631043d3e7f300c76eadea9975e4efc185b9a4a1e8f"
+    },
+    "case-31": {
+      "path": ".local/ega-line-native-02/case-31.json",
+      "bytes": 7574,
+      "sha256": "dd97b9b03c8b47108b510f145d5d15d14bda58e1ceafc02dbdd42feb5f76e016"
+    },
+    "case-30": {
+      "path": ".local/ega-line-native-02/case-30.json",
+      "bytes": 7290,
+      "sha256": "b7e8bf7c27f9a243c88f3e1cbcafb6c476cba453782979864a49b854e506463b"
+    },
+    "case-26": {
+      "path": ".local/ega-line-native-02/case-26.json",
+      "bytes": 8269,
+      "sha256": "9ba921a9e93a5fa34257e5714bb014fa2b48a2b1d18126e0ea07eb80ecdb261a"
+    },
+    "case-06": {
+      "path": ".local/ega-line-native-02/case-06.json",
+      "bytes": 5456,
+      "sha256": "83b4977f3e6ca5b6dd18a08aa2fdc1588d13a1e5ab6201c484d22d42cbb4747b"
+    },
+    "case-10": {
+      "path": ".local/ega-line-native-02/case-10.json",
+      "bytes": 4472,
+      "sha256": "0a53113eaf68b7fc035ea92abff64ea1643ee97fc2faaff5dd7d7be67e0a9836"
+    },
+    "capture-source": {
+      "path": ".local/ega-line-native-02/capture-source.py",
+      "bytes": 5730,
+      "sha256": "e567f0ebd238328e82192cd28a4b5099e6aa5239068460f597e683228f4c44e2"
+    },
+    "resident-disassembly": {
+      "path": ".local/ega-line-native-02/resident-disassembly.json",
+      "bytes": 9863,
+      "sha256": "e41b268c18c98b2150f11b7d9200c59d785fb360792ef324b90e4a421aa5c94a"
+    }
+  },
+  "sources": {
+    "scripts/verify-ega-lines.js": "3d7c09a0eee6e55916d492ef35adcb12bbce9ed75ae125e8b779f603e27d56ec",
+    "scripts/capture-ega-lines.py": "e567f0ebd238328e82192cd28a4b5099e6aa5239068460f597e683228f4c44e2",
+    "reference/build.json": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+    "tests/helpers/original-game.js": "0b894ad5a1498fa58a070d4e576e9add244d729b7d8c48e0f53243097f9347d3",
+    "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
+    "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
+    "src/game/ega-line-work.js": "342b96a373bd4628549becbe64fa3aa7da191d2f677e03fc721651af9a213d09"
+  },
+  "limitations": [
+    "RAM is a nonbranching write stand-in;pixel and actual EGA latch behavior are not compared.",
+    "Resident line dispatcher and color-setting costs are outside these primitive counts.",
+    "Opcode/OUT counts do not establish uninterrupted normal-core timing or hardware timing.",
+    "Native01 remains a valid separate trace with different vertical inputs;Native02 is the registered complete vertical-clip coverage.",
+    "Jungle charges this primitive work;resident dispatch/color,text and remaining CPU/device costs remain excluded."
+  ],
+  "jungleAnalysis": {
+    "path": ".local/ega-line-native-02/jungle-workload.json",
+    "bytes": 28850,
+    "sha256": "64b2e38e9b26daec9bab1ca6d8441ccfb5e92e0fd7d5eb11ae2c159b7c1c470c",
+    "command": "node scripts/inspect-jungle-line-work.js",
+    "scope": "Six original BEFORE-state workloads;derived primitive work only,not expected timing fixtures or replay inputs.",
+    "sources": {
+      "scripts/inspect-jungle-line-work.js": "c6c106512a500fab46dbf6c06126fdc7b3b884c2dd6b07e6798f57b3a9779a65",
+      "reference/jungle-presentation.json": "c57aee7b3998242cae0033f52f945028fab0d2501ac3437e2f0396d8bbbafa0a",
+      "reference/jungle-draw-work.json": "80cc859f562b1fb31341d154f434071fd92145a277304c46650ad6b1cc3b08b1",
+      "src/game/ega-line-work.js": "342b96a373bd4628549becbe64fa3aa7da191d2f677e03fc721651af9a213d09"
+    }
+  },
+  "parent": {
+    "path": "reference/ega-line-work.json",
+    "sha256": "101b8e56dc5f7c38faf790a6b8c55d92b0cc976c978cc637fb2e651221b58831"
+  }
+}

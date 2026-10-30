@@ -26,7 +26,10 @@ and1,470 flight presentations. The historical expectations and their producer
 archive remain unchanged; the current consumer has its own727-file Git archive.
 [Current scenario and exact commands](runtime-campaign.md).
 
-**`npm run verify:current-campaign` passes from clean commit`bc350d1`.**
+**Last complete campaign gate: clean commit`bc350d1`.**
+The current jungle line-work integration changes runtime source/timing. Its
+focused checks are in progress; the old campaign guard deliberately rejects
+these changes until a fresh full-route comparison is registered.
 The734-file archive and strict check results are pinned by the
 [clean integration receipt](../reference/speaker-runtime-integration.json);
 all879 protected historical artifacts remain unchanged.
@@ -112,10 +115,14 @@ negative controls pass. A read-only reconstruction of six original jungle
 redraws estimates0.07..1.92ms of omitted line work at the declared reference
 platform. [Source, native recipe and limits](ega-line-work.md).
 
-This is analysis evidence; browser timing has not changed. The current Easy
-campaign/runtime sources and their acceptance remain intact. Keep Hard deferred.
-Next integrate these source line calls, preserve historical component contracts,
-and verify new carried timer traces plus real browser controls. Resident/color,
+The counter is now connected to jungle source line calls. Six original drawing
+boundaries retain all commands/state/color while adding60 line calls. The180
+unit checks, build, browser pause/quit controls and actual drawing-deadline
+negative control pass. New longer component contracts are being declared and
+independently verified.
+[Integration and limits](jungle-line-timing.md). Keep Hard deferred.
+Next finish new carried timer traces and real browser controls, then a fresh
+full campaign comparison. Resident/color,
 text and remaining CPU/device work still need evidence. The existing native
 menu comparison confirms that makes arriving before its flush can be discarded;
 do not replace that original behavior with invented typematic or retries.

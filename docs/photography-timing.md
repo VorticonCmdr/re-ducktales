@@ -91,3 +91,11 @@ Seven focused clock cases cover sound/film ordering, nine source draw groups
 for four shutter publications, catch-up batching, hidden-page pause, Restart,
 invalid providers/operations and the final unpresented out-of-film preparation.
 These checks do not establish a green complete campaign gate or finish the port.
+
+The combined gate passed on `f14804d` with 139 unit checks, both browser cases,
+the cadence negative and production build. No cases were skipped.
+[Integration receipt](../reference/photography-drawing-integration.json) pins
+the 639-file source archive, runner, logs and browser images. A fixture producer
+can write a fresh optional output path:
+`node scripts/declare-photography-drawing-time.js .local/photography-candidate.json`.
+It refuses to overwrite existing expectations.

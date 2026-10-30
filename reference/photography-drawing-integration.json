@@ -1,0 +1,112 @@
+{
+  "id": "photography-source-drawing-time-integration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "f14804dfac1e0b6e55f206cfdcb58c20ae857f43",
+  "sourceFileCount": 639,
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "drawingWorkManifest": "reference/photography-draw-work.json",
+  "drawingWorkManifestSha256": "1ee2ab69d3796d88e11188d3fac81f0926bf66398b3ab361dbf6566774dd9b4e",
+  "componentManifest": "reference/photography-drawing-time.json",
+  "componentManifestSha256": "cdae9b01bd5d5ca35af56188b3490d77cb7a2dbd57927b568aada77d1e7876dd",
+  "verificationCommand": "npm run verify:photography-timing",
+  "verificationExitCode": 0,
+  "historicalRevision": "1dc128516bbf56bac002ac3c582cbb2772e469a5",
+  "historicalDependencyCount": 10,
+  "componentCases": 22,
+  "componentInputBoundaries": 899,
+  "componentOrderedPublications": 2234,
+  "componentNegativeControls": 8,
+  "historicalReplayCases": 4,
+  "historicalGameplayCheckpoints": 20,
+  "historicalResourceCases": 18,
+  "nativeDrawingCases": 11,
+  "nativeActiveCases": 3,
+  "nativeDrawingSpriteCalls": 12,
+  "nativeDrawingNegativeControls": 6,
+  "unitCases": 139,
+  "unitFailures": 0,
+  "unitSkipped": 0,
+  "browserCases": 2,
+  "browserSkipped": 0,
+  "browserTimingNegativeControls": 1,
+  "historicalArtifactsPreserved": true,
+  "captureTools": {
+    "node": "v26.8.1",
+    "playwright": "1.64.1",
+    "native": "unchanged reference/photography-runtime.json and reference/photography.json",
+    "static": "explicit PHOTOGRAPHY_CODE.EXE; revision/bytes pinned in drawing-work manifest"
+  },
+  "inputContract": {
+    "native": "Each unchanged parent BEFORE state is a conditional routine precondition. Parent records three existing map shortcut CAS injections. AFTER clocks are expected observations,never inputs. No new original session or partial machine restore.",
+    "component": "Same independently authored source input/dialogue streams as unchanged historical manifest. Both classes initialize from decoded resources and carry their own state. New clocks are expected outputs only.",
+    "browser": "Actual DOM keyboard,focus,rendering,sound and campaign paths; explicit browser clock and feedback flight/target controller. Independent browser acceptance,not fixed native input replay."
+  },
+  "fittedInputs": [],
+  "scope": [
+    "Source RAM background restore,HUD sprites,animals/occluders,Scrooge and aim drawing in startup,normal and four-frame shutter paths. Overwritten pre-shutter preparation delays sound/film decisions,including the final negative-film exit.",
+    "Complete7924-byte native code identity after93 relocations;1293 bounded Ghidra bytes linked through exact load relocation and one declared analysis-only stack-probe normalization.",
+    "Three active native helper cases:four exact sprites and28.157ms partial work versus two observed driver counts with one-period phase uncertainty. All eleven helper cases required;empty cases do not imply zero CPU time.",
+    "Historical class exactly reproduces original four component replays,20 checkpoints,eighteen resource cases and all old expected clocks. Current native routine and PNG comparisons use current implementation.",
+    "Current22 cases preserve899 full source-input DS comparisons except exactly2221..2228 and27f8..27fb;all locals/gameplay and2234 ordered pixel hashes,modes,wipe tokens compare exactly. Current clock trace,full final DS/state and event counts are exact separate expectations.",
+    "Seven focused clock tests cover ordering,unpresented work,four shutter publications,catch-up batching,hidden-page pause,Restart and strict invalid providers/operations.",
+    "Two real browser routes verify landing,target shot,audio,results,earnings,campaign claim protection,Pause pixels,deferred input and quit cancellation. Omitted source waits must fail cadence;timeouts/setup failures never count."
+  ],
+  "limitations": [
+    "HUD lines/text,other CPU/IRQ work,remaining-slice I/O clamping,result-sheet drawing and resource-loading costs remain omitted or unmeasured.",
+    "Conditional primitive-budget comparisons and port cross-version regressions do not prove uninterrupted native whole-expedition cadence,scanout or audio waveform parity.",
+    "Instructions within a charged source group remain atomic;no sub-instruction device or interrupt-state parity is claimed.",
+    "Destination autonomous polling/draw-flush-read/system-key windows and expedition release-edge direction remain incomplete.",
+    "Broader campaign/source receipts need refresh after runtime changes. Full npm run verify is not green;required historical shared-runtime inventory failures are not waived.",
+    "Whole-game parity,arbitrary-route finishability and original save/load/high-score behavior remain unproven."
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/photography-drawing-integration-01/runner-status.json",
+      "bytes": 26150,
+      "sha256": "0ac4e196b5b094857ba603cf4d1e1d26edd68553864513a60035b1a2c557a7d1"
+    },
+    "runner-source": {
+      "path": ".local/photography-drawing-integration-01/runner.py",
+      "bytes": 2588,
+      "sha256": "bda333e392efbff47b55c35531b4f572d917f1a5fc8f33e6c53151f6878292ef"
+    },
+    "source": {
+      "path": ".local/photography-drawing-integration-01/source-revision.json",
+      "bytes": 69069,
+      "sha256": "de9d00ccc1e56b3a2a28224620b0c104dd259db6af20612a15c37f943ee5f846"
+    },
+    "source-zip": {
+      "path": ".local/photography-drawing-integration-01/sources.zip",
+      "bytes": 1723888,
+      "sha256": "461ce0acd7b500bafc926cf339a183de45a9bf469d5eb867f6a38e40c65e71ce"
+    },
+    "verification-log": {
+      "path": ".local/photography-drawing-integration-01/verification.log",
+      "bytes": 17329,
+      "sha256": "8e7bf325dc5c3d8a8d0a5d68e46ea73119866fc231538d03ef5ed2aa69e46215"
+    },
+    "browser-timing-negative": {
+      "path": ".local/photography-drawing-integration-01/timing-controls/browser-negative.log",
+      "bytes": 1594,
+      "sha256": "9df11ef59d0027140225bdaa239d372fbb4e5138c10777162a2aa7bd59eee318"
+    },
+    "browser-photography-input": {
+      "path": ".local/photography-drawing-integration-01/photography-input.png",
+      "bytes": 31296,
+      "sha256": "e065c53b60debc29aecdda02e598f711e413eaa50992763efc36d9eedc5473f3"
+    },
+    "browser-photography-shot": {
+      "path": ".local/photography-drawing-integration-01/photography-shot.png",
+      "bytes": 31675,
+      "sha256": "593cc7e7d6bd6987429a2363d14a3952c472979f85e4dbf400e4a93a8393236d"
+    },
+    "browser-photography-results": {
+      "path": ".local/photography-drawing-integration-01/photography-results.png",
+      "bytes": 8148,
+      "sha256": "4026e5d4d01a2dd420708bc668b986d2958e0b41f6371bac17162cb2e66297c8"
+    }
+  }
+}

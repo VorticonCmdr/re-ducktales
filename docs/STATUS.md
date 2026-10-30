@@ -29,7 +29,10 @@ and the omitted-work browser negative fails at the required cadence assertion.
 Current component replays preserve 899 full input-boundary memories (except
 twelve separately checked clock bytes), all locals/gameplay and 2,234 ordered
 images/modes/wipe tokens across all 22 cases. Historical expectations remain
-unchanged. Seven new clock cases pass; the combined gate is being recorded.
+unchanged. `npm run verify:photography-timing` passed on `f14804d`: all 139 unit
+checks, both browser cases, the omitted-work negative and the production build,
+with zero skipped cases. The 639-file source archive and results are pinned in
+the [verification receipt](../reference/photography-drawing-integration.json).
 [Safari timing contract](photography-timing.md).
 
 The cave now charges original party-helper and sprite work before continuing,
@@ -42,34 +45,19 @@ The 627-file source archive, runner and logs are pinned in the
 [verification receipt](../reference/cave-drawing-integration.json).
 [Cave timing contract](cave-timing.md).
 
-`npm run verify:jungle-draw-timing` passed on `f6d0f05`: original jungle
-map/routine/pixel comparisons, the independent Python map oracle, both migrated
-component regressions, six original drawing-work cases, all 127 unit tests,
-two actual browser cases, both browser negatives and the production build.
-Zero unit/browser cases were skipped. [Verification record](../reference/jungle-component-migration.json).
+Jungle's combined drawing-time gate passed on `f6d0f05`, including original
+routine/pixel comparisons, the independent map oracle, both component migrations,
+two browser cases and negatives. Its complete treasure route has 27 exact
+checkpoints, 70 DOM events and 860 movement samples, returning $1,050 on day 17.
+Historical component contracts retain 1,616 input-boundary memory comparisons,
+1,714 ordered publications and 40 gameplay checkpoints. At `d1e0189`, after the
+cave change, `npm run verify:jungle-core` also passed. Its browser source receipt
+needs refresh for the newer shared sources. [Evidence](../reference/jungle-component-migration.json).
 
-Jungle charges actual source sprite/copy work against explicit simulation time
-before presentation. Full redraws cost about 162–178 ms in six conditional native
-drawing cases; the minimum three-driver-count deadline is retained. The complete
-browser treasure route has 27 exact full-state/picture checkpoints, 70 DOM events
-and 860 movement samples, returning $1,050 on day 17 with one life. Missing required
-movement and bypassed drawing time both fail. [Timing contract](jungle-timing.md).
-
-The older 824-input failure and 792-input success contracts remain intact. Their
-historical class first reproduces all prior expected values. The current class
-then preserves 1,616 complete source input-boundary DS comparisons except three
-separately checked timer words, 1,714 ordered image payloads/modes/wipe tokens,
-40 gameplay checkpoints and both final gameplay outcomes. Seventeen negative
-controls pass. **Game/browser runtime code is unchanged by this migration.**
-[Comparison rules](jungle-component-timing.md).
-
-After the cave/Scheduler changes, `npm run verify:jungle-core` still passes its
-original comparisons, both component contracts and the independent map oracle.
-Its complete browser source receipt needs refresh for the new shared sources.
 Mountain sprite pacing and its complete summit/browser route passed their earlier
-`ce112a8` milestone. Its current source receipt and older complete Easy/Hard
-campaign receipts need refresh after shared runtime changes. Those historical
-passes do not establish a green current broader gate. [Earlier milestones](status-history.md).
+`ce112a8` milestone. Mountain and older Easy/Hard campaign receipts also need
+refresh. Historical passes do not establish a green current broader gate.
+[Earlier milestones](status-history.md).
 
 ## Remaining work
 

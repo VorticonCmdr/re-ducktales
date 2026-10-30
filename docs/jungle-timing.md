@@ -94,8 +94,10 @@ memory comparisons (apart from three independently checked timer words), 1,714
 ordered payloads/modes/wipe tokens and 40 gameplay checkpoints. New timing
 contracts are separate. Seventeen negative controls check both comparisons.
 [Migration boundary and commands](jungle-component-timing.md).
-Full original input-loop/scanout timing, cave/safari pacing and the broader
-required integration gate remain unverified.
+Full original input-loop/scanout timing and the broader required integration
+gate remain unverified. Cave and Safari now have separate partial source-work
+integrations; see [cave-timing.md](cave-timing.md),
+[photography-timing.md](photography-timing.md) and the current [status](STATUS.md).
 
 The combined gate passed on `cc716c1`, with zero skipped unit/browser cases.
 [Integration receipt](../reference/jungle-draw-timing-integration.json) pins its

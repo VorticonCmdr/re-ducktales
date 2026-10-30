@@ -1,0 +1,132 @@
+{
+  "id": "original-mountain-hud-calls",
+  "expectedCases": 12,
+  "expectedCalls": 486,
+  "executableSHA256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "overlayBodySHA256": "b50591460d43e848d52b49ee7b843065413d877dca8dc75455ce7dca2a7f2bd0",
+  "artifacts": {
+    "capture": {
+      "path": ".local/mountain-hud-native-01/capture.json",
+      "bytes": 762,
+      "sha256": "a9bf9c394e227c1a258a5c3a22b1399216e7eb696b8493042ed76645710197ab"
+    },
+    "inputs": {
+      "path": ".local/mountain-hud-native-01/inputs.json",
+      "bytes": 5197,
+      "sha256": "0d60fc057d715c38d109dd4d08845852d1cf8ed2e65f92b316b22ee088496035"
+    },
+    "engine": {
+      "path": ".local/mountain-hud-native-01/engine.json",
+      "bytes": 3988,
+      "sha256": "3d5f59658e569238185f8eb0448be6dedfcbd725ed115ed2e22f55182a26fa1a"
+    },
+    "allocations": {
+      "path": ".local/mountain-hud-native-01/allocations.json",
+      "bytes": 84,
+      "sha256": "7d6f355e07d0fc58fafb49e70476b5b14fa7c6b0dab49371b7ecc9bdef80430b"
+    },
+    "source": {
+      "path": ".local/mountain-hud-native-01/capture-source.py",
+      "bytes": 8929,
+      "sha256": "f6dffd0d3b8e5c6a5811c4cb22434b38733f00806d0749144e60354a6bd88b51"
+    },
+    "configuration": {
+      "path": ".local/mountain-hud-native-01/configuration.json",
+      "bytes": 1828,
+      "sha256": "6549df6a78cd565ba5fee6c7477779a9a651d4193cf6ce0cc186100f1cc1bfeb"
+    },
+    "case-00": {
+      "path": ".local/mountain-hud-native-01/case-00.json",
+      "bytes": 181910,
+      "sha256": "0e3402a46643260bc82d52406318ad925c125b6d9050f2f91d83d38456ad0745"
+    },
+    "case-01": {
+      "path": ".local/mountain-hud-native-01/case-01.json",
+      "bytes": 181969,
+      "sha256": "d1a4d27c18512dd11ab87458cbedb246b9c36c1d1e615986a95722788001dc34"
+    },
+    "case-02": {
+      "path": ".local/mountain-hud-native-01/case-02.json",
+      "bytes": 181961,
+      "sha256": "d6fc269ca19f63d8eef731035b6316096a35b75b9f673f730a6ed4cbf977e97c"
+    },
+    "case-03": {
+      "path": ".local/mountain-hud-native-01/case-03.json",
+      "bytes": 181961,
+      "sha256": "33bea8518a530cc84e06a3b15c1e75585a6376f25d4a199eba43f0d524d7d319"
+    },
+    "case-04": {
+      "path": ".local/mountain-hud-native-01/case-04.json",
+      "bytes": 181983,
+      "sha256": "d1febad645299aa0d4eab15b97590c78b92857acbc2196c578d77d5d3d6fcf5d"
+    },
+    "case-05": {
+      "path": ".local/mountain-hud-native-01/case-05.json",
+      "bytes": 181989,
+      "sha256": "a37b053b784e8510f821ab649e828bccd6f5386f4f1359a2e401e2237ad3fbbd"
+    },
+    "case-06": {
+      "path": ".local/mountain-hud-native-01/case-06.json",
+      "bytes": 182035,
+      "sha256": "0fc402d8c3279e8117867c8483c2485e9b14fea694a36be8582c102b8b68d2be"
+    },
+    "case-07": {
+      "path": ".local/mountain-hud-native-01/case-07.json",
+      "bytes": 182039,
+      "sha256": "5f4994176db82db69d9f749b2e195e94d816d9e5ae90ed3c55f5feda4e4460bb"
+    },
+    "case-08": {
+      "path": ".local/mountain-hud-native-01/case-08.json",
+      "bytes": 182023,
+      "sha256": "adb3d7d7f242b3dcd03908ba9b1f34ff5cdde9ba4763aff119c775ed6662cafe"
+    },
+    "case-09": {
+      "path": ".local/mountain-hud-native-01/case-09.json",
+      "bytes": 181389,
+      "sha256": "1b158f63b242b186a1650ed797c14bb369f3dac96f48fc8608edfc517e01ca58"
+    },
+    "case-10": {
+      "path": ".local/mountain-hud-native-01/case-10.json",
+      "bytes": 181584,
+      "sha256": "f58283195e546cde215a718282953a0e053b2979290adb000713c3662102fb59"
+    },
+    "case-11": {
+      "path": ".local/mountain-hud-native-01/case-11.json",
+      "bytes": 181778,
+      "sha256": "c0b95810b957bc84add7346875b0a2b1da999a5387cb2640a13261dfaffc02d2"
+    },
+    "disassembly": {
+      "path": ".local/mountain-erase-static-01/hud.json",
+      "bytes": 19459,
+      "sha256": "ec14626850dc935300b99f724c283578317cba5f5796b2239486f6510cc5ca28"
+    },
+    "entry": {
+      "path": ".local/mountain-hud-static-01/entry.json",
+      "bytes": 3201,
+      "sha256": "a03fab538430294789a75ca4e87d4404e24f19fd6dd4145c7acd3ae04f13ebc5"
+    }
+  },
+  "sources": {
+    "scripts/capture-mountain-hud.py": "f6dffd0d3b8e5c6a5811c4cb22434b38733f00806d0749144e60354a6bd88b51",
+    "scripts/lib/mountain-hud.js": "fa9d4167ead96b8a93cf94e52e0b6113a1cbcab457ce4604f1736af567b97f6a",
+    "scripts/verify-mountain-hud.js": "9dddfdcc5be5811db082e221e57cfb9fe73e118c34daf8cf294c891e58f4bf39",
+    "scripts/verify-ega-line-primitives.js": "3ff918f95e45138403438c7a734a6ecd7a385e9006e6658107c93186a5b9a8b8"
+  },
+  "injections": [
+    "Independent per-routine initial DS snapshots and declared synthetic patches.",
+    "Sprite vector DS1ff0 redirected to RETF2;resident line4190 and formatter1e67 replaced with preserving RETF observers;private color pointer.",
+    "Private CS/DS/SS/SP;IF/DF clear;healthy stack threshold."
+  ],
+  "stackScratch": [
+    65200,
+    65264
+  ],
+  "comparisonRules": "Exact ordered line colors/coordinates,sprite addresses and seven-word numeric calls;all61522 relocated original code bytes with declared1byte resident line/number observers;allDS0000..fffe except64private stack scratch bytes.",
+  "limitations": [
+    "Independent routine cases,not whole-machine restore/game continuation.",
+    "Drawing/formatting effects intercepted,not native pixels or elapsed time.",
+    "Lifecount0..3;unsupported lives fail explicitly."
+  ],
+  "captureRecipe": "DUCKTALES_DOSBOX_MCP_ROOT=/path/to/bridge /path/to/bridge/.venv/bin/python scripts/capture-mountain-hud.py --output .local/mountain-hud-native-NEW --port 8401",
+  "verify": "node scripts/verify-mountain-hud.js"
+}

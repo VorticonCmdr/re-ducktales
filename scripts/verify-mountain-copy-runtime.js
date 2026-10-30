@@ -163,7 +163,7 @@ function replay({
       assert.ok(w.instructions >= g.lastSpriteWork.instructions);
       assert.equal(
         w.instructions,
-        g.lastSpriteWork.instructions + w.copyInstructions,
+        g.lastSpriteWork.instructions + w.copyInstructions + w.hudInstructions,
       );
       if (w.copyCalls) {
         copyFrames++;

@@ -5,6 +5,16 @@ not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
 ## Current runtime milestone
 
+Mountain HUD drawing is now connected to original source calls: 12 native caller
+cases/486 calls match production commands, state effects and work counters.
+Opening/full HUDs charge34 lines and two numbers; ordinary frames charge money
+only. Signed formatter quirks and original HUD descriptor positions are retained.
+The 764-input ascent and browser controls pass preliminary checks; the combined
+clean-source HUD gate is the next required verification.
+[HUD evidence and commands](mountain-hud-work.md).
+
+## Previous restoration milestone
+
 Mountain restoration now calls the original erase planner and charges signed EGA
 copy work alongside sprites. The focused command is
 `node scripts/verify-mountain-copy-integration.js`: 34 production erase/charge
@@ -12,9 +22,10 @@ cases, 16 native primitive cases, the complete 764-input/26-checkpoint ascent,
 180 units, an actual browser route and an omitted-copy browser failure control.
 The summit retains all three lives. HUD text/lines and retrace-phase scheduling
 remain incomplete. [Current scope and commands](mountain-copy-runtime.md).
-The focused gate passed for `2bf98f4`; its saved record pins 719 source files and
+The prior focused gate passed for `2bf98f4`; its saved record pins 719 source files and
 four immutable artifacts. `node scripts/verify-mountain-copy-receipt.js` validates
-that record without claiming a fresh browser run.
+that historical record for matching source. HUD changes make its current-source
+guard fail; the new HUD gate must be used for current integration.
 
 **Whole-campaign acceptance has not been refreshed for the mountain changes.**
 The source-pinned Easy receipt below remains historical; current source guards
@@ -102,8 +113,9 @@ Physical waveform/gain/filter parity remains unverified. [Sound evidence](speake
 ## Known remaining gaps
 
 - Native whole-game cadence is unverified. Jungle still omits resident/color,
-  HUD caller, opaque-text and remaining CPU/device work. Mountain omits text/line
-  and other copies; cave omits minimap fills, room composition and other copies;
+  HUD caller, opaque-text and remaining CPU/device work. Mountain now charges
+  HUD primitives but omits resident/color/caller work and composition copies;
+  cave omits minimap fills, room composition and other copies;
   Safari omits HUD/result drawing and remaining CPU/device costs.
 - Destination entry/selector/numeric drawing and exact video/cache phase remain
   partial. Cave's striped treasure reveal is implemented, but complete native
@@ -126,6 +138,7 @@ experiments leave the shared8386 session untouched and close their owned instanc
 ```sh
 npm run verify:current-campaign
 node scripts/verify-mountain-copy-integration.js
+node scripts/verify-mountain-hud-integration.js
 node scripts/verify-mountain-copy-receipt.js
 node scripts/verify-runtime-campaign.js --fresh-browser
 node scripts/verify-jungle-texts.js

@@ -9,11 +9,17 @@ import {
   updateMountainPosition,
 } from "./mountain-actions.js";
 import { advanceMountainHazards } from "./mountain-hazards.js";
-import { u16 } from "./integer.js";
+import { u16, s16 } from "./integer.js";
 import { egaSpriteWork, normalCoreGraphicsMilliseconds } from "./ega-work.js";
 import { ORIGINAL_GRAPHICS_TIMING } from "./timing.js";
 import { eraseMountainSource } from "./mountain-erase.js";
 import { egaSignedCopyWork } from "./ega-copy-work.js";
+import { drawMountainHudSource, mountainMoneyCall } from "./mountain-hud.js";
+import { egaLinePrimitiveWork } from "./ega-line-work.js";
+import {
+  originalHudNumberWork,
+  formatOriginalHudNumber,
+} from "./hud-number-work.js";
 
 const emptyCopyWork = () => ({
   instructions: 0,
@@ -68,6 +74,9 @@ export class Mountain {
       options.mainEntries[23],
       options.mainEntries[25],
     ];
+    const font = options.mainEntries[42]?.data;
+    if (font?.length !== 2056 || font[2] !== 8 || font[4] !== 8)
+      throw Error("Unsupported mountain HUD font");
     // Original SS allocation contents are an explicit conditional-comparison
     // input. Independent runs use the documented zero-filled stack provider.
     this.locals = new MountainLocals(options.stackBytes);
@@ -168,10 +177,16 @@ export class Mountain {
     // The original starts the next update after its EGA retrace wait. Charge
     // source sprite opcodes before that wait, rather than one host redraw.
     // Erase copies use original source calls, including signed coordinates.
-    // Composition copies,text/line and caller CPU remain explicit timing gaps.
+    // Composition copies,resident dispatch/color and caller CPU remain gaps.
     const work = {
-      instructions: this.spriteWork.instructions + this.copyWork.instructions,
-      portWrites: this.spriteWork.portWrites + this.copyWork.portWrites,
+      instructions:
+        this.spriteWork.instructions +
+        this.copyWork.instructions +
+        this.hudWork.instructions,
+      portWrites:
+        this.spriteWork.portWrites +
+        this.copyWork.portWrites +
+        this.hudWork.portWrites,
       repeatOpcodes: this.copyWork.repeatOpcodes,
       repeatIterations: this.copyWork.repeatIterations,
     };
@@ -205,6 +220,10 @@ export class Mountain {
       copyCalls: this.copyWork.calls,
       copyInstructions: this.copyWork.instructions,
       copyPortWrites: this.copyWork.portWrites,
+      hudInstructions: this.hudWork.instructions,
+      hudPortWrites: this.hudWork.portWrites,
+      lineCalls: this.hudWork.lines,
+      numberCalls: this.hudWork.numbers,
       milliseconds,
       retraces,
     };
@@ -231,57 +250,49 @@ export class Mountain {
     });
   }
   hud(commands, account = true) {
+    drawMountainHudSource(this.memory, {
+      line: (c) => {
+        if (account) this.chargeLine(c);
+        commands.push({ op: "line", ...c });
+      },
+      draw: (at) => this.draw(commands, at, account),
+      number: (c) => this.number(commands, c, account),
+    });
+  }
+  chargeLine(c) {
+    const cost = egaLinePrimitiveWork(c, this.memory.b(0x2046));
+    this.hudWork.instructions += cost.instructions;
+    this.hudWork.portWrites += cost.portWrites;
+    this.hudWork.lines++;
+  }
+  number(commands, c, account = true) {
     const m = this.memory;
-    commands.push({
-      op: "fill",
-      color: 0,
-      x: 0,
-      y: 169,
-      width: 320,
-      height: 30,
-    });
-    for (const [x, y, x2, y2] of [
-      [0, 168, 319, 168],
-      [319, 168, 319, 199],
-      [319, 199, 0, 199],
-      [0, 199, 0, 168],
-    ])
-      commands.push({ op: "line", color: 4, x, y, x2, y2 });
-    commands.push({ op: "sprite", asset: 17, frame: 0, x: 8, y: 175 });
-    commands.push({ op: "sprite", asset: 16, frame: 0, x: 40, y: 172 });
+    const formatted = formatOriginalHudNumber(c);
     if (account) {
-      this.chargeSprite(17, 0, 8, 175);
-      this.chargeSprite(16, 0, 40, 172);
+      if (m.b(0x2046) !== 0) throw Error("Unsupported mountain HUD scale");
+      const video = m.view.getUint16(0x2038, true);
+      const cost = originalHudNumberWork({
+        ...c,
+        surfaceOffset: m.view.getUint16(video + 4, true),
+        backPage: m.b(0x2052) !== 0,
+      });
+      this.hudWork.instructions += cost.instructions;
+      this.hudWork.portWrites += cost.portWrites;
+      this.hudWork.numbers++;
     }
-    m.b(0x3732, 2);
-    m.i(0x3720, 200);
-    m.i(0x3722, 178);
-    for (let i = 0; i < m.b(0x4d34); i++) {
-      this.draw(commands, 0x3720, account);
-      m.b(0x3732, m.b(0x3732) - 1);
-      m.i(0x3720, m.i(0x3720) + 32);
-    }
-    const money = String(m.view.getUint32(0x8cc0, true));
     commands.push({
       op: "text",
-      text: money,
-      x: 168 - money.length * 8,
-      y: 174,
-      color: 15,
-    });
-    const day = m.signedByte(0x4e0e);
-    commands.push({
-      op: "text",
-      text: String(day),
-      x: day < 10 ? 18 : 14,
-      y: 182,
-      color: 1,
+      text: formatted.text,
+      x: formatted.x,
+      y: c.y,
+      color: c.color,
     });
   }
   frame(offset = 0, scrolling = false, opening = false) {
     this.spriteWork = { instructions: 0, portWrites: 0, calls: 0 };
     this.copyWork = this.pendingCopyWork;
     this.pendingCopyWork = emptyCopyWork();
+    this.hudWork = { instructions: 0, portWrites: 0, lines: 0, numbers: 0 };
     const m = this.memory,
       l = this.locals;
     const key = `${l.b(-0x34)}:${offset}`;
@@ -297,7 +308,10 @@ export class Mountain {
     // Reconstructing an unchanged HUD for Canvas is not an original draw call.
     // Opening pages call1744; ordinary frames draw just the cash footer1331.
     this.hud(commands, opening);
-    if (!opening && !scrolling) this.chargeSprite(16, 0, 40, 172);
+    if (!opening && !scrolling) {
+      this.chargeSprite(16, 0, 40, 172);
+      this.number([], mountainMoneyCall(m));
+    }
     advanceMountainHazards(
       m,
       l.b(-0x34),
@@ -314,14 +328,16 @@ export class Mountain {
     if (m.b(0x6ed4)) {
       l.i(-0x3c, Math.max(0, Math.min(310, l.i(-0x3c))));
       l.i(-0x40, Math.max(0, Math.min(190, l.i(-0x40))));
-      commands.push({
+      const line = {
         op: "line",
         color: 14,
-        x: m.i(0x5ae0) + l.i(-0x48),
-        y: m.i(0x5c72) + l.i(-0x4a),
+        x: s16(m.i(0x5ae0) + l.i(-0x48)),
+        y: s16(m.i(0x5c72) + l.i(-0x4a)),
         x2: l.i(-0x3c),
         y2: l.i(-0x40),
-      });
+      };
+      this.chargeLine(line);
+      commands.push(line);
     }
     if (!scrolling && [4, 5].includes(m.i(0x6882))) {
       this.chargeSprite(4, l.b(-0x2e), l.i(-0x3c), l.i(-0x40) - 3);

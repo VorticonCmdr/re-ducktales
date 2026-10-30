@@ -12,6 +12,24 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   test.setTimeout(60000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
+  if (process.env.DUCKTALES_MOUNTAIN_HUD_NEGATIVE) {
+    const mode = process.env.DUCKTALES_MOUNTAIN_HUD_NEGATIVE;
+    expect(["omit-lines", "omit-numbers"]).toContain(mode);
+    await page.route("**/src/game/mountain.js*", async (route) => {
+      const response = await route.fetch(),
+        body = await response.text();
+      const hook =
+        mode === "omit-lines" ? "this.chargeLine(c)" : "if (account) {";
+      expect(body.split(hook).length, "SETUP: mountain HUD hook").toBe(2);
+      await route.fulfill({
+        response,
+        body: body.replace(
+          hook,
+          mode === "omit-lines" ? "void c" : "if (false && account) {",
+        ),
+      });
+    });
+  }
   if (process.env.DUCKTALES_MOUNTAIN_COPY_NEGATIVE) {
     expect(process.env.DUCKTALES_MOUNTAIN_COPY_NEGATIVE).toBe("omit-copies");
     await page.route("**/src/game/mountain.js*", async (route) => {
@@ -122,6 +140,15 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   expect(entered.mountain.phase).toBe("entering");
   expect(entered.mountain.frames).toBe(0);
   expect(entered.mountain.presentations).toBe(1);
+  expect(
+    entered.mountain.drawingWork.lineCalls,
+    "Original mountain HUD lines",
+  ).toBe(34);
+  expect(
+    entered.mountain.drawingWork.numberCalls,
+    "Original mountain HUD numbers",
+  ).toBe(2);
+  expect(entered.mountain.drawingWork.hudInstructions).toBeGreaterThan(0);
   await page.keyboard.press("p");
   // The next display callback completes page2 before0317 can read P.
   const paused = await until((s) => s.systemOverlay?.phase === "waiting");
@@ -185,8 +212,10 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   expect(paced.mountain.drawingWork.copyInstructions).toBeGreaterThan(0);
   expect(paced.mountain.drawingWork.instructions).toBe(
     paced.mountain.spriteWork.instructions +
-      paced.mountain.drawingWork.copyInstructions,
+      paced.mountain.drawingWork.copyInstructions +
+      paced.mountain.drawingWork.hudInstructions,
   );
+  expect(paced.mountain.drawingWork.numberCalls).toBe(1);
   await c.screenshot({
     path: ".local/browser-results/mountain-sprite-pacing.png",
   });

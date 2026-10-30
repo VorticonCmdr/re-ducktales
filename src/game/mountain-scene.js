@@ -83,6 +83,14 @@ export function prepareMountain(
     m.b(at + 18, 0);
   }
   m.i(0x2229, seed);
+  // Overlay5:004b..0062,after loading the MAIN cash/day HUD resources.
+  for (const [at, value] of [
+    [0x36d6, 40],
+    [0x36d8, 172],
+    [0x370c, 8],
+    [0x370e, 175],
+  ])
+    m.i(at, value);
   m.b(0x8990, difficulty);
   m.view.setUint32(0x8cc0, money, true);
   m.i(0x57ee, LAYOUTS[variant]);

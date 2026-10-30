@@ -19,16 +19,21 @@ fresh game. Independent simulation matches34 full states and1,470 flight
 presentations. Actual-browser replay matches every state and320x200 pixel digest
 from4,981 DOM events.
 
-**Historical full-campaign pass: clean commit`79e2bb0`.**
-The current PC-speaker browser adapter changes source identities; this receipt
-is not current-source acceptance. `npm run verify:current-campaign` deliberately
-rejects these changes until a new independent full-route comparison is registered. The gate
-includes22 exact original identities,177 unit cases with zero failures/skips,
-one complete actual-browser route and restart,six campaign negative controls,
-seven cave reveal source/mechanism controls,and the production build. All834
-protected historical artifacts remain unchanged. The713-file source archive and
-15 evidence artifacts are pinned by the[clean receipt](../reference/cave-reveal-campaign-integration.json).
-[Scenario and limits](cave-reveal-campaign.md).
+**Current runtime comparison: `8eb9e52`.** A fresh independent browser pass
+matches all34 full-state/pixel checkpoints and4,981 DOM events through the
+winning ending and Restart. The carried simulation also matches all34 states
+and1,470 flight presentations. The historical expectations and their producer
+archive remain unchanged; the current consumer has its own727-file Git archive.
+[Current scenario and exact commands](runtime-campaign.md).
+
+The current gate is `npm run verify:current-campaign` (also
+`npm run verify:runtime-campaign`). It checks the source-pinned browser receipt,
+carried replay,180 unit cases, nine campaign negative controls, seven cave
+controls, native speaker evidence, registered actual-audio acceptance and a
+production build. Add `--fresh-browser` to the direct runtime verifier to repeat
+the full browser route. The earlier clean pass at`79e2bb0` and its
+[receipt](../reference/cave-reveal-campaign-integration.json) remain historical
+evidence; `verify:reveal-campaign` still targets that older source contract.
 
 The first cave treasure presentation now uses the original striped copy:five
 row groups,five retraces per group,and unchanged page roles. All fifteen
@@ -96,10 +101,10 @@ Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 
 ## Next milestone
 
-Keep Hard deferred. Independently replay the complete Easy input stream with the changed
-browser adapter and register new source/evidence identities. Continue with the
-remaining expedition timing and keyboard-delivery gaps; do not classify them
-as cosmetic tuning.
+Keep Hard deferred. Continue with remaining expedition timing and
+keyboard-delivery gaps. In particular, establish the omitted line/text drawing
+costs against original code and investigate the real-clock destination redraw
+that can discard brief keys. Do not classify these as cosmetic tuning.
 
 ## Supported build and commands
 
@@ -111,11 +116,11 @@ and native address correspondence were checked;the analysis image is never run.
 No native emulator state changed during the current campaign/reveal work.
 
 ```sh
-npm run verify:speaker-game
-# Historical campaign gate (requires a fresh source comparison after audio work):
 npm run verify:current-campaign
-# Same historical gate,explicit name:
-npm run verify:reveal-campaign
+npm run verify:runtime-campaign
+node scripts/verify-runtime-campaign.js --fresh-browser
+npm run verify:speaker-game
+node scripts/verify-speaker-playback-receipt.js
 npm run verify:cave-reveal
 npm test
 npm run build

@@ -155,8 +155,9 @@ processing. The flight/cave route must use real time: the paused Playwright
 clock run reached simulation checkpoints but yielded no audio sample progression
 and cannot substantiate audio acceptance. Earlier failed attempts are kept in
 local test outputs. No synthetic completion or replacement oscillator is used.
-The full Easy campaign receipt predates this adapter change; it must not be
-reported as current-source acceptance until independently replayed again.
+The [current full Easy campaign](runtime-campaign.md) has also been replayed
+against this adapter with sound disabled. Its complete route does not substitute
+for these actual-audio checks.
 
 The real-clock flight acceptance chooses the visible Travel item with at most12
 explicit makes, recording every attempt in its `audio-boundary` attachment.
@@ -170,9 +171,13 @@ this route. The strict command rejects absent/skipped/retried/unfinished cases,
 and tests its report checker by deleting all cases, marking one skipped and
 removing a result in temporary copies.
 
-`reference/speaker-playback.json` pins the accepted local report, both audio
+`reference/speaker-playback-current.json` pins the current accepted local report, both audio
 boundary attachments and the exact tested source inventory. Verify this saved
 receipt with `node scripts/verify-speaker-playback-receipt.js`; missing originals
 or local evidence require setup and cannot count as a pass. Re-running
 `npm run verify:speaker-game` creates a fresh local receipt without modifying the
 registered evidence or historical campaign artifacts.
+
+The earlier `reference/speaker-playback.json` remains untouched historical evidence
+for its original command/source configuration. The current receipt is a separate
+fresh seven-case browser run after current campaign command integration.

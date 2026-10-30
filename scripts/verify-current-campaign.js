@@ -12,6 +12,7 @@ const sha = (b) => createHash("sha256").update(b).digest("hex");
 const checkpointCount = {
   "current-physical-easy-complete-campaign": 35,
   "cave-reveal-easy-complete-campaign": 34,
+  "speaker-runtime-easy-complete-campaign": 34,
 }[manifest.id];
 assert.ok(
   Number.isInteger(checkpointCount),
@@ -100,10 +101,136 @@ assert.equal(
   source.archiveSha256,
   "Producer archive differs from committed source",
 );
-// Consumer tooling can evolve, while any game-source change requires a new
-// comparison rather than reusing a historical producer receipt.
-for (const [path, expected] of Object.entries(source.files))
-  if (path.startsWith("src/game/"))
+// A runtime comparison keeps historical expectations/provenance intact while
+// pinning a separate current consumer archive and a fresh actual-browser pass.
+let consumerSource = source;
+if (manifest.id === "speaker-runtime-easy-complete-campaign") {
+  assert.equal(manifest.runtimeComparison, true);
+  const baseline = await json("expectation-manifest");
+  for (const key of [
+    "captureCommit",
+    "expectedCheckpointCount",
+    "requiredEventCount",
+    "checkpointNames",
+    "expectedEnding",
+    "expectedOwnership",
+    "expectedFlightPresentations",
+  ])
+    assert.deepEqual(
+      manifest[key],
+      baseline[key],
+      `Changed historical expectation ${key}`,
+    );
+  for (const role of [
+    "environment",
+    "captured-events",
+    "campaign-checkpoints",
+    "timeline",
+    "producer-source",
+    "producer-archive",
+    "producer-status",
+    "producer-log",
+    "ending-png",
+  ])
+    assert.deepEqual(
+      manifest.artifacts[role],
+      baseline.artifacts[role],
+      `Replaced historical ${role}`,
+    );
+  consumerSource = await json("runtime-source");
+  const runtimeStatus = await json("runtime-status");
+  assert.equal(consumerSource.commit, manifest.runtimeCommit);
+  assert.equal(runtimeStatus.sourceCommit, manifest.runtimeCommit);
+  assert.equal(runtimeStatus.exitCode, 0);
+  assert.equal(runtimeStatus.loadedSourcesUnchanged, true);
+  assert.equal(runtimeStatus.historicalArtifactsPreserved, true);
+  assert.equal(
+    runtimeStatus.manifestSHA256,
+    manifest.artifacts["expectation-manifest"].sha256,
+  );
+  assert.equal(
+    runtimeStatus.captureToolSHA256,
+    manifest.artifacts["runtime-capture-tool"].sha256,
+  );
+  const runtimeArchive = await readFile(
+    manifest.artifacts["runtime-archive"].path,
+  );
+  assert.equal(sha(runtimeArchive), consumerSource.archiveSha256);
+  const committed = spawnSync(
+    "git",
+    ["archive", "--format=zip", manifest.runtimeCommit],
+    { timeout: 30000, maxBuffer: 32 * 1024 * 1024 },
+  );
+  assert.ifError(committed.error);
+  assert.equal(committed.status, 0, "SETUP: missing runtime revision");
+  assert.equal(
+    sha(committed.stdout),
+    consumerSource.archiveSha256,
+    "Runtime archive differs from committed source",
+  );
+  const inventory = spawnSync(
+    "python3",
+    [
+      "-c",
+      `import json,zipfile,hashlib,sys
+s=json.load(open(sys.argv[2]))
+with zipfile.ZipFile(sys.argv[1]) as z:
+ names=[n for n in z.namelist() if not n.endswith('/')]
+ assert set(names)==set(s['files']), 'Incomplete runtime source archive'
+ for n in names: assert hashlib.sha256(z.read(n)).hexdigest()==s['files'][n], 'Corrupt runtime source:'+n`,
+      manifest.artifacts["runtime-archive"].path,
+      manifest.artifacts["runtime-source"].path,
+    ],
+    { encoding: "utf8", timeout: 30000 },
+  );
+  assert.ifError(inventory.error);
+  assert.equal(inventory.status, 0, inventory.stderr);
+  const changedGameFiles = [
+    ...new Set([
+      ...Object.keys(source.files),
+      ...Object.keys(consumerSource.files),
+    ]),
+  ]
+    .filter(
+      (p) =>
+        p.startsWith("src/game/") &&
+        source.files[p] !== consumerSource.files[p],
+    )
+    .sort();
+  assert.deepEqual(
+    changedGameFiles,
+    [
+      "src/game/audio-device.js",
+      "src/game/browser.js",
+      "src/game/speaker-audio.js",
+      "src/game/tandy-audio.js",
+    ],
+    "Unexpected game change in audio runtime comparison",
+  );
+  const actualSourceFiles = (
+    await readdir("src", { recursive: true, withFileTypes: true })
+  )
+    .filter((d) => d.isFile())
+    .map((d) => `${d.parentPath}/${d.name}`)
+    .sort();
+  const expectedSourceFiles = Object.keys(consumerSource.files)
+    .filter((p) => p.startsWith("src/"))
+    .sort();
+  assert.deepEqual(
+    actualSourceFiles,
+    expectedSourceFiles,
+    "Unexpected or missing runtime source file",
+  );
+} else
+  assert.equal(
+    manifest.runtimeComparison,
+    undefined,
+    "Unsupported runtime comparison",
+  );
+// Historical contracts still require their original source. The explicit audio
+// comparison checks every src file against its independently archived consumer.
+for (const [path, expected] of Object.entries(consumerSource.files))
+  if (path.startsWith(manifest.runtimeComparison ? "src/" : "src/game/"))
     assert.equal(
       sha(await readFile(path)),
       expected,

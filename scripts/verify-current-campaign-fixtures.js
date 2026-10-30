@@ -16,16 +16,44 @@ await mkdir(".local/current-campaign-verification", { recursive: true });
 const root = await mkdtemp(
   ".local/current-campaign-verification/fixture-negatives-",
 );
-for (const kind of ["missing-source-archive", "corrupt-ending-picture"]) {
+const kinds = [
+  "missing-source-archive",
+  "corrupt-ending-picture",
+  ...(m.runtimeComparison
+    ? [
+        "missing-runtime-archive",
+        "corrupt-runtime-inventory",
+        "changed-historical-ending",
+      ]
+    : []),
+];
+for (const kind of kinds) {
   const contract = structuredClone(m);
   if (kind === "missing-source-archive")
     contract.artifacts["producer-archive"].path = `${root}/missing.zip`;
-  else {
+  else if (kind === "corrupt-ending-picture") {
     const bytes = Buffer.from(await readFile(m.artifacts["ending-png"].path));
     bytes[bytes.length - 1] ^= 1;
     contract.artifacts["ending-png"].path = `${root}/corrupt.png`;
     await writeFile(contract.artifacts["ending-png"].path, bytes);
   }
+  if (kind === "missing-runtime-archive")
+    contract.artifacts["runtime-archive"].path = `${root}/missing-runtime.zip`;
+  if (kind === "corrupt-runtime-inventory") {
+    const inventory = JSON.parse(
+      await readFile(m.artifacts["runtime-source"].path),
+    );
+    inventory.files["src/game/browser.js"] = "0".repeat(64);
+    const bytes = Buffer.from(JSON.stringify(inventory));
+    const path = `${root}/corrupt-runtime-source.json`;
+    await writeFile(path, bytes);
+    contract.artifacts["runtime-source"] = {
+      path,
+      bytes: bytes.length,
+      sha256: sha(bytes),
+    };
+  }
+  if (kind === "changed-historical-ending") contract.expectedEnding.banked++;
   const path = `${root}/${kind}.json`;
   await writeFile(path, JSON.stringify(contract));
   const r = spawnSync(
@@ -37,12 +65,15 @@ for (const kind of ["missing-source-archive", "corrupt-ending-picture"]) {
   await writeFile(`${root}/${kind}.log`, output);
   assert.ifError(r.error);
   assert.equal(r.status, 1);
-  assert.match(
-    output,
-    kind === "missing-source-archive"
-      ? /SETUP: missing producer-archive artifact/
-      : /Corrupt ending-png artifact/,
-  );
+  const patterns = {
+    "missing-source-archive": /SETUP: missing producer-archive artifact/,
+    "corrupt-ending-picture": /Corrupt ending-png artifact/,
+    "missing-runtime-archive": /SETUP: missing runtime-archive artifact/,
+    "corrupt-runtime-inventory": /Corrupt runtime source:src\/game\/browser.js/,
+    "changed-historical-ending":
+      /Changed historical expectation expectedEnding/,
+  };
+  assert.match(output, patterns[kind]);
   assert.doesNotMatch(
     output,
     /independent browser replay pending|ETIMEDOUT|Zero replay cases/,
@@ -55,5 +86,5 @@ for (const [role, spec] of Object.entries(m.artifacts))
     `Original ${role} changed`,
   );
 console.log(
-  `Full campaign fixture controls:missing producer archive and corrupt ending image rejected;all original bytes preserved. Reports:${root}`,
+  `Full campaign fixture controls:${kinds.length} broken contracts rejected;all original bytes preserved. Reports:${root}`,
 );

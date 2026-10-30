@@ -5,7 +5,12 @@ import { createHash } from "node:crypto";
 import { originalGame } from "../tests/helpers/original-game.js";
 await originalGame();
 const sha = (b) => createHash("sha256").update(b).digest("hex");
-const m = JSON.parse(await readFile("reference/speaker-playback.json"));
+const m = JSON.parse(
+  await readFile(
+    process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+      "reference/speaker-playback-current.json",
+  ),
+);
 assert.equal(m.build, "dos-fb658562");
 assert.equal(m.browserCases, 7);
 assert.equal(m.streamCases, 3);

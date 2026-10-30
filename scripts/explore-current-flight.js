@@ -38,7 +38,10 @@ assert.ok(
 );
 assert.ok([1, 2, 3].includes(policy.climbHeading));
 assert.ok([0, 4].includes(policy.minimumTurnSpeed));
-assert.ok(steeringMode === undefined || steeringMode === "hazards");
+assert.ok(
+  steeringMode === undefined ||
+    ["hazards", "predictive"].includes(steeringMode),
+);
 policy.steeringMode = steeringMode ?? "fixed";
 await mkdir(output, { recursive: false }).catch(async (e) => {
   if (e.code !== "ENOENT") throw e;
@@ -160,6 +163,17 @@ let trace = [],
 try {
   await until((s) => s.scene === "flight");
   const playerPolicy = { ...policy };
+  if (steeringMode === "predictive") {
+    let previousY;
+    playerPolicy.altitudeForState = (s) => {
+      const y = s.flight.y;
+      const dy = previousY === undefined ? 0 : y - previousY;
+      previousY = y;
+      // Brake the climb before crossing the desired lane. This is a player
+      // estimate from its own last two poses, not a simulation prediction.
+      return policy.altitude.map((limit) => limit - dy * 2);
+    };
+  }
   if (steeringMode === "hazards")
     playerPolicy.altitudeForState = (s) => {
       const f = s.flight;

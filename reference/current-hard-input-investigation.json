@@ -451,6 +451,21 @@
       "path": ".local/current-hard-second-flight-plans-02/collision-boundaries/result.json",
       "bytes": 626383,
       "sha256": "fd284961053ef5c0c39954ef690388b028321af05f105eba61537dcf43a69976"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-03/predictive-gap/controller-source.js",
+      "bytes": 5296,
+      "sha256": "b0fc66164affd0aae0982ba41ff73890fa20da4f27a0131c000be6ed78be19e3"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-03/predictive-gap/explorer-source.js",
+      "bytes": 7722,
+      "sha256": "75000ec1eafa08424b60da3bd64811ee55bd6eadc6643b16e06169ed3de207fb"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-03/predictive-gap/result.json",
+      "bytes": 567807,
+      "sha256": "8aef9d0ebc25a44bc2d83ee381787f5cb14ceac1032b67454a363916573851ad"
     }
   ],
   "nextExperiment": "Target the first cargo/body pair at tile4 with anticipatory steering;require an actual browser flight success before extending Hard campaign acceptance.",
@@ -930,5 +945,30 @@
       "sha256": "13397f7ed723f6e9e2a71cb765fc3d6aa33f1f9e745687cd9402cd8b9fe39421"
     },
     "sourceLimit": "Each result preserves its exact explorer module. The final collision-boundaries result also preserves and hashes the imported controller. Earlier candidates have no separate archived controller module;their events/results remain exploratory evidence."
+  },
+  "predictiveFlightResearch": {
+    "producerBaseCommit": "75ec159",
+    "scope": "Player-input research only;not Hard acceptance or native evidence. Two-pose climb braking still loses.",
+    "policy": {
+      "altitude": [
+        100,
+        102
+      ],
+      "climbHeading": 3,
+      "minimumTurnSpeed": 0,
+      "steeringMode": "predictive"
+    },
+    "outcome": {
+      "status": "race-lost",
+      "code": 0,
+      "day": 10,
+      "seed": 37329,
+      "money": 0,
+      "frames": 267
+    },
+    "tool": {
+      "path": "scripts/explore-current-flight.js",
+      "sha256": "75000ec1eafa08424b60da3bd64811ee55bd6eadc6643b16e06169ed3de207fb"
+    }
   }
 }

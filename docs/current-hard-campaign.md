@@ -189,3 +189,11 @@ The next experiment targets the first cargo/body pair with anticipatory steering
 then requires successful real-browser flight before continuing the Hard route.
 All177 unit cases pass after the controller extensions;the complete Easy browser
 gate was not rerun for this research-only change.
+
+A later two-pose climb-braking player (`predictive` mode) also loses the second
+race at267 updates,seed37329. Its input stream, exact controller and explorer
+sources are retained under `.local/current-hard-second-flight-plans-03/predictive-gap`
+and pinned in the research manifest. This remains unsuccessful player research.
+Campaign acceptance is still incomplete. Work now also addresses the independently
+established cave reveal omission rather than treating repeated pilot failures as
+proof of a missing mechanic.

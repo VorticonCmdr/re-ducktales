@@ -28,8 +28,13 @@ Physical makes, repeats, release-edge reads, aliases/keypad directions and the
 caller's flushes/mode replace the previous held-direction shortcut. Safari keeps
 its mode-1 behavior; jungle inherits its caller mode. Cave keypad diagonals use
 the original five-bit direction groups. The focused command is
-`npm run verify:expedition-keyboard`; its combined acceptance is pending a clean
-run. [Input evidence and limits](expedition-keyboard.md).
+`npm run verify:expedition-keyboard`; its clean run on `948466d` passed
+all 148 unit cases, five real browser cases, the lost-release browser negative,
+original/component regressions and the production build, with zero skipped
+cases. All 159 map artifacts and previous receipts were preserved. The
+653-file source archive and results are pinned by the
+[focused receipt](../reference/expedition-keyboard-integration.json).
+[Input evidence and limits](expedition-keyboard.md).
 
 Exact source bridges compare all 764 mountain input memories/locals/states and
 870 ordered command/pixel publications, and 1,616 jungle input memories/states
@@ -67,8 +72,8 @@ two browser cases and negatives. Its complete treasure route has 27 exact
 checkpoints, 70 DOM events and 860 movement samples, returning $1,050 on day 17.
 Historical component contracts retain 1,616 input-boundary memory comparisons,
 1,714 ordered publications and 40 gameplay checkpoints. At `d1e0189`, after the
-cave change, `npm run verify:jungle-core` also passed. Its browser source receipt
-needs refresh for the newer shared sources. [Evidence](../reference/jungle-component-migration.json).
+cave change, `npm run verify:jungle-core` also passed. Its complete-treasure browser source receipt needs refresh for the newer shared
+sources; the new physical-input gate separately checks natural entry and movement. [Evidence](../reference/jungle-component-migration.json).
 
 Mountain sprite pacing and its complete summit/browser route passed their earlier
 `ce112a8` milestone. Mountain and older Easy/Hard campaign receipts also need

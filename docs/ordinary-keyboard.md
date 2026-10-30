@@ -4,8 +4,11 @@ The shared `ordinary-keyboard.js` core is used in `OfficeMenu`,preserving the
 existing Map/snapshot representation. The complete keyboard integration gate
 passes on8446d79 with117 unit/91 development/2 production cases and529 archived
 source files. [Complete receipt](../reference/keyboard-integration.json).
-The browser's letter/keypad bindings and full map-loop translation are still
-pending;this is a shared input-core milestone,not whole keyboard parity.
+Those counts describe the historical shared input-core milestone. Current
+browser map work is described below; ground expeditions now use the same raw
+reader with their source-specific modes and flushes. See
+[physical expedition keys](expedition-keyboard.md). Whole keyboard parity remains
+incomplete.
 
 Fresh browser acceptance on87bf2ed passed all seven office/investment/trading
 cases with523 exact archived tracked files. This exercises actual keyboard,

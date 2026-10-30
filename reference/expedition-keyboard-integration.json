@@ -1,0 +1,183 @@
+{
+  "id": "ground-expedition-physical-keyboard-integration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "948466d7f976cf7019ebda09375e12286264a56a",
+  "sourceFileCount": 653,
+  "verificationCommand": "npm run verify:expedition-keyboard",
+  "verificationExitCode": 0,
+  "unitCases": 148,
+  "unitFailures": 0,
+  "unitSkipped": 0,
+  "browserCases": 5,
+  "browserSkipped": 0,
+  "browserNegativeControls": 1,
+  "nativeInvariantInputReads": 17,
+  "independentHardwareEvents": 2,
+  "nativeFlagCheckpoints": 6,
+  "staticCaveInstructionBytes": 526,
+  "caveDirectionByteCases": 256,
+  "nativeInvariantNegativeControls": 5,
+  "mountainBridge": {
+    "entireInputBoundaries": 764,
+    "orderedCommandPixelPublications": 870,
+    "negativeControls": 2,
+    "exclusions": []
+  },
+  "jungleBridge": {
+    "entireInputBoundaries": 1616,
+    "orderedPixelModeWipePublications": 1714,
+    "negativeControls": 4,
+    "exclusions": []
+  },
+  "historicalMapFixtureControls": {
+    "negativeCases": 2,
+    "restoredPositiveCases": 36,
+    "protectedOriginalArtifactCount": 159,
+    "mutationsConfinedToTemporaryCopies": true
+  },
+  "historicalArtifactsPreserved": true,
+  "fittedInputs": [],
+  "inputContract": {
+    "native": "Unchanged counted mountain endpoints and14-frame parent. Six entire128-flag checkpoints;intermediate held rule inferred. Native clocks and actor states are not injected into Game. Conditional code relocation identities remain parent-specific.",
+    "component": "Historical and current classes start independently from decoded original resources and the same authored digital input streams. Source bridges include every timer byte. Existing older historical/drawing-time expectations remain required.",
+    "browser": "Actual DOM make/repeat/break events with explicit browser clock. Safari repeat profile first250ms then32ms is an authored external device provider,not a native typematic measurement. Jungle entry independently reproduces one full state/picture,50 entry DOM events and23905ms clock. Producer files stay exploratory;clean reproduction supplies acceptance."
+  },
+  "scope": [
+    "Original ordinary reader in all four ground expedition families;mode0 release-edge,mode1 consumption,raw-priority aliases/keypad,source flushes and physical repeats. Browser does not synthesize held-key results after flush.",
+    "Cave direction groups derived from exact original mask/compare bytes,including keypad diagonal plus Fire awarding room18/$50.",
+    "Five actual browser cases cover mountain release edge/life reset/Pause/Restart,cave input/Pause,Safari input/Pause,full-film Safari results/reward/duplicate protection,and natural jungle entry/alias/repeat/flush/movement/Restart.",
+    "Lost release-edge browser mutation rejected at required source-byte assertion. Missing/corrupt map captures rejected only on disposable copies;all original captures and prior receipt artifacts preserved."
+  ],
+  "limitations": [
+    "Input-boundary invariants and source regressions do not prove native whole-expedition or whole-campaign parity.",
+    "Ground expedition drawing/device timing remains partial. This change does not introduce a global slowdown or claim full original cadence.",
+    "Cross-scene queued IRQ delivery,other physical input backends,remaining modifier/system/BIOS behavior,and inherited atomic-to-jungle mode in a native run remain unverified. Out-of-context expedition IRQs stop strict development play.",
+    "Destination autonomous neutral polling and exact draw/flush/read/system-key windows remain incomplete.",
+    "Full npm run verify remains red at the required historical shared-runtime inventory;older broader campaign/browser receipts need refresh. No failure is waived.",
+    "Arbitrary-route finishability and original save/load/high-score behavior remain unproven."
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/expedition-keyboard-integration-01/runner-status.json",
+      "bytes": 28082,
+      "sha256": "619c0753c95ca07505962dbb03e4e3d9c773d73d292a48d0417ea96c690634e5"
+    },
+    "runner-source": {
+      "path": ".local/expedition-keyboard-integration-01/runner.py",
+      "bytes": 2742,
+      "sha256": "5250577badc70cdc021f5e85f4a770cd758ce9ec491a518e56764f63a971e4f2"
+    },
+    "source": {
+      "path": ".local/expedition-keyboard-integration-01/source-revision.json",
+      "bytes": 70703,
+      "sha256": "1db8cf4ac9dd9ce1d8404fd22725824f7be815969da5bf2bb03404c8d69df50b"
+    },
+    "source-zip": {
+      "path": ".local/expedition-keyboard-integration-01/sources.zip",
+      "bytes": 1754839,
+      "sha256": "d846dd2d2be26108a1732e457cd32c696b9110a822bd671f25f25fcfd93462b3"
+    },
+    "verification-log": {
+      "path": ".local/expedition-keyboard-integration-01/verification.log",
+      "bytes": 25336,
+      "sha256": "4603b2ec04ca99bcf62a6b3d4b568502c657475b3584644c7469cc106d901cd1"
+    },
+    "controls/browser-negative/.last-run.json": {
+      "path": ".local/expedition-keyboard-integration-01/controls/browser-negative/.last-run.json",
+      "bytes": 96,
+      "sha256": "04a24f4c19371e2c1bcda6377a873737338ae33d25def95ae2db3f41993eeeca"
+    },
+    "controls/browser-negative.log": {
+      "path": ".local/expedition-keyboard-integration-01/controls/browser-negative.log",
+      "bytes": 1639,
+      "sha256": "b47761fc78f346eafab3ab61ad6b9615adef4092860c3ab8c6356e46b5d37bca"
+    },
+    "controls/map-fixture-controls/checker.log": {
+      "path": ".local/expedition-keyboard-integration-01/controls/map-fixture-controls/checker.log",
+      "bytes": 165,
+      "sha256": "d91ebbff86816abf820acf35917c44a27efbc96b9643d0cd53d44e6e34a7c150"
+    },
+    "controls/map-fixture-controls/corrupt-fixture.log": {
+      "path": ".local/expedition-keyboard-integration-01/controls/map-fixture-controls/corrupt-fixture.log",
+      "bytes": 684,
+      "sha256": "f0ef4169d23f67bc2264ca127c064b459b0b1379683192aedd24f9511e9f6969"
+    },
+    "controls/map-fixture-controls/missing-fixture.log": {
+      "path": ".local/expedition-keyboard-integration-01/controls/map-fixture-controls/missing-fixture.log",
+      "bytes": 521,
+      "sha256": "bb3a809a73353bbe204fc48e5aaab6bdef3f8c0181e27900140dc49705d80d22"
+    },
+    "controls/map-fixture-controls/report.json": {
+      "path": ".local/expedition-keyboard-integration-01/controls/map-fixture-controls/report.json",
+      "bytes": 21154,
+      "sha256": "1e4c8ddf6125a4ab6c9896dd3e462c9f5e4f72b50e72f1beac1acb635b4ebcec"
+    },
+    "controls/map-fixture-controls/restored-positive.log": {
+      "path": ".local/expedition-keyboard-integration-01/controls/map-fixture-controls/restored-positive.log",
+      "bytes": 269,
+      "sha256": "05e81d3cbdebd656143c5f3ede9a39efefa724860347740f84748e973dbb046a"
+    },
+    "browser/mountain-input-pause.png": {
+      "path": ".local/expedition-keyboard-integration-01/mountain-input-pause.png",
+      "bytes": 22350,
+      "sha256": "b38107f13ba309a5c231193da3faf05c521314c0461d0eec53a2636297e1cbe1"
+    },
+    "browser/mountain-sprite-pacing.png": {
+      "path": ".local/expedition-keyboard-integration-01/mountain-sprite-pacing.png",
+      "bytes": 22743,
+      "sha256": "d4d47a0d7a12e95f5d9e3224dde0e06b7965191776d140e0d18c30d82fea72ba"
+    },
+    "browser/cave-pause.png": {
+      "path": ".local/expedition-keyboard-integration-01/cave-pause.png",
+      "bytes": 32751,
+      "sha256": "e5c747b392e2e79c3d3bf2f735fa4be3a72cb8c333482fad62b6711b1618956a"
+    },
+    "browser/photography-input.png": {
+      "path": ".local/expedition-keyboard-integration-01/photography-input.png",
+      "bytes": 31296,
+      "sha256": "e065c53b60debc29aecdda02e598f711e413eaa50992763efc36d9eedc5473f3"
+    },
+    "browser/photography-shot.png": {
+      "path": ".local/expedition-keyboard-integration-01/photography-shot.png",
+      "bytes": 31675,
+      "sha256": "593cc7e7d6bd6987429a2363d14a3952c472979f85e4dbf400e4a93a8393236d"
+    },
+    "browser/photography-results.png": {
+      "path": ".local/expedition-keyboard-integration-01/photography-results.png",
+      "bytes": 8148,
+      "sha256": "4026e5d4d01a2dd420708bc668b986d2958e0b41f6371bac17162cb2e66297c8"
+    },
+    "reference/build.json": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "reference/expedition-keyboard.json": {
+      "path": "reference/expedition-keyboard.json",
+      "bytes": 5374,
+      "sha256": "0ae27d10476e5341b7ff15b221a7135aeddef3d14c1c4005c31c67a64fcd04b4"
+    },
+    "reference/expedition-keyboard-inputs.json": {
+      "path": "reference/expedition-keyboard-inputs.json",
+      "bytes": 460,
+      "sha256": "7dc8b8c70d0e1a1e7a4a6b8b71c13f41e357b1af6d2e45dc695eb21603e1d773"
+    },
+    "reference/expedition-keyboard-jungle-entry.json": {
+      "path": "reference/expedition-keyboard-jungle-entry.json",
+      "bytes": 2745,
+      "sha256": "7e9e1e5fe14227abbe5c75c42ba89fe9da7a257ab7999d2417c6eb60d9d8af5c"
+    },
+    "reference/mountain-ascent-input-bridge.json": {
+      "path": "reference/mountain-ascent-input-bridge.json",
+      "bytes": 1389,
+      "sha256": "b78617e2e09f7abdbe44107dd755cd71c699b248c5cb135420de6e50f8606a72"
+    },
+    "reference/jungle-input-bridge.json": {
+      "path": "reference/jungle-input-bridge.json",
+      "bytes": 1684,
+      "sha256": "8abe02d29027edcb0d7efd6960795c88bdb388b6c58d549803595b34e88d86e7"
+    }
+  }
+}

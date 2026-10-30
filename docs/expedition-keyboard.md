@@ -117,3 +117,15 @@ need investigation. Unsupported out-of-context expedition IRQs stop development
 play with a diagnostic. Destination autonomous neutral polling and its exact
 draw/flush/read window remain untranslated. Full native expedition timing,
 arbitrary-route finishability and the complete campaign gate remain unverified.
+
+## Focused integration receipt
+
+The clean source run on `948466d` passed all 148 unit cases,
+five actual browser cases, the lost-release browser negative, original/component
+regressions and production build, with zero skipped cases. The
+[receipt](../reference/expedition-keyboard-integration.json) pins the
+653-file source archive, complete log, screenshots, runner and
+fixture-isolation report. The jungle entry producer files remain exploratory;
+the subsequent clean browser reproduction establishes this focused acceptance.
+This does not refresh older whole-campaign receipts or make the required full
+gate green.

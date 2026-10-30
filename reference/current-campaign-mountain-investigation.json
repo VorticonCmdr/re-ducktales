@@ -38,7 +38,8 @@
       "money": 5500,
       "seed": 20501
     },
-    "browserAcceptance": "pending"
+    "browserAcceptance": "Complete four-family browser capture and independent35-checkpoint replay passed;764 mountain actions,3 lives. Not native whole-ascent parity.",
+    "matchingFullMountainObservations": 39
   },
   "commands": [
     "node scripts/explore-current-mountain.js release-before-last",
@@ -89,6 +90,16 @@
       "path": ".local/current-mountain-plans-01/release-before-last/result.json",
       "bytes": 454370,
       "sha256": "5b328b9a2694179e0b0e2641389312606ec7fed44cc4f9015fcc0e6cc2dbfa9b"
+    },
+    {
+      "path": "reference/current-physical-campaign.json",
+      "bytes": 7397,
+      "sha256": "40e71803e0cce63cf852c7afdcd517f9deab0628923715883b9ff95088438e3b"
+    },
+    {
+      "path": ".local/current-campaign-continuation-07/runner-status.json",
+      "bytes": 3410,
+      "sha256": "837dc5ae9cee40a574927a49cdaaab73b46c54b1b481a7566fc8a27378be703f"
     }
   ]
 }

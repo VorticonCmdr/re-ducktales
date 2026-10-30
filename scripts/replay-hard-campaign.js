@@ -136,7 +136,19 @@ if (!diagnose) {
     checkpoints[0].stateSha256 = "0".repeat(64);
   else if (negative === "omit-checkpoint")
     checkpoints.splice(checkpoints.length > 1 ? 1 : 0, 1);
-  else assert.equal(negative, undefined, "Unknown negative control");
+  else if (negative === "alter-ending") {
+    assert.ok(
+      contract.expectedEnding,
+      "SETUP: ending negative requires a full campaign",
+    );
+    contract.expectedEnding.won = !contract.expectedEnding.won;
+  } else if (negative === "extend-timeline") {
+    assert.ok(
+      contract.expectedEnding,
+      "SETUP: timeline negative requires a full campaign",
+    );
+    timeline.endAt += 8;
+  } else assert.equal(negative, undefined, "Unknown negative control");
   assert.equal(
     events.length,
     contract.requiredEventCount,
@@ -488,7 +500,19 @@ try {
         "Missing collected treasure",
       );
       assert.equal(lastTime, timeline.endAt, "Unfinished treasure timeline");
-    } else assert.ok(game.ending.ready, "Unfinished ending input sequence");
+    } else {
+      assert.ok(game.ending.ready, "Unfinished ending input sequence");
+      assert.equal(lastTime, timeline.endAt, "Unfinished ending timeline");
+      assert.ok(
+        strictContract.expectedEnding,
+        "SETUP: missing expected ending",
+      );
+      assert.deepEqual(
+        game.snapshot().ending,
+        strictContract.expectedEnding,
+        "Recorded ending mismatch",
+      );
+    }
     assert.ok(
       (departureEntry ? rendered === 0 : rendered > 0) &&
         (strictContract.expectedFlagAliasPresentations === 0 ||

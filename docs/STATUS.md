@@ -23,17 +23,27 @@ is the default. Physical waveform/gain/filter parity remains open. [Audio](audio
 
 ## Current campaign work
 
-The physical campaign has completed jungle treasure recovery, a$1,050 deposit,
-Safari with$500 earnings, and cave treasure return (day14,$5,400 carried).
-Strict startup replay matches24 full states from3,804 external events; seven
-negative controls reject deliberately broken inputs/fixtures. Actual browser
-replay matches all24 states/pixel digests and all3,804 DOM events.
-[Individual-command receipt](../reference/current-campaign-progress-receipt.json).
-Mountain entry works; its old player controller fails, while a
-corrected physical-release schedule recovers treasure in startup reconstruction.
-Actual browser mountain/ending verification and a complete registered current
-campaign regression remain pending. No game mechanics changed in this work.
-[Current evidence, commands and limits](current-campaign.md).
+The current physical-keyboard Easy campaign is playable from startup through all
+four expedition families and the winning deadline ending. It recovers jungle,
+cave and mountain treasure, earns Safari photo money, handles rival reports and
+banking, then wins on day31 with$14,550 banked against$12,500. Mountain recovery
+retains all three lives. Restart returns to a fresh game.
+
+Independent recorded-input replay matches35 full states from4,981 external
+events and renders1,470 flight presentations without errors. A separate actual
+browser run matches every checkpoint's full state and320x200 pixels, consumes the
+complete DOM event sequence and passes restart. Full original/native campaign
+parity, Hard campaigns and arbitrary-route finishability are still unproven.
+The broader `npm run verify` remains red at older source receipts.
+[Scenario and verification command](../reference/current-physical-campaign.json),
+[current evidence and limits](current-campaign.md).
+
+This work changes player controllers and verification, not game mechanics. The
+old mountain controller released keys one source read too late; the corrected
+physical schedule preserves the original mode0 release-edge consumption.
+The earlier24-checkpoint three-family segment remains separate;
+[its individual-command receipt](../reference/current-campaign-progress-receipt.json)
+retains that smaller scope.
 
 ## Latest verified flight input milestone
 
@@ -190,9 +200,9 @@ refresh. Historical passes do not establish a green current broader gate.
 - Original save/load/high-score behavior/formats have not been established.
   Browser persistence would be an explicit addition without original evidence.
 
-Next: refresh broader campaign acceptance against the current runtime while
-preserving historical streams, then investigate the first failed gameplay
-behavior. Continue remaining drawing/device costs and cross-scene input windows
+Next: extend current physical campaign acceptance to Hard and the remaining
+registered routes while preserving historical streams, then investigate the first
+failed gameplay behavior. Continue remaining drawing/device costs and cross-scene input windows
 alongside that campaign work.
 
 ## Supported build and commands
@@ -204,6 +214,7 @@ MZ/EXEPACK, x86 LE16 real mode, overlays, no extender. Actual relocated game byt
 and native addresses were checked; the analysis image is never executed.
 
 ```sh
+npm run verify:current-campaign
 npm run verify:flight-keyboard
 npm run verify:departure-sequence
 npm run verify:destination-loop

@@ -90,7 +90,7 @@
   "verify": "npm run verify:current-campaign-progress",
   "expectedFlightPresentations": 1149,
   "verificationSources": {
-    "scripts/replay-hard-campaign.js": "241477afb2b885ac9a30134a0c01a1f6b0d4ee2d1e3c7079d5f6189052f18060",
+    "scripts/replay-hard-campaign.js": "bf8321c1c3371fb0b0d54e5cb7abbf381072ef100e7b1620bfb59f26b6dfacbf",
     "scripts/verify-current-campaign-progress.js": "8d893a5dda44740d9b63476dc94720b39bd2683e3492f21d2418eabbd9045084",
     "scripts/verify-current-campaign-progress-browser-negative.js": "05f7d495241e10ea27dc28cfcfe44605a8a98dce250b15a470cf93d771ff4a45",
     "tests/helpers/original-game.js": "0b894ad5a1498fa58a070d4e576e9add244d729b7d8c48e0f53243097f9347d3",
@@ -107,5 +107,12 @@
     "checkpoints": 24,
     "events": 3804,
     "scope": "Actual DOM input and320x200 pixels at every checkpoint;audio disabled. Closed-loop from startup,not native whole-campaign acceptance."
+  },
+  "verificationSourceRefresh": {
+    "baseCommit": "cfcf193",
+    "path": "scripts/replay-hard-campaign.js",
+    "priorSha256": "241477afb2b885ac9a30134a0c01a1f6b0d4ee2d1e3c7079d5f6189052f18060",
+    "newSha256": "bf8321c1c3371fb0b0d54e5cb7abbf381072ef100e7b1620bfb59f26b6dfacbf",
+    "reason": "Full ending replay additionally requires exact timeline end and complete ending object;in-memory negatives alter those expectations independently. Segment outputs and input fixtures unchanged."
   }
 }

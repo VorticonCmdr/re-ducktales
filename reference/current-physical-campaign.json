@@ -1,0 +1,180 @@
+{
+  "id": "current-physical-easy-complete-campaign",
+  "scope": "Startup through four expeditions,banking,rival progression and winning deadline ending;closed-loop port scenario,not independent native whole-campaign parity.",
+  "physicalKeyboard": true,
+  "expectedHard": false,
+  "pendingBrowserReplay": false,
+  "artifactRoot": ".local/current-physical-campaign-01",
+  "captureRoot": ".local/current-campaign-exploration-07/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+  "captureCommit": "cfcf193ccbefc9ba71388f85ee35896be72b046a",
+  "buildManifest": {
+    "path": "reference/build.json",
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "expectedCheckpointCount": 35,
+  "requiredEventCount": 4981,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-input-80",
+    "jungle-input-160",
+    "jungle-input-240",
+    "jungle-input-320",
+    "jungle-input-400",
+    "jungle-input-480",
+    "jungle-input-560",
+    "jungle-input-640",
+    "jungle-input-720",
+    "jungle-input-800",
+    "jungle-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "mountain-entry",
+    "mountain-return",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedFlagAliasPresentations": 0,
+  "expectedEnding": {
+    "phase": "cover",
+    "won": true,
+    "banked": 14550,
+    "rivalBanked": 12500,
+    "day": 31,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 36,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      1,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "rivalUnlockMask": 15
+  },
+  "artifacts": {
+    "environment": {
+      "path": ".local/current-physical-campaign-01/environment.json",
+      "bytes": 455,
+      "sha256": "49fab4bbb2af3e783a27fc52c1befa64a52029c6655f102150fdd6f56f0a2a2b"
+    },
+    "captured-events": {
+      "path": ".local/current-physical-campaign-01/captured-events.json",
+      "bytes": 604412,
+      "sha256": "fc1f8ef4213ef9299c29909aa90db0aa29c5b42aef325ba6919b3083cb2dd69b"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/current-physical-campaign-01/campaign-checkpoints.json",
+      "bytes": 236190,
+      "sha256": "ba7e96a89f6401db8170e2c0e7df8764c916a246464cb77386f113c8964fe913"
+    },
+    "timeline": {
+      "path": ".local/current-physical-campaign-01/timeline.json",
+      "bytes": 3188,
+      "sha256": "13f350584176ad18086927ff7a6d3483e887227b3be179847fa478dac98edec0"
+    },
+    "producer-source": {
+      "path": ".local/current-campaign-continuation-07/source-revision.json",
+      "bytes": 75597,
+      "sha256": "7744422b0c4098c73adf9ac2923ef4d2238d005d805a8497f945bdf67d5171a7"
+    },
+    "producer-archive": {
+      "path": ".local/current-campaign-continuation-07/sources.zip",
+      "bytes": 1856095,
+      "sha256": "ab964c6345c0bb2f0d679225d122e95d50f5b17f79a5e84b70d0ee98333786c2"
+    },
+    "producer-status": {
+      "path": ".local/current-campaign-continuation-07/runner-status.json",
+      "bytes": 3410,
+      "sha256": "837dc5ae9cee40a574927a49cdaaab73b46c54b1b481a7566fc8a27378be703f"
+    },
+    "producer-log": {
+      "path": ".local/current-campaign-continuation-07/browser.log",
+      "bytes": 4732,
+      "sha256": "52f2fc41cded00a352bc288095dc271b8d84687d391e2227878d4321f3a891bd"
+    },
+    "ending-png": {
+      "path": ".local/current-campaign-exploration-07/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/mixed-campaign-ending.png",
+      "bytes": 17946,
+      "sha256": "36f2b088dcf10c031b568236e8a89015a48284484d53dbacbcd9cd2ea0bd6000"
+    },
+    "accepted-browser-progress": {
+      "path": ".local/current-physical-campaign-browser-01/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 7733,
+      "sha256": "695b801cebf35961447f363ed52c714f6bd8505181ae779f2571f6912a6b4244"
+    },
+    "accepted-browser-checkpoints": {
+      "path": ".local/current-physical-campaign-browser-01/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 236190,
+      "sha256": "ba7e96a89f6401db8170e2c0e7df8764c916a246464cb77386f113c8964fe913"
+    },
+    "accepted-browser-events": {
+      "path": ".local/current-physical-campaign-browser-01/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 456062,
+      "sha256": "044a47cba974784d51ef292b5e0de6414967a36ac08193b1d0b751f578c0673f"
+    },
+    "accepted-browser-status": {
+      "path": ".local/current-physical-campaign-browser-01/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    }
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "captureTools": {
+    "displayMilliseconds": 8,
+    "clockOrigin": 1,
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "emulator": "No native emulator used by this port-regression capture. Original native subsystem evidence remains separately scoped.",
+    "producerSource": "Clean committed source archive and every archived file hash are pinned above. Prefix inputs were previously captured;all preceding states/pixels are reconstructed through actual DOM input,without memory restoration."
+  },
+  "comparisonRules": "Exact full state and320x200 RGBA hashes at all35 checkpoints;exact independent DOM event stream and its timestamps. Only original clamped/truncated logical pointer coordinates are normalized. No timer,RNG,state fields or pixels excluded.",
+  "verify": "npm run verify:current-campaign",
+  "expectedFlightPresentations": 1470,
+  "verificationSources": {
+    "scripts/replay-hard-campaign.js": "bf8321c1c3371fb0b0d54e5cb7abbf381072ef100e7b1620bfb59f26b6dfacbf",
+    "scripts/verify-current-campaign.js": "c36d18487f83b47a425b03c27d059dca00d235dbb28d2dd928b03f54c0993f15",
+    "scripts/verify-current-campaign-fixtures.js": "6d8edf15fc515ba405431ec751084033f393c3b26d5ab6c612f83961128aa6cf",
+    "scripts/verify-current-campaign-browser-negative.js": "33426eebdc59962b0bb1abdc8799035e010b7745521fb28e6a36964d594cdbdc",
+    "tests/helpers/original-game.js": "0b894ad5a1498fa58a070d4e576e9add244d729b7d8c48e0f53243097f9347d3",
+    "tests/browser/helpers/recorded-campaign.js": "3466bc61f1abe9f51c4ff96b8fd8e6ae1d9179eda644c36fc86449a1a8dcf934",
+    "tests/browser/helpers/recorded-dom-input.js": "196e2b76608e64b58daab9d2424ad34fcc28d6580af6cf48f6fffd04530a0fd8",
+    "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0",
+    "tests/browser/mixed-campaign.spec.js": "b14e21e9a4bc670f7eea90df05531ee16381c31daef5a98f6ee5934dc4927173",
+    "playwright.campaign.config.js": "b56cac17deb33d80d6b12899144c1c680ba91bdc332ba63b3a4dd4f8f1581280",
+    "vite.campaign.config.js": "ec88fffd4b81ed3b171bfb948bf9bcdaf47b99913c01ba8eda8c66212924431b"
+  },
+  "evidenceLevel": "closed-loop port regression and independent browser scenario",
+  "browserReplayRoot": ".local/current-physical-campaign-browser-01"
+}

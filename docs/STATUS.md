@@ -3,28 +3,36 @@
 Updated 2026-10-30. **The whole game is incomplete; this remains completion work,
 not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
-## Current work: BIOS seed provider
+## Current accepted milestone: BIOS seed provider
 
 The browser now samples a clock-derived unsigned16 seed at startup and again at
 original difficulty confirmation, instead of fixing every campaign to zero.
 The clock is injected into simulation and records upstream values separately.
 Explicit `/?bios-seed=0` preserves historical replay inputs. Original helper and
 two caller bytes plus the previously captured native input word18293 are checked.
-Clean-source focused acceptance passed at `ce1203b`: all194 units, three actual
-browser clock cases, the cached-word failure control, mountain controls and build.
+Clean-source combined acceptance passed at `5747f72`: all194 units, eight focused
+clock/menu browser cases, the cached-word failure control, mountain controls,
+long jungle regressions, seven sound browser cases and the production build.
 The fresh full Easy browser consumer at `4add476` matches all34 state/pixel
 checkpoints and4,981 events from the unchanged historical recording. Independent
 headless replay also passes. Eight broken fixture contracts are rejected.
-`npm run verify:bios-clock` repeats focused acceptance; the combined current gate
-is being refreshed. See [environment contract and evidence](bios-clock.md).
+**`npm run verify:current-campaign` passed.** The saved combined record pins845
+source files,90 artifacts and1,172 preserved historical artifacts.
+`node scripts/verify-bios-clock-campaign-receipt.js` validates that record;
+`npm run verify:bios-clock` repeats focused acceptance.
+See [environment contract and evidence](bios-clock.md).
 
-## Last accepted runtime milestone
+Next non-Hard milestone: locate and account for the missing original cave room
+composition/minimap drawing work, then compare its observable movement timing.
+This is an evidence target, not a claim of a complete native timing model.
+
+## Previous accepted runtime milestone
 
 The fresh mountain copy/HUD/phase Easy campaign now passes independent headless
 and actual-browser replay:34 full state/pixel checkpoints,4,981 DOM events,
 1,470 flight presentations, all four expedition families, winning ending and
 Restart. The mountain retains all three lives; day31 banking remains$14,550
-against$12,500. **`npm run verify:current-campaign` passes from clean `6c7203b`.**
+against$12,500. **`npm run verify:current-campaign` passed from clean `6c7203b`.**
 The combined record pins833 source files,74 evidence artifacts and1,148 preserved
 historical artifacts. It freshly checks jungle/mountain controls and their
 required failures; the complete positive browser run is independently registered
@@ -41,7 +49,8 @@ and all186 units pass; the complete ascent and browser controls still pass.
 The clean-source combined phase gate passed for `5eca408`, including all four
 browser omission controls and the production build. Its saved record pins735
 source files and five immutable artifacts. The receipt command is
-`node scripts/verify-mountain-phase-receipt.js`. The complete Easy campaign was subsequently accepted as described above.
+`node scripts/verify-mountain-phase-receipt.js`. The complete Easy campaign was
+subsequently accepted as described above.
 [Phase contract, original evidence and commands](mountain-phase.md).
 
 The current gate also requires34 production restoration cases,16 native signed
@@ -165,7 +174,7 @@ npm run verify:bios-clock
 node scripts/verify-bios-clock-campaign-receipt.js
 node scripts/verify-mountain-phase-campaign-receipt.js
 node scripts/verify-runtime-campaign.js --fresh-browser
-node scripts/verify-mountain-phase-integration.js
+node scripts/verify-mountain-phase-integration.js --bios-clock
 node scripts/verify-mountain-phase.js
 node scripts/verify-mountain-hud-runtime.js
 node scripts/verify-mountain-copy-runtime.js

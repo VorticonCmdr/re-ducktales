@@ -26,7 +26,10 @@ is the default. Physical waveform/gain/filter parity remains open. [Audio](audio
 The physical campaign has completed jungle treasure recovery, a$1,050 deposit,
 Safari with$500 earnings, and cave treasure return (day14,$5,400 carried).
 Strict startup replay matches24 full states from3,804 external events; seven
-negative controls reject deliberately broken inputs/fixtures. Actual browser replay matches all24 states/pixel digests and all3,804 DOM events. Mountain entry works; its old player controller fails, while a
+negative controls reject deliberately broken inputs/fixtures. Actual browser
+replay matches all24 states/pixel digests and all3,804 DOM events.
+[Individual-command receipt](../reference/current-campaign-progress-receipt.json).
+Mountain entry works; its old player controller fails, while a
 corrected physical-release schedule recovers treasure in startup reconstruction.
 Actual browser mountain/ending verification and a complete registered current
 campaign regression remain pending. No game mechanics changed in this work.

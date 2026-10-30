@@ -121,3 +121,9 @@ mountain, the deadline/ending, Hard campaigns or whole-native parity. Its produc
 controller was uncommitted; that limitation is recorded in its manifest rather
 than claiming a source archive existed at capture time. Fresh browser replay now matches all24 full states and320x200 pixel digests,
 including all3,804 actual DOM events. Audio is explicitly disabled in this scenario.
+
+The [segment receipt](../reference/current-campaign-progress-receipt.json) pins
+the retained individual-command results. It explicitly does not claim a clean
+combined integration gate or a finished whole campaign. The next real-browser
+continuation uses source commit`cfcf193` and its clean local source archive in
+`.local/current-campaign-continuation-07/`; its terminal result is still pending.

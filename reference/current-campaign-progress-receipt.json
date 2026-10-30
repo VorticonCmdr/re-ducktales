@@ -1,0 +1,35 @@
+{
+  "id": "current-physical-three-family-verification-receipt",
+  "wholeGameComplete": false,
+  "wholeNativeParity": false,
+  "cleanCombinedGate": false,
+  "scope": "Individual focused commands and actual browser replay pass;the combined npm command was not rerun as a clean integration. Full mountain/ending browser continuation is separate and pending.",
+  "sourceCommit": "cfcf193ccbefc9ba71388f85ee35896be72b046a",
+  "sourceIdentity": "Verifier consumers are pinned in reference/current-campaign-progress.json. Producer controller was uncommitted,as declared there.",
+  "commands": [
+    "npm run verify:build",
+    "node scripts/verify-current-campaign-progress.js",
+    "npm test",
+    "npx playwright test tests/browser/current-campaign-progress.spec.js --config playwright.campaign.config.js --output=.local/current-campaign-progress-browser-01",
+    "node scripts/verify-current-campaign-progress-browser-negative.js",
+    "npm run build"
+  ],
+  "unitCases": 177,
+  "unitSkipped": 0,
+  "browserCases": 1,
+  "browserSkipped": 0,
+  "requiredEvents": 3804,
+  "fullStateCheckpoints": 24,
+  "pixelCheckpoints": 24,
+  "headlessNegatives": 7,
+  "browserNegatives": 1,
+  "originalFileIdentities": 22,
+  "protectedHistoricalArtifacts": 822,
+  "artifacts": {
+    "receipt": {
+      "path": ".local/current-campaign-progress-receipt-01/evidence.json",
+      "bytes": 2569,
+      "sha256": "f30e7458457c9d852c68bc2999db185269e2c9bc6069b73bbab2d188ed8b6e59"
+    }
+  }
+}

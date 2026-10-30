@@ -1,5 +1,10 @@
 # Destination ordinary keyboard integration
 
+This page records the earlier make-driven caller milestone. The current
+[recurring destination program](destination-loop.md) adds autonomous reads,
+source footer waits and deferred system keys. Native ordinary-key rules below
+remain applicable;the earlier integration receipts retain their historical scope.
+
 The destination dialog now accepts the original I/J/K/M and numeric-keypad
 bindings. Physical makes,including browser repeat makes,and releases use the
 same ordinary keyboard table as the map. The mode1 reader scans raw slots in
@@ -40,7 +45,7 @@ clock values never initialize it. The declared fixture clock uses one driver tic
 and one retrace per step to finish waits. This is conditional reader/caller
 integration,not a native whole-scene timing or full-campaign comparison.
 
-## Browser boundary and remaining scope
+## Earlier browser boundary and remaining scope
 
 `map-key` now carries physical events in both map modes. A make in the dialog
 samples the mode1 reader;releases only update IRQ flags. A make during a blocking

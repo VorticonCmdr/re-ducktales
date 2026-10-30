@@ -1,0 +1,155 @@
+{
+  "id": "destination-autonomous-loop-integration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "c01a7d661355bd59d54cdc28619a4b903aa13f96",
+  "sourceFileCount": 663,
+  "verificationCommand": "npm run verify:destination-loop",
+  "verificationExitCode": 0,
+  "unitCases": 158,
+  "unitSkipped": 0,
+  "unitFailures": 0,
+  "browserCases": 4,
+  "browserSkipped": 0,
+  "browserNegativeControls": 1,
+  "nativeInputReads": 16,
+  "nativeFlagCheckpoints": 48,
+  "hardwareEvents": 37,
+  "conditionalNativeFooterBudgets": 16,
+  "sourceInstructionCount": 65,
+  "sourceInstructionBytes": 176,
+  "nativeOverlayBytes": 8368,
+  "nativeOverlayRelocations": 180,
+  "newNativeNegativeControls": 6,
+  "originalCompletedPageComparisons": 4,
+  "originalVideoCPUSnapshots": 29,
+  "originalVideoFlips": 5,
+  "nativePrimitiveWorkCases": 14,
+  "historicalArtifactsPreserved": true,
+  "protectedArtifactCount": 739,
+  "fittedInputs": [],
+  "captureTools": {
+    "node": "v26.8.1",
+    "playwright": "1.64.1",
+    "static": "Explicit OFFICE_MAP.EXE;65 contiguous instructions match original bytes. Complete native body identity checked after180 relocations.",
+    "native": "Unchanged destination-keyboard capture4c5bbd5,engine0.84.0-vc1(f6d9b),protocol1.14,effective normal core/configured auto,3000 cycles,16MiB,svga_s3. No new native launch."
+  },
+  "inputContract": {
+    "native": "Same independently authored16 ordinary event groups from unchanged profile,delivered after each source flush. Current Game begins at explicit conditional map entry with decoded resources,bios0 and an independently supplied driver/retrace/work clock. Native timestamps and actor/final values never initialize or drive it. No guest memory/register writes or partial machine restore.",
+    "browser": "Four actual DOM/renderer scenarios earn entry through office/security/map:neutral/aliases/repeat/diagonal/footer/flight departure;deferred Pause/Quit/Map confirmation;bank round trip;full cave landing/failure/retry/treasure/return route. New bank helper uses an explicit frozen clock and one actual make/break in the observed footer window. All old pixel/calendar/bank assertions retained;no fixed recorded stream edited."
+  },
+  "scope": [
+    "Recurring source flush/footer draw/global reader/selection flip/0+1 wait;horizontal sound/0+7 waits and confirmation flip/flush/0+7 return. Physical makes do not invoke the reader.",
+    "Neutral polls execute without DOM input. Early makes and system keys are cleared by source flush;fresh makes during source work are consumed afterwards. Pause/Quit resume the pending original read after their own waits/flushes.",
+    "Four source sprites and one RAM-to-EGA footer copy consume separate explicit work completions;atomic adds its source fifth sprite. Source RAM/video headers and four native descriptors checked in all16 retained cases. Partial ordinary footer budget18.889667ms lies within each quantized original bracket.",
+    "The simulation source window and HTML interaction display are separate,so neutral redraws do not flash status or disable controls.",
+    "Clock/work tests include exact completion,catch-up invariance,hidden-page pause,Restart cancellation,invalid providers,Fire precedence,mode1/alias flags and conditional atomic transport dispatch.",
+    "Omitting the autonomous reader fails the required neutral-read assertion;setup errors and timeouts do not count as a negative."
+  ],
+  "limitations": [
+    "Entry-page copying/text and drawing,selector lines/numeric text,caller/IRQ execution and remaining CPU/device costs are uncharged. Complete native menu cadence/scanout is unverified.",
+    "Conditional native event groups at source boundaries are not an uninterrupted fixed-timestamp native campaign replay. Full DS/gameplay context is outside the ordinary-input comparison.",
+    "The atomic fifth sprite has static-call/asset and conditional Game evidence;no new native atomic-footer observation or new full natural-transmitter browser run.",
+    "Cross-scene queued IRQ delivery,remaining physical input backends,modifier/BIOS behavior,and broader campaign source receipts remain incomplete.",
+    "Older make-driven destination browser tests and whole-campaign fixed receipts need a separate refresh;historical expectations remain unchanged. Full npm run verify remains red at its historical shared-runtime inventory;no requirement is waived.",
+    "Whole-game parity,arbitrary-route finishability and original save/load/high-score behavior remain unproven."
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/destination-loop-integration-01/runner-status.json",
+      "bytes": 97056,
+      "sha256": "12f629bb24fe0018d1d23e7012949fe7d05e55cc69f061781248fbfd5a6b2ea4"
+    },
+    "runner-source": {
+      "path": ".local/destination-loop-integration-01/runner.py",
+      "bytes": 2885,
+      "sha256": "e1f095ed63635a2c8ec2f5cb301367dce2ccd365d3a704d8fa8ae4936667d1c0"
+    },
+    "source": {
+      "path": ".local/destination-loop-integration-01/source-revision.json",
+      "bytes": 71815,
+      "sha256": "31e5ff438af218139f90f502d3599392ecbd8e87b41bb126fd0568029bb9f770"
+    },
+    "source-zip": {
+      "path": ".local/destination-loop-integration-01/sources.zip",
+      "bytes": 1777496,
+      "sha256": "e42bdd476646f69f76f21eae40ce34c0f994744e547211dacba62ade7f5eb264"
+    },
+    "verification-log": {
+      "path": ".local/destination-loop-integration-01/verification.log",
+      "bytes": 19860,
+      "sha256": "66c8914a844b1abd00e3a3a342097dbbc7838e932382f0e57037fec1bafd4ac0"
+    },
+    "browser-negative": {
+      "path": ".local/destination-loop-integration-01/controls/browser-negative.log",
+      "bytes": 1666,
+      "sha256": "b5d210aaa6c295af8e50a6fbc4d6ed2faf6552cc9d6846be1645364b18de00f6"
+    },
+    "browser/destination-loop.json": {
+      "path": ".local/destination-loop-integration-01/destination-loop.json",
+      "bytes": 11610,
+      "sha256": "f51a0274ef63a9eb8bd1ebe8d30c454d0d9d9d9a20cb5ce7c8f74812e0951d4f"
+    },
+    "browser/destination-system.json": {
+      "path": ".local/destination-loop-integration-01/destination-system.json",
+      "bytes": 1637,
+      "sha256": "fb3c247cc71276689a1c81e0a782e064b5611e10daa2f80be8673eebf0c487f7"
+    },
+    "browser/destination-loop-footer.png": {
+      "path": ".local/destination-loop-integration-01/destination-loop-footer.png",
+      "bytes": 11129,
+      "sha256": "40e024418ea5fbbe59dbbbc1113f1ef58877bd53880cb0dee0ef323c3c16aafe"
+    },
+    "browser/destination-loop-map.png": {
+      "path": ".local/destination-loop-integration-01/destination-loop-map.png",
+      "bytes": 24948,
+      "sha256": "a24803d3b953bc292e5d063c122f28f9bcc7a1d0107b9afd0525e98085c0f693"
+    },
+    "browser/destination-loop-flight.png": {
+      "path": ".local/destination-loop-integration-01/destination-loop-flight.png",
+      "bytes": 9711,
+      "sha256": "02ce920f8e2caa1e9bdf87dea89ec6824663ad5d942652de262f258a422b9259"
+    },
+    "browser/flight-landing.png": {
+      "path": ".local/destination-loop-integration-01/flight-landing.png",
+      "bytes": 23020,
+      "sha256": "6fb6855728d63574187e7139eb5ab7f92ff29f6a04cab7ef101ae66950f0a6f8"
+    },
+    "browser/cave-treasure-award.png": {
+      "path": ".local/destination-loop-integration-01/cave-treasure-award.png",
+      "bytes": 34586,
+      "sha256": "71608970b2228c7865c6764115ad52172c351db3deb02586ca8e74dd04cd5ae2"
+    },
+    "browser/collected-notice.png": {
+      "path": ".local/destination-loop-integration-01/collected-notice.png",
+      "bytes": 24928,
+      "sha256": "de730a93d230c3c924e84247ae33f75821b1864171ca410f96f99db1f2aa2abe"
+    },
+    "reference/build.json": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "reference/destination-loop.json": {
+      "path": "reference/destination-loop.json",
+      "bytes": 2952,
+      "sha256": "05029a36ade39768f9fa3cbc9998d737ac0613d477baf044893f8935cbd4c7a5"
+    },
+    "reference/destination-keyboard.json": {
+      "path": "reference/destination-keyboard.json",
+      "bytes": 55215,
+      "sha256": "54c16481edbed120f0f08c9f09393254179c1679b6b3fe30d2656695e1c53e9b"
+    },
+    "reference/destination.json": {
+      "path": "reference/destination.json",
+      "bytes": 10259,
+      "sha256": "625439ca6ec898bf3701b525e5e3c2ec06f8d982969418d4389ddd5da97f1854"
+    },
+    "reference/destination-video.json": {
+      "path": "reference/destination-video.json",
+      "bytes": 50952,
+      "sha256": "a3763479da07f2c7c210176cda8dc1f3abaf84a5bba8586639437e2500ba9bf9"
+    }
+  }
+}

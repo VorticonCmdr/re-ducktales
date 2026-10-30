@@ -28,7 +28,12 @@ without waiting for external makes. Physical events update flags; the shared
 reader consumes them after source drawing work. Early keys are discarded at the
 next caller flush. Pause/Quit/sound keys defer to that reader, and ordinary
 neutral flips keep the HTML status and controls stable. The focused command is
-`npm run verify:destination-loop`; combined clean acceptance is pending.
+`npm run verify:destination-loop`; its clean run on `c01a7d6` passed
+all158 unit cases,four real browser cases,the omitted-reader browser negative,
+original picture/video/input comparisons and production build,with zero skipped
+cases. The bank round trip and full cave treasure/return route pass. All739
+protected historical artifacts remain unchanged. Its663-file source archive and
+results are pinned by the [focused receipt](../reference/destination-loop-integration.json).
 [Loop evidence and remaining costs](destination-loop.md).
 
 All16 retained native input groups,48 complete key-table boundaries,37 hardware

@@ -82,3 +82,22 @@ the exact original footer, actual flight departure, Map confirmation, deferred
 Pause, frozen pixels, cancelled Quit and Restart. The existing bank and cave
 routes are also checked. Authored test helpers put makes within the observed
 footer window; they do not replay expected game state or alter simulation flags.
+
+## Focused integration receipt
+
+The clean `npm run verify:destination-loop` run on `c01a7d6` passed all158 unit
+cases,four real browser cases,the omitted-reader browser negative and production
+build,with zero skipped cases. The unchanged original mode1/picture/video checks
+and new sixteen-read native comparison pass. The bank route retains its exact
+original map pixels and day4/day7 calendar assertions;the full cave route still
+lands,collects treasure,fails/retries,returns and rejects a duplicate claim.
+The bank acceptance test now uses a frozen clock and actual make/break in the
+observed footer window,removing host-latency input loss. No captured stream or
+expected pixel,calendar or banking result was edited.
+
+The [receipt](../reference/destination-loop-integration.json) pins the663-file
+source archive,runner,complete verification log,browser observations/screenshots
+and omitted-reader negative. All739 protected historical artifacts and manifests
+remain unchanged. This is focused integration acceptance;the historical broad
+campaign/source gates remain required and have not been waived or refreshed by
+this result.

@@ -181,7 +181,14 @@ export class Game {
   get usesExpeditionKeyboard() {
     return (
       this.expeditionInput === "keyboard" &&
-      ["cave", "mountain", "jungle", "photography"].includes(this.scene)
+      [
+        "departure",
+        "flight",
+        "cave",
+        "mountain",
+        "jungle",
+        "photography",
+      ].includes(this.scene)
     );
   }
   syncExpeditionKeyboard() {
@@ -200,7 +207,7 @@ export class Game {
     this.syncExpeditionKeyboard();
   }
   readExpeditionKeyboard() {
-    if (!this.usesExpeditionKeyboard)
+    if (!this.usesExpeditionKeyboard || this.scene === "departure")
       throw Error("Expedition keyboard read outside its source boundary");
     const byte = this.expeditionKeyboard.poll();
     this.expeditionKeyReads++;
@@ -1097,6 +1104,9 @@ export class Game {
         rivalCollected: !!c.locations[target].rivalCollected,
       });
       this.departure = departure;
+      // No ordinary reader runs before the portrait helper's flush. Keep its
+      // later reveal makes in this same table through the flight handoff.
+      this.beginExpeditionKeyboard("departure");
       this.departureScene = new DepartureScene({
         prepared: departure,
         entries: this.departureEntries,
@@ -1141,6 +1151,7 @@ export class Game {
       throw Error("Unexpected departure continuation");
     if (!this.flightResources) throw Error("Flight resources not loaded");
     this.keyboardMode = 0; // Flight entry clears ordinary-reader mode.
+    this.expeditionKeyboard.mode = 0;
     this.flight = new Flight(
       {
         ...this.flightResources,
@@ -1149,6 +1160,9 @@ export class Game {
         seed: this.seed,
         day: this.campaign.day,
         money: this.money,
+        ...(this.expeditionInput === "keyboard"
+          ? { readInput: () => this.readExpeditionKeyboard() }
+          : {}),
         pollInput: () => this.pollFlightSystemInput(),
         flushInput: () => this.flushFlightInput(),
       },
@@ -1156,8 +1170,10 @@ export class Game {
     );
     this.flight.setControls(this.controls);
     this.scene = "flight";
+    this.syncExpeditionKeyboard();
   }
   flushDepartureInput() {
+    this.flushExpeditionKeyboard();
     this.pendingFlightSystemKeys.clear();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
@@ -1639,6 +1655,7 @@ export class Game {
     return this.pollSystemInput(this.pendingFlightSystemKeys);
   }
   flushFlightInput() {
+    this.flushExpeditionKeyboard();
     this.pendingFlightSystemKeys.clear();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
@@ -2185,6 +2202,13 @@ export class Game {
             // Read-only consumption boundary for independent input schedules.
             inputReads: this.flight.inputLog.length,
             lastInputCode: this.flight.inputLog.at(-1)?.code ?? null,
+            ...(this.expeditionInput === "keyboard"
+              ? {
+                  returnInputReads: this.flight.returnInputLog.length,
+                  lastReturnInputCode:
+                    this.flight.returnInputLog.at(-1)?.code ?? null,
+                }
+              : {}),
           }
         : null,
       ...(this.pendingFlightSystemKeys.size

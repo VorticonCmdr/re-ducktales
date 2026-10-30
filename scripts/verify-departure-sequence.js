@@ -20,7 +20,45 @@ const checked = async (p, h) => {
   assert.equal(sha(b), h, "Changed evidence " + p);
   return b;
 };
-const m = JSON.parse(await readFile("reference/departure-sequence.json"));
+const manifestPath =
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+  "reference/departure-sequence.json";
+const m = JSON.parse(await readFile(manifestPath));
+if (manifestPath !== "reference/departure-sequence.json") {
+  const r = m.runtimeRefresh;
+  assert.equal(r?.parent.path, "reference/departure-sequence.json");
+  assert.equal(r.expectedValuesChanged, false);
+  const prior = JSON.parse(await checked(r.parent.path, r.parent.sha256));
+  const { sources: previousSources, ...previousContract } = prior;
+  const { sources: currentSources, runtimeRefresh, ...currentContract } = m;
+  const exactContract = (c) =>
+    assert.deepEqual(
+      c,
+      previousContract,
+      "Changed historical departure expectation",
+    );
+  exactContract(currentContract);
+  const missingRetrace = structuredClone(currentContract);
+  missingRetrace.expectedConsumedRetraces--;
+  assert.throws(
+    () => exactContract(missingRetrace),
+    /Changed historical departure expectation/,
+  );
+  const relaxed = structuredClone(currentContract);
+  relaxed.comparisonRules = "relaxed";
+  assert.throws(
+    () => exactContract(relaxed),
+    /Changed historical departure expectation/,
+  );
+  assert.deepEqual(Object.keys(currentSources), Object.keys(previousSources));
+  await checked("scripts/verify-departure-sequence.js", r.verifierSha256);
+  assert.deepEqual(Object.keys(r.additionalSources), [
+    "src/game/flight.js",
+    "src/game/ordinary-keyboard.js",
+    "src/game/keyboard-adapter.js",
+  ]);
+  for (const [p, h] of Object.entries(r.additionalSources)) await checked(p, h);
+}
 assert.equal(m.expectedSourceInstructions, 181);
 assert.equal(m.expectedSourceBytes, 463);
 assert.equal(m.expectedConsumedRetraces, 50);

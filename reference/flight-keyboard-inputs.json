@@ -1,0 +1,22 @@
+{
+  "id": "independent-flight-ordinary-inputs",
+  "clock": "independent driver/retrace/work scheduler; delivery before source-read ordinal",
+  "expectedReads": 16,
+  "expectedEvents": 14,
+  "events": [
+    { "beforeRead": 1, "scanCode": 50, "pressed": true },
+    { "beforeRead": 1, "scanCode": 28, "pressed": true },
+    { "beforeRead": 2, "scanCode": 50, "pressed": false },
+    { "beforeRead": 4, "scanCode": 28, "pressed": false },
+    { "beforeRead": 6, "scanCode": 50, "pressed": true },
+    { "beforeRead": 6, "scanCode": 72, "pressed": true },
+    { "beforeRead": 7, "scanCode": 72, "pressed": false },
+    { "beforeRead": 9, "scanCode": 50, "pressed": false },
+    { "beforeRead": 11, "scanCode": 81, "pressed": true },
+    { "beforeRead": 11, "scanCode": 57, "pressed": true },
+    { "beforeRead": 11, "scanCode": 57, "pressed": false },
+    { "beforeRead": 12, "scanCode": 81, "pressed": false },
+    { "beforeRead": 14, "scanCode": 57, "pressed": true },
+    { "beforeRead": 15, "scanCode": 57, "pressed": false }
+  ]
+}

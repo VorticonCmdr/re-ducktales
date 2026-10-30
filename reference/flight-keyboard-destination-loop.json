@@ -1,0 +1,55 @@
+{
+  "id": "destination-autonomous-footer-input-loop",
+  "expectedReads": 16,
+  "expectedFlagCheckpoints": 48,
+  "expectedNativeWorkCases": 16,
+  "parent": {
+    "path": "reference/destination-keyboard.json",
+    "sha256": "54c16481edbed120f0f08c9f09393254179c1679b6b3fe30d2656695e1c53e9b"
+  },
+  "static": {
+    "path": ".local/destination-loop-01/footer-static.json",
+    "sha256": "357899e31b41ffc3c192c8d7114e87c21797f5237d44575f2450a6f877393d2d"
+  },
+  "sources": {
+    "src/game/destination-loop.js": "5d8b0b11bfd5be7924904d878a2b37b004ede1c94bcb8a3db1683f7cd08bebda",
+    "src/game/destination-work.js": "1f6b33cb3e138cabe27e4d0165d50398e71c0f1853d9bc3e7f1746d6145bb4ee",
+    "src/game/destination-waits.js": "7503412248c2e1189203c5dfc61078b57c64464ff0f26bc2423148c239b1e65d",
+    "src/game/destination-input.js": "5155a20fab7ac49c267875c9a82f1eff086e823f9a491138a3032e2f5a16fee6",
+    "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d",
+    "src/game/application.js": "53f049dff11f7f3956b63ac254a786c0f8b0dcb8916adaca011821a70aee7eb7",
+    "src/game/browser.js": "9c6d2cf4bdc3dc4352258e36481b511a2ec6c8efb2884a2e25391579b23caba0",
+    "src/game/scheduler.js": "b791dd12187cae479dffc1e4c351134ec089cece0ac3c40ad96dbdb8ab9dfa2e",
+    "src/game/keyboard-adapter.js": "cb728799dd31b30e663c7e6623a4646528abe5e7f4dda6c477a4f59818e39551",
+    "src/game/campaign.js": "b788a821c5e74e7cd771ab650f3ad43dc0a0d9f47476b2ad80ae771c10408a3f"
+  },
+  "footerWorkSha256": "ec29dfe5d49015e4d1eafa3aee5eb3cfe7d4e620d344845831cb280c0ec5d57d",
+  "atomicFooterWorkSha256": "0cbfa5f3753a86c4fa76618db29ad4d1c6de3fee95a6672cd2de82621bd3e691",
+  "injections": [],
+  "fittedInputs": [],
+  "comparisonRules": "Same sixteen independent hardware groups from original profile supplied after each source flush. Current Game carries its own flags,choice,time and output. Compare all128 flags at flush,before,after every read,returned bytes,carried choice and return. Native clock counters are expectations only. Native footer descriptor and buffer geometry required. Budget bracket permits one resident timer count of boundary phase;not full-loop timing tolerance.",
+  "limitations": [
+    "Footer sprite/copy work only;selector lines,numeric text,entry-page work,caller/IRQ and other CPU work remain uncharged.",
+    "Native profile injects ordinary keys after caller flush,not a fixed elapsed-time full-campaign replay.",
+    "Original atomic footer not captured;fifth sprite has static-call/asset evidence only.",
+    "Game starts from explicit conditional map entry;browser earns entry through UI.",
+    "Older keyboard/campaign source receipts remain required and are not waived."
+  ],
+  "verify": "npm run verify:destination-loop",
+  "runtimeRefresh": {
+    "parent": {
+      "path": "reference/destination-loop.json",
+      "sha256": "05029a36ade39768f9fa3cbc9998d737ac0613d477baf044893f8935cbd4c7a5"
+    },
+    "expectedValuesChanged": false,
+    "reason": "Flight now consumes physical ordinary flags after the unchanged departure/destination return;rerun all historical expectations on current sources.",
+    "verifierSha256": "f5c7d67d290777710195b668dbcc8a7fd2c00460693994d2770fb1dda290ff5d",
+    "additionalSources": {
+      "src/game/departure-scene.js": "e829f2446987d268e798fd72b1e580ca973e788a2aeb312a6373fb46d7a0982f",
+      "src/game/departure-work.js": "20f09c9bc8ba605345fa55482a6c75f471270a1f75b0f83e6478ae7abf00bcc8",
+      "src/game/renderer.js": "99e5ef2515abf32a80a0f681793125874ef9f8222d5368828213d12cece0ed88"
+    }
+  }
+}

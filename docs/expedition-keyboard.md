@@ -1,5 +1,8 @@
 # Physical keys in ground expeditions
 
+Flight now shares this reader at its own source calls; its departure handoff,
+pitch masks and return prompt are documented in [flight-keyboard.md](flight-keyboard.md).
+
 The browser now supplies physical make, repeat-make and release events to the
 original ordinary-key reader in caves, mountains, jungle and Safari. It no longer
 uses an immediately released virtual direction as the keyboard reader's result.

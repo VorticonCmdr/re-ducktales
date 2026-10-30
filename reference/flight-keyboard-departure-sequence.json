@@ -1,0 +1,77 @@
+{
+  "id": "original-launchpad-autonomous-source-sequence",
+  "expectedSourceInstructions": 181,
+  "expectedSourceBytes": 463,
+  "expectedConsumedRetraces": 50,
+  "parent": {
+    "path": "reference/expedition-departure.json",
+    "sha256": "36963f5cf4720663d1f3debc782ccc1d7fb9fc6354b96f9d29c81359de0be709"
+  },
+  "driverParent": {
+    "path": "reference/destination-keyboard.json",
+    "sha256": "54c16481edbed120f0f08c9f09393254179c1679b6b3fe30d2656695e1c53e9b"
+  },
+  "staticArtifacts": {
+    "driver-fill": {
+      "path": ".local/departure-sequence-01/driver-fill.json",
+      "sha256": "4431a35a79f68b3e3ea295b497b7250a3b934526e67f563e7a04155f94142164"
+    },
+    "main-tail": {
+      "path": ".local/departure-sequence-01/main-tail.json",
+      "sha256": "13e4b4d647a92825ed356af8d51402f044bf8731439afe3f7f4e085ae94ddc57"
+    },
+    "portrait-copy": {
+      "path": ".local/departure-sequence-01/portrait-copy.json",
+      "sha256": "78e5bc441744c193217b298dac23196f1da44bc894fa2fb02837b13c219d0b1c"
+    },
+    "portrait-flush": {
+      "path": ".local/departure-sequence-01/portrait-flush.json",
+      "sha256": "f8efc8b2fe79835ff65dd93cf9aaf9c1597debeed5157deb207dfd63f8dc0ba7"
+    },
+    "portrait-head": {
+      "path": ".local/departure-sequence-01/portrait-head.json",
+      "sha256": "6240a6cfd33e89e679d66b062334f3a90e800ee22e7b797c85c0155c7451b142"
+    },
+    "race-store": {
+      "path": ".local/departure-sequence-01/race-store.json",
+      "sha256": "ed36c6ed1de47a8622bc4775d5fd41fde034d7342438ef48427e22951911e2ee"
+    }
+  },
+  "sources": {
+    "src/game/departure.js": "47f1dcbd0855f331103d6c8a28785325f1741ffacbe714a1cd54e8e5c5104f71",
+    "src/game/departure-scene.js": "e829f2446987d268e798fd72b1e580ca973e788a2aeb312a6373fb46d7a0982f",
+    "src/game/departure-work.js": "20f09c9bc8ba605345fa55482a6c75f471270a1f75b0f83e6478ae7abf00bcc8",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/integer.js": "cb575b09c744e3fd2967ac72de96399a0e5a5b6e807c6ef0684e30a183a38776",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d",
+    "src/game/application.js": "53f049dff11f7f3956b63ac254a786c0f8b0dcb8916adaca011821a70aee7eb7",
+    "src/game/browser.js": "9c6d2cf4bdc3dc4352258e36481b511a2ec6c8efb2884a2e25391579b23caba0",
+    "src/game/renderer.js": "99e5ef2515abf32a80a0f681793125874ef9f8222d5368828213d12cece0ed88",
+    "src/game/scheduler.js": "b791dd12187cae479dffc1e4c351134ec089cece0ac3c40ad96dbdb8ab9dfa2e"
+  },
+  "workSha256": "d4b120f53f622463a8c7ff05b9e0cff6aa6b2742a3e15bf044d919226a6e2a27",
+  "injections": [],
+  "fittedInputs": [],
+  "inputContract": "The unchanged native parent routineInput is an explicit conditional precondition. No events are needed inside this program. Independent driver/retrace/work time;native output/timers never drive it. Main before-first-RNG,prepared andflight-entry arguments retain separate native observations;not a whole-campaign replay.",
+  "comparisonRules": "Exact relocated original static instructions;native graphics pointer correspondence;two source work calls;five groups of five retraces for each wipe/reveal;source flush before first RNG;native final RNG/race/origin/destination/flight arguments;exact original final portrait. Rendering intermediate groups and elapsed budget are source-derived,not new native frame/cadence acceptance.",
+  "limitations": [
+    "Resource loading,text,striped drawing writes and remaining CPU/IRQ/device costs are omitted;no fitted replacement preflight pause.",
+    "Flight retains its older held-control provider;physical ordinary reader andcross-scene ordinary IRQ delivery remain separate work.",
+    "Existing broader fixed campaign/source receipts needrefresh;no old expected stream or nativeartifact is edited."
+  ],
+  "verify": "npm run verify:departure-sequence",
+  "runtimeRefresh": {
+    "parent": {
+      "path": "reference/departure-sequence.json",
+      "sha256": "0100ad77671926cb769ad474225ebf475851e46062d3e49d10b02a24a4d48ae5"
+    },
+    "expectedValuesChanged": false,
+    "reason": "Flight now consumes physical ordinary flags after the unchanged departure/destination return;rerun all historical expectations on current sources.",
+    "verifierSha256": "7bd62b68a4ee6e98cc773d27aec1b674eba7b21fe3b947127edef274e4cf898f",
+    "additionalSources": {
+      "src/game/flight.js": "128b855cfda3bbc69ca6e05d84cfd2f41bcea138a17e5774510e05c9ad2e9b6b",
+      "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",
+      "src/game/keyboard-adapter.js": "cb728799dd31b30e663c7e6623a4646528abe5e7f4dda6c477a4f59818e39551"
+    }
+  }
+}

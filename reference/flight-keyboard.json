@@ -1,0 +1,121 @@
+{
+  "id": "flight-ordinary-keyboard-integration",
+  "expectedInstructions": 45,
+  "expectedSourceBytes": 139,
+  "expectedReads": 16,
+  "expectedEvents": 14,
+  "parent": {
+    "path": "reference/flight-input.json",
+    "sha256": "118387a642cbc2832414d959a33e8fa724973b6ad026e723fc814e9481af31b6"
+  },
+  "inputProfile": {
+    "path": "reference/flight-keyboard-inputs.json",
+    "sha256": "e097701cf6d2d7f87a4e9447b8eec99b02b57065f471f12ff4f96cbb5b4dee57"
+  },
+  "staticArtifacts": {
+    "mode": {
+      "path": ".local/flight-keyboard-01/mode.json",
+      "sha256": "a964594785b410c446e7f7a0145e9b0fa2c0df3fd93a1cddf7657713417b12e5",
+      "offset": 12,
+      "resident": false
+    },
+    "reader": {
+      "path": ".local/flight-keyboard-01/reader.json",
+      "sha256": "3af7ca5ad300ef41a8047266b5a30b95fc36d6080eb9112e9fdd0cc5a5b3dae9",
+      "offset": 686,
+      "resident": false
+    },
+    "direction": {
+      "path": ".local/flight-keyboard-01/direction.json",
+      "sha256": "830ac0187bee1964df595abaa891eb4978083c00ad611bfbcd116bd1eda5496d",
+      "offset": 819,
+      "resident": false
+    },
+    "return": {
+      "path": ".local/flight-keyboard-01/return.json",
+      "sha256": "041f6ca0d065b638fa26b6517de000ac6f6dc5517b5e7a35573239d93f2c956b",
+      "offset": 2549,
+      "resident": true
+    }
+  },
+  "sources": {
+    "src/game/flight.js": "128b855cfda3bbc69ca6e05d84cfd2f41bcea138a17e5774510e05c9ad2e9b6b",
+    "src/game/application.js": "53f049dff11f7f3956b63ac254a786c0f8b0dcb8916adaca011821a70aee7eb7",
+    "src/game/browser.js": "9c6d2cf4bdc3dc4352258e36481b511a2ec6c8efb2884a2e25391579b23caba0",
+    "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",
+    "src/game/keyboard-adapter.js": "cb728799dd31b30e663c7e6623a4646528abe5e7f4dda6c477a4f59818e39551",
+    "src/game/scheduler.js": "b791dd12187cae479dffc1e4c351134ec089cece0ac3c40ad96dbdb8ab9dfa2e",
+    "src/game/departure-scene.js": "e829f2446987d268e798fd72b1e580ca973e788a2aeb312a6373fb46d7a0982f",
+    "scripts/verify-flight-keyboard.js": "c2d96617f2b3966ac5c00f67fc0eb1383dfbaafef4b9ad3047a9e751584ea20d",
+    "scripts/verify-flight-keyboard-browser.js": "ab93506e145866f31697a6f8a39413707e195fefc21dce00921e2c77fa087187",
+    "scripts/verify-flight-keyboard-browser-negative.js": "a6e4b8ab2fd4d7dcba292706f0799f9e3ff9c9e52fa0960a40a6b2568ad9abe6",
+    "tests/flight-keyboard.test.js": "f349629826320c140c204c7b2a41cba510a0f11fe63bce249941a4095176c7ed",
+    "tests/browser/flight-keyboard.spec.js": "4b744aabfb04ef749c12f8853fd3a57cbacb516ea5e7396cba1796c911f1fff2",
+    "tests/browser/campaign.spec.js": "a4a9461d78b79f41c656ccd8f25fb13ae1fe943328f83d03bac0573bda11612b",
+    "tests/browser/departure-sequence.spec.js": "ec3c841d24f1bfb516e54a30c6f1157a964e0bc83d98e35c5b5099c384370b54",
+    "tests/browser/destination-loop.spec.js": "0d5c14080c3b7c10759a3bc4de75b59ebfdccb7c2489e679499e58f36585696c",
+    "package.json": "87f6c61539d5b34b0026a8c897213eba958986439a61b637385273ac942c8f64",
+    "index.html": "d3ae81e0dbd6535cfac440dba0ad5236f6c3b60d65aed0f110c948bc002712de"
+  },
+  "expectedBytes": [
+    197,
+    197,
+    192,
+    192,
+    0,
+    1,
+    1,
+    5,
+    5,
+    0,
+    196,
+    4,
+    0,
+    192,
+    192,
+    0
+  ],
+  "expectedAfterFlags": [
+    {
+      "28": 128,
+      "50": 128
+    },
+    {
+      "28": 128
+    },
+    {
+      "28": 128
+    },
+    {},
+    {},
+    {
+      "50": 128,
+      "72": 128
+    },
+    {
+      "50": 128
+    },
+    {
+      "50": 128
+    },
+    {},
+    {},
+    {
+      "81": 128
+    },
+    {},
+    {},
+    {
+      "57": 128
+    },
+    {},
+    {}
+  ],
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "comparisonRules": "Exact original bytes and native instruction correspondence,three existing native empty128-flag tables andoneAX result. Independent16-read physical event stream carries its own Game/Flight state;compare byte andentire128-flag array/memory at every read. Native outputs/timers never drive it. This is not a new original flight input/actor/timing capture.",
+  "verify": "npm run verify:flight-keyboard",
+  "expectedUnitCases": 177,
+  "expectedBrowserCases": 9
+}

@@ -33,8 +33,10 @@ Fill work counts 29 instructions, five OUT operations and one 8,000-iteration
 REP; copy work uses the existing RAM-to-EGA model. Resource loading, speech
 drawing, striped writes and remaining CPU/IRQ/device costs are omitted. These
 are source-derived partial budgets, not measured native elapsed-time parity.
-Flight still uses its earlier held-control provider; translating its ordinary
-keyboard reader and cross-scene IRQ delivery remains separate work.
+The original milestone retained flight's earlier held-control provider.
+[Current physical flight input](flight-keyboard.md) replaces that provider and
+carries reveal flags through the handoff; other cross-scene IRQ delivery remains
+separate work.
 
 ## Reproducible evidence
 

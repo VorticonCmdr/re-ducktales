@@ -80,6 +80,10 @@ function dispatch(event) {
     fatal(e);
   }
 }
+function expeditionButton(key) {
+  dispatch(expeditionKeyEvent(key, true));
+  dispatch(expeditionKeyEvent(key, false));
+}
 function present(state) {
   renderer.render(state);
   $("game").dataset.mapInput =
@@ -165,22 +169,30 @@ $("folder").onchange = async (event) => {
     return file.arrayBuffer();
   });
 };
-$("fire").onclick = () =>
-  dispatch({ type: "fire", direction: held.has("ArrowUp") ? "up" : null });
+$("fire").onclick = () => {
+  if (game?.usesExpeditionKeyboard) expeditionButton("Space");
+  else dispatch({ type: "fire", direction: held.has("ArrowUp") ? "up" : null });
+};
 $("map").onclick = () => dispatch({ type: "map" });
 $("investments").onclick = () => dispatch({ type: "investments" });
-$("left").onclick = () =>
-  dispatch(
-    game?.scene === "map" && !game.campaign.info
-      ? { type: "step", direction: "left" }
-      : { type: "left" },
-  );
-$("right").onclick = () =>
-  dispatch(
-    game?.scene === "map" && !game.campaign.info
-      ? { type: "step", direction: "right" }
-      : { type: "right" },
-  );
+$("left").onclick = () => {
+  if (game?.usesExpeditionKeyboard) expeditionButton("ArrowLeft");
+  else
+    dispatch(
+      game?.scene === "map" && !game.campaign.info
+        ? { type: "step", direction: "left" }
+        : { type: "left" },
+    );
+};
+$("right").onclick = () => {
+  if (game?.usesExpeditionKeyboard) expeditionButton("ArrowRight");
+  else
+    dispatch(
+      game?.scene === "map" && !game.campaign.info
+        ? { type: "step", direction: "right" }
+        : { type: "right" },
+    );
+};
 $("back").onclick = () => {
   dispatch({ type: "back" });
   $("game").focus();
@@ -194,16 +206,24 @@ $("original-security").onchange = () =>
 $("quit").onclick = () => dispatch({ type: "quit" });
 $("quit-yes").onclick = () => dispatch({ type: "quit-yes" });
 $("quit-no").onclick = () => dispatch({ type: "quit-no" });
-$("up").onclick = () =>
-  dispatch(
-    game?.scene === "map" ? { type: "step", direction: "up" } : { type: "up" },
-  );
-$("down").onclick = () =>
-  dispatch(
-    game?.scene === "map"
-      ? { type: "step", direction: "down" }
-      : { type: "down" },
-  );
+$("up").onclick = () => {
+  if (game?.usesExpeditionKeyboard) expeditionButton("ArrowUp");
+  else
+    dispatch(
+      game?.scene === "map"
+        ? { type: "step", direction: "up" }
+        : { type: "up" },
+    );
+};
+$("down").onclick = () => {
+  if (game?.usesExpeditionKeyboard) expeditionButton("ArrowDown");
+  else
+    dispatch(
+      game?.scene === "map"
+        ? { type: "step", direction: "down" }
+        : { type: "down" },
+    );
+};
 $("money-bin").onclick = () => {
   if (game?.scene !== "office") return;
   dispatch({ type: "money-bin" });

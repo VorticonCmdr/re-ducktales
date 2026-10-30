@@ -21,7 +21,19 @@ Tandy/PCjr includes Sound 001, persistent channels, priorities, engine words, mu
 and completion; all 121 public requests have viewer playback. Speaker playback
 is the default. Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 
-## Current departure milestone
+## Current flight input work
+
+Flight now uses physical ordinary-key flags, including aliases, release-edge
+consumption, mode0 and its existing source flushes. Reveal keys carry from
+departure into flight. Return prompts consume the same provider, and action
+buttons supply raw taps. New unit and browser cases pass; the complete focused
+integration is being verified. [Evidence and limits](flight-keyboard.md).
+Command: `npm run verify:flight-keyboard`.
+
+Whole-game completion and full original timing remain unproven. Modifiers/BIOS,
+mouse/joystick and other cross-scene physical delivery remain separate work.
+
+## Earlier verified departure milestone
 
 Launchpad's briefing now runs automatically through the original page wipe,
 portrait copy, input flush, speech reveal, two RNG commit sites and flight call.
@@ -36,7 +48,8 @@ source archive and results are pinned by the
 [focused receipt](../reference/departure-sequence-integration.json).
 [Evidence and limitations](departure-sequence.md).
 
-Flight's held-control provider still needs its ordinary keyboard translation.
+That milestone retained flight's held-control provider; current work above
+replaces it with the shared physical reader.
 Loading, speech drawing, striped writes and other remaining CPU/device costs
 are not included in the departure budget. Whole-original elapsed timing is
 unverified. The cave browser controller now waits for actual room entry and its
@@ -164,6 +177,7 @@ MZ/EXEPACK, x86 LE16 real mode, overlays, no extender. Actual relocated game byt
 and native addresses were checked; the analysis image is never executed.
 
 ```sh
+npm run verify:flight-keyboard
 npm run verify:departure-sequence
 npm run verify:destination-loop
 npm run verify:expedition-keyboard

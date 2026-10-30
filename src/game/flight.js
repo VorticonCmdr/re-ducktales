@@ -33,7 +33,18 @@ export class Flight {
     this.presentations = 0;
     this.phase = "flying";
     this.controls = { fire: false, direction: null };
+    this.hasInputProvider = options.readInput !== undefined;
+    if (this.hasInputProvider && typeof options.readInput !== "function")
+      throw Error("Invalid flight input-byte provider");
+    this.readInputByte =
+      options.readInput ??
+      (() =>
+        (this.controls.fire ? 192 : 0) |
+        ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ?? 0));
+    if (typeof this.readInputByte !== "function")
+      throw Error("Invalid flight input-byte provider");
     this.inputLog = [];
+    this.returnInputLog = [];
     this.events = [];
     this.buffers = [[], []];
     this.drawIndex = 0;
@@ -115,6 +126,12 @@ export class Flight {
   }
   *readInput() {
     if (!this.pollInput()) yield { clock: "input", remaining: 1 };
+  }
+  sampleInput() {
+    const byte = this.readInputByte();
+    if (!Number.isInteger(byte) || byte < 0 || byte > 255)
+      throw Error("Invalid flight input-byte provider");
+    return byte;
   }
   resumeInputPoll() {
     if (this.wait?.clock !== "input")
@@ -415,9 +432,7 @@ export class Flight {
       });
       // Overlay4:02ae calls the global input reader only after collisions.
       yield* this.readInput();
-      const code =
-        (this.controls.fire ? 192 : 0) |
-        ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ?? 0);
+      const code = this.sampleInput();
       this.inputLog.push({ tick: this.tick, retrace: this.retrace, code });
       sampleFlightControls(m, {
         fire: !!(code & 192),
@@ -468,7 +483,14 @@ export class Flight {
     this.flushInput();
     for (let i = 0; i < 20; i++) {
       yield* this.readInput();
-      if (this.controls.fire || this.returnFireRequested) break;
+      const code = this.sampleInput();
+      this.returnInputLog.push({
+        tick: this.tick,
+        retrace: this.retrace,
+        code,
+      });
+      if (code & 192 || (!this.hasInputProvider && this.returnFireRequested))
+        break;
       yield { clock: "driver", remaining: 7 };
     }
     return {

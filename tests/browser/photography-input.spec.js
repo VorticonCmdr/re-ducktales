@@ -2,6 +2,7 @@ import { waitForScene } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { finishSecurityEntry } from "./helpers/security.js";
 import { exploreFlight } from "./helpers/flight-policy.js";
+import { openRecordedApplication } from "./helpers/clock.js";
 
 test("photography defers keys through entry and shutter, freezes pause pixels and resumes quit", async ({
   page,
@@ -9,14 +10,26 @@ test("photography defers keys through entry and shutter, freezes pause pixels an
   test.setTimeout(120000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.addInitScript(() => {
-    window.requestAnimationFrame = (callback) =>
-      setTimeout(() => callback(performance.now()), 8);
-    window.cancelAnimationFrame = clearTimeout;
-  });
-  await page.goto("/");
+  if (process.env.DUCKTALES_PHOTOGRAPHY_TIMING_BROWSER_NEGATIVE) {
+    expect(process.env.DUCKTALES_PHOTOGRAPHY_TIMING_BROWSER_NEGATIVE).toBe(
+      "skip-work",
+    );
+    await page.route("**/src/game/photography.js*", async (route) => {
+      const response = await route.fetch(),
+        body = await response.text();
+      const wait =
+        /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until: this.now\(\) \+ work.milliseconds,?\s*\};/g;
+      expect(body.match(wait)?.length, "SETUP: photography graphics hook").toBe(
+        1,
+      );
+      await route.fulfill({
+        response,
+        body: body.replace(wait, "/* isolated source drawing-time bypass */"),
+      });
+    });
+  }
+  await openRecordedApplication(page, 1);
+  await expect(page.locator("#actions")).toBeVisible();
   const canvas = page.locator("#game");
   const state = () => canvas.getAttribute("data-state").then(JSON.parse);
   async function until(predicate, max = 4000) {
@@ -48,7 +61,9 @@ test("photography defers keys through entry and shutter, freezes pause pixels an
   });
   await page.clock.runFor(100);
   await press("Space");
+  await until((s) => s.campaign.destination?.ready);
   await press("ArrowRight");
+  await until((s) => s.campaign.choice === 1 && s.campaign.destination?.ready);
   await press("Space");
   await exploreFlight({ page, state, until });
   const arrived = await until((s) => s.scene === "photography");
@@ -67,11 +82,25 @@ test("photography defers keys through entry and shutter, freezes pause pixels an
     (s) => s.photography.photoCount > before.photography.photoCount,
   );
   await page.keyboard.up("Space");
+  const shutterAt = await page.evaluate(() => performance.now());
   await page.keyboard.press("p");
   await page.clock.runFor(8);
   expect((await state()).systemOverlay).toBeNull();
   const paused = await until((s) => s.systemOverlay?.kind === "pause");
   expect(paused.photography.wait.clock).toBe("input");
+  const duration = (await page.evaluate(() => performance.now())) - shutterAt;
+  const sourceMilliseconds =
+    paused.photography.drawingMilliseconds -
+    shutter.photography.drawingMilliseconds;
+  expect(sourceMilliseconds).toBeGreaterThan(100);
+  expect(duration, "Photography source drawing cadence").toBeGreaterThanOrEqual(
+    sourceMilliseconds - 8,
+  );
+  // Four shutter flips, a following input observation, and at most the original
+  // seven-count deadline. The8ms observer can enter one partial drawing group.
+  expect(duration, "Photography source drawing cadence").toBeLessThanOrEqual(
+    sourceMilliseconds + (5 * 1000) / 70.086 + (7 * 16380 * 1000) / 1193182 + 8,
+  );
   expect(paused.photography.frames).toBe(shutter.photography.frames);
   // At the8ms observation cadence, at most one of four shutter retraces may
   // already have been presented when photoCount first becomes visible.

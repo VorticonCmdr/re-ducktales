@@ -23,6 +23,15 @@ is the default. Physical waveform/gain/filter parity remains open. [Audio](audio
 
 ## Current verified milestone
 
+Safari now charges source background/HUD and actor drawing, including the extra
+unpresented preparation before shutter decisions. Its two browser routes pass,
+and the omitted-work browser negative fails at the required cadence assertion.
+Current component replays preserve 899 full input-boundary memories (except
+twelve separately checked clock bytes), all locals/gameplay and 2,234 ordered
+images/modes/wipe tokens across all 22 cases. Historical expectations remain
+unchanged. Seven new clock cases pass; the combined gate is being recorded.
+[Safari timing contract](photography-timing.md).
+
 The cave now charges original party-helper and sprite work before continuing,
 including overwritten draws. Focused checks pass: the conditional original
 input/deadline interval, code/state/image comparisons, passage/ending replays,
@@ -64,12 +73,14 @@ passes do not establish a green current broader gate. [Earlier milestones](statu
 
 ## Remaining work
 
-- Measure and correct safari drawing work. Mountain copy/text/line and other
-  CPU/device costs, and jungle line/text/remaining CPU costs, are still omitted.
+- Complete remaining drawing/device cost coverage. Mountain copy/text/line and
+  other CPU/device costs, and jungle line/text/remaining CPU costs, are omitted.
   Cave omits minimap fills, room composition, copies outside the party helper
   and remaining CPU/device costs; its measured budget is partial.
   Cave's first treasure reveal also substitutes a normal page presentation for
   the original striped reveal.
+  Safari omits HUD line/text, result-sheet drawing and remaining CPU/device
+  costs; whole-original expedition cadence is still unverified.
 - Finish the destination's autonomous neutral polling, draw/flush/read window
   and deferred system-key polling. Browser reads currently follow external makes;
   the original recurring loop is incomplete. Original first-map drawing and exact
@@ -87,7 +98,8 @@ passes do not establish a green current broader gate. [Earlier milestones](statu
 - Original save/load/high-score behavior/formats have not been established.
   Browser persistence would be an explicit addition without original evidence.
 
-Next: address safari pacing and refresh broader gates.
+Next: complete destination polling and expedition release-edge input, then
+refresh broader campaign gates against the current runtime.
 
 ## Supported build and commands
 
@@ -100,6 +112,7 @@ and native addresses were checked; the analysis image is never executed.
 ```sh
 npm run verify:jungle-core
 npm run verify:cave-timing
+npm run verify:photography-timing
 npm run verify:jungle-draw-timing
 npm run build
 npm run dev -- --port 5186

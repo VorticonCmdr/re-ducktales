@@ -3,6 +3,7 @@ import { test, expect } from "@playwright/test";
 import { nextRandom } from "../../src/game/integer.js";
 import { finishSecurityEntry } from "./helpers/security.js";
 import { exploreFlight } from "./helpers/flight-policy.js";
+import { openRecordedApplication } from "./helpers/clock.js";
 
 test("photography keyboard target shot, results, campaign return and collected notice", async ({
   page,
@@ -10,14 +11,8 @@ test("photography keyboard target shot, results, campaign return and collected n
   test.setTimeout(120000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.addInitScript(() => {
-    window.requestAnimationFrame = (callback) =>
-      setTimeout(() => callback(performance.now()), 8);
-    window.cancelAnimationFrame = clearTimeout;
-  });
-  await page.goto("/");
+  await openRecordedApplication(page, 1);
+  await expect(page.locator("#actions")).toBeVisible();
   const canvas = page.locator("#game");
   const state = () => canvas.getAttribute("data-state").then(JSON.parse);
   async function until(predicate, max = 4000) {
@@ -50,7 +45,9 @@ test("photography keyboard target shot, results, campaign return and collected n
   });
   await page.clock.runFor(100);
   await press("Space");
+  await until((s) => s.campaign.destination?.ready);
   await press("ArrowRight");
+  await until((s) => s.campaign.choice === 1 && s.campaign.destination?.ready);
   await press("Space");
   await exploreFlight({ page, state, until });
   const arrived = await until(

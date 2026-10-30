@@ -8,7 +8,9 @@ caller. Results already credit the photo earnings,so no additional loot award is
 added. A collected location shows the original notice and cannot pay again.
 
 The implementation uses the original PS.ARC sprites and scenery,original byte
-records,RNG,pose transitions and seven-tick poll interval. Input,driver and
+records,RNG,pose transitions and seven-tick minimum poll deadline.
+Source sprite/copy work now consumes simulation time before continuation;
+[photography-timing.md](photography-timing.md) records its evidence and omissions. Input,driver and
 retrace clocks,dialogue fire and audio effects cross explicit interfaces.
 Browser acceptance covers Easy/variant1,including sound and a target-picture
 result. The tested route crashes during flight,then completes the translated
@@ -71,8 +73,8 @@ new launch/layout change.
 
 The module deliberately retains original DS widths and RNG. It does not use
 wall time, DOM, host randomness or captured state in production. Drawing and
-sound are explicit effects; the original sound driver itself has not been
-translated or compared by these checks. `settlePhotographyResults` is a single
+sound are explicit effects; these photography comparisons do not establish sound-driver
+waveform parity; audio implementation and evidence are recorded in [audio.md](audio.md). `settlePhotographyResults` is a single
 results pass; the runtime invokes it once. Resource disposal is handled by JavaScript ownership. The runtime translates the
 striped wipes/reveals,dialogue wait and border flash state; full original timing
 comparisons remain outstanding.
@@ -202,7 +204,7 @@ allowed. Replacing9 with10 is a required failing negative control. All320×200
 RGBA pixels match. The separate result sheet reconstructs all original pixels
 from the older two-target result,including thumbnail overlays and pricing.
 
-Current live original: instance0719a1b0cdcede0b85c39577ff760639,paused0e0c:07bf
+Recorded original at capture time: instance0719a1b0cdcede0b85c39577ff760639,paused0e0c:07bf
 stop383,Kenya variant4/day27,film12,target39. Keys are released and there are no
 breakpoints or pending input schedules. No full checkpoint or partial restore
 was used. Game code/asset dumps and screenshots remain ignored local artifacts.
@@ -330,3 +332,13 @@ hide those failures. The failed log and before/after clock audit remain local.
 Run `node --test tests/photography-input.test.js`, `npm run verify:photography`,
 and `npm run test:browser -- tests/browser/photography-input.spec.js tests/browser/photography.spec.js`.
 All are included in `npm run verify`.
+
+## Source drawing-time integration
+
+The historical component expectations remain unchanged. Their exact source class
+first reproduces all old values; current production then independently compares
+every source input boundary and ordered publication, with only three clock words
+excluded from cross-version equality and checked separately. The source copy/HUD
+before shutter decisions is charged even when overwritten. See
+[photography-timing.md](photography-timing.md) for commands, native linkage,
+comparison rules and current limitations.

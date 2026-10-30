@@ -1,0 +1,89 @@
+{
+  "id": "photography-source-drawing-work-fb658562",
+  "acceptanceLevel": "conditional-native-primitive-work",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "parent": {
+    "path": "reference/photography-runtime.json",
+    "sha256": "2d11b5d5acda6118a3e10300f6e6dcf0234f7d57d88df398522f93e08c0604ca"
+  },
+  "originalIdentity": {
+    "path": "reference/photography.json",
+    "sha256": "f3bf3690892a8368bdace720185e8bcbdac88ccdf7f9ab835197bda86012dbc4"
+  },
+  "expectedCaseCount": 11,
+  "expectedActiveCaseCount": 3,
+  "expectedSpriteCalls": 12,
+  "expectedActiveWork": {
+    "instructions": 82216,
+    "portWrites": 1128,
+    "repeatOpcodes": 0,
+    "repeatIterations": 0,
+    "sprites": 4,
+    "copies": 0,
+    "omittedLines": 0,
+    "omittedTexts": 0,
+    "milliseconds": 28.157333333333334
+  },
+  "configuration": {
+    "core": "normal",
+    "cyclesPerMillisecond": 3000,
+    "retraceHz": 70.086
+  },
+  "staticToNative": {
+    "program": "PHOTOGRAPHY_CODE.EXE",
+    "ghidraBodyBase": "1c17:0000",
+    "nativeBodyBase": "0e0c:0000",
+    "ghidraHelperBase": "1d39:0000",
+    "nativeHelperBase": "0f2e:0000",
+    "ghidraLoadBase": "1000",
+    "nativeLoadBase": "01f5",
+    "relocationCount": 93,
+    "analysisPrologue": {
+      "offset": 4823,
+      "relocatedNative": "9a9e1e0e14",
+      "analysis": "81ec000090"
+    }
+  },
+  "sources": {
+    "src/game/photography-work.js": "5f7f0e838a85b7530e9411d76454da2423f36c21b590a6e694ba7c260da85ace",
+    "src/game/photography-scene.js": "afbe1d57e9a44a65813b029c4cc5c944b0cf1121c6c7ca18ac7cc531ec11772a",
+    "src/game/photography-animation.js": "0d884231754675b78ea3cdc488a51b7eeee24a1df74f71f567f46eac6525ecf1",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d"
+  },
+  "artifacts": {
+    "hud-function": {
+      "path": ".local/safari-draw-work-01/hud-function.json",
+      "sha256": "697dae28d2256dd0a0ca0d3c12299c8ca9a811ab48e023231e44a3723a2a24c2"
+    },
+    "hud-instructions": {
+      "path": ".local/safari-draw-work-01/hud-instructions.json",
+      "sha256": "44b4cb994453a245fb53d53f9e1d482e535aa737a907fe57ad55fb24b7263924"
+    },
+    "main-input-and-shutter": {
+      "path": ".local/safari-draw-work-01/main-input-and-shutter.json",
+      "sha256": "94aa7a5b80bb06da3c594f92b283181743d239e7cc3ae2e12ba752942754df67"
+    },
+    "main-normal-tail": {
+      "path": ".local/safari-draw-work-01/main-normal-tail.json",
+      "sha256": "f3e47ab66b7e177d964d60ddf97602df37445814d2e0f7c36a76a9457396e6c4"
+    },
+    "startup-draw": {
+      "path": ".local/safari-draw-work-01/startup-draw.json",
+      "sha256": "1899ea265b947cdd98ccf3e5b663d24d76a6a9b5ae1d6c44f840483c1a43c938"
+    }
+  },
+  "inputContract": "Each unchanged parent BEFORE DS is a conditional routine precondition. Source masks/geometry come from original PS.ARC. Parent AFTER DS clocks are expected observations only; never game or scheduling inputs.",
+  "startingRecipe": "docs/photography.md#animation-and-browser-extension; parent records the existing three map shortcut CAS injections, completed input schedule, original emulator configuration and capture-tool revision. No new session or machine restore was used.",
+  "fittedInputs": [],
+  "partialRestore": false,
+  "comparisonRules": "Exact complete7924-byte live body after93 relocations; bounded Ghidra instructions compare against those actual bytes after exact load-base relocation and one declared analysis-only prologue. All11 original helper cases execute. Active8..10 emit four exact source sprite commands and exact primitive work; partial work falls within two observed counts plus/minus one driver period. Empty0..7 have zero sprite calls but unestimated CPU work. This is conditional quantized budget agreement,not uninterrupted native cadence.",
+  "limitations": [
+    "CPU logic/IRQ work,line/text costs,remaining-slice I/O clamping and full-loop/input cadence remain unmeasured.",
+    "No original whole-expedition timing,scanout or audio-waveform parity.",
+    "The synthetic full-page Canvas clear is not an original source drawing call.",
+    "Background/HUD and shot ordering is statically linked; the11 timed helper captures cover animal/foreground sprites only."
+  ],
+  "verify": "npm run verify:photography-work"
+}

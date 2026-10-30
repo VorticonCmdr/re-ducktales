@@ -4,6 +4,8 @@ import { createHash } from "node:crypto";
 import { PNG } from "pngjs";
 import { FlightMemory } from "../src/game/flight-physics.js";
 import { Photography } from "../src/game/photography.js";
+import { historicalPhotography } from "./photography-component-replay.js";
+const { Photography: HistoricalPhotography } = await historicalPhotography();
 import { advancePhotographyAnimals } from "../src/game/photography-animation.js";
 import {
   photographyResultsScene,
@@ -278,7 +280,7 @@ function replay(c, mutation = {}) {
     events = 0,
     checked = 0,
     presentation = 0;
-  const p = new Photography({
+  const p = new HistoricalPhotography({
     ...resources,
     ...c.initial,
     readInput: () => stream[used++],
@@ -371,7 +373,7 @@ for (const c of manifest.resourceCoverage) {
     polls = 0,
     d = 0,
     r = 0;
-  const p = new Photography({
+  const p = new HistoricalPhotography({
     ...resources,
     ...c.initial,
     readInput: () => (++used <= c.inputs ? c.inputByte : undefined),
@@ -492,5 +494,12 @@ for (const kind of ["action", "cave"]) {
   assert.equal(follow.scene, "expedition-result");
 }
 console.log(
-  "Photography:11 conditional full animation passes,2 exact original PNGs,fixed capture alignment and caller day/score checks;4 independent carried replays,20 checkpoints,18 destination/difficulty resource cases,11 negative controls;ordinary-score carry and atomic-unlock boundary checks. Whole-original expedition timing remains unverified.",
+  "Photography:11 conditional full animation passes,2 exact original PNGs,fixed capture alignment and caller day/score checks;4 historical independent carried replays,20 unchanged checkpoints,18 historical destination/difficulty resource cases,11 negative controls;ordinary-score carry and atomic-unlock boundary checks. Whole-original expedition timing remains unverified.",
 );
+
+// Old exact contracts above reproduce with the declared historical class; the
+// current production class must independently preserve every source input and
+// publication sequence with its own drawing-time environment.
+const { verifyPhotographyDrawingRegression } =
+  await import("./verify-photography-drawing-time.js");
+await verifyPhotographyDrawingRegression(resources, manifest);

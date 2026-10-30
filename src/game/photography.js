@@ -14,6 +14,8 @@ import {
 } from "./photography-actors.js";
 import { renderFlightPixels } from "./flight-raster.js";
 import { u16 } from "./integer.js";
+import { DRIVER_HZ, RETRACE_HZ } from "./timing.js";
+import { photographyWork } from "./photography-work.js";
 
 export class PhotographyLocals {
   constructor(bytes = new Uint8Array(0x66)) {
@@ -64,6 +66,19 @@ export class Photography {
     this.inputs = [];
     this.tick = 0;
     this.retrace = 0;
+    this.clock =
+      options.clock ??
+      (() =>
+        Math.max(
+          (this.tick * 1000) / DRIVER_HZ,
+          (this.retrace * 1000) / RETRACE_HZ,
+        ));
+    if (typeof this.clock !== "function")
+      throw Error("Invalid photography clock");
+    this.lastClock = -Infinity;
+    this.drawingWork = null;
+    this.drawingCalls = 0;
+    this.drawingMilliseconds = 0;
     this.frames = 0;
     this.presentations = 0;
     this.current = null;
@@ -77,6 +92,44 @@ export class Photography {
     this.sound(0);
     this.iterator = this.run();
     this.resume();
+  }
+  setClock(clock) {
+    if (typeof clock !== "function") throw Error("Invalid photography clock");
+    const before = this.now(),
+      after = clock();
+    if (
+      !Number.isFinite(after) ||
+      after < 0 ||
+      (this.wait?.clock === "graphics" && before !== after)
+    )
+      throw Error("Cannot rebase active photography graphics clock");
+    this.clock = clock;
+    this.lastClock = after;
+  }
+  now() {
+    const value = this.clock();
+    if (!Number.isFinite(value) || value < 0 || value < this.lastClock)
+      throw Error("Invalid or backwards photography simulation clock");
+    this.lastClock = value;
+    return value;
+  }
+  advanceGraphics() {
+    if (this.wait?.clock !== "graphics")
+      throw Error("Photography graphics resumed outside drawing work");
+    this.advance("graphics");
+  }
+  *waitForDrawing(kind, commands) {
+    const work = photographyWork(this.entries, commands);
+    if (work.milliseconds <= 0)
+      throw Error("Missing photography source drawing work");
+    this.drawingWork = { kind, ...work };
+    this.drawingCalls++;
+    yield {
+      clock: "graphics",
+      remaining: 1,
+      until: this.now() + work.milliseconds,
+    };
+    this.drawingMilliseconds += work.milliseconds;
   }
   setControls(controls) {
     if (
@@ -112,11 +165,18 @@ export class Photography {
       this.wait = null;
     } else {
       if (
-        !["driver", "retrace", "input"].includes(result.value.clock) ||
+        !["driver", "retrace", "input", "graphics"].includes(
+          result.value.clock,
+        ) ||
         !Number.isInteger(result.value.remaining) ||
         result.value.remaining < 1
       )
         throw Error("Invalid photography clock wait");
+      if (
+        result.value.clock === "graphics" &&
+        !Number.isFinite(result.value.until)
+      )
+        throw Error("Invalid photography graphics deadline");
       this.wait = result.value;
     }
   }
@@ -153,6 +213,12 @@ export class Photography {
     this.advance("retrace");
   }
   advance(clock) {
+    if (this.wait?.clock === "graphics") {
+      if (this.now() < this.wait.until) return;
+      this.wait = null;
+      this.resume();
+      if (clock === "graphics") return;
+    }
     if (!this.wait || this.wait.clock !== clock || --this.wait.remaining)
       return;
     if (this.pending) {
@@ -211,7 +277,7 @@ export class Photography {
       yield { clock: "retrace", remaining: 5 };
     }
   }
-  frame(aim = true) {
+  backgroundFrame() {
     const m = this.memory,
       l = this.locals,
       commands = [
@@ -227,8 +293,12 @@ export class Photography {
           height: 176,
         },
       ];
-    const draw = (at) => drawPhotographySprite(commands, m, this.assets, at);
     photographyHud(commands, m, this.assets, l.b(-0x3e));
+    return commands;
+  }
+  drawActors(commands, aim = true) {
+    const m = this.memory;
+    const draw = (at) => drawPhotographySprite(commands, m, this.assets, at);
     advancePhotographyAnimals(m, { draw, sound: (id) => this.sound(id) });
     draw(0x4dcc);
     if (aim) {
@@ -241,6 +311,25 @@ export class Photography {
     }
     return commands;
   }
+  // Pure command composition remains available for conditional raster checks.
+  // Production follows the separate source drawing boundaries below.
+  frame(aim = true) {
+    return this.drawActors(this.backgroundFrame(), aim);
+  }
+  *prepareFrame() {
+    const commands = this.backgroundFrame();
+    yield* this.waitForDrawing("background", commands.slice(1));
+    return commands;
+  }
+  *animateFrame(commands, aim = true) {
+    const first = commands.length;
+    this.drawActors(commands, aim);
+    yield* this.waitForDrawing("actors", commands.slice(first));
+    return commands;
+  }
+  *drawFrame(aim = true) {
+    return yield* this.animateFrame(yield* this.prepareFrame(), aim);
+  }
   *footer() {
     const m = this.memory,
       deadline = m.view.getUint32(0x27f8, true);
@@ -252,7 +341,7 @@ export class Photography {
     const m = this.memory,
       l = this.locals;
     yield* this.wipe();
-    yield* this.reveal(this.frame());
+    yield* this.reveal(yield* this.drawFrame());
     this.flushInput(false); // Main0798, after the complete opening reveal.
     m.view.setUint32(0x27f8, 0, true);
     m.view.setUint32(0x27fc, 7, true);
@@ -269,6 +358,9 @@ export class Photography {
       this.frames++;
       l.i(-0x52, input);
       this.flushInput(false); // Main07da retains the sampled AX in its local.
+      // Main07df..0803 draws even when the following shutter branch exits
+      // without presenting. Its elapsed work precedes sound/film decisions.
+      const commands = yield* this.prepareFrame();
       const record = 0x896c + m.b(0x4dde) * 12;
       if (!m.b(record)) l.b(-0x54, 0);
       if (!l.b(-0x54) && input & 192) {
@@ -289,7 +381,7 @@ export class Photography {
         m.b(0x2066, 7);
         l.i(-0x3a, m.b(record));
         for (l.i(-0x4c, 0); l.i(-0x4c) < 4; l.i(-0x4c, l.i(-0x4c) + 1))
-          yield* this.present(this.frame(false));
+          yield* this.present(yield* this.drawFrame(false));
         m.b(0x2066, 0);
         continue;
       }
@@ -307,7 +399,7 @@ export class Photography {
         if (m.b(0x4dde) !== column) this.sound(0x6d);
         m.b(0x4dde, column);
       }
-      yield* this.present(this.frame());
+      yield* this.present(yield* this.animateFrame(commands));
       const old = l.i(-0x58);
       l.i(-0x58, old + 1);
       if ((l.b(-2) << 24) >> 24 < old) {
@@ -355,6 +447,9 @@ export class Photography {
     const m = this.memory;
     return {
       phase: this.phase,
+      drawingWork: this.drawingWork,
+      drawingCalls: this.drawingCalls,
+      drawingMilliseconds: this.drawingMilliseconds,
       tick: this.tick,
       retrace: this.retrace,
       frames: this.frames,

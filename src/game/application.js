@@ -112,23 +112,31 @@ export class Game {
     this.simulationClock = clock;
     this.jungle?.setClock(clock);
     this.cave?.setClock(clock);
+    this.photography?.setClock(clock);
   }
   nextSimulationWake() {
-    return this.scene === "cave" &&
-      !this.systemOverlay &&
-      this.cave.wait?.clock === "graphics"
-      ? this.cave.wait.until
+    const component =
+      this.scene === "cave"
+        ? this.cave
+        : this.scene === "photography"
+          ? this.photography
+          : null;
+    return !this.systemOverlay && component?.wait?.clock === "graphics"
+      ? component.wait.until
       : null;
   }
   advanceSimulationWake() {
-    if (
-      this.scene !== "cave" ||
-      this.systemOverlay ||
-      this.cave.wait?.clock !== "graphics"
-    )
+    const component =
+      this.scene === "cave"
+        ? this.cave
+        : this.scene === "photography"
+          ? this.photography
+          : null;
+    if (this.systemOverlay || component?.wait?.clock !== "graphics")
       throw Error("Unexpected simulation work boundary");
-    this.cave.advanceGraphics();
-    this.collectCave();
+    component.advanceGraphics();
+    if (this.scene === "cave") this.collectCave();
+    else this.collectPhotography();
   }
   startOpening() {
     this.opening =
@@ -1683,6 +1691,7 @@ export class Game {
         {
           ...this.expeditionResources,
           entries: this.expeditionResources.photographyEntries,
+          clock: this.simulationClock,
           pollInput: () => this.pollPhotographySystemInput(),
           flushInput: (release) => this.flushPhotographyInput(release),
           variant: this.briefing.variant,

@@ -10,13 +10,13 @@ original difficulty confirmation, instead of fixing every campaign to zero.
 The clock is injected into simulation and records upstream values separately.
 Explicit `/?bios-seed=0` preserves historical replay inputs. Original helper and
 two caller bytes plus the previously captured native input word18293 are checked.
-Eight focused units, three browser cases and a cached-word failure control have
-passed during development. Clean-source focused acceptance is pending;
-`npm run verify:bios-clock` runs it. See [environment contract](bios-clock.md).
-
-The full-campaign acceptance below is historical while this change is integrated.
-Its current-source guards intentionally reject changed sources. A new independent
-browser comparison against the unchanged recorded inputs is still required.
+Clean-source focused acceptance passed at `ce1203b`: all194 units, three actual
+browser clock cases, the cached-word failure control, mountain controls and build.
+The fresh full Easy browser consumer at `4add476` matches all34 state/pixel
+checkpoints and4,981 events from the unchanged historical recording. Independent
+headless replay also passes. Eight broken fixture contracts are rejected.
+`npm run verify:bios-clock` repeats focused acceptance; the combined current gate
+is being refreshed. See [environment contract and evidence](bios-clock.md).
 
 ## Last accepted runtime milestone
 
@@ -161,6 +161,8 @@ experiments leave the shared8386 session untouched and close their owned instanc
 
 ```sh
 npm run verify:current-campaign
+npm run verify:bios-clock
+node scripts/verify-bios-clock-campaign-receipt.js
 node scripts/verify-mountain-phase-campaign-receipt.js
 node scripts/verify-runtime-campaign.js --fresh-browser
 node scripts/verify-mountain-phase-integration.js

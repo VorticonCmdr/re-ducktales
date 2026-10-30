@@ -1,0 +1,306 @@
+{
+  "id": "bios-clock-easy-complete-campaign",
+  "scope": "Complete Easy fixed-word regression on clock-seed runtime; unchanged independent historical inputs and expected state/pixels. Default clock acceptance is separate in reference/bios-clock.json.",
+  "expectedUnitCases": 194,
+  "physicalKeyboard": true,
+  "expectedHard": false,
+  "pendingBrowserReplay": false,
+  "completeSourceInventory": true,
+  "capturePrefix": false,
+  "artifactRoot": ".local/mountain-phase-campaign-01",
+  "captureRoot": ".local/mountain-phase-campaign-producer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+  "captureCommit": "5d219325b719c8ab00050fee1c622e984d1df278",
+  "buildManifest": {
+    "path": "reference/build.json",
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "expectedCheckpointCount": 34,
+  "requiredEventCount": 4981,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-input-80",
+    "jungle-input-160",
+    "jungle-input-240",
+    "jungle-input-320",
+    "jungle-input-400",
+    "jungle-input-480",
+    "jungle-input-560",
+    "jungle-input-640",
+    "jungle-input-720",
+    "jungle-input-800",
+    "jungle-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "mountain-return",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedFlagAliasPresentations": 0,
+  "expectedEnding": {
+    "phase": "cover",
+    "won": true,
+    "banked": 14550,
+    "rivalBanked": 12500,
+    "day": 31,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 36,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      1,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "rivalUnlockMask": 15
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "captureTools": {
+    "displayMilliseconds": 8,
+    "clockOrigin": 1,
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "emulator": "No native emulator used by this port-regression capture. Original native subsystem evidence remains separately scoped.",
+    "producerSource": "Fresh actual-browser physical player capture from startup;no prefix,partial restore or expected-state input. Exploratory sentinel is not acceptance."
+  },
+  "comparisonRules": "Exact34 full states/320x200 RGBA digests and all independent DOM events/timestamps. Original clamped pointer coordinates only. No new state,timer,RNG or pixel exclusions.",
+  "verify": "npm run verify:runtime-campaign",
+  "expectedFlightPresentations": 1470,
+  "parentScenario": {
+    "path": "reference/jungle-text-campaign.json",
+    "sha256": "071309df812946e5ad36811311960b1cc4f6d8363a607888acff4c3c90672bce",
+    "materialPreserved": true,
+    "difference": "Mountain copy/HUD/phase work changes timing and diagnostics. New independent inputs and expectations are captured;all34 prior unique boundaries remain required."
+  },
+  "artifacts": {
+    "environment": {
+      "path": ".local/mountain-phase-campaign-01/environment.json",
+      "bytes": 468,
+      "sha256": "af762715c40d1662e9cd726f63a21149ac8934adb9d28f52bf226362930c2799"
+    },
+    "captured-events": {
+      "path": ".local/mountain-phase-campaign-01/captured-events.json",
+      "bytes": 604419,
+      "sha256": "858e76ea9c5151a84c40a2546f89e8b2dba74151c72d107c29eed6d8265a634f"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/mountain-phase-campaign-01/campaign-checkpoints.json",
+      "bytes": 238591,
+      "sha256": "cc86363920cbb14d61e4927cdda35d883480f6944b237b4365c074063d9235bb"
+    },
+    "timeline": {
+      "path": ".local/mountain-phase-campaign-01/timeline.json",
+      "bytes": 3098,
+      "sha256": "84ccd84ec94e735f5052dbdfbf8084d328db5216e570b2b3021d27884fb11fcc"
+    },
+    "producer-source": {
+      "path": ".local/mountain-phase-campaign-producer-01/source-revision.json",
+      "bytes": 90160,
+      "sha256": "15bc026470e9a367e970c7fd74e958fd7d7efc2705184202e5d4c0a23c6f65d6"
+    },
+    "producer-archive": {
+      "path": ".local/mountain-phase-campaign-producer-01/sources.zip",
+      "bytes": 2361843,
+      "sha256": "7f5c67ab6d1f3465a9195ce1dd7becc10a97bc8251ac614b00cf46512ef64072"
+    },
+    "producer-status": {
+      "path": ".local/mountain-phase-campaign-producer-01/runner-status.json",
+      "bytes": 29366,
+      "sha256": "e18c36060eaa32f9804bbfc9655c410157ccd2de41b548f8c95fd831c095182b"
+    },
+    "producer-log": {
+      "path": ".local/mountain-phase-campaign-producer-01/browser.log",
+      "bytes": 4661,
+      "sha256": "b206c11150992ef183b1ce198e750ea67fd10de707ea9a241e369a1810755357"
+    },
+    "producer-capture-tool": {
+      "path": ".local/mountain-phase-campaign-producer-01/capture-source.py",
+      "bytes": 3947,
+      "sha256": "be67eaf432cc2b510a753ff761cc1c902aef5f9eabf07c612279f6dbd85eed57"
+    },
+    "producer-environment": {
+      "path": ".local/mountain-phase-campaign-producer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/environment.json",
+      "bytes": 228,
+      "sha256": "0b3e28729f7c2a54330c5f54386338a843c5f4f36cc2a23b646481bd21a6abf7"
+    },
+    "ending-png": {
+      "path": ".local/mountain-phase-campaign-producer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/mixed-campaign-ending.png",
+      "bytes": 17946,
+      "sha256": "36f2b088dcf10c031b568236e8a89015a48284484d53dbacbcd9cd2ea0bd6000"
+    },
+    "accepted-browser-progress": {
+      "path": ".local/bios-clock-campaign-consumer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 8508,
+      "sha256": "b7884cab16c5c14e26c8695c3b7cf2f3125f38bd66fd4cfc719c2dde43af2802"
+    },
+    "accepted-browser-checkpoints": {
+      "path": ".local/bios-clock-campaign-consumer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 238591,
+      "sha256": "cc86363920cbb14d61e4927cdda35d883480f6944b237b4365c074063d9235bb"
+    },
+    "accepted-browser-events": {
+      "path": ".local/bios-clock-campaign-consumer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 456069,
+      "sha256": "8b335a337ea0f775461dd2cfaecf65a06698d7bb18fcb6df0944bd77def1fc9c"
+    },
+    "accepted-browser-status": {
+      "path": ".local/bios-clock-campaign-consumer-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser-contract": {
+      "path": ".local/mountain-phase-campaign-01/pending-contract.json",
+      "bytes": 8647,
+      "sha256": "d7de26770434e938311e481a8d625d4e38767adf78dcb22e804ee5b08f224772"
+    },
+    "consumer-source": {
+      "path": ".local/mountain-phase-campaign-consumer-01/source-revision.json",
+      "bytes": 90160,
+      "sha256": "15bc026470e9a367e970c7fd74e958fd7d7efc2705184202e5d4c0a23c6f65d6"
+    },
+    "consumer-archive": {
+      "path": ".local/mountain-phase-campaign-consumer-01/sources.zip",
+      "bytes": 2361843,
+      "sha256": "7f5c67ab6d1f3465a9195ce1dd7becc10a97bc8251ac614b00cf46512ef64072"
+    },
+    "consumer-status": {
+      "path": ".local/mountain-phase-campaign-consumer-01/runner-status.json",
+      "bytes": 30692,
+      "sha256": "b871df2ae2ae397e3ec9938f538ef05eb8ce74f12d5d4648c03924752072b8e5"
+    },
+    "consumer-capture-tool": {
+      "path": ".local/mountain-phase-campaign-consumer-01/capture-source.py",
+      "bytes": 3066,
+      "sha256": "abcdb389a30a17b9ef8cd867242dc5bf0fbe4c335cd291d0f0b8f1b26825bbde"
+    },
+    "consumer-log": {
+      "path": ".local/mountain-phase-campaign-consumer-01/browser.log",
+      "bytes": 2398,
+      "sha256": "ac8b52362788dbd27c333a1703a4c3ba66b7612b99090619347e1bb839d905f0"
+    },
+    "independent-headless-replay": {
+      "path": ".local/mountain-phase-campaign-headless-01/positive.json",
+      "bytes": 4851,
+      "sha256": "ada4591c2705e6fe87803cceb3c5b7001847b0f1f90cbbf0825c60bfa2dae1b3"
+    },
+    "runtime-source": {
+      "path": ".local/bios-clock-campaign-consumer-01/source-revision.json",
+      "bytes": 91474,
+      "sha256": "09b1aa763fe06881dc5ec5359250871a128412c954959a7a1809064f81bf56e1"
+    },
+    "runtime-archive": {
+      "path": ".local/bios-clock-campaign-consumer-01/sources.zip",
+      "bytes": 2425188,
+      "sha256": "01980d5b44d5986739a47e3522228080e3b05459bc047deb19bc8ee94b12f9d3"
+    },
+    "runtime-status": {
+      "path": ".local/bios-clock-campaign-consumer-01/runner-status.json",
+      "bytes": 32715,
+      "sha256": "97e91578548bd3efa3e303182f5b5e7ec08944e884268401620bc3959ea2cae9"
+    },
+    "runtime-capture-tool": {
+      "path": ".local/bios-clock-campaign-consumer-01/capture-source.py",
+      "bytes": 3066,
+      "sha256": "abcdb389a30a17b9ef8cd867242dc5bf0fbe4c335cd291d0f0b8f1b26825bbde"
+    },
+    "runtime-log": {
+      "path": ".local/bios-clock-campaign-consumer-01/browser.log",
+      "bytes": 2398,
+      "sha256": "bf0f6bb3f36e886b0b751a8d6d9309f5a021c5667b4505e5ac26149816ca6c61"
+    },
+    "expectation-manifest": {
+      "path": "reference/mountain-phase-campaign.json",
+      "bytes": 12078,
+      "sha256": "0fa6f8af3b9c99647e28d7d7c07fd8ad393a1a400ab8ded9a19f0bf5bb730ae8"
+    },
+    "bios-clock-contract": {
+      "path": "reference/bios-clock.json",
+      "bytes": 3491,
+      "sha256": "ef62fffe07f9eb510b64aaf598ab35fdd4d9c5c13a8ff38dade8bc17fc237f93"
+    }
+  },
+  "verificationSources": {
+    "scripts/replay-hard-campaign.js": "bf8321c1c3371fb0b0d54e5cb7abbf381072ef100e7b1620bfb59f26b6dfacbf",
+    "scripts/verify-current-campaign.js": "1c899b5b8596b8e7fa6ca0a6e028718eeb6aaea8ce6e8b06ea9494f54c3e674b",
+    "scripts/verify-current-campaign-fixtures.js": "88be599952edde654b5fb77f599ffdf73aadc990c2c1816af2e02b0c37c66c99",
+    "scripts/verify-current-campaign-browser-negative.js": "46f70ee16f0d8566b197b11da69ddebd4dfc318b0536d73102b0ca388b455b09",
+    "tests/helpers/original-game.js": "0b894ad5a1498fa58a070d4e576e9add244d729b7d8c48e0f53243097f9347d3",
+    "tests/browser/helpers/recorded-campaign.js": "3466bc61f1abe9f51c4ff96b8fd8e6ae1d9179eda644c36fc86449a1a8dcf934",
+    "tests/browser/helpers/recorded-dom-input.js": "196e2b76608e64b58daab9d2424ad34fcc28d6580af6cf48f6fffd04530a0fd8",
+    "tests/browser/helpers/clock.js": "529fd156726b96d13fb6124fd07d84a752393d90d7dd8b1b18b26cd722071137",
+    "tests/browser/mixed-campaign.spec.js": "d15e67ff1e502689e3760d7a7a5382294047a0e439e730de7288c394b81a933e",
+    "playwright.campaign.config.js": "b56cac17deb33d80d6b12899144c1c680ba91bdc332ba63b3a4dd4f8f1581280",
+    "vite.campaign.config.js": "ec88fffd4b81ed3b171bfb948bf9bcdaf47b99913c01ba8eda8c66212924431b",
+    "package.json": "929bf655380e349e22663c717899d1c6145d611d89f7ad6d79a6a3782925d829",
+    "scripts/register-mountain-phase-campaign.py": "bbf17772b86dca55d486cdee11b5020f3c0c60369038020f7f23b096b1de301f",
+    "scripts/accept-mountain-phase-campaign.py": "5b766d7ba4d6293e145bfec2d358ed4e83796ff6d985f8c1002efbc2eb53c6b3",
+    "scripts/verify-runtime-campaign.js": "650e3e87b013a67142283da2d5d4a2bdc1d0ca3d1aa1ff0b4e896a29c5b4e3ab",
+    "scripts/jungle-text-timing.js": "4a23bc1ae7eae6521a8e978d52fcbe9dccb2ef3f38a5f3504fcd88e4c49d4b50",
+    "scripts/verify-jungle-text-work.js": "d1d77f2e6391a5f150556b488d66709c48078fe55d795aaeb3b6db484e2cfd3f",
+    "scripts/verify-jungle-line-browser-negative.js": "ee9f7928062049f5859310429a1e3a1b8ef61b4f2c8e7d9a211c11e014d369ef",
+    "scripts/verify-jungle-text-browser-negative.js": "64261cb357d258e7c048080433b8c8d7887886d6097f165591176e75e4dadf90",
+    "tests/browser/jungle-line-input.spec.js": "1e9b5182f457bfa532f94639e15c4833038799c492e4a809a7266049cc65ae26",
+    "scripts/verify-mountain-phase.js": "c2fd404d603a07d4cdaf20be2a6ea484239014786f15b39a0cd628a52649b68e",
+    "scripts/verify-mountain-phase-integration.js": "54c9adc0afddb42d5cf58de53812b2dc269bf415f57bdced7e8627ffb1ee1e74",
+    "scripts/verify-mountain-hud-runtime.js": "977e77fa50c40dfa003747d5bf4ad3b6ac9206a7400db8b2e07a16b819bcd1b8",
+    "scripts/verify-mountain-copy-runtime.js": "22c07d0e4cbeb419e18e35b433488ff136c4303463054b6a10e90c8550c6a827",
+    "tests/mountain-phase.test.js": "89ed20a2ad4d5c16089c749c84c33a472abc92730205f6f0fd368db4730b25c3",
+    "tests/browser/mountain-input.spec.js": "5d7e67338c8eab5d0719298b0d200f498052c2447eb8e5e99c86313a593d6035",
+    "scripts/capture-runtime-campaign.py": "abcdb389a30a17b9ef8cd867242dc5bf0fbe4c335cd291d0f0b8f1b26825bbde",
+    "scripts/register-runtime-campaign.py": "392321fd8809b3e3694c03cc49c96c4e8f8452f13f6325265e6706c88633784a",
+    "scripts/verify-bios-clock.js": "a59997a1b5a0c39a91e21422e1b1e312855f8088e97229ee957b51a024d57367",
+    "scripts/verify-bios-clock-integration.js": "ef04da31e55052ef0fcd1a2edbe5fe3fef8386531306f0afb2dd330ed41e7c07",
+    "scripts/verify-bios-clock-campaign-receipt.js": "7cbd6da190f4730cade25802e1d3de270e2203e96314e8a6a0c95549384be266",
+    "scripts/capture-mountain-phase-integration.py": "22d38c59804b27325e538a399afc665212c8267a43e25a11af9542d3b6856db3",
+    "tests/bios-clock.test.js": "46f82d4dc43b8699aaa86102c21dd9d301163dab55e5f6f74b668facbc45abb3",
+    "tests/browser/bios-clock.spec.js": "6a9e767e67e2e7ad8bdad4200d06a52efef8a40e3e9c3ab0cd57f7aa86212cca"
+  },
+  "consumerCommit": "5d219325b719c8ab00050fee1c622e984d1df278",
+  "browserReplayRoot": ".local/bios-clock-campaign-consumer-01/browser",
+  "evidenceLevel": "Fresh closed-loop input replay and independent actual-browser full campaign acceptance;not whole-native campaign or cadence parity.",
+  "headlessReplay": {
+    "sourceCommit": "5d219325b719c8ab00050fee1c622e984d1df278",
+    "inputContractSHA256": "d7de26770434e938311e481a8d625d4e38767adf78dcb22e804ee5b08f224772",
+    "command": "node scripts/replay-hard-campaign.js .local/mountain-phase-campaign-01 --manifest=.local/mountain-phase-campaign-01/pending-contract.json",
+    "exitCode": 0,
+    "scope": "Independent closed-loop initial-state/input-stream replay,34 fullstate/pixel checkpoints,4981 events;not native whole-campaign parity."
+  },
+  "runtimeComparison": true,
+  "runtimeCommit": "4add476ee59b11ccada890cb75114a71f731f495",
+  "runtimeComparisonRoot": ".local/bios-clock-campaign-consumer-01",
+  "runtimeEnvironment": {
+    "biosSeed": 0,
+    "url": "/?bios-seed=0"
+  }
+}

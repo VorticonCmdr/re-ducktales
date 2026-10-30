@@ -69,5 +69,21 @@ manifest also requires its hash-pinned local Ghidra extracts and DOSBox source
 snapshots. Missing snapshots are explicit setup failures, never silent skips.
 
 This focused level does not establish a complete campaign with variable clock
-inputs. A separate full browser comparison must retain the historical fixed-zero
-input stream and all its expected state/pixel boundaries unchanged.
+inputs. The independent full browser consumer at `4add476` additionally matches all34
+historical state/pixel boundaries and4,981 events with fixed word zero, reaching
+the winning day31 ending and Restart. The headless route matches independently.
+`reference/bios-clock-campaign.json` preserves the original producer/consumer
+provenance and all expected artifacts, with a separate current runtime archive.
+Only application/browser seed wiring and the new clock module differ in src/.
+Eight fixture failure controls protect both source histories. No expected state,
+input timestamp, image or comparison tolerance was changed.
+
+```sh
+npm run verify:current-campaign
+node scripts/verify-bios-clock-campaign-receipt.js
+```
+
+The combined gate also repeats native drawing checks, long jungle routes,
+mountain controls and required omissions, the fresh focused BIOS cases and build.
+The saved combined receipt is separate from a fresh gate. A whole variable-seed
+campaign and complete original IRQ/RTC timing remain unverified.

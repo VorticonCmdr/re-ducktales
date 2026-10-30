@@ -31,5 +31,9 @@ if not a.bios_clock:m['captureTools']['runtimeConsumer']='Fresh browser comparis
 m['verify']='npm run verify:runtime-campaign'
 # Gate logic is pinned separately from archived consumer game code.
 for path in list(m['verificationSources'])+['scripts/capture-runtime-campaign.py','scripts/register-runtime-campaign.py','scripts/verify-runtime-campaign.js']:m['verificationSources'][path]=sha(Path(path).read_bytes())
+if a.bios_clock:
+ m['artifacts']['bios-clock-contract']=spec('reference/bios-clock.json')
+ for path in ['scripts/verify-bios-clock.js','scripts/verify-bios-clock-integration.js','scripts/verify-bios-clock-campaign-receipt.js','scripts/capture-mountain-phase-integration.py','tests/bios-clock.test.js','tests/browser/bios-clock.spec.js']:
+  m['verificationSources'][path]=sha(Path(path).read_bytes())
 out=Path(a.manifest);assert not out.exists(),'Refuse to overwrite a registered scenario';out.write_text(json.dumps(m,indent=2)+'\n')
 print('Registered34 unchanged checkpoints and4981 required events with separate current runtime source provenance:'+str(out))

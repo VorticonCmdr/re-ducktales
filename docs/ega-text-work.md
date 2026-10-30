@@ -1,8 +1,9 @@
 # Original transparent text work
 
-This recovers the next missing jungle drawing cost. The counter is currently
-analysis tooling, not part of gameplay deadlines. Hard campaign work remains
-deferred.
+This records the original transparent text work investigation. Its frozen
+analysis counter remains evidence; the runtime now includes formatter and text
+work in jungle redraw deadlines. [Current integration](jungle-text-timing.md).
+Hard campaign work remains deferred.
 
 The supported 22-file build is unchanged. `IT.DRV` resource 1's vector at byte
 001a selects 081f for the transparent text API (resident pointer DS2008).
@@ -17,7 +18,8 @@ Original jungle HUD 1e4c:0144 calls the numeric formatter twice, using MAIN42's
 original 8x8 font. The formatter calls DS2008 with callee-pop arguments, in BP+6
 order: color, y, x, text offset, font offset, font segment. RETF pops12 bytes.
 It constructs digits using resident long remainder/division helpers and applies
-right alignment to money. Those formatter/helper costs are **not counted yet**.
+right alignment to money. Those formatter/helper costs were recovered separately and are now counted in
+the runtime. [Formatter evidence](hud-number-work.md).
 
 The transparent driver consumes a NUL-terminated byte string. It configures EGA
 registers even for an empty string. Aligned glyphs issue one mask OUT per row;
@@ -83,6 +85,5 @@ This is conditional native instruction/port evidence with a RAM write stand-in,
 not original screen pixels, natural IRQ/scanout timing, a complete checkpoint,
 or an original whole-game run. No partial machine state is restored. Only the
 private caller arguments, code/data allocation and IF/DF preconditions are set;
-subsequent calls carry their state. Native text work must be added alongside the
-remaining formatter work, then replayed through component and browser scenarios
-before it can count as runtime acceptance. Opaque text0909 is a separate path.
+subsequent calls carry their state. The combined formatter/text work now passes the separate component and browser
+gate linked above; this native fixture alone does not establish that acceptance. Opaque text0909 is a separate path.

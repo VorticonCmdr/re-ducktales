@@ -1,5 +1,9 @@
 # Complete Easy campaign after jungle line timing
 
+This is the historical full-route result before the later formatter/text timing
+integration. The [current focused timing gate](jungle-text-timing.md) passes; a
+fresh complete campaign comparison after that change is pending.
+
 The new scenario is `reference/jungle-line-campaign.json`. A fresh complete
 physical-input stream is independently replayed from startup. All35 full states,
 320x200 pixel digests and4,981 DOM events match; the carried simulation also

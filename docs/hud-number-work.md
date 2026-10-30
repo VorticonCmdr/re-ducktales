@@ -62,5 +62,6 @@ acceptance. The jungle runtime now consumes this count and uses the original for
 rules. The copies under `scripts/lib/` remain frozen evidence for this historical
 manifest; production uses `src/game/ega-text-work.js` and `hud-number-work.js`.
 `node scripts/verify-jungle-text-work.js` compares the production paths against
-all16 native traces and six original drawing boundaries. New timing contracts
-and browser/full-campaign acceptance are separate integration work. Opaque text remains a separate uncounted path.
+all16 native traces and six original drawing boundaries. The new [timing integration](jungle-text-timing.md) passes both long component
+routes and focused actual-browser controls. A fresh full-campaign comparison
+after text timing remains pending. Opaque text remains a separate uncounted path.

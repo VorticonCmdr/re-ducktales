@@ -8,35 +8,19 @@ not only fine-tuning.** Hard campaigns are deferred at the user's request.
 Mountain now schedules drawing by absolute simulation deadlines and then the next
 display edge, preserving the phase at entry or after a pause. Six phase checks
 and all186 units pass; the complete ascent and browser controls still pass.
-The clean-source combined phase gate is the next required verification.
+The clean-source combined phase gate passed for `5eca408`, including all four
+browser omission controls and the production build. Its saved record pins735
+source files and five immutable artifacts. The receipt command is
+`node scripts/verify-mountain-phase-receipt.js`. Next: a new independent complete
+Easy browser campaign for the copy/HUD/phase runtime.
 [Phase contract, original evidence and commands](mountain-phase.md).
 
-## Previous HUD milestone
-
-Mountain HUD drawing is now connected to original source calls: 12 native caller
-cases/486 calls match production commands, state effects and work counters.
-Opening/full HUDs charge34 lines and two numbers; ordinary frames charge money
-only. Signed formatter quirks and original HUD descriptor positions are retained.
-The combined clean-source HUD gate passed for `672276b`: the full764-input ascent,
-180 units, actual browser controls, three intended omission failures and the
-production build. Its saved record pins729 source files and five immutable
-artifacts; `node scripts/verify-mountain-hud-receipt.js` validates the saved result.
-Retrace-phase scheduling and a refreshed full Easy campaign remain next.
-[HUD evidence and commands](mountain-hud-work.md).
-
-## Previous restoration milestone
-
-Mountain restoration now calls the original erase planner and charges signed EGA
-copy work alongside sprites. The focused command is
-`node scripts/verify-mountain-copy-integration.js`: 34 production erase/charge
-cases, 16 native primitive cases, the complete 764-input/26-checkpoint ascent,
-180 units, an actual browser route and an omitted-copy browser failure control.
-The summit retains all three lives. HUD text/lines and retrace-phase scheduling
-remain incomplete. [Current scope and commands](mountain-copy-runtime.md).
-The prior focused gate passed for `2bf98f4`; its saved record pins 719 source files and
-four immutable artifacts. `node scripts/verify-mountain-copy-receipt.js` validates
-that historical record for matching source. HUD changes make its current-source
-guard fail; the new HUD gate must be used for current integration.
+The current gate also requires34 production restoration cases,16 native signed
+copy cases and12 HUD caller cases/486 calls, plus native line/number proofs.
+The independent764-input ascent retains26 gameplay checkpoints,870 rendered
+presentations and all three lives at the summit. Earlier
+[HUD](mountain-hud-work.md) and [copy](mountain-copy-runtime.md) receipts remain
+historical source snapshots; their current-source guards reject later changes.
 
 **Whole-campaign acceptance has not been refreshed for the mountain changes.**
 The source-pinned Easy receipt below remains historical; current source guards
@@ -149,6 +133,7 @@ experiments leave the shared8386 session untouched and close their owned instanc
 ```sh
 node scripts/verify-mountain-hud-integration.js
 node scripts/verify-mountain-phase-integration.js
+node scripts/verify-mountain-phase-receipt.js
 node scripts/verify-mountain-hud-receipt.js
 npm run verify:current-campaign # Requires a fresh full-campaign contract first.
 node scripts/verify-mountain-copy-integration.js

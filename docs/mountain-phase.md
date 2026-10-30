@@ -57,7 +57,14 @@ is used as an input.
 ```sh
 node scripts/verify-mountain-phase.js
 node scripts/verify-mountain-phase-integration.js
+node scripts/verify-mountain-phase-receipt.js
 ```
+
+The clean combined gate passed for `5eca408`. Its
+[saved record](../reference/mountain-phase-runtime.json) pins735 current source
+hashes and five immutable local artifacts: source archive, inventory, log,
+completed result and runner status. The receipt command validates that saved
+result; the integration command repeats actual browser acceptance.
 
 The phase verifier requires the original page evidence and six executable tests:
 off-phase starts0/7ms; batch-versus-one-millisecond catch-up with fixed controls;
@@ -65,6 +72,10 @@ early/coincident-edge handling; invalid clocks; actual Game→Scheduler routing;
 and rejection of the previous rounded scheduling policy. The fixed input schedule
 uses150/350/420ms over500ms. All consumed events, game state and rendered pixels
 match exactly between batch/chunk runs. No expected state selects an input.
+The early/coincident and Game-routing probes deliberately query the component's
+declared drawing boundary: they are conditional API checks, not independent
+native timing replays. Published snapshots/pixels and final DS are compared for
+the independent batch/chunk scenario.
 
 At the declared7ms start, the counted opening work ends48.994333ms. The42.804555ms
 display edge is too early; the first later edge is57.072740ms. A zero-phase start

@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/current-physical-campaign.json";
+  "reference/jungle-line-campaign.json";
 const manifest = JSON.parse(await readFile(manifestPath));
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const checkpointCount = {
@@ -277,6 +277,13 @@ if (manifest.id === "jungle-line-easy-complete-campaign") {
       .sort(),
     srcFiles,
   );
+  const partialSource = await json("partial-producer-source");
+  for (const p of srcFiles)
+    assert.equal(
+      partialSource.files[p],
+      source.files[p],
+      `Input-only prefix game source differs ${p}`,
+    );
   for (const p of srcFiles)
     assert.equal(
       consumer.files[p],
@@ -350,6 +357,29 @@ for (const [path, expected] of Object.entries(consumerSource.files))
 const checks = await json("campaign-checkpoints"),
   events = await json("captured-events");
 assert.equal(checks.length, checkpointCount);
+if (manifest.completeSourceInventory) {
+  const parentBytes = await readFile(manifest.parentScenario.path);
+  assert.equal(sha(parentBytes), manifest.parentScenario.sha256);
+  const parent = JSON.parse(parentBytes),
+    spec = parent.artifacts["campaign-checkpoints"],
+    oldBytes = await readFile(spec.path);
+  assert.equal(sha(oldBytes), spec.sha256);
+  const previous = JSON.parse(oldBytes);
+  for (let i = 0; i < 3; i++)
+    for (const key of [
+      "name",
+      "at",
+      "eventCount",
+      "stateSha256",
+      "pixelsSha256",
+    ])
+      assert.equal(
+        checks[i][key],
+        previous[i][key],
+        `Changed pre-line prefix checkpoint${i} ${key}`,
+      );
+}
+
 if (manifest.completeSourceInventory)
   for (const key of ["at", "eventCount", "stateSha256", "pixelsSha256"])
     assert.equal(

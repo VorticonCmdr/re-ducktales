@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/current-physical-campaign.json";
+  "reference/jungle-line-campaign.json";
 const m = JSON.parse(await readFile(manifestPath));
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const originals = {};
@@ -19,6 +19,13 @@ const root = await mkdtemp(
 const kinds = [
   "missing-source-archive",
   "corrupt-ending-picture",
+  ...(m.completeSourceInventory
+    ? [
+        "missing-consumer-archive",
+        "corrupt-consumer-inventory",
+        "changed-browser-contract",
+      ]
+    : []),
   ...(m.runtimeComparison
     ? [
         "missing-runtime-archive",
@@ -54,6 +61,37 @@ for (const kind of kinds) {
     };
   }
   if (kind === "changed-historical-ending") contract.expectedEnding.banked++;
+  if (kind === "missing-consumer-archive")
+    contract.artifacts["consumer-archive"].path =
+      `${root}/missing-consumer.zip`;
+  if (kind === "corrupt-consumer-inventory") {
+    const inventory = JSON.parse(
+      await readFile(m.artifacts["consumer-source"].path),
+    );
+    inventory.files["src/game/browser.js"] = "0".repeat(64);
+    const bytes = Buffer.from(JSON.stringify(inventory)),
+      path = `${root}/bad-consumer-source.json`;
+    await writeFile(path, bytes);
+    contract.artifacts["consumer-source"] = {
+      path,
+      bytes: bytes.length,
+      sha256: sha(bytes),
+    };
+  }
+  if (kind === "changed-browser-contract") {
+    const pending = JSON.parse(
+      await readFile(m.artifacts["browser-contract"].path),
+    );
+    pending.expectedEnding.banked++;
+    const bytes = Buffer.from(JSON.stringify(pending)),
+      path = `${root}/bad-browser-contract.json`;
+    await writeFile(path, bytes);
+    contract.artifacts["browser-contract"] = {
+      path,
+      bytes: bytes.length,
+      sha256: sha(bytes),
+    };
+  }
   const path = `${root}/${kind}.json`;
   await writeFile(path, JSON.stringify(contract));
   const r = spawnSync(
@@ -66,6 +104,11 @@ for (const kind of kinds) {
   assert.ifError(r.error);
   assert.equal(r.status, 1);
   const patterns = {
+    "missing-consumer-archive": /SETUP: missing consumer-archive artifact/,
+    "corrupt-consumer-inventory":
+      /Independent consumer source differs src\/game\/browser.js/,
+    "changed-browser-contract":
+      /Changed independent browser contract expectedEnding/,
     "missing-source-archive": /SETUP: missing producer-archive artifact/,
     "corrupt-ending-picture": /Corrupt ending-png artifact/,
     "missing-runtime-archive": /SETUP: missing runtime-archive artifact/,

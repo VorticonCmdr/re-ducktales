@@ -3,7 +3,9 @@
 import assert from "node:assert/strict";
 import { readFile, mkdir, readdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
-const manifest = "reference/speaker-runtime-campaign.json";
+const manifest =
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+  "reference/jungle-line-campaign.json";
 const m = JSON.parse(await readFile(manifest));
 function run(command, args, extra = {}) {
   const r = spawnSync(command, args, {
@@ -28,6 +30,8 @@ run(process.execPath, [
   "scripts/verify-speaker-playback-receipt.js",
   "--manifest=reference/speaker-playback-current.json",
 ]);
+if (m.completeSourceInventory)
+  run(process.execPath, ["scripts/jungle-line-timing.js"]);
 run(process.execPath, [
   "scripts/verify-current-campaign-fixtures.js",
   `--manifest=${manifest}`,
@@ -71,11 +75,46 @@ run(process.execPath, [
   `--manifest=${manifest}`,
   `--browser=${browserRoot}`,
 ]);
+if (m.completeSourceInventory) {
+  const root = `.local/current-jungle-lines-${Date.now()}`;
+  await mkdir(root, { recursive: true });
+  run(
+    process.execPath,
+    [
+      "node_modules/@playwright/test/cli.js",
+      "test",
+      "tests/browser/jungle-line-input.spec.js",
+      "--config",
+      "playwright.campaign.config.js",
+      `--output=${root}/browser`,
+      "--reporter=list,json",
+    ],
+    { PLAYWRIGHT_JSON_OUTPUT_FILE: `${root}/browser.json` },
+  );
+  const report = JSON.parse(await readFile(`${root}/browser.json`)),
+    cases = [];
+  function visit(s) {
+    for (const p of s.specs ?? []) cases.push(...p.tests);
+    for (const c of s.suites ?? []) visit(c);
+  }
+  for (const s of report.suites) visit(s);
+  assert.deepEqual(report.errors, []);
+  assert.equal(cases.length, 1, "Missing jungle browser case");
+  assert.equal(cases[0].expectedStatus, "passed");
+  assert.equal(cases[0].results.length, 1);
+  assert.equal(
+    cases[0].results[0].status,
+    "passed",
+    "Skipped or unfinished jungle browser case",
+  );
+}
 run(process.execPath, [
   "scripts/verify-current-campaign-browser-negative.js",
   `--manifest=${manifest}`,
 ]);
+if (m.completeSourceInventory)
+  run(process.execPath, ["scripts/verify-jungle-line-browser-negative.js"]);
 run("npm", ["run", "build"]);
 console.log(
-  "Current runtime gate passed:22 originals,180 units,34 carried state/pixel checkpoints,4981 independent DOM events,9 campaign negatives,7 cave controls and registered 7-case actual sound acceptance. Full Hard and native whole-game timing remain unproven.",
+  `Current runtime gate passed:22 originals,180 units,${m.expectedCheckpointCount} carried state/pixel checkpoints,${m.requiredEventCount} independent DOM events,9 campaign negatives,7 cave controls and registered7-case actual sound acceptance${m.completeSourceInventory ? ",17 jungle component controls and actual jungle deadline negative" : ""}. Full Hard and native whole-game timing remain unproven.`,
 );

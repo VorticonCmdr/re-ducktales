@@ -15,38 +15,26 @@ pushed or deployed.
 The current physical-keyboard Easy route runs from startup through jungle,
 Safari,cave and mountain,then wins on day31 with$14,550 banked against$12,500.
 It collects locations1/30/31/32,retains all three mountain lives,and restarts to a
-fresh game. Independent simulation matches34 full states and1,470 flight
-presentations. Actual-browser replay matches every state and320x200 pixel digest
-from4,981 DOM events.
+fresh game. Independent simulation and actual-browser results are recorded below.
 
-**Current runtime comparison: `8eb9e52`.** A fresh independent browser pass
-matches all34 full-state/pixel checkpoints and4,981 DOM events through the
-winning ending and Restart. The carried simulation also matches all34 states
-and1,470 flight presentations. The historical expectations and their producer
-archive remain unchanged; the current consumer has its own727-file Git archive.
-[Current scenario and exact commands](runtime-campaign.md).
+**Current complete campaign scenario: jungle line timing.** The fresh independent
+browser pass matches35 full states/pixel digests and4,981 DOM events through the
+winning ending and Restart. The carried replay checks all35 states and1,470
+flight presentations. [Current scenario and provenance](jungle-line-campaign.md).
+The extra mountain-entry marker duplicates the same arrival boundary exactly;
+both observations are retained. No expected state/timer/pixel exclusions were
+added. The combined clean gate is in verification.
 
-**Last complete campaign gate: clean commit`bc350d1`.**
-The current jungle line-work integration changes runtime source/timing. Its
-focused checks are in progress; the old campaign guard deliberately rejects
-these changes until a fresh full-route comparison is registered.
-The734-file archive and strict check results are pinned by the
-[clean integration receipt](../reference/speaker-runtime-integration.json);
-all879 protected historical artifacts remain unchanged.
-The current gate is `npm run verify:current-campaign` (also
-`npm run verify:runtime-campaign`). It checks the source-pinned browser receipt,
-carried replay,180 unit cases, nine campaign negative controls, seven cave
-controls, native speaker evidence, registered actual-audio acceptance and a
-production build. Add `--fresh-browser` to the direct runtime verifier to repeat
-the full browser route. The earlier clean pass at`79e2bb0` and its
-[receipt](../reference/cave-reveal-campaign-integration.json) remain historical
-evidence; `verify:reveal-campaign` still targets that older source contract.
+`npm run verify:current-campaign` and `npm run verify:runtime-campaign` now target
+this scenario. `--fresh-browser` additionally repeats its complete positive
+browser route. Older[post-reveal](../reference/cave-reveal-campaign-integration.json)
+and[speaker-runtime](../reference/speaker-runtime-integration.json) receipts stay
+historical; `verify:reveal-campaign` still names its older source contract.
 
 The first cave treasure presentation now uses the original striped copy:five
 row groups,five retraces per group,and unchanged page roles. All fifteen
-party/RNG draws remain. [Reveal evidence](cave-reveal.md). The new full campaign
-records34 checkpoints;the historical35-point producer recorded the identical
-mountain-entry boundary twice. No unique boundary is omitted. Historical
+party/RNG draws remain. [Reveal evidence](cave-reveal.md). The current full campaign retains both observations of the identical mountain-entry
+boundary. No unique boundary is omitted. Historical
 captures,expectations and[earlier clean receipt](../reference/current-physical-campaign-integration.json)
 remain intact.
 
@@ -88,7 +76,7 @@ Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 ## Known gaps and verification limits
 
 - Original whole-game cadence is unverified. Mountain copy/text/line and remaining
-  CPU/device costs are omitted;jungle still omits line/text/remaining CPU costs.
+  CPU/device costs are omitted;jungle still omits text/remaining CPU costs.
   Cave omits minimap fills,room composition,copies outside the party helper and
   remaining CPU/device work. Safari omits HUD line/text,result-sheet drawing and
   remaining CPU/device costs. Native whole-reveal timing also remains open.
@@ -126,7 +114,8 @@ Browser walking after Pause/cancelled Quit also passes.
 The752-file archive, component/browsing results and negative controls are pinned
 by the[focused receipt](../reference/jungle-line-integration.json).
 [Integration and limits](jungle-line-timing.md). Keep Hard deferred.
-Next run a fresh full campaign comparison with the changed timing.
+The fresh full campaign comparison has passed independently; finish its
+combined clean gate, then continue remaining timing/input work.
 Resident/color,
 text and remaining CPU/device work still need evidence. The existing native
 menu comparison confirms that makes arriving before its flush can be discarded;

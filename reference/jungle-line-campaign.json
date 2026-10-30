@@ -1,0 +1,262 @@
+{
+  "id": "jungle-line-easy-complete-campaign",
+  "scope": "Complete line-inclusive Easy campaign port regression;new captured inputs/expected outputs require independent browser acceptance. Not native whole-campaign cadence/parity.",
+  "physicalKeyboard": true,
+  "expectedHard": false,
+  "pendingBrowserReplay": false,
+  "artifactRoot": ".local/jungle-line-campaign-01",
+  "captureRoot": ".local/jungle-line-campaign-exploration-02/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+  "captureCommit": "54a89e0dc997f655046db2065347a05ae099be03",
+  "buildManifest": {
+    "path": "reference/build.json",
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "expectedCheckpointCount": 35,
+  "requiredEventCount": 4981,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-input-80",
+    "jungle-input-160",
+    "jungle-input-240",
+    "jungle-input-320",
+    "jungle-input-400",
+    "jungle-input-480",
+    "jungle-input-560",
+    "jungle-input-640",
+    "jungle-input-720",
+    "jungle-input-800",
+    "jungle-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "mountain-entry",
+    "mountain-return",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedFlagAliasPresentations": 0,
+  "expectedEnding": {
+    "phase": "cover",
+    "won": true,
+    "banked": 14550,
+    "rivalBanked": 12500,
+    "day": 31,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 36,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      1,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "rivalUnlockMask": 15
+  },
+  "artifacts": {
+    "environment": {
+      "path": ".local/jungle-line-campaign-01/environment.json",
+      "bytes": 496,
+      "sha256": "1507635125d000c30494be29e65ba59b3afc71140c0b6db969e586f77139cc94"
+    },
+    "captured-events": {
+      "path": ".local/jungle-line-campaign-01/captured-events.json",
+      "bytes": 604418,
+      "sha256": "83a77c59e2dcfb1e4fad628256be906865648c1eed3114d217b97b6a43759ba6"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/jungle-line-campaign-01/campaign-checkpoints.json",
+      "bytes": 239100,
+      "sha256": "daf442dd7afd2d2d3ab863b6229c74d815a5999847b4b8204d38d9b43316164e"
+    },
+    "timeline": {
+      "path": ".local/jungle-line-campaign-01/timeline.json",
+      "bytes": 3188,
+      "sha256": "a4ec09839be475eb3c7f419a9d4eb2ddbc280e3bb0b5aa9036863a0e27cd0c92"
+    },
+    "producer-source": {
+      "path": ".local/jungle-line-campaign-producer-02/source-revision.json",
+      "bytes": 82074,
+      "sha256": "65377513913999f274061eb0bb9cebc4a902e876b6cf643bc72bfbfe85b534bd"
+    },
+    "producer-archive": {
+      "path": ".local/jungle-line-campaign-producer-02/sources.zip",
+      "bytes": 2011830,
+      "sha256": "65e445f8493b883363ace6171f3eb60e714bda01b190569e0bd6eb7e7c8bf7d9"
+    },
+    "producer-status": {
+      "path": ".local/jungle-line-campaign-producer-02/runner-status.json",
+      "bytes": 118292,
+      "sha256": "34bc6e41d5118890af51f3cea57740b89f110481cf41fec914d9a20f0413dc95"
+    },
+    "producer-log": {
+      "path": ".local/jungle-line-campaign-producer-02/browser.log",
+      "bytes": 4736,
+      "sha256": "0265a2cf04c3eadaceb623ec9699494d05ba5813f2c8b476d6fca995a82da00f"
+    },
+    "producer-capture-tool": {
+      "path": ".local/jungle-line-campaign-producer-02/runner.py",
+      "bytes": 3708,
+      "sha256": "fbfa633da14126d84b8ee97d84a518aaf872957a527b2fcf13714fb6eaadd392"
+    },
+    "producer-environment": {
+      "path": ".local/jungle-line-campaign-exploration-02/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/environment.json",
+      "bytes": 228,
+      "sha256": "0b3e28729f7c2a54330c5f54386338a843c5f4f36cc2a23b646481bd21a6abf7"
+    },
+    "ending-png": {
+      "path": ".local/jungle-line-campaign-exploration-02/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/mixed-campaign-ending.png",
+      "bytes": 17946,
+      "sha256": "36f2b088dcf10c031b568236e8a89015a48284484d53dbacbcd9cd2ea0bd6000"
+    },
+    "producer-prefix-replay": {
+      "path": ".local/jungle-line-campaign-exploration-02/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/prefix-replay.json",
+      "bytes": 601,
+      "sha256": "e69833d72d8b9842d4cc381466e631721d7592a5a2d0b04a9626984524fd4b01"
+    },
+    "prefix-projection": {
+      "path": ".local/jungle-line-campaign-prefix-01/projection.json",
+      "bytes": 711,
+      "sha256": "833967b0b43127da26ead4013704eeb75577ad5354a3d344c83948262c57cecd"
+    },
+    "partial-producer-status": {
+      "path": ".local/jungle-line-campaign-producer-01/runner-status.json",
+      "bytes": 117946,
+      "sha256": "7775a17cc814677da47437285506fd0030e049526f75479ba5e4cc24b2fa732f"
+    },
+    "partial-producer-source": {
+      "path": ".local/jungle-line-campaign-producer-01/source-revision.json",
+      "bytes": 81958,
+      "sha256": "1dce5d7961be6afd4e5cd67129560a27b7f9b3548c6bb73ede2e543a87f8ccb5"
+    },
+    "partial-producer-archive": {
+      "path": ".local/jungle-line-campaign-producer-01/sources.zip",
+      "bytes": 2009196,
+      "sha256": "a952c5c05947e67226d2f4215b68c299569895ffafb2c1f55d879c12ca5fc24f"
+    },
+    "accepted-browser-progress": {
+      "path": ".local/jungle-line-campaign-consumer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 7818,
+      "sha256": "ba44486c877542291cf8469cd84d5e639dad35f0c05dabf846bf6f1ca8a07258"
+    },
+    "accepted-browser-checkpoints": {
+      "path": ".local/jungle-line-campaign-consumer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 239100,
+      "sha256": "daf442dd7afd2d2d3ab863b6229c74d815a5999847b4b8204d38d9b43316164e"
+    },
+    "accepted-browser-events": {
+      "path": ".local/jungle-line-campaign-consumer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 456068,
+      "sha256": "bf4bc28757b354fc4b51679d1dc1095146eabe72546d1bc529cd0fd870b5795a"
+    },
+    "accepted-browser-status": {
+      "path": ".local/jungle-line-campaign-consumer-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser-contract": {
+      "path": ".local/jungle-line-campaign-01/pending-contract.json",
+      "bytes": 8655,
+      "sha256": "18ae242e715c698d9e598ab786c63dc1be1c189487d52c986ad341c1c620a224"
+    },
+    "consumer-source": {
+      "path": ".local/jungle-line-campaign-consumer-01/source-revision.json",
+      "bytes": 82188,
+      "sha256": "49cb4e41134834a8ab542bfb7f7d7fd72dac5e22bb699b3b7371ffd164e5b6fd"
+    },
+    "consumer-archive": {
+      "path": ".local/jungle-line-campaign-consumer-01/sources.zip",
+      "bytes": 2014070,
+      "sha256": "0ce9c63d0d22f5513d66d43f215479c369102e839b7e6a7994a319e7ab72f0fa"
+    },
+    "consumer-status": {
+      "path": ".local/jungle-line-campaign-consumer-01/runner-status.json",
+      "bytes": 29458,
+      "sha256": "fcc95f63e0d514e1f4f9fc4f091f7ff76894b90f67be96dc4b504449d5e6231e"
+    },
+    "consumer-capture-tool": {
+      "path": ".local/jungle-line-campaign-consumer-01/capture-source.py",
+      "bytes": 3066,
+      "sha256": "abcdb389a30a17b9ef8cd867242dc5bf0fbe4c335cd291d0f0b8f1b26825bbde"
+    },
+    "consumer-log": {
+      "path": ".local/jungle-line-campaign-consumer-01/browser.log",
+      "bytes": 2449,
+      "sha256": "88a9f0e83f2f781365dfeaf77d4d74ddf0abc4a4c441ec8f8275a4caee227cb7"
+    }
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "captureTools": {
+    "displayMilliseconds": 8,
+    "clockOrigin": 1,
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "emulator": "No native emulator used by this port-regression capture. Original native subsystem evidence remains separately scoped.",
+    "producerSource": "Exact clean committed archive;fresh actual-browser startup and authored physical player policy. No prefix memory/state restore. Exploratory sentinel remains distinct from acceptance."
+  },
+  "comparisonRules": "Exact full states and320x200 RGBA hashes at35 checkpoints;complete independent DOM event/timestamp stream. Original clamped/truncated pointer coordinates only. No timer,RNG,state or pixel exclusions.",
+  "verify": "npm run verify:current-campaign",
+  "expectedFlightPresentations": 1470,
+  "verificationSources": {
+    "scripts/replay-hard-campaign.js": "bf8321c1c3371fb0b0d54e5cb7abbf381072ef100e7b1620bfb59f26b6dfacbf",
+    "scripts/verify-current-campaign.js": "b71a1e314ebf956790b23f026257d7e7e294273295fc53074cff337c85ae65c0",
+    "scripts/verify-current-campaign-fixtures.js": "970c4d8341ed1f23e1513fd64bb349d6f25e226fd29d349fbae6e12d5e105f59",
+    "scripts/verify-current-campaign-browser-negative.js": "e91226898d4eda8adc46822fcdd4757f86366ac21fb66e9ce6dbb8101fe0cfec",
+    "tests/helpers/original-game.js": "0b894ad5a1498fa58a070d4e576e9add244d729b7d8c48e0f53243097f9347d3",
+    "tests/browser/helpers/recorded-campaign.js": "3466bc61f1abe9f51c4ff96b8fd8e6ae1d9179eda644c36fc86449a1a8dcf934",
+    "tests/browser/helpers/recorded-dom-input.js": "196e2b76608e64b58daab9d2424ad34fcc28d6580af6cf48f6fffd04530a0fd8",
+    "tests/browser/helpers/clock.js": "af627fda05600261def22232c4399f067baeb222297439954c78f792859b8ea0",
+    "tests/browser/mixed-campaign.spec.js": "d15e67ff1e502689e3760d7a7a5382294047a0e439e730de7288c394b81a933e",
+    "playwright.campaign.config.js": "b56cac17deb33d80d6b12899144c1c680ba91bdc332ba63b3a4dd4f8f1581280",
+    "vite.campaign.config.js": "ec88fffd4b81ed3b171bfb948bf9bcdaf47b99913c01ba8eda8c66212924431b",
+    "package.json": "d9f2b252b65ca18be2bf1e739e7f9c570e82460d29df72b7005c7d52dd697ae9",
+    "scripts/register-jungle-line-campaign.py": "b852f72ed6d6f96ed6007ad762cd7a8b8aaffbe598203b2e62aeac04af809e4b",
+    "scripts/accept-jungle-line-campaign.py": "46cbca862b2b13dd4e5a6add01dddc31ad1fc3dace26455da1fa6cf532e6d6e6",
+    "scripts/verify-runtime-campaign.js": "ad9a1ac3cfe24d767a65c1f5c8822ea1c909a5bfdf15efba4321e31a98e2b422",
+    "scripts/jungle-line-timing.js": "190d38cbcfc77804de8522c296fc318daa0ad089a76ff2e2b2ab458516cff645",
+    "scripts/verify-jungle-line-work.js": "3b709062db3696bf5ff15d7bbd982e1c09a573a5ed34195f4623908fc9eb8b78",
+    "scripts/verify-jungle-line-browser-negative.js": "ee9f7928062049f5859310429a1e3a1b8ef61b4f2c8e7d9a211c11e014d369ef",
+    "tests/browser/jungle-line-input.spec.js": "e280ebad9eabbde9d21bb54b182a7b132613183b6fe352fb8d10ac4425beec38"
+  },
+  "evidenceLevel": "Fresh closed-loop input replay and independent actual-browser full campaign acceptance;not whole-native campaign or cadence parity.",
+  "browserReplayRoot": ".local/jungle-line-campaign-consumer-01/browser",
+  "parentScenario": {
+    "path": "reference/speaker-runtime-campaign.json",
+    "sha256": "9177cef3bead3ca52d7465eced2fc9d2797ddf131470ab86bf2e476deca1fb20",
+    "materialPreserved": true,
+    "difference": "New line work changes declared drawing/timing state;new outputs are captured separately. Old expectations are not overwritten or excluded.",
+    "duplicateBoundary": "The35-point capture retains the extra mountain-entry marker at exactly the same time,eventCount,state and pixels as arrival. Both are required;no unique boundary is dropped."
+  },
+  "completeSourceInventory": true,
+  "consumerCommit": "b99d4fcef37119ea176da8e8208bee2c5d1dc2bf"
+}

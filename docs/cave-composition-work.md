@@ -69,3 +69,25 @@ suite passes; no ending is skipped and no gameplay timer is fitted.
 and dumps remain ignored. This focused level does not refresh the complete Easy
 contract: its old source guards correctly reject this runtime. A fresh complete
 route and independent browser replay remain required for full campaign acceptance.
+
+
+Clean focused acceptance passed at `bfaa371`, with856 archived source files,
+13 saved artifacts, all194 units, four component outcomes/replays, the actual
+browser route and all three omission controls. Check the saved record with:
+
+```sh
+node scripts/verify-cave-composition-receipt.js
+```
+
+`reference/cave-composition-integration.json` pins that record. It is distinct
+from running a fresh gate and makes no complete-campaign acceptance claim.
+The next capture starts from the real application with the independent Easy
+player; its deliberate exploratory sentinel is not a passing acceptance test:
+
+```sh
+python3 scripts/capture-easy-campaign.py --output=.local/cave-composition-campaign-producer-01
+```
+
+Register and independently replay its new input stream before updating the
+current campaign gate. Keep prior expected states, images, inputs and receipts
+unchanged.

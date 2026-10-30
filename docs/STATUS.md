@@ -3,13 +3,15 @@
 Updated 2026-10-30. **The whole game is incomplete; this remains completion work,
 not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
-## Current work: cave room and minimap drawing time
+## Current accepted focused milestone: cave drawing time
 
 The runtime now charges initial minimap construction, both room-cache copies
 and overlays, and marker pixels. All194 units, conditional native cave checks,
-four independent outcomes/replays and actual cave controls pass in development.
-Source comparison checks598 new original bytes and512 room branches. Clean-source
-focused acceptance is pending: `npm run verify:cave-composition`.
+four independent outcomes/replays and actual cave controls passed from clean
+`bfaa371`. Source comparison checks598 new original bytes and512 room branches.
+`npm run verify:cave-composition` passed, including three browser omission controls
+and the production build. Its saved record pins856 source files and13 artifacts;
+`node scripts/verify-cave-composition-receipt.js` checks the record.
 
 The full Easy record below is historical while this runtime is integrated. Its
 source guards intentionally reject changed sources. A fresh complete campaign
@@ -191,6 +193,7 @@ experiments leave the shared8386 session untouched and close their owned instanc
 ```sh
 npm run verify:current-campaign
 npm run verify:cave-composition
+node scripts/verify-cave-composition-receipt.js
 npm run verify:bios-clock
 node scripts/verify-bios-clock-campaign-receipt.js
 node scripts/verify-mountain-phase-campaign-receipt.js

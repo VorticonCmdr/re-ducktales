@@ -1,6 +1,6 @@
 # Current port status
 
-Updated 2026-10-30. **The whole game is incomplete; this remains completion work,
+Updated 2026-10-31. **The whole game is incomplete; this remains completion work,
 not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
 ## Current accepted focused milestone: cave drawing time
@@ -13,9 +13,13 @@ four independent outcomes/replays and actual cave controls passed from clean
 and the production build. Its saved record pins856 source files and13 artifacts;
 `node scripts/verify-cave-composition-receipt.js` checks the record.
 
-The full Easy record below is historical while this runtime is integrated. Its
-source guards intentionally reject changed sources. A fresh complete campaign
-and independent browser replay are next. Hard stays deferred.
+The fresh full Easy route and independent browser replay now pass34 exact
+state/image checkpoints and4981 DOM events, through the winning day31 ending
+and Restart. The first22 pre-cave checkpoints remain identical to the older
+route; bank14550 versus12500 and all three mountain lives are preserved.
+Producer `5523bc8` and consumer `3bd04f2` have identical src/ bytes. Headless replay
+also passes. The combined clean-source gate is being refreshed. Hard stays deferred.
+[Full campaign evidence and commands](cave-composition-campaign.md).
 [Current workload, evidence and limits](cave-composition-work.md).
 
 ## Previous accepted milestone: BIOS seed provider

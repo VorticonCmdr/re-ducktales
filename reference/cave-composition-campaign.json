@@ -1,0 +1,254 @@
+{
+  "id": "cave-composition-easy-complete-campaign",
+  "scope": "Fresh cave room/minimap and mountain-phase Easy port regression;independent actual-browser full-campaign acceptance,not native whole-game cadence/parity.",
+  "expectedUnitCases": 194,
+  "physicalKeyboard": true,
+  "expectedHard": false,
+  "pendingBrowserReplay": false,
+  "completeSourceInventory": true,
+  "capturePrefix": false,
+  "artifactRoot": ".local/cave-composition-campaign-01",
+  "captureRoot": ".local/cave-composition-campaign-producer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline",
+  "captureCommit": "5523bc855fd915e9e2cc79215820bd8fbc8524d8",
+  "buildManifest": {
+    "path": "reference/build.json",
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "expectedCheckpointCount": 34,
+  "requiredEventCount": 4981,
+  "checkpointNames": [
+    "campaign-start",
+    "flight-start",
+    "arrival",
+    "jungle-input-80",
+    "jungle-input-160",
+    "jungle-input-240",
+    "jungle-input-320",
+    "jungle-input-400",
+    "jungle-input-480",
+    "jungle-input-560",
+    "jungle-input-640",
+    "jungle-input-720",
+    "jungle-input-800",
+    "jungle-return",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "photography-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "cave-return",
+    "rival-report",
+    "flight-start",
+    "arrival",
+    "mountain-return",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "rival-report",
+    "bank-deposited",
+    "ending"
+  ],
+  "expectedFlagAliasPresentations": 0,
+  "expectedEnding": {
+    "phase": "cover",
+    "won": true,
+    "banked": 14550,
+    "rivalBanked": 12500,
+    "day": 31,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 36,
+    "result": null,
+    "ready": true
+  },
+  "expectedOwnership": {
+    "playerCollected": [
+      1,
+      30,
+      31,
+      32
+    ],
+    "rivalCollected": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "rivalUnlockMask": 15
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "captureTools": {
+    "displayMilliseconds": 8,
+    "clockOrigin": 1,
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "emulator": "No native emulator used by this port-regression capture. Original native subsystem evidence remains separately scoped.",
+    "producerSource": "Fresh actual-browser physical player capture from startup;no prefix,partial restore or expected-state input. Exploratory sentinel is not acceptance.",
+    "biosSeedOverrideUrl": "/?bios-seed=0"
+  },
+  "comparisonRules": "Exact34 full states/320x200 RGBA digests and all independent DOM events/timestamps. Original clamped pointer coordinates only. No new state,timer,RNG or pixel exclusions.",
+  "verify": "npm run verify:current-campaign",
+  "expectedFlightPresentations": 1470,
+  "parentScenario": {
+    "path": "reference/bios-clock-campaign.json",
+    "sha256": "16e9da8f156ee05a14ae6a0c48163bb35cb31c3e45cdd20477d9334df60bc854",
+    "materialPreserved": true,
+    "difference": "Cave room/minimap work changes timing and diagnostics. New independent inputs and expectations are captured;all34 unique boundaries remain required."
+  },
+  "artifacts": {
+    "environment": {
+      "path": ".local/cave-composition-campaign-01/environment.json",
+      "bytes": 470,
+      "sha256": "0c721d13ac773cb0e8c37331743c9dd48b2ee359c7737c22747e701c5202ccc2"
+    },
+    "captured-events": {
+      "path": ".local/cave-composition-campaign-01/captured-events.json",
+      "bytes": 604419,
+      "sha256": "7c5fb7e388939530ebacfdc0cc3a178f9a2898912314e7d42ea3a689b326257a"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/cave-composition-campaign-01/campaign-checkpoints.json",
+      "bytes": 245705,
+      "sha256": "ec2b3202c7c911e16984aa132381b34e007c583810ef2498bdc3196cc1c54f4b"
+    },
+    "timeline": {
+      "path": ".local/cave-composition-campaign-01/timeline.json",
+      "bytes": 3098,
+      "sha256": "4aff65fcf772b3aef8e77bf4de164ed977f790685b81e1df3cd47fc0c4d266ac"
+    },
+    "producer-source": {
+      "path": ".local/cave-composition-campaign-producer-01/source-revision.json",
+      "bytes": 93387,
+      "sha256": "c4f4186bf1efa63aa194b0d10d47313c1425ab93df442c590e8b57c6b6b8db85"
+    },
+    "producer-archive": {
+      "path": ".local/cave-composition-campaign-producer-01/sources.zip",
+      "bytes": 2516254,
+      "sha256": "fd1740271f2988f55efe1c5341c3ae12019bf785d16d57b4ce865dbd72fb9edb"
+    },
+    "producer-status": {
+      "path": ".local/cave-composition-campaign-producer-01/runner-status.json",
+      "bytes": 30513,
+      "sha256": "5d64a86b3b52ff2dd926afc426142684f99ae49a78f4692f84a4491a1011aeea"
+    },
+    "producer-log": {
+      "path": ".local/cave-composition-campaign-producer-01/browser.log",
+      "bytes": 4661,
+      "sha256": "f889b7b42e1598df4ed060b9703333010f8b390b875141449f4f286d6aeeb47d"
+    },
+    "producer-capture-tool": {
+      "path": ".local/cave-composition-campaign-producer-01/capture-source.py",
+      "bytes": 3947,
+      "sha256": "be67eaf432cc2b510a753ff761cc1c902aef5f9eabf07c612279f6dbd85eed57"
+    },
+    "producer-environment": {
+      "path": ".local/cave-composition-campaign-producer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/environment.json",
+      "bytes": 228,
+      "sha256": "0b3e28729f7c2a54330c5f54386338a843c5f4f36cc2a23b646481bd21a6abf7"
+    },
+    "ending-png": {
+      "path": ".local/cave-composition-campaign-producer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/mixed-campaign-ending.png",
+      "bytes": 17946,
+      "sha256": "36f2b088dcf10c031b568236e8a89015a48284484d53dbacbcd9cd2ea0bd6000"
+    },
+    "accepted-browser-progress": {
+      "path": ".local/cave-composition-campaign-consumer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 9101,
+      "sha256": "89cb39c82215f27392991c0c30a9eb8ad9f65b1321995da411fd2438be5523d6"
+    },
+    "accepted-browser-checkpoints": {
+      "path": ".local/cave-composition-campaign-consumer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 245705,
+      "sha256": "ec2b3202c7c911e16984aa132381b34e007c583810ef2498bdc3196cc1c54f4b"
+    },
+    "accepted-browser-events": {
+      "path": ".local/cave-composition-campaign-consumer-01/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 456069,
+      "sha256": "dc1968f164efa3bad11c747b6a61c0c4a97d617316379c8a205f6e6e127176b6"
+    },
+    "accepted-browser-status": {
+      "path": ".local/cave-composition-campaign-consumer-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser-contract": {
+      "path": ".local/cave-composition-campaign-01/pending-contract.json",
+      "bytes": 9717,
+      "sha256": "362c42b1eee0077d9c3adf2a33e99a67f286f345b654077588d712fe9dcbf769"
+    },
+    "consumer-source": {
+      "path": ".local/cave-composition-campaign-consumer-01/source-revision.json",
+      "bytes": 93625,
+      "sha256": "bc51b35f92a9c61164f16bb3858d52159dd3d7a4825cddbf80c9d4ce115c58ca"
+    },
+    "consumer-archive": {
+      "path": ".local/cave-composition-campaign-consumer-01/sources.zip",
+      "bytes": 2521817,
+      "sha256": "496e3f5c5f524dc74bcf4be15d3c0eb4f138e0d387905c47ab3e107f7b416d1b"
+    },
+    "consumer-status": {
+      "path": ".local/cave-composition-campaign-consumer-01/runner-status.json",
+      "bytes": 32099,
+      "sha256": "ba0fe044be2e049ed37279635ee39edd0d5a0feab51d053f32982515e0e183d9"
+    },
+    "consumer-capture-tool": {
+      "path": ".local/cave-composition-campaign-consumer-01/capture-source.py",
+      "bytes": 3066,
+      "sha256": "abcdb389a30a17b9ef8cd867242dc5bf0fbe4c335cd291d0f0b8f1b26825bbde"
+    },
+    "consumer-log": {
+      "path": ".local/cave-composition-campaign-consumer-01/browser.log",
+      "bytes": 2396,
+      "sha256": "f16fc04f916b44a42b1ee3853b3aa68ee6d02882b50c15f435cfe0fad2cd7a22"
+    }
+  },
+  "verificationSources": {
+    "scripts/replay-hard-campaign.js": "bf8321c1c3371fb0b0d54e5cb7abbf381072ef100e7b1620bfb59f26b6dfacbf",
+    "scripts/verify-current-campaign.js": "dcdf64352f8953d33bb02460eeb49380d01387e3f8c5e075d4faaa209ad349e9",
+    "scripts/verify-current-campaign-fixtures.js": "6f5a30bc68f2b733acbe9a5bda5d1f296c5a1be81d36a30da3f4af2ed8a6473e",
+    "scripts/verify-current-campaign-browser-negative.js": "1a27e8e8ca792305291e4800625b3d03c133888673fec8642a584ee890718c43",
+    "tests/helpers/original-game.js": "0b894ad5a1498fa58a070d4e576e9add244d729b7d8c48e0f53243097f9347d3",
+    "tests/browser/helpers/recorded-campaign.js": "3466bc61f1abe9f51c4ff96b8fd8e6ae1d9179eda644c36fc86449a1a8dcf934",
+    "tests/browser/helpers/recorded-dom-input.js": "196e2b76608e64b58daab9d2424ad34fcc28d6580af6cf48f6fffd04530a0fd8",
+    "tests/browser/helpers/clock.js": "529fd156726b96d13fb6124fd07d84a752393d90d7dd8b1b18b26cd722071137",
+    "tests/browser/mixed-campaign.spec.js": "d15e67ff1e502689e3760d7a7a5382294047a0e439e730de7288c394b81a933e",
+    "playwright.campaign.config.js": "b56cac17deb33d80d6b12899144c1c680ba91bdc332ba63b3a4dd4f8f1581280",
+    "vite.campaign.config.js": "ec88fffd4b81ed3b171bfb948bf9bcdaf47b99913c01ba8eda8c66212924431b",
+    "package.json": "8b6d8656c591f24472c695f6e1f7354fa58a3c9737bf5fdf7efe9c248e89979f",
+    "scripts/register-mountain-phase-campaign.py": "5ea00d161bf60169e8b2e285090383082fcc46a843d74ac5c54114ee1d4f21f8",
+    "scripts/accept-mountain-phase-campaign.py": "3c96d61f3c106d96ef55aaf985b662d1de60fa74441267667bc7965050923db0",
+    "scripts/verify-runtime-campaign.js": "d6db163916d41bfc24729dfa71f87750d63aecd71dcd1a6fb153762ed135d2db",
+    "scripts/jungle-text-timing.js": "4a23bc1ae7eae6521a8e978d52fcbe9dccb2ef3f38a5f3504fcd88e4c49d4b50",
+    "scripts/verify-jungle-text-work.js": "d1d77f2e6391a5f150556b488d66709c48078fe55d795aaeb3b6db484e2cfd3f",
+    "scripts/verify-jungle-line-browser-negative.js": "ee9f7928062049f5859310429a1e3a1b8ef61b4f2c8e7d9a211c11e014d369ef",
+    "scripts/verify-jungle-text-browser-negative.js": "64261cb357d258e7c048080433b8c8d7887886d6097f165591176e75e4dadf90",
+    "tests/browser/jungle-line-input.spec.js": "1e9b5182f457bfa532f94639e15c4833038799c492e4a809a7266049cc65ae26",
+    "scripts/verify-mountain-phase.js": "c2fd404d603a07d4cdaf20be2a6ea484239014786f15b39a0cd628a52649b68e",
+    "scripts/verify-mountain-phase-integration.js": "54c9adc0afddb42d5cf58de53812b2dc269bf415f57bdced7e8627ffb1ee1e74",
+    "scripts/verify-mountain-hud-runtime.js": "977e77fa50c40dfa003747d5bf4ad3b6ac9206a7400db8b2e07a16b819bcd1b8",
+    "scripts/verify-mountain-copy-runtime.js": "22c07d0e4cbeb419e18e35b433488ff136c4303463054b6a10e90c8550c6a827",
+    "tests/mountain-phase.test.js": "89ed20a2ad4d5c16089c749c84c33a472abc92730205f6f0fd368db4730b25c3",
+    "tests/browser/mountain-input.spec.js": "5d7e67338c8eab5d0719298b0d200f498052c2447eb8e5e99c86313a593d6035",
+    "scripts/verify-cave-composition-work.js": "7b61bf072dd6cfa88b0d542a7a1c115536ccf6cf4f70b930168372edbeeed5cc",
+    "scripts/verify-cave-composition-integration.js": "d9d6c12e9d2de98492194f3cb28abcda9622b7ffb012f3fa6c6df00e73b5e48a",
+    "scripts/verify-cave-composition-receipt.js": "a17c40cca1ec329c4881f7f20fd8c1ed5c327fc90d873b55515c5946760ea582",
+    "scripts/verify-bios-clock-integration.js": "a7152b9fc2ec1b8d248e31e5c92bf9a9a58e01ccb25b389446ebbc27b2fd2187",
+    "scripts/verify-cave-reveal.js": "09f025e67511a90774a46eb1325c034c72e4b54ec006470ed9da1c833f1249ba",
+    "scripts/verify-speaker-playback-receipt.js": "db00c9e2afafaf9d0c45fd631d897fbe59c75fc90319c82056a53003106f5656",
+    "scripts/capture-mountain-phase-integration.py": "00fc46dfb8ec0410a7927168e0fc30781b41b9a23eec64635d3686f2c9a1317e",
+    "tests/browser/cave-input.spec.js": "6b5a47f4f0d47cd2fa11c09c0f6fe8a4c730a7447dacd523cd53524306b32341",
+    "tests/cave-timing.test.js": "7cbf14448d84a91fd7d8702a22d6c424e29aa2cecaaf66d2ed3681afb2a34341"
+  },
+  "consumerCommit": "3bd04f204e21d4a1f98a3a78df38f6f245a5eb4e",
+  "browserReplayRoot": ".local/cave-composition-campaign-consumer-01/browser",
+  "evidenceLevel": "Fresh closed-loop input replay and independent actual-browser full campaign acceptance;not whole-native campaign or cadence parity."
+}

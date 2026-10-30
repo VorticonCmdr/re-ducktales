@@ -21,6 +21,7 @@ for role,name in [('accepted-browser-progress','replay-progress.json'),('accepte
 m['artifacts']['accepted-browser-status']=spec(root/'browser'/'.last-run.json');m['artifacts']['browser-contract']=spec(pending)
 for role,name in [('consumer-source','source-revision.json'),('consumer-archive','sources.zip'),('consumer-status','runner-status.json'),('consumer-capture-tool','capture-source.py'),('consumer-log','browser.log')]:m['artifacts'][role]=spec(root/name)
 m['consumerCommit']=source['commit'];m['browserReplayRoot']=str(root/'browser');m['pendingBrowserReplay']=False
+if m['id']=='cave-composition-easy-complete-campaign':m['scope']='Fresh cave room/minimap and mountain-phase Easy port regression;independent actual-browser full-campaign acceptance,not native whole-game cadence/parity.'
 for path in m['verificationSources']:m['verificationSources'][path]=sha(Path(path).read_bytes())
 m['evidenceLevel']='Fresh closed-loop input replay and independent actual-browser full campaign acceptance;not whole-native campaign or cadence parity.'
 target.write_text(json.dumps(m,indent=2)+'\n');print('Accepted NEW complete campaign:',len(checks),'exact states/pixel digests;',progress['consumed'],'DOM events;restart asserted by browser test.')

@@ -47,8 +47,9 @@ The focused gate passed on2026-10-30:all source and mechanism checks,existing
 cave regressions,177 unit cases,one actual-browser route with all five groups,
 and the production build. Canvas captures for groups0 and4 were also inspected.
 The [receipt](../reference/cave-reveal-integration.json) pins the accepted local
-log,canvas captures and source archive. No complete current campaign pass is
-claimed after this change.
+log,canvas captures and source archive. That focused receipt alone makes no
+complete-campaign claim;the separate[fresh campaign gate](cave-reveal-campaign.md)
+now covers the complete Easy route after this change.
 
 ## Reproduction
 
@@ -71,8 +72,9 @@ The capture response does not report a server revision;the manifest records
 that limitation rather than inventing one. Static capture is not a native machine
 checkpoint. No live emulator state was changed for this work.
 
-This change invalidates timing-dependent current campaign receipts after the
-cave segment. Their historical captures and expectations remain unchanged.
-Refresh the full campaign acceptance from startup before claiming it green on
-this implementation. Remaining cave composition/minimap/copy/CPU/device costs
+This change invalidated the previous campaign's timing-dependent receipt after
+the cave segment. Its historical captures and expectations remain unchanged.
+The[fresh full campaign](cave-reveal-campaign.md) now has a passing clean combined
+gate from startup,including independent full replay,actual-browser controls,
+pixels and restart. Remaining cave composition/minimap/copy/CPU/device costs
 and original audio timing are still incomplete.

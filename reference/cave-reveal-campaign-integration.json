@@ -1,0 +1,125 @@
+{
+  "id": "cave-reveal-campaign-clean-integration",
+  "command": "npm run verify:current-campaign",
+  "alias": "npm run verify:reveal-campaign",
+  "sourceCommit": "79e2bb03dac99c20135fae7b291145b214988bd3",
+  "sourceFileCount": 713,
+  "exitCode": 0,
+  "scenario": {
+    "path": "reference/cave-reveal-campaign.json",
+    "sha256": "f1592b788b93e07204ffb0354fc5a28d8c769d6042d8511d3e260bb847ff64b0"
+  },
+  "checks": {
+    "originalIdentities": 22,
+    "unitCases": 177,
+    "unitFailures": 0,
+    "unitSkips": 0,
+    "browserCases": 1,
+    "checkpoints": 34,
+    "requiredDOMEvents": 4981,
+    "flightPresentations": 1470,
+    "flagAliasPresentations": 0,
+    "campaignNegativeControls": 6,
+    "caveRevealSourceMechanismNegativeControls": 7,
+    "restart": true,
+    "productionBuild": true,
+    "protectedHistoricalArtifacts": 834
+  },
+  "ending": {
+    "phase": "cover",
+    "won": true,
+    "banked": 14550,
+    "rivalBanked": 12500,
+    "day": 31,
+    "remaining": 700,
+    "choice": 0,
+    "credit": -1,
+    "asset": 36,
+    "result": null,
+    "ready": true
+  },
+  "evidenceLevel": "Clean committed integration;closed-loop port regression and independent actual-browser acceptance. Not whole-native campaign parity.",
+  "limitations": [
+    "Full Hard campaigns and arbitrary-route finishability remain unproven.",
+    "Original whole-game timing,remaining physical input behavior and speaker fidelity gaps remain.",
+    "Broader historical npm run verify source/runtime receipts remain unresolved.",
+    "Prior integration attempt01 was interrupted,not passed;its partial log and browser output remain separate."
+  ],
+  "artifacts": {
+    "sources.zip": {
+      "path": ".local/reveal-campaign-integration-02/sources.zip",
+      "bytes": 1905656,
+      "sha256": "59d7f52044a9b751db780f10fd5a459fa5615ca19f0b7634f87e35df8baf1f5d"
+    },
+    "source-revision.json": {
+      "path": ".local/reveal-campaign-integration-02/source-revision.json",
+      "bytes": 77522,
+      "sha256": "08abaf3d2d71374c1435307a8889361bc895ad0859ac3999191c8749ca683991"
+    },
+    "runner-status.json": {
+      "path": ".local/reveal-campaign-integration-02/runner-status.json",
+      "bytes": 108480,
+      "sha256": "acc67b238737396b60fb63f4b333ea3e1323c075c5086b61df9da38f21a9f899"
+    },
+    "verification.log": {
+      "path": ".local/reveal-campaign-integration-02/verification.log",
+      "bytes": 21345,
+      "sha256": "e25f409e04e356d9729a76d858e5188a2edc5690f57b8ab249d8959f6e515cd9"
+    },
+    "browser/.last-run.json": {
+      "path": ".local/reveal-campaign-integration-02/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json": {
+      "path": ".local/reveal-campaign-integration-02/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 456062,
+      "sha256": "f4f127cd6c8b20f700a1c7371b7580af6d65a0dffe332d6871f40767f881c653"
+    },
+    "browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/reveal-campaign-integration-02/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 226152,
+      "sha256": "2f44ed5f0f47d9367ef8323a322de8043ea267141d1cfe058a2d88cdfe31c808"
+    },
+    "browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json": {
+      "path": ".local/reveal-campaign-integration-02/browser/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 7733,
+      "sha256": "3d93d6cbd16350a56b90b867de9289eeccbcf5e12195abf49480bb9d57885699"
+    },
+    "replay/positive": {
+      "path": ".local/current-campaign-verification/run-DhwwOE/positive.log",
+      "bytes": 4344,
+      "sha256": "091a524ece22e905186aeff3c3e0265842ef4657deb48c89e0b1f2b8a8f0d22c"
+    },
+    "replay/omit-checkpoint": {
+      "path": ".local/current-campaign-verification/run-DhwwOE/omit-checkpoint.log",
+      "bytes": 410,
+      "sha256": "e4929494a8e6d0b281b6d6ff3d26effb100906d1e95820b4fc1dc49bd37e7826"
+    },
+    "replay/alter-ending": {
+      "path": ".local/current-campaign-verification/run-DhwwOE/alter-ending.log",
+      "bytes": 957,
+      "sha256": "34c3e1ef4b7cebedef10b6c62041c7ede78c5cad137ea71392c7317b4260b848"
+    },
+    "replay/extend-timeline": {
+      "path": ".local/current-campaign-verification/run-DhwwOE/extend-timeline.log",
+      "bytes": 424,
+      "sha256": "4f01cb2555c7dd5bae316037fa1a4c25bf3437a0604cf20c3d3475e152fd9396"
+    },
+    "fixture/missing-source-archive": {
+      "path": ".local/current-campaign-verification/fixture-negatives-3e6jCk/missing-source-archive.log",
+      "bytes": 571,
+      "sha256": "5f23a1f63cafdf572c3eb3f14ceec889f509748f7e44ad8c4697d9c15f5054c2"
+    },
+    "fixture/corrupt-ending-picture": {
+      "path": ".local/current-campaign-verification/fixture-negatives-3e6jCk/corrupt-ending-picture.log",
+      "bytes": 687,
+      "sha256": "aa960dbc682d836607646c805dda38992f7b4370c0cc076959743c2febd7e497"
+    },
+    "browser-negative": {
+      "path": ".local/current-campaign-verification/browser-negative-tqlWMv/runner.log",
+      "bytes": 1878,
+      "sha256": "19de58b58a6625ccf1558926eb56717258fc332e4dbecbe001d505e167f357b7"
+    }
+  }
+}

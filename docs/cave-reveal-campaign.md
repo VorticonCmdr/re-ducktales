@@ -50,10 +50,14 @@ lives. Independent simulation replay matches all34 states and renders1,470
 flight presentations with zero unsupported paths. Browser acceptance separately
 checks actual controls,all checkpoint pixels and a fresh restart.
 
-Independent simulation and actual-browser acceptance now pass all34 checkpoints,
-all4,981 required events,and restart. The producer sentinel remains exploratory.
-The combined clean integration gate is still pending;individual passes do not
-stand in for that receipt.
+The clean `npm run verify:current-campaign` gate passes from commit`79e2bb0`:
+all34 checkpoints,4,981 inputs,1,470 flight presentations,177 unit cases with zero
+failures/skips,one complete browser route and restart,six campaign negative
+controls,seven cave reveal source/mechanism controls,and the production build.
+All834 protected artifacts remain unchanged. The[clean receipt](../reference/cave-reveal-campaign-integration.json)
+pins15 evidence artifacts and the713-file source archive. The producer sentinel
+remains exploratory. An earlier interrupted combined run remains separate and
+is not counted as a pass.
 
 ## Verification
 

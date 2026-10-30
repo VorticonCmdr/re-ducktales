@@ -500,7 +500,11 @@ if (manifest.completeSourceInventory) {
     oldBytes = await readFile(spec.path);
   assert.equal(sha(oldBytes), spec.sha256);
   const previous = JSON.parse(oldBytes);
-  for (let i = 0; i < 3; i++)
+  // Cave work cannot change the startup/jungle/Safari route preceding entry.
+  // Preserve the whole pre-cave prefix, rather than re-blessing unrelated states.
+  const prefix =
+    manifest.id === "cave-composition-easy-complete-campaign" ? 22 : 3;
+  for (let i = 0; i < prefix; i++)
     for (const key of [
       "name",
       "at",

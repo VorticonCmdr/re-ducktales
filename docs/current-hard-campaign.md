@@ -158,3 +158,34 @@ node scripts/explore-current-flight.js .local/current-hard-second-flight-prefix-
 Every invocation starts from original assets and the complete input prefix. Its
 output directory must be fresh;exact tool source is retained there. Exit2 means
 an unsuccessful player candidate,not a passing regression or native evidence.
+
+### Second-flight collision observations
+
+The bounded planner now records nearby original object descriptors and the
+remembered collision tile/type without writing game memory. The default pilot
+still reproduces the actual browser's **entire final Game state exactly**:
+race lost after294 updates,seed50923. With this observer,the first sharp speed
+loss is input read49 at tile4,y71.98;the remembered type is0x12 (falling cargo).
+Read56 records type0x02 from the associated body. Later losses include an airship
+at read105 and clouds at reads172,191 and273. These are observations of the port
+model,not independent native collision comparisons.
+
+Earlier climb requests,steeper climbing,two lower corridors and a bounded
+obstacle-aware gap chooser all still lose the race. No unsupported diagnostic
+occurs. Their results and source modules are pinned in
+`reference/current-hard-input-investigation.json`;the final observer run also
+archives its imported player controller. None supplies successful Hard acceptance.
+The optional controls change only exploratory player inputs;default behavior and
+production physics,RNG,rival speed and original artifacts are unchanged.
+
+```sh
+node scripts/explore-current-flight.js .local/current-hard-second-flight-prefix-01 \
+  second-flight-start .local/current-hard-flight-fresh 10 25 1
+# Optional final arguments: minimum turn-request speed (0 or4),then hazards.
+# Failed candidates deliberately exit2;this is research,not an acceptance gate.
+```
+
+The next experiment targets the first cargo/body pair with anticipatory steering,
+then requires successful real-browser flight before continuing the Hard route.
+All177 unit cases pass after the controller extensions;the complete Easy browser
+gate was not rerun for this research-only change.

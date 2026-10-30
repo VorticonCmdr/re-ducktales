@@ -34,7 +34,10 @@
   },
   "inputs": {
     "flightPolicy": {
-      "altitude": [10, 25],
+      "altitude": [
+        10,
+        25
+      ],
       "climbHeading": 1
     },
     "jungleSource": "reference/security-campaign-inputs.json",
@@ -363,9 +366,94 @@
       "path": ".local/current-hard-second-flight-plans-01/ceiling/explorer-source.js",
       "bytes": 4213,
       "sha256": "0195292e4407c9e98131e14f76da0d50bc6833c2a7587258caa5e28fe44ac9ae"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/steep/explorer-source.js",
+      "bytes": 5052,
+      "sha256": "712c957717fc04569196a954a00aa9ea4c412d7dd65902c43b2ee580b9f00e3e"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/steep/result.json",
+      "bytes": 559704,
+      "sha256": "68f76c02cff0cbb4910c4f1ba9de551258576d36bcbe76c227efa29674f507a5"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/early-climb/explorer-source.js",
+      "bytes": 5210,
+      "sha256": "1ecfd8d4697da43d1bf8f79611334e1e40515c4ff182d88b51504401921c687c"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/early-climb/result.json",
+      "bytes": 594273,
+      "sha256": "8fdb06eec33a1ce325a3c546ae577b71d84627e862a8801da49813b7a00807c1"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/early-steep/explorer-source.js",
+      "bytes": 5210,
+      "sha256": "1ecfd8d4697da43d1bf8f79611334e1e40515c4ff182d88b51504401921c687c"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/early-steep/result.json",
+      "bytes": 564991,
+      "sha256": "0844217d2696f533db52624977761a1c1634e9f7a5551724d411e21a06844416"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/corridor/explorer-source.js",
+      "bytes": 5210,
+      "sha256": "1ecfd8d4697da43d1bf8f79611334e1e40515c4ff182d88b51504401921c687c"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/corridor/result.json",
+      "bytes": 572827,
+      "sha256": "2b2ca2a862eaa699bf334662b3adcbec216a4dc0b5bc193ecfcfdc5379b09d02"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/hazards/explorer-source.js",
+      "bytes": 6955,
+      "sha256": "0ae817900fa46bcd421a9b0e7a5d767cedbc420ce4c7920ef529ecb202b2b013"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/hazards/result.json",
+      "bytes": 497555,
+      "sha256": "b884ed9e80ffaa418158885d905820fc5541fe4d8e5ec204db00fb80945d23de"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/under-airship/explorer-source.js",
+      "bytes": 6955,
+      "sha256": "0ae817900fa46bcd421a9b0e7a5d767cedbc420ce4c7920ef529ecb202b2b013"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/under-airship/result.json",
+      "bytes": 494837,
+      "sha256": "54e318d13bb1659ee29f0fed43b51f11bf886d6104be284cce41d788f1f60fa3"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/default-regression/explorer-source.js",
+      "bytes": 6955,
+      "sha256": "0ae817900fa46bcd421a9b0e7a5d767cedbc420ce4c7920ef529ecb202b2b013"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/default-regression/result.json",
+      "bytes": 603268,
+      "sha256": "83ea0c1ff7db21038d9ca156ee9c9cabb12829785052b8bd42d3ab8782de1ef1"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/collision-boundaries/controller-source.js",
+      "bytes": 5296,
+      "sha256": "b0fc66164affd0aae0982ba41ff73890fa20da4f27a0131c000be6ed78be19e3"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/collision-boundaries/explorer-source.js",
+      "bytes": 7253,
+      "sha256": "13397f7ed723f6e9e2a71cb765fc3d6aa33f1f9e745687cd9402cd8b9fe39421"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-02/collision-boundaries/result.json",
+      "bytes": 626383,
+      "sha256": "fd284961053ef5c0c39954ef690388b028321af05f105eba61537dcf43a69976"
     }
   ],
-  "nextExperiment": "Inspect the first weather collision/spin in the exactly reproduced second-race baseline and author a hazard-aware flight strategy;then verify it through actual browser controls and continue Hard.",
+  "nextExperiment": "Target the first cargo/body pair at tile4 with anticipatory steering;require an actual browser flight success before extending Hard campaign acceptance.",
   "buildManifest": {
     "path": "reference/build.json",
     "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
@@ -378,7 +466,7 @@
     "jungleFailureAction": 405
   },
   "controllerSources": {
-    "tests/browser/helpers/flight-policy.js": "0fc03749ccd13a7d5cdff2a742b1c47ede34aff2303a05029d161205584e19f7",
+    "tests/browser/helpers/flight-policy.js": "b0fc66164affd0aae0982ba41ff73890fa20da4f27a0131c000be6ed78be19e3",
     "tests/browser/helpers/linked-campaign.js": "0608d7d572e6f6c79f944ef7d8b21a587ba5e8d16cce1992905036ff45fe5a80",
     "tests/browser/helpers/jungle-input-plan.js": "540d7a6c48ba70d3c1d43b644f1537dd7cfb65865a1ba7b621d048e013629db9"
   },
@@ -441,7 +529,9 @@
     "pickupMoney": 250,
     "totalReward": 2250,
     "banked": 2250,
-    "playerCollected": [2],
+    "playerCollected": [
+      2
+    ],
     "segmentReplay": {
       "command": "node scripts/replay-hard-campaign.js .local/current-hard-first-bank-replay-01 --diagnose --through=bank-deposited",
       "checkpoints": 12,
@@ -465,7 +555,10 @@
       {
         "candidate": "baseline",
         "policy": {
-          "altitude": [10, 25],
+          "altitude": [
+            10,
+            25
+          ],
           "climbHeading": 1
         },
         "scene": "rival-claim",
@@ -483,7 +576,10 @@
       {
         "candidate": "middle",
         "policy": {
-          "altitude": [50, 65],
+          "altitude": [
+            50,
+            65
+          ],
           "climbHeading": 1
         },
         "scene": "rival-claim",
@@ -501,7 +597,10 @@
       {
         "candidate": "low",
         "policy": {
-          "altitude": [100, 115],
+          "altitude": [
+            100,
+            115
+          ],
           "climbHeading": 1
         },
         "scene": "rival-claim",
@@ -519,7 +618,10 @@
       {
         "candidate": "high",
         "policy": {
-          "altitude": [25, 40],
+          "altitude": [
+            25,
+            40
+          ],
           "climbHeading": 1
         },
         "scene": "rival-claim",
@@ -537,7 +639,10 @@
       {
         "candidate": "ceiling",
         "policy": {
-          "altitude": [0, 2],
+          "altitude": [
+            0,
+            2
+          ],
           "climbHeading": 1
         },
         "scene": "rival-claim",
@@ -558,5 +663,272 @@
       "sha256": "0195292e4407c9e98131e14f76da0d50bc6833c2a7587258caa5e28fe44ac9ae"
     },
     "limitations": "Altitude-only strategies fail;none is accepted as a successful flight. Original raw captures,physics,RNG and rival speed are unchanged."
+  },
+  "controllerSourceHistory": [
+    {
+      "producerCommit": "3496791",
+      "sources": {
+        "tests/browser/helpers/flight-policy.js": "0fc03749ccd13a7d5cdff2a742b1c47ede34aff2303a05029d161205584e19f7",
+        "tests/browser/helpers/linked-campaign.js": "0608d7d572e6f6c79f944ef7d8b21a587ba5e8d16cce1992905036ff45fe5a80",
+        "tests/browser/helpers/jungle-input-plan.js": "540d7a6c48ba70d3c1d43b644f1537dd7cfb65865a1ba7b621d048e013629db9"
+      },
+      "scope": "Preserved fingerprints before optional exploratory flight steering parameters;historical captures retain their original producers."
+    }
+  ],
+  "secondFlightCollisionResearch": {
+    "scope": "Exploratory port-model observations only;not native parity or successful Hard acceptance. Input changes only;no production Game changes,restores,expected-state-derived inputs or RNG writes.",
+    "candidates": [
+      {
+        "candidate": "steep",
+        "policy": {
+          "altitude": [
+            10,
+            25
+          ],
+          "climbHeading": 3
+        },
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 25021,
+          "money": 0,
+          "frames": 272
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "early-climb",
+        "policy": {
+          "altitude": [
+            10,
+            25
+          ],
+          "climbHeading": 1,
+          "minimumTurnSpeed": 0
+        },
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 27430,
+          "money": 0,
+          "frames": 285
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "early-steep",
+        "policy": {
+          "altitude": [
+            10,
+            25
+          ],
+          "climbHeading": 3,
+          "minimumTurnSpeed": 0
+        },
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 36942,
+          "money": 0,
+          "frames": 271
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "corridor",
+        "policy": {
+          "altitude": [
+            80,
+            95
+          ],
+          "climbHeading": 3,
+          "minimumTurnSpeed": 0
+        },
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 46503,
+          "money": 0,
+          "frames": 277
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "hazards",
+        "policy": {
+          "altitude": [
+            80,
+            95
+          ],
+          "climbHeading": 3,
+          "minimumTurnSpeed": 0,
+          "steeringMode": "hazards"
+        },
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 29618,
+          "money": 0,
+          "frames": 245
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "under-airship",
+        "policy": {
+          "altitude": [
+            104,
+            112
+          ],
+          "climbHeading": 3,
+          "minimumTurnSpeed": 0,
+          "steeringMode": "fixed"
+        },
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 50258,
+          "money": 0,
+          "frames": 235
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "default-regression",
+        "policy": {
+          "altitude": [
+            10,
+            25
+          ],
+          "climbHeading": 1,
+          "minimumTurnSpeed": 4,
+          "steeringMode": "fixed"
+        },
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 50923,
+          "money": 0,
+          "frames": 294
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "collision-boundaries",
+        "policy": {
+          "altitude": [
+            10,
+            25
+          ],
+          "climbHeading": 1,
+          "minimumTurnSpeed": 4,
+          "steeringMode": "fixed"
+        },
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 50923,
+          "money": 0,
+          "frames": 294
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      }
+    ],
+    "defaultCompleteFinalStateMatchesBrowser": true,
+    "collisionBoundaries": [
+      {
+        "inputRead": 49,
+        "tile": 4,
+        "y": 71.97998809814453,
+        "rememberedCollision": {
+          "tile": 4,
+          "type": 18
+        }
+      },
+      {
+        "inputRead": 56,
+        "tile": 4,
+        "y": 82.8919906616211,
+        "rememberedCollision": {
+          "tile": 4,
+          "type": 2
+        }
+      },
+      {
+        "inputRead": 105,
+        "tile": 10,
+        "y": 13.574972152709961,
+        "rememberedCollision": {
+          "tile": 10,
+          "type": 17
+        }
+      },
+      {
+        "inputRead": 114,
+        "tile": 10,
+        "y": 23.637975692749023,
+        "rememberedCollision": {
+          "tile": 10,
+          "type": 4
+        }
+      },
+      {
+        "inputRead": 172,
+        "tile": 21,
+        "y": 26.20099639892578,
+        "rememberedCollision": {
+          "tile": 21,
+          "type": 33
+        }
+      },
+      {
+        "inputRead": 191,
+        "tile": 23,
+        "y": 36.744014739990234,
+        "rememberedCollision": {
+          "tile": 23,
+          "type": 33
+        }
+      },
+      {
+        "inputRead": 223,
+        "tile": 27,
+        "y": 16.0980167388916,
+        "rememberedCollision": {
+          "tile": 27,
+          "type": 17
+        }
+      },
+      {
+        "inputRead": 273,
+        "tile": 38,
+        "y": 15.846029281616211,
+        "rememberedCollision": {
+          "tile": 38,
+          "type": 33
+        }
+      }
+    ],
+    "tool": {
+      "path": "scripts/explore-current-flight.js",
+      "sha256": "13397f7ed723f6e9e2a71cb765fc3d6aa33f1f9e745687cd9402cd8b9fe39421"
+    },
+    "sourceLimit": "Each result preserves its exact explorer module. The final collision-boundaries result also preserves and hashes the imported controller. Earlier candidates have no separate archived controller module;their events/results remain exploratory evidence."
   }
 }

@@ -50,8 +50,12 @@ all three lives,$250 pickups plus the$2,000 award,return to map and a$2,250
 bank deposit. Its seven model outcome values match after all423 planned inputs.
 Diagnostic startup replay matches all12 checkpoints and781 events through the
 $2,250 deposit. The longer capture then loses the second flight race to Safari
-at294 updates. That strategy is the next experiment;no complete Hard acceptance
-or independent full Hard browser replay is claimed.
+at294 updates. Read-only collision research now identifies its first speed loss
+as falling cargo at tile4,input read49,followed by its associated body at read56.
+The default model still matches the browser's complete final state exactly;
+additional player strategies still lose. Avoiding that pair is the next
+experiment;no complete Hard acceptance or independent full Hard browser replay
+is claimed.
 
 This work changes player controllers and verification, not game mechanics. The
 old mountain controller released keys one source read too late; the corrected

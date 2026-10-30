@@ -114,14 +114,15 @@ export async function explorePhysicalFlight({ page, state, until, policy }) {
       f = s.flight;
     if (s.scene !== "flight" || ["landing", "complete"].includes(f.phase))
       break;
+    const band = policy.altitudeForState?.(s) ?? altitude;
     const desired =
       f.tile > f.tiles - 5
         ? f.y < 135
           ? 15
           : 0
-        : f.y > altitude[1]
+        : f.y > band[1]
           ? climb
-          : f.y < altitude[0]
+          : f.y < band[0]
             ? 15
             : 0;
     const pending = f.frames === f.inputReads ? (f.lastInputCode ?? 0) & 63 : 0;
@@ -129,7 +130,11 @@ export async function explorePhysicalFlight({ page, state, until, policy }) {
       (f.heading + (pending === 5 ? 1 : pending === 1 ? -1 : 0) + 16) % 16;
     const delta = (desired - future + 16) % 16;
     const direction =
-      f.speed < 4 || !delta ? null : delta < 8 ? "ArrowDown" : "ArrowUp";
+      f.speed < (policy.minimumTurnSpeed ?? 4) || !delta
+        ? null
+        : delta < 8
+          ? "ArrowDown"
+          : "ArrowUp";
     const distance = Math.min(delta, 16 - delta);
     await page.keyboard.down("Space");
     if (active && active !== direction) {

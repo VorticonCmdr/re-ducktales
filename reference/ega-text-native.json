@@ -1,0 +1,212 @@
+{
+  "id": "ega-transparent-text-native-work",
+  "evidenceLevel": "conditional-native-comparison",
+  "expectedCases": 14,
+  "expectedInstructions": 2963,
+  "expectedPortWrites": 312,
+  "driverSHA256": "6ee03bd93f3979546d5b5c1511e377685e2aa5401caaf407c3308bca0b812aee",
+  "fontSHA256": "5dd70b46fc94555bc549739eb0fc8cb1575cab0134d645a8b21f6daaf0fa41da",
+  "artifacts": {
+    "capture": {
+      "path": ".local/ega-text-native-04/capture.json",
+      "bytes": 586,
+      "sha256": "d657a897956340b337441ff6a38f5bc99b9631eed13f3ba3361eee0b907db015"
+    },
+    "inputs": {
+      "path": ".local/ega-text-native-04/inputs.json",
+      "bytes": 2136,
+      "sha256": "fdca9e84864448991fede0d5df5e668c1486a0cd5089db0bee6717ede76d1f27"
+    },
+    "engine": {
+      "path": ".local/ega-text-native-04/engine.json",
+      "bytes": 3987,
+      "sha256": "a0194595dcd087a13893e12142436d2cfc72fff3c22ed688517234a83329ab14"
+    },
+    "allocation": {
+      "path": ".local/ega-text-native-04/allocation.json",
+      "bytes": 19,
+      "sha256": "b3ea0b9cfa5a0c143d93e6613f169c5ad911bface38172cdb50835bff165cde5"
+    },
+    "source": {
+      "path": ".local/ega-text-native-04/capture-source.py",
+      "bytes": 6068,
+      "sha256": "9855aaf476702c93f4d482decf2ae3d3983b24504d808a48ce22dd496ddd70c5"
+    },
+    "case-00": {
+      "path": ".local/ega-text-native-04/case-00.json",
+      "bytes": 6548,
+      "sha256": "c4b0cd18d0da7b24f38d1f42fa31ebc0ab9d965b223f33fb9e8631695bb27ffa"
+    },
+    "case-01": {
+      "path": ".local/ega-text-native-04/case-01.json",
+      "bytes": 7531,
+      "sha256": "fa36cd574ce36dd8b66c24ecbe72da4cbf42f1fc89bc43fd2746c412b257a047"
+    },
+    "case-02": {
+      "path": ".local/ega-text-native-04/case-02.json",
+      "bytes": 7549,
+      "sha256": "ec1890181b743e7b46854bdc8cb086fc2ceba9e1d60e9ee957ab23044ac6866f"
+    },
+    "case-03": {
+      "path": ".local/ega-text-native-04/case-03.json",
+      "bytes": 7557,
+      "sha256": "7bc898d464bfeeeebae69b62f2a5922feb8c61fa880bf2eadd17b1e874ffc688"
+    },
+    "case-04": {
+      "path": ".local/ega-text-native-04/case-04.json",
+      "bytes": 7552,
+      "sha256": "f5a9b223e4f698db7206a9ac463214fec61b2845169ca0d3612e8fe0950a3219"
+    },
+    "case-05": {
+      "path": ".local/ega-text-native-04/case-05.json",
+      "bytes": 7549,
+      "sha256": "72d0380566f388c04d793406c654eadf4577f3009acf1570edfc84855137d0e2"
+    },
+    "case-06": {
+      "path": ".local/ega-text-native-04/case-06.json",
+      "bytes": 7545,
+      "sha256": "220369a3913a3ccc4e0f8198a6c9ce1e57af61055a84066d542b7b630327f1bb"
+    },
+    "case-07": {
+      "path": ".local/ega-text-native-04/case-07.json",
+      "bytes": 7537,
+      "sha256": "bca25fe44755f330f88e5136945ee1d0eae1bcf950bb7deffc608e606bac2d72"
+    },
+    "case-08": {
+      "path": ".local/ega-text-native-04/case-08.json",
+      "bytes": 5097,
+      "sha256": "dd3a8a0ae5ededd9e1a1ff5f9689133028e9a0a528e3599d155dcc0e0be9152c"
+    },
+    "case-09": {
+      "path": ".local/ega-text-native-04/case-09.json",
+      "bytes": 9975,
+      "sha256": "39cce646ca76e4a91be26c9c702c683ed002f99f39648638193f3a881aa0f07f"
+    },
+    "case-10": {
+      "path": ".local/ega-text-native-04/case-10.json",
+      "bytes": 9975,
+      "sha256": "57a6ff1366cbb1db4832693b8864bce2f3e6bd87f38f4972692985506badeeb4"
+    },
+    "case-11": {
+      "path": ".local/ega-text-native-04/case-11.json",
+      "bytes": 11411,
+      "sha256": "1746f9f45ef6f40ace677908c5e0721ee3139b5bcc2acf1665ba17ea40b05d14"
+    },
+    "case-12": {
+      "path": ".local/ega-text-native-04/case-12.json",
+      "bytes": 8018,
+      "sha256": "33efa9d55c348405eb6bc2e08e151438b31f8fc1b8d3fe1dcc6ba1049a382929"
+    },
+    "case-13": {
+      "path": ".local/ega-text-native-04/case-13.json",
+      "bytes": 7545,
+      "sha256": "504a55170709a95340e19a01ac05067d3ff8da6fcc99bb024549d8cf51ad9bb9"
+    },
+    "repeat-capture": {
+      "path": ".local/ega-text-native-05/capture.json",
+      "bytes": 586,
+      "sha256": "7e84f48721d19efe0644db83a0c0c73ce16f29d0004a9ee28fa8fd52b2d6019d"
+    },
+    "repeat-inputs": {
+      "path": ".local/ega-text-native-05/inputs.json",
+      "bytes": 2136,
+      "sha256": "fdca9e84864448991fede0d5df5e668c1486a0cd5089db0bee6717ede76d1f27"
+    },
+    "repeat-engine": {
+      "path": ".local/ega-text-native-05/engine.json",
+      "bytes": 3987,
+      "sha256": "48ce07931350014bbaf0ace022119f4e560a38a6ad0d1e80f76f2c81cff7b939"
+    },
+    "repeat-allocation": {
+      "path": ".local/ega-text-native-05/allocation.json",
+      "bytes": 19,
+      "sha256": "b3ea0b9cfa5a0c143d93e6613f169c5ad911bface38172cdb50835bff165cde5"
+    },
+    "repeat-source": {
+      "path": ".local/ega-text-native-05/capture-source.py",
+      "bytes": 6068,
+      "sha256": "9855aaf476702c93f4d482decf2ae3d3983b24504d808a48ce22dd496ddd70c5"
+    },
+    "repeat-case-00": {
+      "path": ".local/ega-text-native-05/case-00.json",
+      "bytes": 6551,
+      "sha256": "1ee2127c37e9cb3c48cbf5f83e98f659b10d91e6fe40cee8686128adf8278833"
+    },
+    "repeat-case-01": {
+      "path": ".local/ega-text-native-05/case-01.json",
+      "bytes": 7534,
+      "sha256": "a1ef240c27f06578eb784b064f2fbb4d00ffd3849754b3f425ac9c1bd2e8338c"
+    },
+    "repeat-case-02": {
+      "path": ".local/ega-text-native-05/case-02.json",
+      "bytes": 7552,
+      "sha256": "48f583e4c3bf83cc80c450fd23efcec9b40ce8046f559cbc28d3e72d5eebf376"
+    },
+    "repeat-case-03": {
+      "path": ".local/ega-text-native-05/case-03.json",
+      "bytes": 7560,
+      "sha256": "9b10b39ba72fc31b9d1c434055d3f9f205cc4ac59e07f4391dee44848f10e1a8"
+    },
+    "repeat-case-04": {
+      "path": ".local/ega-text-native-05/case-04.json",
+      "bytes": 7555,
+      "sha256": "1b04b0f4856dadfa9cbccb4bb3e88c76948019ee759dc2cd460e486ed589af3e"
+    },
+    "repeat-case-05": {
+      "path": ".local/ega-text-native-05/case-05.json",
+      "bytes": 7552,
+      "sha256": "f6fccb0dcb09ed0e98537528c8f3abcc0fc5e8a66f3ceed469b478f0e1107a08"
+    },
+    "repeat-case-06": {
+      "path": ".local/ega-text-native-05/case-06.json",
+      "bytes": 7548,
+      "sha256": "cf3537ece1d740be0a2ab83aebacf6d87fd18e3f8fea46c8e6b89302892f6b8f"
+    },
+    "repeat-case-07": {
+      "path": ".local/ega-text-native-05/case-07.json",
+      "bytes": 7540,
+      "sha256": "767f9da95173fbd6659f3532511268cdd355f539b381b49ff78bebd20b6d5dd9"
+    },
+    "repeat-case-08": {
+      "path": ".local/ega-text-native-05/case-08.json",
+      "bytes": 5100,
+      "sha256": "2211824f1568570f5a65a941d024f3f0c5a420b3359c6f7b3759c64999a84ece"
+    },
+    "repeat-case-09": {
+      "path": ".local/ega-text-native-05/case-09.json",
+      "bytes": 9978,
+      "sha256": "2c881a176f0892721c2aae33b3dd262b5a277c37b07279edfcfd84ce38e78051"
+    },
+    "repeat-case-10": {
+      "path": ".local/ega-text-native-05/case-10.json",
+      "bytes": 9978,
+      "sha256": "108a5e02036ea2bfaba830fd6e818cf7f4f5ea6dfd9229524c2482dca5447086"
+    },
+    "repeat-case-11": {
+      "path": ".local/ega-text-native-05/case-11.json",
+      "bytes": 11414,
+      "sha256": "23a2a0dab3b238f10a91399916c9eee488746c8db56aa87d3ad4df115d3b7b92"
+    },
+    "repeat-case-12": {
+      "path": ".local/ega-text-native-05/case-12.json",
+      "bytes": 8021,
+      "sha256": "47b804911a9fa4aad96a7423afadeaf85578365f8afd638b312f064ff70d9e16"
+    },
+    "repeat-case-13": {
+      "path": ".local/ega-text-native-05/case-13.json",
+      "bytes": 7548,
+      "sha256": "b592c2f8c9711a593d6316742ca2d3cbaa56d379fecab8c2d93324409791027b"
+    }
+  },
+  "sources": {
+    "scripts/capture-ega-text.py": "9855aaf476702c93f4d482decf2ae3d3983b24504d808a48ce22dd496ddd70c5",
+    "scripts/lib/ega-text-work.js": "1be3dc249fcb1cecbbc0c2fc8012412255bc5eb87c760bc5e078fa77ea2dea37",
+    "scripts/verify-ega-text.js": "1d8e9af251bcc8e7ca5e8314010255e6351a7b9ec3db7870c9b2887b459967f6"
+  },
+  "verify": "node scripts/verify-ega-text.js",
+  "limitations": [
+    "Private far calls with IF/DF clear;RAM surface write stand-in,not pixels/natural cadence.",
+    "No machine checkpoint or original game launch;unmodified driver and font copied into a new owned allocation.",
+    "Numeric formatting,opaque text and runtime timing integration remain incomplete."
+  ]
+}

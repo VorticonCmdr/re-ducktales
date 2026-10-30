@@ -1,0 +1,25 @@
+{
+  "id": "ega-transparent-text-static-work",
+  "evidenceLevel": "statically-inferred",
+  "artifacts": {
+    "driver": {
+      "path": ".local/ega-text-static-01/driver-disassembly.json",
+      "bytes": 32262,
+      "sha256": "feb6395735f79e2c72b5f8860c407d75cdbb2adb4eda9ba68e78c67a0934a0da"
+    },
+    "numeric": {
+      "path": ".local/ega-text-static-01/numeric-disassembly.json",
+      "bytes": 7720,
+      "sha256": "885d44dfb382ab1e72f2ffd6809ed8821d6a34c57f3b21562807d4284c3844b7"
+    }
+  },
+  "sources": {
+    "scripts/lib/ega-text-work.js": "1be3dc249fcb1cecbbc0c2fc8012412255bc5eb87c760bc5e078fa77ea2dea37",
+    "scripts/inspect-jungle-text-work.js": "7ccd58317a5af62371ecfe726ef2579c70702c72a2355e88226896b863a2595b",
+    "src/game/jungle-presentation.js": "ffb8d6cbd0a4e9a9728e73ae9313640e51f752a02c8473ff595e7643998f1f0a",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9"
+  },
+  "verify": "node scripts/inspect-jungle-text-work.js",
+  "driverSHA256": "6ee03bd93f3979546d5b5c1511e377685e2aa5401caaf407c3308bca0b812aee",
+  "fontSHA256": "5dd70b46fc94555bc549739eb0fc8cb1575cab0134d645a8b21f6daaf0fa41da"
+}

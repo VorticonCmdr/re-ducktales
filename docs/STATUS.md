@@ -125,6 +125,14 @@ work still need evidence. The existing native
 menu comparison confirms that makes arriving before its flush can be discarded;
 do not replace that original behavior with invented typematic or retries.
 
+The next text primitive now has two independent private native captures:14 calls
+per capture,2,963 instruction addresses,312 exact port writes and all2,599 driver
+bytes. Five negative controls pass. Six original jungle drawing boundaries show
+four HUD number calls, adding0.262ms per HUD redraw before formatting overhead.
+This is evidence/tooling progress; gameplay deadlines are unchanged. Next recover
+the numeric formatter's long-division cost, then integrate and independently
+replay text timing. [Text evidence and repeatable recipe](ega-text-work.md).
+
 ## Supported build and commands
 
 Only the22-file executable/resource pairing in[build.json](../reference/build.json)
@@ -143,6 +151,8 @@ node scripts/verify-ega-lines.js
 node scripts/verify-jungle-lines.js
 node scripts/verify-jungle-line-campaign-receipt.js
 node scripts/inspect-jungle-line-work.js
+node scripts/inspect-jungle-text-work.js
+node scripts/verify-ega-text.js
 node scripts/verify-speaker-playback-receipt.js
 npm run verify:cave-reveal
 npm test

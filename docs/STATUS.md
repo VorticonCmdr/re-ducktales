@@ -103,12 +103,22 @@ Physical waveform/gain/filter parity remains open. [Audio](audio.md).
   seeding is pending. Original save/load/high-score behavior/formats have not
   been established;browser persistence would be an explicit addition.
 
-## Next milestone
+## Drawing-work recovery and next milestone
 
-Keep Hard deferred. Continue with remaining expedition timing and
-keyboard-delivery gaps. In particular, establish the omitted line/text drawing
-costs against original code and investigate the real-clock destination redraw
-that can discard brief keys. Do not classify these as cosmetic tuning.
+The original EGA line primitives now have conditional native evidence:32 private
+calls,3,722 exact executed instruction addresses,140 OUT sites and all2,599
+driver bytes, including its intended self-modifying operands. Six comparison
+negative controls pass. A read-only reconstruction of six original jungle
+redraws estimates0.07..1.92ms of omitted line work at the declared reference
+platform. [Source, native recipe and limits](ega-line-work.md).
+
+This is analysis evidence; browser timing has not changed. The current Easy
+campaign/runtime sources and their acceptance remain intact. Keep Hard deferred.
+Next integrate these source line calls, preserve historical component contracts,
+and verify new carried timer traces plus real browser controls. Resident/color,
+text and remaining CPU/device work still need evidence. The existing native
+menu comparison confirms that makes arriving before its flush can be discarded;
+do not replace that original behavior with invented typematic or retries.
 
 ## Supported build and commands
 
@@ -124,6 +134,8 @@ npm run verify:current-campaign
 npm run verify:runtime-campaign
 node scripts/verify-runtime-campaign.js --fresh-browser
 npm run verify:speaker-game
+node scripts/verify-ega-lines.js
+node scripts/inspect-jungle-line-work.js
 node scripts/verify-speaker-playback-receipt.js
 npm run verify:cave-reveal
 npm test

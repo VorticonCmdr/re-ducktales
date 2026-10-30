@@ -1,0 +1,311 @@
+// Original IT.DRV resource1 line primitives. Counts opcodes/OUTs only;
+// no DOM, elapsed time, host RNG, or raster reconstruction.
+const IPS = {
+  point: [
+    0x515, 0x516, 0x518, 0x519, 0x51a, 0x51d, 0x520, 0x522, 0x524, 0x527, 0x529,
+    0x52b, 0x52d, 0x531, 0x533, 0x534, 0x539, 0x53c, 0x53e, 0x540, 0x542, 0x544,
+    0x546, 0x548, 0x54a, 0x54c, 0x54e, 0x550, 0x552, 0x554, 0x556, 0x559, 0x55b,
+    0x55d, 0x560, 0x563, 0x564, 0x567, 0x56a, 0x56b, 0x56e, 0x570, 0x572, 0x573,
+    0x578, 0x57a, 0x57b, 0x57e, 0x57f, 0x581, 0x582, 0x583, 0x585, 0x586,
+  ],
+  vertical: [
+    0x69b, 0x69c, 0x69e, 0x69f, 0x6a0, 0x6a1, 0x6a4, 0x6a7, 0x6aa, 0x6ac, 0x6ae,
+    0x6b0, 0x6b3, 0x6b6, 0x6b8, 0x6ba, 0x6bc, 0x6be, 0x6c0, 0x6c1, 0x6c3, 0x6c5,
+    0x6c7, 0x6ca, 0x6cc, 0x6ce, 0x6d0, 0x6d4, 0x6d6, 0x6d9, 0x6db, 0x6dc, 0x6e1,
+    0x6e4, 0x6e6, 0x6e8, 0x6ea, 0x6ec, 0x6ee, 0x6f0, 0x6f2, 0x6f4, 0x6f6, 0x6f8,
+    0x6fa, 0x6fc, 0x6fe, 0x700, 0x703, 0x705, 0x707, 0x70a, 0x70d, 0x70e, 0x711,
+    0x714, 0x715, 0x718, 0x71a, 0x71c, 0x71d, 0x722, 0x724, 0x725, 0x728, 0x729,
+    0x72b, 0x72e, 0x730, 0x732, 0x734, 0x736, 0x737, 0x738, 0x739, 0x73b, 0x73c,
+  ],
+  horizontal: [
+    0x73f, 0x740, 0x742, 0x743, 0x744, 0x745, 0x746, 0x749, 0x74c, 0x74f, 0x752,
+    0x754, 0x756, 0x758, 0x75b, 0x75d, 0x75f, 0x761, 0x763, 0x765, 0x766, 0x768,
+    0x76a, 0x76c, 0x76f, 0x771, 0x773, 0x775, 0x777, 0x779, 0x77b, 0x77d, 0x77e,
+    0x780, 0x781, 0x782, 0x784, 0x787, 0x78a, 0x78b, 0x78e, 0x791, 0x792, 0x795,
+    0x79a, 0x79c, 0x79d, 0x7a0, 0x7a1, 0x7a3, 0x7a8, 0x7ab, 0x7ad, 0x7af, 0x7b1,
+    0x7b3, 0x7b5, 0x7b7, 0x7b9, 0x7bb, 0x7bd, 0x7be, 0x7c0, 0x7c2, 0x7c4, 0x7c6,
+    0x7c8, 0x7cb, 0x7cd, 0x7cf, 0x7d1, 0x7d3, 0x7d5, 0x7d7, 0x7d9, 0x7dc, 0x7de,
+    0x7e0, 0x7e2, 0x7e4, 0x7e6, 0x7e7, 0x7e9, 0x7eb, 0x7ed, 0x7ee, 0x7f0, 0x7f1,
+    0x7f3, 0x7f5, 0x7f7, 0x7f9, 0x7fb, 0x7fd, 0x7ff, 0x800, 0x802, 0x803, 0x805,
+    0x807, 0x80a, 0x80c, 0x80e, 0x810, 0x812, 0x813, 0x815, 0x816, 0x817, 0x818,
+    0x819, 0x81b, 0x81c,
+  ],
+  diagonal: [
+    0x589, 0x58a, 0x58c, 0x58d, 0x58e, 0x58f, 0x590, 0x593, 0x59a, 0x59d, 0x59f,
+    0x5a1, 0x5a3, 0x5a5, 0x5aa, 0x5ad, 0x5b1, 0x5b5, 0x5b8, 0x5bc, 0x5bf, 0x5c3,
+    0x5c7, 0x5c9, 0x5d0, 0x5d2, 0x5d9, 0x5de, 0x5e1, 0x5e4, 0x5e6, 0x5e8, 0x5ea,
+    0x5ec, 0x5ee, 0x5f0, 0x5f2, 0x5f4, 0x5f7, 0x5fa, 0x5fb, 0x5fe, 0x601, 0x602,
+    0x605, 0x60a, 0x60c, 0x60d, 0x610, 0x611, 0x614, 0x617, 0x619, 0x61a, 0x61c,
+    0x61e, 0x620, 0x623, 0x625, 0x628, 0x62a, 0x62c, 0x630, 0x632, 0x634, 0x636,
+    0x638, 0x63a, 0x63c, 0x63e, 0x641, 0x643, 0x645, 0x647, 0x648, 0x64a, 0x64c,
+    0x64e, 0x650, 0x651, 0x655, 0x659, 0x65b, 0x65d, 0x660, 0x662, 0x664, 0x666,
+    0x669, 0x66b, 0x66e, 0x670, 0x671, 0x673, 0x675, 0x677, 0x679, 0x67b, 0x67e,
+    0x680, 0x682, 0x685, 0x687, 0x689, 0x68b, 0x68e, 0x68f, 0x691, 0x692, 0x693,
+    0x694, 0x695, 0x697, 0x698,
+  ],
+};
+const PORTS = new Set([
+  0x563, 0x56a, 0x572, 0x57a, 0x57e, 0x70d, 0x714, 0x71c, 0x724, 0x728, 0x78a,
+  0x791, 0x79c, 0x7a0, 0x7ed, 0x7ff, 0x812, 0x5fa, 0x601, 0x60c, 0x610, 0x647,
+]);
+const signed = (v) => (v << 16) >> 16;
+export function egaDriverLineWork(kind, args, { instruction = null } = {}) {
+  const ips = IPS[kind],
+    expected = { point: 2, vertical: 3, horizontal: 3, diagonal: 8 }[kind];
+  if (
+    !ips ||
+    !Array.isArray(args) ||
+    args.length !== expected ||
+    args.some((v) => !Number.isInteger(v) || v < -32768 || v > 65535)
+  )
+    throw Error("Unsupported EGA line arguments");
+  if (instruction !== null && typeof instruction !== "function")
+    throw Error("Invalid line work observer");
+  let instructions = 0,
+    portWrites = 0;
+  function block(lo, hi = lo) {
+    const a = ips.indexOf(lo),
+      b = ips.indexOf(hi);
+    if (a < 0 || b < a) throw Error("Invalid EGA line source block");
+    instructions += b - a + 1;
+    for (let i = a; i <= b; i++) {
+      if (PORTS.has(ips[i])) portWrites++;
+      instruction?.(ips[i]);
+    }
+  }
+  const finish = () => ({
+    instructions,
+    portWrites,
+    repeatOpcodes: 0,
+    repeatIterations: 0,
+  });
+  if (kind === "point") {
+    const [y, x] = args.map(signed);
+    block(0x515, 0x522);
+    if (x >= 0) {
+      block(0x524, 0x527);
+      if (x < 320) {
+        block(0x529, 0x52b);
+        if (y >= 0) {
+          block(0x52d, 0x531);
+          if (y < 200) block(0x533, 0x57f);
+        }
+      }
+    }
+    block(0x581, 0x586);
+    return finish();
+  }
+  if (kind === "vertical") {
+    let [end, start, x] = args.map(signed);
+    const done = () => {
+      block(0x736, 0x73c);
+      return finish();
+    };
+    block(0x69b, 0x6ae);
+    if (x < 0) {
+      block(0x6b0);
+      return done();
+    }
+    block(0x6b3, 0x6b6);
+    if (x >= 320) return done();
+    block(0x6b8, 0x6be);
+    if (start >= end) {
+      block(0x6c0);
+      [start, end] = [end, start];
+    }
+    block(0x6c1, 0x6c3);
+    if (start < 0) {
+      block(0x6c5);
+      start = 0;
+    }
+    block(0x6c7, 0x6ca);
+    if ((start & 65535) >= 200) return done();
+    block(0x6cc, 0x6ce);
+    if (end < 0) return done();
+    block(0x6d0, 0x6d4);
+    if (end >= 200) {
+      block(0x6d6);
+      end = 200;
+    }
+    block(0x6d9, 0x72e);
+    // Original clamps the inclusive end to200, not199. Preserve its extra row.
+    for (let n = end - start + 1; n > 0; n--) block(0x730, 0x734);
+    return done();
+  }
+  if (kind === "horizontal") {
+    let [y, end, start] = args.map(signed);
+    const done = () => {
+      block(0x815, 0x81c);
+      return finish();
+    };
+    const clipped = () => {
+      block(0x758);
+      return done();
+    };
+    block(0x73f, 0x756);
+    if (y < 0) return clipped();
+    block(0x75b, 0x75d);
+    if (y >= 200) return clipped();
+    block(0x75f, 0x763);
+    if (start >= end) {
+      block(0x765);
+      [start, end] = [end, start];
+    }
+    block(0x766, 0x768);
+    if (start < 0) {
+      block(0x76a);
+      start = 0;
+    }
+    block(0x76c, 0x771);
+    if ((start & 65535) >= 320) return clipped();
+    block(0x773, 0x775);
+    if (end < 0) return clipped();
+    block(0x777, 0x779);
+    if (end >= 320) {
+      block(0x77b, 0x77d);
+      end = 319;
+    }
+    block(0x77e, 0x7cb);
+    let remaining = end - start + 1;
+    const shift = start & 7;
+    if (shift) {
+      block(0x7cd, 0x7de);
+      remaining -= 8 - shift;
+      if (remaining < 0) {
+        block(0x7e0);
+        do {
+          block(0x7e2, 0x7e7);
+          remaining++;
+        } while (remaining !== 0);
+      }
+      block(0x7e9, 0x7f0);
+    }
+    block(0x7f1, 0x7f9);
+    if (remaining >>> 3 > 0) {
+      block(0x7fb, 0x7ff);
+      for (let n = remaining >>> 3; n > 0; n--) block(0x800, 0x803);
+    }
+    block(0x805, 0x813);
+    return done();
+  }
+  let [axis, majorStep, minorStep, count, twiceMajor, twiceMinor, y, x] =
+    args.map(signed);
+  if (
+    ![0, 1].includes(axis) ||
+    ![-1, 1].includes(majorStep) ||
+    ![-1, 1].includes(minorStep) ||
+    count < 1 ||
+    count > 32767
+  )
+    throw Error("Unsupported diagonal source path");
+  block(0x589, 0x5a1);
+  if ((minorStep & 255) === 255) block(0x5a3);
+  block(0x5a5, 0x5c7);
+  if (axis) block(0x5c9, 0x5d0);
+  else block(0x5d2);
+  block(0x5d9, 0x617);
+  let error = signed(twiceMinor - count);
+  for (let n = 0; n < count; n++) {
+    block(0x619, 0x61e);
+    if (x >= 0) {
+      block(0x620, 0x623);
+      if (x < 320) {
+        block(0x625, 0x62a);
+        if (y >= 0) {
+          block(0x62c, 0x630);
+          if (y < 200) block(0x632, 0x648);
+        }
+      }
+    }
+    block(0x64a, 0x64e);
+    let step = 0;
+    if (error > 0) {
+      block(0x650, 0x651);
+      step = minorStep;
+      error = signed(error - twiceMajor);
+    }
+    block(0x655);
+    error = signed(error + twiceMinor);
+    block(0x659);
+    if (axis) {
+      block(0x65b);
+      if (step) {
+        block(0x65d, 0x660);
+        if (step < 0) block(0x662);
+        block(0x664, 0x666);
+      }
+      block(0x669, 0x671);
+      if (n === count - 1) block(0x673);
+      x = signed(x + majorStep);
+      y = signed(y + step);
+    } else {
+      block(0x675, 0x680);
+      // This branch reloads the major step, not the minor error correction.
+      block(0x682, 0x685);
+      if (majorStep < 0) block(0x687);
+      block(0x689, 0x68b);
+      block(0x68e, 0x68f);
+      x = signed(x + step);
+      y = signed(y + majorStep);
+    }
+  }
+  block(0x691, 0x698);
+  return finish();
+}
+
+// Resident140e:00b0 dispatch, EGA DS2046=0. These are primitive counts only;
+// the resident's own instructions/color-setting work are not included.
+export function egaLinePrimitiveWork({ x, y, x2, y2 }, scaleMode = 0) {
+  if (
+    scaleMode !== 0 ||
+    [x, y, x2, y2].some((v) => !Number.isInteger(v) || v < -32768 || v > 32767)
+  )
+    throw Error("Unsupported resident line coordinate/mode");
+  if (
+    (x < 0 && x2 < 0) ||
+    (x >= 320 && x2 >= 320) ||
+    (y < 0 && y2 < 0) ||
+    (y >= 200 && y2 >= 200)
+  )
+    return {
+      kind: "rejected",
+      args: [],
+      instructions: 0,
+      portWrites: 0,
+      repeatOpcodes: 0,
+      repeatIterations: 0,
+    };
+  let kind, args;
+  if (x === x2) {
+    if (y === y2) {
+      kind = "point";
+      args = [y, x];
+    } else {
+      kind = "vertical";
+      args = [y2, y, x];
+    }
+  } else if (y === y2) {
+    kind = "horizontal";
+    args = [y, x2, x];
+  } else {
+    const dx = Math.abs(x2 - x),
+      dy = Math.abs(y2 - y);
+    if (dx >= 32768 || dy >= 32768)
+      throw Error("Unsupported resident line difference overflow");
+    const horizontal = dx >= dy,
+      major = horizontal ? dx : dy,
+      minor = horizontal ? dy : dx;
+    kind = "diagonal";
+    args = [
+      horizontal ? 1 : 0,
+      horizontal ? Math.sign(x2 - x) : Math.sign(y2 - y),
+      horizontal ? Math.sign(y2 - y) : Math.sign(x2 - x),
+      major,
+      (2 * major) & 65535,
+      (2 * minor) & 65535,
+      y,
+      x,
+    ];
+  }
+  return { kind, args, ...egaDriverLineWork(kind, args) };
+}

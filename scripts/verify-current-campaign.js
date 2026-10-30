@@ -13,6 +13,7 @@ const checkpointCount = {
   "current-physical-easy-complete-campaign": 35,
   "cave-reveal-easy-complete-campaign": 34,
   "speaker-runtime-easy-complete-campaign": 34,
+  "jungle-line-easy-complete-campaign": 35,
 }[manifest.id];
 assert.ok(
   Number.isInteger(checkpointCount),
@@ -227,10 +228,120 @@ with zipfile.ZipFile(sys.argv[1]) as z:
     undefined,
     "Unsupported runtime comparison",
   );
+if (manifest.id === "jungle-line-easy-complete-campaign") {
+  assert.equal(manifest.completeSourceInventory, true);
+  assert.equal(producer.captureCompleted, true);
+  assert.equal(producer.loadedSourcesUnchanged, true);
+  assert.equal(producer.historicalArtifactsPreserved, true);
+  const contract = await json("browser-contract"),
+    consumer = await json("consumer-source"),
+    status = await json("consumer-status");
+  for (const key of [
+    "id",
+    "captureCommit",
+    "expectedCheckpointCount",
+    "requiredEventCount",
+    "checkpointNames",
+    "expectedEnding",
+    "expectedOwnership",
+    "expectedFlightPresentations",
+    "completeSourceInventory",
+    "buildManifest",
+  ])
+    assert.deepEqual(
+      manifest[key],
+      contract[key],
+      `Changed independent browser contract ${key}`,
+    );
+  for (const [role, spec] of Object.entries(contract.artifacts))
+    assert.deepEqual(
+      manifest.artifacts[role],
+      spec,
+      `Changed independently replayed artifact ${role}`,
+    );
+  assert.equal(status.exitCode, 0);
+  assert.equal(status.loadedSourcesUnchanged, true);
+  assert.equal(status.historicalArtifactsPreserved, true);
+  assert.equal(
+    status.manifestSHA256,
+    manifest.artifacts["browser-contract"].sha256,
+  );
+  assert.equal(consumer.commit, manifest.consumerCommit);
+  assert.equal(status.sourceCommit, manifest.consumerCommit);
+  const srcFiles = Object.keys(source.files)
+    .filter((p) => p.startsWith("src/"))
+    .sort();
+  assert.deepEqual(
+    Object.keys(consumer.files)
+      .filter((p) => p.startsWith("src/"))
+      .sort(),
+    srcFiles,
+  );
+  for (const p of srcFiles)
+    assert.equal(
+      consumer.files[p],
+      source.files[p],
+      `Independent consumer source differs ${p}`,
+    );
+  const actual = (
+    await readdir("src", { recursive: true, withFileTypes: true })
+  )
+    .filter((d) => d.isFile())
+    .map((d) => `${d.parentPath}/${d.name}`)
+    .sort();
+  assert.deepEqual(
+    actual,
+    srcFiles,
+    "Unexpected or missing complete campaign source",
+  );
+  const prefix = await json("producer-prefix-replay");
+  assert.equal(prefix.checkpoints, 27);
+  assert.equal(prefix.recordedTailEvents, 0);
+  assert.equal(prefix.lastCheckpoint, "arrival");
+  assert.equal(prefix.inputCaptureTruncated, true);
+  const bytes = await readFile(manifest.artifacts["consumer-archive"].path);
+  assert.equal(sha(bytes), consumer.archiveSha256);
+  const git = spawnSync(
+    "git",
+    ["archive", "--format=zip", manifest.consumerCommit],
+    { timeout: 30000, maxBuffer: 32 * 1024 * 1024 },
+  );
+  assert.ifError(git.error);
+  assert.equal(git.status, 0, "SETUP: missing independent consumer revision");
+  assert.equal(sha(git.stdout), consumer.archiveSha256);
+  const zip = spawnSync(
+    "python3",
+    [
+      "-c",
+      `import json,zipfile,hashlib,sys
+s=json.load(open(sys.argv[2]))
+with zipfile.ZipFile(sys.argv[1]) as z:
+ names=[n for n in z.namelist() if not n.endswith('/')]
+ assert set(names)==set(s['files']), 'Incomplete consumer source archive'
+ for n in names: assert hashlib.sha256(z.read(n)).hexdigest()==s['files'][n], 'Corrupt consumer source:'+n`,
+      manifest.artifacts["consumer-archive"].path,
+      manifest.artifacts["consumer-source"].path,
+    ],
+    { encoding: "utf8", timeout: 30000 },
+  );
+  assert.ifError(zip.error);
+  assert.equal(zip.status, 0, zip.stderr);
+} else
+  assert.equal(
+    manifest.completeSourceInventory,
+    undefined,
+    "Unsupported complete-source inventory",
+  );
 // Historical contracts still require their original source. The explicit audio
 // comparison checks every src file against its independently archived consumer.
 for (const [path, expected] of Object.entries(consumerSource.files))
-  if (path.startsWith(manifest.runtimeComparison ? "src/" : "src/game/"))
+  if (
+    path.startsWith(
+      manifest.runtimeComparison || manifest.completeSourceInventory
+        ? "src/"
+        : "src/game/",
+    )
+  )
     assert.equal(
       sha(await readFile(path)),
       expected,
@@ -239,6 +350,13 @@ for (const [path, expected] of Object.entries(consumerSource.files))
 const checks = await json("campaign-checkpoints"),
   events = await json("captured-events");
 assert.equal(checks.length, checkpointCount);
+if (manifest.completeSourceInventory)
+  for (const key of ["at", "eventCount", "stateSha256", "pixelsSha256"])
+    assert.equal(
+      checks[26][key],
+      checks[27][key],
+      "Only an identical extra mountain-entry marker is allowed",
+    );
 assert.equal(events.length, 4981);
 assert.deepEqual(
   checks.map((c) => c.name),

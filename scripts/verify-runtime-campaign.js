@@ -5,9 +5,13 @@ import { readFile, mkdir, readdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 const manifest =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/jungle-text-campaign.json";
+  "reference/mountain-phase-campaign.json";
 const m = JSON.parse(await readFile(manifest));
-const textTiming = m.id === "jungle-text-easy-complete-campaign";
+const mountainPhase = m.id === "mountain-phase-easy-complete-campaign";
+const textTiming =
+  mountainPhase || m.id === "jungle-text-easy-complete-campaign";
+const expectedUnits = mountainPhase ? 186 : 180;
+if (mountainPhase) assert.equal(m.expectedUnitCases, expectedUnits);
 function run(command, args, extra = {}) {
   const r = spawnSync(command, args, {
     encoding: "utf8",
@@ -73,8 +77,8 @@ const unit = run(process.execPath, [
   "--test-reporter=tap",
   ...unitFiles,
 ]);
-assert.match(unit, /# tests 180\b/);
-assert.match(unit, /# pass 180\b/);
+assert.match(unit, new RegExp(`# tests ${expectedUnits}\\b`));
+assert.match(unit, new RegExp(`# pass ${expectedUnits}\\b`));
 assert.match(unit, /# fail 0\b/);
 assert.match(unit, /# skipped 0\b/);
 let browserRoot = m.browserReplayRoot;
@@ -140,7 +144,9 @@ if (m.completeSourceInventory)
   run(process.execPath, ["scripts/verify-jungle-line-browser-negative.js"]);
 if (textTiming)
   run(process.execPath, ["scripts/verify-jungle-text-browser-negative.js"]);
+if (mountainPhase)
+  run(process.execPath, ["scripts/verify-mountain-phase-integration.js"]);
 run("npm", ["run", "build"]);
 console.log(
-  `Current runtime gate passed:22 originals,180 units,${m.expectedCheckpointCount} carried state/pixel checkpoints,${m.requiredEventCount} independent DOM events,9 campaign negatives,7 cave controls and registered7-case actual sound acceptance${m.completeSourceInventory ? `,17 jungle component controls and actual jungle deadline negative${textTiming ? " and omitted-text-work negative" : ""}` : ""}. Full Hard and native whole-game timing remain unproven.`,
+  `Current runtime gate passed:22 originals,${expectedUnits} units,${m.expectedCheckpointCount} carried state/pixel checkpoints,${m.requiredEventCount} independent DOM events,9 campaign negatives,7 cave controls and registered7-case actual sound acceptance${m.completeSourceInventory ? `,17 jungle component controls and actual jungle deadline negative${textTiming ? " and omitted-text-work negative" : ""}` : ""}. Full Hard and native whole-game timing remain unproven.`,
 );

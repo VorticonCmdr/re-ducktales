@@ -1,0 +1,38 @@
+{
+  "id": "current-hard-jungle-physical-player-schedule",
+  "scope": "Exploratory controller inputs,not native parity or accepted full Hard campaign.",
+  "inputs": {
+    "path": ".local/current-hard-jungle-inputs-01/inputs.json",
+    "bytes": 45971,
+    "sha256": "d755ee37c76cb08fd6018a09dd3039b4618aba46811c1d0ff3a1e7262b4d88a0"
+  },
+  "requiredEventCount": 423,
+  "startAt": 34601,
+  "endAt": 73009,
+  "clockContract": "External clock1ms,8ms displays;one8ms callback after the final release consumes pending events. No fitted game timers.",
+  "modelExpected": {
+    "scene": "expedition-result",
+    "frames": 503,
+    "lives": 3,
+    "pickupMoney": 250,
+    "campaignMoney": 2250,
+    "outcome": 1,
+    "seed": 16983
+  },
+  "producer": {
+    "result.json": {
+      "path": ".local/current-hard-jungle-plans-02/final-platform/result.json",
+      "bytes": 672455,
+      "sha256": "651b48757994ed046e08d5a96a3ef1f8bc0d003338aa4b9d80c22e5441678766"
+    },
+    "explorer-source.js": {
+      "path": ".local/current-hard-jungle-plans-02/final-platform/explorer-source.js",
+      "bytes": 10493,
+      "sha256": "d4360b525805d8d3444d600882f8ab17c003baefb0316f05f0d7354cdbac507d"
+    }
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "inputProvenance": "A bounded player observes its own current bird/vine state and actor pose to choose ordinary key events. These input events are extracted separately;browser execution never reads expected model states or chooses controls from them."
+}

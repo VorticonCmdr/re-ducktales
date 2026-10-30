@@ -17,6 +17,7 @@ import { waitForScene } from "./scene.js";
 import { openRecordedApplication } from "./clock.js";
 import { pressDestinationKey } from "./destination-input.js";
 import { replayCampaignPrefix } from "./campaign-prefix.js";
+import { playJungleInputPlan } from "./jungle-input-plan.js";
 import physicalPlayer from "../../../reference/current-campaign-player.json" with { type: "json" };
 
 // Independent input policies observe the current application, never expected outputs.
@@ -454,120 +455,136 @@ export async function runLinkedCampaign({
         expect(entry.jungle.frames).toBe(0);
         throw Error("EXPLORATORY Hard campaign entry saved;not acceptance");
       }
-      const jungleRoute = hard ? hardInitial.jungle : startup.jungle;
-      if (!capture) expect(entry.jungle.seed).toBe(jungleRoute.entrySeed);
-      let used = 0,
-        checked = 0;
-      const stream = (
-        hard
-          ? capture
-            ? securityInputs.jungle
-            : hardInputs.jungle
-          : capture
-            ? easyInputs.jungle
-            : startup.jungle.inputEvents
-      ).flatMap((e) => Array(e.count).fill(e.byte));
-      expect(stream).toHaveLength(
-        hard
-          ? capture
-            ? securityInputs.requiredJungleInputs
-            : 444
-          : capture
-            ? easyInputs.requiredJungleInputs
-            : 857,
-      );
-      let downStart, downEnd, upEnd;
-      if (waypoints) {
-        const policy = physicalPlayer.jungle;
-        stream.splice(
-          0,
-          stream.length,
-          ...policy.initial.flatMap((e) => Array(e.count).fill(e.byte)),
+      let checked = 0;
+      if (process.env.DUCKTALES_HARD_JUNGLE_PLAN) {
+        if (!hard || !physical || !capture)
+          throw Error("SETUP: jungle plan is exploratory physical Hard only");
+        const execution = await playJungleInputPlan({
+          page,
+          state,
+          checkpoint,
+          path: process.env.DUCKTALES_HARD_JUNGLE_PLAN,
+        });
+        await writeFile(
+          info.outputPath("jungle-plan-execution.json"),
+          JSON.stringify(execution, null, 2),
         );
-        downStart = stream.length;
-        stream.push(...Array(policy.downLimit).fill(5));
-        downEnd = stream.length;
-        stream.push(...Array(policy.upLimit).fill(1));
-        upEnd = stream.length;
-        stream.push(...Array(policy.rightLimit).fill(3));
-      }
-      // Deliberately wrong external input for the separate negative-control run.
-      // Counts remain unchanged: an actual state comparison must reject it.
-      if (process.env.DUCKTALES_MIXED_NEGATIVE === "wrong-jungle-input")
-        stream[0] = 3;
-      for (let cursor = 0; cursor < stream.length;) {
-        const byte = stream[cursor];
-        const next = new Set([
-          ...(byte & 64 ? ["Space"] : []),
-          ...({
-            1: ["ArrowUp"],
-            3: ["ArrowRight"],
-            5: ["ArrowDown"],
-            7: ["ArrowLeft"],
-          }[byte & 63] ?? []),
-        ]);
-        for (const key of held) if (!next.has(key)) await page.keyboard.up(key);
-        for (const key of next)
-          if (physical || !held.has(key)) await page.keyboard.down(key);
-        held = next;
-        const before = await state();
-        expect(before.scene).toBe("jungle");
-        expect(before.jungle.frames).toBe(used);
-        const after = await until(
-          (s) => s.scene !== "jungle" || s.jungle.frames > used,
+      } else {
+        const jungleRoute = hard ? hardInitial.jungle : startup.jungle;
+        if (!capture) expect(entry.jungle.seed).toBe(jungleRoute.entrySeed);
+        let used = 0;
+        const stream = (
+          hard
+            ? capture
+              ? securityInputs.jungle
+              : hardInputs.jungle
+            : capture
+              ? easyInputs.jungle
+              : startup.jungle.inputEvents
+        ).flatMap((e) => Array(e.count).fill(e.byte));
+        expect(stream).toHaveLength(
+          hard
+            ? capture
+              ? securityInputs.requiredJungleInputs
+              : 444
+            : capture
+              ? easyInputs.requiredJungleInputs
+              : 857,
         );
-        if (
-          waypoints &&
-          after.scene !== "jungle" &&
-          after.jungle.frames === used
-        )
-          break;
-        used++;
-        expect(after.jungle.frames).toBe(used);
-        if (physical)
-          jungleObservations.push({
-            frame: used,
-            requested: byte,
-            consumed: after.expeditionKeys?.byte,
-            x: after.jungle.x,
-            y: after.jungle.y,
-            lives: after.jungle.lives,
-          });
-        if (!hard && capture && (used % 80 === 0 || used === stream.length))
-          await checkpoint(`jungle-input-${used}`);
-        const expected = jungleRoute.checkpoints[checked];
-        if (!capture && expected?.inputCount === used) {
-          for (const field of hard
-            ? jungleRoute.comparisonFields
-            : jungleRoute.browserComparisonFields)
-            expect(after.jungle[field], `jungle ${checked} ${field}`).toEqual(
-              expected.state[field],
-            );
-          checked++;
+        let downStart, downEnd, upEnd;
+        if (waypoints) {
+          const policy = physicalPlayer.jungle;
+          stream.splice(
+            0,
+            stream.length,
+            ...policy.initial.flatMap((e) => Array(e.count).fill(e.byte)),
+          );
+          downStart = stream.length;
+          stream.push(...Array(policy.downLimit).fill(5));
+          downEnd = stream.length;
+          stream.push(...Array(policy.upLimit).fill(1));
+          upEnd = stream.length;
+          stream.push(...Array(policy.rightLimit).fill(3));
         }
-        if (
-          waypoints &&
-          cursor >= downStart &&
-          cursor < downEnd &&
-          after.jungle.x >= physicalPlayer.jungle.downUntilX
-        )
-          cursor = downEnd;
-        else if (
-          waypoints &&
-          cursor >= downEnd &&
-          cursor < upEnd &&
-          after.jungle.y <= physicalPlayer.jungle.upUntilY &&
-          after.jungle.action === physicalPlayer.jungle.upUntilAction
-        )
-          cursor = upEnd;
-        else cursor++;
+        // Deliberately wrong external input for the separate negative-control run.
+        // Counts remain unchanged: an actual state comparison must reject it.
+        if (process.env.DUCKTALES_MIXED_NEGATIVE === "wrong-jungle-input")
+          stream[0] = 3;
+        for (let cursor = 0; cursor < stream.length;) {
+          const byte = stream[cursor];
+          const next = new Set([
+            ...(byte & 64 ? ["Space"] : []),
+            ...({
+              1: ["ArrowUp"],
+              3: ["ArrowRight"],
+              5: ["ArrowDown"],
+              7: ["ArrowLeft"],
+            }[byte & 63] ?? []),
+          ]);
+          for (const key of held)
+            if (!next.has(key)) await page.keyboard.up(key);
+          for (const key of next)
+            if (physical || !held.has(key)) await page.keyboard.down(key);
+          held = next;
+          const before = await state();
+          expect(before.scene).toBe("jungle");
+          expect(before.jungle.frames).toBe(used);
+          const after = await until(
+            (s) => s.scene !== "jungle" || s.jungle.frames > used,
+          );
+          if (
+            waypoints &&
+            after.scene !== "jungle" &&
+            after.jungle.frames === used
+          )
+            break;
+          used++;
+          expect(after.jungle.frames).toBe(used);
+          if (physical)
+            jungleObservations.push({
+              frame: used,
+              requested: byte,
+              consumed: after.expeditionKeys?.byte,
+              x: after.jungle.x,
+              y: after.jungle.y,
+              lives: after.jungle.lives,
+            });
+          if (!hard && capture && (used % 80 === 0 || used === stream.length))
+            await checkpoint(`jungle-input-${used}`);
+          const expected = jungleRoute.checkpoints[checked];
+          if (!capture && expected?.inputCount === used) {
+            for (const field of hard
+              ? jungleRoute.comparisonFields
+              : jungleRoute.browserComparisonFields)
+              expect(after.jungle[field], `jungle ${checked} ${field}`).toEqual(
+                expected.state[field],
+              );
+            checked++;
+          }
+          if (
+            waypoints &&
+            cursor >= downStart &&
+            cursor < downEnd &&
+            after.jungle.x >= physicalPlayer.jungle.downUntilX
+          )
+            cursor = downEnd;
+          else if (
+            waypoints &&
+            cursor >= downEnd &&
+            cursor < upEnd &&
+            after.jungle.y <= physicalPlayer.jungle.upUntilY &&
+            after.jungle.action === physicalPlayer.jungle.upUntilAction
+          )
+            cursor = upEnd;
+          else cursor++;
+        }
+        for (const key of held) await page.keyboard.up(key);
+        if (waypoints)
+          expect(
+            (await state()).jungle.outcome?.code,
+            "Physical jungle route reaches its chest",
+          ).toBe(1);
       }
-      for (const key of held) await page.keyboard.up(key);
-      if (waypoints)
-        expect(
-          (await state()).jungle.outcome?.code,
-          "Physical jungle route reaches its chest",
-        ).toBe(1);
       if (!capture) expect(checked).toBe(hard ? 26 : 23);
       await until((s) => s.scene === "expedition-result");
       if (!capture) expect((await state()).money).toBe(hard ? 2050 : 1000);

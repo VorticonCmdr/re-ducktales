@@ -9,6 +9,7 @@ import {
   expeditionKeyEvent,
   mapKeyEvent,
 } from "../src/game/keyboard-adapter.js";
+import { jungleVinePoint } from "../src/game/jungle-motion.js";
 const delay = Number(process.argv[2] ?? 0);
 assert.ok(Number.isInteger(delay) && delay >= 0 && delay <= 200);
 const root = process.argv[3] ?? ".local/current-campaign-entry-replay-01";
@@ -25,6 +26,7 @@ assert.ok(
     "hard-wait",
     "hard-bird",
     "hard-cross",
+    "hard-vine",
   ].includes(mode),
 );
 const hard = mode.startsWith("hard");
@@ -95,7 +97,23 @@ let sawPerchedBird = false;
 const crossStart = delay + 254,
   crossEnd = crossStart + 400;
 let sawMiddlePerch = false;
-if (mode === "hard-cross") inputs.splice(crossStart, 62, ...Array(400).fill(0));
+const crossing = mode === "hard-cross" || mode === "hard-vine";
+if (crossing) inputs.splice(crossStart, 62, ...Array(400).fill(0));
+const vineStart = crossEnd,
+  vineEnd = vineStart + 400;
+let lastVineDistance = Infinity,
+  grabbedVine = false;
+if (mode === "hard-vine") inputs.splice(vineStart, 34, ...Array(400).fill(0));
+const finalRunEnd = vineEnd + 120,
+  finalWaitEnd = finalRunEnd + 40;
+if (mode === "hard-vine")
+  inputs.splice(
+    vineEnd,
+    inputs.length - vineEnd,
+    ...Array(120).fill(3),
+    ...Array(40).fill(0),
+    ...Array(40).fill(1),
+  );
 // Player waypoint at the left edge of the final platform: column21 on the
 // original53-pixel grid. This observes this run's pose, not a golden checkpoint.
 const downStart = delay + 109,
@@ -149,7 +167,7 @@ function step() {
 let used = 0;
 for (let cursor = 0; cursor < inputs.length;) {
   let byte = inputs[cursor];
-  if (mode === "hard-cross" && cursor >= crossStart && cursor < crossEnd) {
+  if (crossing && cursor >= crossStart && cursor < crossEnd) {
     const actor = state().jungle,
       bird = game.jungle.memory.i(0x397e + 38 + 20);
     if (actor.x < 703) byte = bird === 14 ? 3 : 0;
@@ -157,6 +175,18 @@ for (let cursor = 0; cursor < inputs.length;) {
       if (bird === 18) sawMiddlePerch = true;
       byte = sawMiddlePerch && bird === 14 ? 3 : 1;
     } else byte = 3;
+  }
+  if (mode === "hard-vine" && cursor >= vineStart && cursor < vineEnd) {
+    const actor = state().jungle;
+    if (actor.action === 8) {
+      grabbedVine = true;
+      byte = actor.x >= 896 && actor.y <= 48 ? 3 : 0;
+    } else if (!grabbedVine && actor.action === 5) {
+      const point = jungleVinePoint(game.jungle.memory, 2);
+      const d = (actor.x + 15 - point.x) ** 2 + (actor.y + 24 - point.y) ** 2;
+      byte = d < 260 && d < lastVineDistance ? 1 : 0;
+      lastVineDistance = d;
+    } else byte = 0;
   }
   if (state().scene !== "jungle") break;
   const next = new Set([
@@ -229,13 +259,38 @@ for (let cursor = 0; cursor < inputs.length;) {
     if (sawPerchedBird && bird !== 18) cursor = birdWaitEnd;
     else cursor++;
   } else if (
-    mode === "hard-cross" &&
+    crossing &&
     cursor >= crossStart &&
     cursor < crossEnd &&
     state().jungle.x >= 783 &&
     state().jungle.action === 5
   )
     cursor = crossEnd;
+  else if (
+    mode === "hard-vine" &&
+    cursor >= vineStart &&
+    cursor < vineEnd &&
+    grabbedVine &&
+    state().jungle.action === 5 &&
+    state().jungle.x >= 895
+  )
+    cursor = vineEnd;
+  else if (
+    mode === "hard-vine" &&
+    cursor >= vineEnd &&
+    cursor < finalRunEnd &&
+    state().jungle.x >= 1100 &&
+    state().jungle.action === 5
+  )
+    cursor = finalRunEnd;
+  else if (
+    mode === "hard-vine" &&
+    cursor >= finalRunEnd &&
+    cursor < finalWaitEnd &&
+    state().jungle.y <= 80 &&
+    state().jungle.action === 5
+  )
+    cursor = finalWaitEnd;
   else cursor++;
 }
 for (const k of physical) key(k, false);
@@ -250,8 +305,8 @@ const result = {
   delay,
   mode,
   controllerObservations:
-    mode === "hard-bird" || mode === "hard-cross"
-      ? "Exploratory white-box player:current port bird state selects controls. Not native input evidence;no expected values or memory writes."
+    mode === "hard-bird" || mode === "hard-cross" || mode === "hard-vine"
+      ? "Exploratory white-box player:current port bird/vine state selects controls. Not native input evidence;no expected values or memory writes."
       : "Own current scene/frame/pose observations;no expected values choose inputs.",
   waypoint,
   planned: inputs.length,

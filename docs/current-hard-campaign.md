@@ -91,3 +91,28 @@ input evidence. Strict acceptance must use a separate immutable event stream
 and actual browser observations. No simulation state is initialized from outputs.
 The Easy waypoint compatibility check still completes in858 actions with its
 unchanged outcome1,$50 and seed31622.
+
+
+## Current successful model route
+
+The endpoint-aware grab reaches the vine. The first release cutoffx900 was
+past the actor's reachable position;the original platform edge899 and actor
+center offset4 allow release atx896. Stopping the final walk at the observed
+platform,waiting until it raises the actor toy<=80,and pressingUp reaches the
+chest in503 updates with all three lives. Pickups are$250,the award$2,000 and
+outcome seed16983. These are model outputs,not accepted browser evidence yet.
+
+[Input-only schedule](../reference/current-hard-jungle-plan.json) keeps all423
+key events in a separate local artifact. The browser player consumes that file
+without using model observations or expected states to select controls. Its
+seven-field model outcome comparison happens only after all inputs. The final
+8ms display callback consumes pending release events;it is an explicit external
+clock step,not an injected game timer. Capture remains exploratory and must be
+followed by independent recorded replay before acceptance.
+
+```sh
+DUCKTALES_CAPTURE_HARD_CAMPAIGN=1 DUCKTALES_CAMPAIGN_PHYSICAL=1 \
+DUCKTALES_HARD_JUNGLE_PLAN=reference/current-hard-jungle-plan.json \
+npx playwright test tests/browser/hard-campaign.spec.js \
+  --config playwright.campaign.config.js --output=.local/current-hard-full-new
+```

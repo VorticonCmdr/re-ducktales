@@ -34,10 +34,7 @@
   },
   "inputs": {
     "flightPolicy": {
-      "altitude": [
-        10,
-        25
-      ],
+      "altitude": [10, 25],
       "climbHeading": 1
     },
     "jungleSource": "reference/security-campaign-inputs.json",
@@ -191,9 +188,39 @@
       "path": ".local/current-jungle-plans-05/easy-compat/explorer-source.js",
       "bytes": 7083,
       "sha256": "974c1ca44164c6bc8b4822fa1195282fd83363d7d472ef11bc9d0f450878b9c2"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-02/vine/result.json",
+      "bytes": 1100336,
+      "sha256": "61cab922c8439ef37f2ad75f2b4168e2375b3c4811a26376304c9695c771b258"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-02/vine/explorer-source.js",
+      "bytes": 9876,
+      "sha256": "f7440c210b61064fbdbcd38fdea40d40fd71c5e26eefa64e52174df3909a555b"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-02/vine-edge/result.json",
+      "bytes": 674683,
+      "sha256": "f0304e1c0911eb10046c38185a0d42160c52741d0910f9ab8d86d513bd4cd918"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-02/vine-edge/explorer-source.js",
+      "bytes": 9876,
+      "sha256": "0f493f53dc60ac5f7017b316c8431668c7a7d11ace116b855d9eafde0ba2c21a"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-02/final-platform/result.json",
+      "bytes": 672455,
+      "sha256": "651b48757994ed046e08d5a96a3ef1f8bc0d003338aa4b9d80c22e5441678766"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-02/final-platform/explorer-source.js",
+      "bytes": 10493,
+      "sha256": "d4360b525805d8d3444d600882f8ab17c003baefb0316f05f0d7354cdbac507d"
     }
   ],
-  "nextExperiment": "Time the first Hard vine grab from the actual browser-entry replay,using original endpoint/reach rules;then validate a complete jungle route through real browser controls and continue the full Hard campaign.",
+  "nextExperiment": "Play the separate423-event input-only schedule through actual browser controls from the verified Hard entry,compare the model outcome after all inputs,and continue banking and the other expeditions.",
   "buildManifest": {
     "path": "reference/build.json",
     "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
@@ -207,7 +234,8 @@
   },
   "controllerSources": {
     "tests/browser/helpers/flight-policy.js": "0fc03749ccd13a7d5cdff2a742b1c47ede34aff2303a05029d161205584e19f7",
-    "tests/browser/helpers/linked-campaign.js": "6a8a1f562533f644832df22a60991c4bddf0274a3c4dbd203e8b382caa2b5ecd"
+    "tests/browser/helpers/linked-campaign.js": "0608d7d572e6f6c79f944ef7d8b21a587ba5e8d16cce1992905036ff45fe5a80",
+    "tests/browser/helpers/jungle-input-plan.js": "540d7a6c48ba70d3c1d43b644f1537dd7cfb65865a1ba7b621d048e013629db9"
   },
   "actualBrowserEntry": {
     "scope": "Observed real-browser entry plus diagnostic startup replay;not complete Hard acceptance",
@@ -236,6 +264,26 @@
   },
   "explorerSource": {
     "path": "scripts/explore-current-jungle.js",
-    "sha256": "9f99d145ca2c2ba7ca7eca150019a0a1a0aeaa905e61b25013daf242da86d022"
+    "sha256": "d4360b525805d8d3444d600882f8ab17c003baefb0316f05f0d7354cdbac507d"
+  },
+  "entryControllerSources": {
+    "tests/browser/helpers/flight-policy.js": "0fc03749ccd13a7d5cdff2a742b1c47ede34aff2303a05029d161205584e19f7",
+    "tests/browser/helpers/linked-campaign.js": "6a8a1f562533f644832df22a60991c4bddf0274a3c4dbd203e8b382caa2b5ecd"
+  },
+  "vineInvestigation": {
+    "scope": "Conditional carried model,not accepted Hard browser gameplay",
+    "grab": "Wait for the current endpoint to approach the existing grab geometry,then use ordinaryUp. No rope/actor memory writes.",
+    "release": "Original column17 left edge899 and actor-center4 permit the player release atx896. The first player cutoffx900 was unreachable;the existing game mechanics were unchanged.",
+    "finalPlatform": "StopRight whenx>=1100 and idle,wait until the platform raises the actor toy<=80,thenUp. The previous fixed walk took one extra step off the platform.",
+    "outcome": {
+      "scene": "expedition-result",
+      "frames": 503,
+      "lives": 3,
+      "pickupMoney": 250,
+      "campaignMoney": 2250,
+      "code": 1,
+      "seed": 16983
+    },
+    "browserInputs": "reference/current-hard-jungle-plan.json"
   }
 }

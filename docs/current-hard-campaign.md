@@ -125,3 +125,36 @@ and deposits$2,250. The carried run has started its second departure. Raw
 capture remains ongoing in`.local/current-hard-full-capture-01/`;this observation
 is not a finished or independently accepted Hard campaign. Protected manifests
 remain untouched while that capture is running.
+
+
+The full capture has now terminated at the second flight:Safari's race is lost
+at294 flight updates on day10,and the original rival-claim path follows with no
+unsupported diagnostic. Jungle recovery and banking remain observed successes;
+this is not a complete Hard campaign pass. The capture's protected artifacts
+remain unchanged. A fresh diagnostic startup replay matches all12 checkpoints,
+781 events and360 flight presentations through the first bank deposit.
+
+`.local/current-hard-second-flight-prefix-01/` is an owned diagnostic copy of
+checkpoints0..13. Only the last metadata name is aliased from`flight-start` to
+`second-flight-start`,with provenance recorded separately. Its state/pixel
+hashes and original input values are unchanged. It reconstructs startup and
+never restores memory or initializes from expected actor/RNG/timer values.
+The original raw capture remains untouched.
+
+
+The bounded second-flight planner independently reconstructs all14 prefix
+states from startup. Its baseline10..25/heading1 reproduces the actual browser's
+entire final state exactly,including the race loss at294 updates and seed50923.
+Alternative50..65,100..115,25..40 and0..2 altitude bands also lose. No unsupported
+diagnostic occurs. No strategy is counted as successful,original captures are
+unchanged,and rival speed/physics/RNG are not adjusted. The next investigation
+is the first weather collision/spin,not further blind altitude changes.
+
+```sh
+node scripts/explore-current-flight.js .local/current-hard-second-flight-prefix-01 \
+  second-flight-start .local/current-hard-second-flight-new 10 25 1
+```
+
+Every invocation starts from original assets and the complete input prefix. Its
+output directory must be fresh;exact tool source is retained there. Exit2 means
+an unsuccessful player candidate,not a passing regression or native evidence.

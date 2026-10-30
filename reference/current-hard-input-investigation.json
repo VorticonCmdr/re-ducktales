@@ -218,9 +218,154 @@
       "path": ".local/current-hard-jungle-plans-02/final-platform/explorer-source.js",
       "bytes": 10493,
       "sha256": "d4360b525805d8d3444d600882f8ab17c003baefb0316f05f0d7354cdbac507d"
+    },
+    {
+      "path": ".local/current-hard-full-capture-01/runner-status.json",
+      "bytes": 110730,
+      "sha256": "a56e6ae9d6bfb86fc2f941590d30f509026464e74c35226e1f3e24f9c387dbe0"
+    },
+    {
+      "path": ".local/current-hard-full-capture-01/source-revision.json",
+      "bytes": 76782,
+      "sha256": "f8e039b3e1ee66f90ca86e2ef4045c93a977aae4b46804fbd230dfbc792800bc"
+    },
+    {
+      "path": ".local/current-hard-full-capture-01/sources.zip",
+      "bytes": 1881859,
+      "sha256": "ca083caffe9d2654e5bcbc7ad99f17b60c6388c9ba1c140bda4448f946a6db5f"
+    },
+    {
+      "path": ".local/current-hard-full-capture-01/browser.log",
+      "bytes": 2940,
+      "sha256": "58f0073dac229027cdde6238f41eec27bdf3f62da2b116c6c3f9265c3093fb6b"
+    },
+    {
+      "path": ".local/current-hard-full-browser-01/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/environment.json",
+      "bytes": 228,
+      "sha256": "8edc033f971ba1cd960499ab5fded78886b821b9ff13d1160be78c701a297b22"
+    },
+    {
+      "path": ".local/current-hard-full-browser-01/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/captured-events.json",
+      "bytes": 141346,
+      "sha256": "342be4558948f6ff733c9b047dc17adb0bb20d7eeebed2e9c3df2314fcf3a910"
+    },
+    {
+      "path": ".local/current-hard-full-browser-01/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/campaign-checkpoints.json",
+      "bytes": 75001,
+      "sha256": "0fcaaf9a6eb252b67e88d40c7c74a6353791223502ecec76351618a9bc59d9b5"
+    },
+    {
+      "path": ".local/current-hard-full-browser-01/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/final-state.json",
+      "bytes": 2228,
+      "sha256": "d3e2b14e91309dee4235ccc4e7486f79dc6123f6959bc13b0fe14fe567de7ecc"
+    },
+    {
+      "path": ".local/current-hard-full-browser-01/hard-campaign-Hard-campaig-33e6f-h-the-final-bank-and-result/jungle-plan-execution.json",
+      "bytes": 59,
+      "sha256": "028c881d26a6c011dd5bd7f2cd4f1157ad8c05edfa35c34d0344916a935bbf55"
+    },
+    {
+      "path": "/private/tmp/ducktales-hard-first-bank-replay.log",
+      "bytes": 2661,
+      "sha256": "8d1cdc10fe856adadf52b8e9de53cd8288e4c735f11a4a58f2b4844618ef6771"
+    },
+    {
+      "path": ".local/current-hard-first-bank-replay-01/captured-events.json",
+      "bytes": 141346,
+      "sha256": "342be4558948f6ff733c9b047dc17adb0bb20d7eeebed2e9c3df2314fcf3a910"
+    },
+    {
+      "path": ".local/current-hard-first-bank-replay-01/timeline.json",
+      "bytes": 1437,
+      "sha256": "f54d6a67c90acc755d0695dfb79c53b2e52d33eea9fb58099bc8104f6c7f8e3b"
+    },
+    {
+      "path": ".local/current-hard-first-bank-replay-01/campaign-checkpoints.json",
+      "bytes": 75001,
+      "sha256": "0fcaaf9a6eb252b67e88d40c7c74a6353791223502ecec76351618a9bc59d9b5"
+    },
+    {
+      "path": ".local/current-hard-first-bank-replay-01/environment.json",
+      "bytes": 228,
+      "sha256": "8edc033f971ba1cd960499ab5fded78886b821b9ff13d1160be78c701a297b22"
+    },
+    {
+      "path": ".local/current-hard-second-flight-prefix-01/captured-events.json",
+      "bytes": 97737,
+      "sha256": "6db661120b67e2398d94da8e6feb179ff1b9169c7834d993b380937a5e247291"
+    },
+    {
+      "path": ".local/current-hard-second-flight-prefix-01/diagnostic-boundary.json",
+      "bytes": 359,
+      "sha256": "e9ea0eb057d4765171d0fa2c5955bee74f7f252759525079754738f9caea2485"
+    },
+    {
+      "path": ".local/current-hard-second-flight-prefix-01/timeline.json",
+      "bytes": 1360,
+      "sha256": "3a0d811297c4d5be29563c3aa15076f54136f2d371576300eb3ec8fd43cb1352"
+    },
+    {
+      "path": ".local/current-hard-second-flight-prefix-01/campaign-checkpoints.json",
+      "bytes": 70813,
+      "sha256": "1ce1f8afde46aaeb9360e3305af92ff36618d429b0cc4f7a3415cfc090e3fe18"
+    },
+    {
+      "path": ".local/current-hard-second-flight-prefix-01/environment.json",
+      "bytes": 228,
+      "sha256": "8edc033f971ba1cd960499ab5fded78886b821b9ff13d1160be78c701a297b22"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/baseline/result.json",
+      "bytes": 209270,
+      "sha256": "fc6f6235a8c3693985c6ff1a5f54c63036e75e399307e6ba330e5052ece429ee"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/baseline/explorer-source.js",
+      "bytes": 4213,
+      "sha256": "0195292e4407c9e98131e14f76da0d50bc6833c2a7587258caa5e28fe44ac9ae"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/middle/result.json",
+      "bytes": 197100,
+      "sha256": "264e10b2d624061f4b12e062c68f4ac3a00b4cdf32915846799e69556a19a8be"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/middle/explorer-source.js",
+      "bytes": 4213,
+      "sha256": "0195292e4407c9e98131e14f76da0d50bc6833c2a7587258caa5e28fe44ac9ae"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/low/result.json",
+      "bytes": 140784,
+      "sha256": "0f5850e2ee9d418ee33fcc9511d04189d0941e0d9370734d219ccbad3dbdd2c0"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/low/explorer-source.js",
+      "bytes": 4213,
+      "sha256": "0195292e4407c9e98131e14f76da0d50bc6833c2a7587258caa5e28fe44ac9ae"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/high/result.json",
+      "bytes": 201157,
+      "sha256": "ce0deb44c3dc8a6b0a7fa7e0b191daaaa25d8306878303538f70ccd6555a0275"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/high/explorer-source.js",
+      "bytes": 4213,
+      "sha256": "0195292e4407c9e98131e14f76da0d50bc6833c2a7587258caa5e28fe44ac9ae"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/ceiling/result.json",
+      "bytes": 202558,
+      "sha256": "5574300419334cb75fff992fa2e6d69794134ca43689e03d2849244253345afc"
+    },
+    {
+      "path": ".local/current-hard-second-flight-plans-01/ceiling/explorer-source.js",
+      "bytes": 4213,
+      "sha256": "0195292e4407c9e98131e14f76da0d50bc6833c2a7587258caa5e28fe44ac9ae"
     }
   ],
-  "nextExperiment": "Play the separate423-event input-only schedule through actual browser controls from the verified Hard entry,compare the model outcome after all inputs,and continue banking and the other expeditions.",
+  "nextExperiment": "Inspect the first weather collision/spin in the exactly reproduced second-race baseline and author a hazard-aware flight strategy;then verify it through actual browser controls and continue Hard.",
   "buildManifest": {
     "path": "reference/build.json",
     "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
@@ -285,5 +430,133 @@
       "seed": 16983
     },
     "browserInputs": "reference/current-hard-jungle-plan.json"
+  },
+  "actualHardJungle": {
+    "scope": "Observed actual browser outcome and diagnostic closed-loop segment;not complete Hard acceptance",
+    "producerCommit": "801b4a257a655e55983b3bcb4c5c89d25a736bce",
+    "modelOutcomeAllSevenFieldsMatch": true,
+    "plannedDomEvents": 423,
+    "frames": 503,
+    "lives": 3,
+    "pickupMoney": 250,
+    "totalReward": 2250,
+    "banked": 2250,
+    "playerCollected": [2],
+    "segmentReplay": {
+      "command": "node scripts/replay-hard-campaign.js .local/current-hard-first-bank-replay-01 --diagnose --through=bank-deposited",
+      "checkpoints": 12,
+      "events": 781,
+      "flightPresentations": 360,
+      "mode": "EXPLORATORY diagnostic"
+    },
+    "fullCaptureTerminal": {
+      "routeCompleted": false,
+      "scene": "rival-claim",
+      "reason": "Second flight loses the Safari race at294 updates,day10. No unsupported diagnostic.",
+      "unsupportedDiagnostic": null,
+      "historicalArtifactsPreserved": true
+    }
+  },
+  "secondFlightInvestigation": {
+    "scope": "Conditional fresh-startup port experiments,not browser/native acceptance",
+    "prefixCheckpoints": 14,
+    "baselineFullFinalStateMatchesBrowser": true,
+    "candidates": [
+      {
+        "candidate": "baseline",
+        "policy": {
+          "altitude": [10, 25],
+          "climbHeading": 1
+        },
+        "scene": "rival-claim",
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 50923,
+          "money": 0,
+          "frames": 294
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "middle",
+        "policy": {
+          "altitude": [50, 65],
+          "climbHeading": 1
+        },
+        "scene": "rival-claim",
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 17760,
+          "money": 0,
+          "frames": 274
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "low",
+        "policy": {
+          "altitude": [100, 115],
+          "climbHeading": 1
+        },
+        "scene": "rival-claim",
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 13473,
+          "money": 0,
+          "frames": 190
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "high",
+        "policy": {
+          "altitude": [25, 40],
+          "climbHeading": 1
+        },
+        "scene": "rival-claim",
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 25021,
+          "money": 0,
+          "frames": 280
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      },
+      {
+        "candidate": "ceiling",
+        "policy": {
+          "altitude": [0, 2],
+          "climbHeading": 1
+        },
+        "scene": "rival-claim",
+        "outcome": {
+          "status": "race-lost",
+          "code": 0,
+          "day": 10,
+          "seed": 31651,
+          "money": 0,
+          "frames": 278
+        },
+        "success": false,
+        "unsupportedDiagnostic": null
+      }
+    ],
+    "tool": {
+      "path": "scripts/explore-current-flight.js",
+      "sha256": "0195292e4407c9e98131e14f76da0d50bc6833c2a7587258caa5e28fe44ac9ae"
+    },
+    "limitations": "Altitude-only strategies fail;none is accepted as a successful flight. Original raw captures,physics,RNG and rival speed are unchanged."
   }
 }

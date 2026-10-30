@@ -36,6 +36,8 @@ compared with9,187/8,795 before lines. New expected timing outputs are separate
 port regression data, never inputs or original elapsed-time goldens.
 
 ```sh
+node scripts/verify-jungle-lines.js
+# Individual checks:
 node scripts/verify-jungle-line-work.js
 node scripts/jungle-line-timing.js
 node --test tests/jungle-timing.test.js
@@ -60,3 +62,13 @@ the drawing wait, frozen actors under Pause (driver/retrace clocks continue),
 and cancelled Quit. A browser-only zero-deadline mutation must fail the initial
 publication assertion. The earlier direct helper stopped before jungle because
 its held throttle was flushed by departure; that attempt is not acceptance.
+
+The final focused gate requires clean committed source, archives its exact
+revision, reruns both long component comparisons and180 unit checks, executes the
+browser scenario and its deadline negative control, and builds the application.
+It rejects zero/skipped/retried browser cases and verifies sources/historical
+artifacts unchanged after the run. The walking stage supplies twenty independent
+32ms Right makes; it adds no production typematic behavior. Pause assertions
+exclude only the two clocks that the original intentionally keeps advancing.
+The direct helper failure, earlier overbroad pause assertion, and interrupted
+exploratory attempt remain separate from acceptance evidence.

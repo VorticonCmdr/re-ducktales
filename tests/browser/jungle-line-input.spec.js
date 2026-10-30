@@ -122,6 +122,21 @@ test("line-inclusive jungle drawing waits, pauses and resumes cancelled quit thr
   await page.keyboard.press("n");
   await until((s) => !s.systemOverlay);
   await until((s) => s.jungle.frames > paused.frames);
+  const beforeMove = (await state()).jungle;
+  // Explicit independent32ms make-repeat provider. The original per-read
+  // matrix flush must not be replenished by an invented production typematic.
+  for (let i = 0; i < 20; i++) {
+    await page.keyboard.down("ArrowRight");
+    await page.clock.runFor(32);
+  }
+  await page.keyboard.up("ArrowRight");
+  const moved = (await state()).jungle;
+  expect(moved.x, "Held controls move the actual jungle actor").toBeGreaterThan(
+    beforeMove.x,
+  );
+  expect(moved.lives).toBe(3);
+  expect(moved.frames).toBeGreaterThan(beforeMove.frames);
+
   await expect(page.locator("#diagnostic")).toBeHidden();
   expect(errors).toEqual([]);
   await info.attach("line-boundaries", {
@@ -130,6 +145,8 @@ test("line-inclusive jungle drawing waits, pauses and resumes cancelled quit thr
       first: first.jungle,
       second: second.jungle,
       paused,
+      beforeMove,
+      moved,
       final: (await state()).jungle,
     }),
     contentType: "application/json",

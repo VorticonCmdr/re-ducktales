@@ -119,7 +119,10 @@ The counter is now connected to jungle source line calls. Six original drawing
 boundaries retain all commands/state/color while adding60 line calls. The180
 unit checks, build, browser pause/quit controls and actual drawing-deadline
 negative control pass. New longer component contracts are being declared and
-independently verified.
+independently verified. Both long component scenarios now pass:1,616 inputs,
+1,714 ordered images,40 gameplay/timer checkpoints and17 negative controls.
+Browser walking after Pause/cancelled Quit also passes. The clean focused gate
+is the remaining integration check.
 [Integration and limits](jungle-line-timing.md). Keep Hard deferred.
 Next finish new carried timer traces and real browser controls, then a fresh
 full campaign comparison. Resident/color,
@@ -142,6 +145,7 @@ npm run verify:runtime-campaign
 node scripts/verify-runtime-campaign.js --fresh-browser
 npm run verify:speaker-game
 node scripts/verify-ega-lines.js
+node scripts/verify-jungle-lines.js
 node scripts/inspect-jungle-line-work.js
 node scripts/verify-speaker-playback-receipt.js
 npm run verify:cave-reveal

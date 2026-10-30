@@ -1,3 +1,5 @@
+import { openOffice } from "./helpers/office-entry.js";
+import { pressDestinationKey } from "./helpers/destination-input.js";
 import { waitForScene, waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
@@ -32,12 +34,16 @@ async function point(canvas, x, y) {
 test("original map pixels and keyboard bank round trip", async ({ page }) => {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  const c = await office(page);
+  const t = await openOffice(page),
+    c = t.canvas,
+    until = t.until;
+  const controls = { page, state: () => state(c), until };
   await page.keyboard.down("ArrowRight");
   await page.keyboard.press("Space");
   await page.keyboard.up("ArrowRight");
-  await finishSecurityEntryRealTime(page, c);
-  await expect(c).toHaveAttribute("data-scene", "map");
+  await finishSecurityEntry({ page, until, state: () => state(c) });
+  await until((s) => s.scene === "map", "world map");
+  await page.clock.runFor(16);
   const expected = PNG.sync.read(await readFile(".local/original-map.png"));
   const actual = PNG.sync.read(
     Buffer.from(
@@ -48,47 +54,40 @@ test("original map pixels and keyboard bank round trip", async ({ page }) => {
   expect([actual.width, actual.height]).toEqual([320, 200]);
   expect(actual.data).toEqual(expected.data);
   await page.keyboard.down("ArrowUp");
-  await expect
-    .poll(async () => (await state(c)).campaign.cursor.y)
-    .toBeLessThan(139);
+  await until((s) => s.campaign.cursor.y < 139, "keyboard map movement");
   await page.keyboard.up("ArrowUp");
   await point(c, 212, 131);
-  await expect.poll(async () => (await state(c)).campaign.asset).toBe(0);
+  await until((s) => s.campaign.asset === 0, "bank marker");
   await page.keyboard.press("Space");
-  await expect
-    .poll(async () => (await state(c)).campaign.destination?.ready)
-    .toBe(true);
+  await until((s) => s.campaign.destination?.ready, "destination input window");
   expect((await state(c)).campaign.travelDays).toBe(3);
-  // Default is Map: inspecting and cancelling never advances the calendar.
-  await page.keyboard.press("Space");
-  await expect.poll(async () => (await state(c)).campaign.info).toBe(false);
+  // Default is Map. Deliver the make inside the observed footer window;
+  // host latency must not choose whether the source flush discards it.
+  await pressDestinationKey(controls, "Space");
+  await until((s) => !s.campaign.info, "Map confirmation");
   expect((await state(c)).campaign.day).toBe(1);
   await page.keyboard.press("Space");
-  await expect
-    .poll(async () => (await state(c)).campaign.destination?.ready)
-    .toBe(true);
-  await page.keyboard.press("ArrowRight");
-  await expect.poll(async () => (await state(c)).campaign.choice).toBe(1);
-  await expect
-    .poll(async () => (await state(c)).campaign.destination?.ready)
-    .toBe(true);
-  await page.keyboard.press("Space");
-  await expect.poll(async () => (await state(c)).campaign.day).toBe(4);
+  await until((s) => s.campaign.destination?.ready, "destination input window");
+  await pressDestinationKey(controls, "ArrowRight");
+  await until((s) => s.campaign.choice === 1, "bank travel choice");
+  await until((s) => s.campaign.destination?.ready, "destination input window");
+  await pressDestinationKey(controls, "Space");
+  await until((s) => s.campaign.day === 4, "bank arrival");
   expect((await state(c)).campaign.location).toBe(0);
   expect((await state(c)).campaign.banked).toBe(0);
-  await expect(c).toHaveAttribute("data-scene", "bank");
+  await until((s) => s.scene === "bank", "bank");
   await page.keyboard.down("Space");
-  await expect(c).toHaveAttribute("data-scene", "map", { timeout: 10000 });
+  await until((s) => s.scene === "map", "bank returns");
   await page.keyboard.up("Space");
   await point(c, 46, 139);
   await page.keyboard.press("Space");
-  await expect(c).toHaveAttribute("data-scene", "office");
+  await until((s) => s.scene === "office", "office return");
   expect((await state(c)).campaign.day).toBe(7);
   expect((await state(c)).campaign.location).toBe(35);
   await expect(page.locator("#diagnostic")).toBeHidden();
   expect(errors).toEqual([]);
   await page.locator("#restart").click();
-  await expect(c).toHaveAttribute("data-scene", "title");
+  await until((s) => s.scene === "title", "Restart");
   expect((await state(c)).campaign.day).toBe(1);
 });
 test("expedition briefing, keyboard takeoff, crash, rival claim and campaign return", async ({

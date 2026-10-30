@@ -51,11 +51,12 @@ buttons remain available. `destination-read` supplies an explicit batch/read
 boundary for independently scheduled input groups;it validates the group before
 using the same reader.
 
-The browser still prompts consumption from external makes. Autonomous neutral
-polls,the original CPU drawing/flush/read window and deferred system-key polling
-remain untranslated. This change does not invent a drawing cost or claim complete
-destination-routine timing parity. Modifier/system/BIOS-queue behavior outside the
-ordinary subset remains separate work.
+Those statements describe the historical make-driven milestone. The current
+[recurring destination program](destination-loop.md) connects autonomous neutral
+polls,the original flush/footer/read order and deferred system polling. It
+charges actual source sprite/copy work;entry pages,selector text/lines and other
+CPU/device costs remain incomplete. The receipt below retains its original
+scope and does not prove current whole-menu timing or full keyboard parity.
 
 Five actual browser scenarios pass. The new case exercises letters,keypad
 cardinals/diagonals/center,held flags,busy and fresh repeats,Map confirmation,

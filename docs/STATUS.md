@@ -21,7 +21,23 @@ Tandy/PCjr includes Sound 001, persistent channels, priorities, engine words, mu
 and completion; all 121 public requests have viewer playback. Speaker playback
 is the default. Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 
-## Current input milestone
+## Current destination milestone
+
+Destination selection now repeats its original flush/footer/read/flip/wait loop
+without waiting for external makes. Physical events update flags; the shared
+reader consumes them after source drawing work. Early keys are discarded at the
+next caller flush. Pause/Quit/sound keys defer to that reader, and ordinary
+neutral flips keep the HTML status and controls stable. The focused command is
+`npm run verify:destination-loop`; combined clean acceptance is pending.
+[Loop evidence and remaining costs](destination-loop.md).
+
+All16 retained native input groups,48 complete key-table boundaries,37 hardware
+events and final return match an independently initialized Game. Source bytes,
+relocated code,buffer/descriptor geometry and16 conditional footer budgets are
+required;original timestamps are never input providers. Native whole-menu timing
+and entry/selector CPU work remain unverified.
+
+## Earlier verified input milestone
 
 Ground expeditions now use original ordinary-key flags at source input calls.
 Physical makes, repeats, release-edge reads, aliases/keypad directions and the
@@ -90,10 +106,11 @@ refresh. Historical passes do not establish a green current broader gate.
   the original striped reveal.
   Safari omits HUD line/text, result-sheet drawing and remaining CPU/device
   costs; whole-original expedition cadence is still unverified.
-- Finish the destination's autonomous neutral polling, draw/flush/read window
-  and deferred system-key polling. Browser reads currently follow external makes;
-  the original recurring loop is incomplete. Original first-map drawing and exact
-  video/cache phase alignment remain open. [Destination scope](destination-keyboard.md).
+- Complete destination entry-page drawing,selector lines/numeric text and other
+  CPU/device costs. Recurring neutral polling,source flush/footer/read ordering
+  and deferred system-key polling now run in the browser;their timing boundary
+  remains partial. Original first-map drawing and exact video/cache phase
+  alignment remain open. [Destination scope](destination-loop.md).
 - Complete cross-scene queued keyboard delivery and remaining system/modifier/BIOS
   behavior. The four ground expeditions now use the ordinary reader, but physical
   input in other scenes and exact transition windows remain incomplete. Broader
@@ -109,8 +126,8 @@ refresh. Historical passes do not establish a green current broader gate.
 - Original save/load/high-score behavior/formats have not been established.
   Browser persistence would be an explicit addition without original evidence.
 
-Next: complete destination polling and cross-scene input windows, then refresh
-broader campaign gates against the current runtime.
+Next: complete remaining source drawing costs and cross-scene input windows,
+then refresh broader campaign gates against the current runtime.
 
 ## Supported build and commands
 
@@ -121,6 +138,7 @@ MZ/EXEPACK, x86 LE16 real mode, overlays, no extender. Actual relocated game byt
 and native addresses were checked; the analysis image is never executed.
 
 ```sh
+npm run verify:destination-loop
 npm run verify:expedition-keyboard
 npm run verify:jungle-core
 npm run verify:cave-timing

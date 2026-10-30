@@ -1,3 +1,4 @@
+import { DestinationLoop } from "./destination-loop.js";
 import { Opening } from "./opening.js";
 import { OfficeMoneyBin } from "./office.js";
 import { OfficeControlCenter } from "./office-control-center.js";
@@ -40,11 +41,17 @@ export class Game {
     openingResources = null,
     originalSecurity = false,
     expeditionInput = "digital",
+    // Component fixtures supply already-decoded read boundaries. Production
+    // selects the autonomous physical-key provider explicitly in browser.js.
+    destinationInput = "boundary",
   } = {}) {
     if (typeof originalSecurity !== "boolean")
       throw Error("Invalid security setting");
     if (!["digital", "keyboard"].includes(expeditionInput))
       throw Error("Unsupported expedition input provider");
+    if (!["boundary", "keyboard"].includes(destinationInput))
+      throw Error("Unsupported destination input provider");
+    this.destinationInput = destinationInput;
     this.expeditionInput = expeditionInput;
     this.keyboardMode = 1; // Resident0077 initializes ordinary-reader mode1.
     this.expeditionKeyboard = new OrdinaryKeyboard(1);
@@ -95,6 +102,7 @@ export class Game {
     this.pendingDifficultySystemKeys = new Map();
     this.pendingSecuritySystemKeys = new Map();
     this.pendingOfficeSystemKeys = new Map();
+    this.pendingDestinationSystemKeys = new Map();
     this.exiting = false;
     const campaignSeed = this.initializeMarket(biosSeed);
     this.campaign = locations ? new Campaign(locations, campaignSeed) : null;
@@ -129,7 +137,9 @@ export class Game {
         ? this.cave
         : this.scene === "photography"
           ? this.photography
-          : null;
+          : this.scene === "map" && this.destinationInput === "keyboard"
+            ? this.campaign?.destinationWaits
+            : null;
     return !this.systemOverlay && component?.wait?.clock === "graphics"
       ? component.wait.until
       : null;
@@ -140,12 +150,15 @@ export class Game {
         ? this.cave
         : this.scene === "photography"
           ? this.photography
-          : null;
+          : this.scene === "map" && this.destinationInput === "keyboard"
+            ? this.campaign?.destinationWaits
+            : null;
     if (this.systemOverlay || component?.wait?.clock !== "graphics")
       throw Error("Unexpected simulation work boundary");
     component.advanceGraphics();
     if (this.scene === "cave") this.collectCave();
-    else this.collectPhotography();
+    else if (this.scene === "photography") this.collectPhotography();
+    else this.collectDestination();
   }
   get usesExpeditionKeyboard() {
     return (
@@ -382,6 +395,7 @@ export class Game {
     this.officeDeparture = null;
     this.pendingBinSystemKeys.clear();
     this.pendingOfficeSystemKeys.clear();
+    this.pendingDestinationSystemKeys.clear();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
     if (departure.outcome.action === "map")
@@ -566,6 +580,11 @@ export class Game {
         "photography",
         "ending",
         "bank",
+        ...(this.scene === "map" &&
+        this.campaign?.info &&
+        this.destinationInput === "keyboard"
+          ? ["map"]
+          : []),
       ].includes(this.scene) ||
         (this.scene === "title" && this.opening && !this.opening.outcome)) &&
       !(this.scene === "ending" && this.ending.phase === "closed") &&
@@ -596,7 +615,9 @@ export class Game {
                             ? this.pendingEndingSystemKeys
                             : this.scene === "bank"
                               ? this.pendingBankSystemKeys
-                              : this.pendingBinSystemKeys;
+                              : this.scene === "map"
+                                ? this.pendingDestinationSystemKeys
+                                : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -677,6 +698,7 @@ export class Game {
       this.pendingDifficultySystemKeys.clear();
       this.pendingSecuritySystemKeys.clear();
       this.pendingOfficeSystemKeys.clear();
+      this.pendingDestinationSystemKeys.clear();
       this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
@@ -820,13 +842,22 @@ export class Game {
       const c = this.campaign;
       if (event.type === "map-key") {
         c.mapKey(event.scanCode, event.pressed);
-        if (c.info && event.pressed) this.readDestinationInput();
+        if (c.info && event.pressed) {
+          if (this.destinationInput === "boundary") this.readDestinationInput();
+          else if (!c.destinationWaits.ready)
+            c.destinationWaits.discardedDuringWait++;
+        }
         return;
       }
       if (event.type === "destination-read") {
         // Explicit reader boundary for independently scheduled ordinary IRQ
         // groups. Browser makes use the same reader through map-key above.
-        if (!c.info || !c.destinationWaits?.ready || !Array.isArray(event.keys))
+        if (
+          this.destinationInput !== "boundary" ||
+          !c.info ||
+          !c.destinationWaits?.ready ||
+          !Array.isArray(event.keys)
+        )
           throw Error("Invalid destination reader boundary");
         for (const key of event.keys) c.mapKey(key.scanCode, key.pressed);
         this.readDestinationInput();
@@ -865,6 +896,18 @@ export class Game {
         ["left", "right", "up", "down", "fire"].includes(event.type)
       ) {
         if (!c.destinationWaits) throw Error("Missing destination wait state");
+        if (this.destinationInput === "keyboard") {
+          const scan = {
+            left: 0x4b,
+            right: 0x4d,
+            up: 0x48,
+            down: 0x50,
+            fire: 0x39,
+          }[event.type];
+          c.mapKey(scan, true);
+          c.mapKey(scan, false);
+          return;
+        }
         c.destinationWaits.input(
           { left: 7, right: 3, up: 1, down: 5, fire: 0xc0 }[event.type],
           u32(this.tick),
@@ -884,6 +927,22 @@ export class Game {
             return;
           }
           c.enterDestination(u32(this.tick));
+          if (this.destinationInput === "keyboard") {
+            if (typeof this.simulationClock !== "function")
+              throw Error("Destination requires an elapsed simulation clock");
+            c.destinationWaits = new DestinationLoop(
+              u32(this.tick),
+              c.atomicAvailable,
+              {
+                entries: this.expeditionResources?.mainEntries,
+                clock: () => this.simulationClock(),
+                readInput: () => this.readDestinationByte(),
+                pollInput: () =>
+                  this.pollSystemInput(this.pendingDestinationSystemKeys),
+                flushInput: () => this.flushDestinationInput(),
+              },
+            );
+          }
           return;
         }
       }
@@ -1381,6 +1440,7 @@ export class Game {
     this.pendingOpeningSystemKeys.clear();
     this.pendingSecuritySystemKeys.clear();
     this.pendingOfficeSystemKeys.clear();
+    this.pendingDestinationSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "title" && this.opening) this.opening.flushInput();
@@ -1546,11 +1606,8 @@ export class Game {
       if (event.type === "sound") {
         if (this.audioEnabled) this.effects.push(event);
       } else if (event.type === "transport") c.aircraft = event.aircraft;
-      else if (event.type === "flush") {
-        c.flushMapKeys();
-        this.handleInput({ type: "controls", fire: false, direction: null });
-        this.effects.push({ type: "flushControls" });
-      } else throw Error(`Unsupported destination effect ${event.type}`);
+      else if (event.type === "flush") this.flushDestinationInput();
+      else throw Error(`Unsupported destination effect ${event.type}`);
     }
     if (!waits.outcome) return;
     const code = waits.outcome.returnCode;
@@ -1559,6 +1616,23 @@ export class Game {
     else if (code === 1)
       this.completeCampaignAction({ type: "travel", target: c.selected });
     else throw Error(`Unsupported destination return ${code}`);
+  }
+  flushDestinationInput() {
+    this.campaign.flushMapKeys();
+    this.pendingDestinationSystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
+  }
+  readDestinationByte() {
+    const c = this.campaign;
+    const beforeFlags = [...c.mapKeyboard.bytes()];
+    const byte = c.mapKeyboard.poll();
+    c.destinationReadTrace = {
+      beforeFlags,
+      byte,
+      readerFlags: [...c.mapKeyboard.bytes()],
+    };
+    return byte;
   }
   readDestinationInput() {
     const c = this.campaign,
@@ -1570,13 +1644,7 @@ export class Game {
     // separate from this explicit input-consumption boundary.
     let byte = 0;
     if (waits.ready) {
-      const beforeFlags = [...c.mapKeyboard.bytes()];
-      byte = c.mapKeyboard.poll();
-      c.destinationReadTrace = {
-        beforeFlags,
-        byte,
-        readerFlags: [...c.mapKeyboard.bytes()],
-      };
+      byte = this.readDestinationByte();
     }
     waits.input(byte, u32(this.tick));
     this.collectDestination();
@@ -2015,6 +2083,13 @@ export class Game {
         ? { officeDeparture: this.officeDeparture.snapshot() }
         : {}),
       ...(this.officeMenu ? { officeMenu: this.officeMenu.snapshot() } : {}),
+      ...(this.pendingDestinationSystemKeys.size
+        ? {
+            pendingDestinationSystemKeys: [
+              ...this.pendingDestinationSystemKeys,
+            ].sort((a, b) => a[0] - b[0]),
+          }
+        : {}),
       ...(this.pendingOfficeSystemKeys.size
         ? {
             pendingOfficeSystemKeys: [...this.pendingOfficeSystemKeys].sort(

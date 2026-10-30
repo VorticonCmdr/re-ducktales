@@ -98,6 +98,7 @@ async function load(read) {
     game = new Game({
       biosSeed: 0,
       expeditionInput: "keyboard",
+      destinationInput: "keyboard",
       openingResources: {
         image: resources.executable,
         entries: resources.archives.get("MAIN.ARC"),
@@ -439,11 +440,13 @@ function frame() {
       const overlay = game.systemOverlay;
       const destination =
         game.scene === "map" ? game.campaign.destinationWaits : null;
+      const destinationInteractive =
+        destination?.interactive ?? destination?.ready;
       const mapTitle = !destination
         ? "World map"
         : destination.confirming
           ? "Preparing departure…"
-          : destination.ready
+          : destinationInteractive
             ? "Choose how to travel"
             : ["wipe", "reveal", "entry-flip"].includes(destination.phase)
               ? "Opening destination…"
@@ -455,7 +458,7 @@ function frame() {
           !!(
             game.scene === "map" &&
             game.campaign.destinationWaits &&
-            !game.campaign.destinationWaits.ready
+            !destinationInteractive
           );
       $("money-bin").disabled = !!overlay || game.scene !== "office";
       $("map").disabled = !!overlay || game.scene !== "office";

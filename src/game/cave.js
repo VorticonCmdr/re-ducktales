@@ -9,7 +9,12 @@ import {
 } from "./cave-scene.js";
 import { u16 } from "./integer.js";
 import { DRIVER_HZ, RETRACE_HZ } from "./timing.js";
-import { cavePartyWork, caveSpriteWork } from "./cave-work.js";
+import { caveSpriteWork } from "./cave-work.js";
+import {
+  caveRoomCompositionWork,
+  caveInitialMinimapWork,
+  caveRuntimePartyWork,
+} from "./cave-runtime-work.js";
 import { caveEndings } from "./cave-endings.js";
 import { caveTransition } from "./cave-transitions.js";
 // Overlay6:09a9..0a81 and0d62/0ec8/0f5a/0fef mask five bits and
@@ -49,6 +54,8 @@ export class Cave {
     this.lastClock = -Infinity;
     this.lastPartyWork = null;
     this.lastDrawingWork = null;
+    this.lastRoomWork = null;
+    this.initialDrawingWork = null;
     this.presentations = 0;
     this.phase = "entering";
     this.current = null;
@@ -267,8 +274,16 @@ export class Cave {
       until: this.now() + work.milliseconds,
     };
   }
-  scene() {
+  *scene() {
     this.background = composeCaveRoom(this.memory, this.entries);
+    const work = caveRoomCompositionWork(this.entries, this.background);
+    this.lastRoomWork = work;
+    this.lastDrawingWork = { kind: "room", ...work };
+    yield {
+      clock: "graphics",
+      remaining: 1,
+      until: this.now() + work.milliseconds,
+    };
     return this.restoreBackground();
   }
   *party(commands, options) {
@@ -277,7 +292,12 @@ export class Cave {
     const page = this.restoreBackground(),
       first = page.length;
     drawCaveParty(this.memory, page, options);
-    const work = cavePartyWork(this.entries, page.slice(first));
+    const work = caveRuntimePartyWork(
+      this.memory,
+      this.entries,
+      page.slice(first),
+      options,
+    );
     this.lastPartyWork = work;
     this.lastDrawingWork = { kind: "party", ...work };
     yield {
@@ -332,7 +352,7 @@ export class Cave {
     this.progress = u16(this.progress + 1);
     if (this.cell & 64) m.b(0x546a, 1);
     for (let i = 0; i < 2; i++) {
-      let c = this.scene();
+      let c = yield* this.scene();
       if (!this.enteredFrom || m.b(0x5d2b)) c = yield* this.party(c);
       if (m.signedByte(0x8b54) > 1 && !(this.cell & 80))
         yield* this.draw(c, 43);
@@ -353,7 +373,7 @@ export class Cave {
       );
       this.sound(0x20);
       for (let i = 0; i < 3; i++) {
-        const c = yield* this.party(this.scene());
+        const c = yield* this.party(yield* this.scene());
         if (!i) c.push({ op: "text", text: "$50", x: 132, y: 128, color: 15 });
         yield* this.present(c);
       }
@@ -445,6 +465,14 @@ export class Cave {
   }
   *run() {
     const m = this.memory;
+    const work = caveInitialMinimapWork(m, this.entries);
+    this.initialDrawingWork = work;
+    this.lastDrawingWork = { kind: "initial-minimap", ...work };
+    yield {
+      clock: "graphics",
+      remaining: 1,
+      until: this.now() + work.milliseconds,
+    };
     let deadline = 0;
     while (true) {
       if (this.room === m.i(0x97b0))
@@ -479,7 +507,7 @@ export class Cave {
         }
       }
       let commands = yield* this.party(
-        this.scene(),
+        yield* this.scene(),
         door ? { asset: door, pose } : undefined,
       );
       if (!dir) {
@@ -521,6 +549,8 @@ export class Cave {
       phase: this.phase,
       partyWork: this.lastPartyWork,
       drawingWork: this.lastDrawingWork,
+      roomWork: this.lastRoomWork,
+      initialDrawingWork: this.initialDrawingWork,
       ...(this.presentationTransition
         ? { presentationTransition: { ...this.presentationTransition } }
         : {}),

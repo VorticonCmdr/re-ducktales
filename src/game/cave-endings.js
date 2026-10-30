@@ -8,7 +8,7 @@ export const caveEndings = {
     this.load(44);
     this.load(45, 96, 94);
     for (let i = 0; i < 5; i++) {
-      const c = yield* this.party(this.scene());
+      const c = yield* this.party(yield* this.scene());
       yield* this.draw(c, 45);
       yield* this.draw(c, 22);
       yield* this.present(c, { striped: i === 0 });
@@ -16,7 +16,7 @@ export const caveEndings = {
     m.b(0x546a, 2);
     this.sound(0x49);
     for (let i = 0; i < 10; i++) {
-      const c = yield* this.party(this.scene(), { asset: 44 });
+      const c = yield* this.party(yield* this.scene(), { asset: 44 });
       yield* this.draw(c, 45);
       yield* this.draw(c, 22);
       yield* this.present(c);

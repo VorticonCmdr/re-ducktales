@@ -1,0 +1,100 @@
+{
+  "id": "original-cave-composition-runtime-work",
+  "executableSHA256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "scope": "Source-inferred primitive workload at original cave helper boundaries;native input/state/code and primitive paths verified independently. Browser acceptance separate. Caller/resident/interrupt work,initial clear and uninterrupted native cadence remain unverified.",
+  "expectedRoomCases": 512,
+  "ranges": [
+    {
+      "role": "room-listing",
+      "start": 9915,
+      "end": 10414
+    },
+    {
+      "role": "doors-listing",
+      "start": 10414,
+      "end": 10513
+    }
+  ],
+  "parents": [
+    {
+      "path": "reference/cave-minimap-work.json",
+      "bytes": 5135,
+      "sha256": "56335ac1ce5666d6ec5a71ed8aac43cb50ba948aa2c5bfb5b9010ea07590a687"
+    },
+    {
+      "path": "reference/cave-draw-work.json",
+      "bytes": 4087,
+      "sha256": "261777970f64082e34fb2e923800ca28c4d0e2003e915d72b6602ed19d3ba626"
+    },
+    {
+      "path": "reference/cave-input.json",
+      "bytes": 7133,
+      "sha256": "aa0ddc3d9f42c88b45f42ee05fe0838d40e02795b91602cd06bda26699de09a9"
+    },
+    {
+      "path": "reference/ega-signed-copy-work.json",
+      "bytes": 7018,
+      "sha256": "f7000f4de962828b12e9eb0497ba99b6ca2378b6a7af559670223b8f5e676ec2"
+    }
+  ],
+  "artifacts": {
+    "doors-listing": {
+      "path": ".local/cave-composition-work-01/doors-listing.json",
+      "bytes": 3930,
+      "sha256": "146bdd66a0912faeb30140a68ac264de964d20510e3f49e0f83b659022566012"
+    },
+    "functions": {
+      "path": ".local/cave-composition-work-01/functions.json",
+      "bytes": 4366,
+      "sha256": "3faba2aa395c017c41286f8f1cf43d8bfd0761ecf96a27b55fe8989d72d2b198"
+    },
+    "room-listing": {
+      "path": ".local/cave-composition-work-01/room-listing.json",
+      "bytes": 16388,
+      "sha256": "42ff1d0afc1d23b5675a49f77a092cfdd549f7003c4d3595758e80c8ac54da7f"
+    }
+  },
+  "sources": {
+    "scripts/verify-cave-composition-work.js": "7b61bf072dd6cfa88b0d542a7a1c115536ccf6cf4f70b930168372edbeeed5cc",
+    "src/game/cave-runtime-work.js": "f6fb5d80bd39bcfd17bc984e8e9560b982c9e94088a3736d5f4314650e27f8f1",
+    "src/game/cave-minimap-work.js": "fb681ea8ffbc8a3dc5fa1ca1dc03a2cec47c5edca0269148913c71eca33538e3",
+    "src/game/cave.js": "562ad53de0086c33db11a9b204c116eae8f5b5eb76202278380584fb09865e54",
+    "src/game/cave-endings.js": "d6d8361f4ee38d63df68a099bd0bf7f11dce230b6a4cbef8e3e95d8cc36c9a08",
+    "tests/cave-timing.test.js": "7cbf14448d84a91fd7d8702a22d6c424e29aa2cecaaf66d2ed3681afb2a34341",
+    "tests/browser/cave-input.spec.js": "6b5a47f4f0d47cd2fa11c09c0f6fe8a4c730a7447dacd523cd53524306b32341",
+    "scripts/verify-cave-routes.js": "668ea45086d223f9c1b0f150bfa3ae087b2a2c4602e5dc7a1b99c11b5e487f04",
+    "scripts/verify-cave-timing-browser-negative.js": "a1d51d4a3449988af5510b0c6dce8400a96a02b495514ba5a26b4cf2762b5348",
+    "scripts/verify-cave-composition-integration.js": "d9d6c12e9d2de98492194f3cb28abcda9622b7ffb012f3fa6c6df00e73b5e48a"
+  },
+  "expectedPartyWork": {
+    "instructions": 355107,
+    "portWrites": 3685,
+    "repeatOpcodes": 4,
+    "repeatIterations": 16000,
+    "sprites": 6,
+    "copies": 1,
+    "omittedFills": 0,
+    "milliseconds": 126.15766666666667,
+    "renderedMinimapFills": 273,
+    "minimapPoints": 33,
+    "minimapCopies": 0
+  },
+  "expectedInitialWork": {
+    "instructions": 76285,
+    "portWrites": 4393,
+    "repeatOpcodes": 504,
+    "repeatIterations": 1008,
+    "milliseconds": 28.525,
+    "copies": 1,
+    "sprites": 1,
+    "minimapPoints": 776
+  },
+  "staticMapping": "CAVE_CODE.EXE x86:LE:16:Real Mode; original captured cave0e0c corresponds to Ghidra1c17; native resident load01f5 versus analysis1000. All196 relocations handled. The two zero-local stack probes are explicitly reconstructed as original five-byte far calls; analysis image never executed.",
+  "startingRecipe": "Unchanged cave-input first code snapshot and pauseReturn DS; no AFTER state or timer values used as inputs. Caller byte comparison plus independent source branch cases,not native executions of512 room cases.",
+  "runtime": "Initial sprite37 and cache build before main cave loop; scene generator waits for cache/video copies and overlays; party adds marker/cache work and replaces old copy counter with signed native-checked work. Cached Canvas reconstruction is not another source drawing call.",
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "verify": "node scripts/verify-cave-composition-work.js",
+  "watchdog": "Only the component test watchdog increased from10000 to15000 iterations; a diagnostic at10000 showed the original expiry delay still running, and completed at10214. No source clocks, input ordinals or expected outcomes changed."
+}

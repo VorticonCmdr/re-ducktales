@@ -21,10 +21,40 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
         body = await response.text();
       const wait =
         /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until: this.now\(\) \+ work.milliseconds,?\s*\};/g;
-      expect(body.match(wait)?.length, "SETUP: cave graphics hooks").toBe(2);
+      expect(body.match(wait)?.length, "SETUP: cave graphics hooks").toBe(4);
       await route.fulfill({
         response,
         body: body.replace(wait, "/* isolated browser graphics-work bypass */"),
+      });
+    });
+  }
+  if (process.env.DUCKTALES_CAVE_DRAWING_NEGATIVE) {
+    const mode = process.env.DUCKTALES_CAVE_DRAWING_NEGATIVE;
+    expect(["omit-room", "omit-minimap"]).toContain(mode);
+    const name = mode === "omit-room" ? "cave" : "cave-minimap-work";
+    await page.route(`**/src/game/${name}.js*`, async (route) => {
+      const response = await route.fetch(),
+        body = await response.text();
+      if (mode === "omit-room") {
+        const hook =
+          /(\*scene\(\) \{[\s\S]*?)yield\s*\{\s*clock: "graphics",[\s\S]*?\};/;
+        expect(
+          body.match(hook),
+          "SETUP: cave composition deadline hook",
+        ).not.toBeNull();
+        await route.fulfill({
+          response,
+          body: body.replace(hook, "$1/* isolated omitted composition wait */"),
+        });
+        return;
+      }
+      const hook = "for (const c of calls) {";
+      expect(body.split(hook).length, "SETUP: cave source workload hook").toBe(
+        2,
+      );
+      await route.fulfill({
+        response,
+        body: body.replace(hook, "for (const c of []) {"),
       });
     });
   }
@@ -98,13 +128,35 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   await expect(page.locator("#audio")).not.toBeChecked();
   const first = await until((s) => s.cave.inputReads >= 1);
   expect(first.cave.inputReads).toBe(1);
+  expect(
+    first.cave.drawingWork.kind,
+    "Original cave composition boundary",
+  ).toBe("room");
+  expect(
+    first.cave.initialDrawingWork.minimapPoints,
+    "Original cave initial minimap",
+  ).toBe(776);
+  expect(first.cave.initialDrawingWork.copies).toBe(1);
+  expect(first.cave.roomWork.copies).toBe(2);
+  expect(
+    first.cave.roomWork.milliseconds,
+    "Original cave room work",
+  ).toBeGreaterThan(10);
+  expect(
+    first.cave.partyWork.minimapPoints,
+    "Original cave marker pixels",
+  ).toBe(33);
+  expect(first.cave.partyWork.omittedFills).toBe(0);
   const beginning = await page.evaluate(() => performance.now());
-  let sourceMilliseconds = first.cave.partyWork.milliseconds;
+  let sourceMilliseconds =
+    first.cave.partyWork.milliseconds + first.cave.roomWork.milliseconds;
   expect(first.cave.partyWork.milliseconds).toBeGreaterThan(120);
   for (let input = 2; input <= 5; input++) {
     const next = await until((s) => s.cave.inputReads >= input);
     expect(next.cave.inputReads, "Skipped cave input observation").toBe(input);
-    if (input < 5) sourceMilliseconds += next.cave.partyWork.milliseconds;
+    if (input < 5)
+      sourceMilliseconds +=
+        next.cave.partyWork.milliseconds + next.cave.roomWork.milliseconds;
   }
   const duration = (await page.evaluate(() => performance.now())) - beginning;
   expect(duration, "Cave source drawing cadence").toBeGreaterThanOrEqual(

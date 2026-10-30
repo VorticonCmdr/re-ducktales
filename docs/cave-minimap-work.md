@@ -1,9 +1,10 @@
 # Original cave minimap work
 
-The browser runtime is unchanged by this investigation. The model lives in
-`scripts/lib/cave-minimap-work.js` until its source boundaries can be integrated
-with room composition and verified through the real cave route. Hard campaigns
-remain deferred. No movement slowdown is shipped by this model.
+The analysis model was recovered without changing gameplay. It is now copied to
+`src/game/cave-minimap-work.js` and connected through the cave workload boundary.
+The production copy must match this preserved model after import/comment changes.
+See [current integration and verification](cave-composition-work.md).
+Hard campaigns remain deferred.
 
 ## Recovered rule
 
@@ -79,7 +80,6 @@ controls reject a changed instruction, one omitted marker pixel and repeated
 cache work on a party frame. Fresh local results go under
 `.local/cave-minimap-verification-*`; proprietary extracts remain ignored.
 
-Next: recover the room composition boundaries, integrate both workloads without
-charging Canvas cache reconstruction, and verify browser controls, timing and
-the complete campaign. The current accepted BIOS-clock runtime and its evidence
-remain unchanged.
+Room composition and minimap workloads are now connected to the runtime. Fresh
+complete-campaign acceptance is pending; the older BIOS-clock acceptance remains
+historical evidence.

@@ -77,7 +77,10 @@ function run(resources, scenario, events = null) {
   const frames = [],
     checkpoints = [];
   let lastPresentation = 0;
-  for (let step = 0; step < 10000 && !cave.outcome; step++) {
+  // Watchdog only: source clocks and input ordinals are unchanged. With room
+  // drawing charged, the expiry scenario reaches its terminal delay near the
+  // old10000-step limit; allow that original delay to finish without skipping it.
+  for (let step = 0; step < 15000 && !cave.outcome; step++) {
     cave.advanceTick();
     cave.advanceRetrace();
     if (cave.presentations !== lastPresentation) {
@@ -99,7 +102,13 @@ function run(resources, scenario, events = null) {
     }
     checkpoints.push(cave.snapshot());
   }
-  assert.ok(cave.outcome, "unfinished cave input/animation");
+  assert.ok(
+    cave.outcome,
+    "unfinished cave input/animation " +
+      scenario.id +
+      ": " +
+      JSON.stringify(cave.snapshot()),
+  );
   if (events)
     assert.equal(consumed, events.length, "unconsumed required events");
   return { outcome: cave.outcome, frames, stream, checkpoints, terminalCounts };

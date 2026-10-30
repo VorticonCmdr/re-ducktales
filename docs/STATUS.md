@@ -3,7 +3,20 @@
 Updated 2026-10-30. **The whole game is incomplete; this remains completion work,
 not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
-## Current accepted milestone: BIOS seed provider
+## Current work: cave room and minimap drawing time
+
+The runtime now charges initial minimap construction, both room-cache copies
+and overlays, and marker pixels. All194 units, conditional native cave checks,
+four independent outcomes/replays and actual cave controls pass in development.
+Source comparison checks598 new original bytes and512 room branches. Clean-source
+focused acceptance is pending: `npm run verify:cave-composition`.
+
+The full Easy record below is historical while this runtime is integrated. Its
+source guards intentionally reject changed sources. A fresh complete campaign
+and independent browser replay are next. Hard stays deferred.
+[Current workload, evidence and limits](cave-composition-work.md).
+
+## Previous accepted milestone: BIOS seed provider
 
 The browser now samples a clock-derived unsigned16 seed at startup and again at
 original difficulty confirmation, instead of fixing every campaign to zero.
@@ -22,17 +35,15 @@ source files,90 artifacts and1,172 preserved historical artifacts.
 `npm run verify:bios-clock` repeats focused acceptance.
 See [environment contract and evidence](bios-clock.md).
 
-Next non-Hard milestone: locate and account for the missing original cave room
-composition/minimap drawing work, then compare its observable movement timing.
-This is an evidence target, not a claim of a complete native timing model.
+Work since that acceptance is described above. Complete native cadence remains
+unverified.
 
 Minimap call recovery is now verified as an analysis component: four original
 code ranges and809 source-inferred point paths match the native primitive.
 The initial cache needs776 points and one copy; ordinary Easy frames need33
 marker points. Charging the browser's whole reconstructed map every frame would
-overcount cached work. The prototype is not connected to gameplay yet; room
-composition and fresh browser acceptance are next. The accepted runtime above
-is unchanged. [Minimap evidence and command](cave-minimap-work.md).
+overcount cached work. The model is now connected to the runtime described above;
+its analysis evidence remains unchanged. [Minimap evidence](cave-minimap-work.md).
 
 ## Previous accepted runtime milestone
 
@@ -155,7 +166,8 @@ Physical waveform/gain/filter parity remains unverified. [Sound evidence](speake
 - Native whole-game cadence is unverified. Jungle still omits resident/color,
   HUD caller, opaque-text and remaining CPU/device work. Mountain now charges
   HUD primitives but omits resident/color/caller work and composition copies;
-  cave omits minimap fills, room composition and other copies;
+  cave now charges room/minimap primitives but omits the initial clear and
+  remaining resident/caller/device work;
   Safari omits HUD/result drawing and remaining CPU/device costs.
 - Destination entry/selector/numeric drawing and exact video/cache phase remain
   partial. Cave's striped treasure reveal is implemented, but complete native
@@ -178,6 +190,7 @@ experiments leave the shared8386 session untouched and close their owned instanc
 
 ```sh
 npm run verify:current-campaign
+npm run verify:cave-composition
 npm run verify:bios-clock
 node scripts/verify-bios-clock-campaign-receipt.js
 node scripts/verify-mountain-phase-campaign-receipt.js

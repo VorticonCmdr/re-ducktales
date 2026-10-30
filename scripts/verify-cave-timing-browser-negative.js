@@ -30,12 +30,12 @@ const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
 await writeFile(`${root}/browser-negative.log`, output);
 assert.ifError(result.error);
 assert.equal(result.status, 1);
-assert.match(output, /Cave source drawing cadence/);
+assert.match(output, /Original cave composition boundary/);
 assert.match(output, /1 failed/);
 assert.doesNotMatch(
   output,
   /SETUP:|ENOENT|No tests found|Test timeout|TimeoutError|browserType\.launch|Test was interrupted|ETIMEDOUT|Channel closed/,
 );
 console.log(
-  "Cave timing browser negative: omitted source work rejected by actual input cadence.",
+  "Cave timing browser negative: omitted source work rejected at actual composition publication boundary.",
 );

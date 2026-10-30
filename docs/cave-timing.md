@@ -1,5 +1,9 @@
 # Cave drawing time
 
+This page records the earlier partial sprite/room-restore milestone. Current
+[room and minimap timing work](cave-composition-work.md) adds the costs described
+here as omitted; the original evidence below remains a historical snapshot.
+
 The port now waits for source drawing work before advancing the cave program.
 This corrects an omitted cost; it is not a user-selected slowdown. The original
 six-count movement deadline remains unchanged. A redraw can overrun that

@@ -65,14 +65,28 @@ function next(c) {
 }
 test("cave drawing completes at its source budget before the following retrace", () => {
   const { game, clock, cave } = fresh({ origin: 37 });
-  assert.equal(cave.lastPartyWork.milliseconds, 125.453);
-  clock.advanceTo(37 + 125.452);
+  assert.equal(cave.lastDrawingWork.kind, "initial-minimap");
+  assert.equal(cave.initialDrawingWork.minimapPoints, 776);
+  let completion = cave.initialDrawingWork.milliseconds;
+  clock.advanceTo(37 + completion - 0.001);
   assert.equal(cave.wait.clock, "graphics");
   assert.equal(cave.presentations, 0);
-  clock.advanceTo(37 + 125.453);
+  clock.advanceTo(37 + completion);
+  assert.equal(cave.lastDrawingWork.kind, "room");
+  assert.equal(cave.lastRoomWork.copies, 2);
+  assert.ok(cave.lastRoomWork.milliseconds > 10);
+  completion += cave.lastRoomWork.milliseconds;
+  clock.advanceTo(37 + completion);
+  assert.equal(cave.lastDrawingWork.kind, "party");
+  assert.equal(cave.lastPartyWork.minimapPoints, 33);
+  assert.equal(cave.lastPartyWork.milliseconds, 126.15766666666667);
+  completion += cave.lastPartyWork.milliseconds;
+  clock.advanceTo(37 + completion - 0.001);
+  assert.equal(cave.wait.clock, "graphics");
+  clock.advanceTo(37 + completion);
   assert.equal(cave.wait.clock, "retrace");
   assert.equal(cave.presentations, 0);
-  assert.equal(cave.tick, Math.floor((125.453 * DRIVER_HZ) / 1000));
+  assert.equal(cave.tick, Math.floor((completion * DRIVER_HZ) / 1000));
   clock.advanceTo(clock.retraceAt);
   assert.equal(cave.presentations, 1);
   assert.equal(game.scene, "cave");

@@ -8,6 +8,8 @@ import {
   CAVE_SPRITES,
 } from "./cave-scene.js";
 import { u16 } from "./integer.js";
+import { DRIVER_HZ, RETRACE_HZ } from "./timing.js";
+import { cavePartyWork, caveSpriteWork } from "./cave-work.js";
 import { caveEndings } from "./cave-endings.js";
 import { caveTransition } from "./cave-transitions.js";
 export class Cave {
@@ -18,6 +20,17 @@ export class Cave {
     Object.assign(this, prepareCave(options, previousMemory));
     this.tick = 0;
     this.retrace = 0;
+    this.clock =
+      options.clock ??
+      (() =>
+        Math.max(
+          (this.tick * 1000) / DRIVER_HZ,
+          (this.retrace * 1000) / RETRACE_HZ,
+        ));
+    if (typeof this.clock !== "function") throw Error("Invalid cave clock");
+    this.lastClock = -Infinity;
+    this.lastPartyWork = null;
+    this.lastDrawingWork = null;
     this.presentations = 0;
     this.phase = "entering";
     this.current = null;
@@ -40,6 +53,31 @@ export class Cave {
     this.flushInput();
     this.iterator = this.run();
     this.resume();
+  }
+  setClock(clock) {
+    if (typeof clock !== "function") throw Error("Invalid cave clock");
+    const before = this.now(),
+      after = clock();
+    if (
+      !Number.isFinite(after) ||
+      after < 0 ||
+      (this.wait?.clock === "graphics" && before !== after)
+    )
+      throw Error("Cannot rebase active cave graphics clock");
+    this.clock = clock;
+    this.lastClock = after;
+  }
+  now() {
+    const value = this.clock();
+    if (!Number.isFinite(value) || value < 0 || value < this.lastClock)
+      throw Error("Invalid or backwards cave simulation clock");
+    this.lastClock = value;
+    return value;
+  }
+  advanceGraphics() {
+    if (this.wait?.clock !== "graphics")
+      throw Error("Cave graphics resumed outside drawing work");
+    this.advance("graphics");
   }
   setControls(controls) {
     if (
@@ -84,11 +122,13 @@ export class Cave {
       this.phase = "complete";
     } else {
       if (
-        !["driver", "retrace", "input"].includes(n.value.clock) ||
+        !["driver", "retrace", "input", "graphics"].includes(n.value.clock) ||
         !Number.isInteger(n.value.remaining) ||
         n.value.remaining < 1
       )
         throw Error("Invalid cave wait");
+      if (n.value.clock === "graphics" && !Number.isFinite(n.value.until))
+        throw Error("Invalid cave graphics deadline");
       this.wait = n.value;
     }
   }
@@ -119,6 +159,12 @@ export class Cave {
     this.onFlushInput();
   }
   advance(clock) {
+    if (this.wait?.clock === "graphics") {
+      if (this.now() < this.wait.until) return;
+      this.wait = null;
+      this.resume();
+      if (clock === "graphics") return;
+    }
     if (!this.wait || this.wait.clock !== clock || --this.wait.remaining)
       return;
     if (this.pending) {
@@ -143,25 +189,45 @@ export class Cave {
   get cell() {
     return this.memory.b(0x5a42 + this.room * 2);
   }
-  draw(commands, id, frame) {
+  *draw(commands, id, frame) {
     const at = CAVE_SPRITES.get(id);
     if (at === undefined) throw Error(`Untranslated cave animation ${id}`);
     if (frame !== undefined) this.memory.b(at + 18, frame);
-    commands.push({
+    const command = {
       op: "sprite",
       asset: id,
       x: this.memory.i(at),
       y: this.memory.i(at + 2),
       frame: this.memory.b(at + 18),
-    });
+    };
+    commands.push(command);
+    const work = caveSpriteWork(this.entries, command);
+    this.lastDrawingWork = { kind: "sprite", ...work };
+    yield {
+      clock: "graphics",
+      remaining: 1,
+      until: this.now() + work.milliseconds,
+    };
   }
   scene() {
     this.background = composeCaveRoom(this.memory, this.entries);
     return this.restoreBackground();
   }
-  party(commands, options) {
-    // Helper20b8 always restores the room buffer before drawing the party.
-    return drawCaveParty(this.memory, this.restoreBackground(), options);
+  *party(commands, options) {
+    // Helper20b8 restores the room before its new sprites. The nested room
+    // command list reconstructs cached pixels and is not another source draw.
+    const page = this.restoreBackground(),
+      first = page.length;
+    drawCaveParty(this.memory, page, options);
+    const work = cavePartyWork(this.entries, page.slice(first));
+    this.lastPartyWork = work;
+    this.lastDrawingWork = { kind: "party", ...work };
+    yield {
+      clock: "graphics",
+      remaining: 1,
+      until: this.now() + work.milliseconds,
+    };
+    return page;
   }
   load(id, x, y) {
     const at = loadCaveSprite(this.memory, this.entries, id);
@@ -209,15 +275,17 @@ export class Cave {
     if (this.cell & 64) m.b(0x546a, 1);
     for (let i = 0; i < 2; i++) {
       let c = this.scene();
-      if (!this.enteredFrom || m.b(0x5d2b)) c = this.party(c);
-      if (m.signedByte(0x8b54) > 1 && !(this.cell & 80)) this.draw(c, 43);
+      if (!this.enteredFrom || m.b(0x5d2b)) c = yield* this.party(c);
+      if (m.signedByte(0x8b54) > 1 && !(this.cell & 80))
+        yield* this.draw(c, 43);
       yield* this.present(c);
     }
     m.i(0x8eb2, 0);
     if (!m.b(0x5d2b)) {
       if (this.enteredFrom)
         yield* caveTransition.call(this, "entry", this.enteredFrom);
-      for (let i = 0; i < 2; i++) yield* this.present(this.party(this.back()));
+      for (let i = 0; i < 2; i++)
+        yield* this.present(yield* this.party(this.back()));
     } else if (m.signedByte(0x8b54) > 1 && !(this.cell & 80)) {
       yield* this.delay(73);
       m.view.setUint32(
@@ -227,7 +295,7 @@ export class Cave {
       );
       this.sound(0x20);
       for (let i = 0; i < 3; i++) {
-        const c = this.party(this.scene());
+        const c = yield* this.party(this.scene());
         if (!i) c.push({ op: "text", text: "$50", x: 132, y: 128, color: 15 });
         yield* this.present(c);
       }
@@ -246,7 +314,7 @@ export class Cave {
       ])
         if (this.cell & bit) {
           this.load(asset);
-          yield* this.present(this.party(this.back()));
+          yield* this.present(yield* this.party(this.back()));
           m.b(0x54aa, m.b(0x54aa) | 1);
         }
     }
@@ -354,7 +422,7 @@ export class Cave {
           this.invalidLatch = 1;
         }
       }
-      let commands = this.party(
+      let commands = yield* this.party(
         this.scene(),
         door ? { asset: door, pose } : undefined,
       );
@@ -363,7 +431,7 @@ export class Cave {
         const roll = caveRandom(m) & 255;
         if (roll < 231 || this.poseLatch) this.poseLatch = 0;
         else {
-          this.draw(commands, 38 + (caveRandom(m) % 5));
+          yield* this.draw(commands, 38 + (caveRandom(m) % 5));
           this.poseLatch = 1;
         }
         if (this.idleCount >= 15) {
@@ -395,6 +463,8 @@ export class Cave {
     const m = this.memory;
     return {
       phase: this.phase,
+      partyWork: this.lastPartyWork,
+      drawingWork: this.lastDrawingWork,
       ...(this.wait?.clock === "input" ? { waitingForInputPoll: true } : {}),
       room: this.room,
       goal: m.i(0x97b0),
@@ -404,6 +474,8 @@ export class Cave {
       limit: m.i(0x54ac),
       money: m.view.getUint32(0x8cc0, true),
       seed: u16(m.i(0x2229)),
+      inputReads: this.inputs.filter((event) => Object.hasOwn(event, "code"))
+        .length,
       tick: this.tick,
       presentations: this.presentations,
       outcome: this.outcome,

@@ -87,7 +87,15 @@ test("cave pauses at its input call, preserves memory and carries advancing devi
   assert.equal(g.systemOverlay, null);
   assert.equal(c.inputs.length, n + 1);
   assert.equal(c.inputs.at(-1).code, 0);
+  assert.equal(c.wait.clock, "graphics");
+  assert.ok(c.lastPartyWork.milliseconds > 0);
+  for (let i = 0; i < 200 && c.wait.clock === "graphics"; i++) g.advanceTick();
   assert.equal(c.wait.clock, "retrace");
+  assert.equal(
+    c.inputs.length,
+    n + 1,
+    "drawing must finish before another input",
+  );
   g.advanceRetrace();
   assert.equal(
     c.inputs.length,

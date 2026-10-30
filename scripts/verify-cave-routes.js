@@ -38,7 +38,31 @@ function directionTo(cave, target) {
   throw Error(`No ${target} route`);
 }
 function run(resources, scenario, events = null) {
-  const cave = new Cave({ ...resources, ...scenario.start });
+  let cave,
+    consumed = 0;
+  const stream = [];
+  cave = new Cave({
+    ...resources,
+    ...scenario.start,
+    pollInput: () => {
+      const ordinal = cave.inputs.length + 1;
+      let controls;
+      if (events) {
+        const event = events[consumed++];
+        assert.equal(event?.input, ordinal, "Unfinished cave source input");
+        controls = event.controls;
+      } else {
+        const direction =
+          ordinal === 1 || scenario.route === "idle"
+            ? null
+            : directionTo(cave, scenario.route);
+        controls = { direction, fire: direction !== null };
+        stream.push({ input: ordinal, controls });
+      }
+      cave.setControls(controls);
+      return true;
+    },
+  });
   const terminalCounts = { presentations: 0, partyDraws: 0 };
   const present = cave.present,
     party = cave.party;
@@ -50,32 +74,10 @@ function run(resources, scenario, events = null) {
     if (this.phase === scenario.status) terminalCounts.partyDraws++;
     return party.apply(this, args);
   };
-  const stream = [],
-    frames = [],
+  const frames = [],
     checkpoints = [];
-  let consumed = 0,
-    lastPresentation = 0;
+  let lastPresentation = 0;
   for (let step = 0; step < 10000 && !cave.outcome; step++) {
-    let input = null;
-    if (events) {
-      while (events[consumed]?.step === step) {
-        input = events[consumed++].controls;
-        cave.setControls(input);
-      }
-      assert.ok(
-        !events[consumed] || events[consumed].step > step,
-        "late required event",
-      );
-    } else if (
-      scenario.route !== "idle" &&
-      cave.phase === "exploring" &&
-      cave.wait?.clock === "driver"
-    ) {
-      const direction = directionTo(cave, scenario.route);
-      input = { direction, fire: direction !== null };
-      cave.setControls(input);
-      stream.push({ step, controls: input });
-    }
     cave.advanceTick();
     cave.advanceRetrace();
     if (cave.presentations !== lastPresentation) {
@@ -252,7 +254,7 @@ export async function verifyCaveRoutes(resources) {
       }));
       assert.throws(
         () => check(run(resources, scenario, altered), scenario),
-        "omitted movement must fail",
+        /Unfinished cave source input/,
       );
     }
     // Conditional application entry, followed by the real Cave and campaign
@@ -277,9 +279,19 @@ export async function verifyCaveRoutes(resources) {
       g.briefing = { activity: "cave", variant: scenario.start.variant };
       g.startExpedition();
       let event = 0;
+      const originalPoll = g.cave.pollInput;
+      g.cave.pollInput = () => {
+        if (!originalPoll()) return false;
+        const input = actual.stream[event++];
+        assert.equal(
+          input?.input,
+          g.cave.inputs.length + 1,
+          "Unfinished application cave input",
+        );
+        g.input({ type: "controls", ...input.controls });
+        return true;
+      };
       for (let step = 0; step < 10000 && g.scene === "cave"; step++) {
-        while (actual.stream[event]?.step === step)
-          g.input({ type: "controls", ...actual.stream[event++].controls });
         g.advanceTick();
         g.advanceRetrace();
       }

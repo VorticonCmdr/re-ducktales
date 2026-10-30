@@ -265,6 +265,10 @@ function replay({ dropPause = false, dropClock = false } = {}) {
   assert.equal(g.systemOverlay, null);
   assert.equal(c.inputs.length, n + 1);
   assert.equal(c.inputs.at(-1).code, 0);
+  assert.equal(c.wait.clock, "graphics");
+  for (let i = 0; i < 200 && c.wait.clock === "graphics"; i++) g.advanceTick();
+  assert.equal(c.wait.clock, "retrace", "unfinished resumed cave drawing");
+  assert.equal(c.inputs.length, n + 1);
   g.advanceRetrace();
   assert.equal(c.inputs.length, n + 2, "overdue cave deadline");
   return 1;

@@ -56,6 +56,10 @@ export function compareCave(
     0,
     "unexpected input consumption before first scene",
   );
+  // Align with the original after-party boundary; instruction work precedes
+  // the first pending page and is not supplied by an expected timer value.
+  for (let i = 0; i < 500 && !cave.pending; i++) cave.advanceTick();
+  assert.ok(cave.pending, "unfinished first cave party draw");
   assert.deepEqual(cave.wait, { clock: "retrace", remaining: 1 });
   const m = cave.memory;
   if (alterTorch) m.b(0x6d44, m.b(0x6d44) ^ 1);

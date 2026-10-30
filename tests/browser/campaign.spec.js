@@ -2,6 +2,7 @@ import { waitForScene, waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import { openRecordedApplication } from "./helpers/clock.js";
 import {
   finishSecurityEntry,
   finishSecurityEntryRealTime,
@@ -244,20 +245,13 @@ for (const [name, x, y, activity] of [
 test("keyboard flight lands, explores a cave, collects treasure and returns to the map", async ({
   page,
 }) => {
-  test.setTimeout(90000);
+  test.setTimeout(180000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   // Supply an explicit browser clock so test-runner latency cannot add idle
   // cave decisions (RNG/pursuer steps) between reading a room and pressing a key.
   // Input and rendering still use the unmodified browser application.
-  await page.clock.install({ time: new Date("2026-01-01T00:00:00Z") });
-  await page.clock.pauseAt(new Date("2026-01-01T00:00:01Z"));
-  await page.addInitScript(() => {
-    window.requestAnimationFrame = (callback) =>
-      setTimeout(() => callback(performance.now()), 8);
-    window.cancelAnimationFrame = clearTimeout;
-  });
-  await page.goto("/");
+  await openRecordedApplication(page, 1);
   // Resource loading is real asynchronous I/O. Keep the supplied simulation
   // clock frozen until the application has created its scheduler; otherwise
   // network/host latency chooses the clock origin before the first input.

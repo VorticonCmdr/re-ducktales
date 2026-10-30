@@ -24,9 +24,14 @@ export function* caveTransition(stage, direction) {
     m.b(at + 18, pose);
     m.i(at, m.i(p.table + i * 4));
     m.i(at + 2, m.i(p.table + i * 4 + 2));
-    const c = this.party(this.back(), { asset: p.asset, kind: p.kind, pose });
-    if (stage === "entry" && !(this.cell & 80) && i < 8) this.draw(c, 43);
-    if (p.cover) this.draw(c, p.cover);
+    const c = yield* this.party(this.back(), {
+      asset: p.asset,
+      kind: p.kind,
+      pose,
+    });
+    if (stage === "entry" && !(this.cell & 80) && i < 8)
+      yield* this.draw(c, 43);
+    if (p.cover) yield* this.draw(c, p.cover);
     yield* this.present(c);
     pose++;
   }
@@ -40,7 +45,7 @@ export function* caveTransition(stage, direction) {
       this.sound(0x20);
     }
     for (let i = 0; i < 4; i++) {
-      const c = this.party(this.back());
+      const c = yield* this.party(this.back());
       if (!(this.cell & 80))
         c.push({ op: "text", text: "$50", x: 132, y: 128, color: 15 });
       yield* this.present(c);

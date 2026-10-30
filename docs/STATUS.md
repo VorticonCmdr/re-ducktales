@@ -23,6 +23,13 @@ is the default. Physical waveform/gain/filter parity remains open. [Audio](audio
 
 ## Current verified milestone
 
+The cave now charges original party-helper and sprite work before continuing,
+including overwritten draws. Focused checks pass: the conditional original
+input/deadline interval, code/state/image comparisons, passage/ending replays,
+132 unit cases, the full browser flight/failure/retry/treasure route, browser
+Pause/input checks and an omitted-work negative. The combined gate and source
+receipt are being recorded. [Cave timing contract](cave-timing.md).
+
 `npm run verify:jungle-draw-timing` passed on `f6d0f05`: original jungle
 map/routine/pixel comparisons, the independent Python map oracle, both migrated
 component regressions, six original drawing-work cases, all 127 unit tests,
@@ -44,6 +51,9 @@ separately checked timer words, 1,714 ordered image payloads/modes/wipe tokens,
 controls pass. **Game/browser runtime code is unchanged by this migration.**
 [Comparison rules](jungle-component-timing.md).
 
+After the cave/Scheduler changes, `npm run verify:jungle-core` still passes its
+original comparisons, both component contracts and the independent map oracle.
+Its complete browser source receipt needs refresh for the new shared sources.
 Mountain sprite pacing and its complete summit/browser route passed their earlier
 `ce112a8` milestone. Its current source receipt and older complete Easy/Hard
 campaign receipts need refresh after shared runtime changes. Those historical
@@ -51,8 +61,10 @@ passes do not establish a green current broader gate. [Earlier milestones](statu
 
 ## Remaining work
 
-- Measure and correct cave/safari drawing work. Mountain copy/text/line and other
+- Measure and correct safari drawing work. Mountain copy/text/line and other
   CPU/device costs, and jungle line/text/remaining CPU costs, are still omitted.
+  Cave omits minimap fills, room composition, copies outside the party helper
+  and remaining CPU/device costs; its measured budget is partial.
   Cave's first treasure reveal also substitutes a normal page presentation for
   the original striped reveal.
 - Finish the destination's autonomous neutral polling, draw/flush/read window
@@ -72,8 +84,7 @@ passes do not establish a green current broader gate. [Earlier milestones](statu
 - Original save/load/high-score behavior/formats have not been established.
   Browser persistence would be an explicit addition without original evidence.
 
-Next: compare cave's known input-to-deadline drawing interval with its actual
-source sprite/copy calls, then address safari pacing and refresh broader gates.
+Next: address safari pacing and refresh broader gates.
 
 ## Supported build and commands
 
@@ -85,6 +96,7 @@ and native addresses were checked; the analysis image is never executed.
 
 ```sh
 npm run verify:jungle-core
+npm run verify:cave-timing
 npm run verify:jungle-draw-timing
 npm run build
 npm run dev -- --port 5186

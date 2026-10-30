@@ -184,7 +184,7 @@ function checkCapture(
 }
 function checkIdle(resources, local) {
   const c = create(resources, local.idleEntry);
-  for (let i = 0; i < 30 && !c.firstDecision; i++) {
+  for (let i = 0; i < 1000 && !c.firstDecision; i++) {
     c.advanceTick();
     c.advanceRetrace();
   }

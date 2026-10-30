@@ -1,0 +1,83 @@
+{
+  "id": "cave-input-to-deadline-drawing-work-fb658562",
+  "acceptanceLevel": "conditional-native-drawing-work",
+  "parent": {
+    "path": "reference/cave-input.json",
+    "sha256": "aa0ddc3d9f42c88b45f42ee05fe0838d40e02795b91602cd06bda26699de09a9"
+  },
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "expectedCaseCount": 1,
+  "expectedSpriteCalls": 7,
+  "observedDriverCounts": 10,
+  "configuration": {
+    "core": "normal",
+    "cyclesPerMillisecond": 3000,
+    "retraceHz": 70.086
+  },
+  "sources": {
+    "src/game/cave-work.js": "af21d9107c18ad057909f4cc56c721a54fe24e949e09392674db4837140cc883",
+    "src/game/cave-scene.js": "c2d88cce7195e9503fd6c2be24cbc313b5e7d1f85219f4a5b33866639f198105",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d"
+  },
+  "artifacts": {
+    "party-function": {
+      "path": ".local/cave-draw-work-01/party-function.json",
+      "sha256": "3334d3800c2a13b0c57562d77c6cfa38b76a0de16bfdbf0aa9afe03a374d9bd4"
+    },
+    "party-instructions": {
+      "path": ".local/cave-draw-work-01/party-instructions.json",
+      "sha256": "98ba1bd0f17fc777b25deccfc36e56f9dec42fc064b223261fe19651ced4662c"
+    },
+    "party-disassembly": {
+      "path": ".local/cave-draw-work-01/party-disassembly.json",
+      "sha256": "1defe447ec579caf8f606c380d81f323ccd84879696098eaf0152dd4d53839ba"
+    }
+  },
+  "expectedPartyWork": {
+    "instructions": 353323,
+    "portWrites": 3520,
+    "repeatOpcodes": 4,
+    "repeatIterations": 16000,
+    "sprites": 6,
+    "copies": 1,
+    "omittedFills": 273,
+    "milliseconds": 125.453
+  },
+  "expectedIdleWork": {
+    "instructions": 2642,
+    "portWrites": 60,
+    "sprites": 1,
+    "copies": 0,
+    "omittedFills": 0,
+    "milliseconds": 0.9206666666666666
+  },
+  "staticToNative": {
+    "program": "CAVE_CODE.EXE",
+    "ghidraBodyBase": "1c17:0000",
+    "nativeBodyBase": "0e0c:0000",
+    "ghidraLoadBase": "1000",
+    "nativeLoadBase": "01f5",
+    "helperOffset": 8376,
+    "helperBytes": 728,
+    "relocationCount": 196,
+    "analysisOnlyPrologue": {
+      "offset": 8382,
+      "native": "9a9e1e0306",
+      "analysis": "81ec0c0090"
+    }
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "startingRecipe": "Use unchanged parent pauseReturn stop519 at cave09a6 and deadlineEntry stop520 at resident01d8. Parent verifies complete11054-byte relocated cave code, real-mode/configuration, original driver pointers, native device/input schedules and resource hashes. Static helper export is from explicit CAVE_CODE.EXE,with declared analysis-only stack-probe normalization; original game bytes are never executed from that image.",
+  "inputContract": "BEFORE DS and returned joystick AL0 determine normal party17/kind17/pose0 and subsequent neutral idle RNG calls. Original archives supply masks/geometry. AFTER DS supplies expected descriptor/RNG values and timer difference only; no expected counter is consumed by the game.",
+  "comparisonRules": "Exact primitive work counts,all42 unique20-byte descriptors and torch/RNG outputs. All728 Ghidra helper bytes compare against actual native bytes after exact196 relocation adjustment and reconstruction of the declared five-byte analysis prologue. Partial work milliseconds must lie within the observed ten-counter bracket plus/minus one original driver period; this is conditional budget agreement,not exact or uninterrupted native cadence.",
+  "limitations": [
+    "273 minimap fill calls,room composition,outside-party copy work,text,caller/interrupt work and remaining-slice I/O clamping are omitted.",
+    "BEFORE/AFTER debugger stops discard CPU budget; the original counter range has phase uncertainty.",
+    "No original whole-level timing/scanout parity or original sound waveform claim.",
+    "The newly emitted source calls are counted; nested cached room reconstruction is never charged as another source draw."
+  ],
+  "verify": "npm run verify:cave-work"
+}

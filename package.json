@@ -138,7 +138,9 @@
     "verify:jungle-work": "node scripts/verify-jungle-work.js",
     "verify:jungle-timing": "npm run verify:jungle-work && npm test && DUCKTALES_JUNGLE_ENTRY_MANIFEST=reference/destination-jungle-entry.json playwright test tests/browser/jungle-input.spec.js --config playwright.campaign.config.js && node scripts/verify-jungle-timing-browser-negative.js",
     "verify:jungle-draw-timing": "npm run verify:build && npm run verify:jungle-core && npm run verify:jungle-work && npm test && DUCKTALES_JUNGLE_ENTRY_MANIFEST=reference/destination-jungle-entry.json DUCKTALES_JUNGLE_TREASURE_MANIFEST=reference/draw-timed-jungle-treasure.json playwright test tests/browser/jungle-input.spec.js tests/browser/jungle-treasure-replay.spec.js --config playwright.campaign.config.js && DUCKTALES_JUNGLE_TREASURE_MANIFEST=reference/draw-timed-jungle-treasure.json DUCKTALES_JUNGLE_VERIFICATION_ROOT=${DUCKTALES_JUNGLE_VERIFICATION_ROOT:-.local/jungle-draw-timing-verification} DUCKTALES_CAMPAIGN_TEST_CONFIG=playwright.campaign.config.js node scripts/verify-security-jungle-treasure-browser-negative.js && node scripts/verify-jungle-timing-browser-negative.js && node scripts/verify-destination-routes.js reference/draw-timed-jungle-treasure.json && npm run build",
-    "verify:jungle-core": "node scripts/verify-jungle.js && python3 scripts/verify-jungle-oracle.py"
+    "verify:jungle-core": "node scripts/verify-jungle.js && python3 scripts/verify-jungle-oracle.py",
+    "verify:cave-work": "node scripts/verify-cave-work.js",
+    "verify:cave-timing": "npm run verify:build && npm run verify:cave-work && npm run verify:cave && node scripts/verify-cave-runtime.js && node scripts/verify-cave-routes.js && npm test && playwright test tests/browser/cave-input.spec.js tests/browser/campaign.spec.js --grep \"cave input polls|keyboard flight lands, explores a cave, collects treasure and returns to the map\" --config playwright.campaign.config.js && node scripts/verify-cave-timing-browser-negative.js && npm run build"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

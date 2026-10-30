@@ -21,21 +21,32 @@ export class Scheduler {
   }
   advanceTo(now) {
     if (now < this.now) throw Error("Clock moved backwards");
-    while (Math.min(this.tickAt, this.retraceAt) <= now) {
-      const at = Math.min(this.tickAt, this.retraceAt);
-      this.elapsed = at - this.origin - this.pausedMilliseconds;
+    for (;;) {
+      const wake = this.game.nextSimulationWake?.() ?? Infinity;
+      if (wake !== Infinity && (!Number.isFinite(wake) || wake < this.elapsed))
+        throw Error("Invalid simulation work deadline");
+      const wakeAt = wake + this.origin + this.pausedMilliseconds;
+      const at = Math.min(this.tickAt, this.retraceAt, wakeAt);
+      if (at > now) break;
+      this.elapsed =
+        at === wakeAt ? wake : at - this.origin - this.pausedMilliseconds;
       while (this.events.length && this.events[0].at <= at) {
         const entry = this.events.shift();
         this.game.input(entry.event);
         this.consumed.push({ ...entry, consumedAt: at, tick: this.game.tick });
       }
-      if (this.tickAt <= this.retraceAt) {
+      if (this.tickAt <= this.retraceAt && this.tickAt <= wakeAt) {
         this.game.advanceTick();
         this.tickAt += 1000 / DRIVER_HZ;
-      } else {
+      } else if (this.retraceAt <= wakeAt) {
         this.game.advanceRetrace();
         this.present(this.game);
         this.retraceAt += 1000 / RETRACE_HZ;
+      } else if (this.game.nextSimulationWake?.() === wake) {
+        // An input (notably Restart) can cancel the selected work boundary.
+        this.game.advanceSimulationWake();
+        if (this.game.nextSimulationWake?.() === wake)
+          throw Error("Simulation work failed to advance");
       }
     }
     this.now = now;

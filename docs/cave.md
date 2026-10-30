@@ -113,7 +113,10 @@ The shortened-path controller uses the original initial map and current room, ne
 outcome, enemy or RNG. Its external events are recorded, then replayed from the
 same initial contract and compared at every checkpoint. This harness advances
 one driver tick and one retrace per iteration: a synthetic environment, not a
-claim about original or browser clock alignment. Every presentation is rendered
+claim about original or browser clock alignment. Source input events are now
+identified by poll ordinal rather than fitted wall-clock or driver-step offsets;
+the first controller run records them and the replay must consume all of them.
+Every presentation is rendered
 strictly. Static loop counts must match presentations/party RNG calls:
 capture18/3, pit35/10, treasure15/15, expiry21/4. Removing a presentation or
 capture's unpresented RNG call fails a negative control. All four must terminate
@@ -227,4 +230,7 @@ route also still completes failure,retry,treasure and campaign return. Both use
 an explicit browser clock and observe its8ms display cadence; simulation retains
 its own driver/retrace clocks. This proves browser acceptance,not an original
 full-level replay. New original Quit-No,terminal-flush and initial-flush captures,
-movement/CPU-render/audio timing and additional variants remain future checks.
+whole-level native movement/audio timing and additional variants remain future
+checks. Source sprite/copy time now precedes continuation and presentation;
+[cave-timing.md](cave-timing.md) records the conditional native evidence, browser
+cadence checks and remaining omitted costs.

@@ -111,6 +111,24 @@ export class Game {
     if (typeof clock !== "function") throw Error("Invalid simulation clock");
     this.simulationClock = clock;
     this.jungle?.setClock(clock);
+    this.cave?.setClock(clock);
+  }
+  nextSimulationWake() {
+    return this.scene === "cave" &&
+      !this.systemOverlay &&
+      this.cave.wait?.clock === "graphics"
+      ? this.cave.wait.until
+      : null;
+  }
+  advanceSimulationWake() {
+    if (
+      this.scene !== "cave" ||
+      this.systemOverlay ||
+      this.cave.wait?.clock !== "graphics"
+    )
+      throw Error("Unexpected simulation work boundary");
+    this.cave.advanceGraphics();
+    this.collectCave();
   }
   startOpening() {
     this.opening =
@@ -1729,6 +1747,7 @@ export class Game {
     this.cave = new Cave(
       {
         ...this.expeditionResources,
+        clock: this.simulationClock,
         variant: this.briefing.variant,
         difficulty: this.difficulty,
         seed: this.seed,

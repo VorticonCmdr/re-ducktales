@@ -14,6 +14,37 @@ for (const script of [
   "verify-hud-number.js",
 ])
   execFileSync(process.execPath, ["scripts/" + script], { stdio: "pipe" });
+// The historical formatter verifier checks its preserved model. Admit the
+// production formatter/text implementation independently against all16 traces.
+const formatter = JSON.parse(await readFile("reference/hud-number-work.json"));
+const formatterInputs = JSON.parse(
+  await readFile(formatter.artifacts.inputs.path),
+);
+assert.equal(formatterInputs.cases.length, 16);
+for (let i = 0; i < 16; i++) {
+  const expected = JSON.parse(
+    await readFile(
+      formatter.artifacts["case-" + String(i).padStart(2, "0")].path,
+    ),
+  );
+  const trace = [],
+    base = {
+      formatter: 0x1c40,
+      stack: 0x40e0,
+      divide: 0x40e0,
+      remainder: 0x40e0,
+      assign: 0x40e0,
+      driver: 0xa000,
+    };
+  const work = originalHudNumberWork(formatterInputs.cases[i], {
+    instruction: (kind, ip) => trace.push(base[kind] + ip),
+  });
+  assert.deepEqual(trace, expected.trace, "Production formatter native path");
+  assert.equal(work.instructions, trace.length);
+  assert.equal(work.portWrites, expected.ports.length);
+  assert.equal(work.text, expected.textCall.string);
+  assert.equal(work.x & 65535, expected.textCall.words[2]);
+}
 assert.deepEqual(
   await readFile("src/game/mountain-hud.js"),
   await readFile("scripts/lib/mountain-hud.js"),

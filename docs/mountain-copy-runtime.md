@@ -18,7 +18,16 @@ driver/audio clock, or input provider is replaced.
 
 ```sh
 node scripts/verify-mountain-copy-integration.js
+node scripts/verify-mountain-copy-receipt.js
 ```
+
+The gate passed for runtime source `2bf98f4`. The saved
+[manifest](../reference/mountain-copy-runtime.json) pins its source archive,
+719 current source hashes, log and completed result in four immutable local
+artifacts. The receipt command validates that saved result and its source;
+the integration command runs fresh browser acceptance. The archive was created
+after the gate from the same runtime/test/gate bytes, with the unused receipt
+checker and documentation added afterward. This distinction is recorded.
 
 This strict command checks all 22 supported files, both native comparison
 boundaries, all 34 production erase/charge adapter cases and DS effects, 15

@@ -12,6 +12,9 @@ cases, 16 native primitive cases, the complete 764-input/26-checkpoint ascent,
 180 units, an actual browser route and an omitted-copy browser failure control.
 The summit retains all three lives. HUD text/lines and retrace-phase scheduling
 remain incomplete. [Current scope and commands](mountain-copy-runtime.md).
+The focused gate passed for `2bf98f4`; its saved record pins 719 source files and
+four immutable artifacts. `node scripts/verify-mountain-copy-receipt.js` validates
+that record without claiming a fresh browser run.
 
 **Whole-campaign acceptance has not been refreshed for the mountain changes.**
 The source-pinned Easy receipt below remains historical; current source guards
@@ -123,6 +126,7 @@ experiments leave the shared8386 session untouched and close their owned instanc
 ```sh
 npm run verify:current-campaign
 node scripts/verify-mountain-copy-integration.js
+node scripts/verify-mountain-copy-receipt.js
 node scripts/verify-runtime-campaign.js --fresh-browser
 node scripts/verify-jungle-texts.js
 node scripts/verify-jungle-text-campaign-receipt.js

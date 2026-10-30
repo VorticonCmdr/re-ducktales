@@ -116,3 +116,12 @@ DUCKTALES_HARD_JUNGLE_PLAN=reference/current-hard-jungle-plan.json \
 npx playwright test tests/browser/hard-campaign.spec.js \
   --config playwright.campaign.config.js --output=.local/current-hard-full-new
 ```
+
+
+The exploratory browser run from commit`801b4a2` now completes the423-event
+plan and matches all seven model outcome values:503 actions,three lives,$250
+pickups,$2,250 total and seed16983. It dismisses the award,returns to the map
+and deposits$2,250. The carried run has started its second departure. Raw
+capture remains ongoing in`.local/current-hard-full-capture-01/`;this observation
+is not a finished or independently accepted Hard campaign. Protected manifests
+remain untouched while that capture is running.

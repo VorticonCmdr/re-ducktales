@@ -45,9 +45,11 @@ source receipts. [Scenario](../reference/current-physical-campaign.json),
 [Current Hard investigation](current-hard-campaign.md) separately tests an
 anticipatory physical-key pilot. It now wins the opening race in the actual
 browser and reaches jungle;three startup checkpoints match diagnostic replay.
-The carried model now recovers Hard jungle treasure in503 updates with all
-three lives,$250 pickups and the$2,000 award. Actual browser verification of
-its separate input schedule is pending. No complete Hard acceptance is claimed.
+The Hard jungle route now works through actual browser controls:503 updates,
+all three lives,$250 pickups plus the$2,000 award,return to map and a$2,250
+bank deposit. Its seven model outcome values match after all423 planned inputs.
+The same exploratory browser run is continuing the other expeditions;no complete
+Hard acceptance or independent full Hard replay is claimed.
 
 This work changes player controllers and verification, not game mechanics. The
 old mountain controller released keys one source read too late; the corrected

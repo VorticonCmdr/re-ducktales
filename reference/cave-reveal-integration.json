@@ -1,0 +1,70 @@
+{
+  "id": "cave-reveal-focused-integration",
+  "sourceBaseCommit": "d711647486bdead9ff6dca3fd4a522599b297780",
+  "sourceFileCount": 710,
+  "command": "npm run verify:cave-reveal",
+  "exitCode": 0,
+  "evidenceLevels": {
+    "static": "78 instructions/186 original bytes match;caller dispatches reveal then fourteen flips.",
+    "mechanism": "Five exact320x200 RGBA groups,25 declared retraces,no page swap;seven negative controls. Synthetic boundary fixture,not native capture.",
+    "component": "Six original conditional runtime checkpoints plus entry;four independent terminal routes,closed-loop inputs and four passage directions.",
+    "browser": "One startup/keyboard flight/pit/retry/treasure/return/duplicate/Restart route;all five reveal groups required and captured.",
+    "unitCases": 177,
+    "unitFailures": 0,
+    "unitSkips": 0,
+    "productionBuild": "passed"
+  },
+  "limitations": [
+    "No native treasure-reveal runtime timing or whole-cave cadence comparison.",
+    "Previous full Easy campaign receipt correctly rejects changed cave sources and requires a fresh startup capture/replay.",
+    "Full Hard and arbitrary-route finishability remain incomplete.",
+    "This gate ran against the pinned worktree sources;it was not separately rerun from a clean checkout."
+  ],
+  "artifacts": [
+    {
+      "path": ".local/cave-reveal-01/verification.log",
+      "bytes": 19822,
+      "sha256": "fbc313443559dad5e69e47708e072510431a63769a08b954dedfcd29ed6e5fb5"
+    },
+    {
+      "path": ".local/cave-reveal-01/sources.zip",
+      "bytes": 1884398,
+      "sha256": "9c66ad8ec3758bd2afefb31d9889325eb150b416c29c2ccaba8597b47ec50fdd"
+    },
+    {
+      "path": ".local/cave-reveal-01/source-revision.json",
+      "bytes": 77277,
+      "sha256": "be217bda3360a47cc2a09b4a160754334e0ad6d21d497f10a57ddfa45483f095"
+    },
+    {
+      "path": ".local/cave-reveal-01/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": ".local/cave-reveal-01/browser/campaign-keyboard-flight-l-91eb0-sure-and-returns-to-the-map/cave-reveal-0.png",
+      "bytes": 35371,
+      "sha256": "67f29def7072b6a8059d2ef28a4ad5d5aa471ca5e6237c73fafb4cf8aa453991"
+    },
+    {
+      "path": ".local/cave-reveal-01/browser/campaign-keyboard-flight-l-91eb0-sure-and-returns-to-the-map/cave-reveal-1.png",
+      "bytes": 36250,
+      "sha256": "f0da76fa20934b9929933a7cabf0a07267ae503e7083feebe8d3f944a6ef89c8"
+    },
+    {
+      "path": ".local/cave-reveal-01/browser/campaign-keyboard-flight-l-91eb0-sure-and-returns-to-the-map/cave-reveal-2.png",
+      "bytes": 36941,
+      "sha256": "c98a46b945de3f0fb5791ef0236bb740a2b29c8949475995010acacb443cb3f0"
+    },
+    {
+      "path": ".local/cave-reveal-01/browser/campaign-keyboard-flight-l-91eb0-sure-and-returns-to-the-map/cave-reveal-3.png",
+      "bytes": 37294,
+      "sha256": "e9d3c753907406ecc6dcaa83cf3beeb261851464d8a7d47dd08d7090e64fc925"
+    },
+    {
+      "path": ".local/cave-reveal-01/browser/campaign-keyboard-flight-l-91eb0-sure-and-returns-to-the-map/cave-reveal-4.png",
+      "bytes": 37863,
+      "sha256": "25d25714ddd9175ad5c001521394b3393ae78186b3af752f52868af3bfc0cdaa"
+    }
+  ]
+}

@@ -23,8 +23,9 @@ is the default. Physical waveform/gain/filter parity remains open. [Audio](audio
 
 ## Current campaign work
 
-The current physical-keyboard Easy campaign is playable from startup through all
-four expedition families and the winning deadline ending. It recovers jungle,
+The most recent complete physical-keyboard Easy verification, before the cave
+reveal correction described below, runs from startup through all four expedition
+families and the winning deadline ending. It recovers jungle,
 cave and mountain treasure, earns Safari photo money, handles rival reports and
 banking, then wins on day31 with$14,550 banked against$12,500. Mountain recovery
 retains all three lives. Restart returns to a fresh game.
@@ -63,6 +64,22 @@ physical schedule preserves the original mode0 release-edge consumption.
 The earlier24-checkpoint three-family segment remains separate;
 [its individual-command receipt](../reference/current-campaign-progress-receipt.json)
 retains that smaller scope.
+
+## Cave reveal correction
+
+The first cave treasure presentation now restores the original striped page copy:
+five groups of rows,five retraces per group,and unchanged page roles. It keeps
+all fifteen party/RNG draws. [Source,mechanism and browser checks](cave-reveal.md)
+use `npm run verify:cave-reveal`. That focused gate passes:78 original source
+instructions/186 bytes,five exact pixel groups,seven mechanism/source negatives,
+the cave regressions,177 unit cases,the actual-browser treasure/return/restart
+route with all five groups,and the production build. This is a specific presentation/timing correction;
+whole-cave cadence and native reveal timing remain unverified.
+
+The complete Easy receipt above predates this correction. Its historical inputs,
+expectations and captures remain unchanged;full campaign acceptance must be
+refreshed from startup for the new cave timing before it is claimed green on
+the current implementation.
 
 ## Latest verified flight input milestone
 
@@ -195,8 +212,8 @@ refresh. Historical passes do not establish a green current broader gate.
   other CPU/device costs, and jungle line/text/remaining CPU costs, are omitted.
   Cave omits minimap fills, room composition, copies outside the party helper
   and remaining CPU/device costs; its measured budget is partial.
-  Cave's first treasure reveal also substitutes a normal page presentation for
-  the original striped reveal.
+  The first treasure reveal's original striped copy is now implemented;native
+  whole-reveal timing and full cave cadence still need comparison.
   Safari omits HUD line/text, result-sheet drawing and remaining CPU/device
   costs; whole-original expedition cadence is still unverified.
 - Complete destination entry-page drawing,selector lines/numeric text and other
@@ -219,9 +236,10 @@ refresh. Historical passes do not establish a green current broader gate.
 - Original save/load/high-score behavior/formats have not been established.
   Browser persistence would be an explicit addition without original evidence.
 
-Next: extend current physical campaign acceptance to Hard and the remaining
-registered routes while preserving historical streams, then investigate the first
-failed gameplay behavior. Continue remaining drawing/device costs and cross-scene input windows
+Next: refresh full Easy campaign acceptance after the cave reveal correction,
+then extend physical campaign acceptance to Hard and the remaining registered
+routes while preserving historical streams. Investigate the first failed
+gameplay behavior rather than treating a failed player strategy as a port bug. Continue remaining drawing/device costs and cross-scene input windows
 alongside that campaign work.
 
 ## Supported build and commands
@@ -234,6 +252,7 @@ and native addresses were checked; the analysis image is never executed.
 
 ```sh
 npm run verify:current-campaign
+npm run verify:cave-reveal
 npm run verify:flight-keyboard
 npm run verify:departure-sequence
 npm run verify:destination-loop

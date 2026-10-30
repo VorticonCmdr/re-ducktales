@@ -201,8 +201,39 @@ export class Cave {
     }
     this.resume();
   }
-  *present(commands) {
+  *present(commands, { striped = false } = {}) {
     this.buffers[this.drawIndex] = commands;
+    if (striped) {
+      // EGA0101 copies the draw page into the visible page in five groups
+      // of rows, with five retraces per group. It does not swap page roles.
+      if (!this.current)
+        throw Error("Cave reveal requires a visible source page");
+      const source = this.current;
+      for (let band = 0; band < 5; band++) {
+        const rows = [];
+        for (let y = 0; y < 200; y++)
+          if (y % 5 <= band)
+            rows.push({
+              op: "restore",
+              source: commands,
+              x: 0,
+              y,
+              sourceX: 0,
+              sourceY: y,
+              width: 320,
+              height: 1,
+            });
+        this.current = [...source, ...rows];
+        this.buffers[1 - this.drawIndex] = this.current;
+        this.presentationTransition = { kind: "reveal", band };
+        this.presentations++;
+        yield { clock: "retrace", remaining: 5 };
+      }
+      this.current = commands;
+      this.buffers[1 - this.drawIndex] = commands;
+      this.presentationTransition = null;
+      return;
+    }
     this.pending = commands;
     yield { clock: "retrace", remaining: 1 };
     this.drawIndex = 1 - this.drawIndex;
@@ -490,6 +521,9 @@ export class Cave {
       phase: this.phase,
       partyWork: this.lastPartyWork,
       drawingWork: this.lastDrawingWork,
+      ...(this.presentationTransition
+        ? { presentationTransition: { ...this.presentationTransition } }
+        : {}),
       ...(this.wait?.clock === "input" ? { waitingForInputPoll: true } : {}),
       room: this.room,
       goal: m.i(0x97b0),

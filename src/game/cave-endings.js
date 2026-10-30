@@ -11,7 +11,7 @@ export const caveEndings = {
       const c = yield* this.party(this.scene());
       yield* this.draw(c, 45);
       yield* this.draw(c, 22);
-      yield* this.present(c);
+      yield* this.present(c, { striped: i === 0 });
     }
     m.b(0x546a, 2);
     this.sound(0x49);

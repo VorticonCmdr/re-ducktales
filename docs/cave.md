@@ -90,9 +90,10 @@ adds its foreground prop to the persistent buffer; pit later restores only the
 specified rectangles. Capture also makes an unpresented party draw before its
 first displayed pose; its RNG draw is retained. The port retains two video pages and a separate room
 buffer with immutable drawing snapshots. The pure rasterizer resolves these
-copies without consuming clocks or RNG. The first treasure reveal uses a normal
-presentation in place of the original EGA striped reveal transition; that
-transition and its retrace duration remain unverified/omitted. Exact terminal
+copies without consuming clocks or RNG. The first treasure reveal now uses the original five-group striped copy with
+five retraces per group and unchanged page roles. Source bytes and exact
+mechanism pixels are checked separately from native runtime evidence;
+see [cave reveal](cave-reveal.md). Exact terminal
 pixels are limited to the aligned capture image below; full presentation timing
 is not verified.
 
@@ -117,8 +118,9 @@ claim about original or browser clock alignment. Source input events are now
 identified by poll ordinal rather than fitted wall-clock or driver-step offsets;
 the first controller run records them and the replay must consume all of them.
 Every presentation is rendered
-strictly. Static loop counts must match presentations/party RNG calls:
-capture18/3, pit35/10, treasure15/15, expiry21/4. Removing a presentation or
+strictly. Static loop counts must match terminal driver calls/party RNG calls:
+capture18/3, pit35/10, treasure15/15, expiry21/4. Treasure's first driver call is
+now a five-publication reveal;its other fourteen calls flip normally. Removing a presentation or
 capture's unpresented RNG call fails a negative control. All four must terminate
 before10000 iterations and consume every
 required replay event. Negative controls alter an outcome, remove movement and
@@ -141,9 +143,8 @@ skipped six of them and changed subsequent RNG/pursuit. Movement now uses the
 original EXP10–13 sprites, coordinate tables1848–19a8, torch-attachment tables,
 walk frames and foreground EXP24/25. Exit and entry are separate sequences;
 new safe-room cash is awarded by the entry helper2496. The simple room-coin
-73-tick delay belongs to the shortened A/B path. The striped EGA reveal itself
-remains omitted; neither complete presentation timing nor full sound parity is
-claimed.
+73-tick delay belongs to the shortened A/B path. The striped EGA reveal is now implemented and checked by the focused reveal
+gate;neither complete presentation timing nor full sound parity is claimed.
 
 `reference/cave-runtime.json` pins eight local artifacts and six required checks.
 First scenario starts at captured cave entry: variant0, Easy, seed39182, cash0,
@@ -177,7 +178,7 @@ The later campaign-retry capture advances the original to cave entry0e0c:0000,
 stop23, DS/SS1403, instance0719a1b0cdcede0b85c39577ff760639. No active input schedule or breakpoints remain.
 No original memory/register injection or partial/full restore was used.
 
-Next: original comparisons for C-drive room moves, striped reveal timing,
+Next: original comparisons for C-drive room moves and native reveal timing,
 remaining outcome comparisons alongside the other expedition games.
 
 ## Input polls, Pause and keyboard flushes

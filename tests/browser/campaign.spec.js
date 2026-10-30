@@ -243,7 +243,7 @@ for (const [name, x, y, activity] of [
 
 test("keyboard flight lands, explores a cave, collects treasure and returns to the map", async ({
   page,
-}) => {
+}, testInfo) => {
   test.setTimeout(180000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
@@ -257,9 +257,21 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   await expect(page.locator("#actions")).toBeVisible();
   const c = page.locator("#game");
   const began = Date.now();
+  const revealBands = [];
   async function until(predicate, max = 10000) {
     for (let i = 0; i < max; i++) {
       const s = await state(c);
+      const band = s?.cave?.presentationTransition?.band;
+      if (
+        s?.scene === "cave" &&
+        band !== undefined &&
+        revealBands.at(-1) !== band
+      ) {
+        revealBands.push(band);
+        await c.screenshot({
+          path: testInfo.outputPath(`cave-reveal-${band}.png`),
+        });
+      }
       if (s?.diagnostic) throw Error(s.diagnostic);
       if (s && predicate(s)) return s;
       if (i === 1000)
@@ -512,6 +524,10 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   await until((s) => s.scene === "expedition-result");
   const award = await state(c);
   expect(award.cave.outcome.status).toBe("treasure");
+  expect(
+    revealBands,
+    "All original cave reveal groups must appear in the browser",
+  ).toEqual([0, 1, 2, 3, 4]);
   expect(award.expeditionResult.phase).toBe("award");
   expect(award.expeditionResult.value).toBe(4500);
   expect(award.money).toBe(award.cave.money + 4500);

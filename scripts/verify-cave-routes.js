@@ -66,9 +66,9 @@ function run(resources, scenario, events = null) {
   const terminalCounts = { presentations: 0, partyDraws: 0 };
   const present = cave.present,
     party = cave.party;
-  cave.present = function* (commands) {
+  cave.present = function* (commands, options) {
     if (this.phase === scenario.status) terminalCounts.presentations++;
-    yield* present.call(this, commands);
+    yield* present.call(this, commands, options);
   };
   cave.party = function (...args) {
     if (this.phase === scenario.status) terminalCounts.partyDraws++;

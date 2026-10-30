@@ -34,8 +34,10 @@ parity. The observed final counter is an expectation, never a simulation input.
 Minimap fills (273 in this case), room composition, copies outside the party
 helper, text, caller/interrupt work and remaining-slice I/O clamping are still
 omitted. Cave pacing remains a lower-bound reconstruction of these costs.
-The first treasure reveal still uses a normal page instead of the original
-striped reveal. Audio waveform parity is outside this comparison.
+The first treasure reveal now uses the original striped copy and25 declared
+retraces;[its focused checks](cave-reveal.md) are separate from this historical
+drawing-time receipt. Native whole-reveal timing and audio waveform parity
+remain outside this comparison.
 
 ## Runtime boundary
 

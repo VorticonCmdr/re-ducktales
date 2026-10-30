@@ -5,6 +5,15 @@ not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
 ## Current runtime milestone
 
+The fresh mountain copy/HUD/phase Easy campaign now passes independent headless
+and actual-browser replay:34 full state/pixel checkpoints,4,981 DOM events,
+1,470 flight presentations, all four expedition families, winning ending and
+Restart. The mountain retains all three lives; day31 banking remains$14,550
+against$12,500. Combined clean-source regression is the next required check.
+[Current campaign provenance and commands](mountain-phase-campaign.md).
+
+## Focused mountain evidence
+
 Mountain now schedules drawing by absolute simulation deadlines and then the next
 display edge, preserving the phase at entry or after a pause. Six phase checks
 and all186 units pass; the complete ascent and browser controls still pass.
@@ -22,9 +31,8 @@ presentations and all three lives at the summit. Earlier
 [HUD](mountain-hud-work.md) and [copy](mountain-copy-runtime.md) receipts remain
 historical source snapshots; their current-source guards reject later changes.
 
-**Whole-campaign acceptance has not been refreshed for the mountain changes.**
-The source-pinned Easy receipt below remains historical; current source guards
-correctly reject it. Do not report `verify:current-campaign` as currently passing.
+Whole-route replay is refreshed, but the combined gate has not yet passed this
+integration source. Earlier receipts below remain historical and unchanged.
 
 ## Last full-campaign milestone
 

@@ -34,7 +34,10 @@
   },
   "inputs": {
     "flightPolicy": {
-      "altitude": [10, 25],
+      "altitude": [
+        10,
+        25
+      ],
       "climbHeading": 1
     },
     "jungleSource": "reference/security-campaign-inputs.json",
@@ -73,9 +76,124 @@
       "path": ".local/current-hard-planning-01/shared-08/producer.mjs",
       "bytes": 8309,
       "sha256": "255556f12d9a9dff2dab5c90ec4421b7f54daa2964a1577f44a7792bfbcd5457"
+    },
+    {
+      "path": ".local/current-hard-entry-capture-01/source-revision.json",
+      "bytes": 76549,
+      "sha256": "2797c4e53766614417fe8fcbb05344e987e6ea9d6026693c9f38432c5da9f2a1"
+    },
+    {
+      "path": ".local/current-hard-entry-capture-01/sources.zip",
+      "bytes": 1873360,
+      "sha256": "6bd3f8777d8fff9a67bd60575c3267c2296ee0cb3fbde621d835dc9ef2ff290a"
+    },
+    {
+      "path": ".local/current-hard-entry-capture-01/runner-status.json",
+      "bytes": 2506,
+      "sha256": "005b4ce2eec522bc8aceabed5c40ab9f508a069b6604baf9fda3570993c3b157"
+    },
+    {
+      "path": ".local/current-hard-entry-capture-01/browser.log",
+      "bytes": 1958,
+      "sha256": "2e2afed2c40424cde65ce6a75ce10331dcfaa68bb85a5959df164a846febdc11"
+    },
+    {
+      "path": ".local/current-hard-entry-replay-01/captured-events.json",
+      "bytes": 41794,
+      "sha256": "d61e6e99644ea068cb72d9380de565bd7b5764cf7eba91b54a9491b17d6c6445"
+    },
+    {
+      "path": ".local/current-hard-entry-replay-01/timeline.json",
+      "bytes": 343,
+      "sha256": "5a8f5cf70926928a3cc2a228fb56330d08a69d5b2ed7eea67ae152650bb7e0e0"
+    },
+    {
+      "path": ".local/current-hard-entry-replay-01/campaign-checkpoints.json",
+      "bytes": 12421,
+      "sha256": "49de63469e8fe6e8a5a3fa78ef05b7cff52d863a03dffedc95efcb31feebe721"
+    },
+    {
+      "path": ".local/current-hard-entry-replay-01/environment.json",
+      "bytes": 228,
+      "sha256": "8edc033f971ba1cd960499ab5fded78886b821b9ff13d1160be78c701a297b22"
+    },
+    {
+      "path": "/private/tmp/ducktales-current-hard-entry-replay.log",
+      "bytes": 2398,
+      "sha256": "43eaa6241319c99bbcaf2cde1a5a433617dd81b4389a74a7aa62484f46725e12"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/baseline/result.json",
+      "bytes": 534871,
+      "sha256": "8154797c7ee195c7969c1ce933622e989f00cb6537ac411ea2746621dac92eca"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/baseline/explorer-source.js",
+      "bytes": 6802,
+      "sha256": "f9df0877376abb07bb9dc644fa18f6d0aa8aeff683037cbdb26900e80fbf5953"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/immediate/result.json",
+      "bytes": 354904,
+      "sha256": "34eef3e967fbf6756fdbf812e283d42a7226e61145ade6254b0ee9ccc64b2247"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/immediate/explorer-source.js",
+      "bytes": 6802,
+      "sha256": "f9df0877376abb07bb9dc644fa18f6d0aa8aeff683037cbdb26900e80fbf5953"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/fire/result.json",
+      "bytes": 587166,
+      "sha256": "a9a3ad81abec6ee37f606ae5439657fba704af5a518cf396c186f5d09231b6c5"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/fire/explorer-source.js",
+      "bytes": 6961,
+      "sha256": "d1a4d5e3211fe6ffaf55065c816fa113993cbed809ccb4af2d32ad28508cbb2c"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/wait/result.json",
+      "bytes": 537734,
+      "sha256": "dfe1e6de5de0cab8b323f05817e891dce6f37e9393451c1a1fb3b1f373f1b9f6"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/wait/explorer-source.js",
+      "bytes": 7083,
+      "sha256": "974c1ca44164c6bc8b4822fa1195282fd83363d7d472ef11bc9d0f450878b9c2"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/bird/result.json",
+      "bytes": 531824,
+      "sha256": "522331c6536f10c2d8829c42c2c53c9dd67ab38a32ebe634dc7e683ff4493f16"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/bird/explorer-source.js",
+      "bytes": 7788,
+      "sha256": "7ef57ba729492a999dca4d56fa9c0355c3e4d20d220a38572fc90ab7d6d8ac91"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/cross/result.json",
+      "bytes": 603286,
+      "sha256": "e0231d988bac60d6e20d9adb35b7003c8a2b82bef036fd30c275dc4975612dc3"
+    },
+    {
+      "path": ".local/current-hard-jungle-plans-01/cross/explorer-source.js",
+      "bytes": 8527,
+      "sha256": "c80517c296a1c647f8370b260e018a581846c5de9b126cea940ffdb48ead8488"
+    },
+    {
+      "path": ".local/current-jungle-plans-05/easy-compat/result.json",
+      "bytes": 327959,
+      "sha256": "eae8f20f435aaee8879a0d2db610063e8af752eb1ed64914f47c014d059e4c77"
+    },
+    {
+      "path": ".local/current-jungle-plans-05/easy-compat/explorer-source.js",
+      "bytes": 7083,
+      "sha256": "974c1ca44164c6bc8b4822fa1195282fd83363d7d472ef11bc9d0f450878b9c2"
     }
   ],
-  "nextExperiment": "Run the anticipatory pilot through actual browser input,record Hard arrival and investigate the first divergence in the carried jungle route.",
+  "nextExperiment": "Time the first Hard vine grab from the actual browser-entry replay,using original endpoint/reach rules;then validate a complete jungle route through real browser controls and continue the full Hard campaign.",
   "buildManifest": {
     "path": "reference/build.json",
     "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
@@ -90,5 +208,34 @@
   "controllerSources": {
     "tests/browser/helpers/flight-policy.js": "0fc03749ccd13a7d5cdff2a742b1c47ede34aff2303a05029d161205584e19f7",
     "tests/browser/helpers/linked-campaign.js": "6a8a1f562533f644832df22a60991c4bddf0274a3c4dbd203e8b382caa2b5ecd"
+  },
+  "actualBrowserEntry": {
+    "scope": "Observed real-browser entry plus diagnostic startup replay;not complete Hard acceptance",
+    "producerCommit": "2d94739607b7fde6d887a7fa7f097bd82125eb3f",
+    "captureRoot": ".local/current-hard-entry-browser-01",
+    "checkpointCount": 3,
+    "events": 352,
+    "flightPresentations": 360,
+    "flightActions": 262,
+    "flightOutcome": "arrived",
+    "jungleEntrySeed": 14989,
+    "jungleEntryFrames": 0,
+    "observerError": null,
+    "diagnosticReplayCommand": "node scripts/replay-hard-campaign.js .local/current-hard-entry-replay-01 --diagnose --through=arrival"
+  },
+  "groundInvestigation": {
+    "baseline": "Fresh reconstruction of the actual browser prefix reproduces loss at405 actions,$200,seed63491. Ground late-release and release-before-last policies have the same failed outcome.",
+    "firstLoss": "At action275,requested and consumedRight both3,actor switches to14 atx687/y48;then action2 falls. Original hazard code sets14;moving-platform support flags arezero. No platform fault or lost key is established.",
+    "inputDifferences": "The only differing requested/consumed bytes are neutral reads at301 and370 after life-entry source flushes,after the first loss.",
+    "immediateStart": "Removing the three initial neutral actions loses all lives at269 with$100. Retained as a failed candidate.",
+    "fireAction": "A20-action Fire replacement delays first hazard contact but still fails at443 with$200. No fix claimed.",
+    "longerWait": "A40-neutral wait instead of20 fails at409 with$250. No game timer or RNG was changed.",
+    "birdWait": "A bounded white-box wait for the current bird to leave its perch reaches further but loses at399,$250. It is a player controller,not an environment/RNG/timer fit.",
+    "twoStageCrossing": "A two-stage white-box crossing reachesx783/y48 with all3 lives,with no action14 hazard hit. The subsequent original Up/Vine recipe selects17 ataction352,then misses the moving vine and falls. Whole route still fails at450 actions,$250.",
+    "easyPlannerCompatibility": "The extended tool retains the Easy waypoint success exactly:858 actions,outcome1,$50,seed31622. This is not additional native parity evidence."
+  },
+  "explorerSource": {
+    "path": "scripts/explore-current-jungle.js",
+    "sha256": "9f99d145ca2c2ba7ca7eca150019a0a1a0aeaa905e61b25013daf242da86d022"
   }
 }

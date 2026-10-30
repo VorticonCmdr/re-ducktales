@@ -43,7 +43,11 @@ source receipts. [Scenario](../reference/current-physical-campaign.json),
 [current evidence and limits](current-campaign.md).
 
 [Current Hard investigation](current-hard-campaign.md) separately tests an
-anticipatory physical-key pilot;only its carried model is verified so far.
+anticipatory physical-key pilot. It now wins the opening race in the actual
+browser and reaches jungle;three startup checkpoints match diagnostic replay.
+The carried Hard jungle player route still fails. A model controller crosses
+the first bird hazard with all lives,then misses the next vine grab;that is the
+next experiment. No complete Hard acceptance is claimed.
 
 This work changes player controllers and verification, not game mechanics. The
 old mountain controller released keys one source read too late; the corrected

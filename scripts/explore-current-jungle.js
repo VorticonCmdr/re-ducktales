@@ -14,7 +14,21 @@ assert.ok(Number.isInteger(delay) && delay >= 0 && delay <= 200);
 const root = process.argv[3] ?? ".local/current-campaign-entry-replay-01";
 const output =
   process.argv[4] ?? `.local/current-jungle-plans-02/delay-${delay}`;
-const waypoint = process.argv[5] === "waypoint";
+const mode = process.argv[5] ?? "recipe";
+assert.ok(
+  [
+    "recipe",
+    "waypoint",
+    "hard",
+    "hard-no-prefix",
+    "hard-fire",
+    "hard-wait",
+    "hard-bird",
+    "hard-cross",
+  ].includes(mode),
+);
+const hard = mode.startsWith("hard");
+const waypoint = mode === "waypoint";
 await mkdir(output, { recursive: false }).catch(async (e) => {
   if (e.code !== "ENOENT") throw e;
   await mkdir(output.substring(0, output.lastIndexOf("/")), {
@@ -22,6 +36,8 @@ await mkdir(output, { recursive: false }).catch(async (e) => {
   });
   await mkdir(output);
 });
+const toolSource = await readFile(new URL(import.meta.url));
+await writeFile(`${output}/explorer-source.js`, toolSource);
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const sourceFiles = {};
 for (const name of [
@@ -52,11 +68,34 @@ assert.equal(game.jungle.frames, 0);
 assert.equal(game.expeditionInput, "keyboard");
 assert.equal(game.destinationInput, "keyboard");
 const recipe = JSON.parse(
-  await readFile("reference/security-easy-campaign-inputs.json"),
+  await readFile(
+    hard
+      ? "reference/security-campaign-inputs.json"
+      : "reference/security-easy-campaign-inputs.json",
+  ),
 );
 const original = recipe.jungle.flatMap((e) => Array(e.count).fill(e.byte));
-assert.ok(original.slice(0, 60).every((b) => b === 0));
-const inputs = [...Array(delay).fill(0), ...original.slice(60)];
+assert.equal(game.difficulty, hard ? 2 : 0);
+assert.ok(original.slice(0, hard ? 3 : 60).every((b) => b === 0));
+const inputs = [
+  ...Array(delay).fill(0),
+  ...(hard
+    ? mode === "hard-no-prefix"
+      ? original.slice(3)
+      : original
+    : original.slice(60)),
+];
+if (mode === "hard-fire") inputs.splice(delay + 254, 20, ...Array(20).fill(64));
+if (mode === "hard-wait") inputs.splice(delay + 254, 20, ...Array(40).fill(0));
+const birdWaitStart = delay + 254,
+  birdWaitEnd = birdWaitStart + 160;
+if (mode === "hard-bird")
+  inputs.splice(birdWaitStart, 20, ...Array(160).fill(0));
+let sawPerchedBird = false;
+const crossStart = delay + 254,
+  crossEnd = crossStart + 400;
+let sawMiddlePerch = false;
+if (mode === "hard-cross") inputs.splice(crossStart, 62, ...Array(400).fill(0));
 // Player waypoint at the left edge of the final platform: column21 on the
 // original53-pixel grid. This observes this run's pose, not a golden checkpoint.
 const downStart = delay + 109,
@@ -74,7 +113,8 @@ let now = replay.replayTime,
 const physical = new Set(),
   held = new Set(),
   events = [],
-  observations = [];
+  observations = [],
+  inputTrace = [];
 // Browser data-state is published after each8ms display callback, including
 // driver/work progress between retraces. Observe at that same boundary.
 const state = () => game.snapshot();
@@ -108,7 +148,16 @@ function step() {
 }
 let used = 0;
 for (let cursor = 0; cursor < inputs.length;) {
-  const byte = inputs[cursor];
+  let byte = inputs[cursor];
+  if (mode === "hard-cross" && cursor >= crossStart && cursor < crossEnd) {
+    const actor = state().jungle,
+      bird = game.jungle.memory.i(0x397e + 38 + 20);
+    if (actor.x < 703) byte = bird === 14 ? 3 : 0;
+    else if (actor.x < 738) {
+      if (bird === 18) sawMiddlePerch = true;
+      byte = sawMiddlePerch && bird === 14 ? 3 : 1;
+    } else byte = 3;
+  }
   if (state().scene !== "jungle") break;
   const next = new Set([
     ...(byte & 64 ? ["Space"] : []),
@@ -137,6 +186,20 @@ for (let cursor = 0; cursor < inputs.length;) {
     "Unfinished/skipped exploratory frame",
   );
   used++;
+  if (hard)
+    inputTrace.push({
+      used,
+      requested: byte,
+      consumed: game.jungle.inputs.at(-1)?.input,
+      actor: game.jungle.snapshot(),
+      birdAction: game.jungle.memory.i(0x397e + 38 + 20),
+      support: {
+        mounted: game.jungle.memory.i(0x8924),
+        id: game.jungle.memory.i(0x882a),
+        slope: game.jungle.memory.i(0x3a46),
+        dx: game.jungle.memory.i(0x3a44),
+      },
+    });
   if (used % 20 === 0 || state().scene !== "jungle" || used === inputs.length)
     observations.push({ used, requested: byte, at: now, state: state() });
   if (
@@ -154,22 +217,48 @@ for (let cursor = 0; cursor < inputs.length;) {
     state().jungle.action === 5
   )
     cursor = downEnd + 40;
+  else if (
+    mode === "hard-bird" &&
+    cursor >= birdWaitStart &&
+    cursor < birdWaitEnd
+  ) {
+    // Exploratory white-box observation of the currently rendered bird state,
+    // not expected data or an environment timer/RNG provider. No memory writes.
+    const bird = game.jungle.memory.i(0x397e + 38 + 20);
+    if (bird === 18) sawPerchedBird = true;
+    if (sawPerchedBird && bird !== 18) cursor = birdWaitEnd;
+    else cursor++;
+  } else if (
+    mode === "hard-cross" &&
+    cursor >= crossStart &&
+    cursor < crossEnd &&
+    state().jungle.x >= 783 &&
+    state().jungle.action === 5
+  )
+    cursor = crossEnd;
   else cursor++;
 }
 for (const k of physical) key(k, false);
 for (let i = 0; i < 625 && state().scene === "jungle"; i++) step();
 const result = {
   scope: "EXPLORATORY physical player route;not acceptance",
+  toolSourceSha256: sha(toolSource),
   replayRoot: root,
   replayArtifactHashes: sourceFiles,
   initialRecipe:
     "Fresh startup replay through first arrival;three preceding states compare exactly. No memory/actor/timer initialization from expected outputs.",
   delay,
+  mode,
+  controllerObservations:
+    mode === "hard-bird" || mode === "hard-cross"
+      ? "Exploratory white-box player:current port bird state selects controls. Not native input evidence;no expected values or memory writes."
+      : "Own current scene/frame/pose observations;no expected values choose inputs.",
   waypoint,
   planned: inputs.length,
   used,
   events,
   observations,
+  inputTrace,
   outcome: game.jungle.outcome,
   final: game.snapshot(),
   success:

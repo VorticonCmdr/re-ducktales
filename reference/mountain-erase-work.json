@@ -1,0 +1,342 @@
+{
+  "id": "original-mountain-erase-call-plan",
+  "evidenceLevel": "conditional-original-routine-comparison-with-copy-stub",
+  "expectedCases": 34,
+  "expectedCopyCalls": 191,
+  "executableSHA256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "overlayBodySHA256": "b50591460d43e848d52b49ee7b843065413d877dca8dc75455ce7dca2a7f2bd0",
+  "artifacts": {
+    "capture": {
+      "path": ".local/mountain-erase-native-02/capture.json",
+      "bytes": 760,
+      "sha256": "fe3d69ed7751ceb616e12efdc76eed83b51c256140c49473a9f990ca9e600b50"
+    },
+    "inputs": {
+      "path": ".local/mountain-erase-native-02/inputs.json",
+      "bytes": 15138,
+      "sha256": "748a2250dbc1d266745bef0616d48bbc23914d4b358af1b415589867a63ed16c"
+    },
+    "engine": {
+      "path": ".local/mountain-erase-native-02/engine.json",
+      "bytes": 3988,
+      "sha256": "fb7d5a1e86a38cb38e23b7edcacd6709fc1ec6034fdcf878c0bd14cafa775899"
+    },
+    "allocations": {
+      "path": ".local/mountain-erase-native-02/allocations.json",
+      "bytes": 84,
+      "sha256": "7d6f355e07d0fc58fafb49e70476b5b14fa7c6b0dab49371b7ecc9bdef80430b"
+    },
+    "source": {
+      "path": ".local/mountain-erase-native-02/capture-source.py",
+      "bytes": 9751,
+      "sha256": "e24749bb0f6653a1eea1b0e203f554ec95e158ee942a27a0839dec4554a74d0e"
+    },
+    "case-00": {
+      "path": ".local/mountain-erase-native-02/case-00.json",
+      "bytes": 175966,
+      "sha256": "e6cabcf30de0c4786841b9bd16ca156f2d362f3a687ee55815eef9e472a6838e"
+    },
+    "case-01": {
+      "path": ".local/mountain-erase-native-02/case-01.json",
+      "bytes": 175974,
+      "sha256": "15ec424e9f5c50a5c41fe73ecc2362608e4c498a53e07883dbade7a31a374c6b"
+    },
+    "case-02": {
+      "path": ".local/mountain-erase-native-02/case-02.json",
+      "bytes": 175975,
+      "sha256": "9e145e82a4cd20c4bf7145b2a29d71c8b19cd06a7518c3024d2b472b983082d3"
+    },
+    "case-03": {
+      "path": ".local/mountain-erase-native-02/case-03.json",
+      "bytes": 175978,
+      "sha256": "9fea89aac5beff0b06457b64aeaaccb55c1a01629044e62b2429ee154bf34445"
+    },
+    "case-04": {
+      "path": ".local/mountain-erase-native-02/case-04.json",
+      "bytes": 175978,
+      "sha256": "f04482ba4e2d7be4354d04ae2b89ebef373cc8ee93a554bef2687ce3425d1577"
+    },
+    "case-05": {
+      "path": ".local/mountain-erase-native-02/case-05.json",
+      "bytes": 175978,
+      "sha256": "64d22066757cfdd97f8d81230c08cfe29f052d9bc220ef9c2c425f70b14b0c4f"
+    },
+    "case-06": {
+      "path": ".local/mountain-erase-native-02/case-06.json",
+      "bytes": 175978,
+      "sha256": "989d6631d6881dbb1c7aa55b3da794aab0e7ec25ac9c0514063267874ae8243b"
+    },
+    "case-07": {
+      "path": ".local/mountain-erase-native-02/case-07.json",
+      "bytes": 175978,
+      "sha256": "dec38838033c14d78da1a5577d3f6e9e1f9b10262dfc8681573f015d5bf5520c"
+    },
+    "case-08": {
+      "path": ".local/mountain-erase-native-02/case-08.json",
+      "bytes": 175978,
+      "sha256": "35db4fc52e58429b25e32be3853b41d43ff7804519a4cdf48040a69f5a6a2ffc"
+    },
+    "case-09": {
+      "path": ".local/mountain-erase-native-02/case-09.json",
+      "bytes": 175979,
+      "sha256": "cd18456e174cdc047afa01a8c1fa9cbd66890b2dfc387f1427943a647dda8c3a"
+    },
+    "case-10": {
+      "path": ".local/mountain-erase-native-02/case-10.json",
+      "bytes": 175980,
+      "sha256": "1737596b5de6f4a74ffd582f5d2869f67e201a1bc0f22514ddb915ce5edbe601"
+    },
+    "case-11": {
+      "path": ".local/mountain-erase-native-02/case-11.json",
+      "bytes": 175980,
+      "sha256": "7d2bb4d532163257535ac4ac3625f2af3757d4bcfc37b36a248e017de67350fd"
+    },
+    "case-12": {
+      "path": ".local/mountain-erase-native-02/case-12.json",
+      "bytes": 175980,
+      "sha256": "ae1de87d335f402b0ff3e63d18157a2690151ad6e6fa442417b87954819dec31"
+    },
+    "case-13": {
+      "path": ".local/mountain-erase-native-02/case-13.json",
+      "bytes": 175980,
+      "sha256": "ce3c9e338518e94ff7e3a840d6d83f2c1b822b53d8a07e6ddf6ce9e92d8a745e"
+    },
+    "case-14": {
+      "path": ".local/mountain-erase-native-02/case-14.json",
+      "bytes": 171963,
+      "sha256": "e177d9b963aef1797ece956288259150c3ac6f5382934ff1c6fb58134629cadc"
+    },
+    "case-15": {
+      "path": ".local/mountain-erase-native-02/case-15.json",
+      "bytes": 171911,
+      "sha256": "93a82e248cc641b215277dd3dac4cb3aa39673caa2a06ac5589d55310715d30b"
+    },
+    "case-16": {
+      "path": ".local/mountain-erase-native-02/case-16.json",
+      "bytes": 171934,
+      "sha256": "8bc59722854b536676c1beaf43e8ee72f435a70fbd809e3a2273f07b3df3f5e7"
+    },
+    "case-17": {
+      "path": ".local/mountain-erase-native-02/case-17.json",
+      "bytes": 176074,
+      "sha256": "2f7f32f3e5a44e527cf69ff4a281c69591d737620a6b890eb32ca48e37c11d6c"
+    },
+    "case-18": {
+      "path": ".local/mountain-erase-native-02/case-18.json",
+      "bytes": 176190,
+      "sha256": "5bf4dd5d05712fced78822b51f304007075b670537248138d10e7a9f71612109"
+    },
+    "case-19": {
+      "path": ".local/mountain-erase-native-02/case-19.json",
+      "bytes": 178310,
+      "sha256": "076b1abdd7ec487a9a18c4b5982c00f9ec8058d4ff727d3f8ebf3320a51b5285"
+    },
+    "case-20": {
+      "path": ".local/mountain-erase-native-02/case-20.json",
+      "bytes": 176575,
+      "sha256": "5e560558d0035d6760bd094b7a684316ba7fd98dbfaf63326a2e6beec8510ad8"
+    },
+    "case-21": {
+      "path": ".local/mountain-erase-native-02/case-21.json",
+      "bytes": 176961,
+      "sha256": "4412837aa3274b0f6942a1ef495ab1c5e5a53e0f53c86da7e5ece4ea0f1393dc"
+    },
+    "case-22": {
+      "path": ".local/mountain-erase-native-02/case-22.json",
+      "bytes": 176356,
+      "sha256": "f1e149d31416a3df0379ea8b7ecd07afae7ec8db3541e517393b149a79868a07"
+    },
+    "case-23": {
+      "path": ".local/mountain-erase-native-02/case-23.json",
+      "bytes": 176543,
+      "sha256": "2dace86483e41a48663adf3274cc4ebd41dadaab188250b5b4e8f5604a215258"
+    },
+    "case-24": {
+      "path": ".local/mountain-erase-native-02/case-24.json",
+      "bytes": 175893,
+      "sha256": "ff68f4ceeb809519df278ec312bae236b9839c5ec04fd712e0d20253644839ea"
+    },
+    "case-25": {
+      "path": ".local/mountain-erase-native-02/case-25.json",
+      "bytes": 175561,
+      "sha256": "a1139adba4e9e1ee6fad4fef065c340450b0b0294d9d04c7f644d94dc2f24a42"
+    },
+    "case-26": {
+      "path": ".local/mountain-erase-native-02/case-26.json",
+      "bytes": 175561,
+      "sha256": "f8267cefa9dc1a8d36431c60c298faf62497a23dd40c0cfef21c282461271adc"
+    },
+    "case-27": {
+      "path": ".local/mountain-erase-native-02/case-27.json",
+      "bytes": 175848,
+      "sha256": "74a888e3e08e97aed079a9d7ddf69a305ea88816ecdedfa6fb9d329986e70ab5"
+    },
+    "case-28": {
+      "path": ".local/mountain-erase-native-02/case-28.json",
+      "bytes": 175858,
+      "sha256": "739242b113f2e0106fe60ab915a532a6e7d666d4c2e9161418127a61f61e9f4d"
+    },
+    "case-29": {
+      "path": ".local/mountain-erase-native-02/case-29.json",
+      "bytes": 176409,
+      "sha256": "664bc50fe68f60053ea30bdd75d19d5bbea84e3f048ba8638bff78f793eecd43"
+    },
+    "case-30": {
+      "path": ".local/mountain-erase-native-02/case-30.json",
+      "bytes": 176646,
+      "sha256": "31acbbcf0d17322952b8b36dd0b8b5ae62538a324f71272661508c82f3811716"
+    },
+    "case-31": {
+      "path": ".local/mountain-erase-native-02/case-31.json",
+      "bytes": 176263,
+      "sha256": "c2ecb5ea08a8212fb1dfb86914fc7d36c466d34b289221151074ef69fedcf6a7"
+    },
+    "case-32": {
+      "path": ".local/mountain-erase-native-02/case-32.json",
+      "bytes": 176296,
+      "sha256": "9e38fb9b046390ef5bed8a3bff37cd1a632062e9d2e2ff24214d1f4f7579a9f6"
+    },
+    "case-33": {
+      "path": ".local/mountain-erase-native-02/case-33.json",
+      "bytes": 175154,
+      "sha256": "918822f31a4101068822e26074dcd5aa6bf3e2a5d4add21557530b672a88eae8"
+    },
+    "erase-actor": {
+      "path": ".local/mountain-erase-static-01/erase-actor.json",
+      "bytes": 13722,
+      "sha256": "08e0421301b93ee0a9517a5cdf720b896c376f368d557e323053a9a3054b0913"
+    },
+    "erase-body": {
+      "path": ".local/mountain-erase-static-01/erase-body.json",
+      "bytes": 26719,
+      "sha256": "86ae08ff95c942b8b2200b405f28e06ff1e1b6169c1195f44b75f41880839f61"
+    },
+    "erase-mid": {
+      "path": ".local/mountain-erase-static-01/erase-mid.json",
+      "bytes": 16426,
+      "sha256": "152934c5242328cab96618dec08e3fd2e47cf8585ff56f18d1486dbd8f08fccd"
+    },
+    "erase-tail": {
+      "path": ".local/mountain-erase-static-01/erase-tail.json",
+      "bytes": 20342,
+      "sha256": "f810fbbd019806e35000101e7cd27e1dac7f7dce94799f56b842626ce5417ca3"
+    },
+    "hud": {
+      "path": ".local/mountain-erase-static-01/hud.json",
+      "bytes": 19459,
+      "sha256": "ec14626850dc935300b99f724c283578317cba5f5796b2239486f6510cc5ca28"
+    },
+    "draw": {
+      "path": ".local/mountain-erase-static-01/draw.json",
+      "bytes": 14001,
+      "sha256": "ce1f1d43e1ed02fa5fb11caf29d73d312ea25d204e588e3ad771fe7fc5a0b65d"
+    },
+    "legacy": {
+      "path": ".local/mountain-erase-static-01/legacy-overlap.json",
+      "bytes": 31561,
+      "sha256": "f6e03f38a483a742ea14b8506eab841ec5caead9448e263c9cd848a91afdd285"
+    },
+    "profile-00-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-00-after-erase.json",
+      "bytes": 88783,
+      "sha256": "86d2524b8d1cd41c40f556ad60e90e7013fd4998e6fefb4db20d9cbc20d5f4ff"
+    },
+    "profile-01-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-01-after-erase.json",
+      "bytes": 88777,
+      "sha256": "ed4342646c4ad28c1efd92b4b9de3c5442b1967a3034e1c256a854eb42ec0a99"
+    },
+    "profile-02-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-02-after-erase.json",
+      "bytes": 88777,
+      "sha256": "1ff3bb7a86d4c534a8947bd36cbf6b655bf9f9ba497a2183e86c7a4832f14cd3"
+    },
+    "profile-03-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-03-after-erase.json",
+      "bytes": 88777,
+      "sha256": "0abd6d02445ed1b154f9e096c5354fb360c070aaa04c21348db12a8e7b1fbf67"
+    },
+    "profile-04-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-04-after-erase.json",
+      "bytes": 88777,
+      "sha256": "d0d783d66ac8a49b8c3d84da92910716f8077e4dc65ba609292122bbf251c164"
+    },
+    "profile-05-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-05-after-erase.json",
+      "bytes": 88777,
+      "sha256": "07fd6c46be50152930860c03b22ff276ed243f2a21a0a8fb87a6b44e3493a55f"
+    },
+    "profile-06-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-06-after-erase.json",
+      "bytes": 88783,
+      "sha256": "ef9641cdde49b8070cdb0c35671c356320b00c2cdefd0b521758885e951cc595"
+    },
+    "profile-07-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-07-after-erase.json",
+      "bytes": 88777,
+      "sha256": "c571c06f4ee57a367b096badd98ef7855a4f3b4c911c554b37f6e4971654d2db"
+    },
+    "profile-08-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-08-after-erase.json",
+      "bytes": 88777,
+      "sha256": "c125e92b6232a3cdfc5db950877060a5673d8a368e16bb63cc6fed68caaeb973"
+    },
+    "profile-09-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-09-after-erase.json",
+      "bytes": 88778,
+      "sha256": "03f78d1e7c7fbc819228508f45d813469d17e7c46020595b9394c61c806eda9b"
+    },
+    "profile-10-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-10-after-erase.json",
+      "bytes": 88778,
+      "sha256": "dd3e5c79070a3a224424c17bc780205e666a08a7db721dec481c3ff9a8b90303"
+    },
+    "profile-11-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-11-after-erase.json",
+      "bytes": 88778,
+      "sha256": "9b87691441b6c8d1cc8b7b60957e2f377123163d6d4ba41b8e23698a8b1bead9"
+    },
+    "profile-12-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-12-after-erase.json",
+      "bytes": 88784,
+      "sha256": "fb5be474fea00f9a8513c5ac675984fe7f1057707948bc68a92c3084cba39512"
+    },
+    "profile-13-after": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-13-after-erase.json",
+      "bytes": 88778,
+      "sha256": "544fd12107677b11e27941a16a869fcc02aa8ec959147c6b9ad93d9323af7b71"
+    },
+    "configuration": {
+      "path": ".local/mountain-erase-native-02/configuration.json",
+      "bytes": 1828,
+      "sha256": "4c291ec6b95e0ac22535df2da6f5e5a1a542e6e91013dcca80059a2fbc640758"
+    }
+  },
+  "sources": {
+    "scripts/capture-mountain-erase.py": "e24749bb0f6653a1eea1b0e203f554ec95e158ee942a27a0839dec4554a74d0e",
+    "scripts/lib/mountain-erase.js": "704747a88ada2b8bae2402dd21f904a823c1c2ecc06260b9cb0a32a8860df576",
+    "scripts/verify-mountain-erase.js": "5c76974fcddf5845d9e69dd1e6b078271561fd10435f1723da5128cb8713f40e",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9"
+  },
+  "injections": [
+    "Independent per-routine initial DS snapshots and declared synthetic patches.",
+    "Copy vector DS1fec redirected to a volatile-register-preserving RETF16 observer.",
+    "Private CS/DS/SS/SP;IF/DF clear;healthy stack threshold."
+  ],
+  "stackScratch": [
+    65200,
+    65264
+  ],
+  "comparisonRules": "Exact ordered eight-word copy arguments;allDS0000..fffe except64 declared stack-scratch bytes;all61522 original relocated code bytes. No expected value chooses a native input.",
+  "limitations": [
+    "Copies are intercepted at an explicit preserving callee-pop stub;no native primitive execution/pixel/cadence claim.",
+    "Each routine case has independent captured BEFORE DS and explicit patches,not a whole-machine restore or closed-loop campaign.",
+    "Native DS byteffff not observed;the routine does not address it.",
+    "Cloud3/invalid cloud states require stack-residue evidence and remain explicitly unsupported.",
+    "Signed/overscan rectangles are preserved as call arguments;work accounting outside the prior bounded copy model remains separate."
+  ],
+  "verify": "node scripts/verify-mountain-erase.js",
+  "captureRecipe": "DUCKTALES_DOSBOX_MCP_ROOT=/path/to/dosbox-mcp /path/to/dosbox-mcp/.venv/bin/python scripts/capture-mountain-erase.py --output .local/mountain-erase-native-NEW --port 8399",
+  "expectedOriginalFrameStateSegments": 14,
+  "expectedNegativeControls": 8
+}

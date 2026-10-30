@@ -30,6 +30,13 @@ controls and failure cases. `--fresh-browser` repeats the whole positive route.
 [Campaign provenance and limits](jungle-text-campaign.md).
 [Formatter/text timing integration](jungle-text-timing.md).
 
+The next non-Hard milestone is mountain timing. Its original erase/copy plan now
+passes 34 conditional native routine cases (191 exact copy calls), eight failure
+controls and named state comparisons across 14 original frame segments. The
+walking path makes six source copies per frame. This evidence is **not connected
+to the browser runtime yet**; signed-copy costs, HUD text/lines and retrace-phase
+integration remain. [Scope and reproduction](mountain-erase-work.md).
+
 ## Working gameplay and full-campaign evidence
 
 HTML/CSS/vanilla JavaScript with npm/Vite connects office/security, map and
@@ -100,6 +107,7 @@ npm run verify:current-campaign
 node scripts/verify-runtime-campaign.js --fresh-browser
 node scripts/verify-jungle-texts.js
 node scripts/verify-jungle-text-campaign-receipt.js
+node scripts/verify-mountain-erase.js
 node scripts/verify-hud-number.js
 node scripts/verify-jungle-text-work.js
 node scripts/jungle-text-timing.js

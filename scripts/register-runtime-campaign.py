@@ -1,7 +1,7 @@
 """Register a completed runtime comparison; never regenerate expectations."""
 from pathlib import Path
 import argparse,json,hashlib
-p=argparse.ArgumentParser();p.add_argument('--comparison',required=True);p.add_argument('--baseline',required=True);p.add_argument('--manifest',required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--bios-clock',action='store_true');p.add_argument('--comparison',required=True);p.add_argument('--baseline',required=True);p.add_argument('--manifest',required=True);a=p.parse_args()
 sha=lambda b:hashlib.sha256(b).hexdigest()
 def spec(p):
  p=Path(p);b=p.read_bytes();return {'path':str(p),'bytes':len(b),'sha256':sha(b)}
@@ -14,15 +14,20 @@ assert progress['completed'] and progress['consumed']==m['requiredEventCount'] a
 for x,y in zip(observed,expected):
  for key in ['name','at','eventCount','stateSha256','pixelsSha256']:assert x[key]==y[key],key
 assert progress['lastState']['ending']==m['expectedEnding'];assert json.loads((root/'browser'/'.last-run.json').read_text())=={'status':'passed','failedTests':[]}
-m['id']='speaker-runtime-easy-complete-campaign';m['runtimeComparison']=True;m['runtimeCommit']=source['commit'];m['runtimeComparisonRoot']=str(root)
+m['id']='bios-clock-easy-complete-campaign' if a.bios_clock else 'speaker-runtime-easy-complete-campaign';m['runtimeComparison']=True;m['runtimeCommit']=source['commit'];m['runtimeComparisonRoot']=str(root)
 m['scope']='Complete Easy port regression on persistent-speaker runtime;unchanged independent historical inputs/expected states;audio disabled in this full-route scenario.'
 m['browserReplayRoot']=str(root/'browser')
+if a.bios_clock:
+ assert m['expectedUnitCases']==186
+ m['expectedUnitCases']=194
+ m['runtimeEnvironment']={'biosSeed':0,'url':'/?bios-seed=0'}
+ m['scope']='Complete Easy fixed-word regression on clock-seed runtime; unchanged independent historical inputs and expected state/pixels. Default clock acceptance is separate in reference/bios-clock.json.'
 for role,name in [('accepted-browser-progress','replay-progress.json'),('accepted-browser-checkpoints','campaign-checkpoints.json'),('accepted-browser-events','actual-events.json')]:m['artifacts'][role]=spec(case/name)
 m['artifacts']['accepted-browser-status']=spec(root/'browser'/'.last-run.json')
 for role,name in [('runtime-source','source-revision.json'),('runtime-archive','sources.zip'),('runtime-status','runner-status.json'),('runtime-capture-tool','capture-source.py'),('runtime-log','browser.log')]:m['artifacts'][role]=spec(root/name)
 m['artifacts']['expectation-manifest']=spec(a.baseline)
-m['comparisonRules']+=' Current consumer src/ files match the separately pinned runtime archive exactly;historical expected artifacts remain byte-for-byte unchanged.'
-m['captureTools']['runtimeConsumer']='Fresh browser comparison from the runtimeCommit archive. Producer provenance remains the historical captureCommit. No expected-state or memory injection. Audio disabled;see separate speaker-playback manifest for actual audio acceptance.'
+if not a.bios_clock:m['comparisonRules']+=' Current consumer src/ files match the separately pinned runtime archive exactly;historical expected artifacts remain byte-for-byte unchanged.'
+if not a.bios_clock:m['captureTools']['runtimeConsumer']='Fresh browser comparison from the runtimeCommit archive. Producer provenance remains the historical captureCommit. No expected-state or memory injection. Audio disabled;see separate speaker-playback manifest for actual audio acceptance.'
 m['verify']='npm run verify:runtime-campaign'
 # Gate logic is pinned separately from archived consumer game code.
 for path in list(m['verificationSources'])+['scripts/capture-runtime-campaign.py','scripts/register-runtime-campaign.py','scripts/verify-runtime-campaign.js']:m['verificationSources'][path]=sha(Path(path).read_bytes())

@@ -5,12 +5,14 @@ import { readFile, mkdir, readdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 const manifest =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/mountain-phase-campaign.json";
+  "reference/bios-clock-campaign.json";
 const m = JSON.parse(await readFile(manifest));
-const mountainPhase = m.id === "mountain-phase-easy-complete-campaign";
+const biosRuntime = m.id === "bios-clock-easy-complete-campaign";
+const mountainPhase =
+  biosRuntime || m.id === "mountain-phase-easy-complete-campaign";
 const textTiming =
   mountainPhase || m.id === "jungle-text-easy-complete-campaign";
-const expectedUnits = mountainPhase ? 186 : 180;
+const expectedUnits = biosRuntime ? 194 : mountainPhase ? 186 : 180;
 if (mountainPhase) assert.equal(m.expectedUnitCases, expectedUnits);
 function run(command, args, extra = {}) {
   const r = spawnSync(command, args, {
@@ -145,7 +147,12 @@ if (m.completeSourceInventory)
 if (textTiming)
   run(process.execPath, ["scripts/verify-jungle-text-browser-negative.js"]);
 if (mountainPhase)
-  run(process.execPath, ["scripts/verify-mountain-phase-integration.js"]);
+  run(process.execPath, [
+    "scripts/verify-mountain-phase-integration.js",
+    ...(biosRuntime ? ["--bios-clock"] : []),
+  ]);
+if (biosRuntime)
+  run(process.execPath, ["scripts/verify-bios-clock-integration.js"]);
 run("npm", ["run", "build"]);
 console.log(
   `Current runtime gate passed:22 originals,${expectedUnits} units,${m.expectedCheckpointCount} carried state/pixel checkpoints,${m.requiredEventCount} independent DOM events,9 campaign negatives,7 cave controls and registered7-case actual sound acceptance${m.completeSourceInventory ? `,17 jungle component controls and actual jungle deadline negative${textTiming ? " and omitted-text-work negative" : ""}` : ""}. Full Hard and native whole-game timing remain unproven.`,

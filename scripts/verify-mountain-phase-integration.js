@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
 import { spawnSync, execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
+const expectedUnits = process.argv.includes("--bios-clock") ? 194 : 186;
 const output = ".local/mountain-phase-integration-" + Date.now();
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 assert.equal(
@@ -72,8 +73,8 @@ try {
     ...tests,
   ]);
   for (const pattern of [
-    /# tests 186\b/,
-    /# pass 186\b/,
+    new RegExp(`# tests ${expectedUnits}\\b`),
+    new RegExp(`# pass ${expectedUnits}\\b`),
     /# fail 0\b/,
     /# skipped 0\b/,
   ])
@@ -130,7 +131,7 @@ try {
     scope:
       "Focused current mountain phase integration;not whole-game,whole-campaign or native timing acceptance",
     completed: true,
-    units: 186,
+    units: expectedUnits,
     nativeEraseCases: 34,
     nativePrimitiveCases: 16,
     ascentInputs: 764,

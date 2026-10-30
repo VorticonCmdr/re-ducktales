@@ -16,6 +16,7 @@ const checkpointCount = {
   "jungle-line-easy-complete-campaign": 35,
   "jungle-text-easy-complete-campaign": 34,
   "mountain-phase-easy-complete-campaign": 34,
+  "bios-clock-easy-complete-campaign": 34,
 }[manifest.id];
 assert.ok(
   Number.isInteger(checkpointCount),
@@ -29,9 +30,12 @@ assert.equal(
   "SETUP: independent browser replay pending",
 );
 assert.equal(manifest.expectedCheckpointCount, checkpointCount);
+const biosRuntime = manifest.id === "bios-clock-easy-complete-campaign";
+let historicalManifest = manifest;
 const freshCampaign = [
   "jungle-text-easy-complete-campaign",
   "mountain-phase-easy-complete-campaign",
+  "bios-clock-easy-complete-campaign",
 ].includes(manifest.id);
 const eventCount = manifest.requiredEventCount;
 assert.ok(Number.isInteger(eventCount) && eventCount > 0);
@@ -125,9 +129,18 @@ assert.equal(
 // A runtime comparison keeps historical expectations/provenance intact while
 // pinning a separate current consumer archive and a fresh actual-browser pass.
 let consumerSource = source;
-if (manifest.id === "speaker-runtime-easy-complete-campaign") {
+if (biosRuntime || manifest.id === "speaker-runtime-easy-complete-campaign") {
   assert.equal(manifest.runtimeComparison, true);
   const baseline = await json("expectation-manifest");
+  if (biosRuntime) {
+    assert.equal(baseline.id, "mountain-phase-easy-complete-campaign");
+    assert.equal(manifest.expectedUnitCases, 194);
+    assert.deepEqual(manifest.runtimeEnvironment, {
+      biosSeed: 0,
+      url: "/?bios-seed=0",
+    });
+    historicalManifest = baseline;
+  }
   for (const key of [
     "captureCommit",
     "expectedCheckpointCount",
@@ -142,6 +155,24 @@ if (manifest.id === "speaker-runtime-easy-complete-campaign") {
       baseline[key],
       `Changed historical expectation ${key}`,
     );
+  if (biosRuntime)
+    for (const key of Object.keys(baseline))
+      if (
+        ![
+          "id",
+          "scope",
+          "expectedUnitCases",
+          "browserReplayRoot",
+          "artifacts",
+          "verificationSources",
+          "verify",
+        ].includes(key)
+      )
+        assert.deepEqual(
+          manifest[key],
+          baseline[key],
+          `Changed historical expectation ${key}`,
+        );
   for (const role of [
     "environment",
     "captured-events",
@@ -214,19 +245,25 @@ with zipfile.ZipFile(sys.argv[1]) as z:
   ]
     .filter(
       (p) =>
-        p.startsWith("src/game/") &&
+        p.startsWith(biosRuntime ? "src/" : "src/game/") &&
         source.files[p] !== consumerSource.files[p],
     )
     .sort();
   assert.deepEqual(
     changedGameFiles,
-    [
-      "src/game/audio-device.js",
-      "src/game/browser.js",
-      "src/game/speaker-audio.js",
-      "src/game/tandy-audio.js",
-    ],
-    "Unexpected game change in audio runtime comparison",
+    biosRuntime
+      ? [
+          "src/game/application.js",
+          "src/game/bios-clock.js",
+          "src/game/browser.js",
+        ]
+      : [
+          "src/game/audio-device.js",
+          "src/game/browser.js",
+          "src/game/speaker-audio.js",
+          "src/game/tandy-audio.js",
+        ],
+    "Unexpected source change in runtime comparison",
   );
   const actualSourceFiles = (
     await readdir("src", { recursive: true, withFileTypes: true })
@@ -253,6 +290,7 @@ if (
     "jungle-line-easy-complete-campaign",
     "jungle-text-easy-complete-campaign",
     "mountain-phase-easy-complete-campaign",
+    "bios-clock-easy-complete-campaign",
   ].includes(manifest.id)
 ) {
   assert.equal(manifest.completeSourceInventory, true);
@@ -273,7 +311,7 @@ if (
     "expectedFlightPresentations",
     "completeSourceInventory",
     "buildManifest",
-    ...(manifest.id === "mountain-phase-easy-complete-campaign"
+    ...(historicalManifest.id === "mountain-phase-easy-complete-campaign"
       ? ["expectedUnitCases"]
       : []),
     ...(freshCampaign
@@ -288,13 +326,13 @@ if (
       : []),
   ])
     assert.deepEqual(
-      manifest[key],
+      historicalManifest[key],
       contract[key],
       `Changed independent browser contract ${key}`,
     );
   for (const [role, spec] of Object.entries(contract.artifacts))
     assert.deepEqual(
-      manifest.artifacts[role],
+      historicalManifest.artifacts[role],
       spec,
       `Changed independently replayed artifact ${role}`,
     );
@@ -376,7 +414,11 @@ if (
     .sort();
   assert.deepEqual(
     actual,
-    srcFiles,
+    biosRuntime
+      ? Object.keys(consumerSource.files)
+          .filter((p) => p.startsWith("src/"))
+          .sort()
+      : srcFiles,
     "Unexpected or missing complete campaign source",
   );
   if (manifest.id === "jungle-line-easy-complete-campaign") {
@@ -419,8 +461,15 @@ with zipfile.ZipFile(sys.argv[1]) as z:
     undefined,
     "Unsupported complete-source inventory",
   );
-// Historical contracts still require their original source. The explicit audio
-// comparison checks every src file against its independently archived consumer.
+if (biosRuntime)
+  for (const [role, spec] of Object.entries(historicalManifest.artifacts))
+    if (!role.startsWith("accepted-browser-"))
+      assert.deepEqual(
+        manifest.artifacts[role],
+        spec,
+        `Changed historical artifact ${role}`,
+      );
+// Runtime comparisons check every src file against their archived consumer.
 for (const [path, expected] of Object.entries(consumerSource.files))
   if (
     path.startsWith(

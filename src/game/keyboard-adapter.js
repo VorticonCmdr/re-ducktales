@@ -75,3 +75,7 @@ export function ordinaryMakeEvent(key, held, office = false) {
     };
   return { type: key.slice(5).toLowerCase(), ...physical };
 }
+
+export function expeditionKeyEvent(key, pressed) {
+  return { ...mapKeyEvent(key, pressed), type: "expedition-key" };
+}

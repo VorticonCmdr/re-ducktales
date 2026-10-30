@@ -29,6 +29,26 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
       });
     });
   }
+  if (process.env.DUCKTALES_EXPEDITION_KEYBOARD_NEGATIVE) {
+    expect(process.env.DUCKTALES_EXPEDITION_KEYBOARD_NEGATIVE).toBe(
+      "drop-break",
+    );
+    await page.route("**/src/game/application.js*", async (route) => {
+      const response = await route.fetch(),
+        body = await response.text();
+      const source =
+        "this.expeditionKeyboard.event(event.scanCode, event.pressed);";
+      expect(body.split(source).length, "SETUP: expedition IRQ hook").toBe(2);
+      await route.fulfill({
+        response,
+        body: body.replace(
+          source,
+          source +
+            "if (!event.pressed) this.expeditionKeyboard.flags.delete(event.scanCode);",
+        ),
+      });
+    });
+  }
   await openRecordedApplication(page, 1);
   const c = page.locator("#game"),
     state = () => c.getAttribute("data-state").then(JSON.parse);
@@ -146,6 +166,27 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
   await c.screenshot({
     path: ".local/browser-results/mountain-sprite-pacing.png",
   });
+  const beforeRelease = await state();
+  expect(beforeRelease.expeditionKeys.mode).toBe(0);
+  expect(beforeRelease.expeditionKeys.byte).toBe(3);
+  await page.keyboard.up("ArrowRight");
+  const edge = await until(
+    (s) => s.expeditionKeys.reads > beforeRelease.expeditionKeys.reads,
+  );
+  expect(edge.expeditionKeys.reads, "Skipped release-edge read").toBe(
+    beforeRelease.expeditionKeys.reads + 1,
+  );
+  expect(
+    edge.expeditionKeys.byte,
+    "Original released Right is consumed once",
+  ).toBe(3);
+  expect(edge.expeditionKeys.flags[0x4d]).toBe(0);
+  const neutral = await until(
+    (s) => s.expeditionKeys.reads > edge.expeditionKeys.reads,
+  );
+  expect(neutral.expeditionKeys.reads).toBe(edge.expeditionKeys.reads + 1);
+  expect(neutral.expeditionKeys.byte).toBe(0);
+  await page.keyboard.down("ArrowRight");
   await until((s) => s.mountain.lives === 2);
   const reset = await until((s) => s.mountain.phase === "playing");
   expect(reset.mountain.action).toBe(0);

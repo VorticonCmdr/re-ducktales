@@ -15,12 +15,23 @@ test("photography keyboard target shot, results, campaign return and collected n
   await expect(page.locator("#actions")).toBeVisible();
   const canvas = page.locator("#game");
   const state = () => canvas.getAttribute("data-state").then(JSON.parse);
+  // Explicit authored device profile for this acceptance case. The production
+  // browser receives OS repeat makes; no game timer synthesizes held keys.
+  let repeatedKey = null;
   async function until(predicate, max = 4000) {
     for (let i = 0; i < max; i++) {
       const s = await state();
       if (s?.diagnostic) throw Error(s.diagnostic);
       if (s && predicate(s)) return s;
-      await page.clock.runFor(8);
+      const step = repeatedKey ? Math.min(8, repeatedKey.remaining) : 8;
+      await page.clock.runFor(step);
+      if (repeatedKey) {
+        repeatedKey.remaining -= step;
+        if (repeatedKey.remaining === 0) {
+          await page.keyboard.down(repeatedKey.key);
+          repeatedKey.remaining = 32;
+        }
+      }
     }
     throw Error(
       `unfinished photography browser wait: ${JSON.stringify(await state())}`,
@@ -105,14 +116,21 @@ test("photography keyboard target shot, results, campaign return and collected n
   await canvas.screenshot({
     path: ".local/browser-results/photography-shot.png",
   });
-  // Spend the remaining film using the real input adapter, without injecting
-  // game state, timer values, photos or expected outcomes.
+  // Spend all remaining film with explicit physical repeat makes: first after
+  //250ms,then every32ms. These are authored external inputs,not native typematic
+  // evidence or fitted timer values; source mode1 flushes every ordinary read.
   await page.keyboard.down("Space");
+  repeatedKey = { key: "Space", remaining: 250 };
   const results = await until(
     (s) => s.scene === "photography" && s.photography.phase === "results",
     10000,
   );
+  repeatedKey = null;
   await page.keyboard.up("Space");
+  expect(results.photography.film, "All film consumed by physical makes").toBe(
+    -1,
+  );
+  expect(results.photography.photoCount).toBe(12);
   const score = results.photography.photos.reduce(
     (sum, p) => sum + (p === results.photography.target ? 500 : p ? 50 : 0),
     0,

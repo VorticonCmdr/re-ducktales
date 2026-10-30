@@ -24,6 +24,7 @@ import { advanceRival, RivalReport, RIVAL_UNLOCK } from "./rival.js";
 import { AtomicTransport } from "./atomic-transport.js";
 import { BankScene } from "./bank.js";
 import { SystemControls } from "./system-controls.js";
+import { OrdinaryKeyboard, isOrdinaryScanCode } from "./ordinary-keyboard.js";
 export { DRIVER_HZ, RETRACE_HZ } from "./timing.js";
 
 export class Game {
@@ -38,9 +39,17 @@ export class Game {
     bankResources = null,
     openingResources = null,
     originalSecurity = false,
+    expeditionInput = "digital",
   } = {}) {
     if (typeof originalSecurity !== "boolean")
       throw Error("Invalid security setting");
+    if (!["digital", "keyboard"].includes(expeditionInput))
+      throw Error("Unsupported expedition input provider");
+    this.expeditionInput = expeditionInput;
+    this.keyboardMode = 1; // Resident0077 initializes ordinary-reader mode1.
+    this.expeditionKeyboard = new OrdinaryKeyboard(1);
+    this.expeditionKeyReads = 0;
+    this.lastExpeditionKeyByte = null;
     this.originalSecurity = originalSecurity;
     this.openingResources = openingResources;
     this.opening = null;
@@ -137,6 +146,45 @@ export class Game {
     component.advanceGraphics();
     if (this.scene === "cave") this.collectCave();
     else this.collectPhotography();
+  }
+  get usesExpeditionKeyboard() {
+    return (
+      this.expeditionInput === "keyboard" &&
+      ["cave", "mountain", "jungle", "photography"].includes(this.scene)
+    );
+  }
+  syncExpeditionKeyboard() {
+    if (!this.usesExpeditionKeyboard) return;
+    const memory = this[this.scene]?.memory;
+    if (!memory) return;
+    memory.b(0x3c1, this.expeditionKeyboard.mode);
+    const flags = this.expeditionKeyboard.bytes();
+    for (let scan = 0; scan < 128; scan++)
+      if (isOrdinaryScanCode(scan)) memory.b(0x276c + scan, flags[scan]);
+  }
+  flushExpeditionKeyboard() {
+    this.expeditionKeyboard.flush();
+    if (this.usesExpeditionKeyboard)
+      this[this.scene]?.memory?.bytes.fill(0, 0x276c, 0x27ec);
+    this.syncExpeditionKeyboard();
+  }
+  readExpeditionKeyboard() {
+    if (!this.usesExpeditionKeyboard)
+      throw Error("Expedition keyboard read outside its source boundary");
+    const byte = this.expeditionKeyboard.poll();
+    this.expeditionKeyReads++;
+    this.lastExpeditionKeyByte = byte;
+    this.syncExpeditionKeyboard();
+    return byte;
+  }
+  beginExpeditionKeyboard(activity) {
+    // Flight/Cave/Mountain clear ordinary-reader mode;Photo sets mode1.
+    // Jungle makes no assignment and retains the incoming caller mode.
+    if (["cave", "mountain"].includes(activity)) this.keyboardMode = 0;
+    if (activity === "photography") this.keyboardMode = 1;
+    this.expeditionKeyboard = new OrdinaryKeyboard(this.keyboardMode);
+    this.expeditionKeyReads = 0;
+    this.lastExpeditionKeyByte = null;
   }
   startOpening() {
     this.opening =
@@ -478,6 +526,17 @@ export class Game {
   }
   handleInput(event, fromActivityPoll = false) {
     if (this.diagnostic) throw Error(this.diagnostic);
+    if (event.type === "expedition-key") {
+      if (!this.usesExpeditionKeyboard)
+        throw Error("Physical expedition key outside keyboard provider");
+      this.expeditionKeyboard.event(event.scanCode, event.pressed);
+      this.syncExpeditionKeyboard();
+      return;
+    }
+    if (event.type === "flush-expedition-keys") {
+      this.flushExpeditionKeyboard();
+      return;
+    }
     if (event.type === "original-security") {
       if (typeof event.enabled !== "boolean")
         throw Error("Invalid security setting");
@@ -623,6 +682,10 @@ export class Game {
       this.pendingCampaignAction = null;
       this.briefing = null;
       this.controls = { fire: false, direction: null };
+      this.keyboardMode = 1;
+      this.flushExpeditionKeyboard();
+      this.expeditionKeyReads = 0;
+      this.lastExpeditionKeyByte = null;
       this.money = 0;
       this.campaign = this.locations
         ? new Campaign(this.locations, this.initializeMarket(this.biosSeed))
@@ -810,6 +873,7 @@ export class Game {
         return;
       }
       if (event.type === "fire") {
+        this.keyboardMode = 0; // Map pointer Fire bypasses mode restoration.
         if (c.selected === OFFICE) {
           this.completeCampaignAction({ type: "travel", target: OFFICE });
           return;
@@ -858,6 +922,7 @@ export class Game {
     if (this.scene === "departure") {
       if (event.type === "fire") {
         if (!this.flightResources) throw Error("Flight resources not loaded");
+        this.keyboardMode = 0; // Flight entry clears ordinary-reader mode.
         this.flight = new Flight(
           {
             ...this.flightResources,
@@ -1414,6 +1479,7 @@ export class Game {
     return this.pollSystemInput(this.pendingPhotographySystemKeys);
   }
   flushPhotographyInput(releaseControls = true) {
+    this.flushExpeditionKeyboard();
     this.pendingPhotographySystemKeys.clear();
     if (releaseControls) {
       this.handleInput({ type: "controls", fire: false, direction: null });
@@ -1424,6 +1490,7 @@ export class Game {
     return this.pollSystemInput(this.pendingJungleSystemKeys);
   }
   flushJungleInput(releaseControls = true) {
+    this.flushExpeditionKeyboard();
     this.pendingJungleSystemKeys.clear();
     if (releaseControls) {
       this.handleInput({ type: "controls", fire: false, direction: null });
@@ -1434,6 +1501,7 @@ export class Game {
     return this.pollSystemInput(this.pendingMountainSystemKeys);
   }
   flushMountainInput() {
+    this.flushExpeditionKeyboard();
     this.pendingMountainSystemKeys.clear();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
@@ -1445,6 +1513,7 @@ export class Game {
     return this.pollSystemInput(this.pendingCaveSystemKeys);
   }
   flushCaveInput() {
+    this.flushExpeditionKeyboard();
     this.pendingCaveSystemKeys.clear();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
@@ -1471,6 +1540,7 @@ export class Game {
     const c = this.campaign,
       waits = c.destinationWaits;
     if (!waits) return;
+    this.keyboardMode = 1; // Destination sets mode1 and retains it on return.
     c.choice = waits.choice;
     for (const event of waits.drainEvents()) {
       if (event.type === "sound") {
@@ -1685,6 +1755,7 @@ export class Game {
     this.scene = "expedition-briefing";
   }
   startExpedition() {
+    this.beginExpeditionKeyboard(this.briefing.activity);
     this.campaign.rivalUnlockMask |= RIVAL_UNLOCK[this.briefing.activity] ?? 0;
     if (this.briefing.activity === "photography") {
       this.photography = new Photography(
@@ -1692,6 +1763,13 @@ export class Game {
           ...this.expeditionResources,
           entries: this.expeditionResources.photographyEntries,
           clock: this.simulationClock,
+          ...(this.expeditionInput === "keyboard"
+            ? {
+                readInput: () => this.readExpeditionKeyboard(),
+                readDialogueFire: () =>
+                  (this.readExpeditionKeyboard() & 0xc0) !== 0,
+              }
+            : {}),
           pollInput: () => this.pollPhotographySystemInput(),
           flushInput: (release) => this.flushPhotographyInput(release),
           variant: this.briefing.variant,
@@ -1706,6 +1784,7 @@ export class Game {
       );
       this.photography.setControls(this.controls);
       this.scene = "photography";
+      this.syncExpeditionKeyboard();
       return;
     }
     if (this.briefing.activity === "jungle") {
@@ -1714,6 +1793,11 @@ export class Game {
           ...this.expeditionResources,
           entries: this.expeditionResources.jungleEntries,
           clock: this.simulationClock,
+          ...(this.expeditionInput === "keyboard"
+            ? {
+                readInput: () => this.readExpeditionKeyboard(),
+              }
+            : {}),
           pollInput: () => this.pollJungleSystemInput(),
           flushInput: (release) => this.flushJungleInput(release),
           variant: this.briefing.variant,
@@ -1727,6 +1811,7 @@ export class Game {
       );
       this.jungle.setControls(this.controls);
       this.scene = "jungle";
+      this.syncExpeditionKeyboard();
       return;
     }
     if (this.briefing.activity === "mountain") {
@@ -1734,6 +1819,11 @@ export class Game {
         {
           ...this.expeditionResources,
           entries: this.expeditionResources.mountainEntries,
+          ...(this.expeditionInput === "keyboard"
+            ? {
+                readInput: () => this.readExpeditionKeyboard(),
+              }
+            : {}),
           pollInput: () => this.pollMountainSystemInput(),
           flushInput: () => this.flushMountainInput(),
           variant: this.briefing.variant,
@@ -1747,6 +1837,7 @@ export class Game {
       );
       this.mountain.setControls(this.controls);
       this.scene = "mountain";
+      this.syncExpeditionKeyboard();
       return;
     }
     if (this.briefing.activity !== "cave")
@@ -1763,6 +1854,11 @@ export class Game {
         money: this.money,
         audioEnabled: this.audioEnabled,
         audioScope: ++this.audioScope,
+        ...(this.expeditionInput === "keyboard"
+          ? {
+              readInput: () => this.readExpeditionKeyboard(),
+            }
+          : {}),
         pollInput: () => this.pollCaveSystemInput(),
         flushInput: () => this.flushCaveInput(),
       },
@@ -1770,6 +1866,7 @@ export class Game {
     );
     this.cave.setControls(this.controls);
     this.scene = "cave";
+    this.syncExpeditionKeyboard();
   }
   finishRivalClaim() {
     this.campaign.location = this.departure.target;
@@ -1895,6 +1992,16 @@ export class Game {
   snapshot() {
     return {
       scene: this.scene,
+      ...(this.usesExpeditionKeyboard
+        ? {
+            expeditionKeys: {
+              mode: this.expeditionKeyboard.mode,
+              reads: this.expeditionKeyReads,
+              byte: this.lastExpeditionKeyByte,
+              flags: [...this.expeditionKeyboard.bytes()],
+            },
+          }
+        : {}),
       difficulty: this.difficulty,
       money: this.money,
       rareCoinTaken: this.rareCoinTaken,

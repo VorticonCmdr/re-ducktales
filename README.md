@@ -28,8 +28,9 @@ stop loading with a diagnostic.
 
 The opening plays automatically; Space / Enter skips it. Then use the arrows
 to choose difficulty and Enter to start. Space / Enter fires during play, and
-**Up + Space** enters the money bin from the office. Buttons provide equivalent accessible
-inputs. Time the dive while Scrooge moves on the board. Restart begins again.
+**Up + Space** enters the money bin from the office. Buttons provide menu actions.
+In caves, mountains, jungle and safaris, I/J/K/M and the numeric keypad also work.
+Time the dive while Scrooge moves on the board. Restart begins again.
 Sound is optional and labeled reconstructed because PC-speaker effects retain
 known approximation limits.
 

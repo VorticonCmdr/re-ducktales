@@ -114,7 +114,7 @@
     "verify:office-hard-expeditions": "node scripts/verify-security-hard-expeditions.js && node scripts/verify-security-hard-fixture-negatives.js",
     "test:office-hard-expeditions": "playwright test tests/browser/hard-expedition.spec.js tests/browser/hard-mountains.spec.js tests/browser/hard-expedition-replay.spec.js",
     "verify:office-hard-expeditions-negative": "node scripts/verify-security-hard-movement-negative.js",
-    "verify:map-keyboard": "node scripts/verify-map-keyboard.js && node scripts/verify-map-keyboard-fixture-negatives.js",
+    "verify:map-keyboard": "node scripts/verify-map-keyboard.js && node scripts/verify-map-keyboard-fixture-negatives-isolated.js",
     "verify:ordinary-keyboard": "npm run verify:map-keyboard && node scripts/verify-office-menu.js && node scripts/verify-office-investments.js && node scripts/verify-ordinary-keyboard-browser.js",
     "verify:shared-runtime": "node scripts/verify-shared-runtime-regression.js && node scripts/verify-shared-runtime-fixture-negatives.js",
     "verify:map-clock": "node scripts/verify-map-clock.js && node scripts/verify-map-clock-fixture-negatives.js",
@@ -142,7 +142,8 @@
     "verify:cave-work": "node scripts/verify-cave-work.js",
     "verify:cave-timing": "npm run verify:build && npm run verify:cave-work && npm run verify:cave && node scripts/verify-cave-runtime.js && node scripts/verify-cave-routes.js && npm test && playwright test tests/browser/cave-input.spec.js tests/browser/campaign.spec.js --grep \"cave input polls|keyboard flight lands, explores a cave, collects treasure and returns to the map\" --config playwright.campaign.config.js && node scripts/verify-cave-timing-browser-negative.js && npm run build",
     "verify:photography-work": "node scripts/verify-photography-work.js",
-    "verify:photography-timing": "npm run verify:build && npm run verify:photography-work && npm run verify:photography && npm test && playwright test tests/browser/photography-input.spec.js tests/browser/photography.spec.js --config playwright.campaign.config.js && node scripts/verify-photography-timing-browser-negative.js && npm run build"
+    "verify:photography-timing": "npm run verify:build && npm run verify:photography-work && npm run verify:photography && npm test && playwright test tests/browser/photography-input.spec.js tests/browser/photography.spec.js --config playwright.campaign.config.js && node scripts/verify-photography-timing-browser-negative.js && npm run build",
+    "verify:expedition-keyboard": "npm run verify:build && node scripts/verify-expedition-keyboard.js && npm run verify:map-keyboard && npm run verify:cave && npm run verify:photography && npm run verify:jungle-core && node scripts/verify-mountain.js && node scripts/verify-mountain-input.js && npm test && playwright test tests/browser/mountain-input.spec.js tests/browser/cave-input.spec.js tests/browser/photography-input.spec.js tests/browser/photography.spec.js tests/browser/expedition-keyboard.spec.js --config playwright.campaign.config.js && node scripts/verify-expedition-keyboard-browser-negative.js && npm run build"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

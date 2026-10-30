@@ -1,0 +1,50 @@
+{
+  "id": "physical-keyboard-jungle-entry",
+  "acceptanceLevel": "candidate-requires-independent-browser-reproduction",
+  "parent": {
+    "path": "reference/destination-jungle-entry.json",
+    "sha256": "80434c77e280a33e88253d9905229f3f3d9238a4002c5ce96e6068d846a9c3e1"
+  },
+  "stateSha256": "f1f21a1ccf4990d86d2853ddc65b133e0bef99ba8b669573f2276052e2db2ee9",
+  "pixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7",
+  "historicalStateSha256": "30253d951d61c148754497a193cb25a9916688b9601ac2aac69f8eee679eed0c",
+  "historicalPixelsSha256": "86dcb30a6f0f8b674ecc4339858d00b210bc1ce338dc6ae3321812c275c61ae7",
+  "historicalComparison": "Exclude only new expeditionKeys diagnostics from the old full-state hash. New full state is checked separately,including mode0,zero reads/null byte and128 cleared flags. No gameplay/timer field is excluded.",
+  "expectedEntryCheckpointCount": 1,
+  "expectedEntryDOMEventCount": 50,
+  "entryAt": 23905,
+  "inputRecipe": "Fixed easyJungleEntry browser helper; two bank trips,physical map/guide input,flight crash and natural jungle entry. Additional alias/repeat/flush checks use actual DOM keys at independent source-read observations;no state or native timer injection.",
+  "producerArtifacts": {
+    "captured-events.json": {
+      "path": ".local/expedition-keyboard-01/jungle-entry-exploration/captured-events.json",
+      "bytes": 5699,
+      "sha256": "2c68f2fe3bf4949821ff49514839f99dd8e581b516149acabf14f88886fb0e45"
+    },
+    "entry.png": {
+      "path": ".local/expedition-keyboard-01/jungle-entry-exploration/entry.png",
+      "bytes": 19873,
+      "sha256": "560613d928335a016ad40d170d1f2ed6d48c1258bbe84d47d1d19db9d6f6df3c"
+    },
+    "timeline.json": {
+      "path": ".local/expedition-keyboard-01/jungle-entry-exploration/timeline.json",
+      "bytes": 178,
+      "sha256": "4a72d0ac4decddfd5e89a82404329137524b01f1afd2833aeb0f8b9bf43c52f3"
+    },
+    "campaign-checkpoints.json": {
+      "path": ".local/expedition-keyboard-01/jungle-entry-exploration/campaign-checkpoints.json",
+      "bytes": 5275,
+      "sha256": "eb1e23ad7e8505a7c8128e55f7724a6cf7d7621564dcedc58bf8369d69849641"
+    },
+    "environment.json": {
+      "path": ".local/expedition-keyboard-01/jungle-entry-exploration/environment.json",
+      "bytes": 211,
+      "sha256": "ae00c7a8cc905f460667565f34e5643f963b56731dfbc0d67012f5ce6884bbd4"
+    }
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "limitations": [
+    "The producer run deliberately ended with EXPLORATORY,not acceptance. The candidate is accepted only by a subsequent clean combined browser verification.",
+    "Entry canonical equality/pixels and new control checks are browser evidence,not native whole-expedition parity."
+  ]
+}

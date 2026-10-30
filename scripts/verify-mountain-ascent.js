@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { Mountain } from "../src/game/mountain.js";
+import { verifyMountainInputBridge } from "./verify-mountain-input-bridge.js";
 import {
   renderMountainPixels,
   createMountainRasterCache,
@@ -14,14 +15,7 @@ export async function verifyMountainAscent(resources) {
   const timing = JSON.parse(
     await readFile("reference/mountain-ascent-sprite-work.json", "utf8"),
   );
-  for (const [path, hash] of Object.entries(timing.runtimeSources))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      hash,
-      `Changed ascent timing source ${path}`,
-    );
+  await verifyMountainInputBridge(resources, timing);
   assert.equal(
     createHash("sha256")
       .update(await readFile("reference/mountain-ascent.json"))

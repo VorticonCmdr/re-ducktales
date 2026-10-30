@@ -36,6 +36,14 @@ export class Mountain {
     this.pollInput = options.pollInput ?? (() => true);
     this.onFlushInput = options.flushInput ?? (() => {});
     this.controls = { fire: false, direction: null };
+    this.readInputByte =
+      options.readInput ??
+      (() =>
+        (({ up: 1, right: 3, down: 5, left: 7 })[this.controls.direction] ??
+          0) | (this.controls.fire ? 0x40 : 0));
+    if (typeof this.readInputByte !== "function")
+      throw Error("Invalid mountain input-byte provider");
+
     this.flushInput(); // Original entry0014,before synchronous resource loading.
     Object.assign(this, prepareMountain(options, previousMemory));
     if (!Number.isInteger(options.day) || options.day < 1 || options.day > 30)
@@ -130,6 +138,7 @@ export class Mountain {
     this.resume();
   }
   flushInput() {
+    this.memory?.bytes.fill(0, 0x276c, 0x27ec);
     this.controls = { fire: false, direction: null };
     this.onFlushInput();
   }
@@ -390,9 +399,9 @@ export class Mountain {
         l.b(-0x28, 0);
         l.b(-0x1e, 0);
         yield* this.readInput(); //0317,after rendering and before action logic.
-        const input =
-          ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ??
-            0) | (this.controls.fire ? 0x40 : 0);
+        const input = this.readInputByte();
+        if (!Number.isInteger(input) || input < 0 || input > 255)
+          throw Error("Invalid mountain input-byte provider");
         this.inputs.push({ tick: this.tick, retrace: this.retrace, input });
         advanceMountainAction(m, l, input, (id) => this.sound(id));
         this.frames++;

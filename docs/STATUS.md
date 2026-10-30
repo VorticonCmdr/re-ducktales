@@ -21,7 +21,23 @@ Tandy/PCjr includes Sound 001, persistent channels, priorities, engine words, mu
 and completion; all 121 public requests have viewer playback. Speaker playback
 is the default. Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 
-## Current verified milestone
+## Current input milestone
+
+Ground expeditions now use original ordinary-key flags at source input calls.
+Physical makes, repeats, release-edge reads, aliases/keypad directions and the
+caller's flushes/mode replace the previous held-direction shortcut. Safari keeps
+its mode-1 behavior; jungle inherits its caller mode. Cave keypad diagonals use
+the original five-bit direction groups. The focused command is
+`npm run verify:expedition-keyboard`; its combined acceptance is pending a clean
+run. [Input evidence and limits](expedition-keyboard.md).
+
+Exact source bridges compare all 764 mountain input memories/locals/states and
+870 ordered command/pixel publications, and 1,616 jungle input memories/states
+and 1,714 ordered pixel/mode/wipe publications against the previous classes.
+These include every timer byte, retain all historical expectations, and do not
+establish native whole-level timing parity.
+
+## Earlier verified milestones
 
 Safari now charges source background/HUD and actor drawing, including the extra
 unpresented preparation before shutter decisions. Its two browser routes pass,
@@ -73,9 +89,11 @@ refresh. Historical passes do not establish a green current broader gate.
   and deferred system-key polling. Browser reads currently follow external makes;
   the original recurring loop is incomplete. Original first-map drawing and exact
   video/cache phase alignment remain open. [Destination scope](destination-keyboard.md).
-- Connect the original expedition release-edge direction. Broader destination/
-  difficulty routes, original whole-scene/campaign comparisons and arbitrary-route
-  finishability remain unproven.
+- Complete cross-scene queued keyboard delivery and remaining system/modifier/BIOS
+  behavior. The four ground expeditions now use the ordinary reader, but physical
+  input in other scenes and exact transition windows remain incomplete. Broader
+  destination/difficulty routes, original whole-scene/campaign comparisons and
+  arbitrary-route finishability remain unproven.
 - Refresh older source receipts and complete campaign regressions. The required
   `npm run verify:shared-runtime` still fails its historical runtime inventory;
   the office-era jungle-entry receipt rejects the newer replay verifier hash.
@@ -86,8 +104,8 @@ refresh. Historical passes do not establish a green current broader gate.
 - Original save/load/high-score behavior/formats have not been established.
   Browser persistence would be an explicit addition without original evidence.
 
-Next: complete destination polling and expedition release-edge input, then
-refresh broader campaign gates against the current runtime.
+Next: complete destination polling and cross-scene input windows, then refresh
+broader campaign gates against the current runtime.
 
 ## Supported build and commands
 
@@ -98,6 +116,7 @@ MZ/EXEPACK, x86 LE16 real mode, overlays, no extender. Actual relocated game byt
 and native addresses were checked; the analysis image is never executed.
 
 ```sh
+npm run verify:expedition-keyboard
 npm run verify:jungle-core
 npm run verify:cave-timing
 npm run verify:photography-timing

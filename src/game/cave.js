@@ -12,6 +12,24 @@ import { DRIVER_HZ, RETRACE_HZ } from "./timing.js";
 import { cavePartyWork, caveSpriteWork } from "./cave-work.js";
 import { caveEndings } from "./cave-endings.js";
 import { caveTransition } from "./cave-transitions.js";
+// Overlay6:09a9..0a81 and0d62/0ec8/0f5a/0fef mask five bits and
+// group the diagonal on each cardinal's clockwise side with that cardinal.
+export function caveDirectionFromByte(byte) {
+  if (!Number.isInteger(byte) || byte < 0 || byte > 255)
+    throw Error("Invalid cave input-byte provider");
+  return (
+    {
+      1: "up",
+      2: "up",
+      3: "right",
+      4: "right",
+      5: "down",
+      6: "down",
+      7: "left",
+      8: "left",
+    }[byte & 31] ?? null
+  );
+}
 export class Cave {
   constructor(options, previousMemory) {
     this.options = options;
@@ -41,6 +59,14 @@ export class Cave {
     this.audioToken = 0;
     this.audioBusy = false;
     this.controls = { fire: false, direction: null };
+    this.readInputByte =
+      options.readInput ??
+      (() =>
+        (({ up: 1, right: 3, down: 5, left: 7 })[this.controls.direction] ??
+          0) | (this.controls.fire ? 192 : 0));
+    if (typeof this.readInputByte !== "function")
+      throw Error("Invalid cave input-byte provider");
+
     this.events = [];
     this.inputs = [];
     this.progress = 0;
@@ -155,6 +181,7 @@ export class Cave {
     this.resume();
   }
   flushInput() {
+    this.memory?.bytes.fill(0, 0x276c, 0x27ec);
     this.controls = { fire: false, direction: null };
     this.onFlushInput();
   }
@@ -404,14 +431,12 @@ export class Cave {
       this.phase = "exploring";
       // 09a1 reads input after entry/animation,then returns at09a6.
       yield* this.readInput();
-      const code =
-        (this.controls.fire ? 192 : 0) |
-        ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ?? 0);
+      const code = this.readInputByte();
+      const dir = caveDirectionFromByte(code);
       this.inputs.push({ tick: this.tick, retrace: this.retrace, code });
       let pose = 0,
         door = null;
       const available = { up: 8, right: 2, down: 4, left: 1 };
-      const dir = this.controls.direction;
       if (dir) {
         if (this.cell & available[dir]) {
           pose = { up: 5, right: 4, down: 3, left: 2 }[dir];

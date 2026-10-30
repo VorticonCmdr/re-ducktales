@@ -3,6 +3,7 @@ import {
   ordinaryMakeEvent,
   ordinaryScanCodeForKey,
   mapKeyEvent,
+  expeditionKeyEvent,
 } from "./keyboard-adapter.js";
 import { parseLocations, parseLoot } from "./campaign.js";
 import { Game } from "./application.js";
@@ -96,6 +97,7 @@ async function load(read) {
     pendingAudioInput = null;
     game = new Game({
       biosSeed: 0,
+      expeditionInput: "keyboard",
       openingResources: {
         image: resources.executable,
         entries: resources.archives.get("MAIN.ARC"),
@@ -235,7 +237,9 @@ window.addEventListener("keydown", (event) => {
     ].includes(event.code) &&
     !(
       ordinaryScanCodeForKey(event.code) !== undefined &&
-      (game?.scene === "office" || game?.scene === "map")
+      (game?.scene === "office" ||
+        game?.scene === "map" ||
+        game?.usesExpeditionKeyboard)
     )
   )
     return;
@@ -263,6 +267,10 @@ window.addEventListener("keydown", (event) => {
   }
   held.add(event.code);
   flightControls();
+  if (game?.usesExpeditionKeyboard) {
+    dispatch(expeditionKeyEvent(event.code, true));
+    return;
+  }
   if (game?.scene === "map") {
     dispatch(mapKeyEvent(event.code, true));
     return;
@@ -279,6 +287,13 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
   held.delete(event.code);
   flightControls();
+  if (
+    game?.usesExpeditionKeyboard &&
+    ordinaryScanCodeForKey(event.code) !== undefined
+  ) {
+    dispatch(expeditionKeyEvent(event.code, false));
+    return;
+  }
   if (game?.scene === "map" && ordinaryScanCodeForKey(event.code) !== undefined)
     dispatch(mapKeyEvent(event.code, false));
 });
@@ -296,11 +311,13 @@ window.addEventListener("blur", () => {
   held.clear();
   flightControls();
   if (game?.scene === "map") dispatch({ type: "flush-map-keys" });
+  if (game?.usesExpeditionKeyboard) dispatch({ type: "flush-expedition-keys" });
 });
 document.addEventListener("visibilitychange", () => {
   held.clear();
   flightControls();
   if (game?.scene === "map") dispatch({ type: "flush-map-keys" });
+  if (game?.usesExpeditionKeyboard) dispatch({ type: "flush-expedition-keys" });
   const now = performance.now();
   if (document.hidden) {
     pausedAt = now;

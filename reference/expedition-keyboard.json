@@ -1,0 +1,131 @@
+{
+  "id": "expedition-ordinary-key-integration-fb658562",
+  "acceptanceLevel": "native-key-invariants-plus-independent-input-integration",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "inputProfile": {
+    "path": "reference/expedition-keyboard-inputs.json",
+    "sha256": "7dc8b8c70d0e1a1e7a4a6b8b71c13f41e357b1af6d2e45dc695eb21603e1d773"
+  },
+  "parents": {
+    "mountain": {
+      "path": "reference/mountain-pacing.json",
+      "sha256": "f4c592fe114e0f3eabd3096f06a5e47e663bb6eae5757f54fbc7d6fcfb22f67f"
+    },
+    "mountainProfile": {
+      "path": "reference/mountain-frame-profile.json",
+      "sha256": "a07d3b9ca8d6a25de6ec9fc5d66ac8a71aa591f4a3097bedec2e77ea40fa2fa5"
+    },
+    "ordinary": {
+      "path": "reference/map-keyboard.json",
+      "sha256": "80bf1a5083715d730cdcb4878d6111a967b01d46c731ee658fd625b4f0d38263"
+    },
+    "cave": {
+      "path": "reference/cave-input.json",
+      "sha256": "aa0ddc3d9f42c88b45f42ee05fe0838d40e02795b91602cd06bda26699de09a9"
+    },
+    "photography": {
+      "path": "reference/photography-runtime.json",
+      "sha256": "2d11b5d5acda6118a3e10300f6e6dcf0234f7d57d88df398522f93e08c0604ca"
+    },
+    "jungle": {
+      "path": "reference/jungle-controls.json",
+      "sha256": "59e8028b52d33c5811a58d3019ca1bdb586b5af8ad5cc028cd47f396291e9e57"
+    }
+  },
+  "reader": {
+    "path": "src/game/ordinary-keyboard.js",
+    "sha256": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426"
+  },
+  "expectedIndependentReads": 17,
+  "expectedNativeFlagCheckpoints": 6,
+  "expectedCaveGroupingCases": 256,
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "sourceLayouts": {
+    "office": {
+      "offset": 62976,
+      "length": 9392,
+      "headerBytes": 1024,
+      "bodyBytes": 8368,
+      "relocations": 180,
+      "sha256": "e26298c0bf7675ce723b9af02418fa0e17eb3051e35c72dcc5dd2a9d09ee5b2a"
+    },
+    "flight": {
+      "offset": 76800,
+      "length": 18572,
+      "headerBytes": 1024,
+      "bodyBytes": 17548,
+      "relocations": 248,
+      "sha256": "cefab7184f72f605af90ddcf9b8cc8027870fdacb9922acdb68e8d6212db3ae9"
+    },
+    "mountain": {
+      "offset": 95744,
+      "length": 12514,
+      "headerBytes": 512,
+      "bodyBytes": 12002,
+      "relocations": 68,
+      "sha256": "9ceee31191eb4155ee7136d1101c7954376acdd468153deb608fd90e57edd3ee"
+    },
+    "cave": {
+      "offset": 108544,
+      "length": 12078,
+      "headerBytes": 1024,
+      "bodyBytes": 11054,
+      "relocations": 196,
+      "sha256": "b50b7f3163c516c298569ab3ec301f2d0e31f456a623bfafe294d6077344713d"
+    },
+    "photography": {
+      "offset": 120832,
+      "length": 8436,
+      "headerBytes": 512,
+      "bodyBytes": 7924,
+      "relocations": 93,
+      "sha256": "fb2eb3f7c329c64b4b3511f0eca497b399afab37dd3bba5f121f111ec7ab378b"
+    },
+    "jungle": {
+      "offset": 129536,
+      "length": 26104,
+      "headerBytes": 2048,
+      "bodyBytes": 24056,
+      "relocations": 436,
+      "sha256": "5782001bbf7e8d68b19274144a4e698a4fe1b9b577c7b5ff0614f4ace26ab0c4"
+    }
+  },
+  "staticArtifacts": {
+    "cave-direction": {
+      "path": ".local/expedition-keyboard-01/cave-direction.json",
+      "sha256": "9fe920cbe8ed10628e05da97d5d7d5667d3a138645923cea58af15606c22342b"
+    },
+    "cave-up-fire": {
+      "path": ".local/expedition-keyboard-01/cave-up-fire.json",
+      "sha256": "66313c7f19ddca8b8f96836d88094f702bb05f1030f90c0d7683125b4a932e23"
+    },
+    "cave-down-fire": {
+      "path": ".local/expedition-keyboard-01/cave-down-fire.json",
+      "sha256": "f376da7d2c6869512f2756c4b594a1531c5f2169d4a2b83756619bfd51255f96"
+    },
+    "cave-right-fire": {
+      "path": ".local/expedition-keyboard-01/cave-right-fire.json",
+      "sha256": "9f597ef44e0aa425d0cfd654554bad70f48d91273ae999ac20a0ea08ee00abdd"
+    },
+    "cave-left-fire": {
+      "path": ".local/expedition-keyboard-01/cave-left-fire.json",
+      "sha256": "c23f606ff87e500a7161bcfb4e10d96df79d4afccacd98bd36232f69c1bcb0c0"
+    }
+  },
+  "scopes": [
+    "Actual supported executable/resource identity; the existing native mountain profile and ordinary-key source/alias comparisons remain required.",
+    "Native mountain flags first0,held128,break64,consumed0 and returned0/3/3/0 compare with actual Game source input calls. Independent17-read model receives only2 hardware events by source ordinal;no actor or timer parity is claimed.",
+    "Cave five-bit mask and clockwise cardinal/diagonal pairs are statically linked to original/native bytes;all256 byte values compare with the source grouping.",
+    "Safari mode1 and post-read flush differ from mode0;Jungle inherits the caller mode and clears the key matrix in its control routine. Browser/independent cases are separate evidence."
+  ],
+  "limitations": [
+    "No full native physical-key expedition or whole-campaign input/timing replay.",
+    "Modifier/system/BIOS queue behavior is outside this ordinary-key subset;system-key adapter remains separate.",
+    "Real browser repeat makes come from the host OS. Authored repeated makes in browser tests are explicit external events,not a restored native typematic rate.",
+    "Cross-scene input-delivery windows and non-expedition physical keyboard integration remain separate work."
+  ],
+  "verify": "npm run verify:expedition-keyboard"
+}

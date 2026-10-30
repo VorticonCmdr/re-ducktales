@@ -35,6 +35,14 @@ export class Jungle {
     Object.assign(this, prepareJungle(options, previousMemory));
     this.raster = new JungleRaster(this.resources);
     this.controls = { direction: null, fire: false };
+    this.readInputByte =
+      options.readInput ??
+      (() =>
+        (({ up: 1, right: 3, down: 5, left: 7 })[this.controls.direction] ??
+          0) | (this.controls.fire ? 64 : 0));
+    if (typeof this.readInputByte !== "function")
+      throw Error("Invalid jungle input-byte provider");
+
     this.pollInput = options.pollInput ?? (() => true);
     this.onFlushInput = options.flushInput ?? (() => {});
     this.pendingFlushes = [];
@@ -299,9 +307,9 @@ export class Jungle {
       if (m.i(0x78e8) === 0) invalidateJungleActor(m);
       m.i(0x8b56, 0);
       yield* this.readInput(); // Main067b calls the shared global input reader.
-      const input =
-        ({ up: 1, right: 3, down: 5, left: 7 }[this.controls.direction] ?? 0) |
-        (this.controls.fire ? 64 : 0);
+      const input = this.readInputByte();
+      if (!Number.isInteger(input) || input < 0 || input > 255)
+        throw Error("Invalid jungle input-byte provider");
       this.inputs.push({ tick: this.tick, retrace: this.retrace, input });
       sampleJungleControls(m, input, this.effects);
       collideJungleGround(m, this.effects);

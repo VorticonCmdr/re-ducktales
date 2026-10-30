@@ -1,0 +1,36 @@
+{
+  "id": "jungle-input-provider-source-bridge",
+  "historicalRevision": "590a2fa31a0de2bcc6b4228d29b041df2bd93226",
+  "expectedValuesChanged": false,
+  "exclusions": [],
+  "runtimeSources": {
+    "src/game/jungle.js": "7d88fde8290a0408586551b0eef6c9dfe6c3d0a7b2968bb3464e7bbe53d80535",
+    "src/game/jungle-work.js": "5f01c638be3980bfaf165fb088f899401a0f05ee12a9e9043e29de5de542e1e0",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d"
+  },
+  "scenarios": [
+    {
+      "parent": {
+        "path": "reference/jungle-component-drawing-time.json",
+        "sha256": "a75f99a4806cf0055f67145fd1ae4eed805bfce747869a963c6140bc6ab8e0e0"
+      },
+      "expectedInputBoundaries": 824,
+      "expectedPublications": 875
+    },
+    {
+      "parent": {
+        "path": "reference/jungle-treasure-drawing-time.json",
+        "sha256": "5a270cb5bc03f49bdb14fd99a5adcfcd6c560f6a48e276729104134ab2ea2263"
+      },
+      "expectedInputBoundaries": 792,
+      "expectedPublications": 839
+    }
+  ],
+  "comparisonRules": "Same independent authored inputs and initial contract in historical and current classes;compare entire DS and snapshots at each read,all ordered pixel hashes/modes/wipes,clock traces,checkpoints,and final memory/state. All transitive dependencies byte-identical. No timer exclusion. Existing historical/drawing-time contracts unchanged.",
+  "limitations": [
+    "Port source regression,not native whole-level comparison.",
+    "Default digital provider;physical keyboard checked separately."
+  ],
+  "verify": "npm run verify:jungle-core"
+}

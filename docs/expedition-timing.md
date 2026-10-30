@@ -1,8 +1,9 @@
 # Expedition movement timing investigation
 
 The user reports fast movement in jungle, mountain, cave and safari. This is an
-open fidelity defect. Mountain sprite work and jungle sprite/copy work are now
-charged before presentation; other graphics and CPU costs remain incomplete. Per-input movement
+open fidelity defect. Mountain sprite, jungle sprite/copy, cave party/sprite and
+Safari background/actor work are now charged before presentation; other graphics
+and CPU costs remain incomplete. Per-input movement
 regressions and complete port campaigns do not prove real-time pacing.
 
 ## First measured mountain discrepancy
@@ -85,9 +86,10 @@ are pinned by [mountain-pacing.json](../reference/mountain-pacing.json).
 The cleanup also observes an original input quirk: after physical Right release,
 the raw key flag becomes64. Mode0 deletes that flag but still returns Right3 once;
 the following read is neutral0. The recipe requires both reads and completion of
-the real release event. The current expedition browser adapter uses held controls
-and releases immediately, so this is a separate input-fidelity gap to address.
-The existing ordinary-key reader already represents the delete-then-use rule.
+the real release event. At capture time the expedition browser adapter used held controls and released
+immediately. The current [physical expedition input boundary](expedition-keyboard.md)
+connects the existing ordinary-key reader and preserves this delete-then-use rule.
+Its focused acceptance is recorded separately from this historical capture.
 
 Earlier captures01..06 are excluded:01 stopped at a destination CS alias mismatch;
 02 ended at its older observation timeout;03 followed a reused Klondike Mines

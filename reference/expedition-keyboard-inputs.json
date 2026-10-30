@@ -1,0 +1,10 @@
+{
+  "id": "mountain-ordinary-key-source-boundaries",
+  "environment": "Independent Game initialized from original resources, variant0/Easy/seed0/day1. Hardware events are placed at source read boundaries; no native timer, actor, memory or expected state is supplied.",
+  "expectedReadCount": 17,
+  "expectedEventCount": 2,
+  "events": [
+    { "beforeRead": 2, "scanCode": 77, "pressed": true },
+    { "beforeRead": 16, "scanCode": 77, "pressed": false }
+  ]
+}

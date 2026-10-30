@@ -1,3 +1,4 @@
+import { verifyJungleInputBridge } from "./verify-jungle-input-bridge.js";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
@@ -274,12 +275,9 @@ export async function verifyJungleComponentTiming(
     sha(await readFile(parent.buildManifest)),
     fixture.buildManifestSha256,
   );
-  for (const [path, hash] of Object.entries(fixture.runtimeSources))
-    assert.equal(
-      sha(await readFile(path)),
-      hash,
-      `Changed timing source ${path}`,
-    );
+  // Preserve exact old source identities through a complete no-exclusion
+  // cross-version comparison before checking the unchanged timing contracts.
+  await verifyJungleInputBridge(resources);
   const old = await baselineJungleReplay(resources, parent, profile);
   assert.deepEqual(
     old.graph,

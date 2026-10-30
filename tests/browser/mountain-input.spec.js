@@ -47,13 +47,13 @@ test("mountain polls system keys after opening pages, pauses clocks correctly an
     await page.route("**/src/game/mountain.js*", async (route) => {
       const response = await route.fetch(),
         body = await response.text();
-      const source = 'yield { clock: "retrace", remaining: retraces };';
+      const source = 'yield { clock: "graphics", remaining: 1, until };';
       expect(body, "SETUP: missing mountain timing negative hook").toContain(
         source,
       );
       await route.fulfill({
         response,
-        body: body.replace(source, 'yield { clock: "retrace", remaining: 1 };'),
+        body: body.replace(source, ""),
       });
     });
   }

@@ -1,5 +1,9 @@
 # Mountain HUD source calls and work
 
+The subsequent [phase integration](mountain-phase.md) now replaces rounded
+retrace sleeps with graphics deadlines. The HUD receipt below remains a
+historical source snapshot; use the phase gate for current integration.
+
 The browser HUD now uses the original overlay 5 caller at body `1744..189d`.
 Ordinary frames charge the original cash-number call at `1351`, full redraws
 charge all HUD lines/sprites/numbers, and the rope charges its source line.

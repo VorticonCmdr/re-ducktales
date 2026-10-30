@@ -11,7 +11,7 @@ import {
 import { advanceMountainHazards } from "./mountain-hazards.js";
 import { u16, s16 } from "./integer.js";
 import { egaSpriteWork, normalCoreGraphicsMilliseconds } from "./ega-work.js";
-import { ORIGINAL_GRAPHICS_TIMING } from "./timing.js";
+import { ORIGINAL_GRAPHICS_TIMING, DRIVER_HZ } from "./timing.js";
 import { eraseMountainSource } from "./mountain-erase.js";
 import { egaSignedCopyWork } from "./ega-copy-work.js";
 import { drawMountainHudSource, mountainMoneyCall } from "./mountain-hud.js";
@@ -89,6 +89,17 @@ export class Mountain {
     this.inputs = [];
     this.tick = 0;
     this.retrace = 0;
+    // Direct callers use a documented zero-phase provider. Scheduler callers
+    // inject simulation milliseconds,including the current display phase.
+    this.clock =
+      options.clock ??
+      (() =>
+        Math.max(
+          (this.tick * 1000) / DRIVER_HZ,
+          (this.retrace * 1000) / this.graphicsTiming.retraceHz,
+        ));
+    if (typeof this.clock !== "function") throw Error("Invalid mountain clock");
+    this.lastClock = -Infinity;
     this.frames = 0;
     this.presentations = 0;
     this.phase = "entering";
@@ -107,6 +118,33 @@ export class Mountain {
     )
       throw Error("Invalid mountain controls");
     this.controls = { ...controls };
+  }
+  setClock(clock) {
+    if (typeof clock !== "function") throw Error("Invalid mountain clock");
+    const before = this.now(),
+      after = clock();
+    if (
+      !Number.isFinite(after) ||
+      after < 0 ||
+      (this.wait?.clock === "graphics" && before !== after)
+    )
+      throw Error("Cannot rebase active mountain graphics clock");
+    this.clock = clock;
+    this.lastClock = after;
+  }
+  now() {
+    const value = this.clock();
+    if (!Number.isFinite(value) || value < 0 || value < this.lastClock)
+      throw Error("Invalid or backwards mountain simulation clock");
+    this.lastClock = value;
+    return value;
+  }
+  advanceGraphics() {
+    if (this.wait?.clock !== "graphics")
+      throw Error("Mountain graphics resumed outside drawing work");
+    if (this.now() < this.wait.until)
+      throw Error("Mountain graphics resumed before deadline");
+    this.advance("graphics");
   }
   setAudioEnabled(enabled) {
     if (typeof enabled !== "boolean")
@@ -127,11 +165,18 @@ export class Mountain {
       this.wait = null;
     } else {
       if (
-        !["driver", "retrace", "input"].includes(result.value.clock) ||
+        !["driver", "retrace", "input", "graphics"].includes(
+          result.value.clock,
+        ) ||
         !Number.isInteger(result.value.remaining) ||
         result.value.remaining < 1
       )
         throw Error("Invalid mountain wait");
+      if (
+        result.value.clock === "graphics" &&
+        !Number.isFinite(result.value.until)
+      )
+        throw Error("Invalid mountain graphics deadline");
       this.wait = result.value;
     }
   }
@@ -163,6 +208,17 @@ export class Mountain {
     this.onFlushInput();
   }
   advance(clock) {
+    if (this.wait?.clock === "graphics") {
+      const now = this.now(),
+        until = this.wait.until;
+      if (now < until) return;
+      this.wait = null;
+      this.resume();
+      // EGA0064 waits out an already-active retrace,then the following start.
+      // A coarse direct caller may observe work completed BEFORE this event;
+      // in that case the current retrace is still usable. Exact ties are not.
+      if (clock === "graphics" || now === until) return;
+    }
     if (!this.wait || this.wait.clock !== clock || --this.wait.remaining)
       return;
     if (this.pending) {
@@ -227,7 +283,14 @@ export class Mountain {
       milliseconds,
       retraces,
     };
-    yield { clock: "retrace", remaining: retraces };
+    const startedAt = this.now(),
+      until = startedAt + milliseconds;
+    this.lastDrawingWork.startedAt = startedAt;
+    this.lastDrawingWork.until = until;
+    // Counted source work completes independently of the display-event grid.
+    // The old rounded count is diagnostic only;it no longer schedules input.
+    yield { clock: "graphics", remaining: 1, until };
+    yield { clock: "retrace", remaining: 1 };
   }
   chargeSprite(asset, frame, x, y) {
     const work = egaSpriteWork(this.entries[asset], frame, x, y);

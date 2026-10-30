@@ -1,0 +1,54 @@
+{
+  "id": "original-mountain-page-phase",
+  "executableSHA256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "overlayBodySHA256": "b50591460d43e848d52b49ee7b843065413d877dca8dc75455ce7dca2a7f2bd0",
+  "driverSHA256": "6ee03bd93f3979546d5b5c1511e377685e2aa5401caaf407c3308bca0b812aee",
+  "artifacts": {
+    "caller": {
+      "path": ".local/mountain-phase-static-01/caller.json",
+      "bytes": 8947,
+      "sha256": "cb5d9dce6ce3d67476875f9deb47db52346498dba43efd89303de389b3a2a14c"
+    },
+    "driver": {
+      "path": ".local/mountain-phase-static-01/driver.json",
+      "bytes": 4917,
+      "sha256": "9133d9f6ab13b028a5a25e489a728094fd63ed6e08a434692d36ab95ae60dc46"
+    },
+    "wait": {
+      "path": ".local/mountain-phase-static-01/wait.json",
+      "bytes": 1111,
+      "sha256": "ebc627acb9fb6f2190c7ac5731b6801e4862de296fba7631684558447dc0d6fc"
+    },
+    "before": {
+      "path": ".local/mountain-pacing-profile-04/capture/timing-profile-00-before-erase.json",
+      "bytes": 88769,
+      "sha256": "698c580a25b3e7130c919015e1c89b9ef6f0b185942c49e0466ad92c28c52660"
+    }
+  },
+  "parents": [
+    {
+      "path": "reference/mountain-pages.json",
+      "bytes": 7203,
+      "sha256": "a254110996304f12ba1cb353b6c97f0623a8bb9fbb91b9b50fd24f4cfa9e7e2e"
+    },
+    {
+      "path": "reference/mountain-hud-work.json",
+      "bytes": 5622,
+      "sha256": "823c98afd6037197be22fd8c343473d91ac81d0dded8846db29ab1d7aff154ac"
+    }
+  ],
+  "sources": {
+    "scripts/verify-mountain-phase.js": "c2fd404d603a07d4cdaf20be2a6ea484239014786f15b39a0cd628a52649b68e",
+    "tests/mountain-phase.test.js": "89ed20a2ad4d5c16089c749c84c33a472abc92730205f6f0fd368db4730b25c3"
+  },
+  "environmentContract": "Original flip vector1fd4 resolves to EGA00e5. Accounted graphics completes at an absolute simulation deadline,then the first strictly later display-start event resumes input. Driver-first Scheduler ties are unchanged. Direct components have zero-phase synthetic clocks;Application supplies Scheduler elapsed milliseconds.",
+  "inputSchedule": "Independent launch times0/7ms and fixed control events150/350/420ms;500ms horizon. Expected game state never selects input or time.",
+  "comparisonRules": "Exact original bytes for three code ranges and retained live code correspondence;exact batch/chunk state,inputs,pixels and event results. Coincident work completion/display-start deliberately waits for following edge,consistent with0064 active-then-inactive polling order.",
+  "limitations": [
+    "No new native runtime measurement or full-game speed acceptance.",
+    "Native page observations bracket flips,not scanout/input completion instants.",
+    "Point retrace provider omits finite pulse width,BIOS/pageflip caller execution and remaining CPU/device work.",
+    "Opening/scroll composition copy costs remain partial."
+  ],
+  "verify": "node scripts/verify-mountain-phase.js"
+}

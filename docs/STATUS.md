@@ -5,6 +5,14 @@ not only fine-tuning.** Hard campaigns are deferred at the user's request.
 
 ## Current runtime milestone
 
+Mountain now schedules drawing by absolute simulation deadlines and then the next
+display edge, preserving the phase at entry or after a pause. Six phase checks
+and all186 units pass; the complete ascent and browser controls still pass.
+The clean-source combined phase gate is the next required verification.
+[Phase contract, original evidence and commands](mountain-phase.md).
+
+## Previous HUD milestone
+
 Mountain HUD drawing is now connected to original source calls: 12 native caller
 cases/486 calls match production commands, state effects and work counters.
 Opening/full HUDs charge34 lines and two numbers; ordinary frames charge money
@@ -140,6 +148,7 @@ experiments leave the shared8386 session untouched and close their owned instanc
 
 ```sh
 node scripts/verify-mountain-hud-integration.js
+node scripts/verify-mountain-phase-integration.js
 node scripts/verify-mountain-hud-receipt.js
 npm run verify:current-campaign # Requires a fresh full-campaign contract first.
 node scripts/verify-mountain-copy-integration.js

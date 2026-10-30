@@ -137,6 +137,7 @@ export class Game {
     this.simulationClock = clock;
     this.jungle?.setClock(clock);
     this.cave?.setClock(clock);
+    this.mountain?.setClock(clock);
     this.photography?.setClock(clock);
     this.departureScene?.setClock(clock);
   }
@@ -146,11 +147,13 @@ export class Game {
         ? this.departureScene
         : this.scene === "cave"
           ? this.cave
-          : this.scene === "photography"
-            ? this.photography
-            : this.scene === "map" && this.destinationInput === "keyboard"
-              ? this.campaign?.destinationWaits
-              : null;
+          : this.scene === "mountain"
+            ? this.mountain
+            : this.scene === "photography"
+              ? this.photography
+              : this.scene === "map" && this.destinationInput === "keyboard"
+                ? this.campaign?.destinationWaits
+                : null;
     return !this.systemOverlay &&
       ["graphics", "continuation"].includes(component?.wait?.clock)
       ? component.wait.until
@@ -162,11 +165,13 @@ export class Game {
         ? this.departureScene
         : this.scene === "cave"
           ? this.cave
-          : this.scene === "photography"
-            ? this.photography
-            : this.scene === "map" && this.destinationInput === "keyboard"
-              ? this.campaign?.destinationWaits
-              : null;
+          : this.scene === "mountain"
+            ? this.mountain
+            : this.scene === "photography"
+              ? this.photography
+              : this.scene === "map" && this.destinationInput === "keyboard"
+                ? this.campaign?.destinationWaits
+                : null;
     if (
       this.systemOverlay ||
       !["graphics", "continuation"].includes(component?.wait?.clock)
@@ -175,6 +180,7 @@ export class Game {
     component.advanceGraphics();
     if (this.scene === "departure") this.collectDeparture();
     else if (this.scene === "cave") this.collectCave();
+    else if (this.scene === "mountain") this.collectMountain();
     else if (this.scene === "photography") this.collectPhotography();
     else this.collectDestination();
   }
@@ -1961,6 +1967,7 @@ export class Game {
         {
           ...this.expeditionResources,
           entries: this.expeditionResources.mountainEntries,
+          clock: this.simulationClock,
           ...(this.expeditionInput === "keyboard"
             ? {
                 readInput: () => this.readExpeditionKeyboard(),

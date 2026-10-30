@@ -129,9 +129,12 @@ The next text primitive now has two independent private native captures:14 calls
 per capture,2,963 instruction addresses,312 exact port writes and all2,599 driver
 bytes. Five negative controls pass. Six original jungle drawing boundaries show
 four HUD number calls, adding0.262ms per HUD redraw before formatting overhead.
-This is evidence/tooling progress; gameplay deadlines are unchanged. Next recover
-the numeric formatter's long-division cost, then integrate and independently
-replay text timing. [Text evidence and repeatable recipe](ega-text-work.md).
+The numeric formatter now also matches16 private native calls:12,197 instruction
+addresses,800 port writes,actual generated strings/arguments and all45,056 code
+bytes. Signed32 formatting quirks are preserved in the translated helper. This
+is evidence/tooling progress; gameplay deadlines are unchanged. Next integrate
+the combined formatter/text count and independently replay text timing.
+[Formatter evidence](hud-number-work.md). [Text evidence and repeatable recipe](ega-text-work.md).
 
 ## Supported build and commands
 
@@ -153,6 +156,7 @@ node scripts/verify-jungle-line-campaign-receipt.js
 node scripts/inspect-jungle-line-work.js
 node scripts/inspect-jungle-text-work.js
 node scripts/verify-ega-text.js
+node scripts/verify-hud-number.js
 node scripts/verify-speaker-playback-receipt.js
 npm run verify:cave-reveal
 npm test

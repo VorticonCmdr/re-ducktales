@@ -1,0 +1,154 @@
+{
+  "id": "original-hud-number-work",
+  "evidenceLevel": "conditional-native-comparison",
+  "expectedCases": 16,
+  "expectedInstructions": 12197,
+  "expectedPortWrites": 800,
+  "executableSHA256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981",
+  "driverSHA256": "6ee03bd93f3979546d5b5c1511e377685e2aa5401caaf407c3308bca0b812aee",
+  "fontSHA256": "5dd70b46fc94555bc549739eb0fc8cb1575cab0134d645a8b21f6daaf0fa41da",
+  "artifacts": {
+    "capture": {
+      "path": ".local/hud-number-native-01/capture.json",
+      "bytes": 803,
+      "sha256": "70ed3271b7198343958a3bf8dccd85722180b0ea1c59381d2bb2d7cf40b08f92"
+    },
+    "inputs": {
+      "path": ".local/hud-number-native-01/inputs.json",
+      "bytes": 2511,
+      "sha256": "6b85c78be42e9e82016da1609ff61bf31dcacf917a1384da5103dc4e2d15a9b7"
+    },
+    "engine": {
+      "path": ".local/hud-number-native-01/engine.json",
+      "bytes": 3987,
+      "sha256": "cdb155c846743f4bd1fe3eec00c3193e8402bb582d42afd4046319b9320d1e73"
+    },
+    "allocations": {
+      "path": ".local/hud-number-native-01/allocations.json",
+      "bytes": 84,
+      "sha256": "7d6f355e07d0fc58fafb49e70476b5b14fa7c6b0dab49371b7ecc9bdef80430b"
+    },
+    "source": {
+      "path": ".local/hud-number-native-01/capture-source.py",
+      "bytes": 7761,
+      "sha256": "cd1c0416a94a1f7e51a5961a88d040a463ee20a09cd1e148ad0ab6c3e2c37788"
+    },
+    "case-00": {
+      "path": ".local/hud-number-native-01/case-00.json",
+      "bytes": 66680,
+      "sha256": "8f959c53303abf17f826931719d6cd545af0d76b8684c082ce7a54d2f405d6bc"
+    },
+    "case-01": {
+      "path": ".local/hud-number-native-01/case-01.json",
+      "bytes": 66681,
+      "sha256": "a72aefadf491a541201770cfecaea7d52395d99eea38180dde92d5685ad210ad"
+    },
+    "case-02": {
+      "path": ".local/hud-number-native-01/case-02.json",
+      "bytes": 66683,
+      "sha256": "448c26809d9088fbe7205f7c980bf2cebfc8d4fce49c0618a9e5c513befd75fb"
+    },
+    "case-03": {
+      "path": ".local/hud-number-native-01/case-03.json",
+      "bytes": 70313,
+      "sha256": "20ea767059228f95fe7278033cedce7a002dd10cc7718588d42286b8d138f2a3"
+    },
+    "case-04": {
+      "path": ".local/hud-number-native-01/case-04.json",
+      "bytes": 70267,
+      "sha256": "24daf54235be3246a689a2e71d5ff782ffd6a5124ad688f01824f6de7290f246"
+    },
+    "case-05": {
+      "path": ".local/hud-number-native-01/case-05.json",
+      "bytes": 70318,
+      "sha256": "719adf1b231221b8a9d54131f17ce56b4a87bb0f5922eb22a6db875a21771a1b"
+    },
+    "case-06": {
+      "path": ".local/hud-number-native-01/case-06.json",
+      "bytes": 81203,
+      "sha256": "7cb96ad66f7440d0133b2b212c755611efd7b7cc62e4eb638577de13c53a4bf4"
+    },
+    "case-07": {
+      "path": ".local/hud-number-native-01/case-07.json",
+      "bytes": 81205,
+      "sha256": "50a0e2a346ad59e39007ba96cd6b054d841208c30e5697a3b21e5b59c203fd67"
+    },
+    "case-08": {
+      "path": ".local/hud-number-native-01/case-08.json",
+      "bytes": 84832,
+      "sha256": "f5ab976f1e520cdfe5e602623d5430dd470085a0e7ee27676467d5bc6862cb2e"
+    },
+    "case-09": {
+      "path": ".local/hud-number-native-01/case-09.json",
+      "bytes": 84807,
+      "sha256": "17a8f28ff010b83c2ad61c604a237d2750f4759160fe2d0d55f571b43aaf00ae"
+    },
+    "case-10": {
+      "path": ".local/hud-number-native-01/case-10.json",
+      "bytes": 99230,
+      "sha256": "9474f5ddade39780279ee254646730a6cc2794c04c9bb0f7202b69569d67d6a7"
+    },
+    "case-11": {
+      "path": ".local/hud-number-native-01/case-11.json",
+      "bytes": 66887,
+      "sha256": "7827a4f9873bbd26d0c64b3673896dcf1f53581540451bd4b0a53144954d9c3a"
+    },
+    "case-12": {
+      "path": ".local/hud-number-native-01/case-12.json",
+      "bytes": 66901,
+      "sha256": "8ae854ec05c0d81516e476a57398c7e128bed1426d773ec890c6c611866f75fd"
+    },
+    "case-13": {
+      "path": ".local/hud-number-native-01/case-13.json",
+      "bytes": 66893,
+      "sha256": "b2baebdc52e2e2d5df37484ca64f92c5e8658e1413d49082b90f4755f1395b9c"
+    },
+    "case-14": {
+      "path": ".local/hud-number-native-01/case-14.json",
+      "bytes": 66882,
+      "sha256": "e8744c4478322515c0f468d2425ba5ed0664edecade65790e74ca0c6668395fc"
+    },
+    "case-15": {
+      "path": ".local/hud-number-native-01/case-15.json",
+      "bytes": 66888,
+      "sha256": "b07938f7ce562636466e80dcd379a9503a30225f1536ce2b6732faddfa24f32a"
+    },
+    "stack": {
+      "path": ".local/hud-number-static-01/stack-disassembly.json",
+      "bytes": 1778,
+      "sha256": "b1f3ad57660349a99034945c2145d78bf0a03726ab6dfd2c29595d754cedef15"
+    },
+    "divide": {
+      "path": ".local/hud-number-static-01/divide-disassembly.json",
+      "bytes": 10697,
+      "sha256": "a23fb6b310224ac416c69cc69751861b65e2364c23fbdfd239c7f2dba44fea3e"
+    },
+    "remainder": {
+      "path": ".local/hud-number-static-01/remainder-disassembly.json",
+      "bytes": 10659,
+      "sha256": "127cf2ef8cc6e98e6cf34a4645802fe5dead7b020f0d72f534fd3012df5312b3"
+    },
+    "assign": {
+      "path": ".local/hud-number-static-01/assign-disassembly.json",
+      "bytes": 2317,
+      "sha256": "cf571668cf865e19c22243a0fea17c8823f57d1cad6302565931ad1782f3842f"
+    },
+    "numeric": {
+      "path": ".local/ega-text-static-01/numeric-disassembly.json",
+      "bytes": 7720,
+      "sha256": "885d44dfb382ab1e72f2ffd6809ed8821d6a34c57f3b21562807d4284c3844b7"
+    }
+  },
+  "sources": {
+    "scripts/capture-hud-number.py": "cd1c0416a94a1f7e51a5961a88d040a463ee20a09cd1e148ad0ab6c3e2c37788",
+    "scripts/lib/hud-number-work.js": "8ad14572ea0d474d823d78716ee0316d45bd06996a5e1f0f887c9380083a8841",
+    "scripts/lib/ega-text-work.js": "1be3dc249fcb1cecbbc0c2fc8012412255bc5eb87c760bc5e078fa77ea2dea37",
+    "scripts/verify-hud-number.js": "a001e9a2c81f8fcbdd94366a37bfe3566ef69418ce7444e69619660787e9607c"
+  },
+  "verify": "node scripts/verify-hud-number.js",
+  "limitations": [
+    "Original relocated functions in private RAM;IF/DF clear,DS=SS,healthy stack.",
+    "No screen pixels,original launch,natural cadence or full-machine checkpoint claim.",
+    "Opaque text and runtime timing integration remain separate."
+  ]
+}

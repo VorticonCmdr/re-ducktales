@@ -50,7 +50,16 @@ and private port using the manifest recipe. Missing/corrupt artifacts fail.
 node scripts/verify-mountain-hud.js
 node scripts/verify-mountain-hud-runtime.js
 node scripts/verify-mountain-hud-integration.js
+node scripts/verify-mountain-hud-receipt.js
 ```
+
+The clean focused gate passed at `672276b`. Its
+[saved manifest](../reference/mountain-hud-runtime.json) pins729 current source
+hashes and five local artifacts: source archive, source inventory, full gate log,
+completed result and runner status. The receipt command validates this saved
+source-pinned result; the integration command repeats actual browser acceptance.
+Direct production formatter admission checks all16 original traces in addition
+to the preserved analysis-model proof.
 
 The runtime checker compares production commands, DS effects and separate
 sprite/line/number budgets against all 12 native caller inputs. It requires the

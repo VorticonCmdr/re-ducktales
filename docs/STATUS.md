@@ -9,8 +9,11 @@ Mountain HUD drawing is now connected to original source calls: 12 native caller
 cases/486 calls match production commands, state effects and work counters.
 Opening/full HUDs charge34 lines and two numbers; ordinary frames charge money
 only. Signed formatter quirks and original HUD descriptor positions are retained.
-The 764-input ascent and browser controls pass preliminary checks; the combined
-clean-source HUD gate is the next required verification.
+The combined clean-source HUD gate passed for `672276b`: the full764-input ascent,
+180 units, actual browser controls, three intended omission failures and the
+production build. Its saved record pins729 source files and five immutable
+artifacts; `node scripts/verify-mountain-hud-receipt.js` validates the saved result.
+Retrace-phase scheduling and a refreshed full Easy campaign remain next.
 [HUD evidence and commands](mountain-hud-work.md).
 
 ## Previous restoration milestone
@@ -136,9 +139,10 @@ correspondence are checked; analysis executables are never run. Private emulator
 experiments leave the shared8386 session untouched and close their owned instances.
 
 ```sh
-npm run verify:current-campaign
-node scripts/verify-mountain-copy-integration.js
 node scripts/verify-mountain-hud-integration.js
+node scripts/verify-mountain-hud-receipt.js
+npm run verify:current-campaign # Requires a fresh full-campaign contract first.
+node scripts/verify-mountain-copy-integration.js
 node scripts/verify-mountain-copy-receipt.js
 node scripts/verify-runtime-campaign.js --fresh-browser
 node scripts/verify-jungle-texts.js

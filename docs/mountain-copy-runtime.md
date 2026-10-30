@@ -1,5 +1,9 @@
 # Mountain restoration runtime integration
 
+This restoration milestone is now followed by
+[HUD integration](mountain-hud-work.md). Its source-pinned receipt remains
+historical; use the newer HUD gate for current runtime acceptance.
+
 The browser now runs the native-checked mountain erase call planner and charges
 its signed EGA copy work before the existing retrace wait. `mountain-erase.js`
 retains original DS effects; `ega-copy-work.js` retains unsigned clipping, signed

@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
-  "reference/mountain-phase-campaign.json";
+  "reference/cave-composition-campaign.json";
 const manifest = JSON.parse(await readFile(manifestPath));
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const checkpointCount = {
@@ -16,6 +16,7 @@ const checkpointCount = {
   "jungle-line-easy-complete-campaign": 35,
   "jungle-text-easy-complete-campaign": 34,
   "mountain-phase-easy-complete-campaign": 34,
+  "cave-composition-easy-complete-campaign": 34,
   "bios-clock-easy-complete-campaign": 34,
 }[manifest.id];
 assert.ok(
@@ -35,6 +36,7 @@ let historicalManifest = manifest;
 const freshCampaign = [
   "jungle-text-easy-complete-campaign",
   "mountain-phase-easy-complete-campaign",
+  "cave-composition-easy-complete-campaign",
   "bios-clock-easy-complete-campaign",
 ].includes(manifest.id);
 const eventCount = manifest.requiredEventCount;
@@ -290,6 +292,7 @@ if (
     "jungle-line-easy-complete-campaign",
     "jungle-text-easy-complete-campaign",
     "mountain-phase-easy-complete-campaign",
+    "cave-composition-easy-complete-campaign",
     "bios-clock-easy-complete-campaign",
   ].includes(manifest.id)
 ) {
@@ -311,7 +314,10 @@ if (
     "expectedFlightPresentations",
     "completeSourceInventory",
     "buildManifest",
-    ...(historicalManifest.id === "mountain-phase-easy-complete-campaign"
+    ...([
+      "mountain-phase-easy-complete-campaign",
+      "cave-composition-easy-complete-campaign",
+    ].includes(historicalManifest.id)
       ? ["expectedUnitCases"]
       : []),
     ...(freshCampaign

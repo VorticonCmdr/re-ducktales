@@ -21,5 +21,9 @@ for s in report['suites']:visit(s)
 assert len(cases)==7 and len(attachments)==2
 m=json.loads(Path('reference/speaker-playback.json').read_text());m['id']='persistent-speaker-current-runtime-playback';m['parentScenario']=spec('reference/speaker-playback.json')
 m['artifacts']={**{role:spec(root/name) for role,name in [('sources','sources.json'),('receipt','receipt.json'),('browser','browser.json')]},**attachments}
+if receipt.get('completeSourceInventory'):
+ m['completeSourceInventory']=True
+ m['artifacts']['source-revision']=spec(root/'source-revision.json')
+ m['artifacts']['archive']=spec(root/'sources.zip')
 for path in list(m['verificationSources'])+['scripts/register-speaker-playback.py']:m['verificationSources'][path]=sha(Path(path).read_bytes())
 out.write_text(json.dumps(m,indent=2)+'\n');print('Registered7 passing sound browser cases:'+str(out))

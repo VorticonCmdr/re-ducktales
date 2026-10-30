@@ -6,7 +6,7 @@ sha=lambda b:hashlib.sha256(b).hexdigest()
 def spec(p):
  p=Path(p);b=p.read_bytes();return {'path':str(p),'bytes':len(b),'sha256':sha(b)}
 target=Path(a.manifest);assert not target.exists(),'Refuse to overwrite a campaign manifest'
-pending=Path(a.pending);m=json.loads(pending.read_text());assert m['pendingBrowserReplay'] and m['id']=='mountain-phase-easy-complete-campaign'
+pending=Path(a.pending);m=json.loads(pending.read_text());assert m['pendingBrowserReplay'] and m['id'] in ['mountain-phase-easy-complete-campaign','cave-composition-easy-complete-campaign']
 root=Path(a.comparison);status=json.loads((root/'runner-status.json').read_text());source=json.loads((root/'source-revision.json').read_text());assert status['exitCode']==0 and status['loadedSourcesUnchanged'] and status['historicalArtifactsPreserved'];assert status['manifestSHA256']==sha(pending.read_bytes())
 producer=json.loads(Path(m['artifacts']['producer-source']['path']).read_text())
 assert {p for p in source['files'] if p.startswith('src/')}=={p for p in producer['files'] if p.startswith('src/')},'Consumer source inventory differs'

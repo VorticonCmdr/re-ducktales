@@ -1,26 +1,57 @@
 // Strict focused acceptance. Proprietary originals/captures remain local.
 import assert from "node:assert/strict";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { spawnSync } from "node:child_process";
+import { mkdir, readFile, writeFile, readdir } from "node:fs/promises";
+import { spawnSync, execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 const root = `.local/speaker-playback-${Date.now()}`;
 await mkdir(root, { recursive: true });
 const sources = [
-  "src/speaker-driver.js",
-  "src/speaker-game.js",
-  "src/speaker-game-worklet.js",
-  "src/game/audio-device.js",
-  "src/game/speaker-audio.js",
-  "src/game/tandy-audio.js",
-  "src/game/browser.js",
-  "tests/speaker-game.test.js",
-  "tests/browser/tandy-game.spec.js",
-  "tests/browser/title-audio.spec.js",
-  "scripts/verify-speaker-playback.js",
-  "reference/build.json",
-  "reference/speaker-engine.json",
-];
+  ...new Set([
+    "src/speaker-driver.js",
+    "src/speaker-game.js",
+    "src/speaker-game-worklet.js",
+    "src/game/audio-device.js",
+    "src/game/speaker-audio.js",
+    "src/game/tandy-audio.js",
+    "src/game/browser.js",
+    "tests/speaker-game.test.js",
+    "tests/browser/tandy-game.spec.js",
+    "tests/browser/title-audio.spec.js",
+    "scripts/verify-speaker-playback.js",
+    "reference/build.json",
+    "reference/speaker-engine.json",
+    ...(await readdir("src", { recursive: true, withFileTypes: true }))
+      .filter((d) => d.isFile())
+      .map((d) => `${d.parentPath}/${d.name}`),
+  ]),
+].sort();
 const sha = (b) => createHash("sha256").update(b).digest("hex");
+assert.equal(
+  execFileSync("git", ["status", "--porcelain"], { encoding: "utf8" }).trim(),
+  "",
+  "SETUP: commit clean sound capture source",
+);
+const commit = execFileSync("git", ["rev-parse", "HEAD"], {
+  encoding: "utf8",
+}).trim();
+const archive = execFileSync("git", ["archive", "--format=zip", commit], {
+  maxBuffer: 32 * 1024 * 1024,
+});
+await writeFile(root + "/sources.zip", archive);
+const tracked = execFileSync("git", ["ls-files", "-z"], { encoding: "utf8" })
+  .split("\0")
+  .filter(Boolean);
+const inventory = Object.fromEntries(
+  await Promise.all(tracked.map(async (p) => [p, sha(await readFile(p))])),
+);
+await writeFile(
+  root + "/source-revision.json",
+  JSON.stringify(
+    { commit, archiveSha256: sha(archive), files: inventory },
+    null,
+    2,
+  ) + "\n",
+);
 const hashes = async () =>
   Object.fromEntries(
     await Promise.all(sources.map(async (p) => [p, sha(await readFile(p))])),
@@ -105,6 +136,8 @@ unfinished[0].results = [];
 assert.throws(() => checkBrowser(unfinished, []), /unfinished/);
 run("npm", ["run", "build"]);
 assert.deepEqual(await hashes(), initial, "Source changed during acceptance");
+for (const [p, h] of Object.entries(inventory))
+  assert.equal(sha(await readFile(p)), h, "Archived sound source changed " + p);
 await writeFile(
   `${root}/receipt.json`,
   JSON.stringify(
@@ -115,6 +148,8 @@ await writeFile(
       streamCases: 3,
       browserCases: 7,
       reportNegativeControls: 3,
+      sourceCommit: commit,
+      completeSourceInventory: true,
       scope:
         "Native conditional core evidence plus independent provider regression and actual browser audio acceptance. No full campaign or original waveform claim.",
     },

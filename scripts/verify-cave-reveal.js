@@ -2,6 +2,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { originalGame } from "../tests/helpers/original-game.js";
 import { Cave } from "../src/game/cave.js";
 import { renderFlightPixels } from "../src/game/flight-raster.js";
@@ -37,6 +38,21 @@ if (manifest.parentContract) {
     manifest.parentContract.sha256,
   );
   const parent = JSON.parse(bytes);
+  let timing = null;
+  if (manifest.timingWorkManifest) {
+    assert.equal(manifest.id, "cave-composition-striped-reveal");
+    assert.equal(
+      manifest.timingWorkManifest.path,
+      "reference/cave-composition-work.json",
+    );
+    const b = await readFile(manifest.timingWorkManifest.path);
+    assert.equal(
+      createHash("sha256").update(b).digest("hex"),
+      manifest.timingWorkManifest.sha256,
+    );
+    timing = JSON.parse(b);
+    assert.equal(timing.id, "original-cave-composition-runtime-work");
+  }
   for (const key of Object.keys(parent))
     if (!["id", "sources"].includes(key))
       assert.deepEqual(
@@ -61,6 +77,53 @@ if (manifest.parentContract) {
         old.sha256,
         "Changed cave browser behavior beyond explicit historical BIOS input",
       );
+    } else if (
+      timing &&
+      [
+        "src/game/cave.js",
+        "src/game/cave-endings.js",
+        "scripts/verify-cave-routes.js",
+      ].includes(old.path)
+    ) {
+      assert.equal(
+        current.sha256,
+        timing.sources[old.path],
+        "Unverified cave timing source",
+      );
+      const historical = execFileSync("git", [
+        "show",
+        manifest.sourceBaseCommit + ":" + old.path,
+      ]);
+      assert.equal(
+        createHash("sha256").update(historical).digest("hex"),
+        old.sha256,
+        "Changed original cave source base",
+      );
+      const actual = await readFile(current.path, "utf8");
+      if (old.path === "src/game/cave.js") {
+        const body = (s) =>
+          s.match(/  \*present\(commands,[\s\S]*?\n  \*delay\(ticks\)/)?.[0];
+        assert.ok(
+          body(historical.toString()),
+          "Missing original presentation method",
+        );
+        assert.equal(
+          body(actual),
+          body(historical.toString()),
+          "Cave presentation changed with timing work",
+        );
+      } else if (old.path === "src/game/cave-endings.js") {
+        const { format } = await import("prettier");
+        assert.equal(actual.split("yield* this.scene()").length - 1, 2);
+        assert.equal(
+          await format(
+            actual.replaceAll("yield* this.scene()", "this.scene()"),
+            { parser: "babel" },
+          ),
+          await format(historical.toString(), { parser: "babel" }),
+          "Cave ending logic changed beyond composition waits",
+        );
+      }
     } else if (old.path !== "scripts/verify-cave-reveal.js")
       assert.deepEqual(current, old, "Changed native cave source contract");
   }

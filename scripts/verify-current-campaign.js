@@ -298,6 +298,30 @@ if (
   );
   assert.equal(consumer.commit, manifest.consumerCommit);
   assert.equal(status.sourceCommit, manifest.consumerCommit);
+  assert.equal(producer.sourceFileCount, Object.keys(source.files).length);
+  assert.equal(status.sourceFileCount, Object.keys(consumer.files).length);
+  if (manifest.id === "jungle-text-easy-complete-campaign") {
+    assert.equal(
+      producer.captureToolSHA256,
+      manifest.artifacts["producer-capture-tool"].sha256,
+    );
+    assert.equal(
+      producer.captureToolSHA256,
+      source.files["scripts/capture-easy-campaign.py"],
+    );
+    assert.equal(
+      status.captureToolSHA256,
+      manifest.artifacts["consumer-capture-tool"].sha256,
+    );
+    assert.equal(
+      status.captureToolSHA256,
+      consumer.files["scripts/capture-runtime-campaign.py"],
+    );
+    const raw = await json("producer-environment");
+    assert.equal(raw.completed, false);
+    assert.equal(raw.routeCompleted, true);
+    assert.equal(raw.observerError, null);
+  }
   const srcFiles = Object.keys(source.files)
     .filter((p) => p.startsWith("src/"))
     .sort();

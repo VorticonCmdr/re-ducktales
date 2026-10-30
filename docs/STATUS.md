@@ -23,7 +23,13 @@ winning ending and Restart. The carried replay checks all35 states and1,470
 flight presentations. [Current scenario and provenance](jungle-line-campaign.md).
 The extra mountain-entry marker duplicates the same arrival boundary exactly;
 both observations are retained. No expected state/timer/pixel exclusions were
-added. The combined clean gate is in verification.
+added. **The combined gate passes from clean commit `77a30ec`.** Its 759-file
+source archive, 44 evidence artifacts and 912 preserved historical artifacts are
+pinned in the [integration record](../reference/jungle-line-campaign-integration.json).
+It includes 180 passing unit cases, fresh jungle walking/Pause/Quit, both browser
+failure controls and the production build. The complete positive campaign browser
+run is the separately registered independent replay, not another fresh run in
+this combined gate.
 
 `npm run verify:current-campaign` and `npm run verify:runtime-campaign` now target
 this scenario. `--fresh-browser` additionally repeats its complete positive
@@ -106,18 +112,16 @@ platform. [Source, native recipe and limits](ega-line-work.md).
 The counter is now connected to jungle source line calls. Six original drawing
 boundaries retain all commands/state/color while adding60 line calls. The180
 unit checks, build, browser pause/quit controls and actual drawing-deadline
-negative control pass. New longer component contracts are being declared and
-independently verified. Both long component scenarios now pass:1,616 inputs,
+negative control pass. Both long component scenarios pass:1,616 inputs,
 1,714 ordered images,40 gameplay/timer checkpoints and17 negative controls.
 Browser walking after Pause/cancelled Quit also passes.
 **`node scripts/verify-jungle-lines.js` passes from clean commit`39f3b80`.**
 The752-file archive, component/browsing results and negative controls are pinned
 by the[focused receipt](../reference/jungle-line-integration.json).
 [Integration and limits](jungle-line-timing.md). Keep Hard deferred.
-The fresh full campaign comparison has passed independently; finish its
-combined clean gate, then continue remaining timing/input work.
-Resident/color,
-text and remaining CPU/device work still need evidence. The existing native
+The fresh full campaign comparison and combined clean gate now pass. Continue
+remaining timing/input work. Resident/color, text and remaining CPU/device
+work still need evidence. The existing native
 menu comparison confirms that makes arriving before its flush can be discarded;
 do not replace that original behavior with invented typematic or retries.
 
@@ -137,7 +141,7 @@ node scripts/verify-runtime-campaign.js --fresh-browser
 npm run verify:speaker-game
 node scripts/verify-ega-lines.js
 node scripts/verify-jungle-lines.js
-node scripts/verify-jungle-line-receipt.js
+node scripts/verify-jungle-line-campaign-receipt.js
 node scripts/inspect-jungle-line-work.js
 node scripts/verify-speaker-playback-receipt.js
 npm run verify:cave-reveal

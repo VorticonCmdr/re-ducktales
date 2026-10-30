@@ -55,6 +55,19 @@ revision; current `src/` must match the complete producer inventory. Verifier
 code is separately pinned and can evolve without relabeling a producer archive.
 Proprietary images/traces/archives remain ignored locally.
 
+## Combined verification
+
+`npm run verify:current-campaign` passes at clean commit `77a30ec`: 759 archived
+source files, 180 unit cases, both long timing routes, 35 campaign checkpoints,
+9 campaign failure controls, fresh browser jungle walking/Pause/Quit and the
+zero-deadline failure control, plus the production build. All 912 protected
+historical artifacts remain unchanged. The [integration record](../reference/jungle-line-campaign-integration.json)
+pins 44 evidence artifacts and can be checked with
+`node scripts/verify-jungle-line-campaign-receipt.js`; that checker also rejects
+an empty or checksum-corrupt receipt artifact. Later receipt/docs changes do not
+relabel the archived gate source. The complete positive browser route is the
+registered independent consumer above; the combined gate did not rerun it.
+
 ## Commands
 
 ```sh

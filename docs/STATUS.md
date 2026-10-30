@@ -21,14 +21,25 @@ Tandy/PCjr includes Sound 001, persistent channels, priorities, engine words, mu
 and completion; all 121 public requests have viewer playback. Speaker playback
 is the default. Physical waveform/gain/filter parity remains open. [Audio](audio.md).
 
-## Current flight input work
+## Current flight input milestone
 
 Flight now uses physical ordinary-key flags, including aliases, release-edge
 consumption, mode0 and its existing source flushes. Reveal keys carry from
 departure into flight. Return prompts consume the same provider, and action
-buttons supply raw taps. New unit and browser cases pass; the complete focused
-integration is being verified. [Evidence and limits](flight-keyboard.md).
-Command: `npm run verify:flight-keyboard`.
+buttons supply raw taps. `npm run verify:flight-keyboard` passed from clean
+commit `d36dc95`: all 177 unit cases, nine actual browser scenarios, the
+lost-release browser negative and production build, with zero skipped cases.
+This includes both natural crash return paths and the complete cave
+landing/failure/retry/treasure/return route. All 822 protected historical artifacts
+remain unchanged. The 684-file source archive and results are pinned by the
+[focused receipt](../reference/flight-keyboard-integration.json).
+[Evidence and limits](flight-keyboard.md).
+
+Source/native checks cover 45 flight instructions / 139 bytes, three native
+empty key tables and one AX return. The independent integration carries its own
+state across 16 source reads and 14 hardware events, checking every consumed
+byte and complete key table. Existing native physics, course, scene, crash,
+calendar, input and 36-read shared-keyboard regressions pass.
 
 Whole-game completion and full original timing remain unproven. Modifiers/BIOS,
 mouse/joystick and other cross-scene physical delivery remain separate work.
@@ -165,8 +176,10 @@ refresh. Historical passes do not establish a green current broader gate.
 - Original save/load/high-score behavior/formats have not been established.
   Browser persistence would be an explicit addition without original evidence.
 
-Next: complete remaining source drawing costs and cross-scene input windows,
-then refresh broader campaign gates against the current runtime.
+Next: refresh broader campaign acceptance against the current runtime while
+preserving historical streams, then investigate the first failed gameplay
+behavior. Continue remaining drawing/device costs and cross-scene input windows
+alongside that campaign work.
 
 ## Supported build and commands
 

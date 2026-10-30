@@ -1,0 +1,227 @@
+{
+  "id": "flight-ordinary-keyboard-focused-integration",
+  "completedFocusedIntegration": true,
+  "wholeGameComplete": false,
+  "wholeOriginalTimingAcceptance": false,
+  "verificationCommit": "d36dc952fb8c2d830b1e6466ca467c16bf660bb5",
+  "sourceFileCount": 684,
+  "verificationCommand": "npm run verify:flight-keyboard",
+  "verificationExitCode": 0,
+  "unitCases": 177,
+  "unitFailures": 0,
+  "unitSkipped": 0,
+  "browserCases": 9,
+  "browserSkipped": 0,
+  "browserNegativeControls": 1,
+  "flightSourceInstructions": 45,
+  "flightSourceBytes": 139,
+  "nativeEmptyFlagTables": 3,
+  "nativeEmptyAXResults": 1,
+  "independentFlightReads": 16,
+  "independentFlightEvents": 14,
+  "independentFullFlagBoundaries": 16,
+  "flightNativeIntegrationNegatives": 6,
+  "sharedNativeKeyboardReads": 36,
+  "sharedNativeKeyboardSequences": 10,
+  "sharedNativeKeyboardNegatives": 5,
+  "preservedDepartureInstructions": 181,
+  "preservedDepartureBytes": 463,
+  "preservedDepartureRetraces": 50,
+  "preservedDestinationFlagCheckpoints": 48,
+  "preservedDestinationHardwareEvents": 37,
+  "preservedDestinationInputReads": 16,
+  "refreshContractNegativeControls": 4,
+  "historicalArtifactsPreserved": true,
+  "protectedArtifactCount": 822,
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "captureTools": {
+    "node": "v26.8.1",
+    "playwright": "1.64.1",
+    "static": "Ghidra MCP bounded disassemble_bytes on explicit FLIGHT_ANALYSIS,FLIGHT_TRANSLATION and DUCK_UNPACKED programs.45 instructions match original bytes;accepted ranges contain no FPU/probe normalization. Server revision is not exposed in retained packets.",
+    "native": "Unchanged flight-input capture0ae4211,DOSBox0.84.0-vc1 f6d9b/protocol1.14,normal core3000 cycles,svga_s3,real mode,read-only game root. Existing map keyboard capture and parent departure retain their own manifests/configuration. No new emulator session or live changes."
+  },
+  "inputContract": {
+    "native": "Three existing empty128-flag tables/mode0 and a flight02b3AX=0 are conditional native invariants. Full17548-byte flight body/248 relocations/91 runtime FPU-prefix changes and complete88-byte return helper remain independently checked. Shared36-read native keyboard source/flag regression stays required.",
+    "independent": "Fresh Game(original decoded resources,bios0,audiooff) starts at explicit conditional map boundary,points37,33 and confirms travel,then carries its own automatic departure/flight state. An independent scheduler supplies driver/retrace/work time;14 input-only events are delivered before16 source-read ordinals. Separate expected bytes/full flags never feed inputs. No native actor/timer/memory output initializes or drives the program.",
+    "browser": "Nine actual DOM/rendering cases earn office/security/map/departure/flight. Frozen external clock prevents model/runner latency choosing inputs. Three new cases check reveal carryover,alias/release/priority/keypad/buttons/Pause/Restart,and natural crash with20 neutral polls or freshFire atpoll2. Six retained cases cover departure pixels/takeoff,system keys,destination,banking and complete cave landing/failure/retry/treasure/return. Feedback controllers consume only the implementation own state."
+  },
+  "scope": [
+    "Production flight uses physical ordinary flags rather than held-control fallback,including its return prompt. Component fixtures retain explicit digital providers and unchanged expected values.",
+    "Portrait flush discards early makes;reveal flags survive flight entry while mode changes to0. Source special-control/return/dialog flushes clear flags and deferred system keys.",
+    "Actual consumed flight bytes and complete mirrored128-slot tables compare at all16 independent reads. Negative controls detect changed source bytes,missing release,changed result,wrongmode,corrupted consumer byte and an unconsumed event.",
+    "All256 valid input bytes check originalC0/3f/1/5 control masks. Invalid providers stop with diagnostics. Unit checks include catch-up invariance,source flush,Pause and raw return without digital tap fallback.",
+    "Browser negative removes only mode0M-release consumption in the served source and fails the explicit release-edge byte assertion. Setup failures/timeouts do not count.",
+    "Departure and destination refreshes require immutable parents and exact equality of historical inputs,expected values and comparison rules;two contract controls for each reject changes."
+  ],
+  "limitations": [
+    "No new uninterrupted original flight/actor or whole-campaign replay;source-read ordinal integration is not fixed-timestamp native replay.",
+    "Physical modifiers/BIOS/mouse/joystick,original typematic timing and other cross-scene IRQ delivery remain incomplete.",
+    "Complete drawing/device/CPU costs and whole-original elapsed timing remain unverified. Historical golden streams/receipts are preserved,not edited to fit this runtime.",
+    "The full npm run verify remains red at historical shared-runtime inventory and older source receipts. Whole-game parity,arbitrary-route finishability and original persistence remain unproven.",
+    "Manual in-app browser bridge cannot reconnect existing tabs(browser.user unavailable);actual automated Playwright rendering/keyboard scenarios pass."
+  ],
+  "artifacts": {
+    "runner": {
+      "path": ".local/flight-keyboard-integration-01/runner-status.json",
+      "bytes": 107088,
+      "sha256": "111f98b10d923f90ba2392a261ca6f7bfbdf9b00abfa2181b4ace2c8eda04c62"
+    },
+    "runner-source": {
+      "path": ".local/flight-keyboard-integration-01/runner.py",
+      "bytes": 3215,
+      "sha256": "133aca4fb7d7d181fb3c6768024863ba753390b2a0e14df88a85107eba80f5b0"
+    },
+    "source": {
+      "path": ".local/flight-keyboard-integration-01/source-revision.json",
+      "bytes": 74186,
+      "sha256": "0634d17dfc741a8696072866d9f569d1147d8f2cb527f17f7944143ffb25e7eb"
+    },
+    "source-zip": {
+      "path": ".local/flight-keyboard-integration-01/sources.zip",
+      "bytes": 1829547,
+      "sha256": "a77f7865bda61e35c46b6bce09e63fe378018843d96fac589f5dcad3bdf497db"
+    },
+    "verification-log": {
+      "path": ".local/flight-keyboard-integration-01/verification.log",
+      "bytes": 23135,
+      "sha256": "713ae8b4ad7eaf761a50e68b4a4bf0e34ead1ed532f6f33e66e81c779860c11b"
+    },
+    "browser-positive.log": {
+      "path": ".local/flight-keyboard-integration-01/controls/browser-positive.log",
+      "bytes": 3141,
+      "sha256": "8d3890de95a7dcacf2fbf2c5014ce89d8b59a2a49298460e7f7b04d409fd1b08"
+    },
+    "browser-negative.log": {
+      "path": ".local/flight-keyboard-integration-01/controls/browser-negative.log",
+      "bytes": 1705,
+      "sha256": "54db2353ccec225bf0e84a055c9b4d51ae05b4aa9920a9b7f704b88cf248143b"
+    },
+    "browser/flight-keyboard.json": {
+      "path": ".local/flight-keyboard-integration-01/flight-keyboard.json",
+      "bytes": 78921,
+      "sha256": "fd2f44222b0037e04ecdbd59755ca95882c902bbf132e4b9b4e06c008cc037c8"
+    },
+    "browser/flight-keyboard.png": {
+      "path": ".local/flight-keyboard-integration-01/flight-keyboard.png",
+      "bytes": 9249,
+      "sha256": "98abe5f82112103a036f213936f87ac3f684b6aa8336462d022c88014217379c"
+    },
+    "browser/flight-return-fire.json": {
+      "path": ".local/flight-keyboard-integration-01/flight-return-fire.json",
+      "bytes": 8674,
+      "sha256": "d421e84039fe042dc336dcc2999eb80f0911b5dfdd7b75eaa172d204e551f790"
+    },
+    "browser/flight-return-neutral.json": {
+      "path": ".local/flight-keyboard-integration-01/flight-return-neutral.json",
+      "bytes": 8459,
+      "sha256": "4146622988b04ab2725a89f4dd1aba1cbdda584e05ab1b8639d8b525a49e3142"
+    },
+    "browser/departure-full.png": {
+      "path": ".local/flight-keyboard-integration-01/departure-full.png",
+      "bytes": 9956,
+      "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
+    },
+    "browser/departure-flight.png": {
+      "path": ".local/flight-keyboard-integration-01/departure-flight.png",
+      "bytes": 9106,
+      "sha256": "a288e4b0f4677d7100286e027c2a3e30daa6d9e145f77e2f08c2232e44d778c2"
+    },
+    "browser/departure-sequence.json": {
+      "path": ".local/flight-keyboard-integration-01/departure-sequence.json",
+      "bytes": 226188,
+      "sha256": "e02e15429bbe7078eb13e3126f84121c2d79049d47edb2a2862485e319c5600f"
+    },
+    "browser/departure-pause.json": {
+      "path": ".local/flight-keyboard-integration-01/departure-pause.json",
+      "bytes": 3539,
+      "sha256": "213ccf061dc300556a02f8bd5dba75cac7234250468006887aac5d94d742e15d"
+    },
+    "browser/destination-loop.json": {
+      "path": ".local/flight-keyboard-integration-01/destination-loop.json",
+      "bytes": 11610,
+      "sha256": "f51a0274ef63a9eb8bd1ebe8d30c454d0d9d9d9a20cb5ce7c8f74812e0951d4f"
+    },
+    "browser/destination-system.json": {
+      "path": ".local/flight-keyboard-integration-01/destination-system.json",
+      "bytes": 1637,
+      "sha256": "fb3c247cc71276689a1c81e0a782e064b5611e10daa2f80be8673eebf0c487f7"
+    },
+    "browser/destination-loop-footer.png": {
+      "path": ".local/flight-keyboard-integration-01/destination-loop-footer.png",
+      "bytes": 11129,
+      "sha256": "40e024418ea5fbbe59dbbbc1113f1ef58877bd53880cb0dee0ef323c3c16aafe"
+    },
+    "browser/destination-loop-map.png": {
+      "path": ".local/flight-keyboard-integration-01/destination-loop-map.png",
+      "bytes": 24948,
+      "sha256": "a24803d3b953bc292e5d063c122f28f9bcc7a1d0107b9afd0525e98085c0f693"
+    },
+    "browser/destination-loop-flight.png": {
+      "path": ".local/flight-keyboard-integration-01/destination-loop-flight.png",
+      "bytes": 9711,
+      "sha256": "02ce920f8e2caa1e9bdf87dea89ec6824663ad5d942652de262f258a422b9259"
+    },
+    "browser/flight-landing.png": {
+      "path": ".local/flight-keyboard-integration-01/flight-landing.png",
+      "bytes": 23042,
+      "sha256": "2b6be6e9fcf4aaf9d6b5dc9aa57f8e8aaef5c565893b69bf144e2bcdc919ca0f"
+    },
+    "browser/cave-treasure-award.png": {
+      "path": ".local/flight-keyboard-integration-01/cave-treasure-award.png",
+      "bytes": 34586,
+      "sha256": "71608970b2228c7865c6764115ad52172c351db3deb02586ca8e74dd04cd5ae2"
+    },
+    "browser/collected-notice.png": {
+      "path": ".local/flight-keyboard-integration-01/collected-notice.png",
+      "bytes": 24928,
+      "sha256": "de730a93d230c3c924e84247ae33f75821b1864171ca410f96f99db1f2aa2abe"
+    },
+    "reference/build.json": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "reference/flight-keyboard.json": {
+      "path": "reference/flight-keyboard.json",
+      "bytes": 4172,
+      "sha256": "54d34119b70cb6ce706bea6464f3a8411c8e759af0affacd29847d7f0b0ac29f"
+    },
+    "reference/flight-keyboard-inputs.json": {
+      "path": "reference/flight-keyboard-inputs.json",
+      "bytes": 1032,
+      "sha256": "e097701cf6d2d7f87a4e9447b8eec99b02b57065f471f12ff4f96cbb5b4dee57"
+    },
+    "reference/flight-keyboard-departure-sequence.json": {
+      "path": "reference/flight-keyboard-departure-sequence.json",
+      "bytes": 4699,
+      "sha256": "de6262397c77415cf1e606d0e9ad7054e621ad5b88c80761fd873de75fd4c0e1"
+    },
+    "reference/flight-keyboard-destination-loop.json": {
+      "path": "reference/flight-keyboard-destination-loop.json",
+      "bytes": 3763,
+      "sha256": "5a22b634104ed66853c2504c1ab07fc7b14932031b3dc9d426e4d924224e5a4e"
+    },
+    "reference/flight-input.json": {
+      "path": "reference/flight-input.json",
+      "bytes": 8530,
+      "sha256": "118387a642cbc2832414d959a33e8fa724973b6ad026e723fc814e9481af31b6"
+    },
+    "reference/map-keyboard.json": {
+      "path": "reference/map-keyboard.json",
+      "bytes": 35956,
+      "sha256": "80bf1a5083715d730cdcb4878d6111a967b01d46c731ee658fd625b4f0d38263"
+    },
+    "reference/departure-sequence.json": {
+      "path": "reference/departure-sequence.json",
+      "bytes": 3884,
+      "sha256": "0100ad77671926cb769ad474225ebf475851e46062d3e49d10b02a24a4d48ae5"
+    },
+    "reference/destination-loop.json": {
+      "path": "reference/destination-loop.json",
+      "bytes": 2952,
+      "sha256": "05029a36ade39768f9fa3cbc9998d737ac0613d477baf044893f8935cbd4c7a5"
+    }
+  }
+}

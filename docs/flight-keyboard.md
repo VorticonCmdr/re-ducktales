@@ -50,6 +50,13 @@ Run `npm run verify:flight-keyboard`. Missing originals/artifacts, changed bytes
 unfinished streams, skipped reads, unconsumed events or differing values fail.
 The browser runner requires all nine selected scenarios, with zero skipped.
 
+The clean run on `d36dc95` passed all 177 unit cases, nine browser scenarios,
+the lost-release negative and production build. Its 684-file source archive,
+logs and 32 evidence artifacts are pinned in
+`reference/flight-keyboard-integration.json`. All 822 protected historical
+artifacts remained unchanged. This is focused integration acceptance, not a
+green whole-game gate.
+
 `reference/flight-keyboard.json` pins the parent native manifest, four local
 Ghidra exports, current sources and an independent input-only profile. Its16
 expected bytes and16 complete flag arrays remain separate from the14 hardware

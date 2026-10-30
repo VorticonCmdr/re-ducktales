@@ -11,7 +11,7 @@ preserved. Six original drawing boundaries retain exact commands/state/color;
 two HUD redraws add0.416333ms each at the declared reference platform. No fixed
 slowdown or fitted input is used. This does not establish complete original speed.
 
-**`node scripts/verify-jungle-texts.js` passes from clean`a9ce318`.** It requires:
+**`npm run verify:current-campaign` passes from clean `a54c8ec`.** It requires:
 
 - Original native text/formatter comparisons, including16 formatter cases,
   12,197 instruction addresses,800 exact port writes and all45,056 code bytes.
@@ -19,15 +19,16 @@ slowdown or fitted input is used. This does not establish complete original spee
   40 gameplay/timer checkpoints and17 failure controls. Original,pre-line and
   line-only timing streams are preserved and rerun independently.
 - All180 unit cases, fresh browser startup/flight/jungle walking/Pause/cancelled
-  Quit, native-counted first HUD budget, two actual browser failure controls,
+  Quit, native-counted first HUD budget, three actual browser failure controls,
   and the production build.
 
-The782-file source archive,36 evidence artifacts and326 preserved reference files
-are pinned in the [receipt](../reference/jungle-text-integration.json).
-[Timing integration, provenance and limits](jungle-text-timing.md).
-A fresh complete Easy campaign after text timing now passes independently in
-simulation and an actual browser. The combined current-build gate is in progress.
-[New campaign evidence](jungle-text-campaign.md).
+The 790-file source archive, 53 evidence artifacts and 1,005 preserved historical
+artifacts are pinned in the [combined record](../reference/jungle-text-campaign-integration.json).
+The complete positive browser run is the independent consumer at `a9ded04`;
+the combined gate validates that source-pinned result and freshly runs jungle
+controls and failure cases. `--fresh-browser` repeats the whole positive route.
+[Campaign provenance and limits](jungle-text-campaign.md).
+[Formatter/text timing integration](jungle-text-timing.md).
 
 ## Working gameplay and full-campaign evidence
 
@@ -39,12 +40,13 @@ in ignored `game/`; production visitors select their own files. No push or deplo
 The fresh physical-keyboard Easy route **with formatter/text timing**
 visits jungle, Safari, cave and mountain, wins on day31 with$14,550 banked against
 $12,500, retains all three mountain lives and restarts. It checks34 complete
-state/pixel checkpoints,4,981 DOM events and1,470 flight presentations. This fresh startup capture has34 unique checkpoints; the prior duplicate
-mountain-entry marker is absent, with no unique boundary omitted. The fresh
+state/pixel checkpoints, 4,981 DOM events and 1,470 flight presentations. This fresh
+startup capture has 34 unique checkpoints; the prior duplicate mountain-entry
+marker is absent, with no unique boundary omitted. The fresh
 independent browser replay also verifies Restart. [Current full route](jungle-text-campaign.md).
 
 `npm run verify:current-campaign` and `verify:runtime-campaign` now target the new
-text-inclusive contract. Their combined clean gate is in progress. Prior line,
+text-inclusive contract and pass the combined clean gate. Prior line,
 speaker and cave receipts remain historical and untouched. Broader historical
 `npm run verify` receipts also require current regressions; this focused gate
 does not waive them.
@@ -94,8 +96,10 @@ correspondence are checked; analysis executables are never run. Private emulator
 experiments leave the shared8386 session untouched and close their owned instances.
 
 ```sh
+npm run verify:current-campaign
+node scripts/verify-runtime-campaign.js --fresh-browser
 node scripts/verify-jungle-texts.js
-node scripts/verify-jungle-text-receipt.js
+node scripts/verify-jungle-text-campaign-receipt.js
 node scripts/verify-hud-number.js
 node scripts/verify-jungle-text-work.js
 node scripts/jungle-text-timing.js

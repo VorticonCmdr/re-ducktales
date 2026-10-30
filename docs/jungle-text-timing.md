@@ -77,11 +77,12 @@ browser coverage, a skipped browser result and a checksum-corrupt artifact.
 ## Remaining scope
 
 This is closed-loop component regression and actual-browser jungle acceptance.
-A fresh complete Easy campaign comparison after text timing remains pending.
-The prior line-inclusive full campaign record remains historical and intact;
-its current-source check correctly rejects the changed runtime. The older
-`npm run verify:current-campaign` still targets that prior source contract and
-must not be reported as current text-inclusive campaign acceptance.
+The fresh [complete Easy campaign](jungle-text-campaign.md) now passes independently
+through winning and Restart: 34 full state/pixel checkpoints and 4,981 DOM events.
+`npm run verify:current-campaign` targets that new text-inclusive contract and
+passes its combined clean gate. Prior line-inclusive campaign records remain
+historical and unchanged. The focused receipt here records its own earlier
+source; the current combined receipt also covers campaign tooling changes.
 
 Resident dispatch/color, opaque text, HUD caller instructions, remaining CPU/IRQ
 and device costs are still omitted. Native whole-jungle cadence/scanout is not

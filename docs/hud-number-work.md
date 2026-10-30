@@ -63,5 +63,5 @@ rules. The copies under `scripts/lib/` remain frozen evidence for this historica
 manifest; production uses `src/game/ega-text-work.js` and `hud-number-work.js`.
 `node scripts/verify-jungle-text-work.js` compares the production paths against
 all16 native traces and six original drawing boundaries. The new [timing integration](jungle-text-timing.md) passes both long component
-routes and focused actual-browser controls. A fresh full-campaign comparison
-after text timing remains pending. Opaque text remains a separate uncounted path.
+routes and focused actual-browser controls. The separate [full Easy campaign comparison](jungle-text-campaign.md) also passes
+after text timing. Opaque text remains a separate uncounted path.

@@ -88,5 +88,11 @@ Production build is required. Missing/corrupt fixtures,zero/skipped/retried case
 unfinished streams,unconsumed required events,unsupported behavior and differences
 outside the documented pointer normalization rules all fail strictly.
 
-Independent headless replay and complete actual-browser admission pass. The
-combined clean current-build gate is being verified.
+The combined current-build gate passes at clean `a54c8ec`. Its 790-file archive,
+53 evidence artifacts and 1,005 protected historical artifacts are pinned in the
+[combined record](../reference/jungle-text-campaign-integration.json). The gate
+validates the registered complete browser consumer and freshly runs the smaller
+browser controls; it does not claim another whole positive browser run. Recheck
+that saved result with `node scripts/verify-jungle-text-campaign-receipt.js`.
+That checker also rejects empty/checksum-corrupt receipt evidence. Metadata/docs
+updates do not relabel the archived gate source.

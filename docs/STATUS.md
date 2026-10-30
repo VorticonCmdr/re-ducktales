@@ -25,7 +25,9 @@ slowdown or fitted input is used. This does not establish complete original spee
 The782-file source archive,36 evidence artifacts and326 preserved reference files
 are pinned in the [receipt](../reference/jungle-text-integration.json).
 [Timing integration, provenance and limits](jungle-text-timing.md).
-The next milestone is a fresh complete Easy campaign comparison after text timing.
+A fresh complete Easy campaign after text timing now passes independently in
+simulation and an actual browser. The combined current-build gate is in progress.
+[New campaign evidence](jungle-text-campaign.md).
 
 ## Working gameplay and full-campaign evidence
 
@@ -34,19 +36,18 @@ transport selection, departures, flight, all four expedition families, rewards,
 rival reports, banking and campaign endings. Original assets stay authoritative
 in ignored `game/`; production visitors select their own files. No push or deploy.
 
-The last fully verified physical-keyboard Easy route, **before text timing**,
+The fresh physical-keyboard Easy route **with formatter/text timing**
 visits jungle, Safari, cave and mountain, wins on day31 with$14,550 banked against
-$12,500, retains all three mountain lives and restarts. It checks35 complete
-state/pixel checkpoints,4,981 DOM events and1,470 flight presentations. Both
-observations of the identical mountain-arrival boundary are retained; no unique
-boundary is dropped. [Historical full route](jungle-line-campaign.md).
+$12,500, retains all three mountain lives and restarts. It checks34 complete
+state/pixel checkpoints,4,981 DOM events and1,470 flight presentations. This fresh startup capture has34 unique checkpoints; the prior duplicate
+mountain-entry marker is absent, with no unique boundary omitted. The fresh
+independent browser replay also verifies Restart. [Current full route](jungle-text-campaign.md).
 
-The clean full-route gate at`77a30ec` remains historical. Its source check now
-correctly rejects the changed runtime. `npm run verify:current-campaign` and
-`verify:runtime-campaign` still target that prior contract; they are **not current
-text-inclusive full-campaign acceptance**. A fresh input capture and independent
-complete browser replay are pending. Broader historical `npm run verify` receipts
-also require current regressions; the focused jungle gate does not waive them.
+`npm run verify:current-campaign` and `verify:runtime-campaign` now target the new
+text-inclusive contract. Their combined clean gate is in progress. Prior line,
+speaker and cave receipts remain historical and untouched. Broader historical
+`npm run verify` receipts also require current regressions; this focused gate
+does not waive them.
 
 ## Hard, security and sound
 

@@ -1,0 +1,179 @@
+{
+  "id": "persistent-speaker-runtime-clean-integration",
+  "sourceCommit": "bc350d13eb790d4c93f00e0f944cf555c6acc9ab",
+  "sourceFileCount": 734,
+  "command": "npm run verify:current-campaign",
+  "exitCode": 0,
+  "scenario": {
+    "path": "reference/speaker-runtime-campaign.json",
+    "bytes": 10216,
+    "sha256": "9177cef3bead3ca52d7465eced2fc9d2797ddf131470ab86bf2e476deca1fb20"
+  },
+  "audioScenario": {
+    "path": "reference/speaker-playback-current.json",
+    "bytes": 3091,
+    "sha256": "bf2c74c982deb62de9b4283e76197d239743d44b56afacd4c586727c5fcee4bb"
+  },
+  "checks": {
+    "originalIdentities": 22,
+    "unitCases": 180,
+    "unitFailures": 0,
+    "unitSkips": 0,
+    "checkpoints": 34,
+    "requiredDOMEvents": 4981,
+    "flightPresentations": 1470,
+    "flagAliasPresentations": 0,
+    "campaignNegativeControls": 9,
+    "caveRevealNegativeControls": 7,
+    "registeredActualAudioBrowserCases": 7,
+    "audioProviderCases": 3,
+    "productionBuild": true,
+    "restart": true,
+    "protectedHistoricalArtifacts": 879
+  },
+  "scope": "Clean committed gate;source-pinned fresh independent full browser pass at runtime8eb9e52 plus carried replay. Registered actual sound acceptance is separate. The clean gate does not claim another fresh full positive browser run; --fresh-browser requests that explicitly.",
+  "limitations": [
+    "Hard campaigns remain deferred and incomplete.",
+    "Native whole-game timing, remaining keyboard/environment behavior, arbitrary-route finishability and physical speaker waveform parity remain unproven.",
+    "Broader historical npm run verify receipts remain unresolved."
+  ],
+  "artifacts": {
+    ".local/current-campaign-verification/browser-negative-BG43qq/.last-run.json": {
+      "path": ".local/current-campaign-verification/browser-negative-BG43qq/.last-run.json",
+      "bytes": 96,
+      "sha256": "640de19fd2a2c6b8064e900645dd01c910432d3b7f5ec04f5a565102f2e598f5"
+    },
+    ".local/current-campaign-verification/browser-negative-BG43qq/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json": {
+      "path": ".local/current-campaign-verification/browser-negative-BG43qq/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/actual-events.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    ".local/current-campaign-verification/browser-negative-BG43qq/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json": {
+      "path": ".local/current-campaign-verification/browser-negative-BG43qq/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/campaign-checkpoints.json",
+      "bytes": 2341,
+      "sha256": "0cbe74508d2314a1d7abddf0dc44420f2c9429cb37439704cb895b4b0426227f"
+    },
+    ".local/current-campaign-verification/browser-negative-BG43qq/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md": {
+      "path": ".local/current-campaign-verification/browser-negative-BG43qq/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/error-context.md",
+      "bytes": 12844,
+      "sha256": "aa85e58e45d714202148a52d1e33af693869b032b2903b7bdcccff747974bd85"
+    },
+    ".local/current-campaign-verification/browser-negative-BG43qq/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json": {
+      "path": ".local/current-campaign-verification/browser-negative-BG43qq/mixed-campaign-one-campaig-0ca52-posits-through-the-deadline/replay-progress.json",
+      "bytes": 2044,
+      "sha256": "d2ed337c69f9eb9460cba69f4d5bede41e9f2f560726eeed626a91be8759f014"
+    },
+    ".local/current-campaign-verification/browser-negative-BG43qq/runner.log": {
+      "path": ".local/current-campaign-verification/browser-negative-BG43qq/runner.log",
+      "bytes": 1878,
+      "sha256": "42521bfb748facb0ffaab4fa0116775cb35b507066acc577f164fb08ebbdca7f"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/changed-historical-ending.json": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/changed-historical-ending.json",
+      "bytes": 8846,
+      "sha256": "310a17410a7893d8f945037637048e4c76a15e31e6e5cf4084adde0cc099fd61"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/changed-historical-ending.log": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/changed-historical-ending.log",
+      "bytes": 970,
+      "sha256": "14d39791cd630a14f7ad4c733f3e286b589b497e9724cd8bf3635c2a01b2db0f"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-ending-picture.json": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-ending-picture.json",
+      "bytes": 8795,
+      "sha256": "b53e12283828820425e2b9449172968bc40dec040ec866e2285914b4c0676986"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-ending-picture.log": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-ending-picture.log",
+      "bytes": 687,
+      "sha256": "b32c6d5b588cc0264f0257add820201c29f5a555f396845a8753e69244ff5595"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-runtime-inventory.json": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-runtime-inventory.json",
+      "bytes": 8877,
+      "sha256": "9634d26adad5e03b46cd5a394b16d6210cf54359675d27f5257cb9c5a1a2ed19"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-runtime-inventory.log": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-runtime-inventory.log",
+      "bytes": 703,
+      "sha256": "60e44a942b46c697e500e3e6f125cd3e444ddc0357856e5ee68274c4b7c0dc18"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-runtime-source.json": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt-runtime-source.json",
+      "bytes": 74618,
+      "sha256": "58e57c96ea5fc68f172c6ec1b1d605259e71b227314bfff27c0cf761a46ed838"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt.png": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/corrupt.png",
+      "bytes": 17946,
+      "sha256": "976bc80d28be8e5f762b34baddcd8527afb22c35a4d483ca86cb8d462dc0c2ea"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/missing-runtime-archive.json": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/missing-runtime-archive.json",
+      "bytes": 8878,
+      "sha256": "2ff2d622d90eb0a3eb30d1728888afc919fa6676c6c395220a60387450435fa1"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/missing-runtime-archive.log": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/missing-runtime-archive.log",
+      "bytes": 578,
+      "sha256": "f2012c8369982e89ee8f1c1f7b1fda54450166ebc6910c62a464e5897eeccaf1"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/missing-source-archive.json": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/missing-source-archive.json",
+      "bytes": 8874,
+      "sha256": "18af4755e16e7040d25ee958b85839824fedb4e38b7dbad8114f5e13a1b91472"
+    },
+    ".local/current-campaign-verification/fixture-negatives-EUkT5Y/missing-source-archive.log": {
+      "path": ".local/current-campaign-verification/fixture-negatives-EUkT5Y/missing-source-archive.log",
+      "bytes": 571,
+      "sha256": "e8cb6b68dadc06d6ef0c98a9c231d83ec5a0e44713e4fbb41139efd3ed4ca669"
+    },
+    ".local/current-campaign-verification/run-49uqnP/alter-ending.log": {
+      "path": ".local/current-campaign-verification/run-49uqnP/alter-ending.log",
+      "bytes": 957,
+      "sha256": "34c3e1ef4b7cebedef10b6c62041c7ede78c5cad137ea71392c7317b4260b848"
+    },
+    ".local/current-campaign-verification/run-49uqnP/extend-timeline.log": {
+      "path": ".local/current-campaign-verification/run-49uqnP/extend-timeline.log",
+      "bytes": 424,
+      "sha256": "4f01cb2555c7dd5bae316037fa1a4c25bf3437a0604cf20c3d3475e152fd9396"
+    },
+    ".local/current-campaign-verification/run-49uqnP/omit-checkpoint.log": {
+      "path": ".local/current-campaign-verification/run-49uqnP/omit-checkpoint.log",
+      "bytes": 410,
+      "sha256": "e4929494a8e6d0b281b6d6ff3d26effb100906d1e95820b4fc1dc49bd37e7826"
+    },
+    ".local/current-campaign-verification/run-49uqnP/positive.log": {
+      "path": ".local/current-campaign-verification/run-49uqnP/positive.log",
+      "bytes": 4344,
+      "sha256": "091a524ece22e905186aeff3c3e0265842ef4657deb48c89e0b1f2b8a8f0d22c"
+    },
+    ".local/speaker-runtime-integration-01/runner-status.json": {
+      "path": ".local/speaker-runtime-integration-01/runner-status.json",
+      "bytes": 114416,
+      "sha256": "9686ed759975bdf634d6e152e1c30c6d8d8e18b5d1cba41229e504ad15f0b9d5"
+    },
+    ".local/speaker-runtime-integration-01/runner.py": {
+      "path": ".local/speaker-runtime-integration-01/runner.py",
+      "bytes": 2304,
+      "sha256": "a3c260a5a9444f9bccf33e3ab398b8f149801af7bcd99cb406c171b0233e7fa3"
+    },
+    ".local/speaker-runtime-integration-01/source-revision.json": {
+      "path": ".local/speaker-runtime-integration-01/source-revision.json",
+      "bytes": 79772,
+      "sha256": "976c76436b3af78c4b8049fb4c68962cc8963ed63dcf598a26ce3d74050f9e91"
+    },
+    ".local/speaker-runtime-integration-01/sources.zip": {
+      "path": ".local/speaker-runtime-integration-01/sources.zip",
+      "bytes": 1944506,
+      "sha256": "da45d34cb7f8d21857e3b749f8508d4efb7f4816d89e2cb9fe5d7fec2bb0b2ef"
+    },
+    ".local/speaker-runtime-integration-01/verification.log": {
+      "path": ".local/speaker-runtime-integration-01/verification.log",
+      "bytes": 42208,
+      "sha256": "e8e02efba2a866cb77b5d7b56bc4188df491fa275fb37b66126c4ed3a1a75e16"
+    }
+  },
+  "verifyReceipt": "node scripts/verify-runtime-integration.js",
+  "receiptVerifierSHA256": "632f655a629290cc1e0633636a1f8172ff77bb501adb3650e96331d9cbabc5cb"
+}

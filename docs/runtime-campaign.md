@@ -30,6 +30,7 @@ There is no emulator state or native checkpoint in this port-regression recipe.
 
 ```sh
 npm run verify:current-campaign
+node scripts/verify-runtime-integration.js
 # Same current gate:
 npm run verify:runtime-campaign
 # Also repeat the complete browser route in a fresh owned directory:

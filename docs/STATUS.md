@@ -26,6 +26,10 @@ and1,470 flight presentations. The historical expectations and their producer
 archive remain unchanged; the current consumer has its own727-file Git archive.
 [Current scenario and exact commands](runtime-campaign.md).
 
+**`npm run verify:current-campaign` passes from clean commit`bc350d1`.**
+The734-file archive and strict check results are pinned by the
+[clean integration receipt](../reference/speaker-runtime-integration.json);
+all879 protected historical artifacts remain unchanged.
 The current gate is `npm run verify:current-campaign` (also
 `npm run verify:runtime-campaign`). It checks the source-pinned browser receipt,
 carried replay,180 unit cases, nine campaign negative controls, seven cave

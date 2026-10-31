@@ -1,0 +1,48 @@
+{
+  "kind": "conditional-standard-player-plan",
+  "accepted": false,
+  "producer": ".local/standard-wages-actions-plan-04",
+  "sourceCommit": "4a6624858bbda785382701d620835eb21fc417b7",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "scope": "Carried simulation planning from a recorded port-browser DOM prefix;not browser or original runtime acceptance",
+  "prefix": "reference/standard-wages-route.json",
+  "environmentDependency": "Recorded DOM prefix from startup followed by the diagnostic reader documented100ms neutral tail. No checkpoint state or memory restored.",
+  "playerSources": [
+    "reference/security-hard-expedition-inputs.json:Boola layout2 controls via readEasyJunglePlan",
+    "reference/hard-campaign-inputs.json:mountain controls only;actual game remains Standard difficulty1"
+  ],
+  "inputBoundary": "Physical keyboard adapter events and map pointer events scheduled independently of expected checkpoints",
+  "expectedPlanResult": {
+    "day": 31,
+    "banked": 10250,
+    "rivalBanked": 36000,
+    "endingWon": false,
+    "jungle": 1,
+    "mountain": 1
+  },
+  "artifacts": {
+    "source-revision.json": {
+      "path": ".local/standard-wages-actions-plan-04/source-revision.json",
+      "bytes": 101976,
+      "sha256": "9924a4e0d70e3f61e6308fbee903be3f089284dae54e1bc34e4a1a160e923c4b"
+    },
+    "sources.zip": {
+      "path": ".local/standard-wages-actions-plan-04/sources.zip",
+      "bytes": 2716427,
+      "sha256": "22d6cb09432cee38e2ec130d03b07fd5b2f25729a40b7150d4f3c970ac9e0373"
+    },
+    "planning.json": {
+      "path": ".local/standard-wages-actions-plan-04/planning.json",
+      "bytes": 766289,
+      "sha256": "f142f27685f022bcb830e16cf9f3a6c26b15c455565815004e1b199aaa031811"
+    }
+  },
+  "exclusions": [],
+  "injections": [],
+  "fittedInputs": [],
+  "verify": "node scripts/standard-wages-campaign.js --plan=.local/standard-wages-actions-plan-04 --output=.local/standard-browser-FRESH"
+}

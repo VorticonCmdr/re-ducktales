@@ -11,7 +11,8 @@ import { validateProducerArchive } from "./lib/consumer-provenance.js";
 
 const arg = (key) => process.argv.find((a) => a.startsWith("--" + key + "="))?.slice(key.length + 3);
 const manifest = await json(arg("manifest") ?? "reference/standard-wages-route.json");
-assert.equal(manifest.kind, "standard-cave-safari-port-regression");
+assert.ok(["standard-cave-safari-port-regression", "standard-full-campaign-port-regression"].includes(manifest.kind));
+const full = manifest.kind === "standard-full-campaign-port-regression";
 assert.equal(manifest.difficulty, 1);
 assert.equal(manifest.physicalKeyboard, true);
 assert.equal(manifest.nativeComparison, false);
@@ -20,7 +21,7 @@ await validateProducerArchive(manifest.producer);
 await originalGame(); // Fail setup if any of the supported original files differ.
 const load = (name) => json(manifest.artifacts[name].path);
 const [environment, events, checks, timeline, status] = await Promise.all(
-  ["environment", "captured-events", "campaign-checkpoints", "timeline", "exploration-status"].map(load));
+  ["environment", "captured-events", "campaign-checkpoints", "timeline", full ? "capture-status" : "exploration-status"].map(load));
 assert.equal(status.completed, true);
 assert.equal(status.accepted, false, "Producer is exploration, never self-acceptance");
 assert.equal(status.restart, true);
@@ -89,11 +90,21 @@ async function replay(omitDifficulty = false) {
     assert.equal(now, timeline.endAt);
     const final = await state();
     assert.equal(final.difficulty, 1);
-    assert.equal(final.scene, "map");
+    assert.equal(final.scene, full ? "ending" : "map");
     assert.equal(final.money, 0);
     assert.ok(final.campaign.banked > 3400, "Safari earnings were not banked");
     assert.equal(final.cave.outcome.code, 1);
     assert.ok(final.photography.photos.includes(final.photography.target), "Missing target photo");
+    if (full) {
+      assert.equal(final.jungle.outcome.code, 1);
+      assert.equal(final.mountain.outcome.code, 1);
+      assert.equal(final.jungle.lives, 3);
+      assert.equal(final.mountain.lives, 3);
+      assert.deepEqual({ day: final.campaign.day, banked: final.campaign.banked,
+        rivalBanked: final.campaign.rival.banked, playerCollected: final.campaign.playerCollected,
+        won: final.ending.won, ready: final.ending.ready }, manifest.expectedOutcome,
+      "Unfinished full Standard campaign");
+    }
     assert.equal(final.systemOverlay, null);
     await page.locator("#restart").click();
     await until((s) => s.scene === "title");

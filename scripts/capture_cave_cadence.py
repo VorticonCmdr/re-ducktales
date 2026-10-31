@@ -40,6 +40,10 @@ def capture_cave_cadence(*, client, stop, load, ds, overlay, entry, add,
     replay = client.get('/api/v1/input/replay/status')
     save('cave-flight-setup-completed', replay)
     assert not replay['active'] and replay['remaining'] == 0
+    if loader_profile == 'background0':
+        from capture_cave_loader_profile import capture_cave_loader_profile
+        return capture_cave_loader_profile(client=client, stop=stop, load=load, ds=ds, overlay=overlay,
+            add=add, remove=remove, resume=resume, state=state, sequence=sequence, save=save, root=root, resource=0)
     marker = add(0x9a6)
     stop = resume(stop['stop_id'])
     assert stop['breakpoint']['id'] == marker and stop['registers']['eax'] & 255 == 0

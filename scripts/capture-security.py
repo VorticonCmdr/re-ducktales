@@ -34,7 +34,10 @@ parser.add_argument('--safari-page-observer', action='store_true', help='Natural
 parser.add_argument('--jungle-page-observer', action='store_true', help='Natural swamp entry and uninterrupted movement observations in a private portable session')
 parser.add_argument('--cave-page-observer', action='store_true', help='Natural Carlsbad entry and uninterrupted passage/reward observations in a private portable session')
 parser.add_argument('--cave-loader-profile', action='store_true', help='Measure the first natural cave transition resource load instead of a frame observer')
+parser.add_argument('--cave-loader-resource', choices=['sprite10', 'background0'], default='sprite10')
 args = parser.parse_args()
+if args.cave_loader_resource != 'sprite10' and not args.cave_loader_profile:
+    parser.error('--cave-loader-resource requires --cave-loader-profile')
 if args.cave_loader_profile and not args.cave_page_observer:
     parser.error('--cave-loader-profile requires --cave-page-observer')
 if sum([args.safari_page_observer, args.jungle_page_observer, args.cave_page_observer]) > 1:
@@ -377,7 +380,7 @@ try:
                                sequence=sequence, wait_until=wait_until,
                                save=save, root=ROOT,
                                target=(45, 68) if args.cave_page_observer else (64, 73) if args.jungle_page_observer else (46, 56),
-                               entry_callback=(lambda **kwargs: capture_cave_cadence(loader_profile=True, **kwargs)) if args.cave_loader_profile else capture_cave_cadence if args.cave_page_observer else capture_jungle_cadence if args.jungle_page_observer else None)
+                               entry_callback=(lambda **kwargs: capture_cave_cadence(loader_profile=args.cave_loader_resource, **kwargs)) if args.cave_loader_profile else capture_cave_cadence if args.cave_page_observer else capture_jungle_cadence if args.jungle_page_observer else None)
     if args.mountain_timing:
         from capture_mountain_timing import capture_mountain_timing
         capture_mountain_timing(client=client, stop=stop, load=load, ds=ds,

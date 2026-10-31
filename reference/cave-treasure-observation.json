@@ -1,0 +1,1256 @@
+{
+  "kind": "original-cave-treasure-observation",
+  "version": 1,
+  "producer": ".local/cave-treasure-native-02",
+  "captureToolRevision": "6a4a8cc",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "source": {
+    "path": "reference/cave-treasure-order.json",
+    "bytes": 725,
+    "sha256": "58fe6fcd259753ad46a8f1a385ddc1ab3481a3c1f5c9eedcebcf89c84a4c30f6"
+  },
+  "expectedArtifactCount": 244,
+  "expectedReaderCalls": 14,
+  "expectedMoves": 7,
+  "expectedCheckpointCount": 6,
+  "expectedPartyCalls": 15,
+  "artifacts": {
+    "alarm-0.json": {
+      "path": ".local/cave-treasure-native-02/alarm-0.json",
+      "bytes": 88772,
+      "sha256": "e3bc15a5c985abd66a5951f136dadaceb810f52a0545e6430c2cd8dc5719b208"
+    },
+    "alarm-0.png": {
+      "path": ".local/cave-treasure-native-02/alarm-0.png",
+      "bytes": 5097,
+      "sha256": "8d931834775333685de0721ee89871491231941a1f38456808d81354f5ed76b4"
+    },
+    "alarm-1.json": {
+      "path": ".local/cave-treasure-native-02/alarm-1.json",
+      "bytes": 88772,
+      "sha256": "f88abac7f8f9d626297fad953626769d6c52e9d802be32457af03fcb6a06f73b"
+    },
+    "alarm-1.png": {
+      "path": ".local/cave-treasure-native-02/alarm-1.png",
+      "bytes": 4854,
+      "sha256": "8f4ebcab26da1b8690a7c2514843393964635081aacce5492a43b845769ddf16"
+    },
+    "alarm-2.json": {
+      "path": ".local/cave-treasure-native-02/alarm-2.json",
+      "bytes": 88772,
+      "sha256": "9f18a2be3157c7c2aab2dc14f01615a9332e27c579281b0c72efce5ff6ac557d"
+    },
+    "alarm-2.png": {
+      "path": ".local/cave-treasure-native-02/alarm-2.png",
+      "bytes": 5097,
+      "sha256": "8d931834775333685de0721ee89871491231941a1f38456808d81354f5ed76b4"
+    },
+    "alarm-3.json": {
+      "path": ".local/cave-treasure-native-02/alarm-3.json",
+      "bytes": 88772,
+      "sha256": "3382f39e8eef8a62465f6a0b75bea80f4ad161bcd088c56927d690727afbf6bc"
+    },
+    "alarm-3.png": {
+      "path": ".local/cave-treasure-native-02/alarm-3.png",
+      "bytes": 4854,
+      "sha256": "8f4ebcab26da1b8690a7c2514843393964635081aacce5492a43b845769ddf16"
+    },
+    "alarm-4.json": {
+      "path": ".local/cave-treasure-native-02/alarm-4.json",
+      "bytes": 88772,
+      "sha256": "44a434bd656e65df3101b430eccbb44f938df207e4d557ee20030ba31fc3aca1"
+    },
+    "alarm-4.png": {
+      "path": ".local/cave-treasure-native-02/alarm-4.png",
+      "bytes": 5097,
+      "sha256": "8d931834775333685de0721ee89871491231941a1f38456808d81354f5ed76b4"
+    },
+    "alarm-5.json": {
+      "path": ".local/cave-treasure-native-02/alarm-5.json",
+      "bytes": 88772,
+      "sha256": "ca61ba4e748ea52773a9b30382f383d5c4813dfe508ec1d1a5634b2a17a60fad"
+    },
+    "alarm-5.png": {
+      "path": ".local/cave-treasure-native-02/alarm-5.png",
+      "bytes": 4854,
+      "sha256": "8f4ebcab26da1b8690a7c2514843393964635081aacce5492a43b845769ddf16"
+    },
+    "capture.json": {
+      "path": ".local/cave-treasure-native-02/capture.json",
+      "bytes": 376,
+      "sha256": "432a52f66f33eb347ed13815f369bf0d9d012072c3184357ab81f6a007f93166"
+    },
+    "cave-code.json": {
+      "path": ".local/cave-treasure-native-02/cave-code.json",
+      "bytes": 14961,
+      "sha256": "22712d84af2caeb8e0a7022e8558e519c54d924660d04a579e872fd6c9b99074"
+    },
+    "cave-entry-contract.json": {
+      "path": ".local/cave-treasure-native-02/cave-entry-contract.json",
+      "bytes": 98,
+      "sha256": "d36ac99563a28043edc43b5ba89dfeaafbcee81312e1edbdd18f0fd648f099c4"
+    },
+    "cave-entry.json": {
+      "path": ".local/cave-treasure-native-02/cave-entry.json",
+      "bytes": 88764,
+      "sha256": "2e4bafe0cc870f40e848f048e0ca55434d7db6a3be97eebdbfeb42c933349199"
+    },
+    "cave-entry.png": {
+      "path": ".local/cave-treasure-native-02/cave-entry.png",
+      "bytes": 10698,
+      "sha256": "312b61904aad758cfcb9540021342fec704413f1665cfef37e90f9e7a51bda93"
+    },
+    "cave-first-input.json": {
+      "path": ".local/cave-treasure-native-02/cave-first-input.json",
+      "bytes": 88777,
+      "sha256": "f2ee4648dae1919f2e375b43e914a18458ceabda606489b8f0ecdf3dcfbcd4aa"
+    },
+    "cave-first-input.png": {
+      "path": ".local/cave-treasure-native-02/cave-first-input.png",
+      "bytes": 23459,
+      "sha256": "bce99f278f0d6c0e545a63c34c03b87d4ad57ea491380af6227cdb2ee41e854b"
+    },
+    "cave-flight-setup-completed.json": {
+      "path": ".local/cave-treasure-native-02/cave-flight-setup-completed.json",
+      "bytes": 175,
+      "sha256": "4aaf696036d813d48e013cc9dbff600747cba9ced37beec998d2aad7373d569e"
+    },
+    "cleanup.json": {
+      "path": ".local/cave-treasure-native-02/cleanup.json",
+      "bytes": 88772,
+      "sha256": "6b67aea0b85b1c89b74f0466230d0122e5ad0cd7299951bc8ffa1b95fd3d1f5c"
+    },
+    "cleanup.png": {
+      "path": ".local/cave-treasure-native-02/cleanup.png",
+      "bytes": 4854,
+      "sha256": "8f4ebcab26da1b8690a7c2514843393964635081aacce5492a43b845769ddf16"
+    },
+    "configuration.json": {
+      "path": ".local/cave-treasure-native-02/configuration.json",
+      "bytes": 2582,
+      "sha256": "c219a4d8c3c1cea6bd0eb4cf4627f05084bad74cd923e325cd7be3b89cd999a3"
+    },
+    "engine.json": {
+      "path": ".local/cave-treasure-native-02/engine.json",
+      "bytes": 3988,
+      "sha256": "61004fadbebf0540717f5534c3406cea68f36c1edc3520cbf351c6625f31bfb0"
+    },
+    "entry.json": {
+      "path": ".local/cave-treasure-native-02/entry.json",
+      "bytes": 88774,
+      "sha256": "3b8316f339ecc1a060e91da5fbebc74c385b68688ba8d47494813582cb066388"
+    },
+    "entry.png": {
+      "path": ".local/cave-treasure-native-02/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/cave-treasure-native-02/fire-first.json",
+      "bytes": 88769,
+      "sha256": "f63d73ce6e68c495edc866dae61ac65433051866d2970309c488168e33bfc16c"
+    },
+    "fire-second.json": {
+      "path": ".local/cave-treasure-native-02/fire-second.json",
+      "bytes": 88770,
+      "sha256": "9b0cc4c0237afb17a777a8787fc2521614416d23fbb82b85694331d3a2b81c0d"
+    },
+    "first-result.json": {
+      "path": ".local/cave-treasure-native-02/first-result.json",
+      "bytes": 88770,
+      "sha256": "eaa6c61d47d57c29bace4dfdaa7996f5fceb184040b6544e89a9895314796426"
+    },
+    "first-result.png": {
+      "path": ".local/cave-treasure-native-02/first-result.png",
+      "bytes": 5180,
+      "sha256": "31118d2ac62c83463a4c7effdcf058846a1d2879228e30795c2056e94abcbacb"
+    },
+    "generated.json": {
+      "path": ".local/cave-treasure-native-02/generated.json",
+      "bytes": 88773,
+      "sha256": "1ea7843786924f7f35e8ecd5117c21f959be698961e5e0e916075ab88dbf7c4c"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/cave-treasure-native-02/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "c65a0d780156fcab8d86d67c6d87f2f4ebce67d983cbcad974a4c84dbe9d060f"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/cave-treasure-native-02/initial-poll-0.png",
+      "bytes": 4841,
+      "sha256": "6b8a6fa4d066e1cc8f1ceedcd98d2eabacac0accf3c3a9f8f35a23de57594741"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/cave-treasure-native-02/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "cbaefd47dadc8e0b06982d27f9a2c78b6003de4974eaaeec56f8fa8503c04671"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/cave-treasure-native-02/initial-poll-1.png",
+      "bytes": 4841,
+      "sha256": "6b8a6fa4d066e1cc8f1ceedcd98d2eabacac0accf3c3a9f8f35a23de57594741"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/cave-treasure-native-02/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "cc03b51746a710c395a07e2b6ebfc1718c3566f6b2cd59ddf27217655417142e"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/cave-treasure-native-02/initial-poll-2.png",
+      "bytes": 4854,
+      "sha256": "8f4ebcab26da1b8690a7c2514843393964635081aacce5492a43b845769ddf16"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/cave-treasure-native-02/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "dd0127420c7533ee6e5e78da366cb12f4a4293bbabfaf5e5b6d442f1a7c4530e"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/cave-treasure-native-02/initial-poll-3.png",
+      "bytes": 4854,
+      "sha256": "8f4ebcab26da1b8690a7c2514843393964635081aacce5492a43b845769ddf16"
+    },
+    "inputs.json": {
+      "path": ".local/cave-treasure-native-02/inputs.json",
+      "bytes": 31488,
+      "sha256": "0a9cc83ce7f4e5751f075f5fd8489d301f076b2b31ef957d89dcc96cd4f9cd26"
+    },
+    "lifecycle.json": {
+      "path": ".local/cave-treasure-native-02/lifecycle.json",
+      "bytes": 123,
+      "sha256": "18aef563f34ef46f87d30399ac327b55fa77784d90ed49f579b37a51f31e997b"
+    },
+    "live-overlay.json": {
+      "path": ".local/cave-treasure-native-02/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "8613747122faa5079c77afaa8cc2d6ba46e5101dd3f1ec51e1104ccbc4d03d13"
+    },
+    "office-confirm.json": {
+      "path": ".local/cave-treasure-native-02/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "69a5e57adf3f53137eb95b12aa2ec8e6fb8ec3c21fa0e7f9798a4b7c34827d8b"
+    },
+    "office-input.json": {
+      "path": ".local/cave-treasure-native-02/office-input.json",
+      "bytes": 88775,
+      "sha256": "9473b5caf0498fcd3ff111204cda870f9faa361733c095a892b88e9aee8d3e53"
+    },
+    "office-input.png": {
+      "path": ".local/cave-treasure-native-02/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "profile-tool-identity.json": {
+      "path": ".local/cave-treasure-native-02/profile-tool-identity.json",
+      "bytes": 503,
+      "sha256": "c9266ee885d3bba3ec0646d0735ede564ab10a4f25ebee89a4aeaf1da57c6b43"
+    },
+    "return.json": {
+      "path": ".local/cave-treasure-native-02/return.json",
+      "bytes": 88770,
+      "sha256": "882d1fa8ede33e3c9c02f30a90949d0c6692f53c7a27316b096b33d45d94bf94"
+    },
+    "return.png": {
+      "path": ".local/cave-treasure-native-02/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/cave-treasure-native-02/rng-consumption.json",
+      "bytes": 53261,
+      "sha256": "7f32cbd04571311415e5ad1cb488e1107e0998f0d39bb7939fe993691440da55"
+    },
+    "safari-flight-code-observed.json": {
+      "path": ".local/cave-treasure-native-02/safari-flight-code-observed.json",
+      "bytes": 24051,
+      "sha256": "1b2f8e02bc7c7391bf36fe89f6f6ba53db3d26d863eea85c31b3960068744cf6"
+    },
+    "safari-flight-code.json": {
+      "path": ".local/cave-treasure-native-02/safari-flight-code.json",
+      "bytes": 25160,
+      "sha256": "6ba7e81790881b77d37088d93c46057b01fa18c094275980984a4ad9bb10220b"
+    },
+    "source-revision.json": {
+      "path": ".local/cave-treasure-native-02/source-revision.json",
+      "bytes": 131186,
+      "sha256": "f25874c0d4d9ff9e17ed23987e1d4a884b6fb65eb6d780eb1e281bbb875fbd81"
+    },
+    "sources.zip": {
+      "path": ".local/cave-treasure-native-02/sources.zip",
+      "bytes": 3355123,
+      "sha256": "500458fe8019641cd624d340f82eed60f5d1f23c642403e2694ce7c10ce3ebba"
+    },
+    "startup-inputs.json": {
+      "path": ".local/cave-treasure-native-02/startup-inputs.json",
+      "bytes": 1221,
+      "sha256": "51caa460d776fc8b3ca6fad00696ca9dc400688b132758281aa05f77ac4b19ce"
+    },
+    "timing-destination-confirm-flush.json": {
+      "path": ".local/cave-treasure-native-02/timing-destination-confirm-flush.json",
+      "bytes": 88773,
+      "sha256": "eb4d3026331cce74f9181559f332e1c0102adfef4cafb684b4691e8d02516127"
+    },
+    "timing-destination-confirm-read.json": {
+      "path": ".local/cave-treasure-native-02/timing-destination-confirm-read.json",
+      "bytes": 88775,
+      "sha256": "8af0e7ea4ab7ece33da02c44bf76e8a91adfec53b39ae7be40c2d822ca2dfc07"
+    },
+    "timing-destination-confirm-read.png": {
+      "path": ".local/cave-treasure-native-02/timing-destination-confirm-read.png",
+      "bytes": 6475,
+      "sha256": "f297f4fd3924c18be85e096bd3afc1c6e99515e95676a09024adaf4a17dbae99"
+    },
+    "timing-destination-entry.json": {
+      "path": ".local/cave-treasure-native-02/timing-destination-entry.json",
+      "bytes": 88787,
+      "sha256": "e23f497e9d951a36562415751fb76f88f74d8664c9ad36e0a8b290444da0b5e5"
+    },
+    "timing-destination-entry.png": {
+      "path": ".local/cave-treasure-native-02/timing-destination-entry.png",
+      "bytes": 16205,
+      "sha256": "f7c377e9ee9289833afed6f8cd51ed2612aff303d182894a08353c3fb0ca3daf"
+    },
+    "timing-destination-return.json": {
+      "path": ".local/cave-treasure-native-02/timing-destination-return.json",
+      "bytes": 88775,
+      "sha256": "0d01ddf28b69633df9334531f55b43175619f2852d5cdebf64c7161c5f0b2efe"
+    },
+    "timing-destination-return.png": {
+      "path": ".local/cave-treasure-native-02/timing-destination-return.png",
+      "bytes": 6475,
+      "sha256": "f297f4fd3924c18be85e096bd3afc1c6e99515e95676a09024adaf4a17dbae99"
+    },
+    "timing-destination-travel-flush.json": {
+      "path": ".local/cave-treasure-native-02/timing-destination-travel-flush.json",
+      "bytes": 88775,
+      "sha256": "82b3b39a1471875166a92ba4af1cf5a409830e8833b2379aa43724a72c1d04f0"
+    },
+    "timing-destination-travel-read.json": {
+      "path": ".local/cave-treasure-native-02/timing-destination-travel-read.json",
+      "bytes": 88771,
+      "sha256": "6d6dba3dea1230dfe48ca98a6025c35c6566174f85490e0e57a80bea13484282"
+    },
+    "timing-destination-travel-read.png": {
+      "path": ".local/cave-treasure-native-02/timing-destination-travel-read.png",
+      "bytes": 6481,
+      "sha256": "eeba469ffff9047583b48f93e0b02d6fb86de386dd838ef869dd75e6fdd89913"
+    },
+    "timing-flight-contract.json": {
+      "path": ".local/cave-treasure-native-02/timing-flight-contract.json",
+      "bytes": 150,
+      "sha256": "8b091376aaf022fe056eface72f42a64bb2cabd5eace2f95e4bdf7aa7ebea697"
+    },
+    "timing-flight-first-input.json": {
+      "path": ".local/cave-treasure-native-02/timing-flight-first-input.json",
+      "bytes": 88778,
+      "sha256": "93f4c2a36dd78654196020b4f97f78c1d23f94331632963a5d997d0c328a0be0"
+    },
+    "timing-flight-first-input.png": {
+      "path": ".local/cave-treasure-native-02/timing-flight-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "timing-map-entry.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-entry.json",
+      "bytes": 88794,
+      "sha256": "6df34d37c5bf20ae8701df25ca019b508b5b38c2daebff7b7a89cad1ee096b0a"
+    },
+    "timing-map-entry.png": {
+      "path": ".local/cave-treasure-native-02/timing-map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "timing-map-step-000.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-000.json",
+      "bytes": 88784,
+      "sha256": "e143dd8b8b16d18a73d3c64e8f6a0fe6c8f3cf10ed6132d29eda9e5ac2a104db"
+    },
+    "timing-map-step-001.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-001.json",
+      "bytes": 88784,
+      "sha256": "e424248b1447f579f276068bd98f65d914c8f59d2c91e5ae8a17851b1f473763"
+    },
+    "timing-map-step-002.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-002.json",
+      "bytes": 88784,
+      "sha256": "5f5e01bfd1ae9dbee55fc27e3f113f4ada94da3fb5a68f1893885fbd6796997a"
+    },
+    "timing-map-step-003.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-003.json",
+      "bytes": 88784,
+      "sha256": "fd6bbb6c9a58c5c908f4c845360891dc5e87a5b6989935a42d942ead19570d35"
+    },
+    "timing-map-step-004.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-004.json",
+      "bytes": 88784,
+      "sha256": "288a0e598bfe2a477179812dde1bf7aa1a993d30088392bae17ef1f93bcf3e5b"
+    },
+    "timing-map-step-005.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-005.json",
+      "bytes": 88784,
+      "sha256": "bc6e018de30ddb7ab266ac8da56d92b75c11e5075b0e0e5b1172a7499e47f4f1"
+    },
+    "timing-map-step-006.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-006.json",
+      "bytes": 88784,
+      "sha256": "37c64e63ade35d73258f431a57b9502c5a1cda340f04dcc0aeedbba63bc4b816"
+    },
+    "timing-map-step-007.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-007.json",
+      "bytes": 88784,
+      "sha256": "58cb29f1635df38a7563a07ed64a242ddff9def01474155a6028a008fcfc4409"
+    },
+    "timing-map-step-008.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-008.json",
+      "bytes": 88784,
+      "sha256": "5e43b11eedca36646c95c05bea88fabf648caa407351512e57e6cda3a442db33"
+    },
+    "timing-map-step-009.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-009.json",
+      "bytes": 88785,
+      "sha256": "647357db7efd9b4a4695e5c1cc100a938b1b8ab35892b1063371278abc00af57"
+    },
+    "timing-map-step-010.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-010.json",
+      "bytes": 88785,
+      "sha256": "ac75d45d89ab0074b82ca88e32c84660d25f9bc41906d1ea3c1dd1dbd5a0c75f"
+    },
+    "timing-map-step-011.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-011.json",
+      "bytes": 88785,
+      "sha256": "fcccc7532b08b0ddd4236ab8296988c16c86e1cd696579f9bcf5da290ae1d65c"
+    },
+    "timing-map-step-012.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-012.json",
+      "bytes": 88785,
+      "sha256": "a3707f4f684ca1e3c2695f38829ccd54cde6edf05ff61d14a7a2776ea0f0ac66"
+    },
+    "timing-map-step-013.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-013.json",
+      "bytes": 88785,
+      "sha256": "1fd5114c7f269e8608e5c5c37c8b9536749ccd6c6d8745f90ae10e46b8dbc3c4"
+    },
+    "timing-map-step-014.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-014.json",
+      "bytes": 88785,
+      "sha256": "ab18c258293169ee94dd1265b358e8f7dd15074a1a3825ee0bb91cbb2a22c114"
+    },
+    "timing-map-step-015.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-015.json",
+      "bytes": 88785,
+      "sha256": "a394b8d10ba6f58050162345f17eb10d2ae8b66a71e823ec0bd59354da9011b1"
+    },
+    "timing-map-step-016.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-016.json",
+      "bytes": 88785,
+      "sha256": "8bfd4e1eeb446b45beda6d24adc4f60e25be028089ab2bb4d2d53c2c6d95aa92"
+    },
+    "timing-map-step-017.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-017.json",
+      "bytes": 88785,
+      "sha256": "d2c689170ecf308314bcec3b683b6a70c8ccc738433b7df7756c059a905c82d6"
+    },
+    "timing-map-step-018.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-018.json",
+      "bytes": 88785,
+      "sha256": "4b0c83ac149e8aae42c34b3c519ce38c89ee47d55c84d061246465c1d2d43fe1"
+    },
+    "timing-map-step-019.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-019.json",
+      "bytes": 88785,
+      "sha256": "44aad6db2a59940356d44e27f8512f4656c1452d6048102432e7499b5deedcc3"
+    },
+    "timing-map-step-020.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-020.json",
+      "bytes": 88785,
+      "sha256": "c002e32c3784e7d7f67c392c2dd5c4615d699db7a397c75be07ef056c0cabe4b"
+    },
+    "timing-map-step-021.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-021.json",
+      "bytes": 88785,
+      "sha256": "e8e2987db273405e85ad14c8560f57cb510fc0c79653a1c817b35fd9084a2065"
+    },
+    "timing-map-step-022.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-022.json",
+      "bytes": 88785,
+      "sha256": "3d6877de9206e03c646417047397a5ed1a4561a4d73c48ad270841b8e62a567a"
+    },
+    "timing-map-step-023.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-023.json",
+      "bytes": 88785,
+      "sha256": "36198c2ce653c2b7f1978d4fcb27221720ef284c213b2469e0504e041c9f113b"
+    },
+    "timing-map-step-024.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-024.json",
+      "bytes": 88785,
+      "sha256": "40e13dbc27ee9a73278834fe64c05e86c1c72a02b4ecfc42d618ece79d880737"
+    },
+    "timing-map-step-025.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-025.json",
+      "bytes": 88785,
+      "sha256": "f1f3991cc81f6c27db1233ec57b7c7986454a8e1e3079871769f435625af652b"
+    },
+    "timing-map-step-026.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-026.json",
+      "bytes": 88785,
+      "sha256": "fdad1985c6d8e1ecb042e7070e14f19de1e9e99f6414293911532c1a9797c257"
+    },
+    "timing-map-step-027.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-027.json",
+      "bytes": 88785,
+      "sha256": "e1430e78fe6cb60a7e775bedd721b4eb8027d2b0d5fefb788188919a2cfee7ec"
+    },
+    "timing-map-step-028.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-028.json",
+      "bytes": 88785,
+      "sha256": "0777ac19ab310a3e90e5930e06d06b99bab823cd143f5e7cc7ccb761130d1021"
+    },
+    "timing-map-step-029.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-029.json",
+      "bytes": 88785,
+      "sha256": "3181bb94f423bc8b0405738d004c8d6ce4b963310039e3c2c8b8f784d84058b8"
+    },
+    "timing-map-step-030.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-030.json",
+      "bytes": 88785,
+      "sha256": "f077f65a8cc2ad9aa1684bedbe407fc480108ed0755dcc5ca10d1bca47ddede2"
+    },
+    "timing-map-step-031.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-031.json",
+      "bytes": 88786,
+      "sha256": "f9564cf4069f89bf6f4effb047e6b48a3a91ef975f607fa28480ec6493019e7b"
+    },
+    "timing-map-step-032.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-032.json",
+      "bytes": 88786,
+      "sha256": "ddc47020989a34e46967f7e608055c5361a3d55efea6c2c5357df4fa68426494"
+    },
+    "timing-map-step-033.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-033.json",
+      "bytes": 88786,
+      "sha256": "6be76e12446a8e9e2f5dd199fc9bb16b344429612209c24d805d539b17f785df"
+    },
+    "timing-map-step-034.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-034.json",
+      "bytes": 88786,
+      "sha256": "ebfa52fcf3797dc54d1c3aea0c7bf886fc902b9e6fd310e030e8b8d3c77eb689"
+    },
+    "timing-map-step-035.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-035.json",
+      "bytes": 88786,
+      "sha256": "248746ebfdd8cc383d49d3a2f375f794fd8cb107a79e0a145ab25b420d3fb716"
+    },
+    "timing-map-step-036.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-036.json",
+      "bytes": 88786,
+      "sha256": "d95415545e2b0e97d837c3cefc4b48656ab8749e3dcf91e9d381985b4eb123c9"
+    },
+    "timing-map-step-037.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-037.json",
+      "bytes": 88786,
+      "sha256": "f8ad6aa4f8fc7845edd05e057f4351f92dc2afbf01caecadab3d9a1ec474c560"
+    },
+    "timing-map-step-038.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-038.json",
+      "bytes": 88786,
+      "sha256": "d786f936cea244140d1551d609baf147ff7eefd728502be16f1956a1c728d6b6"
+    },
+    "timing-map-step-039.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-039.json",
+      "bytes": 88786,
+      "sha256": "4dc10fde1fd37e478eae79b61c5ec5181f4f7f4df35370c853b3cc22a82a831e"
+    },
+    "timing-map-step-040.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-040.json",
+      "bytes": 88786,
+      "sha256": "af48d44219594892562c6c48136540b77897fe1ae5557df98b38a344b296c5c6"
+    },
+    "timing-map-step-041.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-041.json",
+      "bytes": 88786,
+      "sha256": "f7730432d9ad318b2978c4e31fa778b34730eb845cf60c19b298d8545b65271d"
+    },
+    "timing-map-step-042.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-042.json",
+      "bytes": 88786,
+      "sha256": "857b7f750ae28e2e7aa69f5f5b29e59f630ff5157ba42c21c072c219878b1961"
+    },
+    "timing-map-step-043.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-043.json",
+      "bytes": 88786,
+      "sha256": "983039ef56eaa41e9819e1b5575240ba73413147d90cbc05ceeede4feffffcb3"
+    },
+    "timing-map-step-044.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-044.json",
+      "bytes": 88786,
+      "sha256": "bddac290d494868aa17f652a4959420c0bc64bf16ff96c9679bab32b0d3a6b5e"
+    },
+    "timing-map-step-045.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-045.json",
+      "bytes": 88786,
+      "sha256": "0e8fe3bc6b4cd5a35f301926dd12bb6f65a598b1bf7b6cf7b040564f4b7d9fb9"
+    },
+    "timing-map-step-046.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-046.json",
+      "bytes": 88786,
+      "sha256": "79c42fab13f63b93bb7368fa46203f16c58b224838a0008d493300af62a67167"
+    },
+    "timing-map-step-047.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-047.json",
+      "bytes": 88786,
+      "sha256": "3c4f1688d0000249ed72cd4bb515daa111cb0684670eb1f58132a36a24e842c9"
+    },
+    "timing-map-step-048.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-048.json",
+      "bytes": 88786,
+      "sha256": "2f2cf82f27c74d827d5f78865a3469e7b7fe581cc5f8e2e281325b6bdab960c0"
+    },
+    "timing-map-step-049.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-049.json",
+      "bytes": 88786,
+      "sha256": "1fd4ad3e42b06c84539575bfd0e8d6f2c60b3fb6c0f8d309eda0843e9ff8e49a"
+    },
+    "timing-map-step-050.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-050.json",
+      "bytes": 88786,
+      "sha256": "4232edcf187e0c60d327b43f8b3e6039e0a6f2dad27c4a5c8db6d96e52140272"
+    },
+    "timing-map-step-051.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-051.json",
+      "bytes": 88786,
+      "sha256": "6a76c8eb9294edffe94c582c631979c05444881cd5cdca5241d86d420416693c"
+    },
+    "timing-map-step-052.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-052.json",
+      "bytes": 88786,
+      "sha256": "98a2071af50b3154bd784ff3ce1cdc75c68e974e6d858b08d2ac1a4d4d6d5cdc"
+    },
+    "timing-map-step-053.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-053.json",
+      "bytes": 88786,
+      "sha256": "385dbc89ec57bcfd278a2c1abe8363ddc502bed827dd54d029ab189f4642fa4e"
+    },
+    "timing-map-step-054.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-054.json",
+      "bytes": 88786,
+      "sha256": "d6e337d221cb708ede8dc2ac49d9bf1fadc667fcd10ee4c29460cd4fa6882150"
+    },
+    "timing-map-step-055.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-055.json",
+      "bytes": 88786,
+      "sha256": "a25dc42a521b0f01d5e0803303c48fcd47f29611b20c102fdd491f74f96591f4"
+    },
+    "timing-map-step-056.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-056.json",
+      "bytes": 88786,
+      "sha256": "6cbb40dbfc7afd9cffb20358de7006b4a836ccea4d149e52dbe22d4d33ad1df0"
+    },
+    "timing-map-step-057.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-057.json",
+      "bytes": 88786,
+      "sha256": "f7e8f0fea1d18558f8bd80dc9572799133fa444c1b58d01be4d655c5786740c8"
+    },
+    "timing-map-step-058.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-058.json",
+      "bytes": 88786,
+      "sha256": "48222e9f024f92962b977e4ac3f32b96b2c52054e326f590e09569de4d008402"
+    },
+    "timing-map-step-059.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-059.json",
+      "bytes": 88786,
+      "sha256": "dd7eafb17c2cf92b87995e711e378c005c796e68377720517951a031dedaa9f9"
+    },
+    "timing-map-step-060.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-060.json",
+      "bytes": 88786,
+      "sha256": "d7010f3a8160a0891b6ba8df53d30617f3f72de8ceb29fbe4459526e7a37eae4"
+    },
+    "timing-map-step-061.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-061.json",
+      "bytes": 88786,
+      "sha256": "24cb8545e4b05cf1256ec9f580f616266f76dcde216299d4c5d3935889c5dd72"
+    },
+    "timing-map-step-062.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-062.json",
+      "bytes": 88786,
+      "sha256": "479ee530de156568a220156f1e1380585cdfefce577a8d678cdcd5d8c170afbd"
+    },
+    "timing-map-step-063.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-063.json",
+      "bytes": 88786,
+      "sha256": "1129697e391ad7991d24a91611b70a5526da838303ae3a36b64ece203e610e56"
+    },
+    "timing-map-step-064.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-064.json",
+      "bytes": 88786,
+      "sha256": "e84b32d5ddf09136145d8e04d0f1bac495805b2c3bf3d0c920dab0e33292ebf0"
+    },
+    "timing-map-step-065.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-065.json",
+      "bytes": 88786,
+      "sha256": "bdac7fe05292aed7646be89b4498409044a50480cc5770cee520bb0d0f12a4cb"
+    },
+    "timing-map-step-066.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-066.json",
+      "bytes": 88786,
+      "sha256": "989d42d571800afd185f6fd5838986f9e1e3c09e083083e3e5e04d418c2fd8e0"
+    },
+    "timing-map-step-067.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-067.json",
+      "bytes": 88786,
+      "sha256": "629a29796f6fe61d25b5c2099f0c29b0c1ad05805d47ec40a40a3627824fbda4"
+    },
+    "timing-map-step-068.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-068.json",
+      "bytes": 88786,
+      "sha256": "8cae3c72567a2be6733d87b95e61392fabe6d88d30b3777db18601645211bb70"
+    },
+    "timing-map-step-069.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-069.json",
+      "bytes": 88786,
+      "sha256": "74afbf5b8864ed424794e11c9b1377ced2b90ec1085753b8a1f362d8a62c188a"
+    },
+    "timing-map-step-070.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-070.json",
+      "bytes": 88786,
+      "sha256": "c464c16600c981afa74a7ba7ccca24ff621bb0b31eacadc39386ebd4d3e9290f"
+    },
+    "timing-map-step-071.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-071.json",
+      "bytes": 88786,
+      "sha256": "5721ee4f21638dc6c82ca01ae9ee8072e2d5ed96e31e04923fbcbf855515c8f9"
+    },
+    "timing-map-step-072.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-072.json",
+      "bytes": 88786,
+      "sha256": "ce2656abded22bb570c8b0a7c4ea6b23ca5d9cd43869bd215f1ab1ec327c17ee"
+    },
+    "timing-map-step-073.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-073.json",
+      "bytes": 88786,
+      "sha256": "38c1520eb72dabd7240ef84997179062fc4505378561fd0be815d8dbce72fd6e"
+    },
+    "timing-map-step-074.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-074.json",
+      "bytes": 88786,
+      "sha256": "290d8a1f5cfb7dc231f0ad8b6be6a2c3bfcb7e7b9d30ac627195aa04086d0150"
+    },
+    "timing-map-step-075.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-075.json",
+      "bytes": 88786,
+      "sha256": "2d2bb6047bcabdb3f3b2e197753d5565e415255eb7a61e90ce796f64d4def5ae"
+    },
+    "timing-map-step-076.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-076.json",
+      "bytes": 88786,
+      "sha256": "26f46d46351c2f25f0e48bea08caed3304f0bd2ed05ef48fb15eea8877d386b4"
+    },
+    "timing-map-step-077.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-077.json",
+      "bytes": 88786,
+      "sha256": "7dd40eb3bc0f65322f5d9e956968a707540f59578ad51013720ef4f756cffdfc"
+    },
+    "timing-map-step-078.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-078.json",
+      "bytes": 88786,
+      "sha256": "29d17838cec3d805248e5f988acaef02796e3b06d74da49071f2bd033072ce54"
+    },
+    "timing-map-step-079.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-079.json",
+      "bytes": 88786,
+      "sha256": "faac9467718b393b3cd51a72f7c388d18e4cb8645c468e3d2957697da4639643"
+    },
+    "timing-map-step-080.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-080.json",
+      "bytes": 88786,
+      "sha256": "c09dc3f1238c9873955a21c5c0de1b714df7d4087154bda0f1c3c7137ad693dd"
+    },
+    "timing-map-step-081.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-081.json",
+      "bytes": 88786,
+      "sha256": "cd5899ee89a25f7527cbd79a4c404ad176b9a2b22649f33269101b47667f1817"
+    },
+    "timing-map-step-082.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-082.json",
+      "bytes": 88786,
+      "sha256": "8b847633ddc1125f88bd963399fb512d9fe59099b49c6711966fcfdd2f190227"
+    },
+    "timing-map-step-083.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-083.json",
+      "bytes": 88786,
+      "sha256": "4c601131766e02323711be050672d8597fbe3d0f9143d8088fd9062a0e110284"
+    },
+    "timing-map-step-084.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-084.json",
+      "bytes": 88786,
+      "sha256": "64348b26ad19c7737a812b31a913125e7b0d2a0b6fbab3bb45e35816318e136d"
+    },
+    "timing-map-step-085.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-085.json",
+      "bytes": 88786,
+      "sha256": "b30b0f13e6edfed4e538b4181cd10c5591546113f2754d9bbe3c57f502a2f3d0"
+    },
+    "timing-map-step-086.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-086.json",
+      "bytes": 88786,
+      "sha256": "1208d4e8a076cc2e7e88d8c062fd7fb1b6f423f1489201a2756ddfedf716c504"
+    },
+    "timing-map-step-087.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-087.json",
+      "bytes": 88786,
+      "sha256": "3ce8b832ef42ad600ff8367c662000391ebec3e1e124a2a56c1a595c0411103d"
+    },
+    "timing-map-step-088.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-088.json",
+      "bytes": 88786,
+      "sha256": "3de74ebdc8f04f36cfd77c70ee5d139ce15c5c64f4d8f230e8657ddafefe69ba"
+    },
+    "timing-map-step-089.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-089.json",
+      "bytes": 88786,
+      "sha256": "99b568db8233df3dee358fec909a9fb5b7cd466efcce09246c4edf511504017d"
+    },
+    "timing-map-step-090.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-090.json",
+      "bytes": 88786,
+      "sha256": "8212a9fca16f15c07de38b8c604ccae28ce003c53a5ac2937babfc08b030eaa0"
+    },
+    "timing-map-step-091.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-091.json",
+      "bytes": 88786,
+      "sha256": "30dd90e613ab093c734f43e6d51824cdc45c32c591ad4dba37783e9698047123"
+    },
+    "timing-map-step-092.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-092.json",
+      "bytes": 88786,
+      "sha256": "8f04ef01b88f74af665296a984f8750da0475f6723f8c3795b51df477d79a430"
+    },
+    "timing-map-step-093.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-093.json",
+      "bytes": 88786,
+      "sha256": "44b5227f94d9242a957ac37871c66ab2e6c3a5faf60cad458dcb0fb4c8975161"
+    },
+    "timing-map-step-094.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-094.json",
+      "bytes": 88786,
+      "sha256": "60a0c77b31abdc8e994cd1aa79587e9636da1c6dfd4edcdbd039c04273bb2d6f"
+    },
+    "timing-map-step-095.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-095.json",
+      "bytes": 88786,
+      "sha256": "ced22c0daf181ba38f6f7a261f58ea88b1643409990d1d22476c7c0a56e09144"
+    },
+    "timing-map-step-096.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-096.json",
+      "bytes": 88786,
+      "sha256": "35a93aedbcd57f464a4937cfd23f00eb7fc693bc8dd08df3fea00461b383c956"
+    },
+    "timing-map-step-097.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-097.json",
+      "bytes": 88786,
+      "sha256": "ea25eaf21cdf26a80192aba40e8855d5d90cde2019f820f56032a4c3bb5f39c4"
+    },
+    "timing-map-step-098.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-098.json",
+      "bytes": 88786,
+      "sha256": "d95a0be8fd45618f310f7f2df78795bf81f404bacfbf1f890e31e986fa0e30fc"
+    },
+    "timing-map-step-099.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-099.json",
+      "bytes": 88787,
+      "sha256": "2bfdc09a28d523ec95d12b5cfebb41d64a073fff5c835bd8721359200ec15242"
+    },
+    "timing-map-step-100.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-100.json",
+      "bytes": 88787,
+      "sha256": "9006644f6d67275795027c20d6d42e57a8cc58ac3f1d00dd9500c02c58b2b5eb"
+    },
+    "timing-map-step-101.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-101.json",
+      "bytes": 88787,
+      "sha256": "b35154cbaf3e4a591db8eefc204118c19c7b29079e292312fddb796032714296"
+    },
+    "timing-map-step-102.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-102.json",
+      "bytes": 88787,
+      "sha256": "d1216f84af19b127fbeb920da19d1f8b0b09a439b1c4c6bc7fb00a192d04a32d"
+    },
+    "timing-map-step-103.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-103.json",
+      "bytes": 88787,
+      "sha256": "7a264fd6dfd5c2ddcbbaf29e3c35a64ebe56cfbc2cce4af1b01e8f73e0581323"
+    },
+    "timing-map-step-104.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-104.json",
+      "bytes": 88787,
+      "sha256": "7000f3f84e814b8a2744f9b0eed40228f35d581c09964928a2eddbc99aef4cce"
+    },
+    "timing-map-step-105.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-105.json",
+      "bytes": 88787,
+      "sha256": "6513735db34f717fe4880b04b41a739244ad39c2f9f3e7cd64b0eb409edd3957"
+    },
+    "timing-map-step-106.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-106.json",
+      "bytes": 88787,
+      "sha256": "50b7bf6cda29b8e7add6a8a08c2b66d07740470df5a58b841e66cecf0748b047"
+    },
+    "timing-map-step-107.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-107.json",
+      "bytes": 88787,
+      "sha256": "425459d1958aaa2e6b8f04c67e893811552a74643f53ed1aaa82d5f43c409fe3"
+    },
+    "timing-map-step-108.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-108.json",
+      "bytes": 88787,
+      "sha256": "1a2feadb98e054eb77e743edad4d06ea0f156bbbc737cb05113d2bd96a007454"
+    },
+    "timing-map-step-109.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-109.json",
+      "bytes": 88787,
+      "sha256": "08f9db2476551833e984d4720686ebc2cf2083871acfbe610bfa556a0147302f"
+    },
+    "timing-map-step-110.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-110.json",
+      "bytes": 88787,
+      "sha256": "e1657362cc95dbfd4c23452cf39831d44d693e4db242fe108512efcd7115a6b9"
+    },
+    "timing-map-step-111.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-111.json",
+      "bytes": 88787,
+      "sha256": "2cd0323a20aafd4c6591e17e2bd4414c297f555ef6bd45e1ad19afc1265babf4"
+    },
+    "timing-map-step-112.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-112.json",
+      "bytes": 88787,
+      "sha256": "148ec5d5b9043a8ea516a815beb10161116efcac93162bf210c28dfdcbb841e8"
+    },
+    "timing-map-step-113.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-113.json",
+      "bytes": 88787,
+      "sha256": "6f046810172a8fb5ffb6cbbbf3b0d1267e2c0619b0f3350f39e80bf5221e96fd"
+    },
+    "timing-map-step-114.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-114.json",
+      "bytes": 88787,
+      "sha256": "2f5d0dcb2e1a667e66c4c377bab5d5bf014b982d3671c03deca1450e7b3b469b"
+    },
+    "timing-map-step-115.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-115.json",
+      "bytes": 88787,
+      "sha256": "3b51671705b79b92d92e22a8d20673505a0dc70d163c5306d8a6d92616513bc1"
+    },
+    "timing-map-step-116.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-116.json",
+      "bytes": 88787,
+      "sha256": "e078fa23bc943b84a8e92445d91d229f431e37f83c9ebada2fc60b16c3179534"
+    },
+    "timing-map-step-117.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-117.json",
+      "bytes": 88787,
+      "sha256": "21614921d291fefb7a6a4e46bccf0f9f76fe52adf315b45062a8080f1a3f416d"
+    },
+    "timing-map-step-118.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-118.json",
+      "bytes": 88787,
+      "sha256": "e64919db09b7913b9d1b21722716274241286406b92f0429a89df208249d35d5"
+    },
+    "timing-map-step-119.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-119.json",
+      "bytes": 88787,
+      "sha256": "be2c90b937514455e292201fd1abe5eda0ed5fc3d5c80215b4d11cf6da2e9396"
+    },
+    "timing-map-step-120.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-120.json",
+      "bytes": 88787,
+      "sha256": "21684e536ecc74833fd83a00e80a56c940d9d42c535de29f8fddeb292cf7839f"
+    },
+    "timing-map-step-121.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-121.json",
+      "bytes": 88787,
+      "sha256": "b2759e6769ac2479faafa3ca17c07a522832c1b7e6f1492d2718cd77c9f279f7"
+    },
+    "timing-map-step-122.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-122.json",
+      "bytes": 88787,
+      "sha256": "5e146c0a509ed30159e1f6b33899fce5fe46bd7acb3d192ea1d82afe39096cf1"
+    },
+    "timing-map-step-123.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-123.json",
+      "bytes": 88787,
+      "sha256": "6c8303a36e4b4c84277545989de09dd6b2823958c815951d6a1054cb331753ad"
+    },
+    "timing-map-step-124.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-124.json",
+      "bytes": 88787,
+      "sha256": "2ba8e8f642fa3c7cd5f4a6d48676c7711164fa09a29bc8821cadb8dc7e8fff15"
+    },
+    "timing-map-step-125.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-125.json",
+      "bytes": 88787,
+      "sha256": "fa2bfb27165930220135a338a250383fcff20e4d6e1b4d4bc9698cf8dd9163d4"
+    },
+    "timing-map-step-126.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-126.json",
+      "bytes": 88787,
+      "sha256": "fd126b2afb9b8fff729c2822095efed56e84e55454979a3435cef7fd701eb598"
+    },
+    "timing-map-step-127.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-127.json",
+      "bytes": 88787,
+      "sha256": "17c07095812e08e3ab93e34c9febcb6843bc5c0f0f32a3a0e38536ac8b435137"
+    },
+    "timing-map-step-128.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-128.json",
+      "bytes": 88787,
+      "sha256": "9d628c5b60495638886b410a99bd269a9c91c69295aca601145d308805e09187"
+    },
+    "timing-map-step-129.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-129.json",
+      "bytes": 88787,
+      "sha256": "84e6345f0fadcf59f247e13ecae7815e2379647d6697b6c93aa71caca520753b"
+    },
+    "timing-map-step-130.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-130.json",
+      "bytes": 88787,
+      "sha256": "892b11de3211d7d8385aeb97cd07a491e01ab8d69814215b55137b0e7bdbc80f"
+    },
+    "timing-map-step-131.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-131.json",
+      "bytes": 88787,
+      "sha256": "7b243f3eff7692f830db9e7f3037c7bf83f42c65197f5fbea88438de9ae34b81"
+    },
+    "timing-map-step-132.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-132.json",
+      "bytes": 88787,
+      "sha256": "7219951856b1ffabc0fcde51541d9d3cd6455836e5433ff8e8ff1b01839b66c4"
+    },
+    "timing-map-step-133.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-133.json",
+      "bytes": 88787,
+      "sha256": "caa36b373d790ce7cdc624d4aff45b3a3c6e5a83dcc85d556aaaba85aae8a0c4"
+    },
+    "timing-map-step-134.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-134.json",
+      "bytes": 88787,
+      "sha256": "58c49fff0ef56c7902459fa67f453f6322a1896b558b02ddf564e48192193d31"
+    },
+    "timing-map-step-135.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-135.json",
+      "bytes": 88787,
+      "sha256": "a8eda899fbee75bc2a7b2a1dcd1787e28d63b90f1e3268284539ad430d03c5a1"
+    },
+    "timing-map-step-136.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-136.json",
+      "bytes": 88787,
+      "sha256": "43b1e1d86a047ac8719a3c8d6abaff75d398e62eec01ab9e718f6546445b5c79"
+    },
+    "timing-map-step-137.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-137.json",
+      "bytes": 88787,
+      "sha256": "b8e13ce690b81f1329bec0a5358eb213aadead9c6c157227e93cb45c2457fb82"
+    },
+    "timing-map-step-138.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-138.json",
+      "bytes": 88787,
+      "sha256": "24e15d35b492c593366d8de8730f49ab2b5bd5b6f4e16f54cc9bf8e65fe2fe59"
+    },
+    "timing-map-step-139.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-139.json",
+      "bytes": 88787,
+      "sha256": "c1429977ce0e36b83f737a238755ad94f7f2085a2e87cd55b5dacb1c4d153222"
+    },
+    "timing-map-step-140.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-140.json",
+      "bytes": 88787,
+      "sha256": "d590944075462eccef7f3e9887c7bb3f474cb4013588073503310da37830d1b7"
+    },
+    "timing-map-step-141.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-141.json",
+      "bytes": 88787,
+      "sha256": "9b15d241027dbd26f213f0eb967702e02c2aba7be7da10a8ca3d75f8d516ec86"
+    },
+    "timing-map-step-142.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-142.json",
+      "bytes": 88787,
+      "sha256": "09cada693f458e8432e8217985011f362b3456fdea2161f8a126697370bc76dc"
+    },
+    "timing-map-step-143.json": {
+      "path": ".local/cave-treasure-native-02/timing-map-step-143.json",
+      "bytes": 88787,
+      "sha256": "d9116e06576a0bd5e10d1b6085f72d1a92ef9641ead25f8dad10d84e4d35f4c9"
+    },
+    "treasure-after-background.json": {
+      "path": ".local/cave-treasure-native-02/treasure-after-background.json",
+      "bytes": 88773,
+      "sha256": "4c0e874dcd9948f1d2cda1797e2b2d45689bf51abe2c2f631dcb7d78505a8ae7"
+    },
+    "treasure-after-background.png": {
+      "path": ".local/cave-treasure-native-02/treasure-after-background.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "treasure-before-first-reveal.json": {
+      "path": ".local/cave-treasure-native-02/treasure-before-first-reveal.json",
+      "bytes": 88787,
+      "sha256": "aa7f39abb91af83ce756a66bee319949efec00e775f14901e02eaaab54ef9141"
+    },
+    "treasure-before-first-reveal.png": {
+      "path": ".local/cave-treasure-native-02/treasure-before-first-reveal.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "treasure-before-second-flip.json": {
+      "path": ".local/cave-treasure-native-02/treasure-before-second-flip.json",
+      "bytes": 88787,
+      "sha256": "076b95acfefda8b9b704f82a263ad83904c95b4ff63c2ebe5f67a0d17506f0ba"
+    },
+    "treasure-before-second-flip.png": {
+      "path": ".local/cave-treasure-native-02/treasure-before-second-flip.png",
+      "bytes": 24766,
+      "sha256": "65fd66390fa04b19edac75ccffd89b7eb5d7037be3e6ad5e0b0e0b9b96120cb8"
+    },
+    "treasure-before-wipe.json": {
+      "path": ".local/cave-treasure-native-02/treasure-before-wipe.json",
+      "bytes": 88775,
+      "sha256": "aff695e69038f4a2f26fd230a8ff16dd48eeb8100acb1acf68a56c600f3b90a9"
+    },
+    "treasure-before-wipe.png": {
+      "path": ".local/cave-treasure-native-02/treasure-before-wipe.png",
+      "bytes": 21797,
+      "sha256": "b79f174e499de14ae96d5bf991acce3c6fe68749dd72d0cc529e09d1192db96a"
+    },
+    "treasure-celebration-loop.json": {
+      "path": ".local/cave-treasure-native-02/treasure-celebration-loop.json",
+      "bytes": 88777,
+      "sha256": "445950e9c53a61dabaef796b4f4128cde3bbcccf2a6f7b86557eba66b8209e2a"
+    },
+    "treasure-celebration-loop.png": {
+      "path": ".local/cave-treasure-native-02/treasure-celebration-loop.png",
+      "bytes": 24752,
+      "sha256": "d7e393510b1eb8344ac5cee24e6e2dc81fa935a6c75bc33f76bb9af561f30f77"
+    },
+    "treasure-entry.json": {
+      "path": ".local/cave-treasure-native-02/treasure-entry.json",
+      "bytes": 88783,
+      "sha256": "e79c1f65bab80a840f35f4901ede0a173533eccea85a94e184ce6fd8d3b1e601"
+    },
+    "treasure-entry.png": {
+      "path": ".local/cave-treasure-native-02/treasure-entry.png",
+      "bytes": 22578,
+      "sha256": "cc64d665a6a620a58a7ab6e1c8e4bbaed8bea2fd95c4e78a674bda7adad86ddf"
+    },
+    "treasure-route-read-0.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-0.json",
+      "bytes": 88777,
+      "sha256": "f2ee4648dae1919f2e375b43e914a18458ceabda606489b8f0ecdf3dcfbcd4aa"
+    },
+    "treasure-route-read-1.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-1.json",
+      "bytes": 88783,
+      "sha256": "b84542930cd6952b982cca10cb74b2d78bdcccb9afb79cc2adfdd8c815d3cc18"
+    },
+    "treasure-route-read-10.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-10.json",
+      "bytes": 88778,
+      "sha256": "9cef8d97993d94d39e5f3247de526f2dfeb56897be52dbe6754cf8e05184525b"
+    },
+    "treasure-route-read-11.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-11.json",
+      "bytes": 88784,
+      "sha256": "5fe74ce856274e9ac48c7027dc479f66d556a5daecfbfdb5ac896df5b2423177"
+    },
+    "treasure-route-read-12.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-12.json",
+      "bytes": 88778,
+      "sha256": "cdb35e75ff888fadf93c13b4cb2a94e7dfe8d7d7f2067ac46b0082f5139ab40f"
+    },
+    "treasure-route-read-13.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-13.json",
+      "bytes": 88784,
+      "sha256": "6ea233414b0bae59b765f6297956e0077e95125315408708bc86c8a73d334efe"
+    },
+    "treasure-route-read-2.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-2.json",
+      "bytes": 88777,
+      "sha256": "4d26385588382e7719596f2df4f463a2e68bb11bb87d6b8ebee171e79b45db65"
+    },
+    "treasure-route-read-3.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-3.json",
+      "bytes": 88783,
+      "sha256": "d2381c65fa42ccb450022ff706d25b000a33980f3fa1dd8cbd99d72e6346a0a0"
+    },
+    "treasure-route-read-4.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-4.json",
+      "bytes": 88777,
+      "sha256": "99cad199c5965d583a7bd5e149aecb0054186c61b3b93328b98dc0dbdcf81e5b"
+    },
+    "treasure-route-read-5.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-5.json",
+      "bytes": 88783,
+      "sha256": "9ad929eda16e6473d8905bf1a743dad205ca2b25a2b71665c2a5613a150be14e"
+    },
+    "treasure-route-read-6.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-6.json",
+      "bytes": 88777,
+      "sha256": "be2b23edcdd1e7aa346e9e7ef330c3b9f4760582c3c15087621b1dd5fd0a4a72"
+    },
+    "treasure-route-read-7.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-7.json",
+      "bytes": 88783,
+      "sha256": "867baba1d7f442f088e2bc8c466b5e19af5d3faaba305efaf7a30b1722b34a35"
+    },
+    "treasure-route-read-8.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-8.json",
+      "bytes": 88777,
+      "sha256": "3c41e5344e00ae2c635540849b4062223471a081b4f0c5ac9e35eafcfa628396"
+    },
+    "treasure-route-read-9.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route-read-9.json",
+      "bytes": 88783,
+      "sha256": "e221fa0f8bbc850d0c91b988857566e232063cf506cad2eb1c7cbb477a1ea6f0"
+    },
+    "treasure-route.json": {
+      "path": ".local/cave-treasure-native-02/treasure-route.json",
+      "bytes": 9077,
+      "sha256": "a73346ea16da73e9620a1230a63c32c32157796143f9889790f56eb1cbaf8cfc"
+    },
+    "treasure-treasure-end.json": {
+      "path": ".local/cave-treasure-native-02/treasure-treasure-end.json",
+      "bytes": 88785,
+      "sha256": "1aa74c4ae4de44ff7673282d0238d5e6710dde5c050711bb4a916248cde58a89"
+    },
+    "treasure-treasure-end.png": {
+      "path": ".local/cave-treasure-native-02/treasure-treasure-end.png",
+      "bytes": 25108,
+      "sha256": "357f55d87f43f9397d6a439c6ef651250bbab79b6083bbbbb7f0e2dc1aad6405"
+    },
+    "warning-poll.json": {
+      "path": ".local/cave-treasure-native-02/warning-poll.json",
+      "bytes": 88774,
+      "sha256": "b6856b7296b3fd3b311b8e3d25621bc0678aa6a5aa8ecd4773ae5ebe9d347036"
+    },
+    "warning-poll.png": {
+      "path": ".local/cave-treasure-native-02/warning-poll.png",
+      "bytes": 5180,
+      "sha256": "31118d2ac62c83463a4c7effdcf058846a1d2879228e30795c2056e94abcbacb"
+    }
+  },
+  "configuration": {
+    "path": ".local/cave-treasure-native-02/portable/dosbox-automation.conf",
+    "bytes": 413,
+    "sha256": "1c0fa0ec57ac009c48f23ffadaa1469700b23a0eff1424ee5cd83b04b33f8a3f"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "nativeElapsedTimeAcceptance": false,
+  "pixelAcceptance": false,
+  "startingRecipe": "Fresh isolated original on C:,same natural Carlsbad flight as cave-cadence. At first post-reader09a6,feedback path from live map togoal19. Seven four-event make0/break10 schedules;debugger stops at each reader and six treasure source boundaries. No guest writes or checkpoint restore.",
+  "comparisonRules": "Exact full11054-byte relocated cave code;all14 read records,seven consumed physical schedules,six phase/RNG checkpoints at0/0/1/2/5/15 party draws from independent incoming native seed. No screenshot comparison or elapsed-time acceptance;cached frame alignment remains unknown.",
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_treasure_observation.py"
+}

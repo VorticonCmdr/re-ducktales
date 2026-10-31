@@ -114,8 +114,8 @@ test("ending sound guards follow mute changes without restarting music within a 
   else for (let i = 0; i < 7; i++) g.advanceTick();
   assert.equal(g.ending.audioEnabled, true);
   assert.deepEqual(g.drainEffects(), [
-    { type: "stopAudio" },
-    { type: "stopAudio" },
+    { type: "sound-batch", arguments: [0, 0x24] },
+    { type: "sound-batch", arguments: [0] },
   ]);
   skipToReplay(g);
   g.input({ type: "toggle-sound" });

@@ -133,6 +133,7 @@ async function load(read) {
         entries: resources.archives.get("MAC.ARC"),
       },
       audioEnabled: $("audio").checked,
+      hasAudioDevice: () => !!gameAudio && !gameAudio.disposed,
       originalSecurity: $("original-security").checked,
       locations: parseLocations(resources.archives.get("LOC.ARC")),
       loot: parseLoot(resources.archives.get("LOOT.ARC")),
@@ -385,6 +386,12 @@ function effects() {
   for (const event of game.drainEffects()) {
     if (event.type === "flushControls") held.clear();
     if (event.type === "stopAudio") stopSound();
+    if (event.type === "sound-batch")
+      ensureGameAudio().requestBatch(event.arguments);
+    if (event.type === "audio-query") {
+      if (gameAudio && !gameAudio.disposed) gameAudio.query(event.token);
+      else dispatch({ type: "audio-status", token: event.token, busy: false });
+    }
     if (event.type === "sound" && game.audioEnabled) {
       ensureGameAudio().request(
         event.argument ?? event.id,

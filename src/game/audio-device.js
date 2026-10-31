@@ -64,17 +64,40 @@ export class GameAudioDevice {
       this.context.resume().catch((error) => this.failure(error));
   }
   request(argument, token = null) {
+    this.post(this.prepareRequest(argument, token));
+  }
+  requestBatch(arguments_) {
+    if (
+      !Array.isArray(arguments_) ||
+      arguments_.length < 1 ||
+      arguments_.length > 16 ||
+      !arguments_.every((n) => Number.isInteger(n) && n >= 0 && n <= 65535)
+    )
+      throw Error("Invalid native sound request batch");
+    const requests = arguments_.map((argument) =>
+      this.prepareRequest(argument, null),
+    );
+    this.post({ type: "request-batch", requests });
+  }
+  query(token) {
+    this.post(this.prepareRequest(null, token, true));
+  }
+  prepareRequest(argument, token, query = false) {
     if (this.disposed) throw Error(`${this.label} device is closed`);
     if (this.closingSequence !== undefined)
       throw Error(`${this.label} device is finishing its reset`);
-    if (!Number.isInteger(argument) || argument < 0 || argument > 65535)
+    if (
+      query
+        ? argument !== null || token === null
+        : !Number.isInteger(argument) || argument < 0 || argument > 65535
+    )
       throw Error(`${this.label} game request must be a word`);
     if (token !== null && (typeof token !== "string" || !token.length))
       throw Error(`Invalid ${this.label} game token`);
     if (token !== null && this.tokens.has(token))
       throw Error(`Duplicate ${this.label} game token`);
     const request = {
-      type: "request",
+      type: query ? "query" : "request",
       sequence: ++this.sequence,
       argument,
       token,
@@ -82,6 +105,9 @@ export class GameAudioDevice {
     this.onStats({ requests: this.sequence });
     this.inflight.set(request.sequence, request);
     if (token !== null) this.tokens.set(token, request.sequence);
+    return request;
+  }
+  post(request) {
     this.unlock();
     if (this.node) this.node.port.postMessage(request);
     else this.pending.push(request);

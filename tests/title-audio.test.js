@@ -49,14 +49,14 @@ test("keyboard sound starts in reset/start order and re-enabling never loops the
   const g = new Game();
   g.input({ type: "toggle-sound" });
   assert.deepEqual(g.drainEffects(), [
-    { type: "stopAudio" },
+    { type: "sound-batch", arguments: [0] },
     { type: "sound", id: 1 },
   ]);
   g.input({ type: "toggle-sound" });
   g.input({ type: "toggle-sound" });
   assert.deepEqual(g.drainEffects(), [
-    { type: "stopAudio" },
-    { type: "stopAudio" },
+    { type: "sound-batch", arguments: [0, 0x24] },
+    { type: "sound-batch", arguments: [0] },
   ]);
 });
 test("skipping title resets its music and later sound activation cannot start title music", () => {

@@ -38,6 +38,57 @@ export class TandyGameStream {
       this.events.push({ type: "complete", sequence, token, ...this.state() });
     this.waiters.clear();
   }
+  requestBatch(requests) {
+    if (
+      !Array.isArray(requests) ||
+      requests.length < 1 ||
+      requests.length > 16 ||
+      !requests.every(
+        (r, i) =>
+          r.sequence === this.sequence + i + 1 &&
+          r.token === null &&
+          Number.isInteger(r.argument) &&
+          r.argument >= 0 &&
+          r.argument <= 65535,
+      )
+    )
+      throw Error("Invalid native Tandy batch");
+    for (const { sequence, argument, token } of requests) {
+      this.playback.start(argument);
+      this.sequence = sequence;
+      this.events.push({
+        type: "ack",
+        sequence,
+        argument,
+        token,
+        ...this.state(),
+      });
+    }
+    // Do not publish an intermediate idle reset before the following click.
+    this.poll();
+  }
+  query({ sequence, argument, token }) {
+    if (
+      sequence !== this.sequence + 1 ||
+      argument !== null ||
+      typeof token !== "string" ||
+      !token.length ||
+      this.waiters.has(token)
+    )
+      throw Error("Invalid Tandy status query");
+    this.sequence = sequence;
+    this.poll();
+    const state = this.state();
+    this.events.push({
+      type: "ack",
+      sequence,
+      argument: null,
+      token,
+      query: true,
+      ...state,
+    });
+    if (state.busy) this.waiters.set(token, sequence);
+  }
   renderFrames(count) {
     // Keep the device and divider running even between cues. Poll at the
     // sequencer's consumption boundary, retaining an exact audio-frame stamp.

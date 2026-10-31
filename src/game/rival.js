@@ -18,12 +18,14 @@ export class RivalReport {
     variant,
     name,
     audioEnabled = false,
+    queryAudio = false,
     token,
     pollInput = () => true,
     flushInput = () => {},
   }) {
     if (
       typeof audioEnabled !== "boolean" ||
+      typeof queryAudio !== "boolean" ||
       typeof pollInput !== "function" ||
       typeof flushInput !== "function"
     )
@@ -31,11 +33,11 @@ export class RivalReport {
     Object.assign(this, { target, variant, audioEnabled, token, pollInput });
     if (name !== undefined) this.name = name;
     this.onFlushInput = flushInput;
-    this.busy = audioEnabled ? null : false;
-    this.statusKnown = !audioEnabled;
+    this.busy = audioEnabled || queryAudio ? null : false;
+    this.statusKnown = !audioEnabled && !queryAudio;
     this.waitingForAudio = false;
     this.waitingForSpeechInput = false;
-    this.phase = audioEnabled ? "speech" : "dialogue";
+    this.phase = audioEnabled || queryAudio ? "speech" : "dialogue";
     this.polledBusy = false;
     this.pollRemaining = 0;
     this.remaining = 40 * 7;
@@ -47,15 +49,12 @@ export class RivalReport {
   setAudioEnabled(enabled) {
     if (typeof enabled !== "boolean") throw Error("Invalid rival audio enable");
     this.audioEnabled = enabled;
-    if (!enabled) {
-      this.busy = false;
-      this.statusKnown = true;
-    }
   }
   setAudioStatus(token, busy) {
     if (token !== this.token) return;
     if (typeof busy !== "boolean") throw Error("Invalid rival audio status");
-    this.busy = this.audioEnabled && busy;
+    // Enabled gates new calls,not the global driver-status query126b0297.
+    this.busy = busy;
     this.statusKnown = true;
   }
   begin() {

@@ -1,0 +1,29 @@
+{
+  "kind": "sound-toggle-static-source",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "program": "INVESTMENT_CODE.EXE",
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "address": "1124:019a",
+  "offset": 5082,
+  "length": 59,
+  "sha256": "2fdf09436efb47189c6a1db828af5d3b9cf360d52c8a579197c03fdd98bed65a",
+  "relocations": [],
+  "artifact": {
+    "path": ".local/sound-toggle-source-01/keyboard.json",
+    "bytes": 391,
+    "sha256": "94ead3c2099e171d889d58f054ef480dcacd853213380851fbd96f18fdec23fc"
+  },
+  "claims": [
+    "Enabled S requests0 then24 before clearing03be. Disabled S sets03be then requests0.",
+    "The off-click request must reach the device even though the caller has since cleared the enabled flag.",
+    "PC speaker stop priority16 exceeds click priority0;zero IRQs between calls reject24. The existing host reset barrier must not insert a stop-completion delay between these native calls."
+  ],
+  "limitations": [
+    "Host batch boundary has zero inserted IRQs. Native sub-call CPU/PIT phase remains unverified. Ordinary browser restart adaptation outside this native call batch remains separate."
+  ]
+}

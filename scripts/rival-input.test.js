@@ -224,6 +224,10 @@ test("speech reads Sound on its14-tick boundary and still bypasses the fallback"
   assert.equal(r.pollRemaining, 14);
   assert.equal(r.remaining, 280);
   ticks(g, 14);
+  assert.equal(g.scene, "rival-claim");
+  //03be gates requests;the stop/click device still supplies actual completion.
+  g.input({ type: "audio-status", token: r.token, busy: false });
+  ticks(g, 14);
   assert.equal(g.scene, "map");
   assert.equal(r.wait, null);
 });

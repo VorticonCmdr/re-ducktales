@@ -39,6 +39,7 @@ export class Game {
     loot = null,
     expeditionResources = null,
     audioEnabled = false,
+    hasAudioDevice = () => false,
     investmentResources = null,
     bankResources = null,
     openingResources = null,
@@ -78,6 +79,9 @@ export class Game {
     this.bankResources = bankResources;
     this.bank = null;
     this.audioEnabled = audioEnabled;
+    if (typeof hasAudioDevice !== "function")
+      throw Error("Invalid audio device provider");
+    this.hasAudioDevice = hasAudioDevice;
     this.audioScope = 0;
     this.visitNotice = null;
     this.cave = null;
@@ -537,6 +541,7 @@ export class Game {
           ...result.report,
           audioEnabled: this.audioEnabled,
           token: `rival:${++this.audioScope}`,
+          queryAudio: !this.audioEnabled && this.hasAudioDevice(),
           pollInput: () => this.pollSystemInput(this.pendingRivalSystemKeys),
           flushInput: () => this.flushRivalInput(),
         });
@@ -545,6 +550,11 @@ export class Game {
           this.effects.push({
             type: "sound",
             id: 0x6e,
+            token: this.rivalReport.token,
+          });
+        else if (!this.rivalReport.statusKnown)
+          this.effects.push({
+            type: "audio-query",
             token: this.rivalReport.token,
           });
         this.rivalReport.begin();
@@ -699,7 +709,12 @@ export class Game {
     if (event.type === "toggle-sound") {
       // Pause's35/7-tick waits do not read input; their final flush drops S.
       if (this.systemOverlay && this.systemOverlay.phase !== "waiting") return;
-      this.effects.push({ type: "stopAudio" });
+      //1124:019a:the off-click is requested before03be is cleared. Preserve
+      // this native call batch independently of the final enabled flag.
+      this.effects.push({
+        type: "sound-batch",
+        arguments: this.audioEnabled ? [0, 0x24] : [0],
+      });
       this.handleInput({ type: "audio-enabled", enabled: !this.audioEnabled });
       return;
     }
@@ -1516,12 +1531,15 @@ export class Game {
         variant: this.seed & 1,
         audioEnabled: this.audioEnabled,
         token: `claim:${++this.audioScope}`,
+        queryAudio: !this.audioEnabled && this.hasAudioDevice(),
         pollInput: () => this.pollSystemInput(this.pendingRivalSystemKeys),
         flushInput: () => this.flushRivalInput(),
       });
       this.scene = "rival-claim";
       if (this.audioEnabled)
         this.effects.push({ type: "sound", id: 0x6e, token: this.claim.token });
+      else if (!this.claim.statusKnown)
+        this.effects.push({ type: "audio-query", token: this.claim.token });
       this.claim.begin();
       return;
     }

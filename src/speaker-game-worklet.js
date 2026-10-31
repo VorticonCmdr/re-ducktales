@@ -9,9 +9,11 @@ class SpeakerGameProcessor extends AudioWorkletProcessor {
     this.nextReport = 0;
     this.port.onmessage = ({ data }) => {
       try {
-        if (data.type !== "request")
-          throw Error("Unsupported speaker processor input");
-        this.stream.request(data);
+        if (data.type === "request") this.stream.request(data);
+        else if (data.type === "request-batch")
+          this.stream.requestBatch(data.requests);
+        else if (data.type === "query") this.stream.query(data);
+        else throw Error("Unsupported speaker processor input");
         this.report();
       } catch (error) {
         this.fail(error);

@@ -101,7 +101,9 @@ export class SpeakerGameStream {
       (typeof token !== "string" ||
         !token.length ||
         this.waiters.has(token) ||
-        this.pending.some((r) => r.token === token))
+        this.pending
+          .flatMap((r) => r.batch ?? [r])
+          .some((r) => r.token === token))
     )
       throw Error("Invalid or duplicate speaker token");
     if (!Number.isInteger(argument) || argument < 0 || argument > 65535)
@@ -110,24 +112,82 @@ export class SpeakerGameStream {
     this.pending.push({ sequence, argument, token });
     this.deliver();
   }
+  requestBatch(requests) {
+    if (
+      !Array.isArray(requests) ||
+      requests.length < 1 ||
+      requests.length > 16 ||
+      !requests.every(
+        (r, i) =>
+          r.sequence === this.sequence + i + 1 &&
+          r.token === null &&
+          Number.isInteger(r.argument) &&
+          r.argument >= 0 &&
+          r.argument <= 65535,
+      )
+    )
+      throw Error("Invalid native speaker batch");
+    this.sequence += requests.length;
+    this.pending.push({ batch: requests });
+    this.deliver();
+  }
+  query({ sequence, token, argument }) {
+    if (
+      sequence !== this.sequence + 1 ||
+      argument !== null ||
+      typeof token !== "string" ||
+      !token.length ||
+      this.waiters.has(token) ||
+      this.pending.flatMap((r) => r.batch ?? [r]).some((r) => r.token === token)
+    )
+      throw Error("Invalid speaker status query");
+    this.sequence = sequence;
+    const request = { sequence, argument: null, token, query: true };
+    // A status read must see a running stop,not wait for that stop to finish.
+    // Preserve ordering only when an earlier host-adapted word is still queued.
+    if (this.pending.length === 0) this.apply(request);
+    else {
+      this.pending.push(request);
+      this.deliver();
+    }
+  }
+  apply({ sequence, argument, token, query = false }) {
+    const accepted = query ? true : this.driver.request(argument);
+    this.consumePorts();
+    this.events.push({
+      type: "ack",
+      sequence,
+      argument,
+      token,
+      accepted,
+      ...(query ? { query: true } : {}),
+      ...this.state(),
+    });
+    if (token !== null && this.driver.busy) this.waiters.set(token, sequence);
+    return accepted;
+  }
   deliver() {
     while (!this.resetBarrier && this.pending.length) {
-      const { sequence, argument, token } = this.pending.shift();
-      const accepted = this.driver.request(argument);
-      this.consumePorts();
-      this.events.push({
-        type: "ack",
-        sequence,
-        argument,
-        token,
-        accepted,
-        ...this.state(),
-      });
-      if (token !== null && this.driver.busy) this.waiters.set(token, sequence);
+      const request = this.pending.shift();
+      if (request.batch) {
+        let lastAccepted = null;
+        for (const r of request.batch)
+          if (this.apply(r)) lastAccepted = r.argument;
+        // Original calls are consecutive:no host stop-completion barrier inside
+        // the batch,no retry of a rejected click. IRQ sub-call phase is explicit.
+        this.resetBarrier =
+          lastAccepted !== null &&
+          (lastAccepted & 255) === 0 &&
+          this.driver.busy;
+        continue;
+      }
+      const { argument, query } = request;
+      this.apply(request);
       // Browser stop/start adaptation: let the original high-priority stop
       // sequence finish before delivering later requests. Otherwise a stop
       // and title start in one browser frame would discard the new song.
-      if ((argument & 255) === 0 && this.driver.busy) this.resetBarrier = true;
+      if (!query && (argument & 255) === 0 && this.driver.busy)
+        this.resetBarrier = true;
     }
   }
   renderFrames(count) {
@@ -172,8 +232,11 @@ export class SpeakerGameStream {
       chains: this.driver.chains,
       signalSamples: this.signalSamples,
       pendingTokens:
-        this.waiters.size + this.pending.filter((r) => r.token !== null).length,
-      queuedRequests: this.pending.length,
+        this.waiters.size +
+        this.pending
+          .flatMap((r) => r.batch ?? [r])
+          .filter((r) => r.token !== null).length,
+      queuedRequests: this.pending.flatMap((r) => r.batch ?? [r]).length,
       engineActive: this.driver.b(0x287) !== 0,
       speedWord: this.driver.w(0x2a5),
       pitDivisor: this.chip.pendingPeriod,

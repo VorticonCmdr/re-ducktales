@@ -6,6 +6,19 @@ import subprocess
 from capture_safari_cadence import relocated_overlay
 
 
+COLUMNS = ['index', 'frame', 'clock', 'page', 'room', 'torch', 'money', 'seed',
+           'enemy', 'partyX', 'partyY', 'partyFrame', 'entering']
+
+def parse_samples(csv):
+    rows = []
+    for line in csv.splitlines():
+        values = line.split(',')
+        assert len(values) == len(COLUMNS), 'Missing cave observer field'
+        assert all(value.isdigit() for value in values), 'Invalid cave observer integer'
+        rows.append(dict(zip(COLUMNS, map(int, values))))
+    return rows
+
+
 def capture_cave_cadence(*, client, stop, load, ds, overlay, entry, add,
                          remove, resume, state, sequence, wait_until, save, root):
     data = state('cave-entry', stop)
@@ -61,14 +74,14 @@ def capture_cave_cadence(*, client, stop, load, ds, overlay, entry, add,
         lambda r: r['state'] in ['completed', 'error'], timeout=20)
     save('cave-observer-result', result)
     assert result['state'] == 'completed' and not result['output_truncated']
-    assert result['output']['completed'] is True and len(result['output']['samples']) == 180
+    assert result['output']['completed'] is True and len(parse_samples(result['output']['samplesCSV'])) == 480
     replay = client.get('/api/v1/input/replay/status')
     save('cave-observer-replay', replay)
     assert not replay['active'] and replay['remaining'] == 0 and replay['dispatched'] == 4
     final = client.post('/api/v1/debug/pause')['stop']
     assert final['stop_id'] == stop['stop_id'] + 1
     state('cave-observer-final', final)
-    save('cave-cadence', {'completed': True, 'expectedSamples': 180,
+    save('cave-cadence', {'completed': True, 'expectedSamples': 480,
          'initialStopId': stop['stop_id'], 'finalStopId': final['stop_id'],
          'injections': [], 'partialRestore': False,
-         'scope': 'Natural original Carlsbad passage,180 consecutive callbacks and fixed Right+Fire/release schedule. No intermediate stops; not exact instruction/flip timestamps or port timing acceptance.'})
+         'scope': 'Natural original Carlsbad passage,480 consecutive callbacks and fixed Right+Fire/release schedule. No intermediate stops; not exact instruction/flip timestamps or port timing acceptance.'})

@@ -199,8 +199,11 @@ try {
         );
         await until((s) => s.scene === "cave");
         await observe("cave-entry");
-        const entry = await state(),
-          plan = planCaveVariant(entry.cave.rooms, entry.briefing.variant);
+        // Cave initialization now loads its map/sprites in stages. The scene
+        // may be visible while its endpoints are still uninitialized.
+        const entry = await until((s) => s.scene !== "cave" || s.cave.phase === "exploring");
+        assert.equal(entry.scene, "cave", "Initial cave ended before its input boundary");
+        const plan = planCaveVariant(entry.cave.rooms, entry.briefing.variant);
         assert.equal(entry.cave.room, plan.start);
         await writeFile(
           root + "/cave-player-plan.json",

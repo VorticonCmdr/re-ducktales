@@ -6,6 +6,23 @@ Xanadu and Borneo each must reach a target photo, finish the film, display resul
 return with cash/ownership/day consequences and Restart. Hard remains deferred.
 This is port browser acceptance, not native whole-route or cadence parity.
 
+Accepted from clean source `f36dd7d`:48 exact state/image checkpoints,2,714 DOM
+events, all six shutter negatives and all six Restarts. Producer:
+`.local/easy-safari-variants-02`; independent consumers:
+`.local/easy-safari-variants-replay-02`. The29-artifact record includes actual
+comparison digests and the negative state divergences. The15 existing photography
+input/timing tests also pass. The first capture's film-1-only setup assumption
+was rejected; that run remains unaccepted. No gameplay code was changed.
+
+| Variant | Destination | Score | Final film | Return day |
+| --- | --- | ---: | ---: | ---: |
+|1|Yellerstone Park|1550|-1|3|
+|2|Duckbill Island|550|0|3|
+|3|Ronguay|1500|-1|3|
+|4|Kenya Game Reserve|550|0|5|
+|5|Xanadu|1050|-1|4|
+|6|Borneo|500|-1|3|
+
 Borneo was explored with actual browser controls before authoring this harness.
 The common interaction path also uses the existing photography browser scenario.
 A visible target at frame0 selects the aim column; a real key make aims and a real
@@ -50,6 +67,7 @@ supplies a replay input.
 
 ```
 node scripts/easy-safari-variants.js verify
+node --test tests/photography-input.test.js tests/photography-timing.test.js
 ```
 
 To create a new record from clean committed sources, use fresh ignored paths and

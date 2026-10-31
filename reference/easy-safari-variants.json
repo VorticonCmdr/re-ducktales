@@ -1,0 +1,307 @@
+{
+  "id": "easy-all-safari-variants",
+  "accepted": true,
+  "cases": 6,
+  "captureRoot": ".local/easy-safari-variants-02",
+  "sourceCommit": "f36dd7d4c33654109a0aa66f6bfc70dab7632940",
+  "artifacts": {
+    "source-revision.json": {
+      "path": ".local/easy-safari-variants-02/source-revision.json",
+      "bytes": 96297,
+      "sha256": "b095dc3ea46de1e71704236050665791348c6a273441e3dabb16c8562a4f4358"
+    },
+    "sources.zip": {
+      "path": ".local/easy-safari-variants-02/sources.zip",
+      "bytes": 2606686,
+      "sha256": "c261bb29d7e0edbfff4a7b8a1216d0c3965c78b471c658ac9a1883d43ece8e51"
+    },
+    "cases.json": {
+      "path": ".local/easy-safari-variants-02/cases.json",
+      "bytes": 2949,
+      "sha256": "dfeaba01c82d1b6bff57f25fd784ab2ac1280fe531c745fc25c2a78932d45e15"
+    },
+    "capture-status.json": {
+      "path": ".local/easy-safari-variants-02/capture-status.json",
+      "bytes": 199,
+      "sha256": "d71274a07586820c0622d69e278204a0f0efede97a3fa275c59e933066240f8b"
+    },
+    "1/captured-events.json": {
+      "path": ".local/easy-safari-variants-02/1/captured-events.json",
+      "bytes": 43174,
+      "sha256": "15e59033c9c48ce6b240e76ec95a5ed55be68a22251f1c87e73e911f600fdd08"
+    },
+    "1/campaign-checkpoints.json": {
+      "path": ".local/easy-safari-variants-02/1/campaign-checkpoints.json",
+      "bytes": 45219,
+      "sha256": "42e0320af657f3d65e352b73774380ea37ff84057fbb2b30f0a94a3081ef5b35"
+    },
+    "1/environment.json": {
+      "path": ".local/easy-safari-variants-02/1/environment.json",
+      "bytes": 177,
+      "sha256": "4b88891677b8e2f4ee07840ff6e694dd268799c8a909dcff01e3f88bd14af0b0"
+    },
+    "1/timeline.json": {
+      "path": ".local/easy-safari-variants-02/1/timeline.json",
+      "bytes": 735,
+      "sha256": "cc4cba6d898be119ba6692e0ff4c6989493972b7919b85d3de5910fb0dc48982"
+    },
+    "2/captured-events.json": {
+      "path": ".local/easy-safari-variants-02/2/captured-events.json",
+      "bytes": 40672,
+      "sha256": "8aaec04b7179e6e69735cd4af59e2f69a826388a4fa239a306a6b3c93339faef"
+    },
+    "2/campaign-checkpoints.json": {
+      "path": ".local/easy-safari-variants-02/2/campaign-checkpoints.json",
+      "bytes": 45128,
+      "sha256": "ed1395eaa5c80693725bb533b2e8d7653ec1b6d3435ba813445b18d0f7cd5d14"
+    },
+    "2/environment.json": {
+      "path": ".local/easy-safari-variants-02/2/environment.json",
+      "bytes": 177,
+      "sha256": "4b88891677b8e2f4ee07840ff6e694dd268799c8a909dcff01e3f88bd14af0b0"
+    },
+    "2/timeline.json": {
+      "path": ".local/easy-safari-variants-02/2/timeline.json",
+      "bytes": 735,
+      "sha256": "afa48ea0c4c275ee9bb56ae43a4b5a1b0cce3060ad7e7e8bcae4e6502a33cfc3"
+    },
+    "3/captured-events.json": {
+      "path": ".local/easy-safari-variants-02/3/captured-events.json",
+      "bytes": 50498,
+      "sha256": "9c374f1da572e07e52d9739a2cfa0fab30499a8f7489cac34d3af15010b509c9"
+    },
+    "3/campaign-checkpoints.json": {
+      "path": ".local/easy-safari-variants-02/3/campaign-checkpoints.json",
+      "bytes": 45217,
+      "sha256": "a58689b5ddd4fbb6ba68c88d09b1561f37c7a4a39595050d53fd711a62ab505d"
+    },
+    "3/environment.json": {
+      "path": ".local/easy-safari-variants-02/3/environment.json",
+      "bytes": 177,
+      "sha256": "4b88891677b8e2f4ee07840ff6e694dd268799c8a909dcff01e3f88bd14af0b0"
+    },
+    "3/timeline.json": {
+      "path": ".local/easy-safari-variants-02/3/timeline.json",
+      "bytes": 735,
+      "sha256": "da316bf3a6e2468914ec27910629b892b3b524afa2d2ad4f7d6760a2abcac4b9"
+    },
+    "4/captured-events.json": {
+      "path": ".local/easy-safari-variants-02/4/captured-events.json",
+      "bytes": 84844,
+      "sha256": "1291cc6feff4d508b919799a4cf3a68af73af1dddb5c697333dca9fd9345787a"
+    },
+    "4/campaign-checkpoints.json": {
+      "path": ".local/easy-safari-variants-02/4/campaign-checkpoints.json",
+      "bytes": 45187,
+      "sha256": "aa641d28952ea3ea0b7ff51e954a287070043d551d5e811a64a8455b0b3e9b65"
+    },
+    "4/environment.json": {
+      "path": ".local/easy-safari-variants-02/4/environment.json",
+      "bytes": 177,
+      "sha256": "4b88891677b8e2f4ee07840ff6e694dd268799c8a909dcff01e3f88bd14af0b0"
+    },
+    "4/timeline.json": {
+      "path": ".local/easy-safari-variants-02/4/timeline.json",
+      "bytes": 735,
+      "sha256": "a8126a151a63e01d517e87b3bc167d531ce87ac23f8c87efd7d4f5f820a99cdd"
+    },
+    "5/captured-events.json": {
+      "path": ".local/easy-safari-variants-02/5/captured-events.json",
+      "bytes": 63269,
+      "sha256": "7e458eae099264c29913be7f8be0b606db21a733351b64695982b5eac09363c8"
+    },
+    "5/campaign-checkpoints.json": {
+      "path": ".local/easy-safari-variants-02/5/campaign-checkpoints.json",
+      "bytes": 45134,
+      "sha256": "b41e2ee37f183da53e665daae266bd15e1bcb817522db2f265ed99689e3f7708"
+    },
+    "5/environment.json": {
+      "path": ".local/easy-safari-variants-02/5/environment.json",
+      "bytes": 177,
+      "sha256": "4b88891677b8e2f4ee07840ff6e694dd268799c8a909dcff01e3f88bd14af0b0"
+    },
+    "5/timeline.json": {
+      "path": ".local/easy-safari-variants-02/5/timeline.json",
+      "bytes": 735,
+      "sha256": "3619accac4e055b24f8050d3795dc06b4a03047c5bd7933bf411956bdecf853c"
+    },
+    "6/captured-events.json": {
+      "path": ".local/easy-safari-variants-02/6/captured-events.json",
+      "bytes": 38309,
+      "sha256": "fa64783a1e927897a9b44688a88b640286491fb8ef52eb5e4adc3a28b5e8235a"
+    },
+    "6/campaign-checkpoints.json": {
+      "path": ".local/easy-safari-variants-02/6/campaign-checkpoints.json",
+      "bytes": 45270,
+      "sha256": "cb0074b693e7c940d2fd1028c1d50b70e89c731c5a5a5602fcc2d144c228fb7c"
+    },
+    "6/environment.json": {
+      "path": ".local/easy-safari-variants-02/6/environment.json",
+      "bytes": 177,
+      "sha256": "4b88891677b8e2f4ee07840ff6e694dd268799c8a909dcff01e3f88bd14af0b0"
+    },
+    "6/timeline.json": {
+      "path": ".local/easy-safari-variants-02/6/timeline.json",
+      "bytes": 735,
+      "sha256": "9dfcd9b9d9ac3fd9276f12b8fd26b36f6e3b574da190976148b94af19bb1e042"
+    },
+    "replay": {
+      "path": ".local/easy-safari-variants-replay-02/result.json",
+      "bytes": 53132,
+      "sha256": "0dce4e44f4f4c2cf29e5a384dcfb603a38cc4bf573546867d70ff8f36c2e5715"
+    }
+  },
+  "build": {
+    "manifest": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "files": {
+      "CAVEMAPS.ARC": {
+        "bytes": 949,
+        "sha256": "5582e5e358cd20746a21875255da0f9f7fad171467b9afda6f26eb3687a5af9b"
+      },
+      "CHART.ARC": {
+        "bytes": 475,
+        "sha256": "e3456152da564f41524e3e328a8391a33d812af3ac18bd0c98e72985101586a7"
+      },
+      "CLUES.ARC": {
+        "bytes": 1813,
+        "sha256": "5162697a313b227b81338d08ac8cfd8e65a88d50854ecf54a17209de96779aef"
+      },
+      "DUCKTALE.EXE": {
+        "bytes": 165218,
+        "sha256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981"
+      },
+      "Disney's Duck Tales -  The Quest for Gold (1990).ba1": {
+        "bytes": 80,
+        "sha256": "5a5f19251528372ace467978dfffc3c017d8bd6dfb08d3073cbe41200ee9f690"
+      },
+      "EXP.ARC": {
+        "bytes": 108115,
+        "sha256": "f5423396a20fc515add201e0d9a587d4e985130b2d2c05f98da417aa6ca34dbf"
+      },
+      "INVART.ARC": {
+        "bytes": 538,
+        "sha256": "433792e8edf0992529d7d9cb19de40bec46d55fa7b3cb6ccc73160a432692213"
+      },
+      "INVEST.ARC": {
+        "bytes": 4193,
+        "sha256": "5d5a2dea1d0bfbbfe6eb8589ca269c7494dfb1758325e0ef7a4c6c64df63362c"
+      },
+      "IT.DRV": {
+        "bytes": 27815,
+        "sha256": "3a421e0b11706baad2bc2c25520f0edcf2b4246f20d767320968535a55ae4ff2"
+      },
+      "JG.ARC": {
+        "bytes": 47389,
+        "sha256": "5f8ff2a00a806b76cbef8a6f24b24befe2d9e594e38e645e845d031e78320878"
+      },
+      "LOC.ARC": {
+        "bytes": 5447,
+        "sha256": "fedc421b354aec66ae2337b370500b71365c4fe1863958cf43d29c77552c1fd9"
+      },
+      "LOOT.ARC": {
+        "bytes": 3946,
+        "sha256": "cb496f5b9905d2aaa2539451633554d4f1f54d7a43e787906ceaf3b714e7ab7f"
+      },
+      "MAC.ARC": {
+        "bytes": 30405,
+        "sha256": "5c2be37bf6b85f1c1989f2d1726204e89359e7e8e8578b91f5a117a13684b5f1"
+      },
+      "MAIN.ARC": {
+        "bytes": 141676,
+        "sha256": "2ad0e38d8db5095a8b9a9ecc0188c4904f61de2624ec35bf738638a87ee99f83"
+      },
+      "MBIN.ARC": {
+        "bytes": 31735,
+        "sha256": "7b1d958f9eb2ac6a8205043cc715c19ea16d6470e896213014dc4930d7e3071b"
+      },
+      "MT.ARC": {
+        "bytes": 24269,
+        "sha256": "2b712ea21eef9a10c0084cf884a17b484b40b890d7bd87a1ce76fd565c4f7f7c"
+      },
+      "PLANE.ARC": {
+        "bytes": 34609,
+        "sha256": "9a33bcd8fbb4205ee8a15b3269a7da7a9eb5888dbcbc59f488b42c12e2107778"
+      },
+      "PS.ARC": {
+        "bytes": 78742,
+        "sha256": "28cae7f184927b98e65ccc7758c8a7404ca42ecafe88aa56f7fae795f74d6627"
+      },
+      "README.BAT": {
+        "bytes": 93,
+        "sha256": "58249899a3bca7eacda234fea631bd618dc96f8d57df511bf1d7da9bda23b8a1"
+      },
+      "README1.DOC": {
+        "bytes": 794,
+        "sha256": "aead233365ec026823a07f8eb3a090cff67fe32981a26f21fcc7903ecc89f2a6"
+      },
+      "README2.DOC": {
+        "bytes": 729,
+        "sha256": "deb56be3df365500da7b7b19a2278d8dbfe321b59ae3bffc5325497721de8e37"
+      },
+      "README3.DOC": {
+        "bytes": 311,
+        "sha256": "edacd2e4c4019555b179e5ed0e1d3cfeaea9039cd80450ee99c9bceb69946e62"
+      }
+    }
+  },
+  "checkpoints": [
+    {
+      "variant": 1,
+      "count": 8,
+      "events": 366,
+      "score": 1550
+    },
+    {
+      "variant": 2,
+      "count": 8,
+      "events": 345,
+      "score": 550
+    },
+    {
+      "variant": 3,
+      "count": 8,
+      "events": 428,
+      "score": 1500
+    },
+    {
+      "variant": 4,
+      "count": 8,
+      "events": 716,
+      "score": 550
+    },
+    {
+      "variant": 5,
+      "count": 8,
+      "events": 534,
+      "score": 1050
+    },
+    {
+      "variant": 6,
+      "count": 8,
+      "events": 325,
+      "score": 500
+    }
+  ],
+  "environment": {
+    "difficulty": 0,
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "timezone": "UTC",
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "repeatProvider": {
+      "initialDelayMilliseconds": 250,
+      "intervalMilliseconds": 32,
+      "scope": "authored external makes while consuming remaining film;not native typematic evidence"
+    }
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "scope": "Independent port browser acceptance of all six Easy Safari variants;not native whole-route/cadence or other difficulties",
+  "verify": "node scripts/easy-safari-variants.js verify"
+}

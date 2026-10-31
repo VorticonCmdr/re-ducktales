@@ -1,0 +1,51 @@
+{
+  "kind": "repair-input-static-source",
+  "buildManifest": "reference/build.json",
+  "program": "INVESTMENT_CODE.EXE",
+  "language": "x86:LE:16:Real Mode",
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "ranges": [
+    {
+      "key": "repair",
+      "offset": 2282,
+      "length": 74,
+      "address": "1000:08ea",
+      "sha256": "afe8d20ad5bd886657b117cae8d3f5f1143c729e6846f3249d34bf2cc72134dc",
+      "relocations": [
+        2354,
+        2298
+      ],
+      "artifact": {
+        "path": ".local/repair-input-source-01/repair.json",
+        "bytes": 480,
+        "sha256": "2422761eaf93224125f0457a9547b22c8b79e0f34cf072cd059e2ec13ef367a0"
+      }
+    },
+    {
+      "key": "wreckage",
+      "offset": 2785,
+      "length": 45,
+      "address": "1000:0ae1",
+      "sha256": "454f8202e479719aa82bebe12556d7af202431c8b05dd84f2085093bebf80b18",
+      "relocations": [
+        2796
+      ],
+      "artifact": {
+        "path": ".local/repair-input-source-01/wreckage.json",
+        "bytes": 327,
+        "sha256": "03b8ead5d9f68ac52c96f558e385e21bd18b96531014f576bef9faca9d71459f"
+      }
+    }
+  ],
+  "sharedReader": "reference/result-caller-source.json",
+  "claims": [
+    "Repair adds two byte-calendar days before09f5(60);wreckage uses09f5(100).",
+    "Each consumed Fire returns1 and requests24 only while enabled;no sound0 in either local caller.",
+    "Repair then tests signed32 cash;nonpositive skips RNG and wreckage.",
+    "Shared09f5 flushes,reads immediately,waits7 on neutral and performs no count+1 read. P/Q/S handlers live in1124:0002."
+  ],
+  "limitations": [
+    "Static source and prior conditional original cash/day/RNG capture;no new native presentation timing or waveform comparison."
+  ]
+}

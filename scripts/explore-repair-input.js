@@ -67,12 +67,7 @@ const result = await withCarlsbadBrowser(
       await canvas.click({
         position: { x: (box.width * 37) / 320, y: (box.height * 33) / 200 },
       });
-      await press("Space");
-      await until((s) => s.campaign.destination?.ready);
-      await press("ArrowRight");
-      await until(
-        (s) => s.campaign.choice === 1 && s.campaign.destination?.ready,
-      );
+      // Away from the office, map Fire travels directly using the selected aircraft.
       await press("Space");
       await until((s) => s.scene === "departure");
     }

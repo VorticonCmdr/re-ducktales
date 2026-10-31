@@ -3,7 +3,8 @@
 Updated2026-10-31. **The whole game is incomplete.** Cave entry now restores
 both original wipe call sites and the second-page striped reveal,and restores
 the cached room in the normal input loop without extra composition. Focused browser
-and timing checks pass; original loading work is still absent from gameplay.
+and timing checks pass; runtime loading now charges counted resident decode/conversion work.
+Initial preparation and remaining loader/system work are still omitted.
 The last full Standard campaign/replay passed before this transition change.
 Its strict combined gate now correctly rejects the changed runtime; a fresh
 whole-campaign admission remains required. Hard campaigns remain deferred.
@@ -115,20 +116,21 @@ negatives pass. This is conditional walking evidence,not whole-level/browser
 timing acceptance. [Scope](mountain-phase.md).
 The new natural cave reference passes480 uninterrupted samples and all four
 Right+Fire/release events. Its strict port probe currently fails on stage/timing
-differences:the current port awards50 at4.31s while the original still has0 at6.83s.
+differences:current cash remains0 through6.83s,but final animation/RNG fields still differ.
 The source-confirmed room/entry ordering is now corrected and passes all four
 directions/revisit plus an old-class negative and the actual browser cave case.
 [Ordering fix](cave-passage-order.md). Entry page waits and cached-loop call placement are restored;whole-cave timing still fails.
 [Evidence and failing probe](cave-native-cadence.md).
 The first natural cave sprite10 load is now measured separately:84 conditional
-driver counts (about1.15s),with exact38080-byte native planar output. This cost is
-currently omitted by synchronous browser loading. Original585-byte loader,
+driver counts (about1.15s),with exact38080-byte native planar output. The counted decoder/converter portion is
+now scheduled at runtime calls;remaining loader/system costs are still omitted. Original585-byte loader,
 302-byte caller and222-byte converter correspondence pass with three negatives;
 the owned emulator is closed. [Loading evidence](cave-loader-work.md).
 The natural background0 load now passes85 conditional driver counts and all32000
 original planar bytes,with three negatives. [Background](cave-background-load.md).
-The integrated pure work model covers46 sprites plus the picture;it remains
-unconnected to gameplay scheduling. Original DOS/interrupt/allocator work is not fully admitted.
+The integrated model covers46 sprites plus the picture and now schedules runtime
+loads,torch replacements,background0 and composition overlays. Original
+DOS/interrupt/allocator work is not fully admitted;initial preparation is untimed.
 Cave entry now executes initial and per-room wipes,each five bands/five retraces,
 and reveals the second room page without swapping page roles. The existing actual
 browser cave scenario passes;focused tests check50 first-entry wipe retraces and25
@@ -142,8 +144,12 @@ The browser checker observes both actual entry drawing intervals;stale-hook
 and permissive-bound exploratory negatives are excluded. The conditional room-commit
 time now falls inside the original bracket;state/loading differences remain.
 [Cache correction](cave-cached-room.md).
-Next:integrate counted loading at original call boundaries,then refresh browser
-campaign acceptance. Do not fit observed delays.
+Four carried phase states now match all nine original fields with two reads and
+four independent physical events. Entry clear is5.379s versus5.422..5.436s;
+the strict timing/final-state probe still fails. The browser observes actual
+background/passage loading waits. [Loading scope](cave-counted-loading.md).
+Next:restore initial preparation loading and investigate the remaining original
+loader/system cost,then refresh full browser campaign acceptance. Do not fit delays.
 Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability
@@ -168,6 +174,7 @@ select their own files.
 node scripts/verify-cave-passage-order.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_cache_source.py
 node scripts/verify-sprite-load-work.js
+node scripts/verify-cave-counted-loading.js --output=.local/cave-counted-loading-FRESH
 node scripts/verify-cave.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_loader_profile.py
 node scripts/verify-current-winning-acceptance.js

@@ -43,10 +43,11 @@ export function parseArchive(bytes, name = '') {
     const frames = type === 2 ? words[0] : 1;
     const expectedSize = type === 4 ? width : width * height * frames / 2;
     if (type !== 4 && (!width || width % 2 || !height || !frames)) throw Error('Invalid image dimensions');
-    const data = decompressLzw(bytes.subarray(offset + 16, end), expectedSize);
+    const packedData = Uint8Array.from(bytes.subarray(offset + 16, end));
+    const data = decompressLzw(packedData, expectedSize);
     const font = type === 4 && data.length === 2056 && data[0] === 0xaa && data[1] === 0x55;
     const text = type === 4 && !font && data.every(c => [9, 10, 13, 26].includes(c) || c >= 32 && c < 127);
-    entries.push({ name: `${name} #${String(index).padStart(3, '0')}`, archive: name, index, offset, packedSize, type, width, height, frames, words, data, kind: font ? 'Font' : text ? 'Text / data' : type === 1 ? 'Picture' : type === 2 ? 'Sprite' : 'Driver' });
+    entries.push({ name: `${name} #${String(index).padStart(3, '0')}`, archive: name, index, offset, packedSize, packedData, type, width, height, frames, words, data, kind: font ? 'Font' : text ? 'Text / data' : type === 1 ? 'Picture' : type === 2 ? 'Sprite' : 'Driver' });
   }
   return entries;
 }

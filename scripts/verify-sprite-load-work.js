@@ -10,6 +10,7 @@ import {
   egaGraphicsConversionWork,
 } from "../src/game/sprite-load-work.js";
 import { normalCoreGraphicsMilliseconds } from "../src/game/ega-work.js";
+import { graphicsLoadWork } from "../src/game/graphics-load-work.js";
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const manifest = JSON.parse(
   await readFile("reference/sprite-load-work-source.json"),
@@ -266,6 +267,12 @@ for (const entry of archives.get("EXP.ARC")) {
     assert.equal(lzw[field], value, `LZW${entry.index} ${field}`);
   const converted = egaGraphicsConversionWork(entry),
     expectedCount = conversionCount(entry);
+  assert.equal(Buffer.compare(entry.packedData, packed), 0, "Original packed bytes retained");
+  const runtime = graphicsLoadWork(entry);
+  assert.equal(runtime.instructions, lzw.instructions + expectedCount);
+  assert.equal(runtime.repeatOpcodes, lzw.repeatOpcodes);
+  assert.equal(runtime.repeatIterations, lzw.repeatIterations);
+  assert.equal(runtime.planarBytes, converted.planes.length);
   compareCount(converted.instructions, expectedCount);
   if (entry.type === 2) cases++;
   else pictures++;
@@ -338,7 +345,14 @@ assert.throws(
   /Unsupported/,
 );
 negatives++;
-assert.equal(negatives, 7);
+const entry = archives.get("EXP.ARC")[10];
+assert.throws(() => graphicsLoadWork({ ...entry, packedData: undefined }), /Missing original packed/);
+assert.throws(() => graphicsLoadWork({ ...entry, packedSize: entry.packedSize + 1 }), /Missing original packed/);
+const altered = Uint8Array.from(entry.data);
+altered[0] ^= 1;
+assert.throws(() => graphicsLoadWork({ ...entry, data: altered }), /payload differs/);
+negatives += 3;
+assert.equal(negatives, 10);
 console.log(
   JSON.stringify(
     {

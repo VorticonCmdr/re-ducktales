@@ -53,8 +53,8 @@ Three negatives reject changed planar output,one altered timer count and a
 missing consumed input. The original full cave body,caller/loader bytes,converter
 source bytes and complete native sprite are checked independently of port timing.
 
-The browser currently decodes assets up front and its runtime `load` completes
-synchronously. The measured original work is therefore a concrete omitted
+The browser decodes assets up front and retains their original packed bytes.
+Runtime cave `load` now yields for counted decoder/converter work. The measured original work is therefore a concrete omitted
 boundary. Next:count the original LZW and mode1 conversion work from the packed
 resource and decoded bytes,validate that work against this conditional bracket,
 then schedule it at the actual cave load calls. Preserve payload/state ordering;
@@ -63,8 +63,7 @@ do not fit a delay to84 counts or build a general CPU emulator.
 ## Source-counted decoder and graphics conversion
 
 `src/game/sprite-load-work.js` now implements the original prefix/suffix LZW
-path and mode1 RAM picture/sprite conversion as pure functions. These functions are
-not yet connected to Cave loading. They accept original packed bytes/header
+path and mode1 RAM picture/sprite conversion as pure functions. These functions now supply Cave runtime load budgets. They accept original packed bytes/header
 size or decoded sprite pixels;they have no clock/native-output access. Supported
 scope is all47 EXP.ARC resources:46 sprites and one picture,LZW,type1/2,four/five RAM planes below64KiB. Other modes,
 oversized planes,malformed/unfinished streams and unsupported dictionary paths
@@ -94,7 +93,7 @@ instructions,eight REP opcodes/nineteen residual iterations,nine DOS reads and
 zero port writes to this RAM destination. At3000 cycles/ms this is1126.955ms.
 The source backedge134a repeats LEADI1301 for both packed nibbles;an early draft
 missed its second execution. The checker now rejects that exact missing-opcode
-count as a negative control. Seven controls reject omitted converter instructions,changed planar output,an incorrect picture opacity plane,an invalid/truncated stream and unsupported geometry.
+count as a negative control. Ten controls now include missing/corrupt packed-byte contracts and reject omitted converter instructions,changed planar output,an incorrect picture opacity plane,an invalid/truncated stream and unsupported geometry.
 
 This accounted subtotal is below the native whole-call phase bracket and is
 not admitted as complete loader timing. Archive lookup/header/seek,allocation
@@ -103,12 +102,12 @@ original CPU phase are explicitly omitted. Emulator source `dos.cpp` confirms
 that DOS reads can consume/clamp remaining CPU budget and has configurable disk
 delay providers;this experiment has not reconstructed their consumption values.
 There is no residual delay fitted to make the count reach84 timer periods.
-Next:account for picture loading and required environment costs,then schedule
-the verified work at original load boundaries and repeat browser acceptance.
+Next:restore initial preparation timing and required environment costs,then
+repeat whole-campaign browser acceptance.
 
 
 Picture0 accounts for1073542 LZW and2376019 converter instructions,or1149.859ms
 at3000 cycles/ms. The separate whole-call native measurement is85 driver counts.
 That observation remains an output,never a scheduling input. The model is now
-integrated in the main source tree but remains unconnected to gameplay. Original
-load call placement must be restored without charging renderer-only reconstruction.
+integrated into Cave runtime load scheduling. Initial preparation remains
+untimed;complete loader/system timing is still open. See [runtime scope](cave-counted-loading.md).

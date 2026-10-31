@@ -16,8 +16,8 @@ export function* caveTransition(stage, direction) {
   if (!p) throw Error(`Unsupported cave passage ${stage}/${direction}`);
   const m = this.memory,
     at = 0x54fc;
-  this.load(p.asset);
-  if (p.cover) this.load(p.cover, p.cover === 24 ? 0 : 240, 0);
+  yield* this.load(p.asset);
+  if (p.cover) yield* this.load(p.cover, p.cover === 24 ? 0 : 240, 0);
   let pose = p.pose;
   for (let i = 0; i < p.count; i++) {
     if (pose > 3) pose = 0;

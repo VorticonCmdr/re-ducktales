@@ -18,6 +18,7 @@ import {
 } from "./cave-runtime-work.js";
 import { caveEndings } from "./cave-endings.js";
 import { caveTransition } from "./cave-transitions.js";
+import { graphicsLoadWork } from "./graphics-load-work.js";
 // Overlay6:09a9..0a81 and0d62/0ec8/0f5a/0fef mask five bits and
 // group the diagonal on each cardinal's clockwise side with that cardinal.
 export function caveDirectionFromByte(byte) {
@@ -55,6 +56,7 @@ export class Cave {
     this.lastClock = -Infinity;
     this.lastPartyWork = null;
     this.lastDrawingWork = null;
+    this.lastLoadingWork = null;
     this.lastRoomWork = null;
     this.initialDrawingWork = null;
     this.presentations = 0;
@@ -300,6 +302,11 @@ export class Cave {
   }
   *scene(audible = false) {
     this.background = composeCaveRoom(this.memory, this.entries);
+    // 26bb loads pit/distance/trap sprites on each actual composition.
+    // The command plan itself consumes no RNG or external input.
+    for (const command of this.background)
+      if (command.op === "sprite" && [1, 2, 7, 8, 9].includes(command.asset))
+        yield* this.loadWork(command.asset);
     const work = caveRoomCompositionWork(this.entries, this.background);
     this.lastRoomWork = work;
     this.lastDrawingWork = { kind: "room", ...work };
@@ -355,8 +362,17 @@ export class Cave {
     };
     return page;
   }
-  load(id, x, y) {
+  *loadWork(id) {
+    const work = graphicsLoadWork(this.entries[id]);
+    this.lastLoadingWork = work;
+    this.lastDrawingWork = { kind: "load", ...work };
+    yield { clock: "graphics", remaining: 1, until: this.now() + work.milliseconds };
+  }
+  *load(id, x, y) {
     const at = loadCaveSprite(this.memory, this.entries, id);
+    // Resident175c initializes the descriptor before streaming the payload;
+    // caller coordinates are assigned only after the load returns.
+    yield* this.loadWork(id);
     if (x !== undefined) this.memory.i(at, x);
     if (y !== undefined) this.memory.i(at + 2, y);
   }
@@ -380,15 +396,15 @@ export class Cave {
     this.buffers[this.drawIndex] = c;
     return c;
   }
-  updateTorch() {
+  *updateTorch() {
     const m = this.memory,
       count = m.signedByte(0x8b54),
       limit = m.i(0x54ac);
     if (count === limit >> 1 && m.i(0x4e28) === 14) {
-      loadCaveSprite(m, this.entries, 15);
+      yield* this.load(15);
       m.i(0x4e28, 15);
     } else if (count === limit - m.i(0x8b3e) && m.i(0x4e28) === 15) {
-      loadCaveSprite(m, this.entries, 16);
+      yield* this.load(16);
       m.i(0x4e28, 16);
     }
   }
@@ -413,10 +429,11 @@ export class Cave {
     const m = this.memory;
     this.phase = "entering";
     m.b(0x8b54, m.b(0x8b54) + 1);
-    this.updateTorch();
+    yield* this.updateTorch();
     this.progress = u16(this.progress + 1);
     if (this.cell & 64) m.b(0x546a, 1);
     yield* this.wipe(); // Overlay057e, before background loading/composition.
+    yield* this.loadWork(0); // Main0595, picture mode into the room RAM surface.
     for (let i = 0; i < 2; i++) {
       let c = yield* this.scene(i === 0);
       if (!this.enteredFrom || m.b(0x5d2b)) c = yield* this.party(c);
@@ -457,7 +474,7 @@ export class Cave {
         [2, 21],
       ])
         if (this.cell & bit) {
-          this.load(asset);
+          yield* this.load(asset);
           yield* this.present(yield* this.party(this.back()));
           m.b(0x54aa, m.b(0x54aa) | 1);
         }
@@ -591,7 +608,7 @@ export class Cave {
         if (this.idleCount >= 15) {
           m.b(0x8b54, m.b(0x8b54) + 1);
           this.idleCount = 0;
-          this.updateTorch();
+          yield* this.updateTorch();
         }
       }
       const previous = this.progress;
@@ -623,6 +640,7 @@ export class Cave {
       phase: this.phase,
       partyWork: this.lastPartyWork,
       drawingWork: this.lastDrawingWork,
+      loadingWork: this.lastLoadingWork,
       roomWork: this.lastRoomWork,
       initialDrawingWork: this.initialDrawingWork,
       ...(this.presentationTransition

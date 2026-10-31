@@ -159,7 +159,7 @@ export function verifyFullPassages(resources, CaveClass = Cave) {
   let steps = 0,
     shown = 0;
   const advance = () => {
-    assert.ok(++steps < 3000, "unfinished C-drive passage sequence");
+    assert.ok(++steps < 6000, "unfinished C-drive passage sequence");
     assert.equal(c.outcome, null, "unexpected C-drive terminal path");
     c.advanceTick();
     observe();

@@ -76,10 +76,14 @@ test("cave drawing completes at its source budget before the following retrace",
   assert.deepEqual(cave.wait, { clock: "retrace", remaining: 5 });
   const beforeWipes = cave.retrace;
   const entry = { game, clock, cave };
-  for (let i = 0; i < 200 && cave.lastDrawingWork.kind !== "room"; i++) next(entry);
-  assert.equal(cave.lastDrawingWork.kind, "room");
+  for (let i = 0; i < 200 && cave.lastLoadingWork?.resource !== 0; i++) next(entry);
+  assert.equal(cave.lastLoadingWork?.resource, 0);
   assert.equal(cave.retrace - beforeWipes, 50);
   assert.equal(cave.presentations, 10);
+  assert.equal(cave.lastLoadingWork.milliseconds, 1149.859);
+  assert.equal(cave.inputs.length, 0);
+  for (let i = 0; i < 1000 && cave.lastDrawingWork.kind !== "room"; i++) next(entry);
+  assert.equal(cave.lastDrawingWork.kind, "room");
   completion = clock.elapsed;
   assert.equal(cave.lastRoomWork.copies, 2);
   assert.ok(cave.lastRoomWork.milliseconds > 10);
@@ -116,9 +120,9 @@ test("cave drawing completes at its source budget before the following retrace",
 test("cave source work is invariant to catch-up batches", () => {
   const fine = fresh(),
     coarse = fresh();
-  for (let at = 8; at < 2500; at += 8) fine.clock.advanceTo(at);
-  fine.clock.advanceTo(2500);
-  coarse.clock.advanceTo(2500);
+  for (let at = 8; at < 8000; at += 8) fine.clock.advanceTo(at);
+  fine.clock.advanceTo(8000);
+  coarse.clock.advanceTo(8000);
   assert.ok(fine.cave.snapshot().inputReads > 5);
   assert.deepEqual(state(coarse), state(fine));
   assert.deepEqual(coarse.cave.memory.bytes, fine.cave.memory.bytes);
@@ -154,10 +158,13 @@ test("capture sound follows both unpresented party work and the captor sprite", 
   for (let i = 0; i < 20000 && c.cave.phase !== "captured"; i++) next(c);
   assert.equal(c.cave.phase, "captured");
   assert.equal(c.cave.wait.clock, "graphics");
+  assert.equal(c.cave.lastLoadingWork.resource, 46);
+  assert.equal(c.cave.lastDrawingWork.kind, "load");
   assert.ok(
     !c.game.drainEffects().some((e) => e.type === "sound" && e.id === 0x53),
   );
-  for (const kind of ["party", "sprite"]) {
+  // Captor load,first overwritten party,load29,second party,sprite draw.
+  for (const kind of ["party", "load", "party", "sprite"]) {
     const until = c.game.nextSimulationWake();
     assert.ok(until > c.clock.elapsed);
     c.clock.advanceTo(until);

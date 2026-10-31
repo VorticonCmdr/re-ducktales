@@ -1,0 +1,41 @@
+{
+  "kind": "original-cave-load-boundaries",
+  "expectedCases": 2,
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "nativeParent": {
+    "path": "reference/cave-loader-native.json",
+    "bytes": 48993,
+    "sha256": "5bea106197d11e570481e629377b52d7407bbb1213a97a348a90db3d995b3a40"
+  },
+  "backgroundParent": {
+    "path": "reference/cave-background-load-native.json",
+    "bytes": 50462,
+    "sha256": "73b45806f637f020f7a42c4498386d2e1525899d20ba732b76fda34ef5d02315"
+  },
+  "entryParent": {
+    "path": "reference/cave-entry-transition-source.json",
+    "bytes": 1205,
+    "sha256": "faf0124af609a933a643d5f30f39fd08f81b0a93cebbb0dcb8c8cad0ccf5277d"
+  },
+  "source": {
+    "loader": {
+      "path": ".local/cave-load-boundary-source-01/loader.json",
+      "bytes": 25764,
+      "sha256": "d6b3120c8d4c0ca7388cb46e45f1245e2875ec5a0b443a1decdfac074aeba514"
+    },
+    "composition": {
+      "path": ".local/cave-load-boundary-source-01/composition.json",
+      "bytes": 19147,
+      "sha256": "8ea884203aa6287a62d6702e7bc9df237693f1ce32937fe3138779e79ffa4a69"
+    }
+  },
+  "sourceInstructions": 396,
+  "sourceBytes": 1075,
+  "initialPreparationTimed": false,
+  "completeLoaderTiming": false,
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_load_boundaries.py"
+}

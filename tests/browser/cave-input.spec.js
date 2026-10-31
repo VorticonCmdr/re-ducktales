@@ -9,9 +9,23 @@ import { openRecordedApplication } from "./helpers/clock.js";
 test("cave input polls pause actors while clocks run and room entry flushes unread keys", async ({
   page,
 }) => {
-  test.setTimeout(60000);
+  test.setTimeout(120000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
+  if (process.env.DUCKTALES_CAVE_LOAD_BROWSER_NEGATIVE) {
+    expect(process.env.DUCKTALES_CAVE_LOAD_BROWSER_NEGATIVE).toBe("skip-load-work");
+    await page.route("**/src/game/cave.js*", async (route) => {
+      const response = await route.fetch(), body = await response.text();
+      const start = body.indexOf("*loadWork(id)"), end = body.indexOf("*load(id,", start);
+      expect(start, "SETUP: cave load start").toBeGreaterThan(0);
+      expect(end, "SETUP: cave load end").toBeGreaterThan(start);
+      const section = body.slice(start, end);
+      const hook = /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until:[^}]+\};/g;
+      expect(section.match(hook)?.length, "SETUP: cave load deadline hook").toBe(1);
+      await route.fulfill({ response, body: body.slice(0, start) +
+        section.replace(hook, "/* isolated omitted loader work */") + body.slice(end) });
+    });
+  }
   if (process.env.DUCKTALES_CAVE_TIMING_BROWSER_NEGATIVE) {
     expect(process.env.DUCKTALES_CAVE_TIMING_BROWSER_NEGATIVE).toBe(
       "skip-work",
@@ -21,7 +35,7 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
         body = await response.text();
       const wait =
         /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until:[^}]+\};/g;
-      expect(body.match(wait)?.length, "SETUP: cave graphics hooks").toBe(5);
+      expect(body.match(wait)?.length, "SETUP: cave graphics hooks").toBe(6);
       await route.fulfill({
         response,
         body: body.replace(wait, "/* isolated browser graphics-work bypass */"),
@@ -61,8 +75,11 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   await openRecordedApplication(page, 1);
   await expect(page.locator("#actions")).toBeVisible();
   let observedRoomWork = 0, lastEntryWork = null;
+  const observedLoads = new Set();
   const c = page.locator("#game"),
     state = () => c.getAttribute("data-state").then(JSON.parse).then((s) => {
+      if (s?.scene === "cave" && s.cave.drawingWork?.kind === "load")
+        observedLoads.add(s.cave.loadingWork.resource);
       if (s?.scene === "cave" && s.cave.phase === "entering") {
         const kind = s.cave.drawingWork?.kind;
         if (kind === "room" && lastEntryWork !== kind) observedRoomWork++;
@@ -134,6 +151,7 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   // Both actual entry compositions must yield to the browser. Merely
   // retaining work counters after bypassing their waits is insufficient.
   expect(observedRoomWork, "Original cave composition boundary").toBe(2);
+  expect(observedLoads.has(0), "Original cave resource loading boundary").toBe(true);
   expect((await state()).pendingCaveSystemKeys).toBeUndefined();
   expect((await state()).systemOverlay).toBeNull();
   await expect(page.locator("#audio")).not.toBeChecked();
@@ -221,6 +239,7 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   expect(next.systemOverlay).toBeNull();
   expect(next.cave.room).toBe(18);
   expect(next.money).toBe(cash + 50);
+  expect(observedLoads.has(10), "Original cave passage loading boundary").toBe(true);
   // Keep both physical keys down across19a5. The next room must still await a
   // fresh make event; browser rendering/input adapters are exercised here.
   await page.clock.runFor(200);

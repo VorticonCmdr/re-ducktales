@@ -221,7 +221,7 @@ console.log(
       accepted: false,
       comparisonPassed: passed,
       environment:
-        "Native ENTRY memory;zero-phase IRQ/retrace;immediate ordinary mode0 makes at0ms and breaks after10 render intervals;no repeat before release;no original i8042/file-loading CPU timing reconstruction or browser",
+      "Native ENTRY memory;zero-phase IRQ/retrace;immediate ordinary mode0 makes at0ms and breaks after10 render intervals;no repeat before release;counted resident LZW/RAM conversion only;no original i8042,complete DOS/allocator/IRQ reconstruction or browser",
       firstInputMatches: true,
       consumedReads: inputs.length,
       events,

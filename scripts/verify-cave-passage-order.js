@@ -25,6 +25,7 @@ verifyFullPassages(resources);
 // negative must fail at the newly observed ordering boundary,not setup.
 const baseline = "85bc2f3",
   sha = (b) => createHash("sha256").update(b).digest("hex");
+const historicalModules = new Map();
 const paths = execFileSync(
   "git",
   ["ls-tree", "-r", "--name-only", baseline, "src"],
@@ -36,9 +37,27 @@ for (const p of paths) {
   // Renderer is not imported by this component comparison. Its new incoming-
   // screen wipe compositing is exercised separately by the browser scenario.
   if (["src/game/cave.js", "src/game/renderer.js"].includes(p)) continue;
+  let current = await readFile(p);
+  const historical = execFileSync("git", ["show", `${baseline}:${p}`]);
+  if (["src/game/cave-endings.js", "src/game/cave-transitions.js"].includes(p)) {
+    // Keep the old synchronous load API with the old class. Admit only the
+    // explicit generator delegation change in its current callers.
+    current = Buffer.from(current.toString().replaceAll("yield* this.load(", "this.load("));
+    assert.doesNotMatch(historical.toString(), /\bimport\b/);
+    historicalModules.set("./" + p.split("/").at(-1),
+      `data:text/javascript;base64,${historical.toString("base64")}`);
+  }
+  if (p === "src/assets.js") {
+    // The decoder is unchanged;the parser additionally retains an independent
+    // copy of the exact packed payload,verified for all47 EXP resources.
+    current = Buffer.from(current.toString()
+      .replace("    const packedData = Uint8Array.from(bytes.subarray(offset + 16, end));\n", "")
+      .replace("decompressLzw(packedData, expectedSize)", "decompressLzw(bytes.subarray(offset + 16, end), expectedSize)")
+      .replace("packedSize, packedData, type", "packedSize, type"));
+  }
   assert.equal(
-    sha(await readFile(p)),
-    sha(execFileSync("git", ["show", `${baseline}:${p}`])),
+    sha(current),
+    sha(historical),
     `Changed negative dependency ${p}`,
   );
 }
@@ -49,7 +68,7 @@ assert.doesNotMatch(original, /\bimport\s*\(/);
 const source = original.replace(
   /\bfrom\s+["'](\.[^"']+)["']/g,
   (all, specifier) =>
-    all.replace(specifier, pathToFileURL(resolve("src/game", specifier)).href),
+    all.replace(specifier, historicalModules.get(specifier) ?? pathToFileURL(resolve("src/game", specifier)).href),
 );
 const { Cave: HistoricalCave } = await import(
   `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`

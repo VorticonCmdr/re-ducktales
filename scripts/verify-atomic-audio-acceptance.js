@@ -9,9 +9,16 @@ import {
   acceptedRuntimeSource,
 } from "./lib/consumer-provenance.js";
 import { originalGame } from "../tests/helpers/original-game.js";
-const m = await json("reference/atomic-audio-acceptance.json");
+const m = await json(
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+    "reference/atomic-audio-acceptance.json",
+);
 assert.equal(m.kind, "atomic-audio-acceptance");
 assert.equal(m.nativeComparison, false);
+assert.ok(
+  Array.isArray(m.cases) && m.cases.length > 0,
+  "Zero atomic audio cases",
+);
 await originalGame();
 await checkArtifacts(m.artifacts);
 async function current(root) {

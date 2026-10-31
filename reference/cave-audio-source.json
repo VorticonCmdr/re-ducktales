@@ -1,0 +1,61 @@
+{
+  "kind": "cave-audio-static-source",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "program": "CAVE_CODE.EXE",
+  "analysisExecutable": ".local/analysis/CAVE_CODE.EXE",
+  "analysisSha256": "d76272106a395bb9c40ebac1f0bd8ce50964a6ad053eee7a4236054135d5dca4",
+  "overlay": {
+    "fileOffset": 108544,
+    "bytes": 12078,
+    "sha256": "b50b7f3163c516c298569ab3ec301f2d0e31f456a623bfafe294d6077344713d",
+    "headerBytes": 1024,
+    "imageOffset": 49520
+  },
+  "ranges": [
+    {
+      "name": "capture",
+      "address": "1c17:125f",
+      "offset": 4703,
+      "length": 13,
+      "sha256": "8f400843b2d78a5f98f803d6059c81eb040f9262a20e7af91493a74900228cd5",
+      "artifact": {
+        "path": ".local/cave-audio-source-01/capture.json",
+        "bytes": 258,
+        "sha256": "41a3b45f95f9b44d6637ada256058fc63e02c3b1544bbc09c9733fa2dcd1463c"
+      }
+    },
+    {
+      "name": "pit",
+      "address": "1c17:16a7",
+      "offset": 5799,
+      "length": 13,
+      "sha256": "47c7d80dac0f828d39de675c8fc01950f648621d2ccb33b541a21e6293cd8786",
+      "artifact": {
+        "path": ".local/cave-audio-source-01/pit.json",
+        "bytes": 259,
+        "sha256": "f84f727c5d979ba20d90cade0a06c713c4e13a283c5f5def1369e239c088c9ab"
+      }
+    },
+    {
+      "name": "treasure-return",
+      "address": "1c17:188c",
+      "offset": 6284,
+      "length": 25,
+      "sha256": "b778c37d80546a9d55c0453f3f6b17565b7c0bff63f6f40304081e16c5a17e8f",
+      "artifact": {
+        "path": ".local/cave-audio-source-01/treasure-return.json",
+        "bytes": 322,
+        "sha256": "fd255a6d4cbeb3cc13f5bfe472411524b54866b9a3f46fe7448d861c53d4495b"
+      }
+    }
+  ],
+  "claims": [
+    "Three terminal global-status loops have no input or timed driver wait.",
+    "Their common exit1894 guards request0 on03be."
+  ],
+  "scope": "Targeted static source for next cave audio milestone;current legacy setter/status masking and delay1 remain uncorrected. Not native audio latency or browser acceptance."
+}

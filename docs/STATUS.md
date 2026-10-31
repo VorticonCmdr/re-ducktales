@@ -18,6 +18,15 @@ HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 
 ## Latest completed behavior and current acceptance
 
+Current work:`ddb844a` restores unconditional atomic failure status queries,
+conditional resets,and completion independent of mute.194 units,120 boundaries,
+four actual-browser audio probes and unchanged muted23/492 with two input
+negatives pass. A fresh full winning replay is running;atomic audio acceptance
+is not yet complete. [Atomic sound boundary](atomic-audio.md).
+
+The completed broker acceptance below belongs to `3c3a481`;its saved runtime
+guard intentionally rejects the newer atomic code until new evidence is accepted.
+
 Broker confirmation now uses the original50-read wait,Pause/Quit-No continuation,
 conditional24,and unread final-wait keys reaching the office first reader.
 Runtime:`3c3a481`. [Broker behavior and reproduction](broker-input.md).

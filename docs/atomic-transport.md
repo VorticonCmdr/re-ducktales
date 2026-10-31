@@ -26,8 +26,10 @@ This is part of the supported build in [build.json](../reference/build.json).
   on Easy,Standard,Hard. No Launchpad variant or flight-race draws are consumed.
 - Success adds the original wrapped travel duration to the byte day,waits7 driver
   ticks,optionally plays sound54,then arrives. It does not wait for that sound.
-- Failure waits7 driver ticks,plays sound45 if enabled and waits for explicit sound
-  completion. Main0573..059e selects the **first** slot1..34 with neither collected
+- Failure waits7 driver ticks,plays sound45 if enabled and unconditionally queries
+  global device status,even while muted. The busy spin reads no input and has no
+  timed driver delay. [Current status boundary and evidence](atomic-audio.md).
+  Main0573..059e selects the **first** slot1..34 with neither collected
   flag. It may select the requested location or the current location. If no eligible
   slot remains,the requested destination is retained. There is no new random draw.
 - The failure report uses MAIN41,original text at147/159/166/174 and destination

@@ -3,14 +3,25 @@
 Updated 2026-10-31. **The whole game is incomplete. This is completion work,
 not only fine-tuning.** Hard campaigns remain deferred at the user's request.
 
-## Work in progress: atomic input polling
+## Latest completed behavior: earned atomic travel
 
-An earned-transmitter browser probe exposed P interrupting the atomic charge,
-where the original has no input reader. The runtime now queues charge/sound keys,
-flushes at report entry and reads report controls at the original seven-tick
-boundaries. Conditional tests cover Pause/Quit resumption and final-poll handling.
-The earlier source-pinned acceptances below remain historical until a fresh
-current-consumer comparison is recorded; no old expected outputs are regenerated.
+Source `e8320ce` passes an independent actual-browser route that earns the
+transmitter through Too-Pei cave7, travels from Office to Klondike, collects
+another $50, and Restarts:18 exact full-state/pixel checkpoints,486 DOM events,
+and one omitted-selection negative. P/Q/S cannot interrupt charge. Ten focused
+checks cover the original report-reader boundaries;194 existing unit tests and
+the production build pass. [Atomic input evidence and commands](atomic-input.md).
+
+A separate earned-report browser observation naturally reaches roll0/seed6900,
+redirects to a jungle, and confirms Pause, Quit-No, Fire and Restart. That report
+observation is not independent replay or native whole-game timing acceptance.
+The source proof checks413 original resident bytes.
+
+Fresh current-source replay of the full Easy campaign has passed its34 checkpoints
+both headlessly and in the browser, against unchanged historical inputs/expected
+outputs. The broader12-route current-consumer regression is still running;
+its completion has not yet been accepted. Previous per-family source-pinned
+records below remain historical until that comparison finishes.
 
 ## Working playable route
 
@@ -20,7 +31,7 @@ ending → Restart. HTML/CSS/vanilla JavaScript runs through npm/Vite. Original
 assets remain authoritative in ignored `game/`; production visitors select their
 own files. No push or deployment has been performed.
 
-The full Easy route passes independent headless and actual-browser replay:
+The historically accepted full Easy route passes independent headless and actual-browser replay:
 34 exact state/image checkpoints, 4,981 DOM events and 1,470 flight presentations.
 It banks $14,550 against $12,500 and retains all three mountain lives.
 `npm run verify:current-campaign` passed from clean `533f661`; the saved record
@@ -80,7 +91,7 @@ and optional RTC synchronization remain unverified. [Clock contract](bios-clock.
 
 - Broader current-runtime destination, difficulty and arbitrary-route finishability
   coverage remains incomplete. Next: the current transmitter/atomic-transport
-  campaign route, followed by remaining input/timing gaps. Hard remains deferred; its
+  campaign report independent replay, followed by remaining input/timing gaps. Hard remains deferred; its
   longer investigated route loses the second flight race, with the cause unresolved.
 - Native whole-game cadence remains unverified. Drawing-cost models cover selected
   primitives; resident/caller/device work, some drawing and exact video/cache phase
@@ -102,25 +113,27 @@ MZ/EXEPACK, x86 little-endian16 real mode, overlays, no extender. Actual game by
 and address correspondence are checked; analysis executables are never run.
 
 ```sh
-# Validate the saved combined campaign acceptance:
-node scripts/verify-cave-composition-campaign-receipt.js
-# Repeat its required combined checks:
-npm run verify:current-campaign
-# Repeat the complete positive campaign in an actual browser:
-node scripts/verify-runtime-campaign.js --fresh-browser
-# Repeat the new all-layout cave and Carlsbad acceptance, including negatives:
-node scripts/easy-cave-variants.js verify
-# Repeat current Easy alternate mountain routes, including negatives:
-node scripts/easy-mountain-variants.js verify
-# Validate the separately scoped exploratory/static Machu evidence:
-node scripts/verify-easy-mountain-investigation.js
-# Repeat current Easy alternate jungle routes, including negatives:
-node scripts/easy-jungle-variants.js verify
-# Repeat all six Easy Safari variants, including shutter negatives:
-node scripts/easy-safari-variants.js verify
+# Recheck current earned-transmitter acceptance and original input boundaries:
+node scripts/verify-atomic-earned-route.js
+node scripts/verify-atomic-input-source.js
+node --test scripts/atomic-input.test.js
+# Recheck the separately scoped earned-report browser observation:
+node scripts/verify-atomic-report-observation.js
+# Fresh current consumer of immutable earlier campaign/expedition recordings:
+# Requires clean committed source and a fresh ignored output directory.
+node scripts/verify-preserved-routes.js --output=.local/preserved-routes-FRESH
+# Repeat earned-transmitter acceptance with actual browser controls:
+node scripts/atomic-route.js verify --capture=.local/atomic-earned-browser-01 --output=.local/atomic-replay-FRESH
 # Local development:
 npm run dev
 ```
+
+The earlier `npm run verify:current-campaign`, `verify-runtime-campaign.js`,
+combined receipt verifier and per-family CLIs retain their original producer-source
+equality guards. They reject the atomic runtime change before comparing behavior;
+they are historical commands, not current acceptance. The new preserved-route
+consumer validates each producer archive separately and compares unchanged inputs
+and expected outputs against a separately archived current consumer.
 
 Missing/corrupt local artifacts or source history are explicit setup failures.
 Earlier milestones remain in [status history](status-history.md) and subsystem

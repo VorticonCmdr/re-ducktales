@@ -1,0 +1,184 @@
+{
+  "id": "atomic-earned-browser-route",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "captureRoot": ".local/atomic-earned-browser-01",
+  "consumerRoot": ".local/atomic-earned-browser-replay-01",
+  "sourceCommit": "e8320ce4ac1f6c49f5b11374c69469a09be1560b",
+  "toolRevision": "scripts/atomic-route.js at sourceCommit",
+  "evidence": "Independent current-port browser replay;not native whole-game parity",
+  "expectedCheckpointCount": 18,
+  "requiredEventCount": 486,
+  "negativeControls": 1,
+  "expectedOutcome": {
+    "scene": "cave",
+    "room": 18,
+    "money": 3450,
+    "day": 6,
+    "atomicAvailable": true,
+    "restart": true
+  },
+  "startingState": "Fresh startup,UTC,BIOS0,Easy,muted;earn transmitter by Too-Pei cave7 treasure;Office;atomic travel to Klondike",
+  "externalProviders": {
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "biosSeed": 0,
+    "audioEnabled": false
+  },
+  "inputStream": ".local/atomic-earned-browser-01/captured-events.json",
+  "expectedOutputs": ".local/atomic-earned-browser-01/campaign-checkpoints.json",
+  "comparisonRules": "All18 full Game snapshots and320x200RGBA hashes exact;all486 DOM events consumed;Restart;omit Left must fail Atomic state choice",
+  "exclusions": [],
+  "memoryInjections": [],
+  "fittedInputs": [],
+  "artifacts": {
+    "producer/arrival.png": {
+      "path": ".local/atomic-earned-browser-01/arrival.png",
+      "bytes": 20408,
+      "sha256": "02ab567761be80e3a9f061c8307a43dde38a9bf0fd94202045a1a264db901662"
+    },
+    "producer/award.png": {
+      "path": ".local/atomic-earned-browser-01/award.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "producer/campaign-checkpoints.json": {
+      "path": ".local/atomic-earned-browser-01/campaign-checkpoints.json",
+      "bytes": 120178,
+      "sha256": "07057b81257557451423f26264b9d9c429706429ce6d0be07445122dc4b8a182"
+    },
+    "producer/capture-status.json": {
+      "path": ".local/atomic-earned-browser-01/capture-status.json",
+      "bytes": 1365,
+      "sha256": "f891837c179de3d681ab2d3e5832547874c662fada9fd19d1f5bf017fcc5d72c"
+    },
+    "producer/captured-events.json": {
+      "path": ".local/atomic-earned-browser-01/captured-events.json",
+      "bytes": 57648,
+      "sha256": "0e01bb0b438a7b4c1de04b074dae97d9f4c6c6234d808ce9778911c2f6cf87df"
+    },
+    "producer/cave-entry.png": {
+      "path": ".local/atomic-earned-browser-01/cave-entry.png",
+      "bytes": 20353,
+      "sha256": "26e6220ccdc75dcf3cbb54501211a7b49e9764870cedba53384394e1c0794a4f"
+    },
+    "producer/charge-keys-ignored.png": {
+      "path": ".local/atomic-earned-browser-01/charge-keys-ignored.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "producer/charge.png": {
+      "path": ".local/atomic-earned-browser-01/charge.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "producer/choice.png": {
+      "path": ".local/atomic-earned-browser-01/choice.png",
+      "bytes": 13327,
+      "sha256": "746ca76525003081cfb1ab68f7676dc9515dc58cbb1ba9ddfc68127be8f75bb7"
+    },
+    "producer/environment.json": {
+      "path": ".local/atomic-earned-browser-01/environment.json",
+      "bytes": 261,
+      "sha256": "86d00182113da698f64304da95a9fe4fef6bb46e79015ff6dbff1a3dbb5442f2"
+    },
+    "producer/room-10.png": {
+      "path": ".local/atomic-earned-browser-01/room-10.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "producer/room-11.png": {
+      "path": ".local/atomic-earned-browser-01/room-11.png",
+      "bytes": 43895,
+      "sha256": "8ecaa27d88476f62ee205ed7fb8e1af65895b17047a9313f9ed545b9aa3bf0e8"
+    },
+    "producer/room-12.png": {
+      "path": ".local/atomic-earned-browser-01/room-12.png",
+      "bytes": 43141,
+      "sha256": "cc506d9ddff96a021a78e7ddaac84f6cd1a2ea76ae99fb1f7a35f813791bc33c"
+    },
+    "producer/room-13.png": {
+      "path": ".local/atomic-earned-browser-01/room-13.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "producer/room-14.png": {
+      "path": ".local/atomic-earned-browser-01/room-14.png",
+      "bytes": 42765,
+      "sha256": "0edc1a3aeb5129c8087057d105ae1ef784970722b91f5c5216ec69e9af01c747"
+    },
+    "producer/room-18.png": {
+      "path": ".local/atomic-earned-browser-01/room-18.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "producer/room-19.png": {
+      "path": ".local/atomic-earned-browser-01/room-19.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "producer/room-26.png": {
+      "path": ".local/atomic-earned-browser-01/room-26.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "producer/room-27.png": {
+      "path": ".local/atomic-earned-browser-01/room-27.png",
+      "bytes": 41329,
+      "sha256": "aa79312b8822265a12bc53328f88dccc1cb46349de63a5e00fc27eec979d3ca9"
+    },
+    "producer/second-action.png": {
+      "path": ".local/atomic-earned-browser-01/second-action.png",
+      "bytes": 43250,
+      "sha256": "cba504ca4aed1085f8b93a692c50d670fe744ab0c3a258587c86e4b136209e39"
+    },
+    "producer/second-entry.png": {
+      "path": ".local/atomic-earned-browser-01/second-entry.png",
+      "bytes": 20408,
+      "sha256": "02ab567761be80e3a9f061c8307a43dde38a9bf0fd94202045a1a264db901662"
+    },
+    "producer/source-revision.json": {
+      "path": ".local/atomic-earned-browser-01/source-revision.json",
+      "bytes": 97275,
+      "sha256": "4e4aa1d5aa1fe9fd359b2f45a41ab23e69de6cf91fce817eeb77b14d22e5c6c4"
+    },
+    "producer/sources.zip": {
+      "path": ".local/atomic-earned-browser-01/sources.zip",
+      "bytes": 2624717,
+      "sha256": "36a5b824f297867c63a4f6f1019dd98e57b3932a2ac7b8ae5bf6861695905081"
+    },
+    "producer/timeline.json": {
+      "path": ".local/atomic-earned-browser-01/timeline.json",
+      "bytes": 1574,
+      "sha256": "6f7b11fd601dd3425e867d7cb968a80eef3a053439cb2f0d0a0ca871bab8a758"
+    },
+    "producer/unlock.png": {
+      "path": ".local/atomic-earned-browser-01/unlock.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    },
+    "consumer/replay.log": {
+      "path": ".local/atomic-earned-browser-replay-01/replay.log",
+      "bytes": 128,
+      "sha256": "3ba621dfbca5193325a23b50f3043fd19a22f59aac62f8b315138cf07e4fe5bd"
+    },
+    "consumer/result.json": {
+      "path": ".local/atomic-earned-browser-replay-01/result.json",
+      "bytes": 153,
+      "sha256": "a91d58215daeebf62ba2a7906d964b5de09383cbeff78240c7adb34fc9c01793"
+    },
+    "consumer/source-revision.json": {
+      "path": ".local/atomic-earned-browser-replay-01/source-revision.json",
+      "bytes": 97275,
+      "sha256": "4e4aa1d5aa1fe9fd359b2f45a41ab23e69de6cf91fce817eeb77b14d22e5c6c4"
+    },
+    "consumer/sources.zip": {
+      "path": ".local/atomic-earned-browser-replay-01/sources.zip",
+      "bytes": 2624717,
+      "sha256": "36a5b824f297867c63a4f6f1019dd98e57b3932a2ac7b8ae5bf6861695905081"
+    }
+  },
+  "verify": "node scripts/verify-atomic-earned-route.js",
+  "repeat": "node scripts/atomic-route.js verify --capture=.local/atomic-earned-browser-01 --output=.local/atomic-replay-FRESH"
+}

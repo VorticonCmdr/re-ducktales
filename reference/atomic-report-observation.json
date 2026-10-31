@@ -1,0 +1,63 @@
+{
+  "id": "atomic-report-earned-observation",
+  "evidence": "observed-browser-only;not independent replay or native report timing",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "sourceCommit": "e8320ce",
+  "sourceArchiveScope": "Archive from separate earned-transmitter recording;same unchanged runtime and helper files,not a new archive taken at report-probe launch",
+  "startingState": "Fresh UTC BIOS0 muted Easy startup;Launchpad Too-Pei flight;cave7 route;6 additional initial input reads before first move;earn Bombastium;Office;Klondike atomic selection",
+  "externalProviders": {
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timeZone": "UTC",
+    "biosSeed": 0,
+    "audioEnabled": false
+  },
+  "inputRecipe": "probe.mjs argument6;P/Q/S during charge;P at report,next P after Pause lock;Q then N;Space to continue;Restart",
+  "expectedObservationCount": 21,
+  "observedOutcome": {
+    "roll": 0,
+    "seed": 6900,
+    "redirectedLocation": 1,
+    "scene": "jungle",
+    "day": 6,
+    "money": 3400,
+    "restart": true
+  },
+  "memoryInjections": [],
+  "fittedInputs": [],
+  "comparisonRules": "Observational assertions only,no pixel or closed-loop independent replay comparison",
+  "verify": "node scripts/verify-atomic-report-observation.js",
+  "artifacts": {
+    "probe.mjs": {
+      "path": ".local/atomic-report-observed-01/probe.mjs",
+      "bytes": 5426,
+      "sha256": "280460f1ee45643498ab688834f20785bfee482be19f2cd1f4db8536072cf5ad"
+    },
+    "probe.json": {
+      "path": ".local/atomic-report-observed-01/probe.json",
+      "bytes": 144073,
+      "sha256": "86909e39804504ad9b7a60991297eb25901c71e8b3619dabab19d7d3ef3684f8"
+    },
+    "probe.log": {
+      "path": ".local/atomic-report-observed-01/probe.log",
+      "bytes": 3364,
+      "sha256": "5e29b2ee06c773610499b3bf7baa90c7c3296e2699ea5b7a0fe3a6f8fb5a278d"
+    },
+    "idle-planning.json": {
+      "path": ".local/atomic-report-observed-01/idle-planning.json",
+      "bytes": 798,
+      "sha256": "74cdca588d7041c81e119a98f19d6cc089ec5088edf97b58b349f6867becc6aa"
+    },
+    "sources.zip": {
+      "path": ".local/atomic-report-observed-01/sources.zip",
+      "bytes": 2624717,
+      "sha256": "36a5b824f297867c63a4f6f1019dd98e57b3932a2ac7b8ae5bf6861695905081"
+    },
+    "source-revision.json": {
+      "path": ".local/atomic-report-observed-01/source-revision.json",
+      "bytes": 97275,
+      "sha256": "4e4aa1d5aa1fe9fd359b2f45a41ab23e69de6cf91fce817eeb77b14d22e5c6c4"
+    }
+  }
+}

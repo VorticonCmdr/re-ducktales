@@ -14,8 +14,10 @@ carried cash persists. Jungle, mountain and photography gameplay is implemented;
 see the current route and layout coverage in [STATUS](STATUS.md).
 
 Trying a location whose treasure belongs to Scrooge or Glomgold shows the
-original notice and returns to the origin's map. No journey occurs and no
-cash/day/location/RNG changes occur. The money-bin coin latch clears even for
+original notice and returns to the origin's map. No journey occurs and the
+notice itself changes no cash/day/location/RNG. The normal root-action rival and
+market cleanup still runs afterward; it can advance RNG and rival state. The
+money-bin coin latch clears even for
 these attempts. Player ownership takes priority if both flags are present.
 These checks happen before travel cost/flight, including from another origin.
 

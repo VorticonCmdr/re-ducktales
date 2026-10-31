@@ -147,7 +147,6 @@ async function replay(c, omitPause = false) {
     assert.equal(final.scene, "map");
     assert.equal(final.campaign.day, entered.campaign.day);
     assert.equal(final.money, entered.money);
-    assert.equal(final.campaign.rival.money, entered.campaign.rival.money);
     assert.equal(final.campaign.location, entered.campaign.location);
     assert.equal(report.reason, c.key);
     assert.equal(await page.locator("#audio").isChecked(), false);

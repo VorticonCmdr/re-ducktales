@@ -1,0 +1,35 @@
+{
+  "kind": "broker-input-static-source",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "program": "INVESTMENT_CODE.EXE",
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "overlay": {
+    "fileOffset": 159232,
+    "bytes": 5986,
+    "sha256": "9c4a19c262e86ea844109e0558e2d214ea6f0b4e1f9270139d8349c49bc9999f",
+    "headerBytes": 512,
+    "imageOffset": 49520
+  },
+  "range": {
+    "address": "1c17:02b0",
+    "offset": 688,
+    "length": 42,
+    "sha256": "9d6a8c81b62abe652d92af1314fb0cffbbf35b1c0ef709dc95e654f09b9ae6a5",
+    "relocations": [703]
+  },
+  "artifact": {
+    "path": ".local/broker-input-source-01/caller.json",
+    "bytes": 417,
+    "sha256": "5c55adbc0156a3210e9c667ca328d8d25fb5ac85fca81934dfbdcb438bf410c1"
+  },
+  "claims": [
+    "Overlay10 broker confirmation invokes shared09f5(50),then conditionally requests enabled24 on Fire.",
+    "The surrounding1fe0/1fdc pointers are graphics operations,not sound stop calls."
+  ],
+  "scope": "Targeted static source for next broker reader milestone;not browser or native timing acceptance."
+}

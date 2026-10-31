@@ -110,7 +110,7 @@ const result = await withCarlsbadBrowser(
     if (device === "speaker") assert.equal(off[1].accepted, false);
     const status =
       mode === "before"
-        ? acks.find((e) => e.query)
+        ? acks.find((e) => e.query && e.token?.startsWith("visit:"))
         : acks.find((e) => e.argument === 0x6e);
     assert.ok(
       status && status.token?.startsWith("visit:"),
@@ -118,7 +118,10 @@ const result = await withCarlsbadBrowser(
     );
     if (mode === "before") {
       assert.equal(status.argument, null);
-      assert.equal(acks.filter((e) => e.query).length, 1);
+      assert.equal(
+        acks.filter((e) => e.query && e.token?.startsWith("visit:")).length,
+        1,
+      );
     } else assert.equal(status.busy, true);
     if (status.busy) {
       assert.ok(

@@ -1,0 +1,101 @@
+{
+  "id": "easy-alternate-mountains",
+  "accepted": true,
+  "cases": 2,
+  "captureRoot": ".local/easy-mountain-variants-02",
+  "sourceCommit": "72c5d5d4d735a07138ce956fe5ca45c711ff01e0",
+  "artifacts": {
+    "source-revision.json": {
+      "path": ".local/easy-mountain-variants-02/source-revision.json",
+      "bytes": 95076,
+      "sha256": "8d3528ba455858d964630e7aa4e594bded0e512d8bac07ee358aa526647589ad"
+    },
+    "sources.zip": {
+      "path": ".local/easy-mountain-variants-02/sources.zip",
+      "bytes": 2579254,
+      "sha256": "12bca554d7e564fa4499485bbb587249329877962cd32daaf6d8b1c1779d1ee8"
+    },
+    "cases.json": {
+      "path": ".local/easy-mountain-variants-02/cases.json",
+      "bytes": 857,
+      "sha256": "85254241b61385c1771f0fc88415b82aefffb1090cc4d3b0a4754c48683caeb9"
+    },
+    "capture-status.json": {
+      "path": ".local/easy-mountain-variants-02/capture-status.json",
+      "bytes": 192,
+      "sha256": "51d95861d5772b38cec923e98382d81681843e2598b7a776a9aaf4d9c5696729"
+    },
+    "thunderclap/captured-events.json": {
+      "path": ".local/easy-mountain-variants-02/thunderclap/captured-events.json",
+      "bytes": 51937,
+      "sha256": "4e5390ec665935b841515f66c925cec74eaa6f1dfaf628e20aec3bb198e7cfc2"
+    },
+    "thunderclap/campaign-checkpoints.json": {
+      "path": ".local/easy-mountain-variants-02/thunderclap/campaign-checkpoints.json",
+      "bytes": 278151,
+      "sha256": "e0431a512cd27158c2c50806ab1d1741be5b642ecd6e17ec8cfd82d2c11b08c0"
+    },
+    "thunderclap/environment.json": {
+      "path": ".local/easy-mountain-variants-02/thunderclap/environment.json",
+      "bytes": 199,
+      "sha256": "30ca9bb676a51d90c7a1be02797c7f3cdedf3330295f57f22b69c353fdfcd9b1"
+    },
+    "thunderclap/timeline.json": {
+      "path": ".local/easy-mountain-variants-02/thunderclap/timeline.json",
+      "bytes": 3871,
+      "sha256": "6fad26615eccb52e6663fc5c39f041b78684c920850f7ee06015d37a7a5e3f2f"
+    },
+    "machu/captured-events.json": {
+      "path": ".local/easy-mountain-variants-02/machu/captured-events.json",
+      "bytes": 64005,
+      "sha256": "99f2f43334438f3f27226dc8759620a11c95aa9aed6e8e3eae09d776b3dd5c41"
+    },
+    "machu/campaign-checkpoints.json": {
+      "path": ".local/easy-mountain-variants-02/machu/campaign-checkpoints.json",
+      "bytes": 390458,
+      "sha256": "6efefe0782a180b76db722fc09a77b80432a19e05498b2b2c0280ef5df26efa0"
+    },
+    "machu/environment.json": {
+      "path": ".local/easy-mountain-variants-02/machu/environment.json",
+      "bytes": 199,
+      "sha256": "30ca9bb676a51d90c7a1be02797c7f3cdedf3330295f57f22b69c353fdfcd9b1"
+    },
+    "machu/timeline.json": {
+      "path": ".local/easy-mountain-variants-02/machu/timeline.json",
+      "bytes": 5370,
+      "sha256": "b52d87d0993abc1f59a72113832f0ccc2f352abbc5dfde52b2461b3c220ebea0"
+    },
+    "replay": {
+      "path": ".local/easy-mountain-variants-replay-02/result.json",
+      "bytes": 3238,
+      "sha256": "c64e6c962c47022fbbfe33c6dcc62dad2b7b551a2de6217b1eac18f8dd034f22"
+    }
+  },
+  "checkpoints": [
+    {
+      "key": "thunderclap",
+      "count": 46,
+      "events": 440,
+      "inputs": 494
+    },
+    {
+      "key": "machu",
+      "count": 64,
+      "events": 542,
+      "inputs": 710
+    }
+  ],
+  "environment": {
+    "difficulty": 0,
+    "biosSeed": 0,
+    "timezone": "UTC",
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "scope": "Independent port browser replay of Easy variants1/2;not native whole-route or Hard acceptance",
+  "verify": "node scripts/easy-mountain-variants.js verify"
+}

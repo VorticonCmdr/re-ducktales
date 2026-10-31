@@ -12,6 +12,13 @@ The inputs originate in the versioned `*-expedition-inputs.json` recipes; expect
 snapshots never choose replay controls. A physical-key flight policy explores the
 capture's route; strict replay uses only the independently recorded DOM stream.
 
+Accepted from clean source `72c5d5d`:46/64 full state/pixel checkpoints and440/542
+DOM events, both missing-movement controls and both Restarts. The producer is
+`.local/easy-mountain-variants-02`; independent consumers are in
+`.local/easy-mountain-variants-replay-02`. The first capture's checker incorrectly
+required DOM events to outnumber game reads; that run remains unaccepted. Held
+keys can span many reads. The corrected contract checks both counts separately.
+
 ## Why Easy Machu needs a different player route
 
 The historical Hard controls work through row13/input400 on Easy but are hit by a
@@ -22,6 +29,11 @@ bytes and disassembly: signed-extend difficulty, subtract2, negate, shift left3,
 add8, store the word counter. This supports `((2-difficulty)<<3)+8` in
 `src/game/mountain-hazards.js`. Ghidra's full helper decompilation has overlapping
 flow and is unreliable; the bounded original instruction sequence is the evidence.
+
+The [preserved investigation](../reference/easy-mountain-investigation.json)
+can be checked with `node scripts/verify-easy-mountain-investigation.js`.
+It validates ten local artifacts and the bounded27 original/Ghidra bytes without
+promoting exploratory observations to native or independent-browser acceptance.
 
 A conditional component search used the observed browser-entry seed44031 with
 fresh zero-phase memory to plan the neutral wait. That exploratory dependency is

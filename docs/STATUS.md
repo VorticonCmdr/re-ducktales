@@ -23,6 +23,23 @@ rechecked successfully after adding the separate cave coverage harness.
 
 ## Latest verified coverage
 
+Clean source `72c5d5d`: current Easy Thunderclap and Machu Picchu routes pass
+independent actual-browser replay through treasure, map return and Restart.
+Together they check110 exact full-state/pixel checkpoints and982 DOM events;
+494/710 mountain input reads finish with all three lives and $2,100/$2,700.
+Both first-movement omission controls fail at input3. The registered record pins
+13 artifacts, including complete source/capture inventories and replay result.
+No gameplay source changed. [Scenario and commands](easy-mountain-variants.md),
+[manifest](../reference/easy-mountain-variants.json).
+
+Machu's old Hard input route fails on Easy because the original projectile
+counter differs (24 versus8). Four neutral player inputs before the crossing
+produce the accepted Easy route. A bounded27-byte original/Ghidra comparison and
+explicitly conditional component diagnosis are preserved separately;
+[exploratory evidence](../reference/easy-mountain-investigation.json).
+The existing full Easy campaign covers mountain variant0; these routes add1/2.
+This does not prove arbitrary paths or native whole-level timing.
+
 Clean source `d7257c1`: all eight Easy cave layouts reach treasure in independent
 closed-loop component replay, with exact state/pixel checks at all 2,696 rendered
 presentations. A fresh Carlsbad browser replay matches 12 full state/pixel
@@ -59,8 +76,8 @@ and optional RTC synchronization remain unverified. [Clock contract](bios-clock.
 ## Remaining work and next milestone
 
 - Broader current-runtime destination, difficulty and arbitrary-route finishability
-  coverage remains incomplete. Next: investigate the remaining expedition variants
-  and fix the first observed unsupported behavior. Hard remains deferred; its
+  coverage remains incomplete. Next: verify current Easy alternate jungle routes
+  and investigate the first divergence or unsupported behavior. Hard remains deferred; its
   longer investigated route loses the second flight race, with the cause unresolved.
 - Native whole-game cadence remains unverified. Drawing-cost models cover selected
   primitives; resident/caller/device work, some drawing and exact video/cache phase
@@ -68,7 +85,9 @@ and optional RTC synchronization remain unverified. [Clock contract](bios-clock.
   [cave](cave-composition-work.md) and [Safari](photography.md) evidence.
 - Cross-scene queued keyboard delivery, remaining modifier/BIOS behavior and
   mouse/joystick parity need wider verification.
-- Original save/load/high-score behavior and formats have not been established.
+- A [bounded original-interface audit](system-controls.md#saveload-and-high-score-audit)
+  found no save/load/high-score interface in this build. These are not confirmed
+  missing original features; no persistence feature should be invented.
 - Full original-game parity is not established by the accepted routes.
 
 ## Supported build and verification
@@ -88,6 +107,10 @@ npm run verify:current-campaign
 node scripts/verify-runtime-campaign.js --fresh-browser
 # Repeat the new all-layout cave and Carlsbad acceptance, including negatives:
 node scripts/easy-cave-variants.js verify
+# Repeat current Easy alternate mountain routes, including negatives:
+node scripts/easy-mountain-variants.js verify
+# Validate the separately scoped exploratory/static Machu evidence:
+node scripts/verify-easy-mountain-investigation.js
 # Local development:
 npm run dev
 ```

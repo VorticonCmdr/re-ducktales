@@ -1,0 +1,120 @@
+{
+  "id": "easy-machu-projectile-route-investigation",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "runtimeSourceCommit": "954570d470f51fb060680fa1485a779907720e60",
+  "captureTools": {
+    "browser": "Playwright1.64.1,actual DOM controls,fixed BIOS0,UTC,clock origin1/display8ms",
+    "static": "Ghidra MCP7.0.0 read_memory;ndisasm16-bit original bytes",
+    "ndisasm": "NDISASM version 3.02 compiled on Jun 29 2026",
+    "playwright": "1.64.1"
+  },
+  "staticEvidence": {
+    "program": "MOUNTAIN_CODE.EXE",
+    "ghidraAddress": "1da0:0097",
+    "overlay": 5,
+    "bodyOffset": 6439,
+    "originalFileOffset": 102695,
+    "bytes": 27,
+    "sha256": "b629321208f999cfbfe4a0cb0bba7dcd21d10c4e8d2938ed754c5bd66d7986b6",
+    "rule": "signed difficulty byte extended to16,((2-difficulty)<<3)+8 stored as word;Easy24,Medium16,Hard8",
+    "strength": "statically inferred,original bytes matched;no fresh native runtime scenario"
+  },
+  "observations": [
+    {
+      "case": "Easy Thunderclap actual browser",
+      "mountainInputs": 494,
+      "lives": 3,
+      "cash": 2100,
+      "restart": true,
+      "strength": "observed exploration;independent acceptance recorded separately"
+    },
+    {
+      "case": "Easy Machu old Hard controls actual browser",
+      "treasure": false,
+      "strength": "observed failure;not evidence of a mechanic defect",
+      "authoredMountainInputs": 706,
+      "finalMountainReadCount": 956,
+      "neutralWaitAfterSequence": true
+    },
+    {
+      "case": "Machu fresh component diagnosis",
+      "initialSeed": 44031,
+      "difficultyComparison": [
+        0,
+        2
+      ],
+      "firstActionDifference": 429,
+      "strength": "conditional fresh-memory diagnostic;observed browser seed is an injected starting contract,not independent campaign input"
+    },
+    {
+      "case": "Easy Machu revised actual browser",
+      "mountainInputs": 710,
+      "lives": 3,
+      "cash": 2700,
+      "restart": true,
+      "strength": "observed exploration;independent acceptance recorded separately"
+    }
+  ],
+  "playerRouteChange": {
+    "afterInput": 402,
+    "neutralInputs": 4,
+    "otherLegacyControlsUnchanged": true
+  },
+  "partialRestore": false,
+  "runtimeMemoryWrites": false,
+  "artifacts": {
+    "ducktales-easy-machu-exploration-03.json": {
+      "path": ".local/easy-mountain-investigation-01/ducktales-easy-machu-exploration-03.json",
+      "bytes": 35711,
+      "sha256": "2505e839ae41937b85082932c6bbe72f3378dd24bc548b4e437dbec5e1619e6a"
+    },
+    "ducktales-easy-machu-exploration.json": {
+      "path": ".local/easy-mountain-investigation-01/ducktales-easy-machu-exploration.json",
+      "bytes": 31647,
+      "sha256": "568462dde549d115a4734e50cac9847274822eefb6893412e52885887f80a119"
+    },
+    "ducktales-easy-mountain-explore-03.mjs": {
+      "path": ".local/easy-mountain-investigation-01/ducktales-easy-mountain-explore-03.mjs",
+      "bytes": 3620,
+      "sha256": "74215b44461d77661ae31954e9d2de44e846feceb35dfe32aa11322e0af56619"
+    },
+    "ducktales-easy-mountain-explore.mjs": {
+      "path": ".local/easy-mountain-investigation-01/ducktales-easy-mountain-explore.mjs",
+      "bytes": 3570,
+      "sha256": "5a9a1273b2aba5ca7d208018950d3228326854fa40325f151fb02566a474913e"
+    },
+    "ducktales-easy-thunderclap-exploration.json": {
+      "path": ".local/easy-mountain-investigation-01/ducktales-easy-thunderclap-exploration.json",
+      "bytes": 29538,
+      "sha256": "9ea5a2c94c7750e7e7b17e1e6f0c12b2680ee6f69bb6772e4d4f5403be78f00d"
+    },
+    "ducktales-machu-component-probe.json": {
+      "path": ".local/easy-mountain-investigation-01/ducktales-machu-component-probe.json",
+      "bytes": 250120,
+      "sha256": "a84be48375f8d81660834f1abae12d92321887e3c4266e2f87fde3ab6f61c524"
+    },
+    "ducktales-machu-component-probe.mjs": {
+      "path": ".local/easy-mountain-investigation-01/ducktales-machu-component-probe.mjs",
+      "bytes": 1538,
+      "sha256": "82ed30638baa50dce3d7f3efae1ceadc771e240e7a570ef4e4960fa842f3dc6a"
+    },
+    "ducktales-machu-delay-explore.mjs": {
+      "path": ".local/easy-mountain-investigation-01/ducktales-machu-delay-explore.mjs",
+      "bytes": 1527,
+      "sha256": "c4c23da3500a2841d24c25a4246ad5bcde422337351afda064719d9ab7d218aa"
+    },
+    "ducktales-machu-easy-plan.json": {
+      "path": ".local/easy-mountain-investigation-01/ducktales-machu-easy-plan.json",
+      "bytes": 6587,
+      "sha256": "49178c40b52b5324af5c7b2679bba000499b9b198885369a2ed5dc97155aedd0"
+    },
+    "ghidra-counter-span.json": {
+      "path": ".local/easy-mountain-investigation-01/ghidra-counter-span.json",
+      "bytes": 296,
+      "sha256": "93788c05f4ddcaace9506fca03da9116ada0058317b9f18d6de0b38719e62527"
+    }
+  },
+  "scope": "Reusable exploratory evidence and bounded static counter check;not a native whole-route replay or strict campaign acceptance",
+  "verify": "node scripts/verify-easy-mountain-investigation.js"
+}

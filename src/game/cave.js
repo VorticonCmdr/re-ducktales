@@ -577,14 +577,18 @@ export class Cave {
       yield* this.present(commands);
       if (code & 192 && dir && this.cell & available[dir]) {
         this.sound(0x24);
-        if (!m.b(0x5d2b)) {
-          m.b(0x54aa, 0);
-          yield* caveTransition.call(this, "exit", dir);
-        }
+        // Original right branch0f96/0f9a commits the new room/entry flag
+        // before loading or animating the exit (call1074). Other directions
+        // have the same ordering. The torch advances on the next loop entry.
         m.i(0x4d32, this.room + { up: -8, right: 1, down: 8, left: -1 }[dir]);
         this.enteredFrom = dir;
         m.i(0x8eb2, 1);
         this.progress = u16(this.progress + 1);
+        this.phase = "entering";
+        if (!m.b(0x5d2b)) {
+          m.b(0x54aa, 0);
+          yield* caveTransition.call(this, "exit", dir);
+        }
       }
     }
   }

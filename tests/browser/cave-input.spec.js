@@ -189,7 +189,7 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
         original.data.subarray((y * 320 + 104) * 4, (y * 320 + 208) * 4),
       ),
     ).toBe(0);
-  await c.screenshot({ path: ".local/browser-results/cave-pause.png" });
+  await c.screenshot({ path: test.info().outputPath("cave-pause.png") });
   await press("p");
   await until((s) => s.systemOverlay === null);
   await press("q");

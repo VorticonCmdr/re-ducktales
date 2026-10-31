@@ -135,8 +135,8 @@ function check(actual, scenario) {
     "terminal presentation/RNG-call count",
   );
 }
-function verifyFullPassages(resources) {
-  const c = new Cave({
+export function verifyFullPassages(resources, CaveClass = Cave) {
+  const c = new CaveClass({
     ...resources,
     currentDrive: 2,
     variant: 0,
@@ -170,9 +170,31 @@ function verifyFullPassages(resources) {
     ["up", 17],
   ]) {
     const room = c.room;
+    const torch = c.snapshot().torch;
+    const moneyBefore = c.snapshot().money;
     c.setControls({ fire: true, direction });
     while (c.room === room) advance();
     assert.equal(c.room, target, "wrong C-drive room transition");
+    assert.equal(
+      c.memory.i(0x8eb2),
+      1,
+      "passage entry flag must precede exit animation",
+    );
+    assert.equal(
+      c.snapshot().torch,
+      torch,
+      "torch advanced before exit animation finished",
+    );
+    assert.equal(
+      c.snapshot().money,
+      moneyBefore,
+      "room reward preceded entry animation",
+    );
+    assert.equal(
+      c.phase,
+      "entering",
+      "passage must remain busy after room assignment",
+    );
     c.setControls({ fire: false, direction: null });
     while (c.phase !== "exploring") advance();
   }
@@ -332,7 +354,13 @@ export async function verifyCaveRoutes(resources) {
       g.advanceTick();
       if (g.scene === "rival-report") {
         assert.deepEqual(g.pendingCampaignAction, { type: "map" });
-        for (let i = 0; i < 280; i++) g.advanceTick();
+        // The real report now has stripe/retrace work before its280 driver
+        // polls. Both external clocks must finish;this is a conditional
+        // application check,not native elapsed-time or audio acceptance.
+        for (let i = 0; i < 2000 && g.scene === "rival-report"; i++) {
+          g.advanceTick();
+          g.advanceRetrace();
+        }
         assert.equal(g.rivalReport, null, "unfinished rival report");
       }
       assert.equal(g.scene, "map");
@@ -355,7 +383,8 @@ export async function verifyCaveRoutes(resources) {
   for (let i = 0; i < 1000; i++) {
     c.advanceTick();
     c.advanceRetrace();
-    for (const e of c.drainEvents()) if (e.type === "audio-query") token = e.token;
+    for (const e of c.drainEvents())
+      if (e.type === "audio-query") token = e.token;
   }
   assert.equal(c.phase, "captured");
   assert.equal(c.outcome, null);

@@ -1,10 +1,12 @@
 # Current port status
 
-Updated2026-10-31. **The whole game is incomplete.** The current Standard winning
-campaign and report/audio gates pass. Original movement timing,broader route/input
+Updated2026-10-31. **The whole game is incomplete.** The new cave passage-order
+fix passes focused native/source/component/browser checks,218 units and build.
+The last full Standard winning/report/audio acceptance predates this runtime
+change;fresh full-campaign acceptance is pending. Cave timing,broader route/input
 fidelity and deferred Hard campaigns remain open. Nothing is pushed or deployed.
 
-## Working route and current acceptance
+## Working route and last full-campaign acceptance
 
 Startup/security/office → Too-Pei cave → naturally lost Safari race/forced claim
 → Kenya photography → Great Outback jungle → Lost World mountain → Atlantis,
@@ -20,9 +22,10 @@ six retained completed pages and original source composition provide independent
 targets. Jungle and both mountain climbs finish with3 lives. No state restore,
 RNG/money/difficulty patch or image exclusion is used.
 
-The combined winning gate also passes original ending/credits comparisons,
-source proofs,218 unit cases and production build. Runtime source is unchanged
-by the later analysis/receipt commits. [Acceptance](../reference/current-winning-acceptance.json),
+The last combined winning gate passed original ending/credits comparisons,
+source proofs,218 unit cases and production build. Cave runtime has since changed;
+the old capture cannot admit current intermediate states without a fresh run.
+[Last acceptance](../reference/current-winning-acceptance.json),
 [scenario](../reference/safari-hud-winning-route.json),[history](current-winning-campaign.md).
 
 Safari now charges its original HUD line/number work and preserves the signed
@@ -39,7 +42,7 @@ bank timing and hidden-page aliasing remain unverified. [Bank](bank-sparkle-copy
 
 ## Reports and sound
 
-Current player/rival notices each pass27 checkpoints/543 inputs;forced claims
+Last accepted player/rival notices each pass27 checkpoints/543 inputs;forced claims
 pass31/1795. All three compare58 intermediate state/pixel/time observations and
 45 source stripe groups,with missing-Pause negatives and Restart. Their combined
 gate passes85 checkpoints/2881 inputs/174 intermediate frames/135 stripe groups,
@@ -108,12 +111,13 @@ changes fit native callback brackets with the declared phase/provider;five
 negatives pass. This is conditional walking evidence,not whole-level/browser
 timing acceptance. [Scope](mountain-phase.md).
 The new natural cave reference passes480 uninterrupted samples and all four
-Right+Fire/release events. Its strict port probe currently fails:room/torch state
-updates have the wrong order,and the port awards50 at3.67s while the original
-still has0 at6.83s. A302-byte original instruction proof confirms room assignment
-belongs before exit animation. No slowdown/fix is accepted yet.
+Right+Fire/release events. Its strict port probe currently fails on stage/timing
+differences:the port awards50 at3.67s while the original still has0 at6.83s.
+The source-confirmed room/entry ordering is now corrected and passes all four
+directions/revisit plus an old-class negative and the actual browser cave case.
+[Ordering fix](cave-passage-order.md). No timing correction is accepted yet.
 [Evidence and failing probe](cave-native-cadence.md).
-Next:restore cave passage state ordering and measure transition loading work.
+Next:refresh full-campaign acceptance and measure cave transition loading work.
 Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability
@@ -135,8 +139,11 @@ select their own files.
 ## Verification
 
 ```sh
-node scripts/verify-current-winning-acceptance.js
-node scripts/verify-report-presentation-acceptance.js
+node scripts/verify-cave-passage-order.js
+node scripts/verify-cave.js
+# Historical full-route/report receipts need a fresh runtime admission:
+# node scripts/verify-current-winning-acceptance.js
+# node scripts/verify-report-presentation-acceptance.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_safari_cadence.py
 node scripts/compare-safari-native-cadence.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_jungle_cadence.py

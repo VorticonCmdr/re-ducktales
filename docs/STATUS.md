@@ -5,6 +5,8 @@ both original wipe call sites and the second-page striped reveal,and restores
 the cached room in the normal input loop without extra composition. Focused browser
 and timing checks pass; runtime loading now charges counted resident decode/conversion work.
 Initial preparation and remaining loader/system work are still omitted.
+The source-pinned counted-loading gate passes nine checks,including a loading-only
+browser negative. [Receipt](../reference/cave-counted-loading-admission.json).
 The last full Standard campaign/replay passed before this transition change.
 Its strict combined gate now correctly rejects the changed runtime; a fresh
 whole-campaign admission remains required. Hard campaigns remain deferred.

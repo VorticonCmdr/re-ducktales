@@ -62,3 +62,11 @@ node scripts/probe-cave-native-cadence.js
 This admission does not replace a fresh whole-campaign replay. Next:restore
 initial preparation load boundaries,then account for the next demonstrated
 loader/system omission and compare the first remaining divergence.
+
+
+The source-pinned combined admission01 now passes all nine required checks at
+commit dd518f92d5787dcc9d20a2a1e8f4b2e718d92f38. Its [receipt](../reference/cave-counted-loading-admission.json)
+pins the source archive,complete runtime inventory,logs and acceptance status.
+The final combined browser positive and loading-only negative both pass their
+declared outcomes. All required unit cases execute with zero skips. Original
+whole-cave timing and the final native animation checkpoint remain failures.

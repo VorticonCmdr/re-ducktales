@@ -575,4 +575,6 @@ export {
   clock,
   lastTime as replayTime,
   nextFrame as replayFrameAt,
+  advance as replayAdvance,
+  event as replayEvent,
 };

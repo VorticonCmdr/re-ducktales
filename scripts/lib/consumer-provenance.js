@@ -57,3 +57,20 @@ export async function verifyProtected(files) {
   for (const [p, h] of Object.entries(files))
     assert.equal(sha(await readFile(p)), h, "Historical evidence changed " + p);
 }
+
+// A saved acceptance proves behavior of the archived consumer and its game
+// runtime. Later test/documentation edits do not change that runtime. Fresh runs
+// still guard every loaded script/helper with checkSource for their own archive.
+export function acceptedRuntimeSource(path) {
+  return (
+    path.startsWith("src/") ||
+    [
+      "package.json",
+      "package-lock.json",
+      "index.html",
+      "vite.config.js",
+      "vite.campaign.config.js",
+      "reference/build.json",
+    ].includes(path)
+  );
+}

@@ -8,7 +8,10 @@ import {
   checkSource,
   sha,
 } from "./lib/local-scenario-source.js";
-import { verifyProtected } from "./lib/consumer-provenance.js";
+import {
+  verifyProtected,
+  acceptedRuntimeSource,
+} from "./lib/consumer-provenance.js";
 import { originalGame } from "../tests/helpers/original-game.js";
 const manifestPath =
   process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
@@ -17,21 +20,7 @@ const m = await json(manifestPath);
 assert.equal(sha(await readFile(m.buildManifest)), m.buildManifestSha256);
 await originalGame();
 await checkArtifacts(m.artifacts);
-const source = await checkSource(
-  m.consumerRoot,
-  (p) =>
-    p.startsWith("src/") ||
-    p.startsWith("scripts/") ||
-    p.startsWith("tests/") ||
-    [
-      "package.json",
-      "package-lock.json",
-      "index.html",
-      "vite.config.js",
-      "vite.campaign.config.js",
-      "reference/build.json",
-    ].includes(p),
-);
+const source = await checkSource(m.consumerRoot, acceptedRuntimeSource);
 assert.equal(source.commit, m.sourceCommit);
 const r = await json(m.consumerRoot + "/result.json");
 assert.equal(r.completed, true);

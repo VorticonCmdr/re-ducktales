@@ -209,9 +209,14 @@
       "sha256": "614d8b22a5e5ca036bed405bafce559e7c8ed09d9a8c42e720a6148effb0d87a"
     },
     "receipt-tool/scripts/verify-atomic-input-regression.js": {
-      "path": "scripts/verify-atomic-input-regression.js",
+      "path": ".local/atomic-input-receipt-negatives-02/checker-source.js",
       "bytes": 3051,
       "sha256": "cc8a8116b0db3ee8ec6694513f21737646d7e5f80d95c962c56b410e4dddc3a6"
+    },
+    "current-receipt-tool": {
+      "path": "scripts/verify-atomic-input-regression.js",
+      "bytes": 2817,
+      "sha256": "fd3ffb99363bc6a86e60a9fa2416c6a598dd48d72ebd38e9b2a010c7e90cb064"
     }
   },
   "verify": "node scripts/verify-atomic-input-regression.js",
@@ -227,5 +232,6 @@
     "count": 3,
     "resultPath": ".local/atomic-input-receipt-negatives-02/result.json",
     "toolRevision": "Executed script bytes pinned below;these receipt tools were added after the browser consumer archive"
-  }
+  },
+  "receiptSourceScope": "Consumer archives remain immutable. Current-runtime equality covers src/, original build pairing, entry HTML, Vite configs and package/dependency files; historical test tools remain archived, and later receipt tools are separately pinned."
 }

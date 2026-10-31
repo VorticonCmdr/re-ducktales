@@ -8,6 +8,7 @@ import {
   checkSource,
   sha,
 } from "./lib/local-scenario-source.js";
+import { acceptedRuntimeSource } from "./lib/consumer-provenance.js";
 import { originalGame } from "../tests/helpers/original-game.js";
 const m = await json("reference/atomic-earned-route.json");
 assert.equal(m.expectedCheckpointCount, 18);
@@ -16,18 +17,7 @@ assert.equal(m.negativeControls, 1);
 assert.equal(sha(await readFile(m.buildManifest)), m.buildManifestSha256);
 await originalGame();
 await checkArtifacts(m.artifacts);
-const loaded = (p) =>
-  p.startsWith("src/") ||
-  p.startsWith("scripts/") ||
-  p.startsWith("tests/") ||
-  [
-    "package.json",
-    "package-lock.json",
-    "index.html",
-    "vite.config.js",
-    "vite.campaign.config.js",
-    "reference/build.json",
-  ].includes(p);
+const loaded = acceptedRuntimeSource;
 const source = await checkSource(m.consumerRoot, loaded);
 assert.equal(source.commit, m.sourceCommit);
 await checkSource(m.captureRoot, loaded);

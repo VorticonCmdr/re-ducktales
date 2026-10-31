@@ -8,7 +8,7 @@ import {
   saveRecordedRoute,
 } from "../../tests/browser/helpers/entry-recording.js";
 import { recordedDOMInput } from "../../tests/browser/helpers/recorded-dom-input.js";
-export async function captureAtomicRoute(output) {
+export async function captureAtomicRoute(output, { report = false } = {}) {
   return withCarlsbadBrowser(async (c) => {
     const { page, canvas, state, press } = c;
     const notes = [];
@@ -65,6 +65,10 @@ export async function captureAtomicRoute(output) {
     await note("cave-entry");
     assert.equal((await state()).briefing.variant, 7);
     await until((s) => s.cave.phase === "exploring");
+    if (report) {
+      const reads = (await state()).cave.inputReads;
+      await until((s) => s.cave.inputReads >= reads + 6);
+    }
     for (const key of [
       "ArrowRight",
       "ArrowDown",
@@ -125,18 +129,46 @@ export async function captureAtomicRoute(output) {
       (s) =>
         s.scene !== "atomic-transport" || s.atomicTransport.phase === "report",
     );
-    assert.notEqual(
-      next.scene,
-      "atomic-transport",
-      "Expected recorded successful charge",
-    );
+    if (report) {
+      assert.equal(next.scene, "atomic-transport");
+      assert.equal(next.atomicTransport.roll, 0);
+      assert.equal(next.atomicTransport.seed, 6900);
+      assert.equal(next.atomicTransport.inputPolls, 1);
+      assert.equal(next.systemOverlay, null);
+      await note("misdirection");
+      await page.keyboard.press("p");
+      await until((s) => s.systemOverlay?.kind === "pause");
+      await note("report-pause");
+      const remaining = (await state()).atomicTransport.remaining;
+      await until((s) => s.systemOverlay?.phase === "waiting");
+      assert.equal((await state()).atomicTransport.remaining, remaining);
+      await note("pause-waiting");
+      await page.keyboard.press("p");
+      await until((s) => s.systemOverlay === null);
+      assert.equal((await state()).atomicTransport.inputPolls, 2);
+      await note("pause-resumed");
+      await page.keyboard.press("q");
+      await until((s) => s.systemOverlay?.kind === "quit");
+      await note("report-quit");
+      await page.keyboard.press("n");
+      await until((s) => s.systemOverlay === null);
+      assert.equal((await state()).atomicTransport.inputPolls, 3);
+      await note("quit-no-resumed");
+      await page.keyboard.press("Space");
+    } else
+      assert.notEqual(
+        next.scene,
+        "atomic-transport",
+        "Expected recorded successful charge",
+      );
     await until((s) => s.scene === "expedition-briefing");
     await note("arrival");
     await until((s) =>
       ["cave", "jungle", "mountain", "photography"].includes(s.scene),
     );
     await note("second-entry");
-    if ((await state()).scene === "cave") {
+    if (!report) {
+      assert.equal((await state()).scene, "cave");
       await until((s) => s.cave.phase === "exploring");
       const s = await state(),
         key = [
@@ -161,14 +193,23 @@ export async function captureAtomicRoute(output) {
       assert.equal((await state()).systemOverlay, null);
       await note("second-action");
     }
-    assert.equal((await state()).money, 3450);
+    if (report) {
+      const final = await state();
+      assert.equal(final.scene, "jungle");
+      assert.equal(final.campaign.location, 1);
+      assert.equal(final.atomicTransport.outcome.misdirected, true);
+      assert.equal(final.atomicTransport.inputPolls, 4);
+      assert.equal(final.systemOverlay, null);
+    }
+    assert.equal((await state()).money, report ? 3400 : 3450);
     assert.equal((await state()).campaign.day, 6);
     await saveRecordedRoute({
       page,
       root: output,
       observations: notes,
-      scope:
-        "Earned atomic transmitter successful travel with queued charge P/Q/S;port regression,not native whole-game timing",
+      scope: report
+        ? "Earned atomic misdirection with Pause/Quit-No/Fire and redirected jungle entry;independent port inputs,no native timing claim"
+        : "Earned atomic transmitter successful travel with queued charge P/Q/S;port regression,not native whole-game timing",
     });
     await page.locator("#restart").click();
     await until((s) => s.scene === "title");
@@ -179,6 +220,7 @@ export async function captureAtomicRoute(output) {
     return {
       completed: true,
       accepted: false,
+      route: report ? "report" : "success",
       checkpoints: notes.length,
       events: notes.at(-1).eventCount,
       restart: true,
@@ -189,7 +231,7 @@ export async function captureAtomicRoute(output) {
 export async function replayAtomicRoute(
   events,
   checks,
-  { omitAtomicChoice = false } = {},
+  { omitAtomicChoice = false, report = false, omitReportPause = false } = {},
 ) {
   assert.ok(
     events.length > 0 && checks.length > 0,
@@ -208,6 +250,16 @@ export async function replayAtomicRoute(
         e.key === "ArrowLeft",
     );
     assert.ok(choice > 0, "SETUP: missing atomic selection");
+    const pause = report
+      ? events.findIndex(
+          (e, i) =>
+            i >= checks.find((c) => c.name === "misdirection").eventCount &&
+            e.type === "keydown" &&
+            e.key === "p",
+        )
+      : -1;
+    if (omitReportPause)
+      assert.ok(report && pause > 0, "SETUP: missing report Pause");
     let now = 1,
       consumed = 0;
     async function advance(at) {
@@ -222,7 +274,10 @@ export async function replayAtomicRoute(
       while (consumed < expected.eventCount) {
         const e = events[consumed];
         await advance(e.time);
-        if (!(omitAtomicChoice && consumed === choice))
+        if (
+          !(omitAtomicChoice && consumed === choice) &&
+          !(omitReportPause && consumed === pause)
+        )
           await recordedDOMInput(page, e);
         consumed++;
       }
@@ -252,9 +307,13 @@ export async function replayAtomicRoute(
     }
     assert.equal(consumed, events.length);
     const final = await state();
-    assert.equal(final.scene, "cave");
-    assert.equal(final.cave.room, 18);
-    assert.equal(final.money, 3450);
+    assert.equal(final.scene, report ? "jungle" : "cave");
+    if (report) {
+      assert.equal(final.campaign.location, 1);
+      assert.equal(final.atomicTransport.outcome.misdirected, true);
+      assert.equal(final.atomicTransport.inputPolls, 4);
+    } else assert.equal(final.cave.room, 18);
+    assert.equal(final.money, report ? 3400 : 3450);
     assert.equal(final.campaign.day, 6);
     assert.equal(final.systemOverlay, null);
     await page.locator("#restart").click();

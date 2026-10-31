@@ -18,41 +18,38 @@ HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 
 ## Latest completed behavior and current acceptance
 
-Current work:`3c3a481` restores broker confirmation50,its Pause/Quit-No reader,
-conditional sound24,and unread final-wait keys reaching the office first reader.
-194 units,111 input/audio boundaries and the original investment segments pass.
-Fresh browser and winning-campaign consumers are running;the broker milestone
-is not yet accepted. [Broker behavior and scope](broker-input.md).
+Broker confirmation now uses the original50-read wait,Pause/Quit-No continuation,
+conditional24,and unread final-wait keys reaching the office first reader.
+Runtime:`3c3a481`. [Broker behavior and reproduction](broker-input.md).
 
-The completed notice acceptance below belongs to `a978a14`;its runtime guard
-intentionally rejects the newer broker runtime until fresh evidence is accepted.
+[Current saved acceptance](../reference/broker-input-acceptance.json) includes:
 
-Collected-location notices now use the original input readers:player80,
-rival status/input loop7 and fallback40;Pause/Quit-No continuation;actual device
-status after mute;conditional clicks and rival-only exit stop. Runtime:`a978a14`.
-[Notice behavior and reproduction](campaign-visits.md).
-
-[Current saved acceptance](../reference/visit-input-acceptance.json) includes:
-
-- Two independent muted browser routes:18 exact complete public-state/decoded-RGBA
-  checkpoints,1062 DOM events,Pause,Quit-No,discarded old Fire,fresh Fire,map and
-  Restart. Omitting Pause is rejected in each route.
-- Four conditional actual-browser audio cases:muting during rival notice speech
-  and entering while muted,for speaker/Tandy. Real status/completion drives each
-  return;no injected audio status. Normal rival/market cleanup remains active.
+- Three independent muted browser routes:31 exact complete public-state/decoded-
+  RGBA checkpoints,166 DOM events,earned coin,one share bought for22,Fire and
+  timeout confirmations,Pause,Quit-No,fresh input,office return,persistent shares,
+  no-trade exit,and late P consumed by the office after its reveal. All three
+  routes reject an omitted Pause make and verify Restart.
+- Two actual-browser audio cases:speaker/Tandy,deferred keyboard S,broker24 and
+  original office0/6,real ACKs and output. No injected device status;host20ms/Game
+  16ms polling is conditional,not native CPU/PIT phase or isolated click audibility.
 - Unchanged winning Standard:170 exact complete public-state/decoded-RGBA
   checkpoints,6575 independent DOM events,all four expedition families plus three
   cave treasures,victory/replay-No/all26 credits/finished screen/Restart,and a
-  missing-selection negative. Fresh consumer:`a978a14`.
-- 194 units,99 dialogue/device boundaries,three missing/corrupt/empty-case
-  negatives,build,192 original/prepared/Ghidra notice bytes and the existing
-  shared-reader/keyboard proofs. The conditional original retry segment still
-  passes with its three negative controls. [Winning route](standard-winning.md).
+  missing-selection negative. Fresh consumer:`3c3a481`.
+- 194 units,111 dialogue/device boundaries,three missing/corrupt/empty-case
+  negatives,build,105 original/prepared/Ghidra broker/return bytes and the existing
+  shared-reader/keyboard proofs. Original investment initialization,three exact
+  transaction branches and29 carried market days also pass in their conditional
+  native comparison scopes. [Winning route](standard-winning.md).
+
+The previous collected-notice18-checkpoint/four-audio-case acceptance retains
+its `a978a14` historical scope;its saved runtime guard rejects the broker changes.
+The current111 boundary checks include those notice readers. [Notice evidence](campaign-visits.md).
 
 Keyboard S retains the previous original off0→hex24 and on0 sequencing. Native
 batches add no host completion barrier or retry. The previous six audio cases and
 two production-browser cases retain their `e994536` historical scope;the older
-saved sound-toggle gate rejects the changed runtime. Current99 boundaries include
+saved sound-toggle gate rejects the changed runtime. Current111 boundaries include
 its14 focused toggle checks,and the notice cases exercise actual speaker/Tandy
 status. [Sound-toggle behavior and limits](sound-toggle.md).
 
@@ -66,8 +63,8 @@ an explicit stop-only browser convenience.
 Earlier repair acceptance(21 crash/recovery checkpoints/170 events),Standard defeat
 85/5071,18 rival-control and11 cave-failure checkpoints,and older15 layout routes
 (343 checkpoints/11601 events),winning Easy campaign and eight cave components
-retain their historical scope. They were not all rerun for this notice change;old
-saved runtime guards reject the changed source. Current99 boundaries and the full
+retain their historical scope. They were not all rerun for this broker change;old
+saved runtime guards reject the changed source. Current111 boundaries and the full
 winning browser route pass. [Repair evidence](repair-input.md),
 [rival evidence](rival-input.md),[earlier result evidence](result-input.md).
 
@@ -80,9 +77,8 @@ winning browser route pass. [Repair evidence](repair-input.md),
 | Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei/7,Atlantis/3,Klondike/0,Siberia/4 treasures |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:complete broker confirmation and late-key handoff acceptance. Its reader
-and return are checked against105 original/prepared/Ghidra bytes. Continue
-broader gameplay/input coverage afterward.
+Next:audit remaining dialogue input/audio handoffs against source,including
+legacy cave/atomic status handling,then continue broader gameplay/input coverage.
 Cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
 arbitrary-route finishability remain incomplete. Hard is deferred;its earlier
@@ -117,15 +113,12 @@ contain actual game code with documented transformations and are never run.
 
 ```sh
 # Validate saved current-runtime acceptance and source:
+node scripts/verify-broker-input-acceptance.js
 node scripts/verify-broker-input-source.js
 node --test scripts/broker-input.test.js
-# Last completed notice milestone(saved runtime guard rejects newer broker code):
-# node scripts/verify-visit-input-acceptance.js
-node scripts/verify-visit-input-source.js
-node scripts/verify-broker-input-source.js
-node --test scripts/visit-input.test.js tests/visits.test.js
-node scripts/verify-collected-notice-browser.js --output=.local/notice-replay-FRESH
-node scripts/verify-visit-input-setup-negative.js
+node scripts/verify-broker-input-setup-negative.js
+# Fresh independent broker controls,timeout,late-key and negative checks:
+node scripts/verify-broker-control-route.js --output=.local/broker-replay-FRESH
 # Existing source proofs:
 node scripts/verify-sound-toggle-source.js
 node scripts/verify-sound-toggle-setup-negative.js
@@ -136,7 +129,7 @@ node scripts/verify-cave-failure-input-source.js
 node scripts/verify-result-caller-source.js
 node scripts/verify-repair-input-setup-negative.js
 node scripts/verify-cave-failure-input-setup-negative.js
-node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js scripts/rival-input.test.js scripts/repair-input.test.js scripts/sound-toggle.test.js
+node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js scripts/rival-input.test.js scripts/repair-input.test.js scripts/sound-toggle.test.js scripts/visit-input.test.js scripts/broker-input.test.js
 npm test
 npm run build
 # Fresh browser comparisons;clean committed source and new ignored outputs:

@@ -122,5 +122,5 @@ for (const command of [
   assert.equal(r.status, 0, r.stdout + r.stderr);
 }
 console.log(
-  "Broker acceptance:105 original/prepared/Ghidra bytes;194 units,111 boundaries;31 exact browser checkpoints/166 events with three omitted-P negatives;two real-device cases;unchanged winning170/6575 and input negative. Native broker/office whole-handoff timing and portfolio cadence remain unverified.",
+  "Broker acceptance:105 original/prepared/Ghidra bytes;194 units,111 boundaries;31 exact browser checkpoints/166 events with three omitted-P negatives;two actual-browser audio cases;unchanged winning170/6575 and input negative. Native broker/office whole-handoff timing and portfolio cadence remain unverified.",
 );

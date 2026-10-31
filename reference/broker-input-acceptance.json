@@ -1,0 +1,91 @@
+{
+  "kind": "broker-input-acceptance",
+  "nativeComparison": false,
+  "runtimeCommit": "3c3a481466674fa9c39fd5a5d27fe3a4b56909d3",
+  "controlsConsumer": ".local/broker-controls-replay-03",
+  "winningConsumer": ".local/broker-winning-replay-02",
+  "checksSource": ".local/broker-checks-01",
+  "audioConsumers": {
+    "speaker": ".local/broker-speaker-audio-02",
+    "tandy": ".local/broker-tandy-audio-02"
+  },
+  "artifacts": {
+    "controlsScenario": {
+      "path": "reference/broker-input-browser.json",
+      "bytes": 12739,
+      "sha256": "bdb3c52f7314f88f1b03d4a4213a4e4a82eee6b84fdd0963fdeba7c4b80d0bb8"
+    },
+    "controlsResult": {
+      "path": ".local/broker-controls-replay-03/acceptance-status.json",
+      "bytes": 979,
+      "sha256": "5221a9f73e891366a97f7fe2cfe78d8f0eb53bbc3ea89508e215545d11175ae4"
+    },
+    "winningScenario": {
+      "path": "reference/standard-winning-route.json",
+      "bytes": 45483,
+      "sha256": "fc3fc5be1423e10764644fc6073632f9eeddbdbd9724a16ae1427d0b1cd55ff7"
+    },
+    "winningResult": {
+      "path": ".local/broker-winning-replay-02/acceptance-status.json",
+      "bytes": 1023,
+      "sha256": "a32ae7c739b7abc8c6867773d026fa5861eaca3314ee349e4d49bc1334b769dd"
+    },
+    "speakerAudio": {
+      "path": ".local/broker-speaker-audio-02/broker-audio-status.json",
+      "bytes": 7284,
+      "sha256": "30c379b5e2764ab2038b17463a326b61b3304828383fc72e576a4ae5ad22b51d"
+    },
+    "tandyAudio": {
+      "path": ".local/broker-tandy-audio-02/broker-audio-status.json",
+      "bytes": 7082,
+      "sha256": "9aa990455c3549f9d611081794a74a5eb350bb899ddc14291b8124293487d9c7"
+    },
+    "source": {
+      "path": "reference/broker-input-source.json",
+      "bytes": 3436,
+      "sha256": "b4cfb60b6e5ac174f9bfefcef69c4a8c6a681ffca77c1fc546f0cbb4ea2423fc"
+    },
+    "sourceChecker": {
+      "path": "scripts/verify-broker-input-source.js",
+      "bytes": 4092,
+      "sha256": "52ee43e1a380b9ee1651236ea5be8c4bf7b97141d0a365b12462d2550bf5e124"
+    },
+    "consumer": {
+      "path": "scripts/verify-broker-control-route.js",
+      "bytes": 7255,
+      "sha256": "ea89d376a493f0d0e2cae19cefa19231b8b6c8c89f3bafc59787b7e9952763f7"
+    },
+    "setupChecker": {
+      "path": "scripts/verify-broker-input-setup-negative.js",
+      "bytes": 1651,
+      "sha256": "a5bb3d4126aed07c1511c702e2e8c1e51907f48db5e35f7b9c74d1c7ffe17fda"
+    },
+    "units": {
+      "path": ".local/broker-checks-01/units.log",
+      "bytes": 17783,
+      "sha256": "43dc71662001f4eb880263615d1ab1173d4dc10ed1cfc14f49c2b399e1ed9647"
+    },
+    "boundaries": {
+      "path": ".local/broker-checks-01/boundaries.log",
+      "bytes": 10092,
+      "sha256": "17d1e2334dccbcbdc848b54055526c0c1557d78ee9d9050402712c070e5d1c5a"
+    },
+    "build": {
+      "path": ".local/broker-checks-01/build.log",
+      "bytes": 914,
+      "sha256": "9fd872cb3dcb70dbc31b8652ba60aa1930249683e675e2af0c339e9f295615f0"
+    }
+  },
+  "scope": "Original broker50 reader/conditional24/unflushed return;three exact browser routes including late P to office;actual reconstructed speaker/Tandy ACKs;unchanged full winning Standard. No native whole-handoff/CPU/PIT timing or arbitrary-campaign acceptance.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "audio": "Actual browser provider;host20ms/Game16ms ACK polling is conditional,not recovered original phase"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "exclusions": [],
+  "verify": "node scripts/verify-broker-input-acceptance.js"
+}

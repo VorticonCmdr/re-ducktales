@@ -30,7 +30,7 @@ the new late-key browser case is port regression,not a native whole-handoff
 timing comparison. The shared-reader proof is in `result-caller-source.json`,
 and the original office component evidence in `office-menu.json`.
 
-## Current verification work
+## Accepted browser and source evidence
 
 Runtime:`3c3a481`. The12 conditional checks in `scripts/broker-input.test.js`
 use explicit funded setup;they are not an earned-cash runtime scenario. The
@@ -39,10 +39,21 @@ leaves978,then uses the portfolio's original exit selection. Fire and timeout
 routes cover Pause,Quit-No,discarded old Fire,office return,persistent shares,
 reopening and a no-trade exit. Each has13 exact public-state/decoded-RGBA
 checkpoints. A third case covers final-wait P through office Pause and resume.
-Independent consumers and a fresh winning Standard regression are in progress;
-the broker milestone is not yet accepted.
+All three independent consumers pass31 exact checkpoints/166 DOM events and
+three omitted-P negatives. In the late-key case,the removed P first changes the
+public office queue at `office-entry`;the checker rejects that first difference
+without excluding pending state. Both speaker/Tandy actual-browser audio probes
+pass. The unchanged full winning Standard170/6575 comparison,194 units,111
+input/audio boundaries and build pass on this runtime.
+
+`reference/broker-input-acceptance.json` pins the separate evidence levels and
+current-runtime receipts. `node scripts/verify-broker-input-acceptance.js` is the
+saved acceptance gate. Missing/corrupt local fixtures,zero cases,unfinished
+inputs,unconsumed required events,unexpected diagnostics and any compared state
+or pixel difference fail. There are no state/pixel exclusions or fitted inputs.
 
 ```sh
+node scripts/verify-broker-input-acceptance.js
 node scripts/verify-broker-input-source.js
 node --test scripts/broker-input.test.js
 node scripts/explore-broker-input.js --controls --output=.local/broker-fire-FRESH
@@ -63,7 +74,11 @@ CPU/PIT phase,reveal cost,isolated click audibility or analog waveform parity.
 The pre-correction full campaign job `.local/broker-winning-replay-01` was
 explicitly stopped for the source-proven late-key correction;its exclusion is
 recorded locally. It is not acceptance. The earlier26-point broker receipt and
-two audio probes retain their pre-correction source scope. The baseline
+two audio probes retain their pre-correction source scope.
+`.local/broker-controls-replay-02` is also excluded:its positive cases passed but
+its late-P negative expected a later checkpoint than the first public queue
+change. The accepted `.local/broker-controls-replay-03` preserves that queue
+comparison and rejects the earlier,correct `office-entry` difference. The baseline
 `.local/broker-late-before-01` records the lost P and is also not acceptance.
 Native late-key capture,CPU-bound portfolio polling,modifier/mouse/joystick
 parity and arbitrary investment/campaign paths remain outside this milestone.

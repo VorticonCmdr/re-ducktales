@@ -91,6 +91,9 @@ Success transfers one share,updates cash and sets3bb4. A held successful trade
 clears the input latch to allow repetition. Entry clears3bb4; leaving after a
 successful trade shows the broker's original four-line message for50 seven-tick
 polls,shortened by Fire. The calendar remains unchanged,verified in the original.
+The broker now uses the shared input reader,including modal continuation and
+unread final-wait input reaching the office. Current source/browser/device
+acceptance and its native timing limits are documented in [broker-input.md](broker-input.md).
 
 Company descriptions use six original lines,news uses the following positive or
 negative pair. All original text,buttons and backgrounds are loaded from assets.
@@ -150,7 +153,7 @@ result or incoming market seed is detected by required negative controls.
 `tests/browser/investments.spec.js` is independent of these conditional captures.
 It earns a real browser money-bin coin,buys/sells,reaches99 shares with held Fire,
 checks broker/office return and Restart. A separate route makes four bank round
-trips to day25,acknowledges two news bulletins,and verifies they stay consumed.
+trips to day25,acknowledges three news bulletins,and verifies they stay consumed.
 `npm run verify:startup` checks composed startup and a complete jungle replay with
 23 checkpoints and857 inputs. Its input stream is independent of expected states:
 it adds65 idle player polls before the existing route to board the fish under

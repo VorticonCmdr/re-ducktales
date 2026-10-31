@@ -22,7 +22,7 @@ try {
     try {
       execFileSync(
         process.execPath,
-        ["scripts/verify-broker-input-browser.js", "--manifest=" + path],
+        ["scripts/verify-broker-control-route.js", "--manifest=" + path],
         { stdio: "pipe" },
       );
     } catch (error) {

@@ -1,0 +1,270 @@
+{
+  "kind": "cave-counted-loading-scoped-admission",
+  "version": 1,
+  "sourceCommit": "b80cc118ef74129560a8ac3a6bd6ab215bdc3e87",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "status": {
+    "path": ".local/cave-initialization-admission-01/acceptance-status.json",
+    "bytes": 2554,
+    "sha256": "b23e136a0f5ea623b52d10109c07e0d343e0360e349ca88b9805ecfc4b48eb45"
+  },
+  "sourceArchive": {
+    "path": ".local/cave-initialization-admission-01/sources.zip",
+    "bytes": 3319797,
+    "sha256": "03c51e57ccc49e228129111b2b058da7adcd103447970614aed8dfd60b102952"
+  },
+  "sourceRevision": {
+    "path": ".local/cave-initialization-admission-01/source-revision.json",
+    "bytes": 130274,
+    "sha256": "d5e211d554f98f483bd4c7b98206efe8c54278036062753fe14d5befce1946db"
+  },
+  "logs": [
+    {
+      "path": ".local/cave-initialization-admission-01/work.log",
+      "bytes": 1580,
+      "sha256": "0d40bd35fe797d03fc63b4e238fe48619c8618238aee539be5e41cbccc5714e8"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/boundaries.log",
+      "bytes": 650,
+      "sha256": "18bf0514a02e27b841ab101603e6ae11c240df09c342bf48ff950be1b743ae3e"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/startup-order.log",
+      "bytes": 624,
+      "sha256": "d185f26ad3c145137afb55b10a4c013259d23f4dd2dde7c82cdd9c69eced21ad"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/initialization.log",
+      "bytes": 463,
+      "sha256": "e552753d9721d6564921dc442fcaee02c7ff0bb75e549dc0f2f46f9dce5302d8"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/initialization-segment.log",
+      "bytes": 2192,
+      "sha256": "011dd8f8db3f0f0b045795ab0990edb69bdf28328a4940ee028bfcaa400bfb6f"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/sequence.log",
+      "bytes": 239,
+      "sha256": "25cc5b5d91508fa280306c204e65493de7aeb7f00169863e59f28c50fd9776fa"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/passages.log",
+      "bytes": 477,
+      "sha256": "d5c7ab4aabaeadae8592f3b351f96e21b3839917b4a5edbd8ec44e1e60157d73"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/routes.log",
+      "bytes": 615,
+      "sha256": "1130be4c560949579a926353339d6f6e6cd539cdea7a69dc078c8224cbc1c828"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/unit.log",
+      "bytes": 48117,
+      "sha256": "1368d65daddfa6497ee03f66fc726d0e217986f5477e60c8afe72a60b608c105"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/browser.log",
+      "bytes": 542,
+      "sha256": "e393691e86e669864c9c38589b2d4325ff4ee84b96399ef4924b05a5ad2b53cb"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/loading-negative.log",
+      "bytes": 125,
+      "sha256": "009fa2aa5c6c0250a701ff995bb82e717afe150be82e72ec25ad3e1d55110e8e"
+    },
+    {
+      "path": ".local/cave-initialization-admission-01/build.log",
+      "bytes": 866,
+      "sha256": "9948dccfd19168d5e4210e917f56883d6081324e974a42a56325157a0238af8f"
+    }
+  ],
+  "runtime": {
+    "src/assets.js": "33c3c746284ca07dbc6139b77e963b0259939fafd477e2a6e2ea0204e08f5870",
+    "src/audio.js": "bce87c6dc414ffba76fca07d242b6220df3e301e0d9bd1740e201280a0f357fc",
+    "src/game/application.js": "17825318c438491666b4c96bfd800ed274f734e413898b02ba4adb46f974c066",
+    "src/game/atomic-transport.js": "a4074af2725477f977a997df6daaf94ac1abaf4998b41f5aae49887a02970c99",
+    "src/game/audio-device.js": "faf63fe4a5a2d68a7882b89bc29f5086a6d68b44dfb457b194f59f429a15df04",
+    "src/game/award-presentation.js": "9feeb79fbb8c09cc5a03cfd6d26b70b6156dacf4149a56366f471e7d6cca8949",
+    "src/game/bank-sparkle-copy.js": "b4df0a36a2d9bad637170e7266ad05d56d79e55948139564e2eab71131c5f5e4",
+    "src/game/bank.js": "6e8e4fff06ebd4234150b4c5fe25148baa5236d9c5f82070c91f603a80c35de6",
+    "src/game/bios-clock.js": "8267d70c993375d4d5d734f3c68f449df4c72cbeacfe8d485ea87b7a786d9fc7",
+    "src/game/browser.js": "2d19df303f7d0287cfbb69d64f4d04775eddf10896f1e9540a0f8ed2f9aebd68",
+    "src/game/campaign-visit.js": "1b8e59ee52230f549ffa190a13c4859c6934d68cdd4b63b32a6d5a5bd60defad",
+    "src/game/campaign.js": "b788a821c5e74e7cd771ab650f3ad43dc0a0d9f47476b2ad80ae771c10408a3f",
+    "src/game/cave-endings.js": "34b232be27a44a6401b7b70fa419c8482fc925fb7e017494a0e3b6e9a58358e9",
+    "src/game/cave-minimap-work.js": "fb681ea8ffbc8a3dc5fa1ca1dc03a2cec47c5edca0269148913c71eca33538e3",
+    "src/game/cave-runtime-work.js": "0227b61fbb697595e7ac3462c6f1444741cd7d3e759914e0c5c59027b3626da5",
+    "src/game/cave-scene.js": "110813f196d5fe9ac269744cea7d33566cdb6a1f2029fc9fcc1fa8de4b681c2b",
+    "src/game/cave-transitions.js": "954f32de37e6a068c46bb0ca619ff0e9f3ea858d647314f90fb2ceb3aee0c95b",
+    "src/game/cave-work.js": "af21d9107c18ad057909f4cc56c721a54fe24e949e09392674db4837140cc883",
+    "src/game/cave.js": "037093c41de683cc7d795a5491bdce3017060c335c82a597bbcb727d04635b96",
+    "src/game/departure-scene.js": "e829f2446987d268e798fd72b1e580ca973e788a2aeb312a6373fb46d7a0982f",
+    "src/game/departure-work.js": "1b969d0c85d4f4acd1a86c2d644bc99103f11d67332904d5b05f24413fed8270",
+    "src/game/departure.js": "47f1dcbd0855f331103d6c8a28785325f1741ffacbe714a1cd54e8e5c5104f71",
+    "src/game/destination-input.js": "5155a20fab7ac49c267875c9a82f1eff086e823f9a491138a3032e2f5a16fee6",
+    "src/game/destination-loop.js": "5d8b0b11bfd5be7924904d878a2b37b004ede1c94bcb8a3db1683f7cd08bebda",
+    "src/game/destination-presentation.js": "af56b5208cee92fb6d6eab4cbe30c0d1eb869c0796f0512f41fe580e06fbb8d7",
+    "src/game/destination-waits.js": "7503412248c2e1189203c5dfc61078b57c64464ff0f26bc2423148c239b1e65d",
+    "src/game/destination-work.js": "1f6b33cb3e138cabe27e4d0165d50398e71c0f1853d9bc3e7f1746d6145bb4ee",
+    "src/game/difficulty-menu.js": "2808f24a5f6f2cf81029fcef744ce489e99b5725e05cd665b5d03ae43bc3bb20",
+    "src/game/difficulty.js": "871139d151dd3f93475e1c3093d6eb47fea5d666550ba3c60bd0defa8e918a2c",
+    "src/game/ega-copy-work.js": "1dc314f79dfe90cc07e4cb903ba7b0b3e4e49845c3a5fa7da1bdb6314561f944",
+    "src/game/ega-line-work.js": "342b96a373bd4628549becbe64fa3aa7da191d2f677e03fc721651af9a213d09",
+    "src/game/ega-palette.js": "420db99351c72ac2b42f170b9cdb5722b27a4b1b85a25aa04adeb328407cc89d",
+    "src/game/ega-text-work.js": "825d692c373992919ada6bce7d4f8ba298debd9b5535e7aa0b0b8a02dbc3582a",
+    "src/game/ega-work.js": "885e8cff4604645f29b9f9e645ab32b410f61eebdba75c0ed1eb4c7401280dc9",
+    "src/game/ending-presentation.js": "7664dd081d0db9cd7b5680765896e04385ce7029a521d54fb21c01efa3b95056",
+    "src/game/ending.js": "7e3ebf5077f02bfcb5401b17037e3ef6b390ef1d806ba8a9bbde8a3ddd233fa3",
+    "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
+    "src/game/expedition.js": "1f0ecc9bd1ee80e70522a71667c958c11011fdb0b9081d848c0f4383c4da1c1e",
+    "src/game/flight-collisions.js": "2e5df837a0724a853555607767fff83118ae4de5895431c52d0220b87cc88ae7",
+    "src/game/flight-course.js": "ad0a169c432d10ddfc302ac47205a93b68167b769cadaa1e3ccc0c509cd8669d",
+    "src/game/flight-flag-raster.js": "9b57f314347c2d33eb060f9c6b6dd0fdf8bb946d50a8f3810cc5284d30230b5b",
+    "src/game/flight-objects.js": "7c514610608c074249552309ad1583f2956e801807dcc9480d63d165dcfb1f18",
+    "src/game/flight-physics.js": "4a3409ed65d6a28f6c90ba4af02290952831829df89d305bf83dc07f6d8c04b7",
+    "src/game/flight-raster.js": "2624c5da110c7078bbc4f3a17cec4add5783d99ef959e5a91ce381ce5fc85665",
+    "src/game/flight-scene.js": "f282ea0f53535edb77e3cc68972067b6e975a556ffdb212fe9be7f604998dbaa",
+    "src/game/flight-setup.js": "97d7eab7a46a249fe1f62ac55214cab8d9f3f7d44afaaac4120341c64833f18e",
+    "src/game/flight-terrain.js": "26d33ff53a9670f9c61d066ab061d3eaee6e7883a345eb17c9239e1f79a70231",
+    "src/game/flight.js": "128b855cfda3bbc69ca6e05d84cfd2f41bcea138a17e5774510e05c9ad2e9b6b",
+    "src/game/game.css": "0e1c9bf4c3057d06bbfccb6965bf711e0c77e431832204e23bb4337cf8ed6fd6",
+    "src/game/graphics-load-work.js": "5390d162abe951d8c82fd140ae2737f37a2acc2cefd85c7d93b13f7c2799527e",
+    "src/game/hud-number-work.js": "8ad14572ea0d474d823d78716ee0316d45bd06996a5e1f0f887c9380083a8841",
+    "src/game/integer.js": "cb575b09c744e3fd2967ac72de96399a0e5a5b6e807c6ef0684e30a183a38776",
+    "src/game/investment-screen.js": "4c25231b85ff7569293397a4fc01a160fdba7d399d8f77d0ec78f040ef6b484c",
+    "src/game/investments.js": "a81927f0750919077f531732413b164090f80d539eed84bd815636684598f327",
+    "src/game/jungle-animation.js": "d9955ccaae5e15c276382ad3298dcac4600ca362210b19e4686164934ab6aea4",
+    "src/game/jungle-collision.js": "fa9e33dd12dbb0dcb30371c6b6c4007a59406bb94bb601e339c869bcb9aa7b65",
+    "src/game/jungle-controls.js": "d73fed10ae58f99b130c679709e71d2dcfd529d47253d18a8151ad53177f2c64",
+    "src/game/jungle-hazards.js": "11da162f7465c3cf0e822bd71a4526e0916d5c56723004f0d3253108a6e2ccdd",
+    "src/game/jungle-initialization.js": "8440206ff8223a535114862d5c3a6c8cab6ba0ed336382507377e4f611b57f9e",
+    "src/game/jungle-map.js": "c406f1095265fb0ed6f3276c77c4edacf0e0a77c5a4eaff0c9489ccff4875e55",
+    "src/game/jungle-motion.js": "f2c7e477dde86abe1e42365581e644a5cc63e0aa8ade837d645359244d7a8eb6",
+    "src/game/jungle-presentation.js": "b8610c5c0aa33db49d643ab52fc9c6e49a5dc6a4d071efec9e4cb6cfe4a2f7ab",
+    "src/game/jungle-raster.js": "a7fa4e2d0639ee59458f4573fe1e8bf995df59a73352feb430616a4068cb762b",
+    "src/game/jungle-scene.js": "7493c81c02358b6d4ddf4ef93c91e46c4832c03dc9cfdfecb5274a67ccadea22",
+    "src/game/jungle-state.js": "24c073591ce3c9326c5ebf86aa759c79b79d2b02fe810b36fd47b1a3c05271d4",
+    "src/game/jungle-work.js": "d0fb9bae767274965637ff2183925c4b4f86c88693de38e1b5976cab7545a6a9",
+    "src/game/jungle.js": "7d88fde8290a0408586551b0eef6c9dfe6c3d0a7b2968bb3464e7bbe53d80535",
+    "src/game/keyboard-adapter.js": "cb728799dd31b30e663c7e6623a4646528abe5e7f4dda6c477a4f59818e39551",
+    "src/game/map-deadline.js": "14fe8435fb34d07c2a4d22e19e826768080859f4a6cf99ca4efd760b80ad428e",
+    "src/game/map-pointer.js": "47696dac08b3f9a584b0ebfd4fa416564e889933153c6f8346118e50c6d481bc",
+    "src/game/money-bin.js": "352dd2f51e5073652a86ccde0ce0399ea20abd454c92ee4b197c93b22317f885",
+    "src/game/mountain-actions.js": "dd9e2d6dfabf0eb93ddc32f7cfb81d053cf846f7c7b026535ac608749e95e2f4",
+    "src/game/mountain-erase.js": "704747a88ada2b8bae2402dd21f904a823c1c2ecc06260b9cb0a32a8860df576",
+    "src/game/mountain-hazards.js": "f5ee5c0fe9e48098ae18cd97304c061badd3b3a391c17895e43630804936fb06",
+    "src/game/mountain-hud.js": "fa9d4167ead96b8a93cf94e52e0b6113a1cbcab457ce4604f1736af567b97f6a",
+    "src/game/mountain-scene.js": "0e5163e49d26945ce6c5765234e87bf219a192ef9253c93a2f4774e5bbecf75d",
+    "src/game/mountain.js": "529e97a151be7ac485d62c173169367bf5fa541e9d85aef88940755aadfb327b",
+    "src/game/office-control-center.js": "6f84b77eca39e05536f8e6fd071dadb87f11ae4371fca63e235d79c6adb113d7",
+    "src/game/office-investments.js": "0d0ce496cd67425ef349b5ca5f334f593ea6f7a4c1562f819faed2d054a0e89b",
+    "src/game/office-menu.js": "fb15f090c29442891740dbfba49720a1f8b243cc403c6de3a3e7a4a72e382cbd",
+    "src/game/office.js": "39319981d1a50d6973776fc9ba7afb1ceb4077e3ea16add2fcc26da931d283a6",
+    "src/game/opening.js": "ed91355bc55fc74eee726358fb207b6b66b7985b489ec0d1512410b49a60a9ab",
+    "src/game/ordinary-keyboard.js": "d872fd2ccd8af07374461067d2d1ead1f3b4ff51de148f530f39db0fb8b52426",
+    "src/game/photography-actors.js": "457bd1c81c095a5b26cc10d22593308eb0c32ea81307a646474c760f41021d5c",
+    "src/game/photography-animation.js": "0d884231754675b78ea3cdc488a51b7eeee24a1df74f71f567f46eac6525ecf1",
+    "src/game/photography-hud-work.js": "cbc984509ab25afa0e042c2d389c329fadd9ff11f1a336acd6c8019e57519601",
+    "src/game/photography-scene.js": "3cbc6bd80c0349264dcccce5330c6c7bf99e8f025fd6e98ee0d2a0e677f3379d",
+    "src/game/photography-work.js": "fd04d243b99fb63806016ced9af53bd32c0df1612f9a12f79407165a5441dfaf",
+    "src/game/photography.js": "25fe081c2fca3f6e3ac63aede30ad88d83fe5fbe1c6daf65e81a516d81f57207",
+    "src/game/renderer.js": "334f8bed144c7c4f5c2629f02df65aa3c40495b226f3fd281c0a44bf321ed7ba",
+    "src/game/report-presentation.js": "61a7cfac9714f1a804b327fe51e59e2dd70f449df1d1f86a0f4fd6f25aadde55",
+    "src/game/resources.js": "ae329ecb3cd7f10476710994a80d87d5282d04033e8110ac6045295d17445f09",
+    "src/game/result-input-wait.js": "4fab06bb39c8c0c201a1d4c99b26681b37c00b4486337415036189ca9163387c",
+    "src/game/rival.js": "be52d0d9c92db66241f360e750df8d79317e3c0f1e007af1f31b6d3fdae9cd29",
+    "src/game/scheduler.js": "b791dd12187cae479dffc1e4c351134ec089cece0ac3c40ad96dbdb8ab9dfa2e",
+    "src/game/security-screen.js": "b1b42d853462726148503d14815adf40b3a59bd178d1abd20e78a56a439bb0cf",
+    "src/game/security.js": "6d6c382547a598438fd366f0e414bdd9db60848d747ccde69ebf354f9f8ecc21",
+    "src/game/speaker-audio.js": "5fe151cceacda01be5928953979e03f2c2cbcf25356326c9dc6a6580dadf675f",
+    "src/game/sprite-load-work.js": "2f5ce1a4bd82231c19870ab824297d46f0be55fcc33222c8902787320354a4fc",
+    "src/game/system-controls.js": "64b7739544bddb38fa79c0bfdcff5cad5b30fa06693707192542248ec2d917ca",
+    "src/game/tandy-audio.js": "475cc7b88e78ee4ff0d82a5f593b74ec57d570bfbd0adee046b9b3b2e36ae20e",
+    "src/game/timing.js": "b042c7b43921cf762095a329b42eee90d9dfb221196bc0f2ea4d87ec80c1f52d",
+    "src/speaker-driver.js": "b65b28fe8c20694ef9cf22357ac745105627b9615ca8060ce9a4dd3626bbeff5",
+    "src/speaker-game-worklet.js": "2b5266c5a6ec42b26aa1f71db2a0e1a3ff5ab4d00151b4e44e652cfffac3b920",
+    "src/speaker-game.js": "0a1687643390e2cda060c1db588b251be281caf806b425b0e99bd1a15042b254",
+    "src/style.css": "492b7310d76d5ccd56be2717bb9ca2461a5595706306b80afd5e2d31b3a60caf",
+    "src/tandy-driver.js": "be8d4b0b6b16bc52bf52cfde861b63967419a866e21c0acbf5b13d60920dd6e0",
+    "src/tandy-game-worklet.js": "1f4879ebf1c3a8cae0e14dc93f623152cfbab35a630de44ddf4f99047ce1f9b6",
+    "src/tandy-game.js": "343f72dea9bb7b11a3834d6419948737034a1efc776b94fd79788b5487cd12f6",
+    "src/tandy-live.js": "3b9284905444c1ad7c6d310d2f8428b2f04eac6ddba7ef9409a9fae2f86ee034",
+    "src/tandy-preview.js": "830fcd6d81578c2c4aaeba350e7d98783f2fc4a2bca666edee723b9cfaef5752",
+    "src/tandy-worklet.js": "de76daf35de13d63143156b0401af2971a592248426deb21706856e51d8557af",
+    "src/viewer.js": "d2506904b64c1ae166eea78c1fac30cf9fd40a02c3706a5f909d7f2a88081c74"
+  },
+  "nativeParents": [
+    {
+      "path": "reference/cave-loader-native.json",
+      "bytes": 48993,
+      "sha256": "5bea106197d11e570481e629377b52d7407bbb1213a97a348a90db3d995b3a40"
+    },
+    {
+      "path": "reference/cave-background-load-native.json",
+      "bytes": 50462,
+      "sha256": "73b45806f637f020f7a42c4498386d2e1525899d20ba732b76fda34ef5d02315"
+    },
+    {
+      "path": "reference/cave-native-cadence.json",
+      "bytes": 50446,
+      "sha256": "2c03871b329c819e0097fcac017ad2bd0915597014863386abd0ef056ee91e75"
+    },
+    {
+      "path": "reference/cave-load-boundaries.json",
+      "bytes": 1391,
+      "sha256": "bd7e339167fa2ab9823d18f05b335d6266c33925eb0a47615e13d4026405f2c4"
+    },
+    {
+      "path": "reference/sprite-load-work-source.json",
+      "bytes": 1656,
+      "sha256": "66c610582c1a2bf536726fdf82d93aa7240d0c3f425b2f5e707356640789e715"
+    },
+    {
+      "path": "reference/cave-startup-order.json",
+      "bytes": 1241,
+      "sha256": "078139426093a74cf237798bf49d535eb539c48e8008f52ae09d71fcf1c66d46"
+    },
+    {
+      "path": "reference/cave-initialization-source.json",
+      "bytes": 1304,
+      "sha256": "c1710447a5f1cada4a54540f73484b89c692cc501766046a6e2b0ebc5cd4f18f"
+    },
+    {
+      "path": "reference/cave-initialization-work-source.json",
+      "bytes": 1883,
+      "sha256": "46cdfcbd08f3509c1ada73296eae232049d4e21133d7331e6a5fdd3a5ead7347"
+    }
+  ],
+  "startingStateRecipe": "tests/browser/cave-input.spec.js:openRecordedApplication,authored bank trips,map selection,ordinary flight/crash,cave room17 to18,pause and Restart",
+  "inputSchedule": "Authored physical browser controls in the pinned test;conditional native component uses ENTRY memory,zero-phase clocks,Right+Fire make0/release10 retraces;no fitted inputs",
+  "expectedChecks": 12,
+  "expectedUnitCases": 221,
+  "expectedAssetCases": 55,
+  "expectedPhaseStates": 4,
+  "expectedStateFields": 9,
+  "expectedBrowserCases": 1,
+  "expectedLoadingNegativeCases": 1,
+  "comparisonRules": "Exact original packed/decoded assets and native planes;exact nine fields at four ordered phase states;1e-9ms only for event timestamp subtraction;no tolerance for native checkpoint times;Sound0 before initial wipe,input flush afterward,torch selection before loading (static/source-anchored conditional checks);initial map-clear/load,16/20 sprite sequence,post-load coordinates,minimap before enemy RNG;16 carried initial segments",
+  "omitted": [
+    "Initial preparation loading and mutation ordering",
+    "Archive/header/seek/allocation/caller work",
+    "DOS read bodies,budget clamping,disk-delay provider",
+    "IRQ/BIOS/audio execution and CPU phase"
+  ],
+  "wholeCaveTimingAccepted": false,
+  "wholeCampaignAccepted": false,
+  "verify": "node scripts/verify-cave-counted-loading.js --output=.local/cave-initialization-FRESH",
+  "expectedStartupConditionalUnitCases": 2,
+  "expectedMapResources": 8,
+  "expectedInitializationSegments": 16,
+  "expectedInitializationUnitCases": 1,
+  "initialPreparationTimed": true,
+  "initialPreparationTimingScope": "resident-decode-and-graphics-work-only",
+  "completeInitializationTimingAccepted": false
+}

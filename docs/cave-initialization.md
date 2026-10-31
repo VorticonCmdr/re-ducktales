@@ -57,3 +57,11 @@ resources by archive and index,so a map0 load cannot substitute for background0.
 Earlier source-pinned receipts remain historical. Next:refresh the complete
 Standard winning browser campaign and independent replay before further residual
 timing work. Hard campaigns remain deferred.
+
+
+The source-pinned initialization-admission01 passes all12 checks at commit
+b80cc118ef74129560a8ac3a6bd6ab215bdc3e87. [Receipt](../reference/cave-initialization-admission.json)
+pins113 runtime files,source archive,logs and completed status. Browser loading
+observations and loading-only negative pass;all221 units execute without skips.
+The campaign player's first-cave planner now waits for the actual exploring
+boundary before reading endpoints,matching the staged application startup.

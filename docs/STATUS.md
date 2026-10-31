@@ -6,9 +6,10 @@ the cached room in the normal input loop without extra composition. Focused brow
 and source/component checks pass; runtime loading now charges counted resident decode/conversion work.
 Initial map/sprite loading is now staged and charged;parser CPU and remaining
 loader/system costs are still omitted.
-The earlier ten-check gate belongs to its earlier runtime. The new12-check
-initialization gate is pending;221 units,55 resource work cases and16 carried
-initial segments pass. Whole-cave timing still fails. [Scope](cave-initialization.md).
+The source-pinned12-check initialization gate passes,including221 units,55
+resource work cases,16 carried initial segments,actual browser controls and a
+loading-only negative. Whole-cave timing still fails. [Scope](cave-initialization.md),
+[receipt](../reference/cave-initialization-admission.json).
 The last full Standard campaign/replay passed before these cave changes.
 Its strict combined gate now correctly rejects the changed runtime; a fresh
 whole-campaign admission remains required. Hard campaigns remain deferred.

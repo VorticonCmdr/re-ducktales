@@ -1,0 +1,61 @@
+# Original cave transition loading work
+
+The original first Right passage in Carlsbad spends84 resident driver counts
+inside the sprite10 loader call. This is about1153.152ms at the supported timer
+rate. Unknown counter phase brackets this conditional call by83..85 periods,
+1139.424..1166.880ms. No observed time becomes a port scheduling input and no
+fixed delay is added.
+
+[Manifest](../reference/cave-loader-native.json) pins225 artifacts from
+`.local/cave-loader-native-01`,capture source2709589. The natural fresh original
+setup is the same read-only Carlsbad/nonracing flight route as the uninterrupted
+[cave observation](cave-native-cadence.md). The authored Right+Space make at0 and
+both breaks at10 rendered intervals are all consumed before completion. The
+private portable emulator uses normal core3000 cycles/ms,svga_s3,16MiB and
+vmem_delay off. It closes with return0;HOME and the shared emulator are unchanged.
+
+This experiment stops before the original call at overlay0fc5 and after it at
+0fca. Stack arguments independently identify resource10,destination54fc. The
+room is already46,the entry flag1,and torch1. The actual302 caller bytes and585
+resident loader bytes match the original executable after source relocations.
+The original executable and all22 assets,source archive,actual engine binary and
+configuration are pinned. This is a debugger-bounded routine measurement,not an
+uninterrupted timing replay or machine checkpoint. Debugger stops discard CPU
+budget,and the delta includes original interrupts,DOS I/O,allocation and decoding.
+
+Sprite10 is136×112 with4 horizontal frames,8585 packed bytes and30464 decoded
+bytes. Its native descriptor has17 bytes/frame row,68 bytes/all-frame row and7616
+bytes/plane. The actual38080-byte allocation matches all four independently
+converted color planes and the shared opacity plane exactly. Transparency is
+the first decoded pixel,as in the original converter;no bytes are excluded.
+
+The returned state records graphics mode204a=1,planar flag2043=1,and resource
+compression26e6=0. Resident175c selects the LZW path0efd and emits each decoded
+packed pixel byte through10e8. The first converter call selects its mode1 branch
+12f0..13cd,not the other display-mode branches. Ghidra `CAVE_CODE.EXE` supplies89
+contiguous instructions/222 bytes for this branch;all match original resident
+bytes. That disassembly and native output support the conversion rule. This
+capture does not independently retain the live LZW/converter code or its
+self-modified dispatch word;those paths remain statically inferred from the
+original loader/captured mode and exact payload. It does not trace each nested
+decoder/allocator/DOS call or prove waveform/IRQ/cycle phase parity.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 DUCKTALES_DOSBOX_MCP_ROOT=/Users/valentin.pletzer/projects/emulator/dosbox-mcp \
+ /Users/valentin.pletzer/projects/emulator/dosbox-mcp/.venv/bin/python scripts/capture-security.py \
+ --cave-page-observer --cave-loader-profile --port 8404 --output .local/cave-loader-native-FRESH
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_loader_profile.py
+```
+
+The saved checker fails for missing/corrupt fixtures,zero declared cases,
+changed code/payload/clock,input incompletion or an unclosed owned process.
+Three negatives reject changed planar output,one altered timer count and a
+missing consumed input. The original full cave body,caller/loader bytes,converter
+source bytes and complete native sprite are checked independently of port timing.
+
+The browser currently decodes assets up front and its runtime `load` completes
+synchronously. The measured original work is therefore a concrete omitted
+boundary. Next:count the original LZW and mode1 conversion work from the packed
+resource and decoded bytes,validate that work against this conditional bracket,
+then schedule it at the actual cave load calls. Preserve payload/state ordering;
+do not fit a delay to84 counts or build a general CPU emulator.

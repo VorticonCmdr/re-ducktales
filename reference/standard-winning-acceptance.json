@@ -1,0 +1,47 @@
+{
+  "kind": "standard-winning-acceptance",
+  "nativeComparison": false,
+  "consumer": ".local/standard-winning-replay-01",
+  "checksSource": ".local/standard-winning-checks-01",
+  "runtimeCommit": "cabc06c97ba4d9b39898664c40c3f4c727ba5d62",
+  "captureCommit": "e4f857a4d67e35772c3c59f51b50176f00dcc438",
+  "consumerCommit": "e600150fbf984b9e37d0be2caa1554a9d8ffde23",
+  "scope": "Complete winning Standard port-browser route and full26-credit ending. Runtime unchanged from repair milestone;not whole-original campaign timing/audio parity,all Standard paths or Hard campaign completion.",
+  "artifacts": {
+    "scenario": {
+      "path": "reference/standard-winning-route.json",
+      "bytes": 45483,
+      "sha256": "fc3fc5be1423e10764644fc6073632f9eeddbdbd9724a16ae1427d0b1cd55ff7"
+    },
+    "result": {
+      "path": ".local/standard-winning-replay-01/acceptance-status.json",
+      "bytes": 1027,
+      "sha256": "af1319cf936b9d9aa426fb88c8859b516a13565575934b10a1779d1d1653545b"
+    },
+    "setupNegatives": {
+      "path": ".local/standard-winning-checks-01/setup-negatives.json",
+      "bytes": 199,
+      "sha256": "04820a06886c68238fa687cc83f74e1728c06321d6b71edc1dbaba2f438af626"
+    },
+    "endingProof": {
+      "path": ".local/standard-winning-checks-01/ending.log",
+      "bytes": 221,
+      "sha256": "a35394938e4f503999812d7e3cfbe826f69cd8a63432a655fe56935011f1c806"
+    },
+    "creditsProof": {
+      "path": ".local/standard-winning-checks-01/credits.log",
+      "bytes": 229,
+      "sha256": "e285d2341a2d0629aa542b70d7a81004e9091d352cac28a447f2a101320d759f"
+    },
+    "previousProof": {
+      "path": ".local/standard-winning-checks-01/previous.log",
+      "bytes": 325,
+      "sha256": "195da94a140ce6ab03eb7186d173ab71391a6266f4653f94edf5240e45721a1b"
+    },
+    "plan": {
+      "path": "reference/standard-winning-plan.json",
+      "bytes": 2449,
+      "sha256": "267b2817f71cd5ae53b30eca49aa1706bd28597cd41f302ba47c2bc43eef3f7c"
+    }
+  }
+}

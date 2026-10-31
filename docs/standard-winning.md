@@ -49,10 +49,24 @@ screenshot can be overwritten by a later visit to the same room.
 
 The first capture attempt stopped at a same-timestamp setup assertion before
 opening a browser. A second run was deliberately stopped after discovering three
-duplicate screenshot identities. Neither is acceptance. The corrected capture is
-in progress;an independent consumer is required before claiming browser success.
+duplicate screenshot identities. Neither is acceptance. The corrected capture
+`.local/standard-winning-browser-03` completed170 checkpoints/6575 DOM events at
+`e4f857a`. Actual browser controls reached banked24275 against21000 on day33,the
+winning cover/celebration,replay-No,all26 credits,the closed screen and Restart.
+Every planned state and retained prefix image matched. This capture remains
+marked accepted:false. Its separate strict consumer at`e600150` passed all170
+complete state/decoded-image checkpoints,6575 required events,Restart and a
+missing-Standard-selection negative. Three empty/missing/corrupt setup controls
+also pass. `reference/standard-winning-route.json` pins the immutable scenario;
+`reference/standard-winning-acceptance.json` pins the separate consumer receipt.
+The acceptance command checks current runtime hashes and inherited repair/ending/
+credit evidence. Runtime is unchanged;the earlier194 units,77 boundaries and
+production build remain valid through their source-guarded repair receipt.
 
 ```sh
+node scripts/verify-standard-winning-acceptance.js
+node scripts/verify-standard-wages-route.js --manifest=reference/standard-winning-route.json --setup-negatives
+node scripts/verify-standard-wages-route.js --manifest=reference/standard-winning-route.json --output=.local/standard-winning-replay-FRESH
 # Conditional planning;clean committed source and fresh ignored output:
 node scripts/standard-winning-plan.js .local/rival-standard-capture-01 --through=continued-mountain-return --diagnose --finish --output=.local/standard-winning-plan-FRESH
 # Real browser exploration;capture is never self-acceptance:

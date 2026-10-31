@@ -5,60 +5,51 @@ deferred at the user's request.
 
 ## Working playable routes
 
-Easy startup → security/office → map/transport/departure → flight → jungle,
-mountain,cave and Safari → rewards,banking/rivals → winning day31 ending → Restart
-was accepted before the current failure-reader fix. Standard also has a continuous
-all-family playthrough through the day31 defeat cover and Restart;its85 immutable
-checkpoints have passed again against the current runtime. A winning Standard
-route is not established. The earned transmitter supports successful travel and
-misdirection into real expeditions.
+Standard now has a verified continuous winning route:startup/security/office →
+flights → Too-Pei cave → Kenya Safari → Great Outback jungle → Lost World mountain
+→ Atlantis,Klondike and Siberian caves → banking/rivals → winning day33 ending →
+celebration/replay-No → all26 credits → finished screen → Restart. Banked24275
+beats rival21000. A separate day31 defeat route remains verified. The earned
+transmitter supports successful travel and misdirection into real expeditions.
+Earlier Easy winning/all-layout evidence is retained with its historical scope.
 
 HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 `game/`. Production users select their own files. Nothing is pushed or deployed.
 
 ## Latest completed behavior and current acceptance
 
-Flight repairs and wreckage search now use original shared09f5(60/100) instead
-of simplified countdowns. They flush input on entry,read immediately,wait seven
-driver ticks on neutral,sample P/Q/S at those reads,and resume the pending read
-after Pause/Quit-No. A fresh Fire is required after a modal and between the two
-announcements. Only consumed Fire with enabled sound requests24. The original
-cash-loss/RNG calculation is unchanged. Runtime:`cabc06c`.
-[Repair behavior and evidence](repair-input.md).
+The winning Standard route passed two separate actual-browser runs:an exploratory
+capture followed by a strict consumer of its independent DOM input stream. All170
+complete public-state and decoded-RGBA checkpoints and6575 required events match.
+The consumer also removes the Standard-selection input and must fail at the
+selection checkpoint. Empty,missing and corrupt fixture controls are rejected.
+The route includes all four expedition families,three additional cave treasures,
+natural crash/loss recovery,winning celebration,replay-No,all26 credits,finished
+screen and Restart. No game rules were changed to obtain the win.
+[Winning route and evidence](standard-winning.md).
 
-Current acceptance includes:
+[Current saved acceptance](../reference/standard-winning-acceptance.json).
+Capture:`e4f857a`;consumer:`e600150`. Runtime remains`cabc06c`,so the preceding
+repair acceptance still validates the current runtime:21 crash/recovery
+checkpoints/170 DOM events,two Pause omission negatives,unchanged Standard defeat
+85/5071 with selection negative,194 units,77 dialogue boundaries,three invalid
+setup controls,build and conditional original crash/calendar/cash/RNG evidence.
+[Repair behavior](repair-input.md).
 
-- Two real Easy crash/recovery routes:21 exact complete state/image checkpoints,
-  170 DOM events,Pause/Quit-No/fresh Fire,cave entry,Restart and two missing-P
-  negatives. Cash0 skips wreckage;earned2800 becomes2100 after a700 loss.
-- Unchanged full Standard route:85 complete state/image checkpoints,5,071 inputs,
-  all four expedition families,race-loss recovery,bank/rival/deadline/defeat
-  cover,Restart and a missing-selection negative. The source-corrected rival
-  fixture from the preceding milestone remains unchanged.
-- 194 existing units,77 result/guide/atomic/rival/repair boundary checks,three
-  fixture setup negatives and production build.
-- 119 original/Ghidra repair-caller bytes and three declared relocations;existing
-  shared-reader/caller and keyboard proofs check567 and282 bytes separately.
-- Existing original crash/calendar/repair segment:four conditional checkpoints,
-  27 presentations and three negative controls still pass,including cash50→25.
+Original ending checks also pass:eight bank/winner/wait/replay checkpoints,four
+exact PNGs and negative controls;credits checks cover nine original code/index/
+pixel comparisons and26 independent port boundaries. This does not establish
+native whole-campaign/reveal/drawing timing or audio/waveform parity. Browser
+campaign controls are muted. All original/proprietary artifacts remain ignored;
+missing local evidence fails setup rather than silently generating expectations.
 
-[Current saved acceptance](../reference/repair-input-acceptance.json).
-Browser repair controls are muted;enabled click requests are checked in conditional
-simulation. This is not native reveal/drawing cost,clock/audio phase or acoustic
-parity. Expected outputs never select replay inputs;missing local fixtures fail
-setup. Both failed exploration/setup attempts remain separate from acceptance.
-
-Rival announcements retain their shared reader,actual sound status and deferred
-claim location. The preceding18 rival-control checkpoints,11 failure/retry
-checkpoints and real speaker/Tandy probes were not rerun in full for this repair
-change. Their evidence remains historical;old saved runtime guards reject this
-change. Current boundary tests and the complete Standard route pass.
-[Rival evidence](rival-input.md).
-
-Shared40-read awards,100-read transmitter notices,30-read guides and20-read cave
-failure portraits remain implemented. Older15 browser routes(343 checkpoints/
-11,601 events),winning Easy campaign and8 cave-component replays also remain
-historical. [Earlier evidence](result-input.md).
+Rival announcements retain actual audio status and deferred claim location;
+shared awards/notices/guides/failure and repair readers remain implemented.
+Older18 rival-control and11 cave-failure browser checkpoints,speaker/Tandy probes,
+15 layout routes(343 checkpoints/11601 events),winning Easy campaign and eight
+cave-component cases retain their documented historical scope. They were not all
+rerun for this strategy-only milestone. [Rival evidence](rival-input.md),
+[earlier result evidence](result-input.md).
 
 ## Coverage and remaining work
 
@@ -66,11 +57,11 @@ historical. [Earlier evidence](result-input.md).
 | --- | --- | --- |
 | Jungle | All3 layouts complete in browser | Great Outback/layout2 treasure,three lives |
 | Mountain | All3 layouts complete in browser | Lost World/layout0 summit,three lives |
-| Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei treasure |
+| Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei/7,Atlantis/3,Klondike/0,Siberia/4 treasures |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:establish a winning Standard campaign and audit remaining unsupported
-gameplay paths;the current full Standard route deliberately ends in defeat.
+Next:correct the known keyboard sound-off request order,then continue the audit
+of remaining unsupported gameplay/input paths.
 Cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
 arbitrary-route finishability remain incomplete. Hard is deferred;its earlier
@@ -105,6 +96,7 @@ contain actual game code with documented transformations and are never run.
 
 ```sh
 # Validate saved current-runtime evidence and source:
+node scripts/verify-standard-winning-acceptance.js
 node scripts/verify-repair-input-acceptance.js
 node scripts/verify-repair-input-source.js
 node scripts/verify-rival-input-source.js
@@ -117,6 +109,7 @@ node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/ato
 npm test
 npm run build
 # Fresh browser comparisons;clean committed source and new ignored outputs:
+node scripts/verify-standard-wages-route.js --manifest=reference/standard-winning-route.json --output=.local/standard-winning-replay-FRESH
 node scripts/verify-cave-failure-input-browser.js --output=.local/failure-replay-FRESH
 node scripts/verify-repair-input-browser.js --output=.local/repair-input-FRESH
 node scripts/verify-standard-wages-route.js --manifest=reference/rival-standard-route.json --output=.local/standard-full-replay-FRESH

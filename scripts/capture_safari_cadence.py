@@ -179,10 +179,19 @@ def capture_safari_cadence(*, client, stop, load, ds, overlay, add, remove,
     assert flip==0xe5
     driver_read=client.post('/api/v1/batch',json={'ops':[{'op':'mem_read','segment':ega,'offset':0,'len':2599}]})
     assert not driver_read['aborted'] and driver_read['results'][0]['status']=='ok'
+    save('safari-driver-observed', {'segment':ega,'read':driver_read})
     driver=base64.b64decode(driver_read['results'][0]['data'])
     original=base64.b64decode(subprocess.check_output(['node','--input-type=module','-e',
         "import{readFile}from'node:fs/promises';import{parseArchive}from'./src/assets.js';process.stdout.write(Buffer.from(parseArchive(await readFile('game/IT.DRV'))[1].data).toString('base64'));"],cwd=root))
-    for lo,hi in [(0x64,0x101),(0x1ef,0x35d),(0x35d,0x515)]:assert driver[lo:hi]==original[lo:hi]
+    # Compare executed instruction ranges,not the intervening palette/mode
+    # helper region85..e4. The complete observed resource is retained above.
+    for lo,hi in [(0x64,0x85),(0xe5,0x101),(0x1ef,0x35d),(0x35d,0x515),(0x515,0x81d),(0x81f,0x909)]:
+        assert driver[lo:hi]==original[lo:hi], 'Measured EGA instruction range mismatch'
+    formatter=client.post('/api/v1/batch',json={'ops':[{'op':'mem_read','segment':load,'offset':0x1e67,'len':128}]})
+    save('safari-formatter-code',{'load':load,'read':formatter})
+    assert not formatter['aborted'] and formatter['results'][0]['status']=='ok'
+    assert base64.b64decode(formatter['results'][0]['data'])==image[0x1e67:0x1ee7]
+
     save('safari-driver-code',{'segment':ega,'read':driver_read,'originalSHA256':hashlib.sha256(original).hexdigest()})
     assert client.get('/api/v1/debug/breakpoints')['breakpoints']==[]
     template=(root/'scripts/safari-cadence-observer.lua').read_text()

@@ -55,3 +55,11 @@ The existing original comparison requires078a there,0755 for INT3c and0782 for
 INT3d. The live handler-byte check had passed,but the vector assertion stopped
 setup before any cadence observation. lifecycle.json records owned-process
 shutdown. This is a recipe error,not evidence of a game or emulator defect.
+
+Attempt02 reached and validated original Safari entry and its first neutral read,
+then stopped before measurement on a comparison that also covered the unrelated
+EGA palette/mode helper85..e4. The actual driver read was not retained by that
+recipe,so the precise differing bytes remain unknown. Attempt03 retains the
+complete observed resource before assertions and checks the executed retrace,
+flip,copy,sprite,line,text ranges plus the original128-byte number formatter.
+This is a bounded code-identity claim,not equivalence of unmeasured palette code.

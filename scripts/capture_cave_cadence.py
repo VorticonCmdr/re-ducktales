@@ -20,7 +20,7 @@ def parse_samples(csv):
 
 
 def capture_cave_cadence(*, client, stop, load, ds, overlay, entry, add,
-                         remove, resume, state, sequence, wait_until, save, root, loader_profile=False):
+                         remove, resume, state, sequence, wait_until, save, root, loader_profile=False, treasure_profile=False):
     data = state('cave-entry', stop)
     assert stop['registers']['cs'] == overlay and stop['registers']['eip'] == 0
     expected = relocated_overlay((root/'game/DUCKTALE.EXE').read_bytes(), 0x1a800, load, 6, 11054, 196)
@@ -51,6 +51,11 @@ def capture_cave_cadence(*, client, stop, load, ds, overlay, entry, add,
     remove(marker)
     assert struct.unpack_from('<H', data, 0x4d32)[0] == 45
     assert data[0x3c1] == 0
+    if treasure_profile:
+        from capture_cave_treasure import capture_cave_treasure
+        return capture_cave_treasure(client=client, stop=stop, load=load, ds=ds,
+            overlay=overlay, add=add, remove=remove, resume=resume, state=state,
+            sequence=sequence, save=save, root=root)
     flip, ega = struct.unpack_from('<HH', data, 0x1fd4)
     assert flip == 0xe5
     read = client.post('/api/v1/batch', json={'ops': [

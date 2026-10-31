@@ -1,0 +1,72 @@
+{
+  "id": "result-audio-boundary",
+  "evidence": "Conditional actual-browser processor I/O observations;not independent game replay,native clock alignment or waveform parity",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "sourceCommit": "0b6d2b5fdaa6d75af10a492078fc6bb068fbe1a3",
+  "sourceArchiveScope": "Archive from separate earned result recording;unchanged runtime/helper bytes,not a new archive made at probe launch",
+  "devices": [
+    "speaker",
+    "tandy"
+  ],
+  "cases": 2,
+  "startingRecipe": "Fresh UTC BIOS0 Easy,select device on title,muted Too-Pei cave7 treasure;S consumed at award read enables sound;fresh Fire skips40 then100;observe real processor ACKs;Restart",
+  "providers": {
+    "gameClock": "Injected origin1/eight-millisecond presentation schedule",
+    "audioClock": "Real AudioContext/worklet;host waits for acknowledgements while injected game clock is stationary"
+  },
+  "expectedAckPrefix": [
+    0,
+    36,
+    84,
+    36
+  ],
+  "comparisonRules": "Exact relevant ACK order with no reset between first click24 and notice54;both clicks acknowledged;running context and nonzero signal;successor-context ACKs may follow;no sample-value or timing comparison",
+  "memoryInjections": [],
+  "audioStatusInjections": [],
+  "fittedInputs": [],
+  "artifacts": {
+    "probe.mjs": {
+      "path": ".local/result-audio-boundary-01/probe.mjs",
+      "bytes": 5089,
+      "sha256": "f3f55d39dfe17acbcf4abf279496d6609e77c711ad6e16b93f34e080c7243637"
+    },
+    "speaker.json": {
+      "path": ".local/result-audio-boundary-01/speaker.json",
+      "bytes": 93792,
+      "sha256": "4814c5f9823f76d2dcadd23d9b4604ae3ccd5e2f152694a9332a60c4af2db19a"
+    },
+    "speaker.log": {
+      "path": ".local/result-audio-boundary-01/speaker.log",
+      "bytes": 1027,
+      "sha256": "5bda7fc3aadb38ddd65314e2d5627fefda220565812a83db93478412c8e369d5"
+    },
+    "tandy.json": {
+      "path": ".local/result-audio-boundary-01/tandy.json",
+      "bytes": 93753,
+      "sha256": "c52b146f2d786fd3c8678956a9821b247278073085967a6c6a9c0f48cdf718fb"
+    },
+    "tandy.log": {
+      "path": ".local/result-audio-boundary-01/tandy.log",
+      "bytes": 1027,
+      "sha256": "5bda7fc3aadb38ddd65314e2d5627fefda220565812a83db93478412c8e369d5"
+    },
+    "sources.zip": {
+      "path": ".local/result-audio-boundary-01/sources.zip",
+      "bytes": 2679356,
+      "sha256": "7e2c319cf3236e07a74c476c6bad9a9ab0ca27fddf22976384e6a8c250251d3e"
+    },
+    "source-revision.json": {
+      "path": ".local/result-audio-boundary-01/source-revision.json",
+      "bytes": 100179,
+      "sha256": "ae11173696c3a7e9a331a2fc31367e6a15d1a8dc26be397f1d10610e546ff09f"
+    }
+  },
+  "verify": "node scripts/verify-result-audio-boundary.js",
+  "limits": [
+    "Processor clock and injected game clock are intentionally independent during ACK waits",
+    "Live audio status is not consumed by either result wait",
+    "Signal counts establish output,not waveform fidelity",
+    "No native audible click/reference recording"
+  ]
+}

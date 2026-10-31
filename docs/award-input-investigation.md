@@ -1,11 +1,12 @@
 # Award dialogue input investigation
 
-The treasure-award dialogue is the next legacy reader gap after the guide fix.
+This records the historical treasure-award reader gap after the guide fix.
+The40-read award and100-read explanation are now implemented;see [result input](result-input.md).
 Original resident C48..C69 pushes40 and calls shared09f5. A nonzero return and
-enabled-audio byte3be then request click24. The existing award path still uses
-the legacy countdown/immediate global-key routing, and its completion integration
-has no corresponding conditional click request. These are targeted next changes,
-not fixes already made.
+enabled-audio byte3be then request click24. The pre-fix award path used
+the legacy countdown/immediate global-key routing,and its completion integration
+had no corresponding conditional click request. Those historical observations
+remain unchanged below.
 
 The [manifest](../reference/award-input-investigation.json) pins34 original caller
 bytes,88 shared-reader bytes, the recorded Ghidra bytes and a browser observation.
@@ -32,7 +33,7 @@ assume their rules from this40-read case.
 node scripts/verify-award-input-investigation.js
 ```
 
-The next implementation should preserve rewards, day changes, collection and
+The implementation preserves rewards, day changes, collection and
 unlock ordering, while routing fresh controls through the original40-read wait.
 Only a Fire actually consumed at a read may request click24. A make in the final
 neutral wait must not invent an extra read or click. Preserve historical expected

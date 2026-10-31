@@ -3,14 +3,6 @@
 Updated 2026-10-31. **The whole game is incomplete.** Hard campaigns remain deferred
 at the user's request.
 
-## Work in progress: treasure result readers
-
-Award40 and transmitter-notice100 now queue system keys at original read
-boundaries and request click24 only for consumed Fire with enabled audio. The
-local synthetic audio stop has been removed after inspecting original call order.
-194 existing units and18 result boundary tests pass. Fresh browser/current-route
-acceptance is pending; prior runtime-pinned receipts below remain historical.
-
 ## Working playable route
 
 Easy startup → security/office → map/transport/departure → flight → jungle,
@@ -22,31 +14,33 @@ select their own files. Nothing has been pushed or deployed.
 
 ## Latest completed behavior
 
-The guide now follows original shared09f5(30): entry flush and immediate read,
-seven-tick neutral waits, Pause/Quit-No resumption at the blocked read, and no
-extra read after the final wait. A fresh Fire is required after modal input is
-flushed. Guide RNG/clues/rendering and neutral snapshots remain unchanged.
-Runtime fix: `fac414b`. Corrected browser-consumer tools: `b918af3`.
-[Guide implementation, evidence and commands](guide-input.md).
+Treasure awards now use original40-read waits and the transmitter explanation
+uses100. Both flush on entry,read immediately,wait seven driver ticks per neutral
+read,resume blocked Pause/Quit-No reads and omit the extra final read. Click0x24
+is requested only for consumed Fire with enabled audio. Cue0x49/0x54 enable guards
+and local audio call order now follow original bytes. Runtime:`0b6d2b5`.
+[Result implementation and commands](result-input.md).
 
 Current acceptance passes:
 
-- New earned guide route:30 exact full-state/image checkpoints,506 DOM events,
-  Pause/Quit-No/fresh Fire,jungle entry,Restart and one semantic omission negative.
-- All14 older browser routes against unchanged inputs/expectations:313 exact
-  checkpoints,11,095 events and14 Restarts. These cover the winning campaign,
-  Carlsbad,alternate mountains/jungles,all6 Safari variants and both atomic outcomes.
+- Earned award/explanation route:27 exact state/image checkpoints,488 DOM events,
+  both message control loops,collection/unlock,map,Restart and1 semantic negative.
+- All15 earlier browser routes against unchanged inputs/expectations:343 exact
+  checkpoints,11,601 events and15 Restarts. These include the full winning Easy
+  campaign,alternate expeditions,both atomic outcomes and the guide control route.
 - Full headless campaign:34 checkpoints,4,981 events,1,470 flight presentations;
   all8 cave components:2,696 presentations.
-- 194 existing units,22 guide/atomic boundary checks,5 conditional original atomic
-  comparisons,original guide-byte proof and production build.
-- Three receipt negatives reject zero cases,a missing guide checkpoint and corrupt
-  evidence. The initial guide omission-accounting failure remains preserved; a
-  fresh consumer passed the corrected semantic negative without recapturing outputs.
+- 194 existing units,40 result/guide/atomic boundaries,567 original caller/helper
+  bytes and production build. Three receipt negatives reject zero cases,a missing
+  award checkpoint and corrupt evidence.
+- Separate real PC-speaker/Tandy browser probes acknowledge0,0x24,0x54,0x24 and
+  produce nonzero signal. Their host ACK waits pause the injected game clock;
+  these are conditional device-I/O observations,not native audio timing/parity.
 
-[Current acceptance manifest](../reference/guide-input-acceptance.json).
-These are independent current-port regressions and scoped original/static checks,
-not native whole-game timing or arbitrary-route completion proof.
+[Current acceptance](../reference/result-input-acceptance.json),
+[audio boundary observations](../reference/result-audio-boundary.json).
+These do not establish native whole-game timing or arbitrary-route completion.
+The previously fixed30-read guide remains covered unchanged.
 
 ## Coverage and remaining work
 
@@ -57,11 +51,11 @@ not native whole-game timing or arbitrary-route completion proof.
 | Cave | All8 complete in component replay;Klondike,Carlsbad and Too-Pei complete in browser routes |
 | Safari | All6 variants complete target-photo/results/reward browser routes |
 
-Next: the treasure-award dialogue still handles Pause before its original
-40-read boundary. A browser probe and122 original bytes identify it. Original
-C54..C67 also conditionally requests click24 on consumed Fire; that call is missing
-from the current award completion integration. Its audible ordering remains to
-be investigated. [Award investigation](award-input-investigation.md).
+Next playable milestone: establish a reproducible **Standard Wages** campaign
+route and resolve the first unsupported behavior/dead end it exposes. That is
+original difficulty1;its full campaign acceptance is not established. Hard remains
+deferred. Failure-portrait20 and other legacy dialogue read boundaries also remain
+separate fidelity gaps;the award/notice change does not claim to fix them.
 
 Other legacy dialogues,cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
@@ -76,8 +70,8 @@ not confirmed missing features and should not be invented.
 Tandy/PCjr includes Sound001,persistent channels,priorities,flight engine words,
 mute and completion. PC speaker is the default with persistent IRQ/RNG/priority
 logic. Historical acceptance covers7 browser cases and3 sound streams; that sound
-suite was not rerun for this guide-only input change. Physical waveform/gain/filter
-parity remains unverified. [Sound](speaker-audio.md).
+suite was not rerun in full for this result change. The new result probes exercise
+both real processors;physical waveform/gain/filter parity remains unverified. [Sound](speaker-audio.md).
 
 The unchecked **Original security system** option restores the surviving failure
 path and logs the correct code once per challenge. Default play keeps this build's
@@ -94,15 +88,15 @@ contain actual game code with documented transformations and are never run.
 
 ```sh
 # Validate saved current acceptance and scoped source/observation evidence:
-node scripts/verify-guide-input-acceptance.js
-node scripts/verify-guide-input-investigation.js
-node scripts/verify-award-input-investigation.js
+node scripts/verify-result-input-acceptance.js
+node scripts/verify-result-caller-source.js
+node scripts/verify-result-audio-boundary.js
 # Focused checks and production build:
-node --test scripts/guide-input.test.js scripts/atomic-input.test.js
+node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js
 npm test
 npm run build
-# Fresh independent guide replay,requires clean committed source:
-node scripts/atomic-route.js verify --guide --capture=.local/guide-earned-browser-01 --output=.local/guide-replay-FRESH
+# Fresh independent result replay,requires clean committed source:
+node scripts/atomic-route.js verify --award --capture=.local/result-earned-browser-01 --output=.local/result-replay-FRESH
 # Fresh current consumer of immutable historical routes:
 node scripts/verify-preserved-routes.js --output=.local/preserved-FRESH
 # Local development:

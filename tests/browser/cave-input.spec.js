@@ -20,8 +20,8 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
       const response = await route.fetch(),
         body = await response.text();
       const wait =
-        /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until: this.now\(\) \+ work.milliseconds,?\s*\};/g;
-      expect(body.match(wait)?.length, "SETUP: cave graphics hooks").toBe(4);
+        /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until:[^}]+\};/g;
+      expect(body.match(wait)?.length, "SETUP: cave graphics hooks").toBe(5);
       await route.fulfill({
         response,
         body: body.replace(wait, "/* isolated browser graphics-work bypass */"),
@@ -36,15 +36,15 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
       const response = await route.fetch(),
         body = await response.text();
       if (mode === "omit-room") {
-        const hook =
-          /(\*scene\(\) \{[\s\S]*?)yield\s*\{\s*clock: "graphics",[\s\S]*?\};/;
-        expect(
-          body.match(hook),
-          "SETUP: cave composition deadline hook",
-        ).not.toBeNull();
+        const start = body.indexOf("*scene("), end = body.indexOf("*party(", start);
+        expect(start, "SETUP: cave composition start").toBeGreaterThan(0);
+        expect(end, "SETUP: cave composition end").toBeGreaterThan(start);
+        const scene = body.slice(start, end);
+        const hook = /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until:[^}]+\};/g;
+        expect(scene.match(hook)?.length, "SETUP: cave composition deadline hooks").toBe(2);
         await route.fulfill({
           response,
-          body: body.replace(hook, "$1/* isolated omitted composition wait */"),
+          body: body.slice(0, start) + scene.replace(hook, "/* isolated omitted composition wait */") + body.slice(end),
         });
         return;
       }
@@ -60,8 +60,16 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   }
   await openRecordedApplication(page, 1);
   await expect(page.locator("#actions")).toBeVisible();
+  let observedRoomWork = 0, lastEntryWork = null;
   const c = page.locator("#game"),
-    state = () => c.getAttribute("data-state").then(JSON.parse);
+    state = () => c.getAttribute("data-state").then(JSON.parse).then((s) => {
+      if (s?.scene === "cave" && s.cave.phase === "entering") {
+        const kind = s.cave.drawingWork?.kind;
+        if (kind === "room" && lastEntryWork !== kind) observedRoomWork++;
+        lastEntryWork = kind;
+      }
+      return s;
+    });
   async function until(predicate, max = 10000) {
     for (let i = 0; i < max; i++) {
       const s = await state();
@@ -123,6 +131,9 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   await page.clock.runFor(16);
   expect((await state()).pendingCaveSystemKeys).toHaveLength(2);
   await until((s) => s.cave.phase === "exploring");
+  // Both actual entry compositions must yield to the browser. Merely
+  // retaining work counters after bypassing their waits is insufficient.
+  expect(observedRoomWork, "Original cave composition boundary").toBe(2);
   expect((await state()).pendingCaveSystemKeys).toBeUndefined();
   expect((await state()).systemOverlay).toBeNull();
   await expect(page.locator("#audio")).not.toBeChecked();
@@ -130,8 +141,8 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   expect(first.cave.inputReads).toBe(1);
   expect(
     first.cave.drawingWork.kind,
-    "Original cave composition boundary",
-  ).toBe("room");
+    "Original cave cached party boundary",
+  ).toBe("party");
   expect(
     first.cave.initialDrawingWork.minimapPoints,
     "Original cave initial minimap",
@@ -148,15 +159,13 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
   ).toBe(33);
   expect(first.cave.partyWork.omittedFills).toBe(0);
   const beginning = await page.evaluate(() => performance.now());
-  let sourceMilliseconds =
-    first.cave.partyWork.milliseconds + first.cave.roomWork.milliseconds;
+  let sourceMilliseconds = first.cave.partyWork.milliseconds;
   expect(first.cave.partyWork.milliseconds).toBeGreaterThan(120);
   for (let input = 2; input <= 5; input++) {
     const next = await until((s) => s.cave.inputReads >= input);
     expect(next.cave.inputReads, "Skipped cave input observation").toBe(input);
     if (input < 5)
-      sourceMilliseconds +=
-        next.cave.partyWork.milliseconds + next.cave.roomWork.milliseconds;
+      sourceMilliseconds += next.cave.partyWork.milliseconds;
   }
   const duration = (await page.evaluate(() => performance.now())) - beginning;
   expect(duration, "Cave source drawing cadence").toBeGreaterThanOrEqual(

@@ -575,7 +575,9 @@ export class Cave {
         }
       }
       let commands = yield* this.party(
-        yield* this.scene(),
+        // Main09cf/0a0e/0a90 call20b8 directly. That helper restores
+        // the cached room;26bb composition belongs to room-entry paths.
+        this.back(),
         door ? { asset: door, pose } : undefined,
       );
       if (!dir) {

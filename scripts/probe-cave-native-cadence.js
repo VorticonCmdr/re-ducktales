@@ -67,6 +67,10 @@ port = new Cave(
       if (anchor === null) {
         anchor = now;
         first = state(port.memory);
+        // Capture at the reader boundary,not after synchronous post-read
+        // party/RNG work in this same scheduler callback.
+        changes.push({ ms: 0, state: first });
+        last = JSON.stringify([first.room, first.torch, first.money, first.entering]);
       }
       const byte = keyboard.poll();
       inputs.push({ ms: now - anchor, byte });

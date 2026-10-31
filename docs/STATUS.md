@@ -1,7 +1,8 @@
 # Current port status
 
 Updated2026-10-31. **The whole game is incomplete.** Cave entry now restores
-both original wipe call sites and the second-page striped reveal. Focused browser
+both original wipe call sites and the second-page striped reveal,and restores
+the cached room in the normal input loop without extra composition. Focused browser
 and timing checks pass; original loading work is still absent from gameplay.
 The last full Standard campaign/replay passed before this transition change.
 Its strict combined gate now correctly rejects the changed runtime; a fresh
@@ -114,10 +115,10 @@ negatives pass. This is conditional walking evidence,not whole-level/browser
 timing acceptance. [Scope](mountain-phase.md).
 The new natural cave reference passes480 uninterrupted samples and all four
 Right+Fire/release events. Its strict port probe currently fails on stage/timing
-differences:the current port awards50 at4.37s while the original still has0 at6.83s.
+differences:the current port awards50 at4.31s while the original still has0 at6.83s.
 The source-confirmed room/entry ordering is now corrected and passes all four
 directions/revisit plus an old-class negative and the actual browser cave case.
-[Ordering fix](cave-passage-order.md). Entry page waits are now restored;whole-cave timing still fails.
+[Ordering fix](cave-passage-order.md). Entry page waits and cached-loop call placement are restored;whole-cave timing still fails.
 [Evidence and failing probe](cave-native-cadence.md).
 The first natural cave sprite10 load is now measured separately:84 conditional
 driver counts (about1.15s),with exact38080-byte native planar output. This cost is
@@ -126,16 +127,23 @@ currently omitted by synchronous browser loading. Original585-byte loader,
 the owned emulator is closed. [Loading evidence](cave-loader-work.md).
 The natural background0 load now passes85 conditional driver counts and all32000
 original planar bytes,with three negatives. [Background](cave-background-load.md).
-The isolated work prototype covers46 sprites plus the picture;it remains outside
-the gameplay runtime. Original DOS/interrupt/allocator work is not fully admitted.
+The integrated pure work model covers46 sprites plus the picture;it remains
+unconnected to gameplay scheduling. Original DOS/interrupt/allocator work is not fully admitted.
 Cave entry now executes initial and per-room wipes,each five bands/five retraces,
 and reveals the second room page without swapping page roles. The existing actual
 browser cave scenario passes;focused tests check50 first-entry wipe retraces and25
 reveal retraces,no input/RNG during reveal,and unchanged page roles.
 [Transition scope](cave-entry-transitions.md). The old full-campaign gate rejects
 this changed runtime as required;it has not been refreshed.
-Next:integrate counted loading at original call boundaries,review cache/draw-call
-placement,then refresh browser campaign acceptance. Do not fit observed delays.
+Normal input now calls party20b8 directly without extra room composition26bb.
+The894-byte/319-instruction source proof and two negatives pass,as do all218 units,
+the existing browser cave input scenario,strict all-work negative and build.
+The browser checker observes both actual entry drawing intervals;stale-hook
+and permissive-bound exploratory negatives are excluded. The conditional room-commit
+time now falls inside the original bracket;state/loading differences remain.
+[Cache correction](cave-cached-room.md).
+Next:integrate counted loading at original call boundaries,then refresh browser
+campaign acceptance. Do not fit observed delays.
 Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability
@@ -158,6 +166,8 @@ select their own files.
 
 ```sh
 node scripts/verify-cave-passage-order.js
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_cache_source.py
+node scripts/verify-sprite-load-work.js
 node scripts/verify-cave.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_loader_profile.py
 node scripts/verify-current-winning-acceptance.js

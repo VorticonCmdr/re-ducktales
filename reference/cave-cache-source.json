@@ -1,0 +1,36 @@
+{
+  "kind": "original-cave-cached-input-loop-source",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "nativeParent": {
+    "path": "reference/cave-native-cadence.json",
+    "bytes": 50446,
+    "sha256": "2c03871b329c819e0097fcac017ad2bd0915597014863386abd0ef056ee91e75"
+  },
+  "source": {
+    "path": ".local/cave-cache-source-01/loop.json",
+    "bytes": 36478,
+    "sha256": "58b8edd707f2397c40e8c5e43bd9215b76778f3227085fec929c227a7392f3a6"
+  },
+  "start": 2470,
+  "end": 3364,
+  "instructions": 319,
+  "bytes": 894,
+  "partyCalls": [
+    2511,
+    2574,
+    2704
+  ],
+  "partyTarget": 8376,
+  "excludedTarget": 9915,
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_cache_source.py",
+  "expectedCases": 1,
+  "evidence": "Source byte correspondence and native parent identity;not runtime timing acceptance",
+  "sourceProgram": "CAVE_CODE.EXE",
+  "comparisonRules": "Exact894 original bytes and319 contiguous instructions;no byte exclusions or injections",
+  "inputSchedule": "No new runtime inputs;native parent retains its independent four-event schedule",
+  "negativeControls": 2
+}

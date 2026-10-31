@@ -1,0 +1,32 @@
+{
+  "kind": "jungle-input-exploration",
+  "accepted": false,
+  "nativeComparison": false,
+  "producer": ".local/jungle-input-exploration-02",
+  "sourceCommit": "0f7975a7f4044107d58484623ded064128179628",
+  "scope": "Conditional zero-phase fresh components,independent authored joystick-byte schedules;no DOM/native comparison. Early original outcomes and unconsumed tails are explicit. This is a search for unsupported paths,not an acceptance suite.",
+  "expectedExploredCases": 12,
+  "executedInputs": 1944,
+  "diagnostics": 0,
+  "translatedFailureOutcomes": 10,
+  "authoredInputBounds": 2,
+  "harnessFailure": ".local/jungle-input-exploration-01 is excluded:the first recipe assumed a non-existent advanceGraphics interface. This was a recipe error,not a game diagnostic. The corrected recipe uses the existing driver/retrace boundary. Historical reason original-outcome in run02 denotes translated component output,not a DOSBox observation;new recipes label it translated-outcome.",
+  "artifacts": {
+    "exploration.json": {
+      "path": ".local/jungle-input-exploration-02/exploration.json",
+      "bytes": 372765,
+      "sha256": "99ccf3e7a66a957958a7ff7098b0c8ddb61be62cea77d70abadc82349c67f306"
+    },
+    "source-revision.json": {
+      "path": ".local/jungle-input-exploration-02/source-revision.json",
+      "bytes": 122435,
+      "sha256": "9279a6684152b4df862e050dc3f94b98162cc68225341a74a505ea91948793b2"
+    },
+    "sources.zip": {
+      "path": ".local/jungle-input-exploration-02/sources.zip",
+      "bytes": 3102148,
+      "sha256": "f18fa157b7276804d3f167e519b0922c0ec17a4308346194683e540b471d6e8c"
+    }
+  },
+  "verify": "node scripts/explore-jungle-inputs.js --output=.local/jungle-input-exploration-FRESH"
+}

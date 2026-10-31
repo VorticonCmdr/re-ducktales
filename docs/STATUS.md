@@ -80,6 +80,17 @@ strategy loses normally27050 to36000;the first Novay browser attempt exposed the
 bank error. Only explicitly declared valid prefixes of those recordings are
 reused,always by fresh startup input replay. [History](status-history.md).
 
+A bounded conditional jungle search covers all3 layouts on Easy/Standard with
+12 independent control profiles and1944 consumed input reads. No game diagnostic
+was found;10 runs end in translated failure and two reach the300-input bound.
+This is exploratory component coverage,not native or browser acceptance. The
+initial clock-adapter failure is excluded explicitly in
+[its manifest](../reference/jungle-input-exploration.json).
+
+The refreshed current player-notice consumer passes27 checkpoints/543 controls,
+all58 intermediate frames,45 stripe groups,missing-Pause negative and Restart.
+Rival/forced reports and the full winning campaign refresh are still in progress.
+
 ## Remaining work and supported build
 
 Next:refresh the full campaign after Safari HUD timing,then validate more

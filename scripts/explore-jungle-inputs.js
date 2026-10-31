@@ -74,7 +74,7 @@ for (const difficulty of [0, 1])
           used,
           remaining: inputs.length - used,
           reason: jungle.outcome
-            ? "original-outcome"
+            ? "translated-outcome"
             : used === inputs.length
               ? "authored-bound"
               : "time-bound",

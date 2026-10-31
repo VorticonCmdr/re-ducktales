@@ -1831,7 +1831,7 @@ export class Game {
         remaining: 40 * 7,
         skipRequested: false,
       };
-      this.effects.push({ type: "sound", id: 0x49 });
+      if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x49 });
     }
     // Only the actual09f5 result dialog starts with19a5. The shared photo-score
     // branch above returns directly and never enters this input wait.
@@ -1909,7 +1909,7 @@ export class Game {
       remaining: 40 * 7,
       skipRequested: false,
     };
-    this.effects.push({ type: "sound", id: 0x49 });
+    if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x49 });
     this.scene = "expedition-result";
     this.beginResultWait();
   }
@@ -1952,7 +1952,7 @@ export class Game {
           remaining: 100 * 7,
           skipRequested: false,
         };
-        this.effects.push({ type: "sound", id: 0x54 });
+        if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x54 });
         this.beginResultWait();
         return;
       }

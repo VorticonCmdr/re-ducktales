@@ -243,3 +243,41 @@ test("result checks reject legacy immediate dispatch and falsely consumed final-
   w.advanceTick();
   assert.throws(() => assert.equal(w.skipped, true), { code: "ERR_ASSERTION" });
 });
+
+test("muted transmitter unlock never queues notice54 for a later sound toggle", async () => {
+  const { g } = await fresh({ atomic: true });
+  g.input({ type: "fire" });
+  ticks(g, 7);
+  assert.equal(g.expeditionResult.phase, "atomic");
+  assert.deepEqual(
+    g.drainEffects().filter((e) => e.type === "sound"),
+    [],
+  );
+  g.input({ type: "toggle-sound" });
+  ticks(g, 7);
+  assert.equal(g.audioEnabled, true);
+  assert.deepEqual(
+    g.drainEffects().filter((e) => e.type === "sound"),
+    [],
+  );
+});
+test("award cue49 is requested only when audio is enabled at its original call", async () => {
+  for (const audio of [false, true]) {
+    const { game: g } = await originalGame();
+    g.input({ type: "audio-enabled", enabled: audio });
+    g.campaign.location = 1;
+    g.drainEffects();
+    const memory = g.marketMemory;
+    memory.view.setUint32(0x97a8, 0, true);
+    g.collectActionExpedition({
+      memory,
+      outcome: { code: 1 },
+      drainEvents: () => [],
+    });
+    assert.equal(g.expeditionResult.phase, "award");
+    assert.deepEqual(
+      g.drainEffects().filter((e) => e.type === "sound"),
+      audio ? [{ type: "sound", id: 0x49 }] : [],
+    );
+  }
+});

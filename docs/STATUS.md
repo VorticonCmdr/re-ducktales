@@ -8,7 +8,7 @@ at the user's request.
 Award40 and transmitter-notice100 now queue system keys at original read
 boundaries and request click24 only for consumed Fire with enabled audio. The
 local synthetic audio stop has been removed after inspecting original call order.
-194 existing units and16 result boundary tests pass. Fresh browser/current-route
+194 existing units and18 result boundary tests pass. Fresh browser/current-route
 acceptance is pending; prior runtime-pinned receipts below remain historical.
 
 ## Working playable route

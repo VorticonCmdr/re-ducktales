@@ -22,18 +22,29 @@
       "path": ".local/result-caller-source-01/ghidra-caller.json",
       "bytes": 2607,
       "sha256": "a4fccc3a023baa9d57a082b5ff6c1307299c059bd8aeeefa99b96f95c5764d55"
+    },
+    "entryCue": {
+      "path": ".local/result-caller-source-01/ghidra-entry-cue.json",
+      "bytes": 288,
+      "sha256": "4bfd1643ad60ee5d11834d9ff6de312fea2b8a632c9c8417489b8f16bc990c7b"
     }
   },
   "claims": [
     "Award40 and notice100 both call shared09f5",
     "Both emit24 only for consumed Fire and enabled audio",
     "Award24 precedes collection and notice54;notice24 precedes dispatch",
-    "No local sound0 call between consumed click and campaign continuation"
+    "No local sound0 call between consumed click and campaign continuation",
+    "Entry49 and notice54 are requested only when audio is enabled at the call"
   ],
   "limits": [
     "Native IRQ/audio timing between drawing calls unverified",
     "Successor scene audio policies not replaced by this local caller contract",
     "Failure portrait20 is a separate untranslated input boundary"
   ],
-  "verify": "node scripts/verify-result-caller-source.js"
+  "verify": "node scripts/verify-result-caller-source.js",
+  "entryCue": {
+    "offset": 3126,
+    "length": 18,
+    "sha256": "f2bfe088ec1b16df2184cac3289e8cea14a9b874afbbdab1fd93dbfb90c9d83f"
+  }
 }

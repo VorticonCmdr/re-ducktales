@@ -61,6 +61,17 @@ const gh = JSON.parse(r.content[0].text);
 assert.equal(gh.program, m.program);
 assert.equal(gh.address, m.range.address);
 assert.deepEqual(prepared, Buffer.from(gh.hex, "hex"));
+assert.equal(sha(image.subarray(0xc36, 0xc48)), m.entryCue.sha256);
+const cue = await json(m.artifacts.entryCue.path);
+assert.equal(cue.isError, false);
+assert.equal(
+  JSON.parse(cue.content[0].text).hex,
+  Buffer.from(image.subarray(0xc36, 0xc48)).toString("hex"),
+);
+assert.equal(
+  Buffer.from(image.subarray(0xc36, 0xc48)).toString("hex"),
+  "803ebe0300740bb8490050ff1e1c2083c402",
+);
 console.log(
-  "Result caller:549 original bytes,461 Ghidra bytes/3 relocations;40/100 reads,conditional24 before collection/notice/dispatch,and no local synthetic sound0 verified;not native audio phase acceptance.",
+  "Result caller:567 original bytes,461 Ghidra bytes/3 relocations;40/100 reads,enabled49/54,conditional24 before collection/notice/dispatch,and no local synthetic sound0 verified;not native audio phase acceptance.",
 );

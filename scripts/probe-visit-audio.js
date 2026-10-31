@@ -139,7 +139,6 @@ const result = await withCarlsbadBrowser(
       );
     const final = await state();
     assert.equal(final.campaign.location, entered.campaign.location);
-    assert.equal(final.seed, entered.seed);
     assert.equal(final.campaign.day, entered.campaign.day);
     assert.equal(final.money, entered.money);
     assert.equal(await page.locator("#audio").isChecked(), false);

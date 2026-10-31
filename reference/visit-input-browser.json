@@ -1,0 +1,199 @@
+{
+  "kind": "visit-input-browser-regression",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "scope": "Two muted collected notices from independent Standard startup inputs;Pause,Quit-No,discarded old Fire,fresh Fire,map,Restart. Exact public state/decoded RGBA port regression,not native notice timing.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "physicalKeyboard": true,
+    "audioEnabled": false
+  },
+  "cases": [
+    {
+      "key": "player",
+      "producer": ".local/notice-player-controls-02",
+      "checkpoints": 9,
+      "events": 531,
+      "artifacts": {
+        "source-revision": {
+          "path": ".local/notice-player-controls-02/source-revision.json",
+          "bytes": 109146,
+          "sha256": "7c5bc368a7a9a80f2c149b03b4d12433e0743db5fe6c2913bae55ed010bb19fe"
+        },
+        "sources.zip": {
+          "path": ".local/notice-player-controls-02/sources.zip",
+          "bytes": 2853824,
+          "sha256": "626a1d235e1e50ccd6a64539371820e80beeca38d019c1ab08ca9989e7f98e97"
+        },
+        "environment": {
+          "path": ".local/notice-player-controls-02/environment.json",
+          "bytes": 282,
+          "sha256": "b98ddf953bf59352530348b30f477f2df121de9de02b661216ff4c89af72cfd7"
+        },
+        "captured-events": {
+          "path": ".local/notice-player-controls-02/captured-events.json",
+          "bytes": 63047,
+          "sha256": "ce2ff154aae8e6a25ff18e73165d805a9d8ca8256c77ccbf0888b1eab671e4a1"
+        },
+        "campaign-checkpoints": {
+          "path": ".local/notice-player-controls-02/campaign-checkpoints.json",
+          "bytes": 53985,
+          "sha256": "84b3ee2bac133bd17a0cb90cb3ef6d09fb58d9124e5c008892397b3efa6f1744"
+        },
+        "timeline": {
+          "path": ".local/notice-player-controls-02/timeline.json",
+          "bytes": 817,
+          "sha256": "f962c6b2837b1cf5ca0b9e407251aad0cc45b5cd5df8e1e95b06a17669d8bd02"
+        },
+        "capture-status": {
+          "path": ".local/notice-player-controls-02/notice-exploration.json",
+          "bytes": 20913,
+          "sha256": "3d534993ba789f6810b7f338266d91af156a4ee11d415297190f6e9e9e70d719"
+        },
+        "after-p.png": {
+          "path": ".local/notice-player-controls-02/after-p.png",
+          "bytes": 10841,
+          "sha256": "716f42c70d070075d5f7cd1db3ccff243bf9df10a7c72fb14bcd7809a19a54b8"
+        },
+        "entry.png": {
+          "path": ".local/notice-player-controls-02/entry.png",
+          "bytes": 10841,
+          "sha256": "716f42c70d070075d5f7cd1db3ccff243bf9df10a7c72fb14bcd7809a19a54b8"
+        },
+        "map.png": {
+          "path": ".local/notice-player-controls-02/map.png",
+          "bytes": 27540,
+          "sha256": "86be55a96982777c03579862cea6b415b928c7381351a9c3db0bd88d7b1b5191"
+        },
+        "neutral.png": {
+          "path": ".local/notice-player-controls-02/neutral.png",
+          "bytes": 10841,
+          "sha256": "716f42c70d070075d5f7cd1db3ccff243bf9df10a7c72fb14bcd7809a19a54b8"
+        },
+        "pause-waiting.png": {
+          "path": ".local/notice-player-controls-02/pause-waiting.png",
+          "bytes": 10839,
+          "sha256": "69af84812a746df608b8d99d86b902cb28c5f77b5a8b3ddbb009f0811cdde8b6"
+        },
+        "pause.png": {
+          "path": ".local/notice-player-controls-02/pause.png",
+          "bytes": 10839,
+          "sha256": "69af84812a746df608b8d99d86b902cb28c5f77b5a8b3ddbb009f0811cdde8b6"
+        },
+        "quit-no.png": {
+          "path": ".local/notice-player-controls-02/quit-no.png",
+          "bytes": 10841,
+          "sha256": "716f42c70d070075d5f7cd1db3ccff243bf9df10a7c72fb14bcd7809a19a54b8"
+        },
+        "quit.png": {
+          "path": ".local/notice-player-controls-02/quit.png",
+          "bytes": 11037,
+          "sha256": "4688ff402c15eea953e06c460ab700525975f73edfbbe1b7764b5783d017e7a8"
+        },
+        "resumed.png": {
+          "path": ".local/notice-player-controls-02/resumed.png",
+          "bytes": 10841,
+          "sha256": "716f42c70d070075d5f7cd1db3ccff243bf9df10a7c72fb14bcd7809a19a54b8"
+        }
+      }
+    },
+    {
+      "key": "rival",
+      "producer": ".local/notice-rival-controls-02",
+      "checkpoints": 9,
+      "events": 531,
+      "artifacts": {
+        "source-revision": {
+          "path": ".local/notice-rival-controls-02/source-revision.json",
+          "bytes": 109146,
+          "sha256": "7c5bc368a7a9a80f2c149b03b4d12433e0743db5fe6c2913bae55ed010bb19fe"
+        },
+        "sources.zip": {
+          "path": ".local/notice-rival-controls-02/sources.zip",
+          "bytes": 2853824,
+          "sha256": "626a1d235e1e50ccd6a64539371820e80beeca38d019c1ab08ca9989e7f98e97"
+        },
+        "environment": {
+          "path": ".local/notice-rival-controls-02/environment.json",
+          "bytes": 282,
+          "sha256": "b98ddf953bf59352530348b30f477f2df121de9de02b661216ff4c89af72cfd7"
+        },
+        "captured-events": {
+          "path": ".local/notice-rival-controls-02/captured-events.json",
+          "bytes": 63075,
+          "sha256": "83d11312d85fe0f28774967e776632869a08102a4786667cb46ff262fc2f5e7b"
+        },
+        "campaign-checkpoints": {
+          "path": ".local/notice-rival-controls-02/campaign-checkpoints.json",
+          "bytes": 53945,
+          "sha256": "36e063ea59f8bafc7384bd790d622d0268d0ce25d436e05733917dc9ca789de6"
+        },
+        "timeline": {
+          "path": ".local/notice-rival-controls-02/timeline.json",
+          "bytes": 817,
+          "sha256": "f962c6b2837b1cf5ca0b9e407251aad0cc45b5cd5df8e1e95b06a17669d8bd02"
+        },
+        "capture-status": {
+          "path": ".local/notice-rival-controls-02/notice-exploration.json",
+          "bytes": 20897,
+          "sha256": "c5db2fbfa32ee1b493e2029de9cf0be4e03361686cf6693ad0e6c8d7916841dc"
+        },
+        "after-p.png": {
+          "path": ".local/notice-rival-controls-02/after-p.png",
+          "bytes": 14964,
+          "sha256": "f1a494b4765e3642428f2c7f73332aa1eacf5f381e48c3de12ea972a17ea8779"
+        },
+        "entry.png": {
+          "path": ".local/notice-rival-controls-02/entry.png",
+          "bytes": 14964,
+          "sha256": "f1a494b4765e3642428f2c7f73332aa1eacf5f381e48c3de12ea972a17ea8779"
+        },
+        "map.png": {
+          "path": ".local/notice-rival-controls-02/map.png",
+          "bytes": 27540,
+          "sha256": "86be55a96982777c03579862cea6b415b928c7381351a9c3db0bd88d7b1b5191"
+        },
+        "neutral.png": {
+          "path": ".local/notice-rival-controls-02/neutral.png",
+          "bytes": 14964,
+          "sha256": "f1a494b4765e3642428f2c7f73332aa1eacf5f381e48c3de12ea972a17ea8779"
+        },
+        "pause-waiting.png": {
+          "path": ".local/notice-rival-controls-02/pause-waiting.png",
+          "bytes": 14461,
+          "sha256": "eaaabb808c74b01881e9303db02c27e1a5ec286cc611cdfac8ecb3ad6b69d156"
+        },
+        "pause.png": {
+          "path": ".local/notice-rival-controls-02/pause.png",
+          "bytes": 14461,
+          "sha256": "eaaabb808c74b01881e9303db02c27e1a5ec286cc611cdfac8ecb3ad6b69d156"
+        },
+        "quit-no.png": {
+          "path": ".local/notice-rival-controls-02/quit-no.png",
+          "bytes": 14964,
+          "sha256": "f1a494b4765e3642428f2c7f73332aa1eacf5f381e48c3de12ea972a17ea8779"
+        },
+        "quit.png": {
+          "path": ".local/notice-rival-controls-02/quit.png",
+          "bytes": 14676,
+          "sha256": "b603e3d5f3f78254f54aec7b8f45a2835a842628c83af4584c4b3aacb3d2e4dc"
+        },
+        "resumed.png": {
+          "path": ".local/notice-rival-controls-02/resumed.png",
+          "bytes": 14964,
+          "sha256": "f1a494b4765e3642428f2c7f73332aa1eacf5f381e48c3de12ea972a17ea8779"
+        }
+      }
+    }
+  ],
+  "verify": "node scripts/verify-collected-notice-browser.js --output=.local/visit-replay-FRESH",
+  "exclusions": [],
+  "injections": [],
+  "fittedInputs": []
+}

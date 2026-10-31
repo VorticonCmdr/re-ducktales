@@ -143,13 +143,8 @@ export class SpeakerGameStream {
       throw Error("Invalid speaker status query");
     this.sequence = sequence;
     const request = { sequence, argument: null, token, query: true };
-    // A status read must see a running stop,not wait for that stop to finish.
-    // Preserve ordering only when an earlier host-adapted word is still queued.
-    if (this.pending.length === 0) this.apply(request);
-    else {
-      this.pending.push(request);
-      this.deliver();
-    }
+    this.pending.push(request);
+    this.deliver();
   }
   apply({ sequence, argument, token, query = false }) {
     const accepted = query ? true : this.driver.request(argument);
@@ -166,19 +161,25 @@ export class SpeakerGameStream {
     if (token !== null && this.driver.busy) this.waiters.set(token, sequence);
     return accepted;
   }
+  applyBatch(requests) {
+    let lastAccepted = null;
+    for (const r of requests) if (this.apply(r)) lastAccepted = r.argument;
+    // Native calls do not wait for a previous stop to finish. A completely
+    // rejected batch leaves the prior host restart barrier intact.
+    if (lastAccepted !== null)
+      this.resetBarrier = (lastAccepted & 255) === 0 && this.driver.busy;
+  }
   deliver() {
-    while (!this.resetBarrier && this.pending.length) {
+    while (this.pending.length) {
+      // Only legacy host stop/start words wait for stop completion. Native call
+      // batches and status reads keep FIFO order but see the current device.
+      const next = this.pending[0];
+      if (this.resetBarrier && !next.batch && !next.query) break;
       const request = this.pending.shift();
       if (request.batch) {
-        let lastAccepted = null;
-        for (const r of request.batch)
-          if (this.apply(r)) lastAccepted = r.argument;
         // Original calls are consecutive:no host stop-completion barrier inside
         // the batch,no retry of a rejected click. IRQ sub-call phase is explicit.
-        this.resetBarrier =
-          lastAccepted !== null &&
-          (lastAccepted & 255) === 0 &&
-          this.driver.busy;
+        this.applyBatch(request.batch);
         continue;
       }
       const { argument, query } = request;

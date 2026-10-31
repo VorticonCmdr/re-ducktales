@@ -260,3 +260,41 @@ test("muted forced-claim caller queries the existing host device and waits for i
   assert.equal(g.scene, "map");
   assert.equal(g.campaign.rival.location, 32);
 });
+test("rapid native batches do not wait for a previous speaker stop to finish", () => {
+  const s = speaker(),
+    native = new SpeakerDriver(archives.get("IT.DRV")[5].data);
+  for (const n of [0, 0x24, 0]) native.request(n);
+  s.requestBatch(batch());
+  s.requestBatch([{ sequence: 3, argument: 0, token: null }]);
+  assert.deepEqual(
+    s.drainEvents().map((e) => [e.sequence, e.frame]),
+    [
+      [1, 0],
+      [2, 0],
+      [3, 0],
+    ],
+  );
+  assert.equal(s.stats().queuedRequests, 0);
+  assert.deepEqual(s.driver.memory, native.memory);
+});
+test("queued native calls and queries stay ordered without inserting a second stop barrier", () => {
+  const s = speaker();
+  s.request({ sequence: 1, argument: 0 });
+  s.request({ sequence: 2, argument: 1 });
+  s.requestBatch(batch(3));
+  s.requestBatch([{ sequence: 5, argument: 0, token: null }]);
+  s.query({ sequence: 6, argument: null, token: "query" });
+  assert.deepEqual(
+    s.drainEvents().map((e) => e.sequence),
+    [1],
+  );
+  s.renderFrames(4800);
+  const ack = s.drainEvents().filter((e) => e.type === "ack");
+  assert.deepEqual(
+    ack.map((e) => e.sequence),
+    [2, 3, 4, 5, 6],
+  );
+  assert.equal(new Set(ack.map((e) => e.frame)).size, 1);
+  assert.equal(ack.at(-1).busy, true);
+  assert.equal(ack[2].accepted, false);
+});

@@ -115,7 +115,11 @@ try {
   await until((s) => s.scene === "mountain" || s.scene === "map");
   assert.equal(game.scene, "mountain");
   note("mountain-entry");
-  const mountain = JSON.parse(await readFile("reference/mountain-ascent.json"));
+  const candidate = process.argv.find((a) => a.startsWith("--mountain-controls="))?.slice(20) ?? "easy";
+  assert.ok(["easy", "hard"].includes(candidate), "Unknown authored mountain controls");
+  const mountain = candidate === "hard"
+    ? JSON.parse(await readFile("reference/hard-campaign-inputs.json")).mountain
+    : JSON.parse(await readFile("reference/mountain-ascent.json"));
   await play("mountain", mountain.inputEvents.flatMap((e) => Array(e.count).fill(e.byte)));
   await until((s) => s.scene !== "mountain");
   note("mountain-return");
@@ -127,5 +131,5 @@ try {
     dependency: "Original DOM prefix replayed from startup plus diagnostic100ms tail;Easy authored player controls used as candidates only",
     sourceCommit: source.commit, events, points, final: game.snapshot() }, null, 2) + "\n");
   await checkSource(root, (p) => p.startsWith("src/") || p.startsWith("scripts/") || p.startsWith("tests/") ||
-    ["reference/build.json", "reference/mountain-ascent.json", "reference/security-hard-expedition-inputs.json"].includes(p));
+    ["reference/build.json", "reference/mountain-ascent.json", "reference/hard-campaign-inputs.json", "reference/security-hard-expedition-inputs.json"].includes(p));
 }

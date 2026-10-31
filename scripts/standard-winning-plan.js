@@ -246,11 +246,20 @@ try {
         ...((live.enemy & 7) < 7 ? [live.enemy + 1] : []),
       ])
         if (room >= 0 && room < 64) map[room] |= 64;
-      assert.ok(
-        !(map[live.goal] & 64),
-        "Player cannot safely approach the observed enemy at goal",
-      );
-      const plan = planCaveVariant(map, game.briefing.variant),
+      let route;
+      try {
+        assert.ok(!(map[live.goal] & 64));
+        route = planCaveVariant(map, game.briefing.variant);
+      } catch {
+        // A conservative buffer can disconnect narrow corridors. Choose a
+        // player route avoiding the enemy's room itself;failure remains real.
+        const narrow = live.rooms.map((cell) => cell & ~16);
+        narrow[live.room] |= 16;
+        narrow[live.enemy] |= 64;
+        assert.notEqual(live.goal, live.enemy);
+        route = planCaveVariant(narrow, game.briefing.variant);
+      }
+      const plan = route,
         e = plan.events[1];
       const old = live.room,
         key = {

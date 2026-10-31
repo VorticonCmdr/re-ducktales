@@ -88,8 +88,10 @@ phase is reconstructed. This rules out the enable flag alone inside this
 component as the source of the divergence;it does not rule out missing native
 audio execution overhead. The paired script's success means the exploratory
 control completed,not timing or browser acceptance. Each underlying strict
-native comparison still exits1. This change is isolated from the campaign's
-running source on branch codex/cave-audio-environment,base8cc4ef3.
+native comparison still exits1. This change was developed on branch
+codex/cave-audio-environment,base8cc4ef3,and integrated after the corrected
+campaign's independent replay passed. Accepted runtime/configuration bytes are
+unchanged;only the exploratory probe and its documentation changed.
 
 This exploratory strict comparison currently **exits1**. It is not an acceptance
 gate. It starts the current Cave component from native ENTRY memory/contract,

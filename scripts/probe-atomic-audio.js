@@ -107,10 +107,17 @@ const result = await withCarlsbadBrowser(async ({ page, state, until }) => {
   assert.equal(await page.locator("#audio").isChecked(), false);
   const observed = await read(),
     acks = observed.filter((e) => e.type === "ack");
+  await writeFile(
+    root + "/boundary-observation.json",
+    JSON.stringify({ sounding, muted, report, events: observed }, null, 2) +
+      "\n",
+  );
   if (after) {
     assert.deepEqual(
       acks.map((e) => e.argument),
-      mode === "before" ? [0, 0, 0x24, null] : [0, 0x24, 0, 0x45, 0],
+      // Destination Fire confirms without a click;24 in the muted case is
+      // solely the native S-off call. Charge0 is guarded by enabled03be.
+      mode === "before" ? [0, 0, 0x24, null] : [0, 0, 0x45, 0],
     );
     const status = acks.find((e) => e.token?.startsWith("atomic:"));
     assert.ok(status);

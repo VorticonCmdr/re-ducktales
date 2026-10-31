@@ -142,6 +142,17 @@ assert.deepEqual(
 );
 const awards = await json(record.artifacts.awards.path);
 assert.equal(awards.producer, m.producer);
+const awardCount = record.expectedAwardCount ?? 6;
+assert.ok([6, 7].includes(awardCount));
+assert.equal(awards.cases.length, awardCount);
+if (awardCount === 7) {
+  assert.equal(awards.includeNovay, true);
+  assert.ok(final.campaign.playerCollected.includes(10));
+  assert.equal(
+    record.artifacts.bankPixels.path,
+    "reference/bank-copy-pixels.json",
+  );
+}
 for (const [script, args] of [
   [
     "verify-current-winning-awards",
@@ -150,6 +161,7 @@ for (const [script, args] of [
   ["verify-award-presentation-source", []],
   ["verify-ending", []],
   ["verify-credits", []],
+  ...(record.artifacts.bankPixels ? [["verify-bank-copy-pixels", []]] : []),
 ]) {
   const r = spawnSync(
     process.execPath,
@@ -159,6 +171,27 @@ for (const [script, args] of [
   assert.equal(r.status, 0, r.stdout + r.stderr);
   process.stdout.write(r.stdout);
 }
+if (record.expectedUnitCases !== undefined) {
+  assert.equal(record.expectedUnitCases, 218);
+  const unit = spawnSync("npm", ["test"], {
+    encoding: "utf8",
+    maxBuffer: 8 * 1024 * 1024,
+  });
+  assert.equal(unit.status, 0, unit.stdout + unit.stderr);
+  for (const pattern of [
+    /tests 218\b/,
+    /pass 218\b/,
+    /fail 0\b/,
+    /skipped 0\b/,
+    /cancelled 0\b/,
+  ])
+    assert.match(unit.stdout, pattern);
+  const build = spawnSync("npm", ["run", "build"], {
+    encoding: "utf8",
+    maxBuffer: 8 * 1024 * 1024,
+  });
+  assert.equal(build.status, 0, build.stdout + build.stderr);
+}
 console.log(
-  `Current Standard winning browser acceptance:${checks.length} exact state/image checkpoints,${events.length} independent DOM events,6 earned awards/90 row groups,all26 credits/closed/Restart;one input negative and3 setup negatives. Not native whole-campaign timing/audio parity or arbitrary-route completion.`,
+  `Current Standard winning browser acceptance:${checks.length} exact state/image checkpoints,${events.length} independent DOM events,${awardCount} earned awards/${awardCount * 15} row groups,all26 credits/closed/Restart;one input negative and3 setup negatives${record.expectedUnitCases ? ",218 units and build" : ""}. Not native whole-campaign timing/audio parity or arbitrary-route completion.`,
 );

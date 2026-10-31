@@ -1,13 +1,25 @@
 # Winning campaign after reward-presentation restoration
 
-Current update:report restoration is now integrated (runtime introduced at
-b0bfaac). A fresh current browser producer `.local/report-timed-winning-browser-01`
-again earned six treasures and banked27050,but lost normally on day31. The
-isolated `codex/current-campaign-player` branch has an input-only Novay candidate:
-16 added neutral reads avoid an observed arrow hit. A carried simulation from
-126 exact startup checkpoints wins34650 to28500 and reaches all26 credits.
-Actual browser verification is running;independent replay is still required.
-No game rules or difficulty were changed. Hard remains deferred.
+Current update:the report-timed winning route is browser accepted on the bank-
+corrected runtime introduced at179a307. Actual producer
+`.local/report-timed-winning-browser-03` and independent consumer
+`.local/report-timed-winning-replay-01` pass183 exact complete-state/decoded-RGBA
+checkpoints and7261 independent DOM inputs,winning34650 to28500 on day31,all26
+credits,closed and Restart. A missing-Standard-selection negative and three setup
+negatives pass. No old expected output or timer was changed to obtain that win.
+
+The input-only Novay candidate adds16 neutral reads before authored read57;
+all510 climbing reads complete with3 lives in the actual browser. That route
+exposed a real final-bank signed-copy rejection,now corrected using original
+caller/driver evidence and six exact conditional native EGA pixel cases.
+Seven awards pass105 exact stripe groups,including the source-composed7500 page.
+No game rules or difficulty were changed. Native whole-game timing/audio and
+arbitrary routes remain unproven;Hard remains deferred.
+
+```sh
+node scripts/verify-current-winning-acceptance.js
+node scripts/verify-standard-wages-route.js --manifest=reference/report-timed-winning-route.json --output=.local/current-winning-replay-FRESH
+```
 
 The experiments below retain their historical357d83f reward-timed scope. They
 refresh the route after the original75-retrace award entry changed the old fixed

@@ -1,97 +1,87 @@
 # Current port status
 
-Updated 2026-10-31. **The whole game is incomplete.** This is a playable port with
-remaining timing,fidelity and route-coverage work. Hard campaigns remain deferred
-at the user's request. Nothing has been pushed or deployed.
+Updated 2026-10-31. **The whole game is incomplete.** A complete Standard winning
+route is now independently browser-verified on the current port. Movement/timing,
+broader route/input/audio fidelity and deferred Hard campaigns remain open.
+Nothing has been pushed or deployed.
 
-## Latest working route
+## Current working route and acceptance
 
-Original report/notice presentations are integrated locally at17cb126,runtime
-introduced at b0bfaac. Fresh Standard startup → security/office → Too-Pei cave
-and award → ordinary rival report → player/rival collected-location notice →
-Pause/resume → map → Restart works through actual browser controls. A separate
-route banks the cave reward,flies to Safari,naturally loses its Standard race,
-shows the forced claim and returns to the map/Restart.
+Startup/security/office → Too-Pei cave → naturally lost Safari race/forced claim
+→ Kenya photography → Great Outback jungle → Lost World mountain → Atlantis,
+Klondike,Siberia caves → Novay mountain → banking → day31 victory,34650 vs28500 →
+celebration → replay-No → all26 credits → closed → Restart.
 
-The original portrait entry/reveal/exit sequence uses50 entry and75 total
-retraces. Variant RNG occurs after portrait copy;early keys are flushed;6e
-precedes reveal;21 and rival-location publication follow the exit wipe. Speech
-status reads each use a fresh device query. Pixels never feed simulation.
+The current runtime includes the source-ordered report restoration and the bank
+copy correction introduced at179a307. Producer `.local/report-timed-winning-browser-03`
+and independent consumer `.local/report-timed-winning-replay-01` pass183 exact
+complete-state/decoded-RGBA checkpoints and7261 independent DOM inputs. All
+required events/checkpoints finish;removing Standard selection causes the expected
+state mismatch. Empty/missing/corrupt fixture negatives also reject setup.
 
-Current combined acceptance passes:
+Seven earned awards pass105 exact stripe groups and75 retraces each. Six earlier
+completed port pages independently cross-check the original picture/font/text
+composition;Novay's7500 page uses that composition and a wrong-value negative.
+Jungle's exact black incoming page is required by its original exit code,not an
+image exclusion. The jungle and both mountain climbs finish with3 lives.
 
-- Three independent browser replays:85 exact complete-state/decoded-RGBA
-  checkpoints,2881 independent DOM inputs,three missing-Pause negatives and
-  actual Restart. Forced replay also compares58 intermediate report frame
-  states,pixels and timestamps.
-- Nine presentations/135 exact stripe groups against independently retained
-  completed port targets. Missing groups,corrupt pixels and wrong incoming
-  pages are rejected. Five missing/corrupt/empty/unfinished-input setup controls
-  are rejected. No image exclusions or state injections.
-- 210 unit cases,21 report/notice reader-boundary cases and production build.
-- Actual PC speaker and Tandy report I/O:cue order,fresh status queries,real
-  completion,nonzero audio output and Restart. Host20ms/Game16ms is a declared
-  conditional profile,not native elapsed-time or waveform parity.
-- 1238 original/prepared/Ghidra source bytes,16 relocations and one exact
-  analysis stack-probe transformation establish original report call order.
+The final bank previously stopped on a valid original signed sparkle copy at
+Y-13. Its visible copy now preserves the original unsigned clipping,DL row
+counter and16-bit byte addressing. Six conditional original IT.DRV calls with
+real EGA output match exact full320x200 RGBA,including signed wrap and scanline
+carry. Actual argument stacks,source bytes,code identity,frame readiness and
+private-emulator shutdown are checked;eight negatives reject corrupt/missing or
+unfinished/stale cases. Natural whole-bank timing and hidden-page aliasing remain
+unverified. [Bank correction and native recipe](bank-sparkle-copy.md).
 
-[Acceptance manifest](../reference/report-presentation-acceptance.json),
-[implementation and recipes](report-presentation-implementation.md),
-[original source evidence](report-presentations.md).
+The combined current winning gate also passes218 unit cases,production build,
+original ending/credits comparisons and the source proofs. There are no image
+exclusions,state restores,RNG/money patches or difficulty changes in this route.
+[Winning acceptance](../reference/current-winning-acceptance.json),
+[scenario](../reference/report-timed-winning-route.json),[route history](current-winning-campaign.md).
 
-## Retained gameplay coverage and remaining work
+## Reports,audio and retained coverage
 
-The earlier runtime357d83f earned-route receipt covers all four expedition
-families and six treasures:Too-Pei cave → Kenya Safari → Great Outback jungle →
-Lost World mountain → Atlantis/Klondike/Siberia caves → day25 bank27050 → Restart.
-It passed129 exact checkpoints/6511 inputs and90 award stripe groups. Jungle and
-mountain finished with3 lives each. Its later strategy lost normally on day31,
-27050 to36000;that tail is excluded. [Scope and recipe](current-winning-campaign.md).
-
-The last full winning receipt remains historical,runtime66d8f54:day33 victory,
-24275 vs21000,replay-No,all26 credits,finished and Restart. Neither receipt proves
-full-campaign acceptance on the newly integrated report runtime;fresh capture
-and independent replay are required. Existing saved earned/award gates
-intentionally reject changed runtime. The earlier cave award/audio receipt
-(8 checkpoints/488 inputs plus11/454 failure replay) also retains its357d83f scope.
-[Earned evidence](../reference/current-earned-acceptance.json),
-[award evidence](../reference/award-presentation-acceptance.json),[history](status-history.md).
-
-| Family | Retained browser coverage |
-| --- | --- |
-| Jungle | All3 Easy layouts;Standard Great Outback treasure |
-| Mountain | All3 Easy layouts;Standard Lost World summit |
-| Cave | All8 component layouts;Standard Too-Pei,Atlantis,Klondike,Siberia treasures |
-| Safari | All6 earlier variants;Standard Kenya target photograph |
-
-Next milestone:establish a current winning browser route and independent replay.
-A fresh current-runtime capture again earned six treasures and banked27050,then
-lost normally on day31 (`.local/report-timed-winning-browser-01`). A bounded
-Novay investigation identified an arrow collision;adding16 neutral player reads
-before the climb completed the conditional510-read route with3 lives. Replaying
-startup inputs and carrying state through Novay then produced a day31 win,
-34650 vs28500,and all26 credits in the port simulation. This is a candidate,
-not browser acceptance. The actual browser then completed Novay with3 lives and
-banked34650,but exposed an `Invalid framebuffer copy` dead end at the final bank.
-The original permits a signed sparkle restore atY-13. A source-backed visible-
-copy correction is committed on isolated `codex/current-campaign-player` at
-179a307;218 units,original bank comparisons and build pass there. Its fresh
-browser run is in progress before integration. Main retains the earlier runtime
-and acceptance scope above. No game rules,difficulty,RNG or clocks were changed.
-
-Original movement cadence remains open across expeditions. Graphics work is
-modeled;resource/text costs,remaining CPU/PIT phase and uninterrupted native
-whole-game timing are unverified. Other sound-call adaptations,expedition audio,
-cross-scene keys,modifier/BIOS behavior,mouse/joystick parity and broader routes/
-difficulties need more evidence. Hard's second-flight race issue remains deferred.
-No save/load/high-score interface was found in this build;those are not confirmed
-missing features.
-
-## Sound,security and supported build
+Ordinary reports,forced claims and collected notices implement50 entry/75 total
+retraces,deferred variant RNG,original early-key flushes,6e before reveal and21/
+location publication after exit. Speech status reads have fresh device queries.
+The current player-notice replay passes27 exact checkpoints/543 inputs,all58
+intermediate state/pixel/time comparisons,45 stripe groups,Pause-negative and
+Restart. Rival/forced report and real speaker/Tandy receipts are being refreshed
+for the bank-corrected runtime. The earlier85-checkpoint/2881-input report gate
+belongs to runtime b0bfaac;its old consumer guards intentionally reject this
+changed runtime until the refresh is complete.
+[Report implementation](report-presentation-implementation.md).
 
 Tandy/PCjr includes Sound001 and persistent original channels/priorities. PC
-speaker is the default. Physical waveform/gain/filter parity and original
-sub-call IRQ phase remain unverified. [Sound](speaker-audio.md).
+speaker is the default. The current full winning route is muted. Earlier actual
+report audio probes retain their source scope and conditional host20ms/Game16ms
+profile;physical waveform/gain/filter and sub-call IRQ parity remain unverified.
+[Sound](speaker-audio.md).
+
+| Family | Current winning route | Retained earlier coverage |
+| --- | --- | --- |
+| Jungle | Great Outback treasure,3 lives | All3 Easy layouts |
+| Mountain | Lost World and Novay summits,3 lives | All3 Easy layouts |
+| Cave | Too-Pei,Atlantis,Klondike,Siberia treasures | All8 component layouts;3 earlier browser destinations |
+| Safari | Kenya target photograph | All6 earlier variants |
+
+Older earned/award/full-winning receipts retain their documented historical
+runtime scopes. Failed candidates are retained locally:the default six-treasure
+strategy loses normally27050 to36000;the first Novay browser attempt exposed the
+bank error. Only explicitly declared valid prefixes of those recordings are
+reused,always by fresh startup input replay. [History](status-history.md).
+
+## Remaining work and supported build
+
+Next:finish current report/audio receipt refresh,then broaden gameplay/input
+coverage and validate expedition movement cadence against the original.
+Resource/text costs,remaining CPU/PIT phase and uninterrupted native whole-game
+timing are unverified. Other sound-call adaptations,cross-scene keys,modifier/
+BIOS behavior,mouse/joystick parity and arbitrary campaign finishability need
+more evidence. Hard's second-flight race issue remains deferred at the user's
+request. No save/load/high-score interface was found in this build;those are
+not confirmed missing features.
 
 The unchecked **Original security system** option enables the surviving failure
 path and logs the correct code once per challenge. Default play retains this
@@ -101,23 +91,21 @@ Only the22-file pairing in [build.json](../reference/build.json) is supported.
 DUCKTALE.EXE SHA256:
 `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
 MZ/EXEPACK,x86 LE16 real mode,overlays,no extender. Prepared analysis images
-contain actual game code and are never run. Original files remain authoritative
-in ignored `game/`;production users select their own originals.
+contain actual game code and are never run. Originals remain authoritative in
+ignored `game/`;production users select their own files.
 
 ## Verification
 
 ```sh
-# Current saved browser evidence,fresh affected tests and production build:
-node scripts/verify-report-presentation-acceptance.js
-# Fresh independent DOM replay;clean committed source,new ignored output:
-node scripts/replay-report-presentation-browser.js --manifest=reference/report-forced-browser.json --output=.local/report-forced-replay-FRESH
-# Actual conditional audio I/O;repeat with --device=tandy:
-node scripts/probe-rival-audio.js --device=speaker --output=.local/report-speaker-FRESH
-# Next full-campaign exploration;capture alone is not acceptance:
-node scripts/standard-wages-explore.js --winning --output=.local/current-winning-FRESH
+# Current saved winning evidence,fresh unit suite and production build:
+node scripts/verify-current-winning-acceptance.js
+node scripts/verify-bank-copy-pixels.js
+node scripts/verify-report-presentation-rows.js --manifest=reference/current-report-player-rows.json
+# Fresh independent winning replay;clean source,new ignored output:
+node scripts/verify-standard-wages-route.js --manifest=reference/report-timed-winning-route.json --output=.local/current-winning-replay-FRESH
 npm run dev
 ```
 
-Missing/corrupt local artifacts fail setup. Checkpoints,required inputs and device
-events cannot be silently skipped. Proprietary assets/captures remain local;
-permitted manifests,recipes and verification code are versioned.
+Missing/corrupt local artifacts fail setup. Required checkpoints,inputs and
+native/device events cannot be silently skipped. Proprietary assets,captures and
+traces remain local;permitted manifests,recipes and verification code are versioned.

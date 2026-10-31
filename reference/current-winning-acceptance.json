@@ -1,0 +1,36 @@
+{
+  "kind": "current-winning-campaign-acceptance",
+  "nativeComparison": false,
+  "consumer": ".local/report-timed-winning-replay-01",
+  "expectedAwardCount": 7,
+  "expectedUnitCases": 218,
+  "scope": "Independent current Standard browser win,all four families,seven earned treasures,original signed final-bank copy,all26 credits,closed and Restart. Conditional native driver pixels are separate from whole-game timing/audio fidelity.",
+  "artifacts": {
+    "scenario": {
+      "path": "reference/report-timed-winning-route.json",
+      "bytes": 47325,
+      "sha256": "7898f77eb926924bca77bc3fd699a562b2fbc1f7c304e179692b301f7f48c99d"
+    },
+    "result": {
+      "path": ".local/report-timed-winning-replay-01/acceptance-status.json",
+      "bytes": 1035,
+      "sha256": "1f07a565e3a9c5340ece54299567e98679d5c0bbc2106cdfb2bce088f7a7572f"
+    },
+    "awards": {
+      "path": "reference/report-timed-winning-awards.json",
+      "bytes": 4658,
+      "sha256": "fda92345e33c3bc36839fc670f5c0a712d91dd594cc22a45c1d54005555bd889"
+    },
+    "setupNegatives": {
+      "path": ".local/current-winning-setup-negatives-01.json",
+      "bytes": 199,
+      "sha256": "04820a06886c68238fa687cc83f74e1728c06321d6b71edc1dbaba2f438af626"
+    },
+    "bankPixels": {
+      "path": "reference/bank-copy-pixels.json",
+      "bytes": 6222,
+      "sha256": "7242d0901d3ec9b1538d3e7be2c920ae7ae17e4d30d276f266e65bff553a08f7"
+    }
+  },
+  "verify": "node scripts/verify-current-winning-acceptance.js"
+}

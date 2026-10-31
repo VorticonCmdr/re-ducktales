@@ -55,9 +55,12 @@ node scripts/standard-wages-explore.js --winning --prefix=reference/report-timed
 ```
 
 Eight focused cases,all218 unit cases,the existing original-bank comparisons and
-production build pass before the new browser continuation. Browser acceptance
-and a separate strict full winning replay remain required. Original assets and
-captures remain ignored;no proprietary dump is committed.
+production build pass. The corrected actual browser producer03 and independent
+consumer now pass183 full state/image checkpoints,7261 inputs,day31 victory,
+all26 credits and Restart. The bank entry checkpoint precedes the in-flight
+post-read sparkle;the renderer completes it before the next Fire consumption.
+[Current winning acceptance](../reference/current-winning-acceptance.json).
+Original assets/captures remain ignored;no proprietary dump is committed.
 
 ## Native reproduction
 

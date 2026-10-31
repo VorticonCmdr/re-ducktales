@@ -107,7 +107,14 @@ seven matching motion states and final X/Y/action/frame/lives/RNG. All six actio
 changes fit native callback brackets with the declared phase/provider;five
 negatives pass. This is conditional walking evidence,not whole-level/browser
 timing acceptance. [Scope](mountain-phase.md).
-Next:obtain cave movement evidence. Resource/text costs,remaining
+The new natural cave reference passes480 uninterrupted samples and all four
+Right+Fire/release events. Its strict port probe currently fails:room/torch state
+updates have the wrong order,and the port awards50 at3.67s while the original
+still has0 at6.83s. A302-byte original instruction proof confirms room assignment
+belongs before exit animation. No slowdown/fix is accepted yet.
+[Evidence and failing probe](cave-native-cadence.md).
+Next:restore cave passage state ordering and measure transition loading work.
+Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability
 need more evidence. Hard's second-flight race issue remains deferred at the
@@ -135,6 +142,9 @@ node scripts/compare-safari-native-cadence.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_jungle_cadence.py
 node scripts/compare-jungle-native-cadence.js
 node scripts/compare-mountain-native-cadence.js
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_cadence.py
+# Exploratory known divergence;currently exits1,not an acceptance gate:
+node scripts/probe-cave-native-cadence.js
 # Fresh independent winning replay;new ignored output:
 node scripts/verify-standard-wages-route.js --manifest=reference/safari-hud-winning-route.json --output=.local/safari-hud-winning-replay-FRESH
 # Fresh scoped Safari browser/source admission:

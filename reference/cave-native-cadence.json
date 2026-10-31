@@ -1,0 +1,1209 @@
+{
+  "kind": "original-cave-cadence-observation",
+  "producer": ".local/cave-cadence-native-02",
+  "nativeObservation": true,
+  "portTimingAcceptance": false,
+  "expectedSamples": 480,
+  "expectedFrameSpan": 479,
+  "expectedClockSpan": 498,
+  "expectedFirstSample": {
+    "index": 1,
+    "frame": 4976,
+    "clock": 4949,
+    "page": 0,
+    "room": 45,
+    "torch": 1,
+    "money": 0,
+    "seed": 17977,
+    "enemy": 27,
+    "partyX": 0,
+    "partyY": 0,
+    "partyFrame": 0,
+    "entering": 0
+  },
+  "expectedLastSample": {
+    "index": 480,
+    "frame": 5455,
+    "clock": 5447,
+    "page": 0,
+    "room": 46,
+    "torch": 2,
+    "money": 0,
+    "seed": 60014,
+    "enemy": 27,
+    "partyX": 65458,
+    "partyY": 65527,
+    "partyFrame": 3,
+    "entering": 0
+  },
+  "expectedTransitionIndices": [
+    20,
+    198,
+    382
+  ],
+  "engineBinarySHA256": "85662a8383e0fde0734797451374b28a443166440fd9bf5823626505760d9d0f",
+  "buildManifestSHA256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "events": [
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": true,
+      "frame": 0
+    },
+    {
+      "type": "key",
+      "key": "KBD_space",
+      "pressed": true,
+      "frame": 0
+    },
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": false,
+      "frame": 10
+    },
+    {
+      "type": "key",
+      "key": "KBD_space",
+      "pressed": false,
+      "frame": 10
+    }
+  ],
+  "injections": [],
+  "partialRestore": false,
+  "scope": "Natural Carlsbad Right+Fire passage;window ends during second-room entry,before50-dollar reward. No complete passage/port timing acceptance.",
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_cadence.py",
+  "artifacts": {
+    "alarm-0.json": {
+      "path": ".local/cave-cadence-native-02/alarm-0.json",
+      "bytes": 88772,
+      "sha256": "ade224cec9c9b10a92cf09a6acb6167e17d570ae76eccc007b5c68765d5c2ccf"
+    },
+    "alarm-0.png": {
+      "path": ".local/cave-cadence-native-02/alarm-0.png",
+      "bytes": 5059,
+      "sha256": "a122fc61380dfde195c3f4fc898c900ba88a8a9e8f27832fb9cda8a13831f56a"
+    },
+    "alarm-1.json": {
+      "path": ".local/cave-cadence-native-02/alarm-1.json",
+      "bytes": 88772,
+      "sha256": "b554338a9cf4937780ad7afee67b0e26c2887e8072cad6111f80c635847021a5"
+    },
+    "alarm-1.png": {
+      "path": ".local/cave-cadence-native-02/alarm-1.png",
+      "bytes": 4818,
+      "sha256": "f7382f7433f29257c5a69fa1452732e841fe5f9bd22c0b23760871655dccad2d"
+    },
+    "alarm-2.json": {
+      "path": ".local/cave-cadence-native-02/alarm-2.json",
+      "bytes": 88772,
+      "sha256": "96247907f897c66d1d02c74db77b516332ae4ee9843fa802ee74fc9630d55c65"
+    },
+    "alarm-2.png": {
+      "path": ".local/cave-cadence-native-02/alarm-2.png",
+      "bytes": 5059,
+      "sha256": "a122fc61380dfde195c3f4fc898c900ba88a8a9e8f27832fb9cda8a13831f56a"
+    },
+    "alarm-3.json": {
+      "path": ".local/cave-cadence-native-02/alarm-3.json",
+      "bytes": 88772,
+      "sha256": "f1a5e58005aa304c716fc7919e280c0956eb45ca7d3254ddfebd9764f21b0b16"
+    },
+    "alarm-3.png": {
+      "path": ".local/cave-cadence-native-02/alarm-3.png",
+      "bytes": 4818,
+      "sha256": "f7382f7433f29257c5a69fa1452732e841fe5f9bd22c0b23760871655dccad2d"
+    },
+    "alarm-4.json": {
+      "path": ".local/cave-cadence-native-02/alarm-4.json",
+      "bytes": 88772,
+      "sha256": "4c078ffebcafab25841f135734ceae0b93d35d75e323abda86e73a7e6c768659"
+    },
+    "alarm-4.png": {
+      "path": ".local/cave-cadence-native-02/alarm-4.png",
+      "bytes": 5059,
+      "sha256": "a122fc61380dfde195c3f4fc898c900ba88a8a9e8f27832fb9cda8a13831f56a"
+    },
+    "alarm-5.json": {
+      "path": ".local/cave-cadence-native-02/alarm-5.json",
+      "bytes": 88772,
+      "sha256": "3dc60ded86a682252e015a2acc3cc660f9562797785932a90438e31856272536"
+    },
+    "alarm-5.png": {
+      "path": ".local/cave-cadence-native-02/alarm-5.png",
+      "bytes": 4818,
+      "sha256": "f7382f7433f29257c5a69fa1452732e841fe5f9bd22c0b23760871655dccad2d"
+    },
+    "capture.json": {
+      "path": ".local/cave-cadence-native-02/capture.json",
+      "bytes": 377,
+      "sha256": "6f1f448ae84480c5112366319ccd3af3d4a084df051273eb6f79f1bdf0566ffb"
+    },
+    "cave-cadence.json": {
+      "path": ".local/cave-cadence-native-02/cave-cadence.json",
+      "bytes": 344,
+      "sha256": "52f3624d555a8d0ddd0d197a810e7a9a1aa9d1670ee36de0f25085f52a6ad925"
+    },
+    "cave-code.json": {
+      "path": ".local/cave-cadence-native-02/cave-code.json",
+      "bytes": 14961,
+      "sha256": "22712d84af2caeb8e0a7022e8558e519c54d924660d04a579e872fd6c9b99074"
+    },
+    "cave-driver.json": {
+      "path": ".local/cave-cadence-native-02/cave-driver.json",
+      "bytes": 3662,
+      "sha256": "97fa5a2ea741baf0b73b501e49c6e357fedab54f98463f91f47058872661b0d0"
+    },
+    "cave-entry-contract.json": {
+      "path": ".local/cave-cadence-native-02/cave-entry-contract.json",
+      "bytes": 99,
+      "sha256": "d90f833e6cdca68d93ee205196cba2beb42e1a1acc0a7f08527d4de7fd310b16"
+    },
+    "cave-entry.json": {
+      "path": ".local/cave-cadence-native-02/cave-entry.json",
+      "bytes": 88766,
+      "sha256": "1ff6223f573df1c698fe724e1f064d6c645e9e0a4efdf89b5a8341c99ed98561"
+    },
+    "cave-entry.png": {
+      "path": ".local/cave-cadence-native-02/cave-entry.png",
+      "bytes": 10741,
+      "sha256": "4bd4838e0e4d9bd41abad66390ed799967c949fa02f9b1cd989bf313a8f9369c"
+    },
+    "cave-first-input.json": {
+      "path": ".local/cave-cadence-native-02/cave-first-input.json",
+      "bytes": 88777,
+      "sha256": "a9474d21773d424f80b6beb775c738dc2857f419d9da106f8b720106ec1ea4b8"
+    },
+    "cave-first-input.png": {
+      "path": ".local/cave-cadence-native-02/cave-first-input.png",
+      "bytes": 23392,
+      "sha256": "5fde186921652dd84ade261d4a71157b5b82396958b443fcbf712cfb73eb4a46"
+    },
+    "cave-flight-setup-completed.json": {
+      "path": ".local/cave-cadence-native-02/cave-flight-setup-completed.json",
+      "bytes": 175,
+      "sha256": "e5e6369d2c3ffb258e083fc3e8e6b95b5fed5d8dff8f3b9fe3b95a7ea16f545f"
+    },
+    "cave-observer-final.json": {
+      "path": ".local/cave-cadence-native-02/cave-observer-final.json",
+      "bytes": 88541,
+      "sha256": "ed0bf8c3d414ad6acbc851b82e654818eab636c342d20f271ee3fefe3b6535a8"
+    },
+    "cave-observer-final.png": {
+      "path": ".local/cave-cadence-native-02/cave-observer-final.png",
+      "bytes": 22279,
+      "sha256": "7cca10ce235ca69054886faaed4347f8f5e3f2c14b117a6e74f1cb221c6c11e0"
+    },
+    "cave-observer-inputs.json": {
+      "path": ".local/cave-cadence-native-02/cave-observer-inputs.json",
+      "bytes": 493,
+      "sha256": "4f49a5efb4023b1d6d1d81ef46a07daf4f75e8ffb85f8e4f6318981a9486eec5"
+    },
+    "cave-observer-loaded.json": {
+      "path": ".local/cave-cadence-native-02/cave-observer-loaded.json",
+      "bytes": 122,
+      "sha256": "ab706b9880ba49e5e943acab815c79b5f840317ea6e6d71590371e2ed08dc633"
+    },
+    "cave-observer-replay.json": {
+      "path": ".local/cave-cadence-native-02/cave-observer-replay.json",
+      "bytes": 173,
+      "sha256": "b3e718910d08a97a417fe75b6e871d16922dc02bb946bf0109349d6379c828e2"
+    },
+    "cave-observer-result.json": {
+      "path": ".local/cave-cadence-native-02/cave-observer-result.json",
+      "bytes": 20815,
+      "sha256": "3156ea8d7d8678943ac845b55aef7dc40cd6ad1a1ee18d107831921f69ce5024"
+    },
+    "cave-observer-script.json": {
+      "path": ".local/cave-cadence-native-02/cave-observer-script.json",
+      "bytes": 994,
+      "sha256": "b6bf1e7bf359014d975c2648ff55e5b121c70b2099fe4ed3afe2b6cf31eaf305"
+    },
+    "cleanup.json": {
+      "path": ".local/cave-cadence-native-02/cleanup.json",
+      "bytes": 88772,
+      "sha256": "fd0df6dc85bcd6b4835a1b5b5427bfa4f312a64527d9ddcc89f350e559c04525"
+    },
+    "cleanup.png": {
+      "path": ".local/cave-cadence-native-02/cleanup.png",
+      "bytes": 4818,
+      "sha256": "f7382f7433f29257c5a69fa1452732e841fe5f9bd22c0b23760871655dccad2d"
+    },
+    "configuration.json": {
+      "path": ".local/cave-cadence-native-02/configuration.json",
+      "bytes": 2581,
+      "sha256": "ca45b28511311d8a28e4b97130633d3d6838f6d70b1bb90056d8c7eb324fc0be"
+    },
+    "engine.json": {
+      "path": ".local/cave-cadence-native-02/engine.json",
+      "bytes": 3988,
+      "sha256": "fb3b298aa29b1fdf6c716a94ad44f8a865d09fff8c275c5fd8eeb62c38bf0125"
+    },
+    "entry.json": {
+      "path": ".local/cave-cadence-native-02/entry.json",
+      "bytes": 88774,
+      "sha256": "d8b55e52ba6c6ebeac7fd48e28e57369b0c78eeba4cce0d3a4e086ffd312c182"
+    },
+    "entry.png": {
+      "path": ".local/cave-cadence-native-02/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/cave-cadence-native-02/fire-first.json",
+      "bytes": 88769,
+      "sha256": "04a5a0780ecd3db4c2f94f0745f5dc11d024485c8eb50409eb14671468d5bb7c"
+    },
+    "fire-second.json": {
+      "path": ".local/cave-cadence-native-02/fire-second.json",
+      "bytes": 88770,
+      "sha256": "c2932d979d5fc71364db3f1134d24c7def476971a633f2b20b63e15ba8d3125e"
+    },
+    "first-result.json": {
+      "path": ".local/cave-cadence-native-02/first-result.json",
+      "bytes": 88770,
+      "sha256": "2d5476bdc085c438312d39d508f58604dff31021d5a397d4cae124aed2370c9b"
+    },
+    "first-result.png": {
+      "path": ".local/cave-cadence-native-02/first-result.png",
+      "bytes": 5142,
+      "sha256": "2f4e3758029abe172b760c855ace46ba5cad3a71c825d49241356f53b5775ed8"
+    },
+    "generated.json": {
+      "path": ".local/cave-cadence-native-02/generated.json",
+      "bytes": 88773,
+      "sha256": "809937e15d0dafafa8458af5c9d2b9eb8aa2e33c82ba6271738d0a165f84b52b"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/cave-cadence-native-02/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "b9d9a552217c3bff003fca3a960b14db2187606ab3fb65be5923ebfcac2daead"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/cave-cadence-native-02/initial-poll-0.png",
+      "bytes": 4784,
+      "sha256": "f4bd4fd94f9e9026412edac556f11ddc3341c8ce16b5ac02996dc58d84466240"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/cave-cadence-native-02/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "caebabbff71b7c85e6e7a43de80b16ad78e8f399eebfb8bb1b88baf043a74c69"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/cave-cadence-native-02/initial-poll-1.png",
+      "bytes": 4784,
+      "sha256": "f4bd4fd94f9e9026412edac556f11ddc3341c8ce16b5ac02996dc58d84466240"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/cave-cadence-native-02/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "3e4b40ab9e7497d825cf26dd3e9770bc8f89a48a459ec2371160a0dad0b9b1de"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/cave-cadence-native-02/initial-poll-2.png",
+      "bytes": 4818,
+      "sha256": "f7382f7433f29257c5a69fa1452732e841fe5f9bd22c0b23760871655dccad2d"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/cave-cadence-native-02/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "6f4b81e3205a22b4696069cf9241b38b26a5d11ba613814c7460889d142d421d"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/cave-cadence-native-02/initial-poll-3.png",
+      "bytes": 4818,
+      "sha256": "f7382f7433f29257c5a69fa1452732e841fe5f9bd22c0b23760871655dccad2d"
+    },
+    "inputs.json": {
+      "path": ".local/cave-cadence-native-02/inputs.json",
+      "bytes": 28170,
+      "sha256": "eca2cd1f38d4bfd5cd7c2978b3a3f7310e48af9b55dd92812e399333d2be3601"
+    },
+    "lifecycle.json": {
+      "path": ".local/cave-cadence-native-02/lifecycle.json",
+      "bytes": 123,
+      "sha256": "3065d94b2b4ad73aa39a8bd04994ec24e9cd55d321729be918a17bc5e8dc6ca0"
+    },
+    "live-overlay.json": {
+      "path": ".local/cave-cadence-native-02/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "8613747122faa5079c77afaa8cc2d6ba46e5101dd3f1ec51e1104ccbc4d03d13"
+    },
+    "office-confirm.json": {
+      "path": ".local/cave-cadence-native-02/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "09728e5c3abc730fae3e242458521e60fc0915a1552a5ab6c0460efe42234cf9"
+    },
+    "office-input.json": {
+      "path": ".local/cave-cadence-native-02/office-input.json",
+      "bytes": 88775,
+      "sha256": "9d3009f62ddc73b7b1a02023174a9923593dd27d36a0a2f2a2c8b78e9b5e1f20"
+    },
+    "office-input.png": {
+      "path": ".local/cave-cadence-native-02/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "profile-tool-identity.json": {
+      "path": ".local/cave-cadence-native-02/profile-tool-identity.json",
+      "bytes": 502,
+      "sha256": "49e9732e9bce3ec45067514ebb8dea8e20b0b456f43f0c118e417ade44760a24"
+    },
+    "return.json": {
+      "path": ".local/cave-cadence-native-02/return.json",
+      "bytes": 88770,
+      "sha256": "276f0df6adc08388ef7c27ef5a57d9b0501fa732daf9ea63cdbff04f1a059f2d"
+    },
+    "return.png": {
+      "path": ".local/cave-cadence-native-02/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/cave-cadence-native-02/rng-consumption.json",
+      "bytes": 54466,
+      "sha256": "83a6eca3c4c370144e9c5f37232766fc9c7ca671a2feb222b1cbaaafd1853333"
+    },
+    "safari-flight-code-observed.json": {
+      "path": ".local/cave-cadence-native-02/safari-flight-code-observed.json",
+      "bytes": 24051,
+      "sha256": "1b2f8e02bc7c7391bf36fe89f6f6ba53db3d26d863eea85c31b3960068744cf6"
+    },
+    "safari-flight-code.json": {
+      "path": ".local/cave-cadence-native-02/safari-flight-code.json",
+      "bytes": 25160,
+      "sha256": "6ba7e81790881b77d37088d93c46057b01fa18c094275980984a4ad9bb10220b"
+    },
+    "source-revision.json": {
+      "path": ".local/cave-cadence-native-02/source-revision.json",
+      "bytes": 125593,
+      "sha256": "266f02667cc0104e17e2115056dd4c07e85a8c80138b46b7104e7eaa869ed4b2"
+    },
+    "sources.zip": {
+      "path": ".local/cave-cadence-native-02/sources.zip",
+      "bytes": 3183930,
+      "sha256": "2ca95996c7712b243c21e0d25e50a714657dbc00338f02c5c69ea34162460097"
+    },
+    "startup-inputs.json": {
+      "path": ".local/cave-cadence-native-02/startup-inputs.json",
+      "bytes": 1222,
+      "sha256": "c3ba339d9682fa2ff9f1411f149588cca67ef6d42f766fbaee0de3b159bd11d1"
+    },
+    "timing-destination-confirm-flush.json": {
+      "path": ".local/cave-cadence-native-02/timing-destination-confirm-flush.json",
+      "bytes": 88773,
+      "sha256": "e3ff07a2a782d4691275c1f9457f69eb901103ae8c6956d033b275daf99a55de"
+    },
+    "timing-destination-confirm-read.json": {
+      "path": ".local/cave-cadence-native-02/timing-destination-confirm-read.json",
+      "bytes": 88775,
+      "sha256": "cdf62b78342c21904f2d7f28f6b68f50ea11a6940b65a7c49c0fa5aaa3d49516"
+    },
+    "timing-destination-confirm-read.png": {
+      "path": ".local/cave-cadence-native-02/timing-destination-confirm-read.png",
+      "bytes": 6550,
+      "sha256": "e8623e52ec43eb7c93035355264ac89ad1f060401669933382b7620d0ca3f08c"
+    },
+    "timing-destination-entry.json": {
+      "path": ".local/cave-cadence-native-02/timing-destination-entry.json",
+      "bytes": 88787,
+      "sha256": "ea6065e31d443ea8f2e5785d838636c4b49c333629e0f1d3027caf319f61fa74"
+    },
+    "timing-destination-entry.png": {
+      "path": ".local/cave-cadence-native-02/timing-destination-entry.png",
+      "bytes": 16205,
+      "sha256": "f7c377e9ee9289833afed6f8cd51ed2612aff303d182894a08353c3fb0ca3daf"
+    },
+    "timing-destination-return.json": {
+      "path": ".local/cave-cadence-native-02/timing-destination-return.json",
+      "bytes": 88775,
+      "sha256": "ab9f586795f1465394b630f8168178fd53e50ebf5292ecad548ee30df504c221"
+    },
+    "timing-destination-return.png": {
+      "path": ".local/cave-cadence-native-02/timing-destination-return.png",
+      "bytes": 6550,
+      "sha256": "e8623e52ec43eb7c93035355264ac89ad1f060401669933382b7620d0ca3f08c"
+    },
+    "timing-destination-travel-flush.json": {
+      "path": ".local/cave-cadence-native-02/timing-destination-travel-flush.json",
+      "bytes": 88775,
+      "sha256": "4d3aff777fd3ded9fdcf9476bd15725ad7f61d258e0e288002354efacaa7a5d3"
+    },
+    "timing-destination-travel-read.json": {
+      "path": ".local/cave-cadence-native-02/timing-destination-travel-read.json",
+      "bytes": 88771,
+      "sha256": "2f9742e3a41d8fde1cfe1727f2a8596069ac5b89a118b0be58b1df27e88d7f8c"
+    },
+    "timing-destination-travel-read.png": {
+      "path": ".local/cave-cadence-native-02/timing-destination-travel-read.png",
+      "bytes": 6556,
+      "sha256": "1b848187a103bf324bab6b11c5b2c93c2b50f12a2f702e00ca9f4f57d5e8fe3d"
+    },
+    "timing-flight-contract.json": {
+      "path": ".local/cave-cadence-native-02/timing-flight-contract.json",
+      "bytes": 150,
+      "sha256": "8b091376aaf022fe056eface72f42a64bb2cabd5eace2f95e4bdf7aa7ebea697"
+    },
+    "timing-flight-first-input.json": {
+      "path": ".local/cave-cadence-native-02/timing-flight-first-input.json",
+      "bytes": 88778,
+      "sha256": "d40b37c91ebbe7a4c26ee21554a8d95c555ce32da678b1c6d86ddb6a62d1d403"
+    },
+    "timing-flight-first-input.png": {
+      "path": ".local/cave-cadence-native-02/timing-flight-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "timing-map-entry.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-entry.json",
+      "bytes": 88794,
+      "sha256": "e0c175b88dd1423bf7f431a37f74c52986b03086cb0e685a5d58851d004c72e0"
+    },
+    "timing-map-entry.png": {
+      "path": ".local/cave-cadence-native-02/timing-map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "timing-map-step-000.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-000.json",
+      "bytes": 88784,
+      "sha256": "8e24f7d609b70f4244ecaf7aaeae229913e5dab6bddba5b66c4e03d3e8c85560"
+    },
+    "timing-map-step-001.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-001.json",
+      "bytes": 88784,
+      "sha256": "15e71a652e8f00ad2fb00ba9944a94ea31b6f256a769f7361a79c6f54a396d8a"
+    },
+    "timing-map-step-002.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-002.json",
+      "bytes": 88784,
+      "sha256": "2b3b5bd60f3b9ecb1144adbf010e14b7354610d4819aec286c7f73e805e944e4"
+    },
+    "timing-map-step-003.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-003.json",
+      "bytes": 88784,
+      "sha256": "ce1c6ee4cd303b80a96bebf1b4eb70f140de61a344511599a2cfb0a08b909901"
+    },
+    "timing-map-step-004.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-004.json",
+      "bytes": 88784,
+      "sha256": "ac7cc9e3698398e1329fa8617e520f1a3e3955ec500095943208376f40626586"
+    },
+    "timing-map-step-005.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-005.json",
+      "bytes": 88784,
+      "sha256": "2ab947ed1490d74d283dfbe80db42dfe663e6e463964f9738fdaf959300c952f"
+    },
+    "timing-map-step-006.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-006.json",
+      "bytes": 88784,
+      "sha256": "6b889074da0c9a1a43ce9dab8ea28be2da272ba1de991386065921fca0d4848a"
+    },
+    "timing-map-step-007.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-007.json",
+      "bytes": 88784,
+      "sha256": "d1c351882b9b532fc009c6d8b96c00c2ef6f2dfde3c1bc9fd1b5109f9999e855"
+    },
+    "timing-map-step-008.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-008.json",
+      "bytes": 88784,
+      "sha256": "1df2d1b5b784b1206f60a90f0b243cbaf81769b97ba9691b9d25dec5fac6f524"
+    },
+    "timing-map-step-009.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-009.json",
+      "bytes": 88785,
+      "sha256": "dfba323788d4208d6cf8dd7f49aa5ec58e4d7dbb7ea06031fdcb9538e6f4f709"
+    },
+    "timing-map-step-010.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-010.json",
+      "bytes": 88785,
+      "sha256": "ab74ed4e089091fa5853dd24c9f4fbb4497438c003ee3fa474e00012a2c5ec18"
+    },
+    "timing-map-step-011.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-011.json",
+      "bytes": 88785,
+      "sha256": "310bf88f472893a71b2558c55680932298138ebfce5aa65b3edc94478ec03ecc"
+    },
+    "timing-map-step-012.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-012.json",
+      "bytes": 88785,
+      "sha256": "b40ba6cde6611b20896a3ce36e7194bca19b22bf10aa4b2c3352646de6d131e3"
+    },
+    "timing-map-step-013.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-013.json",
+      "bytes": 88785,
+      "sha256": "3a82c9bcc7888a63bcdde0125d18d0db067b887ff01be8897473da14c4372441"
+    },
+    "timing-map-step-014.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-014.json",
+      "bytes": 88785,
+      "sha256": "2ccc92daf8138a40b6e50a3b01bf91090e235259ead8c3efd542c0c66eb99148"
+    },
+    "timing-map-step-015.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-015.json",
+      "bytes": 88785,
+      "sha256": "ef93d3a0da8cdb87510c87343b6e22ff826f21946838abf0f156aa8b79693a7f"
+    },
+    "timing-map-step-016.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-016.json",
+      "bytes": 88785,
+      "sha256": "b0806c98eee2fa01b56573cdcaa625ece48162d5161ab4ea75c17f43228f35da"
+    },
+    "timing-map-step-017.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-017.json",
+      "bytes": 88785,
+      "sha256": "e9412e70e113df4eb19ba3090c3fcb097a4dac1d9dc53af18c8409864d573e8c"
+    },
+    "timing-map-step-018.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-018.json",
+      "bytes": 88785,
+      "sha256": "451eab1d5be95e32bb83d8c6ee4f2437205ef45969bed3e475b2e35e43cb15f1"
+    },
+    "timing-map-step-019.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-019.json",
+      "bytes": 88785,
+      "sha256": "892e8dae20a3dc6af4fab7f56f910e064346511434859b5489e055bb63b1b1d5"
+    },
+    "timing-map-step-020.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-020.json",
+      "bytes": 88785,
+      "sha256": "ec4f7aae7805c4f41e55b1ab34c9cc8acd7bfaef283219403a59b464ea0e1bb7"
+    },
+    "timing-map-step-021.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-021.json",
+      "bytes": 88785,
+      "sha256": "a76b1ca990b1a0cd33530c44aa6a477f9a25322714610f9557c9ff47ea3736f7"
+    },
+    "timing-map-step-022.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-022.json",
+      "bytes": 88785,
+      "sha256": "d128f32fd5b2ba69db2744bf3f6c1b0b15f3cee122da691173d66cb7fee0bdf7"
+    },
+    "timing-map-step-023.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-023.json",
+      "bytes": 88785,
+      "sha256": "d97a00f1ab7ec4ae54732a88a3496037a4defab6f28b8ef73d49791c8f255fbc"
+    },
+    "timing-map-step-024.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-024.json",
+      "bytes": 88785,
+      "sha256": "1b13a059d8ccd459cbbf431e034ff839b1e1d06548620976bf1642d6726ca53f"
+    },
+    "timing-map-step-025.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-025.json",
+      "bytes": 88785,
+      "sha256": "22be05382a7a9c5dfeb53a85cd9b81f465c3581e6d4fac52253795386c67e283"
+    },
+    "timing-map-step-026.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-026.json",
+      "bytes": 88785,
+      "sha256": "94bc998b7cee0e1c5180efa734851d618b78bb36250dd03c76a11e8050d8e07c"
+    },
+    "timing-map-step-027.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-027.json",
+      "bytes": 88785,
+      "sha256": "739e306c3891964d3bf1e5c81ad0617c5353a9e4751d661cf3bb9d8ec2faec1e"
+    },
+    "timing-map-step-028.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-028.json",
+      "bytes": 88785,
+      "sha256": "ee947ae27dc2d361940e7eb006043acfc0b4d230f08dae32b295b9a4a78fe00f"
+    },
+    "timing-map-step-029.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-029.json",
+      "bytes": 88785,
+      "sha256": "8476767645e18e0e55b8af55ac252668e9a4fb8ba57a8c3f933117a4ac7c7f5e"
+    },
+    "timing-map-step-030.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-030.json",
+      "bytes": 88786,
+      "sha256": "d4a0e63ce37e6da82ad7d1c9d9386eced90607b6126851f1a0bf804fd3b062d8"
+    },
+    "timing-map-step-031.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-031.json",
+      "bytes": 88786,
+      "sha256": "de2524d0b39fd015999b16dfcc2a07fcc9d8f27381d7809f4c06972994a0a202"
+    },
+    "timing-map-step-032.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-032.json",
+      "bytes": 88786,
+      "sha256": "d8df904d1c8d1d846bf904e3e37ce9a14fdd59e0a6048839793f16e0b88d1637"
+    },
+    "timing-map-step-033.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-033.json",
+      "bytes": 88786,
+      "sha256": "965a634cd1923c2dcd2e98d05166dc787513a7b975df270e2e74a08826fe342f"
+    },
+    "timing-map-step-034.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-034.json",
+      "bytes": 88786,
+      "sha256": "1606ebad54a72f013dfa2e96555ced98f7dcf79cf56296a6124eecdeff8a8937"
+    },
+    "timing-map-step-035.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-035.json",
+      "bytes": 88786,
+      "sha256": "92fe3000525ce54ffbe0588b726df611dbae21c001bb8aa46dae5247eaaf2e10"
+    },
+    "timing-map-step-036.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-036.json",
+      "bytes": 88786,
+      "sha256": "eb18c1b197b5a5ca61af1a6643ac3ea928cd0f411840e8f10a8b4b242fcbd4cc"
+    },
+    "timing-map-step-037.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-037.json",
+      "bytes": 88786,
+      "sha256": "c8e6b6e5af1cf4e5d7ad758b8535b6f08ab090b3d1f2ed8526ea107c4c20eaae"
+    },
+    "timing-map-step-038.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-038.json",
+      "bytes": 88786,
+      "sha256": "eb5d07bdb8b43b838245077c2b01b0a9446718b01e26f499214f8b445e11ee8b"
+    },
+    "timing-map-step-039.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-039.json",
+      "bytes": 88786,
+      "sha256": "e13da40f45abf1fd9e95739539ce9e511bec7f1746e9804e31accf244d9e12b7"
+    },
+    "timing-map-step-040.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-040.json",
+      "bytes": 88786,
+      "sha256": "ed9672ad41eb629f5d67faa59667de03a578955a5e58d6c760e5b1f2434953a6"
+    },
+    "timing-map-step-041.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-041.json",
+      "bytes": 88786,
+      "sha256": "159f1c83f5c4d9a9972ce859e6cf4b8529f36e174e377f1b0bd88224cfe3897a"
+    },
+    "timing-map-step-042.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-042.json",
+      "bytes": 88786,
+      "sha256": "ad82e25c5cd48aab05b157d68e723991dc9985a9eee1698243904b3aa4596bde"
+    },
+    "timing-map-step-043.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-043.json",
+      "bytes": 88786,
+      "sha256": "df782cb8dd3cf509d05095c129510a13536cfc999d11dc8041628ffc545ead63"
+    },
+    "timing-map-step-044.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-044.json",
+      "bytes": 88786,
+      "sha256": "88d3bf5124b076663690b5317500c97eaa010b13ee0dbadeba0ab8ac0a00d6f1"
+    },
+    "timing-map-step-045.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-045.json",
+      "bytes": 88786,
+      "sha256": "15e27c84f260a847d72f4da1ffd7a46931e343d4a244f659607e61d7e126fed3"
+    },
+    "timing-map-step-046.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-046.json",
+      "bytes": 88786,
+      "sha256": "a83a1d5ec1113d4c55ffefcdea20cbb0aec6c42509b0bc4a4c5a4632af0b3a7e"
+    },
+    "timing-map-step-047.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-047.json",
+      "bytes": 88786,
+      "sha256": "f4779824a4df30ce9ee11420d969a837e9e83b420db3050d86e07c0aef5bbed7"
+    },
+    "timing-map-step-048.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-048.json",
+      "bytes": 88786,
+      "sha256": "a57ee535c066a6ae9f2c20f6863f98be9d444cffa27aa3bfef342e4d8afd5765"
+    },
+    "timing-map-step-049.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-049.json",
+      "bytes": 88786,
+      "sha256": "657a1fec0f4b5103334b736d51a0754c0ca15c7b34743bd571aa0e36c8cd6e21"
+    },
+    "timing-map-step-050.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-050.json",
+      "bytes": 88786,
+      "sha256": "c0c67aceb30d9ec9e7c4b3cadd67b45cf5b4068761aac3607437370f5ab9f6ac"
+    },
+    "timing-map-step-051.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-051.json",
+      "bytes": 88786,
+      "sha256": "70c5e5e673d05f654975fa2e5ffe87975ef7e9803fc5698d76c2176b5f7b68d6"
+    },
+    "timing-map-step-052.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-052.json",
+      "bytes": 88786,
+      "sha256": "2e291fc226f7c39789ef41e5ed0d43d9811cae8cd747efbe00ba800b70397d70"
+    },
+    "timing-map-step-053.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-053.json",
+      "bytes": 88786,
+      "sha256": "5f677f6c4b08f94dd0e31dcaa834fd60c844eca139c9adc27137d1bbf779a4e4"
+    },
+    "timing-map-step-054.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-054.json",
+      "bytes": 88786,
+      "sha256": "4118cae805300029716aaac98288ca1c551fafd92cc678d9134e5e2779b6fb12"
+    },
+    "timing-map-step-055.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-055.json",
+      "bytes": 88786,
+      "sha256": "695444ecc0e2c9a5000b820cecc942807a1df34f543302fe1581332e61698245"
+    },
+    "timing-map-step-056.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-056.json",
+      "bytes": 88786,
+      "sha256": "b765c31fa4a2e338fc704a7b5d9fcb62db5379f766aa03b53928436336acb2d5"
+    },
+    "timing-map-step-057.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-057.json",
+      "bytes": 88786,
+      "sha256": "a6dc6c34eeb30ea35bf8ca584bc1a47f8c45354934dde79b7c31f8ceb52387b2"
+    },
+    "timing-map-step-058.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-058.json",
+      "bytes": 88786,
+      "sha256": "029fc1376f7e018fc39c1ca621d4922e2d7e58834b83126148c64e3e240284fb"
+    },
+    "timing-map-step-059.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-059.json",
+      "bytes": 88786,
+      "sha256": "c3c142c6ec65277635bb104c70259e3afe2ef732b6de0c4453764e4ec772f711"
+    },
+    "timing-map-step-060.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-060.json",
+      "bytes": 88786,
+      "sha256": "e9efbb28664f096295a0aef91938a7e5ff4bb39a11f75e570c5ff5ed88ac75f2"
+    },
+    "timing-map-step-061.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-061.json",
+      "bytes": 88786,
+      "sha256": "2e4c5f254b22a470877ea9b7a8329e65a825100207145e9bd9f515cfc9aa4bc1"
+    },
+    "timing-map-step-062.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-062.json",
+      "bytes": 88786,
+      "sha256": "fbedb181ec0162b98dd03784795c50b92fc37c6698b839cda758eadc100b1014"
+    },
+    "timing-map-step-063.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-063.json",
+      "bytes": 88786,
+      "sha256": "9fe27879873071694b6aa839df7724b13d0c89dbdb3dbd9164434a8fd3e99c97"
+    },
+    "timing-map-step-064.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-064.json",
+      "bytes": 88786,
+      "sha256": "64a3c487e38c65603f14aae3a64d484b975a0c650cccc5184c985cb38440daec"
+    },
+    "timing-map-step-065.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-065.json",
+      "bytes": 88786,
+      "sha256": "087c31cd4a26b3f3ca60a26bce1d99974b20a0abf91c9eae57ee3345d3dcf2bc"
+    },
+    "timing-map-step-066.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-066.json",
+      "bytes": 88786,
+      "sha256": "ee0e465ce416529c9457b784f75a58f3485934032e61ed494236aaec520ba7f8"
+    },
+    "timing-map-step-067.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-067.json",
+      "bytes": 88786,
+      "sha256": "65a9679aa491a725b367f75517ee9b848d7b0b8ae7170a68f5174b9b833f3802"
+    },
+    "timing-map-step-068.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-068.json",
+      "bytes": 88786,
+      "sha256": "afb9847385a7f389a8cffab0e4264a19552e406894d8fc1b7d3e21cc8d11855d"
+    },
+    "timing-map-step-069.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-069.json",
+      "bytes": 88786,
+      "sha256": "16e70b74ceccadddd7bcd13eb92c760b03e8aaceac20b1e071c78825312bc6ab"
+    },
+    "timing-map-step-070.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-070.json",
+      "bytes": 88786,
+      "sha256": "969b54083d677c61633ff93f88bf1eb58d2cb12bf0713afafcc447a167e0d006"
+    },
+    "timing-map-step-071.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-071.json",
+      "bytes": 88786,
+      "sha256": "86b487867e4965676105a6154ebb5c8f53f5d462965a30459c04d37fd129a423"
+    },
+    "timing-map-step-072.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-072.json",
+      "bytes": 88786,
+      "sha256": "82f4b06fa0a62667f5a348e6fef9dd3e252f81c018e1f79426c39b8ebb5150b8"
+    },
+    "timing-map-step-073.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-073.json",
+      "bytes": 88786,
+      "sha256": "e5cb72e23de561f44d781151d79e2f4f7dadd3bf585ad250f3994d28b56f2235"
+    },
+    "timing-map-step-074.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-074.json",
+      "bytes": 88786,
+      "sha256": "a1103db18b3a06cef1cda4832d61e20493911a4ef4b59e4a41fd7ccc5d062205"
+    },
+    "timing-map-step-075.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-075.json",
+      "bytes": 88786,
+      "sha256": "9fe3521f8e05fcb7ef3af1c3d9f4755fef68a58532bbbeeff3a039e41352a8c6"
+    },
+    "timing-map-step-076.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-076.json",
+      "bytes": 88786,
+      "sha256": "eae25a31abf96f6ed51505a6955a373001bf6f7325a51be645ae6393fcdfd394"
+    },
+    "timing-map-step-077.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-077.json",
+      "bytes": 88786,
+      "sha256": "bec1496e8ef24076d5028c1d2d49d67a002187ad780de09de8281252640fc877"
+    },
+    "timing-map-step-078.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-078.json",
+      "bytes": 88786,
+      "sha256": "ee1852bdc7d700c42016ef1f72c20d6ae12336d9e51561d8f0eb16eb6bcc147b"
+    },
+    "timing-map-step-079.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-079.json",
+      "bytes": 88786,
+      "sha256": "f5325625b474a9187aa00c97f6923f183975e0dcc29e390c35e03031f9c9f321"
+    },
+    "timing-map-step-080.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-080.json",
+      "bytes": 88786,
+      "sha256": "cb3d070c0daefa54b8cb2512aa19febba7be6892cd15ae9f8fd0b480c4b609b3"
+    },
+    "timing-map-step-081.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-081.json",
+      "bytes": 88786,
+      "sha256": "bf4606f42735bd8bd7e1ee09a0974b72b40ac2bb7fc6e7cb0cc126dd5e177ea5"
+    },
+    "timing-map-step-082.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-082.json",
+      "bytes": 88786,
+      "sha256": "b05bb8314bd3afb9fca9975c99e4b9e506c8024cbc66a6bd6b94a9389322919f"
+    },
+    "timing-map-step-083.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-083.json",
+      "bytes": 88786,
+      "sha256": "10381351e79d558f89871c2ef0fe52b39fcb8caddb3307b61306c858293c81ad"
+    },
+    "timing-map-step-084.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-084.json",
+      "bytes": 88786,
+      "sha256": "0386d6f8d3101d79b5071e2e17f78034dcaa64dd47d702f44bfbe1de87b7faa1"
+    },
+    "timing-map-step-085.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-085.json",
+      "bytes": 88786,
+      "sha256": "167f7d0046aab11056759c04ae541a694e64af38db3546113351725fbda6be28"
+    },
+    "timing-map-step-086.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-086.json",
+      "bytes": 88786,
+      "sha256": "c6657008684290e45cecd28015229388a70de6db7c8c3b6ce861c25aa4a591b2"
+    },
+    "timing-map-step-087.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-087.json",
+      "bytes": 88786,
+      "sha256": "dc244d62c3482a8847244c81ef7120077809ce909a9e197feb5a5be97335005b"
+    },
+    "timing-map-step-088.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-088.json",
+      "bytes": 88786,
+      "sha256": "724c200db651d98c6f2463173587e8277d3e844688fea3c5916847eed7beb3ae"
+    },
+    "timing-map-step-089.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-089.json",
+      "bytes": 88786,
+      "sha256": "8092129a1d6d8a150196cca673c60635a726cf48e9ad648ddbb7f8e59a81bcf5"
+    },
+    "timing-map-step-090.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-090.json",
+      "bytes": 88786,
+      "sha256": "43b2ce5c3f9c75a1c10728d1937021d068dafe08f5a3e1dcdc7f4957a28f7b35"
+    },
+    "timing-map-step-091.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-091.json",
+      "bytes": 88786,
+      "sha256": "48897eeb62110e2addd227f9c13446c500939491ff86d7ea26865076991da69e"
+    },
+    "timing-map-step-092.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-092.json",
+      "bytes": 88786,
+      "sha256": "ca50f586ffd6e945f8cb4deef4f70490baf3a0f5f0a606843de5abb6fe692e5e"
+    },
+    "timing-map-step-093.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-093.json",
+      "bytes": 88786,
+      "sha256": "707e619f2f01172359a9147424542e85cff5cae148249949d15f8dfccff206e8"
+    },
+    "timing-map-step-094.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-094.json",
+      "bytes": 88786,
+      "sha256": "c7bb2d1c77923a1f525dfb6bc54c9bc16fa59056fe1c86f68872dff8edd7bd6e"
+    },
+    "timing-map-step-095.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-095.json",
+      "bytes": 88786,
+      "sha256": "b0aa79222a9e58618c88ad164577824d6073d17927c78ad356731af0c3e16b4e"
+    },
+    "timing-map-step-096.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-096.json",
+      "bytes": 88786,
+      "sha256": "edec48404f487cc30937bc19a4024c85f2498106bf672955eed804d878874226"
+    },
+    "timing-map-step-097.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-097.json",
+      "bytes": 88786,
+      "sha256": "836f90c92fea6ea186b25b330e9287b1f3f46511eb5fbcaf75946535e47a3c3e"
+    },
+    "timing-map-step-098.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-098.json",
+      "bytes": 88786,
+      "sha256": "4b600b2819325cf7f49cf74e6b0f1508d8d6cd8eca617e166f7693ca978c61c1"
+    },
+    "timing-map-step-099.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-099.json",
+      "bytes": 88787,
+      "sha256": "8c7695a3bf3cf33a86040bb3e7148b2c5a7f0d8173a8b1fcd0e2230a75f9552b"
+    },
+    "timing-map-step-100.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-100.json",
+      "bytes": 88787,
+      "sha256": "530d4f23f5b07569dd166bac1b95caf00167e32173ff5117d5bc49ed3d6305e0"
+    },
+    "timing-map-step-101.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-101.json",
+      "bytes": 88787,
+      "sha256": "d255ca58d1f64153a7c6a03bcdf32c08e5fc23f367ae79e637670b29c7e1c733"
+    },
+    "timing-map-step-102.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-102.json",
+      "bytes": 88787,
+      "sha256": "03d76e5d5e72c347abb35e711dc4f44cd6954050e41b7c8a745800e3d3fa3b30"
+    },
+    "timing-map-step-103.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-103.json",
+      "bytes": 88787,
+      "sha256": "0db20146cf82fa879950fe2d99ecef5ce909a50aac8aba8068c29f35b2621dcb"
+    },
+    "timing-map-step-104.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-104.json",
+      "bytes": 88787,
+      "sha256": "d43ac1453a9f0b7fbca2441f5e5b2bd993936e8dadf3aad9ff082d2cd7b91b65"
+    },
+    "timing-map-step-105.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-105.json",
+      "bytes": 88787,
+      "sha256": "46edf070e8c82cfa691a5a7c7f08544bbbc954b2d08494721a05a6629c2bb299"
+    },
+    "timing-map-step-106.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-106.json",
+      "bytes": 88787,
+      "sha256": "1328a3c1b0ff7ad56695481cd35011a175bb80a25e68eb4eafe10a9645af06a3"
+    },
+    "timing-map-step-107.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-107.json",
+      "bytes": 88787,
+      "sha256": "0d47d3b710e221f9234947cd91fd2d7d8d54ee1cdd84390296f0599ec37a2d9c"
+    },
+    "timing-map-step-108.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-108.json",
+      "bytes": 88787,
+      "sha256": "40b702ce591c4a362bb94454b388189ce07446b861494befd2e43b850021bb25"
+    },
+    "timing-map-step-109.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-109.json",
+      "bytes": 88787,
+      "sha256": "b8455670cace89da1ee8ce25c56424bbd65955b1fe2b03c25990336433a47cec"
+    },
+    "timing-map-step-110.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-110.json",
+      "bytes": 88787,
+      "sha256": "eb159f70b1a9b571e50f42160d47852ffaf47668aa63198b4a88517c6a627be9"
+    },
+    "timing-map-step-111.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-111.json",
+      "bytes": 88787,
+      "sha256": "d9f7f5a2d255c0744462bddae776861f15541cb4d4bc1593aaef2ea67f008f07"
+    },
+    "timing-map-step-112.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-112.json",
+      "bytes": 88787,
+      "sha256": "9982419400733861c7b4433fed1be2cb9023fc15374ffff109207fa97cc95a77"
+    },
+    "timing-map-step-113.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-113.json",
+      "bytes": 88787,
+      "sha256": "fc40f0491f899374753a7666db28cba472d8c44839ca0352adfc8262382ab672"
+    },
+    "timing-map-step-114.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-114.json",
+      "bytes": 88787,
+      "sha256": "81f0725e389a5d1756b07dfacea9512aa7ad238a3a5d11f2c52dae36f8bb74a6"
+    },
+    "timing-map-step-115.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-115.json",
+      "bytes": 88787,
+      "sha256": "f59f56767fc6cd25974fd14933d5d0e50d89f56f7d25d4db1f432587c2664e56"
+    },
+    "timing-map-step-116.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-116.json",
+      "bytes": 88787,
+      "sha256": "9b435e9ffa516aa7e6a2e7bdaf9d20b49dcfe26390dc0b8f4e5c4b6616d69b7d"
+    },
+    "timing-map-step-117.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-117.json",
+      "bytes": 88787,
+      "sha256": "a3a55b98a3f51cfbd06696effef876f540f5b81e7835d75be287101022d677e7"
+    },
+    "timing-map-step-118.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-118.json",
+      "bytes": 88787,
+      "sha256": "aeaabaecbe3fa3508ef36453078fdec388d455901af5f50e37f694356a24c5df"
+    },
+    "timing-map-step-119.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-119.json",
+      "bytes": 88787,
+      "sha256": "7212b29e970c9dde7312f71fbcde419197708860b79fea606d67ba9aed859614"
+    },
+    "timing-map-step-120.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-120.json",
+      "bytes": 88787,
+      "sha256": "4ddaf4d0143b2d97aaff1030591a9e94c2be4d8ae45547574a913a48fa3ce298"
+    },
+    "timing-map-step-121.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-121.json",
+      "bytes": 88787,
+      "sha256": "973bbc3db95cf383d49a1b5024a1fb9c169a8a82c74618a040185744dded424c"
+    },
+    "timing-map-step-122.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-122.json",
+      "bytes": 88787,
+      "sha256": "96fd12c7878721098fd1cb47b362a0717e238505eba408252fbd7071c8deb0f8"
+    },
+    "timing-map-step-123.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-123.json",
+      "bytes": 88787,
+      "sha256": "5d83374f1bb335f49ef46d4e0509e4e10653b20cb8e8bcba58f2ff684bfa9e95"
+    },
+    "timing-map-step-124.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-124.json",
+      "bytes": 88787,
+      "sha256": "903fa7b1d412e27c2c728c021cd3f9e0f415e79eb4ebcde7751766d6fad77aa3"
+    },
+    "timing-map-step-125.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-125.json",
+      "bytes": 88787,
+      "sha256": "724138760ddd42de3a100b16a4403f6eaec203e756eb8c0831f942be09e712fc"
+    },
+    "timing-map-step-126.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-126.json",
+      "bytes": 88787,
+      "sha256": "1948b637edbd942e8ce93d870ffb4686a41ced41da94d66f7fdda2ac09d2b329"
+    },
+    "timing-map-step-127.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-127.json",
+      "bytes": 88787,
+      "sha256": "5df3fe1cf021db07469b9feee38515c8b0f9264b18e89f1cf256c96116d22774"
+    },
+    "timing-map-step-128.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-128.json",
+      "bytes": 88787,
+      "sha256": "c0a8826f0d7d274cfc0c98ed0709e0b978c6852cde2d77329405a305482da214"
+    },
+    "timing-map-step-129.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-129.json",
+      "bytes": 88787,
+      "sha256": "4a071c554011bb919b0333e0aa3909e9e3a4fd89949edc05b2eda61066c282a6"
+    },
+    "timing-map-step-130.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-130.json",
+      "bytes": 88787,
+      "sha256": "45502c0e07b083ab4d651944b577eee0ae61f839e5c6af7cd05ed466a3710617"
+    },
+    "timing-map-step-131.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-131.json",
+      "bytes": 88787,
+      "sha256": "000e92f1890770dd3dedaf303831c00b1825f59e9204e37197e5a7c6f17c4331"
+    },
+    "timing-map-step-132.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-132.json",
+      "bytes": 88787,
+      "sha256": "ce9c332e8ff604df1d2d46342ff467a337ec2248181547973e70f07077ea7a42"
+    },
+    "timing-map-step-133.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-133.json",
+      "bytes": 88787,
+      "sha256": "d2a1b6d2727c2082d4573fa3536b25088ce28ee019b630ca127f9331d072c985"
+    },
+    "timing-map-step-134.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-134.json",
+      "bytes": 88787,
+      "sha256": "dd3348fac95ec6ea5483c04de842b416181ecbff776ac2121757995bf95c0e5e"
+    },
+    "timing-map-step-135.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-135.json",
+      "bytes": 88787,
+      "sha256": "573bde2d84ccc0475119cae3c96710af82453c1620d7220e8c7cca62c71a95fc"
+    },
+    "timing-map-step-136.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-136.json",
+      "bytes": 88787,
+      "sha256": "8c298042b5010581dcdce098d72c88eea0d6ee53d21d5cfe9d363794d6098126"
+    },
+    "timing-map-step-137.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-137.json",
+      "bytes": 88787,
+      "sha256": "a1cbbe39b82bf821e505235afe97d25f14122b765c78e951378278f8f85c3128"
+    },
+    "timing-map-step-138.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-138.json",
+      "bytes": 88787,
+      "sha256": "123027ea88441803bd7daf0c9d0e935265aafcfce76e88bb0ecf09170d618cd7"
+    },
+    "timing-map-step-139.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-139.json",
+      "bytes": 88787,
+      "sha256": "601f4972e55e11ca6baf626850987d65ef2c11315e227f2958a741c98e3e6e97"
+    },
+    "timing-map-step-140.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-140.json",
+      "bytes": 88787,
+      "sha256": "51be4c6bc538ebe36a4be75ea1d128d59221fca050790ea1df7defe8da608da7"
+    },
+    "timing-map-step-141.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-141.json",
+      "bytes": 88787,
+      "sha256": "40fe14f2eeab68f470a1a4c02e2f6c9f2b01ec98e343920acfd73eb3f1617610"
+    },
+    "timing-map-step-142.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-142.json",
+      "bytes": 88787,
+      "sha256": "1c985e2a48279484f83ca79c5303775927d928bb698e91236ebcc1d4404ca901"
+    },
+    "timing-map-step-143.json": {
+      "path": ".local/cave-cadence-native-02/timing-map-step-143.json",
+      "bytes": 88787,
+      "sha256": "c479922e977a8be00b56e0ad8328b8ab990387d7c7eb69ad605d172969ad7e49"
+    },
+    "warning-poll.json": {
+      "path": ".local/cave-cadence-native-02/warning-poll.json",
+      "bytes": 88774,
+      "sha256": "29ae37f7b4dde37011aafd38ade1624907a96f7e26db66268f548a260bf26902"
+    },
+    "warning-poll.png": {
+      "path": ".local/cave-cadence-native-02/warning-poll.png",
+      "bytes": 5142,
+      "sha256": "2f4e3758029abe172b760c855ace46ba5cad3a71c825d49241356f53b5775ed8"
+    }
+  },
+  "rightPassageSource": {
+    "path": ".local/cave-cadence-source-01/right-passage.json",
+    "bytes": 12321,
+    "sha256": "6b1cbc228cbc77ab35c3db458cc2862d84067a5997e4d7abe8ec0d51edadceb8",
+    "program": "CAVE_CODE.EXE",
+    "range": "1ce1:02b1..03de inclusive",
+    "originalOverlayOffset": "0f51..107e inclusive",
+    "analysisRelocationBias": "1000",
+    "instructions": 106,
+    "claim": "Right increments room at02f6 and sets8eb2 at02fa before resource load0325 and exit-transition call03d4. Port currently assigns room after exit transition. Exact302 original instruction bytes after source-defined relocation;no probe/FPU differences in this range."
+  }
+}

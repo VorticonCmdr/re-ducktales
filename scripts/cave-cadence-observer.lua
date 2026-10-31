@@ -3,7 +3,7 @@ local ds, ega = __DS__, __EGA__
 local samples = {}
 local function byte(at) return dosbox.mem_read_byte(ds, at) end
 local function word(at) return dosbox.mem_read_word(ds, at) end
--- CSV avoids the script-status32KiB output cap;fixed13-column integer rows.
+-- CSV avoids the script-status node/byte output limits;fixed13-column integer rows.
 for i = 1, 480 do
     samples[i] = table.concat({
         i, dosbox.frame(), word(0x2225) + word(0x2227) * 65536,

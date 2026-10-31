@@ -57,6 +57,15 @@ original difficulty1;its full campaign acceptance is not established. Hard remai
 deferred. Failure-portrait20 and other legacy dialogue read boundaries also remain
 separate fidelity gaps;the award/notice change does not claim to fix them.
 
+Standard exploration now completes startup,flight,Too-Pei cave,treasure and
+transmitter notice,rival reports,$3,400 deposit,return to map and Restart
+(23 checkpoints,523 DOM events). A continuous Safari extension reaches a normal
+lost race on its second flight:day7,tile92 of126,then rival-claim. That run stopped
+because the exploratory player required an arrival;it is not proof of a port
+dead end. The next experiment consumes the claim and continues the same campaign
+to another Safari. [Exploration evidence](../reference/standard-wages-exploration.json).
+These captures are not strict acceptance or a complete Standard campaign.
+
 Other legacy dialogues,cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
 arbitrary-route finishability remain incomplete. The deferred Hard route loses

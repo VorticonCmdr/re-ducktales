@@ -60,7 +60,7 @@ try {
       for (let n = 0; n < 12; n++) {
         const s = await state();
         if (
-          !["expedition-result", "rival-report", "visit-notice"].includes(
+          !["expedition-result", "rival-report", "visit-notice", "rival-claim"].includes(
             s.scene,
           )
         )
@@ -194,23 +194,38 @@ try {
       if (safari) {
         // Continue the same campaign. This policy chooses real controls from
         // visible animal state; it never supplies expected results or RNG.
-        await point(46, 56);
+        let arrived = false;
+        // A lost race is a normal campaign branch. Read its claim and continue
+        // to another unclaimed Safari instead of calling it a port dead end.
+        for (const [attempt, destination] of [[46, 56], [173, 98]].entries()) {
+        await point(...destination);
         await press("Space");
         await settle();
         await until((s) => s.scene === "departure");
-        await observe("safari-departure");
+        await observe("safari-departure-" + attempt);
         await press("Space");
         await until((s) => s.scene === "flight");
         const secondFlight = await explorePhysicalFlight({
           page, state, until,
           policy: { altitude: [25, 40], climbHeading: 3 },
         });
-        await writeFile(root + "/safari-flight-controls.json",
+        await writeFile(root + "/safari-flight-controls-" + attempt + ".json",
           JSON.stringify(secondFlight, null, 2) + "\n");
         await until((s) => s.scene !== "flight");
-        await observe("safari-flight-return");
+        await observe("safari-flight-return-" + attempt);
+        if ((await state()).flight.outcome.status === "race-lost") {
+          assert.equal((await state()).scene, "rival-claim");
+          await settle();
+          assert.equal((await state()).scene, "map");
+          await observe("map-after-lost-race-" + attempt);
+          continue;
+        }
         assert.equal((await state()).flight.outcome.code, 1,
           "Exploratory second flight did not arrive;inspect its normal consequence");
+        arrived = true;
+        break;
+        }
+        assert.ok(arrived, "Both exploratory Safari flights failed;all normal consequences retained");
         await until((s) => s.scene === "photography" && s.photography.phase === "playing");
         await observe("safari-entry");
         let targetShot = false;

@@ -1,0 +1,72 @@
+{
+  "id": "standard-wages-exploration",
+  "build": "reference/build.json",
+  "difficulty": 1,
+  "scope": "Observed browser exploration only;not acceptance or complete Standard campaign",
+  "firstLeg": {
+    "producer": ".local/standard-wages-first-leg-01",
+    "sourceCommit": "bf40b2003eb00f24c58ca40360456a37d305def7",
+    "checkpoints": 23,
+    "events": 523,
+    "restart": true
+  },
+  "secondAttempt": {
+    "producer": ".local/standard-wages-safari-01",
+    "sourceCommit": "7933e49",
+    "result": "Normal race-lost branch at day7,tile92/126;reached rival-claim. Explorer stopped before consuming that claim.",
+    "accepted": false,
+    "artifacts": {
+      "source-revision.json": {
+        "path": ".local/standard-wages-safari-01/source-revision.json",
+        "bytes": 100962,
+        "sha256": "a7a590ccf1c2b9c7daf7d193cb6495f63b9a7010f169a1e10fccd8b0f4d6eca5"
+      },
+      "sources.zip": {
+        "path": ".local/standard-wages-safari-01/sources.zip",
+        "bytes": 2697312,
+        "sha256": "f6a146014322a15e16cd8e81a7f3495d5c28b0504ab589537a3403e8a9a7f690"
+      },
+      "environment.json": {
+        "path": ".local/standard-wages-safari-01/environment.json",
+        "bytes": 239,
+        "sha256": "3bc78ab58b567bc3296f7c583fa215e8b1549ab6aa1cdcef27cf212eec465ed4"
+      },
+      "captured-events.json": {
+        "path": ".local/standard-wages-safari-01/captured-events.json",
+        "bytes": 214333,
+        "sha256": "08081fbd8895b95018dad6863b67d6aa7df6656b4980d458cee51c0dea53f335"
+      },
+      "campaign-checkpoints.json": {
+        "path": ".local/standard-wages-safari-01/campaign-checkpoints.json",
+        "bytes": 158603,
+        "sha256": "d93bfa24c662da55982570b82b1b522bfd47eef1996855ade4c9767494482a14"
+      },
+      "timeline.json": {
+        "path": ".local/standard-wages-safari-01/timeline.json",
+        "bytes": 2272,
+        "sha256": "df5f6a30b51e2485035afadd7f7e60eb867c8d41d55226f34134a2589534b362"
+      },
+      "exploration-status.json": {
+        "path": ".local/standard-wages-safari-01/exploration-status.json",
+        "bytes": 130,
+        "sha256": "c98746433a15798bd3defdbcc85d835275618a511a7b2a9eda16df405a79ee39"
+      },
+      "safari-flight-controls.json": {
+        "path": ".local/standard-wages-safari-01/safari-flight-controls.json",
+        "bytes": 456281,
+        "sha256": "fe6dc34ebf10eb677e4cec1713fff5b63503a10a4bfe73b7feacf8adfbe2c592"
+      }
+    }
+  },
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "physicalKeyboard": true,
+    "audioEnabled": false
+  },
+  "exclusions": [],
+  "injections": [],
+  "fittedInputs": [],
+  "nextExperiment": "Consume the ordinary rival-claim,return to map,and continue to another Safari in the same campaign."
+}

@@ -1,0 +1,122 @@
+{
+  "kind": "atomic-audio-acceptance",
+  "nativeComparison": false,
+  "runtimeCommit": "ddb844ae56373a45827ba32dcb7dc8d691ddb8c4",
+  "cases": [
+    {
+      "device": "speaker",
+      "mode": "before",
+      "consumer": ".local/atomic-audio-speaker-before-01"
+    },
+    {
+      "device": "tandy",
+      "mode": "before",
+      "consumer": ".local/atomic-audio-tandy-before-01"
+    },
+    {
+      "device": "speaker",
+      "mode": "during",
+      "consumer": ".local/atomic-audio-speaker-during-02"
+    },
+    {
+      "device": "tandy",
+      "mode": "during",
+      "consumer": ".local/atomic-audio-tandy-during-01"
+    }
+  ],
+  "mutedConsumer": ".local/atomic-audio-muted-replay-01",
+  "winningConsumer": ".local/atomic-audio-winning-replay-01",
+  "checksSource": ".local/atomic-audio-checks-01",
+  "artifacts": {
+    "source": {
+      "path": "reference/atomic-audio-source.json",
+      "bytes": 1787,
+      "sha256": "f64091047786e53d06d45dcf72070afe42c57e184c5d009cc534ca40d6b52c86"
+    },
+    "sourceChecker": {
+      "path": "scripts/verify-atomic-audio-source.js",
+      "bytes": 2407,
+      "sha256": "f663bc9fa5a3b6e311237f06987a1bf5979ddc85cf5eb950ed6538c2b1befc55"
+    },
+    "probe": {
+      "path": "scripts/probe-atomic-audio.js",
+      "bytes": 6584,
+      "sha256": "7008c968f421f7cec130017aba62a3f0e85d551e4fa85ecf83b8dfa4bbd6ff59"
+    },
+    "setupChecker": {
+      "path": "scripts/verify-atomic-audio-setup-negative.js",
+      "bytes": 1644,
+      "sha256": "44aa53aacc4d60d68abf770f535f6aea6b95f7ce579c9f49ea2701a4148db5e0"
+    },
+    "mutedScenario": {
+      "path": "reference/atomic-earned-report.json",
+      "bytes": 10463,
+      "sha256": "0d513f96d571a68d3c0518608bcf4abffeedc278aee762e636d2a557d29dda50"
+    },
+    "mutedResult": {
+      "path": ".local/atomic-audio-muted-replay-01/result.json",
+      "bytes": 206,
+      "sha256": "f0a393a2f6fa0e8f6d5a4a2f2b57c004a9fcc0c8c4d24971351dcf7d4d075c83"
+    },
+    "winningScenario": {
+      "path": "reference/standard-winning-route.json",
+      "bytes": 45483,
+      "sha256": "fc3fc5be1423e10764644fc6073632f9eeddbdbd9724a16ae1427d0b1cd55ff7"
+    },
+    "winningResult": {
+      "path": ".local/atomic-audio-winning-replay-01/acceptance-status.json",
+      "bytes": 1035,
+      "sha256": "bc06f3222b5941362300e286bd37526a69d2414e81e2b2e207e97e742d615abf"
+    },
+    "units": {
+      "path": ".local/atomic-audio-checks-01/units.log",
+      "bytes": 17763,
+      "sha256": "12c01d0fa18cbe858ca39666c6a9761be507891c99d9add29f74b9e07d38b2ae"
+    },
+    "boundaries": {
+      "path": ".local/atomic-audio-checks-01/boundaries.log",
+      "bytes": 10842,
+      "sha256": "151249aa763084d5f3486eaf9b60d58d8e482d3496cd692a099fe85cfc58bdb3"
+    },
+    "build": {
+      "path": ".local/atomic-audio-checks-01/build.log",
+      "bytes": 914,
+      "sha256": "33c7ceea0c23d07c063490d712cac9abb0d1c81dd8e35c8b3115ae5bd10a81fe"
+    },
+    "speaker-before": {
+      "path": ".local/atomic-audio-speaker-before-01/atomic-audio-status.json",
+      "bytes": 12374,
+      "sha256": "ba8176863757ce9c4cac0b4bcbd0e8f2b6604d7393b2de03e56c8469923b6e7d"
+    },
+    "tandy-before": {
+      "path": ".local/atomic-audio-tandy-before-01/atomic-audio-status.json",
+      "bytes": 12173,
+      "sha256": "6d7fc245d9a4f246fbcbe6dca5f07858e17031e5870a69d06ea2199a75bcdf67"
+    },
+    "speaker-during": {
+      "path": ".local/atomic-audio-speaker-during-02/atomic-audio-status.json",
+      "bytes": 21064,
+      "sha256": "4f7c3edbdf766b7d9482b25c4d61231b98afa706421b021aef428ea83e86af85"
+    },
+    "tandy-during": {
+      "path": ".local/atomic-audio-tandy-during-01/atomic-audio-status.json",
+      "bytes": 20863,
+      "sha256": "3acc7c652a5c610e79c27c56b840e939b70d6cf0421f14a3d9f6b327208c92c2"
+    }
+  },
+  "scope": "Source-driven atomic conditional resets and unconditioned global status,actual speaker/Tandy boundary from earned transmitter,unchanged strict muted report and winning Standard. Not native latency,CPU/PIT phase,analog waveform or arbitrary-route acceptance.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "initialUnusedDevice": "Known idle only before any request;pending reset requires actual status",
+    "audioProbes": "Actual ACK/completion with explicit host20ms/Game16ms polling",
+    "audioSnapshotAlignment": "During-case provider45 ACK may lead last rendered sounding snapshot:busy null with waitingForAudio,or consumed true. False is rejected. Muted/winning comparisons have zero state/pixel exclusions."
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "exclusions": [],
+  "verify": "node scripts/verify-atomic-audio-acceptance.js",
+  "setupNegatives": "node scripts/verify-atomic-audio-setup-negative.js"
+}

@@ -42,7 +42,7 @@ sound latency. The strict muted replay uses its existing fixed independent input
 stream and exact state/decoded-RGBA expectations. No fitted clocks,RNG or state
 injections choose the result.
 
-## Verification work
+## Accepted verification
 
 The194 unit checks and120 input/device boundaries pass,including nine new cases
 for conditional0/54/45,unknown initial status,muting,stale status,dynamic device
@@ -51,10 +51,23 @@ speaker/Tandy probes pass:entering muted and muting during45. Each starts normal
 earns Bombastium from Too-Pei cave7,selects atomic travel,waits for actual status,
 enters the failure report,then the redirected jungle and restarts. The unchanged
 23-checkpoint/492-event muted report replay and both omitted-input negatives pass.
-The fresh complete winning Standard replay is still running;this milestone is
-not yet accepted.
+The unchanged full winning Standard170/6575 replay,including victory/all26
+credits/finished screen/Restart and its input negative,also passes. The saved
+current-runtime gate is `node scripts/verify-atomic-audio-acceptance.js`,with
+three setup negatives in `verify-atomic-audio-setup-negative.js`. Missing/corrupt
+local fixtures,zero cases,unfinished inputs and unexpected differences fail.
+
+Audio receipts can lead the last canvas snapshot:the during-case initial
+snapshot may still show null busy plus `waitingForAudio`,or consumed busy=true,
+after the provider has acknowledged45 busy. A busy=false value is rejected at that
+observation. The required actual completion is independently checked before
+report acceptance. This is a narrowly declared sampling alignment for these
+conditional device probes;the muted23/492 and winning170/6575 state/pixel
+comparisons remain exact with no exclusions.
 
 ```sh
+node scripts/verify-atomic-audio-acceptance.js
+node scripts/verify-atomic-audio-setup-negative.js
 node scripts/verify-atomic-audio-source.js
 node --test scripts/atomic-audio.test.js scripts/atomic-input.test.js
 npm run verify:atomic

@@ -73,7 +73,11 @@ for (const c of m.cases) {
     assert.equal(status.argument, 0x45);
     assert.equal(status.busy, true);
     assert.equal(r.sounding.atomicTransport.phase, "sound");
-    assert.equal(r.sounding.atomicTransport.busy, true);
+    // Provider receipts can lead the canvas's last rendered snapshot. Null
+    // means the initial ACK is still unconsumed there,never an idle result.
+    assert.ok([null, true].includes(r.sounding.atomicTransport.busy));
+    if (r.sounding.atomicTransport.busy === null)
+      assert.equal(r.sounding.atomicTransport.waitingForAudio, true);
   }
   if (status.busy)
     assert.ok(

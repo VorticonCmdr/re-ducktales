@@ -18,48 +18,40 @@ HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 
 ## Latest completed behavior and current acceptance
 
-Current work:`ddb844a` restores unconditional atomic failure status queries,
-conditional resets,and completion independent of mute.194 units,120 boundaries,
-four actual-browser audio probes and unchanged muted23/492 with two input
-negatives pass. A fresh full winning replay is running;atomic audio acceptance
-is not yet complete. [Atomic sound boundary](atomic-audio.md).
+Atomic failure now queries real global sound status even while muted. Initial0
+is guarded,initial status is unknown until ACK/query,and disabling sound cannot
+invent completion. The untimed spin resumes at status consumption;unused fresh
+providers are known idle until any request is posted. Runtime:`ddb844a`.
+[Atomic sound boundary and reproduction](atomic-audio.md).
 
-The completed broker acceptance below belongs to `3c3a481`;its saved runtime
-guard intentionally rejects the newer atomic code until new evidence is accepted.
+[Current saved acceptance](../reference/atomic-audio-acceptance.json) includes:
 
-Broker confirmation now uses the original50-read wait,Pause/Quit-No continuation,
-conditional24,and unread final-wait keys reaching the office first reader.
-Runtime:`3c3a481`. [Broker behavior and reproduction](broker-input.md).
-
-[Current saved acceptance](../reference/broker-input-acceptance.json) includes:
-
-- Three independent muted browser routes:31 exact complete public-state/decoded-
-  RGBA checkpoints,166 DOM events,earned coin,one share bought for22,Fire and
-  timeout confirmations,Pause,Quit-No,fresh input,office return,persistent shares,
-  no-trade exit,and late P consumed by the office after its reveal. All three
-  routes reject an omitted Pause make and verify Restart.
-- Two actual-browser audio cases:speaker/Tandy,deferred keyboard S,broker24 and
-  original office0/6,real ACKs and output. No injected device status;host20ms/Game
-  16ms polling is conditional,not native CPU/PIT phase or isolated click audibility.
+- Four actual-browser speaker/Tandy cases,entering muted and muting during45.
+  Each earns the transmitter,travels,uses real status/completion,enters the report
+  and redirected jungle,and Restarts. Host20ms/Game16ms audio polling is conditional.
+- Unchanged strict muted earned-transmitter report:23 exact complete public-state/
+  decoded-RGBA checkpoints,492 DOM events,Pause/Quit-No/guide/jungle/Restart and two
+  missing-input negatives. Ignored S can unlock an unused context without adding
+  artificial ACK latency to this known-idle route.
 - Unchanged winning Standard:170 exact complete public-state/decoded-RGBA
   checkpoints,6575 independent DOM events,all four expedition families plus three
   cave treasures,victory/replay-No/all26 credits/finished screen/Restart,and a
-  missing-selection negative. Fresh consumer:`3c3a481`.
-- 194 units,111 dialogue/device boundaries,three missing/corrupt/empty-case
-  negatives,build,105 original/prepared/Ghidra broker/return bytes and the existing
-  shared-reader/keyboard proofs. Original investment initialization,three exact
-  transaction branches and29 carried market days also pass in their conditional
-  native comparison scopes. [Winning route](standard-winning.md).
+  missing-selection negative. Fresh consumer:`5c88377`(same runtime).
+- 194 units,120 dialogue/device boundaries,three missing/corrupt/empty-case
+  negatives,build,124 original/prepared/Ghidra audio bytes and four relocations.
+  The413-byte original report/reader proof and five conditional original atomic
+  travel/calendar/pixel checks also pass in their declared scopes.
 
-The previous collected-notice18-checkpoint/four-audio-case acceptance retains
-its `a978a14` historical scope;its saved runtime guard rejects the broker changes.
-The current111 boundary checks include those notice readers. [Notice evidence](campaign-visits.md).
+Broker31/166 with two audio cases retains its `3c3a481` historical scope;
+collected-notice18/1062 with four audio cases retains `a978a14`. Their saved runtime
+scripts reject newer source;the current120 boundaries include those readers.
+[Broker](broker-input.md),[notices](campaign-visits.md).
 
 Keyboard S retains the previous original off0→hex24 and on0 sequencing. Native
 batches add no host completion barrier or retry. The previous six audio cases and
 two production-browser cases retain their `e994536` historical scope;the older
-saved sound-toggle gate rejects the changed runtime. Current111 boundaries include
-its14 focused toggle checks,and the notice cases exercise actual speaker/Tandy
+saved sound-toggle gate rejects the changed runtime. Current120 boundaries include
+its14 focused toggle checks;the atomic cases exercise actual speaker/Tandy
 status. [Sound-toggle behavior and limits](sound-toggle.md).
 
 Browser audio acknowledgement frames are external inputs. Zero inserted IRQs
@@ -72,8 +64,8 @@ an explicit stop-only browser convenience.
 Earlier repair acceptance(21 crash/recovery checkpoints/170 events),Standard defeat
 85/5071,18 rival-control and11 cave-failure checkpoints,and older15 layout routes
 (343 checkpoints/11601 events),winning Easy campaign and eight cave components
-retain their historical scope. They were not all rerun for this broker change;old
-saved runtime guards reject the changed source. Current111 boundaries and the full
+retain their historical scope. They were not all rerun for this atomic change;old
+saved runtime guards reject the changed source. Current120 boundaries and the full
 winning browser route pass. [Repair evidence](repair-input.md),
 [rival evidence](rival-input.md),[earlier result evidence](result-input.md).
 
@@ -86,8 +78,10 @@ winning browser route pass. [Repair evidence](repair-input.md),
 | Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei/7,Atlantis/3,Klondike/0,Siberia/4 treasures |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:audit remaining dialogue input/audio handoffs against source,including
-legacy cave/atomic status handling,then continue broader gameplay/input coverage.
+Next:restore cave terminal sound-status waits and guarded resets.51 original/
+prepared/Ghidra bytes confirm three untimed global-status loops and the common
+conditional0 exit;legacy cave masking/delay1 is not corrected yet. Continue
+broader gameplay/input coverage afterward.
 Cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
 arbitrary-route finishability remain incomplete. Hard is deferred;its earlier
@@ -122,12 +116,13 @@ contain actual game code with documented transformations and are never run.
 
 ```sh
 # Validate saved current-runtime acceptance and source:
-node scripts/verify-broker-input-acceptance.js
-node scripts/verify-broker-input-source.js
-node --test scripts/broker-input.test.js
-node scripts/verify-broker-input-setup-negative.js
-# Fresh independent broker controls,timeout,late-key and negative checks:
-node scripts/verify-broker-control-route.js --output=.local/broker-replay-FRESH
+node scripts/verify-atomic-audio-acceptance.js
+node scripts/verify-atomic-audio-setup-negative.js
+node scripts/verify-atomic-audio-source.js
+node scripts/verify-cave-audio-source.js
+node --test scripts/atomic-audio.test.js scripts/atomic-input.test.js
+# Fresh independent muted atomic report and its two input negatives:
+node scripts/atomic-route.js verify --report --capture=.local/atomic-earned-report-01 --output=.local/atomic-muted-FRESH
 # Existing source proofs:
 node scripts/verify-sound-toggle-source.js
 node scripts/verify-sound-toggle-setup-negative.js
@@ -138,7 +133,7 @@ node scripts/verify-cave-failure-input-source.js
 node scripts/verify-result-caller-source.js
 node scripts/verify-repair-input-setup-negative.js
 node scripts/verify-cave-failure-input-setup-negative.js
-node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js scripts/rival-input.test.js scripts/repair-input.test.js scripts/sound-toggle.test.js scripts/visit-input.test.js scripts/broker-input.test.js
+node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js scripts/rival-input.test.js scripts/repair-input.test.js scripts/sound-toggle.test.js scripts/visit-input.test.js scripts/broker-input.test.js scripts/atomic-audio.test.js
 npm test
 npm run build
 # Fresh browser comparisons;clean committed source and new ignored outputs:

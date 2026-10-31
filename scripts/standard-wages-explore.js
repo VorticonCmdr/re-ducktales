@@ -32,6 +32,11 @@ const safari = winning || reportProbe || process.argv.includes("--safari");
 const original = await originalGame();
 const prefixManifest = arg("prefix");
 assert.ok(!prefixManifest || winning, "Prefix continuation requires --winning");
+if (
+  prefixManifest &&
+  (await json(prefixManifest)).lastCheckpoint === "novay-mountain-map"
+)
+  assert.equal(bonusNovay, false, "Novay was already completed by this prefix");
 assert.ok(
   !reportProbe || (!winning && !prefixManifest),
   "Forced report exploration requires fresh startup",
@@ -460,11 +465,15 @@ try {
           afterJungle: !!prefixManifest,
           afterMountain:
             prefixManifest &&
-            ["mountain-map", "cave-21-award-ready"].includes(
-              (await json(prefixManifest)).lastCheckpoint,
-            ),
+            [
+              "mountain-map",
+              "cave-21-award-ready",
+              "novay-mountain-map",
+            ].includes((await json(prefixManifest)).lastCheckpoint),
           ...(prefixManifest &&
-          (await json(prefixManifest)).lastCheckpoint === "cave-21-award-ready"
+          ["cave-21-award-ready", "novay-mountain-map"].includes(
+            (await json(prefixManifest)).lastCheckpoint,
+          )
             ? { caveTargets: [] }
             : {}),
           bonusNovay,

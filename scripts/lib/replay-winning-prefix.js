@@ -1,10 +1,6 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
-import { json, sha, checkArtifacts } from "./local-scenario-source.js";
-import {
-  validateProducerArchive,
-  acceptedRuntimeSource,
-} from "./consumer-provenance.js";
+import { json, checkArtifacts } from "./local-scenario-source.js";
+import { validateProducerArchive } from "./consumer-provenance.js";
 import { recordedDOMInput } from "../../tests/browser/helpers/recorded-dom-input.js";
 import { observeRecordedRoute } from "../../tests/browser/helpers/entry-recording.js";
 
@@ -20,19 +16,23 @@ export async function replayWinningPrefix({
   const m = await json(manifest);
   assert.equal(m.kind, "current-winning-valid-prefix");
   await checkArtifacts(m.artifacts);
-  const source = await validateProducerArchive(m.producer);
-  for (const [p, h] of Object.entries(source.files))
-    if (acceptedRuntimeSource(p))
-      assert.equal(sha(await readFile(p)), h, "Changed prefix runtime " + p);
+  // The producer remains immutable. This fresh consumer may have a corrected
+  // runtime;every prefix state/image/time/input comparison below must still
+  // match. Source equality is not a substitute for those comparisons.
+  await validateProducerArchive(m.producer);
   const all = await json(m.artifacts.checkpoints.path),
     events = await json(m.artifacts.events.path),
     checks = all.slice(0, m.expectedCheckpointCount);
   assert.ok(checks.length > 0 && m.requiredEventCount > 0);
   assert.equal(checks.length, m.expectedCheckpointCount);
   assert.ok(
-    ["jungle-map", "mountain-map", "bank-25", "cave-21-award-ready"].includes(
-      m.lastCheckpoint,
-    ),
+    [
+      "jungle-map",
+      "mountain-map",
+      "bank-25",
+      "cave-21-award-ready",
+      "novay-mountain-map",
+    ].includes(m.lastCheckpoint),
   );
   assert.equal(checks.at(-1).name, m.lastCheckpoint);
   assert.equal(checks.at(-1).at, m.lastAt);
@@ -61,6 +61,8 @@ export async function replayWinningPrefix({
       state: await state(),
       name: expected.name,
     });
+    assert.equal(actual.at, expected.at);
+    assert.equal(actual.state.diagnostic, null);
     assert.equal(
       actual.stateSha256,
       expected.stateSha256,

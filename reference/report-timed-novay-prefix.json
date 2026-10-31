@@ -1,0 +1,56 @@
+{
+  "kind": "current-winning-valid-prefix",
+  "producer": ".local/report-timed-winning-browser-02",
+  "captureToolRevision": "ba9090a22c23056ee4476168b0a64e1c048dc4df",
+  "expectedCheckpointCount": 148,
+  "requiredEventCount": 7243,
+  "lastCheckpoint": "novay-mountain-map",
+  "lastAt": 796213,
+  "nativeComparison": false,
+  "partialRestore": false,
+  "injections": [],
+  "fittedInputs": [],
+  "comparison": {
+    "state": "exact complete public snapshot",
+    "pixels": "exact decoded RGBA",
+    "exclusions": []
+  },
+  "scope": "Fresh title replay through148 exact state/image checkpoints and7243 inputs,all seven treasures including the510-read Novay climb with3 lives. The later final-bank renderer failure is an explicitly excluded invalid tail;no failure snapshot/image is transformed into an expectation.",
+  "artifacts": {
+    "checkpoints": {
+      "path": ".local/report-timed-winning-browser-02/campaign-checkpoints.json",
+      "bytes": 1490983,
+      "sha256": "7bc3e38c33e97f2c0838f4c5304033517ccde00e9942a4ea935b5ca0b2906f30"
+    },
+    "events": {
+      "path": ".local/report-timed-winning-browser-02/captured-events.json",
+      "bytes": 878046,
+      "sha256": "c76459f5bdb83aa8f272bc9042820ca5cbea2357cec5b0f23268cda4c62d6d6e"
+    },
+    "environment": {
+      "path": ".local/report-timed-winning-browser-02/environment.json",
+      "bytes": 239,
+      "sha256": "3bc78ab58b567bc3296f7c583fa215e8b1549ab6aa1cdcef27cf212eec465ed4"
+    },
+    "timeline": {
+      "path": ".local/report-timed-winning-browser-02/timeline.json",
+      "bytes": 13720,
+      "sha256": "4065735d3004ab69d2d4d61ca91778b7f6c635ad8a562d783b015a503fc26040"
+    },
+    "status": {
+      "path": ".local/report-timed-winning-browser-02/exploration-status.json",
+      "bytes": 130,
+      "sha256": "c98746433a15798bd3defdbcc85d835275618a511a7b2a9eda16df405a79ee39"
+    },
+    "source": {
+      "path": ".local/report-timed-winning-browser-02/source-revision.json",
+      "bytes": 119371,
+      "sha256": "572a2cac3602437141caa7e99013b31748c02dba3b8ca708f289155760f355d2"
+    },
+    "archive": {
+      "path": ".local/report-timed-winning-browser-02/sources.zip",
+      "bytes": 3032498,
+      "sha256": "33ac3169cbd872468d10fd96c89d4b78461fd305899135624ecdb2fd314f5eb6"
+    }
+  }
+}

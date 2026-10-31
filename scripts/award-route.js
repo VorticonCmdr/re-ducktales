@@ -3,6 +3,10 @@
 import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import {
+  awardPixels as pixels,
+  compareAwardGroups,
+} from "./lib/award-presentation-check.js";
 import { withCarlsbadBrowser } from "./lib/carlsbad-browser.js";
 import {
   fresh,
@@ -252,48 +256,7 @@ if (process.argv.includes("--verify")) {
         groups = video.filter(
           (v) => v.state.expeditionResult.presentation.transition,
         );
-      function pixels(v) {
-        return PNG.sync.read(Buffer.from(v.png.split(",")[1], "base64")).data;
-      }
-      function compareGroups(data) {
-        assert.equal(data.length, 15, "Missing award row groups");
-        const base = pixels(data[0]);
-        for (const phase of ["initial-wipe", "wipe", "reveal"]) {
-          const rows = data.filter(
-            (v) => v.state.expeditionResult.presentation.phase === phase,
-          );
-          assert.deepEqual(
-            rows.map(
-              (v) => v.state.expeditionResult.presentation.transition.band,
-            ),
-            [0, 1, 2, 3, 4],
-          );
-          for (let band = 0; band < 5; band++) {
-            const actual = pixels(rows[band]);
-            for (let y = 0; y < 200; y++)
-              for (let x = 0; x < 320; x++) {
-                const at = (y * 320 + x) * 4,
-                  black =
-                    phase === "wipe" ||
-                    (phase === "initial-wipe" && y % 5 <= band) ||
-                    (phase === "reveal" && y % 5 > band);
-                const expected = black
-                  ? [0, 0, 0, 255]
-                  : [
-                      ...(phase === "reveal" ? target : base).subarray(
-                        at,
-                        at + 4,
-                      ),
-                    ];
-                assert.deepEqual(
-                  [...actual.subarray(at, at + 4)],
-                  expected,
-                  `Award row pixels ${phase}/${band}/${y}/${x}`,
-                );
-              }
-          }
-        }
-      }
+      const compareGroups = (data) => compareAwardGroups(data, target);
       compareGroups(groups);
       const changed = structuredClone(groups),
         bad = PNG.sync.read(
@@ -335,7 +298,17 @@ if (process.argv.includes("--verify")) {
         const words = acks.filter((e) => e.argument === 0x49);
         assert.equal(words.length, 2);
         assert.equal(words[1].token, null);
-        assert.equal(words[1].accepted, true);
+        if (device === "speaker") assert.equal(words[1].accepted, true);
+        else
+          assert.equal(
+            acks.find(
+              (e) =>
+                e.argument === 0 &&
+                e.sequence > queries[0].sequence &&
+                e.sequence < words[1].sequence,
+            )?.busy,
+            false,
+          );
         assert.equal(words[1].busy, true);
         assert.ok(
           acks.some(

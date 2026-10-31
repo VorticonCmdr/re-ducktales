@@ -22,7 +22,8 @@ def relocated_overlay(exe, at, load, number, length, relocations):
 
 
 def capture_safari_cadence(*, client, stop, load, ds, overlay, add, remove,
-                           resume, state, keys, sequence, wait_until, save, root):
+                           resume, state, keys, sequence, wait_until, save, root,
+                           target=(46, 56), entry_callback=None):
     initial_stop = stop['stop_id']
     map_cs = overlay + 0xca
     marker = add(0x1228, map_cs)
@@ -46,17 +47,17 @@ def capture_safari_cadence(*, client, stop, load, ds, overlay, add, remove,
         assert stop['breakpoint']['id'] == end
         data = state(f'timing-map-step-{index:03d}', stop, False)
         x, y = struct.unpack_from('<h', data, x_ptr)[0], struct.unpack_from('<h', data, y_ptr)[0]
-        if (x, y) == (46, 56):
+        if (x, y) == target:
             reached = True
             break
         if reset:
             reset = False
         else:
-            key = ('KBD_right' if x < 46 else 'KBD_left') if x != 46 else ('KBD_down' if y < 56 else 'KBD_up')
+            key = ('KBD_right' if x < target[0] else 'KBD_left') if x != target[0] else ('KBD_down' if y < target[1] else 'KBD_up')
             keys((key, True), (key, False))
             reset = True
         stop = resume(stop['stop_id'])
-    assert reached, 'Unfinished natural Yellerstone map selection'
+    assert reached, 'Unfinished natural map selection '+str(target)
     remove(end)
     keys(('KBD_space', True))
     stop = resume(stop['stop_id'])
@@ -154,6 +155,10 @@ def capture_safari_cadence(*, client, stop, load, ds, overlay, add, remove,
     entry = add(0)
     stop = resume(stop['stop_id'], wait_seconds=60)
     assert stop['breakpoint']['id'] == entry
+    if entry_callback:
+        return entry_callback(client=client, stop=stop, load=load, ds=ds,
+            overlay=overlay, entry=entry, add=add, remove=remove, resume=resume,
+            state=state, sequence=sequence, wait_until=wait_until, save=save, root=root)
     data = state('safari-entry',stop)
     expected = relocated_overlay(exe,0x1d800,load,7,7924,93)
     read = client.post('/api/v1/batch',json={'ops':[{'op':'mem_read','segment':overlay,'offset':0,'len':7924}]})

@@ -1,6 +1,33 @@
 # Winning campaign after reward-presentation restoration
 
-Safari HUD timing update:the current6493ccb browser capture
+Current2026-10-31:the corrected cave runtime has a fresh accepted Standard
+winning route. Producer `.local/cave-passage-poses-winning-browser-01`,source
+2a63b64,and independent consumer `.local/cave-passage-poses-winning-replay-01`,
+source8cc4ef3,pass183 exact complete-state/decoded-RGBA checkpoints and7261
+independent DOM events. The route wins34650 to28500 on day31,earns seven
+treasures,finishes all26 credits,closes and Restarts. Jungle and both mountain
+awards retain3 lives. No game-state,RNG,money or difficulty patches are used.
+
+The combined gate passes seven awards/105 exact stripe groups,the actual
+omitted-Standard input negative,three setup negatives,221 unit cases and build.
+It also requires separate conditional original cave passage/treasure state and
+fixed completed-reveal pixel evidence. Those checks do not establish native
+whole-game timing/audio or arbitrary-route finishability. Hard remains deferred.
+[Current acceptance](../reference/current-winning-acceptance.json),
+[scenario](../reference/cave-passage-poses-winning-route.json).
+
+```sh
+node scripts/verify-current-winning-acceptance.js
+node scripts/verify-standard-wages-route.js --manifest=reference/cave-passage-poses-winning-route.json --output=.local/current-winning-replay-FRESH
+```
+
+## Historical experiment notes
+
+The records below describe earlier runtimes and candidate strategies. Their
+pending/current statements apply to those archived experiments only. Current
+acceptance is the corrected route above;earlier outputs are not edited to pass.
+
+Safari HUD timing update:the historical6493ccb browser capture
 `.local/safari-hud-winning-browser-01` completes the same183 checkpoints/7261
 inputs,day31 victory34650 to28500,all26 credits,closed and Restart. Its seven
 awards pass105 exact source stripe groups;three setup negatives reject. The capture remains accepted:false;its independent consumer

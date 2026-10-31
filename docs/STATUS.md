@@ -2,9 +2,8 @@
 
 Updated2026-10-31. **The whole game is incomplete.** The supported Standard
 campaign has a complete playable route through all four expedition families,
-victory,all26 credits,closed and Restart. That route's last independent replay
-predates the latest cave loading/presentation restoration. A fresh whole-campaign
-capture and independent replay are required before renewing its acceptance.
+victory,all26 credits,closed and Restart. A fresh independent browser replay now
+passes on the corrected cave loading,presentation and passage-pose runtime.
 Nothing is pushed or deployed. Hard campaigns remain deferred at the user's request.
 
 ## Current working behavior and verification
@@ -34,9 +33,12 @@ source2a63b64:183 checkpoints/7261 inputs,victory34650 to28500,all26 credits and
 Restart. Jungle and both mountain awards retain3 lives. Its seven awards pass105
 exact stripe groups against independent retained/source-composed targets;all
 three setup negatives reject. [Candidate](../reference/cave-passage-poses-winning-route.json).
-The independent consumer `.local/cave-passage-poses-winning-replay-01` is the next
-required run;this capture does not accept itself. Earlier e59dd00 remains
-historical because it predates the passage-parameter correction.
+The independent consumer `.local/cave-passage-poses-winning-replay-01` passes
+all183 exact complete-state/decoded-RGBA checkpoints and7261 DOM inputs,omitted-
+Standard negative and Restart. The combined current gate passes all221 units,
+production build,seven awards,bank pixels and conditional native cave pose/
+state/treasure-image checks. [Current acceptance](../reference/current-winning-acceptance.json).
+Earlier e59dd00 remains historical because it predates the passage correction.
 
 A separate fixed1770 native image check now matches all64000 pixels/256000 RGBA
 bytes of the completed first treasure reveal,with altered-pixel/missing-checkpoint
@@ -44,24 +46,30 @@ negatives. Integration preserves all119 accepted runtime/configuration hashes.
 [Image scope](cave-treasure-pixels.md). This is conditional capture alignment,not
 whole-ending scanout or timing acceptance.
 
-## Last independently accepted full route
+## Current independently accepted full route
 
 Startup/security/office → Too-Pei cave → lost Safari race/rival claim → Kenya
 photography → Great Outback jungle → Lost World mountain → Atlantis,Klondike,
 Siberia caves → Novay mountain → banking → day31 victory34650 to28500 →
 celebration → replay-No → all26 credits → closed → Restart.
 
+Current producer `.local/cave-passage-poses-winning-browser-01` and independent
+replay `.local/cave-passage-poses-winning-replay-01` complete this route. The
+environment is Standard,BIOS seed0,muted audio,ordinary DOM keyboard controls.
+There are no game-state,RNG,money or difficulty patches. This accepts the
+recorded port-browser route,not arbitrary-route finishability or original timing.
+
 Historical producer `.local/cave-order-winning-browser-01` and independent replay
 `.local/cave-order-winning-replay-01` pass183 exact complete public-state/decoded-
 RGBA checkpoints and7261 DOM events,seven awards/105 stripe groups and required
 negative controls. Jungle and both mountains finish with3 lives. No game-state,
-RNG,money or difficulty patch is used. The current combined gate correctly
-rejects the subsequently changed cave runtime. [Historical acceptance](../reference/current-winning-acceptance.json),
+RNG,money or difficulty patch is used. Its historical gate correctly rejects
+the subsequently changed cave runtime. [Historical acceptance](../reference/cave-order-winning-acceptance.json),
 [scenario](../reference/cave-order-winning-route.json),[history](current-winning-campaign.md).
 
 ## Remaining work
 
-- Complete the fresh Standard capture,independent replay and combined acceptance.
+- Preserve the passing corrected Standard route while expanding coverage.
 - Resolve original movement/transition timing. Four cave phase states match all
   nine compared fields,but the strict timing/final-animation probe still fails.
   Loader/system,IRQ/BIOS/audio execution and CPU phase are not fully represented.
@@ -99,7 +107,7 @@ node scripts/standard-wages-explore.js --winning --bonus-novay --output=.local/s
 node scripts/verify-cave-treasure-pixels.js
 # Known failing timing probe;exploratory,not an acceptance gate:
 node scripts/probe-cave-native-cadence.js
-# Historical whole-campaign gate currently rejects changed runtime as required:
+# Current complete Standard route plus scoped native cave evidence:
 node scripts/verify-current-winning-acceptance.js
 npm run dev
 ```

@@ -1,0 +1,36 @@
+{
+  "kind": "current-winning-campaign-acceptance",
+  "nativeComparison": false,
+  "consumer": ".local/cave-order-winning-replay-01",
+  "expectedAwardCount": 7,
+  "expectedUnitCases": 218,
+  "scope": "Independent current Standard browser win after source-backed cave passage ordering:all four families,seven earned treasures,exact bank copy,all26 credits,closed and Restart. Cave loading/timing discrepancies remain explicit;not native whole-game elapsed-time/audio or arbitrary-route acceptance.",
+  "artifacts": {
+    "scenario": {
+      "path": "reference/cave-order-winning-route.json",
+      "bytes": 48812,
+      "sha256": "9507eafb93820af0c92283cc0f067bfd4cb912b61a32123b83806a48d9a6b505"
+    },
+    "result": {
+      "path": ".local/cave-order-winning-replay-01/acceptance-status.json",
+      "bytes": 946,
+      "sha256": "20415eafa52e80b0b28aec5d2a7ef41cd20bbfd7bad5c52cfa5b50a20c309892"
+    },
+    "awards": {
+      "path": "reference/cave-order-winning-awards.json",
+      "bytes": 4563,
+      "sha256": "93e20d297c8c1d6bcc65a19970dec01ff152b58dca27ac571b0ed6b598c7d99b"
+    },
+    "setupNegatives": {
+      "path": ".local/cave-order-winning-setup-negatives-01.json",
+      "bytes": 199,
+      "sha256": "04820a06886c68238fa687cc83f74e1728c06321d6b71edc1dbaba2f438af626"
+    },
+    "bankPixels": {
+      "path": "reference/bank-copy-pixels.json",
+      "bytes": 6222,
+      "sha256": "7242d0901d3ec9b1538d3e7be2c920ae7ae17e4d30d276f266e65bff553a08f7"
+    }
+  },
+  "verify": "node scripts/verify-current-winning-acceptance.js"
+}

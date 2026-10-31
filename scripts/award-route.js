@@ -60,7 +60,19 @@ if (process.argv.includes("--verify")) {
           if (e.time > now) await page.clock.runFor(e.time - now);
           now = e.time;
           if (omitFire && consumed === fire) omitted++;
-          else await recordedDOMInput(page, e);
+          else if (e.target === "restart") {
+            assert.ok(["pointerdown", "pointerup"].includes(e.type));
+            const button = page.locator("#restart");
+            if (e.type === "pointerdown") await button.scrollIntoViewIfNeeded();
+            const bounds = await button.boundingBox();
+            assert.ok(bounds);
+            await page.mouse.move(
+              bounds.x + bounds.width / 2,
+              bounds.y + bounds.height / 2,
+            );
+            if (e.type === "pointerdown") await page.mouse.down();
+            else await page.mouse.up();
+          } else await recordedDOMInput(page, e);
           consumed++;
         }
         assert.ok(p.at >= now);

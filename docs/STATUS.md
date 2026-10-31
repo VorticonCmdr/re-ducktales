@@ -1,160 +1,112 @@
 # Current port status
 
 Updated 2026-10-31. **The whole game is incomplete.** Hard campaigns remain
-deferred at the user's request.
+deferred at the user's request. This is a playable port with remaining fidelity
+and route-coverage work, not just final polish.
 
-## Working playable routes
+## Working playable route
 
-Standard now has a verified continuous winning route:startup/security/office →
+Standard has a verified continuous winning route: startup/security/office →
 flights → Too-Pei cave → Kenya Safari → Great Outback jungle → Lost World mountain
-→ Atlantis,Klondike and Siberian caves → banking/rivals → winning day33 ending →
+→ Atlantis, Klondike and Siberian caves → banking/rivals → day33 victory →
 celebration/replay-No → all26 credits → finished screen → Restart. Banked24275
-beats rival21000. A separate day31 defeat route remains verified. The earned
-transmitter supports successful travel and misdirection into real expeditions.
-Earlier Easy winning/all-layout evidence is retained with its historical scope.
+beats rival21000. This route was rerun after the latest cave audio changes.
 
-HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
-`game/`. Production users select their own files. Nothing is pushed or deployed.
+HTML/CSS/vanilla JS with npm/Vite. Original files remain authoritative in ignored
+`game/`; production users select their own originals. Nothing is pushed or deployed.
 
-## Latest completed behavior and current acceptance
+## Latest completed milestone
 
-**Cave audio implementation under verification:** original global-status spins,
-guarded initial/pit/return resets, and one room-entry pit/proximity warning are
-implemented. Static correspondence covers 51 terminal-loop bytes plus 481 bytes
-of call/rule snippets. Focused component checks and the earlier conditional cave
-comparisons pass. Fresh browser audio cases and strict campaign replays are still
-pending; the atomic runtime receipt below remains historical after this change.
-[Cave audio evidence and commands](cave-audio.md).
+Cave terminal sounds now wait on actual global driver status. Mute cannot invent
+completion; stale tokens and driver ticks cannot release the wait. Initial, pit
+and return resets follow the original enabled guards. Room entry requests one
+pit-warning or treasure-proximity cue; redraws remain silent. Runtime:`66d8f54`.
+[Rules, evidence and limitations](cave-audio.md).
 
-Atomic failure now queries real global sound status even while muted. Initial0
-is guarded,initial status is unknown until ACK/query,and disabling sound cannot
-invent completion. The untimed spin resumes at status consumption;unused fresh
-providers are known idle until any request is posted. Runtime:`ddb844a`.
-[Atomic sound boundary and reproduction](atomic-audio.md).
+[Current saved acceptance](../reference/cave-audio-acceptance.json) passes:
 
-[Current saved acceptance](../reference/atomic-audio-acceptance.json) includes:
+- Four actual-browser speaker/Tandy cases, each enabled or muted during the pit
+  ending. All traverse real passages, cue once per room, query the real driver,
+  enter failure and Restart. Both enabled cases exercise busy→completion.
+  Host20ms/Game16ms polling is conditional, not original timing acceptance.
+- Unchanged strict muted cave failure:11 exact public-state/decoded-RGBA
+  checkpoints,454 independent DOM events, Pause/Quit-No/map/retry/Restart, plus
+  a missing-input negative.
+- Unchanged strict muted winning Standard:170 exact public-state/decoded-RGBA
+  checkpoints,6575 independent DOM events, victory/credits/Restart, plus a
+  missing-selection negative. Neither replay has comparison exclusions.
+- 194 units,130 component/device boundaries, production build,51 terminal-loop
+  and499 call/rule source bytes, and retained conditional native cave checks.
+  Missing queries/cues/completions and missing/corrupt/empty fixtures are rejected.
 
-- Four actual-browser speaker/Tandy cases,entering muted and muting during45.
-  Each earns the transmitter,travels,uses real status/completion,enters the report
-  and redirected jungle,and Restarts. Host20ms/Game16ms audio polling is conditional.
-- Unchanged strict muted earned-transmitter report:23 exact complete public-state/
-  decoded-RGBA checkpoints,492 DOM events,Pause/Quit-No/guide/jungle/Restart and two
-  missing-input negatives. Ignored S can unlock an unused context without adding
-  artificial ACK latency to this known-idle route.
-- Unchanged winning Standard:170 exact complete public-state/decoded-RGBA
-  checkpoints,6575 independent DOM events,all four expedition families plus three
-  cave treasures,victory/replay-No/all26 credits/finished screen/Restart,and a
-  missing-selection negative. Fresh consumer:`5c88377`(same runtime).
-- 194 units,120 dialogue/device boundaries,three missing/corrupt/empty-case
-  negatives,build,124 original/prepared/Ghidra audio bytes and four relocations.
-  The413-byte original report/reader proof and five conditional original atomic
-  travel/calendar/pixel checks also pass in their declared scopes.
-
-Broker31/166 with two audio cases retains its `3c3a481` historical scope;
-collected-notice18/1062 with four audio cases retains `a978a14`. Their saved runtime
-scripts reject newer source;the current120 boundaries include those readers.
-[Broker](broker-input.md),[notices](campaign-visits.md).
-
-Keyboard S retains the previous original off0→hex24 and on0 sequencing. Native
-batches add no host completion barrier or retry. The previous six audio cases and
-two production-browser cases retain their `e994536` historical scope;the older
-saved sound-toggle gate rejects the changed runtime. Current120 boundaries include
-its14 focused toggle checks;the atomic cases exercise actual speaker/Tandy
-status. [Sound-toggle behavior and limits](sound-toggle.md).
-
-Browser audio acknowledgement frames are external inputs. Zero inserted IRQs
-between native batch calls is an explicit boundary,not recovered original sub-call
-CPU/PIT phase. The older host restart/title adaptation remains outside those
-batches. Native whole-game timing,reveal/drawing costs,analog waveform/gain/filter
-and all audio waiters are not established by this milestone. The checkbox remains
-an explicit stop-only browser convenience.
-
-Earlier repair acceptance(21 crash/recovery checkpoints/170 events),Standard defeat
-85/5071,18 rival-control and11 cave-failure checkpoints,and older15 layout routes
-(343 checkpoints/11601 events),winning Easy campaign and eight cave components
-retain their historical scope. They were not all rerun for this atomic change;old
-saved runtime guards reject the changed source. Current120 boundaries and the full
-winning browser route pass. [Repair evidence](repair-input.md),
-[rival evidence](rival-input.md),[earlier result evidence](result-input.md).
+The preceding atomic milestone corrected global sound status during failed
+transmitter travel. Its23-checkpoint muted report and four actual device cases
+retain their historical runtime scope; its120 boundary checks are included in
+this milestone's130. [Atomic travel](atomic-audio.md).
 
 ## Coverage and remaining work
 
-| Family | Earlier Easy coverage | Current Standard continuous route |
+| Family | Retained earlier Easy coverage | Current Standard winning route |
 | --- | --- | --- |
-| Jungle | All3 layouts complete in browser | Great Outback/layout2 treasure,three lives |
-| Mountain | All3 layouts complete in browser | Lost World/layout0 summit,three lives |
-| Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei/7,Atlantis/3,Klondike/0,Siberia/4 treasures |
+| Jungle | All3 layouts complete in browser | Great Outback/layout2 treasure |
+| Mountain | All3 layouts complete in browser | Lost World/layout0 summit |
+| Cave | All8 component layouts;3 browser destinations | Too-Pei/7,Atlantis/3,Klondike/0,Siberia/4 treasures |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:complete actual-browser cave audio verification and rerun the strict muted
-cave-failure and winning campaign comparisons on the changed runtime. Continue
-broader gameplay/input coverage afterward.
-Cross-scene queued keys,modifier/BIOS behavior and
-mouse/joystick parity need wider evidence. Broader destination/difficulty and
-arbitrary-route finishability remain incomplete. Hard is deferred;its earlier
-second-flight race loss is unresolved. Native whole-game cadence,chapter reveal
-costs,PIT sub-tick phase and parts of CPU/drawing timing remain unverified.
-No save/load/high-score interface was found in this build;these are not confirmed
-missing features and should not be invented.
+Earlier Easy/all-layout routes, Standard defeat, repair and rival-control browser
+receipts retain their documented historical source scopes. They were not all
+rerun for this milestone; older runtime guards intentionally reject newer code.
+[History](status-history.md),[Standard route](standard-wages.md).
 
-## Sound and security
+Next: extend actual browser audio coverage to natural cave capture/treasure
+endings, then continue the remaining gameplay/input audit. Current natural audio
+coverage is pit-only; the other terminal waits have component/static evidence.
+Remaining sound-call adaptations also need review against the original.
 
-Tandy/PCjr includes Sound001,persistent channels,priorities,flight engine words,
-mute and completion. PC speaker is the default with persistent IRQ/RNG/priority
-logic. Historical sound acceptance covers7 browser cases and3 streams;that suite
-was not rerun in full for this sound change. Existing speaker/Tandy result probes
-establish actual device I/O under their documented conditional ACK waits;physical
-waveform/gain/filter parity remains unverified. The keyboard S-off
-call order and device priority handling are now corrected;sub-call native IRQ
-phase and the broader legacy stop/start adaptation remain unverified. [Sound](speaker-audio.md).
+Original movement cadence remains an open fidelity issue across expeditions.
+Graphics work is modeled, but uninterrupted native whole-game timing, reveal
+costs and some CPU/PIT phase are unverified. Cross-scene keys, modifier/BIOS
+behavior, mouse/joystick parity, broader difficulties/destinations and arbitrary
+campaign finishability need wider evidence. Hard's earlier second-flight race
+loss remains unresolved and deferred. No save/load/high-score interface was
+found in this build; these are not confirmed missing features.
 
-The unchecked **Original security system** option restores the surviving failure
+## Sound, security and supported build
+
+Tandy/PCjr includes Sound001 and persistent original channels/priorities. PC
+speaker is the default. Keyboard S preserves native call ordering; physical
+waveform/gain/filter parity and original sub-call IRQ phase remain unverified.
+[Sound](speaker-audio.md),[S toggle](sound-toggle.md).
+
+The unchecked **Original security system** option enables the surviving failure
 path and logs the correct code once per challenge. Default play retains this
-build's forced success. No independent unpatched-edition comparison is available.
+build's patched success. Independent unpatched-edition parity is unverified.
 [Security](security.md).
-
-## Supported build and verification
 
 Only the22-file pairing in [build.json](../reference/build.json) is supported.
 DUCKTALE.EXE SHA-256:
 `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
-MZ/EXEPACK,x86 little-endian16 real mode,overlays,no extender. Analysis images
-contain actual game code with documented transformations and are never run.
+MZ/EXEPACK, x86 little-endian16 real mode, overlays, no extender. Prepared analysis
+images contain actual game code with documented transformations and are never run.
+
+## Verification
 
 ```sh
-# Validate saved current-runtime acceptance and source:
-node scripts/verify-atomic-audio-acceptance.js
-node scripts/verify-atomic-audio-setup-negative.js
-node scripts/verify-atomic-audio-source.js
-node scripts/verify-cave-audio-source.js
-node --test scripts/atomic-audio.test.js scripts/atomic-input.test.js
-# Fresh independent muted atomic report and its two input negatives:
-node scripts/atomic-route.js verify --report --capture=.local/atomic-earned-report-01 --output=.local/atomic-muted-FRESH
-# Existing source proofs:
-node scripts/verify-sound-toggle-source.js
-node scripts/verify-sound-toggle-setup-negative.js
-node scripts/verify-repair-input-source.js
-node scripts/verify-rival-input-source.js
-node scripts/verify-rival-keyboard-source.js
-node scripts/verify-cave-failure-input-source.js
-node scripts/verify-result-caller-source.js
-node scripts/verify-repair-input-setup-negative.js
-node scripts/verify-cave-failure-input-setup-negative.js
-node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js scripts/rival-input.test.js scripts/repair-input.test.js scripts/sound-toggle.test.js scripts/visit-input.test.js scripts/broker-input.test.js scripts/atomic-audio.test.js
+# Current saved acceptance, including source proofs and conditional cave checks:
+node scripts/verify-cave-audio-acceptance.js
+node scripts/verify-cave-audio-setup-negative.js
+node --test scripts/cave-audio.test.js tests/cave-timing.test.js
 npm test
 npm run build
-# Fresh browser comparisons;clean committed source and new ignored outputs:
-node scripts/verify-standard-wages-route.js --manifest=reference/standard-winning-route.json --output=.local/standard-winning-replay-FRESH
-node scripts/verify-cave-failure-input-browser.js --output=.local/failure-replay-FRESH
-node scripts/verify-repair-input-browser.js --output=.local/repair-input-FRESH
-node scripts/verify-standard-wages-route.js --manifest=reference/rival-standard-route.json --output=.local/standard-full-replay-FRESH
-# Broader optional fresh regression against retained old routes:
-node scripts/verify-preserved-routes.js --output=.local/preserved-FRESH
+# Fresh exact browser regressions; clean committed source and new ignored outputs:
+node scripts/verify-cave-failure-input-browser.js --output=.local/failure-FRESH
+node scripts/verify-standard-wages-route.js --manifest=reference/standard-winning-route.json --output=.local/winning-FRESH
+# Fresh real device cases; repeat each device with enabled and muted:
+node scripts/probe-cave-audio.js --device=speaker --mode=enabled --output=.local/cave-audio-FRESH
 # Local development:
 npm run dev
 ```
 
-Missing/corrupt local artifacts fail setup. No checkpoints or required inputs may
-be silently skipped. Earlier milestone details remain in
-[status history](status-history.md),[Standard route](standard-wages.md) and the
-subsystem documents.
+Missing/corrupt local artifacts fail setup. Required checkpoints, input sequences
+and device events cannot be silently skipped. The original assets and proprietary
+captures remain local; manifests, recipes and verification code are versioned.

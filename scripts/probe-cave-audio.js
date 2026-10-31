@@ -62,9 +62,19 @@ try {
         await new Promise((r) => setTimeout(r, 20));
         await page.clock.runFor(16);
       }
-      await writeFile(root + "/failure.json", JSON.stringify({
-        label, state: await state(), events: await read(), observations,
-      }, null, 2) + "\n");
+      await writeFile(
+        root + "/failure.json",
+        JSON.stringify(
+          {
+            label,
+            state: await state(),
+            events: await read(),
+            observations,
+          },
+          null,
+          2,
+        ) + "\n",
+      );
       throw Error("Unfinished cave audio boundary: " + label);
     }
     await page.locator("#audio").check();
@@ -112,7 +122,11 @@ try {
         (s) => s.scene !== "cave" || s.cave.room !== old,
         "room-change",
       );
-      assert.equal(changed.scene, "cave", "Cave exited before movement completed");
+      assert.equal(
+        changed.scene,
+        "cave",
+        "Cave exited before movement completed",
+      );
       await page.keyboard.up("Space");
       await page.keyboard.up(key);
     }

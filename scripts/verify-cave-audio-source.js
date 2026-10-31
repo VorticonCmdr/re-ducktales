@@ -62,5 +62,5 @@ for (const [i, expected] of [
   assert.deepEqual(Buffer.from(gh.hex, "hex"), original);
 }
 console.log(
-  "Cave audio:51 original/prepared/Ghidra bytes;three untimed global-status loops,common enabled0 exit. Static next-milestone evidence;legacy cave status handling is not yet corrected.",
+  "Cave audio:51 original/prepared/Ghidra bytes;three untimed global-status loops,common enabled0 exit. Static instruction evidence;native latency and browser acceptance are separate checks.",
 );

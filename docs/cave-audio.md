@@ -30,11 +30,13 @@ This is not a new claim about native CPU/PIT phase or analog audio parity.
 
 Evidence levels remain separate:
 
-- **Statically inferred:** 51 terminal-loop bytes and 481 call/rule bytes match
+- **Statically inferred:** 51 terminal-loop bytes and 499 call/rule bytes match
   original, prepared analysis image and Ghidra exactly. The distance helper's
   normalized stack probe is outside the selected comparison range. No bytes or
-  relocations are excluded inside the selected ranges. The 481-byte count
-  includes overlapping snippets. No live original emulator was used here.
+  relocations are excluded inside the selected ranges. The 499-byte count
+  includes overlapping snippets. Main04ab..04bc passes the current room and
+  treasure room to the distance helper and stores its return at4e08. No live
+  original emulator was used here.
 - **Conditional component checks:** explicit terminal-entry preconditions,
   real original assets, all three waiters enabled/muted, stale/busy/idle status,
   no timer release, reset guards, signed distance thresholds and pit priority.
@@ -46,10 +48,40 @@ Evidence levels remain separate:
   conditional, not original timing acceptance. Current run results are recorded
   separately; an implementation or available command alone is not a pass.
 
+Current acceptance is pinned in `reference/cave-audio-acceptance.json`:
+
+- Speaker enabled and Tandy enabled both query busy and wait for actual matching
+  completion before the failure result and guarded return reset.
+- Speaker muted and Tandy muted stop through the explicit browser checkbox
+  during the pit animation, then query actual idle at the terminal boundary.
+  No common return reset is emitted while disabled.
+- All four naturally traverse four passages, request five room-entry cues
+  including the pit warning, enter failure, and Restart. The phase-relative
+  controller/host polling is conditional; these are not fixed-timestamp audio
+  replays. The external device ledger is saved separately from route inputs.
+- Unchanged strict muted failure route:11 exact state/RGBA checkpoints and454
+  independent DOM events, plus a missing-Pause negative.
+- Unchanged strict muted winning Standard route:170 exact state/RGBA checkpoints
+  and6575 independent DOM events, all four expedition families, three later cave
+  treasures, victory, all26 credits, closed screen and Restart. A missing-selection
+  negative must fail. Neither muted replay uses comparison exclusions.
+- 194 units,130 component/device boundaries and production build pass. The saved
+  checker removes required queries, cues and enabled completion events to verify
+  rejection; three setup negatives reject empty/missing/corrupt evidence. Four
+  source negatives reject empty/missing/corrupt/misaddressed source evidence.
+
+Runtime is `66d8f54`; later commits change evidence/tooling only. Natural browser
+audio capture/treasure coverage is still narrower than their component coverage.
+The two rejected `*-01` initial focus probes are retained as failed exploration:
+the checkbox held keyboard focus and the required route did not finish. They
+are excluded cases, not relaxed comparisons or runtime recovery.
+
 ```sh
 node scripts/verify-cave-audio-source.js
 node scripts/verify-cave-audio-calls-source.js
 node scripts/verify-cave-audio-source-negative.js
+node scripts/verify-cave-audio-acceptance.js
+node scripts/verify-cave-audio-setup-negative.js
 node --test scripts/cave-audio.test.js tests/cave-timing.test.js
 node scripts/verify-cave.js
 # Requires clean committed source, original files and local producer evidence:

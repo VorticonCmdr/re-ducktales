@@ -57,5 +57,5 @@
     "Three terminal global-status loops have no input or timed driver wait.",
     "Their common exit1894 guards request0 on03be."
   ],
-  "scope": "Targeted static source for next cave audio milestone;current legacy setter/status masking and delay1 remain uncorrected. Not native audio latency or browser acceptance."
+  "scope": "Static source captured before the cave audio correction. Current implementation and browser acceptance are documented in docs/cave-audio.md. This manifest proves instruction bytes,not native audio latency or browser acceptance."
 }

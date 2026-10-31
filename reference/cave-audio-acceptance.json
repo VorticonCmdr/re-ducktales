@@ -1,0 +1,220 @@
+{
+  "kind": "cave-audio-acceptance",
+  "nativeComparison": false,
+  "runtimeRevision": "66d8f54e1aba571bdf92cc8d36226877cda396ce",
+  "cases": [
+    {
+      "device": "speaker",
+      "mode": "enabled",
+      "root": ".local/cave-audio-speaker-enabled-02"
+    },
+    {
+      "device": "tandy",
+      "mode": "enabled",
+      "root": ".local/cave-audio-tandy-enabled-01"
+    },
+    {
+      "device": "speaker",
+      "mode": "muted",
+      "root": ".local/cave-audio-speaker-muted-01"
+    },
+    {
+      "device": "tandy",
+      "mode": "muted",
+      "root": ".local/cave-audio-tandy-muted-02"
+    }
+  ],
+  "checksRoot": ".local/cave-audio-checks-01",
+  "failureRoot": ".local/cave-audio-failure-replay-01",
+  "winningRoot": ".local/cave-audio-winning-replay-01",
+  "prefixEvents": 424,
+  "artifacts": {
+    "reference/build.json": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "reference/cave-audio-source.json": {
+      "path": "reference/cave-audio-source.json",
+      "bytes": 2152,
+      "sha256": "ca641912c8cf1ab83083097929ec83fa686ed1b65515d67d4b57d0c033ffff77"
+    },
+    "reference/cave-audio-calls-source.json": {
+      "path": "reference/cave-audio-calls-source.json",
+      "bytes": 10932,
+      "sha256": "facd10d7c091f9a46ca4a15af8c5290dddbfd206bf1dd1409d3a464b17c1c7a9"
+    },
+    "reference/cave-failure-input-browser.json": {
+      "path": "reference/cave-failure-input-browser.json",
+      "bytes": 5015,
+      "sha256": "f015424d839f553e73601bd3bf4b778a9eb60ee55e7ce6e768b4ca8e80255152"
+    },
+    "reference/standard-winning-route.json": {
+      "path": "reference/standard-winning-route.json",
+      "bytes": 45483,
+      "sha256": "fc3fc5be1423e10764644fc6073632f9eeddbdbd9724a16ae1427d0b1cd55ff7"
+    },
+    ".local/cave-audio-speaker-enabled-02/result.json": {
+      "path": ".local/cave-audio-speaker-enabled-02/result.json",
+      "bytes": 449,
+      "sha256": "59c6eaca4c96cc1025e94c81d2dbc57dec284718cb84b0a5bda9e2618af661aa"
+    },
+    ".local/cave-audio-speaker-enabled-02/observation.json": {
+      "path": ".local/cave-audio-speaker-enabled-02/observation.json",
+      "bytes": 110858,
+      "sha256": "53ebbde4866fa2e571a02a4ddc474e1079afe54f73c6d6517d7444aa7ff0ac24"
+    },
+    ".local/cave-audio-speaker-enabled-02/source-revision.json": {
+      "path": ".local/cave-audio-speaker-enabled-02/source-revision.json",
+      "bytes": 112446,
+      "sha256": "205dfa45172ff741b5d224831bd5e9a7965444ed7db8f5cae6136088b5636112"
+    },
+    ".local/cave-audio-speaker-enabled-02/sources.zip": {
+      "path": ".local/cave-audio-speaker-enabled-02/sources.zip",
+      "bytes": 2912390,
+      "sha256": "c310d89af4126fbd5ce07551a3509af2893e4490a4e22be4bb9c5f398fcf9d55"
+    },
+    ".local/cave-audio-tandy-enabled-01/result.json": {
+      "path": ".local/cave-audio-tandy-enabled-01/result.json",
+      "bytes": 447,
+      "sha256": "fc228867f6e32f5931d4db8229bcbb678f79296a722ec6159d4cde606fb06eba"
+    },
+    ".local/cave-audio-tandy-enabled-01/observation.json": {
+      "path": ".local/cave-audio-tandy-enabled-01/observation.json",
+      "bytes": 110089,
+      "sha256": "6480465232887ab6001d3c50cc313b4a2b426c40b0817603d908beef2c70a877"
+    },
+    ".local/cave-audio-tandy-enabled-01/source-revision.json": {
+      "path": ".local/cave-audio-tandy-enabled-01/source-revision.json",
+      "bytes": 112446,
+      "sha256": "d4357e5f643036f4a7dc22bb79f9f014e8929266fe940d77c79910255443894c"
+    },
+    ".local/cave-audio-tandy-enabled-01/sources.zip": {
+      "path": ".local/cave-audio-tandy-enabled-01/sources.zip",
+      "bytes": 2912530,
+      "sha256": "b9d0db9a1ad6ebf2812b5528011e0752199f3897ba08031ee9a768da6bebbb79"
+    },
+    ".local/cave-audio-speaker-muted-01/result.json": {
+      "path": ".local/cave-audio-speaker-muted-01/result.json",
+      "bytes": 447,
+      "sha256": "3f37078158b0d86ee909996af2c1ee5f1e8ee69bccb6557c6e7ac22fb207ff68"
+    },
+    ".local/cave-audio-speaker-muted-01/observation.json": {
+      "path": ".local/cave-audio-speaker-muted-01/observation.json",
+      "bytes": 104130,
+      "sha256": "bac1f4f078f034e3c1ab8e397bfc16d4ae3229515cd9d4dc6423792a5d0d4f8f"
+    },
+    ".local/cave-audio-speaker-muted-01/source-revision.json": {
+      "path": ".local/cave-audio-speaker-muted-01/source-revision.json",
+      "bytes": 112446,
+      "sha256": "d4357e5f643036f4a7dc22bb79f9f014e8929266fe940d77c79910255443894c"
+    },
+    ".local/cave-audio-speaker-muted-01/sources.zip": {
+      "path": ".local/cave-audio-speaker-muted-01/sources.zip",
+      "bytes": 2912530,
+      "sha256": "b9d0db9a1ad6ebf2812b5528011e0752199f3897ba08031ee9a768da6bebbb79"
+    },
+    ".local/cave-audio-tandy-muted-02/result.json": {
+      "path": ".local/cave-audio-tandy-muted-02/result.json",
+      "bytes": 445,
+      "sha256": "59eed080ee6479354d77d4823f7e5221b2e1a7c87224593e5906452ddae89fe1"
+    },
+    ".local/cave-audio-tandy-muted-02/observation.json": {
+      "path": ".local/cave-audio-tandy-muted-02/observation.json",
+      "bytes": 103377,
+      "sha256": "87d5b6556934f0e37e2bd40202d362969a7caf8e841b92299e4f0f70c2d5df0b"
+    },
+    ".local/cave-audio-tandy-muted-02/source-revision.json": {
+      "path": ".local/cave-audio-tandy-muted-02/source-revision.json",
+      "bytes": 112446,
+      "sha256": "205dfa45172ff741b5d224831bd5e9a7965444ed7db8f5cae6136088b5636112"
+    },
+    ".local/cave-audio-tandy-muted-02/sources.zip": {
+      "path": ".local/cave-audio-tandy-muted-02/sources.zip",
+      "bytes": 2912390,
+      "sha256": "c310d89af4126fbd5ce07551a3509af2893e4490a4e22be4bb9c5f398fcf9d55"
+    },
+    ".local/cave-audio-failure-replay-01/acceptance-status.json": {
+      "path": ".local/cave-audio-failure-replay-01/acceptance-status.json",
+      "bytes": 703,
+      "sha256": "fffd9e09154c53709965f585f53be32666efc8e39be31169847201a04a7bfdd4"
+    },
+    ".local/cave-audio-failure-replay-01/source-revision.json": {
+      "path": ".local/cave-audio-failure-replay-01/source-revision.json",
+      "bytes": 112331,
+      "sha256": "d05925e695e267cf2b5aa32aed6579b01a14b7479266508064c1d23f9b8ebd1e"
+    },
+    ".local/cave-audio-failure-replay-01/sources.zip": {
+      "path": ".local/cave-audio-failure-replay-01/sources.zip",
+      "bytes": 2910390,
+      "sha256": "2e0b10919a023aead4ab1f72cf6892b1e1f4ebdc0ff306beb71f92d5933b1690"
+    },
+    ".local/cave-audio-winning-replay-01/acceptance-status.json": {
+      "path": ".local/cave-audio-winning-replay-01/acceptance-status.json",
+      "bytes": 1031,
+      "sha256": "23cd5f2b215dab3298686d47ef7f83213a59555372b3813b9e093347a9f6067f"
+    },
+    ".local/cave-audio-winning-replay-01/source-revision.json": {
+      "path": ".local/cave-audio-winning-replay-01/source-revision.json",
+      "bytes": 112446,
+      "sha256": "205dfa45172ff741b5d224831bd5e9a7965444ed7db8f5cae6136088b5636112"
+    },
+    ".local/cave-audio-winning-replay-01/sources.zip": {
+      "path": ".local/cave-audio-winning-replay-01/sources.zip",
+      "bytes": 2912390,
+      "sha256": "c310d89af4126fbd5ce07551a3509af2893e4490a4e22be4bb9c5f398fcf9d55"
+    },
+    ".local/cave-audio-checks-01/result.json": {
+      "path": ".local/cave-audio-checks-01/result.json",
+      "bytes": 1074,
+      "sha256": "41e5d238e9a82a44e7a6bf4bb13600dabbe088aac40f41f007006d911d632211"
+    },
+    ".local/cave-audio-checks-01/source-revision.json": {
+      "path": ".local/cave-audio-checks-01/source-revision.json",
+      "bytes": 112446,
+      "sha256": "d4357e5f643036f4a7dc22bb79f9f014e8929266fe940d77c79910255443894c"
+    },
+    ".local/cave-audio-checks-01/sources.zip": {
+      "path": ".local/cave-audio-checks-01/sources.zip",
+      "bytes": 2912530,
+      "sha256": "b9d0db9a1ad6ebf2812b5528011e0752199f3897ba08031ee9a768da6bebbb79"
+    }
+  },
+  "evidenceLevels": {
+    "source": "51 terminal-loop plus499 call/rule bytes, including overlaps;exact original/prepared/Ghidra correspondence.",
+    "components": "194 units and130 boundaries;conditional original cave comparisons with declared historical exclusions.",
+    "browserAudio": "Four actual AudioWorklet pit routes,5 room entries/one query each. Enabled cases require matching busy completion;muted cases observe actual idle. Conditional host20ms/Game16ms phase polling,not a fixed-timestamp replay or native timing parity.",
+    "mutedReplays": "Independent fixed DOM streams:failure11/454 and winning170/6575;exact public state and decoded RGBA,no comparison exclusions."
+  },
+  "startingRecipe": "Fresh original-file startup,bios0,UTC,recorded browser clock origin1/display8ms. Replay result-earned-browser-01 through cave-entry at event424;select device while muted,enable checkbox at initial cave minimap work,focus game canvas.",
+  "inputSchedule": {
+    "prefix": ".local/result-earned-browser-01/captured-events.json",
+    "prefixEnd": "cave-entry in campaign-checkpoints.json",
+    "cave": "BFS on initially observed room map to first reachable pit,excluding treasure cells. At each exploring phase hold direction+Space until room changes,then release both. Saved observation.path is the chosen input sequence;expected final state never chooses it.",
+    "mute": "Muted cases uncheck sound only after actual48 ACK in pit animation;enabled cases retain sound. Query status/completion comes from real device,never a fitted timer.",
+    "exit": "Observe failure result and native conditional0 ACK if enabled;click Restart,require title/day1."
+  },
+  "expectedCheckpoints": {
+    "audio": "first-room,4 pairs input-reader/room-change,pit-sound,failure-result;enabled cases also guarded-return-reset",
+    "failure": 11,
+    "winning": 170
+  },
+  "excludedExplorations": [
+    {
+      "root": ".local/cave-audio-speaker-enabled-01",
+      "reason": "Rejected:checkbox retained keyboard focus;required input-reader never completed."
+    },
+    {
+      "root": ".local/cave-audio-tandy-muted-01",
+      "reason": "Rejected:checkbox retained keyboard focus;required input-reader never completed."
+    }
+  ],
+  "limitations": [
+    "No fresh live original machine or waveform/timing comparison.",
+    "Natural browser audio coverage here is pit only;capture/treasure waits have component checks and retained native conditional evidence.",
+    "Adaptive audio scenarios preserve a phase-relative recipe and external device ledger;they are not fixed-timestamp replay acceptance.",
+    "Hard campaigns and arbitrary-route finishability remain incomplete."
+  ],
+  "verify": "node scripts/verify-cave-audio-acceptance.js",
+  "setupNegatives": "node scripts/verify-cave-audio-setup-negative.js"
+}

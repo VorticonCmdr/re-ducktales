@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { originalGame } from "../tests/helpers/original-game.js";
 import { json, sha, checkArtifacts } from "./lib/local-scenario-source.js";
-const m = await json(process.argv.find(a => a.startsWith("--manifest="))?.slice(11) ?? "reference/cave-audio-calls-source.json");
+const m = await json(
+  process.argv.find((a) => a.startsWith("--manifest="))?.slice(11) ??
+    "reference/cave-audio-calls-source.json",
+);
 assert.equal(m.kind, "cave-audio-calls-static-source");
 await originalGame();
 await checkArtifacts({ build: m.build });
@@ -23,8 +26,13 @@ assert.deepEqual(
   m.ranges.map((r) => r.offset),
   offsets,
 );
+assert.ok(m.distanceOrigin, "Missing cave distance-origin evidence");
+assert.deepEqual(
+  [m.distanceOrigin.offset, m.distanceOrigin.length],
+  [0x4ab, 18],
+);
 let bytes = 0;
-for (const r of m.ranges) {
+for (const r of [...m.ranges, m.distanceOrigin]) {
   await checkArtifacts({ ghidra: r.artifact });
   const b = overlay.subarray(
     o.headerBytes + r.offset,
@@ -66,5 +74,5 @@ for (const r of m.ranges) {
   bytes += r.length;
 }
 console.log(
-  `Cave audio calls: ${m.ranges.length} ranges/${bytes} bytes match original, prepared image and Ghidra; guarded calls, one audible entry, signed proximity/pit priority. Static evidence only.`,
+  `Cave audio calls: ${m.ranges.length + 1} ranges/${bytes} bytes match original, prepared image and Ghidra; guarded calls, one audible entry, signed treasure proximity/pit priority. Static evidence only.`,
 );

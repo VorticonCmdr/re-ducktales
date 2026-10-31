@@ -97,12 +97,16 @@ see [cave reveal](cave-reveal.md). Exact terminal
 pixels are limited to the aligned capture image below; full presentation timing
 is not verified.
 
-Audio is an explicit environment input. With Sound off, completion polls see
-idle. With Sound on, every cave sound gets a token and is pending immediately;
-the browser acknowledges completion or replacement through a timestamped event.
-Stale tokens cannot release a newer sound's wait. Disabling sound releases its
-wait. Hidden tabs pause the browser simulation and resume active sound on return.
-Reconstructed browser audio duration is not original device timing evidence.
+Audio is an explicit environment input. The enabled flag guards new requests;
+it does not supply completion status. Capture, pit and treasure endings query a
+used global device, even while muted, and wait for matching idle status without
+adding a timer tick. Unused providers initialize idle. Stale tokens, elapsed
+ticks and disabling sound cannot release a busy or unknown status. The browser
+checkbox explicitly requests a stop; its actual device response still governs
+the wait. Hidden tabs pause simulation and active sound. Native guarded resets
+and one pit/treasure-proximity cue per room entry are restored. See
+[cave audio](cave-audio.md) for the current evidence and conditional browser
+scope. Reconstructed audio duration is not original device timing evidence.
 
 `npm run verify:cave` also runs four independent environment scenarios: capture
 (map0, seed0, idle), pit (map0, seed0, shortest pit controller), treasure (map0,
@@ -125,7 +129,7 @@ capture's unpresented RNG call fails a negative control. All four must terminate
 before10000 iterations and consume every
 required replay event. Negative controls alter an outcome, remove movement and
 send stale audio completion. Enabled sound must hold capture open until the
-matching completion event. Conditional application-entry checks also verify
+matching query's idle status. Conditional application-entry checks also verify
 success/failure reward, exact report waits, calendar and one-time collection.
 Original entry comparison remains a separate evidence level.
 

@@ -1,0 +1,77 @@
+{
+  "id": "award-input-investigation",
+  "evidence": "Browser-observed early award Pause plus static original caller/shared-reader bytes;not native award-input runtime capture",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "sourceCommit": "fac414b8b6133aa49bef9de88a8dcd5d198bc3e7",
+  "sourceArchiveScope": "Archive from separate guide recording;unchanged game/runtime helper bytes,not an archive made at award-probe launch",
+  "range": {
+    "address": "1000:0c48",
+    "offset": 3144,
+    "length": 34,
+    "sha256": "54592926de8ed8ab2d05b0d245ca7dd8dfc243871646b2b413361ca1049ec66a",
+    "loaderRelocations": 1
+  },
+  "sharedReader": {
+    "address": "11c4:09f5",
+    "imageOffset": 9781,
+    "length": 88,
+    "sha256": "29c7a6a964b796914e9ba4d3c39ea964f1cdf051f5d0d6417effb6187bf9ba88"
+  },
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisExecutableSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "browserProbe": {
+    "startingRecipe": "Fresh UTC BIOS0 muted Easy;Launchpad Too-Pei flight;cave7 treasure;fresh P at award;wait for overlay or remaining<=273;Restart",
+    "expectedObservations": 12,
+    "awardAt": 84717,
+    "probeAt": 84733,
+    "awardTick": 6170,
+    "probeTick": 6171,
+    "beforeRemaining": 280,
+    "afterRemaining": 279,
+    "money": 3400,
+    "restart": true
+  },
+  "rule": "Award calls shared09f5(40);entry flush,immediate read,forty seven-tick neutral waits,no forty-first read. C54..C67 plays click24 only on consumed Fire and enabled audio.",
+  "missing": "Award currently uses legacy countdown/immediate global keys and has no corresponding conditional click24 in its completion integration.",
+  "limits": [
+    "Observed with port clock/input providers,not native original award timing",
+    "Original award drawing/reveal costs remain unverified",
+    "Audio muted in browser probe;click rule is static inference"
+  ],
+  "memoryInjections": [],
+  "fittedInputs": [],
+  "artifacts": {
+    "probe.mjs": {
+      "path": ".local/award-input-investigation-01/probe.mjs",
+      "bytes": 3436,
+      "sha256": "0a83eb54f0a94c0197e4b272976d355ae72da5225886ad1fbabf77dad31712b3"
+    },
+    "probe.json": {
+      "path": ".local/award-input-investigation-01/probe.json",
+      "bytes": 92271,
+      "sha256": "ffe17325b78a1892855c0f80a3739cd0cdf514b9b826bcf9155308a22565c6fb"
+    },
+    "probe.log": {
+      "path": ".local/award-input-investigation-01/probe.log",
+      "bytes": 1034,
+      "sha256": "8a8eb4e7f2cb6206e7f710a539ef7c6df83ad4f4c40b3294baf604e7dea5586e"
+    },
+    "sources.zip": {
+      "path": ".local/award-input-investigation-01/sources.zip",
+      "bytes": 2656848,
+      "sha256": "6cd0c846ba573abe69fd8a8a4764427e9871a22275ff60d11a6cbf50f2488684"
+    },
+    "source-revision.json": {
+      "path": ".local/award-input-investigation-01/source-revision.json",
+      "bytes": 98958,
+      "sha256": "f698299b79f7d93b8ca6706344f88bcd1a02dc71c51e1918907979fdf04bc918"
+    },
+    "ghidra-award-bytes.json": {
+      "path": ".local/award-input-investigation-01/ghidra-award-bytes.json",
+      "bytes": 373,
+      "sha256": "48fcfb34e73dc1950385af04224cfa3a8935f5dd99d1c182a53a50dd5ce2b6f3"
+    }
+  },
+  "verify": "node scripts/verify-award-input-investigation.js"
+}

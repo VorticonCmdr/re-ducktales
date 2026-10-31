@@ -319,7 +319,8 @@ export async function replayAtomicRoute(
     if (omitGuidePause)
       assert.ok(guide && guidePause > 0, "SETUP:missing guide Pause");
     let now = 1,
-      consumed = 0;
+      consumed = 0,
+      omitted = 0;
     async function advance(at) {
       assert.ok(at >= now, "Late atomic event");
       if (at > now) await page.clock.runFor(at - now);
@@ -338,6 +339,7 @@ export async function replayAtomicRoute(
           !(omitGuidePause && consumed === guidePause)
         )
           await recordedDOMInput(page, e);
+        else omitted++;
         consumed++;
       }
       await advance(expected.at);
@@ -360,7 +362,7 @@ export async function replayAtomicRoute(
       );
       assert.equal(
         actual.eventCount,
-        expected.eventCount,
+        expected.eventCount - omitted,
         "Atomic consumed DOM events",
       );
       console.log(

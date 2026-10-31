@@ -89,7 +89,9 @@ assert.deepEqual(
   timeline.observations,
   checks.map(({ name, at, eventCount }) => ({ name, at, eventCount })),
 );
-const ready = checks.find((p) => p.name === "notice-ready");
+const ready = checks.find(
+  (p) => p.name === (m.pauseBoundaryName ?? "notice-ready"),
+);
 assert.ok(ready);
 const omission = events.findIndex(
   (e, i) => i >= ready.eventCount && e.type === "keydown" && e.key === "p",

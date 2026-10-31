@@ -22,11 +22,11 @@ assert.ok(
 assert.ok(["speaker", "tandy"].includes(device));
 const root = await fresh(arg("output")),
   source = await archiveSource(root);
-const m = await json("reference/standard-wages-full-route.json");
+const m = await json("reference/current-earned-route.json");
 await checkArtifacts(m.artifacts);
 await validateProducerArchive(m.producer);
-const checks = await json(m.artifacts["campaign-checkpoints"].path),
-  events = await json(m.artifacts["captured-events"].path);
+const checks = await json(m.artifacts.checkpoints.path),
+  events = await json(m.artifacts.events.path);
 const entry = checks.find((c) => c.state.expeditionResult?.phase === "atomic");
 assert.ok(entry);
 const result = await withCarlsbadBrowser(async ({ page, state, until }) => {
@@ -69,7 +69,8 @@ const result = await withCarlsbadBrowser(async ({ page, state, until }) => {
     await page.clock.runFor(16);
     if (i === 499) throw Error("Unfinished real rival audio boundary");
   }
-  const requests = observed.filter((e) => e.type === "ack"),
+  const acknowledgements = observed.filter((e) => e.type === "ack"),
+    requests = acknowledgements.filter((e) => !e.query),
     click = requests.findIndex((e) => e.argument === 0x24);
   assert.ok(click >= 0);
   assert.deepEqual(
@@ -80,6 +81,22 @@ const result = await withCarlsbadBrowser(async ({ page, state, until }) => {
   assert.equal(stats.contextState, "running");
   assert.ok(Number(stats.signalSamples) > 0);
   const report = requests[click + 1];
+  const queries = acknowledgements.filter(
+    (e) => e.query && e.token.startsWith(report.token + ":status:"),
+  );
+  assert.ok(queries.length > 0, "No real report status queries");
+  assert.equal(
+    new Set(queries.map((e) => e.token)).size,
+    queries.length,
+    "Reused report status token",
+  );
+  assert.ok(
+    queries.every(
+      (e) =>
+        e.sequence > report.sequence &&
+        e.sequence < requests[click + 2].sequence,
+    ),
+  );
   assert.ok(
     typeof report.token === "string" && report.token.startsWith("rival:"),
   );

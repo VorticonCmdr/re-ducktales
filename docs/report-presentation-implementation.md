@@ -42,6 +42,30 @@ routes,real speaker/Tandy device cases,and integration into the main worktree
 only after relevant checks pass. The earlier component-only status below is
 retained as the module's initial scope,not the current integration state.
 
+Both ordinary+collected-notice routes now pass independent replay:player at
+463b74c and rival at9669ec6,each27 full-state/decoded-RGBA checkpoints and543
+independent DOM inputs,missing-fresh-Pause negative and actual Restart. Both
+45-group pixel cases pass against three independently retained completed pages.
+These are port regressions with no exclusions,not original native transition
+captures. `.local/report-runtime-checks-01` retains focused components,21 reader
+boundaries,45 row groups,five setup/unfinished-event negatives,source identity
+and build at463b74c.
+
+The next experiments use the same untouched runtime. `--forced-report` makes
+the existing Standard player stop at its naturally lost first Safari race,
+exercise early-key flushing/Pause/exit and save report frames. Failure to execute
+a forced claim is a setup/strategy failure,never a zero-case success. The audio
+probe now uses the current award-timed startup prefix and checks fresh global
+query tokens between6e and21. It retains the declared host20ms/Game16ms conditional
+profile;no device status is injected and no native timing/waveform parity is
+claimed.
+
+```sh
+node scripts/standard-wages-explore.js --forced-report --output=.local/report-forced-FRESH
+node scripts/probe-rival-audio.js --device=speaker --output=.local/report-speaker-FRESH
+node scripts/probe-rival-audio.js --device=tandy --output=.local/report-tandy-FRESH
+```
+
 `ReportPresentation` implements the statically checked picture3/10 sequence:
 fill0 → entry wipe25 retraces → portrait copy/helper input flush → caller
 text/cue callback → reveal25 → publication/reader callback → external reader →

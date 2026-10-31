@@ -60,10 +60,10 @@ in `.local/rival-audio-tandy-01`; it is excluded from acceptance. The unsupporte
 ## Remaining limitations
 
 Native reveal/wipe/drawing costs and audio phase have not been established.
-The general keyboard S-off path in the original requests `0` and then `24`
-before clearing sound enable; the current global browser adaptation does not
-preserve that complete request/IRQ boundary. This is a separate remaining sound
-fidelity gap. Broader modifier/BIOS, mouse and joystick behavior is unverified.
+The original keyboard S-off0/24 sequence and actual device-status handling were
+subsequently corrected in [sound-toggle evidence](sound-toggle.md). The preserved
+rival milestone receipts remain historical;their old runtime guards reject later
+source. Native sub-call IRQ phase remains unverified. Broader modifier/BIOS, mouse and joystick behavior is unverified.
 The shared controller does not prove arbitrary campaigns finishable.
 
 ## Reproduce
@@ -72,7 +72,9 @@ Local proprietary artifacts are required; missing or corrupt files fail setup.
 Fresh browser outputs require clean committed source and new ignored paths.
 
 ```sh
-node scripts/verify-rival-input-acceptance.js
+node scripts/verify-sound-toggle-acceptance.js
+# Historical saved rival receipt requires its archived runtime:
+# node scripts/verify-rival-input-acceptance.js
 node scripts/verify-rival-input-source.js
 node scripts/verify-rival-keyboard-source.js
 node --test scripts/rival-input.test.js tests/rival.test.js

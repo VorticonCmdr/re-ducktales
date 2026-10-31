@@ -4,7 +4,7 @@ Standard now also has a [complete winning route](standard-winning.md):all four
 expedition families plus three additional cave treasures,banked24275 against21000,
 winning celebration,replay-No,all26 credits,finished screen and Restart. Its
 independent browser acceptance has170 exact checkpoints/6575 events. Use
-`node scripts/verify-standard-winning-acceptance.js` for the latest current-runtime
+`node scripts/verify-sound-toggle-acceptance.js` for the latest current-runtime
 receipt. The losing route below remains a separate unchanged regression.
 
 The original difficulty1 has a continuous browser regression through day31.
@@ -37,7 +37,7 @@ files fail setup. No additional edition or resource pairing is accepted.
 
 ```sh
 # Validate saved browser evidence against the current game runtime:
-node scripts/verify-repair-input-acceptance.js
+node scripts/verify-sound-toggle-acceptance.js
 # Check rejection of empty,missing and corrupt fixtures:
 node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --setup-negatives
 node scripts/verify-standard-wages-setup-negative.js

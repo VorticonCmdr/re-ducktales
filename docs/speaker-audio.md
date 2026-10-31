@@ -104,15 +104,21 @@ not turn those choices into measured hardware parity.
 
 The stream preserves native priorities and one shared channel. Browser request0
 is a high-priority sequence, not an immediate native reset: it finishes on a
-sequence tick. A documented browser delivery barrier therefore queues subsequent
-requests until this stop completes. This lets keyboard sound-enable and Restart
+sequence tick. A documented browser delivery barrier queues ordinary host
+stop/start requests until this stop completes. This lets sound-enable/title and Restart
 send stop/start together without silently losing title music. It is an explicit
 browser adaptation; the native core and its regression remain unchanged. Queue
 order and duplicate tokens are checked. Token completion is reported at the
 first actual idle IRQ, never from a WAV duration or a fabricated ended event.
 
+The later [keyboard sound-toggle correction](sound-toggle.md) separates native
+call batches and status reads from that host barrier while preserving FIFO order.
+Native S-off0/24 does not wait for0 to finish or retry the rejected priority0 click;
+status queries can observe the still-busy stop. Zero inserted IRQs within a native
+batch is an explicit boundary,not recovered original sub-call CPU/PIT phase.
+
 `src/game/audio-device.js` shares the ordered, validated device lifecycle with
-Tandy. Module/processor errors stop with a visible diagnostic. Mute issues0;
+Tandy. Module/processor errors stop with a visible diagnostic. The checkbox mute issues0;
 device switching waits for the native stop, consumes all acknowledgements and
 tokens, then closes the old context. Hidden pages suspend the audio context.
 The asset viewer retains its older bounded audition renderer, whose noise and

@@ -96,7 +96,9 @@ and consumer archives,all artifact checksums,current runtime hashes,194 units,
 regression. Missing artifacts or changed accepted runtime fail the command.
 
 ```sh
-node scripts/verify-repair-input-acceptance.js
+node scripts/verify-sound-toggle-acceptance.js
+# Historical repair-only receipt requires its archived runtime:
+# node scripts/verify-repair-input-acceptance.js
 node scripts/verify-repair-input-source.js
 node scripts/verify-result-caller-source.js
 node scripts/verify-flight-runtime.js

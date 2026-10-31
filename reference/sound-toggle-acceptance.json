@@ -1,0 +1,223 @@
+{
+  "kind": "sound-toggle-acceptance",
+  "nativeComparison": false,
+  "runtimeCommit": "e994536e5096e6ea2913e2653e53f394395ff1e4",
+  "cases": [
+    {
+      "key": "office-speaker",
+      "device": "speaker",
+      "mode": "office",
+      "consumer": ".local/sound-toggle-speaker-after-02",
+      "result": {
+        "path": ".local/sound-toggle-speaker-after-02/toggle-status.json",
+        "bytes": 6556,
+        "sha256": "e5cc2f31b60a75f9b9c796bcf64a4afe3eea5ddab504ee25f33175f4292892da"
+      },
+      "inputRecipe": "Fresh startup/Easy office;select device;enable checkbox;S-off,wait for actual idle,S-on,Restart.",
+      "expectedAcks": [
+        0,
+        36,
+        0
+      ]
+    },
+    {
+      "key": "office-tandy",
+      "device": "tandy",
+      "mode": "office",
+      "consumer": ".local/sound-toggle-tandy-after-02",
+      "result": {
+        "path": ".local/sound-toggle-tandy-after-02/toggle-status.json",
+        "bytes": 6198,
+        "sha256": "be3d9ee49683256c6e5a4555fb2d2164be24639e01a716a26cf1aadc06e1b72b"
+      },
+      "inputRecipe": "Fresh startup/Easy office;select device;enable checkbox;S-off,wait for actual idle,S-on,Restart.",
+      "expectedAcks": [
+        0,
+        36,
+        0
+      ]
+    },
+    {
+      "key": "during-speaker",
+      "device": "speaker",
+      "mode": "during",
+      "consumer": ".local/rival-mute-speaker-during-02",
+      "result": {
+        "path": ".local/rival-mute-speaker-during-02/rival-mute-status.json",
+        "bytes": 12507,
+        "sha256": "6f1e7f6c68cc3d05915df037bfd89e964a9c071711cf73fb437443b74cb7ac25"
+      },
+      "inputRecipe": "Replay original Standard DOM prefix to transmitter notice;S-on;enter rival report,await real6e ACK busy,S-off,await real completion/map,Restart.",
+      "expectedAcks": [
+        0,
+        36,
+        110,
+        0,
+        36
+      ]
+    },
+    {
+      "key": "during-tandy",
+      "device": "tandy",
+      "mode": "during",
+      "consumer": ".local/rival-mute-tandy-during-02",
+      "result": {
+        "path": ".local/rival-mute-tandy-during-02/rival-mute-status.json",
+        "bytes": 12249,
+        "sha256": "1fb8915777e5c1d612e96926bed7a1065295c9709b5c6796855fab28fa7d74c7"
+      },
+      "inputRecipe": "Replay original Standard DOM prefix to transmitter notice;S-on;enter rival report,await real6e ACK busy,S-off,await real completion/map,Restart.",
+      "expectedAcks": [
+        0,
+        36,
+        110,
+        0,
+        36
+      ]
+    },
+    {
+      "key": "before-speaker",
+      "device": "speaker",
+      "mode": "before",
+      "consumer": ".local/rival-mute-speaker-before-02",
+      "result": {
+        "path": ".local/rival-mute-speaker-before-02/rival-mute-status.json",
+        "bytes": 12369,
+        "sha256": "431e212f487b2d994dbf22fa9ff311a5b29e1586fa0402e222cf75ca955239b7"
+      },
+      "inputRecipe": "Replay original Standard DOM prefix to transmitter notice;S-on;S-off,Fire into rival report;query actual residual device;await report/map,Restart.",
+      "expectedAcks": [
+        0,
+        0,
+        36,
+        null
+      ]
+    },
+    {
+      "key": "before-tandy",
+      "device": "tandy",
+      "mode": "before",
+      "consumer": ".local/rival-mute-tandy-before-02",
+      "result": {
+        "path": ".local/rival-mute-tandy-before-02/rival-mute-status.json",
+        "bytes": 12142,
+        "sha256": "5de1a8c6370bd93b4f13c6f2c6787046731d59273ae21d0752faa4f864a3856c"
+      },
+      "inputRecipe": "Replay original Standard DOM prefix to transmitter notice;S-on;S-off,Fire into rival report;query actual residual device;await report/map,Restart.",
+      "expectedAcks": [
+        0,
+        0,
+        36,
+        null
+      ]
+    }
+  ],
+  "before": [
+    {
+      "device": "speaker",
+      "consumer": ".local/sound-toggle-speaker-before-02",
+      "result": {
+        "path": ".local/sound-toggle-speaker-before-02/toggle-status.json",
+        "bytes": 6100,
+        "sha256": "fb75bf70b2a2ae3a6ff3e5fde1420ece5dee8b05261a147e7ffcd79e46d882cf"
+      }
+    },
+    {
+      "device": "tandy",
+      "consumer": ".local/sound-toggle-tandy-before-02",
+      "result": {
+        "path": ".local/sound-toggle-tandy-before-02/toggle-status.json",
+        "bytes": 5788,
+        "sha256": "abeac6fa8788ed4f6b2972c77a4172c2a67475c02303267eebc41c60e3e4e28f"
+      }
+    }
+  ],
+  "winningConsumer": ".local/sound-toggle-winning-replay-02",
+  "checksSource": ".local/sound-toggle-checks-01",
+  "productionSource": ".local/sound-toggle-production-source-01",
+  "scope": "Original keyboard off0/24 and on0 call order,zero-inserted-IRQ native batches,actual global status for active/muted-entry rival reports. Conditional device I/O and real-clock production smoke are distinct from the strict muted winning-campaign replay. No native sub-call phase,waveform or whole-game timing parity claim.",
+  "environment": {
+    "conditionalIO": "Explicit BIOS0,Game16ms advance/host20ms waits;no injected audio status. Office probe uses Game8ms readiness checks.",
+    "production": "Real browser clock,explicit BIOS0,actual file-picker originals and device providers.",
+    "winning": "Retained independent6575 DOM events,BIOS0,clock origin1,8ms presentation schedule,muted."
+  },
+  "comparison": {
+    "exact": "Original/prepared/Ghidra bytes,unit driver memory/PCM,word order,rejected speaker priority,same-batch audio-frame equality,required completion/token sequence;all winning state/decoded-RGBA checkpoints.",
+    "conditional": "Initial real query busy is an external input:busy must bypass fallback and consume actual completion;idle must take fallback40. Host absolute frames and analog waveforms are not compared.",
+    "injections": [],
+    "fittedInputs": []
+  },
+  "artifacts": {
+    "source": {
+      "path": "reference/sound-toggle-source.json",
+      "bytes": 1344,
+      "sha256": "3069cb15274f45760f05816ad71a2864e8ea1bf76d19e9a7d2db4105f646b245"
+    },
+    "buildManifest": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "winningScenario": {
+      "path": "reference/standard-winning-route.json",
+      "bytes": 45483,
+      "sha256": "fc3fc5be1423e10764644fc6073632f9eeddbdbd9724a16ae1427d0b1cd55ff7"
+    },
+    "winningResult": {
+      "path": ".local/sound-toggle-winning-replay-02/acceptance-status.json",
+      "bytes": 1035,
+      "sha256": "dbc602db8140718c53e609a95a117be9743828a7fa73b66a76ed61d3d5c03238"
+    },
+    "productionReport": {
+      "path": ".local/sound-toggle-production-source-01/report.json",
+      "bytes": 6081,
+      "sha256": "0b4352e12d68e766ff6bd2d9a8dc86bb2b5952dfd7c0cf534c14a92cf5d23865"
+    },
+    "units": {
+      "path": ".local/sound-toggle-checks-01/units.log",
+      "bytes": 17824,
+      "sha256": "1890bffa4bae23bb40900a96e16fbd170cf8f89c61e4d607b527465282f3b212"
+    },
+    "boundaries": {
+      "path": ".local/sound-toggle-checks-01/boundaries.log",
+      "bytes": 8463,
+      "sha256": "ea5dd98a911e159e223cc0ac05b54917368c55f583b47455ee38b2479566f95a"
+    },
+    "build": {
+      "path": ".local/sound-toggle-checks-01/build.log",
+      "bytes": 914,
+      "sha256": "028c9c9ad6ef7a5ea886666eb6cf45ad31426d2f203fd7c08d37da7879d7e2cb"
+    },
+    "speakerProof": {
+      "path": ".local/sound-toggle-checks-01/speaker.log",
+      "bytes": 261,
+      "sha256": "3e8fca40dbbdc67995996046dae22f8ae3f83f28cfcf9fd1f23d357790e06625"
+    },
+    "tandyProof": {
+      "path": ".local/sound-toggle-checks-01/tandy.log",
+      "bytes": 269,
+      "sha256": "5e494f653436c1531147b1ea580f073026e82a1a4026ff55ea9b9ccbd3190c16"
+    },
+    "production-speaker": {
+      "path": ".local/sound-toggle-production-01/sound-toggle-production-sp-b1ddf-s-original-stop-click-calls/toggle-speaker.json",
+      "bytes": 1326,
+      "sha256": "16a2872c84f3805836da45842ab8057eb5694bbd2ec10c50e174cd6191bca774"
+    },
+    "production-tandy": {
+      "path": ".local/sound-toggle-production-01/sound-toggle-production-ta-a30fc-s-original-stop-click-calls/toggle-tandy.json",
+      "bytes": 1147,
+      "sha256": "6ffb21d7f5f5d4ad16ec5b5170e011cc8cf5b2deff201924e6654d604e5488b5"
+    },
+    "setupNegatives": {
+      "path": ".local/sound-toggle-checks-01/setup-negatives.json",
+      "bytes": 193,
+      "sha256": "3f885308f5f568cf95f8aa8791563ed676e4120dfa2184374ee8f034093381d9"
+    },
+    "setupChecker": {
+      "path": "scripts/verify-sound-toggle-setup-negative.js",
+      "bytes": 1623,
+      "sha256": "8c008019bff4dd58f03b793d7adee2ec306c012360154f6d61e66e009adbcf64"
+    }
+  },
+  "verify": "node scripts/verify-sound-toggle-acceptance.js"
+}

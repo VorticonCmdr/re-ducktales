@@ -59,12 +59,15 @@ complete state/decoded-image checkpoints,6575 required events,Restart and a
 missing-Standard-selection negative. Three empty/missing/corrupt setup controls
 also pass. `reference/standard-winning-route.json` pins the immutable scenario;
 `reference/standard-winning-acceptance.json` pins the separate consumer receipt.
-The acceptance command checks current runtime hashes and inherited repair/ending/
-credit evidence. Runtime is unchanged;the earlier194 units,77 boundaries and
-production build remain valid through their source-guarded repair receipt.
+That milestone's saved command is now historical after the sound-toggle change.
+A new unchanged170/6575 browser consumer at`e994536` passed again,including the
+selection negative and Restart. Use `node scripts/verify-sound-toggle-acceptance.js`
+for current runtime evidence:194 units,91 boundaries,build,six actual-device I/O
+scenarios,two production cases and this full winning route. The earlier receipt
+keeps its original source guard and scope.
 
 ```sh
-node scripts/verify-standard-winning-acceptance.js
+node scripts/verify-sound-toggle-acceptance.js
 node scripts/verify-standard-wages-route.js --manifest=reference/standard-winning-route.json --setup-negatives
 node scripts/verify-standard-wages-route.js --manifest=reference/standard-winning-route.json --output=.local/standard-winning-replay-FRESH
 # Conditional planning;clean committed source and fresh ignored output:

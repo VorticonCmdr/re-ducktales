@@ -1,6 +1,6 @@
 # Current port status
 
-Updated2026-10-31. **The whole game is incomplete.** The supported Standard
+Updated2026-11-01. **The whole game is incomplete.** The supported Standard
 campaign has a complete playable route through all four expedition families,
 victory,all26 credits,closed and Restart. A fresh independent browser replay now
 passes on the corrected cave loading,presentation and passage-pose runtime.
@@ -77,6 +77,10 @@ the subsequently changed cave runtime. [Historical acceptance](../reference/cave
   [speaker note gate correction](speaker-note-gate.md). Three new conditional
   original cases match all7253 bytes and reject the historical implementation;
   the existing12-case/408-IRQ comparison and three stream cases still pass.
+  The isolated audio candidate347bad1 now passes all seven browser cases and
+  build;receipt registrationd8d901c is verified. Its two corrected S-key
+  assertions preserve original stop0/off-click24 behavior. Integration waits
+  for the live Standard consumer to finish with unchanged loaded test sources.
 - Resolve original movement/transition timing. Four cave phase states match all
   nine compared fields,but the strict timing/final-animation probe still fails.
   Loader/system,IRQ/BIOS/audio execution and CPU phase are not fully represented.
@@ -85,11 +89,14 @@ the subsequently changed cave runtime. [Historical acceptance](../reference/cave
   [jungle](jungle-native-cadence.md),[mountain](mountain-phase.md),[Safari](safari-native-cadence.md).
   The integrated paired sound-enable probe gives identical component movement
   in both modes;the flag alone does not explain the divergence. Separate timing
-  research remains on codex/loader-environment,verified commit95abd02:two natural
+  research remains on codex/loader-environment,verified commit7382b6b:two natural
   original I/O captures,zero dropped records,and live speaker IRQ/resident code
   checks,and128 source IRQ-envelope branch cases plus a48-IRQ idle scenario
-  counting959 driver instructions. Active sequencing/BIOS/device costs remain
-  unknown. Those decoder instrumentation changes are not integrated into the
+  counting959 driver instructions. An active observer validates80 source blocks,
+  121 requests/229884 carried IRQs and the original12-case/408-IRQ/1128-write
+  stream without changing state/events. Sixteen blocks remain static-only;
+  BIOS/device costs and CPU/PIT phase remain unknown. The observer/decoder
+  instrumentation changes are not integrated into the
   accepted runtime. Next milestone:account for original IRQ/system execution
   from captured initial state,then repeat the strict cadence comparison.
 - Broaden campaign/path coverage and cross-scene input checks. Original modifier/

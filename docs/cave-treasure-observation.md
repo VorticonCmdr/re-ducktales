@@ -58,3 +58,8 @@ attachments;the corrected module now matches all14 reader states and six treasur
 states,including sprite geometry/frame bytes. [Parameter evidence and conditional
 comparison contract](cave-passage-parameters.md) records the correction and
 remaining exclusions. The native artifacts above are unchanged.
+
+A separate [fixed-image follow-up](cave-treasure-pixels.md) now compares the completed
+first treasure reveal at1770 exactly. Its new declaration preserves this original
+observation manifest and its earlier pixelAcceptance:false scope unchanged.
+Other cached images and scanout timestamps remain unaligned.

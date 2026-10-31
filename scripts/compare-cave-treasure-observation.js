@@ -50,10 +50,10 @@ function compare(actual,expected,label) {
   const ranges=[...core,[0x54fc,12],[0x550e,1],...ids.flatMap(id=>{const at=CAVE_SPRITES.get(id);return [[at,12],[at+18,1]];})];
   for(const [at,n] of ranges) assert.deepEqual(actual.bytes.slice(at,at+n),expected.bytes.slice(at,at+n),`${label}:DS${at.toString(16)}`);
 }
-function replay(events,CaveClass=Cave) {
+function replay(events,CaveClass=Cave,onCheckpoint=()=>{}) {
   let cave,consumed=0,parties=0,presents=0,frames=0,lastPresentation=0;
   const seen=[];
-  function checkpoint(label) { compare(cave.memory,targets[label],label);seen.push(label); }
+  function checkpoint(label) { compare(cave.memory,targets[label],label);seen.push(label);onCheckpoint(label,cave.current,{entries,font}); }
   class Observed extends CaveClass {
     *wipe() { if(this.phase==="treasure") checkpoint("before-wipe");observe();for(const wait of super.wipe()){observe();yield wait;}observe(); }
     *loadWork(id) { yield* super.loadWork(id);if(this.phase==="treasure"&&id===0)checkpoint("after-background"); }
@@ -89,6 +89,8 @@ function replay(events,CaveClass=Cave) {
   assert.deepEqual(seen,labels);assert.equal(frames,declaration.expectedPortPublications,"Unfinished/skipped publications");
   return {consumed,frames};
 }
+export function replayNativeTreasure(onCheckpoint) { return replay(input.events,Cave,onCheckpoint); }
+if(process.argv[1] && pathToFileURL(resolve(process.argv[1])).href===import.meta.url) {
 const result=replay(input.events);
 const old=execFileSync("git",["show","9232a42:src/game/cave-transitions.js"],{encoding:"utf8"});
 const oldURL=`data:text/javascript;base64,${Buffer.from(old).toString("base64")}`;
@@ -101,3 +103,5 @@ targets["treasure-end"].bytes[0x2229]^=1;
 try {assert.throws(()=>replay(input.events),/treasure-end:DS2229/);}finally{targets["treasure-end"].bytes[0x2229]^=1;}
 
 console.log(JSON.stringify({scope:"conditional-native-entry-reader-stream",...result,checkpoints:labels.length,readerCheckpoints:14,coreRanges:core.length,negativeControls:3}));
+
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "conditional-original-cave-treasure-pixels",
+  "version": 1,
+  "parent": {
+    "path": "reference/cave-treasure-component.json",
+    "bytes": 1817,
+    "sha256": "e3c5aa9dd5d90557e749bd4043161729bf21abe1f36729e491a30e8690c71bd4"
+  },
+  "native": {
+    "path": "reference/cave-treasure-observation.json",
+    "bytes": 54502,
+    "sha256": "17feb1f84a0e4a8f62275e217254122fe6d1be3a3e88d952541a121980b4acf8"
+  },
+  "revealSource": {
+    "path": "reference/cave-entry-transition-source.json",
+    "bytes": 1205,
+    "sha256": "faf0124af609a933a643d5f30f39fd08f81b0a93cebbb0dcb8c8cad0ccf5277d"
+  },
+  "target": {
+    "path": ".local/cave-treasure-native-02/treasure-before-second-flip.png",
+    "bytes": 24766,
+    "sha256": "65fd66390fa04b19edac75ccffd89b7eb5d7037be3e6ad5e0b0e0b9b96120cb8"
+  },
+  "checkpoint": "before-second-flip",
+  "sourceOffset": 6000,
+  "expectedFrames": 1,
+  "expectedWidth": 320,
+  "expectedHeight": 200,
+  "expectedRGBABytes": 256000,
+  "expectedRGBASHA256": "9a7b9052cbbade31f3586166294b5ad08ef58f49ef8684d03a1ca35fd593aaba",
+  "expectedPortPublications": 354,
+  "negativeControls": 2,
+  "comparisonRules": "All320x200 RGBA bytes exact;no exclusions,tolerance,frame search or timer fitting. Original173d striped reveal completes25 retraces before second composition/party and fixed1770 stop. The visible completed first reveal is compared with that fixed native cached PNG. This is one source-assisted conditional capture alignment,not scanout timestamp or whole-ending timing acceptance.",
+  "nativeElapsedTimeAcceptance": false,
+  "browserAcceptance": false,
+  "verify": "node scripts/verify-cave-treasure-pixels.js"
+}

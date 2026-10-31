@@ -20,7 +20,14 @@ assert.deepEqual(m.comparison.exclusions, []);
 assert.ok(m.cases.length > 0, "Zero report cases");
 const { image: originalImage } = await originalGame();
 await checkArtifacts(m.artifacts);
-const source = await validateProducerArchive(m.producer);
+await validateProducerArchive(m.producer);
+const source = await validateProducerArchive(m.frameProducer ?? m.producer);
+if (m.frameProducer)
+  assert.equal(
+    m.frameProducer,
+    m.incomingReplay,
+    "Current frames need their independent replay receipt",
+  );
 for (const [p, h] of Object.entries(source.files))
   if (acceptedRuntimeSource(p))
     assert.equal(sha(await readFile(p)), h, "Changed report runtime " + p);
@@ -29,8 +36,10 @@ const packet = await json(m.artifacts.presentations.path),
   seen = new Set();
 let incomingPages;
 if (m.incomingReplay) {
-  await validateProducerArchive(m.incomingReplay);
+  const replaySource = await validateProducerArchive(m.incomingReplay);
   const receipt = await json(m.artifacts.incomingResult.path);
+  assert.equal(receipt.sourceCommit, replaySource.commit);
+  if (m.frameProducer) assert.equal(replaySource.commit, source.commit);
   assert.equal(receipt.completed, true);
   assert.equal(receipt.accepted, true);
   assert.equal(receipt.producer, m.producer);
@@ -42,7 +51,7 @@ if (m.incomingReplay) {
     assert.equal(v.key, packet[i].key);
     assert.equal(v.at, packet[i].at);
     assert.deepEqual(v.state, packet[i].state);
-    assert.deepEqual(reportPixels(v), reportPixels(packet[i]));
+    assert.equal(sha(reportPixels(v)), sha(reportPixels(packet[i])));
   }
   incomingPages = await json(m.artifacts.incomingPages.path);
   assert.deepEqual(

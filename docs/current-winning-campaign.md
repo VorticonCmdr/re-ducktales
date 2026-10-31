@@ -1,9 +1,18 @@
 # Winning campaign after reward-presentation restoration
 
-This work refreshes browser coverage after the original75-retrace award entry
-changed the old fixed-timestamp campaign route. Runtime remains357d83f;only the
-player/capture tooling changes. The old170-checkpoint receipt remains immutable
-historical evidence. No old expected state or timer is adjusted to make it pass.
+Current update:report restoration is now integrated (runtime introduced at
+b0bfaac). A fresh current browser producer `.local/report-timed-winning-browser-01`
+again earned six treasures and banked27050,but lost normally on day31. The
+isolated `codex/current-campaign-player` branch has an input-only Novay candidate:
+16 added neutral reads avoid an observed arrow hit. A carried simulation from
+126 exact startup checkpoints wins34650 to28500 and reaches all26 credits.
+Actual browser verification is running;independent replay is still required.
+No game rules or difficulty were changed. Hard remains deferred.
+
+The experiments below retain their historical357d83f reward-timed scope. They
+refresh the route after the original75-retrace award entry changed the old fixed
+timestamps. The old170-checkpoint winning receipt remains immutable historical
+evidence. No old expected state or timer is adjusted to make it pass.
 
 The existing Standard Wages explorer now supports `--winning`,which includes its
 startup/cave/banking/Safari legs and a continuation through Great Outback jungle,

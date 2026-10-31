@@ -64,10 +64,15 @@ intentionally reject changed runtime. The earlier cave award/audio receipt
 | Cave | All8 component layouts;Standard Too-Pei,Atlantis,Klondike,Siberia treasures |
 | Safari | All6 earlier variants;Standard Kenya target photograph |
 
-Next milestone:refresh the Standard campaign after report timing changed and
-establish a current winning route. An extra Novay mountain candidate landed but
-its494-read climbing controls failed;this is a failed strategy,not proof of a
-mechanics defect. No difficulty or mechanics were changed to force success.
+Next milestone:establish a current winning browser route and independent replay.
+A fresh current-runtime capture again earned six treasures and banked27050,then
+lost normally on day31 (`.local/report-timed-winning-browser-01`). A bounded
+Novay investigation identified an arrow collision;adding16 neutral player reads
+before the climb completed the conditional510-read route with3 lives. Replaying
+startup inputs and carrying state through Novay then produced a day31 win,
+34650 vs28500,and all26 credits in the port simulation. This is a candidate,
+not browser acceptance. Its actual browser run is in progress on isolated branch
+`codex/current-campaign-player`. No game rules,difficulty,RNG or clocks changed.
 
 Original movement cadence remains open across expeditions. Graphics work is
 modeled;resource/text costs,remaining CPU/PIT phase and uninterrupted native

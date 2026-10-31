@@ -1,9 +1,10 @@
 # Report and notice presentation restoration
 
 Runtime introduced at b0bfaac on `codex/report-presentations`,based on7579426.
-All three browser replays and the combined strict acceptance gate pass.
-Integrated locally into the main port. The main worktree's earlier
-357d83f earned-route receipt remains a separate historical runtime after merge.
+Current bank-corrected runtime receipts are recorded by
+`reference/report-presentation-acceptance.json`:85 exact browser checkpoints,
+2881 independent inputs,174 intermediate state/pixel/time comparisons and135
+source stripe groups. Earlier receipts retain their historical source scope.
 
 The application now implements the source-defined sequence with original
 MAIN30/33 assets:fill0 → entry wipe25 retraces → portrait copy/helper input flush
@@ -31,28 +32,29 @@ at the query boundary and do not count as actual audio acceptance.
 - Original identity/order:1238 original/prepared/Ghidra bytes,16 loader
   relocations and one exact preparation stack-probe transformation.
   [Source proof](report-presentations.md). Original bytes remain authoritative.
-- Runtime checks:210 unit cases,21 report/notice reader-boundary cases and
-  production build passed at b0bfaac and again in the combined gate. Focused archived checks at463b74c remain in
+- Runtime checks:218 unit cases,21 report/notice reader-boundary cases and
+  production build pass in the current combined gate. Focused historical checks at463b74c remain in
   `.local/report-runtime-checks-01`.
 - Actual ordinary+player-collected route:
   `.local/report-player-presentation-01` and independent consumer
-  `.local/report-player-replay-01`;27 exact full-state/decoded-RGBA checkpoints,
-  543 independent DOM inputs,missing-fresh-Pause negative and actual Restart.
+  `.local/current-report-player-replay-01`;27 exact full-state/decoded-RGBA checkpoints,
+  543 independent DOM inputs,all58 intermediate state/pixel/time comparisons,
+  missing-fresh-Pause negative and actual Restart.
 - Actual ordinary+rival-collected route:
   `.local/report-rival-presentation-01` and independent consumer
-  `.local/report-rival-replay-01`;the same27/543 checks and negative/Restart.
+  `.local/current-report-rival-replay-01`;the same27/543 and58 intermediate-frame checks and negative/Restart.
 - Each route verifies45 exact row groups,50 entry/75 total retraces and three
   missing-group/pixel/incoming-page negatives. Completed targets come from
   separately retained earlier port pages;no image pixels are excluded.
 - Forced claim candidate `.local/report-forced-presentation-01` naturally loses
   the first Standard Safari race,then exercises early input flushing,Pause,
   resume,fresh Fire,map and Restart. It captures31 checkpoints/1795 events;
-  its independent consumer `.local/report-forced-replay-01` passes31 exact
+  its independent consumer `.local/current-report-forced-replay-01` passes31 exact
   state/image checkpoints,1795 DOM inputs,all58 intermediate frame states/pixels/
   timestamps,missing-Pause negative and Restart. Zero forced claims fails the
   experiment. All45 forced-route row groups pass.
-- Actual PC speaker and Tandy report probes at0a5d994:
-  `.local/report-speaker-audio-01` and `.local/report-tandy-audio-01` verify
+- Actual PC speaker and Tandy report probes atf2cb091:
+  `.local/current-report-speaker-audio-01` and `.local/current-report-tandy-audio-01` verify
   enabled24/6e/fresh global status queries/21,real completion,nonzero signal
   samples and Restart. Host20ms/Game16ms is an explicitly conditional profile;
   no audio completion values are injected.
@@ -71,12 +73,12 @@ fresh ignored output directories. Missing/corrupt local evidence fails setup.
 ```sh
 node scripts/verify-report-presentation-acceptance.js
 node scripts/verify-report-presentation-source.js
-node scripts/verify-report-presentation-rows.js --manifest=reference/report-player-rows.json
-node scripts/verify-report-presentation-rows.js --manifest=reference/report-rival-rows.json
-node scripts/verify-report-fixture-negatives.js --manifest=reference/report-player-browser.json
-node scripts/replay-report-presentation-browser.js --manifest=reference/report-player-browser.json --output=.local/report-player-replay-FRESH
-node scripts/replay-report-presentation-browser.js --manifest=reference/report-rival-browser.json --output=.local/report-rival-replay-FRESH
-node scripts/replay-report-presentation-browser.js --manifest=reference/report-forced-browser.json --output=.local/report-forced-replay-FRESH
+node scripts/verify-report-presentation-rows.js --manifest=reference/current-report-player-rows.json
+node scripts/verify-report-presentation-rows.js --manifest=reference/current-report-rival-rows.json
+node scripts/verify-report-fixture-negatives.js --manifest=reference/current-report-player-browser.json
+node scripts/replay-report-presentation-browser.js --manifest=reference/current-report-player-browser.json --output=.local/report-player-replay-FRESH
+node scripts/replay-report-presentation-browser.js --manifest=reference/current-report-rival-browser.json --output=.local/report-rival-replay-FRESH
+node scripts/replay-report-presentation-browser.js --manifest=reference/current-report-forced-browser.json --output=.local/report-forced-replay-FRESH
 node scripts/probe-rival-audio.js --device=speaker --output=.local/report-speaker-FRESH
 node scripts/probe-rival-audio.js --device=tandy --output=.local/report-tandy-FRESH
 npm test

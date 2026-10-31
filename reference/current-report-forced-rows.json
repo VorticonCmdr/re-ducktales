@@ -1,0 +1,112 @@
+{
+  "kind": "report-presentation-row-candidate",
+  "producer": ".local/report-forced-presentation-01",
+  "nativeComparison": false,
+  "scope": "Current consumer matches all58 retained producer intermediate states,pixels and times,then verifies45 source stripe groups and actual consumed incoming pages. Independent retained targets;not native whole-transition timing.",
+  "comparison": {
+    "exclusions": [],
+    "bandClock": "Five-retrace held bands at offsets0/25/50;strict browser replay compares exact captured clock values"
+  },
+  "expectedRowGroups": 45,
+  "targetProducers": [
+    ".local/current-winning-browser-03"
+  ],
+  "artifacts": {
+    "presentations": {
+      "path": ".local/report-forced-presentation-01/presentations.json",
+      "bytes": 1129487,
+      "sha256": "1e9d0d2f57096078902fb7191c99e592f313828027aaf0bdbe5fdc8e791c7d39"
+    },
+    "originalSource": {
+      "path": "reference/report-presentation-source.json",
+      "bytes": 1871,
+      "sha256": "2a0c105a0a1f59152566ffb2fe762fcb63a113c06ffbb9f5ddb2763f46b74210"
+    },
+    "oldPoints": {
+      "path": ".local/current-winning-browser-03/campaign-checkpoints.json",
+      "bytes": 1290419,
+      "sha256": "f9c638653c48fae6feae32b7ba5d927f696c91e33ce8dc913450c5e1bc4b0ac1"
+    },
+    "normal1": {
+      "path": ".local/current-winning-browser-03/dialogue-18.png",
+      "bytes": 15495,
+      "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+    },
+    "normal3": {
+      "path": ".local/current-winning-browser-03/dialogue-21.png",
+      "bytes": 15709,
+      "sha256": "8aeb77b045929260e11c6fbdc29d8805944538d3d0bd55efb7814e044e725262"
+    },
+    "forced": {
+      "path": ".local/current-winning-browser-03/safari-flight-return-0.png",
+      "bytes": 15779,
+      "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+    },
+    "beforeNormal": {
+      "path": ".local/report-forced-presentation-01/dialogue-17.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    },
+    "incomingPages": {
+      "path": ".local/current-report-forced-replay-01/incoming-pages.json",
+      "bytes": 39847,
+      "sha256": "694570996ba9678ad5e918da8f8034e82eb18cbb8e85a00d56b45688e31b33a3"
+    },
+    "replayedFrames": {
+      "path": ".local/current-report-forced-replay-01/presentations.json",
+      "bytes": 1129487,
+      "sha256": "1e9d0d2f57096078902fb7191c99e592f313828027aaf0bdbe5fdc8e791c7d39"
+    },
+    "bankSource": {
+      "path": "reference/bank.json",
+      "bytes": 12610,
+      "sha256": "fe6ae16788cd59bb015eba6e415a919130349de859ff5aeba67b119359b7f282"
+    },
+    "incomingResult": {
+      "path": ".local/current-report-forced-replay-01/result.json",
+      "bytes": 741,
+      "sha256": "fc61ce4b69d2a4aebe3780f6b113a7dbc907c6bddc4acefcc4f2777e9f3f4aa0"
+    }
+  },
+  "cases": [
+    {
+      "key": "rival-report:1:rival",
+      "targetId": 1,
+      "variant": 1,
+      "target": "normal1",
+      "targetCheckpoints": "oldPoints",
+      "targetCheckpoint": "dialogue-18",
+      "incoming": {
+        "kind": "checkpoint",
+        "artifact": "beforeNormal"
+      }
+    },
+    {
+      "key": "rival-report:3:rival",
+      "targetId": 3,
+      "variant": 0,
+      "target": "normal3",
+      "targetCheckpoints": "oldPoints",
+      "targetCheckpoint": "dialogue-21",
+      "incoming": {
+        "kind": "bank-return",
+        "key": "rival-report:3:rival"
+      }
+    },
+    {
+      "key": "rival-claim:32:rival",
+      "targetId": 32,
+      "variant": 0,
+      "target": "forced",
+      "targetCheckpoints": "oldPoints",
+      "targetCheckpoint": "safari-flight-return-0",
+      "incoming": {
+        "kind": "recorded-page",
+        "key": "rival-claim:32:rival"
+      }
+    }
+  ],
+  "verify": "node scripts/verify-report-presentation-rows.js --manifest=reference/current-report-forced-rows.json",
+  "incomingReplay": ".local/current-report-forced-replay-01",
+  "frameProducer": ".local/current-report-forced-replay-01"
+}

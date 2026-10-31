@@ -45,18 +45,19 @@ exclusions,state restores,RNG/money patches or difficulty changes in this route.
 Ordinary reports,forced claims and collected notices implement50 entry/75 total
 retraces,deferred variant RNG,original early-key flushes,6e before reveal and21/
 location publication after exit. Speech status reads have fresh device queries.
-The current player-notice replay passes27 exact checkpoints/543 inputs,all58
-intermediate state/pixel/time comparisons,45 stripe groups,Pause-negative and
-Restart. Rival/forced report and real speaker/Tandy receipts are being refreshed
-for the bank-corrected runtime. The earlier85-checkpoint/2881-input report gate
-belongs to runtime b0bfaac;its old consumer guards intentionally reject this
-changed runtime until the refresh is complete.
+All three current report replays pass85 exact checkpoints/2881 independent DOM
+inputs,all174 intermediate state/pixel/time comparisons,135 source stripe groups,
+three missing-Pause negatives and Restart. Fresh speaker/Tandy probes onf2cb091
+produce real nonzero audio output,fresh speech-status queries and completion.
+The combined acceptance also passes five setup negatives,218 unit cases,21
+reader-boundary cases and the production build. Old producer recordings remain
+immutable;current consumers establish compatibility with the bank correction.
 [Report implementation](report-presentation-implementation.md).
 
 Tandy/PCjr includes Sound001 and persistent original channels/priorities. PC
-speaker is the default. The current full winning route is muted. Earlier actual
-report audio probes retain their source scope and conditional host20ms/Game16ms
-profile;physical waveform/gain/filter and sub-call IRQ parity remain unverified.
+speaker is the default. The current full winning route is muted. Current actual
+report audio probes use an explicit conditional host20ms/Game16ms profile;
+physical waveform/gain/filter and sub-call IRQ parity remain unverified.
 [Sound](speaker-audio.md).
 
 | Family | Current winning route | Retained earlier coverage |
@@ -74,8 +75,8 @@ reused,always by fresh startup input replay. [History](status-history.md).
 
 ## Remaining work and supported build
 
-Next:finish current report/audio receipt refresh,then broaden gameplay/input
-coverage and validate expedition movement cadence against the original.
+Next:validate expedition movement cadence against the original and broaden
+gameplay/input coverage. The current report/audio receipt refresh is complete.
 Resource/text costs,remaining CPU/PIT phase and uninterrupted native whole-game
 timing are unverified. Other sound-call adaptations,cross-scene keys,modifier/
 BIOS behavior,mouse/joystick parity and arbitrary campaign finishability need
@@ -100,7 +101,7 @@ ignored `game/`;production users select their own files.
 # Current saved winning evidence,fresh unit suite and production build:
 node scripts/verify-current-winning-acceptance.js
 node scripts/verify-bank-copy-pixels.js
-node scripts/verify-report-presentation-rows.js --manifest=reference/current-report-player-rows.json
+node scripts/verify-report-presentation-acceptance.js
 # Fresh independent winning replay;clean source,new ignored output:
 node scripts/verify-standard-wages-route.js --manifest=reference/report-timed-winning-route.json --output=.local/current-winning-replay-FRESH
 npm run dev

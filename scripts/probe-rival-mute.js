@@ -136,7 +136,13 @@ const result = await withCarlsbadBrowser(async ({ page, state, until }) => {
     .locator("#sound")
     .evaluate((e) => ({ ...e.dataset }));
   assert.equal(stats.contextState, "running");
-  assert.ok(Number(stats.signalSamples) > 0);
+  if (mode === "before" && device === "speaker")
+    assert.equal(
+      Number(stats.signalSamples),
+      0,
+      "Rejected off-click must stay silent",
+    );
+  else assert.ok(Number(stats.signalSamples) > 0);
   await page.locator("#restart").click();
   await until((s) => s.scene === "title");
   return {

@@ -10,12 +10,19 @@ Standard has a verified continuous winning route: startup/security/office →
 flights → Too-Pei cave → Kenya Safari → Great Outback jungle → Lost World mountain
 → Atlantis, Klondike and Siberian caves → banking/rivals → day33 victory →
 celebration/replay-No → all26 credits → finished screen → Restart. Banked24275
-beats rival21000. This route was rerun after the latest cave audio changes.
+beats rival21000. This is the last full winning receipt,at runtime66d8f54.
+The award-presentation timing change below requires fresh campaign recordings;
+the old fixed-timestamp route is historical on the changed runtime.
 
 HTML/CSS/vanilla JS with npm/Vite. Original files remain authoritative in ignored
 `game/`; production users select their own originals. Nothing is pushed or deployed.
 
 ## Latest completed milestone
+
+**Award presentation under verification:** the original75-retrace wipe/copy/
+wipe/reveal sequence now precedes the reward cue and40-read prompt. Cash and
+input flushes follow their source boundaries. Focused/source checks pass; fresh
+browser acceptance is pending. [Evidence and commands](award-presentation.md).
 
 Cave terminal sounds now wait on actual global driver status. Mute cannot invent
 completion; stale tokens and driver ticks cannot release the wait. Initial, pit
@@ -23,7 +30,8 @@ and return resets follow the original enabled guards. Room entry requests one
 pit-warning or treasure-proximity cue; redraws remain silent. Runtime:`66d8f54`.
 [Rules, evidence and limitations](cave-audio.md).
 
-[Current saved acceptance](../reference/cave-audio-acceptance.json) passes:
+[Historical cave acceptance](../reference/cave-audio-acceptance.json) passed at
+its pinned runtime;its source guards reject the changed award runtime:
 
 - Four actual-browser speaker/Tandy cases, each enabled or muted during the pit
   ending. All traverse real passages, cue once per room, query the real driver,
@@ -58,9 +66,11 @@ receipts retain their documented historical source scopes. They were not all
 rerun for this milestone; older runtime guards intentionally reject newer code.
 [History](status-history.md),[Standard route](standard-wages.md).
 
-Next: extend actual browser audio coverage to natural cave capture/treasure
-endings, then continue the remaining gameplay/input audit. Current natural audio
-coverage is pit-only; the other terminal waits have component/static evidence.
+Next: verify the earned award route,all15 original row groups,input flushes and
+real speaker/Tandy handoff,then establish fresh campaign coverage. Natural cave
+capture/treasure speaker exploration has reached results/Restart;it is not strict
+acceptance or native timing evidence. Earlier accepted natural audio coverage is
+pit-only;the other terminal waits have component/static evidence.
 Remaining sound-call adaptations also need review against the original.
 
 Original movement cadence remains an open fidelity issue across expeditions.
@@ -92,10 +102,9 @@ images contain actual game code with documented transformations and are never ru
 ## Verification
 
 ```sh
-# Current saved acceptance, including source proofs and conditional cave checks:
-node scripts/verify-cave-audio-acceptance.js
-node scripts/verify-cave-audio-setup-negative.js
-node --test scripts/cave-audio.test.js tests/cave-timing.test.js
+# Current work under browser verification:
+node scripts/verify-award-presentation-source.js
+node --test tests/award-presentation.test.js scripts/result-input.test.js
 npm test
 npm run build
 # Fresh exact browser regressions; clean committed source and new ignored outputs:

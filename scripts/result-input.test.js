@@ -16,7 +16,7 @@ async function fresh({ phase = "award", audio = false, atomic = false } = {}) {
   g.expeditionResult = {
     phase,
     ...(phase === "award" ? { value: 3000 } : {}),
-    remaining: ({ failure: 20, award: 40, atomic: 100 }[phase]) * 7,
+    remaining: { failure: 20, award: 40, atomic: 100 }[phase] * 7,
     skipRequested: false,
   };
   const handoffs = [];
@@ -150,13 +150,20 @@ test("ordinary award click survives the local handoff without a synthetic sound0
   assert.equal(g.campaign.locations[1].playerCollected, true);
 });
 test("failed atomic-location expedition spends one day without collection,unlock or cash changes", async () => {
-  const { g, handoffs } = await fresh({ phase: "failure", audio: true, atomic: true });
+  const { g, handoffs } = await fresh({
+    phase: "failure",
+    audio: true,
+    atomic: true,
+  });
   g.input({ type: "fire" });
   ticks(g, 7);
   assert.equal(g.campaign.day, 4);
   assert.equal(g.money, 3400);
   assert.equal(g.campaign.atomicAvailable, false);
-  assert.equal(g.campaign.locations[g.campaign.location].playerCollected, false);
+  assert.equal(
+    g.campaign.locations[g.campaign.location].playerCollected,
+    false,
+  );
   assert.deepEqual(handoffs, [{ type: "map" }]);
   assert.deepEqual(g.drainEffects(), [{ type: "sound", id: 0x24 }]);
 });
@@ -286,6 +293,18 @@ test("award cue49 is requested only when audio is enabled at its original call",
       drainEvents: () => [],
     });
     assert.equal(g.expeditionResult.phase, "award");
+    const presentation = g.resultPresentation;
+    assert.ok(presentation);
+    assert.deepEqual(
+      g.drainEffects().filter((e) => e.type === "sound"),
+      [],
+    );
+    for (let i = 0; i < 1000 && g.resultPresentation; i++) {
+      g.advanceTick();
+      g.advanceRetrace();
+    }
+    assert.equal(g.resultPresentation, null);
+    assert.equal(presentation.consumedRetraces, 75);
     assert.deepEqual(
       g.drainEffects().filter((e) => e.type === "sound"),
       audio ? [{ type: "sound", id: 0x49 }] : [],

@@ -202,6 +202,35 @@ export class Renderer {
     this.ctx.fillRect(box.x, box.y, 1, box.height);
     this.ctx.fillRect(box.x + box.width - 1, box.y, 1, box.height);
   }
+  awardFrame(value) {
+    const key = `award:${value}`;
+    if (!this.cache.has(key)) {
+      const surface = document.createElement("canvas");
+      surface.width = 320;
+      surface.height = 200;
+      const previous = this.ctx;
+      this.ctx = surface.getContext("2d", { alpha: false });
+      try {
+        this.draw("MAIN.ARC", 35, 0, 0, 0);
+        [0x2c5, 0x2d6, 0x2e8, 0x2f9].forEach((at, i) =>
+          this.text(
+            executableText(this.resources.executable, at),
+            168,
+            60 + i * 16,
+          ),
+        );
+        this.text(executableText(this.resources.executable, 0x306), 208, 128);
+        this.text(String(value), 216, 128);
+      } finally {
+        this.ctx = previous;
+      }
+      this.cache.set(key, {
+        surface,
+        pixels: surface.getContext("2d").getImageData(0, 0, 320, 200).data,
+      });
+    }
+    return this.cache.get(key);
+  }
   endingFrame(e) {
     const key = `ending:${e.phase}:${e.asset}:${e.choice}:${e.credit}:${!!e.clearFooter}`;
     if (!this.cache.has(key)) {
@@ -740,16 +769,50 @@ export class Renderer {
         this.text(executableText(this.resources.executable, 0x1820), 176, 60);
         this.text(executableText(this.resources.executable, 0x1832), 188, 76);
       } else if (r.phase === "award") {
-        this.draw("MAIN.ARC", 35, 0, 0, 0);
-        [0x2c5, 0x2d6, 0x2e8, 0x2f9].forEach((at, i) =>
-          this.text(
-            executableText(this.resources.executable, at),
-            168,
-            60 + i * 16,
-          ),
-        );
-        this.text(executableText(this.resources.executable, 0x306), 208, 128);
-        this.text(String(r.value), 216, 128);
+        const p = game.resultPresentation,
+          target = this.awardFrame(r.value);
+        if (!p) this.ctx.drawImage(target.surface, 0, 0);
+        else {
+          if (this.awardSource !== p) {
+            this.awardSource = p;
+            // A final expedition publication can return in the same retrace.
+            // Render its committed page even if no rAF displayed it separately.
+            // This page is presentation-only; never a simulation input.
+            if (p.sourceScene) {
+              const previous = this.ctx,
+                surface = document.createElement("canvas");
+              surface.width = 320;
+              surface.height = 200;
+              this.ctx = surface.getContext("2d", { alpha: false });
+              try {
+                const source = Object.create(game);
+                source.scene = p.sourceScene;
+                this.renderScene(source);
+                this.awardIncoming = this.ctx.getImageData(0, 0, 320, 200).data;
+              } finally {
+                this.ctx = previous;
+              }
+            } else
+              this.awardIncoming = this.ctx.getImageData(0, 0, 320, 200).data;
+            this.awardBlank = new Uint8ClampedArray(320 * 200 * 4);
+            for (let i = 3; i < this.awardBlank.length; i += 4)
+              this.awardBlank[i] = 255;
+          }
+          const pixels = p.transition
+            ? endingTransitionPixels(
+                p.transition,
+                p.phase === "initial-wipe"
+                  ? this.awardIncoming
+                  : this.awardBlank,
+                target.pixels,
+              )
+            : p.phase === "clearing-page"
+              ? this.awardIncoming
+              : p.phase === "publishing"
+                ? target.pixels
+                : this.awardBlank;
+          this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
+        }
       } else if (r.phase === "atomic") {
         this.draw("MAIN.ARC", 41, 0, 0, 0);
         [

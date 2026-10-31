@@ -12,6 +12,13 @@ export function departureWork(entries) {
     entries[30].height !== 200
   )
     throw Error("Missing original departure portrait");
+  return portraitPageWork(entries[30]);
+}
+
+// The same fill and full-page RAM copy are used by picture helper6 (MAIN35).
+export function portraitPageWork(entry) {
+  if (entry?.type !== 1 || entry.width !== 320 || entry.height !== 200)
+    throw Error("Missing original full-page portrait");
   const fill = {
     instructions: 29,
     portWrites: 5,

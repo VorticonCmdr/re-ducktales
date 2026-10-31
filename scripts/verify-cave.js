@@ -121,6 +121,7 @@ export async function verifyCave() {
     image: unpackImage(raw["DUCKTALE.EXE"]),
     entries: parseArchive(raw["EXP.ARC"], "EXP.ARC"),
     maps: parseCaveMaps(parseArchive(raw["CAVEMAPS.ARC"], "CAVEMAPS.ARC")),
+    mainEntries: parseArchive(raw["MAIN.ARC"], "MAIN.ARC"),
     font: parseArchive(raw["MAIN.ARC"], "MAIN.ARC")[42].data,
   };
   assert.equal(compareCave(local, resources), manifest.expectedCheckpointCount);

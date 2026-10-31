@@ -16,6 +16,7 @@ import { Mountain } from "./mountain.js";
 import { Jungle } from "./jungle.js";
 import { Photography } from "./photography.js";
 import { ResultInputWait } from "./result-input-wait.js";
+import { AwardPresentation } from "./award-presentation.js";
 import { ExpeditionBriefing } from "./expedition.js";
 import { CampaignVisitNotice } from "./campaign-visit.js";
 import { nextRandom, u8, u32, u16 } from "./integer.js";
@@ -90,6 +91,7 @@ export class Game {
     this.photography = null;
     this.briefing = null;
     this.resultWait = null;
+    this.resultPresentation = null;
     this.repairs = null;
     this.loot = loot;
     this.flightResources = flightResources;
@@ -157,6 +159,7 @@ export class Game {
     this.mountain?.setClock(clock);
     this.photography?.setClock(clock);
     this.departureScene?.setClock(clock);
+    this.resultPresentation?.setClock(clock);
   }
   nextSimulationWake() {
     const component =
@@ -168,9 +171,11 @@ export class Game {
             ? this.mountain
             : this.scene === "photography"
               ? this.photography
-              : this.scene === "map" && this.destinationInput === "keyboard"
-                ? this.campaign?.destinationWaits
-                : null;
+              : this.scene === "expedition-result"
+                ? this.resultPresentation
+                : this.scene === "map" && this.destinationInput === "keyboard"
+                  ? this.campaign?.destinationWaits
+                  : null;
     return !this.systemOverlay &&
       ["graphics", "continuation"].includes(component?.wait?.clock)
       ? component.wait.until
@@ -186,9 +191,11 @@ export class Game {
             ? this.mountain
             : this.scene === "photography"
               ? this.photography
-              : this.scene === "map" && this.destinationInput === "keyboard"
-                ? this.campaign?.destinationWaits
-                : null;
+              : this.scene === "expedition-result"
+                ? this.resultPresentation
+                : this.scene === "map" && this.destinationInput === "keyboard"
+                  ? this.campaign?.destinationWaits
+                  : null;
     if (
       this.systemOverlay ||
       !["graphics", "continuation"].includes(component?.wait?.clock)
@@ -199,6 +206,8 @@ export class Game {
     else if (this.scene === "cave") this.collectCave();
     else if (this.scene === "mountain") this.collectMountain();
     else if (this.scene === "photography") this.collectPhotography();
+    else if (this.scene === "expedition-result")
+      this.collectAwardPresentation();
     else this.collectDestination();
   }
   get usesExpeditionKeyboard() {
@@ -656,7 +665,9 @@ export class Game {
         "rival-claim",
         "visit-notice",
         ...(this.investments?.phase === "broker" ? ["investments"] : []),
-        ...(this.resultWait ? ["expedition-result", "crash-repairs"] : []),
+        ...(this.resultWait || this.resultPresentation
+          ? ["expedition-result", "crash-repairs"]
+          : []),
         "ending",
         "bank",
         ...(this.scene === "map" &&
@@ -832,6 +843,7 @@ export class Game {
       this.pendingRivalSystemKeys.clear();
       this.pendingInvestmentSystemKeys.clear();
       this.resultWait = null;
+      this.resultPresentation = null;
       this.repairs = null;
       this.bank = null;
       this.exiting = false;
@@ -1388,7 +1400,10 @@ export class Game {
       return;
     }
     if (this.scene === "expedition-result") {
-      if (this.resultWait) {
+      if (this.resultPresentation) {
+        this.resultPresentation.advanceTick();
+        this.collectAwardPresentation();
+      } else if (this.resultWait) {
         this.resultWait.advanceTick();
         this.collectResultWait();
       } else if (this.advanceDialogue(this.expeditionResult))
@@ -1499,6 +1514,11 @@ export class Game {
     if (this.scene === "ending") {
       this.ending.advanceRetrace();
       this.collectEnding();
+      return;
+    }
+    if (this.scene === "expedition-result" && this.resultPresentation) {
+      this.resultPresentation.advanceRetrace();
+      this.collectAwardPresentation();
       return;
     }
     if (this.scene === "photography") {
@@ -1922,14 +1942,15 @@ export class Game {
       const id = this.campaign.locations[this.campaign.location].treasure;
       const treasure = this.loot?.[id - 1];
       if (!treasure) throw Error("Missing original expedition reward");
-      this.money = u32(this.money + treasure.value);
       this.expeditionResult = {
         phase: "award",
         value: treasure.value,
         remaining: 40 * 7,
         skipRequested: false,
       };
-      if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x49 });
+      this.scene = "expedition-result";
+      this.beginAwardPresentation(treasure.value, "cave");
+      return;
     }
     // Only the actual09f5 result dialog starts with19a5. The shared photo-score
     // branch above returns directly and never enters this input wait.
@@ -2000,15 +2021,34 @@ export class Game {
     const id = this.campaign.locations[this.campaign.location].treasure;
     const treasure = this.loot?.[id - 1];
     if (!treasure) throw Error("Missing original expedition reward");
-    this.money = u32(this.money + treasure.value);
     this.expeditionResult = {
       phase: "award",
       value: treasure.value,
       remaining: 40 * 7,
       skipRequested: false,
     };
-    if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x49 });
     this.scene = "expedition-result";
+    this.beginAwardPresentation(
+      treasure.value,
+      expedition === this.jungle ? "jungle" : "mountain",
+    );
+  }
+  beginAwardPresentation(value, sourceScene = null) {
+    this.resultWait = null;
+    this.resultPresentation = new AwardPresentation({
+      entries: this.departureEntries,
+      clock: this.simulationClock,
+      sourceScene,
+      flushInput: () => this.flushResultInput(),
+      commitReward: () => {
+        this.money = u32(this.money + value);
+      },
+    });
+  }
+  collectAwardPresentation() {
+    if (!this.resultPresentation?.complete) return;
+    this.resultPresentation = null;
+    if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x49 });
     this.beginResultWait();
   }
   beginResultWait() {
@@ -2025,6 +2065,9 @@ export class Game {
   }
   flushResultInput() {
     this.pendingResultSystemKeys.clear();
+    // The expedition has returned,so syncExpeditionKeyboard no longer selects
+    // its memory. Resident19a5 still clears the same shared native key table.
+    this.flightMemory?.bytes.fill(0, 0x276c, 0x27ec);
     this.flushExpeditionKeyboard();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
@@ -2602,6 +2645,9 @@ export class Game {
         this.scene === "expedition-result"
           ? {
               ...this.expeditionResult,
+              ...(this.resultPresentation
+                ? { presentation: this.resultPresentation.snapshot() }
+                : {}),
               ...(this.resultWait?.waitingForInputPoll
                 ? { waitingForInputPoll: true }
                 : {}),

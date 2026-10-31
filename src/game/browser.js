@@ -448,6 +448,7 @@ function frame() {
           !!overlay ||
           game.security?.outcome?.code === 0 ||
           game.scene === "departure" ||
+          !!game.resultPresentation ||
           !!(
             game.scene === "map" &&
             game.campaign.destinationWaits &&
@@ -533,7 +534,7 @@ function frame() {
                             : game.scene === "cave"
                               ? `Cave · ${game.cave.phase === "exploring" ? "Hold an arrow to point; press Space to move" : game.cave.phase} · Lamp ${game.cave.snapshot().torch}/${game.cave.snapshot().limit} · Cash $${game.cave.snapshot().money}`
                               : game.scene === "expedition-result"
-                                ? `Expedition ${game.expeditionResult.phase === "failure" ? "failed" : game.expeditionResult.phase === "award" ? "treasure recovered" : "atomic transport unlocked"} · Fire to continue · Cash $${game.money}`
+                                ? `Expedition ${game.expeditionResult.phase === "failure" ? "failed" : game.expeditionResult.phase === "award" ? "treasure recovered" : "atomic transport unlocked"}${game.resultPresentation ? "" : " · Fire to continue"} · Cash $${game.money}`
                                 : game.scene === "visit-notice"
                                   ? `${game.visitNotice.reason === "player" ? "This treasure is already collected" : "Glomgold has already taken this treasure"} · Fire to return to the map`
                                   : game.scene === "expedition-briefing"

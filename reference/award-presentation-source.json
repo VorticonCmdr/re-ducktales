@@ -1,0 +1,106 @@
+{
+  "kind": "award-presentation-static-source",
+  "program": "INVESTMENT_CODE.EXE",
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "ranges": [
+    {
+      "name": "caller",
+      "address": "1000:0b39",
+      "offset": 2873,
+      "length": 271,
+      "sha256": "e5b25effa601920f23a16ed08e28d9821efbcbf992b1d4fef953c621ecb1fc4b",
+      "relocations": [
+        3113,
+        2914,
+        2892,
+        2880
+      ],
+      "artifact": {
+        "path": ".local/award-presentation-source-01/caller.json",
+        "bytes": 1619,
+        "sha256": "5311244a225a3369b61536452f78183c19a11e072db882a5d653207f0c81e5af"
+      }
+    },
+    {
+      "name": "picture-preface",
+      "address": "11c4:0013",
+      "offset": 7251,
+      "length": 38,
+      "sha256": "ded1d8cafaecb03a3b056546c86f236d6da1c0886d026f58af7b05c233f6784c",
+      "relocations": [
+        7280
+      ],
+      "artifact": {
+        "path": ".local/award-presentation-source-01/picture-preface.json",
+        "bytes": 396,
+        "sha256": "93fb63d6b6d9541b83c262537ae91dc77a039d85a835628b4fcde0f742e77b00"
+      }
+    },
+    {
+      "name": "picture-six",
+      "address": "11c4:00bf",
+      "offset": 7423,
+      "length": 55,
+      "sha256": "1a0b8e1e367e767c2425c3e04bdeca483bdc424aae62997e883a66ec1915635a",
+      "relocations": [
+        7471,
+        7433
+      ],
+      "artifact": {
+        "path": ".local/award-presentation-source-01/picture-six.json",
+        "bytes": 488,
+        "sha256": "47a8e1daad8db9782b95cda918c90eaef17cabdf6f33d896ce764f0b424f35c1"
+      }
+    },
+    {
+      "name": "picture-six-table",
+      "address": "11c4:015b",
+      "offset": 7579,
+      "length": 2,
+      "sha256": "fbc6134781bfa3f1d0140d587dc801083f52fd52a12f636e74812f4df92dae37",
+      "relocations": [],
+      "artifact": {
+        "path": ".local/award-presentation-source-01/picture-six-table.json",
+        "bytes": 204,
+        "sha256": "78ee3248505d4f3f15bdaa5bf81504c1333e597858b76c743f377ef2f878c4a6"
+      }
+    },
+    {
+      "name": "picture-flush",
+      "address": "11c4:016d",
+      "offset": 7597,
+      "length": 5,
+      "sha256": "d4e8f2dae9d815f87efeb24cd35cc14903df1f60e55ebf69b6b970c7bdce3134",
+      "relocations": [
+        7600
+      ],
+      "artifact": {
+        "path": ".local/award-presentation-source-01/picture-flush.json",
+        "bytes": 221,
+        "sha256": "4e10bd9a13bcdfe9c8b04efbbcc771c436ec8637c545273c033cb15657db71e6"
+      }
+    }
+  ],
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "graphicsProof": {
+    "path": "reference/departure-sequence.json",
+    "bytes": 3884,
+    "sha256": "0100ad77671926cb769ad474225ebf475851e46062d3e49d10b02a24a4d48ae5"
+  },
+  "rowAlgorithm": {
+    "path": "reference/ending-presentation.json",
+    "bytes": 5652,
+    "sha256": "d3b23c2e505b2272ea8e0d908449ff087870dbcb9bb60d22b2df62342a83820d"
+  },
+  "claims": [
+    "Main0b39..0c48 selects picture helper6,commits treasure cash after its return,then calls1fe0 and1fdc before enabled49 and09f5(40).",
+    "Picture helper6 clears draw page,wipes via1fe0,copiesMAIN35,then flushes at016d.",
+    "Verified EGA1fe0 and1fdc each execute five groups of five retraces;award entry totals75 retraces."
+  ],
+  "scope": "Static source and existing EGA primitive/transition evidence. Resource loading,text drawing,remaining CPU/IRQ timing and native uninterrupted award presentation remain unmeasured."
+}

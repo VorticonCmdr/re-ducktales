@@ -310,6 +310,13 @@ export async function verifyCaveRoutes(resources) {
         "unconsumed application controls",
       );
       assert.equal(g.scene, "expedition-result");
+      const presentation = g.resultPresentation;
+      for (let step = 0; step < 10000 && g.resultPresentation; step++) {
+        g.advanceTick();
+        g.advanceRetrace();
+      }
+      assert.equal(g.resultPresentation, null, "unfinished award presentation");
+      if (presentation) assert.equal(presentation.consumedRetraces, 75);
       const won = scenario.id === "treasure";
       const value = won ? loot[g.campaign.locations[1].treasure - 1].value : 0;
       assert.equal(g.money, actual.outcome.money + value);

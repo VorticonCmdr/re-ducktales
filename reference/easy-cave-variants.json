@@ -1,0 +1,74 @@
+{
+  "id": "easy-cave-variants-carlsbad",
+  "accepted": true,
+  "captureRoot": ".local/easy-cave-variants-02",
+  "componentCases": 8,
+  "browserCheckpoints": 12,
+  "browserEvents": 82,
+  "sourceCommit": "d7257c12e6d9a457d87b419a68b7cd2ad6077727",
+  "artifacts": {
+    "source-revision.json": {
+      "path": ".local/easy-cave-variants-02/source-revision.json",
+      "bytes": 94528,
+      "sha256": "76a7f17cd1693c256e25c08fe3044649211e6ac5bca6f13244cc00a8668a77a6"
+    },
+    "sources.zip": {
+      "path": ".local/easy-cave-variants-02/sources.zip",
+      "bytes": 2570174,
+      "sha256": "eca0602b1a31c344e2a08935ef345d276f4d19942e24637be6ebbec1f29c3624"
+    },
+    "component-inputs.json": {
+      "path": ".local/easy-cave-variants-02/component-inputs.json",
+      "bytes": 10693,
+      "sha256": "0a7b72a8048355cf7dfd87bcb6fd1683b94874ad27eb424b84637c15f0f47cdf"
+    },
+    "component-checkpoints.json": {
+      "path": ".local/easy-cave-variants-02/component-checkpoints.json",
+      "bytes": 8193563,
+      "sha256": "b6ddbf062e02957cf90dfa5326257b64b33c86ec9118253206508f57faa89442"
+    },
+    "captured-events.json": {
+      "path": ".local/easy-cave-variants-02/captured-events.json",
+      "bytes": 9535,
+      "sha256": "f43d23eeba9dc08f840389ada560e1fa45303dda810ea97502b305c6db07f75a"
+    },
+    "campaign-checkpoints.json": {
+      "path": ".local/easy-cave-variants-02/campaign-checkpoints.json",
+      "bytes": 76995,
+      "sha256": "1cd7495c4bf0e27f0397691be182886a03a48e24d2b15f318a321c6dfb7443b4"
+    },
+    "environment.json": {
+      "path": ".local/easy-cave-variants-02/environment.json",
+      "bytes": 257,
+      "sha256": "cee14e26cff07f1a972d0af2e7c8753419f0cbfc4372ae00fee0dc0058be23e9"
+    },
+    "timeline.json": {
+      "path": ".local/easy-cave-variants-02/timeline.json",
+      "bytes": 1047,
+      "sha256": "c5ef78bdbf12972ce1e5cd13df58322fdb66f87b3481de08859826a3e5b22b73"
+    },
+    "capture-status.json": {
+      "path": ".local/easy-cave-variants-02/capture-status.json",
+      "bytes": 387,
+      "sha256": "1de06312fdfabfe30f063ed982e41c10c219c3b9052aa3088afb8b98a1000042"
+    },
+    "replay": {
+      "path": ".local/easy-cave-variants-replay-02/result.json",
+      "bytes": 2386,
+      "sha256": "f85289ec36f6fe22eb38ccb42e3a699be6856d1f13de5adcde040ae39c6a0c11"
+    }
+  },
+  "scope": "Port closed-loop component and independent actual-browser Carlsbad replay;not native whole-variant parity or full campaign",
+  "environment": {
+    "difficulty": 0,
+    "biosSeed": 0,
+    "audioEnabled": false,
+    "componentClock": "one driver/retrace advance per step;zero-phase synthetic provider",
+    "browserClock": "recorded monotonic origin1,8ms observations;fixed BIOS0",
+    "inputBoundary": "ordinal source reads for components;actual DOM events/timestamps for browser"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "verify": "node scripts/easy-cave-variants.js verify"
+}

@@ -4,6 +4,13 @@ This check broadens the accepted Easy campaign's one cave layout to all eight
 original map variants. It is port regression evidence, not eight native-game
 comparisons. Hard remains deferred.
 
+Accepted from clean source `d7257c1`: eight component routes, 2,696 exact
+state/pixel presentations, twelve browser checkpoints, 82 DOM events, Restart,
+and all four negative controls. Capture `.local/easy-cave-variants-02` was replayed
+independently into `.local/easy-cave-variants-replay-02`. The earlier first replay
+failed because the harness did not await resource loading; it is unaccepted.
+The corrected harness waits for application readiness with simulation time frozen.
+
 The component driver plans safe paths directly from original map exit/pit flags,
 then saves its ordinal input stream before capturing any expected state. A fresh
 instance carries its own state through every rendered presentation, the treasure
@@ -35,9 +42,9 @@ verification never regenerates expected outputs. To establish a new record from
 clean committed sources:
 
 ```
-node scripts/easy-cave-variants.js capture --output=.local/easy-cave-variants-01
-node scripts/easy-cave-variants.js verify --capture=.local/easy-cave-variants-01 --output=.local/easy-cave-variants-replay-01
-node scripts/easy-cave-variants.js register --capture=.local/easy-cave-variants-01 --replay=.local/easy-cave-variants-replay-01 --manifest=reference/easy-cave-variants.json
+node scripts/easy-cave-variants.js capture --output=.local/easy-cave-variants-fresh
+node scripts/easy-cave-variants.js verify --capture=.local/easy-cave-variants-fresh --output=.local/easy-cave-variants-fresh-replay
+node scripts/easy-cave-variants.js register --capture=.local/easy-cave-variants-fresh --replay=.local/easy-cave-variants-fresh-replay --manifest=reference/easy-cave-variants.json
 ```
 
 Capture deliberately exits1 after saving successful exploratory output; it is

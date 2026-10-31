@@ -31,10 +31,17 @@ const result = await withCarlsbadBrowser(
     });
     await page.locator("#audio").check();
     await page.locator("#game").focus();
+    async function checkbox(value) {
+      for (let i = 0; i < 5000; i++) {
+        if ((await page.locator("#audio").isChecked()) === value) return;
+        await page.clock.runFor(8);
+      }
+      throw Error("Sound checkbox did not reflect the consumed key");
+    }
     const before = await state();
-    assert.equal(before.audioEnabled, true);
+    assert.equal(await page.locator("#audio").isChecked(), true);
     await page.keyboard.press("s");
-    await until((s) => s.audioEnabled === false);
+    await checkbox(false);
     const off = await state();
     async function deviceIdle(required) {
       for (let i = 0; i < 500; i++) {
@@ -57,7 +64,7 @@ const result = await withCarlsbadBrowser(
     const stopped = await deviceIdle(after ? 2 : 1);
     assert.equal(await page.locator("#audio").isChecked(), false);
     await page.keyboard.press("s");
-    await until((s) => s.audioEnabled === true);
+    await checkbox(true);
     const enabled = await deviceIdle(after ? 3 : 2);
     const acks = enabled.events.filter((e) => e.type === "ack");
     assert.deepEqual(

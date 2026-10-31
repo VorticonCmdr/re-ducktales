@@ -46,10 +46,16 @@ fresh consumer compares the corrected complete snapshots without exclusions.
 
 `scripts/probe-rival-audio.js` exercises actual browser audio acknowledgements,
 completion and nonzero device output. Host waits and injected game-clock advances
-are explicitly conditional. Optional `--speech-controls` holds audio module
-loading, queues actual P before the first acknowledgement, then releases the real
-device and lets it complete while paused. It never invents busy/status values.
-This establishes an adapter interaction, not native clock or waveform parity.
+are explicitly conditional. Normal speaker and Tandy paths passed with request
+order `24,6e,21`, actual speech completion and Restart. This establishes an adapter
+interaction, not native clock or waveform parity. Speech completing inside Pause
+is covered by conditional controller tests, not the real-device browser probes.
+
+The attempted controlled module-loading experiment failed because Chromium's
+AudioWorklet fetch bypasses Playwright Page/Context routing, a limitation already
+recorded in `tandy-audio.md`. Its source archive and failure log remain separate
+in `.local/rival-audio-tandy-01`; it is excluded from acceptance. The unsupported
+`--speech-controls` option now fails immediately instead of repeating that loop.
 
 ## Remaining limitations
 
@@ -66,6 +72,7 @@ Local proprietary artifacts are required; missing or corrupt files fail setup.
 Fresh browser outputs require clean committed source and new ignored paths.
 
 ```sh
+node scripts/verify-rival-input-acceptance.js
 node scripts/verify-rival-input-source.js
 node scripts/verify-rival-keyboard-source.js
 node --test scripts/rival-input.test.js tests/rival.test.js
@@ -73,5 +80,5 @@ node scripts/verify-rival-input-setup-negative.js
 node scripts/verify-rival-input-browser.js --output=.local/rival-input-FRESH
 node scripts/verify-standard-wages-route.js --manifest=reference/rival-standard-route.json --output=.local/rival-standard-FRESH
 node scripts/probe-rival-audio.js --device=speaker --output=.local/rival-speaker-FRESH
-node scripts/probe-rival-audio.js --device=tandy --speech-controls --output=.local/rival-tandy-FRESH
+node scripts/probe-rival-audio.js --device=tandy --output=.local/rival-tandy-FRESH
 ```

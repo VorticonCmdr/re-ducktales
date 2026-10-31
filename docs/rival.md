@@ -49,8 +49,9 @@ translated; not every branch has an original runtime case. Original device compl
 full campaign timing and a whole original campaign replay remain unproven. Exhausting
 all eligible destinations returns special slot35, outside the35-record LOC table.
 Its original aliasing behavior is now translated and checked below. No bank
-fallback is substituted. Forced flight-race claims retain their separately verified
-existing application path.
+fallback is substituted. Forced flight-race claims now use the same report reader;
+their destination is published after the announcement. See the newer
+[input correction and acceptance](rival-input.md).
 
 ## Environment and browser contract
 
@@ -58,8 +59,11 @@ existing application path.
 accounts and original location/loot records. It produces a new seed, optional report
 and mutated rival/collected state. It reads neither the DOM nor wall time.
 
-`RivalReport` consumes semantic Fire, driver ticks and token-scoped audio busy events.
-The browser supplies those through the existing keyboard/scheduler/audio adapters.
+`RivalReport` consumes Fire, explicit input-poll/flush callbacks, driver ticks and
+token-scoped audio busy events. Initial enabled playback waits for actual status.
+Ordinary P/Q/S handling runs at its busy14/fallback7 reader boundaries; modal return
+resumes the pending read. The browser supplies these through keyboard/scheduler/
+audio adapters. [Current reader evidence](rival-input.md).
 A serializable pending action pauses travel, office entry or ending comparison until
 report completion. Travel rechecks the destination afterward, so a rival claim can
 replace the pending departure with the original collected-treasure notice. Restart

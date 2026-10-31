@@ -1,0 +1,86 @@
+{
+  "kind": "rival-input-acceptance",
+  "nativeComparison": false,
+  "runtimeCommit": "c5bf3f71688b4f76b74d8cd7e4ceaea6aea39360",
+  "controlsConsumer": ".local/rival-input-replay-02",
+  "standardConsumer": ".local/rival-standard-replay-02",
+  "failureConsumer": ".local/rival-cave-failure-replay-01",
+  "audioConsumers": {
+    "speaker": ".local/rival-audio-speaker-01",
+    "tandy": ".local/rival-audio-tandy-02"
+  },
+  "checksSource": ".local/rival-checks-01",
+  "scope": "Source-derived rival reader and deferred location;muted browser controls/full Standard/failure regressions;conditional actual speaker/Tandy completion. Not native timing,waveform parity,winning Standard or arbitrary-campaign acceptance.",
+  "artifacts": {
+    "controlsScenario": {
+      "path": "reference/rival-input-browser.json",
+      "bytes": 8152,
+      "sha256": "e11ff930360dea938894a4313e18da68c5db14d15e495c0c8ffb0f4afd78ab35"
+    },
+    "controlsResult": {
+      "path": ".local/rival-input-replay-02/acceptance-status.json",
+      "bytes": 840,
+      "sha256": "a4a6bff33a2ad69f35bdb6dc11ba8417978560bbdfb913409e69ba1fdd7a7a65"
+    },
+    "standardScenario": {
+      "path": "reference/rival-standard-route.json",
+      "bytes": 24057,
+      "sha256": "1548d6c1e4a161742cdad14d8cf6ee5a6f0c53fd6f3114077acc70737a6e2013"
+    },
+    "standardResult": {
+      "path": ".local/rival-standard-replay-02/acceptance-status.json",
+      "bytes": 1015,
+      "sha256": "2f8c020bb8858265a4d1cc42257f08c46524e4e87ee92b3c3cef54d783fc80d0"
+    },
+    "failureScenario": {
+      "path": "reference/cave-failure-input-browser.json",
+      "bytes": 5015,
+      "sha256": "f015424d839f553e73601bd3bf4b778a9eb60ee55e7ce6e768b4ca8e80255152"
+    },
+    "failureResult": {
+      "path": ".local/rival-cave-failure-replay-01/acceptance-status.json",
+      "bytes": 703,
+      "sha256": "ef67d05041ebc2f8114a4b6f2470499cd39f58a9b3e670e8b0744a678f21ec28"
+    },
+    "speakerAudio": {
+      "path": ".local/rival-audio-speaker-01/audio-status.json",
+      "bytes": 7150,
+      "sha256": "0598f6e566f75e5141999e595a153a96b63f568d2796bd78da52c9ac77130ae7"
+    },
+    "tandyAudio": {
+      "path": ".local/rival-audio-tandy-02/audio-status.json",
+      "bytes": 6947,
+      "sha256": "dc85b17135bc213d7bb361835d3b52905484fa848379b37b0472aedd09b198e4"
+    },
+    "setupNegatives": {
+      "path": ".local/rival-checks-01/setup-negatives.json",
+      "bytes": 193,
+      "sha256": "3f885308f5f568cf95f8aa8791563ed676e4120dfa2184374ee8f034093381d9"
+    },
+    "units": {
+      "path": ".local/rival-checks-01/units.log",
+      "bytes": 17739,
+      "sha256": "79c81441b279b1d68b302c8ca6c3e02b90ccf84b94888b9f70fe998e66f125f9"
+    },
+    "boundaries": {
+      "path": ".local/rival-checks-01/boundaries.log",
+      "bytes": 5554,
+      "sha256": "c69b0f29c445f0884382ba2927fb7ca43ec03f1c6619a90aa37796f8a9db59c8"
+    },
+    "build": {
+      "path": ".local/rival-checks-01/build.log",
+      "bytes": 907,
+      "sha256": "20fc19b89d13e51d38d29456a1584f0bcacc5944abff16e21d96a6292134f049"
+    },
+    "source": {
+      "path": "reference/rival-input-source.json",
+      "bytes": 2214,
+      "sha256": "f5379b3619bd0af8c7d93af968605dbc55bf276cdacf34e5a748e7a01613f57b"
+    },
+    "keyboardSource": {
+      "path": "reference/rival-keyboard-source.json",
+      "bytes": 1150,
+      "sha256": "a8d33b426889ae9c250cd1f3b26f60805a41772cf658b1917b4a7d90347a22af"
+    }
+  }
+}

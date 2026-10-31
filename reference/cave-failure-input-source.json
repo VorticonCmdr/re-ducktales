@@ -1,0 +1,31 @@
+{
+  "kind": "cave-failure-input-static-source",
+  "build": "reference/build.json",
+  "program": "CAVE_CODE.EXE",
+  "language": "x86:LE:16:Real Mode",
+  "ghidraAddress": "1c17:1a90",
+  "originalFileOffset": 116368,
+  "bytes": 34,
+  "sha256": "347e24afd0f620d224c4ed762193d7610bcbeb4552b7c88363609e464e6450ae",
+  "overlayBody": {
+    "fileOffset": 109568,
+    "bytes": 11054,
+    "sha256": "2114197d8aef68f97c58a253a3f1d2414370d81723ebf1f28a84048129d5350d"
+  },
+  "relocations": [
+    {
+      "offset": 7,
+      "addend": 4096
+    }
+  ],
+  "artifacts": {
+    "ghidra": {
+      "path": ".local/cave-failure-input-source-01/ghidra.json",
+      "bytes": 258,
+      "sha256": "ddca8d4e7f9c612dc26ce32744c7b1e86b7f9f7084b1a1a9b7ee8a31956c45bd"
+    }
+  },
+  "claim": "Statically inferred:load AX20,push and far-call shared09f5;nonzero return and enabled byte03be guard conditional sound24. This is the cave failure portrait,not resident treasure award40.",
+  "limitations": "No fresh native/runtime observation or timing parity;current port still uses the legacy140-tick countdown for this path.",
+  "verify": "node scripts/verify-cave-failure-input-source.js"
+}

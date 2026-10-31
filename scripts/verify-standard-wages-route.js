@@ -1,7 +1,10 @@
 // A recorded port regression, not a native DOS timing comparison. The explorer
 // chooses player controls; this consumer reads only its independent event stream.
 import assert from "node:assert/strict";
-import { writeFile } from "node:fs/promises";
+import { writeFile, mkdtemp, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { execFileSync } from "node:child_process";
 import { withCarlsbadBrowser } from "./lib/carlsbad-browser.js";
 import { observeRecordedRoute } from "../tests/browser/helpers/entry-recording.js";
 import { recordedDOMInput } from "../tests/browser/helpers/recorded-dom-input.js";
@@ -11,6 +14,34 @@ import { validateProducerArchive } from "./lib/consumer-provenance.js";
 
 const arg = (key) => process.argv.find((a) => a.startsWith("--" + key + "="))?.slice(key.length + 3);
 const manifest = await json(arg("manifest") ?? "reference/standard-wages-route.json");
+if (process.argv.includes("--setup-negatives")) {
+  const temporary = await mkdtemp(join(tmpdir(), "standard-route-negative-")), checks = [];
+  try {
+    for (const kind of ["zero-checkpoints", "missing-fixture", "corrupt-fixture"]) {
+      const changed = structuredClone(manifest);
+      if (kind === "zero-checkpoints") {
+        changed.expectedCheckpointCount = 0;
+        const path = join(temporary, "empty.json"), bytes = "[]\n";
+        await writeFile(path, bytes);
+        changed.artifacts["campaign-checkpoints"] = { path, bytes: Buffer.byteLength(bytes), sha256: sha(bytes) };
+      }
+      if (kind === "missing-fixture") changed.artifacts.environment.path = join(temporary, "missing.json");
+      if (kind === "corrupt-fixture") changed.artifacts.environment.sha256 = "0".repeat(64);
+      const path = join(temporary, kind + ".json");
+      await writeFile(path, JSON.stringify(changed));
+      let failure;
+      try { execFileSync(process.execPath, ["scripts/verify-standard-wages-route.js", "--manifest=" + path], { stdio: "pipe" }); }
+      catch (error) { failure = error; }
+      assert.ok(failure && failure.status !== 0, kind + " incorrectly succeeded");
+      assert.match(String(failure.stderr), kind === "zero-checkpoints" ? /Zero cases/ :
+        kind === "missing-fixture" ? /ENOENT|missing/ : /Corrupt scenario fixture/);
+      checks.push({ kind, rejected: true, exitCode: failure.status });
+    }
+    assert.equal(checks.length, 3);
+    console.log(JSON.stringify({ completed: true, checks }));
+  } finally { await rm(temporary, { recursive: true, force: true }); }
+  process.exit(0);
+}
 assert.ok(["standard-cave-safari-port-regression", "standard-full-campaign-port-regression"].includes(manifest.kind));
 const full = manifest.kind === "standard-full-campaign-port-regression";
 assert.equal(manifest.difficulty, 1);

@@ -2,20 +2,20 @@
 
 Updated2026-10-31. **The whole game is incomplete.** The new cave passage-order
 fix passes focused native/source/component/browser checks,218 units and build.
-The fresh Standard browser campaign completes victory,all26 credits and Restart;
-its independent replay is pending. Last full winning/report/audio acceptance
-predates this runtime change. Cave timing,broader route/input
+The fresh Standard browser campaign and independent replay pass victory,all26
+credits and Restart. Report/audio receipts remain from before the cave change.
+Cave timing,broader route/input
 fidelity and deferred Hard campaigns remain open. Nothing is pushed or deployed.
 
-## Working route and last full-campaign acceptance
+## Working route and current acceptance
 
 Startup/security/office → Too-Pei cave → naturally lost Safari race/forced claim
 → Kenya photography → Great Outback jungle → Lost World mountain → Atlantis,
 Klondike,Siberia caves → Novay mountain → banking → day31 victory34650 to28500 →
 celebration → replay-No → all26 credits → closed → Restart.
 
-Producer `.local/safari-hud-winning-browser-01` and independent consumer
-`.local/safari-hud-winning-replay-01` pass183 exact complete public-state/decoded-
+Producer `.local/cave-order-winning-browser-01` and independent consumer
+`.local/cave-order-winning-replay-01` pass183 exact complete public-state/decoded-
 RGBA checkpoints and7261 independent DOM inputs. All required inputs/checkpoints
 finish. The missing-Standard-selection negative and empty/missing/corrupt fixture
 negatives reject. Seven awards pass105 exact stripe groups and75 retraces each;
@@ -23,14 +23,11 @@ six retained completed pages and original source composition provide independent
 targets. Jungle and both mountain climbs finish with3 lives. No state restore,
 RNG/money/difficulty patch or image exclusion is used.
 
-The last combined winning gate passed original ending/credits comparisons,
-source proofs,218 unit cases and production build. Cave runtime has since changed;
-the old capture cannot admit current intermediate states without a fresh run.
-The new `.local/cave-order-winning-browser-01` producer completes183 checkpoints/
-7261 DOM inputs,day31 win34650 to28500 and Restart. It is a completed browser
-capture,not yet independent replay acceptance.
-[Last acceptance](../reference/current-winning-acceptance.json),
-[scenario](../reference/safari-hud-winning-route.json),[history](current-winning-campaign.md).
+The current combined winning gate also passes original ending/credits/source
+proofs,218 unit cases and production build. The old Safari-HUD capture is retained
+unchanged;the new capture/replay admit the corrected intermediate cave state order.
+[Acceptance](../reference/current-winning-acceptance.json),
+[scenario](../reference/cave-order-winning-route.json),[history](current-winning-campaign.md).
 
 Safari now charges its original HUD line/number work and preserves the signed
 film formatter. The scoped admission passes28 source plans,22 carried scenarios,
@@ -126,8 +123,11 @@ driver counts (about1.15s),with exact38080-byte native planar output. This cost 
 currently omitted by synchronous browser loading. Original585-byte loader,
 302-byte caller and222-byte converter correspondence pass with three negatives;
 the owned emulator is closed. [Loading evidence](cave-loader-work.md).
-Next:finish independent campaign replay and count original LZW/conversion work
-for cave loads;do not fit delays from observed clocks.
+The isolated loading-work prototype passes source counts/decoded output for all46
+cave sprites and reproduces the native sprite10 planes. It is not yet wired into
+gameplay;picture loading and remaining loader/environment work need admission.
+Next:measure background loading,complete the counted load boundary and refresh
+browser acceptance;do not fit delays from observed clocks.
 Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability
@@ -152,8 +152,8 @@ select their own files.
 node scripts/verify-cave-passage-order.js
 node scripts/verify-cave.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_loader_profile.py
-# Historical full-route/report receipts need a fresh runtime admission:
-# node scripts/verify-current-winning-acceptance.js
+node scripts/verify-current-winning-acceptance.js
+# Historical report/audio receipts still need a fresh runtime admission:
 # node scripts/verify-report-presentation-acceptance.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_safari_cadence.py
 node scripts/compare-safari-native-cadence.js

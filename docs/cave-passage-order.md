@@ -41,5 +41,11 @@ The strict native probe still exits1:the port's room/torch changes are separated
 now,but resource loading and other stage boundaries remain different. The port
 still awards50 at3666.923ms while the original has0 through the6.834s window.
 No fitted delay or global speed multiplier is added. Fresh full-campaign browser
-acceptance is required because runtime source and intermediate states changed;
-the previous winning capture remains immutable historical evidence.
+acceptance now passes:producer `.local/cave-order-winning-browser-01` and
+independent consumer `.local/cave-order-winning-replay-01` match183 complete
+state/image checkpoints and7261 independently recorded DOM events through day31
+victory,all26 credits,closed and Restart. All seven award transitions pass105
+exact stripe groups;the combined gate also passes ending/credits/bank evidence,
+one omitted-input negative,three setup negatives,218 units and build. The previous
+winning capture remains immutable historical evidence. Native whole-game timing
+remains open.

@@ -81,6 +81,13 @@ input. The losing tail remains in the immutable producer but is outside this
 declared segment. `reference/current-earned-awards.json` separately pins all six
 earned presentations against independent older completed reward pages.
 
+That independent consumer has now passed all129 exact complete-state/decoded-RGBA
+checkpoints and6511 inputs,actual Restart and an omitted-Standard-selection
+negative. `reference/current-earned-acceptance.json` pins its receipt at source
+7579426. Three setup negatives and the unchanged cave/audio acceptance also pass.
+This earns the declared startup-to-bank segment;it does not accept the later
+defeat tail or establish a current full winning campaign.
+
 Their90 row groups pass exact pixel checks. Jungle legitimately arrives black:
 its original Main01e0 wipes the page before returning. The new1201-byte original/
 prepared/Ghidra source check verifies that cleanup,45 relocations and one explicit
@@ -93,6 +100,7 @@ and nonblack jungle sources are negative controls. No pixels are excluded.
 node scripts/verify-jungle-award-exit-source.js
 node scripts/verify-current-winning-awards.js --manifest=reference/current-earned-awards.json
 node scripts/verify-current-earned-route.js --setup-negatives
+node scripts/verify-current-earned-acceptance.js
 node scripts/verify-current-earned-route.js --output=.local/current-earned-replay-FRESH
 ```
 

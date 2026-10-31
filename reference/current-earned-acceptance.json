@@ -1,0 +1,35 @@
+{
+  "kind": "current-earned-treasure-acceptance",
+  "nativeComparison": false,
+  "winningCampaign": false,
+  "consumer": ".local/current-earned-replay-01",
+  "checksRoot": ".local/current-earned-checks-01",
+  "runtimeCommit": "357d83fa7e4c7b17e39dc89c73d33364f5fc32fe",
+  "captureCommit": "a6f5c52a8c18d3f52a73bc155ef1bc95dd18ec5b",
+  "consumerCommit": "757942694057fd156cdcd7e63bfcc608567f7258",
+  "checksCommit": "757942694057fd156cdcd7e63bfcc608567f7258",
+  "scope": "Current muted Standard earned-treasure browser route:all4 expedition families,6 awards/90 row groups,bank27050 and Restart.129 exact state/image checkpoints and6511 independent DOM events;one input negative,three setup negatives,four row/source-page negatives. Later campaign defeat remains excluded;not native whole-campaign timing/audio parity or arbitrary-route acceptance.",
+  "artifacts": {
+    "scenario": {
+      "path": "reference/current-earned-route.json",
+      "bytes": 2770,
+      "sha256": "f149e5c878e009a41af02b7b295a697175f8b785c7255c76eb58b7020c89481e"
+    },
+    "awards": {
+      "path": "reference/current-earned-awards.json",
+      "bytes": 4096,
+      "sha256": "84356a316420e3b8a6239ab3b2538acb213a43840a7d08c55b91865b7754e4ec"
+    },
+    "result": {
+      "path": ".local/current-earned-replay-01/acceptance-status.json",
+      "bytes": 1017,
+      "sha256": "05eb5e4464ec334c8d8264a0f8c37f1e586008bd44ad512b57af5a3ee6451f12"
+    },
+    "checks": {
+      "path": ".local/current-earned-checks-01/result.json",
+      "bytes": 1538,
+      "sha256": "6d1bd309078d5e40821f4c496333b8e26a7296c7492b0506ea6d48c531cdde5d"
+    }
+  },
+  "verify": "node scripts/verify-current-earned-acceptance.js"
+}

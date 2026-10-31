@@ -32,10 +32,11 @@ parser.add_argument('--mountain-profile', action='store_true', help='Observe ori
 parser.add_argument('--mountain-page-observer', action='store_true', help='Observe80 rendered-frame samples of the original page byte without execution breakpoints during measurement')
 parser.add_argument('--safari-page-observer', action='store_true', help='Natural Safari entry and non-stopping timer/page observations in a private portable session')
 parser.add_argument('--jungle-page-observer', action='store_true', help='Natural swamp entry and uninterrupted movement observations in a private portable session')
+parser.add_argument('--cave-page-observer', action='store_true', help='Natural Carlsbad entry and uninterrupted passage/reward observations in a private portable session')
 args = parser.parse_args()
-if args.safari_page_observer and args.jungle_page_observer:
+if sum([args.safari_page_observer, args.jungle_page_observer, args.cave_page_observer]) > 1:
     parser.error('Choose one expedition observer')
-if (args.safari_page_observer or args.jungle_page_observer) and (args.mountain_timing or args.map_inputs or args.navigation):
+if (args.safari_page_observer or args.jungle_page_observer or args.cave_page_observer) and (args.mountain_timing or args.map_inputs or args.navigation):
     parser.error('--safari-page-observer owns its setup and is separate from other profiles')
 if args.mountain_timing and (args.map_inputs or args.navigation):
     parser.error('--mountain-timing owns its map setup and is separate from map/navigation profiles')
@@ -85,7 +86,7 @@ def attach(url, token):
     info = client.get('/api/v1/dosbox/info')
     assert info['pid'] == manager.pid, 'Refusing different process identity'
     return info
-if (args.safari_page_observer or args.jungle_page_observer):
+if (args.safari_page_observer or args.jungle_page_observer or args.cave_page_observer):
     # The installed lifecycle redirects HOME. Use an owned portable primary
     # instead,without changing the package or shared bridge configuration.
     from native_portable_session import PortableSession
@@ -195,7 +196,7 @@ try:
     info = manager.start()
     client = clients[-1]
     save('engine', info)
-    if args.mountain_profile or args.mountain_page_observer or (args.safari_page_observer or args.jungle_page_observer):
+    if args.mountain_profile or args.mountain_page_observer or (args.safari_page_observer or args.jungle_page_observer or args.cave_page_observer):
         binary = Path(manager.build_argv()[0]).resolve()
         save('profile-tool-identity', {'executable': str(binary),
              'executableSha256': sha(binary.read_bytes()),
@@ -209,7 +210,7 @@ try:
                                     'scope':'Read-only raw frame/status,BIOS and EGA-driver snapshots at owned CPU stops;no VGA-register writes or fitted timing.'})
     client.post('/api/v1/drive/mount', json={'drive': 'C', 'path': str((ROOT/'game').resolve()), 'readonly': True})
     commands = 'config -get cpu cpu_cycles\nconfig -get cpu core\nconfig -get dosbox memsize\n'
-    if args.mountain_profile or args.mountain_page_observer or (args.safari_page_observer or args.jungle_page_observer):
+    if args.mountain_profile or args.mountain_page_observer or (args.safari_page_observer or args.jungle_page_observer or args.cave_page_observer):
         commands += 'config -get dosbox vmem_delay\n'
     commands += 'config -get dosbox machine\n'
     client.post('/api/v1/input/type', json={'text': commands, 'cps': 200})
@@ -363,16 +364,17 @@ try:
     assert stop['registers']['eax'] == 1
     final = state('return',stop)
     remove(return_bp)
-    if (args.safari_page_observer or args.jungle_page_observer):
+    if (args.safari_page_observer or args.jungle_page_observer or args.cave_page_observer):
         from capture_safari_cadence import capture_safari_cadence
         from capture_jungle_cadence import capture_jungle_cadence
+        from capture_cave_cadence import capture_cave_cadence
         capture_safari_cadence(client=client, stop=stop, load=load, ds=ds,
                                overlay=overlay, add=add, remove=remove,
                                resume=resume, state=state, keys=keys,
                                sequence=sequence, wait_until=wait_until,
                                save=save, root=ROOT,
-                               target=(64, 73) if args.jungle_page_observer else (46, 56),
-                               entry_callback=capture_jungle_cadence if args.jungle_page_observer else None)
+                               target=(45, 68) if args.cave_page_observer else (64, 73) if args.jungle_page_observer else (46, 56),
+                               entry_callback=capture_cave_cadence if args.cave_page_observer else capture_jungle_cadence if args.jungle_page_observer else None)
     if args.mountain_timing:
         from capture_mountain_timing import capture_mountain_timing
         capture_mountain_timing(client=client, stop=stop, load=load, ds=ds,
@@ -571,14 +573,14 @@ try:
                            'injections':[],'partialRestore':False,'replay':replay,
                            'scope':'Natural map input/IRQ-table/flush/clock observations after conditional fresh-launch security setup. Not browser or full native timing parity.'})
     assert not owned
-    if (args.safari_page_observer or args.jungle_page_observer):
+    if (args.safari_page_observer or args.jungle_page_observer or args.cave_page_observer):
         subprocess.run(['node', '--input-type=module', '-e',
             "import{checkSource}from'./scripts/lib/local-scenario-source.js';await checkSource(process.argv[1],p=>p.startsWith('src/')||p.startsWith('scripts/')||p.startsWith('tests/')||p==='reference/build.json');", str(out)], cwd=ROOT, check=True)
     save('inputs',inputs)
     save('capture',{'completed':True,'pid':manager.pid,'instanceId':info['instance_id'],'port':args.port,'initialSeed':struct.unpack_from('<H',initial,0x2229)[0],'finalSeed':struct.unpack_from('<H',final,0x2229)[0],'rngCalls':len(draws),'wrongFirst':warned,'navigation':args.navigation and warned,'requiredInputPolls':4+(3+(2 if args.navigation else 0) if warned else 1),'injections':[],'partialRestore':False,'scriptSha256':sha(Path(__file__).read_bytes())})
     print(json.dumps({'completed':True,'pid':manager.pid,'rngCalls':len(draws),'wrongFirst':warned,'output':str(out)}),flush=True)
 finally:
-    if manager.running or (args.safari_page_observer or args.jungle_page_observer):
+    if manager.running or (args.safari_page_observer or args.jungle_page_observer or args.cave_page_observer):
         manager.stop()
     for client in clients:
         client.close()

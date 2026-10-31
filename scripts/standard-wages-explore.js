@@ -1,0 +1,244 @@
+// Bounded exploratory real-browser player. Not acceptance,not an original-game
+// runtime comparison. No game state,seed,ownership or timers are patched.
+import assert from "node:assert/strict";
+import { writeFile } from "node:fs/promises";
+import { withCarlsbadBrowser } from "./lib/carlsbad-browser.js";
+import {
+  fresh,
+  archiveSource,
+  checkSource,
+} from "./lib/local-scenario-source.js";
+import { originalGame } from "../tests/helpers/original-game.js";
+import { finishSecurityEntry } from "../tests/browser/helpers/security.js";
+import { explorePhysicalFlight } from "../tests/browser/helpers/flight-policy.js";
+import { planCaveVariant } from "./lib/easy-cave-variants.js";
+import {
+  observeRecordedRoute,
+  saveRecordedRoute,
+} from "../tests/browser/helpers/entry-recording.js";
+const arg = (k) =>
+    process.argv.find((a) => a.startsWith("--" + k + "="))?.slice(k.length + 3),
+  root = await fresh(arg("output")),
+  source = await archiveSource(root);
+await originalGame();
+let result = {
+  completed: false,
+  accepted: false,
+  scope:
+    "EXPLORATORY Standard Wages first playable leg,not campaign completion",
+};
+try {
+  result = await withCarlsbadBrowser(async (c) => {
+    const { page, canvas, state, until, press } = c,
+      points = [];
+    const observe = async (name) => {
+      const s = await state();
+      points.push(await observeRecordedRoute({ page, state: s, name }));
+      console.log(
+        name,
+        JSON.stringify({
+          scene: s.scene,
+          difficulty: s.difficulty,
+          day: s.campaign?.day,
+          money: s.money,
+          banked: s.campaign?.banked,
+          seed: s.seed,
+          room: s.cave?.room,
+          flight: s.flight?.outcome,
+        }),
+      );
+    };
+    async function point(x, y) {
+      const b = await canvas.boundingBox();
+      await canvas.click({
+        position: { x: (b.width * x) / 320, y: (b.height * y) / 200 },
+      });
+      await page.clock.runFor(100);
+    }
+    async function settle() {
+      for (let n = 0; n < 12; n++) {
+        const s = await state();
+        if (
+          !["expedition-result", "rival-report", "visit-notice"].includes(
+            s.scene,
+          )
+        )
+          return;
+        await observe("dialogue-" + points.length);
+        const phase =
+          s.expeditionResult?.phase ??
+          s.rivalReport?.phase ??
+          s.visitNotice?.phase;
+        await press("Space");
+        await until(
+          (v) =>
+            v.scene !== s.scene ||
+            (v.expeditionResult?.phase ??
+              v.rivalReport?.phase ??
+              v.visitNotice?.phase) !== phase,
+        );
+      }
+      throw Error("Unfinished Standard report sequence");
+    }
+    try {
+      await until((s) => s.scene === "title");
+      await press("Space");
+      await until((s) => s.scene === "difficulty" && s.difficultyMenu.ready);
+      await press("ArrowDown");
+      await until((s) => s.difficultyMenu.ready && s.difficulty === 1);
+      await observe("standard-choice");
+      await press("Enter");
+      await until((s) => s.scene === "office");
+      assert.equal((await state()).difficulty, 1);
+      await observe("office");
+      await page.locator("#map").click();
+      await finishSecurityEntry(c);
+      await point(240, 70);
+      assert.equal((await state()).campaign.asset, 29);
+      await press("Space");
+      await until((s) => s.campaign.destination?.ready);
+      await press("ArrowRight");
+      await until(
+        (s) => s.campaign.choice === 1 && s.campaign.destination?.ready,
+      );
+      await press("Space");
+      await until((s) => s.scene === "departure");
+      await observe("departure");
+      await press("Space");
+      await until((s) => s.scene === "flight");
+      await observe("flight-start");
+      const flight = await explorePhysicalFlight({
+        page,
+        state,
+        until,
+        policy: { altitude: [25, 40], climbHeading: 3 },
+      });
+      await writeFile(
+        root + "/flight-controls.json",
+        JSON.stringify(flight, null, 2) + "\n",
+      );
+      await until((s) => s.scene !== "flight");
+      await observe("flight-return");
+      assert.equal(
+        (await state()).flight.outcome.code,
+        1,
+        "Exploratory pilot did not arrive;inspect normal crash/race result before calling this a port defect",
+      );
+      await until((s) => s.scene === "cave");
+      await observe("cave-entry");
+      const entry = await state(),
+        plan = planCaveVariant(entry.cave.rooms, entry.briefing.variant);
+      assert.equal(entry.cave.room, plan.start);
+      await writeFile(
+        root + "/cave-player-plan.json",
+        JSON.stringify(
+          {
+            scope:
+              "Original map geometry used only to choose player controls;not expected checkpoints or state initialization",
+            variant: plan.variant,
+            start: plan.start,
+            goal: plan.goal,
+            events: plan.events,
+          },
+          null,
+          2,
+        ) + "\n",
+      );
+      for (const event of plan.events.slice(1)) {
+        await until((s) => s.scene !== "cave" || s.cave.phase === "exploring");
+        assert.equal(
+          (await state()).scene,
+          "cave",
+          "Player failed before completing planned map path",
+        );
+        const old = (await state()).cave.room,
+          key = {
+            up: "ArrowUp",
+            down: "ArrowDown",
+            left: "ArrowLeft",
+            right: "ArrowRight",
+          }[event.controls.direction];
+        await page.keyboard.down(key);
+        await page.keyboard.down("Space");
+        await until((s) => s.scene !== "cave" || s.cave.room !== old);
+        await page.keyboard.up("Space");
+        await page.keyboard.up(key);
+        await observe("room-" + (await state()).cave.room);
+      }
+      await until((s) => s.scene === "expedition-result");
+      await observe("award");
+      assert.equal(
+        (await state()).cave.outcome.code,
+        1,
+        "Normal cave failure is not an unsupported-path diagnosis",
+      );
+      await settle();
+      assert.equal((await state()).scene, "map");
+      await observe("map-after-cave");
+      await point(212, 131);
+      assert.equal((await state()).campaign.selected, 0);
+      await press("Space");
+      await settle();
+      await until((s) => s.scene === "bank" || s.scene === "ending");
+      assert.equal((await state()).scene, "bank");
+      await observe("bank-deposited");
+      assert.equal((await state()).money, 0);
+      assert.ok((await state()).campaign.banked > 0);
+      await press("Space");
+      await until((s) => s.scene !== "bank");
+      await settle();
+      assert.equal((await state()).scene, "map");
+      await observe("map-after-bank");
+      await saveRecordedRoute({
+        page,
+        root,
+        observations: points,
+        scope:
+          "EXPLORATORY Standard Wages real startup/flight/cave/reward/deposit/map;not complete campaign or acceptance",
+      });
+      await page.locator("#restart").click();
+      await until((s) => s.scene === "title");
+      assert.equal((await state()).money, 0);
+      assert.equal((await state()).campaign.banked, 0);
+      return {
+        completed: true,
+        accepted: false,
+        scope: "Standard Wages first playable leg only;not campaign completion",
+        checkpoints: points.length,
+        events: points.at(-1).eventCount,
+        restart: true,
+        sourceCommit: source.commit,
+      };
+    } catch (error) {
+      await observe("failure");
+      await saveRecordedRoute({
+        page,
+        root,
+        observations: points,
+        scope: "FAILED exploratory Standard Wages leg;not acceptance",
+      });
+      throw error;
+    }
+  });
+  await checkSource(
+    root,
+    (p) =>
+      p.startsWith("src/") ||
+      p.startsWith("scripts/") ||
+      p.startsWith("tests/") ||
+      [
+        "index.html",
+        "package.json",
+        "package-lock.json",
+        "vite.config.js",
+        "vite.campaign.config.js",
+        "reference/build.json",
+      ].includes(p),
+  );
+  console.log(JSON.stringify(result));
+} finally {
+  await writeFile(
+    root + "/exploration-status.json",
+    JSON.stringify(result, null, 2) + "\n",
+  );
+}

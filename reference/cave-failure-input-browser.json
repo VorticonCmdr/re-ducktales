@@ -1,0 +1,125 @@
+{
+  "kind": "cave-failure-input-port-regression",
+  "producer": ".local/cave-failure-controls-01",
+  "sourceCommit": "9fc39b7ebf9c4398551fb51a1cf5bc731d5c5f65",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "sourceRule": "reference/cave-failure-input-source.json",
+  "scope": "Fresh browser startup/physical flight/cave pit/failure20/Pause/Quit-No/neutral/fresh Fire/map/same-location retry/Restart. Muted port regression,not native timing or acoustic parity.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "physicalKeyboard": true,
+    "audioEnabled": false,
+    "timezone": "UTC"
+  },
+  "requiredEventCount": 454,
+  "expectedCheckpointCount": 11,
+  "artifacts": {
+    "sources.zip": {
+      "path": ".local/cave-failure-controls-01/sources.zip",
+      "bytes": 2731237,
+      "sha256": "be6a42e7a8398a5941317380f3b1327f1b20295fe995623fd722bbcbed997241"
+    },
+    "source-revision": {
+      "path": ".local/cave-failure-controls-01/source-revision.json",
+      "bytes": 102680,
+      "sha256": "1f0166bcab9c7700e2b6e45514086ea358cdde1f5adf7214e30ab32b1b9e4bc6"
+    },
+    "capture-status": {
+      "path": ".local/cave-failure-controls-01/capture-status.json",
+      "bytes": 164,
+      "sha256": "35a25f763acbba9cc986086b2e1f452bd554ff7c2674e974f9c6c410537c0ab1"
+    },
+    "captured-events": {
+      "path": ".local/cave-failure-controls-01/captured-events.json",
+      "bytes": 53828,
+      "sha256": "79926598e9ac8b79b59bd0dc0fa3c5ff663d6fc8644035a242db5865181347d9"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/cave-failure-controls-01/campaign-checkpoints.json",
+      "bytes": 65406,
+      "sha256": "f319b4e81b80174073dcc29f308354bd219f8b23d550cf2b5db0913af9a5f106"
+    },
+    "environment": {
+      "path": ".local/cave-failure-controls-01/environment.json",
+      "bytes": 267,
+      "sha256": "fcaf88d53759b02d3cd651bb9d339c6b94e6141ab5c50571f3926b566b847f50"
+    },
+    "timeline": {
+      "path": ".local/cave-failure-controls-01/timeline.json",
+      "bytes": 982,
+      "sha256": "4c3e9fb402bf6e1749c0a6681dbbea8c43640866860bfdfa5fb7c172fb4bb188"
+    },
+    "after-p.png": {
+      "path": ".local/cave-failure-controls-01/after-p.png",
+      "bytes": 19363,
+      "sha256": "1b78c67dc1da2a70df0a0944b7e71a1f1361fb34877346577d4c19ccf71fb3db"
+    },
+    "entry.png": {
+      "path": ".local/cave-failure-controls-01/entry.png",
+      "bytes": 20353,
+      "sha256": "26e6220ccdc75dcf3cbb54501211a7b49e9764870cedba53384394e1c0794a4f"
+    },
+    "failure.png": {
+      "path": ".local/cave-failure-controls-01/failure.png",
+      "bytes": 19363,
+      "sha256": "1b78c67dc1da2a70df0a0944b7e71a1f1361fb34877346577d4c19ccf71fb3db"
+    },
+    "map.png": {
+      "path": ".local/cave-failure-controls-01/map.png",
+      "bytes": 27487,
+      "sha256": "13fa2e71493db18c9ce026339a58ea51f9661d90aeb20621fbaeda41b76bc003"
+    },
+    "neutral.png": {
+      "path": ".local/cave-failure-controls-01/neutral.png",
+      "bytes": 19363,
+      "sha256": "1b78c67dc1da2a70df0a0944b7e71a1f1361fb34877346577d4c19ccf71fb3db"
+    },
+    "pause-waiting.png": {
+      "path": ".local/cave-failure-controls-01/pause-waiting.png",
+      "bytes": 18878,
+      "sha256": "1d6ef7f23a50ea3733c2b76e87a793dec37ced5033fc5a57f563d88e23d9f881"
+    },
+    "pause.png": {
+      "path": ".local/cave-failure-controls-01/pause.png",
+      "bytes": 18878,
+      "sha256": "1d6ef7f23a50ea3733c2b76e87a793dec37ced5033fc5a57f563d88e23d9f881"
+    },
+    "quit-no.png": {
+      "path": ".local/cave-failure-controls-01/quit-no.png",
+      "bytes": 19363,
+      "sha256": "1b78c67dc1da2a70df0a0944b7e71a1f1361fb34877346577d4c19ccf71fb3db"
+    },
+    "quit.png": {
+      "path": ".local/cave-failure-controls-01/quit.png",
+      "bytes": 19162,
+      "sha256": "264e0f925cb0f96c1f8b77c6e39dacf51d196646264085b4bb68686104780114"
+    },
+    "resumed.png": {
+      "path": ".local/cave-failure-controls-01/resumed.png",
+      "bytes": 19363,
+      "sha256": "1b78c67dc1da2a70df0a0944b7e71a1f1361fb34877346577d4c19ccf71fb3db"
+    },
+    "retry-cave.png": {
+      "path": ".local/cave-failure-controls-01/retry-cave.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    }
+  },
+  "comparison": {
+    "state": "Every complete canonical snapshot hash exact",
+    "pixels": "Every decoded320x200 RGBA hash exact",
+    "input": "All events and full timeline consumed,no skipped checkpoints",
+    "exclusions": [],
+    "injections": [],
+    "fittedInputs": []
+  },
+  "negative": "Omit first failure P make;must fail state at pause.",
+  "startingRecipe": "Replay immutable recorded port-browser prefix from startup to cave entry;choose shortest original-map passage route to a pit;use actual keyboard controls only.",
+  "verify": "node scripts/verify-cave-failure-input-browser.js --output=.local/failure-replay-FRESH"
+}

@@ -1,5 +1,11 @@
 # Treasure award and transmitter explanation input
 
+Award entry now executes the original75-retrace presentation before requesting49
+and entering09f5(40). Both source flushes discard earlier keys,including makes
+tagged during the preceding expedition. [Current presentation acceptance](award-presentation.md)
+checks8/488 exact muted replay points/events plus actual speaker/Tandy handoffs.
+The older award browser receipt below retains its historical timing/source scope.
+
 The ordinary treasure award now uses shared09f5(40), and the transmitter
 explanation uses shared09f5(100). `ResultInputWait` backs the existing plain result
 fields, preserving neutral snapshots and keeping the simulation independent of

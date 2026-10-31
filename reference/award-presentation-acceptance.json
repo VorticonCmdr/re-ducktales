@@ -1,0 +1,277 @@
+{
+  "kind": "award-presentation-acceptance",
+  "nativeComparison": false,
+  "runtimeRevision": "357d83fa7e4c7b17e39dc89c73d33364f5fc32fe",
+  "cases": [
+    {
+      "device": "muted",
+      "root": ".local/award-muted-02"
+    },
+    {
+      "device": "speaker",
+      "root": ".local/award-speaker-02"
+    },
+    {
+      "device": "tandy",
+      "root": ".local/award-tandy-03"
+    }
+  ],
+  "replayRoot": ".local/award-muted-replay-02",
+  "failureRoot": ".local/award-failure-replay-01",
+  "checksRoot": ".local/award-checks-02",
+  "target": ".local/result-earned-browser-01/award.png",
+  "artifacts": {
+    "reference/build.json": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "reference/award-presentation-source.json": {
+      "path": "reference/award-presentation-source.json",
+      "bytes": 4472,
+      "sha256": "b6fa7d7021870d169b2cb2fdc4ec623031b86ea218c063b9e7c71b0b7ffa8fd1"
+    },
+    ".local/result-earned-browser-01/award.png": {
+      "path": ".local/result-earned-browser-01/award.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    ".local/result-earned-browser-01/captured-events.json": {
+      "path": ".local/result-earned-browser-01/captured-events.json",
+      "bytes": 57886,
+      "sha256": "8ff5ddb715ad1f59bf4bab09f626bf695589da8a57512257c6805edb33ad6c13"
+    },
+    ".local/result-earned-browser-01/campaign-checkpoints.json": {
+      "path": ".local/result-earned-browser-01/campaign-checkpoints.json",
+      "bytes": 173988,
+      "sha256": "2bb670f661021cf518e23e13d0f1b907d20b32c9aa10437f78f6927375337269"
+    },
+    ".local/award-muted-02/result.json": {
+      "path": ".local/award-muted-02/result.json",
+      "bytes": 344,
+      "sha256": "268b743531f9b8873fe102e58f1bc62c8cb6ac8049ce6b244ceb915b250578c5"
+    },
+    ".local/award-muted-02/presentation.json": {
+      "path": ".local/award-muted-02/presentation.json",
+      "bytes": 493840,
+      "sha256": "e3bfe0ee010598ec01b3fc43215a625e05c764676b0bc53d95d50e819b5b67c0"
+    },
+    ".local/award-muted-02/campaign-checkpoints.json": {
+      "path": ".local/award-muted-02/campaign-checkpoints.json",
+      "bytes": 45969,
+      "sha256": "9c89d717cee10323dba179470dc9872ed8e54ddd0bbe6e79855a90202f9ceef2"
+    },
+    ".local/award-muted-02/captured-events.json": {
+      "path": ".local/award-muted-02/captured-events.json",
+      "bytes": 57842,
+      "sha256": "ef39f7f178fda1524a777ebaa740c634dc6a8aaedc9827843b72b68f04afe995"
+    },
+    ".local/award-muted-02/source-revision.json": {
+      "path": ".local/award-muted-02/source-revision.json",
+      "bytes": 113326,
+      "sha256": "beb4b1003183b1d6ee67d641a0e57e2e92f0699f86ed9cc1519d4ae4d23d6861"
+    },
+    ".local/award-muted-02/sources.zip": {
+      "path": ".local/award-muted-02/sources.zip",
+      "bytes": 2931763,
+      "sha256": "a3a687f35199a53c77f05a5f80fa94bda1fc893ceb93d1fdd4718b8f35dcbfa0"
+    },
+    ".local/award-speaker-02/result.json": {
+      "path": ".local/award-speaker-02/result.json",
+      "bytes": 346,
+      "sha256": "055e9f716d30de608ef8be839b251a16d854617d911b3b2e0a8daf4f3e3e705e"
+    },
+    ".local/award-speaker-02/presentation.json": {
+      "path": ".local/award-speaker-02/presentation.json",
+      "bytes": 440542,
+      "sha256": "dc3556d198ddc86737e5627b8782a90f04032f455133a579b78b7838894b17ea"
+    },
+    ".local/award-speaker-02/campaign-checkpoints.json": {
+      "path": ".local/award-speaker-02/campaign-checkpoints.json",
+      "bytes": 45971,
+      "sha256": "dbc8370a731105b905826c48448068452b465e10d3be7986b5b5c8126ea782a6"
+    },
+    ".local/award-speaker-02/captured-events.json": {
+      "path": ".local/award-speaker-02/captured-events.json",
+      "bytes": 58024,
+      "sha256": "4745c938baeaddb6b3026c45a60f1a3781ecd2c18d5c6d81cac002d23b763198"
+    },
+    ".local/award-speaker-02/source-revision.json": {
+      "path": ".local/award-speaker-02/source-revision.json",
+      "bytes": 113326,
+      "sha256": "beb4b1003183b1d6ee67d641a0e57e2e92f0699f86ed9cc1519d4ae4d23d6861"
+    },
+    ".local/award-speaker-02/sources.zip": {
+      "path": ".local/award-speaker-02/sources.zip",
+      "bytes": 2931763,
+      "sha256": "a3a687f35199a53c77f05a5f80fa94bda1fc893ceb93d1fdd4718b8f35dcbfa0"
+    },
+    ".local/award-tandy-03/result.json": {
+      "path": ".local/award-tandy-03/result.json",
+      "bytes": 344,
+      "sha256": "3509bfde8e8cf1888404c506b87838a31ebc68d979acdc0289656b07e188150e"
+    },
+    ".local/award-tandy-03/presentation.json": {
+      "path": ".local/award-tandy-03/presentation.json",
+      "bytes": 439270,
+      "sha256": "b4ea10831afa601a26d803b16a0a66e0a7d319eb285ba3c21652d4a188850bfd"
+    },
+    ".local/award-tandy-03/campaign-checkpoints.json": {
+      "path": ".local/award-tandy-03/campaign-checkpoints.json",
+      "bytes": 45972,
+      "sha256": "43ea9bcf32341ee44fe8d96ba1446ed26dca7dd8c995d5b9ae525e6d568a266e"
+    },
+    ".local/award-tandy-03/captured-events.json": {
+      "path": ".local/award-tandy-03/captured-events.json",
+      "bytes": 58024,
+      "sha256": "07bf85c11fb832efe1ba2c461d605c0319e18b561a8729a7d5f34d11c46e9932"
+    },
+    ".local/award-tandy-03/source-revision.json": {
+      "path": ".local/award-tandy-03/source-revision.json",
+      "bytes": 113441,
+      "sha256": "445d11cb54028c20843ca9d68f7130cb476959fd95a144a90694385642d81105"
+    },
+    ".local/award-tandy-03/sources.zip": {
+      "path": ".local/award-tandy-03/sources.zip",
+      "bytes": 2932221,
+      "sha256": "76f5583cd3e369e5a67433a0a7f40b78a2ac4593ca8dbb2d680a5492710ee3c1"
+    },
+    ".local/award-muted-replay-02/result.json": {
+      "path": ".local/award-muted-replay-02/result.json",
+      "bytes": 225,
+      "sha256": "ec89c195eddced1b4c351294796a0f504674e27d2fb282facff151a3875af312"
+    },
+    ".local/award-muted-replay-02/source-revision.json": {
+      "path": ".local/award-muted-replay-02/source-revision.json",
+      "bytes": 113685,
+      "sha256": "cb8a44e79882dabb2d1705a905c2729dd4b18fe83a6467a66fe58fc8784dfe14"
+    },
+    ".local/award-muted-replay-02/sources.zip": {
+      "path": ".local/award-muted-replay-02/sources.zip",
+      "bytes": 2936059,
+      "sha256": "369aff4bd45bf09dd25bf4f7df6d35711e882ae6522e88efd7cf22f1cc454bbd"
+    },
+    ".local/award-failure-replay-01/acceptance-status.json": {
+      "path": ".local/award-failure-replay-01/acceptance-status.json",
+      "bytes": 693,
+      "sha256": "49e9eb35523351f886a8b44bd522633731d8bda98a23e923be1d0d1802d2c4a6"
+    },
+    ".local/award-failure-replay-01/source-revision.json": {
+      "path": ".local/award-failure-replay-01/source-revision.json",
+      "bytes": 113441,
+      "sha256": "445d11cb54028c20843ca9d68f7130cb476959fd95a144a90694385642d81105"
+    },
+    ".local/award-failure-replay-01/sources.zip": {
+      "path": ".local/award-failure-replay-01/sources.zip",
+      "bytes": 2932221,
+      "sha256": "76f5583cd3e369e5a67433a0a7f40b78a2ac4593ca8dbb2d680a5492710ee3c1"
+    },
+    ".local/award-checks-02/result.json": {
+      "path": ".local/award-checks-02/result.json",
+      "bytes": 1407,
+      "sha256": "c2d034c4a89b5a340bd63d75745a622e7d45d4035e97bd664f930b7f2dfb4541"
+    },
+    ".local/award-checks-02/source-revision.json": {
+      "path": ".local/award-checks-02/source-revision.json",
+      "bytes": 113326,
+      "sha256": "beb4b1003183b1d6ee67d641a0e57e2e92f0699f86ed9cc1519d4ae4d23d6861"
+    },
+    ".local/award-checks-02/sources.zip": {
+      "path": ".local/award-checks-02/sources.zip",
+      "bytes": 2931763,
+      "sha256": "a3a687f35199a53c77f05a5f80fa94bda1fc893ceb93d1fdd4718b8f35dcbfa0"
+    },
+    ".local/award-muted-02/environment.json": {
+      "path": ".local/award-muted-02/environment.json",
+      "bytes": 321,
+      "sha256": "76a5eee82641c0657da6b614d3586c0ea54c725a8f6c2e41b1983536d8f49694"
+    },
+    ".local/award-muted-02/timeline.json": {
+      "path": ".local/award-muted-02/timeline.json",
+      "bytes": 771,
+      "sha256": "2af79a9a5fda52a9c2c8e649b65c484e9aaa274a4c119a556e75427a8eaaa9c2"
+    },
+    ".local/award-speaker-02/environment.json": {
+      "path": ".local/award-speaker-02/environment.json",
+      "bytes": 321,
+      "sha256": "76a5eee82641c0657da6b614d3586c0ea54c725a8f6c2e41b1983536d8f49694"
+    },
+    ".local/award-speaker-02/timeline.json": {
+      "path": ".local/award-speaker-02/timeline.json",
+      "bytes": 774,
+      "sha256": "b49852ebc4ee0af3565ff16090735512e8ea7ca5577d703f75e752c0b4709685"
+    },
+    ".local/award-tandy-03/environment.json": {
+      "path": ".local/award-tandy-03/environment.json",
+      "bytes": 321,
+      "sha256": "76a5eee82641c0657da6b614d3586c0ea54c725a8f6c2e41b1983536d8f49694"
+    },
+    ".local/award-tandy-03/timeline.json": {
+      "path": ".local/award-tandy-03/timeline.json",
+      "bytes": 774,
+      "sha256": "9cb06e568dc250b043817b0cbdc1557c0c6411f7a436feca2531a74c4aeef4cc"
+    }
+  },
+  "supportedBuild": "reference/build.json",
+  "evidenceLevels": {
+    "static": "403 original/prepared/Ghidra bytes,8 relocations;inherited366-byte original picture dispatcher and original EGA row algorithm.",
+    "routine": "201 units,130 boundaries,conditional original cave comparisons;source budget and timer widths explicit.",
+    "browser": "Actual startup/flight/cave treasure,all15 row groups/75 retraces,early cave and result keys flushed,cash/cues,transmitter/map/Restart.Three providers:muted,speaker,Tandy. Audio host20ms/Game16ms polling is conditional.",
+    "strictReplay": "Muted8 complete state/decoded-RGBA checkpoints with488 independent DOM inputs and a missing-Fire negative;unchanged failure11/454 with missing-Pause negative. No comparison exclusions."
+  },
+  "startingRecipe": "Fresh title,bios0,UTC,clock origin1,display8ms;the original22-file pairing. Prefix460 DOM events from result-earned-browser-01 independently reaches the cave treasure. Real audio cases enable the selected device at cave entry;muted remains disabled.",
+  "inputSchedule": "During the treasure animation makeP/Q/S. At award initial-wipe makeP/Q/S/Space;after portrait copy and helper flush,at second wipe repeat. Wait until reveal and actual native cue ACK if enabled;make fresh Fire at award,then explanation;observe collected map,click actual Restart. Complete captured DOM streams and expected checkpoints are separate files.",
+  "required": {
+    "groupsPerCase": 15,
+    "retracesPerCase": 75,
+    "checkpointsPerCase": 8,
+    "mutedReplayEvents": 488,
+    "failureCheckpoints": 11,
+    "failureEvents": 454,
+    "units": 201,
+    "boundaries": 130
+  },
+  "comparisonRules": "Exact decoded RGBA per row for15 groups and the retained completed award target;first wipe retains its observed incoming page outside cleared rows. Target is historical port image,not original-machine mid-transition evidence. State/timer replay exact;no fitted clocks or injections. Missing incoming page is rejected;environment and timeline metadata are required and checked.",
+  "excludedExplorations": [
+    {
+      "roots": [
+        ".local/award-muted-01",
+        ".local/award-speaker-01",
+        ".local/award-tandy-01"
+      ],
+      "reason": "Rejected:harness read a non-existent snapshot audioEnabled property."
+    },
+    {
+      "roots": [
+        ".local/award-tandy-02"
+      ],
+      "reason": "Rejected:harness required a speaker-only accepted field from Tandy ACK."
+    },
+    {
+      "roots": [
+        ".local/award-muted-replay-01"
+      ],
+      "reason": "Rejected:existing recorded DOM helper did not support Restart;explicit actual-button replay was added."
+    }
+  ],
+  "limitations": [
+    "No uninterrupted original award elapsed-time or mid-transition capture;resource loading,text drawing,striped CPU work and remaining IRQ/CPU phase are omitted.",
+    "Actual new award browser coverage is cave;shared action-expedition branch has conditional checks and needs fresh jungle/mountain campaign coverage.",
+    "The old170-checkpoint winning route predates this intentional timing change and is historical;fresh full-campaign recording/replay remains pending.",
+    "Other report presentations,movement timing,arbitrary-route finishability and deferred Hard campaigns remain unfinished."
+  ],
+  "verify": "node scripts/verify-award-presentation-acceptance.js",
+  "negatives": "node scripts/verify-award-presentation-negative.js",
+  "captureToolRevisions": {
+    "muted": "357d83fa7e4c7b17e39dc89c73d33364f5fc32fe",
+    "speaker": "357d83fa7e4c7b17e39dc89c73d33364f5fc32fe",
+    "tandy": "cb674b59c54afe3e00168b9aad90465017ac64bd",
+    "strictReplay": "b87f8c4c6c6ad566659efc84c1742e5534b0836c",
+    "ghidra": "MCP tool revision unavailable;explicit program,prepared executable hash,original bytes,relocations and packet checksums are recorded."
+  },
+  "observedAudioSampleRates": {
+    "muted": 48000,
+    "speaker": 48000,
+    "tandy": 48000
+  }
+}

@@ -101,6 +101,20 @@ for (const c of m.cases) {
     names,
   );
   const events = await json(c.root + "/captured-events.json");
+  const environment = await json(c.root + "/environment.json");
+  const timeline = await json(c.root + "/timeline.json");
+  assert.equal(environment.clockOrigin, 1);
+  assert.equal(environment.displayMilliseconds, 8);
+  assert.equal(environment.difficulty, 0);
+  assert.equal(environment.physical, true);
+  assert.equal(environment.completed, false);
+  assert.equal(timeline.clockOrigin, 1);
+  assert.equal(timeline.displayMilliseconds, 8);
+  assert.equal(timeline.endAt, points.at(-1).at);
+  assert.deepEqual(
+    timeline.observations,
+    points.map(({ name, at, eventCount }) => ({ name, at, eventCount })),
+  );
   assert.equal(events.length, r.events);
   assert.equal(points.at(-1).eventCount, events.length);
   const groups = packet.video.filter(
@@ -117,6 +131,20 @@ for (const c of m.cases) {
   changed[0].png =
     "data:image/png;base64," + PNG.sync.write(bad).toString("base64");
   assert.throws(() => compareAwardGroups(changed, target), /Award row pixels/);
+  const blanked = structuredClone(groups);
+  for (const group of blanked.filter(
+    (v) => v.state.expeditionResult.presentation.phase === "initial-wipe",
+  )) {
+    const image = PNG.sync.read(Buffer.from(group.png.split(",")[1], "base64"));
+    for (let at = 0; at < image.data.length; at += 4)
+      image.data.set([0, 0, 0, 255], at);
+    group.png =
+      "data:image/png;base64," + PNG.sync.write(image).toString("base64");
+  }
+  assert.throws(
+    () => compareAwardGroups(blanked, target),
+    /Missing incoming award page/,
+  );
   const publication = packet.video.find((v) => v.key === "publishing:none");
   assert.ok(publication);
   assert.equal(

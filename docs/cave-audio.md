@@ -48,7 +48,7 @@ Evidence levels remain separate:
   conditional, not original timing acceptance. Current run results are recorded
   separately; an implementation or available command alone is not a pass.
 
-Current acceptance is pinned in `reference/cave-audio-acceptance.json`:
+The historical cave milestone is pinned in `reference/cave-audio-acceptance.json`:
 
 - Speaker enabled and Tandy enabled both query busy and wait for actual matching
   completion before the failure result and guarded return reset.
@@ -70,8 +70,11 @@ Current acceptance is pinned in `reference/cave-audio-acceptance.json`:
   rejection; three setup negatives reject empty/missing/corrupt evidence. Four
   source negatives reject empty/missing/corrupt/misaddressed source evidence.
 
-Runtime is `66d8f54`; later commits change evidence/tooling only. Natural browser
-audio capture/treasure coverage is still narrower than their component coverage.
+That milestone's runtime is `66d8f54`. The subsequent award-presentation change
+makes its full-route receipt historical;its saved runtime guard rejects newer
+code. Current treasure audio and unchanged failure replay are covered by
+[award acceptance](award-presentation.md). Capture audio remains exploration-only;current treasure audio acceptance covers
+one earned route,which is narrower than the component coverage.
 The two rejected `*-01` initial focus probes are retained as failed exploration:
 the checkbox held keyboard focus and the required route did not finish. They
 are excluded cases, not relaxed comparisons or runtime recovery.

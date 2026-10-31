@@ -47,11 +47,42 @@ time and new original intermediate screenshots are not established here.
 This intentional timing correction invalidates the old fixed-timestamp award
 and full-campaign recordings on the changed runtime. They remain historical,
 unmodified evidence. They must not be accepted by skipping the new presentation
-or relaxing state/timer comparisons. Fresh focused browser verification is
-pending; the implementation and available commands alone are not acceptance.
+or relaxing state/timer comparisons. Fresh full-campaign recording/replay remains
+pending;the new focused acceptance is narrower and does not claim it.
+
+## Current acceptance
+
+`reference/award-presentation-acceptance.json` pins runtime357d83f and passes:
+
+- Three earned browser routes:muted,PC speaker,Tandy. Each checks all15 exact
+  row groups,75 retraces,the unchanged completed award page,400→3400 cash,
+  deferred cave/result P/Q/S/Fire,transmitter explanation,map collection and
+  actual Restart. Real audio cases verify the cave query/reset and the original
+  second49 after reveal. Tandy does not expose the speaker's `accepted` ACK field;
+  its idle reset followed by busy49 is checked instead.
+- Independent strict muted replay:8 complete state/decoded-RGBA checkpoints,
+  488 DOM events,no comparison exclusions. Removing fresh award Fire must
+  diverge at the transmitter checkpoint. Expected outputs never choose inputs.
+- Unchanged cave-failure regression:11 exact checkpoints/454 events and the
+  missing-Pause negative.201 units,130 component/device boundaries,build and
+  retained conditional original cave comparisons also pass.
+- The saved checker rejects missing row groups,altered pixels,blank incoming
+  pages,missing queries and missing second49. Six setup/source negatives reject
+  empty/missing/corrupt evidence. Missing local originals/captures fail setup.
+
+Actual new award browser coverage is cave-only. The action-expedition branch is
+shared and has conditional application checks;fresh jungle/mountain and full
+campaign routes remain required. Source proof also checks the inherited366-byte
+picture dispatcher. The original uninterrupted timing limitations above remain.
+
+Rejected initial probes and the unsupported-Restart first replay are recorded in
+the manifest. Their checks were corrected against actual UI/device interfaces;
+none is accepted or used to relax a comparison.
 
 ```sh
 node scripts/verify-award-presentation-source.js
+node scripts/verify-award-presentation-acceptance.js
+node scripts/verify-award-presentation-negative.js
 node --test tests/award-presentation.test.js scripts/result-input.test.js
 npm test
 npm run build

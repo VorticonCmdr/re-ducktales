@@ -6,6 +6,14 @@ export function awardPixels(v) {
 export function compareAwardGroups(data, target) {
   assert.equal(data.length, 15, "Missing award row groups");
   const base = awardPixels(data[0]);
+  let retainedPixels = 0;
+  for (let y = 0; y < 200; y++)
+    if (y % 5 !== 0)
+      for (let x = 0; x < 320; x++) {
+        const at = (y * 320 + x) * 4;
+        if (base[at] || base[at + 1] || base[at + 2]) retainedPixels++;
+      }
+  assert.ok(retainedPixels > 0, "Missing incoming award page");
   for (const phase of ["initial-wipe", "wipe", "reveal"]) {
     const rows = data.filter(
       (v) => v.state.expeditionResult.presentation.phase === phase,

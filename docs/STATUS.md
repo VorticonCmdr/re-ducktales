@@ -4,57 +4,46 @@ Updated 2026-10-31. **The whole game is incomplete.** Hard campaigns remain
 deferred at the user's request. This is a playable port with remaining fidelity
 and route-coverage work, not just final polish.
 
-## Working playable route
+## Working playable routes and latest milestone
 
-Standard has a verified continuous winning route: startup/security/office →
-flights → Too-Pei cave → Kenya Safari → Great Outback jungle → Lost World mountain
-→ Atlantis, Klondike and Siberian caves → banking/rivals → day33 victory →
-celebration/replay-No → all26 credits → finished screen → Restart. Banked24275
-beats rival21000. This is the last full winning receipt,at runtime66d8f54.
-The award-presentation timing change below requires fresh campaign recordings;
-the old fixed-timestamp route is historical on the changed runtime.
+The current earned route is startup/security/office → flight → cave treasure →
+original75-retrace award presentation → transmitter explanation → collected map
+→ Restart. It passes with muted audio,PC speaker and Tandy. The reward sound and
+input prompt begin only after reveal;cash commits after portrait copy,and native
+flushes discard keys from both the expedition and presentation. Runtime:`357d83f`.
+[Rules,evidence and limitations](award-presentation.md).
+
+[Current saved acceptance](../reference/award-presentation-acceptance.json) passes:
+
+- All15 row groups and75 retraces in each browser case,exact completed reward
+  pixels,cash400→3400,actual device query/reset/second49,collection and Restart.
+  Audio host20ms/Game16ms polling is conditional,not original timing parity.
+- Independent strict muted award replay:8 complete state/decoded-RGBA checkpoints,
+  488 DOM events and a missing-Fire negative. Unchanged cave failure:11 exact
+  checkpoints/454 events and a missing-Pause negative. No replay exclusions.
+- 201 units,130 component/device boundaries,build,403 original/prepared/Ghidra
+  source bytes/8 relocations,the inherited366-byte dispatcher and retained
+  conditional native cave checks. Missing/corrupt/empty evidence and missing
+  row groups,pixels,queries or cue calls are rejected.
+
+The last full Standard winning receipt is historical,runtime66d8f54:startup →
+Too-Pei cave → Kenya Safari → Great Outback jungle → Lost World mountain →
+Atlantis,Klondike,Siberia caves → banking/rivals → day33 victory(24275 vs21000) →
+replay-No → all26 credits → finished → Restart. The new source-correct award
+sequence intentionally changes its fixed timestamps. Fresh full-campaign
+recording/replay is required;the old170-checkpoint receipt is not current acceptance.
+
+Cave global sound waits,guarded resets and room-entry pit/treasure cues remain
+implemented. The earlier four pit audio cases retain their historical source
+scope;the current award routes exercise treasure sound and the failure replay
+still matches. [Cave audio](cave-audio.md),[atomic travel](atomic-audio.md).
 
 HTML/CSS/vanilla JS with npm/Vite. Original files remain authoritative in ignored
-`game/`; production users select their own originals. Nothing is pushed or deployed.
-
-## Latest completed milestone
-
-**Award presentation under verification:** the original75-retrace wipe/copy/
-wipe/reveal sequence now precedes the reward cue and40-read prompt. Cash and
-input flushes follow their source boundaries. Focused/source checks pass; fresh
-browser acceptance is pending. [Evidence and commands](award-presentation.md).
-
-Cave terminal sounds now wait on actual global driver status. Mute cannot invent
-completion; stale tokens and driver ticks cannot release the wait. Initial, pit
-and return resets follow the original enabled guards. Room entry requests one
-pit-warning or treasure-proximity cue; redraws remain silent. Runtime:`66d8f54`.
-[Rules, evidence and limitations](cave-audio.md).
-
-[Historical cave acceptance](../reference/cave-audio-acceptance.json) passed at
-its pinned runtime;its source guards reject the changed award runtime:
-
-- Four actual-browser speaker/Tandy cases, each enabled or muted during the pit
-  ending. All traverse real passages, cue once per room, query the real driver,
-  enter failure and Restart. Both enabled cases exercise busy→completion.
-  Host20ms/Game16ms polling is conditional, not original timing acceptance.
-- Unchanged strict muted cave failure:11 exact public-state/decoded-RGBA
-  checkpoints,454 independent DOM events, Pause/Quit-No/map/retry/Restart, plus
-  a missing-input negative.
-- Unchanged strict muted winning Standard:170 exact public-state/decoded-RGBA
-  checkpoints,6575 independent DOM events, victory/credits/Restart, plus a
-  missing-selection negative. Neither replay has comparison exclusions.
-- 194 units,130 component/device boundaries, production build,51 terminal-loop
-  and499 call/rule source bytes, and retained conditional native cave checks.
-  Missing queries/cues/completions and missing/corrupt/empty fixtures are rejected.
-
-The preceding atomic milestone corrected global sound status during failed
-transmitter travel. Its23-checkpoint muted report and four actual device cases
-retain their historical runtime scope; its120 boundary checks are included in
-this milestone's130. [Atomic travel](atomic-audio.md).
+`game/`;production users select their own originals. Nothing is pushed or deployed.
 
 ## Coverage and remaining work
 
-| Family | Retained earlier Easy coverage | Current Standard winning route |
+| Family | Retained earlier Easy coverage | Historical Standard winning route |
 | --- | --- | --- |
 | Jungle | All3 layouts complete in browser | Great Outback/layout2 treasure |
 | Mountain | All3 layouts complete in browser | Lost World/layout0 summit |
@@ -66,12 +55,11 @@ receipts retain their documented historical source scopes. They were not all
 rerun for this milestone; older runtime guards intentionally reject newer code.
 [History](status-history.md),[Standard route](standard-wages.md).
 
-Next: verify the earned award route,all15 original row groups,input flushes and
-real speaker/Tandy handoff,then establish fresh campaign coverage. Natural cave
-capture/treasure speaker exploration has reached results/Restart;it is not strict
-acceptance or native timing evidence. Earlier accepted natural audio coverage is
-pit-only;the other terminal waits have component/static evidence.
-Remaining sound-call adaptations also need review against the original.
+Next: fresh jungle/mountain award browser routes and full-campaign coverage with
+the restored timing,then the remaining report presentations and gameplay/input
+audit. Actual new award acceptance is cave-only;action-expedition application
+checks are conditional. Natural capture audio exploration reached result/Restart
+but is not strict current acceptance. Other sound-call adaptations need review.
 
 Original movement cadence remains an open fidelity issue across expeditions.
 Graphics work is modeled, but uninterrupted native whole-game timing, reveal
@@ -102,14 +90,17 @@ images contain actual game code with documented transformations and are never ru
 ## Verification
 
 ```sh
-# Current work under browser verification:
+# Current saved acceptance and strict fixture negatives:
+node scripts/verify-award-presentation-acceptance.js
+node scripts/verify-award-presentation-negative.js
 node scripts/verify-award-presentation-source.js
 node --test tests/award-presentation.test.js scripts/result-input.test.js
 npm test
 npm run build
 # Fresh exact browser regressions; clean committed source and new ignored outputs:
 node scripts/verify-cave-failure-input-browser.js --output=.local/failure-FRESH
-node scripts/verify-standard-wages-route.js --manifest=reference/standard-winning-route.json --output=.local/winning-FRESH
+node scripts/award-route.js --device=muted --output=.local/award-muted-FRESH
+node scripts/award-route.js --verify --capture=.local/award-muted-FRESH --output=.local/award-replay-FRESH
 # Fresh real device cases; repeat each device with enabled and muted:
 node scripts/probe-cave-audio.js --device=speaker --mode=enabled --output=.local/cave-audio-FRESH
 # Local development:

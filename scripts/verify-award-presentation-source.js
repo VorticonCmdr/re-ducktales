@@ -73,7 +73,14 @@ assert.equal(
   Buffer.from(image.subarray(0xc36, 0xc48)).toString("hex"),
   "803ebe0300740bb8490050ff1e1c2083c402",
 );
-const driver = (await json(m.rowAlgorithm.path)).graphics;
+const parent = await json(m.rowAlgorithm.path);
+const dispatcher = parent.ranges[0];
+assert.deepEqual([dispatcher.offset, dispatcher.length], [0x1c48, 366]);
+assert.equal(
+  sha(image.subarray(dispatcher.offset, dispatcher.offset + dispatcher.length)),
+  dispatcher.sha256,
+);
+const driver = parent.graphics;
 assert.equal(
   Buffer.from(image.subarray(0x5a85, 0x5aa5)).toString("hex"),
   "57fab840008ec026a11c0026a31a008cd88ec0bf6c27b9400033c0f3abfb5fcb",

@@ -1,0 +1,34 @@
+{
+  "kind": "standard-wages-saved-port-regression",
+  "consumer": ".local/standard-wages-replay-01",
+  "artifacts": {
+    "scenario": {
+      "path": "reference/standard-wages-route.json",
+      "bytes": 12203,
+      "sha256": "bcdfc765730d6ab53579dfea2cfd08dfa06e968758b6052948eef6a489be55ae"
+    },
+    "result": {
+      "path": ".local/standard-wages-replay-01/acceptance-status.json",
+      "bytes": 925,
+      "sha256": "5ceecc11524b308297ae1f6bb1907690295bc225897e8ab2ac61c868f2ca2992"
+    },
+    "setup-negatives": {
+      "path": ".local/standard-wages-replay-01/setup-negatives.json",
+      "bytes": 199,
+      "sha256": "04820a06886c68238fa687cc83f74e1728c06321d6b71edc1dbaba2f438af626"
+    },
+    "diagnostic": {
+      "path": ".local/standard-wages-replay-01/diagnostic.json",
+      "bytes": 3761,
+      "sha256": "7b4a943820d3c9c4db2912c719de3cc639165c651642eebdd5ff058a05bfeff6"
+    },
+    "setup-negative-source": {
+      "path": "scripts/verify-standard-wages-setup-negative.js",
+      "bytes": 2100,
+      "sha256": "5f92598783885e4f8cf10042acac0ae0591fb4e903483a0918822aeee5388484"
+    }
+  },
+  "scope": "Browser port regression through day13,not whole Standard campaign or original-game timing parity",
+  "diagnosticLimit": "Separate simulation diagnostic matches36 checkpoints and renders2568 flight presentations;its declared100ms tail is exploratory and is not browser acceptance.",
+  "verify": "node scripts/verify-standard-wages-acceptance.js"
+}

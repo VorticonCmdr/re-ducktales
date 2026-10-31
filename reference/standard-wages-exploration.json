@@ -8,7 +8,44 @@
     "sourceCommit": "bf40b2003eb00f24c58ca40360456a37d305def7",
     "checkpoints": 23,
     "events": 523,
-    "restart": true
+    "restart": true,
+    "artifacts": {
+      "source-revision.json": {
+        "path": ".local/standard-wages-first-leg-01/source-revision.json",
+        "bytes": 100962,
+        "sha256": "a42892b427705a6d9565d3dad0d39ec47b1dc432e6b45f0c09107140d5b34bd1"
+      },
+      "sources.zip": {
+        "path": ".local/standard-wages-first-leg-01/sources.zip",
+        "bytes": 2696547,
+        "sha256": "177d84d2cf5d4b9faaf8cb58486d1a47f82c145483099b301d257f32350debd1"
+      },
+      "environment.json": {
+        "path": ".local/standard-wages-first-leg-01/environment.json",
+        "bytes": 254,
+        "sha256": "10603d8dc214b817eb9f06eacb7c50e478b4d6f84f3dc2adbdfe1047ea943ecf"
+      },
+      "captured-events.json": {
+        "path": ".local/standard-wages-first-leg-01/captured-events.json",
+        "bytes": 62141,
+        "sha256": "4b19fc3f36ce89f5ff0f9d2cc783dd08a940434903f5484584b91b632f6d156f"
+      },
+      "campaign-checkpoints.json": {
+        "path": ".local/standard-wages-first-leg-01/campaign-checkpoints.json",
+        "bytes": 138920,
+        "sha256": "230cca252b53f8e57477c40808de76a5c231fc436c88a85d2b8352698acb5769"
+      },
+      "timeline.json": {
+        "path": ".local/standard-wages-first-leg-01/timeline.json",
+        "bytes": 2002,
+        "sha256": "ff17242652727ee9d748ed1f15878cea9703bd387210bb7b8e91a38223e6dfc3"
+      },
+      "exploration-status.json": {
+        "path": ".local/standard-wages-first-leg-01/exploration-status.json",
+        "bytes": 241,
+        "sha256": "c9f6c5a28a37cc512642e34d8e927cba8f1848e7df12b44f6ed24d4c3b895fa6"
+      }
+    }
   },
   "secondAttempt": {
     "producer": ".local/standard-wages-safari-01",
@@ -68,5 +105,5 @@
   "exclusions": [],
   "injections": [],
   "fittedInputs": [],
-  "nextExperiment": "Consume the ordinary rival-claim,return to map,and continue to another Safari in the same campaign."
+  "nextExperiment": "Initial claim continuation is now browser-accepted in reference/standard-wages-acceptance.json;extend Standard to jungle,mountain and campaign ending."
 }

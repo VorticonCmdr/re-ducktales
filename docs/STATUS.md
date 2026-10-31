@@ -14,6 +14,16 @@ select their own files. Nothing has been pushed or deployed.
 
 ## Latest completed behavior
 
+Standard Wages now has a continuous verified browser route through day13:
+Too-Pei cave → $3,400 deposit → lost Safari race → rival claim → map → new
+departure → Kenya target photograph → second deposit → map with $3,900 → Restart.
+A fresh independent browser consumes3,177 recorded DOM events and matches all36
+complete state/RGBA checkpoints. Omitting the Standard selection fails at the
+first checkpoint. Three setup negatives reject zero checkpoints,missing fixtures
+and corrupt fixtures. This is a partial campaign port regression,not original
+timing parity or a complete Standard campaign.
+[Standard route and commands](standard-wages.md).
+
 Treasure awards now use original40-read waits and the transmitter explanation
 uses100. Both flush on entry,read immediately,wait seven driver ticks per neutral
 read,resume blocked Pause/Quit-No reads and omit the extra final read. Click0x24
@@ -57,14 +67,13 @@ original difficulty1;its full campaign acceptance is not established. Hard remai
 deferred. Failure-portrait20 and other legacy dialogue read boundaries also remain
 separate fidelity gaps;the award/notice change does not claim to fix them.
 
-Standard exploration now completes startup,flight,Too-Pei cave,treasure and
-transmitter notice,rival reports,$3,400 deposit,return to map and Restart
-(23 checkpoints,523 DOM events). A continuous Safari extension reaches a normal
-lost race on its second flight:day7,tile92 of126,then rival-claim. That run stopped
-because the exploratory player required an arrival;it is not proof of a port
-dead end. The next experiment consumes the claim and continues the same campaign
-to another Safari. [Exploration evidence](../reference/standard-wages-exploration.json).
-These captures are not strict acceptance or a complete Standard campaign.
+The first Standard Safari attempt lost its race at day7,tile92 of126. The
+explorer initially stopped because it required an arrival. The accepted route
+now consumes that normal claim,returns to map and completes another Safari;
+this branch is not a dead end. [Initial exploration](../reference/standard-wages-exploration.json),
+[accepted continuation](../reference/standard-wages-acceptance.json).
+Next:carry Standard through jungle/mountain expeditions and the campaign ending;
+the current day13 route does not establish those outcomes.
 
 Other legacy dialogues,cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
@@ -97,6 +106,8 @@ contain actual game code with documented transformations and are never run.
 
 ```sh
 # Validate saved current acceptance and scoped source/observation evidence:
+node scripts/verify-standard-wages-acceptance.js
+node scripts/verify-standard-wages-setup-negative.js
 node scripts/verify-result-input-acceptance.js
 node scripts/verify-result-caller-source.js
 node scripts/verify-result-audio-boundary.js
@@ -105,6 +116,7 @@ node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/ato
 npm test
 npm run build
 # Fresh independent result replay,requires clean committed source:
+node scripts/verify-standard-wages-route.js --output=.local/standard-replay-FRESH
 node scripts/atomic-route.js verify --award --capture=.local/result-earned-browser-01 --output=.local/result-replay-FRESH
 # Fresh current consumer of immutable historical routes:
 node scripts/verify-preserved-routes.js --output=.local/preserved-FRESH

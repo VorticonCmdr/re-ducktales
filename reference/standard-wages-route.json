@@ -1,0 +1,312 @@
+{
+  "kind": "standard-cave-safari-port-regression",
+  "scope": "Standard Wages startup,Too-Pei cave,award/atomic unlock,banking,lost race/claim/map recovery,Kenya target photo/results,second deposit,map and Restart. Not a complete campaign or original runtime timing comparison.",
+  "producer": ".local/standard-wages-safari-02",
+  "captureToolRevision": "4cf9890ad713912e40ce57db3678139ba3e6296f",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "difficulty": 1,
+  "physicalKeyboard": true,
+  "nativeComparison": false,
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "audioEnabled": false,
+    "seedConsumption": "Browser startup and difficulty confirmation use the declared BIOS seed provider;no game/RNG/actor memory restored or patched."
+  },
+  "startingRecipe": "Run node scripts/standard-wages-explore.js --safari --output=.local/FRESH on clean source;this does not certify itself. Each replay starts a fresh application at title.",
+  "inputArtifact": "captured-events",
+  "checkpointArtifact": "campaign-checkpoints",
+  "requiredEventCount": 3177,
+  "expectedCheckpointCount": 36,
+  "checkpointNames": [
+    "standard-choice",
+    "office",
+    "departure",
+    "flight-start",
+    "flight-return",
+    "cave-entry",
+    "room-10",
+    "room-18",
+    "room-26",
+    "room-27",
+    "room-19",
+    "room-11",
+    "room-12",
+    "room-13",
+    "room-14",
+    "award",
+    "dialogue-16",
+    "dialogue-17",
+    "dialogue-18",
+    "map-after-cave",
+    "bank-deposited",
+    "dialogue-21",
+    "map-after-bank",
+    "safari-departure-0",
+    "safari-flight-return-0",
+    "dialogue-25",
+    "map-after-lost-race-0",
+    "safari-departure-1",
+    "safari-flight-return-1",
+    "safari-entry",
+    "safari-shot-0",
+    "safari-results",
+    "dialogue-32",
+    "map-after-safari",
+    "safari-banked",
+    "map-after-safari-bank"
+  ],
+  "comparison": {
+    "state": "Exact complete canonical snapshot SHA-256 at every checkpoint",
+    "pixels": "Exact decoded 320x200 RGBA SHA-256",
+    "eventConsumption": "Every required DOM event,complete timeline,no skipped checkpoints",
+    "exclusions": [],
+    "injections": [],
+    "fittedInputs": []
+  },
+  "negativeControl": "Omit first ArrowDown make;must fail state comparison at standard-choice,not only an event count.",
+  "artifacts": {
+    "source-revision": {
+      "path": ".local/standard-wages-safari-02/source-revision.json",
+      "bytes": 101193,
+      "sha256": "3e1ee4e10a85f6deacb89941028e7b97c31f6e4942c4474337c4d0853aca6364"
+    },
+    "sources.zip": {
+      "path": ".local/standard-wages-safari-02/sources.zip",
+      "bytes": 2701650,
+      "sha256": "258fe70f0d6bf63c0c5cff2cc868a25e14384247d4b90168ef17f85f4075464a"
+    },
+    "environment": {
+      "path": ".local/standard-wages-safari-02/environment.json",
+      "bytes": 318,
+      "sha256": "f2bd39cb7ae3fae15007e00d28f6d8b7d257660d7c644f93cead6a8e8e15b0dd"
+    },
+    "captured-events": {
+      "path": ".local/standard-wages-safari-02/captured-events.json",
+      "bytes": 383413,
+      "sha256": "cf479fb69c4d995cb77babeb835dcb3aad00c33aa2ae9a93ec7356665a951be0"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/standard-wages-safari-02/campaign-checkpoints.json",
+      "bytes": 236307,
+      "sha256": "3d1e43e12e35b6fb2bce9bc42ad4a4a3142a31baa62ba2bb52981d66bcff0c4d"
+    },
+    "timeline": {
+      "path": ".local/standard-wages-safari-02/timeline.json",
+      "bytes": 3201,
+      "sha256": "ef2eae3e8ccd02e686bdeaa2ababde5a0a5bdcec9d02c3b208931c1064ea2771"
+    },
+    "exploration-status": {
+      "path": ".local/standard-wages-safari-02/exploration-status.json",
+      "bytes": 239,
+      "sha256": "99ccefc7912596e4bc5eac2f934e19937b7c9832bce854a56d7de57b4b663fb8"
+    },
+    "flight-controls": {
+      "path": ".local/standard-wages-safari-02/flight-controls.json",
+      "bytes": 200753,
+      "sha256": "93c2988f96d204fb96485671da1df720c69d9de94d90612ef21692e21d50ad67"
+    },
+    "cave-player-plan": {
+      "path": ".local/standard-wages-safari-02/cave-player-plan.json",
+      "bytes": 1277,
+      "sha256": "761e9b3d6f1e6ee376a973eb66993e11003491754be118d52efb13aa9954b9f7"
+    },
+    "safari-flight-controls-0": {
+      "path": ".local/standard-wages-safari-02/safari-flight-controls-0.json",
+      "bytes": 456281,
+      "sha256": "fe6dc34ebf10eb677e4cec1713fff5b63503a10a4bfe73b7feacf8adfbe2c592"
+    },
+    "safari-flight-controls-1": {
+      "path": ".local/standard-wages-safari-02/safari-flight-controls-1.json",
+      "bytes": 495491,
+      "sha256": "e5fb3ee10c943ed2f9a18036cdf92aaba8d7f8355c7283c3cabc96ee25fcfa1d"
+    },
+    "award.png": {
+      "path": ".local/standard-wages-safari-02/award.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "bank-deposited.png": {
+      "path": ".local/standard-wages-safari-02/bank-deposited.png",
+      "bytes": 29043,
+      "sha256": "c137a6b1a786b3ac272b8190cd96b31a4279bfa8f41bf74b1b268b9a2f399983"
+    },
+    "cave-entry.png": {
+      "path": ".local/standard-wages-safari-02/cave-entry.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "departure.png": {
+      "path": ".local/standard-wages-safari-02/departure.png",
+      "bytes": 12792,
+      "sha256": "ae4cfb4f64eff8539019af6fd1b017ebcf7943b0b36fd1b36f373772e6f47037"
+    },
+    "dialogue-16.png": {
+      "path": ".local/standard-wages-safari-02/dialogue-16.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "dialogue-17.png": {
+      "path": ".local/standard-wages-safari-02/dialogue-17.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    },
+    "dialogue-18.png": {
+      "path": ".local/standard-wages-safari-02/dialogue-18.png",
+      "bytes": 15495,
+      "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+    },
+    "dialogue-21.png": {
+      "path": ".local/standard-wages-safari-02/dialogue-21.png",
+      "bytes": 15709,
+      "sha256": "8aeb77b045929260e11c6fbdc29d8805944538d3d0bd55efb7814e044e725262"
+    },
+    "dialogue-25.png": {
+      "path": ".local/standard-wages-safari-02/dialogue-25.png",
+      "bytes": 15779,
+      "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+    },
+    "dialogue-32.png": {
+      "path": ".local/standard-wages-safari-02/dialogue-32.png",
+      "bytes": 15451,
+      "sha256": "2fdd5cb9ed0cbadc671253a5a34e96a6fee628fd73fba2f65199ffcea75fdb7a"
+    },
+    "flight-return.png": {
+      "path": ".local/standard-wages-safari-02/flight-return.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "flight-start.png": {
+      "path": ".local/standard-wages-safari-02/flight-start.png",
+      "bytes": 9956,
+      "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
+    },
+    "map-after-bank.png": {
+      "path": ".local/standard-wages-safari-02/map-after-bank.png",
+      "bytes": 27591,
+      "sha256": "50d6ceeda01800c4597e229e81cbf5d8b79dcdc3772925c6ba1b2f6f91239acc"
+    },
+    "map-after-cave.png": {
+      "path": ".local/standard-wages-safari-02/map-after-cave.png",
+      "bytes": 27540,
+      "sha256": "86be55a96982777c03579862cea6b415b928c7381351a9c3db0bd88d7b1b5191"
+    },
+    "map-after-lost-race-0.png": {
+      "path": ".local/standard-wages-safari-02/map-after-lost-race-0.png",
+      "bytes": 27627,
+      "sha256": "a87e332a3bc2cb35c779cd2afdd7d9c4209d1a3e3a0a16a9063a77d3c47da933"
+    },
+    "map-after-safari-bank.png": {
+      "path": ".local/standard-wages-safari-02/map-after-safari-bank.png",
+      "bytes": 27624,
+      "sha256": "ea1e06f4e30f6d9dc55969ba93bbb4640fe91bccbb3ef562eaab7f4dd4284c2f"
+    },
+    "map-after-safari.png": {
+      "path": ".local/standard-wages-safari-02/map-after-safari.png",
+      "bytes": 27797,
+      "sha256": "dd5e4b10d10aa3e21d5ece2b55ee3ffd584dcbd8a9792e886537c76906852fa9"
+    },
+    "office.png": {
+      "path": ".local/standard-wages-safari-02/office.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "room-10.png": {
+      "path": ".local/standard-wages-safari-02/room-10.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "room-11.png": {
+      "path": ".local/standard-wages-safari-02/room-11.png",
+      "bytes": 43895,
+      "sha256": "8ecaa27d88476f62ee205ed7fb8e1af65895b17047a9313f9ed545b9aa3bf0e8"
+    },
+    "room-12.png": {
+      "path": ".local/standard-wages-safari-02/room-12.png",
+      "bytes": 43141,
+      "sha256": "cc506d9ddff96a021a78e7ddaac84f6cd1a2ea76ae99fb1f7a35f813791bc33c"
+    },
+    "room-13.png": {
+      "path": ".local/standard-wages-safari-02/room-13.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "room-14.png": {
+      "path": ".local/standard-wages-safari-02/room-14.png",
+      "bytes": 42765,
+      "sha256": "0edc1a3aeb5129c8087057d105ae1ef784970722b91f5c5216ec69e9af01c747"
+    },
+    "room-18.png": {
+      "path": ".local/standard-wages-safari-02/room-18.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-19.png": {
+      "path": ".local/standard-wages-safari-02/room-19.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-26.png": {
+      "path": ".local/standard-wages-safari-02/room-26.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-27.png": {
+      "path": ".local/standard-wages-safari-02/room-27.png",
+      "bytes": 41329,
+      "sha256": "aa79312b8822265a12bc53328f88dccc1cb46349de63a5e00fc27eec979d3ca9"
+    },
+    "safari-banked.png": {
+      "path": ".local/standard-wages-safari-02/safari-banked.png",
+      "bytes": 29054,
+      "sha256": "c5f6dfaa83be12f9694f37f02c95e85d2773e54e2fc90f8364d652db33944d8d"
+    },
+    "safari-departure-0.png": {
+      "path": ".local/standard-wages-safari-02/safari-departure-0.png",
+      "bytes": 29034,
+      "sha256": "1b8214dfe4ae83b557027adea95af5bff7ed9062a63a184b9c45278aac87e901"
+    },
+    "safari-departure-1.png": {
+      "path": ".local/standard-wages-safari-02/safari-departure-1.png",
+      "bytes": 29113,
+      "sha256": "0a8a93e690a7e2d24f6ad2e4d068b3f0cbdb85923106b2516d7a7c7fed9afec7"
+    },
+    "safari-entry.png": {
+      "path": ".local/standard-wages-safari-02/safari-entry.png",
+      "bytes": 36856,
+      "sha256": "83ddf1746636465737d4785a14cb57cea6ed715ce3b19d06ecc677d8a3487556"
+    },
+    "safari-flight-return-0.png": {
+      "path": ".local/standard-wages-safari-02/safari-flight-return-0.png",
+      "bytes": 15779,
+      "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+    },
+    "safari-flight-return-1.png": {
+      "path": ".local/standard-wages-safari-02/safari-flight-return-1.png",
+      "bytes": 20576,
+      "sha256": "5b4df8925dcc85a0b4578a4ae75c8bc319709c8bd3eae59f9a0e53df3d5a6d6e"
+    },
+    "safari-results.png": {
+      "path": ".local/standard-wages-safari-02/safari-results.png",
+      "bytes": 33799,
+      "sha256": "bb1ec80aa1a7fd16227cad81efe1904a34db89bc12d984762b31920190305ed4"
+    },
+    "safari-shot-0.png": {
+      "path": ".local/standard-wages-safari-02/safari-shot-0.png",
+      "bytes": 35557,
+      "sha256": "d2da26d08c4a116d3ea18a32b7bd9c1a7a6cd764a6e3f1bc54acf67c0ccaf3c6"
+    },
+    "standard-choice.png": {
+      "path": ".local/standard-wages-safari-02/standard-choice.png",
+      "bytes": 14258,
+      "sha256": "4c23903a174872221c8b17410f542161681e90c73092133b12189dc0c0e5e5b2"
+    }
+  },
+  "verify": "node scripts/verify-standard-wages-route.js --output=.local/standard-replay-FRESH"
+}

@@ -1,171 +1,109 @@
 # Current port status
 
-Updated 2026-10-31. **The whole game is incomplete. This is completion work,
-not only fine-tuning.** Hard campaigns remain deferred at the user's request.
-
-## Work in progress: guide reader fix
-
-The guide now queues global keys until shared09f5(30) read boundaries, flushes on
-entry, resumes blocked Pause/Quit reads and has no final extra read.194 existing
-units,12 focused guide checks and5 preserved original atomic comparisons pass.
-Fresh current browser verification and unchanged historical route comparison are
-pending. Earlier runtime-pinned acceptances below are historical until refreshed.
-
-## Latest completed behavior: earned atomic success and misdirection
-
-Source `e8320ce` passes an independent actual-browser route that earns the
-transmitter through Too-Pei cave7, travels from Office to Klondike, collects
-another $50, and Restarts:18 exact full-state/pixel checkpoints,486 DOM events,
-and one omitted-selection negative. P/Q/S cannot interrupt charge. Ten focused
-checks cover the original report-reader boundaries;194 existing unit tests and
-the production build pass. [Atomic input evidence and commands](atomic-input.md).
-
-Source `61419ac` adds independent earned-misdirection browser acceptance:
-23 exact state/image checkpoints,492 DOM events,Pause/Quit-No/Fire,redirected
-jungle entry and Restart. Two omission negatives fail at atomic selection and
-report Pause. The shared helper also replays the original successful route
-unchanged:18 checkpoints/486 events and its selection negative. The earlier
-report observation remains historical; independent report replay is now complete.
-[Atomic report manifest](../reference/atomic-earned-report.json).
-
-The next confirmed gap is guide-screen input: a browser probe opens Pause one
-driver tick after guide entry while its30-poll countdown is still210. Static
-original code calls shared09f5(30),not immediate system-key dispatch.388 original
-bytes and300 transformed Ghidra bytes are checked. This is not fixed yet, and
-absolute native chapter drawing/input timing remains unverified.
-[Guide investigation and next implementation](guide-input-investigation.md).
-
-Current source `e8320ce` also passes the12-route regression against unchanged
-historical inputs and expected outputs:272 exact browser state/image checkpoints,
-10,117 DOM events,12 Restarts, the34-checkpoint full headless campaign, and all8
-cave components/2,696 presentations. Three receipt negatives reject zero cases,
-an unconsumed event and corrupt evidence. Each producer and the current consumer
-have separate verified source archives. [Current regression and commands](atomic-input-regression.md).
+Updated 2026-10-31. **The whole game is incomplete.** Hard campaigns remain deferred
+at the user's request.
 
 ## Working playable route
 
-Startup → Easy → office/security → map/transport/departure → flight → jungle,
-Safari, cave and mountain expeditions → rewards, banking/rivals → winning day31
-ending → Restart. HTML/CSS/vanilla JavaScript runs through npm/Vite. Original
-assets remain authoritative in ignored `game/`; production visitors select their
-own files. No push or deployment has been performed.
+Easy startup → security/office → map/transport/departure → flight → jungle,
+mountain, cave and Safari expeditions → rewards, banking/rivals → winning day31
+ending → Restart. The earned atomic transmitter supports successful travel and
+misdirection into real expeditions. The application uses HTML/CSS/vanilla JS and
+npm/Vite. Original assets stay authoritative in ignored `game/`. Production users
+select their own files. Nothing has been pushed or deployed.
 
-The historically accepted full Easy route passes independent headless and actual-browser replay:
-34 exact state/image checkpoints, 4,981 DOM events and 1,470 flight presentations.
-It banks $14,550 against $12,500 and retains all three mountain lives.
-`npm run verify:current-campaign` passed from clean `533f661`; the saved record
-pins 863 source files, 96 evidence artifacts and 1,229 preserved historical
-artifacts. It includes 194 units, focused browser controls/failure controls,
-original/source/component checks and production build. The saved receipt was
-rechecked successfully after adding the separate cave coverage harness.
-[Full campaign evidence](cave-composition-campaign.md).
+## Latest completed behavior
 
-## Latest verified coverage
+The guide now follows original shared09f5(30): entry flush and immediate read,
+seven-tick neutral waits, Pause/Quit-No resumption at the blocked read, and no
+extra read after the final wait. A fresh Fire is required after modal input is
+flushed. Guide RNG/clues/rendering and neutral snapshots remain unchanged.
+Runtime fix: `fac414b`. Corrected browser-consumer tools: `b918af3`.
+[Guide implementation, evidence and commands](guide-input.md).
 
-Historical source `f36dd7d` recording, now replayed by current `e8320ce`: all six Easy Safari variants pass independent browser
-replay with48 exact full-state/pixel checkpoints and2,714 DOM events. Every route
-photographs a target, completes12 pictures, displays results, returns with the
-correct cash/day/claim and Restarts. The historical six omitted-shutter controls produced the
-required game-state divergence;15 focused photography input/timing tests passed.
-Those Safari negative executions were not repeated in the new positive-route run.
-Both original film exhaustion exits (0 and-1) are preserved and compared exactly
-per case. No gameplay source changed. [Safari scenario and commands](easy-safari-variants.md),
-[registered manifest](../reference/easy-safari-variants.json).
+Current acceptance passes:
 
-Current replay includes68 state/image checkpoints and1,358 DOM
-events through Bermuda/Boola Boola treasure and Restart, including both entrance
-key clears. The two consumed-movement negatives remain historical evidence.
-[Jungle scenario](easy-jungle-variants.md).
+- New earned guide route:30 exact full-state/image checkpoints,506 DOM events,
+  Pause/Quit-No/fresh Fire,jungle entry,Restart and one semantic omission negative.
+- All14 older browser routes against unchanged inputs/expectations:313 exact
+  checkpoints,11,095 events and14 Restarts. These cover the winning campaign,
+  Carlsbad,alternate mountains/jungles,all6 Safari variants and both atomic outcomes.
+- Full headless campaign:34 checkpoints,4,981 events,1,470 flight presentations;
+  all8 cave components:2,696 presentations.
+- 194 existing units,22 guide/atomic boundary checks,5 conditional original atomic
+  comparisons,original guide-byte proof and production build.
+- Three receipt negatives reject zero cases,a missing guide checkpoint and corrupt
+  evidence. The initial guide omission-accounting failure remains preserved; a
+  fresh consumer passed the corrected semantic negative without recapturing outputs.
 
-| Family | Current Easy coverage | Evidence |
-| --- | --- | --- |
-| Jungle | All3 layouts have complete browser treasure routes | Full campaign variant0; [Bermuda/Boola](easy-jungle-variants.md) variants1/2 |
-| Mountain | All3 layouts have complete browser summit routes | Full campaign variant0; [Thunderclap/Machu](easy-mountain-variants.md) variants1/2,110 state/image checkpoints |
-| Cave | All8 layouts complete in component replay; Klondike and Carlsbad complete in the browser | [2,696 component presentations and Carlsbad's12 browser checkpoints](easy-cave-variants.md) |
-| Safari | All6 variants have complete browser target-photo/result routes | [Six fresh routes, scoring, both film exits and Restart](easy-safari-variants.md) |
+[Current acceptance manifest](../reference/guide-input-acceptance.json).
+These are independent current-port regressions and scoped original/static checks,
+not native whole-game timing or arbitrary-route completion proof.
 
-The current consumer replays all these routes together; the older combined gate
-remains separately scoped historical evidence. These checks establish
-specified port routes under explicit clock/input providers, not arbitrary-route
-finishability or native whole-level cadence. Existing timing limitations remain.
+## Coverage and remaining work
 
-## Sound, security and clock
+| Family | Easy coverage |
+| --- | --- |
+| Jungle | All3 layouts have complete browser treasure routes |
+| Mountain | All3 layouts have complete browser summit routes |
+| Cave | All8 complete in component replay;Klondike,Carlsbad and Too-Pei complete in browser routes |
+| Safari | All6 variants complete target-photo/results/reward browser routes |
 
-Tandy/PCjr includes Sound001, persistent channels, priorities, flight engine
-words, mute and completion. Speaker is the default with an original persistent
-IRQ/RNG/priority engine. Historical source-pinned acceptance covers seven browser
-cases and three stream regressions; that sound suite was not rerun for this atomic
-input change. Physical waveform/gain/filter parity remains unverified;
-the viewer's older approximate speaker audition renderer remains separate.
-[Sound evidence](speaker-audio.md).
+Next: the treasure-award dialogue still handles Pause before its original
+40-read boundary. A browser probe and122 original bytes identify it. Original
+C54..C67 also conditionally requests click24 on consumed Fire; that call is missing
+from the current award completion integration. Its audible ordering remains to
+be investigated. [Award investigation](award-input-investigation.md).
+
+Other legacy dialogues,cross-scene queued keys,modifier/BIOS behavior and
+mouse/joystick parity need wider evidence. Broader destination/difficulty and
+arbitrary-route finishability remain incomplete. The deferred Hard route loses
+its second flight race for an unresolved reason. Native whole-game cadence,
+chapter reveal costs,PIT sub-tick phase and parts of CPU/drawing timing remain
+unverified. No save/load/high-score interface was found in this build; these are
+not confirmed missing features and should not be invented.
+
+## Sound and security
+
+Tandy/PCjr includes Sound001,persistent channels,priorities,flight engine words,
+mute and completion. PC speaker is the default with persistent IRQ/RNG/priority
+logic. Historical acceptance covers7 browser cases and3 sound streams; that sound
+suite was not rerun for this guide-only input change. Physical waveform/gain/filter
+parity remains unverified. [Sound](speaker-audio.md).
 
 The unchecked **Original security system** option restores the surviving failure
-path and logs the correct code once per challenge. Default play retains this
-build's forced success. This is static restoration from the patched executable;
-there is no independently obtained unpatched-edition comparison.
-[Security evidence](security.md).
-
-Clock-derived unsigned16 seeds are sampled at startup and difficulty confirmation;
-`/?bios-seed=0` gives repeatable replay inputs. Exact original PIT sub-tick phase
-and optional RTC synchronization remain unverified. [Clock contract](bios-clock.md).
-
-## Remaining work and next milestone
-
-- Broader current-runtime destination, difficulty and arbitrary-route finishability
-  coverage remains incomplete. Next: the expedition
-  guide-screen input-reader contract, followed by remaining dialogue/input/timing gaps.
-  Hard remains deferred; its
-  longer investigated route loses the second flight race, with the cause unresolved.
-- Native whole-game cadence remains unverified. Drawing-cost models cover selected
-  primitives; resident/caller/device work, some drawing and exact video/cache phase
-  remain partial. See [jungle](jungle-text-timing.md), [mountain](mountain-phase.md),
-  [cave](cave-composition-work.md) and [Safari](photography.md) evidence.
-- Cross-scene queued keyboard delivery, remaining modifier/BIOS behavior and
-  mouse/joystick parity need wider verification.
-- A [bounded original-interface audit](system-controls.md#saveload-and-high-score-audit)
-  found no save/load/high-score interface in this build. These are not confirmed
-  missing original features; no persistence feature should be invented.
-- Full original-game parity is not established by the accepted routes.
+path and logs the correct code once per challenge. Default play keeps this build's
+forced success. No independent unpatched-edition comparison is available.
+[Security](security.md).
 
 ## Supported build and verification
 
-Only the 22-file pairing in [build.json](../reference/build.json) is supported.
-`DUCKTALE.EXE` SHA-256:
+Only the22-file pairing in [build.json](../reference/build.json) is supported.
+DUCKTALE.EXE SHA-256:
 `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
-MZ/EXEPACK, x86 little-endian16 real mode, overlays, no extender. Actual game bytes
-and address correspondence are checked; analysis executables are never run.
+MZ/EXEPACK,x86 little-endian16 real mode,overlays,no extender. Analysis images
+contain actual game code with documented transformations and are never run.
 
 ```sh
-# Recheck saved current route regression and earned-transmitter acceptance:
-node scripts/verify-atomic-input-regression.js
-# Original input boundaries and focused conditional checks:
-node scripts/verify-atomic-earned-route.js
-node scripts/verify-atomic-input-source.js
-node --test scripts/atomic-input.test.js
-# Recheck the separately scoped earned-report browser observation:
-node scripts/verify-atomic-report-observation.js
-# Scoped next-guide investigation,not native runtime acceptance:
+# Validate saved current acceptance and scoped source/observation evidence:
+node scripts/verify-guide-input-acceptance.js
 node scripts/verify-guide-input-investigation.js
-# Fresh current consumer of immutable earlier campaign/expedition recordings:
-# Requires clean committed source and a fresh ignored output directory.
-node scripts/verify-preserved-routes.js --output=.local/preserved-routes-FRESH
-# Repeat earned-report acceptance with actual browser controls:
-node scripts/atomic-route.js verify --report --capture=.local/atomic-earned-report-01 --output=.local/atomic-report-replay-FRESH
-# Repeat earned-transmitter success:
-node scripts/atomic-route.js verify --capture=.local/atomic-earned-browser-01 --output=.local/atomic-replay-FRESH
+node scripts/verify-award-input-investigation.js
+# Focused checks and production build:
+node --test scripts/guide-input.test.js scripts/atomic-input.test.js
+npm test
+npm run build
+# Fresh independent guide replay,requires clean committed source:
+node scripts/atomic-route.js verify --guide --capture=.local/guide-earned-browser-01 --output=.local/guide-replay-FRESH
+# Fresh current consumer of immutable historical routes:
+node scripts/verify-preserved-routes.js --output=.local/preserved-FRESH
 # Local development:
 npm run dev
 ```
 
-The earlier `npm run verify:current-campaign`, `verify-runtime-campaign.js`,
-combined receipt verifier and per-family CLIs retain their original producer-source
-equality guards. They reject the atomic runtime change before comparing behavior;
-they are historical commands, not current acceptance. The new preserved-route
-consumer validates each producer archive separately and compares unchanged inputs
-and expected outputs against a separately archived current consumer. Saved receipts
-check current runtime/entry/config/dependency identity while retaining historical
-test-tool archives; fresh executions still guard all loaded scripts/helpers.
-
-Missing/corrupt local artifacts or source history are explicit setup failures.
-Earlier milestones remain in [status history](status-history.md) and subsystem
-docs; historical passes are not current whole-game acceptance.
+Use fresh ignored output directories. Missing/corrupt local artifacts fail setup.
+The older `npm run verify:current-campaign`,runtime gate and per-family source-pinned
+receipt commands retain historical source guards and reject this runtime change;
+they are not current acceptance. Current commands above preserve producer archives
+separately from current consumers. Earlier milestone detail remains in
+[status history](status-history.md) and subsystem documents.

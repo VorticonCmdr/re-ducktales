@@ -1,9 +1,9 @@
 # Expedition guide input boundary
 
-The next confirmed input-boundary gap is the chapter/guide screen, before an
-expedition starts. Its ordinary neutral countdown works, but global keys are
-handled immediately rather than through the original input-reader boundary.
-This has not yet been fixed.
+This records the historical guide-screen defect: global keys were handled
+immediately instead of through the original reader. It is now fixed and passes
+independent browser acceptance; see [guide input](guide-input.md). The original
+pre-fix observation below remains unchanged.
 
 ## Original rule, statically inferred
 
@@ -47,7 +47,7 @@ node scripts/verify-guide-input-investigation.js
 python3 scripts/prepare-investment-analysis.py
 ```
 
-The next implementation should replace only the guide's legacy wait with the
+The implementation now replaces only the guide's legacy wait with the
 verified reader contract: entry flush, immediate read, seven-tick neutral waits,
 Pause/Quit resumption, and no final extra read. Preserve guide RNG/clue selection,
 rendering and unchanged neutral-route snapshots. Other legacy dialogue callers

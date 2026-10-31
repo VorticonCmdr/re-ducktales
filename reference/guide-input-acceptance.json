@@ -1,0 +1,561 @@
+{
+  "id": "guide-input-acceptance",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "captureRoot": ".local/guide-earned-browser-01",
+  "captureSourceCommit": "fac414b8b6133aa49bef9de88a8dcd5d198bc3e7",
+  "consumerRoot": ".local/guide-earned-browser-replay-02",
+  "sourceCommit": "b918af33e1cd0072e5f5ec2d8b11ed8b5cbbc357",
+  "regressionRoot": ".local/guide-input-preserved-routes-01",
+  "regressionSourceCommit": "fac414b8b6133aa49bef9de88a8dcd5d198bc3e7",
+  "toolRevision": "scripts/atomic-route.js --guide at sourceCommit;runtime fix at captureSourceCommit",
+  "evidence": "Independent current-port browser replay plus unchanged historical route regression;original guide reader statically inferred,not native guide-input timing capture",
+  "guideCheckpoints": 30,
+  "guideEvents": 506,
+  "guideNegativeControls": 1,
+  "regressionBrowserCases": 14,
+  "regressionCheckpoints": 313,
+  "regressionEvents": 11095,
+  "caveComponents": 8,
+  "cavePresentations": 2696,
+  "expectedOutcome": {
+    "scene": "jungle",
+    "location": 1,
+    "day": 6,
+    "money": 3400,
+    "restart": true
+  },
+  "startingRecipe": "Normal Easy startup/security;Launchpad Too-Pei;cave7/Bombastium;6 extra initial cave reads for natural atomic roll0;report controls;guide P+Fire/P resume/Q+Fire/N/fresh Fire;jungle;Restart",
+  "externalProviders": {
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "biosSeed": 0,
+    "audioEnabled": false
+  },
+  "inputStream": ".local/guide-earned-browser-01/captured-events.json",
+  "expectedOutputs": ".local/guide-earned-browser-01/campaign-checkpoints.json",
+  "comparisonRules": "All30 guide full snapshots and320x200RGBA hashes exact;all506 DOM events consumed;Restart;omit fresh guide P must fail game state at guide-pause.14 older routes retain their inputs/expectations exactly.",
+  "exclusions": [],
+  "memoryInjections": [],
+  "fittedInputs": [],
+  "failedAttempt": {
+    "consumerRoot": ".local/guide-earned-browser-replay-01",
+    "completed": false,
+    "reason": "Positive30-checkpoint replay passed,but initial omission check failed too early on495!=496 DOM count rather than the intended guide-state divergence",
+    "correction": "Count only the explicitly omitted event against the modified negative input stream;positive counts and all expected states/pixels unchanged;fresh second consumer reran both positive and semantic negative"
+  },
+  "artifacts": {
+    "producer/arrival.png": {
+      "path": ".local/guide-earned-browser-01/arrival.png",
+      "bytes": 20469,
+      "sha256": "3c4f4f29903c4b8170a1d7bedbcf05fbd2a0de458adea7dd89f0c68f2f19580f"
+    },
+    "producer/award.png": {
+      "path": ".local/guide-earned-browser-01/award.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "producer/campaign-checkpoints.json": {
+      "path": ".local/guide-earned-browser-01/campaign-checkpoints.json",
+      "bytes": 181099,
+      "sha256": "0ff65bea6b75af68fd42f65ae5bd144cfbcfd9dfe2f21572bb61ea6d103a5469"
+    },
+    "producer/capture-status.json": {
+      "path": ".local/guide-earned-browser-01/capture-status.json",
+      "bytes": 1379,
+      "sha256": "dc98c5b8ab3c0a75aab034dc622573e7d4bca8e278fe7443aa1e37ff609ce919"
+    },
+    "producer/captured-events.json": {
+      "path": ".local/guide-earned-browser-01/captured-events.json",
+      "bytes": 59968,
+      "sha256": "0ec9f33efbabc57b01e60d16e7bf596abbaa4f4b54120c31c79ec180f3fc74fb"
+    },
+    "producer/cave-entry.png": {
+      "path": ".local/guide-earned-browser-01/cave-entry.png",
+      "bytes": 20353,
+      "sha256": "26e6220ccdc75dcf3cbb54501211a7b49e9764870cedba53384394e1c0794a4f"
+    },
+    "producer/charge-keys-ignored.png": {
+      "path": ".local/guide-earned-browser-01/charge-keys-ignored.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "producer/charge.png": {
+      "path": ".local/guide-earned-browser-01/charge.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "producer/choice.png": {
+      "path": ".local/guide-earned-browser-01/choice.png",
+      "bytes": 13327,
+      "sha256": "746ca76525003081cfb1ab68f7676dc9515dc58cbb1ba9ddfc68127be8f75bb7"
+    },
+    "producer/environment.json": {
+      "path": ".local/guide-earned-browser-01/environment.json",
+      "bytes": 265,
+      "sha256": "5326567712bc1e9af3a5c0fc9c84616e10f37b40a4aedb75c3ccd47299c23522"
+    },
+    "producer/guide-before-poll.png": {
+      "path": ".local/guide-earned-browser-01/guide-before-poll.png",
+      "bytes": 20469,
+      "sha256": "3c4f4f29903c4b8170a1d7bedbcf05fbd2a0de458adea7dd89f0c68f2f19580f"
+    },
+    "producer/guide-neutral-after-no.png": {
+      "path": ".local/guide-earned-browser-01/guide-neutral-after-no.png",
+      "bytes": 20469,
+      "sha256": "3c4f4f29903c4b8170a1d7bedbcf05fbd2a0de458adea7dd89f0c68f2f19580f"
+    },
+    "producer/guide-pause.png": {
+      "path": ".local/guide-earned-browser-01/guide-pause.png",
+      "bytes": 20808,
+      "sha256": "0840859efd33f488c4a02e50f0227dd1eda9d9c4d53296319eb91d7b54c0808b"
+    },
+    "producer/guide-quit-no.png": {
+      "path": ".local/guide-earned-browser-01/guide-quit-no.png",
+      "bytes": 20469,
+      "sha256": "3c4f4f29903c4b8170a1d7bedbcf05fbd2a0de458adea7dd89f0c68f2f19580f"
+    },
+    "producer/guide-quit.png": {
+      "path": ".local/guide-earned-browser-01/guide-quit.png",
+      "bytes": 21210,
+      "sha256": "f676d5d4e70f72d49f525fd90a779bbaafd5ed7e358a4047f27668e7005bf01b"
+    },
+    "producer/guide-resumed.png": {
+      "path": ".local/guide-earned-browser-01/guide-resumed.png",
+      "bytes": 20469,
+      "sha256": "3c4f4f29903c4b8170a1d7bedbcf05fbd2a0de458adea7dd89f0c68f2f19580f"
+    },
+    "producer/guide-waiting.png": {
+      "path": ".local/guide-earned-browser-01/guide-waiting.png",
+      "bytes": 20808,
+      "sha256": "0840859efd33f488c4a02e50f0227dd1eda9d9c4d53296319eb91d7b54c0808b"
+    },
+    "producer/misdirection.png": {
+      "path": ".local/guide-earned-browser-01/misdirection.png",
+      "bytes": 16618,
+      "sha256": "eb2f7603429ea990fd4176eb2309023c39a31dc48a2948702a124d21666a07ac"
+    },
+    "producer/pause-resumed.png": {
+      "path": ".local/guide-earned-browser-01/pause-resumed.png",
+      "bytes": 16618,
+      "sha256": "eb2f7603429ea990fd4176eb2309023c39a31dc48a2948702a124d21666a07ac"
+    },
+    "producer/pause-waiting.png": {
+      "path": ".local/guide-earned-browser-01/pause-waiting.png",
+      "bytes": 16535,
+      "sha256": "8441b4278ddbae400fdb62ce767b3fc5516acd34c55537f7e6cecb11ef77099b"
+    },
+    "producer/quit-no-resumed.png": {
+      "path": ".local/guide-earned-browser-01/quit-no-resumed.png",
+      "bytes": 16618,
+      "sha256": "eb2f7603429ea990fd4176eb2309023c39a31dc48a2948702a124d21666a07ac"
+    },
+    "producer/report-pause.png": {
+      "path": ".local/guide-earned-browser-01/report-pause.png",
+      "bytes": 16535,
+      "sha256": "8441b4278ddbae400fdb62ce767b3fc5516acd34c55537f7e6cecb11ef77099b"
+    },
+    "producer/report-quit.png": {
+      "path": ".local/guide-earned-browser-01/report-quit.png",
+      "bytes": 16585,
+      "sha256": "4a37cd1b953882091695968fe9d5527f686084953aab5d2783460cab4e5d84a9"
+    },
+    "producer/room-10.png": {
+      "path": ".local/guide-earned-browser-01/room-10.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "producer/room-11.png": {
+      "path": ".local/guide-earned-browser-01/room-11.png",
+      "bytes": 43895,
+      "sha256": "8ecaa27d88476f62ee205ed7fb8e1af65895b17047a9313f9ed545b9aa3bf0e8"
+    },
+    "producer/room-12.png": {
+      "path": ".local/guide-earned-browser-01/room-12.png",
+      "bytes": 43141,
+      "sha256": "cc506d9ddff96a021a78e7ddaac84f6cd1a2ea76ae99fb1f7a35f813791bc33c"
+    },
+    "producer/room-13.png": {
+      "path": ".local/guide-earned-browser-01/room-13.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "producer/room-14.png": {
+      "path": ".local/guide-earned-browser-01/room-14.png",
+      "bytes": 42765,
+      "sha256": "0edc1a3aeb5129c8087057d105ae1ef784970722b91f5c5216ec69e9af01c747"
+    },
+    "producer/room-18.png": {
+      "path": ".local/guide-earned-browser-01/room-18.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "producer/room-19.png": {
+      "path": ".local/guide-earned-browser-01/room-19.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "producer/room-26.png": {
+      "path": ".local/guide-earned-browser-01/room-26.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "producer/room-27.png": {
+      "path": ".local/guide-earned-browser-01/room-27.png",
+      "bytes": 41329,
+      "sha256": "aa79312b8822265a12bc53328f88dccc1cb46349de63a5e00fc27eec979d3ca9"
+    },
+    "producer/second-entry.png": {
+      "path": ".local/guide-earned-browser-01/second-entry.png",
+      "bytes": 20365,
+      "sha256": "90a7c78d63da3b8bd308081c89a65010f47766e4a2d0ff0d21a830f9668350eb"
+    },
+    "producer/source-revision.json": {
+      "path": ".local/guide-earned-browser-01/source-revision.json",
+      "bytes": 98958,
+      "sha256": "f698299b79f7d93b8ca6706344f88bcd1a02dc71c51e1918907979fdf04bc918"
+    },
+    "producer/sources.zip": {
+      "path": ".local/guide-earned-browser-01/sources.zip",
+      "bytes": 2656848,
+      "sha256": "6cd0c846ba573abe69fd8a8a4764427e9871a22275ff60d11a6cbf50f2488684"
+    },
+    "producer/timeline.json": {
+      "path": ".local/guide-earned-browser-01/timeline.json",
+      "bytes": 2622,
+      "sha256": "0124cdd2652788b621bd12e90b0285df8d8580416a50510ab7d4e7e3afd90405"
+    },
+    "producer/unlock.png": {
+      "path": ".local/guide-earned-browser-01/unlock.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    },
+    "consumer/boundaries.log": {
+      "path": ".local/guide-earned-browser-replay-02/boundaries.log",
+      "bytes": 2257,
+      "sha256": "8d2166322c53df42fb417691016390416aba8541a6f35fb3eb3ad7355f04f289"
+    },
+    "consumer/build.log": {
+      "path": ".local/guide-earned-browser-replay-02/build.log",
+      "bytes": 907,
+      "sha256": "3fd6bd621402daca9ac8c208122fd0ba84e95cec034aab8c4c3d2e8d14627555"
+    },
+    "consumer/guide-source.log": {
+      "path": ".local/guide-earned-browser-replay-02/guide-source.log",
+      "bytes": 207,
+      "sha256": "9c38f90d4af0a3ad38b3a461dd83b4369b797c6decf38a56957f5e60638e08b1"
+    },
+    "consumer/original-atomic.log": {
+      "path": ".local/guide-earned-browser-replay-02/original-atomic.log",
+      "bytes": 202,
+      "sha256": "cda8bf1b83c378fae16abb5bdf58a035e13b941b5d9d961ccedc52bc5ead15a8"
+    },
+    "consumer/replay.log": {
+      "path": ".local/guide-earned-browser-replay-02/replay.log",
+      "bytes": 2003,
+      "sha256": "205dfc726817c7c86dbe699c04622425f4d1f22852fc3f9884eea141f4219b0e"
+    },
+    "consumer/result.json": {
+      "path": ".local/guide-earned-browser-replay-02/result.json",
+      "bytes": 187,
+      "sha256": "6ed110e9d7bd595ceb21c80454b68113562a858cdd30df8d47ff66553ceb5681"
+    },
+    "consumer/source-revision.json": {
+      "path": ".local/guide-earned-browser-replay-02/source-revision.json",
+      "bytes": 99632,
+      "sha256": "48d59a1d76921d7a8001acdc3dec5f981f228a731f1f43036ab8370367ec47de"
+    },
+    "consumer/sources.zip": {
+      "path": ".local/guide-earned-browser-replay-02/sources.zip",
+      "bytes": 2666727,
+      "sha256": "4053aeb60c9d015c0de21c16e9347fcbf4a62d76cccd3f1a72deb0fc551a3d5a"
+    },
+    "consumer/units.log": {
+      "path": ".local/guide-earned-browser-replay-02/units.log",
+      "bytes": 17750,
+      "sha256": "ff5a616c4f54bea220938f5f42e1801cad169a5ca92c897384592f45b17c23be"
+    },
+    "regression/bermuda/actual-events.json": {
+      "path": ".local/guide-input-preserved-routes-01/bermuda/actual-events.json",
+      "bytes": 64164,
+      "sha256": "676944f41c453acbe2b3aa9689211e86fb661abcfdb1090879b8229e3fc76d06"
+    },
+    "regression/bermuda/campaign-checkpoints.json": {
+      "path": ".local/guide-input-preserved-routes-01/bermuda/campaign-checkpoints.json",
+      "bytes": 226222,
+      "sha256": "74c2259682ef8a86aa2c3abb2157a00ebe08311a2cae8e23fd9e2e6f91792bbd"
+    },
+    "regression/bermuda/replay-progress.json": {
+      "path": ".local/guide-input-preserved-routes-01/bermuda/replay-progress.json",
+      "bytes": 3903,
+      "sha256": "425f1bfe19ba785c289741f34e73e329975d794ccb920773315fea5a1ed7ac08"
+    },
+    "regression/boola/actual-events.json": {
+      "path": ".local/guide-input-preserved-routes-01/boola/actual-events.json",
+      "bytes": 62807,
+      "sha256": "aa3458a2eaa591a3c29894b96a86aa293b5080a9f88fd139f7917ac064d80bb0"
+    },
+    "regression/boola/campaign-checkpoints.json": {
+      "path": ".local/guide-input-preserved-routes-01/boola/campaign-checkpoints.json",
+      "bytes": 166037,
+      "sha256": "6eca5734a62dd8539b441005a91208ee9d92d5192323af58dbd3275180ee4e74"
+    },
+    "regression/boola/replay-progress.json": {
+      "path": ".local/guide-input-preserved-routes-01/boola/replay-progress.json",
+      "bytes": 3892,
+      "sha256": "cc7ba6994261643859caca6751063178feb095a59dc3217a23ba61c073436cf2"
+    },
+    "regression/full-browser/actual-events.json": {
+      "path": ".local/guide-input-preserved-routes-01/full-browser/actual-events.json",
+      "bytes": 456069,
+      "sha256": "dc1968f164efa3bad11c747b6a61c0c4a97d617316379c8a205f6e6e127176b6"
+    },
+    "regression/full-browser/campaign-checkpoints.json": {
+      "path": ".local/guide-input-preserved-routes-01/full-browser/campaign-checkpoints.json",
+      "bytes": 245705,
+      "sha256": "ec2b3202c7c911e16984aa132381b34e007c583810ef2498bdc3196cc1c54f4b"
+    },
+    "regression/full-browser/replay-progress.json": {
+      "path": ".local/guide-input-preserved-routes-01/full-browser/replay-progress.json",
+      "bytes": 9102,
+      "sha256": "7cad106c77be9f09ca2994008613e8bbdfb25e8373945bbbfb3ad806e20b3050"
+    },
+    "regression/headless/campaign-checkpoints.json": {
+      "path": ".local/guide-input-preserved-routes-01/headless/campaign-checkpoints.json",
+      "bytes": 245705,
+      "sha256": "ec2b3202c7c911e16984aa132381b34e007c583810ef2498bdc3196cc1c54f4b"
+    },
+    "regression/headless/captured-events.json": {
+      "path": ".local/guide-input-preserved-routes-01/headless/captured-events.json",
+      "bytes": 604419,
+      "sha256": "7c5fb7e388939530ebacfdc0cc3a178f9a2898912314e7d42ea3a689b326257a"
+    },
+    "regression/headless/environment.json": {
+      "path": ".local/guide-input-preserved-routes-01/headless/environment.json",
+      "bytes": 470,
+      "sha256": "0c721d13ac773cb0e8c37331743c9dd48b2ee359c7737c22747e701c5202ccc2"
+    },
+    "regression/headless/timeline.json": {
+      "path": ".local/guide-input-preserved-routes-01/headless/timeline.json",
+      "bytes": 3098,
+      "sha256": "4aff65fcf772b3aef8e77bf4de164ed977f790685b81e1df3cd47fc0c4d266ac"
+    },
+    "regression/headless.log": {
+      "path": ".local/guide-input-preserved-routes-01/headless.log",
+      "bytes": 5234,
+      "sha256": "ae2efb2d872fb0ad56d1108024e787031d3bf725d4f8dfe4de82c278b98b8b5c"
+    },
+    "regression/machu/actual-events.json": {
+      "path": ".local/guide-input-preserved-routes-01/machu/actual-events.json",
+      "bytes": 47983,
+      "sha256": "544ca399c923084f40d988b92c5ae569409ca79683822f2b9d5d9b6d59ac011f"
+    },
+    "regression/machu/campaign-checkpoints.json": {
+      "path": ".local/guide-input-preserved-routes-01/machu/campaign-checkpoints.json",
+      "bytes": 390457,
+      "sha256": "2249dce7ef1153c2d3efcf5a185047c2451c0239374fad93130ba28499a92a3e"
+    },
+    "regression/machu/replay-progress.json": {
+      "path": ".local/guide-input-preserved-routes-01/machu/replay-progress.json",
+      "bytes": 4103,
+      "sha256": "fd6ea27c79c154e1255a9cd665cb3b270e55c93d841d18bafd3022137d570d37"
+    },
+    "regression/replay.log": {
+      "path": ".local/guide-input-preserved-routes-01/replay.log",
+      "bytes": 12742,
+      "sha256": "b337235a7944d2351f873514d9f718e89fb7d1a445af2c3e25a0914c030054a5"
+    },
+    "regression/result.json": {
+      "path": ".local/guide-input-preserved-routes-01/result.json",
+      "bytes": 23855,
+      "sha256": "b61073183a9cfc4df6035116d14263175d73af148d0bc12c33e50814110cc64e"
+    },
+    "regression/source-revision.json": {
+      "path": ".local/guide-input-preserved-routes-01/source-revision.json",
+      "bytes": 98958,
+      "sha256": "f698299b79f7d93b8ca6706344f88bcd1a02dc71c51e1918907979fdf04bc918"
+    },
+    "regression/sources.zip": {
+      "path": ".local/guide-input-preserved-routes-01/sources.zip",
+      "bytes": 2656848,
+      "sha256": "6cd0c846ba573abe69fd8a8a4764427e9871a22275ff60d11a6cbf50f2488684"
+    },
+    "regression/thunderclap/actual-events.json": {
+      "path": ".local/guide-input-preserved-routes-01/thunderclap/actual-events.json",
+      "bytes": 38976,
+      "sha256": "4345f2a0f5a0bbc549889b31a70a7f63d551a6a0031ef9b108fd05b7d073b1a9"
+    },
+    "regression/thunderclap/campaign-checkpoints.json": {
+      "path": ".local/guide-input-preserved-routes-01/thunderclap/campaign-checkpoints.json",
+      "bytes": 278150,
+      "sha256": "e652b11509b25ccc6fdc014961ce1dc1e9e31086e745091ea31e7697d281a478"
+    },
+    "regression/thunderclap/replay-progress.json": {
+      "path": ".local/guide-input-preserved-routes-01/thunderclap/replay-progress.json",
+      "bytes": 4108,
+      "sha256": "86442a7964c9d7259ac9e4200ba656b2826226ef4acd30180808a580690d51ce"
+    },
+    "failed-attempt/replay.log": {
+      "path": ".local/guide-earned-browser-replay-01/replay.log",
+      "bytes": 2953,
+      "sha256": "90c9dba2373905972a1a216d4577a1adb407fc4329d21d844798019115d54626"
+    },
+    "failed-attempt/result.json": {
+      "path": ".local/guide-earned-browser-replay-01/result.json",
+      "bytes": 25,
+      "sha256": "5223713741511c8cea3c14e875f9ab61f539fe4f10c1648c6c9f992141ef7e5d"
+    },
+    "failed-attempt/source-revision.json": {
+      "path": ".local/guide-earned-browser-replay-01/source-revision.json",
+      "bytes": 98958,
+      "sha256": "f698299b79f7d93b8ca6706344f88bcd1a02dc71c51e1918907979fdf04bc918"
+    },
+    "failed-attempt/sources.zip": {
+      "path": ".local/guide-earned-browser-replay-01/sources.zip",
+      "bytes": 2656848,
+      "sha256": "6cd0c846ba573abe69fd8a8a4764427e9871a22275ff60d11a6cbf50f2488684"
+    },
+    "units": {
+      "path": ".local/guide-earned-browser-replay-02/units.log",
+      "bytes": 17750,
+      "sha256": "ff5a616c4f54bea220938f5f42e1801cad169a5ca92c897384592f45b17c23be"
+    },
+    "boundaries": {
+      "path": ".local/guide-earned-browser-replay-02/boundaries.log",
+      "bytes": 2257,
+      "sha256": "8d2166322c53df42fb417691016390416aba8541a6f35fb3eb3ad7355f04f289"
+    },
+    "build": {
+      "path": ".local/guide-earned-browser-replay-02/build.log",
+      "bytes": 907,
+      "sha256": "3fd6bd621402daca9ac8c208122fd0ba84e95cec034aab8c4c3d2e8d14627555"
+    },
+    "original-atomic": {
+      "path": ".local/guide-earned-browser-replay-02/original-atomic.log",
+      "bytes": 202,
+      "sha256": "cda8bf1b83c378fae16abb5bdf58a035e13b941b5d9d961ccedc52bc5ead15a8"
+    },
+    "guide-source": {
+      "path": ".local/guide-earned-browser-replay-02/guide-source.log",
+      "bytes": 207,
+      "sha256": "9c38f90d4af0a3ad38b3a461dd83b4369b797c6decf38a56957f5e60638e08b1"
+    },
+    "receipt-negatives/corrupt-regression-result/checker.log": {
+      "path": ".local/guide-receipt-negatives-02/corrupt-regression-result/checker.log",
+      "bytes": 1300,
+      "sha256": "822852e6ff2665c8c1716ff56b174f067f4cbd40587be1708fc95ce0ad12d96f"
+    },
+    "receipt-negatives/corrupt-regression-result/manifest.json": {
+      "path": ".local/guide-receipt-negatives-02/corrupt-regression-result/manifest.json",
+      "bytes": 17570,
+      "sha256": "92064174edaf6305d288576fcd866c77dc9ef318204722994c48ee08644ee2f3"
+    },
+    "receipt-negatives/corrupt-regression-result/result.json": {
+      "path": ".local/guide-receipt-negatives-02/corrupt-regression-result/result.json",
+      "bytes": 23856,
+      "sha256": "1b6db90a592cf59530911cb7e2b52e66a47655db7a918b8af1127c8ad3ef4927"
+    },
+    "receipt-negatives/corrupt-regression-result/source-revision.json": {
+      "path": ".local/guide-receipt-negatives-02/corrupt-regression-result/source-revision.json",
+      "bytes": 98958,
+      "sha256": "f698299b79f7d93b8ca6706344f88bcd1a02dc71c51e1918907979fdf04bc918"
+    },
+    "receipt-negatives/corrupt-regression-result/sources.zip": {
+      "path": ".local/guide-receipt-negatives-02/corrupt-regression-result/sources.zip",
+      "bytes": 2656848,
+      "sha256": "6cd0c846ba573abe69fd8a8a4764427e9871a22275ff60d11a6cbf50f2488684"
+    },
+    "receipt-negatives/missing-guide-checkpoint/campaign-checkpoints.json": {
+      "path": ".local/guide-receipt-negatives-02/missing-guide-checkpoint/campaign-checkpoints.json",
+      "bytes": 85672,
+      "sha256": "503bdda7b676f4ee2f34c8b6202c3daca134cef3ae0970a6dd4ea231ea418e1a"
+    },
+    "receipt-negatives/missing-guide-checkpoint/capture-status.json": {
+      "path": ".local/guide-receipt-negatives-02/missing-guide-checkpoint/capture-status.json",
+      "bytes": 1379,
+      "sha256": "dc98c5b8ab3c0a75aab034dc622573e7d4bca8e278fe7443aa1e37ff609ce919"
+    },
+    "receipt-negatives/missing-guide-checkpoint/captured-events.json": {
+      "path": ".local/guide-receipt-negatives-02/missing-guide-checkpoint/captured-events.json",
+      "bytes": 59968,
+      "sha256": "0ec9f33efbabc57b01e60d16e7bf596abbaa4f4b54120c31c79ec180f3fc74fb"
+    },
+    "receipt-negatives/missing-guide-checkpoint/checker.log": {
+      "path": ".local/guide-receipt-negatives-02/missing-guide-checkpoint/checker.log",
+      "bytes": 424,
+      "sha256": "2aaa6473ae88eeeb275ec8feb667353fb18490560f5e3c147cbff51b44dabfc7"
+    },
+    "receipt-negatives/missing-guide-checkpoint/manifest.json": {
+      "path": ".local/guide-receipt-negatives-02/missing-guide-checkpoint/manifest.json",
+      "bytes": 17583,
+      "sha256": "da432478d6a49bdc5d4b7e9ed4e94d0b7e41b18d792b5db3f3f8a32d68c63cec"
+    },
+    "receipt-negatives/missing-guide-checkpoint/source-revision.json": {
+      "path": ".local/guide-receipt-negatives-02/missing-guide-checkpoint/source-revision.json",
+      "bytes": 98958,
+      "sha256": "f698299b79f7d93b8ca6706344f88bcd1a02dc71c51e1918907979fdf04bc918"
+    },
+    "receipt-negatives/missing-guide-checkpoint/sources.zip": {
+      "path": ".local/guide-receipt-negatives-02/missing-guide-checkpoint/sources.zip",
+      "bytes": 2656848,
+      "sha256": "6cd0c846ba573abe69fd8a8a4764427e9871a22275ff60d11a6cbf50f2488684"
+    },
+    "receipt-negatives/receipt-checker-source.js": {
+      "path": ".local/guide-receipt-negatives-02/receipt-checker-source.js",
+      "bytes": 5692,
+      "sha256": "f50b8b247eb4643cd80ee924ed82b25ced869524bd80f559a755b2bd5f11a1ee"
+    },
+    "receipt-negatives/receipt-negative-source.js": {
+      "path": ".local/guide-receipt-negatives-02/receipt-negative-source.js",
+      "bytes": 3147,
+      "sha256": "2259d80a5114704e12df26109b34ba98d0c92e55e7a3d415cbcb29453a918582"
+    },
+    "receipt-negatives/result.json": {
+      "path": ".local/guide-receipt-negatives-02/result.json",
+      "bytes": 270,
+      "sha256": "f6eb12c64a50cf3e740a57a0476951b18852fa7f5e3a6c4edac5d02958a2141a"
+    },
+    "receipt-negatives/zero-browser-cases/checker.log": {
+      "path": ".local/guide-receipt-negatives-02/zero-browser-cases/checker.log",
+      "bytes": 423,
+      "sha256": "342240b8af27ff60568b6ce676f95311b842ae170881cbac2182844fce62e559"
+    },
+    "receipt-negatives/zero-browser-cases/manifest.json": {
+      "path": ".local/guide-receipt-negatives-02/zero-browser-cases/manifest.json",
+      "bytes": 17556,
+      "sha256": "53593410ad9dfce165e78f19324a638bb89777721492b065173cde4e7aa7d4a5"
+    },
+    "receipt-negatives/zero-browser-cases/result.json": {
+      "path": ".local/guide-receipt-negatives-02/zero-browser-cases/result.json",
+      "bytes": 20636,
+      "sha256": "856d048ca035faea5bd479c8de4fcb0ba274e05e9fbe4911bb359558c53299b5"
+    },
+    "receipt-negatives/zero-browser-cases/source-revision.json": {
+      "path": ".local/guide-receipt-negatives-02/zero-browser-cases/source-revision.json",
+      "bytes": 98958,
+      "sha256": "f698299b79f7d93b8ca6706344f88bcd1a02dc71c51e1918907979fdf04bc918"
+    },
+    "receipt-negatives/zero-browser-cases/sources.zip": {
+      "path": ".local/guide-receipt-negatives-02/zero-browser-cases/sources.zip",
+      "bytes": 2656848,
+      "sha256": "6cd0c846ba573abe69fd8a8a4764427e9871a22275ff60d11a6cbf50f2488684"
+    }
+  },
+  "verify": "node scripts/verify-guide-input-acceptance.js",
+  "repeatGuide": "node scripts/atomic-route.js verify --guide --capture=.local/guide-earned-browser-01 --output=.local/guide-replay-FRESH",
+  "repeatRegression": "node scripts/verify-preserved-routes.js --output=.local/preserved-FRESH",
+  "negativeCommand": "node scripts/guide-input-acceptance-negatives.js --output=.local/guide-receipt-negatives-FRESH",
+  "limits": [
+    "No native chapter drawing-cost/absolute first-read phase comparison",
+    "Muted browser route;live guide audio consumption not covered",
+    "Award40 wait and click24 remain separate confirmed/inferred gaps",
+    "Hard campaigns remain deferred"
+  ],
+  "receiptNegativeControls": {
+    "count": 3,
+    "resultPath": ".local/guide-receipt-negatives-02/result.json",
+    "scope": "Temporary copies only;zero cases,missing guide checkpoint and corrupt result must be rejected",
+    "toolRevision": "Exact checker/negative script bytes saved after execution;browser and capture tool revisions remain their separate archived commits"
+  }
+}

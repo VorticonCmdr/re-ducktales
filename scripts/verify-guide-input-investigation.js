@@ -98,5 +98,5 @@ assert.equal(paused.state.systemOverlay.phase, "lock");
 assert.deepEqual(m.browserProbe.memoryInjections, []);
 assert.deepEqual(m.browserProbe.fittedInputs, []);
 console.log(
-  "Guide static investigation:388 original bytes,300 Ghidra bytes matched with1 declared stack-probe patch and3 relocations;shared09f5(30);early guide Pause browser-observed,not native guide timing acceptance.",
+  "Guide static investigation:388 original bytes,300 Ghidra bytes matched with1 declared stack-probe patch and3 relocations;shared09f5(30);historical pre-fix early guide Pause observation verified,not native guide timing acceptance.",
 );

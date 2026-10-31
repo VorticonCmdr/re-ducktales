@@ -123,11 +123,38 @@ for (const [name, count] of [
   ["boundaries", 22],
 ]) {
   const log = await readFile(m.artifacts[name].path, "utf8");
-  assert.match(log, new RegExp("tests\\s+" + count));
-  assert.match(log, /fail\s+0/);
-  assert.match(log, /skipped\s+0/);
+  for (const [key, expected] of [
+    ["tests", count],
+    ["pass", count],
+    ["fail", 0],
+    ["cancelled", 0],
+    ["skipped", 0],
+    ["todo", 0],
+  ]) {
+    const values = [
+      ...log.matchAll(new RegExp("^(?:ℹ|#) " + key + " (\\d+)\\s*$", "gm")),
+    ];
+    assert.equal(
+      values.length,
+      1,
+      "Missing or repeated test summary " + name + ":" + key,
+    );
+    assert.equal(
+      Number(values[0][1]),
+      expected,
+      "Incomplete required checks " + name + ":" + key,
+    );
+  }
 }
 assert.match(await readFile(m.artifacts.build.path, "utf8"), /built in/);
+assert.match(
+  await readFile(m.artifacts["original-atomic"].path, "utf8"),
+  /5 conditional original checks/,
+);
+assert.match(
+  await readFile(m.artifacts["guide-source"].path, "utf8"),
+  /388 original bytes/,
+);
 assert.deepEqual(m.exclusions, []);
 assert.deepEqual(m.memoryInjections, []);
 assert.deepEqual(m.fittedInputs, []);

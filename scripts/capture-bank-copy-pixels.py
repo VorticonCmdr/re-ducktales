@@ -33,7 +33,10 @@ run=out/'portable';run.mkdir()
 owned_binary=run/'dosbox_with_debugger';shutil.copy2(binary,owned_binary)
 # A portable primary config beside the copied executable isolates paths on macOS
 # without overriding HOME or changing the shared bridge's configuration.
-(run/'dosbox-automation.conf').write_text('[webserver]\nwebserver_enabled = true\nwebserver_bind_address = 127.0.0.1\nwebserver_allow_remote = false\nwebserver_require_auth = true\nwebserver_token_file = false\nwebserver_osd = false\nwebserver_port = '+str(a.port)+'\n[debug]\ndebugger_window = false\n[cpu]\ncore = normal\ncpu_cycles = 3000\n')
+park=bytes.fromhex('bb0010b44acd21fafcebfe')
+(run/'PARK.COM').write_bytes(park)
+assert not any(ch in str(run.resolve()) for ch in ['"','\n','\r'])
+(run/'dosbox-automation.conf').write_text('[webserver]\nwebserver_enabled = true\nwebserver_bind_address = 127.0.0.1\nwebserver_allow_remote = false\nwebserver_require_auth = true\nwebserver_token_file = false\nwebserver_osd = false\nwebserver_port = '+str(a.port)+'\nmount_allowed_bases = '+str(run.resolve())+'\n[debug]\ndebugger_window = false\n[cpu]\ncore = normal\ncpu_cycles = 3000\n[autoexec]\nmount c "'+str(run.resolve())+'" -ro\nc:\nPARK.COM\n')
 cases=[{'x':x,'y':y,'width':32,'height':18} for x,y in [(248,-13),(248,-19),(248,-18),(248,195),(312,0),(248,0)]]
 if a.one_case:cases=cases[:1]
 seed=107
@@ -44,7 +47,7 @@ env['SDL_VIDEODRIVER']='dummy';env['SDL_AUDIODRIVER']='dummy'
 token=secrets.token_hex(32);env['DOSBOX_API_TOKEN']=token
 argv=[str(owned_binary.resolve()),'--nolocalconf']
 save('configuration',{'binary':{'path':str(binary),'bytes':binary.stat().st_size,'sha256':sha(binary.read_bytes())},'portableBinarySHA256':sha(owned_binary.read_bytes()),'argv':argv,'configSHA256':sha((run/'dosbox-automation.conf').read_bytes()),'clientSHA256':sha((bridge/'dosbox_mcp/client.py').read_bytes()),'port':a.port,'sharedPortUntouched':8386,'environment':{'SDL_VIDEODRIVER':'dummy','SDL_AUDIODRIVER':'dummy','authentication':'private generated environment token,not recorded','configuration':'portable primary beside owned binary;no HOME override'},'scope':'Conditional original primitive with CLI/CLD,authored RAM source and real EGA destination;not natural game timing or a complete checkpoint.'})
-proc=None;c=None;stop=None;completed=0
+proc=None;c=None;stop=None;completed=0;entry=None;returned_stop=None;entry_memory=None;args=None
 log=(out/'emulator.log').open('wb')
 try:
  proc=subprocess.Popen(argv,cwd=run,env=env,stdout=log,stderr=subprocess.STDOUT)
@@ -55,8 +58,16 @@ try:
   except Exception:time.sleep(.1)
  else:raise AssertionError('Owned emulator did not become ready')
  save('engine',info)
+ startup=c.post('/api/v1/wait',json={'for':'program','pattern':'PARK','timeout_ms':15000},timeout=20)
+ assert startup['satisfied']
+ c.post('/api/v1/wait',json={'for':'frames','count':3,'timeout_ms':15000},timeout=20)
+ save('startup',{'program':c.get('/api/v1/status'),'wait':startup,'parkSHA256':sha(park),'parkBytes':park.hex()})
  c.post('/api/v1/debug/pause');stop=c.get('/api/v1/debug/status')['stop']
  assert not stop['protected_mode']
+ assert stop['registers']['eip']==0x109 and not stop['registers']['flags']&0x601,'Private guest did not reach its non-ROM no-interrupt loop'
+ parked=c.post('/api/v1/batch',json={'ops':[{'op':'mem_read','segment':stop['registers']['cs'],'offset':0x100,'len':len(park)}]})
+ assert base64.b64decode(parked['results'][0]['data'])==park
+ save('parked',{'stop':stop,'code':parked})
  allocations=[c.post('/api/v1/memory/allocate',json={'size':65535,'area':'CONV'}) for _ in range(3)]
  save('allocations',allocations)
  assert all(v['addr']%16==0 for v in allocations)
@@ -86,9 +97,10 @@ try:
   entry=c.get('/api/v1/debug/wait',params={'since_stop_id':before,'timeout_ms':15000},timeout=20)
   assert entry['satisfied'] and entry['registers']['cs']==seg and entry['registers']['eip']==0x1ef
   assert entry['registers']['ds']==seg and not entry['registers']['flags']&0x600
-  entry_memory=batch([{'op':'mem_read','segment':seg,'offset':0,'len':len(driver)},{'op':'mem_read','segment':source_seg,'offset':0x1000,'len':32000}])
+  entry_memory=batch([{'op':'mem_read','segment':seg,'offset':0,'len':len(driver)},{'op':'mem_read','segment':source_seg,'offset':0x1000,'len':32000},{'op':'mem_read','segment':seg,'offset':entry['registers']['esp']+4,'len':16}])
   assert base64.b64decode(entry_memory['results'][0]['data'])[0x1ef:0x35d]==driver[0x1ef:0x35d]
   assert base64.b64decode(entry_memory['results'][1]['data'])==pattern
+  assert list(struct.unpack('<8H',base64.b64decode(entry_memory['results'][2]['data'])))==[v&65535 for v in args]
   before=entry['stop_id'];c.post('/api/v1/debug/continue')
   returned_stop=c.get('/api/v1/debug/wait',params={'since_stop_id':before,'timeout_ms':15000},timeout=20)
   assert returned_stop['satisfied'] and returned_stop['registers']['cs']==seg and returned_stop['registers']['eip']==returned
@@ -118,7 +130,7 @@ try:
  node("import{checkSource}from'./scripts/lib/local-scenario-source.js';await checkSource(process.argv[1],p=>p.startsWith('src/')||p.startsWith('scripts/')||p.startsWith('tests/'));",str(out))
  save('capture',{'completed':True,'accepted':False,'nativeComparison':'conditional original primitive pixels only','cases':completed,'oneCase':a.one_case,'pid':proc.pid,'driverSHA256':sha(driver),'scope':'Original driver real EGA pixels with authored source;not natural bank/campaign timing,hidden-page aliasing or machine checkpoint restoration.'})
 except BaseException as error:
- save('capture-failure',{'completed':False,'cases':completed,'error':repr(error),'stop':stop});raise
+ save('capture-failure',{'completed':False,'cases':completed,'error':repr(error),'stop':stop,'entry':entry,'entryMemory':entry_memory,'returned':returned_stop,'args':args});raise
 finally:
  if c:c.close()
  if proc and proc.poll() is None:

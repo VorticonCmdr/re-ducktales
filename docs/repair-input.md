@@ -57,13 +57,57 @@ day16/cash0/seed4656. P opens Pause immediately at the next driver tick with the
 countdown still420; this differs from the shared reader's next seven-tick boundary.
 The baseline archive and snapshots are exploratory evidence, not acceptance.
 
+The positive baseline `.local/repair-positive-before-02` reaches day20/cash2800/
+seed57424 and exhibits the same immediate Pause. An earlier positive exploration
+incorrectly waited for an office-only destination menu after leaving Carlsbad;
+it timed out and is not evidence of a game dead end. Away from the office,
+map Fire travels directly. The corrected exploration uses that real path.
+
+## Implemented boundary and observed recovery
+
+Runtime `cabc06c` reuses `ResultInputWait` and the mutually exclusive result-key
+queue for repairs. Both phases flush before their first read, sample P/Q/S and
+Fire at the shared reader, freeze the wait inside a modal, resume that same read
+and emit enabled24 only for consumed Fire. Wreckage's entry flush discards the
+Fire which skipped repairs. Restart clears the reader and presentation state.
+The existing loss calculation is unchanged.
+
+The two actual-browser captures contain10/11 complete state/image checkpoints
+and64/106 DOM events respectively. The zero-cash route skips wreckage and recovers
+to Carlsbad cave on day16. The earned2800 route enters wreckage with loss700,
+cash2100 and seed3667,then recovers into Klondike cave on day20. Its subsequent
+guide independently advances seed to29715. Pause waits at remaining413 instead of
+opening at420;Quit-No discards the queued Fire and requires a fresh one. Captures
+are not self-acceptance: `reference/repair-input-browser.json` pins them for a
+separate strict browser consumer with two missing-Pause negative controls.
+
+The initial independent consumer stopped during setup because the recorder's
+default Easy route has `hard:false`,with no separate difficulty field. The checker
+now validates that actual format and every complete snapshot's difficulty0.
+No expected snapshots or event streams were changed to correct the setup check.
+
+The fresh consumer `.local/repair-input-replay-02` at`30c6bfe` passed all21 exact
+complete state/decoded-RGBA checkpoints,170 events,both Pause omission negatives
+and Restart. The unchanged full Standard route also passed85 checkpoints/5071
+events and its selection omission negative at`cabc06c`. The saved current-runtime
+receipt is `reference/repair-input-acceptance.json`;its checker validates producer
+and consumer archives,all artifact checksums,current runtime hashes,194 units,
+77 boundary checks,three invalid-setup negatives,build and the original segment
+regression. Missing artifacts or changed accepted runtime fail the command.
+
 ```sh
+node scripts/verify-repair-input-acceptance.js
 node scripts/verify-repair-input-source.js
 node scripts/verify-result-caller-source.js
 node scripts/verify-flight-runtime.js
+node --test scripts/repair-input.test.js
+node scripts/verify-repair-input-setup-negative.js
 # Clean committed source and fresh ignored paths required:
 node scripts/explore-repair-input.js --output=.local/repair-before-FRESH
 node scripts/explore-repair-input.js --positive --output=.local/repair-positive-before-FRESH
+node scripts/explore-repair-input.js --controls --output=.local/repair-controls-FRESH
+node scripts/explore-repair-input.js --positive --controls --output=.local/repair-positive-controls-FRESH
+node scripts/verify-repair-input-browser.js --output=.local/repair-replay-FRESH
 ```
 
 Native portrait reveal/wipe costs, CPU/PIT phase and acoustic parity remain

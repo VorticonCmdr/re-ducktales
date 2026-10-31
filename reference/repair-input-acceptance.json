@@ -1,0 +1,77 @@
+{
+  "kind": "repair-input-acceptance",
+  "nativeComparison": false,
+  "runtimeCommit": "cabc06c97ba4d9b39898664c40c3f4c727ba5d62",
+  "consumer": ".local/repair-input-replay-02",
+  "standardConsumer": ".local/repair-standard-replay-01",
+  "beforeSource": ".local/repair-input-before-01",
+  "checksSource": ".local/repair-checks-01",
+  "scope": "Shared60/100 readers and conditional24;muted zero/earned-cash crash/Pause/Quit-No/fresh Fire/wreckage/recovery/Restart;unchanged full Standard playthrough. Not native reveal/drawing timing,audio phase,waveform parity,winning Standard or arbitrary-campaign completion.",
+  "artifacts": {
+    "scenario": {
+      "path": "reference/repair-input-browser.json",
+      "bytes": 9060,
+      "sha256": "936c8727889cf368d2b195743bd6e5cb5c4c98bf0e80e0f331644b21e12479e4"
+    },
+    "result": {
+      "path": ".local/repair-input-replay-02/acceptance-status.json",
+      "bytes": 841,
+      "sha256": "c674ec97d26299d26e6bf3ac1db14f3c68552c77d7050d5459f6b1a6e38e1c6b"
+    },
+    "standardScenario": {
+      "path": "reference/rival-standard-route.json",
+      "bytes": 24057,
+      "sha256": "1548d6c1e4a161742cdad14d8cf6ee5a6f0c53fd6f3114077acc70737a6e2013"
+    },
+    "standardResult": {
+      "path": ".local/repair-standard-replay-01/acceptance-status.json",
+      "bytes": 1017,
+      "sha256": "7aaa78b677ed5f0494c756d96bfe566cbc54367d04b84e6a05ab32b896c16636"
+    },
+    "before": {
+      "path": ".local/repair-input-before-01/campaign-checkpoints.json",
+      "bytes": 6458,
+      "sha256": "c8a2f50caf7ab61f2cc29f6917e57bb8d857e87429d7b97d6361646e5215cdcf"
+    },
+    "setupNegatives": {
+      "path": ".local/repair-checks-01/setup-negatives.json",
+      "bytes": 193,
+      "sha256": "3f885308f5f568cf95f8aa8791563ed676e4120dfa2184374ee8f034093381d9"
+    },
+    "units": {
+      "path": ".local/repair-checks-01/units.log",
+      "bytes": 17778,
+      "sha256": "a2de9b1675513fbebb1c39bddd59d6a81638266826a31df037a64f1268ff6f64"
+    },
+    "boundaries": {
+      "path": ".local/repair-checks-01/boundaries.log",
+      "bytes": 6972,
+      "sha256": "99deffb151c6221eff7ec98516c723b96af2c49de237c94f221ec7a94ef93d81"
+    },
+    "build": {
+      "path": ".local/repair-checks-01/build.log",
+      "bytes": 907,
+      "sha256": "7cdeb76f1cf5c259aa0b6e507192cba8dc202afcafd96989ee929a2e9ddffe21"
+    },
+    "source": {
+      "path": "reference/repair-input-source.json",
+      "bytes": 1825,
+      "sha256": "9435d50134a9eaf46ff1f28d918ab16e75ef55722f8e0059d125c2d245705b73"
+    },
+    "sourceLog": {
+      "path": ".local/repair-checks-01/source.log",
+      "bytes": 194,
+      "sha256": "bb2e4c5191a59c20b0c7695e1bf9577eb61be3918a5897d6e2534cca4f1bc4b8"
+    },
+    "callerLog": {
+      "path": ".local/repair-checks-01/caller.log",
+      "bytes": 212,
+      "sha256": "ac75acf353dbe5df0ea8e0f99bfcacb2b2b4b40bcd1fa23f49d43d566ea304fd"
+    },
+    "flightRuntimeLog": {
+      "path": ".local/repair-checks-01/flight-runtime.log",
+      "bytes": 137,
+      "sha256": "f705e438c08416d6f2f7593b25883d5889c1bf14e57574433767126589e5b683"
+    }
+  }
+}

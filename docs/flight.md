@@ -334,6 +334,11 @@ one draw: rolls0/1 lose nothing,2..4 lose cash>>3,5..7 cash>>2,8/9 cash>>1. Only
 the low16 bits of that signed32-bit shift are subtracted from unsigned32 cash.
 The wreckage dialogue waits100 seven-tick polls (700 driver ticks); fire can shorten both waits. Both landing
 and repaired ordinary crash continue to expedition entry and its playable activity.
+The repair/wreckage readers now preserve shared09f5 entry flush,immediate first
+read,seven-tick P/Q/S boundaries,modal resumption and enabled Fire click24.
+Separate zero/earned-cash browser routes recover into actual cave gameplay;
+[current input evidence and verification](repair-input.md) distinguishes these
+port comparisons from the conditional original segment below.
 The captured positive-cash repair case below validates day/cash/RNG. Other
 caller branches are statically translated, not full-campaign replay evidence.
 

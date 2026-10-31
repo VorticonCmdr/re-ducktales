@@ -18,43 +18,47 @@ HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 
 ## Latest completed behavior and current acceptance
 
-Rival announcements now use the source-derived ordinary input reader for normal
-reports and lost-race claims. Rival location changes after the announcement,
-speech uses actual sound status and 14-tick input boundaries, and Pause/Quit-No
-resume the pending read even if speech ended in the modal. Synthetic audio resets
-around this caller were removed. Runtime: `c5bf3f7`.
-[Rival behavior and evidence](rival-input.md).
+Flight repairs and wreckage search now use original shared09f5(60/100) instead
+of simplified countdowns. They flush input on entry,read immediately,wait seven
+driver ticks on neutral,sample P/Q/S at those reads,and resume the pending read
+after Pause/Quit-No. A fresh Fire is required after a modal and between the two
+announcements. Only consumed Fire with enabled sound requests24. The original
+cash-loss/RNG calculation is unchanged. Runtime:`cabc06c`.
+[Repair behavior and evidence](repair-input.md).
 
 Current acceptance includes:
 
-- Ordinary report and forced claim:18 exact state/image checkpoints,2,318 DOM
-  events,Pause/Quit-No/fresh Fire/map/Restart,two missing-P negatives.
-- Full Standard route:85 complete state/image checkpoints,5,071 unchanged input
-  events,all four expedition families,race-loss recovery,bank/rival/deadline/
-  defeat cover,Restart and a missing-selection negative. Two old snapshots were
-  source-corrected to retain the rival's origin during the claim;all85 images and
-  inputs remain unchanged. The fresh consumer compares complete new snapshots.
-- Cave failure/retry rerun:11 exact checkpoints,454 events,Restart and a missing-P
-  negative;cash$150,day2→3,no unlock,and retry without another flight.
-- 194 units,59 result/guide/atomic/rival boundaries,three fixture setup negatives
-  and production build.
-- 154 rival caller plus282 ordinary-reader original/Ghidra bytes and declared
-  relocations. Existing result caller/helper checks another567 original bytes.
-- Actual speaker and Tandy device acknowledgements,nonzero output,speech
-  completion,closing request and Restart under explicit conditional clock waits.
+- Two real Easy crash/recovery routes:21 exact complete state/image checkpoints,
+  170 DOM events,Pause/Quit-No/fresh Fire,cave entry,Restart and two missing-P
+  negatives. Cash0 skips wreckage;earned2800 becomes2100 after a700 loss.
+- Unchanged full Standard route:85 complete state/image checkpoints,5,071 inputs,
+  all four expedition families,race-loss recovery,bank/rival/deadline/defeat
+  cover,Restart and a missing-selection negative. The source-corrected rival
+  fixture from the preceding milestone remains unchanged.
+- 194 existing units,77 result/guide/atomic/rival/repair boundary checks,three
+  fixture setup negatives and production build.
+- 119 original/Ghidra repair-caller bytes and three declared relocations;existing
+  shared-reader/caller and keyboard proofs check567 and282 bytes separately.
+- Existing original crash/calendar/repair segment:four conditional checkpoints,
+  27 presentations and three negative controls still pass,including cash50→25.
 
-[Current saved acceptance](../reference/rival-input-acceptance.json).
-Browser control comparisons are muted. Speech completion during Pause is covered
-by conditional controller tests,not actual-device browser observation. Native
-reveal/drawing costs and acoustic/clock parity remain unverified. An attempted
-worklet-fetch interception failed and is excluded from acceptance;the documented
-browser-tool limitation is recorded in the rival evidence document.
+[Current saved acceptance](../reference/repair-input-acceptance.json).
+Browser repair controls are muted;enabled click requests are checked in conditional
+simulation. This is not native reveal/drawing cost,clock/audio phase or acoustic
+parity. Expected outputs never select replay inputs;missing local fixtures fail
+setup. Both failed exploration/setup attempts remain separate from acceptance.
+
+Rival announcements retain their shared reader,actual sound status and deferred
+claim location. The preceding18 rival-control checkpoints,11 failure/retry
+checkpoints and real speaker/Tandy probes were not rerun in full for this repair
+change. Their evidence remains historical;old saved runtime guards reject this
+change. Current boundary tests and the complete Standard route pass.
+[Rival evidence](rival-input.md).
 
 Shared40-read awards,100-read transmitter notices,30-read guides and20-read cave
 failure portraits remain implemented. Older15 browser routes(343 checkpoints/
-11,601 events),winning Easy campaign and8 cave-component replays were not rerun
-in full for this rival change. Their immutable evidence remains historical;old
-saved acceptance commands reject the changed runtime. [Earlier evidence](result-input.md).
+11,601 events),winning Easy campaign and8 cave-component replays also remain
+historical. [Earlier evidence](result-input.md).
 
 ## Coverage and remaining work
 
@@ -65,8 +69,8 @@ saved acceptance commands reject the changed runtime. [Earlier evidence](result-
 | Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei treasure |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:translate flight repairs from the shared original input reader;the current
-repair/wreckage countdowns omit some reader boundary behavior.
+Next:establish a winning Standard campaign and audit remaining unsupported
+gameplay paths;the current full Standard route deliberately ends in defeat.
 Cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
 arbitrary-route finishability remain incomplete. Hard is deferred;its earlier
@@ -80,7 +84,7 @@ missing features and should not be invented.
 Tandy/PCjr includes Sound001,persistent channels,priorities,flight engine words,
 mute and completion. PC speaker is the default with persistent IRQ/RNG/priority
 logic. Historical sound acceptance covers7 browser cases and3 streams;that suite
-was not rerun for this rival change. Existing speaker/Tandy result probes
+was not rerun for this repair change. Existing speaker/Tandy result probes
 establish actual device I/O under their documented conditional ACK waits;physical
 waveform/gain/filter parity remains unverified. The original general S-off
 keyboard path requests0 then24 before clearing sound enable;the browser adapter
@@ -101,19 +105,20 @@ contain actual game code with documented transformations and are never run.
 
 ```sh
 # Validate saved current-runtime evidence and source:
-node scripts/verify-rival-input-acceptance.js
+node scripts/verify-repair-input-acceptance.js
+node scripts/verify-repair-input-source.js
 node scripts/verify-rival-input-source.js
 node scripts/verify-rival-keyboard-source.js
 node scripts/verify-cave-failure-input-source.js
 node scripts/verify-result-caller-source.js
-node scripts/verify-rival-input-setup-negative.js
+node scripts/verify-repair-input-setup-negative.js
 node scripts/verify-cave-failure-input-setup-negative.js
-node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js scripts/rival-input.test.js
+node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js scripts/rival-input.test.js scripts/repair-input.test.js
 npm test
 npm run build
 # Fresh browser comparisons;clean committed source and new ignored outputs:
 node scripts/verify-cave-failure-input-browser.js --output=.local/failure-replay-FRESH
-node scripts/verify-rival-input-browser.js --output=.local/rival-input-FRESH
+node scripts/verify-repair-input-browser.js --output=.local/repair-input-FRESH
 node scripts/verify-standard-wages-route.js --manifest=reference/rival-standard-route.json --output=.local/standard-full-replay-FRESH
 # Broader optional fresh regression against retained old routes:
 node scripts/verify-preserved-routes.js --output=.local/preserved-FRESH

@@ -17,6 +17,12 @@ clears the campaign. This verifies one full playthrough through all four familie
 not a winning Standard strategy,every Standard layout,credits or native parity.
 Hard remains deferred. No gameplay rules changed for this milestone.
 
+The full route was rerun after the repair-reader change at`cabc06c`:85 exact
+state/image checkpoints and5,071 unchanged events passed in a fresh browser,plus
+Restart and the missing-selection negative. The latest saved acceptance is
+[repair input acceptance](../reference/repair-input-acceptance.json). Historical
+receipts below retain their original scope and runtime guards.
+
 ## Reproduce and verify
 
 Use the22 original files declared in `reference/build.json`. Missing or changed
@@ -24,12 +30,12 @@ files fail setup. No additional edition or resource pairing is accepted.
 
 ```sh
 # Validate saved browser evidence against the current game runtime:
-node scripts/verify-cave-failure-input-acceptance.js
+node scripts/verify-repair-input-acceptance.js
 # Check rejection of empty,missing and corrupt fixtures:
 node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --setup-negatives
 node scripts/verify-standard-wages-setup-negative.js
 # Fresh browser replay and a semantic input-omission negative:
-node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --output=.local/standard-full-replay-FRESH
+node scripts/verify-standard-wages-route.js --manifest=reference/rival-standard-route.json --output=.local/standard-full-replay-FRESH
 node scripts/verify-standard-wages-route.js --output=.local/standard-replay-FRESH
 # Produce a new exploratory recording;this never certifies itself:
 node scripts/standard-wages-explore.js --safari --output=.local/standard-capture-FRESH

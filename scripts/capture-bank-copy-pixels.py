@@ -67,6 +67,7 @@ try:
   assert not v['aborted'] and all(q['status']=='ok' for q in v['results'])
   return v
  for index,event in enumerate(cases):
+  baseline_info=c.get("/api/v1/video/frame/info")
   body=bytearray(65535);body[:len(driver)]=driver;struct.pack_into('<H',body,0x1e,0x2000)
   for handle,offset,target in [(0x2000,0,0xa000),(0x2020,0x1000,source_seg)]:
    struct.pack_into('<H',body,handle,40);struct.pack_into('<HHH',body,handle+4,offset,target,8000)
@@ -95,15 +96,23 @@ try:
   # Let the display consume the completed VRAM writes. The wrapper loops with
   # IF clear and cannot change the image;no game logic or expected data runs.
   c.post('/api/v1/debug/continue')
-  wait=c.post('/api/v1/wait',json={'for':'frames','count':3,'timeout_ms':15000},timeout=20)
-  assert wait['satisfied']
+  waits=[];prior_hash=None
+  for _ in range(20):
+   wait=c.post('/api/v1/wait',json={'for':'frames','count':3,'timeout_ms':15000},timeout=20)
+   assert wait['satisfied']
+   frame_info=c.get('/api/v1/video/frame/info');waits.append({'wait':wait,'frameInfo':frame_info})
+   ready=frame_info['video_mode']['bios_mode_number']==13 and frame_info['width']==320 and frame_info['height']==200 and frame_info['frame_hash']!=baseline_info['frame_hash']
+   if ready and frame_info['frame_hash']==prior_hash:break
+   prior_hash=frame_info['frame_hash'] if ready else None
+  else:raise AssertionError('Native raw EGA image did not become current and stable')
   c.post('/api/v1/debug/pause');stop=c.get('/api/v1/debug/status')['stop']
   assert stop['registers']['cs']==seg
-  frame_info=c.get('/api/v1/video/frame/info')
+  assert frame_info['video_mode']['is_graphics_mode']
+  assert frame_info['video_mode']['bios_mode_number']==13
   png=c.get('/api/v1/video/frame',params={'format':'png','mode':'raw'})
   assert isinstance(png,bytes) and png[:8]==b'\x89PNG\r\n\x1a\n'
   (out/f'case-{index:02}.png').write_bytes(png)
-  save(f'case-{index:02}',{'index':index,'input':event,'args':args,'entry':entry,'entryMemory':entry_memory,'returned':returned_stop,'scanoutWait':wait,'captureStop':stop,'frameInfo':frame_info,'pngSHA256':sha(png)})
+  save(f'case-{index:02}',{'index':index,'input':event,'args':args,'entry':entry,'entryMemory':entry_memory,'returned':returned_stop,'baselineFrameInfo':baseline_info,'scanoutWaits':waits,'captureStop':stop,'frameInfo':frame_info,'pngSHA256':sha(png)})
   completed+=1;print(json.dumps({'case':index,'x':event['x'],'y':event['y'],'pngBytes':len(png)}),flush=True)
  assert completed==len(cases)>0
  node("import{checkSource}from'./scripts/lib/local-scenario-source.js';await checkSource(process.argv[1],p=>p.startsWith('src/')||p.startsWith('scripts/')||p.startsWith('tests/'));",str(out))

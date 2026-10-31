@@ -8,7 +8,10 @@ Initial map/sprite loading is now staged and charged;parser CPU and remaining
 loader/system costs are still omitted.
 The initialization gate passed12 checks before the treasure-order correction.
 The corrected treasure now restores its wipe/background,2 compositions and13
-extra caller copies. The new15-check gate and fresh campaign replay are pending.
+extra caller copies. The new15-check gate passes,including221 units,the complete cave browser
+failure/retry/treasure/award/map route,the loading negative and build.
+[Scoped receipt](../reference/cave-treasure-order-admission.json). A fresh
+whole-campaign producer and independent replay remain required.
 Whole-cave timing still fails. [Treasure scope](cave-treasure-order.md).
 The last full Standard campaign/replay passed before these cave changes.
 Its strict combined gate now correctly rejects the changed runtime; a fresh

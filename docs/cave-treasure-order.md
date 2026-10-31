@@ -40,7 +40,9 @@ node scripts/verify-cave-treasure-order.js
 node scripts/verify-cave-counted-loading.js --output=.local/cave-treasure-order-FRESH
 ```
 
-The combined gate now requires15 checks,including the actual browser complete
+The combined gate passed15 checks on source904519a. Its
+[receipt](../reference/cave-treasure-order-admission.json) pins the source archive,
+119 runtime/configuration files,all logs and five actual treasure reveal images,including the actual browser complete
 cave route (failure/retry/treasure/map),input case,loading-only negative,221 units
 and build. Its browser helper waits for staged initialization before checking the
 first room. Original full treasure timing,loader/system costs,broader campaign

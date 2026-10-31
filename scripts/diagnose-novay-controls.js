@@ -22,8 +22,15 @@ const root = await fresh(arg("output")),
   source = await archiveSource(root);
 const recipePath = "reference/thunderclap-expedition-inputs.json";
 const recipe = await json(recipePath),
-  stream = recipe.mountain.flatMap((e) => Array(e.count).fill(e.byte));
-assert.equal(stream.length, 494);
+  authored = recipe.mountain.flatMap((e) => Array(e.count).fill(e.byte));
+assert.equal(authored.length, 494);
+const waitCount = Number(arg("wait-count") ?? 0);
+assert.ok(Number.isInteger(waitCount) && waitCount >= 0 && waitCount <= 64);
+const stream = [
+  ...authored.slice(0, 56),
+  ...Array(waitCount).fill(0),
+  ...authored.slice(56),
+];
 const initial = {
   variant: 1,
   difficulty: 1,
@@ -119,7 +126,8 @@ const result = {
     "Initial constructor parameters read from the prior Novay candidate;no expected final state used. Fresh memory and zero phase differ from carried campaign state.",
   clockOrigin: 0,
   recipe: await spec(recipePath),
-  requiredInputs: 494,
+  requiredInputs: stream.length,
+  addedNeutralInputs: { beforeAuthoredRead: 57, count: waitCount },
   executedInputs: mountain.inputs.length,
   authoredInputsConsumed: stream.length,
   losses,

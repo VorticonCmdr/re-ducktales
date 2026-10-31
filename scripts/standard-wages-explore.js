@@ -12,6 +12,7 @@ import { originalGame } from "../tests/helpers/original-game.js";
 import { finishSecurityEntry } from "../tests/browser/helpers/security.js";
 import { explorePhysicalFlight } from "../tests/browser/helpers/flight-policy.js";
 import { planCaveVariant } from "./lib/easy-cave-variants.js";
+import { continueWinningCampaign } from "./lib/winning-browser-player.js";
 import {
   observeRecordedRoute,
   saveRecordedRoute,
@@ -20,8 +21,9 @@ const arg = (k) =>
     process.argv.find((a) => a.startsWith("--" + k + "="))?.slice(k.length + 3),
   root = await fresh(arg("output")),
   source = await archiveSource(root);
-const safari = process.argv.includes("--safari");
-await originalGame();
+const winning = process.argv.includes("--winning");
+const safari = winning || process.argv.includes("--safari");
+const original = await originalGame();
 let result = {
   completed: false,
   accepted: false,
@@ -32,6 +34,27 @@ try {
   result = await withCarlsbadBrowser(async (c) => {
     const { page, canvas, state, until, press } = c,
       points = [];
+    if (winning)
+      await page.evaluate(() => {
+        window.campaignAwards = [];
+        const seen = new Set();
+        document.getElementById("game").addEventListener("gamepresent", (e) => {
+          const s = e.detail,
+            p = s.expeditionResult?.presentation;
+          if (!p) return;
+          const key = `${s.campaign.location}:${p.phase}:${p.transition?.band ?? "none"}`;
+          if (seen.has(key)) return;
+          seen.add(key);
+          window.campaignAwards.push({
+            key,
+            location: s.campaign.location,
+            activity: s.briefing.activity,
+            at: performance.now(),
+            state: s,
+            png: document.getElementById("game").toDataURL(),
+          });
+        });
+      });
     const observe = async (name) => {
       const s = await state();
       points.push(await observeRecordedRoute({ page, state: s, name }));
@@ -58,13 +81,25 @@ try {
     }
     async function settle() {
       for (let n = 0; n < 12; n++) {
-        const s = await state();
+        let s = await state();
         if (
-          !["expedition-result", "rival-report", "visit-notice", "rival-claim"].includes(
-            s.scene,
-          )
+          ![
+            "expedition-result",
+            "rival-report",
+            "visit-notice",
+            "rival-claim",
+          ].includes(s.scene)
         )
           return;
+        if (s.expeditionResult?.presentation) {
+          await until(
+            (v) =>
+              v.scene !== "expedition-result" ||
+              !v.expeditionResult.presentation,
+          );
+          s = await state();
+          assert.equal(s.scene, "expedition-result");
+        }
         await observe("dialogue-" + points.length);
         const phase =
           s.expeditionResult?.phase ??
@@ -197,65 +232,105 @@ try {
         let arrived = false;
         // A lost race is a normal campaign branch. Read its claim and continue
         // to another unclaimed Safari instead of calling it a port dead end.
-        for (const [attempt, destination] of [[46, 56], [173, 98]].entries()) {
-        await point(...destination);
-        await press("Space");
-        await settle();
-        await until((s) => s.scene === "departure");
-        await observe("safari-departure-" + attempt);
-        await press("Space");
-        await until((s) => s.scene === "flight");
-        const secondFlight = await explorePhysicalFlight({
-          page, state, until,
-          policy: { altitude: [25, 40], climbHeading: 3 },
-        });
-        await writeFile(root + "/safari-flight-controls-" + attempt + ".json",
-          JSON.stringify(secondFlight, null, 2) + "\n");
-        await until((s) => s.scene !== "flight");
-        await observe("safari-flight-return-" + attempt);
-        if ((await state()).flight.outcome.status === "race-lost") {
-          assert.equal((await state()).scene, "rival-claim");
+        for (const [attempt, destination] of [
+          [46, 56],
+          [173, 98],
+        ].entries()) {
+          await point(...destination);
+          await press("Space");
           await settle();
-          assert.equal((await state()).scene, "map");
-          await observe("map-after-lost-race-" + attempt);
-          continue;
+          await until((s) => s.scene === "departure");
+          await observe("safari-departure-" + attempt);
+          await press("Space");
+          await until((s) => s.scene === "flight");
+          const secondFlight = await explorePhysicalFlight({
+            page,
+            state,
+            until,
+            policy: { altitude: [25, 40], climbHeading: 3 },
+          });
+          await writeFile(
+            root + "/safari-flight-controls-" + attempt + ".json",
+            JSON.stringify(secondFlight, null, 2) + "\n",
+          );
+          await until((s) => s.scene !== "flight");
+          await observe("safari-flight-return-" + attempt);
+          if ((await state()).flight.outcome.status === "race-lost") {
+            assert.equal((await state()).scene, "rival-claim");
+            await settle();
+            assert.equal((await state()).scene, "map");
+            await observe("map-after-lost-race-" + attempt);
+            continue;
+          }
+          assert.equal(
+            (await state()).flight.outcome.code,
+            1,
+            "Exploratory second flight did not arrive;inspect its normal consequence",
+          );
+          arrived = true;
+          break;
         }
-        assert.equal((await state()).flight.outcome.code, 1,
-          "Exploratory second flight did not arrive;inspect its normal consequence");
-        arrived = true;
-        break;
-        }
-        assert.ok(arrived, "Both exploratory Safari flights failed;all normal consequences retained");
-        await until((s) => s.scene === "photography" && s.photography.phase === "playing");
+        assert.ok(
+          arrived,
+          "Both exploratory Safari flights failed;all normal consequences retained",
+        );
+        await until(
+          (s) => s.scene === "photography" && s.photography.phase === "playing",
+        );
         await observe("safari-entry");
         let targetShot = false;
         for (let shot = 0; shot < 12 && !targetShot; shot++) {
-          const ready = await until((s) => s.scene !== "photography" ||
-            s.photography.phase === "results" ||
-            (s.photography.phase === "playing" && s.photography.animals.some(
-              (a) => a.place && a.animal === s.photography.target && a.frame === 0)));
+          const ready = await until(
+            (s) =>
+              s.scene !== "photography" ||
+              s.photography.phase === "results" ||
+              (s.photography.phase === "playing" &&
+                s.photography.animals.some(
+                  (a) =>
+                    a.place &&
+                    a.animal === s.photography.target &&
+                    a.frame === 0,
+                )),
+          );
           assert.equal(ready.scene, "photography");
           if (ready.photography.phase === "results") break;
           const column = ready.photography.animals.findIndex(
-            (a) => a.place && a.animal === ready.photography.target && a.frame === 0);
+            (a) =>
+              a.place && a.animal === ready.photography.target && a.frame === 0,
+          );
           const key = ["ArrowLeft", "ArrowUp", "ArrowRight"][column];
           await page.keyboard.down(key);
           await until((s) => s.photography.column === column);
           await page.keyboard.up(key);
           const before = await state();
           await page.keyboard.down("Space");
-          await until((s) => s.photography.phase !== "playing" ||
-            s.photography.photoCount > before.photography.photoCount ||
-            s.photography.film < before.photography.film);
+          await until(
+            (s) =>
+              s.photography.phase !== "playing" ||
+              s.photography.photoCount > before.photography.photoCount ||
+              s.photography.film < before.photography.film,
+          );
           await page.keyboard.up("Space");
-          targetShot = (await state()).photography.photos.includes(ready.photography.target);
+          targetShot = (await state()).photography.photos.includes(
+            ready.photography.target,
+          );
           await observe("safari-shot-" + shot);
         }
-        assert.ok(targetShot, "Exploratory photographer missed the target;not an unsupported-path diagnosis");
-        for (let n = 0; n < 13 && (await state()).photography.phase === "playing"; n++) {
+        assert.ok(
+          targetShot,
+          "Exploratory photographer missed the target;not an unsupported-path diagnosis",
+        );
+        for (
+          let n = 0;
+          n < 13 && (await state()).photography.phase === "playing";
+          n++
+        ) {
           const film = (await state()).photography.film;
           await page.keyboard.down("Space");
-          await until((s) => s.photography.phase !== "playing" || s.photography.film < film);
+          await until(
+            (s) =>
+              s.photography.phase !== "playing" || s.photography.film < film,
+          );
           await page.keyboard.up("Space");
         }
         await until((s) => s.photography.phase === "results");
@@ -277,15 +352,36 @@ try {
         assert.equal((await state()).scene, "map");
         await observe("map-after-safari-bank");
       }
+      let final = null;
+      if (winning) {
+        final = await continueWinningCampaign({
+          ...c,
+          point,
+          settle,
+          observe,
+          root,
+          locations: original.game.campaign.locations,
+        });
+        await writeFile(
+          root + "/award-presentations.json",
+          JSON.stringify(
+            await page.evaluate(() => window.campaignAwards),
+            null,
+            2,
+          ) + "\n",
+        );
+      }
       await saveRecordedRoute({
         page,
         root,
         observations: points,
         difficulty: 1,
         physical: true,
-        scope:
-          "EXPLORATORY Standard Wages real startup/flight/cave/reward/deposit" +
-          (safari ? "/second flight/Safari/deposit" : "") + ";not complete campaign or acceptance",
+        scope: winning
+          ? "EXPLORATORY winning Standard campaign with restored reward timing,all four families,later caves,credits/Restart;not self-acceptance or native parity"
+          : "EXPLORATORY Standard Wages real startup/flight/cave/reward/deposit" +
+            (safari ? "/second flight/Safari/deposit" : "") +
+            ";not complete campaign or acceptance",
       });
       await page.locator("#restart").click();
       await until((s) => s.scene === "title");
@@ -294,12 +390,27 @@ try {
       return {
         completed: true,
         accepted: false,
-        scope: safari ? "Standard Wages cave and Safari legs;not campaign completion" :
-          "Standard Wages first playable leg only;not campaign completion",
+        scope: winning
+          ? "Winning Standard browser capture;independent replay required,not native parity"
+          : safari
+            ? "Standard Wages cave and Safari legs;not campaign completion"
+            : "Standard Wages first playable leg only;not campaign completion",
         checkpoints: points.length,
         events: points.at(-1).eventCount,
         restart: true,
         sourceCommit: source.commit,
+        ...(winning
+          ? {
+              expectedOutcome: {
+                day: final.campaign.day,
+                banked: final.campaign.banked,
+                rivalBanked: final.campaign.rival.banked,
+                playerCollected: final.campaign.playerCollected,
+                won: final.ending.won,
+                ready: final.ending.ready,
+              },
+            }
+          : {}),
       };
     } catch (error) {
       await observe("failure");

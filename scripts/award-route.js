@@ -194,6 +194,11 @@ if (process.argv.includes("--verify")) {
         console.log(device, name);
       };
       await wait(
+        (s) => s.scene === "cave" && s.cave.phase === "treasure",
+        "treasure animation",
+      );
+      for (const key of ["p", "q", "s"]) await page.keyboard.press(key);
+      await wait(
         (s) => s.expeditionResult?.presentation?.phase === "initial-wipe",
         "initial-wipe",
       );
@@ -214,6 +219,7 @@ if (process.argv.includes("--verify")) {
       );
       assert.equal((await state()).money, 3400);
       assert.equal((await state()).pendingResultSystemKeys, undefined);
+      assert.equal((await state()).pendingCaveSystemKeys, undefined);
       await note("second-wipe");
       await early();
       await note("early-second-flush");
@@ -225,7 +231,10 @@ if (process.argv.includes("--verify")) {
         "ready",
       );
       assert.equal(ready.systemOverlay, null);
-      assert.equal(ready.audioEnabled, device !== "muted");
+      assert.equal(
+        await page.locator("#audio").isChecked(),
+        device !== "muted",
+      );
       assert.equal(ready.expeditionResult.skipRequested, false);
       assert.equal(ready.campaign.atomicAvailable, false);
       assert.equal(ready.money, 3400);

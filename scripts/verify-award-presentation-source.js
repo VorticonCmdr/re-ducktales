@@ -24,6 +24,7 @@ assert.deepEqual(
     [0x1cff, 55],
     [0x1d9b, 2],
     [0x1dad, 5],
+    [0x5a85, 32],
   ],
 );
 let bytes = 0,
@@ -73,6 +74,10 @@ assert.equal(
   "803ebe0300740bb8490050ff1e1c2083c402",
 );
 const driver = (await json(m.rowAlgorithm.path)).graphics;
+assert.equal(
+  Buffer.from(image.subarray(0x5a85, 0x5aa5)).toString("hex"),
+  "57fab840008ec026a11c0026a31a008cd88ec0bf6c27b9400033c0f3abfb5fcb",
+);
 assert.equal(sha(archives.get("IT.DRV")[1].data), driver.sha256);
 assert.equal(archives.get("MAIN.ARC")[35].width, 320);
 assert.equal(archives.get("MAIN.ARC")[35].height, 200);

@@ -80,6 +80,19 @@
         "bytes": 221,
         "sha256": "4e10bd9a13bcdfe9c8b04efbbcc771c436ec8637c545273c033cb15657db71e6"
       }
+    },
+    {
+      "name": "shared-input-flush",
+      "address": "1000:5a85",
+      "offset": 23173,
+      "length": 32,
+      "sha256": "80d700a63e3f22549f62f23eddf6c8ea690447150826ba5e8af9d97c1c8d7ced",
+      "relocations": [],
+      "artifact": {
+        "path": ".local/award-presentation-source-01/shared-input-flush.json",
+        "bytes": 369,
+        "sha256": "bc2e929f994ffed6d5edf75a4527c8ada6b2eeb4a75ab09897f3255a817bc6ee"
+      }
     }
   ],
   "build": {
@@ -100,7 +113,9 @@
   "claims": [
     "Main0b39..0c48 selects picture helper6,commits treasure cash after its return,then calls1fe0 and1fdc before enabled49 and09f5(40).",
     "Picture helper6 clears draw page,wipes via1fe0,copiesMAIN35,then flushes at016d.",
-    "Verified EGA1fe0 and1fdc each execute five groups of five retraces;award entry totals75 retraces."
+    "Verified EGA1fe0 and1fdc each execute five groups of five retraces;award entry totals75 retraces.",
+    "Shared19a5 clears BIOS queue and128 bytes at276c using64 REP STOSW iterations;unread expedition-channel aliases must be dropped at the reward helper flush."
   ],
-  "scope": "Static source and existing EGA primitive/transition evidence. Resource loading,text drawing,remaining CPU/IRQ timing and native uninterrupted award presentation remain unmeasured."
+  "scope": "Static source and existing EGA primitive/transition evidence. Resource loading,text drawing,remaining CPU/IRQ timing and native uninterrupted award presentation remain unmeasured.",
+  "toolLimit": "Current Ghidra disassemble_function listing prints 8ec0 as MOV AX,ES at140e:19aa/19b6. Original/prepared/raw Ghidra bytes are8ec0 (MOV ES,AX). Segment direction is taken from bytes,not the misleading operand text;no byte comparison is excluded."
 }

@@ -126,6 +126,20 @@ test("audio enabled flag is consumed after reveal,not at award entry", async () 
     );
   }
 });
+test("award helper clears unread expedition keys and the returned native table", async () => {
+  const { g, p, until } = await setup();
+  g.briefing = { activity: "cave", variant: 0 };
+  g.startExpedition();
+  for (const type of ["pause", "quit", "toggle-sound"]) g.input({ type });
+  assert.equal(g.pendingCaveSystemKeys.size, 3);
+  g.flightMemory = g.cave.memory;
+  g.flightMemory.b(0x2785, 1);
+  g.scene = "expedition-result";
+  until(() => p.phase === "wipe");
+  assert.equal(g.pendingCaveSystemKeys.size, 0);
+  assert.equal(g.flightMemory.b(0x2785), 0);
+  assert.equal(g.systemOverlay, null);
+});
 test("presentation is invariant to scheduler catch-up and hidden-page pauses", async () => {
   const a = await setup(),
     b = await setup();

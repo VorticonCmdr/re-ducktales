@@ -2065,6 +2065,13 @@ export class Game {
   }
   flushResultInput() {
     this.pendingResultSystemKeys.clear();
+    // These queues are aliases of unread native keys from the expedition
+    // caller.19a5 discards them too,not only makes tagged after its return.
+    this.pendingCaveSystemKeys.clear();
+    this.pendingMountainSystemKeys.clear();
+    this.pendingJungleSystemKeys.clear();
+    this.pendingPhotographySystemKeys.clear();
+    this.pendingFlightSystemKeys.clear();
     // The expedition has returned,so syncExpeditionKeyboard no longer selects
     // its memory. Resident19a5 still clears the same shared native key table.
     this.flightMemory?.bytes.fill(0, 0x276c, 0x27ec);

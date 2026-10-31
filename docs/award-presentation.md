@@ -7,7 +7,7 @@ jungle and mountain expeditions that reach the ordinary treasure-award branch.
 Photo-score bypasses retain their separate original path.
 
 Supported identity is the22-file pairing in `reference/build.json`.
-`reference/award-presentation-source.json` records371 original/prepared/Ghidra
+`reference/award-presentation-source.json` records403 original/prepared/Ghidra
 bytes and8 loader relocations in explicit INVESTMENT_CODE.EXE, actual x86 LE16
 real-mode resident code. No analysis image is run. The existing EGA transition
 and primitive proofs are pinned rather than replaced.
@@ -25,6 +25,13 @@ committed once after the first portrait copy. Final reveal publication precedes
 the same-time continuation that samples sound enabled and enters the reader.
 Both native key flushes discard early P/Q/S and Fire; fresh input is needed at
 the reader. Restart cancels pending work and cannot emit the abandoned cue.
+
+The helper flush also clears queued keys tagged while the expedition was still
+running. Shared19a5 clears the BIOS queue and128-byte key table. The current
+Ghidra listing reverses the operands of8ec0 at19aa/19b6;original/prepared/raw
+Ghidra bytes agree. ES←AX is established from those bytes,not the misleading
+listing. A focused tool correction would preserve MOV segment-register operand
+direction in `disassemble_function`;no source bytes are excluded to work around it.
 
 Rendering uses the expedition's committed final page as the first wipe source,
 even when the expedition returns on the same retrace as that publication. The

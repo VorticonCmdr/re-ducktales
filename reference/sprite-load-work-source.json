@@ -1,0 +1,40 @@
+{
+  "kind": "original-lzw-ega-sprite-work-source",
+  "expectedSprites": 46,
+  "expectedSourceInstructions": 294,
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "nativeParent": {
+    "path": "reference/cave-loader-native.json",
+    "bytes": 48993,
+    "sha256": "5bea106197d11e570481e629377b52d7407bbb1213a97a348a90db3d995b3a40"
+  },
+  "source": {
+    "lzw": {
+      "path": ".local/cave-loader-source-01/lzw.json",
+      "bytes": 20439,
+      "sha256": "041242b78c2d6d2db7a117b4ddf386b9d4ad41536ca679b035e7dd08e9a290aa"
+    },
+    "prefix": {
+      "path": ".local/cave-loader-source-01/prefix.json",
+      "bytes": 3208,
+      "sha256": "3fec362272f7f77bf974f5e783496ca5e508f6860b793fe7060afad1343d6619"
+    },
+    "converter": {
+      "path": ".local/cave-loader-source-01/converter.json",
+      "bytes": 10177,
+      "sha256": "dfd4288cb4e09c2fd1bd5ece674604a358c8c6a6d64c8db20e152e3ea6c67148"
+    }
+  },
+  "supported": "EXP.ARC46 sprites,type2,LZW,mode1,RAM five-plane destination under64KiB.",
+  "omitted": [
+    "Archive lookup/seek/header and allocation/caller bodies",
+    "DOS read bodies,I/O budget clamping and optional disk-speed delays",
+    "IRQ/BIOS/audio device execution and original CPU slice phase"
+  ],
+  "nativeTimingAcceptance": false,
+  "verify": "node scripts/verify-sprite-load-work.js"
+}

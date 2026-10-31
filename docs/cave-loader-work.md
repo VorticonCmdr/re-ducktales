@@ -59,3 +59,51 @@ boundary. Next:count the original LZW and mode1 conversion work from the packed
 resource and decoded bytes,validate that work against this conditional bracket,
 then schedule it at the actual cave load calls. Preserve payload/state ordering;
 do not fit a delay to84 counts or build a general CPU emulator.
+
+## Source-counted decoder and sprite conversion
+
+`src/game/sprite-load-work.js` now implements the original prefix/suffix LZW
+path and mode1 RAM sprite conversion as pure functions. These functions are
+not yet connected to Cave loading. They accept original packed bytes/header
+size or decoded sprite pixels;they have no clock/native-output access. Supported
+scope is the46 EXP.ARC sprites,LZW,type2,five RAM planes below64KiB. Other modes,
+oversized planes,malformed/unfinished streams and unsupported dictionary paths
+stop with diagnostics. Picture loading and complete loader/system timing remain
+outside this first model.
+
+```sh
+node scripts/verify-sprite-load-work.js
+```
+
+[Source declaration](../reference/sprite-load-work-source.json) pins294 Ghidra
+instructions/780 original bytes:LZW0efd..1070,bit reader1071..10e7,converter
+dispatch10e8..112a,and mode1 conversion12f0..13cd. Instructions are checked
+contiguously against unpacked original bytes after analysis relocation1000.
+The Ghidra text at1075 reverses the operands of8ec0;the verified opcode is
+MOV ES,AX,and the model follows that opcode. No decompiled C is recompiled.
+
+The model counts each original code read,clear,literal,special code,prefix link,
+width transition,buffer refill,REP residual byte,packed-pixel conversion,opacity
+branch and plane write. An independent whole-string dictionary oracle checks
+the prefix-chain implementation's work events. Both decoders match the existing
+authoritative archive decoder for all46 sprites. Converter counts are recomputed
+from the independent instruction inventory and pixel values. Sprite10 still
+matches all38080 original planar bytes exactly.
+
+For sprite10,the accounted work is904484 LZW instructions plus2476371 converter
+instructions,eight REP opcodes/nineteen residual iterations,nine DOS reads and
+zero port writes to this RAM destination. At3000 cycles/ms this is1126.955ms.
+The source backedge134a repeats LEADI1301 for both packed nibbles;an early draft
+missed its second execution. The checker now rejects that exact missing-opcode
+count as a negative control. Three other controls reject changed planar output,
+an invalid/truncated stream and unsupported geometry.
+
+This accounted subtotal is below the native whole-call phase bracket and is
+not admitted as complete loader timing. Archive lookup/header/seek,allocation
+and caller bodies,DOS read bodies/budget clamping,IRQ/audio/BIOS execution and
+original CPU phase are explicitly omitted. Emulator source `dos.cpp` confirms
+that DOS reads can consume/clamp remaining CPU budget and has configurable disk
+delay providers;this experiment has not reconstructed their consumption values.
+There is no residual delay fitted to make the count reach84 timer periods.
+Next:account for picture loading and required environment costs,then schedule
+the verified work at original load boundaries and repeat browser acceptance.

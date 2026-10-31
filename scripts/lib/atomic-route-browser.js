@@ -10,8 +10,10 @@ import {
 import { recordedDOMInput } from "../../tests/browser/helpers/recorded-dom-input.js";
 export async function captureAtomicRoute(
   output,
-  { report = false, guide = false } = {},
+  { report = false, guide = false, award = false } = {},
 ) {
+  if (award && (report || guide))
+    throw Error("Award route ends before atomic travel");
   if (guide && !report) throw Error("Guide route requires earned misdirection");
   return withCarlsbadBrowser(async (c) => {
     const { page, canvas, state, press } = c;
@@ -97,6 +99,70 @@ export async function captureAtomicRoute(
     await note("award");
     assert.equal((await state()).cave.outcome.code, 1);
     assert.equal((await state()).campaign.location, 24);
+    if (award) {
+      async function resultControls(prefix, phase, total) {
+        assert.equal((await state()).expeditionResult.phase, phase);
+        assert.equal((await state()).expeditionResult.remaining, total);
+        await page.keyboard.press("p");
+        await page.keyboard.press("Space");
+        await until((s) => s.expeditionResult.remaining <= total - 6);
+        assert.equal((await state()).systemOverlay, null);
+        await note(prefix + "-before-poll");
+        await until((s) => s.systemOverlay?.kind === "pause");
+        assert.equal((await state()).expeditionResult.remaining, total - 7);
+        await note(prefix + "-pause");
+        await until((s) => s.systemOverlay?.phase === "waiting");
+        assert.equal((await state()).expeditionResult.remaining, total - 7);
+        await note(prefix + "-waiting");
+        await page.keyboard.press("p");
+        await until((s) => s.systemOverlay === null);
+        assert.equal((await state()).expeditionResult.remaining, total - 7);
+        await note(prefix + "-resumed");
+        await page.keyboard.press("q");
+        await page.keyboard.press("Space");
+        await until((s) => s.systemOverlay?.kind === "quit");
+        assert.equal((await state()).expeditionResult.remaining, total - 14);
+        await note(prefix + "-quit");
+        await page.keyboard.press("n");
+        await until((s) => s.systemOverlay === null);
+        await note(prefix + "-no");
+        await until((s) => s.expeditionResult.remaining <= total - 21);
+        assert.equal((await state()).scene, "expedition-result");
+        assert.equal((await state()).expeditionResult.phase, phase);
+        await note(prefix + "-neutral");
+        await page.keyboard.press("Space");
+      }
+      await resultControls("award", "award", 280);
+      await until((s) => s.expeditionResult?.phase === "atomic");
+      await note("unlock");
+      assert.equal((await state()).campaign.atomicAvailable, true);
+      await resultControls("notice", "atomic", 700);
+      await until((s) => s.scene === "map");
+      assert.equal((await state()).money, 3400);
+      assert.equal((await state()).campaign.day, 3);
+      assert.deepEqual((await state()).campaign.playerCollected, [24]);
+      await note("awarded-map");
+      await saveRecordedRoute({
+        page,
+        root: output,
+        observations: notes,
+        scope:
+          "Earned treasure award40 and atomic notice100 input waits;real P/Q/Fire and Restart;muted port regression,not native timing",
+      });
+      await page.locator("#restart").click();
+      await until((s) => s.scene === "title");
+      assert.equal((await state()).money, 0);
+      assert.equal((await state()).expeditionResult, null);
+      assert.equal((await state()).campaign.atomicAvailable, false);
+      return {
+        completed: true,
+        accepted: false,
+        route: "award",
+        checkpoints: notes.length,
+        events: notes.at(-1).eventCount,
+        restart: true,
+      };
+    }
     await press("Space");
     await until(
       (s) =>
@@ -279,6 +345,8 @@ export async function replayAtomicRoute(
     omitReportPause = false,
     guide = false,
     omitGuidePause = false,
+    award = false,
+    omitAwardPause = false,
   } = {},
 ) {
   assert.ok(
@@ -293,11 +361,12 @@ export async function replayAtomicRoute(
   return withCarlsbadBrowser(async ({ page, state, until }) => {
     const choice = events.findIndex(
       (e, i) =>
-        i >= checks.find((c) => c.name === "unlock").eventCount &&
+        i >=
+          (checks.find((c) => c.name === "unlock")?.eventCount ?? Infinity) &&
         e.type === "keydown" &&
         e.key === "ArrowLeft",
     );
-    assert.ok(choice > 0, "SETUP: missing atomic selection");
+    if (!award) assert.ok(choice > 0, "SETUP: missing atomic selection");
     const pause = report
       ? events.findIndex(
           (e, i) =>
@@ -318,6 +387,16 @@ export async function replayAtomicRoute(
       : -1;
     if (omitGuidePause)
       assert.ok(guide && guidePause > 0, "SETUP:missing guide Pause");
+    const awardPause = award
+      ? events.findIndex(
+          (e, i) =>
+            i >= checks.find((c) => c.name === "award").eventCount &&
+            e.type === "keydown" &&
+            e.key === "p",
+        )
+      : -1;
+    if (omitAwardPause)
+      assert.ok(award && awardPause > 0, "SETUP: missing award Pause");
     let now = 1,
       consumed = 0,
       omitted = 0;
@@ -336,7 +415,8 @@ export async function replayAtomicRoute(
         if (
           !(omitAtomicChoice && consumed === choice) &&
           !(omitReportPause && consumed === pause) &&
-          !(omitGuidePause && consumed === guidePause)
+          !(omitGuidePause && consumed === guidePause) &&
+          !(omitAwardPause && consumed === awardPause)
         )
           await recordedDOMInput(page, e);
         else omitted++;
@@ -367,22 +447,30 @@ export async function replayAtomicRoute(
       );
       console.log(
         "Atomic " +
-          (guide ? "guide" : report ? "report" : "success") +
+          (award ? "award" : guide ? "guide" : report ? "report" : "success") +
           " checkpoint " +
           expected.name,
       );
     }
     assert.equal(consumed, events.length);
     const final = await state();
-    assert.equal(final.scene, report ? "jungle" : "cave");
-    if (report) {
-      assert.equal(final.campaign.location, 1);
-      assert.equal(final.atomicTransport.outcome.misdirected, true);
-      assert.equal(final.atomicTransport.inputPolls, 4);
-    } else assert.equal(final.cave.room, 18);
-    assert.equal(final.money, report ? 3400 : 3450);
-    assert.equal(final.campaign.day, 6);
-    assert.equal(final.systemOverlay, null);
+    if (award) {
+      assert.equal(final.scene, "map");
+      assert.equal(final.money, 3400);
+      assert.equal(final.campaign.day, 3);
+      assert.deepEqual(final.campaign.playerCollected, [24]);
+      assert.equal(final.campaign.atomicAvailable, true);
+    } else {
+      assert.equal(final.scene, report ? "jungle" : "cave");
+      if (report) {
+        assert.equal(final.campaign.location, 1);
+        assert.equal(final.atomicTransport.outcome.misdirected, true);
+        assert.equal(final.atomicTransport.inputPolls, 4);
+      } else assert.equal(final.cave.room, 18);
+      assert.equal(final.money, report ? 3400 : 3450);
+      assert.equal(final.campaign.day, 6);
+      assert.equal(final.systemOverlay, null);
+    }
     await page.locator("#restart").click();
     await until((s) => s.scene === "title");
     assert.equal((await state()).money, 0);

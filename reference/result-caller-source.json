@@ -1,0 +1,39 @@
+{
+  "id": "result-caller-source",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "program": "INVESTMENT_CODE.EXE",
+  "range": {
+    "address": "1000:0c48",
+    "offset": 3144,
+    "length": 461,
+    "sha256": "2cbd172909e00ea4d821deafa0923258779893fb91085c6def66cb172275a6ac"
+  },
+  "sharedReader": {
+    "address": "11c4:09f5",
+    "imageOffset": 9781,
+    "length": 88,
+    "sha256": "29c7a6a964b796914e9ba4d3c39ea964f1cdf051f5d0d6417effb6187bf9ba88"
+  },
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisExecutableSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "artifacts": {
+    "ghidra": {
+      "path": ".local/result-caller-source-01/ghidra-caller.json",
+      "bytes": 2607,
+      "sha256": "a4fccc3a023baa9d57a082b5ff6c1307299c059bd8aeeefa99b96f95c5764d55"
+    }
+  },
+  "claims": [
+    "Award40 and notice100 both call shared09f5",
+    "Both emit24 only for consumed Fire and enabled audio",
+    "Award24 precedes collection and notice54;notice24 precedes dispatch",
+    "No local sound0 call between consumed click and campaign continuation"
+  ],
+  "limits": [
+    "Native IRQ/audio timing between drawing calls unverified",
+    "Successor scene audio policies not replaced by this local caller contract",
+    "Failure portrait20 is a separate untranslated input boundary"
+  ],
+  "verify": "node scripts/verify-result-caller-source.js"
+}

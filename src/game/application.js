@@ -15,6 +15,7 @@ import { Cave } from "./cave.js";
 import { Mountain } from "./mountain.js";
 import { Jungle } from "./jungle.js";
 import { Photography } from "./photography.js";
+import { ResultInputWait } from "./result-input-wait.js";
 import { ExpeditionBriefing } from "./expedition.js";
 import { CampaignVisitNotice } from "./campaign-visit.js";
 import { nextRandom, u8, u32, u16 } from "./integer.js";
@@ -84,6 +85,7 @@ export class Game {
     this.jungle = null;
     this.photography = null;
     this.briefing = null;
+    this.resultWait = null;
     this.loot = loot;
     this.flightResources = flightResources;
     this.flight = null;
@@ -113,6 +115,7 @@ export class Game {
     this.pendingDestinationSystemKeys = new Map();
     this.pendingAtomicSystemKeys = new Map();
     this.pendingBriefingSystemKeys = new Map();
+    this.pendingResultSystemKeys = new Map();
     this.exiting = false;
     if (readBiosSeed !== null && typeof readBiosSeed !== "function")
       throw Error("Invalid BIOS seed provider");
@@ -628,6 +631,7 @@ export class Game {
         "photography",
         "atomic-transport",
         "expedition-briefing",
+        ...(this.resultWait ? ["expedition-result"] : []),
         "ending",
         "bank",
         ...(this.scene === "map" &&
@@ -661,17 +665,19 @@ export class Game {
                         ? this.pendingJungleSystemKeys
                         : this.scene === "photography"
                           ? this.pendingPhotographySystemKeys
-                          : this.scene === "expedition-briefing"
-                            ? this.pendingBriefingSystemKeys
-                            : this.scene === "atomic-transport"
-                              ? this.pendingAtomicSystemKeys
-                              : this.scene === "ending"
-                                ? this.pendingEndingSystemKeys
-                                : this.scene === "bank"
-                                  ? this.pendingBankSystemKeys
-                                  : this.scene === "map"
-                                    ? this.pendingDestinationSystemKeys
-                                    : this.pendingBinSystemKeys;
+                          : this.scene === "expedition-result"
+                            ? this.pendingResultSystemKeys
+                            : this.scene === "expedition-briefing"
+                              ? this.pendingBriefingSystemKeys
+                              : this.scene === "atomic-transport"
+                                ? this.pendingAtomicSystemKeys
+                                : this.scene === "ending"
+                                  ? this.pendingEndingSystemKeys
+                                  : this.scene === "bank"
+                                    ? this.pendingBankSystemKeys
+                                    : this.scene === "map"
+                                      ? this.pendingDestinationSystemKeys
+                                      : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -757,6 +763,8 @@ export class Game {
       this.pendingDestinationSystemKeys.clear();
       this.pendingAtomicSystemKeys.clear();
       this.pendingBriefingSystemKeys.clear();
+      this.pendingResultSystemKeys.clear();
+      this.resultWait = null;
       this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
@@ -1321,7 +1329,10 @@ export class Game {
       return;
     }
     if (this.scene === "expedition-result") {
-      if (this.advanceDialogue(this.expeditionResult))
+      if (this.resultWait) {
+        this.resultWait.advanceTick();
+        this.collectResultWait();
+      } else if (this.advanceDialogue(this.expeditionResult))
         this.finishExpeditionResult();
       return;
     }
@@ -1555,6 +1566,7 @@ export class Game {
     this.pendingDestinationSystemKeys.clear();
     this.pendingAtomicSystemKeys.clear();
     this.pendingBriefingSystemKeys.clear();
+    this.pendingResultSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "title" && this.opening) this.opening.flushInput();
@@ -1575,6 +1587,8 @@ export class Game {
     else if (this.scene === "atomic-transport")
       this.atomicTransport.flushInput();
     else if (this.scene === "expedition-briefing") this.briefing.flushInput();
+    else if (this.scene === "expedition-result" && this.resultWait)
+      this.resultWait.flushInput();
     else if (this.scene === "ending") this.ending.flushInput();
     else if (this.scene === "bank") this.bank.flushInput(true);
     else {
@@ -1629,6 +1643,14 @@ export class Game {
     if (result === "resume" && this.scene === "expedition-briefing") {
       this.briefing.resumeInputPoll();
       if (this.briefing.complete) this.startExpedition();
+    }
+    if (
+      result === "resume" &&
+      this.scene === "expedition-result" &&
+      this.resultWait
+    ) {
+      this.resultWait.resumeInputPoll();
+      this.collectResultWait();
     }
     if (result === "resume" && this.scene === "bank") {
       this.bank.resumeInputPoll();
@@ -1788,6 +1810,7 @@ export class Game {
     this.seed = this.campaign.seed = u16(this.cave.memory.i(0x2229));
     if (!this.cave.outcome) return;
     this.flightMemory = this.cave.memory;
+    this.resultWait = null;
     if (this.cave.outcome.code === 0) {
       // Failure portrait is inside the cave call; the caller increments the day later.
       this.expeditionResult = {
@@ -1814,6 +1837,7 @@ export class Game {
     // branch above returns directly and never enters this input wait.
     this.cave.flushInput();
     this.scene = "expedition-result";
+    if (this.expeditionResult.phase === "award") this.beginResultWait();
   }
   collectMountain() {
     this.collectActionExpedition(this.mountain);
@@ -1850,6 +1874,7 @@ export class Game {
     // success also takes this branch. No other expedition clears it on entry.
     if (!memory.view.getUint32(0x97a8, true)) return false;
     memory.view.setUint32(0x97a8, 0, true);
+    this.resultWait = null;
     this.expeditionResult = { phase: "award", value: 0 };
     this.scene = "expedition-result";
     this.finishExpeditionResult();
@@ -1886,8 +1911,35 @@ export class Game {
     };
     this.effects.push({ type: "sound", id: 0x49 });
     this.scene = "expedition-result";
+    this.beginResultWait();
   }
-  finishExpeditionResult() {
+  beginResultWait() {
+    const count = { award: 40, atomic: 100 }[this.expeditionResult?.phase];
+    this.resultWait = new ResultInputWait({
+      state: this.expeditionResult,
+      count,
+      pollInput: () => this.pollSystemInput(this.pendingResultSystemKeys),
+      flushInput: () => this.flushResultInput(),
+    });
+    this.resultWait.begin();
+  }
+  flushResultInput() {
+    this.pendingResultSystemKeys.clear();
+    this.flushExpeditionKeyboard();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
+  }
+  collectResultWait() {
+    const wait = this.resultWait;
+    if (!wait?.complete) return;
+    this.resultWait = null;
+    this.pendingResultSystemKeys.clear();
+    // C54..C67 and DF4..E07: only a consumed Fire returns1 and requests click24.
+    if (wait.skipped && this.audioEnabled)
+      this.effects.push({ type: "sound", id: 0x24 });
+    this.finishExpeditionResult(true);
+  }
+  finishExpeditionResult(fromInputWait = false) {
     const c = this.campaign,
       result = this.expeditionResult;
     if (result.phase === "failure") c.day = u8(c.day + 1);
@@ -1901,6 +1953,7 @@ export class Game {
           skipRequested: false,
         };
         this.effects.push({ type: "sound", id: 0x54 });
+        this.beginResultWait();
         return;
       }
     }
@@ -1908,7 +1961,8 @@ export class Game {
       this.beginEnding();
       return;
     }
-    this.effects.push({ type: "stopAudio" });
+    // No synthetic sound0 between the original click and campaign dispatch.
+    if (!fromInputWait) this.effects.push({ type: "stopAudio" });
     this.completeCampaignAction({ type: "map" });
   }
   finishRepairs() {
@@ -2342,7 +2396,12 @@ export class Game {
       repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
       expeditionResult:
         this.scene === "expedition-result"
-          ? { ...this.expeditionResult }
+          ? {
+              ...this.expeditionResult,
+              ...(this.resultWait?.waitingForInputPoll
+                ? { waitingForInputPoll: true }
+                : {}),
+            }
           : null,
       visitNotice:
         this.scene === "visit-notice" ? this.visitNotice.snapshot() : null,

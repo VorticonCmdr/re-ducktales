@@ -49,6 +49,7 @@ const paths = [
   "reference/easy-safari-variants.json",
   "reference/atomic-earned-route.json",
   "reference/atomic-earned-report.json",
+  "reference/guide-input-acceptance.json",
 ];
 let result;
 try {
@@ -67,6 +68,7 @@ try {
     safaris,
     atomicSuccess,
     atomicReport,
+    guideCase,
   ] = manifests;
   assert.equal(full.expectedCheckpointCount, 34);
   assert.equal(full.requiredEventCount, 4981);
@@ -234,14 +236,25 @@ try {
     );
     cases.push({ group: report ? "atomic-report" : "atomic-success", ...r });
   }
-  assert.equal(cases.length, 14);
+  console.log("Replaying preserved guide controls");
+  assert.equal(guideCase.guideCheckpoints, 30);
+  assert.equal(guideCase.guideEvents, 506);
+  cases.push({
+    group: "guide",
+    ...(await replayAtomicRoute(
+      await json(guideCase.inputStream),
+      await json(guideCase.expectedOutputs),
+      { report: true, guide: true },
+    )),
+  });
+  assert.equal(cases.length, 15);
   assert.equal(
     cases.reduce((n, c) => n + c.checked, 0),
-    313,
+    343,
   );
   assert.equal(
     cases.reduce((n, c) => n + c.consumed, 0),
-    11095,
+    11601,
   );
   assert.ok(cases.every((c) => c.restart === true));
   await checkSource(out, loaded);
@@ -262,9 +275,9 @@ try {
   console.log(
     JSON.stringify({
       completed: true,
-      browserCases: 14,
-      checkpoints: 313,
-      events: 11095,
+      browserCases: 15,
+      checkpoints: 343,
+      events: 11601,
       componentPresentations,
     }),
   );

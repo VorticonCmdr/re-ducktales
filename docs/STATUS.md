@@ -3,6 +3,14 @@
 Updated 2026-10-31. **The whole game is incomplete.** Hard campaigns remain deferred
 at the user's request.
 
+## Work in progress: treasure result readers
+
+Award40 and transmitter-notice100 now queue system keys at original read
+boundaries and request click24 only for consumed Fire with enabled audio. The
+local synthetic audio stop has been removed after inspecting original call order.
+194 existing units and16 result boundary tests pass. Fresh browser/current-route
+acceptance is pending; prior runtime-pinned receipts below remain historical.
+
 ## Working playable route
 
 Easy startup → security/office → map/transport/departure → flight → jungle,

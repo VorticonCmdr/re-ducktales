@@ -20,7 +20,7 @@ def parse_samples(csv):
 
 
 def capture_cave_cadence(*, client, stop, load, ds, overlay, entry, add,
-                         remove, resume, state, sequence, wait_until, save, root):
+                         remove, resume, state, sequence, wait_until, save, root, loader_profile=False):
     data = state('cave-entry', stop)
     assert stop['registers']['cs'] == overlay and stop['registers']['eip'] == 0
     expected = relocated_overlay((root/'game/DUCKTALE.EXE').read_bytes(), 0x1a800, load, 6, 11054, 196)
@@ -58,6 +58,10 @@ def capture_cave_cadence(*, client, stop, load, ds, overlay, entry, add,
         "import{readFile}from'node:fs/promises';import{parseArchive}from'./src/assets.js';process.stdout.write(Buffer.from(parseArchive(await readFile('game/IT.DRV'))[1].data).toString('base64'));"], cwd=root))
     for lo, hi in [(0x64, 0x72), (0xe5, 0x101), (0x35d, 0x515)]:
         assert driver[lo:hi] == original[lo:hi]
+    if loader_profile:
+        from capture_cave_loader_profile import capture_cave_loader_profile
+        return capture_cave_loader_profile(client=client, stop=stop, load=load, ds=ds, overlay=overlay,
+            add=add, remove=remove, resume=resume, state=state, sequence=sequence, save=save, root=root)
     assert client.get('/api/v1/debug/breakpoints')['breakpoints'] == []
     template = (root/'scripts/cave-cadence-observer.lua').read_text()
     lua = template.replace('__DS__', str(ds)).replace('__EGA__', str(ega))

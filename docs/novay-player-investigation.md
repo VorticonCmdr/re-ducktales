@@ -44,3 +44,21 @@ support current full-winning-campaign acceptance. `--winning --bonus-novay`
 selects the candidate route;the default route is unchanged. A valid prefix at
 `cave-21-award-ready` may avoid re-exploring earlier controls,but is always
 replayed from a fresh title and compared in full before continuing.
+
+The fresh main browser producer `.local/report-timed-winning-browser-01`
+completed six treasures and banked27050,but its default strategy lost normally
+on day31. Its133 observations include that rejected tail. The new prefix pins
+only126 exact complete-state/decoded-image checkpoints and6503 inputs through
+`cave-21-award-ready`. No failed tail is promoted to acceptance.
+
+The carried simulation `.local/report-timed-novay-plan-01` at e796637 re-executed
+all126 prefix states from startup,then flew to Novay and completed all510 climbing
+reads with3 lives. It banked34650,beat the rival's28500 on day31,selected replay-No,
+ran all26 credits and reached closed. Its758 candidate inputs and54 observations
+are pinned in [the plan manifest](../reference/report-timed-novay-plan.json).
+This is closed-loop port simulation evidence;actual browser and independent
+browser replay remain required.
+
+```sh
+node scripts/standard-wages-explore.js --winning --bonus-novay --prefix=reference/report-timed-siberia-prefix.json --output=.local/report-timed-winning-next-FRESH
+```

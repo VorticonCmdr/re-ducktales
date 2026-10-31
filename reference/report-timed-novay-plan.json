@@ -1,0 +1,77 @@
+{
+  "kind": "conditional-carried-novay-winning-candidate",
+  "accepted": false,
+  "nativeComparison": false,
+  "captureToolRevision": "e796637432b20e91974e30b6fa6c93a0f7a46379",
+  "producer": ".local/report-timed-novay-plan-01",
+  "startingRecipe": "Fresh independent current-report-timed startup input replay through126 exact complete-state checkpoints ending at cave-21-award-ready;then actual input adapters,Novay flight,510 authored mountain reads,banking,victory,replay-No,26 credits and closed. No memory restores or patched state.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "difficulty": 1,
+    "audioEnabled": false
+  },
+  "requiredCandidateInputs": 758,
+  "expectedCandidateCheckpoints": 54,
+  "expectedEnding": {
+    "phase": "closed",
+    "won": true,
+    "banked": 34650,
+    "rivalBanked": 28500,
+    "day": 31,
+    "remaining": 0,
+    "choice": 1,
+    "credit": 26,
+    "asset": 0,
+    "result": null,
+    "ready": true
+  },
+  "scope": "Carried port simulation candidate;not actual browser acceptance or original uninterrupted timing/audio parity.",
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "artifacts": {
+    "prefix": {
+      "path": "reference/report-timed-siberia-prefix.json",
+      "bytes": 2300,
+      "sha256": "6e65cc00bab427a2213a937db88beb449fd264096b519e1028ca174e3c7abe25"
+    },
+    "controls": {
+      "path": "reference/novay-player-inputs.json",
+      "bytes": 2135,
+      "sha256": "161255d9caec7c77fba3418ec8ae74239511e6ea01bc06fd5261ade1182c9697"
+    },
+    "result.json": {
+      "path": ".local/report-timed-novay-plan-01/result.json",
+      "bytes": 565,
+      "sha256": "ee52311b67a58e599d1fd16c87ae2314f7db3c51ce2b0e4ddf5a0bb0533005f6"
+    },
+    "checkpoints.json": {
+      "path": ".local/report-timed-novay-plan-01/checkpoints.json",
+      "bytes": 566334,
+      "sha256": "dbbb70f128bf6892f5e0960cc4c0a6cca3a23b24bdd60793a4ff43402d3bf5f4"
+    },
+    "controls.json": {
+      "path": ".local/report-timed-novay-plan-01/controls.json",
+      "bytes": 70897,
+      "sha256": "9b10be2587728b9239f97589c9d1bcb091cfc5268ec3efc4672a04e3475aa786"
+    },
+    "flight-10.json": {
+      "path": ".local/report-timed-novay-plan-01/flight-10.json",
+      "bytes": 149152,
+      "sha256": "762e4f9c7712b854a307cf8dacc5f0bd2408b978e2c7f041194873d0fc1eb1e3"
+    },
+    "source-revision.json": {
+      "path": ".local/report-timed-novay-plan-01/source-revision.json",
+      "bytes": 119139,
+      "sha256": "a025f4e199c180727635d347cf55c754204f340c3d1b352b36519a61e11b38ef"
+    },
+    "sources.zip": {
+      "path": ".local/report-timed-novay-plan-01/sources.zip",
+      "bytes": 3029469,
+      "sha256": "436b0595bebc1db86c8072a8de7aa039911b2ae5ed4311abf2e31839fd1939be"
+    }
+  },
+  "explore": "node scripts/plan-novay-finish.js --capture=.local/report-timed-winning-browser-01 --through=cave-21-award-ready --diagnose --output=.local/report-timed-novay-plan-FRESH"
+}

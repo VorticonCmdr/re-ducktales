@@ -1,0 +1,46 @@
+{
+  "kind": "conditional-standard-winning-player-plan",
+  "accepted": false,
+  "producer": ".local/standard-winning-plan-04",
+  "sourceCommit": "40b0acb9843ab33f2fa8c4674c06890e8d9b6ea6",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "prefix": {
+    "path": "reference/rival-standard-route.json",
+    "bytes": 24057,
+    "sha256": "1548d6c1e4a161742cdad14d8cf6ee5a6f0c53fd6f3114077acc70737a6e2013"
+  },
+  "prefixThrough": "continued-mountain-return",
+  "environmentDependency": "Independent DOM prefix replayed from startup,then declared100ms neutral diagnostic tail. No restored checkpoint or injected game state.",
+  "scope": "Conditional carried simulation strategy only;actual browser and independent replay required. All four original expedition families plus Atlantis,Klondike,Siberian cave treasure.",
+  "playerPolicy": "Existing physical flight pilot;safe cave BFS avoiding observed enemy and adjacent rooms where connected,otherwise enemy room only. This changes player controls,not game mechanics.",
+  "outcome": {
+    "day": 33,
+    "banked": 24275,
+    "rivalBanked": 21000,
+    "won": true
+  },
+  "artifacts": {
+    "source-revision.json": {
+      "path": ".local/standard-winning-plan-04/source-revision.json",
+      "bytes": 106479,
+      "sha256": "07253a112d621c8d29e8fb2512ea2c6641aed958d1fd2d7a32f26d4664e541b0"
+    },
+    "sources.zip": {
+      "path": ".local/standard-winning-plan-04/sources.zip",
+      "bytes": 2798203,
+      "sha256": "0b8a511860d72ad8f8a11e472303faeb167c9303d545a23b8488f1dc7ea8ef78"
+    },
+    "planning.json": {
+      "path": ".local/standard-winning-plan-04/planning.json",
+      "bytes": 942751,
+      "sha256": "e4c5730b3f7ded853c391d0ec6941ab9efb309b1ee1aa154d36a77a755ff2978"
+    }
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "verify": "node scripts/standard-winning-plan.js .local/rival-standard-capture-01 --through=continued-mountain-return --diagnose --finish --output=.local/standard-winning-plan-FRESH"
+}

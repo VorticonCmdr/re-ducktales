@@ -33,7 +33,14 @@ Producer `.local/cave-treasure-winning-browser-01` completed on sourcee59dd00:
 183 checkpoints/7261 inputs,victory34650 to28500,all26 credits and Restart.
 It remains historical and unaccepted because the new native comparison exposed
 passage pose/torch attachment differences before independent replay. A corrected
-producer and independent replay remain required.
+producer and independent replay remain required. The new corrected candidate is
+`.local/cave-passage-poses-winning-browser-01`;completion/replay are pending.
+
+A separate fixed1770 native image check now matches all64000 pixels/256000 RGBA
+bytes of the completed first treasure reveal,with altered-pixel/missing-checkpoint
+negatives. Integration preserves all119 accepted runtime/configuration hashes.
+[Image scope](cave-treasure-pixels.md). This is conditional capture alignment,not
+whole-ending scanout or timing acceptance.
 
 ## Last independently accepted full route
 
@@ -86,6 +93,8 @@ Originals remain authoritative in ignored `game/`;production users supply files.
 node scripts/verify-cave-counted-loading.js --output=.local/cave-treasure-FRESH
 # Fresh complete Standard producer,then declare its outputs and replay separately:
 node scripts/standard-wages-explore.js --winning --bonus-novay --output=.local/standard-winning-FRESH
+# Exact fixed native treasure image;separate from browser/timing acceptance:
+node scripts/verify-cave-treasure-pixels.js
 # Known failing timing probe;exploratory,not an acceptance gate:
 node scripts/probe-cave-native-cadence.js
 # Historical whole-campaign gate currently rejects changed runtime as required:

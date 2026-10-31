@@ -48,7 +48,7 @@ node --test scripts/broker-input.test.js
 node scripts/explore-broker-input.js --controls --output=.local/broker-fire-FRESH
 node scripts/explore-broker-input.js --controls --timeout --output=.local/broker-timeout-FRESH
 node scripts/explore-broker-late-key.js --after --output=.local/broker-late-FRESH
-node scripts/verify-broker-input-browser.js --output=.local/broker-replay-FRESH
+node scripts/verify-broker-control-route.js --output=.local/broker-replay-FRESH
 node scripts/verify-broker-input-setup-negative.js
 node scripts/probe-broker-audio.js --device=speaker --output=.local/broker-audio-FRESH
 ```

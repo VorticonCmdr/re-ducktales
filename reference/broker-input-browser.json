@@ -300,7 +300,7 @@
       }
     }
   ],
-  "verify": "node scripts/verify-broker-input-browser.js --output=.local/broker-replay-FRESH",
+  "verify": "node scripts/verify-broker-control-route.js --output=.local/broker-replay-FRESH",
   "injections": [],
   "fittedInputs": [],
   "exclusions": []

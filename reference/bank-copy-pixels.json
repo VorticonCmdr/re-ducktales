@@ -1,0 +1,150 @@
+{
+  "kind": "conditional-original-bank-copy-pixels",
+  "producer": ".local/bank-copy-pixels-native-02",
+  "captureToolRevision": "6115a7c13b1e58901c660c0ecfcd7633828cde7f",
+  "requiredCases": 6,
+  "requiredNegativeControls": 8,
+  "nativePrimitiveComparison": true,
+  "wholeGameComparison": false,
+  "startingRecipe": "Fresh owned portable-config emulator on private8403;read-only owned PARK.COM shrinks its DOS block and enters a verified non-ROM CLI/CLD loop. Each case sets BIOS mode0d,declared registers/stack and authored four-plane RAM source,then executes unchanged IT.DRV resource1:01ef through its original far return. Raw EGA scanout must change from its baseline and stabilize before capture. No shared8386 access or machine checkpoint restores.",
+  "environment": {
+    "source": "authored four-plane RAM pattern",
+    "destination": "real EGA A000:0000",
+    "mode": 13,
+    "core": "normal",
+    "cycles": 3000,
+    "interrupts": "IF/DF clear inside compared call",
+    "clock": "native elapsed time not compared"
+  },
+  "scope": "Six conditional original-driver visible pixel cases,including observed Y-13 and unsigned top wrap. Hidden EGA-page/heap aliasing and natural bank/campaign timing remain unverified.",
+  "comparison": {
+    "pixels": "exact decoded full320x200 RGBA",
+    "arguments": "exact actual stack words",
+    "source": "exact authored RAM bytes",
+    "originalCode": "all2599 bytes with only declared active-descriptor word1e set to2000 before entry",
+    "exclusions": []
+  },
+  "artifacts": {
+    "capture": {
+      "path": ".local/bank-copy-pixels-native-02/capture.json",
+      "bytes": 405,
+      "sha256": "3fab591c399c44b015ad5ac3aaf1d8464fc29a289b418213fd08c1f30b53b31f"
+    },
+    "inputs": {
+      "path": ".local/bank-copy-pixels-native-02/inputs.json",
+      "bytes": 1139,
+      "sha256": "0b2af2eb2ca8761cb9818456e7502dc21d2ef524117d216f631158c9cb065d1d"
+    },
+    "lifecycle": {
+      "path": ".local/bank-copy-pixels-native-02/lifecycle.json",
+      "bytes": 96,
+      "sha256": "ab947d57053f0bad86289fbe9f0181263a6c6b376a1462e9d2da04b092bf896f"
+    },
+    "startup": {
+      "path": ".local/bank-copy-pixels-native-02/startup.json",
+      "bytes": 488,
+      "sha256": "c20c7b1d864e1892f88ac3c912c0c20725fd6ed5a8391003952fdc5bab7d3d94"
+    },
+    "parked": {
+      "path": ".local/bank-copy-pixels-native-02/parked.json",
+      "bytes": 704,
+      "sha256": "ce84104e2186152510fda59c2103a11907486bd979a97bc7ec595cbf75a96933"
+    },
+    "configuration": {
+      "path": ".local/bank-copy-pixels-native-02/configuration.json",
+      "bytes": 1111,
+      "sha256": "70b567b3ecd1a10f924533e6cd194d89952d0edb1078c61351a07da60388e726"
+    },
+    "engine": {
+      "path": ".local/bank-copy-pixels-native-02/engine.json",
+      "bytes": 3988,
+      "sha256": "61dfd4fb7a1b6529f25efb20f0c0561f5ddd6313da51d8082bbcd0036693f2d3"
+    },
+    "source": {
+      "path": ".local/bank-copy-pixels-native-02/source-revision.json",
+      "bytes": 120254,
+      "sha256": "2f32ad569261daa53246c0d8bcc4ee6ef01dc894bb34f8c23c8c23a0a5f646c6"
+    },
+    "archive": {
+      "path": ".local/bank-copy-pixels-native-02/sources.zip",
+      "bytes": 3046114,
+      "sha256": "b1b3b7e93f4477f65e53db813d9d0c0f9eeb057f0a6c9d06ebb4dcb32dcbf547"
+    },
+    "portableConfig": {
+      "path": ".local/bank-copy-pixels-native-02/portable/dosbox-automation.conf",
+      "bytes": 527,
+      "sha256": "5a9b097c64747d308155a167d6b7c51b34648772f1b80675ef8448792de695e1"
+    },
+    "park": {
+      "path": ".local/bank-copy-pixels-native-02/portable/PARK.COM",
+      "bytes": 11,
+      "sha256": "e18ccbadc85b46c52cfb55c97176c6ad4a55957a6f877060a80e4cc0010d3c14"
+    },
+    "binary": {
+      "path": ".local/bank-copy-pixels-native-02/portable/dosbox_with_debugger",
+      "bytes": 45026152,
+      "sha256": "85662a8383e0fde0734797451374b28a443166440fd9bf5823626505760d9d0f"
+    },
+    "case0": {
+      "path": ".local/bank-copy-pixels-native-02/case-00.json",
+      "bytes": 51357,
+      "sha256": "8554b571dac66f949a66da8058cc3159c62b7286f47ce76bd179b52170cddd3c"
+    },
+    "png0": {
+      "path": ".local/bank-copy-pixels-native-02/case-00.png",
+      "bytes": 471,
+      "sha256": "deff47fce3c6d88e68ac7100401fa9c0bea4d43a8d17a7d275ce8feddb5fcbe2"
+    },
+    "case1": {
+      "path": ".local/bank-copy-pixels-native-02/case-01.json",
+      "bytes": 51353,
+      "sha256": "9ca2e7ccd956618686bd9b293959203994c6b58fc571f8bd032688c17ecc5b18"
+    },
+    "png1": {
+      "path": ".local/bank-copy-pixels-native-02/case-01.png",
+      "bytes": 5163,
+      "sha256": "6415513759b2ba63f7a50e3f09b11256c72dc9b3cfc341eb3ca6451b999c0777"
+    },
+    "case2": {
+      "path": ".local/bank-copy-pixels-native-02/case-02.json",
+      "bytes": 51356,
+      "sha256": "9c47ee0755b06bbfa01c6f240754e742d80d7e47955cd364817e442086e14e26"
+    },
+    "png2": {
+      "path": ".local/bank-copy-pixels-native-02/case-02.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "case3": {
+      "path": ".local/bank-copy-pixels-native-02/case-03.json",
+      "bytes": 51356,
+      "sha256": "bc38e7f696333bae4f30c2a4d7b71f1fb593c3b3b7faa4a73fb485774bf7201e"
+    },
+    "png3": {
+      "path": ".local/bank-copy-pixels-native-02/case-03.png",
+      "bytes": 468,
+      "sha256": "c4047f035e22cba33db1dc56886604fd579dcd43186bc2547d395628c40ce2fa"
+    },
+    "case4": {
+      "path": ".local/bank-copy-pixels-native-02/case-04.json",
+      "bytes": 51351,
+      "sha256": "58e970b9e97d3f3eaa1a465a13bbfef553f5b2ea2b9d161ca7e190c599d206c2"
+    },
+    "png4": {
+      "path": ".local/bank-copy-pixels-native-02/case-04.png",
+      "bytes": 864,
+      "sha256": "4707004739b443579b1432d7e1d7bb5c781d397b7d7433d358a2290c4bda0b91"
+    },
+    "case5": {
+      "path": ".local/bank-copy-pixels-native-02/case-05.json",
+      "bytes": 51352,
+      "sha256": "823eb16eb6d9ab78c446c5b30add81c6e26081ae9fe6850173d73892d33f6f19"
+    },
+    "png5": {
+      "path": ".local/bank-copy-pixels-native-02/case-05.png",
+      "bytes": 877,
+      "sha256": "fbab424a5940a056755fd1478a6fc0413da3cab0fc0099257d6e6bfdfba3f72d"
+    }
+  },
+  "verify": "node scripts/verify-bank-copy-pixels.js"
+}

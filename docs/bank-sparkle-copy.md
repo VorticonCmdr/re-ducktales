@@ -24,10 +24,14 @@ calculation and restores through row199. Ordinary rectangle clipping would lose
 that quirk. Other restore contracts keep their strict bounds.
 
 The driver rules reuse the16 native instruction/OUT/REP comparisons in
-`reference/ega-signed-copy-work.json`,including negative coordinates. New visible
-pixels are statically inferred and component-checked;they are not new native
-screenshots. Writes outside the visible page and possible hidden EGA-page/heap
-aliasing remain outside this semantic framebuffer model and are unverified.
+`reference/ega-signed-copy-work.json`,including negative coordinates. The visible projection was initially statically inferred. A separate conditional
+native experiment now checks six complete320x200 RGBA outputs of the original
+IT.DRV routine using authored four-plane RAM patterns and real EGA output:
+Y-13,-19,-18,195,normalY0 and an X312 scanline carry. All pixels match exactly;
+eight negative controls reject altered/missing data and unfinished/stale calls.
+This is original primitive pixel evidence,not natural bank screenshots or timing.
+Writes outside the visible page and possible hidden EGA-page/heap aliasing remain
+outside this semantic framebuffer model and are unverified.
 No bank RNG,input,money,day,audio or simulation timing is changed by this fix.
 
 The browser player also needs to await the root reached after its Back action.
@@ -42,6 +46,7 @@ changes.
 ```sh
 node --test tests/bank-sparkle-copy.test.js
 node scripts/verify-bank-sparkle-copy-source.js
+node scripts/verify-bank-copy-pixels.js
 node scripts/verify-bank.js
 npm test
 npm run build
@@ -53,3 +58,34 @@ Eight focused cases,all218 unit cases,the existing original-bank comparisons and
 production build pass before the new browser continuation. Browser acceptance
 and a separate strict full winning replay remain required. Original assets and
 captures remain ignored;no proprietary dump is committed.
+
+## Native reproduction
+
+[Native manifest](../reference/bank-copy-pixels.json) pins capture6115a7c,
+`.local/bank-copy-pixels-native-02`,original identities,the actual consumed
+argument stacks,RAM source bytes,frame alignment,private configuration and
+terminal lifecycle. The recipe uses a copied emulator binary with a portable
+primary configuration;it does not override HOME or change the shared bridge.
+Only its generated PARK.COM directory is mounted,read-only. The original game
+is not launched;unchanged original driver code is called directly in real mode.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 DUCKTALES_DOSBOX_MCP_ROOT=/path/to/dosbox-mcp /path/to/dosbox-mcp/.venv/bin/python scripts/capture-bank-copy-pixels.py --output=.local/bank-copy-native-FRESH --port=8403
+node scripts/verify-bank-copy-pixels.js
+```
+
+Use a fresh output and unused private port;8386 is refused. The stable owned
+PARK guest loop is verified before any CPU setup. Each case sets mode0d and its
+caller inputs,then records the original far return with restored SP. Capture
+waits for a changed,current EGA raw frame and a stable hash across two frame
+observations. No expected final pixels are supplied to the emulator. These are
+conditional routine setups,not restored complete machines or original gameplay.
+
+Earlier probes remain unaccepted:01 stopped on generated Python cache before
+launch;02 used an incorrect GET frame wait and closed on404;03 captured a stale
+text-mode frame;04 passed only the observed single case. Native01 failed its
+stack assertion from an interrupted ROM stop;its cause is unproven. The stronger
+owned-loop entry plus recorded argument boundary succeeds for all six cases in
+native02. Every launched private instance is confirmed terminal. The shared
+DTRACK emulator was never changed. No emulator or graphics decoder was built as
+a prerequisite,and no proprietary binaries,traces or screenshots are tracked.

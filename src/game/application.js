@@ -2318,10 +2318,17 @@ export class Game {
   collectInvestments() {
     this.money = this.marketMemory.view.getUint32(0x8cc0, true);
     if (this.investments.complete) {
+      //09f5 returns without a flush. A key made in its last neutral wait
+      // survives to the office's first reader;an intervening rival report
+      // instead flushes on entry. Do not replay it through the broker reader.
+      const unreadKeys = [...this.pendingInvestmentSystemKeys];
       this.pendingInvestmentSystemKeys.clear();
       if (this.investments.wait?.skipped && this.audioEnabled)
         this.effects.push({ type: "sound", id: 0x24 });
       this.completeCampaignAction({ type: "office" });
+      if (this.scene === "office" && this.officeMenu)
+        for (const [scan, type] of unreadKeys)
+          this.pendingOfficeSystemKeys.set(scan, type);
     }
   }
   flushInvestmentInput() {

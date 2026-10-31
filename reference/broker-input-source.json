@@ -29,7 +29,64 @@
   },
   "claims": [
     "Overlay10 broker confirmation invokes shared09f5(50),then conditionally requests enabled24 on Fire.",
-    "The surrounding1fe0/1fdc pointers are graphics operations,not sound stop calls."
+    "The surrounding1fe0/1fdc pointers are graphics operations,not sound stop calls.",
+    "Shared09f5 returns without a flush;overlay10 cleanup frees buffers then returns;resident0310 dispatches office35 through normal rival/market cleanup. Original office entry itself has no flush. In the day1/no-report route,unread final-wait system keys reach the office first reader. An intervening rival announcement flushes on entry."
   ],
-  "scope": "Targeted static source for next broker reader milestone;not browser or native timing acceptance."
+  "scope": "Targeted static broker reader/return proof;browser late-key continuation is port regression,not native whole-handoff timing acceptance.",
+  "handoff": [
+    {
+      "name": "shared-return",
+      "source": "resident",
+      "address": "11c4:0a46",
+      "offset": 9862,
+      "length": 7,
+      "relocations": [],
+      "sha256": "7ee5fe3c9467e95cb45c984d3957afb735d16b7cf05bdad87ef170343942e10a",
+      "artifact": {
+        "path": ".local/broker-handoff-source-01/shared-return.json",
+        "bytes": 234,
+        "sha256": "cc52a568ba83d0ffba7f4704918ed220cd5b6991725f0c3e9000a271c760352c"
+      }
+    },
+    {
+      "name": "resident-return",
+      "source": "resident",
+      "address": "1000:0304",
+      "offset": 772,
+      "length": 14,
+      "relocations": [],
+      "sha256": "a97d387dc9e2de33c81fadd96f1829c0610e8e37962e8f53f310bd3cebd5feeb",
+      "artifact": {
+        "path": ".local/broker-handoff-source-01/resident-return.json",
+        "bytes": 271,
+        "sha256": "5b2d889993cf76f13641e6ec7bd1d27fb616d1d33a9869c2c518137601fdd989"
+      }
+    },
+    {
+      "name": "broker-return",
+      "source": "overlay",
+      "address": "1c17:02da",
+      "offset": 730,
+      "length": 42,
+      "relocations": [754],
+      "sha256": "2fbc1d7388ffbd7d28dc3d34cad3863935cff3c9cb1e2a6a7eaba983ec29ffc1",
+      "artifact": {
+        "path": ".local/broker-handoff-source-01/broker-return.json",
+        "bytes": 427,
+        "sha256": "ae373209e67849f4db2972e5bb86c94402471f12cb7010042234e1cb4b0b3a2d"
+      }
+    }
+  ],
+  "handoffEvidence": {
+    "sharedReader": {
+      "path": "reference/result-caller-source.json",
+      "bytes": 1915,
+      "sha256": "cac4a53af9f8f5593f4333b103b155381d5eef4558b3bc43f7710b5c6044b168"
+    },
+    "officeEntry": {
+      "path": "reference/office-menu.json",
+      "bytes": 33477,
+      "sha256": "9156851fcfbfa363884fcbeb08d95f74f68f853d2be54e5a77bdf0bac4705f9a"
+    }
+  }
 }

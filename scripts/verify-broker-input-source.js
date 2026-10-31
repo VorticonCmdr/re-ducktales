@@ -4,7 +4,7 @@ import { json, sha, checkArtifacts } from "./lib/local-scenario-source.js";
 import { originalGame } from "../tests/helpers/original-game.js";
 const m = await json("reference/broker-input-source.json");
 assert.equal(m.kind, "broker-input-static-source");
-await originalGame();
+const { image } = await originalGame();
 await checkArtifacts({ build: m.build, ghidra: m.artifact });
 const executable = await readFile("game/DUCKTALE.EXE"),
   o = m.overlay,
@@ -53,6 +53,57 @@ assert.equal(gh.program, m.program);
 assert.equal(gh.address, r.address);
 assert.equal(gh.length, r.length);
 assert.deepEqual(Buffer.from(gh.hex, "hex"), prepared);
+assert.equal(m.handoff.length, 3);
+await checkArtifacts(m.handoffEvidence);
+for (const [i, expected] of [
+  [0, ["resident", 0x2686, 7, []]],
+  [1, ["resident", 0x304, 14, []]],
+  [2, ["overlay", 0x2da, 42, [0x2f2]]],
+]) {
+  const r = m.handoff[i];
+  assert.deepEqual([r.source, r.offset, r.length, r.relocations], expected);
+  await checkArtifacts({ ghidra: r.artifact });
+  const original = Buffer.from(
+    (r.source === "resident"
+      ? image
+      : overlay.subarray(o.headerBytes)
+    ).subarray(r.offset, r.offset + r.length),
+  );
+  assert.equal(sha(original), r.sha256);
+  const at = r.offset + (r.source === "overlay" ? o.imageOffset : 0);
+  const prepared = Buffer.from(
+    exe.subarray(header + at, header + at + r.length),
+  );
+  assert.deepEqual(prepared, original);
+  const relocs = [];
+  for (let n = 0; n < exe.readUInt16LE(6); n++) {
+    const p = exe.readUInt16LE(24) + n * 4,
+      a = exe.readUInt16LE(p) + 16 * exe.readUInt16LE(p + 2);
+    if (a >= at && a + 2 <= at + r.length) {
+      relocs.push(a - (r.source === "overlay" ? o.imageOffset : 0));
+      prepared.writeUInt16LE(
+        (prepared.readUInt16LE(a - at) + 0x1000) & 65535,
+        a - at,
+      );
+    }
+  }
+  assert.deepEqual(relocs, r.relocations);
+  const raw = await json(r.artifact.path);
+  assert.equal(raw.isError, false);
+  const gh = JSON.parse(raw.content[0].text);
+  assert.equal(gh.program, m.program);
+  assert.equal(gh.address, r.address);
+  assert.equal(gh.length, r.length);
+  assert.deepEqual(Buffer.from(gh.hex, "hex"), prepared);
+}
+assert.equal(
+  Buffer.from(image.subarray(0x2686, 0x268d)).toString("hex"),
+  "8b46fc8be55dcb",
+);
+assert.equal(
+  Buffer.from(image.subarray(0x304, 0x312)).toString("hex"),
+  "c646e223e97cfecd3f1d0000ebf2",
+);
 console.log(
-  "Broker:42 original overlay10/prepared/Ghidra bytes,one relocation;shared09f5(50),conditional enabled24. Static evidence for pending implementation;not browser/native timing acceptance.",
+  "Broker:105 original/prepared/Ghidra bytes,two relocations;shared09f5(50),conditional enabled24,unflushed return/office dispatch. Static proof,not native whole-handoff timing acceptance.",
 );

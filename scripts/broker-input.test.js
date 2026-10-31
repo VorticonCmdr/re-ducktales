@@ -193,6 +193,22 @@ test("Restart clears the pending broker reader and keys", async () => {
   assert.equal(n.complete, false);
   assert.equal(g.money, 0);
 });
+test("unread final-wait P reaches the first office reader without an extra broker read", async () => {
+  const { g, n } = await fixture();
+  ticks(g, 344); // read50 was at343;the remaining final wait has no reader.
+  g.input({ type: "pause" });
+  ticks(g, 6);
+  assert.equal(g.scene, "office");
+  assert.equal(g.systemOverlay, null);
+  assert.equal(n.wait.inputPolls, 50);
+  assert.equal(n.wait.skipped, false);
+  assert.equal(g.pendingOfficeSystemKeys.size, 1);
+  for (let i = 0; i < 50; i++) g.officeMenu.advanceRetrace();
+  assert.equal(g.systemOverlay.kind, "pause");
+  assert.equal(g.pendingOfficeSystemKeys.size, 0);
+  assert.equal(g.money, 978);
+  assert.equal(g.marketMemory.i(0x92d4 + 10 * 46), 1);
+});
 test("failed trading exit has no broker wait and invalid reader operations fail", async () => {
   const { game: g } = await originalGame();
   g.securityPending = false;

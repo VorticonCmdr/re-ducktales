@@ -21,7 +21,7 @@ assert.equal(m.kind, "broker-input-browser-regression");
 assert.ok(m.cases.length > 0, "Zero broker cases");
 assert.deepEqual(
   m.cases.map((c) => c.key),
-  ["fire", "timeout"],
+  ["fire", "timeout", "late-pause"],
 );
 await originalGame();
 for (const c of m.cases) {
@@ -31,6 +31,8 @@ for (const c of m.cases) {
 const root = await fresh(arg("output")),
   source = await archiveSource(root);
 async function replay(c, omitPause = false) {
+  const late = c.key === "late-pause",
+    count = late ? 5 : 13;
   const load = (name) => json(c.artifacts[name].path);
   const [events, checks, environment, timeline, capture] = await Promise.all(
     [
@@ -44,30 +46,35 @@ async function replay(c, omitPause = false) {
   assert.ok(events.length > 0 && checks.length > 0, "Zero broker checkpoints");
   assert.equal(capture.completed, true);
   assert.equal(capture.accepted, false);
-  assert.equal(capture.controls, true);
-  assert.equal(capture.timeout, c.key === "timeout");
-  assert.equal(checks.length, 13);
+  if (late) assert.equal(capture.after, true);
+  else {
+    assert.equal(capture.controls, true);
+    assert.equal(capture.timeout, c.key === "timeout");
+  }
+  assert.equal(checks.length, count);
   assert.equal(checks.length, c.checkpoints);
   assert.equal(checks.length, capture.checkpoints);
   assert.equal(events.length, c.events);
   assert.equal(events.length, capture.events);
   assert.deepEqual(
     checks.map((p) => p.name),
-    [
-      "earned-coin",
-      "bought-share",
-      "entry",
-      "after-p",
-      "pause",
-      "pause-waiting",
-      "resumed",
-      "quit",
-      "quit-no",
-      "neutral",
-      "office",
-      "reopened",
-      "no-trade-office",
-    ],
+    late
+      ? ["final-wait", "queued", "office-entry", "first-office-read", "resumed"]
+      : [
+          "earned-coin",
+          "bought-share",
+          "entry",
+          "after-p",
+          "pause",
+          "pause-waiting",
+          "resumed",
+          "quit",
+          "quit-no",
+          "neutral",
+          "office",
+          "reopened",
+          "no-trade-office",
+        ],
   );
   assert.equal(
     checks.at(-1).eventCount,
@@ -143,7 +150,7 @@ async function replay(c, omitPause = false) {
       console.log("Broker " + c.key + " checkpoint " + expected.name);
     }
     assert.equal(consumed, events.length);
-    assert.equal(checked, 13);
+    assert.equal(checked, count);
     assert.equal(now, timeline.endAt);
     const final = await state();
     assert.equal(final.scene, "office");
@@ -151,7 +158,7 @@ async function replay(c, omitPause = false) {
     assert.equal(final.money, 978);
     assert.equal(final.rareCoinTaken, true);
     assert.equal(final.investments.shares[10], 1);
-    assert.equal(final.investments.phase, "portfolio");
+    assert.equal(final.investments.phase, late ? "broker" : "portfolio");
     assert.equal(await page.locator("#audio").isChecked(), false);
     await page.locator("#restart").click();
     await until((s) => s.scene === "title");
@@ -168,7 +175,12 @@ try {
     const positive = await replay(c);
     await assert.rejects(
       () => replay(c, true),
-      new RegExp("Broker " + c.key + " state pause"),
+      new RegExp(
+        "Broker " +
+          c.key +
+          " state " +
+          (c.key === "late-pause" ? "first-office-read" : "pause"),
+      ),
     );
     cases.push({ ...positive, semanticNegatives: 1 });
   }

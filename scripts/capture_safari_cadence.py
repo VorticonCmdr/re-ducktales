@@ -183,10 +183,22 @@ def capture_safari_cadence(*, client, stop, load, ds, overlay, add, remove,
     driver=base64.b64decode(driver_read['results'][0]['data'])
     original=base64.b64decode(subprocess.check_output(['node','--input-type=module','-e',
         "import{readFile}from'node:fs/promises';import{parseArchive}from'./src/assets.js';process.stdout.write(Buffer.from(parseArchive(await readFile('game/IT.DRV'))[1].data).toString('base64'));"],cwd=root))
-    # Compare executed instruction ranges,not the intervening palette/mode
-    # helper region85..e4. The complete observed resource is retained above.
-    for lo,hi in [(0x64,0x85),(0xe5,0x101),(0x1ef,0x35d),(0x35d,0x515),(0x515,0x81d),(0x81f,0x909)]:
-        assert driver[lo:hi]==original[lo:hi], 'Measured EGA instruction range mismatch'
+    # Copy01ef patches four immediate words from its surface descriptors and
+    # width. The last opening-reveal call is320px wide;both surfaces have40
+    # bytes/row and8000 bytes/plane. Compute expected words,never mask them.
+    video,ram=struct.unpack_from('<HH',data,0x2038)[0],struct.unpack_from('<HH',data,0x203a)[0]
+    strides=[struct.unpack_from('<H',data,p)[0] for p in [video,ram]]
+    spans=[struct.unpack_from('<H',data,p+8)[0] for p in [video,ram]]
+    assert strides==[40,40] and spans==[8000,8000]
+    expected_driver=bytearray(original)
+    patches=[(0x32d,strides[0]-40),(0x331,strides[1]-40),(0x341,spans[0]),(0x34b,spans[1])]
+    for pos,value in patches:
+        assert struct.unpack_from('<H',original,pos)[0]==1234
+        struct.pack_into('<H',expected_driver,pos,value)
+    # Header1e..37 holds runtime descriptors,color,mode,page and palette;it is
+    # recorded as state. All instruction/data bytes38..a26 compare exactly.
+    assert driver[0x38:]==expected_driver[0x38:], 'Original EGA body mismatch'
+    save('safari-driver-self-modification',{'lastCopyWidth':320,'sourceStrideBytes':strides[0],'destinationStrideBytes':strides[1],'planeSpans':spans,'patches':patches,'codeCompared':[0x38,2599],'runtimeHeaderRecorded':[0,0x38]})
     formatter=client.post('/api/v1/batch',json={'ops':[{'op':'mem_read','segment':load,'offset':0x1e67,'len':128}]})
     save('safari-formatter-code',{'load':load,'read':formatter})
     assert not formatter['aborted'] and formatter['results'][0]['status']=='ok'

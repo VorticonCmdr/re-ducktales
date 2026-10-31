@@ -11,7 +11,7 @@ shared bridge configuration and the existing8386 session are unchanged. The
 owner records shutdown in lifecycle.json even when the experiment fails.
 
 The existing natural security recipe is followed by actual one-pixel map makes
-to46,56 (Yellerstone Park,location32,photography variant1),Travel and Fire through
+to46,56 (Yellerstone Park,resource32,photography variant1;the shuffled campaign slot is recorded separately),Travel and Fire through
 Launchpad. The crash setup requires a naturally nonracing flight;it rejects a
 racing launch instead of changing its flag or pretending it reached Safari.
 Setup uses execution stops and is not a timing measurement. The actual complete
@@ -63,3 +63,13 @@ recipe,so the precise differing bytes remain unknown. Attempt03 retains the
 complete observed resource before assertions and checks the executed retrace,
 flip,copy,sprite,line,text ranges plus the original128-byte number formatter.
 This is a bounded code-identity claim,not equivalence of unmeasured palette code.
+
+Attempt03 retained the actual driver. It differs from the original only in its
+runtime header and the four documented copy-helper immediate words32d/331/341/
+34b. Those are the same source-defined self-modifications covered by the existing
+signed-copy native verifier. No palette-helper code differs in this run. The
+revised comparison computes0,0,8000,8000 from the two actual40-byte/8000-byte
+surface descriptors and the last320px opening reveal. It then compares every
+body byte38..a26 exactly;header state is retained separately,not called immutable
+code. No operand bytes are excluded. Attempt03 still has no timing samples.
+The first three owned sessions all closed with return0.

@@ -1,0 +1,79 @@
+{
+  "kind": "conditional-atlantis-player-candidate",
+  "accepted": false,
+  "nativeComparison": false,
+  "producer": ".local/atlantis-pilot-01",
+  "captureToolRevision": "ed6ffb288b137905f0d1ed24b56e01ce51822aea",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "startingRecipe": "Re-execute original startup DOM stream through departure-9 of current-winning-browser-02;compare captured prefix checkpoints. No checkpoint restore or game-state injection.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "audioEnabled": false,
+    "difficulty": 1
+  },
+  "expectedPrefixCheckpointCount": 80,
+  "requiredCandidateEventCount": 693,
+  "expectedCandidateOutcome": {
+    "status": "arrived",
+    "code": 1,
+    "day": 19,
+    "seed": 54120,
+    "money": 6350,
+    "frames": 442
+  },
+  "policy": {
+    "altitude": [
+      25,
+      40
+    ],
+    "climbHeading": 3,
+    "minimumTurnSpeed": 1
+  },
+  "artifacts": {
+    "source-revision.json": {
+      "path": ".local/atlantis-pilot-01/source-revision.json",
+      "bytes": 114473,
+      "sha256": "382a933fb336d4cac523744e771bd7df85d56f977b07283fdb70cafd51dce8b9"
+    },
+    "sources.zip": {
+      "path": ".local/atlantis-pilot-01/sources.zip",
+      "bytes": 2952114,
+      "sha256": "2815416c345dc377ac1d9080ae76440c3f5825f0c8f37ad2363a1cb3e1bd2ecf"
+    },
+    "result.json": {
+      "path": ".local/atlantis-pilot-01/result.json",
+      "bytes": 616,
+      "sha256": "df4a0038aeaad390e6817f1cb2e0f65df3a055f11b8ef633c3f03e5b338247c4"
+    },
+    "controls.json": {
+      "path": ".local/atlantis-pilot-01/controls.json",
+      "bytes": 65072,
+      "sha256": "e7fd6ca5ffa31e42ce20509590301e3979874ff0555547d712bdf0ca62e7b00c"
+    },
+    "flight.json": {
+      "path": ".local/atlantis-pilot-01/flight.json",
+      "bytes": 155647,
+      "sha256": "5217360ef41ff3e7f6c9b510bd7934a89f2a4ff23d41171b55681e165c8caaa9"
+    },
+    "prefix": {
+      "path": "reference/current-winning-mountain-prefix.json",
+      "bytes": 1901,
+      "sha256": "963e4ae40605bc3b5b9be23096c264edb056a9f2eb47f78499d493c56ac73726"
+    }
+  },
+  "comparison": {
+    "state": "Exact captured public-state prefix;conditional simulation continuation only",
+    "exclusions": [],
+    "presentation": "Flight renderer compared by diagnostic replay where supported;not whole-browser acceptance"
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "scope": "Conditional controller candidate after independently replayed startup inputs;real browser and independent replay still required",
+  "verify": "node scripts/plan-winning-flight.js --capture=.local/current-winning-browser-02 --through=departure-9 --diagnose --minimum-turn-speed=1 --output=.local/atlantis-pilot-FRESH"
+}

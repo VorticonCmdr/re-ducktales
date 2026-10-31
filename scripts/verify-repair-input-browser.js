@@ -22,6 +22,7 @@ const arg = (k) =>
   process.argv.find((a) => a.startsWith("--" + k + "="))?.slice(k.length + 3);
 const m = await json(arg("manifest") ?? "reference/repair-input-browser.json");
 assert.equal(m.kind, "repair-input-browser-regression");
+await checkArtifacts({ build: m.build, source: m.sourceRule });
 assert.ok(m.cases.length > 0, "Zero repair cases");
 assert.deepEqual(
   m.cases.map((c) => c.key),
@@ -76,7 +77,9 @@ async function replay(c, omitPause = false) {
     events.length,
     "Unfinished required input",
   );
-  assert.equal(environment.difficulty, 0);
+  // This recorder's default Easy route stores hard:false;difficulty is selected
+  // by startup DOM input,not supplied as a synthetic environment input.
+  assert.equal(environment.hard, false);
   assert.equal(environment.physical, true);
   assert.equal(environment.clockOrigin, 1);
   assert.equal(environment.displayMilliseconds, 8);
@@ -96,12 +99,14 @@ async function replay(c, omitPause = false) {
         (!i || events[i].time >= events[i - 1].time),
       "Unordered/unconsumable repair event",
     );
-  for (const p of checks)
+  for (const p of checks) {
+    assert.equal(p.state.difficulty, 0);
     assert.equal(
       sha(canonical(p.state)),
       p.stateSha256,
       "Corrupt expected state " + p.name,
     );
+  }
   return withCarlsbadBrowser(async ({ page, state, until }) => {
     let now = 1,
       consumed = 0,

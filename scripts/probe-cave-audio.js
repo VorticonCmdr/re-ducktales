@@ -62,9 +62,13 @@ try {
         await new Promise((r) => setTimeout(r, 20));
         await page.clock.runFor(16);
       }
+      await writeFile(root + "/failure.json", JSON.stringify({
+        label, state: await state(), events: await read(), observations,
+      }, null, 2) + "\n");
       throw Error("Unfinished cave audio boundary: " + label);
     }
     await page.locator("#audio").check();
+    await page.locator("#game").focus();
     const initial = await hostUntil(
       (s) => s.cave?.phase === "exploring",
       "first-room",
@@ -97,16 +101,18 @@ try {
       }
     }
     assert.ok(path?.length);
+    console.log(device, mode, "path", JSON.stringify(path));
     for (const key of path) {
       const old = (
         await hostUntil((s) => s.cave?.phase === "exploring", "input-reader")
       ).cave.room;
       await page.keyboard.down(key);
       await page.keyboard.down("Space");
-      await hostUntil(
+      const changed = await hostUntil(
         (s) => s.scene !== "cave" || s.cave.room !== old,
         "room-change",
       );
+      assert.equal(changed.scene, "cave", "Cave exited before movement completed");
       await page.keyboard.up("Space");
       await page.keyboard.up(key);
     }

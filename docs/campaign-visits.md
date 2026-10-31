@@ -53,6 +53,45 @@ shared reader and ordinary keyboard proofs are retained in
 caller boundaries. This is static and conditional evidence, not original native
 notice timing or waveform parity. Portrait striped reveals remain omitted.
 
+## Current browser acceptance
+
+`node scripts/verify-visit-input-acceptance.js` validates saved current-runtime
+receipts and required local artifacts. Missing/corrupt fixtures and zero cases
+fail setup. `reference/visit-input-browser.json` pins two startup-driven Standard
+routes,each with9 exact full public-state/decoded-RGBA checkpoints and531 DOM
+events:notice entry,queued P,Pause lock/wait/resume,Quit-No,neutral read,fresh
+Fire,map and Restart. The independent consumer reads only the recorded input
+stream. Each route must also reject an omitted Pause make at its Pause checkpoint.
+There are no state or pixel exclusions,no injected game state and no fitted RNG.
+Normal root cleanup is compared too,including its changed RNG and rival money.
+
+```sh
+# Fresh capture from the recorded startup input prefix:
+node scripts/capture-visit-input-browser.js --reason=player --output=.local/notice-player-FRESH
+node scripts/capture-visit-input-browser.js --reason=rival --output=.local/notice-rival-FRESH
+# Independent replay of the pinned captures,including two input negatives:
+node scripts/verify-collected-notice-browser.js --output=.local/notice-replay-FRESH
+node scripts/verify-visit-input-setup-negative.js
+# Actual reconstructed device boundary;repeat for speaker/tandy,during/before:
+node scripts/probe-visit-audio.js --device=speaker --mode=during --output=.local/notice-audio-FRESH
+```
+
+All capture/replay commands require clean committed source and fresh ignored
+outputs. They own isolated Vite/browser instances and close them in `finally`.
+Original assets and BIOS seed0 are checked;browser clock starts at1 with8ms
+scheduler increments. The audio probes instead allow explicit host20ms waits and
+Game16ms advances for real acknowledgements/completion. All four speaker/Tandy
+mute-during and muted-entry cases passed. An initial idle query uses fallback40;
+observed busy bypasses it after real completion. Queries from normal rival cleanup
+are separate from the notice's token. This is conditional device-I/O evidence,
+not native CPU/PIT phase,duration or waveform parity.
+
+The same runtime passes the unchanged winning Standard170/6575 comparison,
+194 units,99 input/audio boundaries and build. Earlier `notice-*-after-01`
+explorations and `notice-controls-replay-01` are excluded:their final assertions
+incorrectly assumed normal cleanup could not change RNG/rival money. The accepted
+consumer compares those fields exactly;it does not exclude or freeze them.
+
 ## Reproduce the original retry comparison
 
 `npm run verify:visits` requires the three ignored artifacts pinned in

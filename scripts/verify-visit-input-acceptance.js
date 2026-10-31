@@ -113,6 +113,18 @@ assert.equal(win.consumed, 6575);
 assert.equal(win.restart, true);
 assert.equal(win.semanticNegatives, 1);
 await checkArtifacts(win.artifacts);
+await current(m.checksSource);
+for (const [key, count] of [
+  ["units", 194],
+  ["boundaries", 99],
+]) {
+  const log = await readFile(m.artifacts[key].path, "utf8");
+  assert.match(log, new RegExp("tests " + count + "\\b"));
+  assert.match(log, new RegExp("pass " + count + "\\b"));
+  for (const field of ["fail", "cancelled", "skipped", "todo"])
+    assert.match(log, new RegExp(field + " 0\\b"));
+}
+assert.match(await readFile(m.artifacts.build.path, "utf8"), /built in/);
 for (const command of [
   ["scripts/verify-visit-input-source.js"],
   ["scripts/verify-result-caller-source.js"],
@@ -124,5 +136,5 @@ for (const command of [
   assert.equal(r.status, 0, r.stdout + r.stderr);
 }
 console.log(
-  "Collected notices:original192-byte caller proof;18 exact browser checkpoints and two omitted-P negatives;four conditional actual-device cases;unchanged winning170/6575 and input negative. Native notice/reveal/PIT timing remains unverified.",
+  "Collected notices:original192-byte caller proof;194 units,99 boundaries;18 exact browser checkpoints and two omitted-P negatives;four conditional actual-device cases;unchanged winning170/6575 and input negative. Native notice/reveal/PIT timing remains unverified.",
 );

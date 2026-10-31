@@ -44,6 +44,9 @@ npx playwright install chromium
 npm run verify
 ```
 
+The umbrella suite includes unfinished and historical scenarios. See the current
+status document for the acceptance commands supported by the current runtime.
+
 This checks all 22 original file identities, deterministic unit tests, original
 money-bin/campaign/departure/flight checkpoints and required negative controls,
 actual browser flight controls, rendering and the existing audio adapter,

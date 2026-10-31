@@ -18,40 +18,34 @@ HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 
 ## Latest completed behavior and current acceptance
 
-Current runtime `a978a14` restores collected-location notice readers:player80,
+Collected-location notices now use the original input readers:player80,
 rival status/input loop7 and fallback40;Pause/Quit-No continuation;actual device
-status after mute;conditional clicks and rival-only exit stop. Both nine-point
-browser control routes are captured. Independent consumers and the winning
-Standard regression are running;this notice milestone is not yet accepted.
-Source192 bytes,194 units,99 input/audio boundaries,retry comparison and build
-pass. [Notice behavior](campaign-visits.md).
+status after mute;conditional clicks and rival-only exit stop. Runtime:`a978a14`.
+[Notice behavior and reproduction](campaign-visits.md).
 
-The last completed acceptance below belongs to runtime `e994536`;its saved
-runtime guard intentionally rejects the current notice changes until fresh
-current-runtime receipts are integrated.
+[Current saved acceptance](../reference/visit-input-acceptance.json) includes:
 
-Keyboard S now preserves the original off0→hex24 and on0 calls. Both calls reach
-the driver after the enabled flag changes;native batches add no stop-completion
-barrier or retry. The speaker correctly rejects the lower-priority click at the
-same device phase;Tandy plays it. Rival speech waits for actual completion after
-mute,and muted reports query an existing device instead of inventing idle.
-Runtime:`e994536`. [Sound-toggle behavior and limits](sound-toggle.md).
-
-[Current saved acceptance](../reference/sound-toggle-acceptance.json) includes:
-
-- Six conditional actual-browser audio scenarios:office S-off/on,muting during
-  speech,and muted-entry status queries for speaker/Tandy;required real completion,
-  original word order,priority outcomes,flag changes,map return and Restart.
-- Two real-clock production-browser cases using the original file-picker folder
-  and compiled speaker/Tandy worklets.
+- Two independent muted browser routes:18 exact complete public-state/decoded-RGBA
+  checkpoints,1062 DOM events,Pause,Quit-No,discarded old Fire,fresh Fire,map and
+  Restart. Omitting Pause is rejected in each route.
+- Four conditional actual-browser audio cases:muting during rival notice speech
+  and entering while muted,for speaker/Tandy. Real status/completion drives each
+  return;no injected audio status. Normal rival/market cleanup remains active.
 - Unchanged winning Standard:170 exact complete public-state/decoded-RGBA
   checkpoints,6575 independent DOM events,all four expedition families plus three
   cave treasures,victory/replay-No/all26 credits/finished screen/Restart,and a
-  missing-selection negative. Fresh consumer:`e994536`.
-- 194 units,91 dialogue/device boundaries,three missing/corrupt/empty-record
-  negatives,build and original59-byte keyboard source proof. Existing native
-  speaker-engine and carried Tandy-provider comparisons also pass within their
-  declared scopes. [Winning route](standard-winning.md).
+  missing-selection negative. Fresh consumer:`a978a14`.
+- 194 units,99 dialogue/device boundaries,three missing/corrupt/empty-case
+  negatives,build,192 original/prepared/Ghidra notice bytes and the existing
+  shared-reader/keyboard proofs. The conditional original retry segment still
+  passes with its three negative controls. [Winning route](standard-winning.md).
+
+Keyboard S retains the previous original off0→hex24 and on0 sequencing. Native
+batches add no host completion barrier or retry. The previous six audio cases and
+two production-browser cases retain their `e994536` historical scope;the older
+saved sound-toggle gate rejects the changed runtime. Current99 boundaries include
+its14 focused toggle checks,and the notice cases exercise actual speaker/Tandy
+status. [Sound-toggle behavior and limits](sound-toggle.md).
 
 Browser audio acknowledgement frames are external inputs. Zero inserted IRQs
 between native batch calls is an explicit boundary,not recovered original sub-call
@@ -63,8 +57,8 @@ an explicit stop-only browser convenience.
 Earlier repair acceptance(21 crash/recovery checkpoints/170 events),Standard defeat
 85/5071,18 rival-control and11 cave-failure checkpoints,and older15 layout routes
 (343 checkpoints/11601 events),winning Easy campaign and eight cave components
-retain their historical scope. They were not all rerun for this sound change;old
-saved runtime guards reject the changed source. Current91 boundaries and the full
+retain their historical scope. They were not all rerun for this notice change;old
+saved runtime guards reject the changed source. Current99 boundaries and the full
 winning browser route pass. [Repair evidence](repair-input.md),
 [rival evidence](rival-input.md),[earlier result evidence](result-input.md).
 
@@ -77,8 +71,7 @@ winning browser route pass. [Repair evidence](repair-input.md),
 | Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei/7,Atlantis/3,Klondike/0,Siberia/4 treasures |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:finish collected-notice independent replay/device acceptance,then restore
-the broker confirmation reader. Broker overlay10's50-read wait and conditional
+Next:restore the broker confirmation reader. Broker overlay10's50-read wait and conditional
 click are verified against42 original/prepared/Ghidra bytes;implementation is
 pending. Continue broader gameplay/input coverage afterward.
 Cross-scene queued keys,modifier/BIOS behavior and
@@ -114,7 +107,8 @@ MZ/EXEPACK,x86 little-endian16 real mode,overlays,no extender. Analysis images
 contain actual game code with documented transformations and are never run.
 
 ```sh
-# Source and focused checks for current notice work:
+# Validate saved current-runtime acceptance and source:
+node scripts/verify-visit-input-acceptance.js
 node scripts/verify-visit-input-source.js
 node scripts/verify-broker-input-source.js
 node --test scripts/visit-input.test.js tests/visits.test.js

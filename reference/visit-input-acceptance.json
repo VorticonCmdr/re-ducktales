@@ -1,0 +1,103 @@
+{
+  "kind": "collected-notice-acceptance",
+  "nativeComparison": false,
+  "runtimeCommit": "a978a14eecaaabd3ce84828fbcfb5e117a3a355a",
+  "controlsConsumer": ".local/notice-controls-replay-02",
+  "winningConsumer": ".local/notice-winning-replay-01",
+  "checksSource": ".local/notice-checks-01",
+  "audio": [
+    {
+      "device": "speaker",
+      "mode": "during",
+      "consumer": ".local/notice-speaker-during-01"
+    },
+    {
+      "device": "tandy",
+      "mode": "during",
+      "consumer": ".local/notice-tandy-during-01"
+    },
+    {
+      "device": "speaker",
+      "mode": "before",
+      "consumer": ".local/notice-speaker-before-01"
+    },
+    {
+      "device": "tandy",
+      "mode": "before",
+      "consumer": ".local/notice-tandy-before-01"
+    }
+  ],
+  "artifacts": {
+    "controlsScenario": {
+      "path": "reference/visit-input-browser.json",
+      "bytes": 8068,
+      "sha256": "bfe0ef2bcf114d44df52f3f0f32a8664ac171812426a52ab0fa9c650da0b2c4d"
+    },
+    "controlsResult": {
+      "path": ".local/notice-controls-replay-02/acceptance-status.json",
+      "bytes": 845,
+      "sha256": "d7a77343bf2f40c2b4ea8e55d5374dfbb0e87f70a8a164ffabf9bcdbf712091e"
+    },
+    "winningScenario": {
+      "path": "reference/standard-winning-route.json",
+      "bytes": 45483,
+      "sha256": "fc3fc5be1423e10764644fc6073632f9eeddbdbd9724a16ae1427d0b1cd55ff7"
+    },
+    "winningResult": {
+      "path": ".local/notice-winning-replay-01/acceptance-status.json",
+      "bytes": 1023,
+      "sha256": "6a877d6e2821e3f7fe597626168a073f38f3698833b4e5efeea7d14f332f787f"
+    },
+    "source": {
+      "path": "reference/visit-input-source.json",
+      "bytes": 1219,
+      "sha256": "b038d694e6306c8ef5ebf8f8cff7874286f70780273e1c6cc8e5818edb55da64"
+    },
+    "checker": {
+      "path": "scripts/verify-visit-input-source.js",
+      "bytes": 3040,
+      "sha256": "e30ce0c325da2044ef9480f1a546bbe2c4c1644882fad87fbae0141b70b32ec6"
+    },
+    "units": {
+      "path": ".local/notice-checks-01/units.log",
+      "bytes": 17815,
+      "sha256": "5b59540b5fb68d756cdea7e788ef30664713e1a8c2d89ae8100d02886e12f10a"
+    },
+    "boundaries": {
+      "path": ".local/notice-checks-01/boundaries.log",
+      "bytes": 9151,
+      "sha256": "afc33051e219cbdba24d94116e134dd5d19e052138c2a7b5c92b18bc17b7fe48"
+    },
+    "build": {
+      "path": ".local/notice-checks-01/build.log",
+      "bytes": 914,
+      "sha256": "cf8ff77114e5ac74bcf44a1d86867c20145ab4a2a1cc1cc72a24ec1edb0409d4"
+    },
+    "speaker-during": {
+      "path": ".local/notice-speaker-during-01/visit-audio-status.json",
+      "bytes": 12534,
+      "sha256": "a519a43264b079cbfc0d470cfb99cafad2e3cf4aac55a6e0c3d6471a256a746a"
+    },
+    "tandy-during": {
+      "path": ".local/notice-tandy-during-01/visit-audio-status.json",
+      "bytes": 12277,
+      "sha256": "40adc5932320ecee36d805bf0ea15bc71521dab86e7a3fce69ca5fca2e133e2f"
+    },
+    "speaker-before": {
+      "path": ".local/notice-speaker-before-01/visit-audio-status.json",
+      "bytes": 12448,
+      "sha256": "cc9947ac13db6d86ca047b6ebc1d67d6bc751034bf5a556ce2640a638090319d"
+    },
+    "tandy-before": {
+      "path": ".local/notice-tandy-before-01/visit-audio-status.json",
+      "bytes": 12352,
+      "sha256": "b46cfe5aafaf5fa7604ec896a923f856d242cc23314d9b253a3a7470c5351ed3"
+    }
+  },
+  "scope": "Original notice readers and conditional words;two exact browser control replays;four conditional actual-device status cases;unchanged full winning Standard. No native notice/reveal/CPU/PIT timing or arbitrary-route acceptance.",
+  "verify": "node scripts/verify-visit-input-acceptance.js",
+  "injections": [],
+  "fittedInputs": [],
+  "exclusions": [],
+  "conditionalEnvironment": "Browser BIOS0/clock-origin1/8ms scheduler;actual audio ACK/completion with host20ms/Game16ms polling. Native phase not recovered."
+}

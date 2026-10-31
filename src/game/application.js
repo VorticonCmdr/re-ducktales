@@ -1837,7 +1837,7 @@ export class Game {
     // branch above returns directly and never enters this input wait.
     this.cave.flushInput();
     this.scene = "expedition-result";
-    if (this.expeditionResult.phase === "award") this.beginResultWait();
+    this.beginResultWait();
   }
   collectMountain() {
     this.collectActionExpedition(this.mountain);
@@ -1914,7 +1914,7 @@ export class Game {
     this.beginResultWait();
   }
   beginResultWait() {
-    const count = { award: 40, atomic: 100 }[this.expeditionResult?.phase];
+    const count = { failure: 20, award: 40, atomic: 100 }[this.expeditionResult?.phase];
     this.resultWait = new ResultInputWait({
       state: this.expeditionResult,
       count,
@@ -1934,7 +1934,8 @@ export class Game {
     if (!wait?.complete) return;
     this.resultWait = null;
     this.pendingResultSystemKeys.clear();
-    // C54..C67 and DF4..E07: only a consumed Fire returns1 and requests click24.
+    // Resident C54..C67/DF4..E07 and Cave1a90..1ab2 request24 only for
+    // a consumed Fire returning1 with audio enabled.
     if (wait.skipped && this.audioEnabled)
       this.effects.push({ type: "sound", id: 0x24 });
     this.finishExpeditionResult(true);

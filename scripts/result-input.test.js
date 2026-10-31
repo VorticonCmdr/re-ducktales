@@ -16,7 +16,7 @@ async function fresh({ phase = "award", audio = false, atomic = false } = {}) {
   g.expeditionResult = {
     phase,
     ...(phase === "award" ? { value: 3000 } : {}),
-    remaining: (phase === "award" ? 40 : 100) * 7,
+    remaining: ({ failure: 20, award: 40, atomic: 100 }[phase]) * 7,
     skipRequested: false,
   };
   const handoffs = [];
@@ -26,8 +26,8 @@ async function fresh({ phase = "award", audio = false, atomic = false } = {}) {
   g.drainEffects();
   return { g, w: g.resultWait, state: g.expeditionResult, handoffs };
 }
-for (const phase of ["award", "atomic"]) {
-  const count = phase === "award" ? 40 : 100;
+for (const phase of ["failure", "award", "atomic"]) {
+  const count = { failure: 20, award: 40, atomic: 100 }[phase];
   test(
     phase +
       " reads immediately then makes exactly" +
@@ -117,7 +117,7 @@ for (const phase of ["award", "atomic"]) {
         );
         assert.equal(handoffs.length, 1);
         assert.equal(g.money, 3400);
-        assert.equal(g.campaign.day, 3);
+        assert.equal(g.campaign.day, phase === "failure" ? 4 : 3);
       }
     },
   );
@@ -148,6 +148,17 @@ test("ordinary award click survives the local handoff without a synthetic sound0
   );
   assert.deepEqual(handoffs, [{ type: "map" }]);
   assert.equal(g.campaign.locations[1].playerCollected, true);
+});
+test("failed atomic-location expedition spends one day without collection,unlock or cash changes", async () => {
+  const { g, handoffs } = await fresh({ phase: "failure", audio: true, atomic: true });
+  g.input({ type: "fire" });
+  ticks(g, 7);
+  assert.equal(g.campaign.day, 4);
+  assert.equal(g.money, 3400);
+  assert.equal(g.campaign.atomicAvailable, false);
+  assert.equal(g.campaign.locations[g.campaign.location].playerCollected, false);
+  assert.deepEqual(handoffs, [{ type: "map" }]);
+  assert.deepEqual(g.drainEffects(), [{ type: "sound", id: 0x24 }]);
 });
 test("transmitter unlock orders consumed click24 before notice54 and a fresh100-read entry", async () => {
   const { g, w } = await fresh({ audio: true, atomic: true });
@@ -207,7 +218,7 @@ test("result wait rejects unsupported counts,providers and lifecycle calls", () 
     () =>
       new ResultInputWait({
         state,
-        count: 20,
+        count: 30,
         pollInput: () => true,
         flushInput: () => {},
       }),

@@ -46,24 +46,33 @@ omission that must diverge specifically at the atomic-choice checkpoint.
 The successful charge route passes independent browser replay:18 exact state/image
 checkpoints,486 DOM events,Restart and one selection-omission negative.
 [Acceptance manifest](../reference/atomic-earned-route.json).
-A naturally reached misdirection report is now separately browser-observed: six
-extra neutral cave input reads produce seed6900/roll0, redirecting Klondike to
-location1. P/Q/S during charge are cleared, Pause holds remaining413, resume
-returns to the same reader, Quit-No returns again, and Fire enters the jungle on
-day6. Restart succeeds. [Observation manifest](../reference/atomic-report-observation.json).
-The exploratory model suggested the idle schedule; the actual browser confirmed
-it without injecting RNG or restoring state. This is an observation with executable
-assertions, not independent replay of that report route or native timing acceptance.
-Independent recorded-report replay remains a coverage gap.
+The earned misdirection route now also passes independent browser replay:23 exact
+state/image checkpoints,492 DOM events,Restart and two omission negatives.
+Six extra neutral cave input reads produce seed6900/roll0, redirecting Klondike to
+location1. P/Q/S during charge are cleared, Pause holds remaining413, resume returns
+to the same reader, Quit-No returns again, and Fire enters the jungle on day6.
+[Report acceptance](../reference/atomic-earned-report.json). The earlier
+[observational manifest](../reference/atomic-report-observation.json) remains
+separately scoped historical evidence. The exploratory model selected the idle
+schedule; the browser confirmed it, and independent replay uses only the fixed
+recorded DOM stream. No expected state chooses replay controls.
+
+Success and report routes share the same source-authored earning/travel helper.
+The original successful route was also replayed unchanged through the new helper:
+18 checkpoints,486 events and its selection negative. The next input defect is
+on the following guide screen; see [guide investigation](guide-input-investigation.md).
 
 ```sh
 node scripts/verify-atomic-earned-route.js
+node scripts/verify-atomic-report-route.js
 node scripts/verify-atomic-input-source.js
 node --test scripts/atomic-input.test.js
 node scripts/verify-atomic-report-observation.js
 # Fresh recording requires clean committed source and original local game files:
 node scripts/atomic-route.js capture --output=.local/atomic-earned-FRESH
-# Fresh independent consumer; never overwrite a recording:
+# Fresh independent report consumer; never overwrite a recording:
+node scripts/atomic-route.js verify --report --capture=.local/atomic-earned-report-01 --output=.local/atomic-report-replay-FRESH
+# Fresh independent success consumer:
 node scripts/atomic-route.js verify --capture=.local/atomic-earned-browser-01 --output=.local/atomic-replay-FRESH
 ```
 
@@ -71,3 +80,8 @@ Each recording/consumer archives its own clean Git source and full file inventor
 Original binaries and local snapshots/images remain ignored. Missing or corrupt
 artifacts fail setup. No whole-game native timing or arbitrary-route claim follows
 from this one route.
+
+Saved receipts compare the current game runtime, HTML/config/dependency files and
+original build pairing with their archived consumer. All original test/helper
+bytes remain in that archive. Later test-only edits do not invalidate unchanged
+gameplay evidence; fresh executions still pin and guard every loaded helper.

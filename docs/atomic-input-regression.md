@@ -15,7 +15,12 @@ separate clean current consumer. It replays the historical input streams and
 compares their existing full snapshots and image hashes. Producer and consumer
 runtime source need not be identical. The consumer's loaded source must remain
 unchanged during execution. Every protected historical artifact is rehashed at
-completion. Diagnostic output is written into the fresh consumer directory.
+completion. Diagnostic output is written into the fresh consumer directory. Saved
+receipt validation compares current game runtime and entry/config/dependency files,
+while retaining the full historical tool archive. Later test-only edits do not
+invalidate unchanged game behavior. The original receipt checker bytes and its
+negative results remain preserved; the refined checker reran all three receipt
+negatives successfully from source61419ac.
 
 Required scope is fixed: eight cave component cases/2,696 presentations; the full
 headless campaign with34 checkpoints,4,981 events and1,470 flight presentations;

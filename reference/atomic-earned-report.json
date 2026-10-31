@@ -1,0 +1,245 @@
+{
+  "id": "atomic-earned-report-browser-route",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "captureRoot": ".local/atomic-earned-report-01",
+  "consumerRoot": ".local/atomic-earned-report-replay-01",
+  "sourceCommit": "61419ac9938924dadaa2e60436a827ca61d1f183",
+  "toolRevision": "scripts/atomic-route.js --report at sourceCommit",
+  "evidence": "Independent port browser replay with actual DOM controls;not original whole-game timing",
+  "expectedCheckpointCount": 23,
+  "requiredEventCount": 492,
+  "negativeControls": 2,
+  "expectedOutcome": {
+    "scene": "jungle",
+    "location": 1,
+    "day": 6,
+    "money": 3400,
+    "misdirected": true,
+    "reportInputPolls": 4,
+    "restart": true
+  },
+  "startingState": "Fresh Easy,UTC BIOS0 muted;Launchpad Too-Pei;6 additional initial neutral cave reads;cave7 treasure/Bombastium;Office;request Klondike atomic travel",
+  "externalProviders": {
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "biosSeed": 0,
+    "audioEnabled": false
+  },
+  "inputStream": ".local/atomic-earned-report-01/captured-events.json",
+  "expectedOutputs": ".local/atomic-earned-report-01/campaign-checkpoints.json",
+  "comparisonRules": "All23 full Game snapshots and320x200RGBA hashes exact;all492 DOM events consumed;Restart;omit selection must fail choice;omit fresh report P must fail report-pause",
+  "exclusions": [],
+  "memoryInjections": [],
+  "fittedInputs": [],
+  "inputProvenance": "Exploratory replay found idle6 as a natural failure candidate;normal browser play confirmed it before this recording;independent replay consumes only the resulting fixed DOM stream",
+  "successRegression": {
+    "consumerRoot": ".local/atomic-earned-shared-replay-01",
+    "producerRoot": ".local/atomic-earned-browser-01",
+    "checkpoints": 18,
+    "events": 486,
+    "negativeControls": 1,
+    "sourceCommit": "61419ac9938924dadaa2e60436a827ca61d1f183"
+  },
+  "artifacts": {
+    "producer/arrival.png": {
+      "path": ".local/atomic-earned-report-01/arrival.png",
+      "bytes": 20469,
+      "sha256": "3c4f4f29903c4b8170a1d7bedbcf05fbd2a0de458adea7dd89f0c68f2f19580f"
+    },
+    "producer/award.png": {
+      "path": ".local/atomic-earned-report-01/award.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "producer/campaign-checkpoints.json": {
+      "path": ".local/atomic-earned-report-01/campaign-checkpoints.json",
+      "bytes": 144756,
+      "sha256": "f7dc1b709b97e4e8ab8a4be6e458bcde2825f1fe72b201d3046d3489920c89ea"
+    },
+    "producer/capture-status.json": {
+      "path": ".local/atomic-earned-report-01/capture-status.json",
+      "bytes": 1380,
+      "sha256": "67796594975ee9c47ec5bcf4ef068b54748139eafac75a2d7d0914fd4c753697"
+    },
+    "producer/captured-events.json": {
+      "path": ".local/atomic-earned-report-01/captured-events.json",
+      "bytes": 58330,
+      "sha256": "98066ea973aeec464ab18f22a6f882a9b143bceca660dcd471a0784b23622caf"
+    },
+    "producer/cave-entry.png": {
+      "path": ".local/atomic-earned-report-01/cave-entry.png",
+      "bytes": 20353,
+      "sha256": "26e6220ccdc75dcf3cbb54501211a7b49e9764870cedba53384394e1c0794a4f"
+    },
+    "producer/charge-keys-ignored.png": {
+      "path": ".local/atomic-earned-report-01/charge-keys-ignored.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "producer/charge.png": {
+      "path": ".local/atomic-earned-report-01/charge.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "producer/choice.png": {
+      "path": ".local/atomic-earned-report-01/choice.png",
+      "bytes": 13327,
+      "sha256": "746ca76525003081cfb1ab68f7676dc9515dc58cbb1ba9ddfc68127be8f75bb7"
+    },
+    "producer/environment.json": {
+      "path": ".local/atomic-earned-report-01/environment.json",
+      "bytes": 273,
+      "sha256": "0e3288195124d5087f47c1ca0a381f1e23aa1549d05fd9f114afb43e9eb0d1db"
+    },
+    "producer/misdirection.png": {
+      "path": ".local/atomic-earned-report-01/misdirection.png",
+      "bytes": 16618,
+      "sha256": "eb2f7603429ea990fd4176eb2309023c39a31dc48a2948702a124d21666a07ac"
+    },
+    "producer/pause-resumed.png": {
+      "path": ".local/atomic-earned-report-01/pause-resumed.png",
+      "bytes": 16618,
+      "sha256": "eb2f7603429ea990fd4176eb2309023c39a31dc48a2948702a124d21666a07ac"
+    },
+    "producer/pause-waiting.png": {
+      "path": ".local/atomic-earned-report-01/pause-waiting.png",
+      "bytes": 16535,
+      "sha256": "8441b4278ddbae400fdb62ce767b3fc5516acd34c55537f7e6cecb11ef77099b"
+    },
+    "producer/quit-no-resumed.png": {
+      "path": ".local/atomic-earned-report-01/quit-no-resumed.png",
+      "bytes": 16618,
+      "sha256": "eb2f7603429ea990fd4176eb2309023c39a31dc48a2948702a124d21666a07ac"
+    },
+    "producer/report-pause.png": {
+      "path": ".local/atomic-earned-report-01/report-pause.png",
+      "bytes": 16535,
+      "sha256": "8441b4278ddbae400fdb62ce767b3fc5516acd34c55537f7e6cecb11ef77099b"
+    },
+    "producer/report-quit.png": {
+      "path": ".local/atomic-earned-report-01/report-quit.png",
+      "bytes": 16585,
+      "sha256": "4a37cd1b953882091695968fe9d5527f686084953aab5d2783460cab4e5d84a9"
+    },
+    "producer/room-10.png": {
+      "path": ".local/atomic-earned-report-01/room-10.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "producer/room-11.png": {
+      "path": ".local/atomic-earned-report-01/room-11.png",
+      "bytes": 43895,
+      "sha256": "8ecaa27d88476f62ee205ed7fb8e1af65895b17047a9313f9ed545b9aa3bf0e8"
+    },
+    "producer/room-12.png": {
+      "path": ".local/atomic-earned-report-01/room-12.png",
+      "bytes": 43141,
+      "sha256": "cc506d9ddff96a021a78e7ddaac84f6cd1a2ea76ae99fb1f7a35f813791bc33c"
+    },
+    "producer/room-13.png": {
+      "path": ".local/atomic-earned-report-01/room-13.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "producer/room-14.png": {
+      "path": ".local/atomic-earned-report-01/room-14.png",
+      "bytes": 42765,
+      "sha256": "0edc1a3aeb5129c8087057d105ae1ef784970722b91f5c5216ec69e9af01c747"
+    },
+    "producer/room-18.png": {
+      "path": ".local/atomic-earned-report-01/room-18.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "producer/room-19.png": {
+      "path": ".local/atomic-earned-report-01/room-19.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "producer/room-26.png": {
+      "path": ".local/atomic-earned-report-01/room-26.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "producer/room-27.png": {
+      "path": ".local/atomic-earned-report-01/room-27.png",
+      "bytes": 41329,
+      "sha256": "aa79312b8822265a12bc53328f88dccc1cb46349de63a5e00fc27eec979d3ca9"
+    },
+    "producer/second-entry.png": {
+      "path": ".local/atomic-earned-report-01/second-entry.png",
+      "bytes": 20365,
+      "sha256": "90a7c78d63da3b8bd308081c89a65010f47766e4a2d0ff0d21a830f9668350eb"
+    },
+    "producer/source-revision.json": {
+      "path": ".local/atomic-earned-report-01/source-revision.json",
+      "bytes": 98287,
+      "sha256": "c28d8a5c5ce2ceae01642ee9e473384b54227efe61932a4446c77bb885677030"
+    },
+    "producer/sources.zip": {
+      "path": ".local/atomic-earned-report-01/sources.zip",
+      "bytes": 2642125,
+      "sha256": "045c4883f698cc1a05afc4c20e022cee623969ecbe5a4b80ef81f5e54be56f1a"
+    },
+    "producer/timeline.json": {
+      "path": ".local/atomic-earned-report-01/timeline.json",
+      "bytes": 2005,
+      "sha256": "29ff629a974bc1dbe71b5baee9c4dedccb0c1b06a0d826222a1b86dbabb8b023"
+    },
+    "producer/unlock.png": {
+      "path": ".local/atomic-earned-report-01/unlock.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    },
+    "consumer/replay.log": {
+      "path": ".local/atomic-earned-report-replay-01/replay.log",
+      "bytes": 141,
+      "sha256": "258816dba32719691001854273fe17f59049d7a3bd33b8e6d39ba602cd45142b"
+    },
+    "consumer/result.json": {
+      "path": ".local/atomic-earned-report-replay-01/result.json",
+      "bytes": 170,
+      "sha256": "a22e876bada0a8127ae1dcf87e6f562d5834fc96b0ffb50604420ba03e89d09f"
+    },
+    "consumer/source-revision.json": {
+      "path": ".local/atomic-earned-report-replay-01/source-revision.json",
+      "bytes": 98287,
+      "sha256": "c28d8a5c5ce2ceae01642ee9e473384b54227efe61932a4446c77bb885677030"
+    },
+    "consumer/sources.zip": {
+      "path": ".local/atomic-earned-report-replay-01/sources.zip",
+      "bytes": 2642125,
+      "sha256": "045c4883f698cc1a05afc4c20e022cee623969ecbe5a4b80ef81f5e54be56f1a"
+    },
+    "success-regression/replay.log": {
+      "path": ".local/atomic-earned-shared-replay-01/replay.log",
+      "bytes": 143,
+      "sha256": "f18abfc7ef70f0727bf02e8ed4af15525117d06a954c65bdd9a1a2d388761e18"
+    },
+    "success-regression/result.json": {
+      "path": ".local/atomic-earned-shared-replay-01/result.json",
+      "bytes": 172,
+      "sha256": "4b78321c3ca761fb6c0c4ac7ba392822d02a831514046865fb527ce30a8ec851"
+    },
+    "success-regression/source-revision.json": {
+      "path": ".local/atomic-earned-shared-replay-01/source-revision.json",
+      "bytes": 98287,
+      "sha256": "c28d8a5c5ce2ceae01642ee9e473384b54227efe61932a4446c77bb885677030"
+    },
+    "success-regression/sources.zip": {
+      "path": ".local/atomic-earned-shared-replay-01/sources.zip",
+      "bytes": 2642125,
+      "sha256": "045c4883f698cc1a05afc4c20e022cee623969ecbe5a4b80ef81f5e54be56f1a"
+    }
+  },
+  "verify": "node scripts/verify-atomic-report-route.js",
+  "repeat": "node scripts/atomic-route.js verify --report --capture=.local/atomic-earned-report-01 --output=.local/atomic-report-replay-FRESH",
+  "limits": [
+    "Muted capture does not exercise live audio completion/waveform",
+    "Guide input boundary remains a separately observed defect",
+    "No new original-emulator report-input capture",
+    "Hard campaigns remain deferred"
+  ]
+}

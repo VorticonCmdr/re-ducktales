@@ -184,7 +184,7 @@
       "sha256": "7bb87c80ba6818bc19bc0b28e55efcea2eba0ef477bb57cbf6d05c57199674ee"
     },
     "receipt-negative-result": {
-      "path": ".local/atomic-input-receipt-negatives-02/result.json",
+      "path": ".local/atomic-input-receipt-negatives-03/result.json",
       "bytes": 251,
       "sha256": "be893b09587504078c65c565769fd8e71c600783fb062e66f3724d5ed3161d86"
     },
@@ -217,6 +217,26 @@
       "path": "scripts/verify-atomic-input-regression.js",
       "bytes": 2817,
       "sha256": "fd3ffb99363bc6a86e60a9fa2416c6a598dd48d72ebd38e9b2a010c7e90cb064"
+    },
+    "historical-receipt-negative-result-02": {
+      "path": ".local/atomic-input-receipt-negatives-02/result.json",
+      "bytes": 251,
+      "sha256": "be893b09587504078c65c565769fd8e71c600783fb062e66f3724d5ed3161d86"
+    },
+    "receipt-negative-current/zero-browser-cases": {
+      "path": ".local/atomic-input-receipt-negatives-03/zero-browser-cases/checker.log",
+      "bytes": 423,
+      "sha256": "edb9dfa1def86622866f33dee3aaa3cfd389034f19abf5a1ba283636635b615d"
+    },
+    "receipt-negative-current/unconsumed-event": {
+      "path": ".local/atomic-input-receipt-negatives-03/unconsumed-event/checker.log",
+      "bytes": 618,
+      "sha256": "2790214114de3b39c4f6d4936b9d63230a0c81801c5e3340fe3989d790b78c24"
+    },
+    "receipt-negative-current/corrupt-result": {
+      "path": ".local/atomic-input-receipt-negatives-03/corrupt-result/checker.log",
+      "bytes": 1285,
+      "sha256": "ad455c921814ac0ece0eb683bb9affbe9cd29e127eb193502f52b04fb87e42d1"
     }
   },
   "verify": "node scripts/verify-atomic-input-regression.js",
@@ -230,8 +250,8 @@
   ],
   "negativeControls": {
     "count": 3,
-    "resultPath": ".local/atomic-input-receipt-negatives-02/result.json",
-    "toolRevision": "Executed script bytes pinned below;these receipt tools were added after the browser consumer archive"
+    "resultPath": ".local/atomic-input-receipt-negatives-03/result.json",
+    "toolRevision": "scripts/atomic-input-regression-negatives.js and current checker at61419ac;historical checker bytes remain separately pinned"
   },
   "receiptSourceScope": "Consumer archives remain immutable. Current-runtime equality covers src/, original build pairing, entry HTML, Vite configs and package/dependency files; historical test tools remain archived, and later receipt tools are separately pinned."
 }

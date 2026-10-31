@@ -3,7 +3,7 @@
 Updated 2026-10-31. **The whole game is incomplete. This is completion work,
 not only fine-tuning.** Hard campaigns remain deferred at the user's request.
 
-## Latest completed behavior: earned atomic travel
+## Latest completed behavior: earned atomic success and misdirection
 
 Source `e8320ce` passes an independent actual-browser route that earns the
 transmitter through Too-Pei cave7, travels from Office to Klondike, collects
@@ -12,10 +12,20 @@ and one omitted-selection negative. P/Q/S cannot interrupt charge. Ten focused
 checks cover the original report-reader boundaries;194 existing unit tests and
 the production build pass. [Atomic input evidence and commands](atomic-input.md).
 
-A separate earned-report browser observation naturally reaches roll0/seed6900,
-redirects to a jungle, and confirms Pause, Quit-No, Fire and Restart. That report
-observation is not independent replay or native whole-game timing acceptance.
-The source proof checks413 original resident bytes.
+Source `61419ac` adds independent earned-misdirection browser acceptance:
+23 exact state/image checkpoints,492 DOM events,Pause/Quit-No/Fire,redirected
+jungle entry and Restart. Two omission negatives fail at atomic selection and
+report Pause. The shared helper also replays the original successful route
+unchanged:18 checkpoints/486 events and its selection negative. The earlier
+report observation remains historical; independent report replay is now complete.
+[Atomic report manifest](../reference/atomic-earned-report.json).
+
+The next confirmed gap is guide-screen input: a browser probe opens Pause one
+driver tick after guide entry while its30-poll countdown is still210. Static
+original code calls shared09f5(30),not immediate system-key dispatch.388 original
+bytes and300 transformed Ghidra bytes are checked. This is not fixed yet, and
+absolute native chapter drawing/input timing remains unverified.
+[Guide investigation and next implementation](guide-input-investigation.md).
 
 Current source `e8320ce` also passes the12-route regression against unchanged
 historical inputs and expected outputs:272 exact browser state/image checkpoints,
@@ -94,8 +104,8 @@ and optional RTC synchronization remain unverified. [Clock contract](bios-clock.
 ## Remaining work and next milestone
 
 - Broader current-runtime destination, difficulty and arbitrary-route finishability
-  coverage remains incomplete. Next: the current transmitter/atomic-transport
-  campaign report independent replay, followed by remaining input/timing gaps.
+  coverage remains incomplete. Next: the expedition
+  guide-screen input-reader contract, followed by remaining dialogue/input/timing gaps.
   Hard remains deferred; its
   longer investigated route loses the second flight race, with the cause unresolved.
 - Native whole-game cadence remains unverified. Drawing-cost models cover selected
@@ -126,10 +136,14 @@ node scripts/verify-atomic-input-source.js
 node --test scripts/atomic-input.test.js
 # Recheck the separately scoped earned-report browser observation:
 node scripts/verify-atomic-report-observation.js
+# Scoped next-guide investigation,not native runtime acceptance:
+node scripts/verify-guide-input-investigation.js
 # Fresh current consumer of immutable earlier campaign/expedition recordings:
 # Requires clean committed source and a fresh ignored output directory.
 node scripts/verify-preserved-routes.js --output=.local/preserved-routes-FRESH
-# Repeat earned-transmitter acceptance with actual browser controls:
+# Repeat earned-report acceptance with actual browser controls:
+node scripts/atomic-route.js verify --report --capture=.local/atomic-earned-report-01 --output=.local/atomic-report-replay-FRESH
+# Repeat earned-transmitter success:
 node scripts/atomic-route.js verify --capture=.local/atomic-earned-browser-01 --output=.local/atomic-replay-FRESH
 # Local development:
 npm run dev
@@ -140,7 +154,9 @@ combined receipt verifier and per-family CLIs retain their original producer-sou
 equality guards. They reject the atomic runtime change before comparing behavior;
 they are historical commands, not current acceptance. The new preserved-route
 consumer validates each producer archive separately and compares unchanged inputs
-and expected outputs against a separately archived current consumer.
+and expected outputs against a separately archived current consumer. Saved receipts
+check current runtime/entry/config/dependency identity while retaining historical
+test-tool archives; fresh executions still guard all loaded scripts/helpers.
 
 Missing/corrupt local artifacts or source history are explicit setup failures.
 Earlier milestones remain in [status history](status-history.md) and subsystem

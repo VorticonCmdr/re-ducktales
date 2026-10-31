@@ -43,3 +43,9 @@ Initial preparation remains synchronous and untimed. Map text loading/parsing,
 initial sprite load ordering,remaining loader/system work and whole-cave timing
 remain incomplete. These ordering fixes do not add a fitted delay or claim full
 entry timing. Full campaign acceptance remains historical and needs refresh.
+
+
+The source-pinned admission01 passes all ten checks at commit
+c6a24b835f2e02d61e4a8ea3ff01ff3abf83922b. [Receipt](../reference/cave-startup-order-admission.json)
+pins its source archive,113 runtime files,ten logs and completed status. The
+earlier counted-loading receipt stays unchanged. Its source is historical.

@@ -3,11 +3,11 @@
 Updated2026-10-31. **The whole game is incomplete.** Cave entry now restores
 both original wipe call sites and the second-page striped reveal,and restores
 the cached room in the normal input loop without extra composition. Focused browser
-and timing checks pass; runtime loading now charges counted resident decode/conversion work.
+and source/component checks pass; runtime loading now charges counted resident decode/conversion work.
 Initial preparation and remaining loader/system work are still omitted.
-The previous counted-loading gate passed nine checks before the startup-order
-correction. The new ten-check gate is pending;220 unit cases and the conditional
-phase-state sequence pass. [Startup scope](cave-startup-order.md).
+The source-pinned ten-check startup/loading gate passes,including220 unit cases,
+actual browser controls and the loading-only negative. Whole-cave timing still
+fails. [Scope](cave-startup-order.md),[receipt](../reference/cave-startup-order-admission.json).
 The last full Standard campaign/replay passed before these cave changes.
 Its strict combined gate now correctly rejects the changed runtime; a fresh
 whole-campaign admission remains required. Hard campaigns remain deferred.

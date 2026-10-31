@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { parseArchive } from "../../src/assets.js";
 import { unpackImage } from "../../src/game/executable.js";
 import { Scheduler } from "../../src/game/scheduler.js";
+import { destinationFixtureClocks } from "./destination-fixture.js";
 import build from "../../reference/build.json" with { type: "json" };
 function supported(name) {
   const bytes = readFileSync(`game/${name}`);
@@ -18,12 +19,14 @@ export const bankResources = {
   entries: parseArchive(supported("MAC.ARC")),
   image: unpackImage(supported("DUCKTALE.EXE")),
 };
+export const bankFixtureClocks = new WeakMap();
 // Conditional environment: hold Fire before the first bank reader and release
 // on return. No idle RNG is consumed. Both clocks advance independently from a
 // declared phase-zero provider; this does not fit original elapsed CPU time.
 export function advanceBankToReturn(game) {
   if (game.scene !== "bank") throw Error("Expected bank entry");
-  const clock = new Scheduler(game);
+  const clock = destinationFixtureClocks.get(game) ?? new Scheduler(game);
+  bankFixtureClocks.set(game, clock);
   let clocks = 0;
   while (game.scene === "bank" && clocks++ < 50000)
     clock.advanceTo(Math.min(clock.tickAt, clock.retraceAt));

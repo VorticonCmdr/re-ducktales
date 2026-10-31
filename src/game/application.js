@@ -17,6 +17,7 @@ import { Jungle } from "./jungle.js";
 import { Photography } from "./photography.js";
 import { ResultInputWait } from "./result-input-wait.js";
 import { AwardPresentation } from "./award-presentation.js";
+import { ReportPresentation } from "./report-presentation.js";
 import { ExpeditionBriefing } from "./expedition.js";
 import { CampaignVisitNotice } from "./campaign-visit.js";
 import { nextRandom, u8, u32, u16 } from "./integer.js";
@@ -92,6 +93,7 @@ export class Game {
     this.briefing = null;
     this.resultWait = null;
     this.resultPresentation = null;
+    this.reportPresentation = null;
     this.repairs = null;
     this.loot = loot;
     this.flightResources = flightResources;
@@ -160,10 +162,12 @@ export class Game {
     this.photography?.setClock(clock);
     this.departureScene?.setClock(clock);
     this.resultPresentation?.setClock(clock);
+    this.reportPresentation?.setClock(clock);
   }
   nextSimulationWake() {
     const component =
-      this.scene === "departure"
+      this.reportPresentation ??
+      (this.scene === "departure"
         ? this.departureScene
         : this.scene === "cave"
           ? this.cave
@@ -175,7 +179,7 @@ export class Game {
                 ? this.resultPresentation
                 : this.scene === "map" && this.destinationInput === "keyboard"
                   ? this.campaign?.destinationWaits
-                  : null;
+                  : null);
     return !this.systemOverlay &&
       ["graphics", "continuation"].includes(component?.wait?.clock)
       ? component.wait.until
@@ -183,7 +187,8 @@ export class Game {
   }
   advanceSimulationWake() {
     const component =
-      this.scene === "departure"
+      this.reportPresentation ??
+      (this.scene === "departure"
         ? this.departureScene
         : this.scene === "cave"
           ? this.cave
@@ -195,13 +200,14 @@ export class Game {
                 ? this.resultPresentation
                 : this.scene === "map" && this.destinationInput === "keyboard"
                   ? this.campaign?.destinationWaits
-                  : null;
+                  : null);
     if (
       this.systemOverlay ||
       !["graphics", "continuation"].includes(component?.wait?.clock)
     )
       throw Error("Unexpected simulation work boundary");
     component.advanceGraphics();
+    if (component instanceof ReportPresentation) return;
     if (this.scene === "departure") this.collectDeparture();
     else if (this.scene === "cave") this.collectCave();
     else if (this.scene === "mountain") this.collectMountain();
@@ -542,6 +548,7 @@ export class Game {
         locations: c.locations,
         loot: this.loot,
         memory: this.flightMemory ?? this.marketMemory,
+        deferReportVariant: true,
       });
       this.seed = c.seed = result.seed;
       if (result.report) {
@@ -556,18 +563,9 @@ export class Game {
           flushInput: () => this.flushRivalInput(),
         });
         this.scene = "rival-report";
-        if (this.audioEnabled)
-          this.effects.push({
-            type: "sound",
-            id: 0x6e,
-            token: this.rivalReport.token,
-          });
-        else if (!this.rivalReport.statusKnown)
-          this.effects.push({
-            type: "audio-query",
-            token: this.rivalReport.token,
-          });
-        this.rivalReport.begin();
+        this.beginReportPresentation(this.rivalReport, {
+          variantPending: true,
+        });
         return;
       }
     }
@@ -844,6 +842,7 @@ export class Game {
       this.pendingInvestmentSystemKeys.clear();
       this.resultWait = null;
       this.resultPresentation = null;
+      this.reportPresentation = null;
       this.repairs = null;
       this.bank = null;
       this.exiting = false;
@@ -1180,18 +1179,7 @@ export class Game {
           flushInput: () => this.flushRivalInput(),
         });
         this.scene = "visit-notice";
-        if (this.visitNotice.reason === "rival" && this.audioEnabled)
-          this.effects.push({
-            type: "sound",
-            id: 0x6e,
-            token: this.visitNotice.token,
-          });
-        else if (!this.visitNotice.statusKnown)
-          this.effects.push({
-            type: "audio-query",
-            token: this.visitNotice.token,
-          });
-        this.visitNotice.begin();
+        this.beginReportPresentation(this.visitNotice);
         return;
       }
       if (days === 0) {
@@ -1375,6 +1363,10 @@ export class Game {
       return;
     }
     if (["rival-report", "rival-claim"].includes(this.scene)) {
+      if (this.reportPresentation?.phase !== "reading") {
+        this.reportPresentation?.advanceTick();
+        return;
+      }
       this.activeRivalDialogue().advanceTick();
       this.collectRivalDialogue();
       return;
@@ -1395,6 +1387,10 @@ export class Game {
       return;
     }
     if (this.scene === "visit-notice") {
+      if (this.reportPresentation?.phase !== "reading") {
+        this.reportPresentation?.advanceTick();
+        return;
+      }
       this.visitNotice.advanceTick();
       this.collectVisitNotice();
       return;
@@ -1453,6 +1449,10 @@ export class Game {
     this.collectEffects();
   }
   advanceRetrace() {
+    if (!this.systemOverlay && this.reportPresentation) {
+      this.reportPresentation.advanceRetrace();
+      return;
+    }
     if (this.systemOverlay) {
       if (this.scene === "title" && this.opening)
         this.opening.advanceBlockedRetrace();
@@ -1580,11 +1580,10 @@ export class Game {
       if (!treasure)
         throw Error("Missing original treasure record for this destination.");
       rival.money = u32(rival.money + treasure.value);
-      this.seed = nextRandom(this.seed);
       c.seed = this.seed;
       this.claim = new RivalReport({
         target: this.departure.target,
-        variant: this.seed & 1,
+        variant: null,
         audioEnabled: this.audioEnabled,
         token: `claim:${++this.audioScope}`,
         queryAudio: !this.audioEnabled && this.hasAudioDevice(),
@@ -1592,11 +1591,7 @@ export class Game {
         flushInput: () => this.flushRivalInput(),
       });
       this.scene = "rival-claim";
-      if (this.audioEnabled)
-        this.effects.push({ type: "sound", id: 0x6e, token: this.claim.token });
-      else if (!this.claim.statusKnown)
-        this.effects.push({ type: "audio-query", token: this.claim.token });
-      this.claim.begin();
+      this.beginReportPresentation(this.claim, { variantPending: true });
       return;
     }
     if (result.code === 0) {
@@ -2317,9 +2312,49 @@ export class Game {
         ? this.claim
         : null;
   }
+  beginReportPresentation(model, { variantPending = false } = {}) {
+    if (this.reportPresentation)
+      throw Error("Report presentation already pending");
+    const visit = this.scene === "visit-notice",
+      speech = !visit || model.reason === "rival";
+    this.reportPresentation = new ReportPresentation({
+      entries: this.expeditionResources?.mainEntries,
+      portrait: visit ? model.portrait : 33,
+      clock: this.simulationClock,
+      flushInput: () => this.flushRivalInput(),
+      portraitReady: () => {
+        if (variantPending) {
+          this.seed = this.campaign.seed = nextRandom(this.seed);
+          model.variant = this.seed & 1; //126b016a/0172,after picture10 returns.
+        }
+        if (speech && this.audioEnabled)
+          this.effects.push({ type: "sound", id: 0x6e, token: model.token });
+      },
+      readerReady: () => {
+        // Query at consumption,not from an earlier cue ACK. Distinct query
+        // tokens reject late sound ACK/completion,including during reveal.
+        if (speech && (this.audioEnabled || this.hasAudioDevice()))
+          model.queryStatus = (token) =>
+            this.effects.push({ type: "audio-query", token });
+        model.begin();
+        if (visit) this.collectVisitNotice();
+        else this.collectRivalDialogue();
+      },
+      exited: () => {
+        this.reportPresentation = null;
+        if (visit) this.finishVisitNotice();
+        else this.finishRivalDialogue();
+      },
+    });
+  }
   resumeVisitAudio() {
     const n = this.scene === "visit-notice" ? this.visitNotice : null;
-    if (!this.systemOverlay && n?.waitingForAudio && n.statusKnown) {
+    if (
+      !this.systemOverlay &&
+      this.reportPresentation?.phase === "reading" &&
+      n?.waitingForAudio &&
+      n.statusKnown
+    ) {
       n.resumeAudioStatus();
       this.collectVisitNotice();
     }
@@ -2327,23 +2362,37 @@ export class Game {
   collectVisitNotice() {
     const n = this.visitNotice;
     if (this.scene !== "visit-notice" || !n?.complete) return;
+    if (this.reportPresentation?.phase !== "reading") return;
+    if (n.skipped && this.audioEnabled)
+      this.effects.push({ type: "sound", id: 0x24 });
+    this.reportPresentation.beginExit();
+  }
+  finishVisitNotice() {
+    const n = this.visitNotice;
+    if (!n?.complete)
+      throw Error("Collected notice exited before reader completion");
     this.pendingRivalSystemKeys.clear();
-    if (this.audioEnabled) {
-      if (n.skipped) this.effects.push({ type: "sound", id: 0x24 });
-      if (n.reason === "rival") this.effects.push({ type: "sound", id: 0 });
-    }
+    if (n.reason === "rival" && this.audioEnabled)
+      this.effects.push({ type: "sound", id: 0 });
     this.visitNotice = null;
     this.completeCampaignAction({ type: "map" });
   }
   flushRivalInput() {
     this.pendingRivalSystemKeys.clear();
+    // Resident19a5 clears the returned caller's shared128-byte native table.
+    (this.flightMemory ?? this.marketMemory)?.bytes.fill(0, 0x276c, 0x27ec);
     this.flushExpeditionKeyboard();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
   }
   resumeRivalAudio() {
     const r = this.activeRivalDialogue();
-    if (!this.systemOverlay && r?.waitingForAudio && r.statusKnown) {
+    if (
+      !this.systemOverlay &&
+      this.reportPresentation?.phase === "reading" &&
+      r?.waitingForAudio &&
+      r.statusKnown
+    ) {
       r.resumeAudioStatus();
       this.collectRivalDialogue();
     }
@@ -2351,9 +2400,15 @@ export class Game {
   collectRivalDialogue() {
     const r = this.activeRivalDialogue();
     if (!r?.complete) return;
-    this.pendingRivalSystemKeys.clear();
+    if (this.reportPresentation?.phase !== "reading") return;
     if (r.skipped && this.audioEnabled)
       this.effects.push({ type: "sound", id: 0x24 });
+    this.reportPresentation.beginExit();
+  }
+  finishRivalDialogue() {
+    const r = this.activeRivalDialogue();
+    if (!r?.complete) throw Error("Rival exited before reader completion");
+    this.pendingRivalSystemKeys.clear();
     if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x21 });
     this.campaign.rival.location = r.target; //126b0322,after all report controls.
     if (this.scene === "rival-report") {
@@ -2624,6 +2679,9 @@ export class Game {
           }
         : {}),
       rivalReport: this.rivalReport?.snapshot() ?? null,
+      ...(this.reportPresentation
+        ? { reportPresentation: this.reportPresentation.snapshot() }
+        : {}),
       ...(this.scene === "rival-claim" ? { claim: this.claim.snapshot() } : {}),
       atomicTransport: this.atomicTransport?.snapshot() ?? null,
       ...(this.pendingMountainSystemKeys.size

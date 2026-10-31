@@ -291,7 +291,63 @@ export class Renderer {
     }
     return this.cache.get(key);
   }
+  renderReportPresentation(game) {
+    const p = game.reportPresentation;
+    if (this.reportSource !== p) {
+      this.reportSource = p;
+      // Last committed visible page is presentation-only,as with office wipes.
+      this.reportIncoming = this.ctx.getImageData(0, 0, 320, 200).data;
+      this.reportBlank = new Uint8ClampedArray(320 * 200 * 4);
+      for (let i = 3; i < this.reportBlank.length; i += 4)
+        this.reportBlank[i] = 255;
+      this.reportTarget = null;
+    }
+    if (
+      !["clearing-page", "initial-wipe", "copying-portrait"].includes(
+        p.phase,
+      ) &&
+      !this.reportTarget
+    ) {
+      const previous = this.ctx,
+        surface = document.createElement("canvas");
+      surface.width = 320;
+      surface.height = 200;
+      this.ctx = surface.getContext("2d", { alpha: false });
+      try {
+        const source = Object.create(game);
+        source.reportPresentation = null;
+        this.renderScene(source);
+        this.reportTarget = this.ctx.getImageData(0, 0, 320, 200).data;
+      } finally {
+        this.ctx = previous;
+      }
+    }
+    let pixels;
+    if (p.phase === "clearing-page") pixels = this.reportIncoming;
+    else if (["copying-portrait", "publishing-exit"].includes(p.phase))
+      pixels = this.reportBlank;
+    else if (p.phase === "publishing") pixels = this.reportTarget;
+    else if (p.transition)
+      pixels = endingTransitionPixels(
+        p.transition,
+        p.phase === "initial-wipe"
+          ? this.reportIncoming
+          : p.phase === "exit-wipe"
+            ? this.reportTarget
+            : this.reportBlank,
+        this.reportTarget ?? this.reportBlank,
+      );
+    else throw Error("Unsupported report presentation " + p.phase);
+    this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
+  }
   renderScene(game) {
+    if (
+      game.reportPresentation &&
+      game.reportPresentation.phase !== "reading"
+    ) {
+      this.renderReportPresentation(game);
+      return;
+    }
     if (game.scene === "office" && game.officeMenu) {
       if (this.officeMenuSource !== game.officeMenu) {
         this.officeMenuSource = game.officeMenu;

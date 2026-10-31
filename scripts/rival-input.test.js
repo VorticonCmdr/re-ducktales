@@ -3,9 +3,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { RivalReport } from "../src/game/rival.js";
 import { originalGame } from "../tests/helpers/original-game.js";
-const ticks = (g, n) => {
-  for (let i = 0; i < n; i++) g.advanceTick();
-};
+import {
+  prepareReportInputFixture,
+  readerTicks as ticks,
+  finishReportInputExit,
+} from "./lib/report-input-fixture.js";
 async function forced(audio = false) {
   const { game: g } = await originalGame();
   // Conditional caller boundary,not a machine checkpoint or independent replay.
@@ -23,6 +25,7 @@ async function forced(audio = false) {
   };
   g.drainEffects();
   g.collectFlight();
+  await prepareReportInputFixture(g, g.claim);
   return { g, r: g.claim };
 }
 test("muted report flushes twice and reads exactly40 times without a final extra read", () => {
@@ -117,6 +120,7 @@ test("forced claim retains origin until report completion and emits no synthetic
   assert.equal(g.scene, "rival-claim");
   assert.equal(g.campaign.rival.location, 0);
   ticks(g, 1);
+  finishReportInputExit(g);
   assert.equal(g.scene, "map");
   assert.equal(g.campaign.rival.location, 32);
   assert.equal(g.campaign.location, 32);
@@ -181,6 +185,7 @@ test("speech Pause resumes its pending keyboard read even if sound ended inside 
   ticks(g, 13);
   assert.equal(g.scene, "rival-claim");
   ticks(g, 1);
+  finishReportInputExit(g);
   assert.equal(g.scene, "map");
   assert.equal(r.wait, null);
   assert.deepEqual(
@@ -205,6 +210,7 @@ test("busy speech reads Quit-No at14 and drops the old Fire without a fallback c
   assert.equal(r.skipped, false);
   g.input({ type: "audio-status", token: r.token, busy: false });
   ticks(g, 14);
+  finishReportInputExit(g);
   assert.equal(g.scene, "map");
   assert.equal(r.wait, null);
   assert.deepEqual(
@@ -228,6 +234,7 @@ test("speech reads Sound on its14-tick boundary and still bypasses the fallback"
   //03be gates requests;the stop/click device still supplies actual completion.
   g.input({ type: "audio-status", token: r.token, busy: false });
   ticks(g, 14);
+  finishReportInputExit(g);
   assert.equal(g.scene, "map");
   assert.equal(r.wait, null);
 });
@@ -244,6 +251,7 @@ test("muted entry never retroactively starts6e;fallback Fire orders24 then21", a
   g.input({ type: "fire" });
   ticks(g, 7);
   assert.equal(r.skipped, true);
+  finishReportInputExit(g);
   assert.deepEqual(
     g.drainEffects().filter((e) => ["sound", "stopAudio"].includes(e.type)),
     [

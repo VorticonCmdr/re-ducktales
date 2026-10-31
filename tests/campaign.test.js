@@ -1,6 +1,7 @@
 import {
   destinationReady,
   confirmDestination,
+  advanceFixtureUntil,
 } from "./helpers/destination-fixture.js";
 import {
   bankResources,
@@ -145,12 +146,10 @@ test("invalid resources and unsupported journeys fail explicitly", () => {
   assert.equal(g.scene, "departure");
   g.input({ type: "fire" }); // No source reader exists in the briefing.
   assert.equal(g.scene, "departure");
-  assert.throws(() => {
-    for (let i = 0; i < 200; i++) {
-      g.advanceTick();
-      g.advanceRetrace();
-    }
-  }, /Flight resources not loaded/);
+  assert.throws(
+    () => advanceFixtureUntil(g, () => g.scene !== "departure"),
+    /Flight resources not loaded/,
+  );
   assert.equal(g.campaign.day, 1);
   g.campaign.day = 28;
   g.travel(0);

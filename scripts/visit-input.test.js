@@ -4,9 +4,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { originalGame } from "../tests/helpers/original-game.js";
 import { CampaignVisitNotice } from "../src/game/campaign-visit.js";
-const ticks = (g, n) => {
-  for (let i = 0; i < n; i++) g.advanceTick();
-};
+import {
+  prepareReportInputFixture,
+  readerTicks as ticks,
+  finishReportInputExit,
+} from "./lib/report-input-fixture.js";
 async function fixture(reason, audio = false) {
   const { game: g } = await originalGame();
   g.securityPending = false;
@@ -16,6 +18,7 @@ async function fixture(reason, audio = false) {
   ] = true;
   g.drainEffects();
   g.travel(1);
+  await prepareReportInputFixture(g, g.visitNotice);
   return { g, n: g.visitNotice };
 }
 for (const [reason, count] of [
@@ -74,6 +77,7 @@ for (const [reason, count] of [
     assert.equal(n.complete, false);
     g.input({ type: "fire" });
     ticks(g, 7);
+    finishReportInputExit(g);
     assert.equal(g.scene, "map");
   });
   test(
@@ -85,6 +89,7 @@ for (const [reason, count] of [
       g.drainEffects();
       g.input({ type: "fire" });
       ticks(g, 7);
+      finishReportInputExit(g);
       assert.equal(g.scene, "map");
       const effects = g.drainEffects();
       assert.equal(
@@ -117,6 +122,7 @@ test("rival waits for actual status, then reads every seven ticks and resumes be
   ticks(g, 6);
   assert.equal(g.scene, "visit-notice");
   ticks(g, 1);
+  finishReportInputExit(g);
   assert.equal(g.scene, "map");
 });
 test("muted rival notices query an existing device and do not fabricate idle on mute", async () => {
@@ -127,10 +133,11 @@ test("muted rival notices query an existing device and do not fabricate idle on 
   g.drainEffects();
   g.travel(1);
   const n = g.visitNotice;
+  await prepareReportInputFixture(g, n);
   assert.ok(
     g
       .drainEffects()
-      .some((e) => e.type === "audio-query" && e.token === n.token),
+      .some((e) => e.type === "audio-query" && e.token === n.statusToken),
   );
   g.input({ type: "audio-status", token: n.token, busy: true });
   g.input({ type: "audio-enabled", enabled: false });
@@ -139,5 +146,6 @@ test("muted rival notices query an existing device and do not fabricate idle on 
   assert.equal(n.complete, false);
   g.input({ type: "audio-status", token: n.token, busy: false });
   ticks(g, 7);
+  finishReportInputExit(g);
   assert.equal(g.scene, "map");
 });

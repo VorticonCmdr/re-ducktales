@@ -1,6 +1,7 @@
 import {
   destinationReady,
   confirmDestination,
+  advanceFixtureUntil,
 } from "./helpers/destination-fixture.js";
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -84,12 +85,10 @@ test("inspection and cancellation do not consume RNG; confirming preserves cash/
   g.input({ type: "fire" }); // No source reader exists in the briefing.
   assert.equal(g.scene, "departure");
   assert.deepEqual(g.snapshot(), prepared);
-  assert.throws(() => {
-    for (let i = 0; i < 200; i++) {
-      g.advanceTick();
-      g.advanceRetrace();
-    }
-  }, /Flight resources not loaded/);
+  assert.throws(
+    () => advanceFixtureUntil(g, () => g.scene !== "departure"),
+    /Flight resources not loaded/,
+  );
   g.input({ type: "restart" });
   assert.equal(g.departure, null);
   assert.equal(g.seed, seed);

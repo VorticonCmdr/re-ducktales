@@ -22,17 +22,22 @@ export class RivalReport {
     token,
     pollInput = () => true,
     flushInput = () => {},
+    queryStatus = null,
   }) {
     if (
       typeof audioEnabled !== "boolean" ||
       typeof queryAudio !== "boolean" ||
       typeof pollInput !== "function" ||
-      typeof flushInput !== "function"
+      typeof flushInput !== "function" ||
+      (queryStatus !== null && typeof queryStatus !== "function")
     )
       throw Error("Invalid rival input environment");
     Object.assign(this, { target, variant, audioEnabled, token, pollInput });
     if (name !== undefined) this.name = name;
     this.onFlushInput = flushInput;
+    this.queryStatus = queryStatus;
+    this.statusSequence = 0;
+    this.statusToken = null;
     this.busy = audioEnabled || queryAudio ? null : false;
     this.statusKnown = !audioEnabled && !queryAudio;
     this.waitingForAudio = false;
@@ -51,7 +56,8 @@ export class RivalReport {
     this.audioEnabled = enabled;
   }
   setAudioStatus(token, busy) {
-    if (token !== this.token) return;
+    if (this.queryStatus && this.statusToken === null) return;
+    if (token !== (this.queryStatus ? this.statusToken : this.token)) return;
     if (typeof busy !== "boolean") throw Error("Invalid rival audio status");
     // Enabled gates new calls,not the global driver-status query126b0297.
     this.busy = busy;
@@ -71,11 +77,18 @@ export class RivalReport {
     }
   }
   readSpeech() {
+    if (this.queryStatus && !this.statusToken) {
+      this.statusToken = `${this.token}:status:${++this.statusSequence}`;
+      this.statusKnown = false;
+      this.waitingForAudio = true;
+      this.queryStatus(this.statusToken);
+    }
     if (!this.statusKnown) {
       this.waitingForAudio = true;
       return;
     }
     this.waitingForAudio = false;
+    this.statusToken = null;
     if (!this.busy) {
       if (this.polledBusy) this.complete = true;
       else {
@@ -89,7 +102,10 @@ export class RivalReport {
         this.wait.begin();
         this.complete = this.wait.complete;
       }
-    } else this.readSpeechInput();
+    } else {
+      this.phase = "speech";
+      this.readSpeechInput();
+    }
   }
   readSpeechInput() {
     const ready = this.pollInput(); //1124:0002 also handles P/Q/S here.
@@ -213,7 +229,10 @@ export function advanceRival({
   loot,
   forcedTarget = null,
   memory = null,
+  deferReportVariant = false,
 }) {
+  if (typeof deferReportVariant !== "boolean")
+    throw Error("Invalid rival variant boundary");
   seed = u16(seed);
   if (
     forcedTarget === null &&
@@ -263,7 +282,8 @@ export function advanceRival({
       }
       rival.money = u32(rival.money + value);
       report = {
-        variant: random() & 1,
+        variant: deferReportVariant ? null : random() & 1,
+        ...(deferReportVariant ? { variantPending: true } : {}),
         target,
         value,
         ...(name !== undefined ? { name } : {}),

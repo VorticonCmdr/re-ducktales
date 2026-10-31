@@ -153,7 +153,18 @@ if (awardCount === 7) {
     "reference/bank-copy-pixels.json",
   );
 }
-for (const [script, args] of [
+if (record.requiredNativeCaveEvidence !== undefined) {
+  assert.equal(record.requiredNativeCaveEvidence, true);
+  assert.equal(record.artifacts.cavePassageParameters?.path, "reference/cave-passage-parameters.json");
+  assert.equal(record.artifacts.caveTreasurePixels?.path, "reference/cave-treasure-pixels.json");
+  const native = spawnSync("python3", ["scripts/verify_cave_treasure_observation.py"], {
+    encoding: "utf8", env: { ...process.env, PYTHONDONTWRITEBYTECODE: "1" },
+  });
+  assert.equal(native.status, 0, native.stdout + native.stderr);
+  assert.match(native.stdout, /7 natural room moves\/28 consumed physical events,14 reader calls,6 phase\/RNG checkpoints/);
+  process.stdout.write(native.stdout);
+}
+for (const [script, args, required] of [
   [
     "verify-current-winning-awards",
     ["--manifest=" + record.artifacts.awards.path],
@@ -162,6 +173,11 @@ for (const [script, args] of [
   ["verify-ending", []],
   ["verify-credits", []],
   ...(record.artifacts.bankPixels ? [["verify-bank-copy-pixels", []]] : []),
+  ...(record.requiredNativeCaveEvidence ? [
+    ["verify-cave-passage-poses", [], /8 actual coroutine paths/],
+    ["compare-cave-treasure-observation", [], /"readerCheckpoints":14/],
+    ["verify-cave-treasure-pixels", [], /all64000 pixels\/256000 RGBA bytes exact/],
+  ] : []),
 ]) {
   const r = spawnSync(
     process.execPath,
@@ -169,6 +185,7 @@ for (const [script, args] of [
     { encoding: "utf8" },
   );
   assert.equal(r.status, 0, r.stdout + r.stderr);
+  if (required) assert.match(r.stdout, required, "Missing required cave result:" + script);
   process.stdout.write(r.stdout);
 }
 if (record.expectedUnitCases !== undefined) {
@@ -193,5 +210,5 @@ if (record.expectedUnitCases !== undefined) {
   assert.equal(build.status, 0, build.stdout + build.stderr);
 }
 console.log(
-  `Current Standard winning browser acceptance:${checks.length} exact state/image checkpoints,${events.length} independent DOM events,${awardCount} earned awards/${awardCount * 15} row groups,all26 credits/closed/Restart;one input negative and3 setup negatives${record.expectedUnitCases ? `,${record.expectedUnitCases} units and build` : ""}. Not native whole-campaign timing/audio parity or arbitrary-route completion.`,
+  `Current Standard winning browser acceptance:${checks.length} exact state/image checkpoints,${events.length} independent DOM events,${awardCount} earned awards/${awardCount * 15} row groups,all26 credits/closed/Restart;one input negative and3 setup negatives${record.expectedUnitCases ? `,${record.expectedUnitCases} units and build` : ""}. ${record.requiredNativeCaveEvidence ? "Conditional native cave pose/state/image checks also pass." : ""} Not native whole-campaign timing/audio parity or arbitrary-route completion.`,
 );

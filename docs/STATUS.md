@@ -29,12 +29,14 @@ Down/Up/Left exit poses match original caller bytes and a carried native state
 comparison. [Parameters](cave-passage-parameters.md). The expanded18-check gate passes on sourceda9637f,including the actual browser
 route,221 units,negative controls and build. [Receipt](../reference/cave-passage-poses-admission.json).
 
-Producer `.local/cave-treasure-winning-browser-01` completed on sourcee59dd00:
-183 checkpoints/7261 inputs,victory34650 to28500,all26 credits and Restart.
-It remains historical and unaccepted because the new native comparison exposed
-passage pose/torch attachment differences before independent replay. A corrected
-producer and independent replay remain required. The new corrected candidate is
-`.local/cave-passage-poses-winning-browser-01`;completion/replay are pending.
+Corrected producer `.local/cave-passage-poses-winning-browser-01` completed on
+source2a63b64:183 checkpoints/7261 inputs,victory34650 to28500,all26 credits and
+Restart. Jungle and both mountain awards retain3 lives. Its seven awards pass105
+exact stripe groups against independent retained/source-composed targets;all
+three setup negatives reject. [Candidate](../reference/cave-passage-poses-winning-route.json).
+The independent consumer `.local/cave-passage-poses-winning-replay-01` is the next
+required run;this capture does not accept itself. Earlier e59dd00 remains
+historical because it predates the passage-parameter correction.
 
 A separate fixed1770 native image check now matches all64000 pixels/256000 RGBA
 bytes of the completed first treasure reveal,with altered-pixel/missing-checkpoint

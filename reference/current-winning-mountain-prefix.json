@@ -1,0 +1,47 @@
+{
+  "kind": "current-winning-valid-prefix",
+  "producer": ".local/current-winning-browser-02",
+  "expectedCheckpointCount": 79,
+  "requiredEventCount": 5031,
+  "lastCheckpoint": "mountain-map",
+  "lastAt": 465805,
+  "artifacts": {
+    "checkpoints": {
+      "path": ".local/current-winning-browser-02/campaign-checkpoints.json",
+      "bytes": 721993,
+      "sha256": "21bce52efd648782fab18d8bba0b7b08309c0add810f6a8d76b2e92a2a10fa8e"
+    },
+    "events": {
+      "path": ".local/current-winning-browser-02/captured-events.json",
+      "bytes": 660969,
+      "sha256": "5928236d33f9418b70615e98b7dcb945af5fbfe7f415b629b0f999ba0c213b2b"
+    },
+    "environment": {
+      "path": ".local/current-winning-browser-02/environment.json",
+      "bytes": 239,
+      "sha256": "3bc78ab58b567bc3296f7c583fa215e8b1549ab6aa1cdcef27cf212eec465ed4"
+    },
+    "timeline": {
+      "path": ".local/current-winning-browser-02/timeline.json",
+      "bytes": 7437,
+      "sha256": "1935469a79db4a82e56968463231bafce75e51a8dc097d3c360f7a652ef14a38"
+    },
+    "status": {
+      "path": ".local/current-winning-browser-02/exploration-status.json",
+      "bytes": 130,
+      "sha256": "c98746433a15798bd3defdbcc85d835275618a511a7b2a9eda16df405a79ee39"
+    },
+    "source": {
+      "path": ".local/current-winning-browser-02/source-revision.json",
+      "bytes": 114251,
+      "sha256": "0fc5efb88f7ed1e26ad32fc69e2b8d17cfe6b7fb51f9b9c7a4fd8a66a732914c"
+    },
+    "archive": {
+      "path": ".local/current-winning-browser-02/sources.zip",
+      "bytes": 2948952,
+      "sha256": "e9bb3925e4e9e0efdb99b22a18699e1be3ad83983f95d5961997e9147a7a5bed"
+    }
+  },
+  "scope": "Fresh startup DOM replay through the valid mountain-map boundary. The later Atlantis flight crash is an excluded failed controller tail. Every prefix state/decoded-RGBA and input must match;no state restore or injection.",
+  "nativeComparison": false
+}

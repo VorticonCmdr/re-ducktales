@@ -7,6 +7,7 @@ import {
   fresh,
   archiveSource,
   checkSource,
+  json,
 } from "./lib/local-scenario-source.js";
 import { originalGame } from "../tests/helpers/original-game.js";
 import { finishSecurityEntry } from "../tests/browser/helpers/security.js";
@@ -379,6 +380,9 @@ try {
           root,
           locations: original.game.campaign.locations,
           afterJungle: !!prefixManifest,
+          afterMountain:
+            prefixManifest &&
+            (await json(prefixManifest)).lastCheckpoint === "mountain-map",
         });
         await writeFile(
           root + "/award-presentations.json",

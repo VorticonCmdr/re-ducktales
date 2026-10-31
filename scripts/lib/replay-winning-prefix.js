@@ -9,7 +9,7 @@ import { recordedDOMInput } from "../../tests/browser/helpers/recorded-dom-input
 import { observeRecordedRoute } from "../../tests/browser/helpers/entry-recording.js";
 
 // Fresh title replay,not a checkpoint restore. The declared valid prefix ends
-// before the failed player's mountain attempt;its tail is never accepted.
+// at the manifest's declared valid route boundary;its failed tail is not used.
 export async function replayWinningPrefix({ page, state, points, manifest }) {
   const m = await json(manifest);
   assert.equal(m.kind, "current-winning-valid-prefix");
@@ -23,7 +23,9 @@ export async function replayWinningPrefix({ page, state, points, manifest }) {
     checks = all.slice(0, m.expectedCheckpointCount);
   assert.ok(checks.length > 0 && m.requiredEventCount > 0);
   assert.equal(checks.length, m.expectedCheckpointCount);
-  assert.equal(checks.at(-1).name, "jungle-map");
+  assert.ok(["jungle-map", "mountain-map"].includes(m.lastCheckpoint));
+  assert.equal(checks.at(-1).name, m.lastCheckpoint);
+  assert.equal(checks.at(-1).at, m.lastAt);
   assert.equal(checks.at(-1).eventCount, m.requiredEventCount);
   let now = 1,
     consumed = 0;

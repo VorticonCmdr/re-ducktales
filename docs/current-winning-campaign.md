@@ -48,3 +48,22 @@ is restored from the checkpoint, and the failed later input tail is not accepted
 ```sh
 node scripts/standard-wages-explore.js --winning --prefix=reference/current-winning-prefix.json --output=.local/current-winning-next-FRESH
 ```
+
+The second exploration matched that54-checkpoint prefix and completed the
+correct671-read mountain climb with3 lives and its2000 reward. The following
+Atlantis flight crashed after its controller waited for speed4 before recovering
+from collisions. This is a failed player strategy,not an accepted full campaign
+or evidence of a mechanics defect. Its valid79-checkpoint/5031-input prefix ends
+at `mountain-map`;the failed flight tail is excluded by
+`reference/current-winning-mountain-prefix.json`.
+
+A focused conditional input replay reached Atlantis when its pilot recovers
+steering at speed1. The game mechanics,flight RNG and timing are unchanged.
+`.local/atlantis-pilot-01/result.json` records that candidate at source `ed6ffb2`;
+this simulation evidence still requires actual browser exploration and a separate
+strict browser replay. The next explorer uses that controller only for Atlantis.
+
+```sh
+node scripts/plan-winning-flight.js --capture=.local/current-winning-browser-02 --through=departure-9 --diagnose --minimum-turn-speed=1 --output=.local/atlantis-pilot-FRESH
+node scripts/standard-wages-explore.js --winning --prefix=reference/current-winning-mountain-prefix.json --output=.local/current-winning-next-FRESH
+```

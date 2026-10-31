@@ -17,6 +17,7 @@ export async function continueWinningCampaign({
   root,
   locations,
   afterJungle = false,
+  afterMountain = false,
 }) {
   async function confirmTarget(id, x, y) {
     await until(
@@ -59,7 +60,13 @@ export async function continueWinningCampaign({
       page,
       state,
       until,
-      policy: { altitude: [25, 40], climbHeading: 3 },
+      policy: {
+        altitude: [25, 40],
+        climbHeading: 3,
+        // Real controller choice:recover turns at low speed after collisions.
+        // Independently replayed conditional flight experiment at Atlantis.
+        ...(id === 9 ? { minimumTurnSpeed: 1 } : {}),
+      },
     });
     await writeFile(
       root + "/flight-" + id + ".json",
@@ -133,7 +140,7 @@ export async function continueWinningCampaign({
     assert.equal((await state()).scene, "map");
     await observe(activity + "-map");
   }
-  if (!afterJungle) {
+  if (!afterJungle && !afterMountain) {
     await depart(28, 264, 129);
     await until((s) => s.scene === "jungle");
     await observe("jungle-entry");
@@ -142,21 +149,23 @@ export async function continueWinningCampaign({
     );
     await play("jungle", jungle.stream);
   }
-  await depart(19, 158, 124);
-  await until((s) => s.scene === "mountain");
-  await observe("mountain-entry");
-  const mountain = JSON.parse(
-    await readFile("reference/hard-campaign-inputs.json"),
-  ).mountain;
-  const mountainInputs = mountain.inputEvents.flatMap((e) =>
-    Array(e.count).fill(e.byte),
-  );
-  assert.equal(
-    mountainInputs.length,
-    671,
-    "Wrong previously successful Standard climbing recipe",
-  );
-  await play("mountain", mountainInputs);
+  if (!afterMountain) {
+    await depart(19, 158, 124);
+    await until((s) => s.scene === "mountain");
+    await observe("mountain-entry");
+    const mountain = JSON.parse(
+      await readFile("reference/hard-campaign-inputs.json"),
+    ).mountain;
+    const mountainInputs = mountain.inputEvents.flatMap((e) =>
+      Array(e.count).fill(e.byte),
+    );
+    assert.equal(
+      mountainInputs.length,
+      671,
+      "Wrong previously successful Standard climbing recipe",
+    );
+    await play("mountain", mountainInputs);
+  }
 
   for (const id of [9, 30, 21]) {
     // Original resource geometry in the declared BIOS0 startup permutation.

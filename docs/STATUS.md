@@ -70,7 +70,8 @@ the original Main01e0 cleanup(1201 verified bytes/45 relocations),not an image
 exclusion. A fresh129-checkpoint/6511-input startup-to-bank25 replay is pending.
 The subsequent campaign strategy lost normally,27050 to36000 on day31;it is not
 a current winning receipt. An extra Novay mountain is the next conditional
-winning strategy. Runtime is still357d83f;these changes affect player/verification
+winning strategy;its first conditional494-read climbing attempt failed,so its
+controls still need work. Runtime is still357d83f;these changes affect player/verification
 tools and source evidence.
 [Current experiment recipe](current-winning-campaign.md).
 
@@ -79,6 +80,16 @@ The next report-presentation restoration has a new strict1238-byte source check
 It confirms the shared portrait entry wipe,rival6e before reveal/input flush,
 and21 after exit wipe. These report transitions remain unimplemented.
 [Source evidence and remaining work](report-presentations.md).
+
+An isolated implementation now exists at `codex/report-presentations` commit
+`1fea110`,based on7579426,checkout `/private/tmp/ducktales-report-presentations`.
+Its `ReportPresentation` engine passes4 original-resource conditional checks:
+copy/helper flush/cue before reveal,reader after50 retraces,external-reader exit
+and caller after75 total retraces,clock separation and invalid operations.
+It is not integrated into Game/rendering or browser accepted. Keep current replay
+source frozen;after the replay is terminal,continue integration and merge verified
+changes. Entry audio/status and deferred post-helper variant RNG require the
+explicit source ordering recorded in that checkout's implementation document.
 
 Original movement cadence remains an open fidelity issue across expeditions.
 Graphics work is modeled, but uninterrupted native whole-game timing, reveal
@@ -114,11 +125,14 @@ node scripts/verify-award-presentation-acceptance.js
 node scripts/verify-award-presentation-negative.js
 node scripts/verify-award-presentation-source.js
 node scripts/verify-report-presentation-source.js
+node scripts/verify-jungle-award-exit-source.js
+node scripts/verify-current-winning-awards.js --manifest=reference/current-earned-awards.json
 node --test tests/award-presentation.test.js scripts/result-input.test.js
 npm test
 npm run build
 # Fresh exact browser regressions; clean committed source and new ignored outputs:
 node scripts/verify-cave-failure-input-browser.js --output=.local/failure-FRESH
+node scripts/verify-current-earned-route.js --output=.local/current-earned-replay-FRESH
 node scripts/award-route.js --device=muted --output=.local/award-muted-FRESH
 node scripts/award-route.js --verify --capture=.local/award-muted-FRESH --output=.local/award-replay-FRESH
 # Fresh real device cases; repeat each device with enabled and muted:

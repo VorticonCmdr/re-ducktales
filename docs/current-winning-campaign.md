@@ -105,3 +105,12 @@ actual outcomes must be observed instead of fitted.
 ```sh
 node scripts/plan-novay-finish.js --capture=.local/current-winning-browser-03 --through=dialogue-127 --diagnose --output=.local/novay-finish-plan-FRESH
 ```
+
+The first Novay candidate landed successfully,but its494-read climbing recipe
+failed. Its last retained input observation has1 life remaining;the subsequent
+no-input continuation returned code0 and the script exited nonzero. The final
+failure state was not retained,so this remains exploratory evidence. The recipe
+was already known to work in other difficulty/seed contexts;it is not a universal
+climbing controller. `reference/novay-finish-investigation.json` pins the failed
+candidate without accepting it. No gameplay change or easier difficulty was
+substituted to force this strategy to pass.

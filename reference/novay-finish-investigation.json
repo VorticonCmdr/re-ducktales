@@ -1,0 +1,62 @@
+{
+  "kind": "failed-conditional-novay-player-investigation",
+  "producer": ".local/novay-finish-plan-01",
+  "captureToolRevision": "757942694057fd156cdcd7e63bfcc608567f7258",
+  "accepted": false,
+  "nativeComparison": false,
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "startingRecipe": "Independently execute startup controls from current-winning-browser-03 through dialogue-127,then settle the rival report,fly to Novay and submit494 authored layout1 climbing reads. No checkpoint restore or state/clock/RNG/money injection.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "audioEnabled": false,
+    "difficulty": 1
+  },
+  "requiredCandidateEventCount": 736,
+  "expectedObservationCount": 16,
+  "observedLimit": "Flight landed and494 climbing inputs completed. The last recorded input checkpoint has1 life remaining and no outcome;the subsequent no-input continuation returned failure(code0),causing a nonzero assertion exit. The final failure state is not retained,so this is exploratory failure evidence,not strict outcome acceptance.",
+  "comparison": {
+    "scope": "Diagnostic startup replay and controller observations only",
+    "exclusions": []
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "artifacts": {
+    "checkpoints.json": {
+      "path": ".local/novay-finish-plan-01/checkpoints.json",
+      "bytes": 182982,
+      "sha256": "775b8d79c7cbeed1a21746c723db6570881ee683faa084bd6e5aab9cd87cbc5d"
+    },
+    "controls.json": {
+      "path": ".local/novay-finish-plan-01/controls.json",
+      "bytes": 68797,
+      "sha256": "5f2d511dd1ba711a1dd7ae7da9cae7734e687a6ec59d24b84e89c2acf6cdcb86"
+    },
+    "flight-10.json": {
+      "path": ".local/novay-finish-plan-01/flight-10.json",
+      "bytes": 149152,
+      "sha256": "d0ff2215b62653b4045500f3847b180250842d53ad63bf6a9db8023219ecaf42"
+    },
+    "result.json": {
+      "path": ".local/novay-finish-plan-01/result.json",
+      "bytes": 75,
+      "sha256": "18c2359a83b34e571651509276657ac104810b04e15fcb5cbe735a2c4c9ddd41"
+    },
+    "source-revision.json": {
+      "path": ".local/novay-finish-plan-01/source-revision.json",
+      "bytes": 115953,
+      "sha256": "466dff20c2f7c8ddecc44ee7345b056f4909026674b2eda177189bff6e42d1ad"
+    },
+    "sources.zip": {
+      "path": ".local/novay-finish-plan-01/sources.zip",
+      "bytes": 2975500,
+      "sha256": "2fe5b243e908bc59f284d9b9acda6b9b134ef1df4750c778a598dfd646b31b6e"
+    }
+  },
+  "explore": "node scripts/plan-novay-finish.js --capture=.local/current-winning-browser-03 --through=dialogue-127 --diagnose --output=.local/novay-finish-plan-FRESH"
+}

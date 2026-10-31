@@ -1,0 +1,44 @@
+{
+  "kind": "safari-flight-fpu-source-sites",
+  "program": "FLIGHT_TRANSLATION.EXE",
+  "originalFunction": [
+    11168,
+    11512
+  ],
+  "ghidraFunction": "1ed1:0000..0157",
+  "sourceBytes": 344,
+  "expectedExtraSites": 8,
+  "extraSites": [
+    "2c7e",
+    "2c82",
+    "2c86",
+    "2c8b",
+    "2ca6",
+    "2cab",
+    "2caf",
+    "2cb4"
+  ],
+  "baseManifest": {
+    "path": "reference/flight-input.json",
+    "bytes": 8530,
+    "sha256": "118387a642cbc2832414d959a33e8fa724973b6ad026e723fc814e9481af31b6"
+  },
+  "artifacts": {
+    "instructions": {
+      "path": ".local/safari-cadence-fpu-source-01/instructions.json",
+      "bytes": 8821,
+      "sha256": "ffa34a20a6ac3ea874ccb55cc6ef0cd565830ba21dff132187b21740abdf8132"
+    },
+    "bytes": {
+      "path": ".local/safari-cadence-fpu-source-01/bytes.json",
+      "bytes": 2005,
+      "sha256": "807614f307ee61f234575f59bb32ccc86bc325cd254cef65c0626515107502fd"
+    },
+    "analysisPreparation": {
+      "path": ".local/analysis/flight-analysis-patches.json",
+      "bytes": 28451,
+      "sha256": "a6245f2e7e874bf4949ea9457eeb98233c8c764666344665e5998d99a9d2da1b"
+    }
+  },
+  "scope": "Eight additional original instruction-boundary FPU escapes in flight2ba0. Entire344-byte prepared function matches original after exact loader relocations and declared analysis transformations. Runtime allows only original or exact unchanged-handler rewrites;no operand exclusion."
+}

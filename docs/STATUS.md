@@ -18,6 +18,15 @@ HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 
 ## Latest completed behavior and current acceptance
 
+Current work:`3c3a481` restores broker confirmation50,its Pause/Quit-No reader,
+conditional sound24,and unread final-wait keys reaching the office first reader.
+194 units,111 input/audio boundaries and the original investment segments pass.
+Fresh browser and winning-campaign consumers are running;the broker milestone
+is not yet accepted. [Broker behavior and scope](broker-input.md).
+
+The completed notice acceptance below belongs to `a978a14`;its runtime guard
+intentionally rejects the newer broker runtime until fresh evidence is accepted.
+
 Collected-location notices now use the original input readers:player80,
 rival status/input loop7 and fallback40;Pause/Quit-No continuation;actual device
 status after mute;conditional clicks and rival-only exit stop. Runtime:`a978a14`.
@@ -71,9 +80,9 @@ winning browser route pass. [Repair evidence](repair-input.md),
 | Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei/7,Atlantis/3,Klondike/0,Siberia/4 treasures |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:restore the broker confirmation reader. Broker overlay10's50-read wait and conditional
-click are verified against42 original/prepared/Ghidra bytes;implementation is
-pending. Continue broader gameplay/input coverage afterward.
+Next:complete broker confirmation and late-key handoff acceptance. Its reader
+and return are checked against105 original/prepared/Ghidra bytes. Continue
+broader gameplay/input coverage afterward.
 Cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
 arbitrary-route finishability remain incomplete. Hard is deferred;its earlier
@@ -108,7 +117,10 @@ contain actual game code with documented transformations and are never run.
 
 ```sh
 # Validate saved current-runtime acceptance and source:
-node scripts/verify-visit-input-acceptance.js
+node scripts/verify-broker-input-source.js
+node --test scripts/broker-input.test.js
+# Last completed notice milestone(saved runtime guard rejects newer broker code):
+# node scripts/verify-visit-input-acceptance.js
 node scripts/verify-visit-input-source.js
 node scripts/verify-broker-input-source.js
 node --test scripts/visit-input.test.js tests/visits.test.js

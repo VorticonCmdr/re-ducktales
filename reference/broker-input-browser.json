@@ -5,7 +5,7 @@
     "bytes": 3003,
     "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
   },
-  "scope": "Easy startup/earned coin/buy one share/broker Fire or timeout/Pause/Quit-No/fresh input/office/persistent share/no-trade exit/Restart. Exact public-state/decoded RGBA port regression,not native timing.",
+  "scope": "Easy startup/earned coin/buy one share/broker Fire or timeout/Pause/Quit-No/fresh input/office/persistent share/no-trade exit/Restart. Exact public-state/decoded RGBA port regression,not native timing. Includes final-wait P carried into the no-flush office first reader;three input-removal negatives required.",
   "environment": {
     "biosSeed": 0,
     "clockOrigin": 1,
@@ -228,6 +228,74 @@
           "path": ".local/broker-timeout-controls-01/resumed.png",
           "bytes": 13828,
           "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        }
+      }
+    },
+    {
+      "key": "late-pause",
+      "producer": ".local/broker-late-after-01",
+      "checkpoints": 5,
+      "events": 40,
+      "artifacts": {
+        "source-revision": {
+          "path": ".local/broker-late-after-01/source-revision.json",
+          "bytes": 110255,
+          "sha256": "d4b6e851bb7352a8d7cf11f1d5f610e9d6a697b68669c362844be033ecf5c403"
+        },
+        "sources.zip": {
+          "path": ".local/broker-late-after-01/sources.zip",
+          "bytes": 2873137,
+          "sha256": "28182fef3943b7c90c18ad5f073085d0bef4f74a7d011f39c591b83047fcad44"
+        },
+        "environment": {
+          "path": ".local/broker-late-after-01/environment.json",
+          "bytes": 273,
+          "sha256": "6441a0b4410e777d1a9cdbafd2035af9105fd03a2bd4dcd949813f36104e4836"
+        },
+        "captured-events": {
+          "path": ".local/broker-late-after-01/captured-events.json",
+          "bytes": 4815,
+          "sha256": "90e7c5de1c02e6fa0e9145707a819314f628a7e40caec6d3591e01ed0cc55e89"
+        },
+        "campaign-checkpoints": {
+          "path": ".local/broker-late-after-01/campaign-checkpoints.json",
+          "bytes": 17143,
+          "sha256": "f79ceec073cd83056a836ea48e868eca3be29f3f809742e1a2848b9d74dec607"
+        },
+        "timeline": {
+          "path": ".local/broker-late-after-01/timeline.json",
+          "bytes": 510,
+          "sha256": "9592c2cafa87a3a68e3081ecf43d8076bb5fa195f9d511214ddf6fab47de7531"
+        },
+        "capture-status": {
+          "path": ".local/broker-late-after-01/capture-status.json",
+          "bytes": 282,
+          "sha256": "02bb58942c73b86f6d168380ec27aa1d781027e98e76cd5bde87b69bb8622693"
+        },
+        "final-wait.png": {
+          "path": ".local/broker-late-after-01/final-wait.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "first-office-read.png": {
+          "path": ".local/broker-late-after-01/first-office-read.png",
+          "bytes": 31911,
+          "sha256": "4056dd4baf9775b8109e6bbfdceb2989a6241d356bd0eb08d223275d9c703574"
+        },
+        "office-entry.png": {
+          "path": ".local/broker-late-after-01/office-entry.png",
+          "bytes": 14899,
+          "sha256": "789d9dbc577554db7b1f6b52b6c452d50dea2d00c265fc6d019c1e0260d3a981"
+        },
+        "queued.png": {
+          "path": ".local/broker-late-after-01/queued.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "resumed.png": {
+          "path": ".local/broker-late-after-01/resumed.png",
+          "bytes": 32784,
+          "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
         }
       }
     }

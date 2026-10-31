@@ -1,0 +1,12 @@
+{
+  "kind": "conditional-speaker-note-gate-inputs",
+  "driverResource": 5,
+  "notePointer": 2780,
+  "cases": [
+    { "gate": 0, "previousCounter": 7 },
+    { "gate": 3, "previousCounter": 7 },
+    { "gate": 0, "previousCounter": 255 }
+  ],
+  "initialState": { "busy": 1, "tempo": 255, "tempoAccumulator": 1, "delay": 1 },
+  "scope": "Independent injected private driver inputs. Original cue at0adc begins a note of duration1. Near sequencer call,IF clear. Not a natural game or hardware-timing scenario."
+}

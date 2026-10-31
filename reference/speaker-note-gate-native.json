@@ -1,0 +1,98 @@
+{
+  "kind": "conditional-original-speaker-note-gate",
+  "producer": ".local/speaker-note-gate-native-01",
+  "expectedCases": 3,
+  "expectedNegativeControls": 3,
+  "nativeTimingAccepted": false,
+  "browserAccepted": false,
+  "driverSHA256": "131133fb9137d6ef39db079cf81986110244a41e43efcfbf34ef0e347b5a9c33",
+  "engineBinarySHA256": "85662a8383e0fde0734797451374b28a443166440fd9bf5823626505760d9d0f",
+  "inputs": {
+    "path": "reference/speaker-note-gate-inputs.json",
+    "bytes": 507,
+    "sha256": "efadd21bc3517ffe92b471def602476a79aceb2e474af2ddaf3de30684b9b48a"
+  },
+  "historicalImplementation": {
+    "commit": "decef70",
+    "sha256": "b65b28fe8c20694ef9cf22357ac745105627b9615ca8060ce9a4dd3626bbeff5"
+  },
+  "artifacts": {
+    "capture.json": {
+      "path": ".local/speaker-note-gate-native-01/capture.json",
+      "bytes": 321,
+      "sha256": "3cb59ed93c100b5e2e7e7d1a7ac6afcf8b415cf7c08e471c84b51e1b81bb0c70"
+    },
+    "driver-results.json": {
+      "path": ".local/speaker-note-gate-native-01/driver-results.json",
+      "bytes": 39117,
+      "sha256": "3390ea58a4ee89f9e053e135edc900799ebdcd1f7985e55cac0c68a61a8a8a84"
+    },
+    "emulator.log": {
+      "path": ".local/speaker-note-gate-native-01/emulator.log",
+      "bytes": 7969,
+      "sha256": "9457cf9b88ff4f40ee0a6d512685f8e789d4c5d48792bc1f54c437fd7cba83fa"
+    },
+    "engine.json": {
+      "path": ".local/speaker-note-gate-native-01/engine.json",
+      "bytes": 3988,
+      "sha256": "743f16809f341390cf10e8785e50f23862e3d6734c7fac44dbf0e2d59b5711e5"
+    },
+    "fixture/NOTEGATE.COM": {
+      "path": ".local/speaker-note-gate-native-01/fixture/NOTEGATE.COM",
+      "bytes": 13056,
+      "sha256": "ca0f99ed8e8fe7e5a678ea6d7fc4051fe4675383ff998e8cf5766fb3dbf69a83"
+    },
+    "fixture.json": {
+      "path": ".local/speaker-note-gate-native-01/fixture.json",
+      "bytes": 993,
+      "sha256": "187a8988cbdddb0b9b7a72b375da4b81e836432e44ea82ea2c01a76cfbbb9b8a"
+    },
+    "lifecycle.json": {
+      "path": ".local/speaker-note-gate-native-01/lifecycle.json",
+      "bytes": 123,
+      "sha256": "33b0c9df34076ca869c170646cba1dd31e415b54c68875e92ca8a57e3e54ff3f"
+    },
+    "portable/dosbox-automation.conf": {
+      "path": ".local/speaker-note-gate-native-01/portable/dosbox-automation.conf",
+      "bytes": 451,
+      "sha256": "cef6deb13a617b8a64b1729518be59d3031520a70dd048e85610063a53b8c084"
+    },
+    "portable/dosbox_with_debugger": {
+      "path": ".local/speaker-note-gate-native-01/portable/dosbox_with_debugger",
+      "bytes": 45026152,
+      "sha256": "85662a8383e0fde0734797451374b28a443166440fd9bf5823626505760d9d0f"
+    },
+    "portable/shell_history.txt": {
+      "path": ".local/speaker-note-gate-native-01/portable/shell_history.txt",
+      "bytes": 12,
+      "sha256": "c1c9ce49a46c8978b9e11e2651aa38dc4295a63ea13d282d9a3fbbcd3e2339e2"
+    },
+    "program-stop.json": {
+      "path": ".local/speaker-note-gate-native-01/program-stop.json",
+      "bytes": 672,
+      "sha256": "b6301ea57e2485dee6220d3cac8e0a061cf086142211caeb7fbad6008124e0bc"
+    },
+    "source-revision.json": {
+      "path": ".local/speaker-note-gate-native-01/source-revision.json",
+      "bytes": 133208,
+      "sha256": "5bcb4d088dbfae6ec178ed922d0796012d3dd0a9d12129393274728dbf725820"
+    },
+    "sources.zip": {
+      "path": ".local/speaker-note-gate-native-01/sources.zip",
+      "bytes": 3421525,
+      "sha256": "cdecc2c6e7106bb70854e149de58f2499dbadd30e008e8b56df3caf06e5c0103"
+    },
+    "tool-identity.json": {
+      "path": ".local/speaker-note-gate-native-01/tool-identity.json",
+      "bytes": 175,
+      "sha256": "46397fa9ec4e415b39ec53d147d704b50d3857bdccfc83f92b6ed0866982bd74"
+    },
+    "sequencer-source": {
+      "path": ".local/speaker-irq-envelope-source-01/sequencer.json",
+      "bytes": 33331,
+      "sha256": "65e2067ba2b6c66b9d4886d0238b9a20d479f2ecc6694304279ccd38bfb6cc7a"
+    }
+  },
+  "scope": "Three independent injected private-driver inputs executed against unchanged original code. Complete7253-byte results compared;IF clear,near05ac calls,no hardware IRQ scheduling or natural timing acceptance.",
+  "verify": "node scripts/verify-speaker-note-gate.js"
+}

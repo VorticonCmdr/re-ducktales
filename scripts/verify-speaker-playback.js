@@ -79,6 +79,7 @@ function run(command, args, env = {}) {
   return output;
 }
 run(process.execPath, ["scripts/verify-speaker-engine.js"]);
+run(process.execPath, ["scripts/verify-speaker-note-gate.js"]);
 run(process.execPath, ["scripts/verify-tandy-engine.js"]);
 run(process.execPath, ["scripts/verify-tandy-game.js"]);
 const unit = run(process.execPath, [
@@ -146,6 +147,7 @@ await writeFile(
       sources: "sources.json",
       browser: "browser.json",
       streamCases: 3,
+      noteGateCases: 3,
       browserCases: 7,
       reportNegativeControls: 3,
       sourceCommit: commit,

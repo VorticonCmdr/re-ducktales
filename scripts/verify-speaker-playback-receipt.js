@@ -83,6 +83,17 @@ for (const [p, expected] of Object.entries({
 }))
   assert.equal(sha(await readFile(p)), expected, `Changed sound source ${p}`);
 assert.equal(artifacts.receipt.completed, true);
+if (m.noteGateCases !== undefined) {
+  assert.equal(m.noteGateCases, 3);
+  assert.equal(artifacts.receipt.noteGateCases, 3);
+  assert.equal(m.artifacts.noteGate.path, "reference/speaker-note-gate-native.json");
+  const note = spawnSync(process.execPath, ["scripts/verify-speaker-note-gate.js"], {
+    encoding: "utf8", timeout: 60000,
+  });
+  assert.ifError(note.error);
+  assert.equal(note.status, 0, note.stdout + note.stderr);
+  assert.match(note.stdout, /3 conditional cases,all7253 driver bytes exact/);
+}
 assert.equal(artifacts.receipt.browserCases, 7);
 assert.equal(artifacts.receipt.reportNegativeControls, 3);
 const tests = [];

@@ -4,6 +4,8 @@ Updated2026-10-31. **The whole game is incomplete.** The supported Standard
 campaign has a complete playable route through all four expedition families,
 victory,all26 credits,closed and Restart. A fresh independent browser replay now
 passes on the corrected cave loading,presentation and passage-pose runtime.
+The subsequent PC-speaker gate-counter restoration changes one runtime file;
+fresh audio/browser and campaign replay are pending before renewing acceptance.
 Nothing is pushed or deployed. Hard campaigns remain deferred at the user's request.
 
 ## Current working behavior and verification
@@ -37,7 +39,8 @@ The independent consumer `.local/cave-passage-poses-winning-replay-01` passes
 all183 exact complete-state/decoded-RGBA checkpoints and7261 DOM inputs,omitted-
 Standard negative and Restart. The combined current gate passes all221 units,
 production build,seven awards,bank pixels and conditional native cave pose/
-state/treasure-image checks. [Current acceptance](../reference/current-winning-acceptance.json).
+state/treasure-image checks. [Accepted cave runtime](../reference/cave-passage-poses-winning-acceptance.json).
+The current gate rejects the later sound change until a fresh consumer completes.
 Earlier e59dd00 remains historical because it predates the passage correction.
 
 A separate fixed1770 native image check now matches all64000 pixels/256000 RGBA
@@ -46,7 +49,7 @@ negatives. Integration preserves all119 accepted runtime/configuration hashes.
 [Image scope](cave-treasure-pixels.md). This is conditional capture alignment,not
 whole-ending scanout or timing acceptance.
 
-## Current independently accepted full route
+## Most recent independently accepted full route
 
 Startup/security/office → Too-Pei cave → lost Safari race/rival claim → Kenya
 photography → Great Outback jungle → Lost World mountain → Atlantis,Klondike,
@@ -57,7 +60,8 @@ Current producer `.local/cave-passage-poses-winning-browser-01` and independent
 replay `.local/cave-passage-poses-winning-replay-01` complete this route. The
 environment is Standard,BIOS seed0,muted audio,ordinary DOM keyboard controls.
 There are no game-state,RNG,money or difficulty patches. This accepts the
-recorded port-browser route,not arbitrary-route finishability or original timing.
+recorded cave-runtime port-browser route,not arbitrary-route finishability or
+original timing. Its source predates the later sound gate-counter correction.
 
 Historical producer `.local/cave-order-winning-browser-01` and independent replay
 `.local/cave-order-winning-replay-01` pass183 exact complete public-state/decoded-
@@ -69,7 +73,10 @@ the subsequently changed cave runtime. [Historical acceptance](../reference/cave
 
 ## Remaining work
 
-- Preserve the passing corrected Standard route while expanding coverage.
+- Complete fresh audio/browser and Standard regression after the source-backed
+  [speaker note gate correction](speaker-note-gate.md). Three new conditional
+  original cases match all7253 bytes and reject the historical implementation;
+  the existing12-case/408-IRQ comparison and three stream cases still pass.
 - Resolve original movement/transition timing. Four cave phase states match all
   nine compared fields,but the strict timing/final-animation probe still fails.
   Loader/system,IRQ/BIOS/audio execution and CPU phase are not fully represented.
@@ -118,7 +125,7 @@ node scripts/verify-cave-treasure-pixels.js
 node scripts/probe-cave-native-cadence.js
 # Exploratory audio control;both underlying timing comparisons still fail:
 node scripts/explore-cave-probe-audio-control.js
-# Current complete Standard route plus scoped native cave evidence:
+# Latest sound change correctly requires a new current consumer:
 node scripts/verify-current-winning-acceptance.js
 npm run dev
 ```

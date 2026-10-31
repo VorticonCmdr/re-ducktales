@@ -56,7 +56,11 @@ assert.ok(
   "Zero/incomplete campaign cases",
 );
 await checkArtifacts(m.artifacts);
-await current(m.producer);
+// Expected outputs belong to an immutable,validated producer archive. A new
+// implementation must replay the independent input stream against those same
+// outputs;it need not rerecord goldens merely to make source hashes identical.
+// The consumer below must still match every current runtime/configuration byte.
+await validateProducerArchive(m.producer);
 const checks = await json(m.artifacts["campaign-checkpoints"].path),
   events = await json(m.artifacts["captured-events"].path),
   captured = await json(m.artifacts["capture-status"].path);
@@ -164,6 +168,10 @@ if (record.requiredNativeCaveEvidence !== undefined) {
   assert.match(native.stdout, /7 natural room moves\/28 consumed physical events,14 reader calls,6 phase\/RNG checkpoints/);
   process.stdout.write(native.stdout);
 }
+if (record.requiredNativeSpeakerEvidence !== undefined) {
+  assert.equal(record.requiredNativeSpeakerEvidence, true);
+  assert.equal(record.artifacts.speakerNoteGate?.path, "reference/speaker-note-gate-native.json");
+}
 for (const [script, args, required] of [
   [
     "verify-current-winning-awards",
@@ -177,6 +185,9 @@ for (const [script, args, required] of [
     ["verify-cave-passage-poses", [], /8 actual coroutine paths/],
     ["compare-cave-treasure-observation", [], /"readerCheckpoints":14/],
     ["verify-cave-treasure-pixels", [], /all64000 pixels\/256000 RGBA bytes exact/],
+  ] : []),
+  ...(record.requiredNativeSpeakerEvidence ? [
+    ["verify-speaker-note-gate", [], /3 conditional cases,all7253 driver bytes exact/],
   ] : []),
 ]) {
   const r = spawnSync(

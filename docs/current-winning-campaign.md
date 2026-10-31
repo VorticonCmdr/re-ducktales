@@ -1,5 +1,11 @@
 # Winning campaign after reward-presentation restoration
 
+Subsequent sound restoration:the PC-speaker gate-counter fix changes one runtime
+file after the acceptance below. A fresh independent replay is required against
+the same immutable expected state/image checkpoints. The current consumer hash
+guard rejects the older receipt until that replay completes. See
+[sound scope](speaker-note-gate.md).
+
 Current2026-10-31:the corrected cave runtime has a fresh accepted Standard
 winning route. Producer `.local/cave-passage-poses-winning-browser-01`,source
 2a63b64,and independent consumer `.local/cave-passage-poses-winning-replay-01`,

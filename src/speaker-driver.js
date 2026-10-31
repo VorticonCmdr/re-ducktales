@@ -208,7 +208,9 @@ export class SpeakerDriver {
             ((((divisor & 255) << 8) | (divisor >>> 8)) << this.b(0x262)) & 255,
           );
         }
-        this.b(0x26b, this.b(0x26a) * (arg >>> 2));
+        //066c/0671 skips the write when gating is disabled. The previous
+        // counter survives;it is not reset by an ungated note.
+        if (this.b(0x26a)) this.b(0x26b, this.b(0x26a) * (arg >>> 2));
         this.out(0x61, this.port61 | 3);
         saveWait(arg);
         return;

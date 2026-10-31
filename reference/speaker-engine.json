@@ -109,7 +109,7 @@
     }
   },
   "sources": {
-    "src/speaker-driver.js": "b65b28fe8c20694ef9cf22357ac745105627b9615ca8060ce9a4dd3626bbeff5",
+    "src/speaker-driver.js": "72cc14d67a19832f27fd2a5739dc272cb7e218b1e292c9ae4ebd279f671d59ea",
     "scripts/verify-speaker-engine.js": "4af46f0ed0c404fdbcbed1db19c81a73ad401dac33a3847cf8da70814cd741e2",
     "scripts/capture-speaker-engine.py": "e48dedef1f6cc5dae649dacecb932683716c695713607830446b26557cad147b"
   },

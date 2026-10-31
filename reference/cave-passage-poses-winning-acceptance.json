@@ -1,0 +1,47 @@
+{
+  "kind": "current-winning-campaign-acceptance",
+  "nativeComparison": false,
+  "consumer": ".local/cave-passage-poses-winning-replay-01",
+  "expectedAwardCount": 7,
+  "expectedUnitCases": 221,
+  "scope": "Independent current Standard browser win after original cave loading,treasure presentation and passage-pose restoration:all four families,seven earned treasures,exact bank copy,all26 credits,closed and Restart. Separate conditional native cave pose/state/treasure-image checks required. Not native whole-game elapsed-time/audio or arbitrary-route acceptance.",
+  "artifacts": {
+    "scenario": {
+      "path": "reference/cave-passage-poses-winning-route.json",
+      "bytes": 50436,
+      "sha256": "b7859a1a5da2e9ba6b19e62eee5e701f0eed206824a8211f95f7c3b64dbdbe1e"
+    },
+    "result": {
+      "path": ".local/cave-passage-poses-winning-replay-01/acceptance-status.json",
+      "bytes": 970,
+      "sha256": "59f30d19fa0681b4af1b26b44da372b720a8e2ac8a59f3c88eba8cd78b8ab77c"
+    },
+    "awards": {
+      "path": "reference/cave-passage-poses-winning-awards.json",
+      "bytes": 4581,
+      "sha256": "7df36814478f82a78a5cee7e75e7cc7a15589c3ed68555ea6963e831611b246c"
+    },
+    "setupNegatives": {
+      "path": ".local/cave-passage-poses-winning-setup-negatives-01.json",
+      "bytes": 199,
+      "sha256": "04820a06886c68238fa687cc83f74e1728c06321d6b71edc1dbaba2f438af626"
+    },
+    "bankPixels": {
+      "path": "reference/bank-copy-pixels.json",
+      "bytes": 6222,
+      "sha256": "7242d0901d3ec9b1538d3e7be2c920ae7ae17e4d30d276f266e65bff553a08f7"
+    },
+    "cavePassageParameters": {
+      "path": "reference/cave-passage-parameters.json",
+      "bytes": 3397,
+      "sha256": "e3ce99ba8cbbfe53abdea7531e205294560292785da4003008a9788c8e0ad58d"
+    },
+    "caveTreasurePixels": {
+      "path": "reference/cave-treasure-pixels.json",
+      "bytes": 1656,
+      "sha256": "ed280ed9dc5e8f3bd398e58cd3c05e47596a7cdf6cee7f72f2fc824ac5ea7c66"
+    }
+  },
+  "verify": "node scripts/verify-current-winning-acceptance.js",
+  "requiredNativeCaveEvidence": true
+}

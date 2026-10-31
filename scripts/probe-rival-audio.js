@@ -15,6 +15,11 @@ import { recordedDOMInput } from "../tests/browser/helpers/recorded-dom-input.js
 const arg = (k) =>
   process.argv.find((a) => a.startsWith("--" + k + "="))?.slice(k.length + 3);
 const device = arg("device") ?? "speaker";
+const maxSteps = Number(arg("max-steps") ?? 1500);
+assert.ok(
+  Number.isInteger(maxSteps) && maxSteps >= 1 && maxSteps <= 1500,
+  "Invalid real-device probe bound",
+);
 assert.ok(
   !process.argv.includes("--speech-controls"),
   "Unsupported: Chromium worklet fetches bypass routing; use the focused modal-input tests",
@@ -30,103 +35,161 @@ const checks = await json(m.artifacts.checkpoints.path),
 const entry = checks.find((c) => c.state.expeditionResult?.phase === "atomic");
 assert.ok(entry);
 const result = await withCarlsbadBrowser(async ({ page, state, until }) => {
-  await page.locator("#audio-device").selectOption(device);
-  let now = 1;
-  for (const e of events.slice(0, entry.eventCount)) {
-    if (e.time > now) await page.clock.runFor(e.time - now);
-    now = e.time;
-    await recordedDOMInput(page, e);
-  }
-  await page.clock.runFor(entry.at - now);
-  assert.equal((await state()).expeditionResult.phase, "atomic");
-  await page.evaluate(() => {
-    window.rivalAudio = [];
-    document.addEventListener("gameaudio", (e) =>
-      window.rivalAudio.push(e.detail),
-    );
-  });
-  await page.keyboard.press("s");
-  for (let i = 0; i < 5000 && !(await page.locator("#audio").isChecked()); i++)
-    await page.clock.runFor(8);
-  assert.equal(await page.locator("#audio").isChecked(), true);
-  await page.keyboard.press("Space");
-  await until((s) => s.scene !== "expedition-result");
-  assert.equal((await state()).scene, "rival-report");
-  const entered = await state();
-  let observed, stats;
-  for (let i = 0; i < 500; i++) {
-    const s = await state();
-    if (s.diagnostic) throw Error(s.diagnostic);
-    observed = await page.evaluate(() => window.rivalAudio);
-    stats = await page.locator("#sound").evaluate((e) => ({ ...e.dataset }));
-    if (
-      s.scene === "map" &&
-      observed.some((e) => e.type === "ack" && e.argument === 0x21) &&
-      Number(stats.signalSamples) > 0
+  let hostStarted = null,
+    gameStarted = null;
+  try {
+    await page.locator("#audio-device").selectOption(device);
+    let now = 1;
+    for (const e of events.slice(0, entry.eventCount)) {
+      if (e.time > now) await page.clock.runFor(e.time - now);
+      now = e.time;
+      await recordedDOMInput(page, e);
+    }
+    await page.clock.runFor(entry.at - now);
+    assert.equal((await state()).expeditionResult.phase, "atomic");
+    await page.evaluate(() => {
+      window.rivalAudio = [];
+      document.addEventListener("gameaudio", (e) =>
+        window.rivalAudio.push(e.detail),
+      );
+    });
+    await page.keyboard.press("s");
+    for (
+      let i = 0;
+      i < 5000 && !(await page.locator("#audio").isChecked());
+      i++
     )
-      break;
-    await new Promise((resolve) => setTimeout(resolve, 20));
-    await page.clock.runFor(16);
-    if (i === 499) throw Error("Unfinished real rival audio boundary");
-  }
-  const acknowledgements = observed.filter((e) => e.type === "ack"),
-    requests = acknowledgements.filter((e) => !e.query),
-    click = requests.findIndex((e) => e.argument === 0x24);
-  assert.ok(click >= 0);
-  assert.deepEqual(
-    requests.slice(click, click + 3).map((e) => e.argument),
-    [0x24, 0x6e, 0x21],
-  );
-  assert.equal(stats.device, device);
-  assert.equal(stats.contextState, "running");
-  assert.ok(Number(stats.signalSamples) > 0);
-  const report = requests[click + 1];
-  const queries = acknowledgements.filter(
-    (e) => e.query && e.token.startsWith(report.token + ":status:"),
-  );
-  assert.ok(queries.length > 0, "No real report status queries");
-  assert.equal(
-    new Set(queries.map((e) => e.token)).size,
-    queries.length,
-    "Reused report status token",
-  );
-  assert.ok(
-    queries.every(
-      (e) =>
-        e.sequence > report.sequence &&
-        e.sequence < requests[click + 2].sequence,
-    ),
-  );
-  assert.ok(
-    typeof report.token === "string" && report.token.startsWith("rival:"),
-  );
-  if (report.busy)
+      await page.clock.runFor(8);
+    assert.equal(await page.locator("#audio").isChecked(), true);
+    await page.keyboard.press("Space");
+    await until((s) => s.scene !== "expedition-result");
+    assert.equal((await state()).scene, "rival-report");
+    const entered = await state();
+    let observed,
+      stats,
+      consumedSteps = 0;
+    hostStarted = performance.now();
+    gameStarted = await page.evaluate(() => performance.now());
+    for (let i = 0; i < maxSteps; i++) {
+      const s = await state();
+      if (s.diagnostic) throw Error(s.diagnostic);
+      observed = await page.evaluate(() => window.rivalAudio);
+      stats = await page.locator("#sound").evaluate((e) => ({ ...e.dataset }));
+      if (
+        s.scene === "map" &&
+        observed.some((e) => e.type === "ack" && e.argument === 0x21) &&
+        Number(stats.signalSamples) > 0
+      )
+        break;
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      await page.clock.runFor(16);
+      consumedSteps++;
+      if (i === maxSteps - 1)
+        throw Error("Unfinished real rival audio boundary");
+    }
+    const acknowledgements = observed.filter((e) => e.type === "ack"),
+      requests = acknowledgements.filter((e) => !e.query),
+      click = requests.findIndex((e) => e.argument === 0x24);
+    assert.ok(click >= 0);
+    assert.deepEqual(
+      requests.slice(click, click + 3).map((e) => e.argument),
+      [0x24, 0x6e, 0x21],
+    );
+    assert.equal(stats.device, device);
+    assert.equal(stats.contextState, "running");
+    assert.ok(Number(stats.signalSamples) > 0);
+    const report = requests[click + 1];
+    const queries = acknowledgements.filter(
+      (e) => e.query && e.token.startsWith(report.token + ":status:"),
+    );
+    assert.ok(queries.length > 0, "No real report status queries");
+    assert.equal(
+      new Set(queries.map((e) => e.token)).size,
+      queries.length,
+      "Reused report status token",
+    );
     assert.ok(
-      observed.some(
-        (e) => e.type === "complete" && e.token === report.token && !e.busy,
+      queries.every(
+        (e) =>
+          e.sequence > report.sequence &&
+          e.sequence < requests[click + 2].sequence,
       ),
     );
-  assert.equal(
-    (await state()).campaign.rival.location,
-    entered.rivalReport.target,
-  );
-  await page.locator("#restart").click();
-  await until((s) => s.scene === "title");
-  return {
-    completed: true,
-    accepted: false,
-    scope:
-      "Conditional actual browser audio I/O,not strict/native timing or waveform parity",
-    device,
-    speechControls: false,
-    moduleBarrier: false,
-    pauseEvidence: [],
-    entered,
-    events: observed,
-    stats,
-    restart: true,
-    sourceCommit: source.commit,
-  };
+    assert.ok(
+      typeof report.token === "string" && report.token.startsWith("rival:"),
+    );
+    if (report.busy)
+      assert.ok(
+        observed.some(
+          (e) => e.type === "complete" && e.token === report.token && !e.busy,
+        ),
+      );
+    assert.equal(
+      (await state()).campaign.rival.location,
+      entered.rivalReport.target,
+    );
+    await page.locator("#restart").click();
+    await until((s) => s.scene === "title");
+    return {
+      completed: true,
+      accepted: false,
+      scope:
+        "Conditional actual browser audio I/O,not strict/native timing or waveform parity",
+      device,
+      speechControls: false,
+      moduleBarrier: false,
+      pauseEvidence: [],
+      entered,
+      events: observed,
+      stats,
+      restart: true,
+      sourceCommit: source.commit,
+      probe: {
+        maxSteps,
+        consumedSteps,
+        hostStepMilliseconds: 20,
+        gameStepMilliseconds: 16,
+        hostMilliseconds: performance.now() - hostStarted,
+        gameMilliseconds:
+          (await page.evaluate(() => performance.now())) - gameStarted,
+      },
+    };
+  } catch (error) {
+    // Preserve the actual device/query/game state before the owned browser
+    // closes. An unfinished conditional probe never becomes acceptance.
+    await writeFile(
+      root + "/audio-failure.json",
+      JSON.stringify(
+        {
+          completed: false,
+          accepted: false,
+          device,
+          sourceCommit: source.commit,
+          error: { message: error.message, stack: error.stack },
+          maxSteps,
+          hostStepMilliseconds: 20,
+          gameStepMilliseconds: 16,
+          hostMilliseconds:
+            hostStarted === null ? null : performance.now() - hostStarted,
+          gameStarted,
+          gameNow: await page
+            .evaluate(() => performance.now())
+            .catch(() => null),
+          state: await state().catch(() => null),
+          events: await page
+            .evaluate(() => window.rivalAudio ?? [])
+            .catch(() => []),
+          stats: await page
+            .locator("#sound")
+            .evaluate((e) => ({ ...e.dataset }))
+            .catch(() => null),
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+    throw error;
+  }
 });
 await checkSource(
   root,

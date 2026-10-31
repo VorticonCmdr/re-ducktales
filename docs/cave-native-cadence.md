@@ -68,6 +68,29 @@ format change,no emulator modification.
 node scripts/probe-cave-native-cadence.js
 ```
 
+The probe now defaults to `--audio=original`,reading the sound-enable byte
+DS03be from the independently captured ENTRY memory. It is1 in this fixture.
+The earlier probe silently used the component's disabled default. The paired
+exploration command below requires both modes to finish their full input stream
+and retain the documented strict timing failure;it compares all input,transition
+and final gameplay results exactly between modes:
+
+```sh
+node scripts/explore-cave-probe-audio-control.js
+```
+
+Both modes have identical carried component movement and timing. Enabled mode
+emits four sound requests0,4f,24,4d;disabled mode emits none. There is no device
+availability/status consumption in this slice. Any such consumption now stops
+with an explicit unsupported-environment diagnostic rather than inventing an idle
+device result. No native audio-driver state,IRQ execution cost or hardware sound
+phase is reconstructed. This rules out the enable flag alone inside this
+component as the source of the divergence;it does not rule out missing native
+audio execution overhead. The paired script's success means the exploratory
+control completed,not timing or browser acceptance. Each underlying strict
+native comparison still exits1. This change is isolated from the campaign's
+running source on branch codex/cave-audio-environment,base8cc4ef3.
+
 This exploratory strict comparison currently **exits1**. It is not an acceptance
 gate. It starts the current Cave component from native ENTRY memory/contract,
 carries its own state with zero-phase driver/retrace and actual graphics wakes,

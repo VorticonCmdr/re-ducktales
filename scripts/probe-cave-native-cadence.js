@@ -30,6 +30,11 @@ const { image, archives } = await originalGame();
 const entryBytes = Buffer.from(entry.state.results[1].data, "base64");
 assert.equal(entryBytes.length, 65536);
 assert.equal(entryBytes[0x3c1], 0);
+const audioMode = process.argv[2] ?? "--audio=original";
+assert.ok(["--audio=original", "--audio=disabled"].includes(audioMode), "Unsupported probe audio mode");
+assert.ok([0, 1].includes(entryBytes[0x3be]), "Unsupported original sound-enable flag");
+const audioEnabled = audioMode === "--audio=original" && entryBytes[0x3be] === 1;
+const audioEvents = [];
 const frameMs = 1000 / RETRACE_HZ;
 const state = (m) => ({
   room: m.i(0x4d32),
@@ -59,6 +64,10 @@ let made = false,
 port = new Cave(
   {
     ...contract,
+    audioEnabled,
+    hasAudioDevice: () => {
+      throw Error("Unsupported timing probe path: original audio availability/status was not captured");
+    },
     image,
     entries: archives.get("EXP.ARC"),
     maps: parseCaveMaps(archives.get("CAVEMAPS.ARC")),
@@ -81,6 +90,14 @@ port = new Cave(
   },
   new FlightMemory(Uint8Array.from(entryBytes)),
 );
+function consumeEffects() {
+  for (const event of port.drainEvents()) {
+    assert.equal(event.type, "sound", "Unsupported timing probe audio consumption");
+    assert.ok(audioEnabled && Number.isInteger(event.id) && event.id >= 0 && event.id <= 120);
+    audioEvents.push({ simulationMs: now, ...event });
+  }
+}
+consumeEffects();
 for (let steps = 0; steps < 20000; steps++) {
   const tick = ((ticks + 1) * 1000) / DRIVER_HZ,
     retrace = (retraces + 1) * frameMs;
@@ -116,6 +133,7 @@ for (let steps = 0; steps < 20000; steps++) {
     retraces++;
     port.advanceRetrace();
   }
+  consumeEffects();
   const current = state(port.memory),
     key = JSON.stringify([
       current.room,
@@ -222,7 +240,16 @@ console.log(
       accepted: false,
       comparisonPassed: passed,
       environment:
-      "Native ENTRY memory;zero-phase IRQ/retrace;immediate ordinary mode0 makes at0ms and breaks after10 render intervals;no repeat before release;counted resident LZW/RAM conversion only;no original i8042,complete DOS/allocator/IRQ reconstruction or browser",
+      "Native ENTRY memory;explicit native sound-enable flag unless disabled control selected;zero-phase IRQ/retrace;immediate ordinary mode0 makes at0ms and breaks after10 render intervals;no repeat before release;counted resident LZW/RAM conversion only;no audio driver CPU/IRQ costs,i8042,complete DOS/allocator/IRQ reconstruction or browser. Audio-status consumption is unsupported and fails immediately.",
+      audioEnvironment: {
+        mode: audioMode,
+        nativeEnabled: entryBytes[0x3be] === 1,
+        portEnabled: audioEnabled,
+        requests: audioEvents,
+        audioStatusQueries: 0,
+        nativeAudioDriverStateCaptured: false,
+        nativeAudioCPUCostModeled: false,
+      },
       firstInputMatches: true,
       consumedReads: inputs.length,
       events,

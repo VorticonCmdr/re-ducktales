@@ -1,0 +1,1135 @@
+{
+  "kind": "original-cave-loader-conditional-profile",
+  "producer": ".local/cave-background-load-native-01",
+  "expectedCases": 1,
+  "resource": 0,
+  "expectedDriverCounts": 85,
+  "portTimingAcceptance": false,
+  "injections": [],
+  "partialRestore": false,
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "engineBinarySHA256": "85662a8383e0fde0734797451374b28a443166440fd9bf5823626505760d9d0f",
+  "converterSource": {
+    "path": ".local/cave-loader-source-01/converter.json",
+    "bytes": 10177,
+    "sha256": "dfd4288cb4e09c2fd1bd5ece674604a358c8c6a6d64c8db20e152e3ea6c67148"
+  },
+  "scope": "Natural first Carlsbad room background0 load,bounded by debugger stops.85 timer counts is conditional observation,not a port input. No new measurement controls;prior flight schedule must be complete.",
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_loader_profile.py --manifest=reference/cave-background-load-native.json",
+  "artifacts": {
+    "alarm-0.json": {
+      "path": ".local/cave-background-load-native-01/alarm-0.json",
+      "bytes": 88772,
+      "sha256": "c7f971b3e770e4f95385f1244c65359e0ed51d9b45fc0027b40e54d5312463c2"
+    },
+    "alarm-0.png": {
+      "path": ".local/cave-background-load-native-01/alarm-0.png",
+      "bytes": 5123,
+      "sha256": "0dd2a74513fa1462ebfb2c61426fee69391eb805e7f3df0ebe050263cb41ed43"
+    },
+    "alarm-1.json": {
+      "path": ".local/cave-background-load-native-01/alarm-1.json",
+      "bytes": 88772,
+      "sha256": "43667bafda0016c144475e7962cc90c9f923028d7d00a7d393df81048ae2dbec"
+    },
+    "alarm-1.png": {
+      "path": ".local/cave-background-load-native-01/alarm-1.png",
+      "bytes": 4881,
+      "sha256": "a65cbb39071e8601f168bb595b5d46b266486b9c9d5ace2234734d4f0478b810"
+    },
+    "alarm-2.json": {
+      "path": ".local/cave-background-load-native-01/alarm-2.json",
+      "bytes": 88772,
+      "sha256": "94b2f8d8a139f1fe03a43c666de80cc1d8c150efa9b2f336c17cc590bf10dd60"
+    },
+    "alarm-2.png": {
+      "path": ".local/cave-background-load-native-01/alarm-2.png",
+      "bytes": 5123,
+      "sha256": "0dd2a74513fa1462ebfb2c61426fee69391eb805e7f3df0ebe050263cb41ed43"
+    },
+    "alarm-3.json": {
+      "path": ".local/cave-background-load-native-01/alarm-3.json",
+      "bytes": 88772,
+      "sha256": "2ecf3c723db99c55ceaffbae9a2905b5ee7fa1a72b76900869afe9415fdcf542"
+    },
+    "alarm-3.png": {
+      "path": ".local/cave-background-load-native-01/alarm-3.png",
+      "bytes": 4881,
+      "sha256": "a65cbb39071e8601f168bb595b5d46b266486b9c9d5ace2234734d4f0478b810"
+    },
+    "alarm-4.json": {
+      "path": ".local/cave-background-load-native-01/alarm-4.json",
+      "bytes": 88772,
+      "sha256": "f58740b02e9e92730626e3d70dc74d14f1b0ee6e8f1cfca801f5d05a105379a2"
+    },
+    "alarm-4.png": {
+      "path": ".local/cave-background-load-native-01/alarm-4.png",
+      "bytes": 5123,
+      "sha256": "0dd2a74513fa1462ebfb2c61426fee69391eb805e7f3df0ebe050263cb41ed43"
+    },
+    "alarm-5.json": {
+      "path": ".local/cave-background-load-native-01/alarm-5.json",
+      "bytes": 88772,
+      "sha256": "ae8b89f57635516ce9c8447c4c0dd3fbd39843d5ac3baa0fb79c29b6ff82232b"
+    },
+    "alarm-5.png": {
+      "path": ".local/cave-background-load-native-01/alarm-5.png",
+      "bytes": 4881,
+      "sha256": "a65cbb39071e8601f168bb595b5d46b266486b9c9d5ace2234734d4f0478b810"
+    },
+    "capture.json": {
+      "path": ".local/cave-background-load-native-01/capture.json",
+      "bytes": 377,
+      "sha256": "c95a9c9f26a05e6f5b347d16e97cb10ff44dc9e07b802f0c56ec018cd01c254a"
+    },
+    "cave-code.json": {
+      "path": ".local/cave-background-load-native-01/cave-code.json",
+      "bytes": 14961,
+      "sha256": "22712d84af2caeb8e0a7022e8558e519c54d924660d04a579e872fd6c9b99074"
+    },
+    "cave-entry-contract.json": {
+      "path": ".local/cave-background-load-native-01/cave-entry-contract.json",
+      "bytes": 99,
+      "sha256": "f2687cc2683a1193939c48e03bf4e904cc4868fa7347901c6ba07de488e2dcc7"
+    },
+    "cave-entry.json": {
+      "path": ".local/cave-background-load-native-01/cave-entry.json",
+      "bytes": 88766,
+      "sha256": "031b29a8fd70d79689ff5410343e9c7f4f839077c1c1c666bb2548f8e82ffbc6"
+    },
+    "cave-entry.png": {
+      "path": ".local/cave-background-load-native-01/cave-entry.png",
+      "bytes": 10741,
+      "sha256": "4bd4838e0e4d9bd41abad66390ed799967c949fa02f9b1cd989bf313a8f9369c"
+    },
+    "cave-flight-setup-completed.json": {
+      "path": ".local/cave-background-load-native-01/cave-flight-setup-completed.json",
+      "bytes": 175,
+      "sha256": "c8b25a66e2aa5b0bf2c8722e17e53b8a835bd5ee92e8a3793b4d866930b2c57d"
+    },
+    "cave-loader-after.json": {
+      "path": ".local/cave-background-load-native-01/cave-loader-after.json",
+      "bytes": 88773,
+      "sha256": "8261b2c9812bf33a6d211d2cb374477ebc87cdb4bd90f61c80253c2691664fc6"
+    },
+    "cave-loader-after.png": {
+      "path": ".local/cave-background-load-native-01/cave-loader-after.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "cave-loader-before.json": {
+      "path": ".local/cave-background-load-native-01/cave-loader-before.json",
+      "bytes": 88779,
+      "sha256": "833c4fc34c47fcf1629b611197f0816e3d1992e32f5a0477be569e988e1cd287"
+    },
+    "cave-loader-before.png": {
+      "path": ".local/cave-background-load-native-01/cave-loader-before.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "cave-loader-code.json": {
+      "path": ".local/cave-background-load-native-01/cave-loader-code.json",
+      "bytes": 1248,
+      "sha256": "319ce2f6ae451b49cf2df96be27c8f6a9e019ef557118487d240e223ee8f67f1"
+    },
+    "cave-loader-inputs.json": {
+      "path": ".local/cave-background-load-native-01/cave-loader-inputs.json",
+      "bytes": 40,
+      "sha256": "722081f6906b4a691b52124935486b108d1b6fc61fb9ff992518d73f43714a3a"
+    },
+    "cave-loader-payload.json": {
+      "path": ".local/cave-background-load-native-01/cave-loader-payload.json",
+      "bytes": 42931,
+      "sha256": "1013a8bae2a168fd5fabc09a41f452b4b649ff2e0a5b0c2e5efb64296f5a0f24"
+    },
+    "cave-loader-profile.json": {
+      "path": ".local/cave-background-load-native-01/cave-loader-profile.json",
+      "bytes": 476,
+      "sha256": "188f7b47883f8a9505e2a961616726662eab1d906ff538af2cab5d4a3f559c8a"
+    },
+    "cave-loader-replay.json": {
+      "path": ".local/cave-background-load-native-01/cave-loader-replay.json",
+      "bytes": 175,
+      "sha256": "9221932981ad7f469f8b29278c57c54135ed91616ef459db6147515b03ba73d9"
+    },
+    "cleanup.json": {
+      "path": ".local/cave-background-load-native-01/cleanup.json",
+      "bytes": 88772,
+      "sha256": "1931a43e970d22de63a964f0fd5727004266d35eaa5c940b86df80655a38a015"
+    },
+    "cleanup.png": {
+      "path": ".local/cave-background-load-native-01/cleanup.png",
+      "bytes": 4881,
+      "sha256": "a65cbb39071e8601f168bb595b5d46b266486b9c9d5ace2234734d4f0478b810"
+    },
+    "configuration.json": {
+      "path": ".local/cave-background-load-native-01/configuration.json",
+      "bytes": 2589,
+      "sha256": "64a9540eab3eecec0927c149a58e5a954a0df06d6229f52e0db37adf70fe1477"
+    },
+    "engine.json": {
+      "path": ".local/cave-background-load-native-01/engine.json",
+      "bytes": 3988,
+      "sha256": "0d83e7e662e6abdd15202a1e4852a5210b4bb7d109c5c72ae00c7364142449a0"
+    },
+    "entry.json": {
+      "path": ".local/cave-background-load-native-01/entry.json",
+      "bytes": 88774,
+      "sha256": "f56bf2ab59f60c21f2139b86c7c796a85fe2a335a5f64618891a36f11cd226ee"
+    },
+    "entry.png": {
+      "path": ".local/cave-background-load-native-01/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/cave-background-load-native-01/fire-first.json",
+      "bytes": 88769,
+      "sha256": "f60baaa0206025401dff618dbcbaae21e3bb3c2dee38fbf70514056ec9d4d5b6"
+    },
+    "fire-second.json": {
+      "path": ".local/cave-background-load-native-01/fire-second.json",
+      "bytes": 88770,
+      "sha256": "e6dfbeee0368a2693531720acd40262fb8d445b002c59e942e805ce9656f6624"
+    },
+    "first-result.json": {
+      "path": ".local/cave-background-load-native-01/first-result.json",
+      "bytes": 88770,
+      "sha256": "2d2ddb8eb7b8f9ea267bfc24d8254f885b1b10851ade14b716327d754b331294"
+    },
+    "first-result.png": {
+      "path": ".local/cave-background-load-native-01/first-result.png",
+      "bytes": 5205,
+      "sha256": "8ba750e594201f9d78106497bf6e8808e9ab2b12c84812467335a93d7eac5384"
+    },
+    "generated.json": {
+      "path": ".local/cave-background-load-native-01/generated.json",
+      "bytes": 88773,
+      "sha256": "36f88e4278e9b2fb7d67a8628f35df6b78d56eaf5208cc8ebae3247185fac5eb"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/cave-background-load-native-01/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "415df329251aa1ae3bb1d44930f85172354f37b0bbe5134185c5ecae9e76bec6"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/cave-background-load-native-01/initial-poll-0.png",
+      "bytes": 4848,
+      "sha256": "b70764eebd37d4e89f6b3e6cfe517137cf76252ef63fdf65006f7fcb2530183e"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/cave-background-load-native-01/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "bf79d9af82731fe5d6ffe68760518e5a91336da93138166025dcc3847bc165fe"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/cave-background-load-native-01/initial-poll-1.png",
+      "bytes": 4848,
+      "sha256": "b70764eebd37d4e89f6b3e6cfe517137cf76252ef63fdf65006f7fcb2530183e"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/cave-background-load-native-01/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "e02b5b7b628aa02105b2336d5717a17aa0e792a112c0c2bde50a8888a9637368"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/cave-background-load-native-01/initial-poll-2.png",
+      "bytes": 4881,
+      "sha256": "a65cbb39071e8601f168bb595b5d46b266486b9c9d5ace2234734d4f0478b810"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/cave-background-load-native-01/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "2d6252080a5783b9d5f43b059551a2617c3f01aba33c9e2a52ef6700f3d66b0f"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/cave-background-load-native-01/initial-poll-3.png",
+      "bytes": 4881,
+      "sha256": "a65cbb39071e8601f168bb595b5d46b266486b9c9d5ace2234734d4f0478b810"
+    },
+    "inputs.json": {
+      "path": ".local/cave-background-load-native-01/inputs.json",
+      "bytes": 27612,
+      "sha256": "61be0b266db2e9ffe3e45b410de9345a7e2973436a9244fe4a25e97cec6e6afe"
+    },
+    "lifecycle.json": {
+      "path": ".local/cave-background-load-native-01/lifecycle.json",
+      "bytes": 123,
+      "sha256": "85a56d935d1b1a73e9bb7f6c5802d9fbafdfb10799a34b492ebbec192868c9bd"
+    },
+    "live-overlay.json": {
+      "path": ".local/cave-background-load-native-01/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "8613747122faa5079c77afaa8cc2d6ba46e5101dd3f1ec51e1104ccbc4d03d13"
+    },
+    "office-confirm.json": {
+      "path": ".local/cave-background-load-native-01/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "0a8fd3b2b89a60e0c1ec3c95dcd09d4638fc0f97808bc19fd939271dba67cc3e"
+    },
+    "office-input.json": {
+      "path": ".local/cave-background-load-native-01/office-input.json",
+      "bytes": 88775,
+      "sha256": "3b2612f8d939fb8ed5df958ba7e0f10ad652c2fb6791671052aac5debafdb7f1"
+    },
+    "office-input.png": {
+      "path": ".local/cave-background-load-native-01/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "profile-tool-identity.json": {
+      "path": ".local/cave-background-load-native-01/profile-tool-identity.json",
+      "bytes": 510,
+      "sha256": "b43379b71f0718ecf423c6f2cfceaf3eb13b7d1d9b87db4cc92ad2445b412baf"
+    },
+    "return.json": {
+      "path": ".local/cave-background-load-native-01/return.json",
+      "bytes": 88770,
+      "sha256": "b388030f424287fb71e96011b3a3a2c038931da0d76e05f932d752bda49aabb6"
+    },
+    "return.png": {
+      "path": ".local/cave-background-load-native-01/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/cave-background-load-native-01/rng-consumption.json",
+      "bytes": 55678,
+      "sha256": "b09216d424d4369cd3e71b1ff317ada93d701a098d0fd9814d81d20c45aad625"
+    },
+    "safari-flight-code-observed.json": {
+      "path": ".local/cave-background-load-native-01/safari-flight-code-observed.json",
+      "bytes": 24051,
+      "sha256": "1b2f8e02bc7c7391bf36fe89f6f6ba53db3d26d863eea85c31b3960068744cf6"
+    },
+    "safari-flight-code.json": {
+      "path": ".local/cave-background-load-native-01/safari-flight-code.json",
+      "bytes": 25160,
+      "sha256": "6ba7e81790881b77d37088d93c46057b01fa18c094275980984a4ad9bb10220b"
+    },
+    "source-revision.json": {
+      "path": ".local/cave-background-load-native-01/source-revision.json",
+      "bytes": 127002,
+      "sha256": "ae053f1b19014ad182fedcfab7b9b4948937c04795ada3d550933d93c7148923"
+    },
+    "sources.zip": {
+      "path": ".local/cave-background-load-native-01/sources.zip",
+      "bytes": 3236930,
+      "sha256": "b310523fe6a2885429ea8c2e70e20eda445be1b22f6cb6e19dcfd931c47fb5ed"
+    },
+    "startup-inputs.json": {
+      "path": ".local/cave-background-load-native-01/startup-inputs.json",
+      "bytes": 1221,
+      "sha256": "7ea1e2e158199935192c4fdec11796bfe69bdeaaa13ee2e1f80f2b8c4959c341"
+    },
+    "timing-destination-confirm-flush.json": {
+      "path": ".local/cave-background-load-native-01/timing-destination-confirm-flush.json",
+      "bytes": 88773,
+      "sha256": "9f5ced99b2f8dfe017ff4d405e94680789475d192c44f7f4bd50590aa450901e"
+    },
+    "timing-destination-confirm-read.json": {
+      "path": ".local/cave-background-load-native-01/timing-destination-confirm-read.json",
+      "bytes": 88775,
+      "sha256": "6afcb81d8e9f1efd846fb6f3acef2c2e50fd4825f386a0b3cee53819c30c0d3f"
+    },
+    "timing-destination-confirm-read.png": {
+      "path": ".local/cave-background-load-native-01/timing-destination-confirm-read.png",
+      "bytes": 6531,
+      "sha256": "8593e4638170f9c6ade7d06647ab0f163fc93ae24b53841b32e29a5e5e1b6974"
+    },
+    "timing-destination-entry.json": {
+      "path": ".local/cave-background-load-native-01/timing-destination-entry.json",
+      "bytes": 88787,
+      "sha256": "998a05e2ca2b99e7c7b441d43e444aaeea8b32798608b6cf19f1505c12e4aaa4"
+    },
+    "timing-destination-entry.png": {
+      "path": ".local/cave-background-load-native-01/timing-destination-entry.png",
+      "bytes": 16205,
+      "sha256": "f7c377e9ee9289833afed6f8cd51ed2612aff303d182894a08353c3fb0ca3daf"
+    },
+    "timing-destination-return.json": {
+      "path": ".local/cave-background-load-native-01/timing-destination-return.json",
+      "bytes": 88775,
+      "sha256": "d403c7c840bf1b96e59c59680947530d50dfcda188b04e3a3be52be23e6d9048"
+    },
+    "timing-destination-return.png": {
+      "path": ".local/cave-background-load-native-01/timing-destination-return.png",
+      "bytes": 6531,
+      "sha256": "8593e4638170f9c6ade7d06647ab0f163fc93ae24b53841b32e29a5e5e1b6974"
+    },
+    "timing-destination-travel-flush.json": {
+      "path": ".local/cave-background-load-native-01/timing-destination-travel-flush.json",
+      "bytes": 88775,
+      "sha256": "04e34b00b7685d48a66d2c0c3aec243772b2fb08165fb164127e5a1065e089f8"
+    },
+    "timing-destination-travel-read.json": {
+      "path": ".local/cave-background-load-native-01/timing-destination-travel-read.json",
+      "bytes": 88771,
+      "sha256": "fb8d8a6c1521f1d67230713cb10cfdb672776c4d7ea4e3b082ecf9d389aea080"
+    },
+    "timing-destination-travel-read.png": {
+      "path": ".local/cave-background-load-native-01/timing-destination-travel-read.png",
+      "bytes": 6536,
+      "sha256": "fd0994398ad5734c955c2c0af5bc6db9daf6a1c4ddae7108054d653fae841944"
+    },
+    "timing-flight-contract.json": {
+      "path": ".local/cave-background-load-native-01/timing-flight-contract.json",
+      "bytes": 150,
+      "sha256": "8b091376aaf022fe056eface72f42a64bb2cabd5eace2f95e4bdf7aa7ebea697"
+    },
+    "timing-flight-first-input.json": {
+      "path": ".local/cave-background-load-native-01/timing-flight-first-input.json",
+      "bytes": 88778,
+      "sha256": "b3e25159e143b646c8977a4ba2ef17f703135fb23af6e14bf0881be4a9c909f6"
+    },
+    "timing-flight-first-input.png": {
+      "path": ".local/cave-background-load-native-01/timing-flight-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "timing-map-entry.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-entry.json",
+      "bytes": 88794,
+      "sha256": "811ffd55ad2cc402608397cf13a81e06933854b2a73e20ce8d46844a7a98405c"
+    },
+    "timing-map-entry.png": {
+      "path": ".local/cave-background-load-native-01/timing-map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "timing-map-step-000.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-000.json",
+      "bytes": 88784,
+      "sha256": "29ee26a1016c0453a8901e31e1a9e3e00aa19c2378762b70bf852aa459a20a04"
+    },
+    "timing-map-step-001.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-001.json",
+      "bytes": 88784,
+      "sha256": "00d457a1ae2772612f84b457d26dd80c7aabf18b89ceded8094b1cdb9c500531"
+    },
+    "timing-map-step-002.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-002.json",
+      "bytes": 88784,
+      "sha256": "e0f7adf7ff757ee7b9b3738aedf54f8f25d0cb7617ad3b24baa7a9a87e63e5ce"
+    },
+    "timing-map-step-003.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-003.json",
+      "bytes": 88784,
+      "sha256": "9bd2def9587294ce9d211f05816418ceb1aed144aeae148ecdd58f8b24b0e1f3"
+    },
+    "timing-map-step-004.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-004.json",
+      "bytes": 88784,
+      "sha256": "aa29d9472c686af191612116bc03a49eeb9bad931d6242c18fe6abf469f316ff"
+    },
+    "timing-map-step-005.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-005.json",
+      "bytes": 88784,
+      "sha256": "41d38e15a00defa68864580887d54c650578a34d856218248a355cc089ca0df8"
+    },
+    "timing-map-step-006.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-006.json",
+      "bytes": 88784,
+      "sha256": "958668e81d8646d23a22c4778c0f42a0de4d932c53b1453413c04ecfd09f1422"
+    },
+    "timing-map-step-007.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-007.json",
+      "bytes": 88784,
+      "sha256": "9f14c35aeb73bc94052623d85f56d79c74cb84138a52116039d69c19bcc9800f"
+    },
+    "timing-map-step-008.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-008.json",
+      "bytes": 88784,
+      "sha256": "d1b95c5cc03bfa7b1006317de744a46f3824e84feb813fb547f6e803cfe04665"
+    },
+    "timing-map-step-009.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-009.json",
+      "bytes": 88785,
+      "sha256": "829595159066147e37db25ee4d26a012d65b1606d7c0379422cb601f98c95537"
+    },
+    "timing-map-step-010.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-010.json",
+      "bytes": 88785,
+      "sha256": "cb29b423d778256b5ce860346779cf8f98641a6020dd1b272a1b2def49034b32"
+    },
+    "timing-map-step-011.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-011.json",
+      "bytes": 88785,
+      "sha256": "e682b68eead784bd516af2449178297d3e679c75f5548dac34ee14f8d73f5daf"
+    },
+    "timing-map-step-012.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-012.json",
+      "bytes": 88785,
+      "sha256": "6e1860ff9c1f013f4c014e2497c2a7f7a8d084973ff210bbef39fafc087db63d"
+    },
+    "timing-map-step-013.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-013.json",
+      "bytes": 88785,
+      "sha256": "fd855015b3dac05eabb0235f7894ee5575d513001e7d4d7d9fdaac0a682a07ee"
+    },
+    "timing-map-step-014.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-014.json",
+      "bytes": 88785,
+      "sha256": "427142cdc64cee0c8aded5d742f54adf7db17bf74245d0e1c6d7ec06e07b9b47"
+    },
+    "timing-map-step-015.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-015.json",
+      "bytes": 88785,
+      "sha256": "a6ef9df73151af61742b6ca0ce2b9e7f05392730555929a2f36a6f14156b7331"
+    },
+    "timing-map-step-016.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-016.json",
+      "bytes": 88785,
+      "sha256": "d07f8953bc581a708628de902a632e6258284100fa50c3f986a99282e9b45c27"
+    },
+    "timing-map-step-017.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-017.json",
+      "bytes": 88785,
+      "sha256": "d41e3253f756248161b0ab3dda7acff97ca0c7a3bb09be1669ff2b9d97512986"
+    },
+    "timing-map-step-018.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-018.json",
+      "bytes": 88785,
+      "sha256": "0dc1bb3c9c09f716444aba4fc6b230b714541043079f85025833eac68ee2a01b"
+    },
+    "timing-map-step-019.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-019.json",
+      "bytes": 88785,
+      "sha256": "64bf9168cc5eab9dc18a087de49e8fa92ef60e9b425c11d51cacc46bac54ea1e"
+    },
+    "timing-map-step-020.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-020.json",
+      "bytes": 88785,
+      "sha256": "4a81827dfbf09645f03df31fe41c585b30aae6eb7c825de2ac133299e4c40a84"
+    },
+    "timing-map-step-021.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-021.json",
+      "bytes": 88785,
+      "sha256": "c9ad6f6730729844ca09e893c42668cf4cc62583b3a83d267cb4e7d91fc90b75"
+    },
+    "timing-map-step-022.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-022.json",
+      "bytes": 88785,
+      "sha256": "2e84d4cad3c1ddc07b27a20335519fd14d065c978a74e02fa5b50a24f675c726"
+    },
+    "timing-map-step-023.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-023.json",
+      "bytes": 88785,
+      "sha256": "9d256e6639ccae4567c558c06c962b5a5d0803c19cc24c017df9a25224bb5a1e"
+    },
+    "timing-map-step-024.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-024.json",
+      "bytes": 88785,
+      "sha256": "b9994daca71ac6e25f4c1390147a0047133623ee890d22b1ffea09d1f86bb8bf"
+    },
+    "timing-map-step-025.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-025.json",
+      "bytes": 88785,
+      "sha256": "6c60802740a1b04080a3067c81037fe51887900c47ce695c561f75f80c9f3667"
+    },
+    "timing-map-step-026.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-026.json",
+      "bytes": 88785,
+      "sha256": "9b1f2864a277c28cb3e2dade8d94cbc3084b8a97e6c37975777a3b142a55b905"
+    },
+    "timing-map-step-027.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-027.json",
+      "bytes": 88785,
+      "sha256": "9fd3ef33c4061cc90570999cbb29dd1fcfcd216d656497c62d7efd9f8e2392c3"
+    },
+    "timing-map-step-028.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-028.json",
+      "bytes": 88785,
+      "sha256": "8ac0e1e9dba8f04930fc48da54712ef331cf04d48771cc42f8c065979e151c3d"
+    },
+    "timing-map-step-029.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-029.json",
+      "bytes": 88786,
+      "sha256": "b34ff7bb233df712aef2aaf4651b4a086a410df30c79920544ea28f06e06e870"
+    },
+    "timing-map-step-030.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-030.json",
+      "bytes": 88786,
+      "sha256": "014254b302ceed2c4d0e1d576a407b136dcc3d128cec304b8ef740b2f33f507e"
+    },
+    "timing-map-step-031.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-031.json",
+      "bytes": 88786,
+      "sha256": "c0ddaf3093027b184f58ba0d15ddbe2147a68c7c55eca7761f455fc843087075"
+    },
+    "timing-map-step-032.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-032.json",
+      "bytes": 88786,
+      "sha256": "d209a35b6f8a08b0686309fbc39823de324316c41b3ca242f6cdb67043838061"
+    },
+    "timing-map-step-033.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-033.json",
+      "bytes": 88786,
+      "sha256": "7e531f4ce62fa9602a376ebc9abaa6d616fb31bc69c76f90b80ea3276aa518c0"
+    },
+    "timing-map-step-034.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-034.json",
+      "bytes": 88786,
+      "sha256": "eb41d4f8df43184129b08f3583a5fbbfcde910699d823d7ecec47ed3b3ed4824"
+    },
+    "timing-map-step-035.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-035.json",
+      "bytes": 88786,
+      "sha256": "bc06976b37bf5d18c387d881256d6b97233d4f176af406d29610d7fcd377d66e"
+    },
+    "timing-map-step-036.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-036.json",
+      "bytes": 88786,
+      "sha256": "e9179141d5fdf4e1fc751a985df5140612b244799996f9e120f9bab707f049e5"
+    },
+    "timing-map-step-037.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-037.json",
+      "bytes": 88786,
+      "sha256": "b9177b65b18f5eb47eceedf7854fc71c850a62473b525e4821eed4275e4d2b3b"
+    },
+    "timing-map-step-038.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-038.json",
+      "bytes": 88786,
+      "sha256": "8066e9528276773c620e37278657f1977aa0c8f6b1791631af90c91889a80e79"
+    },
+    "timing-map-step-039.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-039.json",
+      "bytes": 88786,
+      "sha256": "78bacee36636ce2a5d647f30eec2fcd981983b7889faf7a3ffca8e6e35f6a81f"
+    },
+    "timing-map-step-040.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-040.json",
+      "bytes": 88786,
+      "sha256": "53a48fdacdaaa1860bb1b319d485bc911fed4cfcb34fe3ee2a763f0aca81d584"
+    },
+    "timing-map-step-041.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-041.json",
+      "bytes": 88786,
+      "sha256": "dbf49a3118a037521bd0d0031ede7c3b9be3d874077b31ece1090ad09d982cb9"
+    },
+    "timing-map-step-042.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-042.json",
+      "bytes": 88786,
+      "sha256": "db830384569903763db4aa44100f7a921abb815bb1924a24a98c0c3504b987fe"
+    },
+    "timing-map-step-043.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-043.json",
+      "bytes": 88786,
+      "sha256": "30b438e0677cd865dd795e81bd453126088c1d5af5332a47395e7d0dd56d8443"
+    },
+    "timing-map-step-044.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-044.json",
+      "bytes": 88786,
+      "sha256": "600eaa2b364ae562f69a118029db9b8729c43ac39cec8dd4a1b96dcf71e206f3"
+    },
+    "timing-map-step-045.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-045.json",
+      "bytes": 88786,
+      "sha256": "41e01913d2b648047787d76c60a8f5998c23755512232b0430627be50990c67a"
+    },
+    "timing-map-step-046.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-046.json",
+      "bytes": 88786,
+      "sha256": "f0f18ad0a3794518bfbb1a1ce0831e586cef490c7ba0cfa08a42562a7b1bd2b2"
+    },
+    "timing-map-step-047.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-047.json",
+      "bytes": 88786,
+      "sha256": "fa96f1e52d43dc662dc2b6d02735e5f68b0923e7c7bbf189a155465e59a905eb"
+    },
+    "timing-map-step-048.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-048.json",
+      "bytes": 88786,
+      "sha256": "fbcf1041740f865ef36d1e1965402fd98fa47b18e0ecf962003980c04a9d47b2"
+    },
+    "timing-map-step-049.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-049.json",
+      "bytes": 88786,
+      "sha256": "80018f4f6ef141601f742bb20fcba4f20f0bf3c1653936438a762c0f5810d1d8"
+    },
+    "timing-map-step-050.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-050.json",
+      "bytes": 88786,
+      "sha256": "f15df673e2d8fa0d5cc34f2042b5f5482e4c1cebb45d6c2ccc043eada3f5ac6e"
+    },
+    "timing-map-step-051.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-051.json",
+      "bytes": 88786,
+      "sha256": "924bf700d468c1b96986a46d18c0509c9543d7fb09fb6a4c659fa665449d7c37"
+    },
+    "timing-map-step-052.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-052.json",
+      "bytes": 88786,
+      "sha256": "c7fdf34f5bd2a3a9034dff049871bf93cd1dde7117c0fe48e69d7de17df86228"
+    },
+    "timing-map-step-053.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-053.json",
+      "bytes": 88786,
+      "sha256": "3d478d3e81fc66e10876a62fbbaac9a0e1e09506c7694b3fc2dee4500d45828c"
+    },
+    "timing-map-step-054.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-054.json",
+      "bytes": 88786,
+      "sha256": "fa392bb98ac1486fb487a6530acc68f2e4e189510d782f88af06bd0097f6275a"
+    },
+    "timing-map-step-055.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-055.json",
+      "bytes": 88786,
+      "sha256": "11d9a54a16d39ecdb7d3c85da0b87379901903a0ebb7d55c17fdc7c4b672ba9f"
+    },
+    "timing-map-step-056.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-056.json",
+      "bytes": 88786,
+      "sha256": "3598700a00f75fa43ece376fd089cd8160dceb085b0350e1801d69a96b35dc35"
+    },
+    "timing-map-step-057.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-057.json",
+      "bytes": 88786,
+      "sha256": "43dc4c1e42ae4ab573bea5c179a9fe3363e1037b701a81942587e69bc4378c80"
+    },
+    "timing-map-step-058.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-058.json",
+      "bytes": 88786,
+      "sha256": "63f9e90a59710b15f561cba12b395d397c71a1de8d5533cd103ca51527475c77"
+    },
+    "timing-map-step-059.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-059.json",
+      "bytes": 88786,
+      "sha256": "e1723b751c7fa54d81c7952a440303937b9f066e742e44ff73598c6f91eded10"
+    },
+    "timing-map-step-060.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-060.json",
+      "bytes": 88786,
+      "sha256": "eab67b41ecab4dbd90a8583d6de17a6a4840cc59fa20de3ce45eb6b9262c39f7"
+    },
+    "timing-map-step-061.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-061.json",
+      "bytes": 88786,
+      "sha256": "7a66aef433f56bee97ccc5a79fee93c5142d39067ebbd46dd6fe155e1812d026"
+    },
+    "timing-map-step-062.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-062.json",
+      "bytes": 88786,
+      "sha256": "e12fd9a53462f9628b90db42fdf166d34ce31667071f8cade80608413ab30ae4"
+    },
+    "timing-map-step-063.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-063.json",
+      "bytes": 88786,
+      "sha256": "48e069ba84f4daedc747f172f2f247d4745a21baf3c3fd16fa992e3a2eeeb6a4"
+    },
+    "timing-map-step-064.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-064.json",
+      "bytes": 88786,
+      "sha256": "fea150a8d9229cf9f1b546db1e46c5f8d1c2ef2ad9e4ff62079be5177b8cfe22"
+    },
+    "timing-map-step-065.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-065.json",
+      "bytes": 88786,
+      "sha256": "60424979be31185f9f0d5c6922523aa74bc420a68ecaa6e650845c33c713d007"
+    },
+    "timing-map-step-066.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-066.json",
+      "bytes": 88786,
+      "sha256": "0b9864b6f261b8832a597ec83448bcbd12c5cd52c93d659923076e4334a7f818"
+    },
+    "timing-map-step-067.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-067.json",
+      "bytes": 88786,
+      "sha256": "1c90f90f0530c080cf2df30c18b814f69f640aa11aebbce5564c330b324132c3"
+    },
+    "timing-map-step-068.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-068.json",
+      "bytes": 88786,
+      "sha256": "6ebc87332d902c615a2e1e6f171006712161150b65f35516ddfe55bba3e957fd"
+    },
+    "timing-map-step-069.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-069.json",
+      "bytes": 88786,
+      "sha256": "510ebd196790b84c171854cb5666bc6b3c5f72894a44ff7eeee059492b90e89b"
+    },
+    "timing-map-step-070.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-070.json",
+      "bytes": 88786,
+      "sha256": "ba3747a7960307e01d0e4a1fa4f1c3c0ce16a6d690626546d31dd8e30fa38e55"
+    },
+    "timing-map-step-071.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-071.json",
+      "bytes": 88786,
+      "sha256": "7884e36f6c9972aa112fb31559766a56d1ff4aadc9bf6af98ee27f00199359d9"
+    },
+    "timing-map-step-072.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-072.json",
+      "bytes": 88786,
+      "sha256": "0ac781cf7ded45ed9c78b467e798fddde3d4ad257e725a5c31babfaf7f93d91a"
+    },
+    "timing-map-step-073.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-073.json",
+      "bytes": 88786,
+      "sha256": "3423791e92e334e754cac10bb6c452eb1fe9cd086f3b115039f8755613140fa5"
+    },
+    "timing-map-step-074.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-074.json",
+      "bytes": 88786,
+      "sha256": "680eac5c96c184bcde2f68fe3e13cb2d926cdbae5cfdc96f79a845f580553ea9"
+    },
+    "timing-map-step-075.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-075.json",
+      "bytes": 88786,
+      "sha256": "ef68fa577fa182d502c30031a01827c9813d9684d1e1cd38d914458a453ec185"
+    },
+    "timing-map-step-076.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-076.json",
+      "bytes": 88786,
+      "sha256": "43bee03ffa7baddb86392e0d59290754e80a6c72bf014bb5338cbf41accb041f"
+    },
+    "timing-map-step-077.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-077.json",
+      "bytes": 88786,
+      "sha256": "ac90be64bff3d42e09fc50fb084764847a11afa4402902a0bbe4a67b43eca8f3"
+    },
+    "timing-map-step-078.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-078.json",
+      "bytes": 88786,
+      "sha256": "962cef7f511bbfb465ad8e25638827d4e3ccd316914ce9c7d4066968fddc7f4e"
+    },
+    "timing-map-step-079.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-079.json",
+      "bytes": 88786,
+      "sha256": "bb7547d4e977aeeb2f19e28f60192404fe89dadc935f8a6397aec187cce8bcce"
+    },
+    "timing-map-step-080.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-080.json",
+      "bytes": 88786,
+      "sha256": "087212887832b9cf50de5f327e60d373106712339d1b026be80550e6ea134c94"
+    },
+    "timing-map-step-081.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-081.json",
+      "bytes": 88786,
+      "sha256": "78e0c2cbe9069048d9846aefe22d09038fee3c635f0499d7879362b41ea3ae16"
+    },
+    "timing-map-step-082.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-082.json",
+      "bytes": 88786,
+      "sha256": "cc6898e1ae72364a023e51efe1e810cb4ec15d146baba06673c16f6e23679ae3"
+    },
+    "timing-map-step-083.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-083.json",
+      "bytes": 88786,
+      "sha256": "1fcdfe2be5f2a2f0549122124d0336b31ed8a7c796eb78c20fe4568d843ad77e"
+    },
+    "timing-map-step-084.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-084.json",
+      "bytes": 88786,
+      "sha256": "c0e7682af6634ae86250173720322c6e6d3f4544579687e3b8a18be85f5c40f7"
+    },
+    "timing-map-step-085.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-085.json",
+      "bytes": 88786,
+      "sha256": "534d4c1078491329d00dc77aa857133f20dafb9542fdc26e85ca59eae2a6b7e5"
+    },
+    "timing-map-step-086.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-086.json",
+      "bytes": 88786,
+      "sha256": "71b0dd2b6af422c1816be493cea876332bc1c92c9d3ab22b174ea26df05b8a63"
+    },
+    "timing-map-step-087.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-087.json",
+      "bytes": 88786,
+      "sha256": "1172b930825df36fd523b66065c7fc268e825f1d83b1954091773d4663b2fa43"
+    },
+    "timing-map-step-088.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-088.json",
+      "bytes": 88786,
+      "sha256": "4ea14a0147f553b892f71e42c1f21c698411b51af3e33136be5aa0af2f4cff6e"
+    },
+    "timing-map-step-089.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-089.json",
+      "bytes": 88786,
+      "sha256": "99f998bd08a84962d5060eb0555bd5904bd5bb49761c018b8087a89201edc151"
+    },
+    "timing-map-step-090.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-090.json",
+      "bytes": 88786,
+      "sha256": "18234ec878c854fbc1898443cb8a18f266d769eaddd3902a9245b20e2817e1d9"
+    },
+    "timing-map-step-091.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-091.json",
+      "bytes": 88786,
+      "sha256": "482eac8f82d6825d54fe55fdb5aebaee59248d8be37214e2bf7a6da430192ac4"
+    },
+    "timing-map-step-092.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-092.json",
+      "bytes": 88786,
+      "sha256": "5f104df76c22844a858522e4348a342ec9074ff5389930494230e456301de1d7"
+    },
+    "timing-map-step-093.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-093.json",
+      "bytes": 88786,
+      "sha256": "a70b0a9709de4caadd24ec9a21ceec80e85a0ff350a7bd58ceaca8c20e4ff406"
+    },
+    "timing-map-step-094.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-094.json",
+      "bytes": 88786,
+      "sha256": "8b5d2c962240925812fac7dbecc095ae4b05e0259ea9219f221eb174bba138ba"
+    },
+    "timing-map-step-095.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-095.json",
+      "bytes": 88786,
+      "sha256": "6ec12f126c4095ab5b4f50cbf9cfd50c940d6fb6289734d109db9602e1b6e041"
+    },
+    "timing-map-step-096.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-096.json",
+      "bytes": 88786,
+      "sha256": "024bf00f25072414ebf9e49cb463fb020c01a24788209642fc8725cb043f6504"
+    },
+    "timing-map-step-097.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-097.json",
+      "bytes": 88786,
+      "sha256": "21644149d30729b3b35d402cd6497918d9cf61b01d52839cfb0828cfaae28041"
+    },
+    "timing-map-step-098.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-098.json",
+      "bytes": 88786,
+      "sha256": "060171eb32b8b29ef16ded8b97dcee86d0c5fb2f0843113b99326ead77dc279f"
+    },
+    "timing-map-step-099.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-099.json",
+      "bytes": 88787,
+      "sha256": "f917f758a5c32a58b07d82749eb133a7ce2778822fbcf1926717fea351c8de28"
+    },
+    "timing-map-step-100.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-100.json",
+      "bytes": 88787,
+      "sha256": "667188e9afee82227a2b551b67baa96876e79f5c1cf77b3c0d8c09c7c1a9e1d0"
+    },
+    "timing-map-step-101.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-101.json",
+      "bytes": 88787,
+      "sha256": "8a3bf30bce467add23db8502857c6b80607b11c501526297ca842baace0079d1"
+    },
+    "timing-map-step-102.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-102.json",
+      "bytes": 88787,
+      "sha256": "2ad441ad6ab0086028e9be83c8a6daa56ecf93d9b4c417c8ad1995259eb74a04"
+    },
+    "timing-map-step-103.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-103.json",
+      "bytes": 88787,
+      "sha256": "3fd64dc459782e288413b2c4990d8c946c1c7fa2f451de623c733d4bd6ff9c86"
+    },
+    "timing-map-step-104.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-104.json",
+      "bytes": 88787,
+      "sha256": "be01296b7ac46547375f61a4df1d0598e2442eba6bf450d947087b0523934c9c"
+    },
+    "timing-map-step-105.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-105.json",
+      "bytes": 88787,
+      "sha256": "3ae9675b7d64b1a392f31c35e0ff8fb79c3a877b87b1c14f2aa30e8105edf726"
+    },
+    "timing-map-step-106.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-106.json",
+      "bytes": 88787,
+      "sha256": "092db223143de8018cebfca3da0c3950978cc8932d26c4e23f9d0bf5a26faa6f"
+    },
+    "timing-map-step-107.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-107.json",
+      "bytes": 88787,
+      "sha256": "d4ef1a0068b2e08821cf0dd4516357e36b5b7d502c7ec5b75d4005adece639dd"
+    },
+    "timing-map-step-108.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-108.json",
+      "bytes": 88787,
+      "sha256": "3994ca6b8925fe0010a78b742ca30988551017a2ec80bfef1fc00cc9d04e21d5"
+    },
+    "timing-map-step-109.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-109.json",
+      "bytes": 88787,
+      "sha256": "2ea8705bbcc45dea24e078c95d44934263f276c7c595eae6b12da6104ddcce9d"
+    },
+    "timing-map-step-110.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-110.json",
+      "bytes": 88787,
+      "sha256": "5e1e905d3b3e5377ddf3a6f480d298a69b9d86bde4a7ad4066c989300942320f"
+    },
+    "timing-map-step-111.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-111.json",
+      "bytes": 88787,
+      "sha256": "13ec7cb62bafbac5c6c62d6ee992c5f3fa7562e8d2b43eafbfe63c3fb5c7fb40"
+    },
+    "timing-map-step-112.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-112.json",
+      "bytes": 88787,
+      "sha256": "f9e86cbaa1c32c51629be5fbef6c3b62152c70d3e7407d14106c0866d3623305"
+    },
+    "timing-map-step-113.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-113.json",
+      "bytes": 88787,
+      "sha256": "f793ab3c05fa06ffe9127799e829d53bc4da6656c3bbb6d2c2fc574e80544676"
+    },
+    "timing-map-step-114.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-114.json",
+      "bytes": 88787,
+      "sha256": "4977f03a56a1ac2d4a12a70db3069376d3430a889ded3666f2e94bc854a9ff34"
+    },
+    "timing-map-step-115.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-115.json",
+      "bytes": 88787,
+      "sha256": "ca3b2a3a98c55db0935476aa61bb952c2af40fdf064126b21deed31378d7a3c9"
+    },
+    "timing-map-step-116.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-116.json",
+      "bytes": 88787,
+      "sha256": "63a8520326808823cd73a6bcbffaf33ce343fb38969d94bf4cb74a4faa2253bb"
+    },
+    "timing-map-step-117.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-117.json",
+      "bytes": 88787,
+      "sha256": "c98d12a0044db6e0b7eef3c99441a27b7df55d14f430d90ebc4009dfc74a1ed5"
+    },
+    "timing-map-step-118.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-118.json",
+      "bytes": 88787,
+      "sha256": "96ce6a2b8651b84810c77e4eebbdd1c5b5bbcb23e15dfcd47b65d1f6ff503450"
+    },
+    "timing-map-step-119.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-119.json",
+      "bytes": 88787,
+      "sha256": "40abfb31eff64d083912bec37e22e54368c0720bac70cda86b4fab2c6c109f3b"
+    },
+    "timing-map-step-120.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-120.json",
+      "bytes": 88787,
+      "sha256": "ca50a9d13adfa511af4c53e75c4f4f412299fb53bf43290c139e2548368f1150"
+    },
+    "timing-map-step-121.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-121.json",
+      "bytes": 88787,
+      "sha256": "7d6ea4cde1dc91b67016e0557a2d50db5b19c909371ed9e1d808fb50a16d86ac"
+    },
+    "timing-map-step-122.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-122.json",
+      "bytes": 88787,
+      "sha256": "531dbbf407d68f37ab70c182dcb3043258ada983d0137cd2c5958948d7ae4e2e"
+    },
+    "timing-map-step-123.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-123.json",
+      "bytes": 88787,
+      "sha256": "a93dda78b0c1cfc821c71b93bf2dca8762a06967b19a584ab7cc7d0db1620639"
+    },
+    "timing-map-step-124.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-124.json",
+      "bytes": 88787,
+      "sha256": "e5fec55d555fd68ab5c6aa7997dd616f8a7c2dfb4037309eb88fe88dcb0545e9"
+    },
+    "timing-map-step-125.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-125.json",
+      "bytes": 88787,
+      "sha256": "59e97ce87f4daa3ef38b37743ae5922529afc26483a5cf7981445f06a6629289"
+    },
+    "timing-map-step-126.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-126.json",
+      "bytes": 88787,
+      "sha256": "84a7c1d78debe522b605f84f11a2a046c4361528e3fe398281b9ec41b8fe71a7"
+    },
+    "timing-map-step-127.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-127.json",
+      "bytes": 88787,
+      "sha256": "9c7047f94f2f965b92415bf5a4ccd79b617307cab638adfd23c39e06e8f53e39"
+    },
+    "timing-map-step-128.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-128.json",
+      "bytes": 88787,
+      "sha256": "19417cc5d7c12fd237d2d4ff9e22255b0cad221278f27d7318cc6976d46a2520"
+    },
+    "timing-map-step-129.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-129.json",
+      "bytes": 88787,
+      "sha256": "ddd47ff65d1e7048011fd059db0199882bdf0b041ad683c560fe4a439a843ca3"
+    },
+    "timing-map-step-130.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-130.json",
+      "bytes": 88787,
+      "sha256": "2bea0b250bcfce7f052766ca7d78cea50489eedf0d2f34725f69aae646314d39"
+    },
+    "timing-map-step-131.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-131.json",
+      "bytes": 88787,
+      "sha256": "df19658dd7c92da0b9804f953f92e76ec7b1593f069433ac3c5b355efd26f35b"
+    },
+    "timing-map-step-132.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-132.json",
+      "bytes": 88787,
+      "sha256": "61bea0d9717543eaa2e3170ba64692af3a8b02dbda4921ebdb83010e0a857a3c"
+    },
+    "timing-map-step-133.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-133.json",
+      "bytes": 88787,
+      "sha256": "f1d0480cb7ed9a669aee48a1ddee14b25ba59ae6fb0d8d6f8f522c19b68b00f4"
+    },
+    "timing-map-step-134.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-134.json",
+      "bytes": 88787,
+      "sha256": "cbf2b42f0028a63f59573ef4c5acfa1b6d6f493bf06efd7a2f73066bea9060bd"
+    },
+    "timing-map-step-135.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-135.json",
+      "bytes": 88787,
+      "sha256": "3b84ca62e8ed123c016ee45864ee9072358cd3ef05bd250fde6731db6a760dee"
+    },
+    "timing-map-step-136.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-136.json",
+      "bytes": 88787,
+      "sha256": "df3d273ac4a21212cc0e696367935b8646cd5cde325d979fb3fe9aabb8fe01e1"
+    },
+    "timing-map-step-137.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-137.json",
+      "bytes": 88787,
+      "sha256": "d867433d9c7b2ec6ac448f1896f5696d08b7b32227dd7351229a994b122e5b14"
+    },
+    "timing-map-step-138.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-138.json",
+      "bytes": 88787,
+      "sha256": "650ccb539ae497a282db1035527b0b693c74f2fee9e651fd8987287f3db85382"
+    },
+    "timing-map-step-139.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-139.json",
+      "bytes": 88787,
+      "sha256": "17e258a718b8fa2ea9629e5f28a25a0c7c77284832390864e910f39c5828746c"
+    },
+    "timing-map-step-140.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-140.json",
+      "bytes": 88787,
+      "sha256": "08e4e69d5584bbaeae0b4a3cc1a4b1605a9c923b78a52d18dc59f860f30b1a47"
+    },
+    "timing-map-step-141.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-141.json",
+      "bytes": 88787,
+      "sha256": "53bcebb7074554b014c6e8f04dd665e244927c5aac21716c695432220d73da84"
+    },
+    "timing-map-step-142.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-142.json",
+      "bytes": 88787,
+      "sha256": "7fb5734ee00ed2c9d30125a6efbf1d56d8576c6839d38f2c8952fb62c97d61b4"
+    },
+    "timing-map-step-143.json": {
+      "path": ".local/cave-background-load-native-01/timing-map-step-143.json",
+      "bytes": 88787,
+      "sha256": "d96a3c0e33db2b4f6b5e8c88a58ca4d520b94bbeee3e5792e8c15c5410049b84"
+    },
+    "warning-poll.json": {
+      "path": ".local/cave-background-load-native-01/warning-poll.json",
+      "bytes": 88774,
+      "sha256": "916faf9a1073a4711f3258fb7583e9cf0714fccceb47700d57bb40975281ae31"
+    },
+    "warning-poll.png": {
+      "path": ".local/cave-background-load-native-01/warning-poll.png",
+      "bytes": 5205,
+      "sha256": "8ba750e594201f9d78106497bf6e8808e9ab2b12c84812467335a93d7eac5384"
+    }
+  }
+}

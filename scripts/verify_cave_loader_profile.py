@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import struct
 import subprocess
+import sys
 from capture_safari_cadence import relocated_overlay
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,12 +30,16 @@ def replay_ok(replay):
 def clock_ok(before, after, expected):
     first = struct.unpack_from('<I', before, 0x2225)[0]
     last = struct.unpack_from('<I', after, 0x2225)[0]
-    assert last-first == expected == 84, 'Changed loader clock bracket'
+    assert expected in [84, 85] and last-first == expected, 'Changed loader clock bracket'
     return first, last
 
 
 def verify():
-    m = json.loads((ROOT/'reference/cave-loader-native.json').read_text())
+    path = next((arg.split('=',1)[1] for arg in sys.argv[1:] if arg.startswith('--manifest=')), 'reference/cave-loader-native.json')
+    m = json.loads((ROOT/path).read_text())
+    resource = m['resource']; assert resource in [0, 10]
+    before_ip, after_ip = (0x595, 0x59a) if resource == 0 else (0xfc5, 0xfca)
+    caller_at, caller_size = (0x580, 64) if resource == 0 else (0xf51, 302)
     assert m['kind'] == 'original-cave-loader-conditional-profile' and m['expectedCases'] == 1
     assert not m['portTimingAcceptance'] and m['injections'] == [] and not m['partialRestore']
     objects = {name: json.loads(artifact(spec)) for name, spec in m['artifacts'].items() if name.endswith('.json')}
@@ -60,7 +65,7 @@ def verify():
     cave = relocated_overlay(exe, 0x1a800, load, 6, 11054, 196)
     assert base64.b64decode(code['read']['results'][0]['data']) == cave
     before_record, after_record = objects['cave-loader-before.json'], objects['cave-loader-after.json']
-    for record, ip in [(before_record, 0xfc5), (after_record, 0xfca)]:
+    for record, ip in [(before_record, before_ip), (after_record, after_ip)]:
         cpu = record['stop']['registers']
         assert cpu['cs'] == code['segment'] and cpu['eip'] == ip and cpu['ss'] == cpu['ds'] == code['ds']
         assert not record['stop']['protected_mode'] and not record['state']['aborted']
@@ -70,21 +75,26 @@ def verify():
     after = base64.b64decode(after_record['state']['results'][1]['data'])
     assert len(before) == len(after) == 65536
     sp = before_record['stop']['registers']['esp'] & 65535
-    assert struct.unpack_from('<HH', before, sp) == (10, 0x54fc)
+    destination = struct.unpack_from('<H', before, 0x203a)[0] if resource == 0 else 0x54fc
+    assert struct.unpack_from('<HH', before, sp) == (resource, destination)
+    assert after_record['stop']['registers']['eax'] & 65535 == destination
     assert [before[0x204a], before[0x2043], before[0x8b54]] == [1, 1, 1]
-    assert struct.unpack_from('<H', before, 0x4d32)[0] == 46
+    assert struct.unpack_from('<H', before, 0x4d32)[0] == (45 if resource == 0 else 46)
     assert struct.unpack_from('<H', before, 0x8eb2)[0] == 1
     first, last = clock_ok(before, after, m['expectedDriverCounts'])
     profile = objects['cave-loader-profile.json']
-    assert profile['completed'] and profile['resource'] == 10 and profile['destination'] == 0x54fc
-    assert [profile['beforeClock'], profile['afterClock'], profile['driverCounts']] == [first, last, 84]
+    assert profile['completed'] and profile['resource'] == resource and profile['destination'] == destination
+    assert [profile['beforeClock'], profile['afterClock'], profile['driverCounts']] == [first, last, m['expectedDriverCounts']]
     replay_ok(objects['cave-loader-replay.json'])
-    assert objects['cave-loader-inputs.json']['events'] == [
+    if resource == 0:
+        assert objects['cave-loader-inputs.json'] == {'events': [], 'scheduled': None}
+        replay_ok(objects['cave-flight-setup-completed.json'])
+    else: assert objects['cave-loader-inputs.json']['events'] == [
         {'type': 'key', 'key': key, 'pressed': pressed, 'frame': frame}
         for frame, pressed in [(0, True), (10, False)] for key in ['KBD_right', 'KBD_space']]
     # Unpacked original resident and independently decoded resource data.
     decoded = json.loads(subprocess.check_output(['node', '--input-type=module', '-e',
-        "import{originalGame}from'./tests/helpers/original-game.js';const r=await originalGame(),e=r.archives.get('EXP.ARC')[10];process.stdout.write(JSON.stringify({image:Buffer.from(r.image).toString('base64'),pixels:Buffer.from(e.data).toString('base64')}));"], cwd=ROOT))
+        "import{originalGame}from'./tests/helpers/original-game.js';const r=await originalGame(),e=r.archives.get('EXP.ARC')[Number(process.argv[1])];process.stdout.write(JSON.stringify({image:Buffer.from(r.image).toString('base64'),pixels:Buffer.from(e.data).toString('base64')}));", str(resource)], cwd=ROOT))
     image = bytearray(base64.b64decode(decoded['image']))
     cursor = struct.unpack_from('<H', exe, 8)[0]*16+struct.unpack_from('<H', exe, 22)[0]*16+0x125
     for region in range(16):
@@ -94,7 +104,7 @@ def verify():
             struct.pack_into('<H', image, pos, (struct.unpack_from('<H', image, pos)[0]+load)&65535)
     load_code = objects['cave-loader-code.json']['read']
     assert not load_code['aborted'] and all(r['status'] == 'ok' for r in load_code['results'])
-    assert base64.b64decode(load_code['results'][0]['data']) == cave[0xf51:0x107f]
+    assert base64.b64decode(load_code['results'][0]['data']) == cave[caller_at:caller_at+caller_size]
     at = 0x40e*16+0x175c
     assert base64.b64decode(load_code['results'][1]['data']) == image[at:at+585]
     source = json.loads(json.loads(artifact(m['converterSource']))['content'][0]['text'])
@@ -106,24 +116,33 @@ def verify():
         assert raw == image[0x40e*16+at:0x40e*16+at+len(raw)] and len(raw) == instruction['length']
         at += len(raw)
     assert at == 0x13ce and len(source['instructions']) == 89
-    descriptor = list(struct.unpack_from('<10H', after, 0x54fc)); payload = objects['cave-loader-payload.json']
-    assert descriptor == payload['descriptor'] and descriptor[2:6] == [17, 112, 68, 112]
-    assert descriptor[8] == 7616 and payload['planes'] == 5
+    descriptor = list(struct.unpack_from('<6H' if resource == 0 else '<10H', after, destination)); payload = objects['cave-loader-payload.json']
+    assert descriptor == payload['descriptor']
+    if resource == 0:
+        assert descriptor[:2] == [40, 200] and descriptor[4] == 8000 and payload['planes'] == 4
+        span, planes, expected_size = 8000, 4, 32000
+        offset, segment = descriptor[2:4]
+    else:
+        assert descriptor[2:6] == [17, 112, 68, 112] and descriptor[8] == 7616 and payload['planes'] == 5
+        span, planes, expected_size = 7616, 5, 30464
+        offset, segment = descriptor[6:8]
+    assert after[0x2675] == (1 if resource == 0 else 2)
+    assert payload['read']['results'][0]['addr'] == segment*16+offset
     assert not payload['read']['aborted'] and payload['read']['results'][0]['status'] == 'ok'
     actual = base64.b64decode(payload['read']['results'][0]['data'])
-    pixels = base64.b64decode(decoded['pixels']); assert len(pixels) == 30464
-    expected = bytearray(7616*5); transparent = pixels[0] >> 4
+    pixels = base64.b64decode(decoded['pixels']); assert len(pixels) == expected_size
+    expected = bytearray(span*planes); transparent = pixels[0] >> 4
     for p in range(len(pixels)*2):
         color = (pixels[p//2] >> (4 if p % 2 == 0 else 0)) & 15
         bit = 1 << (7-p%8)
         for plane in range(4):
-            if color & (1 << plane): expected[plane*7616+p//8] |= bit
-        if color != transparent: expected[4*7616+p//8] |= bit
+            if color & (1 << plane): expected[plane*span+p//8] |= bit
+        if planes == 5 and color != transparent: expected[4*span+p//8] |= bit
     assert actual == expected, 'Original planar sprite differs'
     negatives = 0
     wrong = bytearray(actual); wrong[200] ^= 1; assert wrong != expected; negatives += 1
     wrong = bytearray(after); struct.pack_into('<I', wrong, 0x2225, last+1)
-    try: clock_ok(before, wrong, 84)
+    try: clock_ok(before, wrong, m['expectedDriverCounts'])
     except AssertionError: negatives += 1
     else: raise AssertionError('Accepted changed loader clock')
     wrong = copy.deepcopy(objects['cave-loader-replay.json']); wrong['dispatched'] = 3
@@ -131,7 +150,7 @@ def verify():
     except AssertionError: negatives += 1
     else: raise AssertionError('Accepted unconsumed loader input')
     assert negatives == 3
-    print('Original cave loader:one natural sprite10 call,84 conditional driver counts;exact585 loader/302 caller/222 converter bytes and38080 planar payload bytes;all inputs and owned shutdown checked,3 negatives. No port timing admission or fitted delay.')
+    print(f'Original cave loader:one natural resource{resource} call,{last-first} conditional driver counts;exact585 loader/{caller_size} caller/222 converter bytes and{len(actual)} planar bytes;inputs/closed owned session,3 negatives. No port timing admission or fitted delay.')
 
 
 if __name__ == '__main__': verify()

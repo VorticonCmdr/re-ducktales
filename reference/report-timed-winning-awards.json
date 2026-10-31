@@ -1,0 +1,126 @@
+{
+  "kind": "current-winning-award-presentations",
+  "producer": ".local/report-timed-winning-browser-03",
+  "targetProducer": ".local/standard-winning-browser-03",
+  "nativeComparison": false,
+  "scope": "Seven current winning Standard awards. Six independently retained earlier completed port targets also match the original-resource/font/text composition;the7500 Novay page uses that source composition,with a wrong-value negative. Not original native transition screenshots or elapsed-time parity.",
+  "comparison": {
+    "rows": "exact source stripe groups against independent earlier completed port reward pages",
+    "exclusions": [],
+    "jungleIncoming": "Exactly black after source Main01e0 completed exit wipe;only completed421-read success. All other activities require nonblank incoming page. No pixel exclusions."
+  },
+  "cases": [
+    {
+      "location": 24,
+      "activity": "cave",
+      "value": 3000,
+      "targetCheckpoint": "award",
+      "targetArtifact": "target-24"
+    },
+    {
+      "location": 28,
+      "activity": "jungle",
+      "value": 4000,
+      "targetCheckpoint": "continued-jungle-return",
+      "targetArtifact": "target-28"
+    },
+    {
+      "location": 19,
+      "activity": "mountain",
+      "value": 2000,
+      "targetCheckpoint": "continued-mountain-return",
+      "targetArtifact": "target-19"
+    },
+    {
+      "location": 9,
+      "activity": "cave",
+      "value": 5000,
+      "targetCheckpoint": "winning-17-cave-return-9",
+      "targetArtifact": "target-9"
+    },
+    {
+      "location": 30,
+      "activity": "cave",
+      "value": 4500,
+      "targetCheckpoint": "winning-37-cave-return-30",
+      "targetArtifact": "target-30"
+    },
+    {
+      "location": 21,
+      "activity": "cave",
+      "value": 6000,
+      "targetCheckpoint": "winning-56-cave-return-21",
+      "targetArtifact": "target-21"
+    },
+    {
+      "location": 10,
+      "activity": "mountain",
+      "value": 7500,
+      "targetKind": "source-composed"
+    }
+  ],
+  "artifacts": {
+    "presentations": {
+      "path": ".local/report-timed-winning-browser-03/award-presentations.json",
+      "bytes": 3419205,
+      "sha256": "f5ad823a3e425df5f8c311c90c6202d1c43a6b00bc003bf14048ae537fec28f6"
+    },
+    "targetCheckpoints": {
+      "path": ".local/standard-winning-browser-03/campaign-checkpoints.json",
+      "bytes": 1679059,
+      "sha256": "2140ca455ea0170642f2f4d5da7e786df5734ef43ccdf3e41c488da7362cd6b1"
+    },
+    "captureStatus": {
+      "path": ".local/current-winning-browser-03/exploration-status.json",
+      "bytes": 130,
+      "sha256": "c98746433a15798bd3defdbcc85d835275618a511a7b2a9eda16df405a79ee39"
+    },
+    "captureCheckpoints": {
+      "path": ".local/current-winning-browser-03/campaign-checkpoints.json",
+      "bytes": 1290419,
+      "sha256": "f9c638653c48fae6feae32b7ba5d927f696c91e33ce8dc913450c5e1bc4b0ac1"
+    },
+    "target-24": {
+      "path": ".local/standard-winning-browser-03/award.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "target-28": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-return.png",
+      "bytes": 19127,
+      "sha256": "78a586d4caabcf2856361fd6539c8e6307eee278a27e675ab7cfd35ee7015566"
+    },
+    "target-19": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-return.png",
+      "bytes": 19084,
+      "sha256": "8b17e4eae5db9faf78fd9ae8885485bf940a5a86b69c3f27a346d0ec1b69dc6e"
+    },
+    "target-9": {
+      "path": ".local/standard-winning-browser-03/winning-17-cave-return-9.png",
+      "bytes": 19126,
+      "sha256": "9db63592a7479ab6f3baddccd6e933e1258a2cddcbaeffdfd8e06afb13507dc2"
+    },
+    "target-30": {
+      "path": ".local/standard-winning-browser-03/winning-37-cave-return-30.png",
+      "bytes": 19156,
+      "sha256": "931f2fbadc5c0f7a90bc25ebe889b6aec4b96c1dcd8b5d2ff05f9d6de87169d7"
+    },
+    "target-21": {
+      "path": ".local/standard-winning-browser-03/winning-56-cave-return-21.png",
+      "bytes": 19108,
+      "sha256": "f1b83f6aed302aca50aed9d640ebc72df7be3ea6988e29561cc8822ab01ca257"
+    },
+    "jungleExit": {
+      "path": "reference/jungle-award-exit-source.json",
+      "bytes": 1727,
+      "sha256": "e865014611eeb53a18ff706185b74b05939a6fee9e8cba372b379a673d5193cf"
+    },
+    "originalAwardSource": {
+      "path": "reference/award-presentation-source.json",
+      "bytes": 4472,
+      "sha256": "b6fa7d7021870d169b2cb2fdc4ec623031b86ea218c063b9e7c71b0b7ffa8fd1"
+    }
+  },
+  "includeNovay": true,
+  "verify": "node scripts/verify-current-winning-awards.js --manifest=reference/report-timed-winning-awards.json"
+}

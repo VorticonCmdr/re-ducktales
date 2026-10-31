@@ -1,6 +1,7 @@
 // Saved browser presentation evidence. Historical completed reward pages are
 // independent pixel targets, not native transition captures or replay inputs.
 import assert from "node:assert/strict";
+import { sourceAwardTarget } from "./lib/source-award-target.js";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
 import { spawnSync } from "node:child_process";
@@ -22,7 +23,7 @@ const m = await json(
 assert.equal(m.kind, "current-winning-award-presentations");
 assert.equal(m.nativeComparison, false);
 assert.deepEqual(m.comparison.exclusions, []);
-await originalGame();
+const originalResources = await originalGame();
 const exitProof = spawnSync(
   process.execPath,
   ["scripts/verify-jungle-award-exit-source.js"],
@@ -50,6 +51,20 @@ const required = [
   [30, "cave", 4500],
   [21, "cave", 6000],
 ];
+assert.ok(m.includeNovay === undefined || typeof m.includeNovay === "boolean");
+if (m.includeNovay) {
+  required.push([10, "mountain", 7500]);
+  assert.equal(
+    m.artifacts.originalAwardSource.path,
+    "reference/award-presentation-source.json",
+  );
+  const proof = spawnSync(
+    process.execPath,
+    ["scripts/verify-award-presentation-source.js"],
+    { encoding: "utf8" },
+  );
+  assert.equal(proof.status, 0, proof.stdout + proof.stderr);
+}
 assert.deepEqual(
   m.cases.map(({ location, activity, value }) => [location, activity, value]),
   required,
@@ -64,7 +79,8 @@ assert.equal(
   "Duplicate award observation",
 );
 let groupsChecked = 0,
-  negatives = 0;
+  negatives = 0,
+  novayNegatives = 0;
 for (const c of m.cases) {
   const observations = packet.filter((v) => v.location === c.location);
   for (const v of observations) {
@@ -74,20 +90,38 @@ for (const c of m.cases) {
     assert.equal(v.state.campaign.location, c.location);
     assert.equal(v.state.expeditionResult.value, c.value);
   }
-  const checkpoint = old.find((v) => v.name === c.targetCheckpoint);
-  assert.ok(checkpoint, "Missing independent completed reward target");
-  assert.equal(checkpoint.state.campaign.selected, c.location);
-  assert.equal(checkpoint.state.expeditionResult.value, c.value);
-  assert.equal(checkpoint.state.expeditionResult.phase, "award");
-  assert.equal(checkpoint.state.systemOverlay, null);
-  const png = PNG.sync.read(await readFile(m.artifacts[c.targetArtifact].path));
-  assert.equal(png.width, 320);
-  assert.equal(png.height, 200);
-  assert.equal(
-    sha(png.data),
-    checkpoint.pixelsSha256,
-    "Corrupt completed reward pixels",
-  );
+  let targetPixels;
+  if (c.targetKind === "source-composed") {
+    assert.equal(m.includeNovay, true);
+    assert.deepEqual([c.location, c.activity, c.value], [10, "mountain", 7500]);
+    targetPixels = Buffer.from(sourceAwardTarget(c.value, originalResources));
+  } else {
+    assert.equal(c.targetKind, undefined, "Unsupported award target kind");
+    const checkpoint = old.find((v) => v.name === c.targetCheckpoint);
+    assert.ok(checkpoint, "Missing independent completed reward target");
+    assert.equal(checkpoint.state.campaign.selected, c.location);
+    assert.equal(checkpoint.state.expeditionResult.value, c.value);
+    assert.equal(checkpoint.state.expeditionResult.phase, "award");
+    assert.equal(checkpoint.state.systemOverlay, null);
+    const png = PNG.sync.read(
+      await readFile(m.artifacts[c.targetArtifact].path),
+    );
+    assert.equal(png.width, 320);
+    assert.equal(png.height, 200);
+    assert.equal(
+      sha(png.data),
+      checkpoint.pixelsSha256,
+      "Corrupt completed reward pixels",
+    );
+    targetPixels = png.data;
+    // Independently cross-check this composition against all six retained
+    // pages before extending its original literal value text to7500.
+    assert.equal(
+      sha(sourceAwardTarget(c.value, originalResources)),
+      sha(targetPixels),
+      "Source-composed retained reward target",
+    );
+  }
   const groups = observations.filter(
     (v) => v.state.expeditionResult.presentation.transition,
   );
@@ -99,7 +133,7 @@ for (const c of m.cases) {
     assert.equal(groups[0].state.jungle.outcome.code, 1);
     assert.equal(groups[0].state.jungle.frames, 421);
   }
-  compareAwardGroups(groups, png.data, { incomingAlreadyCleared });
+  compareAwardGroups(groups, targetPixels, { incomingAlreadyCleared });
   if (incomingAlreadyCleared) {
     const wrong = structuredClone(groups),
       image = PNG.sync.read(Buffer.from(wrong[0].png.split(",")[1], "base64"));
@@ -108,7 +142,9 @@ for (const c of m.cases) {
       "data:image/png;base64," + PNG.sync.write(image).toString("base64");
     assert.throws(
       () =>
-        compareAwardGroups(wrong, png.data, { incomingAlreadyCleared: true }),
+        compareAwardGroups(wrong, targetPixels, {
+          incomingAlreadyCleared: true,
+        }),
       /Uncleared incoming award page/,
     );
   }
@@ -120,11 +156,22 @@ for (const c of m.cases) {
     publishing[0].state.expeditionResult.presentation.consumedRetraces,
     75,
   );
-  assert.deepEqual(awardPixels(publishing[0]), png.data);
+  assert.deepEqual(awardPixels(publishing[0]), targetPixels);
   groupsChecked += groups.length;
+  if (c.targetKind === "source-composed") {
+    assert.throws(
+      () =>
+        compareAwardGroups(
+          groups,
+          Buffer.from(sourceAwardTarget(7501, originalResources)),
+        ),
+      /Award row pixels/,
+    );
+    novayNegatives++;
+  }
   if (!negatives) {
     assert.throws(
-      () => compareAwardGroups(groups.slice(1), png.data),
+      () => compareAwardGroups(groups.slice(1), targetPixels),
       /Missing award row groups/,
     );
     const changed = structuredClone(groups),
@@ -133,7 +180,7 @@ for (const c of m.cases) {
     changed[0].png =
       "data:image/png;base64," + PNG.sync.write(bad).toString("base64");
     assert.throws(
-      () => compareAwardGroups(changed, png.data),
+      () => compareAwardGroups(changed, targetPixels),
       /Award row pixels/,
     );
     const blank = structuredClone(groups);
@@ -147,13 +194,14 @@ for (const c of m.cases) {
         "data:image/png;base64," + PNG.sync.write(image).toString("base64");
     }
     assert.throws(
-      () => compareAwardGroups(blank, png.data),
+      () => compareAwardGroups(blank, targetPixels),
       /Missing incoming award page/,
     );
     negatives = 3;
   }
 }
-assert.equal(groupsChecked, 90);
+assert.equal(groupsChecked, required.length * 15);
+assert.equal(novayNegatives, m.includeNovay ? 1 : 0);
 console.log(
-  "Current Standard rewards:6 awards across cave/jungle/mountain,90 exact row groups,75 retraces each,6 independent retained completed-page targets,4 pixel/missing-group negatives including source-required black jungle exit. Browser port regression,not native uninterrupted timing parity.",
+  `Current Standard rewards:${required.length} awards across cave/jungle/mountain,${groupsChecked} exact row groups,75 retraces each,6 independent retained targets${m.includeNovay ? " plus original-source-composed7500" : ""},${4 + novayNegatives} pixel/missing-group/value negatives. No image exclusions;port regression,not native uninterrupted timing parity.`,
 );

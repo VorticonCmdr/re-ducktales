@@ -7,6 +7,7 @@ import { originalGame } from "../tests/helpers/original-game.js";
 import {
   lzwSpriteLoadWork,
   egaSpriteConversionWork,
+  egaGraphicsConversionWork,
 } from "../src/game/sprite-load-work.js";
 import { normalCoreGraphicsMilliseconds } from "../src/game/ega-work.js";
 const sha = (b) => createHash("sha256").update(b).digest("hex");
@@ -23,10 +24,22 @@ async function artifact(spec) {
 }
 await artifact(manifest.build);
 await artifact(manifest.nativeParent);
+await artifact(manifest.backgroundParent);
 execFileSync("python3", ["scripts/verify_cave_loader_profile.py"], {
   env: { ...process.env, PYTHONDONTWRITEBYTECODE: "1" },
   stdio: "inherit",
 });
+execFileSync(
+  "python3",
+  [
+    "scripts/verify_cave_loader_profile.py",
+    "--manifest=reference/cave-background-load-native.json",
+  ],
+  {
+    env: { ...process.env, PYTHONDONTWRITEBYTECODE: "1" },
+    stdio: "inherit",
+  },
+);
 const { image, archives } = await originalGame(),
   exe = await readFile("game/DUCKTALE.EXE");
 // Relocate the original unpacked resident to the declared analysis bias1000.
@@ -196,6 +209,7 @@ function oracle(packed) {
   };
 }
 function conversionCount(entry) {
+  const sprite = entry.type === 2;
   let opaque = 0;
   for (const b of entry.data) {
     opaque += b >>> 4 !== entry.data[0] >>> 4;
@@ -203,9 +217,14 @@ function conversionCount(entry) {
   }
   const setup = count(0x12f0, 0x1301),
     pixel =
-      count(0x1301, 0x1336) + count(0x1336, 0x133c) + count(0x1342, 0x134c);
+      count(0x1301, 0x1336) +
+      (sprite ? count(0x1336, 0x133c) : 0) +
+      count(0x1342, 0x134c);
   const group =
-    count(0x1352, 0x135e) + count(0x135e, 0x138f) + count(0x13bb, 0x13c9);
+    count(0x1352, 0x135e) +
+    count(0x135e, 0x138f) -
+    (sprite ? 0 : count(0x1383, 0x138b)) +
+    count(0x13bb, 0x13c9);
   // First-call dispatch follows mode1's initialization path;subsequent calls3.
   const initial =
     count(0x10e8, 0x10ef) + count(0x10f2, 0x1117) + count(0x1121, 0x112b) + 1;
@@ -215,7 +234,7 @@ function conversionCount(entry) {
     (n - 1) * 3 +
     n * (setup + 2 * pixel + count(0x134c, 0x1352) + count(0x13c9, 0x13ce)) +
     (n / 4) * group +
-    opaque * count(0x133c, 0x1342)
+    (sprite ? opaque * count(0x133c, 0x1342) : 0)
   );
 }
 const raw = await readFile("game/EXP.ARC");
@@ -226,10 +245,12 @@ function comparePlanes(actual, expected) {
   assert.equal(Buffer.compare(actual, expected), 0, "Original planar bytes");
 }
 let cases = 0,
+  pictures = 0,
   native = null,
+  background = null,
   negatives = 0;
 for (const entry of archives.get("EXP.ARC")) {
-  if (entry.type !== 2) continue;
+  if (![1, 2].includes(entry.type)) continue;
   const packed = raw.subarray(
       entry.offset + 16,
       entry.offset + 16 + entry.packedSize,
@@ -243,12 +264,15 @@ for (const entry of archives.get("EXP.ARC")) {
   );
   for (const [field, value] of Object.entries(expected))
     assert.equal(lzw[field], value, `LZW${entry.index} ${field}`);
-  const converted = egaSpriteConversionWork(entry),
+  const converted = egaGraphicsConversionWork(entry),
     expectedCount = conversionCount(entry);
   compareCount(converted.instructions, expectedCount);
-  cases++;
-  if (entry.index === 10) {
-    const profile = await artifact(manifest.nativeParent),
+  if (entry.type === 2) cases++;
+  else pictures++;
+  if (entry.index === 10 || entry.index === 0) {
+    const profile = await artifact(
+        entry.index === 0 ? manifest.backgroundParent : manifest.nativeParent,
+      ),
       spec = profile.artifacts["cave-loader-payload.json"],
       capture = await artifact(spec);
     const target = Buffer.from(capture.read.results[0].data, "base64");
@@ -275,21 +299,35 @@ for (const entry of archives.get("EXP.ARC")) {
       },
       3000,
     );
-    native = {
+    const observation = {
       decodedBytes: entry.data.length,
       planarBytes: target.length,
       lzwInstructions: lzw.instructions,
       converterInstructions: converted.instructions,
       accountedMilliseconds: partial,
-      nativeWholeLoadCounts: 84,
+      nativeWholeLoadCounts: profile.expectedDriverCounts,
       nativeTimingAcceptance: false,
       omitted: manifest.omitted,
     };
+    if (entry.index === 0) {
+      background = observation;
+      assert.throws(
+        () =>
+          comparePlanes(
+            egaSpriteConversionWork({ ...entry, type: 2 }).planes,
+            target,
+          ),
+        /Original planar bytes/,
+      );
+      negatives++;
+    } else native = observation;
   }
 }
 assert.equal(cases, manifest.expectedSprites);
 assert.equal(cases, 46);
-assert.ok(native);
+assert.equal(pictures, manifest.expectedPictures);
+assert.equal(pictures, 1);
+assert.ok(native && background);
 assert.throws(
   () => lzwSpriteLoadWork(Uint8Array.of(0, 0), 2),
   /Unsupported|Truncated/,
@@ -300,15 +338,17 @@ assert.throws(
   /Unsupported/,
 );
 negatives++;
-assert.equal(negatives, 4);
+assert.equal(negatives, 7);
 console.log(
   JSON.stringify(
     {
       sourceInstructions: 294,
       originalBytes: 780,
       spriteCases: cases,
+      pictureCases: pictures,
       negativeControls: negatives,
       native,
+      background,
     },
     null,
     2,

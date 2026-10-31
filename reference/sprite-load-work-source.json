@@ -29,12 +29,18 @@
       "sha256": "dfd4288cb4e09c2fd1bd5ece674604a358c8c6a6d64c8db20e152e3ea6c67148"
     }
   },
-  "supported": "EXP.ARC46 sprites,type2,LZW,mode1,RAM five-plane destination under64KiB.",
+  "supported": "EXP.ARC46 sprites and one room picture,LZW,mode1,RAM four/five-plane destination under64KiB.",
   "omitted": [
     "Archive lookup/seek/header and allocation/caller bodies",
     "DOS read bodies,I/O budget clamping and optional disk-speed delays",
     "IRQ/BIOS/audio device execution and original CPU slice phase"
   ],
   "nativeTimingAcceptance": false,
-  "verify": "node scripts/verify-sprite-load-work.js"
+  "verify": "node scripts/verify-sprite-load-work.js",
+  "backgroundParent": {
+    "path": "reference/cave-background-load-native.json",
+    "bytes": 50462,
+    "sha256": "73b45806f637f020f7a42c4498386d2e1525899d20ba732b76fda34ef5d02315"
+  },
+  "expectedPictures": 1
 }

@@ -1,6 +1,6 @@
 // Original resident LZW0efd..1070,bit reader1071..10e7 and EGA converter
 // 10e8..112a/12f0..13cd. Source work only;no clock or native timer inputs.
-export function lzwSpriteLoadWork(packed, expectedSize) {
+export function lzwGraphicsLoadWork(packed, expectedSize) {
   if (
     !(packed instanceof Uint8Array) ||
     packed.length < 2 ||
@@ -140,9 +140,10 @@ export function lzwSpriteLoadWork(packed, expectedSize) {
   };
 }
 
-export function egaSpriteConversionWork(entry) {
+export function egaGraphicsConversionWork(entry) {
   if (
-    entry?.type !== 2 ||
+    ![1, 2].includes(entry?.type) ||
+    (entry.type === 1 && entry.frames !== 1) ||
     !Number.isInteger(entry.width) ||
     entry.width <= 0 ||
     entry.width % 8 ||
@@ -154,17 +155,19 @@ export function egaSpriteConversionWork(entry) {
     entry.data.length !== (entry.width * entry.frames * entry.height) / 2
   )
     throw Error("Unsupported original EGA sprite conversion");
+  const sprite = entry.type === 2,
+    planesCount = sprite ? 5 : 4;
   const span = entry.data.length / 4;
-  if (!Number.isInteger(span) || span * 5 > 65536)
+  if (!Number.isInteger(span) || span * planesCount > 65536)
     throw Error("Unsupported original sprite plane address span");
-  const planes = new Uint8Array(span * 5),
+  const planes = new Uint8Array(span * planesCount),
     transparent = entry.data[0] >>> 4;
   // Per byte:3 dispatch,8 setup,2*(21 color+2 opacity-test+5 tail),
   // 3 group-test and2 return. Each full group adds4+18+6 RAM-store ops.
   let instructions =
       19 +
-      entry.data.length * (3 + 8 + 2 * (21 + 2 + 5) + 3 + 2) +
-      span * (4 + 18 + 6),
+      entry.data.length * (3 + 8 + 2 * (21 + (sprite ? 2 : 0) + 5) + 3 + 2) +
+      span * (4 + (sprite ? 18 : 15) + 6),
     opaquePixels = 0;
   for (let p = 0; p < entry.data.length * 2; p++) {
     const color = (entry.data[p >>> 1] >>> (p & 1 ? 0 : 4)) & 15,
@@ -172,7 +175,7 @@ export function egaSpriteConversionWork(entry) {
       at = p >>> 3;
     for (let plane = 0; plane < 4; plane++)
       if (color & (1 << plane)) planes[plane * span + at] |= mask;
-    if (color !== transparent) {
+    if (sprite && color !== transparent) {
       planes[4 * span + at] |= mask;
       instructions += 3;
       opaquePixels++;
@@ -188,4 +191,12 @@ export function egaSpriteConversionWork(entry) {
     opaquePixels,
     span,
   };
+}
+
+// Existing sprite-only callers retain an explicit type guard.
+export const lzwSpriteLoadWork = lzwGraphicsLoadWork;
+export function egaSpriteConversionWork(entry) {
+  if (entry?.type !== 2)
+    throw Error("Unsupported original sprite conversion kind");
+  return egaGraphicsConversionWork(entry);
 }

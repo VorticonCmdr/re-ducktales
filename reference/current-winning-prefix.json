@@ -1,0 +1,47 @@
+{
+  "kind": "current-winning-valid-prefix",
+  "producer": ".local/current-winning-browser-01",
+  "expectedCheckpointCount": 54,
+  "requiredEventCount": 3953,
+  "lastCheckpoint": "jungle-map",
+  "lastAt": 375669,
+  "artifacts": {
+    "checkpoints": {
+      "path": ".local/current-winning-browser-01/campaign-checkpoints.json",
+      "bytes": 683925,
+      "sha256": "d56220b167cfb696490e0016ebc81ff2fe36de1eabc3d00e10c4ba0f8579d552"
+    },
+    "events": {
+      "path": ".local/current-winning-browser-01/captured-events.json",
+      "bytes": 610455,
+      "sha256": "aa8628316bc5282220f76d552902764a5169725318b2a91d4dcb74eb86dd78d5"
+    },
+    "environment": {
+      "path": ".local/current-winning-browser-01/environment.json",
+      "bytes": 239,
+      "sha256": "3bc78ab58b567bc3296f7c583fa215e8b1549ab6aa1cdcef27cf212eec465ed4"
+    },
+    "timeline": {
+      "path": ".local/current-winning-browser-01/timeline.json",
+      "bytes": 7087,
+      "sha256": "31ad59f32f91a9d1f187a3575090e8860baa1e1824747159d2602e6012f4d5f2"
+    },
+    "status": {
+      "path": ".local/current-winning-browser-01/exploration-status.json",
+      "bytes": 130,
+      "sha256": "c98746433a15798bd3defdbcc85d835275618a511a7b2a9eda16df405a79ee39"
+    },
+    "source": {
+      "path": ".local/current-winning-browser-01/source-revision.json",
+      "bytes": 114026,
+      "sha256": "41880fa23fd0528a308cb03566deef0f51ce5d087304efd7d41a7d44631eda99"
+    },
+    "archive": {
+      "path": ".local/current-winning-browser-01/sources.zip",
+      "bytes": 2946303,
+      "sha256": "74a0d439116f8dc8e7e7ce4aeb77f634b72aa5f8910ad8d733111e95fe8ea520"
+    }
+  },
+  "scope": "Fresh startup DOM replay through the valid jungle-map boundary of a failed exploration. The later784-input mountain strategy failed normally and is outside this prefix. No checkpoint restoration,no state injection;all54 complete states/decoded-RGBA and3953 inputs must compare exactly.",
+  "nativeComparison": false
+}

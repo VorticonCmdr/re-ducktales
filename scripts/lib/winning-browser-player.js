@@ -16,6 +16,7 @@ export async function continueWinningCampaign({
   observe,
   root,
   locations,
+  afterJungle = false,
 }) {
   async function confirmTarget(id, x, y) {
     await until(
@@ -132,21 +133,30 @@ export async function continueWinningCampaign({
     assert.equal((await state()).scene, "map");
     await observe(activity + "-map");
   }
-  await depart(28, 264, 129);
-  await until((s) => s.scene === "jungle");
-  await observe("jungle-entry");
-  const jungle = await readEasyJunglePlan(
-    jungleCases.find((c) => c.variant === 2),
-  );
-  await play("jungle", jungle.stream);
+  if (!afterJungle) {
+    await depart(28, 264, 129);
+    await until((s) => s.scene === "jungle");
+    await observe("jungle-entry");
+    const jungle = await readEasyJunglePlan(
+      jungleCases.find((c) => c.variant === 2),
+    );
+    await play("jungle", jungle.stream);
+  }
   await depart(19, 158, 124);
   await until((s) => s.scene === "mountain");
   await observe("mountain-entry");
-  const mountain = JSON.parse(await readFile("reference/mountain-ascent.json"));
-  await play(
-    "mountain",
-    mountain.inputEvents.flatMap((e) => Array(e.count).fill(e.byte)),
+  const mountain = JSON.parse(
+    await readFile("reference/hard-campaign-inputs.json"),
+  ).mountain;
+  const mountainInputs = mountain.inputEvents.flatMap((e) =>
+    Array(e.count).fill(e.byte),
   );
+  assert.equal(
+    mountainInputs.length,
+    671,
+    "Wrong previously successful Standard climbing recipe",
+  );
+  await play("mountain", mountainInputs);
 
   for (const id of [9, 30, 21]) {
     // Original resource geometry in the declared BIOS0 startup permutation.

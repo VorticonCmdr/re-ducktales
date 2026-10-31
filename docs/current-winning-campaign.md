@@ -33,3 +33,18 @@ node scripts/standard-wages-explore.js --winning --output=.local/current-winning
 The route still needs actual browser execution and a separate strict replay
 before current full-campaign acceptance can be claimed. Original uninterrupted
 timing,wider route/difficulty coverage and Hard campaigns remain separate work.
+
+The first actual exploration completed the jungle reward but failed the mountain
+with the older784-read ascent recipe. It is retained as a failed strategy,not
+accepted or labeled a port defect. The previously successful Standard route used
+the671-read `mountain` moves in `reference/hard-campaign-inputs.json`;that file's
+name does not select Hard. Browser difficulty remains1 throughout.
+
+`reference/current-winning-prefix.json` declares only the valid54-checkpoint/
+3953-input prefix through `jungle-map`. A fresh browser replays it from title and
+compares every complete state and decoded image before continuing. No game state
+is restored from the checkpoint, and the failed later input tail is not accepted.
+
+```sh
+node scripts/standard-wages-explore.js --winning --prefix=reference/current-winning-prefix.json --output=.local/current-winning-next-FRESH
+```

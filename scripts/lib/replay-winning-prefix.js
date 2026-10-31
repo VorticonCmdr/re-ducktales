@@ -1,0 +1,63 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { json, sha, checkArtifacts } from "./local-scenario-source.js";
+import {
+  validateProducerArchive,
+  acceptedRuntimeSource,
+} from "./consumer-provenance.js";
+import { recordedDOMInput } from "../../tests/browser/helpers/recorded-dom-input.js";
+import { observeRecordedRoute } from "../../tests/browser/helpers/entry-recording.js";
+
+// Fresh title replay,not a checkpoint restore. The declared valid prefix ends
+// before the failed player's mountain attempt;its tail is never accepted.
+export async function replayWinningPrefix({ page, state, points, manifest }) {
+  const m = await json(manifest);
+  assert.equal(m.kind, "current-winning-valid-prefix");
+  await checkArtifacts(m.artifacts);
+  const source = await validateProducerArchive(m.producer);
+  for (const [p, h] of Object.entries(source.files))
+    if (acceptedRuntimeSource(p))
+      assert.equal(sha(await readFile(p)), h, "Changed prefix runtime " + p);
+  const all = await json(m.artifacts.checkpoints.path),
+    events = await json(m.artifacts.events.path),
+    checks = all.slice(0, m.expectedCheckpointCount);
+  assert.ok(checks.length > 0 && m.requiredEventCount > 0);
+  assert.equal(checks.length, m.expectedCheckpointCount);
+  assert.equal(checks.at(-1).name, "jungle-map");
+  assert.equal(checks.at(-1).eventCount, m.requiredEventCount);
+  let now = 1,
+    consumed = 0;
+  for (const expected of checks) {
+    while (consumed < expected.eventCount) {
+      const e = events[consumed++];
+      assert.ok(e.time >= now);
+      if (e.time > now) await page.clock.runFor(e.time - now);
+      now = e.time;
+      await recordedDOMInput(page, e);
+    }
+    assert.ok(expected.at >= now);
+    if (expected.at > now) await page.clock.runFor(expected.at - now);
+    now = expected.at;
+    const actual = await observeRecordedRoute({
+      page,
+      state: await state(),
+      name: expected.name,
+    });
+    assert.equal(
+      actual.stateSha256,
+      expected.stateSha256,
+      "Prefix state " + expected.name,
+    );
+    assert.equal(
+      actual.pixelsSha256,
+      expected.pixelsSha256,
+      "Prefix pixels " + expected.name,
+    );
+    assert.equal(actual.eventCount, expected.eventCount);
+    points.push(actual);
+    console.log("Exact prefix", expected.name);
+  }
+  assert.equal(consumed, m.requiredEventCount);
+  assert.equal((await state()).scene, "map");
+  assert.equal((await state()).difficulty, 1);
+}

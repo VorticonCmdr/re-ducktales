@@ -3,6 +3,15 @@
 Updated 2026-10-31. **The whole game is incomplete. This is completion work,
 not only fine-tuning.** Hard campaigns remain deferred at the user's request.
 
+## Work in progress: atomic input polling
+
+An earned-transmitter browser probe exposed P interrupting the atomic charge,
+where the original has no input reader. The runtime now queues charge/sound keys,
+flushes at report entry and reads report controls at the original seven-tick
+boundaries. Conditional tests cover Pause/Quit resumption and final-poll handling.
+The earlier source-pinned acceptances below remain historical until a fresh
+current-consumer comparison is recorded; no old expected outputs are regenerated.
+
 ## Working playable route
 
 Startup → Easy → office/security → map/transport/departure → flight → jungle,

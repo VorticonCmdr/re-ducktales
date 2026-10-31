@@ -1,0 +1,68 @@
+{
+  "id": "atomic-input-boundaries",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "ranges": [
+    {
+      "source": "unpacked resident",
+      "offset": 1108,
+      "length": 287,
+      "sha256": "6009dfe8b4db8c8dd2eda9116876c31ad48987e3f7f17b5782161a377d315d74",
+      "purpose": "atomic success/failure charge and sound loops have no input-reader call"
+    },
+    {
+      "source": "unpacked resident",
+      "offset": 1654,
+      "length": 38,
+      "sha256": "32175bcdad12d1fc8b36d5f27dad623b3f0a0bbe710750280d65069d38b090b2",
+      "purpose": "failure report calls shared09f5 with60 and gates click24 on a consumed Fire"
+    },
+    {
+      "source": "unpacked resident",
+      "offset": 9781,
+      "length": 88,
+      "sha256": "29c7a6a964b796914e9ba4d3c39ea964f1cdf051f5d0d6417effb6187bf9ba88",
+      "purpose": "shared09f5 flushes once, reads before each seven-tick wait, and has no sixty-first read"
+    }
+  ],
+  "beforeSourceCommit": "e7c9c73d99ccb49418fff4dbaeb6351dd41da53c",
+  "beforeProbe": {
+    "scope": "Observed actual-browser state only;not independent replay or native input capture",
+    "startingRecipe": "Fresh muted BIOS0 Easy startup;fly to Too-Pei,complete cave7,collect Bombastium,return Office,choose atomic travel to Klondike",
+    "inputs": "P make/break at first charge observation,then8ms external clock advance",
+    "expectedObservations": 15,
+    "partialRestore": false,
+    "memoryInjections": [],
+    "fittedInputs": [],
+    "sourceArchive": "Historical clean source reconstructed from Git after the observation;not an archive captured by the explorer at launch"
+  },
+  "artifacts": {
+    "probe.json": {
+      "path": ".local/atomic-input-before-01/probe.json",
+      "bytes": 113979,
+      "sha256": "3dddc398b37a966b38b867352a5668e120d6a4a70973a84c68ba91ac53180f41"
+    },
+    "probe.log": {
+      "path": ".local/atomic-input-before-01/probe.log",
+      "bytes": 1600,
+      "sha256": "de7509877b632e6881dd497883b1cbc1b870e313269af2d66d95aad93076e8db"
+    },
+    "probe.mjs": {
+      "path": ".local/atomic-input-before-01/probe.mjs",
+      "bytes": 5179,
+      "sha256": "f4f505cbefed36bcf8b27075f8b51229797991e4ead4c94fd63bf7235ca1ba97"
+    },
+    "source-revision.json": {
+      "path": ".local/atomic-input-before-01/source-revision.json",
+      "bytes": 96456,
+      "sha256": "d280f5734a1c6b6703235d2cc17b03a1ccbcd5cd0a4f30b1e23136f24b52b131"
+    },
+    "sources.zip": {
+      "path": ".local/atomic-input-before-01/sources.zip",
+      "bytes": 2610622,
+      "sha256": "400cc854b0a4f0d54531b893f693e15dbfba32382f56565d1db71cd83b024c1a"
+    }
+  },
+  "sourceEvidence": "Original disassembly and preserved original atomic/IRQ/input evidence;new native P/Q/S runtime observation is not claimed",
+  "verify": "node scripts/verify-atomic-input-source.js"
+}

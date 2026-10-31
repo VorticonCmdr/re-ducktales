@@ -111,6 +111,7 @@ export class Game {
     this.pendingSecuritySystemKeys = new Map();
     this.pendingOfficeSystemKeys = new Map();
     this.pendingDestinationSystemKeys = new Map();
+    this.pendingAtomicSystemKeys = new Map();
     this.exiting = false;
     if (readBiosSeed !== null && typeof readBiosSeed !== "function")
       throw Error("Invalid BIOS seed provider");
@@ -440,6 +441,7 @@ export class Game {
     this.pendingBinSystemKeys.clear();
     this.pendingOfficeSystemKeys.clear();
     this.pendingDestinationSystemKeys.clear();
+    this.pendingAtomicSystemKeys.clear();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
     if (departure.outcome.action === "map")
@@ -623,6 +625,7 @@ export class Game {
         "mountain",
         "jungle",
         "photography",
+        "atomic-transport",
         "ending",
         "bank",
         ...(this.scene === "map" &&
@@ -656,13 +659,15 @@ export class Game {
                         ? this.pendingJungleSystemKeys
                         : this.scene === "photography"
                           ? this.pendingPhotographySystemKeys
-                          : this.scene === "ending"
-                            ? this.pendingEndingSystemKeys
-                            : this.scene === "bank"
-                              ? this.pendingBankSystemKeys
-                              : this.scene === "map"
-                                ? this.pendingDestinationSystemKeys
-                                : this.pendingBinSystemKeys;
+                          : this.scene === "atomic-transport"
+                            ? this.pendingAtomicSystemKeys
+                            : this.scene === "ending"
+                              ? this.pendingEndingSystemKeys
+                              : this.scene === "bank"
+                                ? this.pendingBankSystemKeys
+                                : this.scene === "map"
+                                  ? this.pendingDestinationSystemKeys
+                                  : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -746,6 +751,7 @@ export class Game {
       this.pendingSecuritySystemKeys.clear();
       this.pendingOfficeSystemKeys.clear();
       this.pendingDestinationSystemKeys.clear();
+      this.pendingAtomicSystemKeys.clear();
       this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
@@ -1109,6 +1115,8 @@ export class Game {
           locations: c.locations,
           audioEnabled: this.audioEnabled,
           token: `atomic:${++this.audioScope}`,
+          pollInput: () => this.pollSystemInput(this.pendingAtomicSystemKeys),
+          flushInput: () => this.flushAtomicInput(),
         });
         this.scene = "atomic-transport";
         this.collectAtomicTransport();
@@ -1512,11 +1520,20 @@ export class Game {
     this.effects.push(...a.drainEvents());
     this.seed = this.campaign.seed = a.seed;
     this.campaign.day = a.day;
-    if (a.outcome)
+    if (a.outcome) {
+      // Success has no reader. The following chapter's09f5 flush discards
+      // these unread semantic key slots before any later input can consume them.
+      this.pendingAtomicSystemKeys.clear();
       this.arrive(
         a.outcome.target,
         this.campaign.locations[a.outcome.target].flags,
       );
+    }
+  }
+  flushAtomicInput() {
+    this.pendingAtomicSystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
   }
   finishSystemOverlay() {
     if (!this.systemOverlay?.result) return;
@@ -1534,6 +1551,7 @@ export class Game {
     this.pendingSecuritySystemKeys.clear();
     this.pendingOfficeSystemKeys.clear();
     this.pendingDestinationSystemKeys.clear();
+    this.pendingAtomicSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "title" && this.opening) this.opening.flushInput();
@@ -1551,6 +1569,8 @@ export class Game {
     else if (this.scene === "mountain") this.mountain.flushInput();
     else if (this.scene === "jungle") this.jungle.flushInput();
     else if (this.scene === "photography") this.photography.flushInput();
+    else if (this.scene === "atomic-transport")
+      this.atomicTransport.flushInput();
     else if (this.scene === "ending") this.ending.flushInput();
     else if (this.scene === "bank") this.bank.flushInput(true);
     else {
@@ -1597,6 +1617,10 @@ export class Game {
     if (result === "resume" && this.scene === "photography") {
       this.photography.resumeInputPoll();
       this.collectPhotography();
+    }
+    if (result === "resume" && this.scene === "atomic-transport") {
+      this.atomicTransport.resumeInputPoll();
+      this.collectAtomicTransport();
     }
     if (result === "resume" && this.scene === "bank") {
       this.bank.resumeInputPoll();
@@ -1714,6 +1738,7 @@ export class Game {
   flushDestinationInput() {
     this.campaign.flushMapKeys();
     this.pendingDestinationSystemKeys.clear();
+    this.pendingAtomicSystemKeys.clear();
     this.handleInput({ type: "controls", fire: false, direction: null });
     this.effects.push({ type: "flushControls" });
   }

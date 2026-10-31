@@ -32,6 +32,8 @@ export class AtomicTransport {
     locations,
     audioEnabled = false,
     token,
+    pollInput = () => true,
+    flushInput = () => {},
   }) {
     if (
       !Number.isInteger(from) ||
@@ -42,6 +44,12 @@ export class AtomicTransport {
       target > 34
     )
       throw Error(`Invalid atomic route ${from} -> ${target}`);
+    if (typeof pollInput !== "function" || typeof flushInput !== "function")
+      throw Error("Invalid atomic input boundary");
+    this.pollInput = pollInput;
+    this.onFlushInput = flushInput;
+    this.waitingForInputPoll = false;
+    this.inputPolls = 0;
     Object.assign(this, atomicRoll(seed, difficulty), {
       from,
       requested: target,
@@ -78,6 +86,33 @@ export class AtomicTransport {
     this.phase = "report";
     this.remaining = 60 * 7;
     this.skipRequested = false;
+    // Resident067e calls shared09f5(60): flush once, then read before waiting.
+    this.onFlushInput();
+    this.pollReportInput();
+  }
+  pollReportInput() {
+    const ready = this.pollInput();
+    if (typeof ready !== "boolean")
+      throw Error("Invalid atomic input poll result");
+    if (!ready) {
+      this.waitingForInputPoll = true;
+      return;
+    }
+    this.waitingForInputPoll = false;
+    this.inputPolls++;
+    if (this.skipRequested) {
+      if (this.audioEnabled) this.events.push({ type: "sound", id: 0x24 });
+      this.finish();
+    }
+  }
+  resumeInputPoll() {
+    if (this.phase !== "report" || !this.waitingForInputPoll)
+      throw Error("Atomic resumed outside input reader");
+    this.pollReportInput();
+  }
+  flushInput() {
+    this.skipRequested = false;
+    this.onFlushInput();
   }
   finish() {
     if (!this.success) {
@@ -115,14 +150,11 @@ export class AtomicTransport {
     }
     if (this.phase !== "report")
       throw Error(`Unsupported atomic phase ${this.phase}`);
-    if (
-      --this.remaining === 0 ||
-      (this.remaining % 7 === 0 && this.skipRequested)
-    ) {
-      if (this.audioEnabled && this.skipRequested)
-        this.events.push({ type: "sound", id: 0x24 });
-      this.finish();
-    }
+    if (this.waitingForInputPoll) return;
+    // The sixtieth neutral wait exits without a sixty-first read. A make in
+    // that last wait is not consumed and cannot request the optional click.
+    if (--this.remaining === 0) this.finish();
+    else if (this.remaining % 7 === 0) this.pollReportInput();
   }
   drainEvents() {
     return this.events.splice(0);
@@ -140,6 +172,10 @@ export class AtomicTransport {
       days: this.days,
       remaining: this.remaining,
       busy: this.busy,
+      ...(this.phase === "report" || (!this.success && this.outcome)
+        ? { inputPolls: this.inputPolls }
+        : {}),
+      ...(this.waitingForInputPoll ? { waitingForInputPoll: true } : {}),
       outcome: this.outcome ? { ...this.outcome } : null,
     };
   }

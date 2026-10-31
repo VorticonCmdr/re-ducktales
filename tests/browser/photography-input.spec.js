@@ -11,22 +11,38 @@ test("photography defers keys through entry and shutter, freezes pause pixels an
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   if (process.env.DUCKTALES_PHOTOGRAPHY_TIMING_BROWSER_NEGATIVE) {
-    expect(process.env.DUCKTALES_PHOTOGRAPHY_TIMING_BROWSER_NEGATIVE).toBe(
-      "skip-work",
+    expect(["skip-work", "skip-hud"]).toContain(
+      process.env.DUCKTALES_PHOTOGRAPHY_TIMING_BROWSER_NEGATIVE,
     );
-    await page.route("**/src/game/photography.js*", async (route) => {
-      const response = await route.fetch(),
-        body = await response.text();
-      const wait =
-        /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until: this.now\(\) \+ work.milliseconds,?\s*\};/g;
-      expect(body.match(wait)?.length, "SETUP: photography graphics hook").toBe(
-        1,
+    if (
+      process.env.DUCKTALES_PHOTOGRAPHY_TIMING_BROWSER_NEGATIVE === "skip-hud"
+    ) {
+      await page.route(
+        "**/src/game/photography-hud-work.js*",
+        async (route) => {
+          const response = await route.fetch();
+          await route.fulfill({
+            response,
+            body: "export function photographyHudPrimitiveWork(){return {instructions:0,portWrites:0};}",
+          });
+        },
       );
-      await route.fulfill({
-        response,
-        body: body.replace(wait, "/* isolated source drawing-time bypass */"),
+    } else {
+      await page.route("**/src/game/photography.js*", async (route) => {
+        const response = await route.fetch(),
+          body = await response.text();
+        const wait =
+          /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until: this.now\(\) \+ work.milliseconds,?\s*\};/g;
+        expect(
+          body.match(wait)?.length,
+          "SETUP: photography graphics hook",
+        ).toBe(1);
+        await route.fulfill({
+          response,
+          body: body.replace(wait, "/* isolated source drawing-time bypass */"),
+        });
       });
-    });
+    }
   }
   await openRecordedApplication(page, 1);
   await expect(page.locator("#actions")).toBeVisible();
@@ -81,6 +97,17 @@ test("photography defers keys through entry and shutter, freezes pause pixels an
   const shutter = await until(
     (s) => s.photography.photoCount > before.photography.photoCount,
   );
+  // Original four direct lines plus0227 for signed film11:1251 opcodes,
+  //58 OUTs. The native-validated source plan pins these independently of time.
+  expect(shutter.photography.drawingWork.kind).toBe("background");
+  expect(
+    shutter.photography.drawingWork.hudInstructions,
+    "Safari HUD source work",
+  ).toBe(1251);
+  expect(
+    shutter.photography.drawingWork.hudPortWrites,
+    "Safari HUD source work",
+  ).toBe(58);
   await page.keyboard.up("Space");
   const shutterAt = await page.evaluate(() => performance.now());
   await page.keyboard.press("p");
@@ -125,7 +152,7 @@ test("photography defers keys through entry and shutter, freezes pause pixels an
   expect(await canvas.screenshot()).toEqual(frozenPixels);
   await expect(page.locator("#audio")).not.toBeChecked();
   await canvas.screenshot({
-    path: ".local/browser-results/photography-input.png",
+    path: test.info().outputPath("photography-input.png"),
   });
   await page.keyboard.press("p");
   await until((s) => !s.systemOverlay);

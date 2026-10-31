@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { dirname, relative, resolve } from "node:path";
@@ -10,8 +11,11 @@ export const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 export const PHOTO_BASELINE = "1dc128516bbf56bac002ac3c582cbb2772e469a5";
 const imports = /\bfrom\s+["'](\.[^"']+)["']/g;
 export async function historicalPhotography() {
+  // Load the complete archived graph. Importing today's dependencies would
+  // silently change the historical reference as shared rendering evolves.
   const graph = {},
     root = process.cwd();
+  const scratch = await mkdtemp(resolve(tmpdir(), "ducktales-photo-history-"));
   async function visit(path) {
     if (graph[path]) return;
     let bytes;
@@ -25,12 +29,6 @@ export async function historicalPhotography() {
       );
     }
     graph[path] = sha(bytes);
-    if (path !== "src/game/photography.js")
-      assert.equal(
-        sha(await readFile(path)),
-        graph[path],
-        `Changed historical photography dependency ${path}`,
-      );
     const source = bytes.toString();
     assert.doesNotMatch(source, /\bimport\s*\(/);
     for (const match of source.matchAll(imports)) {
@@ -38,16 +36,20 @@ export async function historicalPhotography() {
       assert.ok(dependency.startsWith("src/"));
       await visit(dependency);
     }
-    return source;
+    const target = resolve(scratch, path);
+    await mkdir(dirname(target), { recursive: true });
+    await writeFile(target, bytes);
   }
-  const source = await visit("src/game/photography.js");
-  const relocated = source.replace(imports, (all, specifier) =>
-    all.replace(specifier, pathToFileURL(resolve("src/game", specifier)).href),
-  );
-  const { Photography: HistoricalPhotography } = await import(
-    `data:text/javascript;base64,${Buffer.from(relocated).toString("base64")}`
-  );
-  return { Photography: HistoricalPhotography, graph };
+  try {
+    await writeFile(resolve(scratch, "package.json"), '{"type":"module"}');
+    await visit("src/game/photography.js");
+    const { Photography: HistoricalPhotography } = await import(
+      pathToFileURL(resolve(scratch, "src/game/photography.js")).href
+    );
+    return { Photography: HistoricalPhotography, graph };
+  } finally {
+    await rm(scratch, { recursive: true, force: true });
+  }
 }
 export function comparePhotographyMemory(actual, expected, label) {
   assert.equal(actual.length, 65536);

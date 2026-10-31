@@ -42,7 +42,15 @@ assert.deepEqual(Object.keys(manifest.sources), [
   "src/game/ega-work.js",
   "src/game/timing.js",
 ]);
-for (const [p, h] of Object.entries(manifest.sources)) checked(p, h);
+// Historical source pin remains immutable. Only the explicitly admitted HUD
+// work/formatting migration may differ;the new source manifest pins exact bytes.
+const hud = JSON.parse(read("reference/photography-hud-work.json"));
+for (const [p, h] of Object.entries(manifest.sources)) {
+  if (Object.hasOwn(hud.historicalSources, p)) {
+    assert.equal(hud.historicalSources[p], h);
+    checked(p, hud.sources[p]);
+  } else checked(p, h);
+}
 const parent = JSON.parse(
     checked(manifest.parent.path, manifest.parent.sha256),
   ),
@@ -214,13 +222,18 @@ for (let i = 0; i < 11; i++) {
       [23, 39, 8, 7],
     );
     assert.equal(counts, 2);
-    assert.deepEqual(work, manifest.expectedActiveWork);
+    assert.deepEqual(work, {
+      ...manifest.expectedActiveWork,
+      hudInstructions: 0,
+      hudPortWrites: 0,
+    });
     checkCount(work, counts);
     assert.throws(() =>
-      assert.deepEqual(
-        photographyWork(entries, commands.slice(1)),
-        manifest.expectedActiveWork,
-      ),
+      assert.deepEqual(photographyWork(entries, commands.slice(1)), {
+        ...manifest.expectedActiveWork,
+        hudInstructions: 0,
+        hudPortWrites: 0,
+      }),
     );
   }
 }

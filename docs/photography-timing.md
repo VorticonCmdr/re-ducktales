@@ -1,5 +1,9 @@
 # Safari drawing time
 
+The new [HUD work migration](photography-hud-timing.md) charges the line and
+numeric-text calls described below as omitted. The earlier receipt remains a
+historical partial-work comparison;current clocks have a separate manifest.
+
 Safari now consumes original source sprite/copy work before continuing. The
 seven-driver-count deadline remains unchanged. Drawing and retraces can overrun
 it; the next loop then continues without another seven-count sleep. Canvas

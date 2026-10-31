@@ -1,0 +1,2151 @@
+{
+  "id": "photography-source-drawing-time-regression",
+  "acceptanceLevel": "port-cross-version-regression",
+  "wholeOriginalTimingAcceptance": false,
+  "parent": {
+    "path": "reference/photography-runtime.json",
+    "sha256": "2d11b5d5acda6118a3e10300f6e6dcf0234f7d57d88df398522f93e08c0604ca"
+  },
+  "historicalRevision": "1dc128516bbf56bac002ac3c582cbb2772e469a5",
+  "dependencyGraph": {
+    "src/game/photography.js": "9fa0cc9e989ba9692c85602cd2f1d949aac8abef8a2626189c5c1c40b1a7de74",
+    "src/game/photography-scene.js": "afbe1d57e9a44a65813b029c4cc5c944b0cf1121c6c7ca18ac7cc531ec11772a",
+    "src/game/flight-physics.js": "4a3409ed65d6a28f6c90ba4af02290952831829df89d305bf83dc07f6d8c04b7",
+    "src/game/integer.js": "cb575b09c744e3fd2967ac72de96399a0e5a5b6e807c6ef0684e30a183a38776",
+    "src/game/executable.js": "93db4b861e0f1f88e74a2a8db038979bb84f1ae4abeb8c31addf5e8a98cf6e51",
+    "src/game/photography-actors.js": "457bd1c81c095a5b26cc10d22593308eb0c32ea81307a646474c760f41021d5c",
+    "src/game/photography-animation.js": "0d884231754675b78ea3cdc488a51b7eeee24a1df74f71f567f46eac6525ecf1",
+    "src/game/flight-raster.js": "42dab6c4cbabb4768d0f0793a9f93eeb6ea09b3fbe57d8e18e630abb0db1e838",
+    "src/assets.js": "a55179a94c25b2bd689614d6c3ef3741b9690bb23e32ccc5b62146d5d9c24724",
+    "src/game/flight-flag-raster.js": "9b57f314347c2d33eb060f9c6b6dd0fdf8bb946d50a8f3810cc5284d30230b5b"
+  },
+  "expectedCaseCount": 22,
+  "expectedReplayCount": 4,
+  "expectedResourceCount": 18,
+  "injections": [],
+  "fittedInputs": [],
+  "clockExclusions": [
+    [
+      8737,
+      8745
+    ],
+    [
+      10232,
+      10236
+    ]
+  ],
+  "cases": [
+    {
+      "id": "target-photos",
+      "historicalEvents": 550,
+      "expected": {
+        "final": {
+          "ds": "054896697af3b3a576f286b34b9da03330987ad41ea5af4a022950ad274a6162",
+          "locals": "6aaf3948113c05e013349f4541818db4327f7c8fbf18527f92895df869e7ac50",
+          "pixels": "84f7eb7ef33cddc05c9c83099fdc34bd56508205b6ecaef29fac9f4b69175e61",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 123,
+            "drawingMilliseconds": 2750.974,
+            "tick": 392,
+            "retrace": 378,
+            "frames": 19,
+            "presentations": 84,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 6,
+            "started": 0,
+            "target": 44,
+            "seed": 36618,
+            "photos": [
+              0,
+              0,
+              44,
+              0,
+              44,
+              0,
+              0,
+              0,
+              0,
+              0,
+              44,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 29,
+                "frame": 0,
+                "phase": 2,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 44,
+                "frame": 5,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              }
+            ],
+            "score": 1500,
+            "outcome": {
+              "code": 1,
+              "money": 1500,
+              "score": 1500,
+              "day": 2,
+              "seed": 36618
+            },
+            "wait": null
+          },
+          "events": 893,
+          "driver": 392,
+          "retrace": 378,
+          "elapsed": 5393.37385497817
+        },
+        "boundaries": 20,
+        "presentations": 84,
+        "clockTrace": "cd2f47c7c3a4a5727a006ee2bc8711b0d6aa52140fded20ffbaad2c0ab8087f2"
+      }
+    },
+    {
+      "id": "ordinary-only",
+      "historicalEvents": 536,
+      "expected": {
+        "final": {
+          "ds": "b315d9ae08ce918b249d85ff84ad024f60273f6e011fa458b8a8e32da8abd011",
+          "locals": "d95023da05feaa7458663303a0c70ffebd0c82d154592a6ac770358eb01ad381",
+          "pixels": "bd9505bb9df98322b9e4a27223b49e32f0b28090ac43439622609df3cf3a57d7",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 121,
+            "drawingMilliseconds": 2789.9273333333354,
+            "tick": 400,
+            "retrace": 385,
+            "frames": 18,
+            "presentations": 83,
+            "column": 0,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 5,
+            "started": 0,
+            "target": 44,
+            "seed": 24244,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              29,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 29,
+                "frame": 5,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 0,
+                "animal": 28,
+                "frame": 0,
+                "phase": 2,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 44,
+                "frame": 0,
+                "phase": 2,
+                "countdown": 1
+              }
+            ],
+            "score": 50,
+            "outcome": {
+              "code": 0,
+              "money": 50,
+              "score": 50,
+              "day": 2,
+              "seed": 24244
+            },
+            "wait": null
+          },
+          "events": 906,
+          "driver": 400,
+          "retrace": 385,
+          "elapsed": 5493.251148588876
+        },
+        "boundaries": 19,
+        "presentations": 83,
+        "clockTrace": "749a3823862bb685dc9a58286de1484a252ee8fec65f29861aef5ccab60cf286"
+      }
+    },
+    {
+      "id": "empty-film",
+      "historicalEvents": 467,
+      "expected": {
+        "final": {
+          "ds": "cdd31ca54a23cf66ac58a28e2b9e271b376252c439251bf14fc0ae8282e139bf",
+          "locals": "bed43a9c6f179703a9c65221f8c4ee5d65bfbba68c6c21888283dfddc6c93da6",
+          "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 111,
+            "drawingMilliseconds": 1788.2826666666651,
+            "tick": 320,
+            "retrace": 308,
+            "frames": 13,
+            "presentations": 78,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 0,
+            "started": 0,
+            "target": 34,
+            "seed": 52977,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              }
+            ],
+            "score": 0,
+            "outcome": {
+              "code": 0,
+              "money": 0,
+              "score": 0,
+              "day": 2,
+              "seed": 52977
+            },
+            "wait": null
+          },
+          "events": 739,
+          "driver": 320,
+          "retrace": 308,
+          "elapsed": 4394.600918871101
+        },
+        "boundaries": 14,
+        "presentations": 78,
+        "clockTrace": "96a4ba664d824794f2cf21304cd61dbcd1e71667ca5154ea2a10d02fb6bfe7d0"
+      }
+    },
+    {
+      "id": "timer-expiry",
+      "historicalEvents": 7762,
+      "expected": {
+        "final": {
+          "ds": "ca57c32213f3ce1ee43d06c7296280a1ed40200486afa700d5064b0e055ba051",
+          "locals": "6da3edfb1e49719678c84070882b269141a7a8c4c7b2093e180bca2d7cb3c1ed",
+          "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "actors",
+              "instructions": 107684,
+              "portWrites": 1104,
+              "repeatOpcodes": 0,
+              "repeatIterations": 0,
+              "sprites": 4,
+              "copies": 0,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 0,
+              "hudPortWrites": 0,
+              "milliseconds": 36.63066666666667
+            },
+            "drawingCalls": 1010,
+            "drawingMilliseconds": 30051.38466666663,
+            "tick": 3964,
+            "retrace": 3813,
+            "frames": 504,
+            "presentations": 534,
+            "column": 1,
+            "film": 12,
+            "timer": 11,
+            "timerCounter": 0,
+            "started": 1,
+            "target": 32,
+            "seed": 49231,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 0,
+            "dialoguePolls": 40,
+            "animals": [
+              {
+                "place": 1,
+                "animal": 16,
+                "frame": 1,
+                "phase": 2,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 32,
+                "frame": 1,
+                "phase": 2,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 16,
+                "frame": 1,
+                "phase": 2,
+                "countdown": 1
+              }
+            ],
+            "score": 0,
+            "outcome": {
+              "code": 0,
+              "money": 0,
+              "score": 0,
+              "day": 2,
+              "seed": 49231
+            },
+            "wait": null
+          },
+          "events": 8787,
+          "driver": 3964,
+          "retrace": 3813,
+          "elapsed": 54417.78370776629
+        },
+        "boundaries": 544,
+        "presentations": 534,
+        "clockTrace": "55fb5c258544593662fa8973c95cf1b5d4d0b273b1bd54e47daff3e46b35a3dd"
+      }
+    },
+    {
+      "id": "resource0",
+      "historicalEvents": 550,
+      "expected": {
+        "final": {
+          "ds": "5a1cd9b45ec2271f1ec59feff74f75b2f484d0d5d090c1975188cc906c852d0c",
+          "locals": "6c4e639f85c45e3d56ec0fb7e084ed1ecad29d289b5347f9ab18c25ffb2d6379",
+          "pixels": "0a5ff84594e9b1e56ee008772c5afda21bcc2fae95da63309e22b0c906867ef2",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 123,
+            "drawingMilliseconds": 2729.355333333335,
+            "tick": 393,
+            "retrace": 379,
+            "frames": 19,
+            "presentations": 84,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 6,
+            "started": 0,
+            "target": 44,
+            "seed": 55129,
+            "photos": [
+              0,
+              15,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 1,
+                "animal": 15,
+                "frame": 0,
+                "phase": 2,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 15,
+                "frame": 5,
+                "phase": 1,
+                "countdown": 7
+              },
+              {
+                "place": 0,
+                "animal": 21,
+                "frame": 1,
+                "phase": 5,
+                "countdown": 1
+              }
+            ],
+            "score": 50,
+            "outcome": {
+              "code": 0,
+              "money": 50,
+              "score": 50,
+              "day": 2,
+              "seed": 55129
+            },
+            "wait": null
+          },
+          "events": 895,
+          "driver": 393,
+          "retrace": 379,
+          "elapsed": 5407.642039779699
+        },
+        "boundaries": 20,
+        "presentations": 84,
+        "clockTrace": "1aeabd19e4b32f7ef291be1fc45b2cf17b01085e0d738e6d4952a1dd5fadebad"
+      }
+    },
+    {
+      "id": "resource1",
+      "historicalEvents": 552,
+      "expected": {
+        "final": {
+          "ds": "5fd165684d94da014cc8e4727c9b8fbc881d4043e880c8cd643f4664029bc6fb",
+          "locals": "b6bc91d6410862baad97022ee8e40441461e1f5ce2a34c9ba7067b71857b7d52",
+          "pixels": "f41d1d8b882aa9178f5245c8247cf314c0c90e822f01a4e909b6b3405ed595e4",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "actors",
+              "instructions": 129914,
+              "portWrites": 1628,
+              "repeatOpcodes": 0,
+              "repeatIterations": 0,
+              "sprites": 5,
+              "copies": 0,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 0,
+              "hudPortWrites": 0,
+              "milliseconds": 44.39
+            },
+            "drawingCalls": 124,
+            "drawingMilliseconds": 2677.558000000001,
+            "tick": 389,
+            "retrace": 375,
+            "frames": 19,
+            "presentations": 85,
+            "column": 1,
+            "film": 0,
+            "timer": 0,
+            "timerCounter": 7,
+            "started": 0,
+            "target": 44,
+            "seed": 29055,
+            "photos": [
+              0,
+              15,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              28
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              },
+              {
+                "place": 5,
+                "animal": 28,
+                "frame": 4,
+                "phase": 1,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 21,
+                "frame": 1,
+                "phase": 5,
+                "countdown": 1
+              }
+            ],
+            "score": 100,
+            "outcome": {
+              "code": 0,
+              "money": 100,
+              "score": 100,
+              "day": 2,
+              "seed": 29055
+            },
+            "wait": null
+          },
+          "events": 888,
+          "driver": 389,
+          "retrace": 375,
+          "elapsed": 5350.569300573581
+        },
+        "boundaries": 20,
+        "presentations": 85,
+        "clockTrace": "9c130cec7fcb41ca72dcc04fd256fadec4c80251717522422b73c132a3f30134"
+      }
+    },
+    {
+      "id": "resource2",
+      "historicalEvents": 467,
+      "expected": {
+        "final": {
+          "ds": "b191ec08c7d0d3bd9896a70ccbcaf29adc9b4fced1a60cb373e92472aa816e16",
+          "locals": "bed43a9c6f179703a9c65221f8c4ee5d65bfbba68c6c21888283dfddc6c93da6",
+          "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 111,
+            "drawingMilliseconds": 2134.6799999999985,
+            "tick": 341,
+            "retrace": 329,
+            "frames": 13,
+            "presentations": 78,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 0,
+            "started": 0,
+            "target": 44,
+            "seed": 56314,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 1,
+                "animal": 15,
+                "frame": 0,
+                "phase": 1,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 29,
+                "frame": 0,
+                "phase": 2,
+                "countdown": 1
+              }
+            ],
+            "score": 0,
+            "outcome": {
+              "code": 0,
+              "money": 0,
+              "score": 0,
+              "day": 2,
+              "seed": 56314
+            },
+            "wait": null
+          },
+          "events": 781,
+          "driver": 341,
+          "retrace": 329,
+          "elapsed": 4694.232799703222
+        },
+        "boundaries": 14,
+        "presentations": 78,
+        "clockTrace": "bd020fd2057480a4e97a7dab45e1e5f1ca9cc791857dddfc0b7228bbfae9d0b3"
+      }
+    },
+    {
+      "id": "resource3",
+      "historicalEvents": 522,
+      "expected": {
+        "final": {
+          "ds": "da0ab183afb3e04357ad986620c8cf0421effec247e947e8fca55cd36913bb84",
+          "locals": "8de54292d714c8008754d02560380a7c49bc6afe4c846121a542e298eddacc17",
+          "pixels": "64345e468e7656c732ab029cb0702ebcbb4fcee24103bdb0b1f9d4167e017353",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 119,
+            "drawingMilliseconds": 2472.1526666666678,
+            "tick": 374,
+            "retrace": 360,
+            "frames": 17,
+            "presentations": 82,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 4,
+            "started": 0,
+            "target": 40,
+            "seed": 26068,
+            "photos": [
+              0,
+              0,
+              16,
+              0,
+              0,
+              0,
+              14,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 16,
+                "frame": 1,
+                "phase": 5,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 14,
+                "frame": 5,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 0,
+                "animal": 19,
+                "frame": 2,
+                "phase": 2,
+                "countdown": 255
+              }
+            ],
+            "score": 100,
+            "outcome": {
+              "code": 0,
+              "money": 100,
+              "score": 100,
+              "day": 2,
+              "seed": 26068
+            },
+            "wait": null
+          },
+          "events": 853,
+          "driver": 374,
+          "retrace": 360,
+          "elapsed": 5136.546528550638
+        },
+        "boundaries": 18,
+        "presentations": 82,
+        "clockTrace": "f7a6ead929aa13067544e3001e7a9742fecf1f87590843c8d9adf8127c150f4b"
+      }
+    },
+    {
+      "id": "resource4",
+      "historicalEvents": 495,
+      "expected": {
+        "final": {
+          "ds": "7e921358397556666a6f17682bb63ee90d355518fe75ea17773c531e86e2ba35",
+          "locals": "a858ba3f9e272577981517294ca04c107507f224d0dff7cd5c85d0d248de3d38",
+          "pixels": "31a6d8681bd5195141001e397e44eec90e7515535eea4a99ccef48b4131a194b",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 115,
+            "drawingMilliseconds": 2444.3026666666697,
+            "tick": 365,
+            "retrace": 352,
+            "frames": 15,
+            "presentations": 80,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 2,
+            "started": 0,
+            "target": 40,
+            "seed": 143,
+            "photos": [
+              0,
+              0,
+              16,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 14,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 16,
+                "frame": 6,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 0,
+                "animal": 16,
+                "frame": 1,
+                "phase": 5,
+                "countdown": 1
+              }
+            ],
+            "score": 50,
+            "outcome": {
+              "code": 0,
+              "money": 50,
+              "score": 50,
+              "day": 2,
+              "seed": 143
+            },
+            "wait": null
+          },
+          "events": 832,
+          "driver": 365,
+          "retrace": 352,
+          "elapsed": 5022.401050138402
+        },
+        "boundaries": 16,
+        "presentations": 80,
+        "clockTrace": "175d6492d5ff4515cdfe693b2f91440026d0f047612f883c5302175d33a08cc9"
+      }
+    },
+    {
+      "id": "resource5",
+      "historicalEvents": 467,
+      "expected": {
+        "final": {
+          "ds": "83c572972fb5a9c3402f9e7daaa9db08e2325ef036f0c12cf2376e6b120adc23",
+          "locals": "bed43a9c6f179703a9c65221f8c4ee5d65bfbba68c6c21888283dfddc6c93da6",
+          "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 111,
+            "drawingMilliseconds": 2271.8479999999995,
+            "tick": 349,
+            "retrace": 336,
+            "frames": 13,
+            "presentations": 78,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 0,
+            "started": 0,
+            "target": 40,
+            "seed": 49493,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 14,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              },
+              {
+                "place": 11,
+                "animal": 14,
+                "frame": 0,
+                "phase": 1,
+                "countdown": 0
+              }
+            ],
+            "score": 0,
+            "outcome": {
+              "code": 0,
+              "money": 0,
+              "score": 0,
+              "day": 2,
+              "seed": 49493
+            },
+            "wait": null
+          },
+          "events": 796,
+          "driver": 349,
+          "retrace": 336,
+          "elapsed": 4794.110093313929
+        },
+        "boundaries": 14,
+        "presentations": 78,
+        "clockTrace": "bfc76af0d9a57b67c9e104969ee4ca1e513cbb52538498b2561f38c309264ebc"
+      }
+    },
+    {
+      "id": "resource6",
+      "historicalEvents": 522,
+      "expected": {
+        "final": {
+          "ds": "b1d5235310151b7827709adae49c0ff982495332379527b6a4e75640b9fa4a59",
+          "locals": "aecd1054b9f5da45e747e7c19ce12ef4974aa84ad0bb1e3f71d54fa5d3d242a4",
+          "pixels": "aba6bc536f5c54b1a9e93fc7c3d4719cf2960dec1f45d738a2ab3552d40af585",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 119,
+            "drawingMilliseconds": 2532.832000000001,
+            "tick": 373,
+            "retrace": 359,
+            "frames": 17,
+            "presentations": 82,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 4,
+            "started": 0,
+            "target": 35,
+            "seed": 21520,
+            "photos": [
+              0,
+              0,
+              16,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              16,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 1,
+                "animal": 16,
+                "frame": 1,
+                "phase": 5,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 16,
+                "frame": 6,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 11,
+                "animal": 19,
+                "frame": 0,
+                "phase": 2,
+                "countdown": 1
+              }
+            ],
+            "score": 100,
+            "outcome": {
+              "code": 0,
+              "money": 100,
+              "score": 100,
+              "day": 2,
+              "seed": 21520
+            },
+            "wait": null
+          },
+          "events": 851,
+          "driver": 373,
+          "retrace": 359,
+          "elapsed": 5122.278343749108
+        },
+        "boundaries": 18,
+        "presentations": 82,
+        "clockTrace": "42c2f68133b488715783d4b91115581fd56494924acb5c6df4887b892fc8a9c2"
+      }
+    },
+    {
+      "id": "resource7",
+      "historicalEvents": 495,
+      "expected": {
+        "final": {
+          "ds": "900e880d50eae996ab9f03305d3ee00dc27606e48a3cf6b6644f18e8a5f6817e",
+          "locals": "a858ba3f9e272577981517294ca04c107507f224d0dff7cd5c85d0d248de3d38",
+          "pixels": "31a6d8681bd5195141001e397e44eec90e7515535eea4a99ccef48b4131a194b",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 115,
+            "drawingMilliseconds": 2517.7813333333334,
+            "tick": 363,
+            "retrace": 350,
+            "frames": 15,
+            "presentations": 80,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 2,
+            "started": 0,
+            "target": 35,
+            "seed": 57224,
+            "photos": [
+              0,
+              0,
+              16,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 1,
+                "animal": 16,
+                "frame": 1,
+                "phase": 3,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 16,
+                "frame": 6,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 11,
+                "animal": 19,
+                "frame": 1,
+                "phase": 1,
+                "countdown": 0
+              }
+            ],
+            "score": 50,
+            "outcome": {
+              "code": 0,
+              "money": 50,
+              "score": 50,
+              "day": 2,
+              "seed": 57224
+            },
+            "wait": null
+          },
+          "events": 828,
+          "driver": 363,
+          "retrace": 350,
+          "elapsed": 4993.864680535343
+        },
+        "boundaries": 16,
+        "presentations": 80,
+        "clockTrace": "f6df89a945c124f3f39819f0aab48a414247ad22ec5ab36a1c376491a674b56d"
+      }
+    },
+    {
+      "id": "resource8",
+      "historicalEvents": 495,
+      "expected": {
+        "final": {
+          "ds": "4b938088eb5118507cfb47ef4433fb246881118058e7990f691113a764ac3578",
+          "locals": "def50b1caf5faa5f7a8f9a9218bae55a4e9835e42a4ed06513b5ded7f0ce2929",
+          "pixels": "b4d8521d32277b3ffc7fe20f022667d7ad7bf59c82a0570e670db81fb50fd983",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 115,
+            "drawingMilliseconds": 2134.5453333333326,
+            "tick": 345,
+            "retrace": 332,
+            "frames": 15,
+            "presentations": 80,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 2,
+            "started": 0,
+            "target": 35,
+            "seed": 56314,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              14,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 14,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 1
+              },
+              {
+                "place": 7,
+                "animal": 16,
+                "frame": 1,
+                "phase": 1,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 14,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 1
+              }
+            ],
+            "score": 50,
+            "outcome": {
+              "code": 0,
+              "money": 50,
+              "score": 50,
+              "day": 2,
+              "seed": 56314
+            },
+            "wait": null
+          },
+          "events": 792,
+          "driver": 345,
+          "retrace": 332,
+          "elapsed": 4737.037354107811
+        },
+        "boundaries": 16,
+        "presentations": 80,
+        "clockTrace": "49f64e9644220e279668d330e40611e4e8d956c9beee422465d4c1455ce2fc1c"
+      }
+    },
+    {
+      "id": "resource9",
+      "historicalEvents": 522,
+      "expected": {
+        "final": {
+          "ds": "d3448d4f298eac3d1fff3872bbe459dae3266343db9492c95c9f9021ceda0ffc",
+          "locals": "4df668bed5cfcbd5fd3c53442b00f27e9c6859615265796da36d14db75b19186",
+          "pixels": "03c139fbac222e54fda25214f3ee5f08da0eea10419a85e885ebcd09eb0021e6",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 119,
+            "drawingMilliseconds": 2805.1513333333382,
+            "tick": 394,
+            "retrace": 380,
+            "frames": 17,
+            "presentations": 82,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 4,
+            "started": 0,
+            "target": 34,
+            "seed": 10374,
+            "photos": [
+              0,
+              0,
+              34,
+              0,
+              0,
+              0,
+              23,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 18,
+                "frame": 2,
+                "phase": 2,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 23,
+                "frame": 5,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 0,
+                "animal": 17,
+                "frame": 2,
+                "phase": 2,
+                "countdown": 1
+              }
+            ],
+            "score": 550,
+            "outcome": {
+              "code": 1,
+              "money": 550,
+              "score": 550,
+              "day": 2,
+              "seed": 10374
+            },
+            "wait": null
+          },
+          "events": 893,
+          "driver": 394,
+          "retrace": 380,
+          "elapsed": 5421.910224581229
+        },
+        "boundaries": 18,
+        "presentations": 82,
+        "clockTrace": "5976a2f4f895b42568b95b4857d3b2ba16d4a091181cc44f3e78d6ec46bf0e7c"
+      }
+    },
+    {
+      "id": "resource10",
+      "historicalEvents": 522,
+      "expected": {
+        "final": {
+          "ds": "fc34ca9db81e5278a77f72416782f26b7e5771d73292d60f688388a58342a29f",
+          "locals": "e597f08b25a7dd6a5a720f84555a09b696013393c080cf88fccf1a2026ca0c38",
+          "pixels": "03c139fbac222e54fda25214f3ee5f08da0eea10419a85e885ebcd09eb0021e6",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 119,
+            "drawingMilliseconds": 2766.9793333333387,
+            "tick": 392,
+            "retrace": 378,
+            "frames": 17,
+            "presentations": 82,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 4,
+            "started": 0,
+            "target": 34,
+            "seed": 11572,
+            "photos": [
+              0,
+              0,
+              34,
+              0,
+              0,
+              0,
+              23,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 18,
+                "frame": 2,
+                "phase": 2,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 23,
+                "frame": 5,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 0,
+                "animal": 17,
+                "frame": 2,
+                "phase": 2,
+                "countdown": 1
+              }
+            ],
+            "score": 550,
+            "outcome": {
+              "code": 1,
+              "money": 550,
+              "score": 550,
+              "day": 2,
+              "seed": 11572
+            },
+            "wait": null
+          },
+          "events": 889,
+          "driver": 392,
+          "retrace": 378,
+          "elapsed": 5393.37385497817
+        },
+        "boundaries": 18,
+        "presentations": 82,
+        "clockTrace": "28e374001f0c75c5404af59bc24e022c1f50db2b457a41083414dfa6fceaee1d"
+      }
+    },
+    {
+      "id": "resource11",
+      "historicalEvents": 467,
+      "expected": {
+        "final": {
+          "ds": "f128045093f9a9cbe6f12de4533c559214de206c3c88f26340625d9290460dc2",
+          "locals": "bed43a9c6f179703a9c65221f8c4ee5d65bfbba68c6c21888283dfddc6c93da6",
+          "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 111,
+            "drawingMilliseconds": 1788.2826666666651,
+            "tick": 320,
+            "retrace": 308,
+            "frames": 13,
+            "presentations": 78,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 0,
+            "started": 0,
+            "target": 34,
+            "seed": 52977,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              }
+            ],
+            "score": 0,
+            "outcome": {
+              "code": 0,
+              "money": 0,
+              "score": 0,
+              "day": 2,
+              "seed": 52977
+            },
+            "wait": null
+          },
+          "events": 739,
+          "driver": 320,
+          "retrace": 308,
+          "elapsed": 4394.600918871101
+        },
+        "boundaries": 14,
+        "presentations": 78,
+        "clockTrace": "96a4ba664d824794f2cf21304cd61dbcd1e71667ca5154ea2a10d02fb6bfe7d0"
+      }
+    },
+    {
+      "id": "resource12",
+      "historicalEvents": 522,
+      "expected": {
+        "final": {
+          "ds": "1714828b2a3354426d572553f389ec94b23d59bbe382963633bcede1bf76dc65",
+          "locals": "9629d447f19e25a0dd017748451f46f8ad028393bdad4fe824507f93e83e58a9",
+          "pixels": "a5507d96eb1c4d00cc78d1bed62a5ba25846958eefccdadf5e87baa2971db42b",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 119,
+            "drawingMilliseconds": 2801.979333333338,
+            "tick": 399,
+            "retrace": 384,
+            "frames": 17,
+            "presentations": 82,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 4,
+            "started": 0,
+            "target": 34,
+            "seed": 11572,
+            "photos": [
+              0,
+              0,
+              34,
+              0,
+              0,
+              0,
+              18,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 18,
+                "frame": 2,
+                "phase": 2,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 18,
+                "frame": 5,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 0,
+                "animal": 17,
+                "frame": 2,
+                "phase": 2,
+                "countdown": 1
+              }
+            ],
+            "score": 550,
+            "outcome": {
+              "code": 1,
+              "money": 550,
+              "score": 550,
+              "day": 2,
+              "seed": 11572
+            },
+            "wait": null
+          },
+          "events": 902,
+          "driver": 399,
+          "retrace": 384,
+          "elapsed": 5478.982963787347
+        },
+        "boundaries": 18,
+        "presentations": 82,
+        "clockTrace": "d939109185509fbe9d7bfd6cb2b650968f92f03cf71de540998433f482381988"
+      }
+    },
+    {
+      "id": "resource13",
+      "historicalEvents": 522,
+      "expected": {
+        "final": {
+          "ds": "5a8bcc9344c0e45d2ca1661c99aa38ec046f757385fb1dd077e7e96c587c175c",
+          "locals": "7f51e261924f02b499bca03f5df17f68408ca3879fe887bf71475d3a091c4a4a",
+          "pixels": "a5507d96eb1c4d00cc78d1bed62a5ba25846958eefccdadf5e87baa2971db42b",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 119,
+            "drawingMilliseconds": 2843.805333333338,
+            "tick": 401,
+            "retrace": 386,
+            "frames": 17,
+            "presentations": 82,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 4,
+            "started": 0,
+            "target": 34,
+            "seed": 11572,
+            "photos": [
+              0,
+              0,
+              34,
+              0,
+              0,
+              0,
+              18,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 18,
+                "frame": 2,
+                "phase": 2,
+                "countdown": 1
+              },
+              {
+                "place": 5,
+                "animal": 18,
+                "frame": 1,
+                "phase": 1,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 17,
+                "frame": 2,
+                "phase": 2,
+                "countdown": 1
+              }
+            ],
+            "score": 550,
+            "outcome": {
+              "code": 1,
+              "money": 550,
+              "score": 550,
+              "day": 2,
+              "seed": 11572
+            },
+            "wait": null
+          },
+          "events": 906,
+          "driver": 401,
+          "retrace": 386,
+          "elapsed": 5507.519333390406
+        },
+        "boundaries": 18,
+        "presentations": 82,
+        "clockTrace": "c93148c55d676425c4d225fecfd722e0ae090f9eb56b8adb58564c9b2a5cdae6"
+      }
+    },
+    {
+      "id": "resource14",
+      "historicalEvents": 467,
+      "expected": {
+        "final": {
+          "ds": "cdd31ca54a23cf66ac58a28e2b9e271b376252c439251bf14fc0ae8282e139bf",
+          "locals": "bed43a9c6f179703a9c65221f8c4ee5d65bfbba68c6c21888283dfddc6c93da6",
+          "pixels": "d7e32857344cf5f22ca70d149f8b442fb490b1884b6650789c8e4c7b69c359da",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 111,
+            "drawingMilliseconds": 1788.2826666666651,
+            "tick": 320,
+            "retrace": 308,
+            "frames": 13,
+            "presentations": 78,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 0,
+            "started": 0,
+            "target": 34,
+            "seed": 52977,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              },
+              {
+                "place": 0,
+                "animal": 0,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 0
+              }
+            ],
+            "score": 0,
+            "outcome": {
+              "code": 0,
+              "money": 0,
+              "score": 0,
+              "day": 2,
+              "seed": 52977
+            },
+            "wait": null
+          },
+          "events": 739,
+          "driver": 320,
+          "retrace": 308,
+          "elapsed": 4394.600918871101
+        },
+        "boundaries": 14,
+        "presentations": 78,
+        "clockTrace": "96a4ba664d824794f2cf21304cd61dbcd1e71667ca5154ea2a10d02fb6bfe7d0"
+      }
+    },
+    {
+      "id": "resource15",
+      "historicalEvents": 522,
+      "expected": {
+        "final": {
+          "ds": "c8a9fcf0bf7a9705fdbaea71151845c237b9eaacd03724dea509d5dca240aa8b",
+          "locals": "340e88cf41dd9302a82f1d0a7b800bdc1fbf9c45b302bfcbdcb769a1ced06961",
+          "pixels": "ff1bb388863e80edd91870a543ab114594961bed3dcb5ce70e4963586ca9c963",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 119,
+            "drawingMilliseconds": 2978.008000000004,
+            "tick": 403,
+            "retrace": 388,
+            "frames": 17,
+            "presentations": 82,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 4,
+            "started": 0,
+            "target": 32,
+            "seed": 50143,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              18,
+              0,
+              0,
+              0,
+              0,
+              0,
+              14,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 14,
+                "animal": 18,
+                "frame": 1,
+                "phase": 1,
+                "countdown": 1
+              },
+              {
+                "place": 5,
+                "animal": 18,
+                "frame": 2,
+                "phase": 1,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 32,
+                "frame": 1,
+                "phase": 5,
+                "countdown": 1
+              }
+            ],
+            "score": 100,
+            "outcome": {
+              "code": 0,
+              "money": 100,
+              "score": 100,
+              "day": 2,
+              "seed": 50143
+            },
+            "wait": null
+          },
+          "events": 910,
+          "driver": 403,
+          "retrace": 388,
+          "elapsed": 5536.055702993465
+        },
+        "boundaries": 18,
+        "presentations": 82,
+        "clockTrace": "76a0fec857b455c2b0f7c2447ddecb95f63ef18f1fc008ce7225378107072fcf"
+      }
+    },
+    {
+      "id": "resource16",
+      "historicalEvents": 495,
+      "expected": {
+        "final": {
+          "ds": "9119c08c029274cc60eab158390455bc448d50da77b3027aecc86eea7d1d8c0b",
+          "locals": "4e2da138610c489a8811dc0d4b94b1b95fc19f10dcb08432e3fb7d0a9e21d6b3",
+          "pixels": "77c8edb312315f82c6301739dbd855a74abacf0778e62a71b9caf9f6f24d51d9",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 115,
+            "drawingMilliseconds": 2725.796000000003,
+            "tick": 376,
+            "retrace": 362,
+            "frames": 15,
+            "presentations": 80,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 2,
+            "started": 0,
+            "target": 32,
+            "seed": 48555,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              18,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 1,
+                "animal": 14,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 1
+              },
+              {
+                "place": 6,
+                "animal": 16,
+                "frame": 1,
+                "phase": 1,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 14,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 1
+              }
+            ],
+            "score": 50,
+            "outcome": {
+              "code": 0,
+              "money": 50,
+              "score": 50,
+              "day": 2,
+              "seed": 48555
+            },
+            "wait": null
+          },
+          "events": 853,
+          "driver": 376,
+          "retrace": 362,
+          "elapsed": 5165.082898153697
+        },
+        "boundaries": 16,
+        "presentations": 80,
+        "clockTrace": "7c9e96d4a03b90f1916867cee5b37afdbd4f71f55c94b20ee3852a0f59140c2f"
+      }
+    },
+    {
+      "id": "resource17",
+      "historicalEvents": 495,
+      "expected": {
+        "final": {
+          "ds": "44468461ec04822f595c635b918b127f667d810f67fa011191e161439a5aa29e",
+          "locals": "def50b1caf5faa5f7a8f9a9218bae55a4e9835e42a4ed06513b5ded7f0ce2929",
+          "pixels": "b4d8521d32277b3ffc7fe20f022667d7ad7bf59c82a0570e670db81fb50fd983",
+          "state": {
+            "phase": "complete",
+            "drawingWork": {
+              "kind": "background",
+              "instructions": 15618,
+              "portWrites": 402,
+              "repeatOpcodes": 4,
+              "repeatIterations": 14080,
+              "sprites": 2,
+              "copies": 1,
+              "omittedLines": 0,
+              "omittedTexts": 0,
+              "hudInstructions": 1019,
+              "hudPortWrites": 42,
+              "milliseconds": 10.166
+            },
+            "drawingCalls": 115,
+            "drawingMilliseconds": 2118.1479999999992,
+            "tick": 341,
+            "retrace": 329,
+            "frames": 15,
+            "presentations": 80,
+            "column": 1,
+            "film": -1,
+            "timer": 0,
+            "timerCounter": 2,
+            "started": 0,
+            "target": 32,
+            "seed": 7170,
+            "photos": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              14,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "photoCount": 12,
+            "dialoguePolls": 1,
+            "animals": [
+              {
+                "place": 0,
+                "animal": 14,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 1
+              },
+              {
+                "place": 0,
+                "animal": 14,
+                "frame": 5,
+                "phase": 1,
+                "countdown": 3
+              },
+              {
+                "place": 0,
+                "animal": 14,
+                "frame": 0,
+                "phase": 0,
+                "countdown": 1
+              }
+            ],
+            "score": 50,
+            "outcome": {
+              "code": 0,
+              "money": 50,
+              "score": 50,
+              "day": 2,
+              "seed": 7170
+            },
+            "wait": null
+          },
+          "events": 785,
+          "driver": 341,
+          "retrace": 329,
+          "elapsed": 4694.232799703222
+        },
+        "boundaries": 16,
+        "presentations": 80,
+        "clockTrace": "a6d8485422c8f6beaeef52fbfe24a37f03e25cbd075f2faf7e6971cbb57ec71c"
+      }
+    }
+  ]
+}

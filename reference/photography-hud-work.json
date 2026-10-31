@@ -1,0 +1,49 @@
+{
+  "kind": "photography-hud-work",
+  "nativeComparison": "conditional-primitive/source-call-plan",
+  "expectedCases": 28,
+  "exclusions": [],
+  "fittedInputs": [],
+  "historicalSources": {
+    "src/game/photography-work.js": "5f7f0e838a85b7530e9411d76454da2423f36c21b590a6e694ba7c260da85ace",
+    "src/game/photography-scene.js": "afbe1d57e9a44a65813b029c4cc5c944b0cf1121c6c7ca18ac7cc531ec11772a"
+  },
+  "sources": {
+    "src/game/photography-work.js": "fd04d243b99fb63806016ced9af53bd32c0df1612f9a12f79407165a5441dfaf",
+    "src/game/photography-scene.js": "3cbc6bd80c0349264dcccce5330c6c7bf99e8f025fd6e98ee0d2a0e677f3379d",
+    "src/game/photography.js": "25fe081c2fca3f6e3ac63aede30ad88d83fe5fbe1c6daf65e81a516d81f57207",
+    "src/game/photography-hud-work.js": "cbc984509ab25afa0e042c2d389c329fadd9ff11f1a336acd6c8019e57519601",
+    "src/game/ega-line-work.js": "342b96a373bd4628549becbe64fa3aa7da191d2f677e03fc721651af9a213d09",
+    "src/game/hud-number-work.js": "8ad14572ea0d474d823d78716ee0316d45bd06996a5e1f0f887c9380083a8841",
+    "src/game/ega-text-work.js": "825d692c373992919ada6bce7d4f8ba298debd9b5535e7aa0b0b8a02dbc3582a"
+  },
+  "artifacts": {
+    "source": {
+      "path": "reference/photography-draw-work.json",
+      "bytes": 4443,
+      "sha256": "1ee2ab69d3796d88e11188d3fac81f0926bf66398b3ab361dbf6566774dd9b4e"
+    },
+    "numbers": {
+      "path": "reference/hud-number-work.json",
+      "bytes": 6121,
+      "sha256": "17b6e3f9a9c789c05bc2dd3e6fe98dc7c726ceb99e4cf9aae95387917dfcb0b9"
+    },
+    "lines": {
+      "path": "reference/ega-line-runtime-work.json",
+      "bytes": 10523,
+      "sha256": "ab646a0cc548f1951b6967aba8f2018f3d09167837e1f584046583202662f845"
+    },
+    "previousTiming": {
+      "path": "reference/photography-drawing-time.json",
+      "bytes": 54569,
+      "sha256": "cdae9b01bd5d5ca35af56188b3490d77cb7a2dbd57927b568aada77d1e7876dd"
+    },
+    "currentTiming": {
+      "path": "reference/photography-hud-drawing-time.json",
+      "bytes": 60002,
+      "sha256": "3416eecfe186b8d99fdd27fdec8b938cf868c5e1e46fff864180b85af4943d32"
+    }
+  },
+  "scope": "Exact original helper00b2..0143 calls;all16 retained production/native numeric traces;four direct EGA line calls plus signed film formatter now charged. No full uninterrupted native cadence or sub-call IRQ claim.",
+  "verification": "node scripts/verify-photography-hud-work.js"
+}

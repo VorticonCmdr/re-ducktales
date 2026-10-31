@@ -39,7 +39,11 @@ export class PhotographyLocals {
 export class Photography {
   constructor(options, previousMemory) {
     Object.assign(this, preparePhotography(options, previousMemory));
-    if (options.mainEntries?.[42]?.data?.length !== 2056)
+    if (
+      options.mainEntries?.[42]?.data?.length !== 2056 ||
+      options.mainEntries[42].data[2] !== 8 ||
+      options.mainEntries[42].data[4] !== 8
+    )
       throw Error("Missing photography original font");
     this.font = options.mainEntries[42].data;
     this.locals = new PhotographyLocals(options.stackBytes);
@@ -119,7 +123,13 @@ export class Photography {
     this.advance("graphics");
   }
   *waitForDrawing(kind, commands) {
-    const work = photographyWork(this.entries, commands);
+    const m = this.memory,
+      video = m.view.getUint16(0x2038, true);
+    const work = photographyWork(this.entries, commands, {
+      film: m.signedByte(0x5d2a),
+      surfaceOffset: m.view.getUint16(video + 4, true),
+      backPage: m.b(0x2052) !== 0,
+    });
     if (work.milliseconds <= 0)
       throw Error("Missing photography source drawing work");
     this.drawingWork = { kind, ...work };

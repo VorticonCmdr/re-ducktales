@@ -1,3 +1,4 @@
+import { formatOriginalHudNumber } from "./hud-number-work.js";
 import { FlightMemory } from "./flight-physics.js";
 import { executableText } from "./executable.js";
 import {
@@ -135,11 +136,15 @@ export function photographyHud(commands, m, assets, started) {
   drawPhotographySprite(commands, m, assets, 0x8d94);
   if (started) drawPhotographySprite(commands, m, assets, 0x5eda);
   drawPhotographySprite(commands, m, assets, 0x5b28);
-  const text = String(m.signedByte(0x5d2a));
+  const number = formatOriginalHudNumber({
+    value: m.signedByte(0x5d2a),
+    x: 300,
+    rightAlign: true,
+  });
   commands.push({
     op: "text",
-    text,
-    x: 300 - text.length * 8,
+    text: number.text,
+    x: number.x,
     y: 183,
     color: 15,
   });

@@ -15,6 +15,7 @@ import { renderFlightPixels } from "../src/game/flight-raster.js";
 import { parseArchive } from "../src/assets.js";
 import { unpackImage } from "../src/game/executable.js";
 import { Game } from "../src/game/application.js";
+import { Scheduler } from "../src/game/scheduler.js";
 import { parseLocations, parseLoot } from "../src/game/campaign.js";
 
 const hash = (b) => createHash("sha256").update(b).digest("hex");
@@ -443,6 +444,7 @@ assert.equal(atomicGame.campaign.day, 3);
 assert.ok(ordinary);
 const makeGame = () =>
   new Game({
+    departureEntries: resources.mainEntries,
     locations: parseLocations(parseArchive(files["LOC.ARC"], "LOC.ARC")),
     loot: parseLoot(parseArchive(files["LOOT.ARC"], "LOOT.ARC")),
   });
@@ -460,8 +462,16 @@ assert.equal(ordinary.memory.view.getUint32(0x97a8, true), 50);
 // explicit test input,not a played second expedition or original replay.
 for (const kind of ["action", "cave"]) {
   const follow = makeGame(),
+    clock = new Scheduler(follow),
     memory = new FlightMemory(ordinary.memory.bytes),
-    result = { memory, outcome: { code: 1 }, drainEvents: () => [] };
+    // Completed result adapter only;no live actor is simulated. Shared result
+    // flushing may release its controls after return.
+    result = {
+      memory,
+      outcome: { code: 1 },
+      drainEvents: () => [],
+      setControls: () => {},
+    };
   follow.campaign.day = 3;
   follow.campaign.location = 2;
   follow.campaign.atomicLocation = 0;
@@ -489,6 +499,16 @@ for (const kind of ["action", "cave"]) {
   follow.campaign.location = 3;
   const reward = follow.loot[follow.campaign.locations[3].treasure - 1].value;
   follow.collectActionExpedition(result);
+  assert.equal(follow.money, 50, "Reward waits for the original portrait copy");
+  assert.ok(follow.resultPresentation);
+  for (let at = 8; follow.resultPresentation && at <= 3000; at += 8)
+    clock.advanceTo(at);
+  assert.equal(
+    follow.resultPresentation,
+    null,
+    "Unfinished reward presentation",
+  );
+  assert.ok(follow.resultWait);
   assert.equal(follow.money, 50 + reward);
   assert.equal(follow.campaign.day, 5);
   assert.equal(follow.scene, "expedition-result");

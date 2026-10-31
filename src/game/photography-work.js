@@ -3,12 +3,13 @@ import {
   egaSpriteWork,
   normalCoreGraphicsMilliseconds,
 } from "./ega-work.js";
+import { photographyHudPrimitiveWork } from "./photography-hud-work.js";
 import { ORIGINAL_GRAPHICS_TIMING } from "./timing.js";
 
 // Original overlay7 source calls only. Do not pass the synthetic full-page
-// black fill used to reconstruct Canvas pixels. HUD lines/text are explicit
-// omissions, not substitute timing. Background copy is RAM -> EGA video.
-export function photographyWork(entries, commands) {
+// black fill used to reconstruct Canvas pixels. Background copy is RAM -> EGA
+// video;HUD line/text calls use their original primitive/formatter paths.
+export function photographyWork(entries, commands, context) {
   const work = {
     instructions: 0,
     portWrites: 0,
@@ -18,6 +19,8 @@ export function photographyWork(entries, commands) {
     copies: 0,
     omittedLines: 0,
     omittedTexts: 0,
+    hudInstructions: 0,
+    hudPortWrites: 0,
   };
   for (const command of commands) {
     let cost;
@@ -53,35 +56,10 @@ export function photographyWork(entries, commands) {
         destinationVideo: true,
       });
       work.copies++;
-    } else if (command.op === "line") {
-      if (
-        ![
-          [0, 176, 319, 176],
-          [0, 199, 319, 199],
-          [0, 176, 0, 199],
-          [319, 176, 319, 199],
-        ].some(
-          ([x, y, x2, y2]) =>
-            command.x === x &&
-            command.y === y &&
-            command.x2 === x2 &&
-            command.y2 === y2 &&
-            command.color === 4,
-        )
-      )
-        throw Error("Unsupported photography HUD line");
-      work.omittedLines++;
-      continue;
-    } else if (command.op === "text") {
-      if (
-        !/^-?\d{1,3}$/.test(command.text) ||
-        command.y !== 183 ||
-        command.x !== 300 - command.text.length * 8 ||
-        command.color !== 15
-      )
-        throw Error("Unsupported photography HUD text");
-      work.omittedTexts++;
-      continue;
+    } else if (command.op === "line" || command.op === "text") {
+      cost = photographyHudPrimitiveWork(command, context);
+      work.hudInstructions += cost.instructions;
+      work.hudPortWrites += cost.portWrites;
     } else
       throw Error(`Unsupported photography source operation ${command.op}`);
     for (const key of [

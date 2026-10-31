@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
+const hudOnly = process.argv.includes("--hud-only");
 const root =
   process.env.DUCKTALES_PHOTOGRAPHY_TIMING_VERIFICATION_ROOT ??
   ".local/photography-drawing-timing-verification";
@@ -19,7 +20,9 @@ const result = spawnSync(
   {
     env: {
       ...process.env,
-      DUCKTALES_PHOTOGRAPHY_TIMING_BROWSER_NEGATIVE: "skip-work",
+      DUCKTALES_PHOTOGRAPHY_TIMING_BROWSER_NEGATIVE: hudOnly
+        ? "skip-hud"
+        : "skip-work",
     },
     encoding: "utf8",
     timeout: 90000,
@@ -30,7 +33,12 @@ const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
 await writeFile(`${root}/browser-negative.log`, output);
 assert.ifError(result.error);
 assert.equal(result.status, 1);
-assert.match(output, /Photography source drawing cadence/);
+assert.match(
+  output,
+  hudOnly
+    ? /Safari HUD source work/
+    : /Photography source drawing cadence|Safari HUD source work/,
+);
 assert.match(output, /1 failed/);
 assert.doesNotMatch(
   output,

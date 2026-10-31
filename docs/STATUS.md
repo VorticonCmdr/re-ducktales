@@ -1,6 +1,12 @@
 # Current port status
 
-Updated 2026-10-31. **The whole game is incomplete.** A complete Standard winning
+Updated 2026-10-31. Safari HUD timing work is in progress on
+`codex/safari-hud-work`:source/native checks,22 carried component scenarios and
+two browser routes pass. The combined clean-source admission is next. The
+winning/report receipts below describe the prior3626200 runtime;they have not
+been refreshed for this HUD change. [Scope](photography-hud-timing.md).
+
+ **The whole game is incomplete.** A complete Standard winning
 route is now independently browser-verified on the current port. Movement/timing,
 broader route/input/audio fidelity and deferred Hard campaigns remain open.
 Nothing has been pushed or deployed.

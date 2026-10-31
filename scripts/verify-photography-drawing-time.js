@@ -12,7 +12,7 @@ import {
 } from "./photography-component-replay.js";
 export async function verifyPhotographyDrawingRegression(resources, parent) {
   const m = JSON.parse(
-    await readFile("reference/photography-drawing-time.json").catch(() => {
+    await readFile("reference/photography-hud-drawing-time.json").catch(() => {
       throw Error(
         "SETUP: missing photography drawing-time expectations;see docs/photography-timing.md",
       );

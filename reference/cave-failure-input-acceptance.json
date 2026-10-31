@@ -1,0 +1,85 @@
+{
+  "kind": "cave-failure-input-acceptance",
+  "nativeComparison": false,
+  "consumer": ".local/cave-failure-replay-01",
+  "standardConsumer": ".local/cave-failure-standard-replay-01",
+  "beforeSource": ".local/cave-failure-before-01",
+  "setupSource": ".local/cave-failure-checks-01",
+  "setupCheckerSha256": "0a8d0555fd7a5734c5f90000856cd7c2064b87f6ddde3c7766929559575a0513",
+  "runtimeCommit": "9fc39b7ebf9c4398551fb51a1cf5bc731d5c5f65",
+  "browserConsumerCommit": "aef87cb83fd0eb0a366d345865c1c9e207d1945b",
+  "scope": "Failure20 reader/conditional click translation;muted browser pit/Pause/Quit-No/map/retry/Restart;unchanged full Standard playthrough revalidated. Not original reveal/drawing timing or acoustic parity.",
+  "artifacts": {
+    "scenario": {
+      "path": "reference/cave-failure-input-browser.json",
+      "bytes": 5015,
+      "sha256": "f015424d839f553e73601bd3bf4b778a9eb60ee55e7ce6e768b4ca8e80255152"
+    },
+    "source": {
+      "path": "reference/cave-failure-input-source.json",
+      "bytes": 1200,
+      "sha256": "2548b778033bbce4428ab02ebea3fc1e4d0eb3bf97c3ace4a52e88f3323f4546"
+    },
+    "result": {
+      "path": ".local/cave-failure-replay-01/acceptance-status.json",
+      "bytes": 691,
+      "sha256": "d249de89393a741145e72905ca1dcfaf80e2d3f72154b7322a84b770d4f03163"
+    },
+    "standardScenario": {
+      "path": "reference/standard-wages-full-route.json",
+      "bytes": 24298,
+      "sha256": "499232597020516db5ce434e391e52dc973bb40a90e56d38c22a6c0caa2d1e06"
+    },
+    "standardResult": {
+      "path": ".local/cave-failure-standard-replay-01/acceptance-status.json",
+      "bytes": 991,
+      "sha256": "25841931d81ccee119f6f98e4ccc070a2aeb948b5b3d5a4d246accd446216845"
+    },
+    "before": {
+      "path": ".local/cave-failure-before-01/campaign-checkpoints.json",
+      "bytes": 18630,
+      "sha256": "9f0b15d14c526b858008ca6a1f092870647561769894914b2600354ebe63f936"
+    },
+    "setupNegatives": {
+      "path": ".local/cave-failure-checks-01/setup-negatives.json",
+      "bytes": 199,
+      "sha256": "04820a06886c68238fa687cc83f74e1728c06321d6b71edc1dbaba2f438af626"
+    },
+    "setupRevision": {
+      "path": ".local/cave-failure-checks-01/source-revision.json",
+      "bytes": 103269,
+      "sha256": "afddd5ecde527e56d661051866e0141f83c2c53f8c17fe1a8612cd7446852070"
+    },
+    "setupArchive": {
+      "path": ".local/cave-failure-checks-01/sources.zip",
+      "bytes": 2739328,
+      "sha256": "2e601c47f6a52d90c64cecd24a4a62014134018eb322fe87e108021061211a64"
+    },
+    "units": {
+      "path": ".local/cave-failure-checks-01/units.log",
+      "bytes": 17785,
+      "sha256": "d653ca7c5367ffbcec174434ac7ea6b30bae373765e2340b9de2c162717974a4"
+    },
+    "boundaries": {
+      "path": ".local/cave-failure-checks-01/boundaries.log",
+      "bytes": 4364,
+      "sha256": "811d37a158f4c09535611ba6ea0be874d0b3f1cf6426ce851b74868b4fe0e34c"
+    },
+    "build": {
+      "path": ".local/cave-failure-checks-01/build.log",
+      "bytes": 907,
+      "sha256": "a664e58586c4fa13addd6bb68645f4cb6d9a67964b2eedba9b39757948c7f6cf"
+    }
+  },
+  "tests": {
+    "unit": 194,
+    "boundary": 46,
+    "semanticNegatives": 2,
+    "setupNegatives": 3
+  },
+  "limitations": [
+    "Earlier15 historical browser routes not rerun in full for this failure-only change;immutable expectations retained.",
+    "Winning Standard,all layouts,difficulties,original native timing and other legacy dialogues remain unverified."
+  ],
+  "verify": "node scripts/verify-cave-failure-input-acceptance.js"
+}

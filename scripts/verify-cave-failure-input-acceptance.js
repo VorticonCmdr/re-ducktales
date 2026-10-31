@@ -8,6 +8,7 @@ import { originalGame } from "../tests/helpers/original-game.js";
 const record = await json("reference/cave-failure-input-acceptance.json");
 assert.equal(record.kind, "cave-failure-input-acceptance");
 assert.equal(record.nativeComparison, false);
+assert.deepEqual(record.tests, { unit: 194, boundary: 46, semanticNegatives: 2, setupNegatives: 3 });
 await originalGame();
 await checkArtifacts(record.artifacts);
 const scenario = await json(record.artifacts.scenario.path);
@@ -53,6 +54,8 @@ for (const [path, count] of [[record.artifacts.units.path, 194], [record.artifac
   assert.match(log, /fail 0\b/); assert.match(log, /skipped 0\b/);
 }
 assert.match(await readFile(record.artifacts.build.path, "utf8"), /built in/);
-const sourceCheck = spawnSync(process.execPath, ["scripts/verify-cave-failure-input-source.js"], { encoding: "utf8" });
-assert.equal(sourceCheck.status, 0, sourceCheck.stderr);
+for (const path of ["scripts/verify-cave-failure-input-source.js", "scripts/verify-result-caller-source.js"]) {
+  const sourceCheck = spawnSync(process.execPath, [path], { encoding: "utf8" });
+  assert.equal(sourceCheck.status, 0, sourceCheck.stderr);
+}
 console.log("Cave failure acceptance verified:11 exact state/image checkpoints,454 DOM events,Pause/Quit-No/fresh Fire/map/retry/Restart and one omission negative;unchanged Standard85 checkpoints/5071 events;194 units,46 boundary checks,three setup negatives and build. Muted port regression,not native timing/audio parity.");

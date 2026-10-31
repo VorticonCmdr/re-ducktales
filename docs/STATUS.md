@@ -5,9 +5,10 @@ both original wipe call sites and the second-page striped reveal,and restores
 the cached room in the normal input loop without extra composition. Focused browser
 and timing checks pass; runtime loading now charges counted resident decode/conversion work.
 Initial preparation and remaining loader/system work are still omitted.
-The source-pinned counted-loading gate passes nine checks,including a loading-only
-browser negative. [Receipt](../reference/cave-counted-loading-admission.json).
-The last full Standard campaign/replay passed before this transition change.
+The previous counted-loading gate passed nine checks before the startup-order
+correction. The new ten-check gate is pending;220 unit cases and the conditional
+phase-state sequence pass. [Startup scope](cave-startup-order.md).
+The last full Standard campaign/replay passed before these cave changes.
 Its strict combined gate now correctly rejects the changed runtime; a fresh
 whole-campaign admission remains required. Hard campaigns remain deferred.
 Nothing is pushed or deployed.
@@ -150,6 +151,9 @@ Four carried phase states now match all nine original fields with two reads and
 four independent physical events. Entry clear is5.379s versus5.422..5.436s;
 the strict timing/final-state probe still fails. The browser observes actual
 background/passage loading waits. [Loading scope](cave-counted-loading.md).
+Sound0 now precedes the initial wipe,followed by its input flush;torch selection
+now precedes loading. Exact263-byte/86-instruction source proof and focused
+conditional tests pass. Initial preparation remains untimed.
 Next:restore initial preparation loading and investigate the remaining original
 loader/system cost,then refresh full browser campaign acceptance. Do not fit delays.
 Resource/text costs,remaining

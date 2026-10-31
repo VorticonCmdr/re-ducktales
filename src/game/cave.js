@@ -401,11 +401,11 @@ export class Cave {
       count = m.signedByte(0x8b54),
       limit = m.i(0x54ac);
     if (count === limit >> 1 && m.i(0x4e28) === 14) {
-      yield* this.load(15);
       m.i(0x4e28, 15);
+      yield* this.load(15);
     } else if (count === limit - m.i(0x8b3e) && m.i(0x4e28) === 15) {
-      yield* this.load(16);
       m.i(0x4e28, 16);
+      yield* this.load(16);
     }
   }
   *wipe() {
@@ -556,8 +556,9 @@ export class Cave {
       remaining: 1,
       until: this.now() + work.milliseconds,
     };
-    yield* this.wipe(); // Overlay0491; the first room also executes057e.
     this.sound(0);
+    yield* this.wipe(); // Overlay0491; the first room also executes057e.
+    this.flushInput(); // Main0495,after the uninterruptible initial wipe.
     let deadline = 0;
     while (true) {
       if (this.room === m.i(0x97b0))

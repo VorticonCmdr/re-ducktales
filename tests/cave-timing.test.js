@@ -179,3 +179,35 @@ test("capture sound follows both unpresented party work and the captor sprite", 
   );
   assert.equal(c.cave.audioBusy, null); // Unknown until the actual device ACK.
 });
+test("initial cave wipe stops sound before publication and flushes unread controls after completion", () => {
+  const c = fresh({ audioEnabled: true });
+  let flushes = 0;
+  const original = c.cave.onFlushInput;
+  c.cave.onFlushInput = () => { flushes++; original(); };
+  assert.equal(c.game.drainEffects().filter(e => e.type === "sound" && e.id === 0).length, 0);
+  c.clock.advanceTo(c.cave.initialDrawingWork.milliseconds);
+  assert.deepEqual(c.cave.presentationTransition, { kind: "wipe", band: 0 });
+  assert.equal(c.game.drainEffects().filter(e => e.type === "sound" && e.id === 0).length, 1);
+  assert.equal(flushes, 0);
+  c.cave.setControls({ direction: "right", fire: true });
+  for (let i = 0; i < 200 && c.cave.wipeToken === 1; i++) next(c);
+  assert.equal(c.cave.wipeToken, 2);
+  assert.equal(flushes, 1);
+  assert.deepEqual(c.cave.controls, { direction: null, fire: false });
+  assert.equal(c.cave.inputs.length, 0);
+});
+test("isolated torch replacement selects the new descriptor before its loading wait", () => {
+  // Conditional mechanic fixture,not an independent campaign/native replay.
+  for (const [old, target] of [[14, 15], [15, 16]]) {
+    const c = fresh(), m = c.cave.memory, limit = m.i(0x54ac);
+    m.i(0x4e28, old);
+    m.b(0x8b54, target === 15 ? limit >> 1 : limit - m.i(0x8b3e));
+    const operation = c.cave.updateTorch(), first = operation.next();
+    assert.equal(first.done, false);
+    assert.equal(first.value.clock, "graphics");
+    assert.equal(m.i(0x4e28), target);
+    assert.equal(c.cave.lastLoadingWork.resource, target);
+    assert.equal(c.cave.inputs.length, 0);
+    operation.return();
+  }
+});

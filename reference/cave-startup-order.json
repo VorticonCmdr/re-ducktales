@@ -1,0 +1,35 @@
+{
+  "kind": "original-cave-startup-and-torch-order",
+  "expectedCases": 3,
+  "expectedInstructions": 86,
+  "expectedBytes": 263,
+  "source": {
+    "startup": {
+      "path": ".local/cave-startup-order-source-01/startup.json",
+      "bytes": 3242,
+      "sha256": "99062e5de5c5c054e2c37021aa7d354f831c9415d64db850aacaa143cf49b777"
+    },
+    "torch": {
+      "path": ".local/cave-startup-order-source-01/torch-aligned.json",
+      "bytes": 5465,
+      "sha256": "da9b9b7aabe8ad80757ec2e36cfd72e4966514c6576fd8086dcfb05aac481805"
+    },
+    "flush": {
+      "path": ".local/cave-startup-order-source-01/flush.json",
+      "bytes": 1891,
+      "sha256": "c62160c7204a8effe2f11e966bed2da710672c2585b1775d9330137beb5f3b4c"
+    }
+  },
+  "cacheParent": {
+    "path": "reference/cave-cache-source.json",
+    "bytes": 1213,
+    "sha256": "1d6fd157237babe846003f64dac7c3bdc0c9c66d7bb1cb05adcee91863ca3585"
+  },
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "scope": "Static call/state order only;not initial preparation or whole-cave timing acceptance",
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_startup_order.py"
+}

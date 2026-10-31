@@ -1,0 +1,239 @@
+{
+  "kind": "broker-input-browser-regression",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "scope": "Easy startup/earned coin/buy one share/broker Fire or timeout/Pause/Quit-No/fresh input/office/persistent share/no-trade exit/Restart. Exact public-state/decoded RGBA port regression,not native timing.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "physicalKeyboard": true,
+    "audioEnabled": false
+  },
+  "cases": [
+    {
+      "key": "fire",
+      "producer": ".local/broker-fire-controls-01",
+      "checkpoints": 13,
+      "events": 64,
+      "artifacts": {
+        "source-revision": {
+          "path": ".local/broker-fire-controls-01/source-revision.json",
+          "bytes": 109929,
+          "sha256": "2fbdbac0fa5c15d8b5a22b75b097591a4a25cc6d404776d4f9dc2e3c4f49553a"
+        },
+        "sources.zip": {
+          "path": ".local/broker-fire-controls-01/sources.zip",
+          "bytes": 2866145,
+          "sha256": "0bab007269bfcd670b88ba465e248cd7dd46b231ce14985664af9c42ff54c879"
+        },
+        "environment": {
+          "path": ".local/broker-fire-controls-01/environment.json",
+          "bytes": 275,
+          "sha256": "99e675e9dc4ff1e99b25e07138120ea8d24e8347b506fad63aefe3e81252796e"
+        },
+        "captured-events": {
+          "path": ".local/broker-fire-controls-01/captured-events.json",
+          "bytes": 7719,
+          "sha256": "d13a3696b0e1a86c6bbf003d80b062859581a9d5aca6bcf07b71f964f0b2c561"
+        },
+        "campaign-checkpoints": {
+          "path": ".local/broker-fire-controls-01/campaign-checkpoints.json",
+          "bytes": 41997,
+          "sha256": "d167087bfeda1628e67889935e0d9c61c3dbbec33a2f065e52c664a9db8360aa"
+        },
+        "timeline": {
+          "path": ".local/broker-fire-controls-01/timeline.json",
+          "bytes": 1149,
+          "sha256": "39d59659bfa2a7e9338d36e997a3885c01b75edbd95eac2354734e2c29250272"
+        },
+        "capture-status": {
+          "path": ".local/broker-fire-controls-01/capture-status.json",
+          "bytes": 5501,
+          "sha256": "939682acc5bf3b9646cd574a91a4ce4050f046a5063966e0d8bd562dabebbaa4"
+        },
+        "after-p.png": {
+          "path": ".local/broker-fire-controls-01/after-p.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "bought-share.png": {
+          "path": ".local/broker-fire-controls-01/bought-share.png",
+          "bytes": 12143,
+          "sha256": "3e9b5ca2772bef4a687cdc4163be44caebae9c3d663a6b5190dadd4667680a7d"
+        },
+        "earned-coin.png": {
+          "path": ".local/broker-fire-controls-01/earned-coin.png",
+          "bytes": 32784,
+          "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+        },
+        "entry.png": {
+          "path": ".local/broker-fire-controls-01/entry.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "neutral.png": {
+          "path": ".local/broker-fire-controls-01/neutral.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "no-trade-office.png": {
+          "path": ".local/broker-fire-controls-01/no-trade-office.png",
+          "bytes": 32784,
+          "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+        },
+        "office.png": {
+          "path": ".local/broker-fire-controls-01/office.png",
+          "bytes": 32784,
+          "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+        },
+        "pause-waiting.png": {
+          "path": ".local/broker-fire-controls-01/pause-waiting.png",
+          "bytes": 12911,
+          "sha256": "90514854c5db351c97e1b1cd3e7290f9d3b951f0a67f1de7e95967f928d6804e"
+        },
+        "pause.png": {
+          "path": ".local/broker-fire-controls-01/pause.png",
+          "bytes": 12911,
+          "sha256": "90514854c5db351c97e1b1cd3e7290f9d3b951f0a67f1de7e95967f928d6804e"
+        },
+        "quit-no.png": {
+          "path": ".local/broker-fire-controls-01/quit-no.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "quit.png": {
+          "path": ".local/broker-fire-controls-01/quit.png",
+          "bytes": 13397,
+          "sha256": "d7e832470dff2600111f87d49e768b5dfb2366bd13e912b6905aaca7e1f03c51"
+        },
+        "reopened.png": {
+          "path": ".local/broker-fire-controls-01/reopened.png",
+          "bytes": 9451,
+          "sha256": "80e53f0a41720e3c896729ed2542c81458a4992b2e14aa48ad5366094c021c26"
+        },
+        "resumed.png": {
+          "path": ".local/broker-fire-controls-01/resumed.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        }
+      }
+    },
+    {
+      "key": "timeout",
+      "producer": ".local/broker-timeout-controls-01",
+      "checkpoints": 13,
+      "events": 62,
+      "artifacts": {
+        "source-revision": {
+          "path": ".local/broker-timeout-controls-01/source-revision.json",
+          "bytes": 109929,
+          "sha256": "2fbdbac0fa5c15d8b5a22b75b097591a4a25cc6d404776d4f9dc2e3c4f49553a"
+        },
+        "sources.zip": {
+          "path": ".local/broker-timeout-controls-01/sources.zip",
+          "bytes": 2866145,
+          "sha256": "0bab007269bfcd670b88ba465e248cd7dd46b231ce14985664af9c42ff54c879"
+        },
+        "environment": {
+          "path": ".local/broker-timeout-controls-01/environment.json",
+          "bytes": 275,
+          "sha256": "99e675e9dc4ff1e99b25e07138120ea8d24e8347b506fad63aefe3e81252796e"
+        },
+        "captured-events": {
+          "path": ".local/broker-timeout-controls-01/captured-events.json",
+          "bytes": 7485,
+          "sha256": "6bcdfb2039b7dd693b01db188e5e0ad6d7b42542fe1df61ae03a2b648fd4a9bd"
+        },
+        "campaign-checkpoints": {
+          "path": ".local/broker-timeout-controls-01/campaign-checkpoints.json",
+          "bytes": 41995,
+          "sha256": "4997ef9de9fa55d8e597236b2bca533debcf8dc45e5d33e62f88e486782e879e"
+        },
+        "timeline": {
+          "path": ".local/broker-timeout-controls-01/timeline.json",
+          "bytes": 1149,
+          "sha256": "94e11b728c99e0b8224bfd1dea9e5b1a60270f0282838e3410ef7882e38a76cb"
+        },
+        "capture-status": {
+          "path": ".local/broker-timeout-controls-01/capture-status.json",
+          "bytes": 5500,
+          "sha256": "75b5db45c80fd318a533bc9228ea23e17c9313af62d6173d03fee8153c6e4e71"
+        },
+        "after-p.png": {
+          "path": ".local/broker-timeout-controls-01/after-p.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "bought-share.png": {
+          "path": ".local/broker-timeout-controls-01/bought-share.png",
+          "bytes": 12143,
+          "sha256": "3e9b5ca2772bef4a687cdc4163be44caebae9c3d663a6b5190dadd4667680a7d"
+        },
+        "earned-coin.png": {
+          "path": ".local/broker-timeout-controls-01/earned-coin.png",
+          "bytes": 32784,
+          "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+        },
+        "entry.png": {
+          "path": ".local/broker-timeout-controls-01/entry.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "neutral.png": {
+          "path": ".local/broker-timeout-controls-01/neutral.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "no-trade-office.png": {
+          "path": ".local/broker-timeout-controls-01/no-trade-office.png",
+          "bytes": 32784,
+          "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+        },
+        "office.png": {
+          "path": ".local/broker-timeout-controls-01/office.png",
+          "bytes": 32784,
+          "sha256": "b504cd4ef33e5f8851f5bec5c2070a78f9d0dcc9d6e9d8f0fe02a34a9a3c25a5"
+        },
+        "pause-waiting.png": {
+          "path": ".local/broker-timeout-controls-01/pause-waiting.png",
+          "bytes": 12911,
+          "sha256": "90514854c5db351c97e1b1cd3e7290f9d3b951f0a67f1de7e95967f928d6804e"
+        },
+        "pause.png": {
+          "path": ".local/broker-timeout-controls-01/pause.png",
+          "bytes": 12911,
+          "sha256": "90514854c5db351c97e1b1cd3e7290f9d3b951f0a67f1de7e95967f928d6804e"
+        },
+        "quit-no.png": {
+          "path": ".local/broker-timeout-controls-01/quit-no.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        },
+        "quit.png": {
+          "path": ".local/broker-timeout-controls-01/quit.png",
+          "bytes": 13397,
+          "sha256": "d7e832470dff2600111f87d49e768b5dfb2366bd13e912b6905aaca7e1f03c51"
+        },
+        "reopened.png": {
+          "path": ".local/broker-timeout-controls-01/reopened.png",
+          "bytes": 9451,
+          "sha256": "80e53f0a41720e3c896729ed2542c81458a4992b2e14aa48ad5366094c021c26"
+        },
+        "resumed.png": {
+          "path": ".local/broker-timeout-controls-01/resumed.png",
+          "bytes": 13828,
+          "sha256": "3b8fdb38ff38694fb6f90943d5420e96cae096a09886245da5551b3fd5295de4"
+        }
+      }
+    }
+  ],
+  "verify": "node scripts/verify-broker-input-browser.js --output=.local/broker-replay-FRESH",
+  "injections": [],
+  "fittedInputs": [],
+  "exclusions": []
+}

@@ -1,0 +1,209 @@
+{
+  "kind": "conditional-novay-player-investigation",
+  "accepted": false,
+  "nativeComparison": false,
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "runtimeBase": "ae9b935",
+  "initial": {
+    "variant": 1,
+    "difficulty": 1,
+    "day": 26,
+    "money": 23150,
+    "seed": 27138
+  },
+  "environment": {
+    "clockOrigin": 0,
+    "input": "direct action-read bytes",
+    "memory": "fresh original-resource DS and zero-filled locals;no carried campaign memory",
+    "audio": "muted;no device-completion dependency"
+  },
+  "initialDependency": "Constructor parameters from the earlier failed Novay campaign candidate. This dependency and fresh-memory/zero-phase initialization make the results conditional. No expected final state selects replay input.",
+  "parent": {
+    "path": ".local/novay-finish-plan-01/checkpoints.json",
+    "bytes": 182982,
+    "sha256": "775b8d79c7cbeed1a21746c723db6570881ee683faa084bd6e5aab9cd87cbc5d"
+  },
+  "controls": {
+    "path": "reference/novay-player-inputs.json",
+    "bytes": 2135,
+    "sha256": "161255d9caec7c77fba3418ec8ae74239511e6ea01bc06fd5261ade1182c9697"
+  },
+  "cases": [
+    {
+      "name": "base",
+      "producer": ".local/novay-controls-isolated-02",
+      "sourceCommit": "66f6453a34e23e89f8b979f1110d96a7dc5006bd",
+      "requiredInputs": 494,
+      "expectedCode": 0,
+      "artifacts": {
+        "result.json": {
+          "path": ".local/novay-controls-isolated-02/result.json",
+          "bytes": 6890,
+          "sha256": "c0f1152ee9254d346ce9e3af5e2dda3618241e34a27ff65a3fc086a79091b064"
+        },
+        "observations.json": {
+          "path": ".local/novay-controls-isolated-02/observations.json",
+          "bytes": 883253,
+          "sha256": "33732ff45dc8caa9fd52ca277515ca91c26317d9b3f71d7eed5f02a38b50c0b7"
+        },
+        "source-revision.json": {
+          "path": ".local/novay-controls-isolated-02/source-revision.json",
+          "bytes": 118802,
+          "sha256": "591ae33aafb65be03d5ab1067ddd6d21d841255a54ea86fb48b386d2c99ab448"
+        },
+        "sources.zip": {
+          "path": ".local/novay-controls-isolated-02/sources.zip",
+          "bytes": 3024134,
+          "sha256": "fb44cdc518124579196b273a677ae9de32cc58d9f749b5600967d137c19576af"
+        }
+      }
+    },
+    {
+      "name": "wait8",
+      "producer": ".local/novay-controls-wait-8-01",
+      "sourceCommit": "20b09596a74259b516c4c6ad52455bdd24dae10e",
+      "requiredInputs": 502,
+      "expectedCode": 0,
+      "artifacts": {
+        "result.json": {
+          "path": ".local/novay-controls-wait-8-01/result.json",
+          "bytes": 6973,
+          "sha256": "78bce3b88d94596011d11d4f2ad232675b2a3131274485a9039202f7e52793c7"
+        },
+        "observations.json": {
+          "path": ".local/novay-controls-wait-8-01/observations.json",
+          "bytes": 897536,
+          "sha256": "0e0eb1115f263f6a902f2f20a4d847defb11fc097dbf16df15d5b5065ef23c1e"
+        },
+        "source-revision.json": {
+          "path": ".local/novay-controls-wait-8-01/source-revision.json",
+          "bytes": 118802,
+          "sha256": "8087ba5482728aee012eaa4211ba056d415a1d0689c0bf4c13b2c1b856d1992c"
+        },
+        "sources.zip": {
+          "path": ".local/novay-controls-wait-8-01/sources.zip",
+          "bytes": 3024251,
+          "sha256": "706d810f18a8fb2447e04c95fa2c9137bb0812b4c60827592366bc90942a20eb"
+        }
+      }
+    },
+    {
+      "name": "wait16",
+      "producer": ".local/novay-controls-wait-16-strict-01",
+      "sourceCommit": "ea8d93212a17f9772ea4f55f80c1c90592efa7bb",
+      "requiredInputs": 510,
+      "expectedCode": 1,
+      "artifacts": {
+        "result.json": {
+          "path": ".local/novay-controls-wait-16-strict-01/result.json",
+          "bytes": 2083,
+          "sha256": "7dc3a247b7755d28fb3d20ece311a55c6fbe9a2372dff4b80a64f294a31125ba"
+        },
+        "observations.json": {
+          "path": ".local/novay-controls-wait-16-strict-01/observations.json",
+          "bytes": 963927,
+          "sha256": "6bc9def7a128d1485fc73878f5dd12616a122ac9ab20d4e441e746fd50e35f51"
+        },
+        "source-revision.json": {
+          "path": ".local/novay-controls-wait-16-strict-01/source-revision.json",
+          "bytes": 118912,
+          "sha256": "0d1df383d2100e3f84f21cd6d71483bb9a127d9b14dd453b46386688a7ce008b"
+        },
+        "sources.zip": {
+          "path": ".local/novay-controls-wait-16-strict-01/sources.zip",
+          "bytes": 3025414,
+          "sha256": "52e3937a479b6b5fcbdd377b0bbc2085cdc9b7d69cae4b3e4e5c6e66596effcc"
+        }
+      }
+    },
+    {
+      "name": "wait24",
+      "producer": ".local/novay-controls-wait-24-01",
+      "sourceCommit": "20b09596a74259b516c4c6ad52455bdd24dae10e",
+      "requiredInputs": 518,
+      "expectedCode": 1,
+      "artifacts": {
+        "result.json": {
+          "path": ".local/novay-controls-wait-24-01/result.json",
+          "bytes": 2082,
+          "sha256": "079992e7763be2e49e421c66d85168d8b5c22e5695bfa84b366ea0be98b20382"
+        },
+        "observations.json": {
+          "path": ".local/novay-controls-wait-24-01/observations.json",
+          "bytes": 979128,
+          "sha256": "8a52e7c6c1fa209248f06904e52655c1e57db4e94381ab9631d9661b733ebb67"
+        },
+        "source-revision.json": {
+          "path": ".local/novay-controls-wait-24-01/source-revision.json",
+          "bytes": 118802,
+          "sha256": "8087ba5482728aee012eaa4211ba056d415a1d0689c0bf4c13b2c1b856d1992c"
+        },
+        "sources.zip": {
+          "path": ".local/novay-controls-wait-24-01/sources.zip",
+          "bytes": 3024251,
+          "sha256": "706d810f18a8fb2447e04c95fa2c9137bb0812b4c60827592366bc90942a20eb"
+        }
+      }
+    },
+    {
+      "name": "wait32",
+      "producer": ".local/novay-controls-wait-32-01",
+      "sourceCommit": "20b09596a74259b516c4c6ad52455bdd24dae10e",
+      "requiredInputs": 526,
+      "expectedCode": 1,
+      "artifacts": {
+        "result.json": {
+          "path": ".local/novay-controls-wait-32-01/result.json",
+          "bytes": 2083,
+          "sha256": "f441b8a2a310450daa0fc4b3996b1fce8bf581104ecb09054b99188c5dd72845"
+        },
+        "observations.json": {
+          "path": ".local/novay-controls-wait-32-01/observations.json",
+          "bytes": 994321,
+          "sha256": "39d9bf176b1c2742c29b9f085b6fedfcb3eb755273b3dd50c63ed846647a6684"
+        },
+        "source-revision.json": {
+          "path": ".local/novay-controls-wait-32-01/source-revision.json",
+          "bytes": 118802,
+          "sha256": "8087ba5482728aee012eaa4211ba056d415a1d0689c0bf4c13b2c1b856d1992c"
+        },
+        "sources.zip": {
+          "path": ".local/novay-controls-wait-32-01/sources.zip",
+          "bytes": 3024251,
+          "sha256": "706d810f18a8fb2447e04c95fa2c9137bb0812b4c60827592366bc90942a20eb"
+        }
+      }
+    }
+  ],
+  "negative": {
+    "producer": ".local/novay-controls-wait-8-negative-01",
+    "expectedExit": 1,
+    "diagnostic": "Required successful climb did not finish",
+    "artifacts": {
+      "result.json": {
+        "path": ".local/novay-controls-wait-8-negative-01/result.json",
+        "bytes": 6973,
+        "sha256": "ad6d21ce0ef527ae54da8f2edb62c08d72982eeab628ed343251d0734f29663d"
+      },
+      "source-revision.json": {
+        "path": ".local/novay-controls-wait-8-negative-01/source-revision.json",
+        "bytes": 118912,
+        "sha256": "0d1df383d2100e3f84f21cd6d71483bb9a127d9b14dd453b46386688a7ce008b"
+      },
+      "sources.zip": {
+        "path": ".local/novay-controls-wait-8-negative-01/sources.zip",
+        "bytes": 3025414,
+        "sha256": "52e3937a479b6b5fcbdd377b0bbc2085cdc9b7d69cae4b3e4e5c6e66596effcc"
+      }
+    }
+  },
+  "comparison": {
+    "scope": "Conditional port logic and action-read outcomes only,not native or carried-campaign/browser acceptance",
+    "exclusions": []
+  },
+  "verify": "node scripts/diagnose-novay-controls.js --conditional --wait-count=16 --expect=success --output=.local/novay-controls-FRESH"
+}

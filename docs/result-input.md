@@ -23,15 +23,18 @@ bytes and461 Ghidra bytes after exactly3 loader relocations. The existing
 IRQ/audio phase between drawing calls,or exact reveal/drawing-cost parity,is
 claimed. Failure portraits and other legacy dialogues are separate paths.
 
-The next failure-portrait investigation now has a separate
+The implemented failure-portrait reader has a separate
 [source manifest](../reference/cave-failure-input-source.json).
 Original cave body offset1a90 (DUCKTALE.EXE file1c690) loads20,pushes it and calls
 shared09f5. Nonzero return plus enabled byte03be guard click24. All34 original
 bytes match Ghidra CAVE_CODE.EXE1c17:1a90 after its one declared segment relocation.
 The entire11,054-byte cave body also matches the original executable directly.
 `node scripts/verify-cave-failure-input-source.js` verifies that boundary.
-This is static evidence for the next change;the legacy failure countdown is
-still present and no new native runtime/timing comparison is claimed.
+The failure portrait now uses this20-read controller;see
+[failure implementation and current acceptance](cave-failure-input.md).
+No new native runtime/timing comparison is claimed. The earlier award acceptance
+below remains historical;the current failure acceptance also checks the unchanged
+full Standard campaign against the new runtime.
 
 ## Earned browser route
 
@@ -71,10 +74,9 @@ not consume audio busy status. Successor-context acknowledgements may follow the
 required prefix;their timing is outside this comparison. No completion is injected.
 
 ```sh
-# Fast validation of saved current-runtime acceptance:
-node scripts/verify-result-input-acceptance.js
+# Current failure/unchanged-Standard acceptance and source checks:
+node scripts/verify-cave-failure-input-acceptance.js
 node scripts/verify-result-caller-source.js
-node scripts/verify-result-audio-boundary.js
 node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js
 npm test
 npm run build

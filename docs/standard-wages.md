@@ -24,9 +24,7 @@ files fail setup. No additional edition or resource pairing is accepted.
 
 ```sh
 # Validate saved browser evidence against the current game runtime:
-node scripts/verify-standard-wages-acceptance.js --full
-# Earlier day13 prefix:
-node scripts/verify-standard-wages-acceptance.js
+node scripts/verify-cave-failure-input-acceptance.js
 # Check rejection of empty,missing and corrupt fixtures:
 node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --setup-negatives
 node scripts/verify-standard-wages-setup-negative.js
@@ -46,6 +44,14 @@ servers and shared DOSBox sessions are untouched. Originals,recordings and PNGs
 stay local and ignored.
 
 ## Evidence and limits
+
+After the cave failure-reader fix,the same85 immutable checkpoints and5,071
+events pass again under the current runtime in
+[current acceptance](../reference/cave-failure-input-acceptance.json),consumer
+`.local/cave-failure-standard-replay-01` at`aef87cb`. No expected states,images or
+inputs were changed. The earlier Standard saved-receipt commands are
+historical and their source guards reject this runtime change;use the current
+failure-acceptance command above or a fresh Standard replay.
 
 The [full scenario](../reference/standard-wages-full-route.json) pins85 checkpoints
 and5,071 required DOM events. Its [saved acceptance](../reference/standard-wages-full-acceptance.json)

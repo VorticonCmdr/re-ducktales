@@ -26,6 +26,6 @@
     }
   },
   "claim": "Statically inferred:load AX20,push and far-call shared09f5;nonzero return and enabled byte03be guard conditional sound24. This is the cave failure portrait,not resident treasure award40.",
-  "limitations": "No fresh native/runtime observation or timing parity;current port still uses the legacy140-tick countdown for this path.",
+  "limitations": "Static caller proof only;no fresh native runtime/timing comparison. Browser implementation and separate port acceptance are documented in docs/cave-failure-input.md.",
   "verify": "node scripts/verify-cave-failure-input-source.js"
 }

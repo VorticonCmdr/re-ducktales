@@ -1,108 +1,85 @@
 # Current port status
 
-Updated 2026-10-31. **The whole game is incomplete.** Hard campaigns remain deferred
-at the user's request.
+Updated 2026-10-31. **The whole game is incomplete.** Hard campaigns remain
+deferred at the user's request.
 
-## Working playable route
+## Working playable routes
 
 Easy startup → security/office → map/transport/departure → flight → jungle,
-mountain, cave and Safari expeditions → rewards, banking/rivals → winning day31
-ending → Restart. The earned atomic transmitter supports successful travel and
-misdirection into real expeditions. The application uses HTML/CSS/vanilla JS and
-npm/Vite. Original assets stay authoritative in ignored `game/`. Production users
-select their own files. Nothing has been pushed or deployed.
+mountain,cave and Safari → rewards,banking/rivals → winning day31 ending → Restart
+was accepted before the current failure-reader fix. Standard also has a continuous
+all-family playthrough through the day31 defeat cover and Restart;its85 immutable
+checkpoints have passed again against the current runtime. A winning Standard
+route is not established. The earned transmitter supports successful travel and
+misdirection into real expeditions.
 
-Standard Wages also has a continuous all-family playthrough through the day31
-defeat cover and Restart. A winning Standard route is not established.
+HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
+`game/`. Production users select their own files. Nothing is pushed or deployed.
 
-## Latest completed behavior
+## Latest completed behavior and current acceptance
 
-Standard Wages now has a continuous verified browser playthrough:Too-Pei cave →
-bank → lost Safari race → claim/map recovery → Kenya target photo → bank → Great
-Outback jungle treasure → Lost World mountain summit → $10,250 deposit total →
-calendar/rival travel → day31 defeat cover against $36,000 → Restart. Jungle and
-mountain both keep three lives. A fresh independent browser consumes5,071 DOM
-events and matches all85 complete state/RGBA checkpoints. Omitting Standard
-selection fails at the first checkpoint. Three setup negatives reject empty
-checkpoints,missing fixtures and corrupt fixtures. One full playthrough is
-verified;winning Standard routes,all Standard layouts,credits and original
-timing parity do not follow from this route. No game rules changed for it.
-[Standard route and commands](standard-wages.md).
+Cave failure portraits now use original shared09f5(20):entry flush,immediate
+read,seven-tick neutral waits,no21st read,deferred P/Q/S and modal resumption.
+Only consumed Fire with enabled audio requests click24. A fresh Fire is required
+after Quit-No. Cash remains$150,day advances2→3,no treasure/transmitter unlock is
+awarded,and same-location retry enters the cave without another flight.
+Runtime:`9fc39b7`;independent browser consumers:`aef87cb`.
+[Failure behavior and evidence](cave-failure-input.md).
 
-Treasure awards now use original40-read waits and the transmitter explanation
-uses100. Both flush on entry,read immediately,wait seven driver ticks per neutral
-read,resume blocked Pause/Quit-No reads and omit the extra final read. Click0x24
-is requested only for consumed Fire with enabled audio. Cue0x49/0x54 enable guards
-and local audio call order now follow original bytes. Runtime:`0b6d2b5`.
-[Result implementation and commands](result-input.md).
+Current acceptance includes:
 
-Current acceptance passes:
+- Failure/retry:11 exact complete state/RGBA checkpoints,454 DOM events,Restart
+  and a missing-P negative that diverges specifically at Pause.
+- Unchanged full Standard playthrough:85 exact state/image checkpoints,5,071
+  events,all four expedition families,race-loss recovery,bank/rival/deadline/
+  defeat cover,Restart and its missing-selection negative.
+- 194 existing units,46 result/guide/atomic boundaries,three failure-fixture setup
+  negatives and production build.
+- Static failure caller:34 original/Ghidra bytes,one loader relocation,plus the
+  entire11,054-byte cave body matching the original executable. Existing result
+  caller/helper proof checks567 original bytes separately.
 
-- Full Standard playthrough:85 exact state/image checkpoints,5,071 events,
-  all four expedition families,race-loss recovery,bank/rival/deadline/defeat cover,
-  Restart and one semantic plus three setup negatives. The earlier day13 route
-  remains independently accepted with36 checkpoints/3,177 events.
-- Earned award/explanation route:27 exact state/image checkpoints,488 DOM events,
-  both message control loops,collection/unlock,map,Restart and1 semantic negative.
-- All15 earlier browser routes against unchanged inputs/expectations:343 exact
-  checkpoints,11,601 events and15 Restarts. These include the full winning Easy
-  campaign,alternate expeditions,both atomic outcomes and the guide control route.
-- Full Easy headless campaign:34 checkpoints,4,981 events,1,470 flight presentations;
-  all8 cave components:2,696 presentations.
-- 194 existing units,40 result/guide/atomic boundaries,567 original caller/helper
-  bytes and production build. Three receipt negatives reject zero cases,a missing
-  award checkpoint and corrupt evidence.
-- Separate real PC-speaker/Tandy browser probes acknowledge0,0x24,0x54,0x24 and
-  produce nonzero signal. Their host ACK waits pause the injected game clock;
-  these are conditional device-I/O observations,not native audio timing/parity.
+[Current acceptance](../reference/cave-failure-input-acceptance.json). Browser
+failure controls are muted. Conditional simulation checks cover enabled/muted
+click requests;this is not new native reveal/drawing timing or acoustic parity.
 
-[Current acceptance](../reference/result-input-acceptance.json),
-[audio boundary observations](../reference/result-audio-boundary.json).
-These do not establish native whole-game timing or arbitrary-route completion.
-The previously fixed30-read guide remains covered unchanged.
+The previously accepted40-read award,100-read transmitter notice and30-read guide
+remain implemented. The older15 browser routes(343 checkpoints/11,601 events),
+winning Easy campaign and8 cave-component replays were not rerun in full for this
+failure-only change. Their immutable evidence is retained;older saved acceptance
+commands have historical source guards and reject the changed runtime. Use the
+current commands below. [Earlier result evidence](result-input.md).
 
 ## Coverage and remaining work
 
-| Family | Easy coverage |
-| --- | --- |
-| Jungle | All3 layouts have complete browser treasure routes |
-| Mountain | All3 layouts have complete browser summit routes |
-| Cave | All8 complete in component replay;Klondike,Carlsbad and Too-Pei complete in browser routes |
-| Safari | All6 variants complete target-photo/results/reward browser routes |
+| Family | Earlier Easy coverage | Current Standard continuous route |
+| --- | --- | --- |
+| Jungle | All3 layouts complete in browser | Great Outback/layout2 treasure,three lives |
+| Mountain | All3 layouts complete in browser | Lost World/layout0 summit,three lives |
+| Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei treasure |
+| Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next fidelity milestone:translate the cave failure portrait's20-read input wait
-and its conditional click,then investigate other legacy dialogues. A new source
-check pins34 bytes from the original cave overlay and Ghidra after one loader
-relocation. The port still uses a legacy140-tick countdown for this path;
-it has not been fixed by the successful campaign route.
-[Failure source](../reference/cave-failure-input-source.json). Hard remains deferred.
-
-The first Standard Safari attempt lost its race at day7,tile92 of126. The
-explorer initially stopped because it required an arrival. The accepted route
-now consumes that normal claim,returns to map and completes another Safari;
-this branch is not a dead end. [Initial exploration](../reference/standard-wages-exploration.json),
-[accepted day13 continuation](../reference/standard-wages-acceptance.json),
-[full Standard playthrough](../reference/standard-wages-full-acceptance.json).
-
-Other legacy dialogues,cross-scene queued keys,modifier/BIOS behavior and
+Next:investigate the remaining legacy dialogue readers,including rival claims
+and flight repairs. Cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
-arbitrary-route finishability remain incomplete. The deferred Hard route loses
-its second flight race for an unresolved reason. Native whole-game cadence,
-chapter reveal costs,PIT sub-tick phase and parts of CPU/drawing timing remain
-unverified. No save/load/high-score interface was found in this build; these are
-not confirmed missing features and should not be invented.
+arbitrary-route finishability remain incomplete. Hard is deferred;its earlier
+second-flight race loss is unresolved. Native whole-game cadence,chapter reveal
+costs,PIT sub-tick phase and parts of CPU/drawing timing remain unverified.
+No save/load/high-score interface was found in this build;these are not confirmed
+missing features and should not be invented.
 
 ## Sound and security
 
 Tandy/PCjr includes Sound001,persistent channels,priorities,flight engine words,
 mute and completion. PC speaker is the default with persistent IRQ/RNG/priority
-logic. Historical acceptance covers7 browser cases and3 sound streams; that sound
-suite was not rerun in full for this result change. The new result probes exercise
-both real processors;physical waveform/gain/filter parity remains unverified. [Sound](speaker-audio.md).
+logic. Historical sound acceptance covers7 browser cases and3 streams;that suite
+was not rerun for this failure change. Existing speaker/Tandy result probes
+establish actual device I/O under their documented conditional ACK waits;physical
+waveform/gain/filter parity remains unverified. [Sound](speaker-audio.md).
 
 The unchecked **Original security system** option restores the surviving failure
-path and logs the correct code once per challenge. Default play keeps this build's
-forced success. No independent unpatched-edition comparison is available.
+path and logs the correct code once per challenge. Default play retains this
+build's forced success. No independent unpatched-edition comparison is available.
 [Security](security.md).
 
 ## Supported build and verification
@@ -114,32 +91,24 @@ MZ/EXEPACK,x86 little-endian16 real mode,overlays,no extender. Analysis images
 contain actual game code with documented transformations and are never run.
 
 ```sh
-# Validate saved current acceptance and scoped source/observation evidence:
-node scripts/verify-standard-wages-acceptance.js --full
-node scripts/verify-standard-wages-acceptance.js
-node scripts/verify-standard-wages-setup-negative.js
-node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --setup-negatives
+# Validate saved current-runtime evidence and source:
+node scripts/verify-cave-failure-input-acceptance.js
 node scripts/verify-cave-failure-input-source.js
-node scripts/verify-result-input-acceptance.js
 node scripts/verify-result-caller-source.js
-node scripts/verify-result-audio-boundary.js
-# Focused checks and production build:
+node scripts/verify-cave-failure-input-setup-negative.js
 node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js
 npm test
 npm run build
-# Fresh independent result replay,requires clean committed source:
+# Fresh browser comparisons;clean committed source and new ignored outputs:
+node scripts/verify-cave-failure-input-browser.js --output=.local/failure-replay-FRESH
 node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --output=.local/standard-full-replay-FRESH
-node scripts/verify-standard-wages-route.js --output=.local/standard-replay-FRESH
-node scripts/atomic-route.js verify --award --capture=.local/result-earned-browser-01 --output=.local/result-replay-FRESH
-# Fresh current consumer of immutable historical routes:
+# Broader optional fresh regression against retained old routes:
 node scripts/verify-preserved-routes.js --output=.local/preserved-FRESH
 # Local development:
 npm run dev
 ```
 
-Use fresh ignored output directories. Missing/corrupt local artifacts fail setup.
-The older `npm run verify:current-campaign`,runtime gate and per-family source-pinned
-receipt commands retain historical source guards and reject this runtime change;
-they are not current acceptance. Current commands above preserve producer archives
-separately from current consumers. Earlier milestone detail remains in
-[status history](status-history.md) and subsystem documents.
+Missing/corrupt local artifacts fail setup. No checkpoints or required inputs may
+be silently skipped. Earlier milestone details remain in
+[status history](status-history.md),[Standard route](standard-wages.md) and the
+subsystem documents.

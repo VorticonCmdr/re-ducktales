@@ -33,4 +33,4 @@ assert.equal(original.readUInt16LE(5), 0x09f5);
 assert.equal(original.readUInt16LE(7), 0x01c4);
 assert.equal(original.readUInt16LE(18), 0x03be); // Enabled byte guard.
 assert.equal(original.readUInt16LE(24), 0x24); // Conditional click request.
-console.log("Cave failure source verified:34 original/Ghidra bytes,one loader relocation,shared20-read wait and guarded click24. Static evidence only;legacy browser path remains to translate.");
+console.log("Cave failure source verified:34 original/Ghidra bytes,one loader relocation,shared20-read wait and guarded click24. Static source evidence;browser acceptance is separate.");

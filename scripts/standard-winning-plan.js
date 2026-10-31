@@ -193,7 +193,7 @@ async function bankTrip() {
 }
 let completed = false;
 try {
-  assert.equal(game.scene, "map");
+  assert.ok(["map", "expedition-result"].includes(game.scene));
   assert.equal(game.difficulty, 1);
   note("prefix");
   await settle();

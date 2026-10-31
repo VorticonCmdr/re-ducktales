@@ -1,142 +1,125 @@
 # Current port status
 
-Updated 2026-10-31. **The whole game is incomplete.** Safari now charges its
-original HUD line/numeric work and preserves the signed film formatter. Its
-combined admission passes at83a1748:28 source plans,22 carried scenarios,
-899 input boundaries,2234 images,218 units,two browser cases,two browser negatives
-and production build. [Scope and receipt](photography-hud-timing.md).
+Updated2026-10-31. **The whole game is incomplete.** The current Standard winning
+campaign and report/audio gates pass. Original movement timing,broader route/input
+fidelity and deferred Hard campaigns remain open. Nothing is pushed or deployed.
 
-The current6493ccb runtime is independently browser accepted:183 exact complete
-state/image checkpoints and7261 recorded DOM inputs,day31 victory34650 to28500,
-all26 credits,closed and Restart. All seven awards pass105 exact stripe groups
-and75 retraces each. The combined gate passes the missing-Standard input negative,
-three setup negatives,original ending/credits/source proofs,six native bank-copy
-pixel cases,218 units and production build. [Current acceptance](../reference/current-winning-acceptance.json).
-
-The player,rival and forced-report browser consumers all pass on this runtime.
-Their combined report/audio gate now passes,including real speaker/Tandy output,
-fresh status queries and completion. The audio probe window was corrected without
-changing game timing;an intentional short-window failure retains actual state. Movement/timing,
-broader routes/input/audio fidelity and deferred Hard campaigns remain open.
-Nothing has been pushed or deployed.
-
-## Current accepted full campaign route
+## Working route and current acceptance
 
 Startup/security/office → Too-Pei cave → naturally lost Safari race/forced claim
 → Kenya photography → Great Outback jungle → Lost World mountain → Atlantis,
-Klondike,Siberia caves → Novay mountain → banking → day31 victory,34650 vs28500 →
+Klondike,Siberia caves → Novay mountain → banking → day31 victory34650 to28500 →
 celebration → replay-No → all26 credits → closed → Restart.
 
-The current runtime includes the source-ordered report restoration and the bank
-copy correction introduced at179a307. Producer `.local/report-timed-winning-browser-03`
-and independent consumer `.local/report-timed-winning-replay-01` pass183 exact
-complete-state/decoded-RGBA checkpoints and7261 independent DOM inputs. All
-required events/checkpoints finish;removing Standard selection causes the expected
-state mismatch. Empty/missing/corrupt fixture negatives also reject setup.
+Producer `.local/safari-hud-winning-browser-01` and independent consumer
+`.local/safari-hud-winning-replay-01` pass183 exact complete public-state/decoded-
+RGBA checkpoints and7261 independent DOM inputs. All required inputs/checkpoints
+finish. The missing-Standard-selection negative and empty/missing/corrupt fixture
+negatives reject. Seven awards pass105 exact stripe groups and75 retraces each;
+six retained completed pages and original source composition provide independent
+targets. Jungle and both mountain climbs finish with3 lives. No state restore,
+RNG/money/difficulty patch or image exclusion is used.
 
-Seven earned awards pass105 exact stripe groups and75 retraces each. Six earlier
-completed port pages independently cross-check the original picture/font/text
-composition;Novay's7500 page uses that composition and a wrong-value negative.
-Jungle's exact black incoming page is required by its original exit code,not an
-image exclusion. The jungle and both mountain climbs finish with3 lives.
+The combined winning gate also passes original ending/credits comparisons,
+source proofs,218 unit cases and production build. Runtime source is unchanged
+by the later analysis/receipt commits. [Acceptance](../reference/current-winning-acceptance.json),
+[scenario](../reference/safari-hud-winning-route.json),[history](current-winning-campaign.md).
 
-The final bank previously stopped on a valid original signed sparkle copy at
-Y-13. Its visible copy now preserves the original unsigned clipping,DL row
-counter and16-bit byte addressing. Six conditional original IT.DRV calls with
-real EGA output match exact full320x200 RGBA,including signed wrap and scanline
-carry. Actual argument stacks,source bytes,code identity,frame readiness and
-private-emulator shutdown are checked;eight negatives reject corrupt/missing or
-unfinished/stale cases. Natural whole-bank timing and hidden-page aliasing remain
-unverified. [Bank correction and native recipe](bank-sparkle-copy.md).
+Safari now charges its original HUD line/number work and preserves the signed
+film formatter. The scoped admission passes28 source plans,22 carried scenarios,
+899 input boundaries,2234 ordered images,218 units,two browser cases,two browser
+negatives and build. This adds roughly0.37–0.46ms per background group;it does not
+solve overall movement speed. [HUD scope](photography-hud-timing.md).
 
-The combined winning gate passes218 unit cases,production build,
-original ending/credits comparisons and the source proofs. There are no image
-exclusions,state restores,RNG/money patches or difficulty changes in this route.
-[Winning acceptance](../reference/current-winning-acceptance.json),
-[scenario](../reference/report-timed-winning-route.json),[route history](current-winning-campaign.md).
+The final-bank signed sparkle rejection is corrected. Six conditional original
+IT.DRV calls with real EGA output match exact320x200 RGBA,including signed wrap
+and scanline carry. Actual consumed arguments,source bytes,code identity,frame
+readiness,owned-emulator shutdown and eight negatives are checked. Natural whole-
+bank timing and hidden-page aliasing remain unverified. [Bank](bank-sparkle-copy.md).
 
-## Reports,audio and retained coverage
+## Reports and sound
 
-Ordinary reports,forced claims and collected notices implement50 entry/75 total
-retraces,deferred variant RNG,original early-key flushes,6e before reveal and21/
-location publication after exit. Speech status reads have fresh device queries.
-All three report replays on that prior runtime passed85 exact checkpoints/2881 independent DOM
-inputs,all174 intermediate state/pixel/time comparisons,135 source stripe groups,
-three missing-Pause negatives and Restart. Speaker/Tandy probes onf2cb091
-produce real nonzero audio output,fresh speech-status queries and completion.
-Their combined acceptance also passed five setup negatives,218 unit cases,21
-reader-boundary cases and the production build. Old producer recordings remain
-immutable;current consumers establish compatibility with the bank correction.
-[Report implementation](report-presentation-implementation.md).
+Current player/rival notices each pass27 checkpoints/543 inputs;forced claims
+pass31/1795. All three compare58 intermediate state/pixel/time observations and
+45 source stripe groups,with missing-Pause negatives and Restart. Their combined
+gate passes85 checkpoints/2881 inputs/174 intermediate frames/135 stripe groups,
+five setup negatives,218 units,21 reader-boundary cases and build. Reports retain
+50 entry/75 total retraces,source-ordered RNG/flushes/cues and fresh speech-status
+queries. [Implementation](report-presentation-implementation.md).
+
+Actual speaker and Tandy probes produce nonzero signal,consume fresh status
+queries,observe completion and restart. Tandy's valid run takes510 iterations;
+the old500-step probe was too short for a reliable observation window. The revised
+probe retains the same host20ms/Game16ms provider and allows1500 steps. An
+intentional1-step negative fails and preserves actual Game/device state. No game
+or audio-driver timing changed. [Window evidence](../reference/report-audio-observation-window.json).
 
 Tandy/PCjr includes Sound001 and persistent original channels/priorities. PC
-speaker is the default. The current full winning route is muted. Current actual
-report audio probes use an explicit conditional host20ms/Game16ms profile;
-physical waveform/gain/filter and sub-call IRQ parity remain unverified.
-[Sound](speaker-audio.md).
+speaker is default. The winning replay is muted;actual audio probes are separate
+conditional I/O evidence. Physical waveform/gain/filter,sub-call IRQ parity and
+broader sound-call adaptations remain unverified. [Sound](speaker-audio.md).
+
+## Original cadence and broader coverage
+
+A new natural original Safari segment passes120 consecutive callback samples,
+119 rendered-frame intervals,124 resident driver counts and18 post-drawing loop
+completions. There are no debugger stops during measurement. Complete flight/
+Safari code and source-derived driver self-modifications are checked;all owned
+sessions close. Four observation negatives and three extra-FPU-source negatives
+reject corruption. This is a roughly1.7-second neutral segment before the mission
+timer starts,not port cadence or whole-level timing acceptance.
+[Native recipe and limitations](safari-native-cadence.md).
 
 | Family | Current winning route | Retained earlier coverage |
 | --- | --- | --- |
 | Jungle | Great Outback treasure,3 lives | All3 Easy layouts |
-| Mountain | Lost World and Novay summits,3 lives | All3 Easy layouts |
+| Mountain | Lost World/Novay summits,3 lives | All3 Easy layouts |
 | Cave | Too-Pei,Atlantis,Klondike,Siberia treasures | All8 component layouts;3 earlier browser destinations |
 | Safari | Kenya target photograph | All6 earlier variants |
 
-Older earned/award/full-winning receipts retain their documented historical
-runtime scopes. Failed candidates are retained locally:the default six-treasure
-strategy loses normally27050 to36000;the first Novay browser attempt exposed the
-bank error. Only explicitly declared valid prefixes of those recordings are
-reused,always by fresh startup input replay. [History](status-history.md).
-
-A bounded conditional jungle search covers all3 layouts on Easy/Standard with
-12 independent control profiles and1944 consumed input reads. No game diagnostic
-was found;10 runs end in translated failure and two reach the300-input bound.
-This is exploratory component coverage,not native or browser acceptance. The
-initial clock-adapter failure is excluded explicitly in
-[its manifest](../reference/jungle-input-exploration.json).
-
-The refreshed current player/rival consumers each pass27 checkpoints/543 controls;
-forced claims pass31/1795. Each compares58 intermediate frames and45 stripe groups,
-rejects missing Pause and restarts. The combined current audio refresh passes. The earlier Tandy observation limit
-is retained as a failed probe;the valid current run needs510 steps,above that
-old500-step bound. No game/audio timing was adjusted to make it finish.
+A conditional jungle search covers all3 layouts on Easy/Standard with12 authored
+control profiles and1944 consumed reads. No game diagnostic is found;10 runs end
+in translated failure and two reach the300-input bound. This is exploratory
+component coverage,not native or browser acceptance. Its initial clock-adapter
+failure is excluded. [Manifest](../reference/jungle-input-exploration.json).
+Older captures keep their historical source scopes. Failed campaign candidates
+remain local;only explicitly valid prefixes are reused by fresh startup input
+replay. [Earlier milestones](status-history.md).
 
 ## Remaining work and supported build
 
-Next:measure original Safari cadence and broaden gameplay/input coverage. Current
-winning and report/audio gates are accepted;native whole-game timing remains open.
-Resource/text costs,remaining CPU/PIT phase and uninterrupted native whole-game
-timing are unverified. Other sound-call adaptations,cross-scene keys,modifier/
-BIOS behavior,mouse/joystick parity and arbitrary campaign finishability need
-more evidence. Hard's second-flight race issue remains deferred at the user's
-request. No save/load/high-score interface was found in this build;those are
-not confirmed missing features.
+Next:compare the Safari port with the new native segment using declared entry/
+phase dependencies and independent neutral inputs. Resource/text costs,remaining
+CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
+modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability
+need more evidence. Hard's second-flight race issue remains deferred at the
+user's request. No save/load/high-score interface was found in this build;these
+are not confirmed missing features.
 
 The unchecked **Original security system** option enables the surviving failure
-path and logs the correct code once per challenge. Default play retains this
+path and logs the correct code once per challenge. Default play preserves this
 build's patched success. Unpatched-edition parity is unverified. [Security](security.md).
 
 Only the22-file pairing in [build.json](../reference/build.json) is supported.
 DUCKTALE.EXE SHA256:
 `fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981`.
-MZ/EXEPACK,x86 LE16 real mode,overlays,no extender. Prepared analysis images
-contain actual game code and are never run. Originals remain authoritative in
-ignored `game/`;production users select their own files.
+MZ/EXEPACK,x86 LE16 real mode,overlays,no extender. Prepared analysis images are
+never run. Originals stay authoritative in ignored `game/`;production users
+select their own files.
 
 ## Verification
 
 ```sh
-# Current saved winning evidence plus fresh units/build:
 node scripts/verify-current-winning-acceptance.js
 node scripts/verify-report-presentation-acceptance.js
-# Fresh current Safari source/component/browser acceptance:
-node scripts/verify-photography-hud-acceptance.js --output=.local/safari-hud-acceptance-FRESH
-node scripts/verify-bank-copy-pixels.js
-# Independent replay of the current completed winning candidate:
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_safari_cadence.py
+# Fresh independent winning replay;new ignored output:
 node scripts/verify-standard-wages-route.js --manifest=reference/safari-hud-winning-route.json --output=.local/safari-hud-winning-replay-FRESH
+# Fresh scoped Safari browser/source admission:
+node scripts/verify-photography-hud-acceptance.js --output=.local/safari-hud-acceptance-FRESH
 npm run dev
 ```
 
 Missing/corrupt local artifacts fail setup. Required checkpoints,inputs and
-native/device events cannot be silently skipped. Proprietary assets,captures and
-traces remain local;permitted manifests,recipes and verification code are versioned.
+device events cannot be silently skipped. Proprietary assets,captures and traces
+remain local;permitted manifests,recipes and verification code are versioned.

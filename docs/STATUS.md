@@ -14,8 +14,9 @@ three setup negatives,original ending/credits/source proofs,six native bank-copy
 pixel cases,218 units and production build. [Current acceptance](../reference/current-winning-acceptance.json).
 
 The player,rival and forced-report browser consumers all pass on this runtime.
-Their combined audio receipt is pending:a fresh speaker probe passes;the current
-Tandy probe hit its bounded observation limit and needs diagnosis. Movement/timing,
+Their combined report/audio gate now passes,including real speaker/Tandy output,
+fresh status queries and completion. The audio probe window was corrected without
+changing game timing;an intentional short-window failure retains actual state. Movement/timing,
 broader routes/input/audio fidelity and deferred Hard campaigns remain open.
 Nothing has been pushed or deployed.
 
@@ -96,13 +97,14 @@ initial clock-adapter failure is excluded explicitly in
 
 The refreshed current player/rival consumers each pass27 checkpoints/543 controls;
 forced claims pass31/1795. Each compares58 intermediate frames and45 stripe groups,
-rejects missing Pause and restarts. The combined current audio refresh remains
-pending after the bounded Tandy probe failed to finish;no completion is assumed.
+rejects missing Pause and restarts. The combined current audio refresh passes. The earlier Tandy observation limit
+is retained as a failed probe;the valid current run needs510 steps,above that
+old500-step bound. No game/audio timing was adjusted to make it finish.
 
 ## Remaining work and supported build
 
-Next:diagnose the Tandy audio observation limit,measure original Safari cadence
-and broaden gameplay/input coverage. The current full winning replay is accepted.
+Next:measure original Safari cadence and broaden gameplay/input coverage. Current
+winning and report/audio gates are accepted;native whole-game timing remains open.
 Resource/text costs,remaining CPU/PIT phase and uninterrupted native whole-game
 timing are unverified. Other sound-call adaptations,cross-scene keys,modifier/
 BIOS behavior,mouse/joystick parity and arbitrary campaign finishability need
@@ -126,6 +128,7 @@ ignored `game/`;production users select their own files.
 ```sh
 # Current saved winning evidence plus fresh units/build:
 node scripts/verify-current-winning-acceptance.js
+node scripts/verify-report-presentation-acceptance.js
 # Fresh current Safari source/component/browser acceptance:
 node scripts/verify-photography-hud-acceptance.js --output=.local/safari-hud-acceptance-FRESH
 node scripts/verify-bank-copy-pixels.js

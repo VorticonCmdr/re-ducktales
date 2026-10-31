@@ -1,7 +1,7 @@
 # Report and notice presentation restoration
 
 Runtime introduced at b0bfaac on `codex/report-presentations`,based on7579426.
-Current bank-corrected runtime receipts are recorded by
+Current Safari-HUD runtime receipts are recorded by
 `reference/report-presentation-acceptance.json`:85 exact browser checkpoints,
 2881 independent inputs,174 intermediate state/pixel/time comparisons and135
 source stripe groups. Earlier receipts retain their historical source scope.
@@ -53,8 +53,8 @@ at the query boundary and do not count as actual audio acceptance.
   state/image checkpoints,1795 DOM inputs,all58 intermediate frame states/pixels/
   timestamps,missing-Pause negative and Restart. Zero forced claims fails the
   experiment. All45 forced-route row groups pass.
-- Actual PC speaker and Tandy report probes atf2cb091:
-  `.local/current-report-speaker-audio-01` and `.local/current-report-tandy-audio-01` verify
+- Actual PC speaker and Tandy report probes on the current runtime:
+  `.local/safari-hud-report-speaker-audio-01` and `.local/safari-hud-report-tandy-audio-02` verify
   enabled24/6e/fresh global status queries/21,real completion,nonzero signal
   samples and Restart. Host20ms/Game16ms is an explicitly conditional profile;
   no audio completion values are injected.
@@ -98,3 +98,14 @@ black post-bank incoming page is narrowly scoped to rival3,location0,bank3400,
 cash0 and the original main1036..107f caller hash/1076 clear-and-flip bytes.
 The forced claim requires its actual nonblank flight page. There is no arbitrary
 blank fallback or expected-pixel injection.
+
+The current combined report gate passes after Safari HUD integration:85 exact
+checkpoints,2881 independent DOM inputs,174 intermediate frames,135 stripe groups,
+three Pause negatives,five setup negatives,218 units,21 reader cases and build.
+The real Tandy probe now allows1500 iterations with the same20ms host/16ms Game
+provider. Sound6e lasts about12.8 seconds in the translated original driver;the
+old500-step limit guaranteed only10 seconds of deliberate host waiting. A valid
+current run takes510 steps. No game clock,driver or device completion is changed.
+An intentional1-step negative exits with an unfinished diagnostic and preserves
+actual Game/audio state. The old failed500-step run has no terminal snapshot,so
+its exact last stage is unknown. [Window evidence](../reference/report-audio-observation-window.json).

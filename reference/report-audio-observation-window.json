@@ -1,0 +1,29 @@
+{
+  "kind": "report-audio-observation-window",
+  "nativeComparison": false,
+  "scope": "Verification-harness correction only;game timing and both audio drivers unchanged. Same host20ms/Game16ms profile. Completed current Tandy run requires510 steps;an intentionally1-step run fails and retains actual state.",
+  "oldBound": 500,
+  "newBound": 1500,
+  "sourceModelSpeechMilliseconds": 12835.678044087155,
+  "actualSpeechFrames": 615582,
+  "sampleRate": 48000,
+  "artifacts": {
+    "sourceEstimate": {
+      "path": ".local/safari-hud-report-audio-duration-01.json",
+      "bytes": 315,
+      "sha256": "366da8f0db854a07c648fa819396503d924d2466c3dcf9534abdaa5f15e96653"
+    },
+    "positive": {
+      "path": ".local/safari-hud-report-tandy-audio-02/audio-status.json",
+      "bytes": 23157,
+      "sha256": "7d9e196dea0a1bf719df0a3f5f75824594103169ed87e472336ba5e0b3c79355"
+    },
+    "shortNegative": {
+      "path": ".local/safari-hud-report-tandy-short-negative-01/audio-failure.json",
+      "bytes": 7461,
+      "sha256": "16b61380812fd248c7995c69187779e325fce08e335b2ab6c48e62a0ddf9146b"
+    }
+  },
+  "failedHistoricalProbe": ".local/safari-hud-report-tandy-audio-01 stopped at500 iterations;its old recipe did not retain terminal state,so that exact last stage is unknown. No failed capture is promoted to acceptance.",
+  "verify": "node scripts/probe-rival-audio.js --device=tandy --output=.local/report-tandy-FRESH"
+}

@@ -23,36 +23,25 @@ rechecked successfully after adding the separate cave coverage harness.
 
 ## Latest verified coverage
 
-Clean source `72c5d5d`: current Easy Thunderclap and Machu Picchu routes pass
-independent actual-browser replay through treasure, map return and Restart.
-Together they check110 exact full-state/pixel checkpoints and982 DOM events;
-494/710 mountain input reads finish with all three lives and $2,100/$2,700.
-Both first-movement omission controls fail at input3. The registered record pins
-13 artifacts, including complete source/capture inventories and replay result.
-No gameplay source changed. [Scenario and commands](easy-mountain-variants.md),
-[manifest](../reference/easy-mountain-variants.json).
+Clean source `4501258`: current Easy Bermuda and Boola Boola routes pass
+independent browser replay with68 exact full-state/pixel checkpoints and1,358
+DOM events. Their503/421 game reads retain all three lives, award $2,200/$1,350,
+mark the destination collected on day2 and Restart. Both original entrance input
+clears are asserted; omitting consumed movement fails specifically at input4/3.
+Six focused jungle input tests also pass. No gameplay source changed.
+[Jungle scenario and commands](easy-jungle-variants.md),
+[registered manifest](../reference/easy-jungle-variants.json).
 
-Machu's old Hard input route fails on Easy because the original projectile
-counter differs (24 versus8). Four neutral player inputs before the crossing
-produce the accepted Easy route. A bounded27-byte original/Ghidra comparison and
-explicitly conditional component diagnosis are preserved separately;
-[exploratory evidence](../reference/easy-mountain-investigation.json).
-The existing full Easy campaign covers mountain variant0; these routes add1/2.
-This does not prove arbitrary paths or native whole-level timing.
+| Family | Current Easy coverage | Evidence |
+| --- | --- | --- |
+| Jungle | All3 layouts have complete browser treasure routes | Full campaign variant0; [Bermuda/Boola](easy-jungle-variants.md) variants1/2 |
+| Mountain | All3 layouts have complete browser summit routes | Full campaign variant0; [Thunderclap/Machu](easy-mountain-variants.md) variants1/2,110 state/image checkpoints |
+| Cave | All8 layouts complete in component replay; Klondike and Carlsbad complete in the browser | [2,696 component presentations and Carlsbad's12 browser checkpoints](easy-cave-variants.md) |
+| Safari | One destination completes in the full campaign; other variants need current browser acceptance | [Earlier resource/native comparisons](photography.md) remain separately scoped |
 
-Clean source `d7257c1`: all eight Easy cave layouts reach treasure in independent
-closed-loop component replay, with exact state/pixel checks at all 2,696 rendered
-presentations. A fresh Carlsbad browser replay matches 12 full state/pixel
-checkpoints and 82 DOM events: startup, travel/flight, seven room moves, $2,800
-award including room coins, collected destination on day17, and Restart.
-Three component failure controls and one browser movement omission are detected.
-No gameplay source changed for this milestone.
-
-The registered cave check is separate from the earlier combined campaign gate.
-It proves these port routes under explicit clock/input providers, not eight
-native-game comparisons, arbitrary cave paths or native whole-level cadence.
-[Scenario, limitations and setup](easy-cave-variants.md),
-[versioned manifest](../reference/easy-cave-variants.json).
+These route records are separate from the combined campaign gate. They establish
+specified port routes under explicit clock/input providers, not arbitrary-route
+finishability or native whole-level cadence. Existing timing limitations remain.
 
 ## Sound, security and clock
 
@@ -76,8 +65,8 @@ and optional RTC synchronization remain unverified. [Clock contract](bios-clock.
 ## Remaining work and next milestone
 
 - Broader current-runtime destination, difficulty and arbitrary-route finishability
-  coverage remains incomplete. Next: verify current Easy alternate jungle routes
-  and investigate the first divergence or unsupported behavior. Hard remains deferred; its
+  coverage remains incomplete. Next: current Easy Safari variant browser coverage
+  and investigation of the first divergence or unsupported behavior. Hard remains deferred; its
   longer investigated route loses the second flight race, with the cause unresolved.
 - Native whole-game cadence remains unverified. Drawing-cost models cover selected
   primitives; resident/caller/device work, some drawing and exact video/cache phase
@@ -111,6 +100,8 @@ node scripts/easy-cave-variants.js verify
 node scripts/easy-mountain-variants.js verify
 # Validate the separately scoped exploratory/static Machu evidence:
 node scripts/verify-easy-mountain-investigation.js
+# Repeat current Easy alternate jungle routes, including negatives:
+node scripts/easy-jungle-variants.js verify
 # Local development:
 npm run dev
 ```

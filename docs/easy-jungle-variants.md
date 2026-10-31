@@ -5,6 +5,14 @@ through startup, security, travel/flight, treasure, collected destination on the
 map and Restart. Hard campaigns remain deferred. Gameplay source is unchanged.
 This is port browser regression, not a native whole-level/cadence comparison.
 
+Accepted from clean source `4501258`:39/29 exact full-state/pixel checkpoints,
+686/672 DOM events, both consumed-movement negatives and both Restarts. Producer:
+`.local/easy-jungle-variants-03`; independent consumers:
+`.local/easy-jungle-variants-replay-03`. Six existing jungle input tests pass.
+Earlier omission attempts targeted discarded entrance makes and failed the
+required state-divergence assertion; those runs remain unaccepted. The final
+contract explicitly preserves both original clears before targeting movement.
+
 Both routes were explored using actual browser keyboard/pointer controls before
 recording their acceptance cases. Boola Boola uses the existing421 controls and
 returns $1,350 with all three lives. Bermuda's older447-control Hard plan falls
@@ -34,11 +42,13 @@ and map. The first movement is also a mandatory checkpoint. They require exactly
 and Restart clearing actors, cash and claims. DOM event counts are independent of
 game reads because held keys can span many reads.
 
-Each negative replay omits the first jungle Right and must fail at its first
-movement checkpoint (Bermuda input4; Boola Boola input3). Main00d7 clears entry-wipe makes before input1; Main048f clears first-page
-reveal makes before input2. Both are retained and asserted as zero input bytes. Negative-only comparison starts at the input immediately
-before the consumed movement, while replaying the complete startup input stream. Positive
-acceptance checks every checkpoint, including office/departure, without exclusions.
+Each negative replay omits the first Right consumed after the entrance clears
+and must fail at that movement checkpoint (Bermuda input4; Boola Boola input3).
+Main00d7 clears entry-wipe makes before input1; Main048f clears first-page reveal
+makes before input2. Both are retained and asserted as zero input bytes.
+Negative-only comparison starts at the input immediately before the consumed
+movement, while replaying the complete startup input stream. Positive acceptance
+checks every checkpoint, including office/departure, without exclusions.
 Missing/corrupt fixtures, zero cases, skipped checkpoints, unfinished sequences,
 unconsumed events, diagnostics and rendering/page errors fail.
 
@@ -50,6 +60,7 @@ callbacks. Each operation owns and closes its temporary Vite server/browser.
 
 ```
 node scripts/easy-jungle-variants.js verify
+node --test tests/jungle-input.test.js
 ```
 
 For a new record from clean committed source, use fresh local directories and a

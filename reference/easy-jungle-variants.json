@@ -1,0 +1,198 @@
+{
+  "id": "easy-alternate-jungles",
+  "accepted": true,
+  "cases": 2,
+  "captureRoot": ".local/easy-jungle-variants-03",
+  "sourceCommit": "45012589192ac564b58cee560a85a96d4a395429",
+  "artifacts": {
+    "source-revision.json": {
+      "path": ".local/easy-jungle-variants-03/source-revision.json",
+      "bytes": 95865,
+      "sha256": "e8bddd8498c76b25201fd8c94f3f23526ea1ca8101d921daf3db9c37ddab5f6b"
+    },
+    "sources.zip": {
+      "path": ".local/easy-jungle-variants-03/sources.zip",
+      "bytes": 2594750,
+      "sha256": "150528b666d8bd4cdb0c2fadb8884dba7ee31cdfe30ee8d58c4652fb4e54b3ec"
+    },
+    "cases.json": {
+      "path": ".local/easy-jungle-variants-03/cases.json",
+      "bytes": 853,
+      "sha256": "bb6de896ac52096a88267193d5433c54f054322e44920e9c81eaddb0b8feaa97"
+    },
+    "capture-status.json": {
+      "path": ".local/easy-jungle-variants-03/capture-status.json",
+      "bytes": 192,
+      "sha256": "57ae081f090da151afeab72d847cdb61e898067dd6af69c7f2a3ffa34a8c4f9f"
+    },
+    "bermuda/captured-events.json": {
+      "path": ".local/easy-jungle-variants-03/bermuda/captured-events.json",
+      "bytes": 84505,
+      "sha256": "03be03bd39e07a8ec5c77c153ecd8acaaa5e86899caf70dc80f9c3fbb83f15ef"
+    },
+    "bermuda/campaign-checkpoints.json": {
+      "path": ".local/easy-jungle-variants-03/bermuda/campaign-checkpoints.json",
+      "bytes": 226223,
+      "sha256": "83b23b859e02ee43a9ce5f10353c153b29eb2d86345b2dc23e6c58db273fde84"
+    },
+    "bermuda/environment.json": {
+      "path": ".local/easy-jungle-variants-03/bermuda/environment.json",
+      "bytes": 199,
+      "sha256": "30ca9bb676a51d90c7a1be02797c7f3cdedf3330295f57f22b69c353fdfcd9b1"
+    },
+    "bermuda/timeline.json": {
+      "path": ".local/easy-jungle-variants-03/bermuda/timeline.json",
+      "bytes": 3293,
+      "sha256": "5332ed66e7382a76b23671700e7ca8127935949df565a6289dc3423a2da0eade"
+    },
+    "boola/captured-events.json": {
+      "path": ".local/easy-jungle-variants-03/boola/captured-events.json",
+      "bytes": 82728,
+      "sha256": "66806298c5b5bae5d0eca632f27001ee79bbfcd993dfba03441184d5be1624b5"
+    },
+    "boola/campaign-checkpoints.json": {
+      "path": ".local/easy-jungle-variants-03/boola/campaign-checkpoints.json",
+      "bytes": 166038,
+      "sha256": "87b75feeff38eb9cbd0bfa0d08152f5d19d0450e1a68bbaa4c1ada76c5d228b0"
+    },
+    "boola/environment.json": {
+      "path": ".local/easy-jungle-variants-03/boola/environment.json",
+      "bytes": 199,
+      "sha256": "30ca9bb676a51d90c7a1be02797c7f3cdedf3330295f57f22b69c353fdfcd9b1"
+    },
+    "boola/timeline.json": {
+      "path": ".local/easy-jungle-variants-03/boola/timeline.json",
+      "bytes": 2466,
+      "sha256": "f5b112ac50ffbe3a38208c58bfc610996da802e68a9bddcaf07abd438ba62b31"
+    },
+    "replay": {
+      "path": ".local/easy-jungle-variants-replay-03/result.json",
+      "bytes": 3176,
+      "sha256": "0c8f487ed6d89c0a1d3d9d1f79f63985c3529679fd3717be39b3f0c2ad794e1a"
+    }
+  },
+  "build": {
+    "manifest": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "files": {
+      "CAVEMAPS.ARC": {
+        "bytes": 949,
+        "sha256": "5582e5e358cd20746a21875255da0f9f7fad171467b9afda6f26eb3687a5af9b"
+      },
+      "CHART.ARC": {
+        "bytes": 475,
+        "sha256": "e3456152da564f41524e3e328a8391a33d812af3ac18bd0c98e72985101586a7"
+      },
+      "CLUES.ARC": {
+        "bytes": 1813,
+        "sha256": "5162697a313b227b81338d08ac8cfd8e65a88d50854ecf54a17209de96779aef"
+      },
+      "DUCKTALE.EXE": {
+        "bytes": 165218,
+        "sha256": "fb658562b480ccf75a9dd0a7344c9ae74737e2ca651c0a09dc546928f612a981"
+      },
+      "Disney's Duck Tales -  The Quest for Gold (1990).ba1": {
+        "bytes": 80,
+        "sha256": "5a5f19251528372ace467978dfffc3c017d8bd6dfb08d3073cbe41200ee9f690"
+      },
+      "EXP.ARC": {
+        "bytes": 108115,
+        "sha256": "f5423396a20fc515add201e0d9a587d4e985130b2d2c05f98da417aa6ca34dbf"
+      },
+      "INVART.ARC": {
+        "bytes": 538,
+        "sha256": "433792e8edf0992529d7d9cb19de40bec46d55fa7b3cb6ccc73160a432692213"
+      },
+      "INVEST.ARC": {
+        "bytes": 4193,
+        "sha256": "5d5a2dea1d0bfbbfe6eb8589ca269c7494dfb1758325e0ef7a4c6c64df63362c"
+      },
+      "IT.DRV": {
+        "bytes": 27815,
+        "sha256": "3a421e0b11706baad2bc2c25520f0edcf2b4246f20d767320968535a55ae4ff2"
+      },
+      "JG.ARC": {
+        "bytes": 47389,
+        "sha256": "5f8ff2a00a806b76cbef8a6f24b24befe2d9e594e38e645e845d031e78320878"
+      },
+      "LOC.ARC": {
+        "bytes": 5447,
+        "sha256": "fedc421b354aec66ae2337b370500b71365c4fe1863958cf43d29c77552c1fd9"
+      },
+      "LOOT.ARC": {
+        "bytes": 3946,
+        "sha256": "cb496f5b9905d2aaa2539451633554d4f1f54d7a43e787906ceaf3b714e7ab7f"
+      },
+      "MAC.ARC": {
+        "bytes": 30405,
+        "sha256": "5c2be37bf6b85f1c1989f2d1726204e89359e7e8e8578b91f5a117a13684b5f1"
+      },
+      "MAIN.ARC": {
+        "bytes": 141676,
+        "sha256": "2ad0e38d8db5095a8b9a9ecc0188c4904f61de2624ec35bf738638a87ee99f83"
+      },
+      "MBIN.ARC": {
+        "bytes": 31735,
+        "sha256": "7b1d958f9eb2ac6a8205043cc715c19ea16d6470e896213014dc4930d7e3071b"
+      },
+      "MT.ARC": {
+        "bytes": 24269,
+        "sha256": "2b712ea21eef9a10c0084cf884a17b484b40b890d7bd87a1ce76fd565c4f7f7c"
+      },
+      "PLANE.ARC": {
+        "bytes": 34609,
+        "sha256": "9a33bcd8fbb4205ee8a15b3269a7da7a9eb5888dbcbc59f488b42c12e2107778"
+      },
+      "PS.ARC": {
+        "bytes": 78742,
+        "sha256": "28cae7f184927b98e65ccc7758c8a7404ca42ecafe88aa56f7fae795f74d6627"
+      },
+      "README.BAT": {
+        "bytes": 93,
+        "sha256": "58249899a3bca7eacda234fea631bd618dc96f8d57df511bf1d7da9bda23b8a1"
+      },
+      "README1.DOC": {
+        "bytes": 794,
+        "sha256": "aead233365ec026823a07f8eb3a090cff67fe32981a26f21fcc7903ecc89f2a6"
+      },
+      "README2.DOC": {
+        "bytes": 729,
+        "sha256": "deb56be3df365500da7b7b19a2278d8dbfe321b59ae3bffc5325497721de8e37"
+      },
+      "README3.DOC": {
+        "bytes": 311,
+        "sha256": "edacd2e4c4019555b179e5ed0e1d3cfeaea9039cd80450ee99c9bceb69946e62"
+      }
+    }
+  },
+  "checkpoints": [
+    {
+      "key": "bermuda",
+      "count": 39,
+      "events": 686,
+      "inputs": 503
+    },
+    {
+      "key": "boola",
+      "count": 29,
+      "events": 672,
+      "inputs": 421
+    }
+  ],
+  "environment": {
+    "difficulty": 0,
+    "biosSeed": 0,
+    "timezone": "UTC",
+    "audioEnabled": false,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "scope": "Independent port browser replay of Easy variants1/2;not native whole-route or Hard acceptance",
+  "verify": "node scripts/easy-jungle-variants.js verify"
+}

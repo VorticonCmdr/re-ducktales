@@ -97,8 +97,13 @@ fixed Right/release inputs. Scrooge moves X8→40 with three lives;all inputs fi
 and the owned emulator closes. Five negatives and original code/asset checks pass.
 Keyboard-table flush/repeat transitions are retained,not replaced by continuous
 joystick Right. [Reference](jungle-native-cadence.md).
-Next:compare jungle against that physical input schedule,then extend the reported
-mountain/cave movement investigation. Resource/text costs,remaining
+The conditional jungle comparison now matches first-input/opening state,five
+motion states and the final nine gameplay/RNG fields across37 carried reads.
+All four movement/action timings fall inside native callback brackets with the
+declared zero-phase clock and500/33ms repeat provider. Five comparison negatives
+pass;this does not prove browser or whole-level timing parity. No slowdown added.
+Next:compare the retained uninterrupted mountain scenario,then obtain cave
+movement evidence. Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability
 need more evidence. Hard's second-flight race issue remains deferred at the
@@ -124,6 +129,7 @@ node scripts/verify-report-presentation-acceptance.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_safari_cadence.py
 node scripts/compare-safari-native-cadence.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_jungle_cadence.py
+node scripts/compare-jungle-native-cadence.js
 # Fresh independent winning replay;new ignored output:
 node scripts/verify-standard-wages-route.js --manifest=reference/safari-hud-winning-route.json --output=.local/safari-hud-winning-replay-FRESH
 # Fresh scoped Safari browser/source admission:

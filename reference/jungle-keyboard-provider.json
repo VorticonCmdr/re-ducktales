@@ -1,0 +1,19 @@
+{
+  "kind": "conditional-emulator-keyboard-provider",
+  "initialRepeatMilliseconds": 500,
+  "repeatMilliseconds": 33,
+  "delivery": "Immediate IRQ table events;does not emulate i8042 buffer readiness,serial frame delay or original1ms tick phase.",
+  "source": {
+    "repository": "dosbox-automation",
+    "commit": "f6d9b935f735dabdec349b04d98165eccd2a3f6b",
+    "path": "src/hardware/input/keyboard.cpp",
+    "bytes": 20451,
+    "sha256": "814a23459e543e5ce457593d9816fe54b1c96381539b89c6dc048416038c0faa",
+    "rules": [
+      "typematic_update resets wait to pause for a new key and rate for the repeated key;release clears repeat.key/wait.",
+      "typematic_tick decrements wait once per timer tick;occupied buffer or unready i8042 defers one tick.",
+      "set_defaults initializes repeat.pause500 and repeat.rate33;TIMER_AddTickHandler installs typematic_tick."
+    ]
+  },
+  "scope": "Statically inferred provider defaults from source at the native engine-reported revision. The current source file matches this revision. Not a proof of exact binary compilation or native keyboard delivery timing."
+}

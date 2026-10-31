@@ -66,6 +66,55 @@ bytes and existing ordinary-keyboard implementation established80h/40h flags;
 the checker now validates those actual values. This changed no capture or runtime.
 
 Original IRQ/retrace phase,input latency,partial scanout and whole-level timing
-remain unknown. No port speed change is justified yet. Next:run the current jungle
-with the same independent physical schedule and explicit initial-state/phase
-dependencies,then investigate its first state or timing divergence.
+remain unknown. No port speed change follows from the original recording alone.
+
+## Conditional closed-loop port comparison
+
+```sh
+node scripts/compare-jungle-native-cadence.js
+```
+
+The current Jungle component starts from native ENTRY memory and its original
+variant/difficulty/day/seed/money contract. This is an injected component initial
+condition,not a complete machine restore or independent browser campaign. It
+carries its own state through the whole segment with zero-phase driver/retrace
+clocks. The source048f post-reveal input flush supplies the measurement origin;
+no native timestamp or output state selects that origin. The input reader uses
+the existing OrdinaryKeyboard mode0 and its actual flushes. Expected first-input,
+opening and observer outcomes are loaded only after the simulation finishes.
+
+The physical schedule is independently authored:make0ms,release40 configured
+render intervals later (570.727ms). The explicit external provider repeats at
+500,533 and566ms. Those defaults come from `set_defaults`/`typematic_tick` in the
+emulator source at engine-reported revision `f6d9b935f`;the inspected current file
+matches that revision exactly. [Provider provenance](../reference/jungle-keyboard-provider.json)
+pins its file hash and rules. This synthetic provider delivers IRQ-table events
+immediately;it does not emulate i8042 readiness/serialization or the1ms timer
+phase. It is not a claim that browser host repeat matches the original hardware.
+
+The first-input and pre-loop opening states match exactly. The initial observed
+state,all four subsequent motion/action transitions,and final state also match
+exactly for X,Y,action,actor frame,life counter,column,row,scroll and RNG. All37
+port reads and five provider events finish. This is not a full-memory or pixel
+comparison. The measured transitions are:
+
+| Consequence | Port milliseconds | Original callback bracket, milliseconds |
+| --- | ---: | ---: |
+| First step to X24 |171.218 |156.950..171.218 |
+| Return to idle |488.936 |485.118..499.386 |
+| Second step to X40 |530.120 |527.923..542.191 |
+| Return to idle |736.040 |727.677..741.946 |
+
+All four times fall inside their corresponding native callback brackets under
+this declared provider/phase. The checker allows only1e-9ms for double-precision
+origin-subtraction roundoff,no added frame or fitted offset. Five negative
+controls reject changed initial RNG,an extra two-frame delay,a missing movement
+transition,omitted repeat events,and an omitted release. The command first runs
+the strict native-artifact checker,then fails on any required state/event/timing
+difference or unfinished simulation.
+
+This conditional comparison supplies no evidence of accelerated movement in the
+short swamp scenario. It does not establish native clock phase,exact keyboard
+delivery,all jungle workloads,whole-level timing,or actual browser scheduling.
+No runtime slowdown was added. Next:compare the retained uninterrupted mountain
+scenario and investigate the first divergence,then obtain cave movement evidence.

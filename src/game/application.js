@@ -86,6 +86,7 @@ export class Game {
     this.photography = null;
     this.briefing = null;
     this.resultWait = null;
+    this.repairs = null;
     this.loot = loot;
     this.flightResources = flightResources;
     this.flight = null;
@@ -637,7 +638,7 @@ export class Game {
         "expedition-briefing",
         "rival-report",
         "rival-claim",
-        ...(this.resultWait ? ["expedition-result"] : []),
+        ...(this.resultWait ? ["expedition-result", "crash-repairs"] : []),
         "ending",
         "bank",
         ...(this.scene === "map" &&
@@ -673,7 +674,9 @@ export class Game {
                           ? this.pendingPhotographySystemKeys
                           : ["rival-report", "rival-claim"].includes(this.scene)
                             ? this.pendingRivalSystemKeys
-                            : this.scene === "expedition-result"
+                            : ["expedition-result", "crash-repairs"].includes(
+                                  this.scene,
+                                )
                               ? this.pendingResultSystemKeys
                               : this.scene === "expedition-briefing"
                                 ? this.pendingBriefingSystemKeys
@@ -779,6 +782,7 @@ export class Game {
       this.pendingResultSystemKeys.clear();
       this.pendingRivalSystemKeys.clear();
       this.resultWait = null;
+      this.repairs = null;
       this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
@@ -1364,8 +1368,9 @@ export class Game {
       this.collectFlight();
       return;
     }
-    if (this.scene === "crash-repairs" && this.advanceDialogue(this.repairs)) {
-      this.finishRepairs();
+    if (this.scene === "crash-repairs") {
+      this.resultWait.advanceTick();
+      this.collectRepairWait();
       return;
     }
     if (this.scene === "map") {
@@ -1529,6 +1534,7 @@ export class Game {
         skipRequested: false,
       };
       this.scene = "crash-repairs";
+      this.beginRepairWait();
       return;
     }
     this.arrive();
@@ -1593,7 +1599,10 @@ export class Game {
     else if (this.scene === "atomic-transport")
       this.atomicTransport.flushInput();
     else if (this.scene === "expedition-briefing") this.briefing.flushInput();
-    else if (this.scene === "expedition-result" && this.resultWait)
+    else if (
+      ["expedition-result", "crash-repairs"].includes(this.scene) &&
+      this.resultWait
+    )
       this.resultWait.flushInput();
     else if (this.activeRivalDialogue())
       this.activeRivalDialogue().flushInput();
@@ -1654,11 +1663,12 @@ export class Game {
     }
     if (
       result === "resume" &&
-      this.scene === "expedition-result" &&
+      ["expedition-result", "crash-repairs"].includes(this.scene) &&
       this.resultWait
     ) {
       this.resultWait.resumeInputPoll();
-      this.collectResultWait();
+      if (this.scene === "crash-repairs") this.collectRepairWait();
+      else this.collectResultWait();
     }
     if (result === "resume" && this.scene === "bank") {
       this.bank.resumeInputPoll();
@@ -1984,6 +1994,7 @@ export class Game {
     this.completeCampaignAction({ type: "map" });
   }
   finishRepairs() {
+    this.resultWait = null;
     if (this.repairs.phase === "repair" && (this.money | 0) > 0) {
       this.seed = this.campaign.seed = nextRandom(this.seed);
       const roll = this.seed % 10;
@@ -1997,9 +2008,30 @@ export class Game {
         loss,
         skipRequested: false,
       };
+      this.beginRepairWait();
       return;
     }
     this.arrive();
+  }
+  beginRepairWait() {
+    const count = { repair: 60, wreckage: 100 }[this.repairs.phase];
+    this.resultWait = new ResultInputWait({
+      state: this.repairs,
+      count,
+      pollInput: () => this.pollSystemInput(this.pendingResultSystemKeys),
+      flushInput: () => this.flushResultInput(),
+    });
+    this.resultWait.begin();
+  }
+  collectRepairWait() {
+    const wait = this.resultWait;
+    if (!wait?.complete) return;
+    this.resultWait = null;
+    this.pendingResultSystemKeys.clear();
+    // Main08ff..0912/0af1..0b04: only a consumed Fire with enabled audio.
+    if (wait.skipped && this.audioEnabled)
+      this.effects.push({ type: "sound", id: 0x24 });
+    this.finishRepairs();
   }
   arrive(target = this.departure?.target, flags = this.departure?.flags) {
     if (!Number.isInteger(target) || target < 1 || target > 34)
@@ -2449,7 +2481,15 @@ export class Game {
         ? { ...this.pendingCampaignAction }
         : null,
       briefing: this.briefing?.snapshot() ?? null,
-      repairs: this.scene === "crash-repairs" ? { ...this.repairs } : null,
+      repairs:
+        this.scene === "crash-repairs"
+          ? {
+              ...this.repairs,
+              ...(this.resultWait?.waitingForInputPoll
+                ? { waitingForInputPoll: true }
+                : {}),
+            }
+          : null,
       expeditionResult:
         this.scene === "expedition-result"
           ? {

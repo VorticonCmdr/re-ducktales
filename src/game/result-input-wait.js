@@ -1,9 +1,9 @@
-// Shared09f5 used by cave failure(20),treasure award(40),transmitter notice(100).
+// Shared09f5:failure20,award/rival40,flight repair60,wreckage/transmitter100.
 // Back the wait with the existing result fields so neutral snapshots stay stable.
 export class ResultInputWait {
   constructor({ state, count, pollInput, flushInput }) {
     if (
-      ![20, 40, 100].includes(count) ||
+      ![20, 40, 60, 100].includes(count) ||
       !state ||
       state.remaining !== count * 7 ||
       typeof pollInput !== "function" ||

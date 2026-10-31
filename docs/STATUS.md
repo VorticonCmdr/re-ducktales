@@ -17,11 +17,12 @@ redirects to a jungle, and confirms Pause, Quit-No, Fire and Restart. That repor
 observation is not independent replay or native whole-game timing acceptance.
 The source proof checks413 original resident bytes.
 
-Fresh current-source replay of the full Easy campaign has passed its34 checkpoints
-both headlessly and in the browser, against unchanged historical inputs/expected
-outputs. The broader12-route current-consumer regression is still running;
-its completion has not yet been accepted. Previous per-family source-pinned
-records below remain historical until that comparison finishes.
+Current source `e8320ce` also passes the12-route regression against unchanged
+historical inputs and expected outputs:272 exact browser state/image checkpoints,
+10,117 DOM events,12 Restarts, the34-checkpoint full headless campaign, and all8
+cave components/2,696 presentations. Three receipt negatives reject zero cases,
+an unconsumed event and corrupt evidence. Each producer and the current consumer
+have separate verified source archives. [Current regression and commands](atomic-input-regression.md).
 
 ## Working playable route
 
@@ -43,18 +44,19 @@ rechecked successfully after adding the separate cave coverage harness.
 
 ## Latest verified coverage
 
-Clean source `f36dd7d`: all six Easy Safari variants pass independent browser
+Historical source `f36dd7d` recording, now replayed by current `e8320ce`: all six Easy Safari variants pass independent browser
 replay with48 exact full-state/pixel checkpoints and2,714 DOM events. Every route
 photographs a target, completes12 pictures, displays results, returns with the
-correct cash/day/claim and Restarts. All six omitted-shutter controls produce the
-required game-state divergence;15 focused photography input/timing tests pass.
+correct cash/day/claim and Restarts. The historical six omitted-shutter controls produced the
+required game-state divergence;15 focused photography input/timing tests passed.
+Those Safari negative executions were not repeated in the new positive-route run.
 Both original film exhaustion exits (0 and-1) are preserved and compared exactly
 per case. No gameplay source changed. [Safari scenario and commands](easy-safari-variants.md),
 [registered manifest](../reference/easy-safari-variants.json).
 
-Current alternate jungle acceptance adds68 state/image checkpoints and1,358 DOM
+Current replay includes68 state/image checkpoints and1,358 DOM
 events through Bermuda/Boola Boola treasure and Restart, including both entrance
-key clears and two consumed-movement negatives.
+key clears. The two consumed-movement negatives remain historical evidence.
 [Jungle scenario](easy-jungle-variants.md).
 
 | Family | Current Easy coverage | Evidence |
@@ -64,7 +66,8 @@ key clears and two consumed-movement negatives.
 | Cave | All8 layouts complete in component replay; Klondike and Carlsbad complete in the browser | [2,696 component presentations and Carlsbad's12 browser checkpoints](easy-cave-variants.md) |
 | Safari | All6 variants have complete browser target-photo/result routes | [Six fresh routes, scoring, both film exits and Restart](easy-safari-variants.md) |
 
-These route records are separate from the combined campaign gate. They establish
+The current consumer replays all these routes together; the older combined gate
+remains separately scoped historical evidence. These checks establish
 specified port routes under explicit clock/input providers, not arbitrary-route
 finishability or native whole-level cadence. Existing timing limitations remain.
 
@@ -72,8 +75,9 @@ finishability or native whole-level cadence. Existing timing limitations remain.
 
 Tandy/PCjr includes Sound001, persistent channels, priorities, flight engine
 words, mute and completion. Speaker is the default with an original persistent
-IRQ/RNG/priority engine. Seven browser cases and three stream regressions have
-source-pinned acceptance. Physical waveform/gain/filter parity remains unverified;
+IRQ/RNG/priority engine. Historical source-pinned acceptance covers seven browser
+cases and three stream regressions; that sound suite was not rerun for this atomic
+input change. Physical waveform/gain/filter parity remains unverified;
 the viewer's older approximate speaker audition renderer remains separate.
 [Sound evidence](speaker-audio.md).
 
@@ -91,7 +95,8 @@ and optional RTC synchronization remain unverified. [Clock contract](bios-clock.
 
 - Broader current-runtime destination, difficulty and arbitrary-route finishability
   coverage remains incomplete. Next: the current transmitter/atomic-transport
-  campaign report independent replay, followed by remaining input/timing gaps. Hard remains deferred; its
+  campaign report independent replay, followed by remaining input/timing gaps.
+  Hard remains deferred; its
   longer investigated route loses the second flight race, with the cause unresolved.
 - Native whole-game cadence remains unverified. Drawing-cost models cover selected
   primitives; resident/caller/device work, some drawing and exact video/cache phase
@@ -113,7 +118,9 @@ MZ/EXEPACK, x86 little-endian16 real mode, overlays, no extender. Actual game by
 and address correspondence are checked; analysis executables are never run.
 
 ```sh
-# Recheck current earned-transmitter acceptance and original input boundaries:
+# Recheck saved current route regression and earned-transmitter acceptance:
+node scripts/verify-atomic-input-regression.js
+# Original input boundaries and focused conditional checks:
 node scripts/verify-atomic-earned-route.js
 node scripts/verify-atomic-input-source.js
 node --test scripts/atomic-input.test.js

@@ -1,0 +1,231 @@
+{
+  "id": "atomic-input-current-regression",
+  "buildManifest": "reference/build.json",
+  "buildManifestSha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "consumerRoot": ".local/atomic-input-preserved-routes-01",
+  "sourceCommit": "e8320ce4ac1f6c49f5b11374c69469a09be1560b",
+  "toolRevision": "scripts/verify-preserved-routes.js at sourceCommit",
+  "evidence": "Current-port independent browser/headless replay of immutable historical input/expected streams;not native whole-game parity",
+  "expectedBrowserCases": 12,
+  "expectedBrowserCheckpoints": 272,
+  "requiredBrowserEvents": 10117,
+  "expectedCaveComponentCases": 8,
+  "expectedCaveComponentPresentations": 2696,
+  "headless": {
+    "checked": 34,
+    "consumed": 4981,
+    "rendered": 1470
+  },
+  "producerSources": [
+    {
+      "root": ".local/cave-composition-campaign-producer-01",
+      "commit": "5523bc855fd915e9e2cc79215820bd8fbc8524d8"
+    },
+    {
+      "root": ".local/easy-cave-variants-02",
+      "commit": "d7257c12e6d9a457d87b419a68b7cd2ad6077727"
+    },
+    {
+      "root": ".local/easy-mountain-variants-02",
+      "commit": "72c5d5d4d735a07138ce956fe5ca45c711ff01e0"
+    },
+    {
+      "root": ".local/easy-jungle-variants-03",
+      "commit": "45012589192ac564b58cee560a85a96d4a395429"
+    },
+    {
+      "root": ".local/easy-safari-variants-02",
+      "commit": "f36dd7d4c33654109a0aa66f6bfc70dab7632940"
+    }
+  ],
+  "externalProviders": "Historical manifests retain their explicit clock/input contracts;UTC BIOS0 muted eight-millisecond browser display loop",
+  "comparisonExclusions": [],
+  "memoryInjections": [],
+  "fittedInputs": [],
+  "artifacts": {
+    "atomic-source.log": {
+      "path": ".local/atomic-input-preserved-routes-01/atomic-source.log",
+      "bytes": 130,
+      "sha256": "a7d60071f8a812621fe01acef469f8e1a4e4d95b40b2497b5eeb38c10de87341"
+    },
+    "atomic-tests.log": {
+      "path": ".local/atomic-input-preserved-routes-01/atomic-tests.log",
+      "bytes": 1110,
+      "sha256": "3cc58e7bf6b45372826a0e77fce3bbcce342dd25bcb3dde0515fd79225e40037"
+    },
+    "bermuda/actual-events.json": {
+      "path": ".local/atomic-input-preserved-routes-01/bermuda/actual-events.json",
+      "bytes": 64164,
+      "sha256": "676944f41c453acbe2b3aa9689211e86fb661abcfdb1090879b8229e3fc76d06"
+    },
+    "bermuda/campaign-checkpoints.json": {
+      "path": ".local/atomic-input-preserved-routes-01/bermuda/campaign-checkpoints.json",
+      "bytes": 226222,
+      "sha256": "74c2259682ef8a86aa2c3abb2157a00ebe08311a2cae8e23fd9e2e6f91792bbd"
+    },
+    "bermuda/replay-progress.json": {
+      "path": ".local/atomic-input-preserved-routes-01/bermuda/replay-progress.json",
+      "bytes": 3903,
+      "sha256": "f6db677cc150b942cdaa54355dac001c970bbd9844c1cae332345aa42ca1bc14"
+    },
+    "boola/actual-events.json": {
+      "path": ".local/atomic-input-preserved-routes-01/boola/actual-events.json",
+      "bytes": 62807,
+      "sha256": "aa3458a2eaa591a3c29894b96a86aa293b5080a9f88fd139f7917ac064d80bb0"
+    },
+    "boola/campaign-checkpoints.json": {
+      "path": ".local/atomic-input-preserved-routes-01/boola/campaign-checkpoints.json",
+      "bytes": 166037,
+      "sha256": "6eca5734a62dd8539b441005a91208ee9d92d5192323af58dbd3275180ee4e74"
+    },
+    "boola/replay-progress.json": {
+      "path": ".local/atomic-input-preserved-routes-01/boola/replay-progress.json",
+      "bytes": 3892,
+      "sha256": "6654a22afde165909e05962e7a86de97c8fda395d3f56303aeef337465dc6146"
+    },
+    "build.log": {
+      "path": ".local/atomic-input-preserved-routes-01/build.log",
+      "bytes": 907,
+      "sha256": "7acf1484746df021cc25224c58db85398e6333447b421c284c8d509d1209c992"
+    },
+    "full-browser/actual-events.json": {
+      "path": ".local/atomic-input-preserved-routes-01/full-browser/actual-events.json",
+      "bytes": 456069,
+      "sha256": "dc1968f164efa3bad11c747b6a61c0c4a97d617316379c8a205f6e6e127176b6"
+    },
+    "full-browser/campaign-checkpoints.json": {
+      "path": ".local/atomic-input-preserved-routes-01/full-browser/campaign-checkpoints.json",
+      "bytes": 245705,
+      "sha256": "ec2b3202c7c911e16984aa132381b34e007c583810ef2498bdc3196cc1c54f4b"
+    },
+    "full-browser/replay-progress.json": {
+      "path": ".local/atomic-input-preserved-routes-01/full-browser/replay-progress.json",
+      "bytes": 9102,
+      "sha256": "56c57a55d49ed41ac41a1fed451bc26929c32b4c7ff45b2de0ba15bb88058d2e"
+    },
+    "headless/campaign-checkpoints.json": {
+      "path": ".local/atomic-input-preserved-routes-01/headless/campaign-checkpoints.json",
+      "bytes": 245705,
+      "sha256": "ec2b3202c7c911e16984aa132381b34e007c583810ef2498bdc3196cc1c54f4b"
+    },
+    "headless/captured-events.json": {
+      "path": ".local/atomic-input-preserved-routes-01/headless/captured-events.json",
+      "bytes": 604419,
+      "sha256": "7c5fb7e388939530ebacfdc0cc3a178f9a2898912314e7d42ea3a689b326257a"
+    },
+    "headless/environment.json": {
+      "path": ".local/atomic-input-preserved-routes-01/headless/environment.json",
+      "bytes": 470,
+      "sha256": "0c721d13ac773cb0e8c37331743c9dd48b2ee359c7737c22747e701c5202ccc2"
+    },
+    "headless/timeline.json": {
+      "path": ".local/atomic-input-preserved-routes-01/headless/timeline.json",
+      "bytes": 3098,
+      "sha256": "4aff65fcf772b3aef8e77bf4de164ed977f790685b81e1df3cd47fc0c4d266ac"
+    },
+    "headless.log": {
+      "path": ".local/atomic-input-preserved-routes-01/headless.log",
+      "bytes": 5234,
+      "sha256": "ae2efb2d872fb0ad56d1108024e787031d3bf725d4f8dfe4de82c278b98b8b5c"
+    },
+    "machu/actual-events.json": {
+      "path": ".local/atomic-input-preserved-routes-01/machu/actual-events.json",
+      "bytes": 47983,
+      "sha256": "544ca399c923084f40d988b92c5ae569409ca79683822f2b9d5d9b6d59ac011f"
+    },
+    "machu/campaign-checkpoints.json": {
+      "path": ".local/atomic-input-preserved-routes-01/machu/campaign-checkpoints.json",
+      "bytes": 390457,
+      "sha256": "2249dce7ef1153c2d3efcf5a185047c2451c0239374fad93130ba28499a92a3e"
+    },
+    "machu/replay-progress.json": {
+      "path": ".local/atomic-input-preserved-routes-01/machu/replay-progress.json",
+      "bytes": 4103,
+      "sha256": "6fe542efa95ed8e99040155ebd8987a87223d8d8eed2f84a0eafd9f17d96d6b6"
+    },
+    "replay.log": {
+      "path": ".local/atomic-input-preserved-routes-01/replay.log",
+      "bytes": 11232,
+      "sha256": "e92ec2397c2835ad1418fd46be8fcd1171102586a7ddfbf65a4294989e8181fb"
+    },
+    "result.json": {
+      "path": ".local/atomic-input-preserved-routes-01/result.json",
+      "bytes": 14913,
+      "sha256": "73130c74cee2c2f8a168feabc8c0c6ef9842ef40ba2279baf687f804c0e8c1c1"
+    },
+    "source-revision.json": {
+      "path": ".local/atomic-input-preserved-routes-01/source-revision.json",
+      "bytes": 97275,
+      "sha256": "4e4aa1d5aa1fe9fd359b2f45a41ab23e69de6cf91fce817eeb77b14d22e5c6c4"
+    },
+    "sources.zip": {
+      "path": ".local/atomic-input-preserved-routes-01/sources.zip",
+      "bytes": 2624717,
+      "sha256": "36a5b824f297867c63a4f6f1019dd98e57b3932a2ac7b8ae5bf6861695905081"
+    },
+    "thunderclap/actual-events.json": {
+      "path": ".local/atomic-input-preserved-routes-01/thunderclap/actual-events.json",
+      "bytes": 38976,
+      "sha256": "4345f2a0f5a0bbc549889b31a70a7f63d551a6a0031ef9b108fd05b7d073b1a9"
+    },
+    "thunderclap/campaign-checkpoints.json": {
+      "path": ".local/atomic-input-preserved-routes-01/thunderclap/campaign-checkpoints.json",
+      "bytes": 278150,
+      "sha256": "e652b11509b25ccc6fdc014961ce1dc1e9e31086e745091ea31e7697d281a478"
+    },
+    "thunderclap/replay-progress.json": {
+      "path": ".local/atomic-input-preserved-routes-01/thunderclap/replay-progress.json",
+      "bytes": 4108,
+      "sha256": "ef0af3742444dc525dca411cd4e99368eb9d7350141c15166c94c11850c33590"
+    },
+    "unit-tests.log": {
+      "path": ".local/atomic-input-preserved-routes-01/unit-tests.log",
+      "bytes": 17759,
+      "sha256": "7bb87c80ba6818bc19bc0b28e55efcea2eba0ef477bb57cbf6d05c57199674ee"
+    },
+    "receipt-negative-result": {
+      "path": ".local/atomic-input-receipt-negatives-02/result.json",
+      "bytes": 251,
+      "sha256": "be893b09587504078c65c565769fd8e71c600783fb062e66f3724d5ed3161d86"
+    },
+    "receipt-negative/zero-browser-cases/checker.log": {
+      "path": ".local/atomic-input-receipt-negatives-02/zero-browser-cases/checker.log",
+      "bytes": 423,
+      "sha256": "3ff2b6aac171889f2b1f6ce8d280eb88d06cab7a9313f8d3db321199d5480ad4"
+    },
+    "receipt-negative/unconsumed-event/checker.log": {
+      "path": ".local/atomic-input-receipt-negatives-02/unconsumed-event/checker.log",
+      "bytes": 618,
+      "sha256": "cc573e9838fc932f75ec43e79a9e53d3215c086777173dca91906d63c272307c"
+    },
+    "receipt-negative/corrupt-result/checker.log": {
+      "path": ".local/atomic-input-receipt-negatives-02/corrupt-result/checker.log",
+      "bytes": 1285,
+      "sha256": "798086c965b71c6e39f0705e1f9a266af16c23b73aa616eca8822d777616f9c3"
+    },
+    "receipt-tool/scripts/atomic-input-regression-negatives.js": {
+      "path": "scripts/atomic-input-regression-negatives.js",
+      "bytes": 2281,
+      "sha256": "614d8b22a5e5ca036bed405bafce559e7c8ed09d9a8c42e720a6148effb0d87a"
+    },
+    "receipt-tool/scripts/verify-atomic-input-regression.js": {
+      "path": "scripts/verify-atomic-input-regression.js",
+      "bytes": 3051,
+      "sha256": "cc8a8116b0db3ee8ec6694513f21737646d7e5f80d95c962c56b410e4dddc3a6"
+    }
+  },
+  "verify": "node scripts/verify-atomic-input-regression.js",
+  "repeat": "node scripts/verify-preserved-routes.js --output=.local/preserved-routes-FRESH",
+  "negativeCommand": "node scripts/atomic-input-regression-negatives.js --output=.local/receipt-negative-FRESH",
+  "limits": [
+    "Positive historical routes replayed;their old omitted-input executions were not rerun",
+    "Earned atomic travel acceptance is separate in reference/atomic-earned-route.json",
+    "Earned atomic failure report is observed,not independently replayed",
+    "Hard campaigns deferred;native whole-game cadence and arbitrary-route finishability unproven"
+  ],
+  "negativeControls": {
+    "count": 3,
+    "resultPath": ".local/atomic-input-receipt-negatives-02/result.json",
+    "toolRevision": "Executed script bytes pinned below;these receipt tools were added after the browser consumer archive"
+  }
+}

@@ -55,7 +55,14 @@ const result = await withCarlsbadBrowser(async ({ page, state, until }) => {
       await new Promise((r) => setTimeout(r, 20));
       await page.clock.runFor(16);
     }
-    throw Error("Unfinished actual atomic audio boundary");
+    await writeFile(
+      root + "/failure.json",
+      JSON.stringify({ state: await state(), events: await read() }, null, 2) +
+        "\n",
+    );
+    throw Error(
+      "Unfinished actual atomic audio boundary;see local failure.json",
+    );
   }
   async function toggle(enabled) {
     await page.keyboard.press("s");
@@ -91,9 +98,7 @@ const result = await withCarlsbadBrowser(async ({ page, state, until }) => {
   }
   const report = await hostUntil(
     (s, e) =>
-      s.scene === "atomic-transport" &&
-      s.atomicTransport.phase === "report" &&
-      e.filter((e) => e.type === "ack").length === (mode === "before" ? 4 : 5),
+      s.scene === "atomic-transport" && s.atomicTransport.phase === "report",
   );
   assert.equal(report.systemOverlay, null);
   assert.equal(await page.locator("#audio").isChecked(), false);

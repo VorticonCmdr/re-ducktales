@@ -1,0 +1,47 @@
+{
+  "kind": "atomic-audio-static-source",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "program": "INVESTMENT_CODE.EXE",
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "ranges": [
+    {
+      "name": "success",
+      "address": "1000:0490",
+      "offset": 1168,
+      "length": 58,
+      "relocations": [1191, 1203],
+      "sha256": "2e3348487592897694486ab4badc8a876cd44def2c05e9eeae7d8d3b3e8e7ce2",
+      "artifact": {
+        "path": ".local/atomic-audio-source-01/success.json",
+        "bytes": 498,
+        "sha256": "beae87ee070d24d801024f3558575ff08b4d00120e13cd74aad9a6e9e8a3a8f2"
+      }
+    },
+    {
+      "name": "failure",
+      "address": "1000:0531",
+      "offset": 1329,
+      "length": 66,
+      "relocations": [1352, 1364],
+      "sha256": "93cef96cbe8d7db253b3a74f52532ed4ced0002d1869a3a54c0d544e54cd68d4",
+      "artifact": {
+        "path": ".local/atomic-audio-source-01/failure.json",
+        "bytes": 542,
+        "sha256": "a6c759b76796e6f1fdc73d426e95f80d07b49dc5d8b0150c0f710f7be29be7c1"
+      }
+    }
+  ],
+  "claims": [
+    "Both paths guard initial sound0 on03be,wait7 driver counts,and conditionally request54(success) or45(failure).",
+    "Failure always queries global status056b even when45 was skipped;the busy loop contains no key read or timed delay.",
+    "Disabled sound is not itself a device-status result. Status must be supplied by an existing device,or known silent when none exists."
+  ],
+  "limits": [
+    "No new original native audio latency or CPU/PIT phase capture. Shared report60 input proof remains separate."
+  ]
+}

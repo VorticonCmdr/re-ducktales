@@ -26,8 +26,8 @@ location visit. [Receipt](../reference/cave-treasure-order-admission.json),
 That receipt predates the passage-parameter correction and is scoped browser/
 component acceptance,not native whole-cave timing. The corrected entry kinds and
 Down/Up/Left exit poses match original caller bytes and a carried native state
-comparison. [Parameters](cave-passage-parameters.md). The expanded18-check gate
-requires a fresh source-pinned run.
+comparison. [Parameters](cave-passage-parameters.md). The expanded18-check gate passes on sourceda9637f,including the actual browser
+route,221 units,negative controls and build. [Receipt](../reference/cave-passage-poses-admission.json).
 
 Producer `.local/cave-treasure-winning-browser-01` completed on sourcee59dd00:
 183 checkpoints/7261 inputs,victory34650 to28500,all26 credits and Restart.

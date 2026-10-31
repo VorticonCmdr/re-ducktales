@@ -61,7 +61,8 @@ node scripts/verify-cave-counted-loading.js --output=.local/cave-passage-poses-F
 
 The current combined command requires18 checks,including the new source/native/
 component comparisons,the actual failure/retry/treasure/award/map browser route,
-221 units,loading negative and build. Fresh source-pinned admission is pending.
+221 units,loading negative and build. All18 checks passed on sourceda9637f;the [receipt](../reference/cave-passage-poses-admission.json)
+pins the archive,119 runtime/configuration files,logs and actual reveal images.
 The completed e59dd00 Standard win remains historical and unaccepted because
 this parameter defect was found before independent replay. Corrected browser
 campaign capture/replay and original whole-cave timing remain required.

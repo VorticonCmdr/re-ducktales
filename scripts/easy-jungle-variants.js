@@ -193,15 +193,23 @@ if (mode === "capture") {
       console.log("Replaying Easy " + c.key);
       const manifest = await replayManifest(root, c),
         positive = await replayEasyJungle(manifest, out + "/" + c.key);
-      // The movement-omission control begins comparison at entry. The complete
-      // recorded startup still drives it; only the first jungle movement is omitted.
+      // Preserve the entrance make/flush. Omit the first movement make that
+      // can reach a read; compare from the preceding required input checkpoint.
+      const firstMove = (
+        await readEasyJunglePlan(jungleCases.find((p) => p.key === c.key))
+      ).firstMove;
       const negativeRoot = out + "/" + c.key + "-negative-fixtures";
       await mkdir(negativeRoot);
-      const checks = (
-          await json(root + "/" + c.key + "/campaign-checkpoints.json")
-        ).slice(2),
+      const allChecks = await json(
+          root + "/" + c.key + "/campaign-checkpoints.json",
+        ),
+        start = allChecks.findIndex(
+          (p) => p.name === "input-" + (firstMove - 1),
+        );
+      assert.ok(start >= 0, "Missing negative input boundary");
+      const checks = allChecks.slice(start),
         timeline = await json(root + "/" + c.key + "/timeline.json");
-      timeline.observations = timeline.observations.slice(2);
+      timeline.observations = timeline.observations.slice(start);
       await write(negativeRoot + "/campaign-checkpoints.json", checks);
       await write(negativeRoot + "/timeline.json", timeline);
       const negative = structuredClone(manifest);
@@ -217,11 +225,7 @@ if (mode === "capture") {
             out + "/" + c.key + "-negative",
             "omit-expedition-move",
           ),
-        new RegExp(
-          "Carried browser state\\d+ input-" +
-            (await readEasyJunglePlan(jungleCases.find((p) => p.key === c.key)))
-              .firstMove,
-        ),
+        new RegExp("Carried browser state\\d+ input-" + firstMove),
       );
       results.push({ key: c.key, ...positive, negativeControls: 1 });
     }

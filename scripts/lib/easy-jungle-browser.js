@@ -61,8 +61,11 @@ export async function readEasyJunglePlan(c) {
     n += row.count;
     boundaries.add(n);
   }
-  const firstMove = stream.findIndex((b) => [3, 7].includes(b & 63)) + 1;
-  assert.ok(firstMove > 0);
+  const firstMake = stream.findIndex((b) => [3, 7].includes(b & 63)) + 1;
+  assert.ok(firstMake > 0);
+  // Main00d7 clears makes from the entry wipe before the first read.
+  const firstMove = Math.max(2, firstMake);
+  boundaries.add(1);
   boundaries.add(firstMove);
   return {
     rows,

@@ -35,8 +35,9 @@ and Restart clearing actors, cash and claims. DOM event counts are independent o
 game reads because held keys can span many reads.
 
 Each negative replay omits the first jungle Right and must fail at its first
-movement checkpoint (Bermuda input4; Boola Boola input1). Negative-only comparison
-starts at entry while still replaying the complete startup input stream. Positive
+movement checkpoint (Bermuda input4; Boola Boola input2). The initial entry make is discarded by Main00d7's flush before input1; that
+flush is retained. Negative-only comparison starts at the input immediately
+before the consumed movement, while replaying the complete startup input stream. Positive
 acceptance checks every checkpoint, including office/departure, without exclusions.
 Missing/corrupt fixtures, zero cases, skipped checkpoints, unfinished sequences,
 unconsumed events, diagnostics and rendering/page errors fail.
@@ -64,3 +65,8 @@ A completed exploratory capture deliberately exits1. Only verification exit0,
 including both targeted negatives, permits registration. Missing local artifacts
 are setup failures; verification never regenerates expectations. Arbitrary routes,
 other seeds/difficulties and native whole-game timing remain unproven.
+
+The older headless single-treasure verifier assumes collected slot1 (jungle) or31
+(mountain). It is not used to accept these alternate slots. Only the exploratory
+entry prefix was compared headlessly; complete-route independent acceptance here
+is the actual browser consumer. This limitation does not waive any browser check.

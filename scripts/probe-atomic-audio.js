@@ -80,6 +80,9 @@ const result = await withCarlsbadBrowser(async ({ page, state, until }) => {
     await toggle(false);
     await hostUntil((s, e) => e.filter((e) => e.type === "ack").length === 3);
   }
+  // The map loop discards makes during its drawing/wait boundary. S and its
+  // real device ACKs advanced that loop;confirm only at the next input reader.
+  await until((s) => s.scene === "map" && s.campaign.destination?.ready);
   await page.keyboard.press("Space");
   let sounding = null,
     muted = null;

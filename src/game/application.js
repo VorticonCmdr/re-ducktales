@@ -123,6 +123,7 @@ export class Game {
     this.pendingBriefingSystemKeys = new Map();
     this.pendingResultSystemKeys = new Map();
     this.pendingRivalSystemKeys = new Map();
+    this.pendingInvestmentSystemKeys = new Map();
     this.exiting = false;
     if (readBiosSeed !== null && typeof readBiosSeed !== "function")
       throw Error("Invalid BIOS seed provider");
@@ -593,6 +594,11 @@ export class Game {
       this.investments = new InvestmentScreen(
         this.marketMemory,
         this.investmentResources,
+        {
+          pollInput: () =>
+            this.pollSystemInput(this.pendingInvestmentSystemKeys),
+          flushInput: () => this.flushInvestmentInput(),
+        },
       );
       this.scene = "investments";
       return;
@@ -649,6 +655,7 @@ export class Game {
         "rival-report",
         "rival-claim",
         "visit-notice",
+        ...(this.investments?.phase === "broker" ? ["investments"] : []),
         ...(this.resultWait ? ["expedition-result", "crash-repairs"] : []),
         "ending",
         "bank",
@@ -689,21 +696,23 @@ export class Game {
                                 "visit-notice",
                               ].includes(this.scene)
                             ? this.pendingRivalSystemKeys
-                            : ["expedition-result", "crash-repairs"].includes(
-                                  this.scene,
-                                )
-                              ? this.pendingResultSystemKeys
-                              : this.scene === "expedition-briefing"
-                                ? this.pendingBriefingSystemKeys
-                                : this.scene === "atomic-transport"
-                                  ? this.pendingAtomicSystemKeys
-                                  : this.scene === "ending"
-                                    ? this.pendingEndingSystemKeys
-                                    : this.scene === "bank"
-                                      ? this.pendingBankSystemKeys
-                                      : this.scene === "map"
-                                        ? this.pendingDestinationSystemKeys
-                                        : this.pendingBinSystemKeys;
+                            : this.scene === "investments"
+                              ? this.pendingInvestmentSystemKeys
+                              : ["expedition-result", "crash-repairs"].includes(
+                                    this.scene,
+                                  )
+                                ? this.pendingResultSystemKeys
+                                : this.scene === "expedition-briefing"
+                                  ? this.pendingBriefingSystemKeys
+                                  : this.scene === "atomic-transport"
+                                    ? this.pendingAtomicSystemKeys
+                                    : this.scene === "ending"
+                                      ? this.pendingEndingSystemKeys
+                                      : this.scene === "bank"
+                                        ? this.pendingBankSystemKeys
+                                        : this.scene === "map"
+                                          ? this.pendingDestinationSystemKeys
+                                          : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -802,6 +811,7 @@ export class Game {
       this.pendingBriefingSystemKeys.clear();
       this.pendingResultSystemKeys.clear();
       this.pendingRivalSystemKeys.clear();
+      this.pendingInvestmentSystemKeys.clear();
       this.resultWait = null;
       this.repairs = null;
       this.bank = null;
@@ -1603,6 +1613,7 @@ export class Game {
     this.pendingBriefingSystemKeys.clear();
     this.pendingResultSystemKeys.clear();
     this.pendingRivalSystemKeys.clear();
+    this.pendingInvestmentSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "title" && this.opening) this.opening.flushInput();
@@ -1631,6 +1642,11 @@ export class Game {
     else if (this.activeRivalDialogue())
       this.activeRivalDialogue().flushInput();
     else if (this.scene === "visit-notice") this.visitNotice.flushInput();
+    else if (
+      this.scene === "investments" &&
+      this.investments.phase === "broker"
+    )
+      this.investments.flushInput();
     else if (this.scene === "ending") this.ending.flushInput();
     else if (this.scene === "bank") this.bank.flushInput(true);
     else {
@@ -1713,6 +1729,14 @@ export class Game {
     if (result === "resume" && this.scene === "visit-notice") {
       this.visitNotice.resumeInputPoll();
       this.collectVisitNotice();
+    }
+    if (
+      result === "resume" &&
+      this.scene === "investments" &&
+      this.investments.phase === "broker"
+    ) {
+      this.investments.resumeInputPoll();
+      this.collectInvestments();
     }
   }
   pollBankSystemInput() {
@@ -2293,8 +2317,17 @@ export class Game {
   }
   collectInvestments() {
     this.money = this.marketMemory.view.getUint32(0x8cc0, true);
-    if (this.investments.complete)
+    if (this.investments.complete) {
+      this.pendingInvestmentSystemKeys.clear();
+      if (this.investments.wait?.skipped && this.audioEnabled)
+        this.effects.push({ type: "sound", id: 0x24 });
       this.completeCampaignAction({ type: "office" });
+    }
+  }
+  flushInvestmentInput() {
+    this.pendingInvestmentSystemKeys.clear();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
   }
   deposit() {
     const c = this.campaign;

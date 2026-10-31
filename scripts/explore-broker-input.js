@@ -16,6 +16,8 @@ const root = await fresh(
   process.argv.find((a) => a.startsWith("--output="))?.slice(9),
 );
 const source = await archiveSource(root);
+const controls = process.argv.includes("--controls"),
+  timeout = process.argv.includes("--timeout");
 const result = await withCarlsbadBrowser(
   async ({ page, state, until, press }) => {
     const points = [];
@@ -66,8 +68,60 @@ const result = await withCarlsbadBrowser(
     await page.clock.runFor(16);
     const earlyPause = await state();
     await note("after-p");
+    if (controls) assert.equal(earlyPause.systemOverlay, null);
     await until((s) => !!s.systemOverlay);
     await note("pause");
+    if (controls) {
+      assert.equal((await state()).investments.waitingForInputPoll, true);
+      const remaining = (await state()).investments.remaining;
+      await until((s) => s.systemOverlay?.phase === "waiting");
+      assert.equal((await state()).investments.remaining, remaining);
+      await note("pause-waiting");
+      await page.keyboard.press("p");
+      await until((s) => !s.systemOverlay);
+      assert.equal((await state()).investments.remaining, remaining);
+      await note("resumed");
+      await page.keyboard.press("q");
+      await page.keyboard.press("Space");
+      await until((s) => s.systemOverlay?.kind === "quit");
+      const quitRemaining = (await state()).investments.remaining;
+      await note("quit");
+      await page.keyboard.press("n");
+      await until((s) => !s.systemOverlay);
+      await note("quit-no");
+      await until((s) => s.investments.remaining <= quitRemaining - 7);
+      assert.equal(
+        (await state()).scene,
+        "investments",
+        "Old Fire survived Quit-No",
+      );
+      await note("neutral");
+      if (!timeout) await page.keyboard.press("Space");
+      await until((s) => s.scene === "office" && s.officeMenu.ready);
+      assert.equal((await state()).money, 1000 - quote);
+      assert.equal((await state()).campaign.day, 1);
+      assert.equal((await state()).rareCoinTaken, true);
+      assert.equal((await state()).investments.shares[10], 1);
+      await note("office");
+      await page.keyboard.down("ArrowLeft");
+      await press("Space");
+      await page.keyboard.up("ArrowLeft");
+      await until((s) => s.scene === "investments");
+      assert.equal((await state()).investments.shares[10], 1);
+      assert.equal((await state()).investments.phase, "portfolio");
+      await note("reopened");
+      for (let i = 0; i < 5; i++) await press("ArrowDown");
+      await page.keyboard.press("Space");
+      await until((s) => s.scene === "office" && s.officeMenu.ready);
+      assert.equal(
+        (await state()).investments.phase,
+        "portfolio",
+        "No-trade visit must not show broker",
+      );
+      assert.equal((await state()).money, 1000 - quote);
+      assert.equal((await state()).campaign.day, 1);
+      await note("no-trade-office");
+    }
     await saveRecordedRoute({
       page,
       root,
@@ -82,6 +136,8 @@ const result = await withCarlsbadBrowser(
     return {
       completed: true,
       accepted: false,
+      controls,
+      timeout,
       entered,
       earlyPause,
       quote,

@@ -1,9 +1,19 @@
 import { investmentPrice, tradeInvestment } from "./investments.js";
+import { ResultInputWait } from "./result-input-wait.js";
 
 // Original overlay10 menu state. Memory persists across screen visits; this
 // controller owns only selection,input latches and presentation waits.
 export class InvestmentScreen {
-  constructor(memory, resources) {
+  constructor(
+    memory,
+    resources,
+    { pollInput = () => true, flushInput = () => {} } = {},
+  ) {
+    if (typeof pollInput !== "function" || typeof flushInput !== "function")
+      throw Error("Invalid investment input environment");
+    this.pollInput = pollInput;
+    this.onFlushInput = flushInput;
+    this.wait = null;
     this.memory = memory;
     this.resources = resources;
     this.selected = this.top = 10;
@@ -72,6 +82,15 @@ export class InvestmentScreen {
     if (this.memory.b(0x3bb4)) {
       this.phase = "broker";
       this.remaining = 50 * 7;
+      // Overlay10:02b8 calls09f5(50),not a held-Fire portfolio poll.
+      this.wait = new ResultInputWait({
+        state: this,
+        count: 50,
+        pollInput: this.pollInput,
+        flushInput: this.onFlushInput,
+      });
+      this.wait.begin();
+      this.complete = this.wait.complete;
     } else this.complete = true;
   }
   input(event) {
@@ -111,12 +130,7 @@ export class InvestmentScreen {
   }
   advanceTick(controls) {
     if (this.phase === "broker") {
-      this.remaining--;
-      if (
-        this.remaining <= 0 ||
-        (this.remaining % 7 === 0 && this.skipRequested)
-      )
-        this.complete = true;
+      this.complete = this.wait.advanceTick();
       return;
     }
     if (!controls.fire) {
@@ -134,6 +148,17 @@ export class InvestmentScreen {
     }
     if (controls.fire && !this.latched && this.repeat === 0) this.fire();
   }
+  flushInput() {
+    if (this.phase !== "broker" || !this.wait)
+      throw Error("Investment flush outside broker reader");
+    this.wait.flushInput();
+  }
+  resumeInputPoll() {
+    if (this.phase !== "broker" || !this.wait)
+      throw Error("Investment resume outside broker reader");
+    this.wait.resumeInputPoll();
+    this.complete = this.wait.complete;
+  }
   snapshot() {
     return {
       phase: this.phase,
@@ -145,6 +170,7 @@ export class InvestmentScreen {
       newsStatus: this.newsStatus ?? null,
       remaining: this.remaining ?? 0,
       complete: this.complete,
+      ...(this.wait?.waitingForInputPoll ? { waitingForInputPoll: true } : {}),
       shares: Array.from({ length: 15 }, (_, i) =>
         this.memory.i(0x92d4 + i * 46),
       ),

@@ -20,6 +20,7 @@ const arg = (k) =>
     process.argv.find((a) => a.startsWith("--" + k + "="))?.slice(k.length + 3),
   root = await fresh(arg("output")),
   source = await archiveSource(root);
+const safari = process.argv.includes("--safari");
 await originalGame();
 let result = {
   completed: false,
@@ -190,12 +191,86 @@ try {
       await settle();
       assert.equal((await state()).scene, "map");
       await observe("map-after-bank");
+      if (safari) {
+        // Continue the same campaign. This policy chooses real controls from
+        // visible animal state; it never supplies expected results or RNG.
+        await point(46, 56);
+        await press("Space");
+        await settle();
+        await until((s) => s.scene === "departure");
+        await observe("safari-departure");
+        await press("Space");
+        await until((s) => s.scene === "flight");
+        const secondFlight = await explorePhysicalFlight({
+          page, state, until,
+          policy: { altitude: [25, 40], climbHeading: 3 },
+        });
+        await writeFile(root + "/safari-flight-controls.json",
+          JSON.stringify(secondFlight, null, 2) + "\n");
+        await until((s) => s.scene !== "flight");
+        await observe("safari-flight-return");
+        assert.equal((await state()).flight.outcome.code, 1,
+          "Exploratory second flight did not arrive;inspect its normal consequence");
+        await until((s) => s.scene === "photography" && s.photography.phase === "playing");
+        await observe("safari-entry");
+        let targetShot = false;
+        for (let shot = 0; shot < 12 && !targetShot; shot++) {
+          const ready = await until((s) => s.scene !== "photography" ||
+            s.photography.phase === "results" ||
+            (s.photography.phase === "playing" && s.photography.animals.some(
+              (a) => a.place && a.animal === s.photography.target && a.frame === 0)));
+          assert.equal(ready.scene, "photography");
+          if (ready.photography.phase === "results") break;
+          const column = ready.photography.animals.findIndex(
+            (a) => a.place && a.animal === ready.photography.target && a.frame === 0);
+          const key = ["ArrowLeft", "ArrowUp", "ArrowRight"][column];
+          await page.keyboard.down(key);
+          await until((s) => s.photography.column === column);
+          await page.keyboard.up(key);
+          const before = await state();
+          await page.keyboard.down("Space");
+          await until((s) => s.photography.phase !== "playing" ||
+            s.photography.photoCount > before.photography.photoCount ||
+            s.photography.film < before.photography.film);
+          await page.keyboard.up("Space");
+          targetShot = (await state()).photography.photos.includes(ready.photography.target);
+          await observe("safari-shot-" + shot);
+        }
+        assert.ok(targetShot, "Exploratory photographer missed the target;not an unsupported-path diagnosis");
+        for (let n = 0; n < 13 && (await state()).photography.phase === "playing"; n++) {
+          const film = (await state()).photography.film;
+          await page.keyboard.down("Space");
+          await until((s) => s.photography.phase !== "playing" || s.photography.film < film);
+          await page.keyboard.up("Space");
+        }
+        await until((s) => s.photography.phase === "results");
+        await observe("safari-results");
+        await until((s) => s.scene !== "photography");
+        await settle();
+        assert.equal((await state()).scene, "map");
+        await observe("map-after-safari");
+        await point(212, 131);
+        await press("Space");
+        await settle();
+        await until((s) => s.scene === "bank");
+        await observe("safari-banked");
+        assert.ok((await state()).campaign.banked > 3400);
+        await page.keyboard.down("Space");
+        await until((s) => s.scene !== "bank");
+        await page.keyboard.up("Space");
+        await settle();
+        assert.equal((await state()).scene, "map");
+        await observe("map-after-safari-bank");
+      }
       await saveRecordedRoute({
         page,
         root,
         observations: points,
+        difficulty: 1,
+        physical: true,
         scope:
-          "EXPLORATORY Standard Wages real startup/flight/cave/reward/deposit/map;not complete campaign or acceptance",
+          "EXPLORATORY Standard Wages real startup/flight/cave/reward/deposit" +
+          (safari ? "/second flight/Safari/deposit" : "") + ";not complete campaign or acceptance",
       });
       await page.locator("#restart").click();
       await until((s) => s.scene === "title");
@@ -204,7 +279,8 @@ try {
       return {
         completed: true,
         accepted: false,
-        scope: "Standard Wages first playable leg only;not campaign completion",
+        scope: safari ? "Standard Wages cave and Safari legs;not campaign completion" :
+          "Standard Wages first playable leg only;not campaign completion",
         checkpoints: points.length,
         events: points.at(-1).eventCount,
         restart: true,
@@ -216,6 +292,8 @@ try {
         page,
         root,
         observations: points,
+        difficulty: 1,
+        physical: true,
         scope: "FAILED exploratory Standard Wages leg;not acceptance",
       });
       throw error;

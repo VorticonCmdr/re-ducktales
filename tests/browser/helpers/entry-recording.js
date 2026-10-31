@@ -108,6 +108,8 @@ export async function saveRecordedRoute({
   observations,
   scope,
   hard = false,
+  difficulty,
+  physical,
 }) {
   if (!observations.length) throw Error("SETUP: empty recorded route");
   await mkdir(root, { recursive: true });
@@ -121,6 +123,8 @@ export async function saveRecordedRoute({
   const files = {
     "environment.json": {
       hard,
+      ...(difficulty === undefined ? {} : { difficulty }),
+      ...(physical === undefined ? {} : { physical }),
       completed: false,
       clockOrigin: 1,
       displayMilliseconds: 8,

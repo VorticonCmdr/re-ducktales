@@ -76,6 +76,42 @@ async function depart(x, y) {
   note("flight-return-" + points.length);
   await settle();
 }
+async function button(target) {
+  for (const type of ["pointerdown", "pointerup"]) {
+    const e = { type, target, key: null, time: now };
+    events.push(e); event(e);
+  }
+  advance(now += 100);
+}
+async function finishBank() {
+  if (game.scene !== "bank") return;
+  note("bank-" + points.length);
+  await page.keyboard.down("Space");
+  await until((s) => s.scene !== "bank");
+  await page.keyboard.up("Space");
+  await settle();
+}
+async function bankTrip() {
+  assert.equal(game.scene, "map");
+  const fromOffice = game.campaign.location === 35;
+  for (const type of ["pointerdown", "pointerup"]) {
+    const e = { type, target: "game", key: null, x: 212, y: 131, time: now };
+    events.push(e); event(e);
+  }
+  advance(now += 100);
+  await press("Space");
+  await settle();
+  if (fromOffice && game.scene === "map") {
+    await until((s) => s.campaign.destination?.ready);
+    await press("ArrowRight");
+    await until((s) => s.campaign.destination?.ready && s.campaign.choice === 1);
+    await press("Space");
+    await until((s) => s.scene !== "map");
+    await settle();
+  }
+  assert.ok(["bank", "ending"].includes(game.scene), "Unfinished real bank trip");
+  await finishBank();
+}
 const keys = (byte) => new Set([...(byte & 64 ? ["Space"] : []),
   ...({ 1: ["ArrowUp"], 3: ["ArrowRight"], 5: ["ArrowDown"], 7: ["ArrowLeft"] }[byte & 63] ?? [])]);
 async function play(activity, stream) {
@@ -124,11 +160,32 @@ try {
   await until((s) => s.scene !== "mountain");
   note("mountain-return");
   assert.equal(game.mountain.outcome.code, 1, "Authored player failed;not proof of a port defect");
+  if (process.argv.includes("--finish")) {
+    await settle();
+    await bankTrip();
+    for (let trip = 0; trip < 8 && game.scene !== "ending"; trip++) {
+      await button("back");
+      await settle();
+      await finishBank();
+      if (game.scene === "ending") break;
+      await until((s) => s.scene === "office");
+      note("office-" + points.length);
+      await button("map");
+      await until((s) => s.scene !== "office");
+      await until((s) => s.scene !== "office-departure");
+      await settle();
+      assert.equal(game.scene, "map");
+      await bankTrip();
+    }
+    await until((s) => s.scene === "ending" && s.ending.ready);
+    note("ending");
+    assert.ok(game.snapshot().ending.won, "Completed campaign lost;not a port defect");
+  }
   completed = true;
 } finally {
   await writeFile(root + "/planning.json", JSON.stringify({ completed, accepted: false,
     scope: "Conditional carried simulation player exploration;not browser or native acceptance",
-    dependency: "Original DOM prefix replayed from startup plus diagnostic100ms tail;Easy authored player controls used as candidates only",
+    dependency: "Original DOM prefix replayed from startup plus diagnostic100ms tail;existing authored player controls used as candidates only",
     sourceCommit: source.commit, events, points, final: game.snapshot() }, null, 2) + "\n");
   await checkSource(root, (p) => p.startsWith("src/") || p.startsWith("scripts/") || p.startsWith("tests/") ||
     ["reference/build.json", "reference/mountain-ascent.json", "reference/hard-campaign-inputs.json", "reference/security-hard-expedition-inputs.json"].includes(p));

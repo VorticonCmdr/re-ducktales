@@ -61,6 +61,21 @@ audit. Actual new award acceptance is cave-only;action-expedition application
 checks are conditional. Natural capture audio exploration reached result/Restart
 but is not strict current acceptance. Other sound-call adaptations need review.
 
+Fresh Standard exploration has now completed jungle421 reads and mountain671
+reads with3 lives each,including their4000/2000 rewards and map return. A later
+Atlantis flight crashed under the exploratory pilot;this is not a verified port
+defect or full-campaign acceptance. The79-checkpoint/5031-input prefix through
+`mountain-map` is retained for exact startup replay. A conditional controller
+experiment reached Atlantis using earlier steering recovery;actual browser
+confirmation and full independent replay are still pending.
+[Current experiment recipe](current-winning-campaign.md).
+
+The next report-presentation restoration has a new strict1238-byte source check
+(16 relocations,one explicitly checked analysis stack-probe replacement).
+It confirms the shared portrait entry wipe,rival6e before reveal/input flush,
+and21 after exit wipe. These report transitions remain unimplemented.
+[Source evidence and remaining work](report-presentations.md).
+
 Original movement cadence remains an open fidelity issue across expeditions.
 Graphics work is modeled, but uninterrupted native whole-game timing, reveal
 costs and some CPU/PIT phase are unverified. Cross-scene keys, modifier/BIOS
@@ -94,6 +109,7 @@ images contain actual game code with documented transformations and are never ru
 node scripts/verify-award-presentation-acceptance.js
 node scripts/verify-award-presentation-negative.js
 node scripts/verify-award-presentation-source.js
+node scripts/verify-report-presentation-source.js
 node --test tests/award-presentation.test.js scripts/result-input.test.js
 npm test
 npm run build

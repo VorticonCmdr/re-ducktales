@@ -1,0 +1,75 @@
+{
+  "kind": "report-presentation-static-source",
+  "program": "INVESTMENT_CODE.EXE",
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "ranges": [
+    {
+      "offset": 9912,
+      "length": 805,
+      "address": "126b:0008",
+      "relocations": [
+        10671,
+        10659,
+        10602,
+        10578,
+        10560,
+        10450,
+        10269,
+        10261,
+        10203,
+        10062,
+        10040
+      ]
+    },
+    {
+      "offset": 806,
+      "length": 180,
+      "address": "1000:0326",
+      "relocations": [
+        973,
+        955,
+        813
+      ]
+    },
+    {
+      "offset": 3714,
+      "length": 253,
+      "address": "1000:0e82",
+      "relocations": [
+        3933,
+        3721
+      ]
+    }
+  ],
+  "artifacts": {
+    "build": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "graphics": {
+      "path": "reference/award-presentation-source.json",
+      "bytes": 4472,
+      "sha256": "b6fa7d7021870d169b2cb2fdc4ec623031b86ea218c063b9e7c71b0b7ffa8fd1"
+    },
+    "ghidra": {
+      "path": ".local/report-presentation-source-01/ghidra.json",
+      "bytes": 26001,
+      "sha256": "09a7ba79475beb16c04c613e4e5e9b82fa81bfa1b6796d9a69a6b921085b82fa"
+    },
+    "preparation": {
+      "path": "scripts/prepare-investment-analysis.py",
+      "bytes": 3192,
+      "sha256": "5516301d8dc3c8f8bf6ebe2d1404876aefe6fc861cc8d984d0063f1d2abe9eab"
+    }
+  },
+  "scope": "Original/prepared/Ghidra correspondence and report graphics/input/audio ordering;not implementation acceptance or native elapsed timing.",
+  "analysisNormalizations": [
+    {
+      "offset": 9918,
+      "original": "9a9e1e0e04",
+      "prepared": "81ec120090"
+    }
+  ]
+}

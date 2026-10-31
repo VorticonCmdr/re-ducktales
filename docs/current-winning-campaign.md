@@ -3,9 +3,10 @@
 Safari HUD timing update:the current6493ccb browser capture
 `.local/safari-hud-winning-browser-01` completes the same183 checkpoints/7261
 inputs,day31 victory34650 to28500,all26 credits,closed and Restart. Its seven
-awards pass105 exact source stripe groups;three setup negatives reject. This
-fresh capture remains accepted:false until an independent browser consumer
-finishes. [Current candidate](../reference/safari-hud-winning-route.json).
+awards pass105 exact source stripe groups;three setup negatives reject. The capture remains accepted:false;its independent consumer
+`.local/safari-hud-winning-replay-01` passes all183/7261 comparisons,missing-
+Standard negative and Restart. The combined current winning gate passes218 units,
+production build and the retained ending/credits/source/native-bank checks. [Current candidate](../reference/safari-hud-winning-route.json).
 `declare-winning-route.js` pins completed capture artifacts and refuses to
 overwrite a manifest;an incomplete failed bank capture was correctly rejected.
 

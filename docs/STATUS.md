@@ -6,27 +6,27 @@ combined admission passes at83a1748:28 source plans,22 carried scenarios,
 899 input boundaries,2234 images,218 units,two browser cases,two browser negatives
 and production build. [Scope and receipt](photography-hud-timing.md).
 
-A fresh capture on the current6493ccb runtime wins34650 to28500 on day31,
-finishes all26 credits,closes and restarts. It records183 checkpoints/7261 DOM
-inputs;all seven award transitions pass105 exact stripe groups and their
-75-retrace sequence. Empty/missing/corrupt setup negatives reject. Independent
-replay is next;the new capture is explicitly not self-accepted.
-[Current candidate](../reference/safari-hud-winning-route.json).
+The current6493ccb runtime is independently browser accepted:183 exact complete
+state/image checkpoints and7261 recorded DOM inputs,day31 victory34650 to28500,
+all26 credits,closed and Restart. All seven awards pass105 exact stripe groups
+and75 retraces each. The combined gate passes the missing-Standard input negative,
+three setup negatives,original ending/credits/source proofs,six native bank-copy
+pixel cases,218 units and production build. [Current acceptance](../reference/current-winning-acceptance.json).
 
-The last full Standard winning/report receipts below belong to the prior3626200
-runtime. They have not been refreshed for this timing change;their current-runtime
-source guards intentionally reject the new build. Movement/timing,broader route/
-input/audio fidelity and deferred Hard campaigns remain open. Nothing has been
-pushed or deployed.
+The player,rival and forced-report browser consumers all pass on this runtime.
+Their combined audio receipt is pending:a fresh speaker probe passes;the current
+Tandy probe hit its bounded observation limit and needs diagnosis. Movement/timing,
+broader routes/input/audio fidelity and deferred Hard campaigns remain open.
+Nothing has been pushed or deployed.
 
-## Last accepted full campaign route
+## Current accepted full campaign route
 
 Startup/security/office → Too-Pei cave → naturally lost Safari race/forced claim
 → Kenya photography → Great Outback jungle → Lost World mountain → Atlantis,
 Klondike,Siberia caves → Novay mountain → banking → day31 victory,34650 vs28500 →
 celebration → replay-No → all26 credits → closed → Restart.
 
-The prior accepted runtime includes the source-ordered report restoration and the bank
+The current runtime includes the source-ordered report restoration and the bank
 copy correction introduced at179a307. Producer `.local/report-timed-winning-browser-03`
 and independent consumer `.local/report-timed-winning-replay-01` pass183 exact
 complete-state/decoded-RGBA checkpoints and7261 independent DOM inputs. All
@@ -48,7 +48,7 @@ private-emulator shutdown are checked;eight negatives reject corrupt/missing or
 unfinished/stale cases. Natural whole-bank timing and hidden-page aliasing remain
 unverified. [Bank correction and native recipe](bank-sparkle-copy.md).
 
-That combined winning gate passed218 unit cases,production build,
+The combined winning gate passes218 unit cases,production build,
 original ending/credits comparisons and the source proofs. There are no image
 exclusions,state restores,RNG/money patches or difficulty changes in this route.
 [Winning acceptance](../reference/current-winning-acceptance.json),
@@ -94,14 +94,15 @@ This is exploratory component coverage,not native or browser acceptance. The
 initial clock-adapter failure is excluded explicitly in
 [its manifest](../reference/jungle-input-exploration.json).
 
-The refreshed current player- and rival-notice consumers each pass27 checkpoints/
-543 controls,all58 intermediate frames,45 stripe groups,missing-Pause negative
-and Restart. Forced reports and the full winning independent replay are pending.
+The refreshed current player/rival consumers each pass27 checkpoints/543 controls;
+forced claims pass31/1795. Each compares58 intermediate frames and45 stripe groups,
+rejects missing Pause and restarts. The combined current audio refresh remains
+pending after the bounded Tandy probe failed to finish;no completion is assumed.
 
 ## Remaining work and supported build
 
-Next:refresh the full campaign after Safari HUD timing,then validate more
-expedition cadence and broaden gameplay/input coverage.
+Next:diagnose the Tandy audio observation limit,measure original Safari cadence
+and broaden gameplay/input coverage. The current full winning replay is accepted.
 Resource/text costs,remaining CPU/PIT phase and uninterrupted native whole-game
 timing are unverified. Other sound-call adaptations,cross-scene keys,modifier/
 BIOS behavior,mouse/joystick parity and arbitrary campaign finishability need
@@ -123,6 +124,8 @@ ignored `game/`;production users select their own files.
 ## Verification
 
 ```sh
+# Current saved winning evidence plus fresh units/build:
+node scripts/verify-current-winning-acceptance.js
 # Fresh current Safari source/component/browser acceptance:
 node scripts/verify-photography-hud-acceptance.js --output=.local/safari-hud-acceptance-FRESH
 node scripts/verify-bank-copy-pixels.js

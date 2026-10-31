@@ -1,28 +1,28 @@
 {
   "kind": "current-winning-campaign-acceptance",
   "nativeComparison": false,
-  "consumer": ".local/report-timed-winning-replay-01",
+  "consumer": ".local/safari-hud-winning-replay-01",
   "expectedAwardCount": 7,
   "expectedUnitCases": 218,
-  "scope": "Independent current Standard browser win,all four families,seven earned treasures,original signed final-bank copy,all26 credits,closed and Restart. Conditional native driver pixels are separate from whole-game timing/audio fidelity.",
+  "scope": "Independent current Standard browser win after Safari HUD work:all four families,seven earned treasures,exact bank copy,all26 credits,closed and Restart. Native primitive evidence remains separate from whole-game elapsed-time/audio fidelity.",
   "artifacts": {
     "scenario": {
-      "path": "reference/report-timed-winning-route.json",
-      "bytes": 47325,
-      "sha256": "7898f77eb926924bca77bc3fd699a562b2fbc1f7c304e179692b301f7f48c99d"
+      "path": "reference/safari-hud-winning-route.json",
+      "bytes": 48812,
+      "sha256": "dfe780ed5f0d135075b2f86e43dc55803a0357be4f3554bb4b9268fca92c0d26"
     },
     "result": {
-      "path": ".local/report-timed-winning-replay-01/acceptance-status.json",
-      "bytes": 1035,
-      "sha256": "1f07a565e3a9c5340ece54299567e98679d5c0bbc2106cdfb2bce088f7a7572f"
+      "path": ".local/safari-hud-winning-replay-01/acceptance-status.json",
+      "bytes": 946,
+      "sha256": "2ecd70c59bddb69080e53fa728700dc3feb25c04ff40aae1d186fcccf6f6ae21"
     },
     "awards": {
-      "path": "reference/report-timed-winning-awards.json",
-      "bytes": 4658,
-      "sha256": "fda92345e33c3bc36839fc670f5c0a712d91dd594cc22a45c1d54005555bd889"
+      "path": "reference/safari-hud-winning-awards.json",
+      "bytes": 4555,
+      "sha256": "2fdbd93003c790962dc2d1268bb7dda0a8970f8797676d327f1cd005e6065d60"
     },
     "setupNegatives": {
-      "path": ".local/current-winning-setup-negatives-01.json",
+      "path": ".local/safari-hud-winning-setup-negatives-01.json",
       "bytes": 199,
       "sha256": "04820a06886c68238fa687cc83f74e1728c06321d6b71edc1dbaba2f438af626"
     },

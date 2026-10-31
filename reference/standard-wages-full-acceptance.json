@@ -1,0 +1,35 @@
+{
+  "kind": "standard-full-campaign-saved-port-regression",
+  "consumer": ".local/standard-wages-full-replay-01",
+  "setupSource": ".local/standard-wages-full-setup-01",
+  "setupCheckerSha256": "f1184710d5b02fc0f8ffab4be5c9ff5fdc5c7d65d1cc875e7b96ab839cf02618",
+  "artifacts": {
+    "scenario": {
+      "path": "reference/standard-wages-full-route.json",
+      "bytes": 24298,
+      "sha256": "499232597020516db5ce434e391e52dc973bb40a90e56d38c22a6c0caa2d1e06"
+    },
+    "result": {
+      "path": ".local/standard-wages-full-replay-01/acceptance-status.json",
+      "bytes": 987,
+      "sha256": "8d0493191783ab10743a00d4ca4320a5a386931bf2a0bbbc47879bbd996c846d"
+    },
+    "setup-negatives": {
+      "path": ".local/standard-wages-full-setup-01/setup-negatives.json",
+      "bytes": 199,
+      "sha256": "04820a06886c68238fa687cc83f74e1728c06321d6b71edc1dbaba2f438af626"
+    },
+    "setup-source": {
+      "path": ".local/standard-wages-full-setup-01/source-revision.json",
+      "bytes": 102446,
+      "sha256": "d721c16e52313a5a604e1ebb23d4e412281710dd59b2a1110076488c53d5b272"
+    },
+    "setup-archive": {
+      "path": ".local/standard-wages-full-setup-01/sources.zip",
+      "bytes": 2727011,
+      "sha256": "9a8b430f7d3e88c15a49db3d5966c08d5ce0549859ea615ad534850fb9e72be2"
+    }
+  },
+  "scope": "One full Standard playthrough with all four expedition types,day31 defeat cover and Restart. Not winning Standard/all routes/credits/native parity.",
+  "verify": "node scripts/verify-standard-wages-acceptance.js --full"
+}

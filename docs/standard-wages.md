@@ -1,19 +1,21 @@
 # Standard Wages campaign route
 
-The original difficulty1 now has a continuous browser regression through day13.
+The original difficulty1 now has a continuous browser regression through day31.
 Startup selects Standard Wages with an actual Down/Enter sequence. The player
 flies to Too-Pei,completes its cave,earns $3,400 including coins,unlocks the
 transmitter,reads rival reports and deposits the money. A three-day flight to
 Yellerstone loses its race. Reading the rival claim returns normally to the map
 at that destination. A new flight reaches Kenya,the photographer captures the
 target animal,and the $500 proceeds are banked. The route ends on the map with
-$3,900 banked,then tests Restart.
+$3,900 banked. This day13 prefix remains separately accepted.
 
-This establishes a working loss-and-continuation path,not a whole Standard
-campaign. Jungle,mountain,deadline and ending outcomes for this difficulty still
-need a continuous browser route. Hard remains deferred. No gameplay rules were
-changed for this milestone;the exploratory player was corrected to continue
-after a normal race loss rather than calling it a port dead end.
+The current route continues to Great Outback jungle layout2 and Lost World
+mountain layout0,completing both with all three lives. Deposits total$10,250.
+Normal bank/office travel advances the calendar to day31;the rival has$36,000
+banked,so the original winner comparison produces the defeat cover. Restart
+clears the campaign. This verifies one full playthrough through all four families,
+not a winning Standard strategy,every Standard layout,credits or native parity.
+Hard remains deferred. No gameplay rules changed for this milestone.
 
 ## Reproduce and verify
 
@@ -22,13 +24,19 @@ files fail setup. No additional edition or resource pairing is accepted.
 
 ```sh
 # Validate saved browser evidence against the current game runtime:
+node scripts/verify-standard-wages-acceptance.js --full
+# Earlier day13 prefix:
 node scripts/verify-standard-wages-acceptance.js
 # Check rejection of empty,missing and corrupt fixtures:
+node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --setup-negatives
 node scripts/verify-standard-wages-setup-negative.js
 # Fresh browser replay and a semantic input-omission negative:
+node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --output=.local/standard-full-replay-FRESH
 node scripts/verify-standard-wages-route.js --output=.local/standard-replay-FRESH
 # Produce a new exploratory recording;this never certifies itself:
 node scripts/standard-wages-explore.js --safari --output=.local/standard-capture-FRESH
+# Full campaign browser exploration from the pinned independent player plan:
+node scripts/standard-wages-campaign.js --plan=.local/standard-wages-actions-plan-04 --output=.local/standard-full-capture-FRESH
 ```
 
 Fresh capture/replay requires clean committed source and a new ignored output
@@ -38,6 +46,28 @@ servers and shared DOSBox sessions are untouched. Originals,recordings and PNGs
 stay local and ignored.
 
 ## Evidence and limits
+
+The [full scenario](../reference/standard-wages-full-route.json) pins85 checkpoints
+and5,071 required DOM events. Its [saved acceptance](../reference/standard-wages-full-acceptance.json)
+records a separate fresh browser consumer,exact complete state/RGBA comparisons,
+Restart,a semantic missing-selection negative and three setup negatives.
+Producer:`4a66248`;consumer:`577dd13`;setup negatives:`d4e8b80`.
+
+The [player plan](../reference/standard-wages-campaign-plan.json) was explored by
+carrying the existing browser input stream from startup in the simulation;no
+checkpoint memory was restored. Its explicit100ms diagnostic tail is an external
+neutral delay. Existing authored jungle/mountain controls are only player recipes;
+using a recipe discovered on another difficulty never changes game difficulty.
+The first Easy mountain recipe failed Standard. Another existing recipe completed
+it. The browser then independently executed the complete schedule and matched all
+85 planned states;its actual images became immutable port-regression expectations
+for a second browser. Expected outputs never choose replay inputs. A failed
+player recipe or a natural losing campaign is not by itself a port defect.
+
+The full route ends at the ready defeat cover;it does not exercise the subsequent
+celebration/replay/credits controls. Those remain separate ending scenarios.
+
+The earlier day13 prefix is retained unchanged:
 
 [Scenario manifest](../reference/standard-wages-route.json) pins the original build,
 producer revision,starting recipe,environment,independent DOM input stream,

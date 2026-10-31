@@ -66,4 +66,4 @@ assert.equal(diagnostic.rendered, 2568);
 assert.equal(diagnostic.state.scene, "map");
 assert.equal(diagnostic.state.campaign.day, 13);
 assert.equal(diagnostic.state.campaign.banked, 3900);
-console.log("Saved Standard route verified:36 exact browser state/image checkpoints,3177 DOM events,race-loss recovery,target photo,$3900 banked,Restart and1 semantic negative;3 setup negatives. Full Standard campaign and original timing remain unverified.");
+console.log("Saved Standard day13 route verified:36 exact browser state/image checkpoints,3177 DOM events,race-loss recovery,target photo,$3900 banked,Restart and1 semantic negative;3 setup negatives. This prefix alone does not establish a full Standard campaign or original timing parity.");

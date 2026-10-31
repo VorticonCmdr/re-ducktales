@@ -23,6 +23,16 @@ bytes and461 Ghidra bytes after exactly3 loader relocations. The existing
 IRQ/audio phase between drawing calls,or exact reveal/drawing-cost parity,is
 claimed. Failure portraits and other legacy dialogues are separate paths.
 
+The next failure-portrait investigation now has a separate
+[source manifest](../reference/cave-failure-input-source.json).
+Original cave body offset1a90 (DUCKTALE.EXE file1c690) loads20,pushes it and calls
+shared09f5. Nonzero return plus enabled byte03be guard click24. All34 original
+bytes match Ghidra CAVE_CODE.EXE1c17:1a90 after its one declared segment relocation.
+The entire11,054-byte cave body also matches the original executable directly.
+`node scripts/verify-cave-failure-input-source.js` verifies that boundary.
+This is static evidence for the next change;the legacy failure countdown is
+still present and no new native runtime/timing comparison is claimed.
+
 ## Earned browser route
 
 Normal Easy startup/security → Launchpad flight → Too-Pei cave7 treasure → award

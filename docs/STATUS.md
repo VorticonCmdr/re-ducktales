@@ -12,16 +12,21 @@ misdirection into real expeditions. The application uses HTML/CSS/vanilla JS and
 npm/Vite. Original assets stay authoritative in ignored `game/`. Production users
 select their own files. Nothing has been pushed or deployed.
 
+Standard Wages also has a continuous all-family playthrough through the day31
+defeat cover and Restart. A winning Standard route is not established.
+
 ## Latest completed behavior
 
-Standard Wages now has a continuous verified browser route through day13:
-Too-Pei cave → $3,400 deposit → lost Safari race → rival claim → map → new
-departure → Kenya target photograph → second deposit → map with $3,900 → Restart.
-A fresh independent browser consumes3,177 recorded DOM events and matches all36
-complete state/RGBA checkpoints. Omitting the Standard selection fails at the
-first checkpoint. Three setup negatives reject zero checkpoints,missing fixtures
-and corrupt fixtures. This is a partial campaign port regression,not original
-timing parity or a complete Standard campaign.
+Standard Wages now has a continuous verified browser playthrough:Too-Pei cave →
+bank → lost Safari race → claim/map recovery → Kenya target photo → bank → Great
+Outback jungle treasure → Lost World mountain summit → $10,250 deposit total →
+calendar/rival travel → day31 defeat cover against $36,000 → Restart. Jungle and
+mountain both keep three lives. A fresh independent browser consumes5,071 DOM
+events and matches all85 complete state/RGBA checkpoints. Omitting Standard
+selection fails at the first checkpoint. Three setup negatives reject empty
+checkpoints,missing fixtures and corrupt fixtures. One full playthrough is
+verified;winning Standard routes,all Standard layouts,credits and original
+timing parity do not follow from this route. No game rules changed for it.
 [Standard route and commands](standard-wages.md).
 
 Treasure awards now use original40-read waits and the transmitter explanation
@@ -33,12 +38,16 @@ and local audio call order now follow original bytes. Runtime:`0b6d2b5`.
 
 Current acceptance passes:
 
+- Full Standard playthrough:85 exact state/image checkpoints,5,071 events,
+  all four expedition families,race-loss recovery,bank/rival/deadline/defeat cover,
+  Restart and one semantic plus three setup negatives. The earlier day13 route
+  remains independently accepted with36 checkpoints/3,177 events.
 - Earned award/explanation route:27 exact state/image checkpoints,488 DOM events,
   both message control loops,collection/unlock,map,Restart and1 semantic negative.
 - All15 earlier browser routes against unchanged inputs/expectations:343 exact
   checkpoints,11,601 events and15 Restarts. These include the full winning Easy
   campaign,alternate expeditions,both atomic outcomes and the guide control route.
-- Full headless campaign:34 checkpoints,4,981 events,1,470 flight presentations;
+- Full Easy headless campaign:34 checkpoints,4,981 events,1,470 flight presentations;
   all8 cave components:2,696 presentations.
 - 194 existing units,40 result/guide/atomic boundaries,567 original caller/helper
   bytes and production build. Three receipt negatives reject zero cases,a missing
@@ -61,19 +70,19 @@ The previously fixed30-read guide remains covered unchanged.
 | Cave | All8 complete in component replay;Klondike,Carlsbad and Too-Pei complete in browser routes |
 | Safari | All6 variants complete target-photo/results/reward browser routes |
 
-Next playable milestone: establish a reproducible **Standard Wages** campaign
-route and resolve the first unsupported behavior/dead end it exposes. That is
-original difficulty1;its full campaign acceptance is not established. Hard remains
-deferred. Failure-portrait20 and other legacy dialogue read boundaries also remain
-separate fidelity gaps;the award/notice change does not claim to fix them.
+Next fidelity milestone:translate the cave failure portrait's20-read input wait
+and its conditional click,then investigate other legacy dialogues. A new source
+check pins34 bytes from the original cave overlay and Ghidra after one loader
+relocation. The port still uses a legacy140-tick countdown for this path;
+it has not been fixed by the successful campaign route.
+[Failure source](../reference/cave-failure-input-source.json). Hard remains deferred.
 
 The first Standard Safari attempt lost its race at day7,tile92 of126. The
 explorer initially stopped because it required an arrival. The accepted route
 now consumes that normal claim,returns to map and completes another Safari;
 this branch is not a dead end. [Initial exploration](../reference/standard-wages-exploration.json),
-[accepted continuation](../reference/standard-wages-acceptance.json).
-Next:carry Standard through jungle/mountain expeditions and the campaign ending;
-the current day13 route does not establish those outcomes.
+[accepted day13 continuation](../reference/standard-wages-acceptance.json),
+[full Standard playthrough](../reference/standard-wages-full-acceptance.json).
 
 Other legacy dialogues,cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
@@ -106,8 +115,11 @@ contain actual game code with documented transformations and are never run.
 
 ```sh
 # Validate saved current acceptance and scoped source/observation evidence:
+node scripts/verify-standard-wages-acceptance.js --full
 node scripts/verify-standard-wages-acceptance.js
 node scripts/verify-standard-wages-setup-negative.js
+node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --setup-negatives
+node scripts/verify-cave-failure-input-source.js
 node scripts/verify-result-input-acceptance.js
 node scripts/verify-result-caller-source.js
 node scripts/verify-result-audio-boundary.js
@@ -116,6 +128,7 @@ node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/ato
 npm test
 npm run build
 # Fresh independent result replay,requires clean committed source:
+node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --output=.local/standard-full-replay-FRESH
 node scripts/verify-standard-wages-route.js --output=.local/standard-replay-FRESH
 node scripts/atomic-route.js verify --award --capture=.local/result-earned-browser-01 --output=.local/result-replay-FRESH
 # Fresh current consumer of immutable historical routes:

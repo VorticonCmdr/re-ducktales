@@ -95,10 +95,21 @@ assert.deepEqual(
 const ready = checks.find(
   (p) => p.name === (m.pauseBoundaryName ?? "notice-ready"),
 );
-const expectedFrames = m.compareReportFrames ? await json(m.artifacts["presentations.json"].path) : null;
-const canonical = (value) => JSON.stringify(value, (_, v) => v && typeof v === "object" && !Array.isArray(v)
-  ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, v[k]])) : v);
-const pixels = (v) => PNG.sync.read(Buffer.from(v.png.split(",")[1], "base64")).data;
+const expectedFrames = m.compareReportFrames
+  ? await json(m.artifacts["presentations.json"].path)
+  : null;
+const canonical = (value) =>
+  JSON.stringify(value, (_, v) =>
+    v && typeof v === "object" && !Array.isArray(v)
+      ? Object.fromEntries(
+          Object.keys(v)
+            .sort()
+            .map((k) => [k, v[k]]),
+        )
+      : v,
+  );
+const pixels = (v) =>
+  PNG.sync.read(Buffer.from(v.png.split(",")[1], "base64")).data;
 assert.ok(ready);
 const omission = events.findIndex(
   (e, i) => i >= ready.eventCount && e.type === "keydown" && e.key === "p",
@@ -109,7 +120,8 @@ const root = await fresh(arg("output")),
 let result = { completed: false, accepted: false };
 async function replay(negative = false) {
   return withCarlsbadBrowser(async ({ page, state, until }) => {
-    if (m.compareReportFrames && !negative) await installReportFrameRecording(page);
+    if (m.compareReportFrames && !negative)
+      await installReportFrameRecording(page);
     let now = 1,
       consumed = 0,
       omitted = 0,
@@ -153,16 +165,46 @@ async function replay(negative = false) {
     if (m.compareReportFrames && !negative) {
       const frames = await page.evaluate(() => window.reportFrames);
       assert.ok(expectedFrames.length > 0, "Zero report frames");
-      assert.equal(frames.length, expectedFrames.length, "Skipped report frames");
+      assert.equal(
+        frames.length,
+        expectedFrames.length,
+        "Skipped report frames",
+      );
       for (let i = 0; i < frames.length; i++) {
-        assert.equal(frames[i].key, expectedFrames[i].key, "Report frame order");
-        assert.equal(frames[i].at, expectedFrames[i].at, "Report frame time " + frames[i].key);
-        assert.equal(sha(canonical(frames[i].state)), sha(canonical(expectedFrames[i].state)), "Report frame state " + frames[i].key);
-        assert.equal(sha(pixels(frames[i])), sha(pixels(expectedFrames[i])), "Report frame pixels " + frames[i].key);
+        assert.equal(
+          frames[i].key,
+          expectedFrames[i].key,
+          "Report frame order",
+        );
+        assert.equal(
+          frames[i].at,
+          expectedFrames[i].at,
+          "Report frame time " + frames[i].key,
+        );
+        assert.equal(
+          sha(canonical(frames[i].state)),
+          sha(canonical(expectedFrames[i].state)),
+          "Report frame state " + frames[i].key,
+        );
+        assert.equal(
+          sha(pixels(frames[i])),
+          sha(pixels(expectedFrames[i])),
+          "Report frame pixels " + frames[i].key,
+        );
         frameComparisons++;
       }
-      await writeFile(root + "/presentations.json", JSON.stringify(frames, null, 2) + "\n");
-      await writeFile(root + "/incoming-pages.json", JSON.stringify(await page.evaluate(() => window.reportIncomingPages), null, 2) + "\n");
+      await writeFile(
+        root + "/presentations.json",
+        JSON.stringify(frames, null, 2) + "\n",
+      );
+      await writeFile(
+        root + "/incoming-pages.json",
+        JSON.stringify(
+          await page.evaluate(() => window.reportIncomingPages),
+          null,
+          2,
+        ) + "\n",
+      );
     }
     await page.locator("#restart").click();
     await until((s) => s.scene === "title");

@@ -1,0 +1,94 @@
+{
+  "kind": "report-presentation-acceptance",
+  "nativeComparison": false,
+  "exclusions": [],
+  "scope": "Closed-loop muted browser routes and exact source-defined stripes;actual speaker/Tandy I/O is separately conditional. No native elapsed-time or waveform parity.",
+  "cases": [
+    {
+      "reason": "player",
+      "consumer": ".local/report-player-replay-01",
+      "checkpoints": 27,
+      "events": 543
+    },
+    {
+      "reason": "rival",
+      "consumer": ".local/report-rival-replay-01",
+      "checkpoints": 27,
+      "events": 543
+    },
+    {
+      "reason": "forced",
+      "consumer": ".local/report-forced-replay-01",
+      "checkpoints": 31,
+      "events": 1795
+    }
+  ],
+  "audio": [
+    {
+      "device": "speaker",
+      "producer": ".local/report-speaker-audio-01"
+    },
+    {
+      "device": "tandy",
+      "producer": ".local/report-tandy-audio-01"
+    }
+  ],
+  "artifacts": {
+    "playerScenario": {
+      "path": "reference/report-player-browser.json",
+      "bytes": 8888,
+      "sha256": "e7081bc98e61a0b7d0c6738a99392794c8949feaa5b3de707f71cb3f156867db"
+    },
+    "playerRows": {
+      "path": "reference/report-player-rows.json",
+      "bytes": 3262,
+      "sha256": "28380a8cece2c344f05fa0171c8fd905155f2f6c65f93e50c095ec4faea78296"
+    },
+    "playerResult": {
+      "path": ".local/report-player-replay-01/result.json",
+      "bytes": 698,
+      "sha256": "bec20a02c5f1214e3d3227b69eec9281ac7a5fbd6f28a0bdbcebc7ba972f9ce4"
+    },
+    "rivalScenario": {
+      "path": "reference/report-rival-browser.json",
+      "bytes": 8849,
+      "sha256": "a94936ff2526f16e98151b51db9a6339c05b4d911499e098d5fbee147c613402"
+    },
+    "rivalRows": {
+      "path": "reference/report-rival-rows.json",
+      "bytes": 3250,
+      "sha256": "f35a2d0ade9d67085de5479a5f5e0fc26dcd7a7733ef3a01faac9640690c53f5"
+    },
+    "rivalResult": {
+      "path": ".local/report-rival-replay-01/result.json",
+      "bytes": 695,
+      "sha256": "3b9b22d3cb081fd3504402b510016110d970c01ba95c0eecb81d338f58c9f298"
+    },
+    "forcedScenario": {
+      "path": "reference/report-forced-browser.json",
+      "bytes": 10883,
+      "sha256": "fcadd88c4d53dbadb65cf6b080a774d6fb1a6e41edfa73f99e5d7506467925af"
+    },
+    "forcedRows": {
+      "path": "reference/report-forced-rows.json",
+      "bytes": 3882,
+      "sha256": "8e354a90488a4d5510bd604215ec360c537f7f8f396aefc5976d4622cf6bb7e5"
+    },
+    "forcedResult": {
+      "path": ".local/report-forced-replay-01/result.json",
+      "bytes": 725,
+      "sha256": "9fc7881553ca86054f88f7d0335ac624fd01921c1d288aa8fd9c2882ecc43e93"
+    },
+    "speakerAudio": {
+      "path": ".local/report-speaker-audio-01/audio-status.json",
+      "bytes": 17982,
+      "sha256": "d6eec7837c740bc6d6e3bb7bf5adaa77a7896f439b644f18a45e73a38e7583ac"
+    },
+    "tandyAudio": {
+      "path": ".local/report-tandy-audio-01/audio-status.json",
+      "bytes": 22131,
+      "sha256": "1cd47dbe9586c0e59ac6d33228f0b63d89e817b11cacd39fb3487cd3dea09081"
+    }
+  },
+  "verify": "node scripts/verify-report-presentation-acceptance.js"
+}

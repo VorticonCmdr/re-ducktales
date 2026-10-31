@@ -1,110 +1,98 @@
-# Report presentation engine: isolated implementation
+# Report and notice presentation restoration
 
-Branch `codex/report-presentations`,base `7579426`. This checkout is isolated
-from the active129-checkpoint earned-route browser replay. Do not merge runtime
-changes into its source checkout until that process is terminal.
+Runtime introduced at b0bfaac on `codex/report-presentations`,based on7579426.
+All three browser replays and the combined strict acceptance gate pass.
+Integrated locally into the main port. The main worktree's earlier
+357d83f earned-route receipt remains a separate historical runtime after merge.
 
-Update:the earned-route replay is terminal and passed on the main worktree.
-Runtime integration is now committed here at `b0bfaac`. Game scheduling,original
-input flushes,renderer stripe pages and UI control availability are connected.
-Ordinary/forced variants consume their third RNG draw after portrait copy;
-location publication and21 follow the completed exit wipe. Sound6e precedes
-reveal. Each real speech status poll has its own token,so an old cue ACK or a
-completion during Pause cannot satisfy a later query. A muted absent-device
-environment retains its declared idle provider;mute never fabricates completion
-of an existing device.
+The application now implements the source-defined sequence with original
+MAIN30/33 assets:fill0 → entry wipe25 retraces → portrait copy/helper input flush
+→ caller text/cue → reveal25 → publication/reader → exit wipe25 → caller return.
+There is no award-style extra middle wipe. The renderer preserves the outgoing
+committed page and applies exact five-row stripe groups. Pixels remain
+presentation data and never feed simulation.
 
-At b0bfaac,210 units,21 report/notice input boundaries and build pass. Reader
-fixtures now begin after actual graphics entry and carry their own clocks.
-Their fake device consumes explicitly supplied status values at fresh query
-boundaries;this is conditional evidence,not the real browser audio adapter.
+Ordinary and forced reports defer their third RNG draw until portrait copy.
+Enabled6e precedes reveal;enabled21 and rival location publication follow the
+exit wipe. Player notices retain their own caller without invented21/reset.
+Graphics do not open P/Q/S readers,and original helper/caller flushes discard
+early input. Restart cancels the pending sequence. Driver ticks,retrace waits,
+graphics work and browser scheduling remain separate.
 
-Actual muted player-notice exploration `.local/report-player-presentation-01`
-passes startup/cave/ordinary report/player notice/Pause/resume/map/Restart.
-Its first16 full state/pixel checkpoints and509 inputs match the unchanged
-startup prefix. All three completed report pages match independently retained
-earlier port pages. The full27-checkpoint/543-input capture is a candidate until
-its independent replay passes. All45 row groups,50 entry/75 total retraces and
-three missing/corrupt/source-page negatives pass the separate row checker.
-The final cleanup report correctly starts from the preceding notice's black
-exit page. No image pixels are excluded. Native timing/pixel capture parity is
-not established by those retained port targets.
+Every real speech status read has a fresh query token. Cue acknowledgements and
+stale query completions cannot satisfy a later read;completion during Pause is
+observed through the next original query boundary. A muted absent device uses
+its declared idle provider;muting does not fabricate completion of an existing
+device. Conditional reader fixtures consume independently supplied status values
+at the query boundary and do not count as actual audio acceptance.
+
+## Evidence and scope
+
+- Original identity/order:1238 original/prepared/Ghidra bytes,16 loader
+  relocations and one exact preparation stack-probe transformation.
+  [Source proof](report-presentations.md). Original bytes remain authoritative.
+- Runtime checks:210 unit cases,21 report/notice reader-boundary cases and
+  production build passed at b0bfaac and again in the combined gate. Focused archived checks at463b74c remain in
+  `.local/report-runtime-checks-01`.
+- Actual ordinary+player-collected route:
+  `.local/report-player-presentation-01` and independent consumer
+  `.local/report-player-replay-01`;27 exact full-state/decoded-RGBA checkpoints,
+  543 independent DOM inputs,missing-fresh-Pause negative and actual Restart.
+- Actual ordinary+rival-collected route:
+  `.local/report-rival-presentation-01` and independent consumer
+  `.local/report-rival-replay-01`;the same27/543 checks and negative/Restart.
+- Each route verifies45 exact row groups,50 entry/75 total retraces and three
+  missing-group/pixel/incoming-page negatives. Completed targets come from
+  separately retained earlier port pages;no image pixels are excluded.
+- Forced claim candidate `.local/report-forced-presentation-01` naturally loses
+  the first Standard Safari race,then exercises early input flushing,Pause,
+  resume,fresh Fire,map and Restart. It captures31 checkpoints/1795 events;
+  its independent consumer `.local/report-forced-replay-01` passes31 exact
+  state/image checkpoints,1795 DOM inputs,all58 intermediate frame states/pixels/
+  timestamps,missing-Pause negative and Restart. Zero forced claims fails the
+  experiment. All45 forced-route row groups pass.
+- Actual PC speaker and Tandy report probes at0a5d994:
+  `.local/report-speaker-audio-01` and `.local/report-tandy-audio-01` verify
+  enabled24/6e/fresh global status queries/21,real completion,nonzero signal
+  samples and Restart. Host20ms/Game16ms is an explicitly conditional profile;
+  no audio completion values are injected.
+
+These checks are port regression and browser I/O evidence,not original native
+transition captures or uninterrupted elapsed-time/waveform parity. Resource
+loading,text costs,remaining CPU/IRQ phase,and the rival updater's earlier clear
+at126b0034 remain outside this engine's charged helper work. Broader sound-call
+adaptations and expedition audio routes still require review.
+
+## Reproduction
+
+Use clean committed source,original assets matching `reference/build.json` and
+fresh ignored output directories. Missing/corrupt local evidence fails setup.
 
 ```sh
+node scripts/verify-report-presentation-acceptance.js
+node scripts/verify-report-presentation-source.js
 node scripts/verify-report-presentation-rows.js --manifest=reference/report-player-rows.json
+node scripts/verify-report-presentation-rows.js --manifest=reference/report-rival-rows.json
 node scripts/verify-report-fixture-negatives.js --manifest=reference/report-player-browser.json
 node scripts/replay-report-presentation-browser.js --manifest=reference/report-player-browser.json --output=.local/report-player-replay-FRESH
-node scripts/probe-report-presentation-browser.js --reason=rival --output=.local/report-rival-presentation-FRESH
-```
-
-Next:independent player replay,actual rival-collected and forced-claim browser
-routes,real speaker/Tandy device cases,and integration into the main worktree
-only after relevant checks pass. The earlier component-only status below is
-retained as the module's initial scope,not the current integration state.
-
-Both ordinary+collected-notice routes now pass independent replay:player at
-463b74c and rival at9669ec6,each27 full-state/decoded-RGBA checkpoints and543
-independent DOM inputs,missing-fresh-Pause negative and actual Restart. Both
-45-group pixel cases pass against three independently retained completed pages.
-These are port regressions with no exclusions,not original native transition
-captures. `.local/report-runtime-checks-01` retains focused components,21 reader
-boundaries,45 row groups,five setup/unfinished-event negatives,source identity
-and build at463b74c.
-
-The next experiments use the same untouched runtime. `--forced-report` makes
-the existing Standard player stop at its naturally lost first Safari race,
-exercise early-key flushing/Pause/exit and save report frames. Failure to execute
-a forced claim is a setup/strategy failure,never a zero-case success. The audio
-probe now uses the current award-timed startup prefix and checks fresh global
-query tokens between6e and21. It retains the declared host20ms/Game16ms conditional
-profile;no device status is injected and no native timing/waveform parity is
-claimed.
-
-```sh
-node scripts/standard-wages-explore.js --forced-report --output=.local/report-forced-FRESH
+node scripts/replay-report-presentation-browser.js --manifest=reference/report-rival-browser.json --output=.local/report-rival-replay-FRESH
+node scripts/replay-report-presentation-browser.js --manifest=reference/report-forced-browser.json --output=.local/report-forced-replay-FRESH
 node scripts/probe-rival-audio.js --device=speaker --output=.local/report-speaker-FRESH
 node scripts/probe-rival-audio.js --device=tandy --output=.local/report-tandy-FRESH
+npm test
+npm run build
 ```
 
-`ReportPresentation` implements the statically checked picture3/10 sequence:
-fill0 → entry wipe25 retraces → portrait copy/helper input flush → caller
-text/cue callback → reveal25 → publication/reader callback → external reader →
-exit wipe25 → publication/caller callback. Unlike an award,there is no extra
-middle wipe before reveal. The original report cue6e precedes the reveal;
-enabled21 and rival-location publication follow the exit wipe. Player notices
-have their own source caller and no invented21/reset.
+A fresh producer can be explored with `probe-report-presentation-browser.js`
+(`--reason=player|rival`) or `standard-wages-explore.js --forced-report`.
+Captures alone are candidates;independent consumers and row checks are separate.
+Shared original DOSBox state was not touched. Proprietary assets/captures remain
+ignored;only permitted source,recipes and manifests are versioned.
 
-The class accepts original MAIN30/33 resources and explicit clocks/callbacks.
-It consumes no game input,money,RNG or DOM state. Driver ticks cannot advance
-retrace waits. Graphics work and zero-time publication continuations use the
-same scheduler boundary shape as the existing award engine. Resource loading,
-text costs and native CPU/IRQ phase remain unmodeled,as in the current award
-presentation. The source proof is `reference/report-presentation-source.json`.
-The rival updater's earlier clear at126b0034 also remains outside this graphics
-engine's charged helper work. No uninterrupted native CPU timing parity is claimed.
-
-Validation:`node --test tests/report-presentation.test.js` passes4 conditional
-component checks with original resources. They verify both source portraits,
-callback order,50 entry/75 total retraces,reader-controlled exit,clock separation
-and rejected premature/invalid operations. This is **not integrated into Game or
-the renderer yet**,and does not earn browser acceptance or native timing parity.
-
-Integration still needs:
-
-- Preserve the outgoing committed page and render source-defined stripe groups.
-- Delay actual report input/status consumption until `readerReady`;helper and
-  caller input flushes remain distinct. Ignore/flush graphics-phase input by the
-  original reader boundaries,without opening P/Q/S early.
-- Start enabled6e in `portraitReady`,not after reveal. Preserve global device
-  status/completion during reveal. Do not invent completion when muted.
-- Defer the original post-helper report-variant RNG draw to its actual copy
-  boundary without rolling back or fitting seed/state.
-- Start exit wipe after the external report reader completes. Release enabled21,
-  rival location and main continuation only after `exited`.
-- Wire graphics/continuation wakes and retraces separately from driver readers;
-  Restart cancels the whole pending presentation.
-- Explore actual ordinary/forced rival and player/rival collected-notice browser
-  routes,then capture independent inputs,exact frames and strict replay/negatives.
-
-Shared original DOSBox state was not touched. Original assets and local evidence
-are symlinked read-only by policy;no proprietary output is tracked.
+The forced row checker observes incoming pixels at the renderer's actual canvas
+read and returns the same ImageData unchanged. The independent replay compares
+every producer report frame before its source observations are used. The only
+black post-bank incoming page is narrowly scoped to rival3,location0,bank3400,
+cash0 and the original main1036..107f caller hash/1076 clear-and-flip bytes.
+The forced claim requires its actual nonblank flight page. There is no arbitrary
+blank fallback or expected-pixel injection.

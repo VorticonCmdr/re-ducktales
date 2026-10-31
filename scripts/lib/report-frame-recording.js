@@ -4,14 +4,22 @@ export async function installReportFrameRecording(page) {
     window.reportFrames = [];
     window.reportIncomingPages = [];
     const visible = document.getElementById("game").getContext("2d"),
-      read = visible.getImageData.bind(visible), sources = new Set();
+      read = visible.getImageData.bind(visible),
+      sources = new Set();
     let lastIncoming = null;
     visible.getImageData = (...args) => {
       const result = read(...args);
-      if (args[0] === 0 && args[1] === 0 && args[2] === 320 && args[3] === 200) {
+      if (
+        args[0] === 0 &&
+        args[1] === 0 &&
+        args[2] === 320 &&
+        args[3] === 200
+      ) {
         // Observe the actual renderer read at its consumption boundary. Return
         // the same ImageData unchanged;pixels never enter game simulation.
-        const c = document.createElement("canvas"); c.width = 320; c.height = 200;
+        const c = document.createElement("canvas");
+        c.width = 320;
+        c.height = 200;
         c.getContext("2d", { alpha: false }).putImageData(result, 0, 0);
         lastIncoming = { at: performance.now(), png: c.toDataURL() };
       }

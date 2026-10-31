@@ -18,7 +18,7 @@ assert.equal(m.kind, "report-presentation-row-candidate");
 assert.equal(m.nativeComparison, false);
 assert.deepEqual(m.comparison.exclusions, []);
 assert.ok(m.cases.length > 0, "Zero report cases");
-await originalGame();
+const { image: originalImage } = await originalGame();
 await checkArtifacts(m.artifacts);
 const source = await validateProducerArchive(m.producer);
 for (const [p, h] of Object.entries(source.files))
@@ -27,6 +27,29 @@ for (const [p, h] of Object.entries(source.files))
 for (const root of m.targetProducers) await validateProducerArchive(root);
 const packet = await json(m.artifacts.presentations.path),
   seen = new Set();
+let incomingPages;
+if (m.incomingReplay) {
+  await validateProducerArchive(m.incomingReplay);
+  const receipt = await json(m.artifacts.incomingResult.path);
+  assert.equal(receipt.completed, true);
+  assert.equal(receipt.accepted, true);
+  assert.equal(receipt.producer, m.producer);
+  assert.equal(receipt.semanticNegatives, 1);
+  assert.equal(receipt.frameComparisons, packet.length);
+  const replayed = await json(m.artifacts.replayedFrames.path);
+  assert.equal(replayed.length, packet.length);
+  for (const [i, v] of replayed.entries()) {
+    assert.equal(v.key, packet[i].key);
+    assert.equal(v.at, packet[i].at);
+    assert.deepEqual(v.state, packet[i].state);
+    assert.deepEqual(reportPixels(v), reportPixels(packet[i]));
+  }
+  incomingPages = await json(m.artifacts.incomingPages.path);
+  assert.deepEqual(
+    incomingPages.map((v) => v.key).sort(),
+    m.cases.map((c) => c.key).sort(),
+  );
+}
 let checked = 0,
   negatives = 0;
 for (const c of m.cases) {
@@ -84,7 +107,53 @@ for (const c of m.cases) {
     incoming = reportPixels(v);
     for (let at = 0; at < incoming.length; at += 4)
       assert.deepEqual([...incoming.subarray(at, at + 4)], [0, 0, 0, 255]);
+  } else if (["recorded-page", "bank-return"].includes(c.incoming.kind)) {
+    assert.ok(incomingPages, "Missing independently replayed incoming pages");
+    const v = incomingPages.find((v) => v.key === c.incoming.key);
+    assert.ok(v && v.at <= data[0].at, "Missing report source read");
+    incoming = reportPixels(v);
+    if (c.incoming.kind === "recorded-page") {
+      assert.ok(
+        incoming.some((v, i) => i % 4 !== 3 && v !== 0),
+        "Missing nonblank report source",
+      );
+    } else {
+      // This exact route arrives from the bank caller's clear-and-flip,not
+      // from an arbitrary missing canvas. No general blank-page exemption.
+      assert.equal(c.key, "rival-report:3:rival");
+      const bank = await json(m.artifacts.bankSource.path),
+        r = bank.source.caller;
+      assert.deepEqual([r.offset, r.length], [0x1036, 74]);
+      assert.equal(
+        sha(originalImage.subarray(r.offset, r.offset + r.length)),
+        r.sha256,
+      );
+      assert.equal(
+        Buffer.from(originalImage.subarray(0x1076, 0x1080)).toString("hex"),
+        "50ff1ed81fff1ed41fcb",
+      );
+      const entry = data.find(
+        (v) => v.state.reportPresentation.phase === "clearing-page",
+      );
+      assert.ok(entry, "Missing post-bank report entry");
+      assert.equal(entry.state.campaign.location, 0);
+      assert.equal(entry.state.campaign.banked, 3400);
+      assert.equal(entry.state.money, 0);
+      assert.deepEqual(entry.state.pendingCampaignAction, { type: "map" });
+      for (let at = 0; at < incoming.length; at += 4)
+        assert.deepEqual([...incoming.subarray(at, at + 4)], [0, 0, 0, 255]);
+      assert.deepEqual(reportPixels(entry), incoming);
+    }
   } else throw Error("Unsupported report incoming rule");
+  if (incomingPages) {
+    const v = incomingPages.find((v) => v.key === c.key);
+    assert.ok(v && v.at <= data[0].at);
+    assert.deepEqual(
+      reportPixels(v),
+      incoming,
+      "Replayed renderer source consumption",
+    );
+  }
   compareReportRows(data, incoming, image.data);
   checked += 15;
   if (!negatives) {

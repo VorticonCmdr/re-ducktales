@@ -1,9 +1,9 @@
 # Report presentation restoration: source evidence
 
-Status: statically established sequencing;runtime restoration pending. The
-existing report controllers translate input and audio status,but omit the
-original striped graphics transitions. This document does not claim those
-transitions are implemented or browser accepted.
+Status: original call order is statically established,and the runtime is
+integrated from `codex/report-presentations`. Ordinary reports,forced claims
+and collected notices have independent browser replay evidence. See [current implementation and evidence](report-presentation-implementation.md).
+This source proof alone does not establish browser acceptance or native timing.
 
 Supported executable/assets are exactly `reference/build.json`. The prepared
 `INVESTMENT_CODE.EXE` SHA is
@@ -35,11 +35,11 @@ on report creation,or postponing sound6e until after reveal,would change that
 ordering. A user S/P/Q make during graphics must be considered against the
 original flush/reader boundaries,not delivered to a reader invented for a wipe.
 
-Next implementation must preserve the outgoing committed frame,portrait copy,
+The implementation preserves the outgoing committed frame,portrait copy,
 reveal and exit wipe independently of browser wall time. Ordinary reports,forced
-claims and player/rival collected notices need their own real startup browser
-routes and independent replay inputs. Audio completion during reveal and modal
-return remain explicit environment cases. The1238-byte check establishes code
+claims and player/rival collected notices now have real startup browser routes
+and independent replay inputs. Audio completion during reveal and modal return
+remain explicit environment cases. The1238-byte check establishes code
 identity and order;it does not establish uninterrupted native CPU/PIT duration,
 waveform parity or successful arbitrary campaigns.
 

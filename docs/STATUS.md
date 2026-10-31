@@ -6,6 +6,13 @@ combined admission passes at83a1748:28 source plans,22 carried scenarios,
 899 input boundaries,2234 images,218 units,two browser cases,two browser negatives
 and production build. [Scope and receipt](photography-hud-timing.md).
 
+A fresh capture on the current6493ccb runtime wins34650 to28500 on day31,
+finishes all26 credits,closes and restarts. It records183 checkpoints/7261 DOM
+inputs;all seven award transitions pass105 exact stripe groups and their
+75-retrace sequence. Empty/missing/corrupt setup negatives reject. Independent
+replay is next;the new capture is explicitly not self-accepted.
+[Current candidate](../reference/safari-hud-winning-route.json).
+
 The last full Standard winning/report receipts below belong to the prior3626200
 runtime. They have not been refreshed for this timing change;their current-runtime
 source guards intentionally reject the new build. Movement/timing,broader route/
@@ -87,9 +94,9 @@ This is exploratory component coverage,not native or browser acceptance. The
 initial clock-adapter failure is excluded explicitly in
 [its manifest](../reference/jungle-input-exploration.json).
 
-The refreshed current player-notice consumer passes27 checkpoints/543 controls,
-all58 intermediate frames,45 stripe groups,missing-Pause negative and Restart.
-Rival/forced reports and the full winning campaign refresh are still in progress.
+The refreshed current player- and rival-notice consumers each pass27 checkpoints/
+543 controls,all58 intermediate frames,45 stripe groups,missing-Pause negative
+and Restart. Forced reports and the full winning independent replay are pending.
 
 ## Remaining work and supported build
 
@@ -119,8 +126,8 @@ ignored `game/`;production users select their own files.
 # Fresh current Safari source/component/browser acceptance:
 node scripts/verify-photography-hud-acceptance.js --output=.local/safari-hud-acceptance-FRESH
 node scripts/verify-bank-copy-pixels.js
-# Fresh current winning candidate;independent acceptance follows separately:
-node scripts/standard-wages-explore.js --winning --bonus-novay --output=.local/safari-hud-winning-FRESH
+# Independent replay of the current completed winning candidate:
+node scripts/verify-standard-wages-route.js --manifest=reference/safari-hud-winning-route.json --output=.local/safari-hud-winning-replay-FRESH
 npm run dev
 ```
 

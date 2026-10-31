@@ -1,6 +1,16 @@
 # Winning campaign after reward-presentation restoration
 
-Current update:the report-timed winning route is browser accepted on the bank-
+Safari HUD timing update:the current6493ccb browser capture
+`.local/safari-hud-winning-browser-01` completes the same183 checkpoints/7261
+inputs,day31 victory34650 to28500,all26 credits,closed and Restart. Its seven
+awards pass105 exact source stripe groups;three setup negatives reject. This
+fresh capture remains accepted:false until an independent browser consumer
+finishes. [Current candidate](../reference/safari-hud-winning-route.json).
+`declare-winning-route.js` pins completed capture artifacts and refuses to
+overwrite a manifest;an incomplete failed bank capture was correctly rejected.
+
+
+Earlier accepted update:the report-timed winning route is browser accepted on the bank-
 corrected runtime introduced at179a307. Actual producer
 `.local/report-timed-winning-browser-03` and independent consumer
 `.local/report-timed-winning-replay-01` pass183 exact complete-state/decoded-RGBA

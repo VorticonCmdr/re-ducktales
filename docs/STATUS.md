@@ -3,6 +3,14 @@
 Updated 2026-10-31. **The whole game is incomplete. This is completion work,
 not only fine-tuning.** Hard campaigns remain deferred at the user's request.
 
+## Work in progress: guide reader fix
+
+The guide now queues global keys until shared09f5(30) read boundaries, flushes on
+entry, resumes blocked Pause/Quit reads and has no final extra read.194 existing
+units,12 focused guide checks and5 preserved original atomic comparisons pass.
+Fresh current browser verification and unchanged historical route comparison are
+pending. Earlier runtime-pinned acceptances below are historical until refreshed.
+
 ## Latest completed behavior: earned atomic success and misdirection
 
 Source `e8320ce` passes an independent actual-browser route that earns the

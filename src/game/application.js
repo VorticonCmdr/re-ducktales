@@ -112,6 +112,7 @@ export class Game {
     this.pendingOfficeSystemKeys = new Map();
     this.pendingDestinationSystemKeys = new Map();
     this.pendingAtomicSystemKeys = new Map();
+    this.pendingBriefingSystemKeys = new Map();
     this.exiting = false;
     if (readBiosSeed !== null && typeof readBiosSeed !== "function")
       throw Error("Invalid BIOS seed provider");
@@ -626,6 +627,7 @@ export class Game {
         "jungle",
         "photography",
         "atomic-transport",
+        "expedition-briefing",
         "ending",
         "bank",
         ...(this.scene === "map" &&
@@ -659,15 +661,17 @@ export class Game {
                         ? this.pendingJungleSystemKeys
                         : this.scene === "photography"
                           ? this.pendingPhotographySystemKeys
-                          : this.scene === "atomic-transport"
-                            ? this.pendingAtomicSystemKeys
-                            : this.scene === "ending"
-                              ? this.pendingEndingSystemKeys
-                              : this.scene === "bank"
-                                ? this.pendingBankSystemKeys
-                                : this.scene === "map"
-                                  ? this.pendingDestinationSystemKeys
-                                  : this.pendingBinSystemKeys;
+                          : this.scene === "expedition-briefing"
+                            ? this.pendingBriefingSystemKeys
+                            : this.scene === "atomic-transport"
+                              ? this.pendingAtomicSystemKeys
+                              : this.scene === "ending"
+                                ? this.pendingEndingSystemKeys
+                                : this.scene === "bank"
+                                  ? this.pendingBankSystemKeys
+                                  : this.scene === "map"
+                                    ? this.pendingDestinationSystemKeys
+                                    : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -752,6 +756,7 @@ export class Game {
       this.pendingOfficeSystemKeys.clear();
       this.pendingDestinationSystemKeys.clear();
       this.pendingAtomicSystemKeys.clear();
+      this.pendingBriefingSystemKeys.clear();
       this.bank = null;
       this.exiting = false;
       this.pendingCampaignAction = null;
@@ -1320,10 +1325,7 @@ export class Game {
         this.finishExpeditionResult();
       return;
     }
-    if (
-      this.scene === "expedition-briefing" &&
-      this.advanceDialogue(this.briefing)
-    ) {
+    if (this.scene === "expedition-briefing" && this.briefing.advanceTick()) {
       this.startExpedition();
       return;
     }
@@ -1552,6 +1554,7 @@ export class Game {
     this.pendingOfficeSystemKeys.clear();
     this.pendingDestinationSystemKeys.clear();
     this.pendingAtomicSystemKeys.clear();
+    this.pendingBriefingSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "title" && this.opening) this.opening.flushInput();
@@ -1571,6 +1574,7 @@ export class Game {
     else if (this.scene === "photography") this.photography.flushInput();
     else if (this.scene === "atomic-transport")
       this.atomicTransport.flushInput();
+    else if (this.scene === "expedition-briefing") this.briefing.flushInput();
     else if (this.scene === "ending") this.ending.flushInput();
     else if (this.scene === "bank") this.bank.flushInput(true);
     else {
@@ -1621,6 +1625,10 @@ export class Game {
     if (result === "resume" && this.scene === "atomic-transport") {
       this.atomicTransport.resumeInputPoll();
       this.collectAtomicTransport();
+    }
+    if (result === "resume" && this.scene === "expedition-briefing") {
+      this.briefing.resumeInputPoll();
+      if (this.briefing.complete) this.startExpedition();
     }
     if (result === "resume" && this.scene === "bank") {
       this.bank.resumeInputPoll();
@@ -1937,11 +1945,21 @@ export class Game {
       flags,
       seed: this.seed,
       clues: this.expeditionResources.clues,
+      pollInput: () => this.pollSystemInput(this.pendingBriefingSystemKeys),
+      flushInput: () => this.flushBriefingInput(),
     });
     this.seed = this.campaign.seed = this.briefing.seed;
     this.scene = "expedition-briefing";
+    this.briefing.begin();
+  }
+  flushBriefingInput() {
+    this.pendingBriefingSystemKeys.clear();
+    this.flushExpeditionKeyboard();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
   }
   startExpedition() {
+    this.pendingBriefingSystemKeys.clear();
     this.beginExpeditionKeyboard(this.briefing.activity);
     this.campaign.rivalUnlockMask |= RIVAL_UNLOCK[this.briefing.activity] ?? 0;
     if (this.briefing.activity === "photography") {

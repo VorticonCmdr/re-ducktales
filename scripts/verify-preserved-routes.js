@@ -17,6 +17,7 @@ import {
 } from "./lib/consumer-provenance.js";
 import { withRawBrowserPage } from "./lib/raw-browser-session.js";
 import { runRecordedCampaign } from "../tests/browser/helpers/recorded-campaign.js";
+import { replayAtomicRoute } from "./lib/atomic-route-browser.js";
 import { replayCarlsbad } from "./lib/carlsbad-browser.js";
 import { replayEasyMountain } from "./lib/easy-mountain-browser.js";
 import { replayEasyJungle } from "./lib/easy-jungle-browser.js";
@@ -46,6 +47,8 @@ const paths = [
   "reference/easy-mountain-variants.json",
   "reference/easy-jungle-variants.json",
   "reference/easy-safari-variants.json",
+  "reference/atomic-earned-route.json",
+  "reference/atomic-earned-report.json",
 ];
 let result;
 try {
@@ -56,7 +59,15 @@ try {
     manifests.push(r.manifest);
     Object.assign(protectedFiles, r.protectedFiles);
   }
-  const [full, caves, mountains, jungles, safaris] = manifests;
+  const [
+    full,
+    caves,
+    mountains,
+    jungles,
+    safaris,
+    atomicSuccess,
+    atomicReport,
+  ] = manifests;
   assert.equal(full.expectedCheckpointCount, 34);
   assert.equal(full.requiredEventCount, 4981);
   assert.equal(caves.componentCases, 8);
@@ -207,14 +218,30 @@ try {
       restart: r.restart,
     });
   }
-  assert.equal(cases.length, 12);
+  for (const [m, report] of [
+    [atomicSuccess, false],
+    [atomicReport, true],
+  ]) {
+    assert.equal(m.expectedCheckpointCount, report ? 23 : 18);
+    assert.equal(m.requiredEventCount, report ? 492 : 486);
+    console.log(
+      "Replaying preserved atomic " + (report ? "report" : "success"),
+    );
+    const r = await replayAtomicRoute(
+      await json(m.inputStream),
+      await json(m.expectedOutputs),
+      { report },
+    );
+    cases.push({ group: report ? "atomic-report" : "atomic-success", ...r });
+  }
+  assert.equal(cases.length, 14);
   assert.equal(
     cases.reduce((n, c) => n + c.checked, 0),
-    272,
+    313,
   );
   assert.equal(
     cases.reduce((n, c) => n + c.consumed, 0),
-    10117,
+    11095,
   );
   assert.ok(cases.every((c) => c.restart === true));
   await checkSource(out, loaded);
@@ -235,9 +262,9 @@ try {
   console.log(
     JSON.stringify({
       completed: true,
-      browserCases: 12,
-      checkpoints: 272,
-      events: 10117,
+      browserCases: 14,
+      checkpoints: 313,
+      events: 11095,
       componentPresentations,
     }),
   );

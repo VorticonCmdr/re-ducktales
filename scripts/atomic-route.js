@@ -32,12 +32,13 @@ const loaded = (p) =>
     "vite.campaign.config.js",
     "reference/build.json",
   ].includes(p);
-const report = process.argv.includes("--report");
+const guide = process.argv.includes("--guide");
+const report = guide || process.argv.includes("--report");
 const root = await fresh(arg("output"));
 await archiveSource(root);
 await originalGame();
 if (mode === "capture") {
-  const result = await captureAtomicRoute(root, { report });
+  const result = await captureAtomicRoute(root, { report, guide });
   await checkSource(root, loaded);
   const artifacts = await inventory(root, [
     "source-revision.json",
@@ -62,7 +63,10 @@ if (mode === "capture") {
     checks = await json(producer + "/campaign-checkpoints.json");
   assert.equal(events.length, status.events);
   assert.equal(checks.length, status.checkpoints);
-  assert.equal(status.route ?? "success", report ? "report" : "success");
+  assert.equal(
+    status.route ?? "success",
+    guide ? "guide" : report ? "report" : "success",
+  );
   const prefix = [
     "cave-entry",
     "room-10",
@@ -93,6 +97,17 @@ if (mode === "capture") {
             "report-quit",
             "quit-no-resumed",
             "arrival",
+            ...(guide
+              ? [
+                  "guide-before-poll",
+                  "guide-pause",
+                  "guide-waiting",
+                  "guide-resumed",
+                  "guide-quit",
+                  "guide-quit-no",
+                  "guide-neutral-after-no",
+                ]
+              : []),
             "second-entry",
           ]
         : ["arrival", "second-entry", "second-action"]),
@@ -100,15 +115,17 @@ if (mode === "capture") {
   );
   let result;
   try {
-    const positive = await replayAtomicRoute(events, checks, { report });
-    await assert.rejects(
-      () =>
-        replayAtomicRoute(events, checks, { report, omitAtomicChoice: true }),
-      (e) =>
-        e.code === "ERR_ASSERTION" && e.message.includes("Atomic state choice"),
-      "Omitted selection must diverge at choice",
-    );
-    if (report)
+    const positive = await replayAtomicRoute(events, checks, { report, guide });
+    if (!guide)
+      await assert.rejects(
+        () =>
+          replayAtomicRoute(events, checks, { report, omitAtomicChoice: true }),
+        (e) =>
+          e.code === "ERR_ASSERTION" &&
+          e.message.includes("Atomic state choice"),
+        "Omitted selection must diverge at choice",
+      );
+    if (report && !guide)
       await assert.rejects(
         () =>
           replayAtomicRoute(events, checks, { report, omitReportPause: true }),
@@ -117,13 +134,27 @@ if (mode === "capture") {
           e.message.includes("Atomic state report-pause"),
         "Omitted report Pause must diverge at its input checkpoint",
       );
+    if (guide)
+      await assert.rejects(
+        () =>
+          replayAtomicRoute(events, checks, {
+            report,
+            guide,
+            omitGuidePause: true,
+          }),
+        (e) =>
+          e.code === "ERR_ASSERTION" &&
+          e.message.includes("Atomic state guide-pause"),
+        "Omitted guide Pause must diverge at its reader checkpoint",
+      );
     await checkArtifacts(status.artifacts);
     await checkSource(root, loaded);
     result = {
       completed: true,
       ...positive,
-      negativeControls: report ? 2 : 1,
+      negativeControls: guide ? 1 : report ? 2 : 1,
       report,
+      guide,
       producer,
     };
     console.log(JSON.stringify(result));

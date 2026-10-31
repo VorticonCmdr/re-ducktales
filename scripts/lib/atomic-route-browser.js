@@ -8,7 +8,11 @@ import {
   saveRecordedRoute,
 } from "../../tests/browser/helpers/entry-recording.js";
 import { recordedDOMInput } from "../../tests/browser/helpers/recorded-dom-input.js";
-export async function captureAtomicRoute(output, { report = false } = {}) {
+export async function captureAtomicRoute(
+  output,
+  { report = false, guide = false } = {},
+) {
+  if (guide && !report) throw Error("Guide route requires earned misdirection");
   return withCarlsbadBrowser(async (c) => {
     const { page, canvas, state, press } = c;
     const notes = [];
@@ -163,6 +167,42 @@ export async function captureAtomicRoute(output, { report = false } = {}) {
       );
     await until((s) => s.scene === "expedition-briefing");
     await note("arrival");
+    if (guide) {
+      assert.equal((await state()).briefing.remaining, 210);
+      await page.keyboard.press("p");
+      await page.keyboard.press("Space");
+      await until((s) => s.briefing.remaining <= 204);
+      assert.equal((await state()).briefing.remaining, 204);
+      assert.equal((await state()).systemOverlay, null);
+      await note("guide-before-poll");
+      await until((s) => s.systemOverlay?.kind === "pause");
+      assert.equal((await state()).briefing.remaining, 203);
+      assert.equal((await state()).briefing.waitingForInputPoll, true);
+      await note("guide-pause");
+      await until((s) => s.systemOverlay?.phase === "waiting");
+      assert.equal((await state()).briefing.remaining, 203);
+      await note("guide-waiting");
+      await page.keyboard.press("p");
+      await until((s) => s.systemOverlay === null);
+      assert.equal((await state()).scene, "expedition-briefing");
+      assert.equal((await state()).briefing.remaining, 203);
+      await note("guide-resumed");
+      await page.keyboard.press("q");
+      await page.keyboard.press("Space");
+      await until((s) => s.systemOverlay?.kind === "quit");
+      assert.equal((await state()).briefing.remaining, 196);
+      await note("guide-quit");
+      await page.keyboard.press("n");
+      await until((s) => s.systemOverlay === null);
+      assert.equal((await state()).scene, "expedition-briefing");
+      await note("guide-quit-no");
+      await until((s) => s.briefing.remaining <= 189);
+      assert.equal((await state()).scene, "expedition-briefing");
+      assert.equal((await state()).systemOverlay, null);
+      await note("guide-neutral-after-no");
+      await page.keyboard.press("Space");
+    }
+
     await until((s) =>
       ["cave", "jungle", "mountain", "photography"].includes(s.scene),
     );
@@ -207,9 +247,11 @@ export async function captureAtomicRoute(output, { report = false } = {}) {
       page,
       root: output,
       observations: notes,
-      scope: report
-        ? "Earned atomic misdirection with Pause/Quit-No/Fire and redirected jungle entry;independent port inputs,no native timing claim"
-        : "Earned atomic transmitter successful travel with queued charge P/Q/S;port regression,not native whole-game timing",
+      scope: guide
+        ? "Earned guide controls;source shared09f5(30),real input/Pause/Quit-No/Fire;port regression,no native full-timing claim"
+        : report
+          ? "Earned atomic misdirection with Pause/Quit-No/Fire and redirected jungle entry;independent port inputs,no native timing claim"
+          : "Earned atomic transmitter successful travel with queued charge P/Q/S;port regression,not native whole-game timing",
     });
     await page.locator("#restart").click();
     await until((s) => s.scene === "title");
@@ -220,7 +262,7 @@ export async function captureAtomicRoute(output, { report = false } = {}) {
     return {
       completed: true,
       accepted: false,
-      route: report ? "report" : "success",
+      route: guide ? "guide" : report ? "report" : "success",
       checkpoints: notes.length,
       events: notes.at(-1).eventCount,
       restart: true,
@@ -231,7 +273,13 @@ export async function captureAtomicRoute(output, { report = false } = {}) {
 export async function replayAtomicRoute(
   events,
   checks,
-  { omitAtomicChoice = false, report = false, omitReportPause = false } = {},
+  {
+    omitAtomicChoice = false,
+    report = false,
+    omitReportPause = false,
+    guide = false,
+    omitGuidePause = false,
+  } = {},
 ) {
   assert.ok(
     events.length > 0 && checks.length > 0,
@@ -260,6 +308,16 @@ export async function replayAtomicRoute(
       : -1;
     if (omitReportPause)
       assert.ok(report && pause > 0, "SETUP: missing report Pause");
+    const guidePause = guide
+      ? events.findIndex(
+          (e, i) =>
+            i >= checks.find((c) => c.name === "arrival").eventCount &&
+            e.type === "keydown" &&
+            e.key === "p",
+        )
+      : -1;
+    if (omitGuidePause)
+      assert.ok(guide && guidePause > 0, "SETUP:missing guide Pause");
     let now = 1,
       consumed = 0;
     async function advance(at) {
@@ -276,7 +334,8 @@ export async function replayAtomicRoute(
         await advance(e.time);
         if (
           !(omitAtomicChoice && consumed === choice) &&
-          !(omitReportPause && consumed === pause)
+          !(omitReportPause && consumed === pause) &&
+          !(omitGuidePause && consumed === guidePause)
         )
           await recordedDOMInput(page, e);
         consumed++;
@@ -303,6 +362,12 @@ export async function replayAtomicRoute(
         actual.eventCount,
         expected.eventCount,
         "Atomic consumed DOM events",
+      );
+      console.log(
+        "Atomic " +
+          (guide ? "guide" : report ? "report" : "success") +
+          " checkpoint " +
+          expected.name,
       );
     }
     assert.equal(consumed, events.length);

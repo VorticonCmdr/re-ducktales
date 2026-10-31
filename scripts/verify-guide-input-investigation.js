@@ -2,14 +2,9 @@
 // checked;no original guide runtime timing or independent guide replay is inferred.
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { acceptedRuntimeSource } from "./lib/consumer-provenance.js";
+import { validateProducerArchive } from "./lib/consumer-provenance.js";
 import { originalGame } from "../tests/helpers/original-game.js";
-import {
-  json,
-  sha,
-  checkArtifacts,
-  checkSource,
-} from "./lib/local-scenario-source.js";
+import { json, sha, checkArtifacts } from "./lib/local-scenario-source.js";
 const m = await json("reference/guide-input-investigation.json");
 await checkArtifacts(m.artifacts);
 assert.equal(sha(await readFile(m.buildManifest)), m.buildManifestSha256);
@@ -81,7 +76,7 @@ assert.equal(
   "Original guide must push30 and call shared09f5",
 );
 const root = m.artifacts["probe.json"].path.replace(/\/probe.json$/, "");
-const source = await checkSource(root, acceptedRuntimeSource);
+const source = await validateProducerArchive(root);
 assert.equal(source.commit, m.browserProbe.sourceCommit);
 const probe = await json(m.artifacts["probe.json"].path);
 assert.equal(probe.idle, 6);

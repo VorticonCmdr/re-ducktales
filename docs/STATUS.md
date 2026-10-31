@@ -18,6 +18,18 @@ HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 
 ## Latest completed behavior and current acceptance
 
+Current runtime `a978a14` restores collected-location notice readers:player80,
+rival status/input loop7 and fallback40;Pause/Quit-No continuation;actual device
+status after mute;conditional clicks and rival-only exit stop. Both nine-point
+browser control routes are captured. Independent consumers and the winning
+Standard regression are running;this notice milestone is not yet accepted.
+Source192 bytes,194 units,99 input/audio boundaries,retry comparison and build
+pass. [Notice behavior](campaign-visits.md).
+
+The last completed acceptance below belongs to runtime `e994536`;its saved
+runtime guard intentionally rejects the current notice changes until fresh
+current-runtime receipts are integrated.
+
 Keyboard S now preserves the original off0→hex24 and on0 calls. Both calls reach
 the driver after the enabled flag changes;native batches add no stop-completion
 barrier or retry. The speaker correctly rejects the lower-priority click at the
@@ -65,8 +77,10 @@ winning browser route pass. [Repair evidence](repair-input.md),
 | Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei/7,Atlantis/3,Klondike/0,Siberia/4 treasures |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:audit collected-location notices and investment broker input readers,then
-continue broader gameplay/input coverage.
+Next:finish collected-notice independent replay/device acceptance,then restore
+the broker confirmation reader. Broker overlay10's50-read wait and conditional
+click are verified against42 original/prepared/Ghidra bytes;implementation is
+pending. Continue broader gameplay/input coverage afterward.
 Cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
 arbitrary-route finishability remain incomplete. Hard is deferred;its earlier
@@ -100,8 +114,13 @@ MZ/EXEPACK,x86 little-endian16 real mode,overlays,no extender. Analysis images
 contain actual game code with documented transformations and are never run.
 
 ```sh
-# Validate saved current-runtime evidence and source:
-node scripts/verify-sound-toggle-acceptance.js
+# Source and focused checks for current notice work:
+node scripts/verify-visit-input-source.js
+node scripts/verify-broker-input-source.js
+node --test scripts/visit-input.test.js tests/visits.test.js
+node scripts/verify-collected-notice-browser.js --output=.local/notice-replay-FRESH
+node scripts/verify-visit-input-setup-negative.js
+# Existing source proofs:
 node scripts/verify-sound-toggle-source.js
 node scripts/verify-sound-toggle-setup-negative.js
 node scripts/verify-repair-input-source.js

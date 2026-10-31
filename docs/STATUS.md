@@ -4,10 +4,11 @@ Updated2026-10-31. **The whole game is incomplete.** Cave entry now restores
 both original wipe call sites and the second-page striped reveal,and restores
 the cached room in the normal input loop without extra composition. Focused browser
 and source/component checks pass; runtime loading now charges counted resident decode/conversion work.
-Initial preparation and remaining loader/system work are still omitted.
-The source-pinned ten-check startup/loading gate passes,including220 unit cases,
-actual browser controls and the loading-only negative. Whole-cave timing still
-fails. [Scope](cave-startup-order.md),[receipt](../reference/cave-startup-order-admission.json).
+Initial map/sprite loading is now staged and charged;parser CPU and remaining
+loader/system costs are still omitted.
+The earlier ten-check gate belongs to its earlier runtime. The new12-check
+initialization gate is pending;221 units,55 resource work cases and16 carried
+initial segments pass. Whole-cave timing still fails. [Scope](cave-initialization.md).
 The last full Standard campaign/replay passed before these cave changes.
 Its strict combined gate now correctly rejects the changed runtime; a fresh
 whole-campaign admission remains required. Hard campaigns remain deferred.
@@ -133,7 +134,8 @@ The natural background0 load now passes85 conditional driver counts and all32000
 original planar bytes,with three negatives. [Background](cave-background-load.md).
 The integrated model covers46 sprites plus the picture and now schedules runtime
 loads,torch replacements,background0 and composition overlays. Original
-DOS/interrupt/allocator work is not fully admitted;initial preparation is untimed.
+DOS/interrupt/allocator work is not fully admitted. Initial preparation now
+charges byte/graphics decode and minimap work at its source boundaries.
 Cave entry now executes initial and per-room wipes,each five bands/five retraces,
 and reveals the second room page without swapping page roles. The existing actual
 browser cave scenario passes;focused tests check50 first-entry wipe retraces and25
@@ -153,9 +155,11 @@ the strict timing/final-state probe still fails. The browser observes actual
 background/passage loading waits. [Loading scope](cave-counted-loading.md).
 Sound0 now precedes the initial wipe,followed by its input flush;torch selection
 now precedes loading. Exact263-byte/86-instruction source proof and focused
-conditional tests pass. Initial preparation remains untimed.
-Next:restore initial preparation loading and investigate the remaining original
-loader/system cost,then refresh full browser campaign acceptance. Do not fit delays.
+conditional tests pass. Initial map and sprite loading is now staged;enemy RNG
+occurs after minimap completion. All8 maps/default and optional load paths pass
+16 carried component cases. [Initialization](cave-initialization.md).
+Next:refresh the complete Standard winning browser campaign and independent
+replay before further residual loader/system timing work. Do not fit delays.
 Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability

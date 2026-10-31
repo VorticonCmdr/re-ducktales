@@ -96,6 +96,7 @@ async function resources() {
     entries: archives.get("EXP.ARC"),
     font: archives.get("MAIN.ARC")[42].data,
     maps: parseCaveMaps(archives.get("CAVEMAPS.ARC")),
+    mapEntries: archives.get("CAVEMAPS.ARC"),
   };
 }
 if (mode === "capture") {

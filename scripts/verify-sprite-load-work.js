@@ -6,14 +6,18 @@ import { execFileSync } from "node:child_process";
 import { originalGame } from "../tests/helpers/original-game.js";
 import {
   lzwSpriteLoadWork,
+  lzwByteLoadWork,
   egaSpriteConversionWork,
   egaGraphicsConversionWork,
 } from "../src/game/sprite-load-work.js";
 import { normalCoreGraphicsMilliseconds } from "../src/game/ega-work.js";
-import { graphicsLoadWork } from "../src/game/graphics-load-work.js";
+import {
+  graphicsLoadWork,
+  byteLoadWork,
+} from "../src/game/graphics-load-work.js";
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const manifest = JSON.parse(
-  await readFile("reference/sprite-load-work-source.json"),
+  await readFile("reference/cave-initialization-work-source.json"),
 );
 assert.equal(manifest.kind, "original-lzw-ega-sprite-work-source");
 assert.equal(manifest.nativeTimingAcceptance, false);
@@ -23,6 +27,7 @@ async function artifact(spec) {
   assert.equal(sha(b), spec.sha256);
   return JSON.parse(b);
 }
+await artifact(manifest.previousWorkSource);
 await artifact(manifest.build);
 await artifact(manifest.nativeParent);
 await artifact(manifest.backgroundParent);
@@ -90,7 +95,7 @@ const count = (a, b) =>
 assert.equal(instructions.find((i) => i.at === 0x134a).bytes, "75b5"); //Backedge1301 repeats LEADI for BOTH nibbles.
 assert.equal(instructions.find((i) => i.at === 0x1075).bytes, "8ec0"); //MOV ES,AX;tool text reverses operands,bytes authoritative.
 // Independent whole-string dictionary oracle,not the native prefix-chain model.
-function oracle(packed) {
+function oracle(packed, byteOutput = false) {
   let dictionary,
     previous = null,
     width = 9,
@@ -189,17 +194,20 @@ function oracle(packed) {
     loops * 3 +
     1 +
     (loops - 1) * 2 +
-    stats.clears * count(0xf80, 0xfad) +
+    stats.clears *
+      (byteOutput
+        ? count(0xf80, 0xfa8) + count(0xfad, 0xfb0)
+        : count(0xf80, 0xfad)) +
     normal *
       (count(0xfb0, 0xfc0) +
         2 +
         count(0xff1, 0x100b) +
-        1 +
+        (byteOutput ? 0 : 1) +
         count(0x101b, 0x1052) +
         1) +
     stats.specials * count(0xfc0, 0xfce) +
     stats.dictionarySteps * (2 + count(0xfd6, 0xff1)) +
-    normalBytes * 5 +
+    normalBytes * (byteOutput ? count(0x1017, 0x101b) : count(0x100b, 0x1015)) +
     thresholdChecks * 2 +
     stats.widthChanges * 2;
   return {
@@ -267,7 +275,11 @@ for (const entry of archives.get("EXP.ARC")) {
     assert.equal(lzw[field], value, `LZW${entry.index} ${field}`);
   const converted = egaGraphicsConversionWork(entry),
     expectedCount = conversionCount(entry);
-  assert.equal(Buffer.compare(entry.packedData, packed), 0, "Original packed bytes retained");
+  assert.equal(
+    Buffer.compare(entry.packedData, packed),
+    0,
+    "Original packed bytes retained",
+  );
   const runtime = graphicsLoadWork(entry);
   assert.equal(runtime.instructions, lzw.instructions + expectedCount);
   assert.equal(runtime.repeatOpcodes, lzw.repeatOpcodes);
@@ -334,6 +346,25 @@ assert.equal(cases, manifest.expectedSprites);
 assert.equal(cases, 46);
 assert.equal(pictures, manifest.expectedPictures);
 assert.equal(pictures, 1);
+let maps = 0;
+for (const entry of archives.get("CAVEMAPS.ARC")) {
+  assert.equal(entry.type, 4);
+  const actual = lzwByteLoadWork(entry.packedData, entry.data.length),
+    expected = oracle(entry.packedData, true);
+  assert.equal(
+    Buffer.compare(actual.decoded, entry.data),
+    0,
+    "Original map text decoded bytes",
+  );
+  for (const [field, value] of Object.entries(expected))
+    assert.equal(actual[field], value, "Map byte LZW " + field);
+  const runtime = byteLoadWork(entry);
+  assert.equal(runtime.instructions, expected.instructions);
+  assert.equal(runtime.planarBytes, 0);
+  maps++;
+}
+assert.equal(maps, manifest.expectedMaps);
+assert.equal(maps, 8);
 assert.ok(native && background);
 assert.throws(
   () => lzwSpriteLoadWork(Uint8Array.of(0, 0), 2),
@@ -346,13 +377,48 @@ assert.throws(
 );
 negatives++;
 const entry = archives.get("EXP.ARC")[10];
-assert.throws(() => graphicsLoadWork({ ...entry, packedData: undefined }), /Missing original packed/);
-assert.throws(() => graphicsLoadWork({ ...entry, packedSize: entry.packedSize + 1 }), /Missing original packed/);
+assert.throws(
+  () => graphicsLoadWork({ ...entry, packedData: undefined }),
+  /Missing original packed/,
+);
+assert.throws(
+  () => graphicsLoadWork({ ...entry, packedSize: entry.packedSize + 1 }),
+  /Missing original packed/,
+);
 const altered = Uint8Array.from(entry.data);
 altered[0] ^= 1;
-assert.throws(() => graphicsLoadWork({ ...entry, data: altered }), /payload differs/);
+assert.throws(
+  () => graphicsLoadWork({ ...entry, data: altered }),
+  /payload differs/,
+);
 negatives += 3;
-assert.equal(negatives, 10);
+const map = archives.get("CAVEMAPS.ARC")[0],
+  expectedMap = oracle(map.packedData, true);
+assert.throws(
+  () =>
+    assert.equal(
+      lzwSpriteLoadWork(map.packedData, map.data.length).instructions,
+      expectedMap.instructions,
+      "Wrong text output path",
+    ),
+  /Wrong text output path/,
+);
+assert.throws(
+  () => byteLoadWork({ ...map, packedData: undefined }),
+  /Missing original packed byte/,
+);
+const wrongText = Uint8Array.from(map.data);
+wrongText[0] ^= 1;
+assert.throws(
+  () => byteLoadWork({ ...map, data: wrongText }),
+  /payload differs/,
+);
+assert.throws(
+  () => byteLoadWork({ ...map, type: 1 }),
+  /Missing original packed byte/,
+);
+negatives += 4;
+assert.equal(negatives, 14);
 console.log(
   JSON.stringify(
     {
@@ -360,6 +426,7 @@ console.log(
       originalBytes: 780,
       spriteCases: cases,
       pictureCases: pictures,
+      mapCases: maps,
       negativeControls: negatives,
       native,
       background,

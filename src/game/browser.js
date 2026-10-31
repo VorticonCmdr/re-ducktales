@@ -152,6 +152,7 @@ async function load(read) {
         image: resources.executable,
         entries: resources.archives.get("EXP.ARC"),
         maps: parseCaveMaps(resources.archives.get("CAVEMAPS.ARC")),
+        mapEntries: resources.archives.get("CAVEMAPS.ARC"),
         clues: resources.archives.get("CLUES.ARC"),
         mountainEntries: resources.archives.get("MT.ARC"),
         jungleEntries: resources.archives.get("JG.ARC"),

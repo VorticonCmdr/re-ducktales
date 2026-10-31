@@ -1,6 +1,9 @@
 // Original resident LZW0efd..1070,bit reader1071..10e7 and EGA converter
 // 10e8..112a/12f0..13cd. Source work only;no clock or native timer inputs.
-export function lzwGraphicsLoadWork(packed, expectedSize) {
+export function lzwLoadWork(packed, expectedSize, output) {
+  if (!["graphics", "bytes"].includes(output))
+    throw Error("Unsupported original LZW output mode");
+  const graphics = output === "graphics";
   if (
     !(packed instanceof Uint8Array) ||
     packed.length < 2 ||
@@ -72,7 +75,7 @@ export function lzwGraphicsLoadWork(packed, expectedSize) {
       const literal = readCode();
       if (literal > 255)
         throw Error("Unsupported original LZW clear/literal sequence");
-      instructions += 12; //0f80..0fab,sprite branch incl.converter CALL.
+      instructions += 12; //0f80..0fa6 then converter CALL/JMP or STOSB/JMP.
       if (written >= expectedSize)
         throw Error("Original sprite LZW output overflow");
       decoded[written++] = literal;
@@ -102,7 +105,9 @@ export function lzwGraphicsLoadWork(packed, expectedSize) {
     instructions += 2 + 9; //last0fce/0fd4 test;0ff1..1009.
     first = current;
     stack.push(first);
-    instructions += stack.length * 5 + 1 + 17; //100b..1013,1015,101b..1050.
+    // Graphics:POP/MOV/CALL/MOV/LOOP then JMP1015. Bytes:POP/STOSB/LOOP
+    // at1017..1019,falling straight into101b.
+    instructions += stack.length * (graphics ? 5 : 3) + (graphics ? 1 : 0) + 17;
     for (let i = stack.length - 1; i >= 0; i--) {
       if (written >= expectedSize)
         throw Error("Original sprite LZW output overflow");
@@ -194,6 +199,12 @@ export function egaGraphicsConversionWork(entry) {
 }
 
 // Existing sprite-only callers retain an explicit type guard.
+export function lzwGraphicsLoadWork(packed, expectedSize) {
+  return lzwLoadWork(packed, expectedSize, "graphics");
+}
+export function lzwByteLoadWork(packed, expectedSize) {
+  return lzwLoadWork(packed, expectedSize, "bytes");
+}
 export const lzwSpriteLoadWork = lzwGraphicsLoadWork;
 export function egaSpriteConversionWork(entry) {
   if (entry?.type !== 2)

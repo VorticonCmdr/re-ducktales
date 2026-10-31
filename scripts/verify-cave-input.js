@@ -227,6 +227,7 @@ const resources = {
   image,
   entries: parseArchive(files["EXP.ARC"]),
   maps: parseCaveMaps(parseArchive(files["CAVEMAPS.ARC"])),
+  mapEntries: parseArchive(files["CAVEMAPS.ARC"]),
 };
 function replay({ dropPause = false, dropClock = false } = {}) {
   const g = new Game({

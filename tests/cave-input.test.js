@@ -21,6 +21,7 @@ const resources = {
   image: unpackImage(await supported("DUCKTALE.EXE")),
   entries: parseArchive(await supported("EXP.ARC")),
   maps: parseCaveMaps(parseArchive(await supported("CAVEMAPS.ARC"))),
+  mapEntries: parseArchive(await supported("CAVEMAPS.ARC")),
 };
 const locations = parseLocations(parseArchive(await supported("LOC.ARC"))),
   loot = parseLoot(parseArchive(await supported("LOOT.ARC")));

@@ -44,6 +44,7 @@ export async function originalGame({ physicalKeyboard = false } = {}) {
       image,
       entries: a("EXP.ARC"),
       maps: parseCaveMaps(a("CAVEMAPS.ARC")),
+      mapEntries: a("CAVEMAPS.ARC"),
       clues: a("CLUES.ARC"),
       mountainEntries: a("MT.ARC"),
       jungleEntries: a("JG.ARC"),

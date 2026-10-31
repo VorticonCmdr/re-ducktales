@@ -197,6 +197,7 @@ export async function verifyVisits() {
       image: unpackImage(raw["DUCKTALE.EXE"]),
       entries: parseArchive(raw["EXP.ARC"]),
       maps: parseCaveMaps(parseArchive(raw["CAVEMAPS.ARC"])),
+      mapEntries: parseArchive(raw["CAVEMAPS.ARC"]),
       clues: parseArchive(raw["CLUES.ARC"]),
     },
   };

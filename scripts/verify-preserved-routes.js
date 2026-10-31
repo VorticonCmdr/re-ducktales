@@ -93,6 +93,7 @@ try {
       entries: archives.get("EXP.ARC"),
       font: archives.get("MAIN.ARC")[42].data,
       maps: parseCaveMaps(archives.get("CAVEMAPS.ARC")),
+      mapEntries: archives.get("CAVEMAPS.ARC"),
     };
   const inputs = await json(caves.captureRoot + "/component-inputs.json"),
     expected = await json(caves.captureRoot + "/component-checkpoints.json");

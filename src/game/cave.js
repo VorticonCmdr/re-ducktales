@@ -18,7 +18,7 @@ import {
 } from "./cave-runtime-work.js";
 import { caveEndings } from "./cave-endings.js";
 import { caveTransition } from "./cave-transitions.js";
-import { graphicsLoadWork } from "./graphics-load-work.js";
+import { graphicsLoadWork, byteLoadWork } from "./graphics-load-work.js";
 // Overlay6:09a9..0a81 and0d62/0ec8/0f5a/0fef mask five bits and
 // group the diagonal on each cardinal's clockwise side with that cardinal.
 export function caveDirectionFromByte(byte) {
@@ -366,7 +366,21 @@ export class Cave {
     const work = graphicsLoadWork(this.entries[id]);
     this.lastLoadingWork = work;
     this.lastDrawingWork = { kind: "load", ...work };
-    yield { clock: "graphics", remaining: 1, until: this.now() + work.milliseconds };
+    yield {
+      clock: "graphics",
+      remaining: 1,
+      until: this.now() + work.milliseconds,
+    };
+  }
+  *loadMapWork(entry) {
+    const work = byteLoadWork(entry);
+    this.lastLoadingWork = work;
+    this.lastDrawingWork = { kind: "load", ...work };
+    yield {
+      clock: "graphics",
+      remaining: 1,
+      until: this.now() + work.milliseconds,
+    };
   }
   *load(id, x, y) {
     const at = loadCaveSprite(this.memory, this.entries, id);
@@ -416,7 +430,14 @@ export class Cave {
       this.current = [];
       for (let y = 0; y < 200; y++)
         if (y % 5 <= band)
-          this.current.push({ op: "fill", x: 0, y, width: 320, height: 1, color: 0 });
+          this.current.push({
+            op: "fill",
+            x: 0,
+            y,
+            width: 320,
+            height: 1,
+            color: 0,
+          });
       this.presentationMode = "overlay";
       this.presentationTransition = { kind: "wipe", band };
       this.buffers[1 - this.drawIndex] = this.current;
@@ -548,14 +569,20 @@ export class Cave {
   }
   *run() {
     const m = this.memory;
-    const work = caveInitialMinimapWork(m, this.entries);
-    this.initialDrawingWork = work;
-    this.lastDrawingWork = { kind: "initial-minimap", ...work };
-    yield {
-      clock: "graphics",
-      remaining: 1,
-      until: this.now() + work.milliseconds,
-    };
+    for (const stage of this.initialization) {
+      if (stage.kind === "map-load") yield* this.loadMapWork(stage.entry);
+      else if (stage.kind === "sprite-load") yield* this.loadWork(stage.asset);
+      else if (stage.kind === "initial-minimap") {
+        const work = caveInitialMinimapWork(m, this.entries);
+        this.initialDrawingWork = work;
+        this.lastDrawingWork = { kind: "initial-minimap", ...work };
+        yield {
+          clock: "graphics",
+          remaining: 1,
+          until: this.now() + work.milliseconds,
+        };
+      } else throw Error("Unsupported cave initialization stage");
+    }
     this.sound(0);
     yield* this.wipe(); // Overlay0491; the first room also executes057e.
     this.flushInput(); // Main0495,after the uninterruptible initial wipe.

@@ -76,10 +76,25 @@ export function loadCaveSprite(m, entries, asset) {
   return at;
 }
 export function prepareCave(
-  { image, entries, maps, variant, difficulty, seed, money, currentDrive = 2 },
+  {
+    image,
+    entries,
+    maps,
+    mapEntries,
+    variant,
+    difficulty,
+    seed,
+    money,
+    currentDrive = 2,
+  },
   previousMemory,
 ) {
-  if (image?.length !== 87664 || entries?.length !== 47 || maps?.length !== 8)
+  if (
+    image?.length !== 87664 ||
+    entries?.length !== 47 ||
+    maps?.length !== 8 ||
+    mapEntries?.length !== 8
+  )
     throw Error("Missing supported cave resources");
   if (
     ![0, 1, 2].includes(difficulty) ||
@@ -91,6 +106,11 @@ export function prepareCave(
     seed > 65535
   )
     throw Error("Invalid cave starting contract");
+  if (!(maps[variant] instanceof Uint16Array) || maps[variant].length !== 64)
+    throw Error("Missing supported cave map table");
+  const parsedMap = parseCaveMaps(mapEntries)[variant];
+  if (parsedMap.some((cell, i) => cell !== maps[variant][i]))
+    throw Error("Cave map table differs from original map resource");
   const bytes = new Uint8Array(65536);
   bytes.set(image.subarray(0x120e0));
   const m = previousMemory ?? new FlightMemory(bytes);
@@ -105,42 +125,45 @@ export function prepareCave(
   if (currentDrive < 2) m.b(0x5d2b, 1);
   m.b(0x3c1, 0);
   m.b(0x546a, 0);
+  return {
+    memory: m,
+    entries,
+    enemyInterval: [20, 16, 7][difficulty],
+    initialization: initializeCave(
+      m,
+      entries,
+      maps,
+      mapEntries,
+      variant,
+      difficulty,
+    ),
+  };
+}
+function* initializeCave(m, entries, maps, mapEntries, variant, difficulty) {
+  // Main clears the map before loading/parsing its selected byte resource.
+  for (let i = 0; i < 64; i++) m.i(0x5a42 + i * 2, 0);
+  yield { kind: "map-load", entry: mapEntries[variant] };
   maps[variant].forEach((cell, i) => m.i(0x5a42 + i * 2, cell));
-  for (const asset of [
-    17,
-    ...(m.b(0x5d2b) ? [18, 19, 20, 21] : []),
-    4,
-    5,
-    6,
-    3,
-    22,
-    23,
-    26,
-    37,
-    38,
-    39,
-    40,
-    41,
-    42,
-    43,
-    14,
-  ])
-    loadCaveSprite(m, entries, asset);
-  for (const [at, x, y] of [
-    [0x79de, 82, 38],
-    [0x54da, 220, 40],
-    [0x8ef2, 0, 144],
-    [0x9780, 240, 122],
-    [0x4d38, 40, 24],
-    [0x9738, 71, 141],
-    [0x9584, 176, 110],
-    [0x88fa, 141, 3],
-    [0x5c5c, 112, 137],
-    [0x5b10, 160, 115],
-  ]) {
-    m.i(at, x);
-    m.i(at + 2, y);
+  function* sprite(asset, x, y) {
+    const at = loadCaveSprite(m, entries, asset);
+    yield { kind: "sprite-load", asset };
+    if (x !== undefined) m.i(at, x);
+    if (y !== undefined) m.i(at + 2, y);
   }
+  yield* sprite(17, 82, 38);
+  if (m.b(0x5d2b)) for (const asset of [18, 19, 20, 21]) yield* sprite(asset);
+  for (const [asset, x, y] of [
+    [4, 220, 40],
+    [5, 0, 144],
+    [6, 240, 122],
+    [3, 40, 24],
+    [22, 71, 141],
+    [23, 176, 110],
+    [26, 141, 3],
+    [37, 112, 137],
+  ])
+    yield* sprite(asset, x, y);
+  for (const asset of [38, 39, 40, 41, 42, 43]) yield* sprite(asset);
   for (const [at, x, y] of [
     [0x6cf0, 16, 65],
     [0x6d70, 28, 43],
@@ -151,7 +174,11 @@ export function prepareCave(
     m.i(at, 82 + x);
     m.i(at + 2, 38 + y);
   }
+  m.i(0x5b10, 160);
+  m.i(0x5b12, 115);
+  yield* sprite(14);
   m.i(0x4e28, 14);
+  yield { kind: "initial-minimap" };
   for (let i = 0; i < 64; i++) {
     const value = m.i(0x5a42 + i * 2);
     if (value & 32) m.i(0x97b0, i);
@@ -166,7 +193,6 @@ export function prepareCave(
   m.b(0x6f14, 0);
   m.i(0x54ac, [64, 48, 32][difficulty]);
   m.i(0x8b3e, m.i(0x54ac) >> 2);
-  return { memory: m, entries, enemyInterval: [20, 16, 7][difficulty] };
 }
 export function caveDistance(a, b) {
   return Math.abs((a >> 3) - (b >> 3)) + Math.abs((a & 7) - (b & 7));

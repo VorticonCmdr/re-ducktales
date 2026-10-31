@@ -33,24 +33,27 @@ function run(name, executable, args, patterns, extra = {}) {
 }
 let accepted = false;
 try {
-  run("work", process.execPath, ["scripts/verify-sprite-load-work.js"], [/"spriteCases": 46/, /"pictureCases": 1/, /"negativeControls": 10/]);
+  run("work", process.execPath, ["scripts/verify-sprite-load-work.js"], [/"spriteCases": 46/, /"pictureCases": 1/, /"mapCases": 8/, /"negativeControls": 14/]);
   run("boundaries", "python3", ["scripts/verify_cave_load_boundaries.py"], [/1075 original bytes\/396 instructions/, /2 negatives/]);
   run("startup-order", "python3", ["scripts/verify_cave_startup_order.py"], [/263 original bytes\/86 instructions/, /2 negatives/]);
+  run("initialization", "python3", ["scripts/verify_cave_initialization_source.py"], [/1086 original bytes\/350 contiguous instructions/, /2 negatives/]);
+  run("initialization-segment", process.execPath, ["scripts/verify-cave-initialization.js"], [/"executedCases": 16/, /"negatives": 2/]);
   run("sequence", process.execPath, ["scripts/verify-cave-load-sequence.js"], [/4 original phase states\/all9 fields/, /3 negatives/]);
   run("passages", process.execPath, ["scripts/verify-cave-passage-order.js"], [/historical ordering negative rejected/]);
   run("routes", process.execPath, ["scripts/verify-cave.js"], [/6 conditional original checkpoints/, /4 independent shortened-path outcomes/]);
   const tests = (await readdir("tests")).filter(p => p.endsWith(".test.js")).sort().map(p => "tests/" + p);
-  run("unit", process.execPath, ["--test", "--test-reporter=tap", ...tests], [/# tests 220\b/, /# pass 220\b/, /# fail 0\b/, /# skipped 0\b/]);
+  run("unit", process.execPath, ["--test", "--test-reporter=tap", ...tests], [/# tests 221\b/, /# pass 221\b/, /# fail 0\b/, /# skipped 0\b/]);
   run("browser", process.execPath, ["node_modules/@playwright/test/cli.js", "test", "tests/browser/cave-input.spec.js", "--config", "playwright.campaign.config.js", "--output=" + output + "/browser"], [/1 passed/]);
   run("loading-negative", process.execPath, ["scripts/verify-cave-loading-browser-negative.js"], [/retained work counters without actual loader waits rejected/], { DUCKTALES_CAVE_LOADING_VERIFICATION_ROOT: output + "/negative" });
   run("build", process.execPath, ["node_modules/vite/bin/vite.js", "build"], [/built in/]);
-  assert.equal(checks.length, 10, "Unfinished required checks");
+  assert.equal(checks.length, 12, "Unfinished required checks");
   for (const p of paths) assert.equal(sha(await readFile(p)), files[p], "Source changed during verification:" + p);
   assert.equal(execFileSync("git", ["status", "--porcelain"], { encoding: "utf8" }).trim(), "", "Source changed during verification");
   accepted = true;
 } finally {
   await writeFile(output + "/acceptance-status.json", JSON.stringify({ kind: "cave-counted-loading-scoped-admission", accepted,
     commit, checks, wholeCaveTimingAccepted: false, wholeCampaignAccepted: false,
-    initialPreparationTimed: false, sourceArchiveSHA256: sha(archive) }, null, 2) + "\n");
+    initialPreparationTimed: true, initialPreparationTimingScope: "resident-decode-and-graphics-work-only",
+    completeInitializationTimingAccepted: false, sourceArchiveSHA256: sha(archive) }, null, 2) + "\n");
 }
 console.log("Scoped cave counted loading accepted;complete original timing and fresh full campaign replay remain open.");

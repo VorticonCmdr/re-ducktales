@@ -62,6 +62,7 @@ port = new Cave(
     image,
     entries: archives.get("EXP.ARC"),
     maps: parseCaveMaps(archives.get("CAVEMAPS.ARC")),
+    mapEntries: archives.get("CAVEMAPS.ARC"),
     clock: () => now,
     readInput: () => {
       if (anchor === null) {

@@ -58,7 +58,7 @@ export function compareCave(
   );
   // Align with the original after-party boundary; instruction work precedes
   // the first pending page and is not supplied by an expected timer value.
-  for (let i = 0; i < 1000 && !cave.pending; i++) {
+  for (let i = 0; i < 4000 && !cave.pending; i++) {
     cave.advanceTick();
     // Entry now executes the original two25-retrace wipes. Do not inject
     // their completion or derive elapsed time from the expected checkpoint.
@@ -126,6 +126,7 @@ export async function verifyCave() {
     image: unpackImage(raw["DUCKTALE.EXE"]),
     entries: parseArchive(raw["EXP.ARC"], "EXP.ARC"),
     maps: parseCaveMaps(parseArchive(raw["CAVEMAPS.ARC"], "CAVEMAPS.ARC")),
+    mapEntries: parseArchive(raw["CAVEMAPS.ARC"], "CAVEMAPS.ARC"),
     mainEntries: parseArchive(raw["MAIN.ARC"], "MAIN.ARC"),
     font: parseArchive(raw["MAIN.ARC"], "MAIN.ARC")[42].data,
   };

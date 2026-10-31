@@ -17,6 +17,7 @@ const resources = {
   image,
   entries: archives.get("EXP.ARC"),
   maps: parseCaveMaps(archives.get("CAVEMAPS.ARC")),
+  mapEntries: archives.get("CAVEMAPS.ARC"),
   mainEntries: archives.get("MAIN.ARC"),
   font: archives.get("MAIN.ARC")[42].data,
 };
@@ -39,6 +40,18 @@ for (const p of paths) {
   if (["src/game/cave.js", "src/game/renderer.js"].includes(p)) continue;
   let current = await readFile(p);
   const historical = execFileSync("git", ["show", `${baseline}:${p}`]);
+  if (p === "src/game/cave-scene.js") {
+    // The old class needs its synchronous initializer. Keep this dependency
+    // byte-pinned to its baseline;current staged initialization is checked
+    // separately against original source and carried/browser scenarios.
+    const source = historical.toString().replace(/\bfrom\s+["'](\.[^"']+)["']/g,
+      (all, specifier) => all.replace(specifier, pathToFileURL(resolve("src/game", specifier)).href));
+    historicalModules.set("./cave-scene.js", `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`);
+    continue;
+  }
+  if (p === "src/game/browser.js") {
+    current = Buffer.from(current.toString().replace('        mapEntries: resources.archives.get("CAVEMAPS.ARC"),\n', ""));
+  }
   if (["src/game/cave-endings.js", "src/game/cave-transitions.js"].includes(p)) {
     // Keep the old synchronous load API with the old class. Admit only the
     // explicit generator delegation change in its current callers.

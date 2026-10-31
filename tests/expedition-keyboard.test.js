@@ -22,6 +22,7 @@ const resources = {
   image: unpackImage(original("DUCKTALE.EXE")),
   entries: parseArchive(original("EXP.ARC")),
   maps: parseCaveMaps(parseArchive(original("CAVEMAPS.ARC"))),
+  mapEntries: parseArchive(original("CAVEMAPS.ARC")),
   mountainEntries: parseArchive(original("MT.ARC")),
   jungleEntries: parseArchive(original("JG.ARC")),
   photographyEntries: parseArchive(original("PS.ARC")),

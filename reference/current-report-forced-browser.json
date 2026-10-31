@@ -1,0 +1,284 @@
+{
+  "kind": "report-presentation-browser-candidate",
+  "producer": ".local/report-forced-presentation-01",
+  "reason": "forced",
+  "captureToolRevision": "0a5d994a9569027a4a155a071f2212cff2d97738",
+  "nativeComparison": false,
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "expectedCheckpointCount": 31,
+  "requiredEventCount": 1795,
+  "checkpointNames": [
+    "standard-choice",
+    "office",
+    "departure",
+    "flight-start",
+    "flight-return",
+    "cave-entry",
+    "room-10",
+    "room-18",
+    "room-26",
+    "room-27",
+    "room-19",
+    "room-11",
+    "room-12",
+    "room-13",
+    "room-14",
+    "award",
+    "dialogue-16",
+    "dialogue-17",
+    "dialogue-18",
+    "map-after-cave",
+    "bank-deposited",
+    "dialogue-21",
+    "map-after-bank",
+    "safari-departure-0",
+    "safari-flight-return-0",
+    "forced-entry",
+    "forced-ready",
+    "pause",
+    "resumed",
+    "forced-exit",
+    "map"
+  ],
+  "startingRecipe": "Fresh Standard startup and earned Too-Pei cave,bank deposit,then actual first Safari flight naturally loses its race. Early P/Q/S/Fire are flushed by the forced claim;fresh Pause/resume,Fire,map and Restart. No state injection. All intermediate report frames also compared exactly.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "audioEnabled": false,
+    "difficulty": 1
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "comparison": {
+    "state": "exact complete public snapshot",
+    "pixels": "exact decoded RGBA",
+    "exclusions": []
+  },
+  "artifacts": {
+    "award.png": {
+      "path": ".local/report-forced-presentation-01/award.png",
+      "bytes": 43543,
+      "sha256": "c24587c7c0c96a3a717df0b5a5b91a21fb204173ce4f6134fbd3816c2b2208fd"
+    },
+    "bank-deposited.png": {
+      "path": ".local/report-forced-presentation-01/bank-deposited.png",
+      "bytes": 29043,
+      "sha256": "c137a6b1a786b3ac272b8190cd96b31a4279bfa8f41bf74b1b268b9a2f399983"
+    },
+    "campaign-checkpoints.json": {
+      "path": ".local/report-forced-presentation-01/campaign-checkpoints.json",
+      "bytes": 194745,
+      "sha256": "8a992ada15d0f3b817eb19b06494f3bd04cbe98c5ce6c0c587a0efd4194f24a7"
+    },
+    "captured-events.json": {
+      "path": ".local/report-forced-presentation-01/captured-events.json",
+      "bytes": 216058,
+      "sha256": "f851642c9acb1da5ad948fefd8cc476703e5991e765aaf012ce9540801697136"
+    },
+    "cave-entry.png": {
+      "path": ".local/report-forced-presentation-01/cave-entry.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "cave-player-plan.json": {
+      "path": ".local/report-forced-presentation-01/cave-player-plan.json",
+      "bytes": 1277,
+      "sha256": "761e9b3d6f1e6ee376a973eb66993e11003491754be118d52efb13aa9954b9f7"
+    },
+    "departure.png": {
+      "path": ".local/report-forced-presentation-01/departure.png",
+      "bytes": 12792,
+      "sha256": "ae4cfb4f64eff8539019af6fd1b017ebcf7943b0b36fd1b36f373772e6f47037"
+    },
+    "dialogue-16.png": {
+      "path": ".local/report-forced-presentation-01/dialogue-16.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "dialogue-17.png": {
+      "path": ".local/report-forced-presentation-01/dialogue-17.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    },
+    "dialogue-18.png": {
+      "path": ".local/report-forced-presentation-01/dialogue-18.png",
+      "bytes": 15495,
+      "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+    },
+    "dialogue-21.png": {
+      "path": ".local/report-forced-presentation-01/dialogue-21.png",
+      "bytes": 15709,
+      "sha256": "8aeb77b045929260e11c6fbdc29d8805944538d3d0bd55efb7814e044e725262"
+    },
+    "environment.json": {
+      "path": ".local/report-forced-presentation-01/environment.json",
+      "bytes": 329,
+      "sha256": "be7b089a4d769f3a22cafa4e56df9297f0a7063164e85bc39206e3b55d9db6c2"
+    },
+    "exploration-status.json": {
+      "path": ".local/report-forced-presentation-01/exploration-status.json",
+      "bytes": 216,
+      "sha256": "e3ff4d976acc92d006f48843d2253db8a72660342b2eb014f9ae42e5f4cb4bdb"
+    },
+    "flight-controls.json": {
+      "path": ".local/report-forced-presentation-01/flight-controls.json",
+      "bytes": 200753,
+      "sha256": "93c2988f96d204fb96485671da1df720c69d9de94d90612ef21692e21d50ad67"
+    },
+    "flight-return.png": {
+      "path": ".local/report-forced-presentation-01/flight-return.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "flight-start.png": {
+      "path": ".local/report-forced-presentation-01/flight-start.png",
+      "bytes": 9956,
+      "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
+    },
+    "forced-entry.png": {
+      "path": ".local/report-forced-presentation-01/forced-entry.png",
+      "bytes": 8882,
+      "sha256": "28d237c779526088ae9cadcb6ce7fc0929395d8e489441af74d59e2dec61f745"
+    },
+    "forced-exit.png": {
+      "path": ".local/report-forced-presentation-01/forced-exit.png",
+      "bytes": 16607,
+      "sha256": "97206a2aa2e76d896dd4a5b8d4fc1041159c33c2e1cbefe6a55a7b701483c302"
+    },
+    "forced-ready.png": {
+      "path": ".local/report-forced-presentation-01/forced-ready.png",
+      "bytes": 15779,
+      "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+    },
+    "map-after-bank.png": {
+      "path": ".local/report-forced-presentation-01/map-after-bank.png",
+      "bytes": 27591,
+      "sha256": "50d6ceeda01800c4597e229e81cbf5d8b79dcdc3772925c6ba1b2f6f91239acc"
+    },
+    "map-after-cave.png": {
+      "path": ".local/report-forced-presentation-01/map-after-cave.png",
+      "bytes": 27540,
+      "sha256": "86be55a96982777c03579862cea6b415b928c7381351a9c3db0bd88d7b1b5191"
+    },
+    "map.png": {
+      "path": ".local/report-forced-presentation-01/map.png",
+      "bytes": 27627,
+      "sha256": "a87e332a3bc2cb35c779cd2afdd7d9c4209d1a3e3a0a16a9063a77d3c47da933"
+    },
+    "office.png": {
+      "path": ".local/report-forced-presentation-01/office.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "pause.png": {
+      "path": ".local/report-forced-presentation-01/pause.png",
+      "bytes": 15274,
+      "sha256": "56e53eee1f52b2a86cd11aa3ba6f305b66940d2717e281f729476d4b0e408359"
+    },
+    "presentations.json": {
+      "path": ".local/report-forced-presentation-01/presentations.json",
+      "bytes": 1129487,
+      "sha256": "1e9d0d2f57096078902fb7191c99e592f313828027aaf0bdbe5fdc8e791c7d39"
+    },
+    "resumed.png": {
+      "path": ".local/report-forced-presentation-01/resumed.png",
+      "bytes": 15779,
+      "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+    },
+    "room-10.png": {
+      "path": ".local/report-forced-presentation-01/room-10.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "room-11.png": {
+      "path": ".local/report-forced-presentation-01/room-11.png",
+      "bytes": 43895,
+      "sha256": "8ecaa27d88476f62ee205ed7fb8e1af65895b17047a9313f9ed545b9aa3bf0e8"
+    },
+    "room-12.png": {
+      "path": ".local/report-forced-presentation-01/room-12.png",
+      "bytes": 43141,
+      "sha256": "cc506d9ddff96a021a78e7ddaac84f6cd1a2ea76ae99fb1f7a35f813791bc33c"
+    },
+    "room-13.png": {
+      "path": ".local/report-forced-presentation-01/room-13.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "room-14.png": {
+      "path": ".local/report-forced-presentation-01/room-14.png",
+      "bytes": 42765,
+      "sha256": "0edc1a3aeb5129c8087057d105ae1ef784970722b91f5c5216ec69e9af01c747"
+    },
+    "room-18.png": {
+      "path": ".local/report-forced-presentation-01/room-18.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-19.png": {
+      "path": ".local/report-forced-presentation-01/room-19.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-26.png": {
+      "path": ".local/report-forced-presentation-01/room-26.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-27.png": {
+      "path": ".local/report-forced-presentation-01/room-27.png",
+      "bytes": 41329,
+      "sha256": "aa79312b8822265a12bc53328f88dccc1cb46349de63a5e00fc27eec979d3ca9"
+    },
+    "safari-departure-0.png": {
+      "path": ".local/report-forced-presentation-01/safari-departure-0.png",
+      "bytes": 29034,
+      "sha256": "1b8214dfe4ae83b557027adea95af5bff7ed9062a63a184b9c45278aac87e901"
+    },
+    "safari-flight-controls-0.json": {
+      "path": ".local/report-forced-presentation-01/safari-flight-controls-0.json",
+      "bytes": 456281,
+      "sha256": "74dcadbccf9d69fdea650c63f361d3b64e379818663f88940a1b63a4dd101c14"
+    },
+    "safari-flight-return-0.png": {
+      "path": ".local/report-forced-presentation-01/safari-flight-return-0.png",
+      "bytes": 8882,
+      "sha256": "28d237c779526088ae9cadcb6ce7fc0929395d8e489441af74d59e2dec61f745"
+    },
+    "source-revision.json": {
+      "path": ".local/report-forced-presentation-01/source-revision.json",
+      "bytes": 117874,
+      "sha256": "a494a972d25844efb46271d3c9450b9f767ddbb3cc82217c078871c5a7c16821"
+    },
+    "sources.zip": {
+      "path": ".local/report-forced-presentation-01/sources.zip",
+      "bytes": 3008017,
+      "sha256": "a74a61c198f89c894de96735c08c597bb61b3d7f9ac9a5a1d11058281b8dd8d3"
+    },
+    "standard-choice.png": {
+      "path": ".local/report-forced-presentation-01/standard-choice.png",
+      "bytes": 14258,
+      "sha256": "4c23903a174872221c8b17410f542161681e90c73092133b12189dc0c0e5e5b2"
+    },
+    "timeline.json": {
+      "path": ".local/report-forced-presentation-01/timeline.json",
+      "bytes": 2699,
+      "sha256": "8203ba55b5f7e6f32c0101beacefa9236fa7c2a2fdeaec689b7ddc288e465b66"
+    },
+    "result.json": {
+      "path": ".local/report-forced-presentation-01/exploration-status.json",
+      "bytes": 216,
+      "sha256": "e3ff4d976acc92d006f48843d2253db8a72660342b2eb014f9ae42e5f4cb4bdb"
+    }
+  },
+  "verify": "node scripts/replay-report-presentation-browser.js --manifest=reference/current-report-forced-browser.json --output=.local/current-report-forced-replay-FRESH",
+  "pauseBoundaryName": "forced-ready",
+  "compareReportFrames": true
+}

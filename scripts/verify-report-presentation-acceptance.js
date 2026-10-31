@@ -64,7 +64,7 @@ for (const c of m.cases) {
   assert.deepEqual(candidate.fittedInputs, []);
   assert.deepEqual(candidate.comparison.exclusions, []);
   await checkArtifacts(candidate.artifacts);
-  await current(candidate.producer);
+  await validateProducerArchive(candidate.producer);
   const points = await json(
       candidate.artifacts["campaign-checkpoints.json"].path,
     ),
@@ -92,6 +92,12 @@ for (const c of m.cases) {
   assert.equal(r.semanticNegatives, 1);
   assert.equal(r.restart, true);
   await checkArtifacts(r.artifacts);
+  if (m.intermediateFrameReplay) {
+    assert.equal(candidate.compareReportFrames, true);
+    const frames = await json(candidate.artifacts["presentations.json"].path);
+    assert.ok(frames.length > 0);
+    assert.equal(r.frameComparisons, frames.length);
+  }
   if (c.reason === "forced") {
     assert.equal(candidate.compareReportFrames, true);
     assert.equal(r.frameComparisons, 58);
@@ -107,6 +113,10 @@ for (const c of m.cases) {
   ]);
   const rows = await json(m.artifacts[c.reason + "Rows"].path);
   assert.equal(rows.expectedRowGroups, 45);
+  if (m.intermediateFrameReplay) {
+    assert.equal(rows.frameProducer, c.consumer);
+    assert.equal(rows.incomingReplay, c.consumer);
+  }
   checkpoints += r.checked;
   events += r.consumed;
   groups += rows.expectedRowGroups;
@@ -160,9 +170,11 @@ const units = spawnSync("npm", ["test"], {
   maxBuffer: 8 * 1024 * 1024,
 });
 assert.equal(units.status, 0, units.stdout + units.stderr);
+const unitCases = m.expectedUnitCases ?? 210;
+assert.ok(Number.isInteger(unitCases) && unitCases > 0);
 for (const pattern of [
-  /tests 210\b/,
-  /pass 210\b/,
+  new RegExp(`tests ${unitCases}\\b`),
+  new RegExp(`pass ${unitCases}\\b`),
   /fail 0\b/,
   /skipped 0\b/,
   /cancelled 0\b/,
@@ -181,5 +193,5 @@ const build = spawnSync("npm", ["run", "build"], {
 });
 assert.equal(build.status, 0, build.stdout + build.stderr);
 console.log(
-  "Report acceptance:85 exact state/image checkpoints,2881 independent DOM inputs,135 stripe groups,58 forced-route intermediate frames,3 missing-Pause negatives,5 setup negatives,210 units,21 reader boundaries and build. Actual speaker/Tandy I/O is conditional,not native elapsed-time or waveform parity.",
+  `Report acceptance:85 exact state/image checkpoints,2881 independent DOM inputs,135 stripe groups,${m.intermediateFrameReplay ? 174 : 58} compared intermediate report frames,3 missing-Pause negatives,5 setup negatives,${unitCases} units,21 reader boundaries and build. Actual speaker/Tandy I/O is conditional,not native elapsed-time or waveform parity.`,
 );

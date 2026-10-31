@@ -98,6 +98,7 @@ def capture_safari_cadence(*, client, stop, load, ds, overlay, add, remove,
         {'op':'mem_read','segment':load,'offset':0xa395,'len':129},
         {'op':'mem_read','segment':0,'offset':0xd0,'len':40}]})
     assert not flight_read['aborted'] and all(r['status']=='ok' for r in flight_read['results'])
+    save('safari-flight-code-observed', {'load':load,'segment':overlay,'read':flight_read})
     live_flight = base64.b64decode(flight_read['results'][0]['data'])
     # Only exact transformations by the unchanged original hardware-FPU handler
     # are permitted,at the91 already identified escape sites. No operand mask.
@@ -112,7 +113,7 @@ def capture_safari_cadence(*, client, stop, load, ds, overlay, add, remove,
     assert base64.b64decode(flight_read['results'][1]['data']) == image[0xa395:0xa416]
     vectors = base64.b64decode(flight_read['results'][2]['data'])
     for n in range(10):
-        assert struct.unpack_from('<HH',vectors,n*4) == (0x755 if n<8 else 0x782 if n==8 else 0x78a,load+0x9c4)
+        assert struct.unpack_from('<HH',vectors,n*4) == (0x755 if n==8 else 0x782 if n==9 else 0x78a,load+0x9c4)
     sites = json.loads((root/'reference/flight-input.json').read_text())['runtimeFpuPatchedOffsets']
     assert len(sites) == len(set(sites)) == 91
     patched = []

@@ -49,3 +49,9 @@ PYTHONDONTWRITEBYTECODE=1 DUCKTALES_DOSBOX_MCP_ROOT=/path/to/dosbox-mcp \
 Private port availability is checked
 before launch. Proprietary captures stay ignored. Only the source recipe and
 permitted manifests may be committed.
+
+Attempt01 is excluded:the recipe incorrectly expected handler0755 for INT34..3b.
+The existing original comparison requires078a there,0755 for INT3c and0782 for
+INT3d. The live handler-byte check had passed,but the vector assertion stopped
+setup before any cadence observation. lifecycle.json records owned-process
+shutdown. This is a recipe error,not evidence of a game or emulator defect.

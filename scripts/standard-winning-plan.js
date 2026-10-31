@@ -230,14 +230,29 @@ try {
       "Natural claim/loss/deadline prevented planned cave;not proof of a port defect",
     );
     note("cave-entry-" + target);
-    const plan = planCaveVariant(
-      game.cave.snapshot().rooms,
-      game.briefing.variant,
-    );
-    for (const e of plan.events.slice(1)) {
+    for (let move = 0; move < 48 && game.scene === "cave"; move++) {
       await until((s) => s.scene !== "cave" || s.cave.phase === "exploring");
-      assert.equal(game.scene, "cave");
-      const old = game.cave.room,
+      if (game.scene !== "cave") break;
+      const live = game.cave.snapshot();
+      const map = live.rooms.map((cell) => cell & ~16);
+      map[live.room] |= 16;
+      // Player navigation only:avoid the currently observed enemy and its
+      // adjacent rooms. This never changes the simulation's map or enemy.
+      for (const room of [
+        live.enemy,
+        live.enemy - 8,
+        live.enemy + 8,
+        ...((live.enemy & 7) > 0 ? [live.enemy - 1] : []),
+        ...((live.enemy & 7) < 7 ? [live.enemy + 1] : []),
+      ])
+        if (room >= 0 && room < 64) map[room] |= 64;
+      assert.ok(
+        !(map[live.goal] & 64),
+        "Player cannot safely approach the observed enemy at goal",
+      );
+      const plan = planCaveVariant(map, game.briefing.variant),
+        e = plan.events[1];
+      const old = live.room,
         key = {
           up: "ArrowUp",
           down: "ArrowDown",
@@ -250,6 +265,8 @@ try {
       await page.keyboard.up("Space");
       await page.keyboard.up(key);
       note("cave-room-" + target + "-" + game.cave.room);
+      if (move === 47 && game.scene === "cave")
+        throw Error("Player route exceeded48 moves");
     }
     await until((s) => s.scene !== "cave");
     note("cave-return-" + target);

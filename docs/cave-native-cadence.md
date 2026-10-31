@@ -1,7 +1,8 @@
 # Original cave passage and current divergence
 
-The current cave port has a confirmed passage-order mismatch and a conditional
-timing divergence. Runtime is unchanged in this investigation. The existing
+The85bc2f3 investigation found a passage-order mismatch and a conditional timing
+divergence. The ordering is now [corrected](cave-passage-order.md);timing remains
+open. Runtime was unchanged during the original investigation. The existing
 winning-route acceptance remains evidence for its recorded route,not native cave
 animation timing.
 
@@ -79,7 +80,7 @@ machine restore or browser campaign. An initial disposable diagnostic accidental
 sent makes at the release boundary;it is excluded. The versioned probe sends
 and requires both proper breaks,and reproduces the divergence.
 
-All nine first-input gameplay fields match. The first recorded divergence is
+All nine first-input gameplay fields match. Before the ordering fix,the first recorded divergence was
 the port changing to room46/torch2 at1712.182ms,where the native room change was
 256.827..271.096ms with torch1. The port clears entering at1883.400ms and awards
 $50 at3666.923ms;the original has cash0 through6834ms. This cannot be admitted
@@ -89,11 +90,13 @@ Ghidra `CAVE_CODE.EXE` alias1ce1:02b1..03de supplies106 contiguous instructions,
 302 bytes,all checked against the original cave body after analysis relocation
 bias1000. The right-passage branch increments DS4d32 at02f6 and sets DS8eb2 at02fa,
 then loads the transition resource at0325 and calls exit animation at03d4. The
-current JavaScript instead updates those fields after the exit animation. This
+JavaScript at85bc2f3 instead updated those fields after the exit animation. This
 order mismatch is statically confirmed independently of unknown native clock
 phase. Original resource loading also occurs inside the measured interval;its
-contribution to the timing gap is still unmeasured.
+contribution is now isolated by the loader experiment linked below.
 
-Next:restore passage state ordering,then measure the transition resource-loader
-boundaries and account for the missing work. Re-run this strict probe and the
-affected cave/browser/campaign checks before accepting a runtime change.
+The ordering fix now passes all four passage directions and the browser cave
+scenario. [The loader measurement](cave-loader-work.md) isolates84 conditional
+driver counts for sprite10 alone. The remaining work is to count/schedule original
+loading work and repeat this strict probe and affected campaign checks. A fixed
+delay inferred from these samples is not accepted.

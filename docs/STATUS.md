@@ -2,8 +2,9 @@
 
 Updated2026-10-31. **The whole game is incomplete.** The new cave passage-order
 fix passes focused native/source/component/browser checks,218 units and build.
-The last full Standard winning/report/audio acceptance predates this runtime
-change;fresh full-campaign acceptance is pending. Cave timing,broader route/input
+The fresh Standard browser campaign completes victory,all26 credits and Restart;
+its independent replay is pending. Last full winning/report/audio acceptance
+predates this runtime change. Cave timing,broader route/input
 fidelity and deferred Hard campaigns remain open. Nothing is pushed or deployed.
 
 ## Working route and last full-campaign acceptance
@@ -25,6 +26,9 @@ RNG/money/difficulty patch or image exclusion is used.
 The last combined winning gate passed original ending/credits comparisons,
 source proofs,218 unit cases and production build. Cave runtime has since changed;
 the old capture cannot admit current intermediate states without a fresh run.
+The new `.local/cave-order-winning-browser-01` producer completes183 checkpoints/
+7261 DOM inputs,day31 win34650 to28500 and Restart. It is a completed browser
+capture,not yet independent replay acceptance.
 [Last acceptance](../reference/current-winning-acceptance.json),
 [scenario](../reference/safari-hud-winning-route.json),[history](current-winning-campaign.md).
 
@@ -117,7 +121,13 @@ The source-confirmed room/entry ordering is now corrected and passes all four
 directions/revisit plus an old-class negative and the actual browser cave case.
 [Ordering fix](cave-passage-order.md). No timing correction is accepted yet.
 [Evidence and failing probe](cave-native-cadence.md).
-Next:refresh full-campaign acceptance and measure cave transition loading work.
+The first natural cave sprite10 load is now measured separately:84 conditional
+driver counts (about1.15s),with exact38080-byte native planar output. This cost is
+currently omitted by synchronous browser loading. Original585-byte loader,
+302-byte caller and222-byte converter correspondence pass with three negatives;
+the owned emulator is closed. [Loading evidence](cave-loader-work.md).
+Next:finish independent campaign replay and count original LZW/conversion work
+for cave loads;do not fit delays from observed clocks.
 Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability
@@ -141,6 +151,7 @@ select their own files.
 ```sh
 node scripts/verify-cave-passage-order.js
 node scripts/verify-cave.js
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_loader_profile.py
 # Historical full-route/report receipts need a fresh runtime admission:
 # node scripts/verify-current-winning-acceptance.js
 # node scripts/verify-report-presentation-acceptance.js
@@ -153,7 +164,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_cadence.py
 # Exploratory known divergence;currently exits1,not an acceptance gate:
 node scripts/probe-cave-native-cadence.js
 # Fresh independent winning replay;new ignored output:
-node scripts/verify-standard-wages-route.js --manifest=reference/safari-hud-winning-route.json --output=.local/safari-hud-winning-replay-FRESH
+node scripts/verify-standard-wages-route.js --manifest=reference/cave-order-winning-route.json --output=.local/cave-order-winning-replay-FRESH
 # Fresh scoped Safari browser/source admission:
 node scripts/verify-photography-hud-acceptance.js --output=.local/safari-hud-acceptance-FRESH
 npm run dev

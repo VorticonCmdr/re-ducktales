@@ -30,7 +30,9 @@ export async function replayWinningPrefix({
   assert.ok(checks.length > 0 && m.requiredEventCount > 0);
   assert.equal(checks.length, m.expectedCheckpointCount);
   assert.ok(
-    ["jungle-map", "mountain-map", "bank-25"].includes(m.lastCheckpoint),
+    ["jungle-map", "mountain-map", "bank-25", "cave-21-award-ready"].includes(
+      m.lastCheckpoint,
+    ),
   );
   assert.equal(checks.at(-1).name, m.lastCheckpoint);
   assert.equal(checks.at(-1).at, m.lastAt);
@@ -76,7 +78,17 @@ export async function replayWinningPrefix({
   assert.equal(consumed, m.requiredEventCount);
   assert.equal(
     (await state()).scene,
-    m.lastCheckpoint === "bank-25" ? "bank" : "map",
+    m.lastCheckpoint === "bank-25"
+      ? "bank"
+      : m.lastCheckpoint === "cave-21-award-ready"
+        ? "expedition-result"
+        : "map",
   );
   assert.equal((await state()).difficulty, 1);
+  if (m.lastCheckpoint === "cave-21-award-ready") {
+    const s = await state();
+    assert.equal(s.campaign.location, 21);
+    assert.equal(s.cave.outcome.code, 1);
+    assert.equal(s.expeditionResult.presentation, undefined);
+  }
 }

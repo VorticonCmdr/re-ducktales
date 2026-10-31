@@ -26,6 +26,8 @@ const arg = (k) =>
   source = await archiveSource(root);
 const winning = process.argv.includes("--winning");
 const reportProbe = process.argv.includes("--forced-report");
+const bonusNovay = process.argv.includes("--bonus-novay");
+assert.ok(!bonusNovay || winning, "Novay continuation requires --winning");
 const safari = winning || reportProbe || process.argv.includes("--safari");
 const original = await originalGame();
 const prefixManifest = arg("prefix");
@@ -458,7 +460,14 @@ try {
           afterJungle: !!prefixManifest,
           afterMountain:
             prefixManifest &&
-            (await json(prefixManifest)).lastCheckpoint === "mountain-map",
+            ["mountain-map", "cave-21-award-ready"].includes(
+              (await json(prefixManifest)).lastCheckpoint,
+            ),
+          ...(prefixManifest &&
+          (await json(prefixManifest)).lastCheckpoint === "cave-21-award-ready"
+            ? { caveTargets: [] }
+            : {}),
+          bonusNovay,
         });
         await writeFile(
           root + "/award-presentations.json",
@@ -544,6 +553,7 @@ try {
   await checkSource(
     root,
     (p) =>
+      p === prefixManifest ||
       p.startsWith("src/") ||
       p.startsWith("scripts/") ||
       p.startsWith("tests/") ||
@@ -554,6 +564,7 @@ try {
         "vite.config.js",
         "vite.campaign.config.js",
         "reference/build.json",
+        "reference/novay-player-inputs.json",
       ].includes(p),
   );
   console.log(JSON.stringify(result));

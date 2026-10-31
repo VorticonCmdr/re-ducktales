@@ -244,10 +244,14 @@ export async function continueWinningCampaign({
     assert.equal((await state()).briefing.variant, 1);
     await observe("novay-mountain-entry");
     const recipe = JSON.parse(
-      await readFile("reference/thunderclap-expedition-inputs.json"),
+      await readFile("reference/novay-player-inputs.json"),
     );
-    const inputs = recipe.mountain.flatMap((e) => Array(e.count).fill(e.byte));
-    assert.equal(inputs.length, 494);
+    assert.equal(recipe.kind, "authored-standard-novay-controls");
+    assert.equal((await state()).difficulty, recipe.difficulty);
+    assert.equal(recipe.variant, 1);
+    const inputs = recipe.controls.flatMap((e) => Array(e.count).fill(e.byte));
+    assert.equal(inputs.length, recipe.requiredInputs);
+    assert.equal(inputs.length, 510);
     await play("mountain", inputs, "novay-mountain");
   }
   async function finishBank() {

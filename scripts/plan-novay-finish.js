@@ -13,7 +13,8 @@ const arg = (name) =>
     .find((a) => a.startsWith("--" + name + "="))
     ?.slice(name.length + 3);
 assert.ok(
-  process.argv.includes("--diagnose") && arg("through") === "dialogue-127",
+  process.argv.includes("--diagnose") &&
+    ["dialogue-127", "cave-21-award-ready"].includes(arg("through")),
 );
 const root = await fresh(arg("output")),
   source = await archiveSource(root);
@@ -137,7 +138,9 @@ try {
     nativeComparison: false,
     sourceCommit: source.commit,
     scope:
-      "Conditional extra Novay mountain after replayed startup through dialogue-127;actual browser and independent replay still required",
+      "Conditional extra Novay mountain after exact startup input replay through " +
+      arg("through") +
+      ";actual browser and independent replay still required",
     inputs: events.length,
     checkpoints: points.length,
     ending: final.ending,

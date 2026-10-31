@@ -18,6 +18,8 @@ assert.ok(
   process.argv.includes("--conditional"),
   "Explicit --conditional required",
 );
+const expected = arg("expect");
+assert.ok([undefined, "success", "failure"].includes(expected));
 const root = await fresh(arg("output")),
   source = await archiveSource(root);
 const recipePath = "reference/thunderclap-expedition-inputs.json";
@@ -138,6 +140,23 @@ await writeFile(
   JSON.stringify(points, null, 2) + "\n",
 );
 await writeFile(root + "/result.json", JSON.stringify(result, null, 2) + "\n");
+if (expected === "success") {
+  assert.equal(
+    mountain.outcome?.code,
+    1,
+    "Required successful climb did not finish",
+  );
+  assert.equal(
+    mountain.snapshot().lives,
+    3,
+    "Required no-loss climb lost a life",
+  );
+} else if (expected === "failure")
+  assert.equal(
+    mountain.outcome?.code,
+    0,
+    "Expected failed controls unexpectedly finished",
+  );
 console.log(
   JSON.stringify({
     conditional: true,

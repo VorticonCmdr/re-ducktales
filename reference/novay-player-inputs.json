@@ -1,0 +1,134 @@
+{
+  "kind": "authored-standard-novay-controls",
+  "accepted": false,
+  "nativeComparison": false,
+  "variant": 1,
+  "difficulty": 1,
+  "requiredInputs": 510,
+  "sourceRecipe": {
+    "path": "reference/thunderclap-expedition-inputs.json",
+    "bytes": 1866,
+    "sha256": "27f918fde7178b3287b2f483f85dd97d22f93a24987ba183d0dac1a2fa381247"
+  },
+  "change": "16 neutral action reads before authored read57. Player controls only;no game memory,timer,difficulty or RNG patches.",
+  "conditionalEvidence": ".local/novay-controls-wait-16-01",
+  "limitation": "Passed isolated original-resource zero-phase component with seed27138,day26,money23150 and fresh memory. Carried campaign and actual browser validation still required.",
+  "controls": [
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 7,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 1
+    },
+    {
+      "byte": 64,
+      "count": 22
+    },
+    {
+      "byte": 0,
+      "count": 18
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 2
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 4
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 19
+    },
+    {
+      "byte": 64,
+      "count": 20
+    },
+    {
+      "byte": 0,
+      "count": 27
+    },
+    {
+      "byte": 64,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 28
+    },
+    {
+      "byte": 64,
+      "count": 20
+    },
+    {
+      "byte": 0,
+      "count": 29
+    },
+    {
+      "byte": 64,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 28
+    },
+    {
+      "byte": 64,
+      "count": 20
+    },
+    {
+      "byte": 0,
+      "count": 29
+    },
+    {
+      "byte": 64,
+      "count": 21
+    },
+    {
+      "byte": 0,
+      "count": 79
+    },
+    {
+      "byte": 1,
+      "count": 1
+    },
+    {
+      "byte": 0,
+      "count": 8
+    },
+    {
+      "byte": 64,
+      "count": 18
+    },
+    {
+      "byte": 0,
+      "count": 28
+    },
+    {
+      "byte": 64,
+      "count": 17
+    },
+    {
+      "byte": 0,
+      "count": 29
+    }
+  ]
+}

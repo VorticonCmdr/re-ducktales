@@ -10,7 +10,7 @@ export const RIVAL_UNLOCK = Object.freeze({
   photography: 8,
 });
 
-// Shared original126b claim dialogue:global sound-status/raw Fire loop,then
+// Shared original126b claim dialogue:sound-status/ordinary input loop,then
 // optional09f5(40). The host supplies initial status and completion explicitly.
 export class RivalReport {
   constructor({
@@ -34,6 +34,7 @@ export class RivalReport {
     this.busy = audioEnabled ? null : false;
     this.statusKnown = !audioEnabled;
     this.waitingForAudio = false;
+    this.waitingForSpeechInput = false;
     this.phase = audioEnabled ? "speech" : "dialogue";
     this.polledBusy = false;
     this.pollRemaining = 0;
@@ -89,7 +90,15 @@ export class RivalReport {
         this.wait.begin();
         this.complete = this.wait.complete;
       }
-    } else if (this.skipRequested) {
+    } else this.readSpeechInput();
+  }
+  readSpeechInput() {
+    const ready = this.pollInput(); //1124:0002 also handles P/Q/S here.
+    if (typeof ready !== "boolean")
+      throw Error("Invalid rival input poll result");
+    this.waitingForSpeechInput = !ready;
+    if (!ready) return;
+    if (this.skipRequested) {
       // Raw Fire exits speech without the fallback's click24.
       this.skipRequested = false;
       this.complete = true;
@@ -109,7 +118,9 @@ export class RivalReport {
     this.readSpeech();
   }
   get waitingForInputPoll() {
-    return this.wait?.waitingForInputPoll === true;
+    return (
+      this.waitingForSpeechInput || this.wait?.waitingForInputPoll === true
+    );
   }
   get skipped() {
     return this.wait?.skipped === true;
@@ -117,8 +128,11 @@ export class RivalReport {
   resumeInputPoll() {
     if (!this.waitingForInputPoll)
       throw Error("Rival resumed outside input reader");
-    this.wait.resumeInputPoll();
-    this.complete = this.wait.complete;
+    if (this.waitingForSpeechInput) this.readSpeechInput();
+    else {
+      this.wait.resumeInputPoll();
+      this.complete = this.wait.complete;
+    }
   }
   advanceTick() {
     if (!this.started) {
@@ -126,7 +140,7 @@ export class RivalReport {
       return this.complete;
     }
     if (this.complete) return true;
-    if (this.waitingForAudio) return false;
+    if (this.waitingForAudio || this.waitingForSpeechInput) return false;
     if (this.phase === "dialogue") {
       this.complete = this.wait.advanceTick();
       return this.complete;

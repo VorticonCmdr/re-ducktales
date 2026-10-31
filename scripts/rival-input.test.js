@@ -158,23 +158,74 @@ test("claim Quit-No drops P/S/Fire queued at the same reader", async () => {
   ticks(g, 7);
   assert.equal(g.scene, "rival-claim");
 });
-test("speech loop does not consume global P/Q/S and never invents a click", async () => {
+test("speech Pause resumes its pending keyboard read even if sound ended inside the modal", async () => {
   const { g, r } = await forced(true);
   g.drainEffects();
+  g.input({ type: "pause" }); // Queued before the first actual sound-status ACK.
   g.input({ type: "audio-status", token: r.token, busy: true });
-  for (const type of ["pause", "quit", "toggle-sound"]) g.input({ type });
-  ticks(g, 14);
-  assert.equal(g.systemOverlay, null);
-  assert.equal(g.audioEnabled, true);
-  assert.equal(g.pendingRivalSystemKeys.size, 3);
+  assert.equal(g.systemOverlay.kind, "pause");
+  assert.equal(r.waitingForInputPoll, true);
+  assert.equal(r.polledBusy, false);
   g.input({ type: "audio-status", token: r.token, busy: false });
-  ticks(g, 14);
+  ticks(g, 35);
+  g.input({ type: "pause" });
+  ticks(g, 7);
+  assert.equal(g.systemOverlay, null);
+  assert.equal(r.phase, "speech");
+  assert.equal(r.pollRemaining, 14);
+  assert.equal(r.remaining, 280);
+  assert.deepEqual(
+    g.drainEffects().filter((e) => e.type === "sound"),
+    [{ type: "sound", id: 0x24 }],
+  ); // Pause's own resume click.
+  ticks(g, 13);
+  assert.equal(g.scene, "rival-claim");
+  ticks(g, 1);
   assert.equal(g.scene, "map");
-  assert.equal(g.pendingRivalSystemKeys.size, 0);
+  assert.equal(r.wait, null);
   assert.deepEqual(
     g.drainEffects().filter((e) => e.type === "sound"),
     [{ type: "sound", id: 0x21 }],
   );
+});
+test("busy speech reads Quit-No at14 and drops the old Fire without a fallback click", async () => {
+  const { g, r } = await forced(true);
+  g.drainEffects();
+  g.input({ type: "audio-status", token: r.token, busy: true });
+  g.input({ type: "quit" });
+  g.input({ type: "fire" });
+  ticks(g, 13);
+  assert.equal(g.systemOverlay, null);
+  ticks(g, 1);
+  assert.equal(g.systemOverlay.kind, "quit");
+  g.input({ type: "quit-no" });
+  assert.equal(g.systemOverlay, null);
+  assert.equal(r.pollRemaining, 14);
+  assert.equal(r.skipRequested, false);
+  assert.equal(r.skipped, false);
+  g.input({ type: "audio-status", token: r.token, busy: false });
+  ticks(g, 14);
+  assert.equal(g.scene, "map");
+  assert.equal(r.wait, null);
+  assert.deepEqual(
+    g.drainEffects().filter((e) => e.type === "sound"),
+    [{ type: "sound", id: 0x21 }],
+  );
+});
+test("speech reads Sound on its14-tick boundary and still bypasses the fallback", async () => {
+  const { g, r } = await forced(true);
+  g.drainEffects();
+  g.input({ type: "audio-status", token: r.token, busy: true });
+  g.input({ type: "toggle-sound" });
+  ticks(g, 13);
+  assert.equal(g.audioEnabled, true);
+  ticks(g, 1);
+  assert.equal(g.audioEnabled, false);
+  assert.equal(r.pollRemaining, 14);
+  assert.equal(r.remaining, 280);
+  ticks(g, 14);
+  assert.equal(g.scene, "map");
+  assert.equal(r.wait, null);
 });
 test("muted entry never retroactively starts6e;fallback Fire orders24 then21", async () => {
   const { g, r } = await forced();

@@ -41,11 +41,16 @@
   ],
   "claims": [
     "126b0277 guards sound6e with enabled03be;028d flushes input.",
-    "0297 checks global sound status immediately;busy speech uses raw joystick,14-tick waits and flag1;no global P/Q/S reader in that loop.",
+    "0297 checks global sound status;busy calls ordinary1124:0002,including P/Q/S handling,then waits14 ticks. A modal resumes that pending input read before the next status query.",
     "Only first status already idle enters shared09f5(40),with conditional enabled click24 on consumed Fire.",
     "02d5 invokes graphics wipe,not audio reset;02d9 guards sound21.",
     "0322 writes rival location after the entire report. Forced and ordinary claims share this routine."
   ],
   "limitations": "Static source only;native presentation/audio phase not newly captured. Browser controls and actual audio-device acknowledgements require separate verification.",
-  "verify": "node scripts/verify-rival-input-source.js"
+  "verify": "node scripts/verify-rival-input-source.js",
+  "keyboardProof": {
+    "path": "reference/rival-keyboard-source.json",
+    "bytes": 1150,
+    "sha256": "a8d33b426889ae9c250cd1f3b26f60805a41772cf658b1917b4a7d90347a22af"
+  }
 }

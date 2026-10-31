@@ -1,0 +1,25 @@
+{
+  "kind": "rival-keyboard-static-source",
+  "program": "INVESTMENT_CODE.EXE",
+  "language": "x86:LE:16:Real Mode",
+  "address": "1124:00bb",
+  "offset": 4859,
+  "length": 282,
+  "sha256": "999963db9eb4020257ee1bf54de0a75d3b42b0461e8a1712446cd2651751cf6e",
+  "relocations": [
+    5077,
+    4925
+  ],
+  "artifact": {
+    "path": ".local/rival-keyboard-source-01/keyboard.json",
+    "bytes": 1561,
+    "sha256": "5f20b564d0cdd5090f923b81bea9a036d2ed088e17643f436acfe4a196eda288"
+  },
+  "claims": [
+    "The busy-loop callee1124:0002 itself consumes Sound/Pause/Quit keys. It is not a Fire-only reader.",
+    "Q/Escape/P use suppression flags03b8/03b9;default unsuppressed gameplay allows the dialogs.",
+    "After a modal returns,the pending raw input read completes before the caller14-tick wait and next sound-status query.",
+    "The S-off branch requests0 then24 before clearing enabled03be;the existing general browser toggle currently omits that off-click request."
+  ],
+  "limitations": "Static proof only. This milestone corrects rival input boundaries;the broader S-off request/IRQ adaptation remains a separately documented fidelity gap."
+}

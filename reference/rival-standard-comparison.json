@@ -7,8 +7,8 @@
   },
   "sourceRule": {
     "path": "reference/rival-input-source.json",
-    "bytes": 1995,
-    "sha256": "78a73bdcf9785a40dc4da35d4077756a69d3193a8da13f74814b3c51e36d5209"
+    "bytes": 2214,
+    "sha256": "f5379b3619bd0af8c7d93af968605dbc55bf276cdacf34e5a748e7a01613f57b"
   },
   "checkpoints": [
     "safari-flight-return-0",

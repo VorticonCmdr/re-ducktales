@@ -16,7 +16,7 @@ Launchpad. The crash setup requires a naturally nonracing flight;it rejects a
 racing launch instead of changing its flag or pretending it reached Safari.
 Setup uses execution stops and is not a timing measurement. The actual complete
 17548-byte flight body is checked after248 relocations and only exact source-
-defined transformations at the91 known hardware-FPU sites. The unchanged live
+defined transformations at the91 retained plus8 statically verified hardware-FPU sites. The unchanged live
 FPU handler and IVT ownership are also required. No operand/code mask is used.
 
 At the actual overlay7 entry,all7924 original bytes must match after93 actual
@@ -73,3 +73,16 @@ surface descriptors and the last320px opening reveal. It then compares every
 body byte38..a26 exactly;header state is retained separately,not called immutable
 code. No operand bytes are excluded. Attempt03 still has no timing samples.
 The first three owned sessions all closed with return0.
+
+Attempt04 stops before timing on eight additional original FPU rewrites in the
+flight2ba0 HUD branch,which the earlier91-site scenario had not executed. The
+complete344-byte function and143 instruction boundaries are now checked against
+original/prepared/Ghidra bytes. The eight extra NOP+x87 entry boundaries are
+explicitly versioned;three negatives reject changed code,missing instructions
+and a non-boundary site. All other flight bytes still compare exactly,including
+operands. The original FPU handler/IVT must match before any rewrite is allowed.
+No general FPU byte-pattern mask is used. Attempt04's owned emulator closed.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_safari_fpu_source.py
+```

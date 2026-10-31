@@ -101,7 +101,7 @@ def capture_safari_cadence(*, client, stop, load, ds, overlay, add, remove,
     save('safari-flight-code-observed', {'load':load,'segment':overlay,'read':flight_read})
     live_flight = base64.b64decode(flight_read['results'][0]['data'])
     # Only exact transformations by the unchanged original hardware-FPU handler
-    # are permitted,at the91 already identified escape sites. No operand mask.
+    # are permitted,at the retained and separately byte-checked escape sites. No operand mask.
     image = bytearray(base64.b64decode(subprocess.check_output(['node','--input-type=module','-e',
         "import{readFile}from'node:fs/promises';import{unpackImage}from'./src/game/executable.js';process.stdout.write(Buffer.from(unpackImage(await readFile('game/DUCKTALE.EXE'))).toString('base64'));"],cwd=root)))
     cursor = struct.unpack_from('<H',exe,8)[0]*16+struct.unpack_from('<H',exe,22)[0]*16+0x125
@@ -114,8 +114,9 @@ def capture_safari_cadence(*, client, stop, load, ds, overlay, add, remove,
     vectors = base64.b64decode(flight_read['results'][2]['data'])
     for n in range(10):
         assert struct.unpack_from('<HH',vectors,n*4) == (0x755 if n==8 else 0x782 if n==9 else 0x78a,load+0x9c4)
-    sites = json.loads((root/'reference/flight-input.json').read_text())['runtimeFpuPatchedOffsets']
-    assert len(sites) == len(set(sites)) == 91
+    from verify_safari_fpu_source import verify_source
+    sites = verify_source(root)
+    assert len(sites) == 99
     patched = []
     for text in sites:
         pos = int(text,16)

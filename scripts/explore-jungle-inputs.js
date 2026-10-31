@@ -61,15 +61,10 @@ for (const difficulty of [0, 1])
           setSimulationClock: (p) => jungle.setClock(p),
           advanceTick: () => jungle.advanceTick(),
           advanceRetrace: () => jungle.advanceRetrace(),
-          nextSimulationWake: () =>
-            jungle.wait?.clock === "graphics" ? jungle.wait.until : Infinity,
-          advanceSimulationWake: () => jungle.advanceGraphics(),
         });
-        let frames = 0;
         while (!jungle.outcome && used < inputs.length && clock.now < 120000) {
           // One external millisecond observation;never a fitted original timer.
           clock.advanceTo(clock.now + 1);
-          frames++;
         }
         assert.ok(used > 0, "Zero executed exploratory inputs");
         cases.push({

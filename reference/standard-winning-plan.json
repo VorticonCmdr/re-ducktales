@@ -14,7 +14,7 @@
     "sha256": "1548d6c1e4a161742cdad14d8cf6ee5a6f0c53fd6f3114077acc70737a6e2013"
   },
   "prefixThrough": "continued-mountain-return",
-  "environmentDependency": "Independent DOM prefix replayed from startup,then declared100ms neutral diagnostic tail. No restored checkpoint or injected game state.",
+  "environmentDependency": "Independent DOM prefix replayed from startup through continued-mountain-return. The --through path ends exactly at that observation;first new input has the same timestamp and follows it by event ordinal. No extra diagnostic tail,restored checkpoint or injected game state.",
   "scope": "Conditional carried simulation strategy only;actual browser and independent replay required. All four original expedition families plus Atlantis,Klondike,Siberian cave treasure.",
   "playerPolicy": "Existing physical flight pilot;safe cave BFS avoiding observed enemy and adjacent rooms where connected,otherwise enemy room only. This changes player controls,not game mechanics.",
   "outcome": {
@@ -42,5 +42,6 @@
   },
   "injections": [],
   "fittedInputs": [],
-  "verify": "node scripts/standard-winning-plan.js .local/rival-standard-capture-01 --through=continued-mountain-return --diagnose --finish --output=.local/standard-winning-plan-FRESH"
+  "verify": "node scripts/standard-winning-plan.js .local/rival-standard-capture-01 --through=continued-mountain-return --diagnose --finish --output=.local/standard-winning-plan-FRESH",
+  "provenanceCorrection": "The frozen planning.json inherited a generic100ms-tail description;the actual through-mode source and independent event timestamps show no tail. This metadata correction changes no input or expected output."
 }

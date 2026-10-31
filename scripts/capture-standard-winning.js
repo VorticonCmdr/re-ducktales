@@ -52,7 +52,9 @@ const prefixEvents = (
 ).slice(0, prefixChecks.at(-1).eventCount);
 const schedule = [...prefixEvents, ...plan.events];
 assert.ok(plan.events.length > 0 && plan.points.length > 0);
-assert.ok(plan.events[0].time > prefixChecks.at(-1).at);
+// --through ends exactly at the prefix observation. A same-timestamp input
+// follows that observation by event ordinal;there is no fitted clock offset.
+assert.ok(plan.events[0].time >= prefixChecks.at(-1).at);
 const checks = [
   ...prefixChecks.map((p) => ({ ...p, prefix: true })),
   ...plan.points.map((p) => ({

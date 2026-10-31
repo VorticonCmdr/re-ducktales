@@ -322,7 +322,7 @@ try {
         scope:
           "Conditional Standard winning player exploration;not browser or native acceptance",
         dependency:
-          "Original DOM prefix replayed from startup plus diagnostic100ms tail;existing authored player controls used as candidates only",
+          "Original DOM prefix replayed from startup through a captured boundary;through-mode has no diagnostic tail. Existing authored player controls are candidates only",
         sourceCommit: source.commit,
         events,
         points,

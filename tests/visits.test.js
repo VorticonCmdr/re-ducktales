@@ -81,6 +81,7 @@ test("original collected notices enforce their full waits and explicit sound com
     ["rival", 280, 33],
   ]) {
     const n = new CampaignVisitNotice({ reason, target: 1 });
+    n.begin();
     assert.equal(n.portrait, portrait);
     for (let i = 0; i < ticks - 1; i++) assert.equal(n.advanceTick(), false);
     assert.equal(n.advanceTick(), true);
@@ -92,12 +93,15 @@ test("original collected notices enforce their full waits and explicit sound com
     audioEnabled: true,
     token: "current",
   });
+  n.begin();
   for (let i = 0; i < 100; i++)
     assert.equal(n.advanceTick(), false, "pending sound silently completed");
   n.setAudioStatus("old", false);
-  assert.equal(n.busy, true);
+  assert.equal(n.busy, null, "Initial status is supplied by the device");
+  n.setAudioStatus("current", true);
+  n.resumeAudioStatus();
   n.setAudioStatus("current", false);
-  for (let i = 0; i < 5; i++) assert.equal(n.advanceTick(), false);
+  for (let i = 0; i < 6; i++) assert.equal(n.advanceTick(), false);
   assert.equal(
     n.advanceTick(),
     true,
@@ -111,9 +115,12 @@ test("original collected notices enforce their full waits and explicit sound com
   });
   instant.skipRequested = true;
   instant.setAudioStatus("instant", false);
+  instant.begin();
+  assert.equal(instant.skipRequested, false, "Entry flush drops old Fire");
+  instant.skipRequested = true;
   assert.equal(instant.advanceTick(), false);
   assert.equal(instant.phase, "dialogue");
-  for (let i = 0; i < 6; i++) assert.equal(instant.advanceTick(), false);
+  for (let i = 0; i < 5; i++) assert.equal(instant.advanceTick(), false);
   assert.equal(instant.advanceTick(), true);
   assert.throws(
     () => new CampaignVisitNotice({ reason: "unknown", target: 1 }),
@@ -134,8 +141,11 @@ test("notice device events are routed by token and remain isolated across restar
   for (let i = 0; i < 50; i++) g.advanceTick();
   assert.equal(g.scene, "visit-notice");
   g.input({ type: "audio-status", token: "stale", busy: false });
-  assert.equal(n.busy, true);
+  assert.equal(n.busy, null);
+  g.input({ type: "audio-status", token, busy: true });
   g.input({ type: "audio-enabled", enabled: false });
+  assert.equal(n.busy, true, "Mute is not a device completion");
+  g.input({ type: "audio-status", token, busy: false });
   for (let i = 0; i < 7 && g.scene === "visit-notice"; i++) g.advanceTick();
   assert.equal(g.scene, "map");
   g.input({ type: "restart" });
@@ -144,5 +154,5 @@ test("notice device events are routed by token and remain isolated across restar
   g.travel(1);
   assert.notEqual(g.visitNotice.token, token);
   g.input({ type: "audio-status", token, busy: false });
-  assert.equal(g.visitNotice.busy, true);
+  assert.equal(g.visitNotice.busy, null);
 });

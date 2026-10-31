@@ -1,7 +1,20 @@
 // Resident0e68..0f7c (player),0312..0439 (rival). No campaign state or RNG
 // changes here: the caller clears the money-bin latch before this dispatch.
-export class CampaignVisitNotice {
-  constructor({ reason, target, audioEnabled = false, token }) {
+import { RivalReport } from "./rival.js";
+import { ResultInputWait } from "./result-input-wait.js";
+
+// The rival notice uses the same status/input/fallback sequence as RivalReport,
+// with a seven-tick speech poll rather than fourteen. Player uses09f5(80) only.
+export class CampaignVisitNotice extends RivalReport {
+  constructor({
+    reason,
+    target,
+    audioEnabled = false,
+    queryAudio = false,
+    token,
+    pollInput = () => true,
+    flushInput = () => {},
+  }) {
     if (
       !["player", "rival"].includes(reason) ||
       !Number.isInteger(target) ||
@@ -9,17 +22,38 @@ export class CampaignVisitNotice {
       target > 34
     )
       throw Error("Invalid collected-location notice");
+    super({
+      target,
+      audioEnabled,
+      queryAudio: reason === "rival" && queryAudio,
+      token,
+      pollInput,
+      flushInput,
+    });
     this.reason = reason;
-    this.target = target;
-    this.token = token;
-    this.audioEnabled = audioEnabled;
-    this.busy = reason === "rival" && audioEnabled;
-    this.phase = this.busy ? "speech" : "dialogue";
-    this.remaining = (reason === "player" ? 80 : 40) * 7;
-    this.skipRequested = false;
-    this.polledBusy = false;
-    this.pollRemaining = 0;
-    this.complete = false;
+    if (reason === "player") {
+      this.busy = false;
+      this.statusKnown = true;
+      this.phase = "dialogue";
+      this.remaining = 80 * 7;
+    }
+  }
+  begin() {
+    if (this.reason === "rival") return super.begin();
+    if (this.started) throw Error("Collected notice already started");
+    this.started = true;
+    this.wait = new ResultInputWait({
+      state: this,
+      count: 80,
+      pollInput: this.pollInput,
+      flushInput: this.onFlushInput,
+    });
+    this.wait.begin();
+    this.complete = this.wait.complete;
+  }
+  readSpeechInput() {
+    super.readSpeechInput();
+    if (!this.waitingForSpeechInput && !this.complete) this.pollRemaining = 7;
   }
   get portrait() {
     return this.reason === "player" ? 30 : 33;
@@ -37,37 +71,8 @@ export class CampaignVisitNotice {
           y: [60, 76, 100, 116][i],
         }));
   }
-  setAudioEnabled(enabled) {
-    if (typeof enabled !== "boolean")
-      throw Error("Invalid visit audio setting");
-    this.audioEnabled = enabled;
-    if (!enabled) this.busy = false;
-  }
   setAudioStatus(token, busy) {
-    if (typeof busy !== "boolean") throw Error("Invalid visit audio status");
-    if (token === this.token) this.busy = this.audioEnabled && busy;
-  }
-  advanceTick() {
-    if (this.complete) return true;
-    if (this.phase === "dialogue") {
-      this.remaining--;
-      this.complete =
-        this.remaining === 0 ||
-        (this.remaining % 7 === 0 && this.skipRequested);
-      return this.complete;
-    }
-    if (this.pollRemaining > 0 && --this.pollRemaining > 0) return false;
-    if (!this.busy) {
-      // An observed busy poll sets the original local flag to1. When sound
-      // finishes, that flag bypasses the extra40-poll sound-disabled wait.
-      if (this.polledBusy) this.complete = true;
-      else this.phase = "dialogue";
-    } else if (this.skipRequested) this.complete = true;
-    else {
-      this.polledBusy = true;
-      this.pollRemaining = 7;
-    }
-    return this.complete;
+    if (this.reason === "rival") super.setAudioStatus(token, busy);
   }
   snapshot() {
     return {
@@ -78,6 +83,8 @@ export class CampaignVisitNotice {
       busy: this.busy,
       pollRemaining: this.pollRemaining,
       complete: this.complete,
+      ...(this.waitingForAudio ? { waitingForAudio: true } : {}),
+      ...(this.waitingForInputPoll ? { waitingForInputPoll: true } : {}),
     };
   }
 }

@@ -648,6 +648,7 @@ export class Game {
         "expedition-briefing",
         "rival-report",
         "rival-claim",
+        "visit-notice",
         ...(this.resultWait ? ["expedition-result", "crash-repairs"] : []),
         "ending",
         "bank",
@@ -682,7 +683,11 @@ export class Game {
                         ? this.pendingJungleSystemKeys
                         : this.scene === "photography"
                           ? this.pendingPhotographySystemKeys
-                          : ["rival-report", "rival-claim"].includes(this.scene)
+                          : [
+                                "rival-report",
+                                "rival-claim",
+                                "visit-notice",
+                              ].includes(this.scene)
                             ? this.pendingRivalSystemKeys
                             : ["expedition-result", "crash-repairs"].includes(
                                   this.scene,
@@ -747,6 +752,7 @@ export class Game {
       this.rivalReport?.setAudioStatus(event.token, event.busy);
       this.claim?.setAudioStatus(event.token, event.busy);
       this.resumeRivalAudio();
+      this.resumeVisitAudio();
       this.atomicTransport?.setAudioStatus(event.token, event.busy);
       return;
     }
@@ -1128,15 +1134,23 @@ export class Game {
           target,
           audioEnabled: this.audioEnabled,
           token: `visit:${++this.audioScope}`,
+          queryAudio: !this.audioEnabled && this.hasAudioDevice(),
+          pollInput: () => this.pollSystemInput(this.pendingRivalSystemKeys),
+          flushInput: () => this.flushRivalInput(),
         });
         this.scene = "visit-notice";
-        this.effects.push({ type: "stopAudio" });
-        if (this.visitNotice.reason === "rival")
+        if (this.visitNotice.reason === "rival" && this.audioEnabled)
           this.effects.push({
             type: "sound",
             id: 0x6e,
             token: this.visitNotice.token,
           });
+        else if (!this.visitNotice.statusKnown)
+          this.effects.push({
+            type: "audio-query",
+            token: this.visitNotice.token,
+          });
+        this.visitNotice.begin();
         return;
       }
       if (days === 0) {
@@ -1339,16 +1353,8 @@ export class Game {
       return;
     }
     if (this.scene === "visit-notice") {
-      if (this.visitNotice.advanceTick()) {
-        const fireClick =
-          this.audioEnabled &&
-          this.visitNotice.skipRequested &&
-          this.visitNotice.phase === "dialogue";
-        this.visitNotice = null;
-        this.effects.push({ type: "stopAudio" });
-        if (fireClick) this.effects.push({ type: "sound", id: 0x24 });
-        this.completeCampaignAction({ type: "map" });
-      }
+      this.visitNotice.advanceTick();
+      this.collectVisitNotice();
       return;
     }
     if (this.scene === "expedition-result") {
@@ -1624,6 +1630,7 @@ export class Game {
       this.resultWait.flushInput();
     else if (this.activeRivalDialogue())
       this.activeRivalDialogue().flushInput();
+    else if (this.scene === "visit-notice") this.visitNotice.flushInput();
     else if (this.scene === "ending") this.ending.flushInput();
     else if (this.scene === "bank") this.bank.flushInput(true);
     else {
@@ -1702,6 +1709,10 @@ export class Game {
     if (result === "resume" && this.scene === "ending") {
       this.ending.resumeInputPoll();
       this.collectEnding();
+    }
+    if (result === "resume" && this.scene === "visit-notice") {
+      this.visitNotice.resumeInputPoll();
+      this.collectVisitNotice();
     }
   }
   pollBankSystemInput() {
@@ -2210,6 +2221,24 @@ export class Game {
       : this.scene === "rival-claim"
         ? this.claim
         : null;
+  }
+  resumeVisitAudio() {
+    const n = this.scene === "visit-notice" ? this.visitNotice : null;
+    if (!this.systemOverlay && n?.waitingForAudio && n.statusKnown) {
+      n.resumeAudioStatus();
+      this.collectVisitNotice();
+    }
+  }
+  collectVisitNotice() {
+    const n = this.visitNotice;
+    if (this.scene !== "visit-notice" || !n?.complete) return;
+    this.pendingRivalSystemKeys.clear();
+    if (this.audioEnabled) {
+      if (n.skipped) this.effects.push({ type: "sound", id: 0x24 });
+      if (n.reason === "rival") this.effects.push({ type: "sound", id: 0 });
+    }
+    this.visitNotice = null;
+    this.completeCampaignAction({ type: "map" });
   }
   flushRivalInput() {
     this.pendingRivalSystemKeys.clear();

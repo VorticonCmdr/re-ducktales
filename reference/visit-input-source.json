@@ -1,0 +1,40 @@
+{
+  "kind": "collected-notice-static-source",
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "ranges": [
+    {
+      "name": "rival",
+      "address": "1000:03a2",
+      "offset": 930,
+      "length": 151,
+      "relocations": [955, 973, 997, 1057, 1069],
+      "sha256": "555273ecc14dd88123fafbf3ce9ff55b2e7d3ab6703b1b5d34bbc996ecd3f842"
+    },
+    {
+      "name": "player",
+      "address": "1000:0f56",
+      "offset": 3926,
+      "length": 41,
+      "relocations": [3933],
+      "sha256": "21f2fbc33c53ef32cec142ae99448ae40a3ca1edcd6fa165c111b7a51ea54af8"
+    }
+  ],
+  "artifacts": {
+    "build": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "rival": {
+      "path": ".local/notice-source-01/rival.json",
+      "bytes": 996,
+      "sha256": "5e464a3b35c5a0cf37404563ca042605ade97bef4d1502949d10f5df4f50b97d"
+    },
+    "player": {
+      "path": ".local/notice-source-01/player.json",
+      "bytes": 413,
+      "sha256": "5af6fcfc4200edf9d12ae856571479a2f7426a39b9d31c26d4d5884d7d8ec79e"
+    }
+  }
+}

@@ -10,8 +10,8 @@ On the map, Fire on the current failed expedition opens its guide again and
 enters the level directly. It creates no flight, spends no travel day and
 consumes only the guide's one RNG draw before the level call. A later level
 result spends its usual day. Cave maps/room rewards reset on each attempt;
-carried cash persists. Jungle, mountain and photography retry dispatch reaches
-their guide, then stops at their still-untranslated gameplay boundary.
+carried cash persists. Jungle, mountain and photography gameplay is implemented;
+see the current route and layout coverage in [STATUS](STATUS.md).
 
 Trying a location whose treasure belongs to Scrooge or Glomgold shows the
 original notice and returns to the origin's map. No journey occurs and no
@@ -33,12 +33,23 @@ These checks happen before travel cost/flight, including from another origin.
 
 `campaign-visit.js` owns only notice state, not campaign state or RNG. The
 application injects Fire, driver ticks, sound enablement and tokenized sound
-completion. Pending sound is busy immediately, even before the browser begins
-playback. Stale completion events cannot release another notice, including after
-Restart. Disabling sound explicitly releases its busy wait. Browser acceptance
-waits for native audio completion to return from the rival notice without Fire.
-Audio uses the existing reconstruction: this does not establish original
-waveform or duration parity. Portrait striped reveals remain omitted.
+status. Initial rival status is unknown until the real device answers; a muted
+notice queries an existing device, and muting does not invent completion. Stale
+completion events cannot release another notice, including after Restart.
+Player notices use shared09f5(80); rival idle fallback uses09f5(40). Both flush
+entry input, read immediately, wait seven ticks between reads and do not perform
+an extra final read. P/Q/S are consumed by that reader, with Pause and Quit-No
+returning into its suspended read and flushing old Fire. Rival speech uses the
+same input continuation but seven-tick status polling. Only fallback Fire requests
+enabled24; rival exit requests enabled0. Player exit has no sound reset.
+
+`node scripts/verify-visit-input-source.js` verifies192 original/prepared/Ghidra
+bytes and six declared relocations against the supported build. The original
+shared reader and ordinary keyboard proofs are retained in
+`verify-result-caller-source.js` and `verify-rival-keyboard-source.js`.
+`node --test scripts/visit-input.test.js tests/visits.test.js` checks conditional
+caller boundaries. This is static and conditional evidence, not original native
+notice timing or waveform parity. Portrait striped reveals remain omitted.
 
 ## Reproduce the original retry comparison
 
@@ -72,6 +83,6 @@ completion timing are excluded. Normal Glomgold progression before the map is
 not replayed by this segment; see [separate rival evidence](rival.md). Collected-notice pixels/poll timing are statically translated and
 browser exercised, without an original notice capture comparison yet.
 
-At this notice capture,the original was paused at cave0e0c:0000, stop23, DS/SS1403, instance
+Historical capture session only:the original was paused at cave0e0c:0000, stop23, DS/SS1403, instance
 0719a1b0cdcede0b85c39577ff760639. Fire was released; no active schedule or
 breakpoints remain. Revalidate addresses after relaunch/layout changes.

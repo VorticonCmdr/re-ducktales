@@ -172,15 +172,15 @@ for (const [script, args] of [
   process.stdout.write(r.stdout);
 }
 if (record.expectedUnitCases !== undefined) {
-  assert.equal(record.expectedUnitCases, 218);
+  assert.ok([218, 221].includes(record.expectedUnitCases), "Unsupported declared unit inventory");
   const unit = spawnSync("npm", ["test"], {
     encoding: "utf8",
     maxBuffer: 8 * 1024 * 1024,
   });
   assert.equal(unit.status, 0, unit.stdout + unit.stderr);
   for (const pattern of [
-    /tests 218\b/,
-    /pass 218\b/,
+    new RegExp(`tests ${record.expectedUnitCases}\\b`),
+    new RegExp(`pass ${record.expectedUnitCases}\\b`),
     /fail 0\b/,
     /skipped 0\b/,
     /cancelled 0\b/,
@@ -193,5 +193,5 @@ if (record.expectedUnitCases !== undefined) {
   assert.equal(build.status, 0, build.stdout + build.stderr);
 }
 console.log(
-  `Current Standard winning browser acceptance:${checks.length} exact state/image checkpoints,${events.length} independent DOM events,${awardCount} earned awards/${awardCount * 15} row groups,all26 credits/closed/Restart;one input negative and3 setup negatives${record.expectedUnitCases ? ",218 units and build" : ""}. Not native whole-campaign timing/audio parity or arbitrary-route completion.`,
+  `Current Standard winning browser acceptance:${checks.length} exact state/image checkpoints,${events.length} independent DOM events,${awardCount} earned awards/${awardCount * 15} row groups,all26 credits/closed/Restart;one input negative and3 setup negatives${record.expectedUnitCases ? `,${record.expectedUnitCases} units and build` : ""}. Not native whole-campaign timing/audio parity or arbitrary-route completion.`,
 );

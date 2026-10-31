@@ -71,8 +71,13 @@ Novay investigation identified an arrow collision;adding16 neutral player reads
 before the climb completed the conditional510-read route with3 lives. Replaying
 startup inputs and carrying state through Novay then produced a day31 win,
 34650 vs28500,and all26 credits in the port simulation. This is a candidate,
-not browser acceptance. Its actual browser run is in progress on isolated branch
-`codex/current-campaign-player`. No game rules,difficulty,RNG or clocks changed.
+not browser acceptance. The actual browser then completed Novay with3 lives and
+banked34650,but exposed an `Invalid framebuffer copy` dead end at the final bank.
+The original permits a signed sparkle restore atY-13. A source-backed visible-
+copy correction is committed on isolated `codex/current-campaign-player` at
+179a307;218 units,original bank comparisons and build pass there. Its fresh
+browser run is in progress before integration. Main retains the earlier runtime
+and acceptance scope above. No game rules,difficulty,RNG or clocks were changed.
 
 Original movement cadence remains open across expeditions. Graphics work is
 modeled;resource/text costs,remaining CPU/PIT phase and uninterrupted native

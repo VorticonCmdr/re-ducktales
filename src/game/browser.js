@@ -133,7 +133,11 @@ async function load(read) {
         entries: resources.archives.get("MAC.ARC"),
       },
       audioEnabled: $("audio").checked,
-      hasAudioDevice: () => !!gameAudio && !gameAudio.disposed,
+      // Both original drivers initialize idle. Unlocking an unused worklet
+      // (e.g. an ignored S make) cannot start playback. Once ANY request is
+      // posted,including a pending reset,only real status may release a wait.
+      hasAudioDevice: () =>
+        !!gameAudio && !gameAudio.disposed && gameAudio.hasRequests,
       originalSecurity: $("original-security").checked,
       locations: parseLocations(resources.archives.get("LOC.ARC")),
       loot: parseLoot(resources.archives.get("LOOT.ARC")),

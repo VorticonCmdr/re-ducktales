@@ -67,7 +67,7 @@ test("atomic success updates its byte calendar before the seven-tick charge and 
   a.advanceTick();
   assert.equal(a.phase, "complete");
   assert.deepEqual(a.drainEvents(), [
-    { type: "stopAudio" },
+    { type: "sound", id: 0 },
     { type: "sound", id: 0x54 },
   ]);
 });

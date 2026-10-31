@@ -30,6 +30,9 @@ export class GameAudioDevice {
     this.suspended = false;
     this.onStats({ contextState: "uninitialized", sequence: 0 });
   }
+  get hasRequests() {
+    return this.sequence !== 0;
+  }
   unlock() {
     if (this.disposed) return;
     if (!this.context) {

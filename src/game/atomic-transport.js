@@ -32,6 +32,7 @@ export class AtomicTransport {
     locations,
     audioEnabled = false,
     token,
+    hasAudioDevice = () => false,
     pollInput = () => true,
     flushInput = () => {},
   }) {
@@ -44,10 +45,16 @@ export class AtomicTransport {
       target > 34
     )
       throw Error(`Invalid atomic route ${from} -> ${target}`);
-    if (typeof pollInput !== "function" || typeof flushInput !== "function")
+    if (
+      typeof pollInput !== "function" ||
+      typeof flushInput !== "function" ||
+      typeof hasAudioDevice !== "function" ||
+      typeof audioEnabled !== "boolean"
+    )
       throw Error("Invalid atomic input boundary");
     this.pollInput = pollInput;
     this.onFlushInput = flushInput;
+    this.hasAudioDevice = hasAudioDevice;
     this.waitingForInputPoll = false;
     this.inputPolls = 0;
     Object.assign(this, atomicRoll(seed, difficulty), {
@@ -65,18 +72,27 @@ export class AtomicTransport {
     this.remaining = 7;
     this.skipRequested = false;
     this.busy = false;
+    this.statusKnown = false;
     this.outcome = null;
-    this.events = [{ type: "stopAudio" }];
+    // Both original branches guard the initial request0 on03be.
+    this.events = audioEnabled ? [{ type: "sound", id: 0 }] : [];
   }
   setAudioEnabled(enabled) {
     if (typeof enabled !== "boolean")
       throw Error("Invalid atomic audio setting");
     this.audioEnabled = enabled;
-    if (!enabled) this.busy = false;
   }
   setAudioStatus(token, busy) {
     if (typeof busy !== "boolean") throw Error("Invalid atomic audio status");
-    if (token === this.token) this.busy = this.audioEnabled && busy;
+    if (token !== this.token || this.phase !== "sound") return;
+    this.busy = busy;
+    this.statusKnown = true;
+  }
+  resumeAudioStatus() {
+    if (this.phase !== "sound" || !this.statusKnown || this.busy !== false)
+      throw Error("Atomic resumed outside idle sound-status boundary");
+    //056b is a busy spin without a timed delay or input read.
+    this.beginReport();
   }
   fire() {
     if (this.phase === "report") this.skipRequested = true;
@@ -137,15 +153,27 @@ export class AtomicTransport {
         this.finish();
       } else {
         this.phase = "sound";
-        this.busy = this.audioEnabled;
+        this.busy = null;
+        this.statusKnown = false;
         if (this.audioEnabled)
           this.events.push({ type: "sound", id: 0x45, token: this.token });
-        else this.beginReport();
+        else {
+          const query = this.hasAudioDevice();
+          if (typeof query !== "boolean")
+            throw Error("Invalid atomic device provider result");
+          if (query)
+            this.events.push({ type: "audio-query", token: this.token });
+          else {
+            this.busy = false;
+            this.statusKnown = true;
+            this.resumeAudioStatus();
+          }
+        }
       }
       return;
     }
     if (this.phase === "sound") {
-      if (!this.busy) this.beginReport();
+      if (this.statusKnown && this.busy === false) this.resumeAudioStatus();
       return;
     }
     if (this.phase !== "report")
@@ -172,6 +200,9 @@ export class AtomicTransport {
       days: this.days,
       remaining: this.remaining,
       busy: this.busy,
+      ...(this.phase === "sound" && !this.statusKnown
+        ? { waitingForAudio: true }
+        : {}),
       ...(this.phase === "report" || (!this.success && this.outcome)
         ? { inputPolls: this.inputPolls }
         : {}),

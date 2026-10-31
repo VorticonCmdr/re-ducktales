@@ -763,6 +763,16 @@ export class Game {
       this.resumeRivalAudio();
       this.resumeVisitAudio();
       this.atomicTransport?.setAudioStatus(event.token, event.busy);
+      if (
+        this.scene === "atomic-transport" &&
+        !this.systemOverlay &&
+        this.atomicTransport.phase === "sound" &&
+        this.atomicTransport.statusKnown &&
+        this.atomicTransport.busy === false
+      ) {
+        this.atomicTransport.resumeAudioStatus();
+        this.collectAtomicTransport();
+      }
       return;
     }
     if (event.type === "restart") {
@@ -1185,6 +1195,7 @@ export class Game {
           locations: c.locations,
           audioEnabled: this.audioEnabled,
           token: `atomic:${++this.audioScope}`,
+          hasAudioDevice: () => this.hasAudioDevice(),
           pollInput: () => this.pollSystemInput(this.pendingAtomicSystemKeys),
           flushInput: () => this.flushAtomicInput(),
         });

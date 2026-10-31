@@ -56,7 +56,7 @@ test("atomic charge and sound do not read keys; report entry clears them before 
   ticks(g, 1);
   assert.equal(a.phase, "sound");
   g.input({ type: "audio-status", token: "unit", busy: false });
-  ticks(g, 1);
+  // The original busy spin returns at status consumption,not the next IRQ.
   assert.equal(a.phase, "report");
   assert.equal(a.remaining, 420);
   assert.equal(a.inputPolls, 1);
@@ -88,7 +88,6 @@ test("atomic report does not consume Fire or play its optional click during the 
   const { g, a } = await fresh({ audio: true });
   ticks(g, 7);
   g.input({ type: "audio-status", token: "unit", busy: false });
-  ticks(g, 1);
   g.drainEffects();
   ticks(g, 419);
   assert.equal(a.remaining, 1);

@@ -95,7 +95,7 @@ try:
   # Let the display consume the completed VRAM writes. The wrapper loops with
   # IF clear and cannot change the image;no game logic or expected data runs.
   c.post('/api/v1/debug/continue')
-  wait=c.get('/api/v1/wait',params={'for':'frames','count':3,'timeout_ms':15000},timeout=20)
+  wait=c.post('/api/v1/wait',json={'for':'frames','count':3,'timeout_ms':15000},timeout=20)
   assert wait['satisfied']
   c.post('/api/v1/debug/pause');stop=c.get('/api/v1/debug/status')['stop']
   assert stop['registers']['cs']==seg

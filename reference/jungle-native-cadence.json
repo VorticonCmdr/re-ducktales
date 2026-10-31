@@ -1,0 +1,1334 @@
+{
+  "kind": "original-jungle-cadence-observation",
+  "producer": ".local/jungle-cadence-native-01",
+  "nativeObservation": true,
+  "portTimingAcceptance": false,
+  "expectedSamples": 120,
+  "expectedFrameSpan": 119,
+  "expectedClockSpan": 123,
+  "engineBinarySHA256": "85662a8383e0fde0734797451374b28a443166440fd9bf5823626505760d9d0f",
+  "buildManifestSHA256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "configuration": {
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "machine": "svga_s3",
+    "memsize": 16,
+    "vmem_delay": "off"
+  },
+  "setup": "Fresh read-only original launch;natural security/map to64,73,Okeefadokie Swamp;campaign slot shuffled. Naturally nonracing flight and authored crash controls;actual full flight and jungle bodies checked. Start after both opening page reveals. No writes or restores.",
+  "events": [
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": true,
+      "frame": 0
+    },
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": false,
+      "frame": 40
+    }
+  ],
+  "expectedFirstSample": {
+    "action": 5,
+    "actorFrame": 0,
+    "clock": 5204,
+    "column": 0,
+    "frame": 5221,
+    "index": 1,
+    "lostLives": 1,
+    "outcome": 0,
+    "page": 1,
+    "right": 0,
+    "row": 0,
+    "scroll": 0,
+    "seed": 42487,
+    "x": 8,
+    "y": 16
+  },
+  "expectedLastSample": {
+    "action": 5,
+    "actorFrame": 0,
+    "clock": 5327,
+    "column": 0,
+    "frame": 5340,
+    "index": 120,
+    "lostLives": 1,
+    "outcome": 0,
+    "page": 0,
+    "right": 0,
+    "row": 0,
+    "scroll": 0,
+    "seed": 27382,
+    "x": 40,
+    "y": 16
+  },
+  "expectedMotionChangeIndices": [
+    13,
+    36,
+    39,
+    53
+  ],
+  "comparison": "Exact artifact identities,120 consecutive callbacks and complete two-event schedule;page changes are sampled lower bounds,not an exact flip/update count. No port timing claim.",
+  "exclusions": [
+    "No exact CPU or scanout timestamps. Original IRQ/retrace phase and input latency not reconstructed.",
+    "Only EGA flip/wait/sprite code ranges compared here;mutable copy operands and other driver code not admitted as exact.",
+    "No whole-level/browser/audio timing comparison. Setup stops are allowed;measurement has no debugger stops."
+  ],
+  "injections": [],
+  "partialRestore": false,
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_jungle_cadence.py",
+  "artifacts": {
+    "alarm-0.json": {
+      "path": ".local/jungle-cadence-native-01/alarm-0.json",
+      "bytes": 88772,
+      "sha256": "c901365da9d37b89c04f0f872408a15131c62cd13940818e8577909f7c4e59e9"
+    },
+    "alarm-0.png": {
+      "path": ".local/jungle-cadence-native-01/alarm-0.png",
+      "bytes": 5110,
+      "sha256": "0609b9a32f8842e23cfc6a15eec2498e3567d1c3bc827d8eec5431a7fcee6602"
+    },
+    "alarm-1.json": {
+      "path": ".local/jungle-cadence-native-01/alarm-1.json",
+      "bytes": 88772,
+      "sha256": "6b3fa2f554670b4480dfc592c042c0ca6125797307a0a01f5dc1dd5a43e946e4"
+    },
+    "alarm-1.png": {
+      "path": ".local/jungle-cadence-native-01/alarm-1.png",
+      "bytes": 4868,
+      "sha256": "2647192a316c4a6bc94e878fc164968177345f7d8d8bc7cf07fcc931dad1ad6b"
+    },
+    "alarm-2.json": {
+      "path": ".local/jungle-cadence-native-01/alarm-2.json",
+      "bytes": 88772,
+      "sha256": "2e10adf71b86c676d5261cfc1738bc717537c6b77abb9af5274abae7b76910bf"
+    },
+    "alarm-2.png": {
+      "path": ".local/jungle-cadence-native-01/alarm-2.png",
+      "bytes": 5110,
+      "sha256": "0609b9a32f8842e23cfc6a15eec2498e3567d1c3bc827d8eec5431a7fcee6602"
+    },
+    "alarm-3.json": {
+      "path": ".local/jungle-cadence-native-01/alarm-3.json",
+      "bytes": 88772,
+      "sha256": "6ad445d8aa762c6c43d7231c07a2bb772d786b63c90b77fb2262c55061fc6ff0"
+    },
+    "alarm-3.png": {
+      "path": ".local/jungle-cadence-native-01/alarm-3.png",
+      "bytes": 4868,
+      "sha256": "2647192a316c4a6bc94e878fc164968177345f7d8d8bc7cf07fcc931dad1ad6b"
+    },
+    "alarm-4.json": {
+      "path": ".local/jungle-cadence-native-01/alarm-4.json",
+      "bytes": 88772,
+      "sha256": "24b1fd68023228992ba31fa8f7bcd2b421044ded8471d005b5bb1ac71faf2fd5"
+    },
+    "alarm-4.png": {
+      "path": ".local/jungle-cadence-native-01/alarm-4.png",
+      "bytes": 5110,
+      "sha256": "0609b9a32f8842e23cfc6a15eec2498e3567d1c3bc827d8eec5431a7fcee6602"
+    },
+    "alarm-5.json": {
+      "path": ".local/jungle-cadence-native-01/alarm-5.json",
+      "bytes": 88772,
+      "sha256": "a57cc11d2a161d2fec208e3053e4b928b60bb86e524c6a3333e4d7eb103e68e9"
+    },
+    "alarm-5.png": {
+      "path": ".local/jungle-cadence-native-01/alarm-5.png",
+      "bytes": 4868,
+      "sha256": "2647192a316c4a6bc94e878fc164968177345f7d8d8bc7cf07fcc931dad1ad6b"
+    },
+    "capture.json": {
+      "path": ".local/jungle-cadence-native-01/capture.json",
+      "bytes": 377,
+      "sha256": "2b47b8bcb6c51a7a6cd17be8c9acaa1d25d0c8297b5ab7b88205e1769987dea4"
+    },
+    "cleanup.json": {
+      "path": ".local/jungle-cadence-native-01/cleanup.json",
+      "bytes": 88772,
+      "sha256": "b1dac2a3dc9eedfced2ac28e23ceb87bec6a5d5e7e1eef6f0f65244c6ef4424d"
+    },
+    "cleanup.png": {
+      "path": ".local/jungle-cadence-native-01/cleanup.png",
+      "bytes": 4868,
+      "sha256": "2647192a316c4a6bc94e878fc164968177345f7d8d8bc7cf07fcc931dad1ad6b"
+    },
+    "configuration.json": {
+      "path": ".local/jungle-cadence-native-01/configuration.json",
+      "bytes": 2583,
+      "sha256": "7048789cc740631ce1138109aeb99a4cf161ac27060f39aed39a79817ef96d11"
+    },
+    "engine.json": {
+      "path": ".local/jungle-cadence-native-01/engine.json",
+      "bytes": 3987,
+      "sha256": "49ae90ae9ee08f736adfa5f37144894825214f10797e2f462d5b60361cfa4a15"
+    },
+    "entry.json": {
+      "path": ".local/jungle-cadence-native-01/entry.json",
+      "bytes": 88774,
+      "sha256": "4129074801f51de098b17a8dac88f8949c46ef4a5318ae6c0a35f0e48696585f"
+    },
+    "entry.png": {
+      "path": ".local/jungle-cadence-native-01/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/jungle-cadence-native-01/fire-first.json",
+      "bytes": 88769,
+      "sha256": "eb4bca5b9673a5cc49b8ee1c62dec1497d3ff884020e95dc709256856c1c8ed8"
+    },
+    "fire-second.json": {
+      "path": ".local/jungle-cadence-native-01/fire-second.json",
+      "bytes": 88770,
+      "sha256": "f86eafc921cd2efd46833254b4fcb92dc29262462c37efe17ae1b0bec171003d"
+    },
+    "first-result.json": {
+      "path": ".local/jungle-cadence-native-01/first-result.json",
+      "bytes": 88770,
+      "sha256": "0e3abe78592cfcee601ede30e6a30f5124512f66787f64bb1cbd11788c4243d2"
+    },
+    "first-result.png": {
+      "path": ".local/jungle-cadence-native-01/first-result.png",
+      "bytes": 5192,
+      "sha256": "951c7bb37d8bcfd40bce839fa7ad2bc3175b8a531418c033561073fd74cf0e96"
+    },
+    "generated.json": {
+      "path": ".local/jungle-cadence-native-01/generated.json",
+      "bytes": 88773,
+      "sha256": "4476fca6a6da046289890785fb7053642320226e2d2b88afed281513a785cfb2"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/jungle-cadence-native-01/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "28f36b013ef088d2ed730f9adf10bb3f12c7cbf75abc88341d8ed3727f504c57"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/jungle-cadence-native-01/initial-poll-0.png",
+      "bytes": 4838,
+      "sha256": "a2843bd9132f83bce75a17f531581dda5ca6a88268c4ee3202dc93853da75fae"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/jungle-cadence-native-01/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "60695e0bdded5ccd9a1680a6c44bca6d5ad9b04a2cd3f2ed2100327f22384b8a"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/jungle-cadence-native-01/initial-poll-1.png",
+      "bytes": 4838,
+      "sha256": "a2843bd9132f83bce75a17f531581dda5ca6a88268c4ee3202dc93853da75fae"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/jungle-cadence-native-01/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "8c9d4af8c231b115560017042d0d34290f3070082ff2157fbd4e351f0ce17a76"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/jungle-cadence-native-01/initial-poll-2.png",
+      "bytes": 4868,
+      "sha256": "2647192a316c4a6bc94e878fc164968177345f7d8d8bc7cf07fcc931dad1ad6b"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/jungle-cadence-native-01/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "0bc427fbc499cf97e78c41b6de7a648ce6c94df0451f444ac8b7d7f095a0c2f7"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/jungle-cadence-native-01/initial-poll-3.png",
+      "bytes": 4868,
+      "sha256": "2647192a316c4a6bc94e878fc164968177345f7d8d8bc7cf07fcc931dad1ad6b"
+    },
+    "inputs.json": {
+      "path": ".local/jungle-cadence-native-01/inputs.json",
+      "bytes": 31852,
+      "sha256": "f9b77454db2648d9e98c789f1d82a752ec5c0c76d2f0f16b62bf37007602a74a"
+    },
+    "jungle-cadence.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-cadence.json",
+      "bytes": 347,
+      "sha256": "f44db610676916f5a70c882e1500265966b594c6e2b039c05c6270faa34462ce"
+    },
+    "jungle-code.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-code.json",
+      "bytes": 32297,
+      "sha256": "d05f00cb7c0bb6a16a64c1cfbee34609602f995a6bf0b295a33c0c469b231f03"
+    },
+    "jungle-driver.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-driver.json",
+      "bytes": 3662,
+      "sha256": "888b0bc9df08636c61a34757df6a1ef2c8fc5b57afe54d190914b0ba8987e171"
+    },
+    "jungle-entry-contract.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-entry-contract.json",
+      "bytes": 98,
+      "sha256": "bdded93eaeb47f8f32e56147f727328d2c2ee1dd167de80ac5d9700fea4d3a30"
+    },
+    "jungle-entry.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-entry.json",
+      "bytes": 88766,
+      "sha256": "c5000c576bb37e17d1e29a38d570a425383fa578b3d7cf1d6a9298366eb0daf1"
+    },
+    "jungle-entry.png": {
+      "path": ".local/jungle-cadence-native-01/jungle-entry.png",
+      "bytes": 10533,
+      "sha256": "2e374c53d0b73df2866b15c0784a5ae738f49264525047f3f2bd80a23c276d0d"
+    },
+    "jungle-first-input.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-first-input.json",
+      "bytes": 88773,
+      "sha256": "359048d295f5e30353c98b600a27a8e986d3b2d1b6f60131cc43ba11d9f6c8e3"
+    },
+    "jungle-first-input.png": {
+      "path": ".local/jungle-cadence-native-01/jungle-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "jungle-first-presentation.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-first-presentation.json",
+      "bytes": 88775,
+      "sha256": "f50c10f4e76eab055fceb6f589b8112fb597f0f588898ce49b134d895fd60ec7"
+    },
+    "jungle-first-presentation.png": {
+      "path": ".local/jungle-cadence-native-01/jungle-first-presentation.png",
+      "bytes": 18145,
+      "sha256": "964e49c48a326c74d1e7f31e56a185fb88118de8fc0093dd07f0c358237582a3"
+    },
+    "jungle-flight-setup-completed.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-flight-setup-completed.json",
+      "bytes": 175,
+      "sha256": "46c533a745642b2bb5a0ffee0a93692fb8b94a3544637d13a622e68d8bed4a90"
+    },
+    "jungle-observer-final.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-observer-final.json",
+      "bytes": 88539,
+      "sha256": "0fa8d835fa00af5b4ac073643d6737924898ba36d533ced0e9935eebb110a7eb"
+    },
+    "jungle-observer-final.png": {
+      "path": ".local/jungle-cadence-native-01/jungle-observer-final.png",
+      "bytes": 18647,
+      "sha256": "b91530ef69aa46ecb200ce74b1043c00cd211cd2a188693fb533a1b10f84cd24"
+    },
+    "jungle-observer-inputs.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-observer-inputs.json",
+      "bytes": 291,
+      "sha256": "4195b0d32080bd408c93566399258837266b59745366739c992b43ae65fbf57d"
+    },
+    "jungle-observer-loaded.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-observer-loaded.json",
+      "bytes": 124,
+      "sha256": "2f8bc88477621e505b0b30d23c2af8af26da2a82cc046d5fa0860485c94fc633"
+    },
+    "jungle-observer-replay.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-observer-replay.json",
+      "bytes": 173,
+      "sha256": "bc9db847492a2b32f4e24ca68c4e8a1075273481ebaa50c1e62d4a5bce0323f1"
+    },
+    "jungle-observer-result.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-observer-result.json",
+      "bytes": 40667,
+      "sha256": "4bae49f3f4b9304c1d791760cf75a33cba7bee1dabc634c0c9649f944a7baa32"
+    },
+    "jungle-observer-script.json": {
+      "path": ".local/jungle-cadence-native-01/jungle-observer-script.json",
+      "bytes": 1071,
+      "sha256": "939cd884d038292318f2254e7da2a9fffde73de10469354d560d68be81e92496"
+    },
+    "lifecycle.json": {
+      "path": ".local/jungle-cadence-native-01/lifecycle.json",
+      "bytes": 123,
+      "sha256": "886de3cd400f29ce815c062b07b5f97bd5a6a2707177b8f041c03d9241cd2d60"
+    },
+    "live-overlay.json": {
+      "path": ".local/jungle-cadence-native-01/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "8613747122faa5079c77afaa8cc2d6ba46e5101dd3f1ec51e1104ccbc4d03d13"
+    },
+    "office-confirm.json": {
+      "path": ".local/jungle-cadence-native-01/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "0a5872d06bd8cf5a24d14d11cd2aa40fb3bf74b38c47f8b58bb216e9ec6bc9ce"
+    },
+    "office-input.json": {
+      "path": ".local/jungle-cadence-native-01/office-input.json",
+      "bytes": 88775,
+      "sha256": "f728eb4990d1453a96ee62099acb819cb0ae0a52bb3e71b3f27d19e7a921a691"
+    },
+    "office-input.png": {
+      "path": ".local/jungle-cadence-native-01/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "profile-tool-identity.json": {
+      "path": ".local/jungle-cadence-native-01/profile-tool-identity.json",
+      "bytes": 504,
+      "sha256": "6b9b48839a37a8b893852f4399a9e075691b4027cb354a413874a8f9430cc38d"
+    },
+    "return.json": {
+      "path": ".local/jungle-cadence-native-01/return.json",
+      "bytes": 88770,
+      "sha256": "8a788877e8e4ecb037adbb57bffbea92f3bfbdbfa0bb4637421df27ecdc14feb"
+    },
+    "return.png": {
+      "path": ".local/jungle-cadence-native-01/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/jungle-cadence-native-01/rng-consumption.json",
+      "bytes": 54473,
+      "sha256": "c98d42840d69ac0a1f4d28e42151a75e042ea612e1ee5a1a14fd91e5d2e97fbf"
+    },
+    "safari-flight-code-observed.json": {
+      "path": ".local/jungle-cadence-native-01/safari-flight-code-observed.json",
+      "bytes": 24051,
+      "sha256": "1b2f8e02bc7c7391bf36fe89f6f6ba53db3d26d863eea85c31b3960068744cf6"
+    },
+    "safari-flight-code.json": {
+      "path": ".local/jungle-cadence-native-01/safari-flight-code.json",
+      "bytes": 25160,
+      "sha256": "6ba7e81790881b77d37088d93c46057b01fa18c094275980984a4ad9bb10220b"
+    },
+    "source-revision.json": {
+      "path": ".local/jungle-cadence-native-01/source-revision.json",
+      "bytes": 124586,
+      "sha256": "ea0d15f0edbbf5643a23b11da3dd5a44d139352a5a892967769a28a49ad99ff4"
+    },
+    "sources.zip": {
+      "path": ".local/jungle-cadence-native-01/sources.zip",
+      "bytes": 3150654,
+      "sha256": "b73b9e091e9dfdcc9cfd7effa7636d3e49639170e22737c7e1f60aaf89402d64"
+    },
+    "startup-inputs.json": {
+      "path": ".local/jungle-cadence-native-01/startup-inputs.json",
+      "bytes": 1221,
+      "sha256": "9d60fe9a9d350d94ac2f0841aac836295075b7a7a193bb6e6de859cba880fcd7"
+    },
+    "timing-destination-confirm-flush.json": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-confirm-flush.json",
+      "bytes": 88773,
+      "sha256": "a3b083ad08d7d1e62245d8239fb13c6f482feb4b8eb259fe15093842cee9dcf5"
+    },
+    "timing-destination-confirm-read.json": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-confirm-read.json",
+      "bytes": 88775,
+      "sha256": "76093e6f9036880fbc4e62a994ededc011c31dceea90140878b3bc1cd26840d5"
+    },
+    "timing-destination-confirm-read.png": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-confirm-read.png",
+      "bytes": 6615,
+      "sha256": "ea1985cb7e40cfbc8c1f0eaf0af9496f4371666335e6c77db6803f4e2940f66e"
+    },
+    "timing-destination-entry.json": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-entry.json",
+      "bytes": 88787,
+      "sha256": "9424005db6677337bb70ce367c7de5fbd10abe7637803fcf48ba38fe63e3e513"
+    },
+    "timing-destination-entry.png": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-entry.png",
+      "bytes": 16122,
+      "sha256": "8bae5d38da263e8dcbf20b658a79f701905d759b8b58d1090011bd45b093a50b"
+    },
+    "timing-destination-return.json": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-return.json",
+      "bytes": 88775,
+      "sha256": "3429c611732a6421b30871976eb4013f5ac837b829728c0a75c99c9721aef8b5"
+    },
+    "timing-destination-return.png": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-return.png",
+      "bytes": 6615,
+      "sha256": "ea1985cb7e40cfbc8c1f0eaf0af9496f4371666335e6c77db6803f4e2940f66e"
+    },
+    "timing-destination-travel-flush.json": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-travel-flush.json",
+      "bytes": 88775,
+      "sha256": "d5cd69a2c153eea336299ca869f27be083c94e16d24d583977bb4122f68c4895"
+    },
+    "timing-destination-travel-read.json": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-travel-read.json",
+      "bytes": 88771,
+      "sha256": "7ef003c69f6b327a461c94d0e13084290d07b54ea4e6304113a37d35451d16cd"
+    },
+    "timing-destination-travel-read.png": {
+      "path": ".local/jungle-cadence-native-01/timing-destination-travel-read.png",
+      "bytes": 6621,
+      "sha256": "117ce0188d4c663f420c2e6deea65e880d579e97bc04b83fc8bbc671725fedf4"
+    },
+    "timing-flight-contract.json": {
+      "path": ".local/jungle-cadence-native-01/timing-flight-contract.json",
+      "bytes": 150,
+      "sha256": "8b091376aaf022fe056eface72f42a64bb2cabd5eace2f95e4bdf7aa7ebea697"
+    },
+    "timing-flight-first-input.json": {
+      "path": ".local/jungle-cadence-native-01/timing-flight-first-input.json",
+      "bytes": 88778,
+      "sha256": "f442a6920bfcbad98b165b4b1ca37665ab9ce767a3c8edbb67311f2efd7156cd"
+    },
+    "timing-flight-first-input.png": {
+      "path": ".local/jungle-cadence-native-01/timing-flight-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "timing-map-entry.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-entry.json",
+      "bytes": 88794,
+      "sha256": "5245b53d9b09de4b6694576b0b45050497c6a9bbbc3e45915a19acecd617f784"
+    },
+    "timing-map-entry.png": {
+      "path": ".local/jungle-cadence-native-01/timing-map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "timing-map-step-000.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-000.json",
+      "bytes": 88784,
+      "sha256": "d26fc66b867900986df239e83c3991b07649f76447ac0caee8ed9a6e76f94f40"
+    },
+    "timing-map-step-001.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-001.json",
+      "bytes": 88784,
+      "sha256": "9a272f81cc952725588995f1c353d596ea3fbb5b125bc83c0ea7fced3b612429"
+    },
+    "timing-map-step-002.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-002.json",
+      "bytes": 88784,
+      "sha256": "9d701cedd66ecc72dad0291aa53c5e46eeddf260822c29db896fceafe3b69388"
+    },
+    "timing-map-step-003.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-003.json",
+      "bytes": 88784,
+      "sha256": "61d4bc2274fcc39f7d78291e9d924c38a00652637ef18ea4d41786b5de6394f6"
+    },
+    "timing-map-step-004.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-004.json",
+      "bytes": 88784,
+      "sha256": "c85e9898f4c7f91c32233adfa9b2087124516b4b0cfa09fe483c292caed8b950"
+    },
+    "timing-map-step-005.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-005.json",
+      "bytes": 88784,
+      "sha256": "736ae8b398bd195707129949d5681e25d7284d015cb2d34fab767ad4f829e84a"
+    },
+    "timing-map-step-006.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-006.json",
+      "bytes": 88784,
+      "sha256": "0cec4dffa6d23afb92cabc5907901e85f857a7bb966119d613567ddc340ab0d1"
+    },
+    "timing-map-step-007.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-007.json",
+      "bytes": 88784,
+      "sha256": "6f456fd6597275702868b5799378181b5dd71902d6bc0279ca161cff06230c79"
+    },
+    "timing-map-step-008.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-008.json",
+      "bytes": 88784,
+      "sha256": "0648adf9c4f34f7b50f532451f035339b0d5f051411005a43321b095fcb35308"
+    },
+    "timing-map-step-009.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-009.json",
+      "bytes": 88785,
+      "sha256": "7d693fd15f9f80dd868eaf73d0a2afc30e8529e4fea442edc95cb882676e3d93"
+    },
+    "timing-map-step-010.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-010.json",
+      "bytes": 88785,
+      "sha256": "7111f095b5635a3f0b80b860097acb993d69d92c662bd722262b2109995c91d5"
+    },
+    "timing-map-step-011.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-011.json",
+      "bytes": 88785,
+      "sha256": "89039ab78272461e378894775fa9090585ead8c578f8c192b3ddaf34eb5e51bf"
+    },
+    "timing-map-step-012.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-012.json",
+      "bytes": 88785,
+      "sha256": "20f94b3b33ebff307e0459e1b8db834ca542a6eb94da7dab10c4c94bf0e84ab0"
+    },
+    "timing-map-step-013.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-013.json",
+      "bytes": 88785,
+      "sha256": "b9d9d2fa545ef224da2a1cfdc3462983556b28bf5f0d29a3bbcb4fe64e8765a6"
+    },
+    "timing-map-step-014.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-014.json",
+      "bytes": 88785,
+      "sha256": "5d239ebe23f088c2f170f8d3cdac3545c4a321b62111e3af3fc906b6556ac4bf"
+    },
+    "timing-map-step-015.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-015.json",
+      "bytes": 88785,
+      "sha256": "c07b857835b0703ea33fbc0849e0897f18ee0c3bb13879612e9d9413d5df8db1"
+    },
+    "timing-map-step-016.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-016.json",
+      "bytes": 88785,
+      "sha256": "f74e65c3fd63e2057dc2471e3c94c09f6a4aacbb7efca8b88de1e00b1bee6a5a"
+    },
+    "timing-map-step-017.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-017.json",
+      "bytes": 88785,
+      "sha256": "fb7cb00aeba09a233c41a6030f947ca1b6b4ccbfeef0cd48e74fd30b6bf1f090"
+    },
+    "timing-map-step-018.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-018.json",
+      "bytes": 88785,
+      "sha256": "43d9a4f91e053a2afed1cd8aeb1ae3b2b6660557f5a75598489acbd08725308b"
+    },
+    "timing-map-step-019.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-019.json",
+      "bytes": 88785,
+      "sha256": "3d5f0bbf43a14e7c47ed3e13319357f2130570d7c6d623e7c57993decf70c8f1"
+    },
+    "timing-map-step-020.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-020.json",
+      "bytes": 88785,
+      "sha256": "e00487d535f2aedb730dcbd869c66b28d7a52a326b836f5b636061d24157955c"
+    },
+    "timing-map-step-021.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-021.json",
+      "bytes": 88785,
+      "sha256": "423af68a879c39e45312f7e95f66d5d9d305a15743b84b70933ebdf0a81e458f"
+    },
+    "timing-map-step-022.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-022.json",
+      "bytes": 88785,
+      "sha256": "28eca1125d19c5356d3716aff6c3f6001b8cb3010e16808a7fecd0474c765773"
+    },
+    "timing-map-step-023.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-023.json",
+      "bytes": 88785,
+      "sha256": "e47d402291d9de60e02866498448bbf404867f6610471154cf0c24e023c36371"
+    },
+    "timing-map-step-024.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-024.json",
+      "bytes": 88785,
+      "sha256": "9c2dfe2994ed6f2ad7c7bd9a6d360f5261512120fbcc2a9828d50d4b4b399cb2"
+    },
+    "timing-map-step-025.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-025.json",
+      "bytes": 88785,
+      "sha256": "aa5bd6f1902f3352afbc7f9512936d826ceb94062a469d1707393f80802e4244"
+    },
+    "timing-map-step-026.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-026.json",
+      "bytes": 88785,
+      "sha256": "230dd2da8698ef2e5d8c1398a4617b33b07f5c286633f0b8f05f02e199e62bf9"
+    },
+    "timing-map-step-027.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-027.json",
+      "bytes": 88785,
+      "sha256": "d110e0cfc1e9bb4d009271d13587f5754cc57ae1ac9028f0e58d4ad3845e8456"
+    },
+    "timing-map-step-028.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-028.json",
+      "bytes": 88785,
+      "sha256": "0c061c408fc90ba50dc94604dceef1d9599dc9d51f217a6d61fb4f012f9b6037"
+    },
+    "timing-map-step-029.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-029.json",
+      "bytes": 88785,
+      "sha256": "ee06cdf13705ccefbcc72ff7035ee76fd9a9e3659dac9f57d62365030bf685fd"
+    },
+    "timing-map-step-030.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-030.json",
+      "bytes": 88786,
+      "sha256": "5ab0aff205e169af80c0e344f763a6eadf95d0fafa87fae57f3c590dda77be45"
+    },
+    "timing-map-step-031.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-031.json",
+      "bytes": 88786,
+      "sha256": "2c92b81212c8707931429458f3c00866110cfe0a29447e5da3e8aa16a7b92a73"
+    },
+    "timing-map-step-032.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-032.json",
+      "bytes": 88786,
+      "sha256": "9dfd73b951e7116f59d85c22519274ed9b8a62e3e5fba5418842438342f15efe"
+    },
+    "timing-map-step-033.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-033.json",
+      "bytes": 88786,
+      "sha256": "36efaeb2eebfd7d3308f30f8f7fa0ecec4b315a85dd8d259f1ac801d612af5bf"
+    },
+    "timing-map-step-034.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-034.json",
+      "bytes": 88786,
+      "sha256": "e4a5eaaa1188ccadaedbdf9596d5cf92610822fca3f067c9a879cb55bcc81340"
+    },
+    "timing-map-step-035.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-035.json",
+      "bytes": 88786,
+      "sha256": "dfd9c0c33218535080c62153137e3864751166140125b2c9a4371cfcd12dbc59"
+    },
+    "timing-map-step-036.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-036.json",
+      "bytes": 88786,
+      "sha256": "763b066cf3bf285bb422d176bb510af953b2472d8c7f55cb23b60dab266a1deb"
+    },
+    "timing-map-step-037.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-037.json",
+      "bytes": 88786,
+      "sha256": "8ddbe900c00bc9539c00ae7bb648704c7768fdd30085009ecbd7140e0e73757a"
+    },
+    "timing-map-step-038.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-038.json",
+      "bytes": 88786,
+      "sha256": "b203382b3423c4871acd945fc9508bed506616185e75d5e12ad1df283d726b1d"
+    },
+    "timing-map-step-039.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-039.json",
+      "bytes": 88786,
+      "sha256": "3c394a6122033b5100985cdfcb602808ef5b348bb8e0cc2032d1127eb8dbbfef"
+    },
+    "timing-map-step-040.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-040.json",
+      "bytes": 88786,
+      "sha256": "9bc777e182e970f8cd99b3180644e0cf9ada43845dc601968eb7e8a12c213622"
+    },
+    "timing-map-step-041.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-041.json",
+      "bytes": 88786,
+      "sha256": "7590d8f43e5eb1d8d74234fa9b1ceec6dd16771d19b62850068cc3659acd4bcc"
+    },
+    "timing-map-step-042.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-042.json",
+      "bytes": 88786,
+      "sha256": "3add0772489dd8248e2c12eb595b259262764162386a985800910ebf89bd8b69"
+    },
+    "timing-map-step-043.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-043.json",
+      "bytes": 88786,
+      "sha256": "4b73c8bfa255a9caaa1d9ddbe5726dfeb05895ba16f1a0a969240b6162851e78"
+    },
+    "timing-map-step-044.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-044.json",
+      "bytes": 88786,
+      "sha256": "56e5d85d716393c104c0a4b3f87b74b811aa2f720d62917ce6cc481178efa3d9"
+    },
+    "timing-map-step-045.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-045.json",
+      "bytes": 88786,
+      "sha256": "f15c649fd5cb13fcf498ae46c8d5d85c1156a8e5d24b86dbfa09149d9e891e87"
+    },
+    "timing-map-step-046.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-046.json",
+      "bytes": 88786,
+      "sha256": "d2c26b8df972733f3f529a44023c23e20c80927cf47d7bc5a53c059156b0ff24"
+    },
+    "timing-map-step-047.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-047.json",
+      "bytes": 88786,
+      "sha256": "c38a55999e168a9c3d532dc878af9af4cd58cddb53a43ee9d5d3473bbb1fad1d"
+    },
+    "timing-map-step-048.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-048.json",
+      "bytes": 88786,
+      "sha256": "805f354a8dfb7331b49975b4ffa19e96758bc8a4cd1fa73c6aec51ad2cbb1038"
+    },
+    "timing-map-step-049.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-049.json",
+      "bytes": 88786,
+      "sha256": "b1c26d1eee92e335e5ee785057ea75ff24372311e7f993c6c367503b4cf2c695"
+    },
+    "timing-map-step-050.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-050.json",
+      "bytes": 88786,
+      "sha256": "a62985907656c9577a56d705d3d9c27a45bdfff675c5f1a9db16ed2422330eab"
+    },
+    "timing-map-step-051.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-051.json",
+      "bytes": 88786,
+      "sha256": "bcc78b78b7a635873b32da816289880ea3bacdcdd0f97af5a5529c944091c048"
+    },
+    "timing-map-step-052.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-052.json",
+      "bytes": 88786,
+      "sha256": "e8e583b1bfc98b4ce73ced0af699aabc3732d7a79a0d5e116409d4051e2d1bf1"
+    },
+    "timing-map-step-053.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-053.json",
+      "bytes": 88786,
+      "sha256": "3c4aa2c646b2457961b6d6ebc276d2fa8ce334b946580d9e1871e88c8a1c1ea1"
+    },
+    "timing-map-step-054.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-054.json",
+      "bytes": 88786,
+      "sha256": "87fbacafc68888c1e96e11e191db0cebdd09532017412a17a232782487867522"
+    },
+    "timing-map-step-055.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-055.json",
+      "bytes": 88786,
+      "sha256": "b14aab0d241dabefca9b617b2bede701df8cfcb71abc30eb06b368eb0f41a395"
+    },
+    "timing-map-step-056.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-056.json",
+      "bytes": 88786,
+      "sha256": "4d9c6d772ee5622a128d71b6a29553cf547fbd8f4af6025c518412736c45da88"
+    },
+    "timing-map-step-057.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-057.json",
+      "bytes": 88786,
+      "sha256": "50bc197b423e2777cb6806fc32831f5d6713ad840280e3750a7279e6e568ef25"
+    },
+    "timing-map-step-058.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-058.json",
+      "bytes": 88786,
+      "sha256": "28c6f7327850824a3a59f866cb3eb78faf0167c3e832b948582f683301f149f0"
+    },
+    "timing-map-step-059.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-059.json",
+      "bytes": 88786,
+      "sha256": "7140e627120311aa0e080daf2438759e57519e7823ffe04f7e530d053e712e45"
+    },
+    "timing-map-step-060.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-060.json",
+      "bytes": 88786,
+      "sha256": "4ad6c77190b9956cef30f7a16aea59e6a0f325c846731675bc5340e5553b903f"
+    },
+    "timing-map-step-061.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-061.json",
+      "bytes": 88786,
+      "sha256": "bc3f5b45393c9210199edf1cb5634acbb1ac0ff3031399785223047191cfaee2"
+    },
+    "timing-map-step-062.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-062.json",
+      "bytes": 88786,
+      "sha256": "92a33ff8830559849ea95c5c29ae3638cb6b3886e76a5ca47db1eea335aed9c4"
+    },
+    "timing-map-step-063.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-063.json",
+      "bytes": 88786,
+      "sha256": "ee07a57e7bd45f1e492aae29eee465fa74ed841321f7b4ee65f1ee8bea7a2284"
+    },
+    "timing-map-step-064.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-064.json",
+      "bytes": 88786,
+      "sha256": "a5bc35dcef7894c8d0fa3f0aab07aee22853b060efe3f72b1305171fb3ba6edd"
+    },
+    "timing-map-step-065.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-065.json",
+      "bytes": 88786,
+      "sha256": "d930232f59a1b213f694849f2e6815202fba44576ebc32c6e968bfb4d99eb2dd"
+    },
+    "timing-map-step-066.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-066.json",
+      "bytes": 88786,
+      "sha256": "a9e2d32623c059fc8fb3b2fd4995e7c559fc3468f1d6c54d36c248cd8e2e2f63"
+    },
+    "timing-map-step-067.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-067.json",
+      "bytes": 88786,
+      "sha256": "3e33fd96c049b1f50c24a403c7ea372f3fe29efcfad5628ef8b452a21c71bed6"
+    },
+    "timing-map-step-068.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-068.json",
+      "bytes": 88786,
+      "sha256": "105913efaa14fa1a821e9e5cc173458303d17f8323a833542f3b4c1ed0048ae2"
+    },
+    "timing-map-step-069.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-069.json",
+      "bytes": 88786,
+      "sha256": "5bbada6abb40fd8610d3af577a6a08d275f63f6c367231f785bcf0c12115b385"
+    },
+    "timing-map-step-070.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-070.json",
+      "bytes": 88786,
+      "sha256": "11637256b56bc81bad9e1b21f503d1c37e13e1a7b643bffa5162e34453173d2e"
+    },
+    "timing-map-step-071.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-071.json",
+      "bytes": 88786,
+      "sha256": "62a24d19f2af85ba25d35b51e2bd0c943d54ec056aaeebef5f81fe5995561a4c"
+    },
+    "timing-map-step-072.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-072.json",
+      "bytes": 88786,
+      "sha256": "67f2aa375ad01e664b2ed6fa0f378e803fc733acb680d2ee8b6ef560d6ecef43"
+    },
+    "timing-map-step-073.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-073.json",
+      "bytes": 88786,
+      "sha256": "5987ae10f8434cafd0abd37095e60c2f3ce3ddb34603879c2e3b666a7caa2ce3"
+    },
+    "timing-map-step-074.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-074.json",
+      "bytes": 88786,
+      "sha256": "110a6fcf844ce11d609cc499ac25f9b01af752a493fbb89a680988057f5bc983"
+    },
+    "timing-map-step-075.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-075.json",
+      "bytes": 88786,
+      "sha256": "0dd3ba927dd9978e3c2013f9403a80563c4f234d5d7257f8a284fc7b66bd9a85"
+    },
+    "timing-map-step-076.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-076.json",
+      "bytes": 88786,
+      "sha256": "af17c1c1857a86276238510d0b2ff14c138bea42c8605585a2df35a813e78c30"
+    },
+    "timing-map-step-077.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-077.json",
+      "bytes": 88786,
+      "sha256": "89cb8a3f32728f7f787c8431b43cd1f0d17f58b18c3d0fa4bb08ca767f6267b8"
+    },
+    "timing-map-step-078.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-078.json",
+      "bytes": 88786,
+      "sha256": "6decd952b9c150650753d9d5a0cbe52a22c1645031beffcc0fe275f21569ff1d"
+    },
+    "timing-map-step-079.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-079.json",
+      "bytes": 88786,
+      "sha256": "47253793d184966122977bee3332af187559fd9bc7ac08132a5e7582d34cb864"
+    },
+    "timing-map-step-080.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-080.json",
+      "bytes": 88786,
+      "sha256": "4bffe85bdd194d4725898853ff343260f17dfad7722bb9a7882d4fd2bbec0881"
+    },
+    "timing-map-step-081.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-081.json",
+      "bytes": 88786,
+      "sha256": "3f2b1674d4cb910ce90a1583f6613be85e9e238aa09368ca71a5b3d9ab434f78"
+    },
+    "timing-map-step-082.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-082.json",
+      "bytes": 88786,
+      "sha256": "d86ed75aad72aec9d6800c094a9823c5582dd38f9c58e50a3e15a340201b8881"
+    },
+    "timing-map-step-083.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-083.json",
+      "bytes": 88786,
+      "sha256": "dd7f2b789ad523a304c72f7e573162febf501c52abe5c68d32a6ad86d5d2cacd"
+    },
+    "timing-map-step-084.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-084.json",
+      "bytes": 88786,
+      "sha256": "76a65952836f8ea0feabb9adc511f83ccad4347af0a5e46ed6f298fcd9215a58"
+    },
+    "timing-map-step-085.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-085.json",
+      "bytes": 88786,
+      "sha256": "21c903d565c136a23293182b1a318f31a5a072f6ecc7494722c3fcc94315f792"
+    },
+    "timing-map-step-086.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-086.json",
+      "bytes": 88786,
+      "sha256": "3a702715a2a1dc5699bbbbb4bcd65dbcee36275eb9a5d8b31e38c66e8c03ddf3"
+    },
+    "timing-map-step-087.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-087.json",
+      "bytes": 88786,
+      "sha256": "9c8d0092b73ee5770f58cba7f12a43e9e5f3b9b6474eae4b98170d53a8f9a6f6"
+    },
+    "timing-map-step-088.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-088.json",
+      "bytes": 88786,
+      "sha256": "783e7ca6a8411816b3ee4e8bbdcafa09a87f040795b364c42478efff868fa9b3"
+    },
+    "timing-map-step-089.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-089.json",
+      "bytes": 88786,
+      "sha256": "99db2fb0a11fbb0bcf6f4ffd8ae6070e0ccab7fd7df03f0f4fdc4d537f9e9da3"
+    },
+    "timing-map-step-090.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-090.json",
+      "bytes": 88786,
+      "sha256": "092dea9b7b769b6ed8acb7ef4e1b184f2b2a415ae5b2b988d0120c496299a15f"
+    },
+    "timing-map-step-091.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-091.json",
+      "bytes": 88786,
+      "sha256": "1876d1cd40403876eeaabd32101f5d17338e8b6ae92bccc5c4314965e9f6f8f5"
+    },
+    "timing-map-step-092.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-092.json",
+      "bytes": 88786,
+      "sha256": "e284b3c978d404a6f2ce847a7c7e44b508c23b0fc8d3f86211f5614046650989"
+    },
+    "timing-map-step-093.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-093.json",
+      "bytes": 88786,
+      "sha256": "de72b72ab58b54bdfd3dff1ee0c06f6839d1d2c02808f276981c24c53f78ea70"
+    },
+    "timing-map-step-094.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-094.json",
+      "bytes": 88786,
+      "sha256": "4ee5a66786c129a5b5ae24c8a70459122dba56cfb37759d10117b67fcbca3f6d"
+    },
+    "timing-map-step-095.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-095.json",
+      "bytes": 88786,
+      "sha256": "39fe4e28e472eb01906c4fcbbdffb746121e64d5ea6c44b3fd3dc4a76ef477f6"
+    },
+    "timing-map-step-096.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-096.json",
+      "bytes": 88786,
+      "sha256": "905290913631e410edd64718c20f68ae87337a2ebb7dc4fb7e9a2dfa8a6bc4c1"
+    },
+    "timing-map-step-097.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-097.json",
+      "bytes": 88786,
+      "sha256": "6ff71f20bd6b511dad843a236fba2a940f68472eb6ce260ea1b155b1e9225e99"
+    },
+    "timing-map-step-098.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-098.json",
+      "bytes": 88786,
+      "sha256": "2c1006419ca98eebb6239185e551b33d9684068c7ca7cbf42d879b627470af08"
+    },
+    "timing-map-step-099.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-099.json",
+      "bytes": 88787,
+      "sha256": "e31622e4dce932b8969e3ba2379b54619610ca6933043fbc61b92bea4b559caf"
+    },
+    "timing-map-step-100.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-100.json",
+      "bytes": 88787,
+      "sha256": "9b37fa3d9c91e34209270823ee4372d9e7e77c1513e1c0775d0b92b5c1760c62"
+    },
+    "timing-map-step-101.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-101.json",
+      "bytes": 88787,
+      "sha256": "4a0d3bba2fdd207db42370c7686adae193369db70bb3f4d3edf297f0ac68ee13"
+    },
+    "timing-map-step-102.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-102.json",
+      "bytes": 88787,
+      "sha256": "392ba98bbf1050f2d882a7604a73b33220b3a200c17db876bc3ca5f10ef906b0"
+    },
+    "timing-map-step-103.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-103.json",
+      "bytes": 88787,
+      "sha256": "4d2505da2c391d750498c5094a3482fe7bda8aed75deeb7d62f752c744f840a4"
+    },
+    "timing-map-step-104.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-104.json",
+      "bytes": 88787,
+      "sha256": "be39ba5a9b77f08e909f039a2e39fef459e362ff3c731fa1867820c40a927ed4"
+    },
+    "timing-map-step-105.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-105.json",
+      "bytes": 88787,
+      "sha256": "1eeed459ad7760b0bd17075c3b36aca9f9d627b24b2d8304f203a2e1f90bfabd"
+    },
+    "timing-map-step-106.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-106.json",
+      "bytes": 88787,
+      "sha256": "54c66b4b4446ab3d2c68ec9c3576e42e79519aea46b656f5eed06fb0a3381868"
+    },
+    "timing-map-step-107.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-107.json",
+      "bytes": 88787,
+      "sha256": "ee353124e497a807d57474fb3481fa55a9b9a9f94250e9e7a5640b3056b5dc47"
+    },
+    "timing-map-step-108.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-108.json",
+      "bytes": 88787,
+      "sha256": "abd674a7afc66c265bb9f1c6c678dc41976363a5c98ac7a6758c6eb1482b0250"
+    },
+    "timing-map-step-109.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-109.json",
+      "bytes": 88787,
+      "sha256": "74e026e347aa0fe2542c3ca8a5d4e7dc92cacad168d86978249d38d03062b738"
+    },
+    "timing-map-step-110.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-110.json",
+      "bytes": 88787,
+      "sha256": "828cfc0f0161b5024022b2db0fc6e514f0d5fb58af308be025bc88917b1b5916"
+    },
+    "timing-map-step-111.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-111.json",
+      "bytes": 88787,
+      "sha256": "cd1124a23505f7063538075035d2c55f54ff2491af8e2cdf8dbd4d9dd067aed6"
+    },
+    "timing-map-step-112.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-112.json",
+      "bytes": 88787,
+      "sha256": "866799bc5191b113b91cf5b1d86bc5c44747e88f9e571f55682aac3d20e6be1c"
+    },
+    "timing-map-step-113.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-113.json",
+      "bytes": 88787,
+      "sha256": "e75cd8cc6bef4e286244c15397d504a39d193a6728d75c7d422bba1bfd17588a"
+    },
+    "timing-map-step-114.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-114.json",
+      "bytes": 88787,
+      "sha256": "ef48ff91446591309ce9d98f8c7a7ca16c6fc017b3fa61cc733125b3ef6959df"
+    },
+    "timing-map-step-115.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-115.json",
+      "bytes": 88787,
+      "sha256": "d1d6299814be9d58fb70d913ad1982377ba8ef6f160169beca913368a5c89403"
+    },
+    "timing-map-step-116.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-116.json",
+      "bytes": 88787,
+      "sha256": "0b5d48f05082979e6a58ebb86895dee8a6edef316492c88a3845d9b489b9898c"
+    },
+    "timing-map-step-117.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-117.json",
+      "bytes": 88787,
+      "sha256": "487c206b0eb13e0c6f1bd5e52d852b6347e1f8ac7fbc68c027610ce047973fb1"
+    },
+    "timing-map-step-118.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-118.json",
+      "bytes": 88787,
+      "sha256": "b8ca75d78630335ae8696549a0a8bd6f38d7f37c911757f48a4d251e83ce9948"
+    },
+    "timing-map-step-119.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-119.json",
+      "bytes": 88787,
+      "sha256": "1b411a21dbfcc9fae7dd4eef1d19f1a47b6ea793c357df4a0a1a2b388be9e2a9"
+    },
+    "timing-map-step-120.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-120.json",
+      "bytes": 88787,
+      "sha256": "ebe5819bf19a47b16243b59289df7701b485c8c048f0adc11b9932b44fec8714"
+    },
+    "timing-map-step-121.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-121.json",
+      "bytes": 88787,
+      "sha256": "e830a420c352f7de56cb4fbbf1c4915231088bcd280f31c55d4c69ee6a3d9b74"
+    },
+    "timing-map-step-122.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-122.json",
+      "bytes": 88787,
+      "sha256": "23623598890497ef7c522fab2aa0ac87b54d334e0f19f6c8db1b060d659baaff"
+    },
+    "timing-map-step-123.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-123.json",
+      "bytes": 88787,
+      "sha256": "708f4dcff0b8f54891440b6d8708626c5df76188cbe506b3b7791bebc448fd42"
+    },
+    "timing-map-step-124.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-124.json",
+      "bytes": 88787,
+      "sha256": "d93689751f44685a74fa34f4fad8f073b567e208cab8be4ae538cfc26d244754"
+    },
+    "timing-map-step-125.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-125.json",
+      "bytes": 88787,
+      "sha256": "9b34fba89532c4a57d92840ee7106c950724a74891cfd351bdfd68aa4923256b"
+    },
+    "timing-map-step-126.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-126.json",
+      "bytes": 88787,
+      "sha256": "9861781c64e7cb762d0491b9e0311bf34ca4dab41b0f40bb1e6966dc6a632e8d"
+    },
+    "timing-map-step-127.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-127.json",
+      "bytes": 88787,
+      "sha256": "6662586f5036ee71cefa62f6ce75f833421b1ba2009e4ef1397e63bab10c9e49"
+    },
+    "timing-map-step-128.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-128.json",
+      "bytes": 88787,
+      "sha256": "09803a0324bfd9429c7920d0e59635ced82b1e6c7d9a8e407aec372db0a8e551"
+    },
+    "timing-map-step-129.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-129.json",
+      "bytes": 88787,
+      "sha256": "88aa36ee1a10965c6a87e6e1a50e38abe5f328534635132a413b6b74e1377287"
+    },
+    "timing-map-step-130.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-130.json",
+      "bytes": 88787,
+      "sha256": "d4e2f882900fe5e73b3b6b41a121f1686502e08914c968209ec32f1b74712e52"
+    },
+    "timing-map-step-131.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-131.json",
+      "bytes": 88787,
+      "sha256": "d4c9e2b8fb6ed0640796a145bc46e79c44a19fc1f4e97f94b172c7e2af8caaca"
+    },
+    "timing-map-step-132.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-132.json",
+      "bytes": 88787,
+      "sha256": "d1ab46011345c09da87349deb2917cd3c0b7ca1c26a78316861793c5da99a8c6"
+    },
+    "timing-map-step-133.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-133.json",
+      "bytes": 88787,
+      "sha256": "3a835f100014c39bbb7aab43dd012c8ca4f20a8f11bceb3a91ecc7ef9a2793f5"
+    },
+    "timing-map-step-134.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-134.json",
+      "bytes": 88787,
+      "sha256": "200051a4b83205bd67c934775ff4598a4a162ce3b9f409af74dbe7b8b7ef6787"
+    },
+    "timing-map-step-135.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-135.json",
+      "bytes": 88787,
+      "sha256": "6db7be90c7944027c39074e0c2d10a166b33cdcddf98c0357d4461f7dd7ac55a"
+    },
+    "timing-map-step-136.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-136.json",
+      "bytes": 88787,
+      "sha256": "a5ac0f2fc398f186d1bc4ab7f2da0f48fceaaca3bd72b7273385b266d734ce7b"
+    },
+    "timing-map-step-137.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-137.json",
+      "bytes": 88787,
+      "sha256": "7ccba4ceb3ab544b47d68ecd00d6b2464bdcf8cc2511f913e04b12267dc434f4"
+    },
+    "timing-map-step-138.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-138.json",
+      "bytes": 88787,
+      "sha256": "96d366828b923b266fd9e8d7b6630d103421b77fa8b09c3a945878c6cf106ea1"
+    },
+    "timing-map-step-139.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-139.json",
+      "bytes": 88787,
+      "sha256": "65a6b170e42861da6ef2f01aea7ec77224c6a26b2e9f746db5b570345f278101"
+    },
+    "timing-map-step-140.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-140.json",
+      "bytes": 88787,
+      "sha256": "4d4c3a3d7fd51fb47a706b8aa0e9f99434c3285b053dd3c0de93d91f10927291"
+    },
+    "timing-map-step-141.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-141.json",
+      "bytes": 88787,
+      "sha256": "e59b396d72013cb842e71ad516483406fba808467e6f8e6236f464aa73d0c5c6"
+    },
+    "timing-map-step-142.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-142.json",
+      "bytes": 88787,
+      "sha256": "20a7b1ac073af1f026f361f07a2f677ffc0f0da98de4a19a2bfe0cf2d73e84fc"
+    },
+    "timing-map-step-143.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-143.json",
+      "bytes": 88787,
+      "sha256": "7b502b050818bba6c9a43476c7ed71e868b5af30bb0c54a0fc6b494ae9e9ca18"
+    },
+    "timing-map-step-144.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-144.json",
+      "bytes": 88787,
+      "sha256": "06e740e44fba6ffe9a35fbb2855b8a02aa229baca0b363c49f1687de3da05a0e"
+    },
+    "timing-map-step-145.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-145.json",
+      "bytes": 88787,
+      "sha256": "e470b09821f15e28af3defa88634df44fadbebd6da7ecb37eeeac8e8ba6aed27"
+    },
+    "timing-map-step-146.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-146.json",
+      "bytes": 88787,
+      "sha256": "93bfe9c79597e708bc70ac0e5ed275694f13b39c3b7ddf9d56306f97105884a9"
+    },
+    "timing-map-step-147.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-147.json",
+      "bytes": 88787,
+      "sha256": "7b55fc7e3b4633758f8d915c6797af81a61ab2c93f3b366181b517b30d608927"
+    },
+    "timing-map-step-148.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-148.json",
+      "bytes": 88787,
+      "sha256": "16f347f7897d454ba7e3859a0afa94e4bfc22edf3a3d5761c0a3bd1f9f29dcd6"
+    },
+    "timing-map-step-149.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-149.json",
+      "bytes": 88787,
+      "sha256": "2a4784186275520dd23d0175b21cc1689b3bbe015a617e251a4631fb45e64c82"
+    },
+    "timing-map-step-150.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-150.json",
+      "bytes": 88787,
+      "sha256": "af91d312ed19fe52171a321151e4218dde5b768e93db92df6d17c395e8fd1dc0"
+    },
+    "timing-map-step-151.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-151.json",
+      "bytes": 88787,
+      "sha256": "5c07f81722417c10a8bd039b7da9e82439aeecc584c84c983b181caad01ad7c4"
+    },
+    "timing-map-step-152.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-152.json",
+      "bytes": 88787,
+      "sha256": "240e05fec6096f4826e849968b48da5b2a123a930bf0fbf48219bcddf41af35e"
+    },
+    "timing-map-step-153.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-153.json",
+      "bytes": 88787,
+      "sha256": "304c13f89676909e6c0194edef9b1b8db7d7aa462d277eb368d78e72b5966249"
+    },
+    "timing-map-step-154.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-154.json",
+      "bytes": 88787,
+      "sha256": "7bf6cef25b8dcade9cfbf169d4df13d0a8f89bda63ac6ab2c6f95f9183407edf"
+    },
+    "timing-map-step-155.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-155.json",
+      "bytes": 88787,
+      "sha256": "258f1220cecee4b0366aa15f3f8e7fa3ec845dc94cbeecba04d2b7c3e0b883ea"
+    },
+    "timing-map-step-156.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-156.json",
+      "bytes": 88787,
+      "sha256": "c7344f742fde70505f38feb321658e50f91f454318f849540579435953c11dc5"
+    },
+    "timing-map-step-157.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-157.json",
+      "bytes": 88787,
+      "sha256": "ad686b9a19feae6e6532cba59d9f9548ced57159f85f01683c80a3d5ff210e01"
+    },
+    "timing-map-step-158.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-158.json",
+      "bytes": 88787,
+      "sha256": "afef9d615cdb1ff8415c225fdb1a82f858f96228c2296c9449c09bfa8f88421a"
+    },
+    "timing-map-step-159.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-159.json",
+      "bytes": 88787,
+      "sha256": "fff830f290ca4b450a85fd27ae974220b05f90c78994ada01eb668dea679140d"
+    },
+    "timing-map-step-160.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-160.json",
+      "bytes": 88787,
+      "sha256": "66b97638c66c6bbd2ecbc38f577110f433c3de3c22045cdc9387ad0376d9ee1f"
+    },
+    "timing-map-step-161.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-161.json",
+      "bytes": 88787,
+      "sha256": "3542b7c4e5af43f721c37f82bf421d7dfe16078955488ef773119c9ee143f7c6"
+    },
+    "timing-map-step-162.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-162.json",
+      "bytes": 88787,
+      "sha256": "09d22627bb37cd6302faae0c0f09d20c8947f7949d0e15c61c1b415d90408946"
+    },
+    "timing-map-step-163.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-163.json",
+      "bytes": 88787,
+      "sha256": "16c5d26cee132ccaae252afcbfe2aee41900730a3301c36e2689f7f6b359b36d"
+    },
+    "timing-map-step-164.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-164.json",
+      "bytes": 88787,
+      "sha256": "fdd06c19ac33480a7fc0a35239dd9e60d3354fd11e2894108e3d724dee609036"
+    },
+    "timing-map-step-165.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-165.json",
+      "bytes": 88787,
+      "sha256": "2e7ce0cca9b22ad63d52a587cae7c97b439bb4a3a34b3ab836c58eaa949a2d10"
+    },
+    "timing-map-step-166.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-166.json",
+      "bytes": 88787,
+      "sha256": "3b0ca5acff36483415183bc0e8e9a5157f1099a53a174b88d8d7bb98e896b332"
+    },
+    "timing-map-step-167.json": {
+      "path": ".local/jungle-cadence-native-01/timing-map-step-167.json",
+      "bytes": 88787,
+      "sha256": "8a72aa83dfbc301fa305253fe944c29e592acf42fb4dfe74a68707cf500cff13"
+    },
+    "warning-poll.json": {
+      "path": ".local/jungle-cadence-native-01/warning-poll.json",
+      "bytes": 88774,
+      "sha256": "01a0bcbcefddd8f862333e73f231751f19d78dd9db3c4d346b75ae83f6230d54"
+    },
+    "warning-poll.png": {
+      "path": ".local/jungle-cadence-native-01/warning-poll.png",
+      "bytes": 5192,
+      "sha256": "951c7bb37d8bcfd40bce839fa7ad2bc3175b8a531418c033561073fd74cf0e96"
+    }
+  }
+}

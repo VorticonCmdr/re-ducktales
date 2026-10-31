@@ -1,0 +1,1120 @@
+{
+  "kind": "standard-full-campaign-port-regression",
+  "scope": "Winning Standard port-browser regression from startup through all four expedition families,three additional cave treasures,winning celebration,replay-No,all26 credits,closed screen and Restart. Exact state/decoded-RGBA comparison;not whole-original campaign timing/audio parity or arbitrary-route acceptance.",
+  "producer": ".local/standard-winning-browser-03",
+  "captureToolRevision": "e4f857a4d67e35772c3c59f51b50176f00dcc438",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "difficulty": 1,
+  "physicalKeyboard": true,
+  "nativeComparison": false,
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "audioEnabled": false,
+    "originalSecurity": false
+  },
+  "startingRecipe": "Fresh title startup;retained74-checkpoint physical Standard prefix through continued-mountain-return,then independent player inputs from the pinned conditional plan and actual browser ending controls. No state restore or memory patch. Same-timestamp inputs follow checkpoints by event ordinal.",
+  "prefix": {
+    "path": "reference/rival-standard-route.json",
+    "bytes": 24057,
+    "sha256": "1548d6c1e4a161742cdad14d8cf6ee5a6f0c53fd6f3114077acc70737a6e2013"
+  },
+  "playerPlan": "reference/standard-winning-plan.json",
+  "requiredEventCount": 6575,
+  "expectedCheckpointCount": 170,
+  "checkpointNames": [
+    "standard-choice",
+    "office",
+    "departure",
+    "flight-start",
+    "flight-return",
+    "cave-entry",
+    "room-10",
+    "room-18",
+    "room-26",
+    "room-27",
+    "room-19",
+    "room-11",
+    "room-12",
+    "room-13",
+    "room-14",
+    "award",
+    "dialogue-16",
+    "dialogue-17",
+    "dialogue-18",
+    "map-after-cave",
+    "bank-deposited",
+    "dialogue-21",
+    "map-after-bank",
+    "safari-departure-0",
+    "safari-flight-return-0",
+    "dialogue-25",
+    "map-after-lost-race-0",
+    "safari-departure-1",
+    "safari-flight-return-1",
+    "safari-entry",
+    "safari-shot-0",
+    "safari-results",
+    "dialogue-32",
+    "map-after-safari",
+    "safari-banked",
+    "map-after-safari-bank",
+    "continued-prefix",
+    "continued-departure-1",
+    "continued-flight-return-2",
+    "continued-jungle-entry",
+    "continued-jungle-40",
+    "continued-jungle-80",
+    "continued-jungle-120",
+    "continued-jungle-160",
+    "continued-jungle-200",
+    "continued-jungle-240",
+    "continued-jungle-280",
+    "continued-jungle-320",
+    "continued-jungle-360",
+    "continued-jungle-400",
+    "continued-jungle-plan-end",
+    "continued-jungle-return",
+    "continued-dialogue-16",
+    "continued-departure-17",
+    "continued-flight-return-18",
+    "continued-mountain-entry",
+    "continued-mountain-40",
+    "continued-mountain-80",
+    "continued-mountain-120",
+    "continued-mountain-160",
+    "continued-mountain-200",
+    "continued-mountain-240",
+    "continued-mountain-280",
+    "continued-mountain-320",
+    "continued-mountain-360",
+    "continued-mountain-400",
+    "continued-mountain-440",
+    "continued-mountain-480",
+    "continued-mountain-520",
+    "continued-mountain-560",
+    "continued-mountain-600",
+    "continued-mountain-640",
+    "continued-mountain-plan-end",
+    "continued-mountain-return",
+    "winning-0-prefix",
+    "winning-1-dialogue-1",
+    "winning-2-dialogue-2",
+    "winning-3-departure-3",
+    "winning-4-flight-return-4",
+    "winning-5-dialogue-5",
+    "winning-6-cave-entry-9",
+    "winning-7-cave-room-9-53",
+    "winning-8-cave-room-9-52",
+    "winning-9-cave-room-9-51",
+    "winning-10-cave-room-9-43",
+    "winning-11-cave-room-9-35",
+    "winning-12-cave-room-9-27",
+    "winning-13-cave-room-9-19",
+    "winning-14-cave-room-9-11",
+    "winning-15-cave-room-9-10",
+    "winning-16-cave-room-9-9",
+    "winning-17-cave-return-9",
+    "winning-18-dialogue-18",
+    "winning-19-departure-19",
+    "winning-20-flight-return-20",
+    "winning-21-cave-entry-30",
+    "winning-22-cave-room-30-18",
+    "winning-23-cave-room-30-26",
+    "winning-24-cave-room-30-27",
+    "winning-25-cave-room-30-28",
+    "winning-26-cave-room-30-29",
+    "winning-27-cave-room-30-28",
+    "winning-28-cave-room-30-27",
+    "winning-29-cave-room-30-35",
+    "winning-30-cave-room-30-43",
+    "winning-31-cave-room-30-44",
+    "winning-32-cave-room-30-52",
+    "winning-33-cave-room-30-60",
+    "winning-34-cave-room-30-61",
+    "winning-35-cave-room-30-53",
+    "winning-36-cave-room-30-45",
+    "winning-37-cave-return-30",
+    "winning-38-dialogue-38",
+    "winning-39-departure-39",
+    "winning-40-flight-return-40",
+    "winning-41-cave-entry-21",
+    "winning-42-cave-room-21-46",
+    "winning-43-cave-room-21-45",
+    "winning-44-cave-room-21-44",
+    "winning-45-cave-room-21-36",
+    "winning-46-cave-room-21-28",
+    "winning-47-cave-room-21-20",
+    "winning-48-cave-room-21-12",
+    "winning-49-cave-room-21-11",
+    "winning-50-cave-room-21-10",
+    "winning-51-cave-room-21-18",
+    "winning-52-cave-room-21-26",
+    "winning-53-cave-room-21-25",
+    "winning-54-cave-room-21-33",
+    "winning-55-cave-room-21-41",
+    "winning-56-cave-return-21",
+    "winning-57-dialogue-57",
+    "winning-58-bank-58",
+    "winning-59-dialogue-59",
+    "winning-60-office-60",
+    "winning-61-dialogue-61",
+    "winning-62-bank-62",
+    "winning-63-ending",
+    "winner-celebration",
+    "replay-yes",
+    "replay-no",
+    "credits-title",
+    "credit-0",
+    "credit-1",
+    "credit-2",
+    "credit-3",
+    "credit-4",
+    "credit-5",
+    "credit-6",
+    "credit-7",
+    "credit-8",
+    "credit-9",
+    "credit-10",
+    "credit-11",
+    "credit-12",
+    "credit-13",
+    "credit-14",
+    "credit-15",
+    "credit-16",
+    "credit-17",
+    "credit-18",
+    "credit-19",
+    "credit-20",
+    "credit-21",
+    "credit-22",
+    "credit-23",
+    "credit-24",
+    "credit-25",
+    "farewell",
+    "closed"
+  ],
+  "expectedOutcome": {
+    "day": 33,
+    "banked": 24275,
+    "rivalBanked": 21000,
+    "playerCollected": [
+      9,
+      18,
+      19,
+      21,
+      24,
+      28,
+      30
+    ],
+    "won": true,
+    "ready": true
+  },
+  "comparison": {
+    "state": "exact complete public snapshot",
+    "pixels": "exact decoded RGBA",
+    "exclusions": []
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "artifacts": {
+    "award.png": {
+      "path": ".local/standard-winning-browser-03/award.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "bank-deposited.png": {
+      "path": ".local/standard-winning-browser-03/bank-deposited.png",
+      "bytes": 29043,
+      "sha256": "c137a6b1a786b3ac272b8190cd96b31a4279bfa8f41bf74b1b268b9a2f399983"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/standard-winning-browser-03/campaign-checkpoints.json",
+      "bytes": 1679059,
+      "sha256": "2140ca455ea0170642f2f4d5da7e786df5734ef43ccdf3e41c488da7362cd6b1"
+    },
+    "capture-status": {
+      "path": ".local/standard-winning-browser-03/capture-status.json",
+      "bytes": 1563,
+      "sha256": "f082679d59c768bcf00fb073d4310633673401db8e58c2b5f4f0b0f993094179"
+    },
+    "captured-events": {
+      "path": ".local/standard-winning-browser-03/captured-events.json",
+      "bytes": 796755,
+      "sha256": "2e2998a788e6026200ccf5391ae9bb50a659dfd9d94c7c828d3d798ab8b1b481"
+    },
+    "cave-entry.png": {
+      "path": ".local/standard-winning-browser-03/cave-entry.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "closed.png": {
+      "path": ".local/standard-winning-browser-03/closed.png",
+      "bytes": 5764,
+      "sha256": "98892744d82ce3be83cee60efe8e9a267f1a3ea24230260908cfea625190b530"
+    },
+    "continued-departure-1.png": {
+      "path": ".local/standard-winning-browser-03/continued-departure-1.png",
+      "bytes": 29108,
+      "sha256": "ae83414f8b4c960c8b3cb6333d482da2405afcd55f1802d1b2f04c13cf8a59b6"
+    },
+    "continued-departure-17.png": {
+      "path": ".local/standard-winning-browser-03/continued-departure-17.png",
+      "bytes": 29018,
+      "sha256": "ebbaebf1b642908d99e1e2032c4a3bc1a659e518bcb8dce253831fbe9c1a0510"
+    },
+    "continued-dialogue-16.png": {
+      "path": ".local/standard-winning-browser-03/continued-dialogue-16.png",
+      "bytes": 19127,
+      "sha256": "78a586d4caabcf2856361fd6539c8e6307eee278a27e675ab7cfd35ee7015566"
+    },
+    "continued-flight-return-18.png": {
+      "path": ".local/standard-winning-browser-03/continued-flight-return-18.png",
+      "bytes": 20338,
+      "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+    },
+    "continued-flight-return-2.png": {
+      "path": ".local/standard-winning-browser-03/continued-flight-return-2.png",
+      "bytes": 20469,
+      "sha256": "3c4f4f29903c4b8170a1d7bedbcf05fbd2a0de458adea7dd89f0c68f2f19580f"
+    },
+    "continued-jungle-120.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-120.png",
+      "bytes": 37332,
+      "sha256": "bab14e64b9b174eb097149038a54cbc36abe156f63ad85a19f1c62d9a9cfce6f"
+    },
+    "continued-jungle-160.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-160.png",
+      "bytes": 36433,
+      "sha256": "127be9eab91c03e1f4e8075e20737c3be18af2c2cb8595db3d4c1da6b3ee6716"
+    },
+    "continued-jungle-200.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-200.png",
+      "bytes": 32902,
+      "sha256": "63b841e08b472f7cd7047b0a4476e08d579b785c249f6fd6775a938a10c7f507"
+    },
+    "continued-jungle-240.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-240.png",
+      "bytes": 33033,
+      "sha256": "5a0aea7b7c9df740bb53add19437986b208db4bc9ecb59b630d48f88dbdd110e"
+    },
+    "continued-jungle-280.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-280.png",
+      "bytes": 36590,
+      "sha256": "4c998bffb8298a0b4963d397d308a5b870489c426cb8d3a4747e46550879b56f"
+    },
+    "continued-jungle-320.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-320.png",
+      "bytes": 37971,
+      "sha256": "4b50eb59c00a98150f32e9786132a55267f4f111fcc8314157319803cc141b78"
+    },
+    "continued-jungle-360.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-360.png",
+      "bytes": 37779,
+      "sha256": "66d8f783157133c81833bfd5a505223fa7de1bc478997bced928d9ecf1d99111"
+    },
+    "continued-jungle-40.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-40.png",
+      "bytes": 35206,
+      "sha256": "324ef6168730d5fd9c275e1898975242a691a8edf47cdfdecea2130a29ff8870"
+    },
+    "continued-jungle-400.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-400.png",
+      "bytes": 36059,
+      "sha256": "4e32d2947a97c3c75cdd268fa92102189c749e008a32b1a581030530e42caef9"
+    },
+    "continued-jungle-80.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-80.png",
+      "bytes": 34288,
+      "sha256": "806dc95a6ecf6cb4b697f9e252782ff72c101b2a96c5618a853dfcfd32567995"
+    },
+    "continued-jungle-entry.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-entry.png",
+      "bytes": 20365,
+      "sha256": "90a7c78d63da3b8bd308081c89a65010f47766e4a2d0ff0d21a830f9668350eb"
+    },
+    "continued-jungle-plan-end.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-plan-end.png",
+      "bytes": 32814,
+      "sha256": "7312377b1e3eab77fe7d20183dc222dd3ac29dd8cccc663661760636f83f3fc4"
+    },
+    "continued-jungle-return.png": {
+      "path": ".local/standard-winning-browser-03/continued-jungle-return.png",
+      "bytes": 19127,
+      "sha256": "78a586d4caabcf2856361fd6539c8e6307eee278a27e675ab7cfd35ee7015566"
+    },
+    "continued-mountain-120.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-120.png",
+      "bytes": 28249,
+      "sha256": "5a8009d637e30b68839fa85bf3cbf207ca279a60fb20ea232fe3b00db942905c"
+    },
+    "continued-mountain-160.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-160.png",
+      "bytes": 27303,
+      "sha256": "f1a2413b9cdf9b4bc2f8a1e9e555df5d626c40d0aabf4e293f1c1fb8ef0105e1"
+    },
+    "continued-mountain-200.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-200.png",
+      "bytes": 27192,
+      "sha256": "ef4e2bb439d9b6efc7272fa9a3c2dcf238c7812084de770d8dddb2ecedc00bb2"
+    },
+    "continued-mountain-240.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-240.png",
+      "bytes": 27292,
+      "sha256": "77a13a2972cca54971b41566a01c674b06f0c243f4528c39780ed5f6ff06a388"
+    },
+    "continued-mountain-280.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-280.png",
+      "bytes": 27965,
+      "sha256": "7abb62ce9c32be2fca4faa404df0bcc4de633a31e6586550f79c5b9d492cb57d"
+    },
+    "continued-mountain-320.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-320.png",
+      "bytes": 28566,
+      "sha256": "59c7d581c3127884e815341a73294ff9c1b20dcdbced454dbc5e82b45d1d103f"
+    },
+    "continued-mountain-360.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-360.png",
+      "bytes": 28206,
+      "sha256": "8ea3ef3431689ac8f2d9d223394ecec3f5271bed37995c3f9b9028379c8a9409"
+    },
+    "continued-mountain-40.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-40.png",
+      "bytes": 27948,
+      "sha256": "9343adee9f2af134e247a59b39b051cdfdecbe5291f8612ba21b951174ca17c2"
+    },
+    "continued-mountain-400.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-400.png",
+      "bytes": 27985,
+      "sha256": "2d4b3dd2161ba2ee04b65eeae18a38d9c0a418593bb0f2a21259139ae809a42d"
+    },
+    "continued-mountain-440.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-440.png",
+      "bytes": 28199,
+      "sha256": "bf707c0a6d088fc063f625948118701d1f517ab174a019b590c7a77433f8b88c"
+    },
+    "continued-mountain-480.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-480.png",
+      "bytes": 28143,
+      "sha256": "88eac3b957c371c283fbfa02dbf4e1e1d30aa57939b2805093b58d26db04f51f"
+    },
+    "continued-mountain-520.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-520.png",
+      "bytes": 28098,
+      "sha256": "104ee7536dedb160b3766e7cbbee9a76225cd253324ae82263d30790e896e02d"
+    },
+    "continued-mountain-560.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-560.png",
+      "bytes": 28857,
+      "sha256": "e71d00a4e3279f3f895c12de1511b8b212e0b46f63345e6cd062326a4a65c774"
+    },
+    "continued-mountain-600.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-600.png",
+      "bytes": 27700,
+      "sha256": "39a45b202120c65a7fd99d0edcbce647e3aa27721241b00beacd466d77bcca50"
+    },
+    "continued-mountain-640.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-640.png",
+      "bytes": 28459,
+      "sha256": "08ba3d4eb2bb67139692ccc6052dd3d44a6e68ddb550e6e94404eb3f47fc3034"
+    },
+    "continued-mountain-80.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-80.png",
+      "bytes": 27870,
+      "sha256": "45c21f1d1696c1a16e43d57f7028f0bf21674cacd7288a633e5a772d5d9f99ef"
+    },
+    "continued-mountain-entry.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-entry.png",
+      "bytes": 20338,
+      "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+    },
+    "continued-mountain-plan-end.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-plan-end.png",
+      "bytes": 27059,
+      "sha256": "bc285a7199e608a829f081e981320461b713262d115a2984f795e93cb6bd204a"
+    },
+    "continued-mountain-return.png": {
+      "path": ".local/standard-winning-browser-03/continued-mountain-return.png",
+      "bytes": 19084,
+      "sha256": "8b17e4eae5db9faf78fd9ae8885485bf940a5a86b69c3f27a346d0ec1b69dc6e"
+    },
+    "continued-prefix.png": {
+      "path": ".local/standard-winning-browser-03/continued-prefix.png",
+      "bytes": 27624,
+      "sha256": "ea1e06f4e30f6d9dc55969ba93bbb4640fe91bccbb3ef562eaab7f4dd4284c2f"
+    },
+    "credit-0.png": {
+      "path": ".local/standard-winning-browser-03/credit-0.png",
+      "bytes": 7041,
+      "sha256": "09cf167266413595b73ca42378a0f5e421d588fff3293a85dd6541d913c16a73"
+    },
+    "credit-1.png": {
+      "path": ".local/standard-winning-browser-03/credit-1.png",
+      "bytes": 7086,
+      "sha256": "f70ad60dc5675ff5ee05c335c6af8f0c7481be4f68cf9739772b6de6c38942df"
+    },
+    "credit-10.png": {
+      "path": ".local/standard-winning-browser-03/credit-10.png",
+      "bytes": 7081,
+      "sha256": "f902c6c63799828e94f1d69fd25b066b8526de27dcac4219d485fe653c7b0b77"
+    },
+    "credit-11.png": {
+      "path": ".local/standard-winning-browser-03/credit-11.png",
+      "bytes": 7096,
+      "sha256": "3b2e3e8d8abe7eec2289fa271050329561b59452d1e387cf56b53cf3c7879289"
+    },
+    "credit-12.png": {
+      "path": ".local/standard-winning-browser-03/credit-12.png",
+      "bytes": 7160,
+      "sha256": "fb67f94ced7121dddb2f1dc09bc731bb7eb660b53da990308ccf96a5acb9f101"
+    },
+    "credit-13.png": {
+      "path": ".local/standard-winning-browser-03/credit-13.png",
+      "bytes": 7006,
+      "sha256": "9e1b46200564cb7f4b77136d90a003c219e6ff9d2d48ee4e9df346a41ac894c4"
+    },
+    "credit-14.png": {
+      "path": ".local/standard-winning-browser-03/credit-14.png",
+      "bytes": 7092,
+      "sha256": "4e4c9d3e36bed7d4a1f8a35c85569c0a542e44e078b863ecc6f99d541ad0aaab"
+    },
+    "credit-15.png": {
+      "path": ".local/standard-winning-browser-03/credit-15.png",
+      "bytes": 7048,
+      "sha256": "586b83e6cf87a1a6856e2d08320329704a1744f273c98f7a188041221a474318"
+    },
+    "credit-16.png": {
+      "path": ".local/standard-winning-browser-03/credit-16.png",
+      "bytes": 7180,
+      "sha256": "3e7d471cc506f6147d92ba321f9eb9ea462e16785ae5ca6c916594a6f3a23f9f"
+    },
+    "credit-17.png": {
+      "path": ".local/standard-winning-browser-03/credit-17.png",
+      "bytes": 7199,
+      "sha256": "c9a088de475e6287ec64cafef283cbf9370f984c94677e7b65ed19cee607d4d1"
+    },
+    "credit-18.png": {
+      "path": ".local/standard-winning-browser-03/credit-18.png",
+      "bytes": 7045,
+      "sha256": "efb96a68e8f050a784c160f67ffeef6236969a97e82ea335191368db71cd38c5"
+    },
+    "credit-19.png": {
+      "path": ".local/standard-winning-browser-03/credit-19.png",
+      "bytes": 7112,
+      "sha256": "e3ed9e901c7fcfd6a6163ecd92c9482ab9371f7cbe4a5a258f5341aab2a8052b"
+    },
+    "credit-2.png": {
+      "path": ".local/standard-winning-browser-03/credit-2.png",
+      "bytes": 7129,
+      "sha256": "07d0bbe429a862ee8ae0fb35f6cb4ae49ebbb11028ee86380f16fe131963d851"
+    },
+    "credit-20.png": {
+      "path": ".local/standard-winning-browser-03/credit-20.png",
+      "bytes": 7004,
+      "sha256": "01b5e9e76e5b9661c4c4a0b5329d520ef9b8c01c42c099f4b96712d483fc5d1f"
+    },
+    "credit-21.png": {
+      "path": ".local/standard-winning-browser-03/credit-21.png",
+      "bytes": 7222,
+      "sha256": "a86de406a81002d26b16aa9dbdc6b682e653ae82147bc5c74910d15d22ba65ec"
+    },
+    "credit-22.png": {
+      "path": ".local/standard-winning-browser-03/credit-22.png",
+      "bytes": 7072,
+      "sha256": "1e1da71cb0a7fa1bfbe3e4f726ab41382a1c5ba44d329c743787b9d832259ec3"
+    },
+    "credit-23.png": {
+      "path": ".local/standard-winning-browser-03/credit-23.png",
+      "bytes": 7152,
+      "sha256": "614de5435b7254f8824123f09ec988e137d9b0e140da0fd0425a431a34aca143"
+    },
+    "credit-24.png": {
+      "path": ".local/standard-winning-browser-03/credit-24.png",
+      "bytes": 7257,
+      "sha256": "b36c48b915351bd8d604a00e40b78ae025f6e47766cb1edab6623794b5d807e4"
+    },
+    "credit-25.png": {
+      "path": ".local/standard-winning-browser-03/credit-25.png",
+      "bytes": 6951,
+      "sha256": "27ac012b30c2db4536acb1a2ce610e4de7e54b8c075c4f448755c300f03a47a5"
+    },
+    "credit-3.png": {
+      "path": ".local/standard-winning-browser-03/credit-3.png",
+      "bytes": 7083,
+      "sha256": "50725e8ae4f85bc54a97bb063afca1a942964eb011b706c4395591e8dcbbe905"
+    },
+    "credit-4.png": {
+      "path": ".local/standard-winning-browser-03/credit-4.png",
+      "bytes": 7082,
+      "sha256": "b7d53c4e0fc7485e60d6a87cf1c26a18dddf22791fabc36f9d1737c667ce8579"
+    },
+    "credit-5.png": {
+      "path": ".local/standard-winning-browser-03/credit-5.png",
+      "bytes": 7143,
+      "sha256": "de86f649044fd00370b4645ca6a08b864905f513d5df670403a1954ee5dde773"
+    },
+    "credit-6.png": {
+      "path": ".local/standard-winning-browser-03/credit-6.png",
+      "bytes": 7076,
+      "sha256": "baa7df7906fc47a2ca1983a878461253ea9d113ff094955b9677751392b7bd07"
+    },
+    "credit-7.png": {
+      "path": ".local/standard-winning-browser-03/credit-7.png",
+      "bytes": 7090,
+      "sha256": "2af2d7e19e9957f26eafe5a049d85ce3dc027325eb65a27aa53400a0d0c7d5f1"
+    },
+    "credit-8.png": {
+      "path": ".local/standard-winning-browser-03/credit-8.png",
+      "bytes": 7160,
+      "sha256": "fb67f94ced7121dddb2f1dc09bc731bb7eb660b53da990308ccf96a5acb9f101"
+    },
+    "credit-9.png": {
+      "path": ".local/standard-winning-browser-03/credit-9.png",
+      "bytes": 7079,
+      "sha256": "8f0fbf5e9f12de14b4b42e9d5e9348d4912a3d410a18de797643c13de60f6b0a"
+    },
+    "credits-title.png": {
+      "path": ".local/standard-winning-browser-03/credits-title.png",
+      "bytes": 6740,
+      "sha256": "ba11276c541079141031cf1ce78c72470b5f55eb1d09bb8a84ea5c98271091ba"
+    },
+    "departure.png": {
+      "path": ".local/standard-winning-browser-03/departure.png",
+      "bytes": 12792,
+      "sha256": "ae4cfb4f64eff8539019af6fd1b017ebcf7943b0b36fd1b36f373772e6f47037"
+    },
+    "dialogue-16.png": {
+      "path": ".local/standard-winning-browser-03/dialogue-16.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "dialogue-17.png": {
+      "path": ".local/standard-winning-browser-03/dialogue-17.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    },
+    "dialogue-18.png": {
+      "path": ".local/standard-winning-browser-03/dialogue-18.png",
+      "bytes": 15495,
+      "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+    },
+    "dialogue-21.png": {
+      "path": ".local/standard-winning-browser-03/dialogue-21.png",
+      "bytes": 15709,
+      "sha256": "8aeb77b045929260e11c6fbdc29d8805944538d3d0bd55efb7814e044e725262"
+    },
+    "dialogue-25.png": {
+      "path": ".local/standard-winning-browser-03/dialogue-25.png",
+      "bytes": 15779,
+      "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+    },
+    "dialogue-32.png": {
+      "path": ".local/standard-winning-browser-03/dialogue-32.png",
+      "bytes": 15451,
+      "sha256": "2fdd5cb9ed0cbadc671253a5a34e96a6fee628fd73fba2f65199ffcea75fdb7a"
+    },
+    "environment": {
+      "path": ".local/standard-winning-browser-03/environment.json",
+      "bytes": 355,
+      "sha256": "fb2be7f8dee9c5443ceb1cc3f912af38fe7e7d757380d59577a47bd815d6ba3e"
+    },
+    "farewell.png": {
+      "path": ".local/standard-winning-browser-03/farewell.png",
+      "bytes": 5764,
+      "sha256": "98892744d82ce3be83cee60efe8e9a267f1a3ea24230260908cfea625190b530"
+    },
+    "flight-return.png": {
+      "path": ".local/standard-winning-browser-03/flight-return.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "flight-start.png": {
+      "path": ".local/standard-winning-browser-03/flight-start.png",
+      "bytes": 9956,
+      "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
+    },
+    "map-after-bank.png": {
+      "path": ".local/standard-winning-browser-03/map-after-bank.png",
+      "bytes": 27591,
+      "sha256": "50d6ceeda01800c4597e229e81cbf5d8b79dcdc3772925c6ba1b2f6f91239acc"
+    },
+    "map-after-cave.png": {
+      "path": ".local/standard-winning-browser-03/map-after-cave.png",
+      "bytes": 27540,
+      "sha256": "86be55a96982777c03579862cea6b415b928c7381351a9c3db0bd88d7b1b5191"
+    },
+    "map-after-lost-race-0.png": {
+      "path": ".local/standard-winning-browser-03/map-after-lost-race-0.png",
+      "bytes": 27627,
+      "sha256": "a87e332a3bc2cb35c779cd2afdd7d9c4209d1a3e3a0a16a9063a77d3c47da933"
+    },
+    "map-after-safari-bank.png": {
+      "path": ".local/standard-winning-browser-03/map-after-safari-bank.png",
+      "bytes": 27624,
+      "sha256": "ea1e06f4e30f6d9dc55969ba93bbb4640fe91bccbb3ef562eaab7f4dd4284c2f"
+    },
+    "map-after-safari.png": {
+      "path": ".local/standard-winning-browser-03/map-after-safari.png",
+      "bytes": 27797,
+      "sha256": "dd5e4b10d10aa3e21d5ece2b55ee3ffd584dcbd8a9792e886537c76906852fa9"
+    },
+    "office.png": {
+      "path": ".local/standard-winning-browser-03/office.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "replay-no.png": {
+      "path": ".local/standard-winning-browser-03/replay-no.png",
+      "bytes": 2900,
+      "sha256": "b2597e90dc1e5cb701483b2232720136e4be47e47c5f23a6f700a93c0deb9fd8"
+    },
+    "replay-yes.png": {
+      "path": ".local/standard-winning-browser-03/replay-yes.png",
+      "bytes": 2896,
+      "sha256": "324512c9020ac3aad3d0c91f107ac4a3dc5a533f30e6377f3ba7d58558ef0b67"
+    },
+    "room-10.png": {
+      "path": ".local/standard-winning-browser-03/room-10.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "room-11.png": {
+      "path": ".local/standard-winning-browser-03/room-11.png",
+      "bytes": 43895,
+      "sha256": "8ecaa27d88476f62ee205ed7fb8e1af65895b17047a9313f9ed545b9aa3bf0e8"
+    },
+    "room-12.png": {
+      "path": ".local/standard-winning-browser-03/room-12.png",
+      "bytes": 43141,
+      "sha256": "cc506d9ddff96a021a78e7ddaac84f6cd1a2ea76ae99fb1f7a35f813791bc33c"
+    },
+    "room-13.png": {
+      "path": ".local/standard-winning-browser-03/room-13.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "room-14.png": {
+      "path": ".local/standard-winning-browser-03/room-14.png",
+      "bytes": 42765,
+      "sha256": "0edc1a3aeb5129c8087057d105ae1ef784970722b91f5c5216ec69e9af01c747"
+    },
+    "room-18.png": {
+      "path": ".local/standard-winning-browser-03/room-18.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-19.png": {
+      "path": ".local/standard-winning-browser-03/room-19.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-26.png": {
+      "path": ".local/standard-winning-browser-03/room-26.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-27.png": {
+      "path": ".local/standard-winning-browser-03/room-27.png",
+      "bytes": 41329,
+      "sha256": "aa79312b8822265a12bc53328f88dccc1cb46349de63a5e00fc27eec979d3ca9"
+    },
+    "safari-banked.png": {
+      "path": ".local/standard-winning-browser-03/safari-banked.png",
+      "bytes": 29054,
+      "sha256": "c5f6dfaa83be12f9694f37f02c95e85d2773e54e2fc90f8364d652db33944d8d"
+    },
+    "safari-departure-0.png": {
+      "path": ".local/standard-winning-browser-03/safari-departure-0.png",
+      "bytes": 29034,
+      "sha256": "1b8214dfe4ae83b557027adea95af5bff7ed9062a63a184b9c45278aac87e901"
+    },
+    "safari-departure-1.png": {
+      "path": ".local/standard-winning-browser-03/safari-departure-1.png",
+      "bytes": 29113,
+      "sha256": "0a8a93e690a7e2d24f6ad2e4d068b3f0cbdb85923106b2516d7a7c7fed9afec7"
+    },
+    "safari-entry.png": {
+      "path": ".local/standard-winning-browser-03/safari-entry.png",
+      "bytes": 36856,
+      "sha256": "83ddf1746636465737d4785a14cb57cea6ed715ce3b19d06ecc677d8a3487556"
+    },
+    "safari-flight-return-0.png": {
+      "path": ".local/standard-winning-browser-03/safari-flight-return-0.png",
+      "bytes": 15779,
+      "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+    },
+    "safari-flight-return-1.png": {
+      "path": ".local/standard-winning-browser-03/safari-flight-return-1.png",
+      "bytes": 20576,
+      "sha256": "5b4df8925dcc85a0b4578a4ae75c8bc319709c8bd3eae59f9a0e53df3d5a6d6e"
+    },
+    "safari-results.png": {
+      "path": ".local/standard-winning-browser-03/safari-results.png",
+      "bytes": 33799,
+      "sha256": "bb1ec80aa1a7fd16227cad81efe1904a34db89bc12d984762b31920190305ed4"
+    },
+    "safari-shot-0.png": {
+      "path": ".local/standard-winning-browser-03/safari-shot-0.png",
+      "bytes": 35557,
+      "sha256": "d2da26d08c4a116d3ea18a32b7bd9c1a7a6cd764a6e3f1bc54acf67c0ccaf3c6"
+    },
+    "source-revision": {
+      "path": ".local/standard-winning-browser-03/source-revision.json",
+      "bytes": 106591,
+      "sha256": "0073151a296539cfa938735fb87029c052ab2a58b8e7b644b31683565a8fc36c"
+    },
+    "sources.zip": {
+      "path": ".local/standard-winning-browser-03/sources.zip",
+      "bytes": 2799708,
+      "sha256": "5cb71e5e28a761f0dded101bfa1d6b1aa0509954f7325d898dded4cac3230774"
+    },
+    "standard-choice.png": {
+      "path": ".local/standard-winning-browser-03/standard-choice.png",
+      "bytes": 14258,
+      "sha256": "4c23903a174872221c8b17410f542161681e90c73092133b12189dc0c0e5e5b2"
+    },
+    "timeline": {
+      "path": ".local/standard-winning-browser-03/timeline.json",
+      "bytes": 16047,
+      "sha256": "697b740046d58b4c5a92533003a4fb682d46964b06fcd8ff04401fdc60d15e3f"
+    },
+    "winner-celebration.png": {
+      "path": ".local/standard-winning-browser-03/winner-celebration.png",
+      "bytes": 34879,
+      "sha256": "b2209000a639f1775f16e89504e3fb79e6799460d25794cf9afef272b92e2788"
+    },
+    "winning-0-prefix.png": {
+      "path": ".local/standard-winning-browser-03/winning-0-prefix.png",
+      "bytes": 19084,
+      "sha256": "8b17e4eae5db9faf78fd9ae8885485bf940a5a86b69c3f27a346d0ec1b69dc6e"
+    },
+    "winning-1-dialogue-1.png": {
+      "path": ".local/standard-winning-browser-03/winning-1-dialogue-1.png",
+      "bytes": 19084,
+      "sha256": "8b17e4eae5db9faf78fd9ae8885485bf940a5a86b69c3f27a346d0ec1b69dc6e"
+    },
+    "winning-10-cave-room-9-43.png": {
+      "path": ".local/standard-winning-browser-03/winning-10-cave-room-9-43.png",
+      "bytes": 39333,
+      "sha256": "c5fcf579214263d5a6364501cc182c32940c3c56ac5665e686fd2f0028985ef6"
+    },
+    "winning-11-cave-room-9-35.png": {
+      "path": ".local/standard-winning-browser-03/winning-11-cave-room-9-35.png",
+      "bytes": 41329,
+      "sha256": "aa79312b8822265a12bc53328f88dccc1cb46349de63a5e00fc27eec979d3ca9"
+    },
+    "winning-12-cave-room-9-27.png": {
+      "path": ".local/standard-winning-browser-03/winning-12-cave-room-9-27.png",
+      "bytes": 41976,
+      "sha256": "34ccac0b328498574e10d25e3183126b94d5e61e3d0133bd3dc06e4715c87c43"
+    },
+    "winning-13-cave-room-9-19.png": {
+      "path": ".local/standard-winning-browser-03/winning-13-cave-room-9-19.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "winning-14-cave-room-9-11.png": {
+      "path": ".local/standard-winning-browser-03/winning-14-cave-room-9-11.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "winning-15-cave-room-9-10.png": {
+      "path": ".local/standard-winning-browser-03/winning-15-cave-room-9-10.png",
+      "bytes": 41187,
+      "sha256": "565d4fc8aa262887e534a886acb1eb0582f6871f42181ab99f1d92a3771f39f9"
+    },
+    "winning-16-cave-room-9-9.png": {
+      "path": ".local/standard-winning-browser-03/winning-16-cave-room-9-9.png",
+      "bytes": 42765,
+      "sha256": "0edc1a3aeb5129c8087057d105ae1ef784970722b91f5c5216ec69e9af01c747"
+    },
+    "winning-17-cave-return-9.png": {
+      "path": ".local/standard-winning-browser-03/winning-17-cave-return-9.png",
+      "bytes": 19126,
+      "sha256": "9db63592a7479ab6f3baddccd6e933e1258a2cddcbaeffdfd8e06afb13507dc2"
+    },
+    "winning-18-dialogue-18.png": {
+      "path": ".local/standard-winning-browser-03/winning-18-dialogue-18.png",
+      "bytes": 19126,
+      "sha256": "9db63592a7479ab6f3baddccd6e933e1258a2cddcbaeffdfd8e06afb13507dc2"
+    },
+    "winning-19-departure-19.png": {
+      "path": ".local/standard-winning-browser-03/winning-19-departure-19.png",
+      "bytes": 29099,
+      "sha256": "b405a1956364f1b5b025ada01bab57c687bb86961869b89da5bc2b27d4c3fe0b"
+    },
+    "winning-2-dialogue-2.png": {
+      "path": ".local/standard-winning-browser-03/winning-2-dialogue-2.png",
+      "bytes": 15612,
+      "sha256": "c8aa1d20f3e2255039b924ad570f665f605e6c7bc191c5dc7cec5c3591b29ee9"
+    },
+    "winning-20-flight-return-20.png": {
+      "path": ".local/standard-winning-browser-03/winning-20-flight-return-20.png",
+      "bytes": 20408,
+      "sha256": "02ab567761be80e3a9f061c8307a43dde38a9bf0fd94202045a1a264db901662"
+    },
+    "winning-21-cave-entry-30.png": {
+      "path": ".local/standard-winning-browser-03/winning-21-cave-entry-30.png",
+      "bytes": 20408,
+      "sha256": "02ab567761be80e3a9f061c8307a43dde38a9bf0fd94202045a1a264db901662"
+    },
+    "winning-22-cave-room-30-18.png": {
+      "path": ".local/standard-winning-browser-03/winning-22-cave-room-30-18.png",
+      "bytes": 39333,
+      "sha256": "c5fcf579214263d5a6364501cc182c32940c3c56ac5665e686fd2f0028985ef6"
+    },
+    "winning-23-cave-room-30-26.png": {
+      "path": ".local/standard-winning-browser-03/winning-23-cave-room-30-26.png",
+      "bytes": 40323,
+      "sha256": "35637bf1c8374b62da08105b50a13c812593144c9235acef6aae87d99f4f4770"
+    },
+    "winning-24-cave-room-30-27.png": {
+      "path": ".local/standard-winning-browser-03/winning-24-cave-room-30-27.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "winning-25-cave-room-30-28.png": {
+      "path": ".local/standard-winning-browser-03/winning-25-cave-room-30-28.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "winning-26-cave-room-30-29.png": {
+      "path": ".local/standard-winning-browser-03/winning-26-cave-room-30-29.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "winning-27-cave-room-30-28.png": {
+      "path": ".local/standard-winning-browser-03/winning-27-cave-room-30-28.png",
+      "bytes": 42005,
+      "sha256": "69d57858f80022903aa563978f78c5bb1ad1c929dbf1c9ce6e7a71b3bfd436d1"
+    },
+    "winning-28-cave-room-30-27.png": {
+      "path": ".local/standard-winning-browser-03/winning-28-cave-room-30-27.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "winning-29-cave-room-30-35.png": {
+      "path": ".local/standard-winning-browser-03/winning-29-cave-room-30-35.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "winning-3-departure-3.png": {
+      "path": ".local/standard-winning-browser-03/winning-3-departure-3.png",
+      "bytes": 29322,
+      "sha256": "ea1628fd266c568a933fc415c540b4674e940955549a57f291fc47401055df01"
+    },
+    "winning-30-cave-room-30-43.png": {
+      "path": ".local/standard-winning-browser-03/winning-30-cave-room-30-43.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "winning-31-cave-room-30-44.png": {
+      "path": ".local/standard-winning-browser-03/winning-31-cave-room-30-44.png",
+      "bytes": 43141,
+      "sha256": "cc506d9ddff96a021a78e7ddaac84f6cd1a2ea76ae99fb1f7a35f813791bc33c"
+    },
+    "winning-32-cave-room-30-52.png": {
+      "path": ".local/standard-winning-browser-03/winning-32-cave-room-30-52.png",
+      "bytes": 43763,
+      "sha256": "2c3c22d6f6a060038a747b41540ffd73bd070eccb1249598987cb51ed9987ca2"
+    },
+    "winning-33-cave-room-30-60.png": {
+      "path": ".local/standard-winning-browser-03/winning-33-cave-room-30-60.png",
+      "bytes": 42178,
+      "sha256": "f0eadadd1ce487cceb13928bb4c963a64ac8d0d19495794a35123451e98668c8"
+    },
+    "winning-34-cave-room-30-61.png": {
+      "path": ".local/standard-winning-browser-03/winning-34-cave-room-30-61.png",
+      "bytes": 41257,
+      "sha256": "7ded79eae16d2c91a648493a8904505c547eaa5957d5935e9cd76a65eb87835a"
+    },
+    "winning-35-cave-room-30-53.png": {
+      "path": ".local/standard-winning-browser-03/winning-35-cave-room-30-53.png",
+      "bytes": 41257,
+      "sha256": "7ded79eae16d2c91a648493a8904505c547eaa5957d5935e9cd76a65eb87835a"
+    },
+    "winning-36-cave-room-30-45.png": {
+      "path": ".local/standard-winning-browser-03/winning-36-cave-room-30-45.png",
+      "bytes": 44704,
+      "sha256": "1fb3832554327b094f9c0c23f948016257bc0675a67f5bd892c1796a71d64ff0"
+    },
+    "winning-37-cave-return-30.png": {
+      "path": ".local/standard-winning-browser-03/winning-37-cave-return-30.png",
+      "bytes": 19156,
+      "sha256": "931f2fbadc5c0f7a90bc25ebe889b6aec4b96c1dcd8b5d2ff05f9d6de87169d7"
+    },
+    "winning-38-dialogue-38.png": {
+      "path": ".local/standard-winning-browser-03/winning-38-dialogue-38.png",
+      "bytes": 19156,
+      "sha256": "931f2fbadc5c0f7a90bc25ebe889b6aec4b96c1dcd8b5d2ff05f9d6de87169d7"
+    },
+    "winning-39-departure-39.png": {
+      "path": ".local/standard-winning-browser-03/winning-39-departure-39.png",
+      "bytes": 29141,
+      "sha256": "58f18100f44ad818b72f49791bdbdb7e4891d41e3e41ab2210b7cc798563ab9e"
+    },
+    "winning-4-flight-return-4.png": {
+      "path": ".local/standard-winning-browser-03/winning-4-flight-return-4.png",
+      "bytes": 15987,
+      "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+    },
+    "winning-40-flight-return-40.png": {
+      "path": ".local/standard-winning-browser-03/winning-40-flight-return-40.png",
+      "bytes": 20658,
+      "sha256": "050524c010ef0fb1a83e3c1c9fc997647046ae1e85cc71f44b497e6710c5b9b0"
+    },
+    "winning-41-cave-entry-21.png": {
+      "path": ".local/standard-winning-browser-03/winning-41-cave-entry-21.png",
+      "bytes": 20658,
+      "sha256": "050524c010ef0fb1a83e3c1c9fc997647046ae1e85cc71f44b497e6710c5b9b0"
+    },
+    "winning-42-cave-room-21-46.png": {
+      "path": ".local/standard-winning-browser-03/winning-42-cave-room-21-46.png",
+      "bytes": 39333,
+      "sha256": "c5fcf579214263d5a6364501cc182c32940c3c56ac5665e686fd2f0028985ef6"
+    },
+    "winning-43-cave-room-21-45.png": {
+      "path": ".local/standard-winning-browser-03/winning-43-cave-room-21-45.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "winning-44-cave-room-21-44.png": {
+      "path": ".local/standard-winning-browser-03/winning-44-cave-room-21-44.png",
+      "bytes": 41976,
+      "sha256": "34ccac0b328498574e10d25e3183126b94d5e61e3d0133bd3dc06e4715c87c43"
+    },
+    "winning-45-cave-room-21-36.png": {
+      "path": ".local/standard-winning-browser-03/winning-45-cave-room-21-36.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "winning-46-cave-room-21-28.png": {
+      "path": ".local/standard-winning-browser-03/winning-46-cave-room-21-28.png",
+      "bytes": 41976,
+      "sha256": "34ccac0b328498574e10d25e3183126b94d5e61e3d0133bd3dc06e4715c87c43"
+    },
+    "winning-47-cave-room-21-20.png": {
+      "path": ".local/standard-winning-browser-03/winning-47-cave-room-21-20.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "winning-48-cave-room-21-12.png": {
+      "path": ".local/standard-winning-browser-03/winning-48-cave-room-21-12.png",
+      "bytes": 42315,
+      "sha256": "959c5958036387e5b157c018ebd8baa7e42bcc0d90cfdb56fa07c780de18899d"
+    },
+    "winning-49-cave-room-21-11.png": {
+      "path": ".local/standard-winning-browser-03/winning-49-cave-room-21-11.png",
+      "bytes": 40323,
+      "sha256": "35637bf1c8374b62da08105b50a13c812593144c9235acef6aae87d99f4f4770"
+    },
+    "winning-5-dialogue-5.png": {
+      "path": ".local/standard-winning-browser-03/winning-5-dialogue-5.png",
+      "bytes": 15987,
+      "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+    },
+    "winning-50-cave-room-21-10.png": {
+      "path": ".local/standard-winning-browser-03/winning-50-cave-room-21-10.png",
+      "bytes": 41329,
+      "sha256": "aa79312b8822265a12bc53328f88dccc1cb46349de63a5e00fc27eec979d3ca9"
+    },
+    "winning-51-cave-room-21-18.png": {
+      "path": ".local/standard-winning-browser-03/winning-51-cave-room-21-18.png",
+      "bytes": 41976,
+      "sha256": "34ccac0b328498574e10d25e3183126b94d5e61e3d0133bd3dc06e4715c87c43"
+    },
+    "winning-52-cave-room-21-26.png": {
+      "path": ".local/standard-winning-browser-03/winning-52-cave-room-21-26.png",
+      "bytes": 41976,
+      "sha256": "34ccac0b328498574e10d25e3183126b94d5e61e3d0133bd3dc06e4715c87c43"
+    },
+    "winning-53-cave-room-21-25.png": {
+      "path": ".local/standard-winning-browser-03/winning-53-cave-room-21-25.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "winning-54-cave-room-21-33.png": {
+      "path": ".local/standard-winning-browser-03/winning-54-cave-room-21-33.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "winning-55-cave-room-21-41.png": {
+      "path": ".local/standard-winning-browser-03/winning-55-cave-room-21-41.png",
+      "bytes": 42765,
+      "sha256": "0edc1a3aeb5129c8087057d105ae1ef784970722b91f5c5216ec69e9af01c747"
+    },
+    "winning-56-cave-return-21.png": {
+      "path": ".local/standard-winning-browser-03/winning-56-cave-return-21.png",
+      "bytes": 19108,
+      "sha256": "f1b83f6aed302aca50aed9d640ebc72df7be3ea6988e29561cc8822ab01ca257"
+    },
+    "winning-57-dialogue-57.png": {
+      "path": ".local/standard-winning-browser-03/winning-57-dialogue-57.png",
+      "bytes": 19108,
+      "sha256": "f1b83f6aed302aca50aed9d640ebc72df7be3ea6988e29561cc8822ab01ca257"
+    },
+    "winning-58-bank-58.png": {
+      "path": ".local/standard-winning-browser-03/winning-58-bank-58.png",
+      "bytes": 29116,
+      "sha256": "fe766d28d95f803c35f39f4ac08407daa579c54b3f5639e7b20f6a8a1bad2b64"
+    },
+    "winning-59-dialogue-59.png": {
+      "path": ".local/standard-winning-browser-03/winning-59-dialogue-59.png",
+      "bytes": 15127,
+      "sha256": "6c63c380207b608cad41c47d28985fcc8c6940bbde0f9699ac0bb671e513e61e"
+    },
+    "winning-6-cave-entry-9.png": {
+      "path": ".local/standard-winning-browser-03/winning-6-cave-entry-9.png",
+      "bytes": 20353,
+      "sha256": "26e6220ccdc75dcf3cbb54501211a7b49e9764870cedba53384394e1c0794a4f"
+    },
+    "winning-60-office-60.png": {
+      "path": ".local/standard-winning-browser-03/winning-60-office-60.png",
+      "bytes": 15990,
+      "sha256": "d7dc93ed23d853e095111e94809bda2bd7b8fe6c6d70f5872959e6cec5a32cbf"
+    },
+    "winning-61-dialogue-61.png": {
+      "path": ".local/standard-winning-browser-03/winning-61-dialogue-61.png",
+      "bytes": 15228,
+      "sha256": "316f97c011f90becbfaab0de14200ec3523efb2a9571a66aa3aa055ad841000e"
+    },
+    "winning-62-bank-62.png": {
+      "path": ".local/standard-winning-browser-03/winning-62-bank-62.png",
+      "bytes": 16067,
+      "sha256": "c0a639844ce4f8536ca14110828ffa3babfb681bc90ad7b3ff41778473608ff3"
+    },
+    "winning-63-ending.png": {
+      "path": ".local/standard-winning-browser-03/winning-63-ending.png",
+      "bytes": 19007,
+      "sha256": "6008ae1d70b6f4241c5be5b5b91a38ba46d04827b194949dbdbbca6d296a4e57"
+    },
+    "winning-7-cave-room-9-53.png": {
+      "path": ".local/standard-winning-browser-03/winning-7-cave-room-9-53.png",
+      "bytes": 39333,
+      "sha256": "c5fcf579214263d5a6364501cc182c32940c3c56ac5665e686fd2f0028985ef6"
+    },
+    "winning-8-cave-room-9-52.png": {
+      "path": ".local/standard-winning-browser-03/winning-8-cave-room-9-52.png",
+      "bytes": 39333,
+      "sha256": "c5fcf579214263d5a6364501cc182c32940c3c56ac5665e686fd2f0028985ef6"
+    },
+    "winning-9-cave-room-9-51.png": {
+      "path": ".local/standard-winning-browser-03/winning-9-cave-room-9-51.png",
+      "bytes": 40286,
+      "sha256": "aebcf0556aa8655791c3c9f707951e8f4d3c01a15a01326824dc4002748aea2e"
+    },
+    "player-plan": {
+      "path": "reference/standard-winning-plan.json",
+      "bytes": 2449,
+      "sha256": "267b2817f71cd5ae53b30eca49aa1706bd28597cd41f302ba47c2bc43eef3f7c"
+    }
+  },
+  "verify": "node scripts/verify-standard-wages-route.js --manifest=reference/standard-winning-route.json --output=.local/standard-winning-replay-FRESH"
+}

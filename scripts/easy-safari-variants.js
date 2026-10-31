@@ -126,7 +126,8 @@ async function validateCaptures(root, cases) {
     assert.equal(entry.expeditionKeys.mode, 1);
     assert.equal(entry.flight.outcome.code, 1);
     assert.equal(exhausted.photography.photoCount, 12);
-    assert.equal(exhausted.photography.film, -1);
+    assert.ok([0, -1].includes(c.exitFilm));
+    assert.equal(exhausted.photography.film, c.exitFilm);
     assert.deepEqual(exhausted.photography.photos, c.photos);
     assert.equal(results.photography.score, c.score);
     assert.equal(map.scene, "map");

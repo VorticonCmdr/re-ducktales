@@ -19,7 +19,10 @@ remaining film: first after250ms, then every32ms. These are authored device inpu
 not native typematic evidence or fitted game timers. Source mode1 clears ordinary
 key slots at reads; browser key holding alone does not synthesize repeats. Sound
 is disabled for this scoped run. Target pictures pay500, ordinary pictures50 and
-misses0. Results must show all12 pictures and film-1. The shared campaign return
+misses0. Results must show all12 pictures. The original normal exit can leave film0;
+a further accepted shutter exits at film-1 before adding another picture.
+Both branch outcomes are allowed by the semantic setup check; each captured
+case and its consumer compare the exact film value without exclusions. The shared campaign return
 clears the score workspace but preserves the outcome score, adds no separate loot
 reward and spends the original two days (activity plus caller). These assertions
 use the existing source/native component evidence; no new native run is claimed.

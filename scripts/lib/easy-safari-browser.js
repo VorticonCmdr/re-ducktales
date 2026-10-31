@@ -170,7 +170,10 @@ export async function captureSafari(root, c) {
     repeat = null;
     await page.keyboard.up("Space");
     assert.equal(exhausted.photography.photoCount, 12);
-    assert.equal(exhausted.photography.film, -1);
+    assert.ok(
+      [0, -1].includes(exhausted.photography.film),
+      "Original film exhaustion exits",
+    );
     const score = photoScore(
       exhausted.photography.photos,
       exhausted.photography.target,
@@ -223,6 +226,7 @@ export async function captureSafari(root, c) {
       attempts,
       score,
       photos: exhausted.photography.photos,
+      exitFilm: exhausted.photography.film,
       checkpoints: observations.length,
       events: observations.at(-1).eventCount,
       restart: true,
@@ -345,6 +349,7 @@ export async function replaySafari(
       description.final.location,
     ]);
     assert.equal(final.photography.outcome.code, 1);
+    assert.equal(final.photography.film, description.exitFilm);
     assert.equal(final.photography.score, 0);
     assert.equal(final.photography.outcome.score, description.score);
     assert.deepEqual(final.photography.photos, description.photos);

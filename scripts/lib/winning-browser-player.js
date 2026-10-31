@@ -244,14 +244,26 @@ export async function continueWinningCampaign({
     assert.equal((await state()).briefing.variant, 1);
     await observe("novay-mountain-entry");
     const recipe = JSON.parse(
-      await readFile("reference/thunderclap-expedition-inputs.json"),
+      await readFile("reference/novay-player-inputs.json"),
     );
-    const inputs = recipe.mountain.flatMap((e) => Array(e.count).fill(e.byte));
-    assert.equal(inputs.length, 494);
+    assert.equal(recipe.kind, "authored-standard-novay-controls");
+    assert.equal((await state()).difficulty, recipe.difficulty);
+    assert.equal(recipe.variant, 1);
+    const inputs = recipe.controls.flatMap((e) => Array(e.count).fill(e.byte));
+    assert.equal(inputs.length, recipe.requiredInputs);
+    assert.equal(inputs.length, 510);
     await play("mountain", inputs, "novay-mountain");
   }
   async function finishBank() {
     if ((await state()).scene !== "bank") return;
+    if ((await state()).campaign.day >= 30) {
+      // Real neutral player wait,not a timer/state injection. Exercise the
+      // final bank's observed negative-Y sparkle before supplying fresh Fire.
+      await until(
+        (s) => s.scene !== "bank" || (s.bank.ready && s.bank.inputReads >= 24),
+      );
+      assert.equal((await state()).scene, "bank");
+    }
     await observe("bank-" + (await state()).campaign.day);
     await page.keyboard.down("Space");
     await until((s) => s.scene !== "bank");
@@ -267,7 +279,22 @@ export async function continueWinningCampaign({
   await bankTrip();
   for (let trip = 0; trip < 8 && (await state()).scene !== "ending"; trip++) {
     await page.locator("#back").click();
+    // Back can still be in the office-departure animation. At the deadline
+    // its destination is the bank,which needs real Fire before the ending.
+    // Wait for the actual root/modal boundary instead of assuming click time.
+    await until((s) =>
+      [
+        "office",
+        "bank",
+        "ending",
+        "expedition-result",
+        "rival-report",
+        "rival-claim",
+        "visit-notice",
+      ].includes(s.scene),
+    );
     await settle();
+    await until((s) => ["office", "bank", "ending"].includes(s.scene));
     await finishBank();
     if ((await state()).scene === "ending") break;
     await until((s) => s.scene === "office");

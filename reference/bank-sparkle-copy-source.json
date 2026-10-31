@@ -1,0 +1,39 @@
+{
+  "kind": "bank-sparkle-copy-static-source",
+  "program": "BANK_CODE.EXE",
+  "address": "1c17:0c1d",
+  "format": "MZ/EXEPACK physical overlay3,x86 LE16 real mode;far caller-cleaned copy call through DS1fec",
+  "originalOverlay": 72704,
+  "headerBytes": 512,
+  "offset": 3101,
+  "length": 160,
+  "analysisBody": 49520,
+  "analysisExecutable": ".local/analysis/BANK_CODE.EXE",
+  "analysisSha256": "049397419f029fa3eba608d584018dc04703f15fff7f9cae33b1ca1695dfc19b",
+  "originalSha256": "53203b8b736062c327b841c1aa8af3750034dfe6a35fc28299b93240281fb61d",
+  "relocations": [
+    52773,
+    52761
+  ],
+  "analysisNormalizations": [],
+  "evidenceLevel": "Original/prepared/Ghidra caller identity and native-validated primitive instruction/OUT/REP behavior;visible pixels are statically inferred",
+  "scope": "Identical signed source/destination Y,aligned X,32x18 restore. Preserve unsigned wrapped Y+height clipping,signed JG,DL row count and16-bit byte addressing. Visible current-page projection only;hidden EGA page/heap aliasing remains unverified.",
+  "artifacts": {
+    "build": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "ghidra": {
+      "path": ".local/bank-top-copy-source-01/ghidra.json",
+      "bytes": 999,
+      "sha256": "2ad6e2a9a359b3fd364614fb7cff0631dda5e850871c9388c65314db05eb1ddd"
+    },
+    "primitive": {
+      "path": "reference/ega-signed-copy-work.json",
+      "bytes": 7018,
+      "sha256": "f7000f4de962828b12e9eb0497ba99b6ca2378b6a7af559670223b8f5e676ec2"
+    }
+  },
+  "verify": "node scripts/verify-bank-sparkle-copy-source.js"
+}

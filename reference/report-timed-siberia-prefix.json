@@ -1,0 +1,56 @@
+{
+  "kind": "current-winning-valid-prefix",
+  "producer": ".local/report-timed-winning-browser-01",
+  "captureToolRevision": "ae9b9357d278770b2a6f9a7ce1f791d9232a3913",
+  "expectedCheckpointCount": 126,
+  "requiredEventCount": 6503,
+  "lastCheckpoint": "cave-21-award-ready",
+  "lastAt": 725857,
+  "nativeComparison": false,
+  "scope": "Fresh current-report-runtime Standard startup through the six-earned-treasure Siberia award. All126 complete states/decoded images and6503 DOM inputs must match from title. The producer later banks27050 and loses normally;that later strategy tail is excluded. No state restore,injection or fitted timers.",
+  "partialRestore": false,
+  "injections": [],
+  "fittedInputs": [],
+  "comparison": {
+    "state": "exact complete public snapshot",
+    "pixels": "exact decoded RGBA",
+    "exclusions": []
+  },
+  "artifacts": {
+    "checkpoints": {
+      "path": ".local/report-timed-winning-browser-01/campaign-checkpoints.json",
+      "bytes": 1295655,
+      "sha256": "ddb7d808698dc3ab3f93d4a4e3f388f73e37c49aa39713f86a0017fcb5eb1383"
+    },
+    "events": {
+      "path": ".local/report-timed-winning-browser-01/captured-events.json",
+      "bytes": 791248,
+      "sha256": "61d0bf0321708793877414370a3e651deb40e61e21d0b0667f676357e0cfc2d5"
+    },
+    "environment": {
+      "path": ".local/report-timed-winning-browser-01/environment.json",
+      "bytes": 239,
+      "sha256": "3bc78ab58b567bc3296f7c583fa215e8b1549ab6aa1cdcef27cf212eec465ed4"
+    },
+    "timeline": {
+      "path": ".local/report-timed-winning-browser-01/timeline.json",
+      "bytes": 12014,
+      "sha256": "47fb57376d2db8b381346b8fef8cb5e4f993201df7998ef103a9ffda016f6746"
+    },
+    "status": {
+      "path": ".local/report-timed-winning-browser-01/exploration-status.json",
+      "bytes": 130,
+      "sha256": "c98746433a15798bd3defdbcc85d835275618a511a7b2a9eda16df405a79ee39"
+    },
+    "source": {
+      "path": ".local/report-timed-winning-browser-01/source-revision.json",
+      "bytes": 118692,
+      "sha256": "3a982d2262cae77e251c7bb1bde9239246975e4bb62148fa0a804792e1be28ea"
+    },
+    "archive": {
+      "path": ".local/report-timed-winning-browser-01/sources.zip",
+      "bytes": 3022091,
+      "sha256": "784735f7c38c950d35b6250b4c4c3c24829ef92392941085cdd0c72e88db228c"
+    }
+  }
+}

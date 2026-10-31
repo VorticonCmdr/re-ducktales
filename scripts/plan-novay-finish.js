@@ -13,7 +13,8 @@ const arg = (name) =>
     .find((a) => a.startsWith("--" + name + "="))
     ?.slice(name.length + 3);
 assert.ok(
-  process.argv.includes("--diagnose") && arg("through") === "dialogue-127",
+  process.argv.includes("--diagnose") &&
+    ["dialogue-127", "cave-21-award-ready"].includes(arg("through")),
 );
 const root = await fresh(arg("output")),
   source = await archiveSource(root);
@@ -70,7 +71,7 @@ async function point(x, y) {
 }
 async function settle() {
   for (let n = 0; n < 16; n++) {
-    const s = await state();
+    let s = await state();
     if (
       ![
         "expedition-result",
@@ -80,13 +81,33 @@ async function settle() {
       ].includes(s.scene)
     )
       return;
-    if (s.expeditionResult?.presentation) {
-      await until((v) => !v.expeditionResult?.presentation);
-      continue;
+    if (s.reportPresentation && s.reportPresentation.phase !== "reading") {
+      await until(
+        (v) =>
+          !v.reportPresentation || v.reportPresentation.phase === "reading",
+      );
+      s = await state();
+      if (!["rival-report", "rival-claim", "visit-notice"].includes(s.scene))
+        continue;
     }
-    await page.keyboard.down("Space");
-    await until((v) => v.scene !== s.scene);
-    await page.keyboard.up("Space");
+    if (s.expeditionResult?.presentation) {
+      await until(
+        (v) =>
+          v.scene !== "expedition-result" || !v.expeditionResult.presentation,
+      );
+      s = await state();
+      assert.equal(s.scene, "expedition-result");
+    }
+    const phase =
+      s.expeditionResult?.phase ?? s.rivalReport?.phase ?? s.visitNotice?.phase;
+    await press("Space");
+    await until(
+      (v) =>
+        v.scene !== s.scene ||
+        (v.expeditionResult?.phase ??
+          v.rivalReport?.phase ??
+          v.visitNotice?.phase) !== phase,
+    );
   }
   throw Error("Unfinished Novay dialogue");
 }
@@ -137,7 +158,9 @@ try {
     nativeComparison: false,
     sourceCommit: source.commit,
     scope:
-      "Conditional extra Novay mountain after replayed startup through dialogue-127;actual browser and independent replay still required",
+      "Conditional extra Novay mountain after exact startup input replay through " +
+      arg("through") +
+      ";actual browser and independent replay still required",
     inputs: events.length,
     checkpoints: points.length,
     ending: final.ending,

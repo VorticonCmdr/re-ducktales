@@ -1,3 +1,4 @@
+import { bankSparkleCopyBytes } from "./bank-sparkle-copy.js";
 import { EGA, imagePixels } from "../assets.js";
 import { flightFlagAliasPixels } from "./flight-flag-raster.js";
 
@@ -17,6 +18,27 @@ export function renderFlightPixels(
   };
   for (const c of commands) {
     if (c.op === "restore") {
+      // Bank0c1d passes the same signed Y to both sides of a32x18 copy.
+      // Project original planar byte writes onto the visible page;do not
+      // reject its above-screen pile sparkle or replace the driver's wrap
+      // behavior with ordinary rectangle clipping. Other copy contracts retain
+      // their existing strict source bounds.
+      if (
+        archive === "MAC.ARC" &&
+        c.width === 32 &&
+        c.height === 18 &&
+        c.x === c.sourceX &&
+        c.y === c.sourceY &&
+        Number.isInteger(c.x) &&
+        !(c.x & 7)
+      ) {
+        if (!Array.isArray(c.source)) throw Error("Invalid framebuffer copy");
+        const offsets = bankSparkleCopyBytes(c.x, c.y),
+          source = renderFlightPixels(c.source, entries, font, archive, cache);
+        for (const at of offsets)
+          result.set(source.subarray(at * 32, (at + 1) * 32), at * 32);
+        continue;
+      }
       if (
         !Array.isArray(c.source) ||
         ![c.x, c.y, c.sourceX, c.sourceY, c.width, c.height].every(

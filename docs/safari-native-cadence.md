@@ -111,5 +111,38 @@ This neutral segment precedes the mission timer starting and does not cover
 shutter bursts,all animal workloads or other machine speeds. Setup-flight input
 completion is enforced by the archived capture recipe;no separate final replay
 status snapshot was retained. No complete-machine checkpoint is created. The
-next experiment is a conditional port comparison with declared entry/clock-phase
-dependencies,using independent neutral inputs rather than native final clocks.
+conditional port comparison below preserves entry/clock-phase dependencies and
+uses independent neutral inputs rather than native final clocks.
+
+## Conditional port comparison
+
+```sh
+node scripts/compare-safari-native-cadence.js
+```
+
+This command first runs the strict native-artifact checker. It then starts the
+current Photography component from the native ENTRY memory and the future Main
+stack frame (ENTRY SP minus2,102 bytes). This is an injected component initial
+condition,not a machine restore or independent campaign. It supplies zero-phase
+driver/retrace clocks,original assets and18 neutral reads. Expected first-input
+and observer data are read only after the simulation finishes;they never provide
+port timers,inputs or intermediate state.
+
+The first-input target,film,column,RNG and36 actor bytes match exactly. All18
+post-drawing completion RNG states match the original. Three negative controls
+reject an altered initial RNG,missing completion and altered completion RNG.
+The command fails for missing/corrupt artifacts,unfinished input sequence or any
+of these state differences. This is narrower than full-memory or pixel parity.
+
+The port's first-to-eighteenth completion span is1612.305ms. The original callback
+brackets permit112..114 rendered intervals,1598.037..1626.573ms. Relative to the
+first observer sample,the port completions lie at their corresponding native
+bracket's upper edge or one rendered interval later (14.268ms,apart from floating
+roundoff). The script reports these distances without admitting a tolerance or
+fitting phase. The original IRQ/retrace phase and first-sample latency relative
+to the stopped input boundary are not recovered. Thus this short neutral segment
+does not demonstrate accelerated port movement,but also does not prove timing
+parity. Shutter work,other animal workloads,mission duration and actual browser
+scheduling remain outside this experiment. No runtime speed change follows from
+this evidence. The next speed investigation should target the reported jungle,
+mountain and cave movement with similarly uninterrupted original observations.

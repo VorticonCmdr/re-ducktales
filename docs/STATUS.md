@@ -88,8 +88,12 @@ replay. [Earlier milestones](status-history.md).
 
 ## Remaining work and supported build
 
-Next:compare the Safari port with the new native segment using declared entry/
-phase dependencies and independent neutral inputs. Resource/text costs,remaining
+The conditional Safari comparison now matches first-input gameplay state and18
+completion RNG states from ENTRY memory/stack and independent neutral inputs.
+Its1612.305ms completion span lies within the native1598.037..1626.573ms callback
+brackets;original phase remains unknown,so this is not timing acceptance.
+Next:target reported jungle,mountain and cave movement with uninterrupted native
+observations. Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability
 need more evidence. Hard's second-flight race issue remains deferred at the
@@ -113,6 +117,7 @@ select their own files.
 node scripts/verify-current-winning-acceptance.js
 node scripts/verify-report-presentation-acceptance.js
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_safari_cadence.py
+node scripts/compare-safari-native-cadence.js
 # Fresh independent winning replay;new ignored output:
 node scripts/verify-standard-wages-route.js --manifest=reference/safari-hud-winning-route.json --output=.local/safari-hud-winning-replay-FRESH
 # Fresh scoped Safari browser/source admission:

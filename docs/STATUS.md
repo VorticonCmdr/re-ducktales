@@ -78,9 +78,11 @@ the subsequently changed cave runtime. [Historical acceptance](../reference/cave
   [jungle](jungle-native-cadence.md),[mountain](mountain-phase.md),[Safari](safari-native-cadence.md).
   The integrated paired sound-enable probe gives identical component movement
   in both modes;the flag alone does not explain the divergence. Separate timing
-  research remains on codex/loader-environment,verified commit66a8341:two natural
+  research remains on codex/loader-environment,verified commit95abd02:two natural
   original I/O captures,zero dropped records,and live speaker IRQ/resident code
-  checks. Those decoder instrumentation changes are not integrated into the
+  checks,and128 source IRQ-envelope branch cases plus a48-IRQ idle scenario
+  counting959 driver instructions. Active sequencing/BIOS/device costs remain
+  unknown. Those decoder instrumentation changes are not integrated into the
   accepted runtime. Next milestone:account for original IRQ/system execution
   from captured initial state,then repeat the strict cadence comparison.
 - Broaden campaign/path coverage and cross-scene input checks. Original modifier/

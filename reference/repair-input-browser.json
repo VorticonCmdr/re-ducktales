@@ -1,0 +1,224 @@
+{
+  "kind": "repair-input-browser-regression",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "sourceRule": {
+    "path": "reference/repair-input-source.json",
+    "bytes": 1825,
+    "sha256": "9435d50134a9eaf46ff1f28d918ab16e75ef55722f8e0059d125c2d245705b73"
+  },
+  "scope": "Muted Easy ordinary crashes with zero/earned-positive cash;Pause/Quit-No/fresh Fire,optional wreckage,real cave recovery and Restart. Port comparison,not original timing/audio parity.",
+  "environment": {
+    "difficulty": 0,
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "physicalKeyboard": true,
+    "audioEnabled": false
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "comparison": {
+    "state": "exact complete public snapshot",
+    "pixels": "exact decoded RGBA",
+    "exclusions": []
+  },
+  "cases": [
+    {
+      "key": "zero",
+      "producer": ".local/repair-input-controls-01",
+      "checkpoints": 10,
+      "events": 64,
+      "artifacts": {
+        "after-p.png": {
+          "path": ".local/repair-input-controls-01/after-p.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "campaign-checkpoints": {
+          "path": ".local/repair-input-controls-01/campaign-checkpoints.json",
+          "bytes": 35878,
+          "sha256": "cfb131f7b50af8c49e3dfdab9cd88ebbbaf11ebca634a337b477c0f970f8745b"
+        },
+        "capture-status": {
+          "path": ".local/repair-input-controls-01/capture-status.json",
+          "bytes": 204,
+          "sha256": "e902a385c8b6cd966c8bb9749b5cabb05d8271a17631da0280c3d5c42a6cdb59"
+        },
+        "captured-events": {
+          "path": ".local/repair-input-controls-01/captured-events.json",
+          "bytes": 7334,
+          "sha256": "afd1ac4b79ffcf7ba63d85e988194b9434af9fb0cd1ce4cac03dfb6a5f22f050"
+        },
+        "entry.png": {
+          "path": ".local/repair-input-controls-01/entry.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "environment": {
+          "path": ".local/repair-input-controls-01/environment.json",
+          "bytes": 261,
+          "sha256": "b0cb49a827c5f5510379975db4e27dbf55ba7215fef0db5807cf565324c2d5be"
+        },
+        "expedition.png": {
+          "path": ".local/repair-input-controls-01/expedition.png",
+          "bytes": 20353,
+          "sha256": "26e6220ccdc75dcf3cbb54501211a7b49e9764870cedba53384394e1c0794a4f"
+        },
+        "neutral.png": {
+          "path": ".local/repair-input-controls-01/neutral.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "pause-waiting.png": {
+          "path": ".local/repair-input-controls-01/pause-waiting.png",
+          "bytes": 15882,
+          "sha256": "5e69c17d4adf834144a9f79dc5b30e51e572d98a851e3493a935d5aa47feb573"
+        },
+        "pause.png": {
+          "path": ".local/repair-input-controls-01/pause.png",
+          "bytes": 15882,
+          "sha256": "5e69c17d4adf834144a9f79dc5b30e51e572d98a851e3493a935d5aa47feb573"
+        },
+        "quit-no.png": {
+          "path": ".local/repair-input-controls-01/quit-no.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "quit.png": {
+          "path": ".local/repair-input-controls-01/quit.png",
+          "bytes": 15905,
+          "sha256": "f151b0310e5728ced5c96b5fa231b5d936494ef1266614b4c0862b04a3dafd3a"
+        },
+        "recovered.png": {
+          "path": ".local/repair-input-controls-01/recovered.png",
+          "bytes": 20353,
+          "sha256": "26e6220ccdc75dcf3cbb54501211a7b49e9764870cedba53384394e1c0794a4f"
+        },
+        "resumed.png": {
+          "path": ".local/repair-input-controls-01/resumed.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "source-revision": {
+          "path": ".local/repair-input-controls-01/source-revision.json",
+          "bytes": 105683,
+          "sha256": "1b2fd2b09f8a799d777ea06dc3a8dfed2309896eadbafcc4905ab685274510d3"
+        },
+        "sources.zip": {
+          "path": ".local/repair-input-controls-01/sources.zip",
+          "bytes": 2781936,
+          "sha256": "674050c7dd9532702f058fe32f649aa2693468881c7e42551a80b10bc6586da5"
+        },
+        "timeline": {
+          "path": ".local/repair-input-controls-01/timeline.json",
+          "bytes": 897,
+          "sha256": "ec86510963536cc4782a4dfb899d723355d614c17ba876e37411c858a34c686d"
+        }
+      }
+    },
+    {
+      "key": "positive",
+      "producer": ".local/repair-positive-controls-01",
+      "checkpoints": 11,
+      "events": 106,
+      "artifacts": {
+        "after-p.png": {
+          "path": ".local/repair-positive-controls-01/after-p.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "campaign-checkpoints": {
+          "path": ".local/repair-positive-controls-01/campaign-checkpoints.json",
+          "bytes": 65362,
+          "sha256": "788ad255e4ec7686fbb69243229a676c39fd3b4567cc9c57085d81ab36ab8a51"
+        },
+        "capture-status": {
+          "path": ".local/repair-positive-controls-01/capture-status.json",
+          "bytes": 204,
+          "sha256": "1e165cb1982aafdf772955220b8234fa1a59062d2360ef44332cc20ba657b83e"
+        },
+        "captured-events": {
+          "path": ".local/repair-positive-controls-01/captured-events.json",
+          "bytes": 12422,
+          "sha256": "3b130ffb1f7353aaf8aae5731afb7392e4888924a495857fd879361810dcfbae"
+        },
+        "entry.png": {
+          "path": ".local/repair-positive-controls-01/entry.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "environment": {
+          "path": ".local/repair-positive-controls-01/environment.json",
+          "bytes": 261,
+          "sha256": "b0cb49a827c5f5510379975db4e27dbf55ba7215fef0db5807cf565324c2d5be"
+        },
+        "expedition.png": {
+          "path": ".local/repair-positive-controls-01/expedition.png",
+          "bytes": 20353,
+          "sha256": "26e6220ccdc75dcf3cbb54501211a7b49e9764870cedba53384394e1c0794a4f"
+        },
+        "neutral.png": {
+          "path": ".local/repair-positive-controls-01/neutral.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "pause-waiting.png": {
+          "path": ".local/repair-positive-controls-01/pause-waiting.png",
+          "bytes": 15882,
+          "sha256": "5e69c17d4adf834144a9f79dc5b30e51e572d98a851e3493a935d5aa47feb573"
+        },
+        "pause.png": {
+          "path": ".local/repair-positive-controls-01/pause.png",
+          "bytes": 15882,
+          "sha256": "5e69c17d4adf834144a9f79dc5b30e51e572d98a851e3493a935d5aa47feb573"
+        },
+        "quit-no.png": {
+          "path": ".local/repair-positive-controls-01/quit-no.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "quit.png": {
+          "path": ".local/repair-positive-controls-01/quit.png",
+          "bytes": 15905,
+          "sha256": "f151b0310e5728ced5c96b5fa231b5d936494ef1266614b4c0862b04a3dafd3a"
+        },
+        "recovered.png": {
+          "path": ".local/repair-positive-controls-01/recovered.png",
+          "bytes": 20353,
+          "sha256": "26e6220ccdc75dcf3cbb54501211a7b49e9764870cedba53384394e1c0794a4f"
+        },
+        "resumed.png": {
+          "path": ".local/repair-positive-controls-01/resumed.png",
+          "bytes": 15987,
+          "sha256": "2828031ba2da2e6b62a911af08d04f1a1c339bf162f5484264e7552f74529db0"
+        },
+        "source-revision": {
+          "path": ".local/repair-positive-controls-01/source-revision.json",
+          "bytes": 105683,
+          "sha256": "1b2fd2b09f8a799d777ea06dc3a8dfed2309896eadbafcc4905ab685274510d3"
+        },
+        "sources.zip": {
+          "path": ".local/repair-positive-controls-01/sources.zip",
+          "bytes": 2781936,
+          "sha256": "674050c7dd9532702f058fe32f649aa2693468881c7e42551a80b10bc6586da5"
+        },
+        "timeline": {
+          "path": ".local/repair-positive-controls-01/timeline.json",
+          "bytes": 984,
+          "sha256": "6577457012c1edd4ba51e09e492c80a44ec63f4bce6df33a0c0a07e8af446c5d"
+        },
+        "wreckage.png": {
+          "path": ".local/repair-positive-controls-01/wreckage.png",
+          "bytes": 15231,
+          "sha256": "801c4bac7f5f9db6de889edda5efc683d6bb2bc773588558e25ac8d5e64c0578"
+        }
+      }
+    }
+  ],
+  "verify": "node scripts/verify-repair-input-browser.js --output=.local/repair-replay-FRESH"
+}

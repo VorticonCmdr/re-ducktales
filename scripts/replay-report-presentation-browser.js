@@ -1,6 +1,8 @@
 // Independent DOM-only consumer. Expected states/images never initialize Game.
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
+import { PNG } from "pngjs";
+import { installReportFrameRecording } from "./lib/report-frame-recording.js";
 import { originalGame } from "../tests/helpers/original-game.js";
 import { withCarlsbadBrowser } from "./lib/carlsbad-browser.js";
 import { recordedDOMInput } from "../tests/browser/helpers/recorded-dom-input.js";
@@ -13,6 +15,7 @@ import {
   json,
   spec,
   inventory,
+  sha,
 } from "./lib/local-scenario-source.js";
 import { validateProducerArchive } from "./lib/consumer-provenance.js";
 const arg = (key) =>
@@ -92,6 +95,10 @@ assert.deepEqual(
 const ready = checks.find(
   (p) => p.name === (m.pauseBoundaryName ?? "notice-ready"),
 );
+const expectedFrames = m.compareReportFrames ? await json(m.artifacts["presentations.json"].path) : null;
+const canonical = (value) => JSON.stringify(value, (_, v) => v && typeof v === "object" && !Array.isArray(v)
+  ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, v[k]])) : v);
+const pixels = (v) => PNG.sync.read(Buffer.from(v.png.split(",")[1], "base64")).data;
 assert.ok(ready);
 const omission = events.findIndex(
   (e, i) => i >= ready.eventCount && e.type === "keydown" && e.key === "p",
@@ -102,6 +109,7 @@ const root = await fresh(arg("output")),
 let result = { completed: false, accepted: false };
 async function replay(negative = false) {
   return withCarlsbadBrowser(async ({ page, state, until }) => {
+    if (m.compareReportFrames && !negative) await installReportFrameRecording(page);
     let now = 1,
       consumed = 0,
       omitted = 0,
@@ -126,6 +134,7 @@ async function replay(negative = false) {
         state: await state(),
         name: c.name,
       });
+      assert.equal(actual.at, c.at, "Report checkpoint time " + c.name);
       assert.equal(actual.state.diagnostic, null);
       assert.equal(actual.stateSha256, c.stateSha256, "Report state " + c.name);
       assert.equal(
@@ -140,10 +149,25 @@ async function replay(negative = false) {
     assert.equal(consumed, events.length);
     assert.equal(checked, checks.length);
     assert.equal((await state()).scene, "map");
+    let frameComparisons = 0;
+    if (m.compareReportFrames && !negative) {
+      const frames = await page.evaluate(() => window.reportFrames);
+      assert.ok(expectedFrames.length > 0, "Zero report frames");
+      assert.equal(frames.length, expectedFrames.length, "Skipped report frames");
+      for (let i = 0; i < frames.length; i++) {
+        assert.equal(frames[i].key, expectedFrames[i].key, "Report frame order");
+        assert.equal(frames[i].at, expectedFrames[i].at, "Report frame time " + frames[i].key);
+        assert.equal(sha(canonical(frames[i].state)), sha(canonical(expectedFrames[i].state)), "Report frame state " + frames[i].key);
+        assert.equal(sha(pixels(frames[i])), sha(pixels(expectedFrames[i])), "Report frame pixels " + frames[i].key);
+        frameComparisons++;
+      }
+      await writeFile(root + "/presentations.json", JSON.stringify(frames, null, 2) + "\n");
+      await writeFile(root + "/incoming-pages.json", JSON.stringify(await page.evaluate(() => window.reportIncomingPages), null, 2) + "\n");
+    }
     await page.locator("#restart").click();
     await until((s) => s.scene === "title");
     assert.equal((await state()).campaign.banked, 0);
-    return { checked, consumed, restart: true };
+    return { checked, consumed, restart: true, frameComparisons };
   });
 }
 try {

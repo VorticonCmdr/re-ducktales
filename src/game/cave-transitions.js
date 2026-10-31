@@ -1,15 +1,15 @@
 // Overlay6:2496. Coordinates and torch attachments remain in the original EXE.
 const entry = {
-  right: { asset: 10, pose: 3, count: 13, table: 0x1848, kind: 13, cover: 24 },
-  down: { asset: 11, pose: 0, count: 12, table: 0x18ac, kind: 12, cover: 25 },
-  up: { asset: 12, pose: 0, count: 13, table: 0x1910, kind: 13 },
-  left: { asset: 13, pose: 3, count: 15, table: 0x196c, kind: 15 },
+  right: { asset: 10, pose: 3, count: 13, table: 0x1848, kind: 10, cover: 24 },
+  down: { asset: 11, pose: 0, count: 12, table: 0x18ac, kind: 11, cover: 25 },
+  up: { asset: 12, pose: 0, count: 13, table: 0x1910, kind: 12 },
+  left: { asset: 13, pose: 3, count: 15, table: 0x196c, kind: 13 },
 };
 const exit = {
   right: { asset: 10, pose: 1, count: 12, table: 0x187c, kind: 10 },
-  down: { asset: 11, pose: 2, count: 13, table: 0x18dc, kind: 11 },
-  up: { asset: 12, pose: 2, count: 10, table: 0x1944, kind: 12, cover: 25 },
-  left: { asset: 13, pose: 3, count: 13, table: 0x19a8, kind: 13, cover: 24 },
+  down: { asset: 11, pose: 0, count: 13, table: 0x18dc, kind: 11 },
+  up: { asset: 12, pose: 0, count: 10, table: 0x1944, kind: 12, cover: 25 },
+  left: { asset: 13, pose: 2, count: 13, table: 0x19a8, kind: 13, cover: 24 },
 };
 export function* caveTransition(stage, direction) {
   const p = ({ entry, exit }[stage] ?? {})[direction];

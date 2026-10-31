@@ -40,6 +40,9 @@ try {
   run("initialization-segment", process.execPath, ["scripts/verify-cave-initialization.js"], [/"executedCases": 16/, /"negatives": 2/]);
   run("treasure-source", "python3", ["scripts/verify_cave_treasure_source.py"], [/371 original bytes\/144 instructions/, /2 negatives/]);
   run("treasure-route", process.execPath, ["scripts/verify-cave-treasure-order.js"], [/64 requested retraces/, /historical method negative rejected/]);
+  run("treasure-native", "python3", ["scripts/verify_cave_treasure_observation.py"], [/7 natural room moves\/28 consumed physical events/, /14 reader calls,6 phase\/RNG checkpoints/, /3 negatives/]);
+  run("passage-parameters", process.execPath, ["scripts/verify-cave-passage-poses.js"], [/8 actual coroutine paths/, /historical parameter negative rejected/]);
+  run("treasure-component", process.execPath, ["scripts/compare-cave-treasure-observation.js"], [/"consumed":14/, /"frames":354/, /"checkpoints":6/, /"readerCheckpoints":14/, /"negativeControls":3/]);
   run("sequence", process.execPath, ["scripts/verify-cave-load-sequence.js"], [/4 original phase states\/all9 fields/, /3 negatives/]);
   run("passages", process.execPath, ["scripts/verify-cave-passage-order.js"], [/historical ordering negative rejected/]);
   run("routes", process.execPath, ["scripts/verify-cave.js"], [/6 conditional original checkpoints/, /4 independent shortened-path outcomes/]);
@@ -49,7 +52,7 @@ try {
   run("treasure-browser", process.execPath, ["node_modules/@playwright/test/cli.js", "test", "tests/browser/campaign.spec.js", "--grep", "keyboard flight lands", "--config", "playwright.campaign.config.js", "--output=" + output + "/treasure-browser"], [/1 passed/]);
   run("loading-negative", process.execPath, ["scripts/verify-cave-loading-browser-negative.js"], [/retained work counters without actual loader waits rejected/], { DUCKTALES_CAVE_LOADING_VERIFICATION_ROOT: output + "/negative" });
   run("build", process.execPath, ["node_modules/vite/bin/vite.js", "build"], [/built in/]);
-  assert.equal(checks.length, 15, "Unfinished required checks");
+  assert.equal(checks.length, 18, "Unfinished required checks");
   for (const p of paths) assert.equal(sha(await readFile(p)), files[p], "Source changed during verification:" + p);
   assert.equal(execFileSync("git", ["status", "--porcelain"], { encoding: "utf8" }).trim(), "", "Source changed during verification");
   accepted = true;

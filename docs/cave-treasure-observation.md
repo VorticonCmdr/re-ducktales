@@ -52,3 +52,9 @@ claim. Debugger stops alter CPU budget,so these observations do not establish
 uninterrupted elapsed-time,device-completion timing,whole-expedition native/port
 replay or browser acceptance. The separate current browser campaign remains on
 its own fixed source while this experiment is isolated.
+
+A subsequent carried component comparison exposed incorrect passage poses/torch
+attachments;the corrected module now matches all14 reader states and six treasure
+states,including sprite geometry/frame bytes. [Parameter evidence and conditional
+comparison contract](cave-passage-parameters.md) records the correction and
+remaining exclusions. The native artifacts above are unchanged.

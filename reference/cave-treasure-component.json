@@ -1,0 +1,31 @@
+{
+  "kind": "conditional-original-cave-treasure-comparison",
+  "expectedReaderCalls": 14,
+  "expectedTreasureCheckpoints": 6,
+  "expectedPortPublications": 354,
+  "expectedCoreRanges": 16,
+  "negativeControls": 3,
+  "artifacts": {
+    "native": {
+      "path": "reference/cave-treasure-observation.json",
+      "bytes": 54502,
+      "sha256": "17feb1f84a0e4a8f62275e217254122fe6d1be3a3e88d952541a121980b4acf8"
+    },
+    "inputs": {
+      "path": "reference/cave-treasure-component-inputs.json",
+      "bytes": 980,
+      "sha256": "15771b63af6122ab6cd0c4270f268416380459e7fb878d57d23d965a9b739338"
+    },
+    "parameters": {
+      "path": "reference/cave-passage-parameters.json",
+      "bytes": 3397,
+      "sha256": "e3ce99ba8cbbfe53abdea7531e205294560292785da4003008a9788c8e0ad58d"
+    }
+  },
+  "environmentContract": "Fresh translated Cave initialized from original overlay-entry DS and variant/difficulty/seed/money. C: drive,muted audio,zero-phase counted clocks. Separate explicit reader-byte stream at source consumption calls. No further native state injection;the port carries its own state. This is conditional component evidence,not independent keyboard/BIOS/IRQ or machine replay.",
+  "comparisonRules": "Exact16 gameplay memory ranges plus position/geometry/frame bytes of16 sprites and the shared passage sprite at all14 reads;two treasure sprites additionally at all6 treasure checkpoints. Allocation pointers,CPU/stack,timers,keyboard hardware/BIOS and audio device state are outside this component contract. No pixel comparison;all354 translated publications must render without skipped publications or unsupported commands.",
+  "independentRuntimeAccepted": false,
+  "browserAccepted": false,
+  "nativeElapsedTimeAccepted": false,
+  "verify": "node scripts/compare-cave-treasure-observation.js"
+}

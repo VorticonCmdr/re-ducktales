@@ -1,0 +1,63 @@
+{
+  "kind": "conditional-cave-treasure-reader-inputs",
+  "requiredReads": 14,
+  "origin": "Physical direction/Fire schedules projected onto their declared neutral/make reader boundaries. No expected final state is used. Source-read placement is conditional;not independent hardware/timing replay.",
+  "events": [
+    {
+      "read": 0,
+      "code": 0
+    },
+    {
+      "read": 1,
+      "code": 193
+    },
+    {
+      "read": 2,
+      "code": 0
+    },
+    {
+      "read": 3,
+      "code": 193
+    },
+    {
+      "read": 4,
+      "code": 0
+    },
+    {
+      "read": 5,
+      "code": 193
+    },
+    {
+      "read": 6,
+      "code": 0
+    },
+    {
+      "read": 7,
+      "code": 193
+    },
+    {
+      "read": 8,
+      "code": 0
+    },
+    {
+      "read": 9,
+      "code": 199
+    },
+    {
+      "read": 10,
+      "code": 0
+    },
+    {
+      "read": 11,
+      "code": 199
+    },
+    {
+      "read": 12,
+      "code": 0
+    },
+    {
+      "read": 13,
+      "code": 197
+    }
+  ]
+}

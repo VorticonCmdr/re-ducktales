@@ -1,0 +1,150 @@
+{
+  "kind": "original-cave-passage-parameters",
+  "expectedCases": 8,
+  "expectedBytes": 333,
+  "expectedInstructions": 132,
+  "nativeParent": {
+    "path": "reference/cave-treasure-observation.json",
+    "bytes": 54502,
+    "sha256": "17feb1f84a0e4a8f62275e217254122fe6d1be3a3e88d952541a121980b4acf8"
+  },
+  "source": {
+    "entry": {
+      "artifact": {
+        "path": ".local/cave-passage-poses-source-01/entry.json",
+        "bytes": 7500,
+        "sha256": "d00a52e679e90e974c5accc6317749f0c02c4db59f6b1a5ad90f0dbdf53a0e8c"
+      },
+      "start": 1858,
+      "end": 2022
+    },
+    "up": {
+      "artifact": {
+        "path": ".local/cave-passage-poses-source-01/up.json",
+        "bytes": 2050,
+        "sha256": "2bb4129b0adc11b794224c205a19253fd198f0f7066432dd275e11fd8baaf4a5"
+      },
+      "start": 3541,
+      "end": 3581
+    },
+    "down": {
+      "artifact": {
+        "path": ".local/cave-passage-poses-source-01/down.json",
+        "bytes": 1845,
+        "sha256": "1767f2137a5cf461396d77616fe2b3e37303df104998e11c1338566485378e31"
+      },
+      "start": 3884,
+      "end": 3921
+    },
+    "right": {
+      "artifact": {
+        "path": ".local/cave-passage-poses-source-01/right.json",
+        "bytes": 2053,
+        "sha256": "4690f7247ce2d496acdeee5d2bf9fb70a2bda33daf083532bc3bafc3fef9e052"
+      },
+      "start": 4029,
+      "end": 4070
+    },
+    "left": {
+      "artifact": {
+        "path": ".local/cave-passage-poses-source-01/left.json",
+        "bytes": 2493,
+        "sha256": "dcc12192b1a18279a0a5b725545c04a1a63b784a0be6f2959fb9796d1526cafa"
+      },
+      "start": 4172,
+      "end": 4223
+    }
+  },
+  "cases": [
+    {
+      "stage": "entry",
+      "direction": "right",
+      "load": 1858,
+      "parameters": 1874,
+      "asset": 10,
+      "kind": 10,
+      "table": 6216,
+      "count": 13,
+      "pose": 3
+    },
+    {
+      "stage": "entry",
+      "direction": "down",
+      "load": 1896,
+      "parameters": 1912,
+      "asset": 11,
+      "kind": 11,
+      "table": 6316,
+      "count": 12,
+      "pose": 0
+    },
+    {
+      "stage": "entry",
+      "direction": "up",
+      "load": 1937,
+      "parameters": 1953,
+      "asset": 12,
+      "kind": 12,
+      "table": 6416,
+      "count": 13,
+      "pose": 0
+    },
+    {
+      "stage": "entry",
+      "direction": "left",
+      "load": 1975,
+      "parameters": 1991,
+      "asset": 13,
+      "kind": 13,
+      "table": 6508,
+      "count": 15,
+      "pose": 3
+    },
+    {
+      "stage": "exit",
+      "direction": "up",
+      "load": 3541,
+      "parameters": 3561,
+      "asset": 12,
+      "kind": 12,
+      "table": 6468,
+      "count": 10,
+      "pose": 0
+    },
+    {
+      "stage": "exit",
+      "direction": "down",
+      "load": 3884,
+      "parameters": 3904,
+      "asset": 11,
+      "kind": 11,
+      "table": 6364,
+      "count": 13,
+      "pose": 0
+    },
+    {
+      "stage": "exit",
+      "direction": "right",
+      "load": 4029,
+      "parameters": 4049,
+      "asset": 10,
+      "kind": 10,
+      "table": 6268,
+      "count": 12,
+      "pose": 1
+    },
+    {
+      "stage": "exit",
+      "direction": "left",
+      "load": 4172,
+      "parameters": 4192,
+      "asset": 13,
+      "kind": 13,
+      "table": 6568,
+      "count": 13,
+      "pose": 2
+    }
+  ],
+  "nativeTimingAcceptance": false,
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_passage_parameters.py"
+}

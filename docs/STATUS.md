@@ -16,18 +16,24 @@ its original wipe/background load,two compositions,13 extra caller cache copies
 and15 party/presentation calls. Counted resident decode/conversion work runs at
 actual load boundaries;there is no fitted slowdown.
 
-The source904519a scoped cave gate passes all15 required checks:55 decoded
+The historical source904519a scoped cave gate passed15 required checks:55 decoded
 resources,source/conditional state comparisons,all221 unit tests,two actual
 browser cases,loading and historical-method negatives,and production build.
 The complete browser case covers flight,pit failure,retry without another flight,
 all five treasure reveal bands,exact4500 award payment,map return and an owned
 location visit. [Receipt](../reference/cave-treasure-order-admission.json),
 [treasure scope](cave-treasure-order.md),[initialization](cave-initialization.md).
-This is scoped browser/component acceptance,not native whole-cave timing.
+That receipt predates the passage-parameter correction and is scoped browser/
+component acceptance,not native whole-cave timing. The corrected entry kinds and
+Down/Up/Left exit poses match original caller bytes and a carried native state
+comparison. [Parameters](cave-passage-parameters.md). The expanded18-check gate
+requires a fresh source-pinned run.
 
-Fresh producer `.local/cave-treasure-winning-browser-01` runs sourcee59dd00 from
-startup using independent physical DOM controls. It has not yet completed or
-been independently replayed. Source/scripts/tests stay fixed during this run.
+Producer `.local/cave-treasure-winning-browser-01` completed on sourcee59dd00:
+183 checkpoints/7261 inputs,victory34650 to28500,all26 credits and Restart.
+It remains historical and unaccepted because the new native comparison exposed
+passage pose/torch attachment differences before independent replay. A corrected
+producer and independent replay remain required.
 
 ## Last independently accepted full route
 

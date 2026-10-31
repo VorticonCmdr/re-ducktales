@@ -67,6 +67,22 @@ for (const p of paths) {
       current = Buffer.from(current.toString().replace(pattern, historical.toString().match(pattern)[0]));
     }
   }
+  if (p === "src/game/cave-transitions.js") {
+    // Original333-byte argument proof backs exactly these seven corrections.
+    // The old ordering class keeps its old matrix;the new native component
+    // comparison separately rejects that matrix at the downward exit.
+    let text = current.toString();
+    for (const [now, before] of [
+      ["table: 0x1848, kind: 10", "table: 0x1848, kind: 13"],
+      ["table: 0x18ac, kind: 11", "table: 0x18ac, kind: 12"],
+      ["table: 0x1910, kind: 12", "table: 0x1910, kind: 13"],
+      ["table: 0x196c, kind: 13", "table: 0x196c, kind: 15"],
+      ["down: { asset: 11, pose: 0, count: 13", "down: { asset: 11, pose: 2, count: 13"],
+      ["up: { asset: 12, pose: 0, count: 10", "up: { asset: 12, pose: 2, count: 10"],
+      ["left: { asset: 13, pose: 2, count: 13", "left: { asset: 13, pose: 3, count: 13"],
+    ]) { assert.ok(text.includes(now));text = text.replace(now, before); }
+    current = Buffer.from(text);
+  }
   if (p === "src/game/cave-runtime-work.js") {
     current = Buffer.from(current.toString().replace(
       "\n// Explicit caller copies,additional to the restore inside party20b8.\nexport function caveBackgroundRestoreWork() {\n  return { ...total([egaSignedCopyWork(roomCopy(false, true))]), copies: 1 };\n}\n", ""));

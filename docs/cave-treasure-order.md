@@ -58,3 +58,7 @@ the8ms injected display cadence,all simulation waits,input schedule and bounded
 state conditions. Its capture is scoped to phase=treasure/kind=reveal and reads
 actual intrinsic canvas PNGs;ordinary room wipes/reveals cannot satisfy the five
 required treasure groups. The prior fixture's broad band predicate was invalid.
+
+The15-check receipt above is historical after the separate passage-parameter
+correction. The current command requires18 checks;see [native observation](cave-treasure-observation.md)
+and [passage parameters](cave-passage-parameters.md). No old capture is rewritten.

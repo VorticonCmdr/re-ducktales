@@ -1,0 +1,81 @@
+{
+  "kind": "jungle-award-exit-static-source",
+  "program": "JUNGLE_CODE.EXE",
+  "address": "1c17:0000",
+  "analysisExecutable": ".local/analysis/JUNGLE_CODE.EXE",
+  "analysisSha256": "af42703c5d566328e693d6e40e2a8cb80c004864f0cd3f1e26753a449aa723b7",
+  "originalOverlayFileOffset": 129536,
+  "originalOverlayHeaderBytes": 2048,
+  "offset": 49520,
+  "length": 1201,
+  "relocations": [
+    50341,
+    50317,
+    50292,
+    50272,
+    50258,
+    50238,
+    50218,
+    50198,
+    50178,
+    50158,
+    50138,
+    50026,
+    50011,
+    49998,
+    49938,
+    49926,
+    49914,
+    49906,
+    49898,
+    49873,
+    49840,
+    49828,
+    49738,
+    49656,
+    49593,
+    49588,
+    49579,
+    49574,
+    49569,
+    49564,
+    50701,
+    50690,
+    50666,
+    50633,
+    50613,
+    50586,
+    50566,
+    50546,
+    50532,
+    50512,
+    50472,
+    50450,
+    50430,
+    50393,
+    50379
+  ],
+  "analysisNormalization": {
+    "offset": 6,
+    "original": "9a9e1e0e04",
+    "prepared": "81ecd40090"
+  },
+  "artifacts": {
+    "build": {
+      "path": "reference/build.json",
+      "bytes": 3003,
+      "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+    },
+    "ghidra": {
+      "path": ".local/jungle-award-exit-source-01/ghidra.json",
+      "bytes": 6583,
+      "sha256": "3e21fabf89262d25122157de2ae07a46a6cc051084e1ba624a490169f1c3c8be"
+    },
+    "preparation": {
+      "path": "scripts/prepare-jungle-analysis.py",
+      "bytes": 3100,
+      "sha256": "2fcc62b4ac9c84c25a612e246a37d413772fec650d37f104d50e75b15fae6e68"
+    }
+  },
+  "scope": "Static original/prepared/Ghidra identity of jungle main including exit wipe01e0 before return;not original elapsed timing or native transition-pixel capture."
+}

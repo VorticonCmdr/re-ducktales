@@ -18,6 +18,8 @@ export async function continueWinningCampaign({
   locations,
   afterJungle = false,
   afterMountain = false,
+  caveTargets = [9, 30, 21],
+  bonusNovay = false,
 }) {
   async function confirmTarget(id, x, y) {
     await until(
@@ -91,7 +93,7 @@ export async function continueWinningCampaign({
         7: ["ArrowLeft"],
       }[byte & 63] ?? []),
     ]);
-  async function play(activity, stream) {
+  async function play(activity, stream, label = activity) {
     assert.ok(stream.length > 0);
     let held = new Set(),
       used = 0;
@@ -118,11 +120,11 @@ export async function continueWinningCampaign({
       );
       used++;
       assert.equal(after[activity].frames, used, "Skipped action input frame");
-      if (used % 40 === 0) await observe(activity + "-input-" + used);
+      if (used % 40 === 0) await observe(label + "-input-" + used);
     }
     for (const key of held) await page.keyboard.up(key);
     assert.equal(used, stream.length);
-    await observe(activity + "-controls-complete");
+    await observe(label + "-controls-complete");
     await until((s) => s.scene !== activity);
     assert.equal(
       (await state())[activity].outcome.code,
@@ -130,16 +132,17 @@ export async function continueWinningCampaign({
       "Authored action route failed;not proof of a port defect",
     );
     assert.equal((await state())[activity].lives, 3);
-    await observe(activity + "-award-entry");
+    await observe(label + "-award-entry");
     await until(
       (s) =>
         s.scene === "expedition-result" && !s.expeditionResult.presentation,
     );
-    await observe(activity + "-award-ready");
+    await observe(label + "-award-ready");
     await settle();
     assert.equal((await state()).scene, "map");
-    await observe(activity + "-map");
+    await observe(label + "-map");
   }
+  await settle();
   if (!afterJungle && !afterMountain) {
     await depart(28, 264, 129);
     await until((s) => s.scene === "jungle");
@@ -167,7 +170,7 @@ export async function continueWinningCampaign({
     await play("mountain", mountainInputs);
   }
 
-  for (const id of [9, 30, 21]) {
+  for (const id of caveTargets) {
     // Original resource geometry in the declared BIOS0 startup permutation.
     // It chooses mouse coordinates only;it never initializes browser state.
     const destination = locations[id];
@@ -232,6 +235,20 @@ export async function continueWinningCampaign({
     );
     await observe("cave-" + id + "-award-ready");
     await settle();
+  }
+  if (bonusNovay) {
+    const destination = locations[10];
+    assert.ok(destination && destination.flags === 18);
+    await depart(10, destination.x, destination.y);
+    await until((s) => s.scene === "mountain");
+    assert.equal((await state()).briefing.variant, 1);
+    await observe("novay-mountain-entry");
+    const recipe = JSON.parse(
+      await readFile("reference/thunderclap-expedition-inputs.json"),
+    );
+    const inputs = recipe.mountain.flatMap((e) => Array(e.count).fill(e.byte));
+    assert.equal(inputs.length, 494);
+    await play("mountain", inputs, "novay-mountain");
   }
   async function finishBank() {
     if ((await state()).scene !== "bank") return;

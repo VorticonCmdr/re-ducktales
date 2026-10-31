@@ -39,6 +39,17 @@ middle wipe is black; the final reveal exposes the original portrait and text.
 Rendering supplies no simulation values. Screen controls and the outside-screen
 Fire prompt become available after the reveal.
 
+The current Standard earned-treasure route now checks all six reward sequences
+(90 row groups) across cave,jungle and mountain. Jungle Main01e0 has already
+completed its own exit wipe before returning,so its incoming reward page must
+be exactly black. `verify-jungle-award-exit-source.js` checks1201 original/
+prepared/Ghidra bytes and45 relocations for that rule. The checker requires the
+completed421-read successful jungle and an all-black page;other activities keep
+the nonblank incoming-page guard. Four missing/corrupt/source-page negatives
+remain required. This is a source-defined exact comparison,not a pixel exclusion.
+`reference/current-earned-awards.json` records the presentation scope separately
+from the producer's later campaign defeat and pending independent route replay.
+
 The established full-page fill/copy budgets are charged. Resource loading, text
 drawing, striped-write CPU costs and remaining IRQ/CPU phase are still omitted.
 75 display retraces are statically established; uninterrupted native elapsed

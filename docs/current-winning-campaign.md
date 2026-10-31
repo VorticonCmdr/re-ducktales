@@ -67,3 +67,41 @@ strict browser replay. The next explorer uses that controller only for Atlantis.
 node scripts/plan-winning-flight.js --capture=.local/current-winning-browser-02 --through=departure-9 --diagnose --minimum-turn-speed=1 --output=.local/atlantis-pilot-FRESH
 node scripts/standard-wages-explore.js --winning --prefix=reference/current-winning-mountain-prefix.json --output=.local/current-winning-next-FRESH
 ```
+
+The third browser exploration reached all six treasure rewards and banked27050
+on day25. Atlantis's speed1 recovery controls worked in the actual browser.
+Klondike and Siberia completed too. The later office/bank trips reached a normal
+day31 defeat against Glomgold's36000. No mechanics were changed to force victory;
+this is not a current winning-campaign receipt.
+
+`reference/current-earned-route.json` preserves only its valid129-checkpoint/
+6511-input startup-to-bank25 segment. A separate browser consumer must compare
+every complete state and decoded image and reject a missing Standard-selection
+input. The losing tail remains in the immutable producer but is outside this
+declared segment. `reference/current-earned-awards.json` separately pins all six
+earned presentations against independent older completed reward pages.
+
+Their90 row groups pass exact pixel checks. Jungle legitimately arrives black:
+its original Main01e0 wipes the page before returning. The new1201-byte original/
+prepared/Ghidra source check verifies that cleanup,45 relocations and one explicit
+analysis stack-probe replacement. Only jungle's completed421-read success uses
+the exact all-black incoming-page contract;other activities still require a
+nonblank incoming page. Missing groups,corrupt pixels,blank non-jungle sources
+and nonblack jungle sources are negative controls. No pixels are excluded.
+
+```sh
+node scripts/verify-jungle-award-exit-source.js
+node scripts/verify-current-winning-awards.js --manifest=reference/current-earned-awards.json
+node scripts/verify-current-earned-route.js --setup-negatives
+node scripts/verify-current-earned-route.js --output=.local/current-earned-replay-FRESH
+```
+
+The next conditional winning strategy tries Novay's still-unclaimed7500 mountain
+treasure after Siberia,using the previously authored494-read layout1 climbing
+controls. It is an input-only candidate,not accepted gameplay or a difficulty
+change. Preventing Glomgold from collecting that treasure can affect both scores;
+actual outcomes must be observed instead of fitted.
+
+```sh
+node scripts/plan-novay-finish.js --capture=.local/current-winning-browser-03 --through=dialogue-127 --diagnose --output=.local/novay-finish-plan-FRESH
+```

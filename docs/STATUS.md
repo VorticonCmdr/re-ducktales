@@ -62,12 +62,16 @@ checks are conditional. Natural capture audio exploration reached result/Restart
 but is not strict current acceptance. Other sound-call adaptations need review.
 
 Fresh Standard exploration has now completed jungle421 reads and mountain671
-reads with3 lives each,including their4000/2000 rewards and map return. A later
-Atlantis flight crashed under the exploratory pilot;this is not a verified port
-defect or full-campaign acceptance. The79-checkpoint/5031-input prefix through
-`mountain-map` is retained for exact startup replay. A conditional controller
-experiment reached Atlantis using earlier steering recovery;actual browser
-confirmation and full independent replay are still pending.
+reads with3 lives each,including their4000/2000 rewards and map return. Corrected
+player controls landed at Atlantis in the actual browser;Atlantis,Klondike and
+Siberia treasures all completed. All90 reward row groups match their independent
+retained completed-page targets. Jungle's already-black exit page is required by
+the original Main01e0 cleanup(1201 verified bytes/45 relocations),not an image
+exclusion. A fresh129-checkpoint/6511-input startup-to-bank25 replay is pending.
+The subsequent campaign strategy lost normally,27050 to36000 on day31;it is not
+a current winning receipt. An extra Novay mountain is the next conditional
+winning strategy. Runtime is still357d83f;these changes affect player/verification
+tools and source evidence.
 [Current experiment recipe](current-winning-campaign.md).
 
 The next report-presentation restoration has a new strict1238-byte source check

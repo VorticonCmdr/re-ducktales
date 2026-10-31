@@ -3,6 +3,8 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { PNG } from "pngjs";
+import { spawnSync } from "node:child_process";
+import { originalGame } from "../tests/helpers/original-game.js";
 import { json, sha, checkArtifacts } from "./lib/local-scenario-source.js";
 import {
   validateProducerArchive,
@@ -20,6 +22,13 @@ const m = await json(
 assert.equal(m.kind, "current-winning-award-presentations");
 assert.equal(m.nativeComparison, false);
 assert.deepEqual(m.comparison.exclusions, []);
+await originalGame();
+const exitProof = spawnSync(
+  process.execPath,
+  ["scripts/verify-jungle-award-exit-source.js"],
+  { encoding: "utf8" },
+);
+assert.equal(exitProof.status, 0, exitProof.stdout + exitProof.stderr);
 await checkArtifacts(m.artifacts);
 const source = await validateProducerArchive(m.producer);
 await validateProducerArchive(m.targetProducer);
@@ -82,7 +91,27 @@ for (const c of m.cases) {
   const groups = observations.filter(
     (v) => v.state.expeditionResult.presentation.transition,
   );
-  compareAwardGroups(groups, png.data);
+  // Original jungle Main01e0 wipes before returning. This is an exact black
+  // page contract,not a pixel exclusion or a general missing-frame recovery.
+  const incomingAlreadyCleared = c.activity === "jungle";
+  if (incomingAlreadyCleared) {
+    assert.equal(groups[0].state.jungle.phase, "complete");
+    assert.equal(groups[0].state.jungle.outcome.code, 1);
+    assert.equal(groups[0].state.jungle.frames, 421);
+  }
+  compareAwardGroups(groups, png.data, { incomingAlreadyCleared });
+  if (incomingAlreadyCleared) {
+    const wrong = structuredClone(groups),
+      image = PNG.sync.read(Buffer.from(wrong[0].png.split(",")[1], "base64"));
+    image.data[4] = 255;
+    wrong[0].png =
+      "data:image/png;base64," + PNG.sync.write(image).toString("base64");
+    assert.throws(
+      () =>
+        compareAwardGroups(wrong, png.data, { incomingAlreadyCleared: true }),
+      /Uncleared incoming award page/,
+    );
+  }
   const publishing = observations.filter(
     (v) => v.state.expeditionResult.presentation.phase === "publishing",
   );
@@ -126,5 +155,5 @@ for (const c of m.cases) {
 }
 assert.equal(groupsChecked, 90);
 console.log(
-  "Current Standard rewards:6 awards across cave/jungle/mountain,90 exact row groups,75 retraces each,6 independent retained completed-page targets,3 pixel/missing-group negatives. Browser port regression,not native uninterrupted timing parity.",
+  "Current Standard rewards:6 awards across cave/jungle/mountain,90 exact row groups,75 retraces each,6 independent retained completed-page targets,4 pixel/missing-group negatives including source-required black jungle exit. Browser port regression,not native uninterrupted timing parity.",
 );

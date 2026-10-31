@@ -10,7 +10,13 @@ import { observeRecordedRoute } from "../../tests/browser/helpers/entry-recordin
 
 // Fresh title replay,not a checkpoint restore. The declared valid prefix ends
 // at the manifest's declared valid route boundary;its failed tail is not used.
-export async function replayWinningPrefix({ page, state, points, manifest }) {
+export async function replayWinningPrefix({
+  page,
+  state,
+  points,
+  manifest,
+  omitDifficulty = false,
+}) {
   const m = await json(manifest);
   assert.equal(m.kind, "current-winning-valid-prefix");
   await checkArtifacts(m.artifacts);
@@ -23,19 +29,27 @@ export async function replayWinningPrefix({ page, state, points, manifest }) {
     checks = all.slice(0, m.expectedCheckpointCount);
   assert.ok(checks.length > 0 && m.requiredEventCount > 0);
   assert.equal(checks.length, m.expectedCheckpointCount);
-  assert.ok(["jungle-map", "mountain-map"].includes(m.lastCheckpoint));
+  assert.ok(
+    ["jungle-map", "mountain-map", "bank-25"].includes(m.lastCheckpoint),
+  );
   assert.equal(checks.at(-1).name, m.lastCheckpoint);
   assert.equal(checks.at(-1).at, m.lastAt);
   assert.equal(checks.at(-1).eventCount, m.requiredEventCount);
   let now = 1,
-    consumed = 0;
+    consumed = 0,
+    omitted = 0;
+  const choice = events.findIndex(
+    (e) => e.type === "keydown" && e.key === "ArrowDown",
+  );
+  assert.ok(choice >= 0 && choice < checks[0].eventCount);
   for (const expected of checks) {
     while (consumed < expected.eventCount) {
       const e = events[consumed++];
       assert.ok(e.time >= now);
       if (e.time > now) await page.clock.runFor(e.time - now);
       now = e.time;
-      await recordedDOMInput(page, e);
+      if (omitDifficulty && consumed - 1 === choice) omitted++;
+      else await recordedDOMInput(page, e);
     }
     assert.ok(expected.at >= now);
     if (expected.at > now) await page.clock.runFor(expected.at - now);
@@ -55,11 +69,14 @@ export async function replayWinningPrefix({ page, state, points, manifest }) {
       expected.pixelsSha256,
       "Prefix pixels " + expected.name,
     );
-    assert.equal(actual.eventCount, expected.eventCount);
+    assert.equal(actual.eventCount, expected.eventCount - omitted);
     points.push(actual);
     console.log("Exact prefix", expected.name);
   }
   assert.equal(consumed, m.requiredEventCount);
-  assert.equal((await state()).scene, "map");
+  assert.equal(
+    (await state()).scene,
+    m.lastCheckpoint === "bank-25" ? "bank" : "map",
+  );
   assert.equal((await state()).difficulty, 1);
 }

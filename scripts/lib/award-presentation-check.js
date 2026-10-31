@@ -1,10 +1,18 @@
 import assert from "node:assert/strict";
 import { PNG } from "pngjs";
 export function awardPixels(v) {
-  return PNG.sync.read(Buffer.from(v.png.split(",")[1], "base64")).data;
+  const png = PNG.sync.read(Buffer.from(v.png.split(",")[1], "base64"));
+  assert.equal(png.width, 320, "Unexpected award page width");
+  assert.equal(png.height, 200, "Unexpected award page height");
+  return png.data;
 }
-export function compareAwardGroups(data, target) {
+export function compareAwardGroups(
+  data,
+  target,
+  { incomingAlreadyCleared = false } = {},
+) {
   assert.equal(data.length, 15, "Missing award row groups");
+  assert.equal(typeof incomingAlreadyCleared, "boolean");
   const base = awardPixels(data[0]);
   let retainedPixels = 0;
   for (let y = 0; y < 200; y++)
@@ -13,7 +21,14 @@ export function compareAwardGroups(data, target) {
         const at = (y * 320 + x) * 4;
         if (base[at] || base[at + 1] || base[at + 2]) retainedPixels++;
       }
-  assert.ok(retainedPixels > 0, "Missing incoming award page");
+  if (incomingAlreadyCleared) {
+    for (let at = 0; at < base.length; at += 4)
+      assert.deepEqual(
+        [...base.subarray(at, at + 4)],
+        [0, 0, 0, 255],
+        "Uncleared incoming award page",
+      );
+  } else assert.ok(retainedPixels > 0, "Missing incoming award page");
   for (const phase of ["initial-wipe", "wipe", "reveal"]) {
     const rows = data.filter(
       (v) => v.state.expeditionResult.presentation.phase === phase,

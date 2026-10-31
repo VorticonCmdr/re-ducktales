@@ -1,0 +1,67 @@
+{
+  "kind": "current-winning-valid-prefix",
+  "producer": ".local/current-winning-browser-03",
+  "nativeComparison": false,
+  "expectedCheckpointCount": 129,
+  "requiredEventCount": 6511,
+  "lastCheckpoint": "bank-25",
+  "lastAt": 720105,
+  "injections": [],
+  "fittedInputs": [],
+  "comparison": {
+    "state": "exact complete public snapshot",
+    "pixels": "exact decoded RGBA",
+    "exclusions": []
+  },
+  "scope": "Startup through all four expedition families,six earned treasure awards and day25 bank27050,then actual Restart. The producer later lost27050 to36000;its later office/bank/defeat tail is excluded. Not a winning campaign acceptance,native whole-campaign timing/audio parity,or arbitrary-route completion.",
+  "artifacts": {
+    "checkpoints": {
+      "path": ".local/current-winning-browser-03/campaign-checkpoints.json",
+      "bytes": 1290419,
+      "sha256": "f9c638653c48fae6feae32b7ba5d927f696c91e33ce8dc913450c5e1bc4b0ac1"
+    },
+    "events": {
+      "path": ".local/current-winning-browser-03/captured-events.json",
+      "bytes": 791203,
+      "sha256": "05118950e76b496704b0f6dd76a515a6ccfa777e8554d686a039df8761367ecf"
+    },
+    "environment": {
+      "path": ".local/current-winning-browser-03/environment.json",
+      "bytes": 239,
+      "sha256": "3bc78ab58b567bc3296f7c583fa215e8b1549ab6aa1cdcef27cf212eec465ed4"
+    },
+    "timeline": {
+      "path": ".local/current-winning-browser-03/timeline.json",
+      "bytes": 12014,
+      "sha256": "106066d3106c1f7cdfc86c6052007add253494c814574f43d221e7b5ad919b14"
+    },
+    "status": {
+      "path": ".local/current-winning-browser-03/exploration-status.json",
+      "bytes": 130,
+      "sha256": "c98746433a15798bd3defdbcc85d835275618a511a7b2a9eda16df405a79ee39"
+    },
+    "source": {
+      "path": ".local/current-winning-browser-03/source-revision.json",
+      "bytes": 114595,
+      "sha256": "adc1e9bdd9fb1bb118292467deb2fe01f5652c102257928956bc68149fc933ff"
+    },
+    "archive": {
+      "path": ".local/current-winning-browser-03/sources.zip",
+      "bytes": 2953825,
+      "sha256": "74779499b5c9c9162e461d297f40d7eaec063383e85737bd94eba70269c64315"
+    }
+  },
+  "verify": "node scripts/verify-current-earned-route.js --output=.local/current-earned-replay-FRESH",
+  "captureToolRevision": "a6f5c52a8c18d3f52a73bc155ef1bc95dd18ec5b",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "audioEnabled": false,
+    "difficulty": 1,
+    "originalSecurity": false
+  },
+  "partialRestore": false,
+  "startingRecipe": "Fresh title;re-execute original startup DOM inputs through bank-25,comparing all129 complete state/images and6511 inputs. No checkpoint restoration. Later losing tail is outside this declared segment."
+}

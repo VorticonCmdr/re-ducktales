@@ -191,8 +191,7 @@ if (mode === "capture") {
     const results = [];
     for (const c of cases) {
       console.log("Replaying Easy " + c.key);
-      const manifest = await replayManifest(root, c),
-        positive = await replayEasyJungle(manifest, out + "/" + c.key);
+      const manifest = await replayManifest(root, c);
       // Preserve the entrance make/flush. Omit the first movement make that
       // can reach a read; compare from the preceding required input checkpoint.
       const firstMove = (
@@ -227,6 +226,7 @@ if (mode === "capture") {
           ),
         new RegExp("Carried browser state\\d+ input-" + firstMove),
       );
+      const positive = await replayEasyJungle(manifest, out + "/" + c.key);
       results.push({ key: c.key, ...positive, negativeControls: 1 });
     }
     assert.equal(results.length, 2);

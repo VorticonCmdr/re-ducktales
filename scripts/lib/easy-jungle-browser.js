@@ -63,9 +63,10 @@ export async function readEasyJunglePlan(c) {
   }
   const firstMake = stream.findIndex((b) => [3, 7].includes(b & 63)) + 1;
   assert.ok(firstMake > 0);
-  // Main00d7 clears makes from the entry wipe before the first read.
-  const firstMove = Math.max(2, firstMake);
+  // Main00d7 and Main048f clear makes during entry and first-page reveal.
+  const firstMove = Math.max(3, firstMake);
   boundaries.add(1);
+  boundaries.add(2);
   boundaries.add(firstMove);
   return {
     rows,
@@ -162,6 +163,18 @@ export async function captureEasyJungle(root, c) {
       );
       used++;
       assert.equal(after.jungle.frames, used, "Skipped jungle input frame");
+      if (used <= 2)
+        assert.equal(
+          after.expeditionKeys.byte,
+          0,
+          "Original entry/reveal clear",
+        );
+      if (used === recipe.firstMove)
+        assert.equal(
+          after.expeditionKeys.byte & 63,
+          stream[used - 1] & 63,
+          "First consumed jungle movement",
+        );
       if (boundaries.has(used) || used % 40 === 0)
         await observe("input-" + used);
     }

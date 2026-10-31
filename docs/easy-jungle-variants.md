@@ -35,8 +35,8 @@ and Restart clearing actors, cash and claims. DOM event counts are independent o
 game reads because held keys can span many reads.
 
 Each negative replay omits the first jungle Right and must fail at its first
-movement checkpoint (Bermuda input4; Boola Boola input2). The initial entry make is discarded by Main00d7's flush before input1; that
-flush is retained. Negative-only comparison starts at the input immediately
+movement checkpoint (Bermuda input4; Boola Boola input3). Main00d7 clears entry-wipe makes before input1; Main048f clears first-page
+reveal makes before input2. Both are retained and asserted as zero input bytes. Negative-only comparison starts at the input immediately
 before the consumed movement, while replaying the complete startup input stream. Positive
 acceptance checks every checkpoint, including office/departure, without exclusions.
 Missing/corrupt fixtures, zero cases, skipped checkpoints, unfinished sequences,

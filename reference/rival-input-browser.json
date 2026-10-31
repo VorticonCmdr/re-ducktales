@@ -1,0 +1,204 @@
+{
+  "kind": "rival-input-browser-regression",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "scope": "Ordinary report and forced claim muted40-read/Pause/Quit-No/fresh Fire/map/Restart. Port regression,not native presentation/audio phase.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "physicalKeyboard": true,
+    "audioEnabled": false
+  },
+  "cases": [
+    {
+      "key": "regular",
+      "producer": ".local/rival-input-controls-01",
+      "checkpoints": 9,
+      "events": 525,
+      "artifacts": {
+        "source-revision": {
+          "path": ".local/rival-input-controls-01/source-revision.json",
+          "bytes": 103819,
+          "sha256": "48eeeab36bcfd79547b8cb62ddac99ab9d733d896033fe4daf403b7b859883c7"
+        },
+        "sources.zip": {
+          "path": ".local/rival-input-controls-01/sources.zip",
+          "bytes": 2748126,
+          "sha256": "695367e277e7a1f330c37134f6ef369cb14424a696b8e9f3d16b5ee1d5a2c78c"
+        },
+        "capture-status": {
+          "path": ".local/rival-input-controls-01/capture-status.json",
+          "bytes": 202,
+          "sha256": "6820c9e4472a79283d66f4bf412cfca4c9500df13d76d523e8c857c817bb6d08"
+        },
+        "environment": {
+          "path": ".local/rival-input-controls-01/environment.json",
+          "bytes": 280,
+          "sha256": "73d6528633f3fd348eedc0fa2ba01a20574a4905df97803003e216c43d157aa9"
+        },
+        "captured-events": {
+          "path": ".local/rival-input-controls-01/captured-events.json",
+          "bytes": 62311,
+          "sha256": "61cb89d1ed664f9068ef496f4f3371efde57cadf1df97a75251e7a7c3d888200"
+        },
+        "campaign-checkpoints": {
+          "path": ".local/rival-input-controls-01/campaign-checkpoints.json",
+          "bytes": 54124,
+          "sha256": "733d271b05fb3d51c343b57c8c9c6ac529d77f1af41dd80f15bce476b1bc0c00"
+        },
+        "timeline": {
+          "path": ".local/rival-input-controls-01/timeline.json",
+          "bytes": 817,
+          "sha256": "790030ce57621cdf01098e48ead2955d64c9a9da0622bba2793b88d02015c885"
+        },
+        "after-p.png": {
+          "path": ".local/rival-input-controls-01/after-p.png",
+          "bytes": 15495,
+          "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+        },
+        "entry.png": {
+          "path": ".local/rival-input-controls-01/entry.png",
+          "bytes": 15495,
+          "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+        },
+        "map.png": {
+          "path": ".local/rival-input-controls-01/map.png",
+          "bytes": 27540,
+          "sha256": "86be55a96982777c03579862cea6b415b928c7381351a9c3db0bd88d7b1b5191"
+        },
+        "neutral.png": {
+          "path": ".local/rival-input-controls-01/neutral.png",
+          "bytes": 15495,
+          "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+        },
+        "pause-waiting.png": {
+          "path": ".local/rival-input-controls-01/pause-waiting.png",
+          "bytes": 15001,
+          "sha256": "8222b8ef8f9cdf521b7b4025756c7f3700b4e91f6d94360232062811a21d7620"
+        },
+        "pause.png": {
+          "path": ".local/rival-input-controls-01/pause.png",
+          "bytes": 15001,
+          "sha256": "8222b8ef8f9cdf521b7b4025756c7f3700b4e91f6d94360232062811a21d7620"
+        },
+        "quit-no.png": {
+          "path": ".local/rival-input-controls-01/quit-no.png",
+          "bytes": 15495,
+          "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+        },
+        "quit.png": {
+          "path": ".local/rival-input-controls-01/quit.png",
+          "bytes": 15199,
+          "sha256": "9f0907437336ade25ac218ca751896c76068f1849d9de1ca19ff280318e23094"
+        },
+        "resumed.png": {
+          "path": ".local/rival-input-controls-01/resumed.png",
+          "bytes": 15495,
+          "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+        }
+      }
+    },
+    {
+      "key": "forced",
+      "producer": ".local/rival-claim-controls-01",
+      "checkpoints": 9,
+      "events": 1793,
+      "artifacts": {
+        "source-revision": {
+          "path": ".local/rival-claim-controls-01/source-revision.json",
+          "bytes": 103819,
+          "sha256": "48eeeab36bcfd79547b8cb62ddac99ab9d733d896033fe4daf403b7b859883c7"
+        },
+        "sources.zip": {
+          "path": ".local/rival-claim-controls-01/sources.zip",
+          "bytes": 2748126,
+          "sha256": "695367e277e7a1f330c37134f6ef369cb14424a696b8e9f3d16b5ee1d5a2c78c"
+        },
+        "capture-status": {
+          "path": ".local/rival-claim-controls-01/capture-status.json",
+          "bytes": 202,
+          "sha256": "cfac02bebe2d05fd4e7b7a731b46b0564c6b13d6fe7316b4b184c8eadfba0b3a"
+        },
+        "environment": {
+          "path": ".local/rival-claim-controls-01/environment.json",
+          "bytes": 280,
+          "sha256": "73d6528633f3fd348eedc0fa2ba01a20574a4905df97803003e216c43d157aa9"
+        },
+        "captured-events": {
+          "path": ".local/rival-claim-controls-01/captured-events.json",
+          "bytes": 215749,
+          "sha256": "bf9873e87893cddf10bc55e890b2597ef35b78b84bd645da41f39c3c6841af4e"
+        },
+        "campaign-checkpoints": {
+          "path": ".local/rival-claim-controls-01/campaign-checkpoints.json",
+          "bytes": 54555,
+          "sha256": "8995e30fea1bd03157afa55ababf35d57ad7e7ba625f7ae7c1d6c9aa4df1ff79"
+        },
+        "timeline": {
+          "path": ".local/rival-claim-controls-01/timeline.json",
+          "bytes": 836,
+          "sha256": "5848bf55b069e7c6c03468f2f6b73b2d01f70fca5caecf9866f39f75c3711736"
+        },
+        "after-p.png": {
+          "path": ".local/rival-claim-controls-01/after-p.png",
+          "bytes": 15779,
+          "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+        },
+        "entry.png": {
+          "path": ".local/rival-claim-controls-01/entry.png",
+          "bytes": 15779,
+          "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+        },
+        "map.png": {
+          "path": ".local/rival-claim-controls-01/map.png",
+          "bytes": 27627,
+          "sha256": "a87e332a3bc2cb35c779cd2afdd7d9c4209d1a3e3a0a16a9063a77d3c47da933"
+        },
+        "neutral.png": {
+          "path": ".local/rival-claim-controls-01/neutral.png",
+          "bytes": 15779,
+          "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+        },
+        "pause-waiting.png": {
+          "path": ".local/rival-claim-controls-01/pause-waiting.png",
+          "bytes": 15274,
+          "sha256": "56e53eee1f52b2a86cd11aa3ba6f305b66940d2717e281f729476d4b0e408359"
+        },
+        "pause.png": {
+          "path": ".local/rival-claim-controls-01/pause.png",
+          "bytes": 15274,
+          "sha256": "56e53eee1f52b2a86cd11aa3ba6f305b66940d2717e281f729476d4b0e408359"
+        },
+        "quit-no.png": {
+          "path": ".local/rival-claim-controls-01/quit-no.png",
+          "bytes": 15779,
+          "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+        },
+        "quit.png": {
+          "path": ".local/rival-claim-controls-01/quit.png",
+          "bytes": 15490,
+          "sha256": "cb36cc432b19327d5cb95a8ebf0802de18b38031d613c88aa50941c109178977"
+        },
+        "resumed.png": {
+          "path": ".local/rival-claim-controls-01/resumed.png",
+          "bytes": 15779,
+          "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "state": "Every complete canonical snapshot exact",
+    "pixels": "Every decoded320x200 RGBA hash exact",
+    "events": "All independent DOM events and entire timeline consumed",
+    "exclusions": [],
+    "injections": [],
+    "fittedInputs": []
+  },
+  "verify": "node scripts/verify-rival-input-browser.js --output=.local/rival-replay-FRESH"
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "rival-standard-source-correction",
+  "legacyManifest": {
+    "path": "reference/standard-wages-full-route.json",
+    "bytes": 24298,
+    "sha256": "499232597020516db5ce434e391e52dc973bb40a90e56d38c22a6c0caa2d1e06"
+  },
+  "sourceRule": {
+    "path": "reference/rival-input-source.json",
+    "bytes": 1995,
+    "sha256": "78a73bdcf9785a40dc4da35d4077756a69d3193a8da13f74814b3c51e36d5209"
+  },
+  "checkpoints": [
+    "safari-flight-return-0",
+    "dialogue-25"
+  ],
+  "oldRivalLocation": 32,
+  "correctRivalLocation": 0,
+  "claim": {
+    "target": 32,
+    "variant": 0,
+    "phase": "dialogue",
+    "remaining": 280,
+    "busy": false,
+    "pollRemaining": 0,
+    "complete": false
+  },
+  "rule": "Assert the newly exposed claim state exactly and rival.location0 at these two entry observations. Only a snapshot copy is then projected to the legacy location32/absent claim field to compare all other old state fields. Never patch game memory or inputs. Every old pixel remains exact;all other83 snapshots remain wholly exact.",
+  "basis": "Original126b0322 publishes the location only after the complete report;032d registered this race origin0/target32. The original40-reader starts with an immediate neutral read and remaining280.",
+  "nativeComparison": false,
+  "fittedInputs": [],
+  "injections": [],
+  "verify": "node scripts/capture-rival-standard.js --output=.local/rival-standard-capture-FRESH"
+}

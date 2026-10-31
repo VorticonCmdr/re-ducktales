@@ -50,7 +50,29 @@ mountain = new Mountain({
   clock: provider,
 });
 let now = 0;
-const points = [{ at: now, inputCount: 0, state: mountain.snapshot() }],
+const hazards = () => {
+  const m = mountain.memory,
+    s = mountain.snapshot();
+  return {
+    arrowX: m.i(0x5854),
+    arrowY: m.i(0x5856),
+    visible: Array.from({ length: 5 }, (_, i) => s.scroll + i)
+      .filter((row) => row > 0 && row < 25)
+      .map((row) => {
+        const at = m.i(0x5d26) + row * 6;
+        return {
+          row,
+          type: m.b(at),
+          state: m.b(at + 1),
+          x: m.i(at + 2),
+          counter: m.i(at + 4),
+        };
+      }),
+  };
+};
+const points = [
+    { at: now, inputCount: 0, state: mountain.snapshot(), hazards: hazards() },
+  ],
   losses = [];
 for (const [i, byte] of stream.entries()) {
   assert.equal(mountain.outcome, null, "Unconsumed authored input tail");
@@ -67,7 +89,13 @@ for (const [i, byte] of stream.entries()) {
     clock.advanceTo((now += 8));
   assert.equal(mountain.frames, i + 1, "Skipped or unfinished action read");
   const after = mountain.snapshot();
-  points.push({ at: now, inputCount: i + 1, byte, state: after });
+  points.push({
+    at: now,
+    inputCount: i + 1,
+    byte,
+    state: after,
+    hazards: hazards(),
+  });
   if (after.lives < before.lives)
     losses.push({ inputCount: i + 1, before, after });
 }

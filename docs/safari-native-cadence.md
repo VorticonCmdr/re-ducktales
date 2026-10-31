@@ -1,8 +1,8 @@
 # Original Safari cadence experiment
 
 This recipe targets the original neutral Yellerstone Park loop. It is separate
-from the accepted Safari HUD work and browser route. No new original timing
-result has yet been accepted.
+from the accepted Safari HUD work and browser route. The accepted native05 observation is source-verified;it is not port timing
+acceptance.
 
 A fresh private portable emulator starts the supported22-file pairing read-only,
 normal core3000 cycles/ms,svga_s3,16MiB and graphics-memory delay off. It uses the
@@ -86,3 +86,30 @@ No general FPU byte-pattern mask is used. Attempt04's owned emulator closed.
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_safari_fpu_source.py
 ```
+
+Native05 completes and passes the strict saved-observation checker. It records
+120 consecutive callback samples across119 frame intervals and124 resident
+driver counts,with18 normal-loop completions. Film stays12,column1 and started0.
+The counter changes at sample indices5,11,17,24,31,38,44,50,57,64,71,77,84,91,98,
+104,111,118. These are post-drawing loop completions,not input-read deadlines or
+exact page-flip times;drawing variability affects their spacing. Both frame and
+resident-clock spans cover about1.7 seconds. No timing multiplier is inferred.
+
+The checked original flight body is17548 bytes;Safari is7924 bytes. Driver bytes
+38..a26 match exactly after four source-derived copy operands;the mutable header
+is retained as state. The source archive,actual emulator binary/configuration,
+120 samples,input schedules and closed-process receipt are pinned in
+[the native manifest](../reference/safari-native-cadence.json). Four checker
+negatives reject missing samples,changed counters/skipped frames and an altered
+copy operand. The extra FPU source checker has three further negatives.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_safari_cadence.py
+```
+
+This neutral segment precedes the mission timer starting and does not cover
+shutter bursts,all animal workloads or other machine speeds. Setup-flight input
+completion is enforced by the archived capture recipe;no separate final replay
+status snapshot was retained. No complete-machine checkpoint is created. The
+next experiment is a conditional port comparison with declared entry/clock-phase
+dependencies,using independent neutral inputs rather than native final clocks.

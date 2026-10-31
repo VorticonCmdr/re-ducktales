@@ -1,0 +1,156 @@
+{
+  "kind": "original-safari-cadence-observation",
+  "producer": ".local/safari-cadence-native-05",
+  "nativeObservation": true,
+  "portTimingAcceptance": false,
+  "expectedSamples": 120,
+  "expectedFrameSpan": 119,
+  "expectedClockSpan": 124,
+  "expectedCounterTransitions": 18,
+  "counterChangeIndices": [
+    5,
+    11,
+    17,
+    24,
+    31,
+    38,
+    44,
+    50,
+    57,
+    64,
+    71,
+    77,
+    84,
+    91,
+    98,
+    104,
+    111,
+    118
+  ],
+  "engineBinarySHA256": "85662a8383e0fde0734797451374b28a443166440fd9bf5823626505760d9d0f",
+  "configuration": {
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "machine": "svga_s3",
+    "memsize": 16,
+    "vmem_delay": "off"
+  },
+  "setup": "Fresh read-only original launch;natural security and map controls to46,56,Yellerstone resource32;campaign slot is shuffled. Only naturally nonracing flight uses authored crash recipe. Code/stack mappings verified anew. No writes/restores. Measurement begins at first returned neutral input.",
+  "inputs": "Captured setup schedules in inputs.json;zero further observation inputs in safari-observer-inputs.json. Expected counters never supply inputs.",
+  "comparison": "Exact artifact identities and source-defined code changes;120 consecutive render callbacks,all source counter changes,film12/column1/started0. Only final manual pause adds a stop. Counter changes are callback brackets,not CPU/scanout timestamps.",
+  "injections": [],
+  "partialRestore": false,
+  "artifacts": {
+    "source-revision.json": {
+      "path": ".local/safari-cadence-native-05/source-revision.json",
+      "bytes": 123788,
+      "sha256": "835ff55752e0b3c3ef17f66cedd8eb49238c6653762d91bccc854da96438408b"
+    },
+    "sources.zip": {
+      "path": ".local/safari-cadence-native-05/sources.zip",
+      "bytes": 3134638,
+      "sha256": "03a073ca215bd9d5994217b7b00e66da1018f782fc533501ffbaaf490164b88e"
+    },
+    "engine.json": {
+      "path": ".local/safari-cadence-native-05/engine.json",
+      "bytes": 3988,
+      "sha256": "5d77dc4ae5dae4bebf758f9e729a2b8e0591ff9dbab4c1fd89459740684cc00a"
+    },
+    "configuration.json": {
+      "path": ".local/safari-cadence-native-05/configuration.json",
+      "bytes": 2583,
+      "sha256": "839fdc0f326a578daa9d38641f36e0a70a04f40c5eb91868b072656060482ee0"
+    },
+    "profile-tool-identity.json": {
+      "path": ".local/safari-cadence-native-05/profile-tool-identity.json",
+      "bytes": 504,
+      "sha256": "9e515d375e01264a4919c286c93a9baa91e14094d04e031625af8c1a4cadcebb"
+    },
+    "capture.json": {
+      "path": ".local/safari-cadence-native-05/capture.json",
+      "bytes": 377,
+      "sha256": "b67e6b3e18c007ed0a0e3a5a511a26c5229c43043c645a58b339758286cccec3"
+    },
+    "inputs.json": {
+      "path": ".local/safari-cadence-native-05/inputs.json",
+      "bytes": 31095,
+      "sha256": "742bf700d599caaa78f57e35ae42bc778c1b9260363dd215a76a2e68d58fc25d"
+    },
+    "startup-inputs.json": {
+      "path": ".local/safari-cadence-native-05/startup-inputs.json",
+      "bytes": 1222,
+      "sha256": "bfd5f1b96576919c8856a8b3a776d9c343d946e9d54ab2706766767c81d3a74f"
+    },
+    "lifecycle.json": {
+      "path": ".local/safari-cadence-native-05/lifecycle.json",
+      "bytes": 123,
+      "sha256": "8d3afb33ee104f8368152ea98fa1143d4af4cf66d65b3287699fe4e57472e71b"
+    },
+    "safari-entry.json": {
+      "path": ".local/safari-cadence-native-05/safari-entry.json",
+      "bytes": 88766,
+      "sha256": "06e9b0aef081010f47c512754b999b3cb59c85bcd599bd0ad465aa8fbda94dd0"
+    },
+    "safari-entry-contract.json": {
+      "path": ".local/safari-cadence-native-05/safari-entry-contract.json",
+      "bytes": 99,
+      "sha256": "dfb9a03acfebe8cdf9f97c8f85055e5d8749b0a1e4757524b0ca1c777a6ad908"
+    },
+    "safari-code.json": {
+      "path": ".local/safari-cadence-native-05/safari-code.json",
+      "bytes": 10789,
+      "sha256": "49ccabb7f8621c4e6c0936795ff6c194516ec1ecf914ed61bc296700c6e98010"
+    },
+    "safari-first-input.json": {
+      "path": ".local/safari-cadence-native-05/safari-first-input.json",
+      "bytes": 88783,
+      "sha256": "09077700eaadd10841bafff54817efad564c87d329bd4110d62d45cf27867900"
+    },
+    "safari-driver-observed.json": {
+      "path": ".local/safari-cadence-native-05/safari-driver-observed.json",
+      "bytes": 3662,
+      "sha256": "6e77423f6fa4fb89c7ba93bc7d3c1a2ae61ad53c3d10df30dc60cee1b42c9e63"
+    },
+    "safari-driver-self-modification.json": {
+      "path": ".local/safari-cadence-native-05/safari-driver-self-modification.json",
+      "bytes": 371,
+      "sha256": "dc7548285ce2663fd91eb1541b47492ff5df230e32ee819400b2091eb437de8b"
+    },
+    "safari-formatter-code.json": {
+      "path": ".local/safari-cadence-native-05/safari-formatter-code.json",
+      "bytes": 360,
+      "sha256": "4145210b33153fdfde44f9abbfa0629732596d309f3e9a92de5e986ee0e4b41e"
+    },
+    "safari-flight-code.json": {
+      "path": ".local/safari-cadence-native-05/safari-flight-code.json",
+      "bytes": 25160,
+      "sha256": "6ba7e81790881b77d37088d93c46057b01fa18c094275980984a4ad9bb10220b"
+    },
+    "safari-observer-script.json": {
+      "path": ".local/safari-cadence-native-05/safari-observer-script.json",
+      "bytes": 1152,
+      "sha256": "b49466c690fc7fe584d3e150fa4248dc999613199010ed63f3a002b264e28c5a"
+    },
+    "safari-observer-inputs.json": {
+      "path": ".local/safari-cadence-native-05/safari-observer-inputs.json",
+      "bytes": 165,
+      "sha256": "53af41682f6ddc71036cb4ac7aa1532fc33820054a81dbe1c68e231a1122da49"
+    },
+    "safari-observer-result.json": {
+      "path": ".local/safari-cadence-native-05/safari-observer-result.json",
+      "bytes": 26175,
+      "sha256": "ad90c5ee6f4e8d103217070a9484633cbced545e281241e9ec680791a4c5d6f6"
+    },
+    "safari-observer-final.json": {
+      "path": ".local/safari-cadence-native-05/safari-observer-final.json",
+      "bytes": 88547,
+      "sha256": "f5dccec9fd33b6ee6c23c190fe8c5fe3818ffef14b41674c14c011af39b073e1"
+    },
+    "safari-cadence.json": {
+      "path": ".local/safari-cadence-native-05/safari-cadence.json",
+      "bytes": 379,
+      "sha256": "b26be8cc94f5cae0f47d4d94357aac9e6d4e2e03adfec36d8b774a938047ab61"
+    }
+  },
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_safari_cadence.py"
+}

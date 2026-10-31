@@ -1,4 +1,7 @@
 """Exact bounded source proof for native Safari setup's flight FPU sites."""
+if not __debug__:
+    raise RuntimeError("SETUP: verification requires Python assertions;disable optimization")
+
 import copy
 import hashlib
 import json

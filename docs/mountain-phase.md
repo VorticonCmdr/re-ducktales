@@ -95,3 +95,44 @@ independent headless/browser replay and clean combined acceptance with this
 runtime. The old text-inclusive Easy and copy/HUD receipts remain historical.
 This phase milestone does not establish arbitrary-route finishability, native
 whole-level timing or whole-game completion. Hard campaigns remain deferred.
+
+## Conditional uninterrupted movement comparison
+
+```sh
+node scripts/compare-mountain-native-cadence.js
+```
+
+The new [comparison declaration](../reference/mountain-native-comparison.json)
+adds the retained native ENTRY snapshot to the existing80-sample page manifest.
+No new emulator is launched. The current Mountain component starts from ENTRY
+memory and its future Main stack frame (ENTRY SP minus2,82 bytes). Its original
+variant0/Easy/day4/seed41475/cash0 contract comes from ENTRY,not AFTER outcomes.
+This is injected component initialization,not a complete machine checkpoint or
+independent campaign. The first-input state matches the native returned neutral
+input at031c. The port then carries its own state over27 input reads.
+
+The independent physical schedule makes Right at the first returned input and
+breaks it40 configured render intervals later. Its declared provider supplies
+500/33ms repeat defaults,as described in the
+[emulator keyboard provenance](../reference/jungle-keyboard-provider.json).
+Delivery to OrdinaryKeyboard mode0 is immediate;native i8042 latency and original
+clock phase are not reconstructed. Expected outcome artifacts are read only
+after the simulation finishes. Zero-phase driver/retrace clocks and actual
+graphics deadlines drive execution;no native timer,position or final state
+selects a port input or wait.
+
+First-input,seven motion states and final state match exactly for X,Y,action,
+actor frame,lives and RNG. Scrooge moves X16→32→48→64 with three lives and
+seed26249. The six action changes occur at42.805,256.827,299.632,513.655,556.459
+and770.482ms relative to the first input. All fall in the corresponding native
+callback brackets (sample4,19,22,37,40,55). The only numerical allowance is1e-9ms
+for floating-point origin subtraction;no added frame or fitted offset is used.
+Five negatives reject altered initial RNG,an extra two-frame delay,a missing
+transition,omitted make and omitted release. All five provider events must finish.
+
+This short conditional walking segment supplies no evidence of accelerated
+movement. It is not exact scanout,full-memory/pixel,all mountain workloads,
+whole-level or browser timing acceptance. The native reference used its older
+archived launcher;this comparison does not rewrite its historical lifecycle
+provenance or run that launcher. Runtime speed is unchanged. Cave movement is
+the next original timing experiment.

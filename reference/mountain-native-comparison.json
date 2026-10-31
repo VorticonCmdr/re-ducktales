@@ -1,0 +1,25 @@
+{
+  "kind": "conditional-mountain-neutral-entry-comparison",
+  "parent": "reference/mountain-pages.json",
+  "entry": {
+    "path": ".local/mountain-pages-native-03/capture/timing-mountain-entry.json",
+    "bytes": 88766,
+    "sha256": "14e77f2718940d346002ec1698c2e6e39fcb374dae96b20a4aca70409d93a182"
+  },
+  "inputContract": {
+    "makeFrame": 0,
+    "releaseFrame": 40,
+    "observerIntervals": 79,
+    "initialRepeatMilliseconds": 500,
+    "repeatMilliseconds": 33
+  },
+  "expectedMotionStates": 7,
+  "portTimingAcceptance": false,
+  "injections": [
+    "Native ENTRY memory and future Main stack frame,not a machine restore."
+  ],
+  "fittedInputs": [],
+  "clock": "Zero-phase driver/retrace. Immediate keyboard table delivery;native phase/i8042 delays not reconstructed.",
+  "comparison": "Exact first-input,seven motion-state tuples and final X/Y/action/actorFrame/lives/RNG;all six action changes inside native callback brackets with1e-9ms floating roundoff allowance. No pixel/full-memory/browser or whole-level parity.",
+  "verify": "node scripts/compare-mountain-native-cadence.js"
+}

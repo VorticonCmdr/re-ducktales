@@ -18,6 +18,17 @@ HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 
 ## Latest completed behavior and current acceptance
 
+Current integration: rival announcements now share the source-derived ordinary
+input reader for normal reports and lost-race claims. A rival retains its origin
+until the report finishes. Speech uses real status and 14-tick input boundaries;
+Pause/Quit-No resume the pending read even if speech ended in the modal. Enabled
+requests no longer include synthetic sound resets around this caller. The final
+runtime correction is `c5bf3f7`; 194 existing units and 59 dialogue-boundary checks
+pass. Fresh browser/audio verification is in progress; the earlier failure
+acceptance below is historical and its saved runtime guard rejects this change.
+See [rival input evidence and limitations](rival-input.md). The shared original
+flight-repair reader is the next known countdown adaptation to investigate.
+
 Cave failure portraits now use original shared09f5(20):entry flush,immediate
 read,seven-tick neutral waits,no21st read,deferred P/Q/S and modal resumption.
 Only consumed Fire with enabled audio requests click24. A fresh Fire is required
@@ -59,8 +70,8 @@ current commands below. [Earlier result evidence](result-input.md).
 | Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei treasure |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:investigate the remaining legacy dialogue readers,including rival claims
-and flight repairs. Cross-scene queued keys,modifier/BIOS behavior and
+Next:finish rival input/audio verification,then investigate flight repairs.
+Cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and
 arbitrary-route finishability remain incomplete. Hard is deferred;its earlier
 second-flight race loss is unresolved. Native whole-game cadence,chapter reveal
@@ -92,16 +103,19 @@ contain actual game code with documented transformations and are never run.
 
 ```sh
 # Validate saved current-runtime evidence and source:
-node scripts/verify-cave-failure-input-acceptance.js
+node scripts/verify-rival-input-source.js
+node scripts/verify-rival-keyboard-source.js
 node scripts/verify-cave-failure-input-source.js
 node scripts/verify-result-caller-source.js
+node scripts/verify-rival-input-setup-negative.js
 node scripts/verify-cave-failure-input-setup-negative.js
-node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js
+node --test scripts/result-input.test.js scripts/guide-input.test.js scripts/atomic-input.test.js scripts/rival-input.test.js
 npm test
 npm run build
 # Fresh browser comparisons;clean committed source and new ignored outputs:
 node scripts/verify-cave-failure-input-browser.js --output=.local/failure-replay-FRESH
-node scripts/verify-standard-wages-route.js --manifest=reference/standard-wages-full-route.json --output=.local/standard-full-replay-FRESH
+node scripts/verify-rival-input-browser.js --output=.local/rival-input-FRESH
+node scripts/verify-standard-wages-route.js --manifest=reference/rival-standard-route.json --output=.local/standard-full-replay-FRESH
 # Broader optional fresh regression against retained old routes:
 node scripts/verify-preserved-routes.js --output=.local/preserved-FRESH
 # Local development:

@@ -244,7 +244,7 @@ for (const [name, x, y, activity] of [
 test("keyboard flight lands, explores a cave, collects treasure and returns to the map", async ({
   page,
 }, testInfo) => {
-  test.setTimeout(360000);
+  test.setTimeout(420000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   // Supply an explicit browser clock so test-runner latency cannot add idle
@@ -523,6 +523,10 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   }
   expect(moves).toBeLessThan(64);
   await until((s) => s.scene === "expedition-result");
+  // Entering the result scene precedes the source-ordered portrait copy and
+  // reward commit. Observe the completed presentation before checking cash
+  // or supplying the acknowledgement consumed by its following input wait.
+  await until((s) => s.expeditionResult?.phase === "award" && !s.expeditionResult.presentation);
   const award = await state(c);
   expect(award.cave.outcome.status).toBe("treasure");
   expect(

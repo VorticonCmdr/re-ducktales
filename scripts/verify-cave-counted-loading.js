@@ -22,7 +22,7 @@ env.PYTHONDONTWRITEBYTECODE = "1";
 const checks = [];
 function run(name, executable, args, patterns, extra = {}) {
   const r = spawnSync(executable, args, { encoding: "utf8", env: { ...env, ...extra },
-    timeout: 420000, maxBuffer: 16 * 1024 * 1024 });
+    timeout: 480000, maxBuffer: 16 * 1024 * 1024 });
   const log = (r.stdout ?? "") + (r.stderr ?? "");
   writeFileSync(output + "/" + name + ".log", log);
   assert.ifError(r.error);

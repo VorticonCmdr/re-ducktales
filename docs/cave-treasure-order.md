@@ -49,7 +49,9 @@ coverage and deferred Hard campaigns remain open.
 
 Earlier browser attempts are excluded:01 read the room before initialization;
 02/03 exhausted the old180-second host watchdog during normal progress through
-the failure/retry route. The fixture now allows360 host seconds while retaining
+the failure/retry route. 04 reached treasure and all five reveal groups,but checked reward cash before
+the source-ordered award commit. The fixture now waits for the actual award
+presentation to finish before checking cash and acknowledging it. It allows420 host seconds while retaining
 the8ms injected display cadence,all simulation waits,input schedule and bounded
 state conditions. Its capture is scoped to phase=treasure/kind=reveal and reads
 actual intrinsic canvas PNGs;ordinary room wipes/reveals cannot satisfy the five

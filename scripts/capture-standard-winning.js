@@ -57,12 +57,17 @@ assert.ok(plan.events.length > 0 && plan.points.length > 0);
 assert.ok(plan.events[0].time >= prefixChecks.at(-1).at);
 const checks = [
   ...prefixChecks.map((p) => ({ ...p, prefix: true })),
-  ...plan.points.map((p) => ({
+  ...plan.points.map((p, index) => ({
     ...p,
-    name: "continued-" + p.name,
+    name: "winning-" + index + "-" + p.name,
     eventCount: p.eventCount + prefixEvents.length,
   })),
 ];
+assert.equal(
+  new Set(checks.map((p) => p.name)).size,
+  checks.length,
+  "Duplicate screenshot identity",
+);
 assert.equal(
   checks.at(-1).eventCount,
   schedule.length,

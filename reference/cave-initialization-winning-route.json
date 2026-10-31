@@ -1,0 +1,1246 @@
+{
+  "kind": "standard-full-campaign-port-regression",
+  "producer": ".local/cave-initialization-winning-browser-01",
+  "captureToolRevision": "9f3d16526082abca460a3f65d079796efdd694ee",
+  "scope": "Historical completed Standard browser candidate before treasure-order restoration:183 checkpoints/7261 DOM inputs,victory,all26 credits and Restart. Not accepted or independently replayed. Original cave treasure wipe/background load and cached animation order are known to differ.",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "difficulty": 1,
+  "physicalKeyboard": true,
+  "nativeComparison": false,
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "audioEnabled": false,
+    "originalSecurity": false
+  },
+  "startingRecipe": "Fresh startup with original resources and BIOS seed0. Run standard-wages-explore.js --winning --bonus-novay;its archived browser controller supplies ordinary DOM controls,including the input-only Novay wait and24 neutral final-bank reads. No checkpoint restore,game-state patch or fitted hardware timer. Restart follows closed separately. Replay consumes only the recorded independent input stream.",
+  "requiredEventCount": 7261,
+  "expectedCheckpointCount": 183,
+  "checkpointNames": [
+    "standard-choice",
+    "office",
+    "departure",
+    "flight-start",
+    "flight-return",
+    "cave-entry",
+    "room-10",
+    "room-18",
+    "room-26",
+    "room-27",
+    "room-19",
+    "room-11",
+    "room-12",
+    "room-13",
+    "room-14",
+    "award",
+    "dialogue-16",
+    "dialogue-17",
+    "dialogue-18",
+    "map-after-cave",
+    "bank-deposited",
+    "dialogue-21",
+    "map-after-bank",
+    "safari-departure-0",
+    "safari-flight-return-0",
+    "dialogue-25",
+    "map-after-lost-race-0",
+    "safari-departure-1",
+    "safari-flight-return-1",
+    "safari-entry",
+    "safari-shot-0",
+    "safari-results",
+    "dialogue-32",
+    "map-after-safari",
+    "safari-banked",
+    "map-after-safari-bank",
+    "departure-28",
+    "flight-return-28",
+    "jungle-entry",
+    "jungle-input-40",
+    "jungle-input-80",
+    "jungle-input-120",
+    "jungle-input-160",
+    "jungle-input-200",
+    "jungle-input-240",
+    "jungle-input-280",
+    "jungle-input-320",
+    "jungle-input-360",
+    "jungle-input-400",
+    "jungle-controls-complete",
+    "jungle-award-entry",
+    "jungle-award-ready",
+    "dialogue-52",
+    "jungle-map",
+    "departure-19",
+    "flight-return-19",
+    "mountain-entry",
+    "mountain-input-40",
+    "mountain-input-80",
+    "mountain-input-120",
+    "mountain-input-160",
+    "mountain-input-200",
+    "mountain-input-240",
+    "mountain-input-280",
+    "mountain-input-320",
+    "mountain-input-360",
+    "mountain-input-400",
+    "mountain-input-440",
+    "mountain-input-480",
+    "mountain-input-520",
+    "mountain-input-560",
+    "mountain-input-600",
+    "mountain-input-640",
+    "mountain-controls-complete",
+    "mountain-award-entry",
+    "mountain-award-ready",
+    "dialogue-76",
+    "dialogue-77",
+    "mountain-map",
+    "departure-9",
+    "flight-return-9",
+    "cave-entry-9",
+    "cave-9-move-0",
+    "cave-9-move-1",
+    "cave-9-move-2",
+    "cave-9-move-3",
+    "cave-9-move-4",
+    "cave-9-move-5",
+    "cave-9-move-6",
+    "cave-9-move-7",
+    "cave-9-move-8",
+    "cave-9-move-9",
+    "cave-9-award-entry",
+    "cave-9-award-ready",
+    "dialogue-94",
+    "dialogue-95",
+    "departure-30",
+    "flight-return-30",
+    "cave-entry-30",
+    "cave-30-move-0",
+    "cave-30-move-1",
+    "cave-30-move-2",
+    "cave-30-move-3",
+    "cave-30-move-4",
+    "cave-30-move-5",
+    "cave-30-move-6",
+    "cave-30-move-7",
+    "cave-30-move-8",
+    "cave-30-award-entry",
+    "cave-30-award-ready",
+    "dialogue-110",
+    "departure-21",
+    "flight-return-21",
+    "cave-entry-21",
+    "cave-21-move-0",
+    "cave-21-move-1",
+    "cave-21-move-2",
+    "cave-21-move-3",
+    "cave-21-move-4",
+    "cave-21-move-5",
+    "cave-21-move-6",
+    "cave-21-move-7",
+    "cave-21-move-8",
+    "cave-21-move-9",
+    "cave-21-award-entry",
+    "cave-21-award-ready",
+    "dialogue-126",
+    "dialogue-127",
+    "departure-10",
+    "flight-return-10",
+    "novay-mountain-entry",
+    "novay-mountain-input-40",
+    "novay-mountain-input-80",
+    "novay-mountain-input-120",
+    "novay-mountain-input-160",
+    "novay-mountain-input-200",
+    "novay-mountain-input-240",
+    "novay-mountain-input-280",
+    "novay-mountain-input-320",
+    "novay-mountain-input-360",
+    "novay-mountain-input-400",
+    "novay-mountain-input-440",
+    "novay-mountain-input-480",
+    "novay-mountain-controls-complete",
+    "novay-mountain-award-entry",
+    "novay-mountain-award-ready",
+    "dialogue-146",
+    "novay-mountain-map",
+    "bank-28",
+    "bank-31",
+    "winning-ending",
+    "winner-celebration",
+    "replay-yes",
+    "replay-no",
+    "credits-title",
+    "credit-0",
+    "credit-1",
+    "credit-2",
+    "credit-3",
+    "credit-4",
+    "credit-5",
+    "credit-6",
+    "credit-7",
+    "credit-8",
+    "credit-9",
+    "credit-10",
+    "credit-11",
+    "credit-12",
+    "credit-13",
+    "credit-14",
+    "credit-15",
+    "credit-16",
+    "credit-17",
+    "credit-18",
+    "credit-19",
+    "credit-20",
+    "credit-21",
+    "credit-22",
+    "credit-23",
+    "credit-24",
+    "credit-25",
+    "farewell",
+    "closed"
+  ],
+  "expectedOutcome": {
+    "day": 31,
+    "banked": 34650,
+    "rivalBanked": 28500,
+    "playerCollected": [
+      9,
+      10,
+      18,
+      19,
+      21,
+      24,
+      28,
+      30
+    ],
+    "won": true,
+    "ready": true
+  },
+  "comparison": {
+    "state": "exact complete public snapshot",
+    "pixels": "exact decoded RGBA",
+    "exclusions": []
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "artifacts": {
+    "award-presentations.json": {
+      "path": ".local/cave-initialization-winning-browser-01/award-presentations.json",
+      "bytes": 3477651,
+      "sha256": "875362da6643a448a594a50364de257d3e402cbc5c2ccf88d0ce44acde0087a8"
+    },
+    "award.png": {
+      "path": ".local/cave-initialization-winning-browser-01/award.png",
+      "bytes": 43543,
+      "sha256": "c24587c7c0c96a3a717df0b5a5b91a21fb204173ce4f6134fbd3816c2b2208fd"
+    },
+    "bank-28.png": {
+      "path": ".local/cave-initialization-winning-browser-01/bank-28.png",
+      "bytes": 29105,
+      "sha256": "ad420fa728273210c04a1fd31784aa3336622ae1c267857c57be24c623222691"
+    },
+    "bank-31.png": {
+      "path": ".local/cave-initialization-winning-browser-01/bank-31.png",
+      "bytes": 33931,
+      "sha256": "abe102049cad62129e737d87e7d4bcfbee18623e452eec2bccefc463d763fad6"
+    },
+    "bank-deposited.png": {
+      "path": ".local/cave-initialization-winning-browser-01/bank-deposited.png",
+      "bytes": 29043,
+      "sha256": "c137a6b1a786b3ac272b8190cd96b31a4279bfa8f41bf74b1b268b9a2f399983"
+    },
+    "campaign-checkpoints": {
+      "path": ".local/cave-initialization-winning-browser-01/campaign-checkpoints.json",
+      "bytes": 1917948,
+      "sha256": "edd2b65f55d66abf2e4da5858d5a8e5c4705b39c46a9c63038d3f494f517c99f"
+    },
+    "captured-events": {
+      "path": ".local/cave-initialization-winning-browser-01/captured-events.json",
+      "bytes": 879566,
+      "sha256": "fc7fe939446dc554b6eab054b5069269f1f6377f346058057e4b45489400ea9d"
+    },
+    "cave-21-award-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-award-entry.png",
+      "bytes": 43594,
+      "sha256": "e041f586f289f661a6ffee510566734bccb8668bfb64306604befe7e756ba3fa"
+    },
+    "cave-21-award-ready.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-award-ready.png",
+      "bytes": 19108,
+      "sha256": "f1b83f6aed302aca50aed9d640ebc72df7be3ea6988e29561cc8822ab01ca257"
+    },
+    "cave-21-move-0.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-0.png",
+      "bytes": 42127,
+      "sha256": "4d55dde7bc417d16ca4985226341fa2af75ac68a6133b8d5dcc39a90894828b0"
+    },
+    "cave-21-move-1.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-1.png",
+      "bytes": 42523,
+      "sha256": "01a154e721661fca3b2fb3be79bd7ebe61a5a0e2127b0c68ce680b584808285d"
+    },
+    "cave-21-move-2.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-2.png",
+      "bytes": 43824,
+      "sha256": "89311734a11a22b5b059c095154c56359aecaed701fe8747e41c1fc8d0665712"
+    },
+    "cave-21-move-3.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-3.png",
+      "bytes": 44085,
+      "sha256": "9c8dfc3abb7be9e00f60ec6f5e3987256fffb3676101e239b483fe4a56b25716"
+    },
+    "cave-21-move-4.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-4.png",
+      "bytes": 43873,
+      "sha256": "e868394cd0e11b03f94f053bd531744aab0f6e30d0c7e4df8d4468d993cce1bc"
+    },
+    "cave-21-move-5.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-5.png",
+      "bytes": 43637,
+      "sha256": "bcabebd9d815ab5c6debbafb011707c5dec9beb43202576e1c1a734774300eba"
+    },
+    "cave-21-move-6.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-6.png",
+      "bytes": 43921,
+      "sha256": "2d41fdb6aa2777803937509223de622bfa237bbbfa4d52a5cccf56f8e57b65cb"
+    },
+    "cave-21-move-7.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-7.png",
+      "bytes": 44232,
+      "sha256": "66d93687a704b59fcd3138fd05a8d0cad3c81d9fc616507ff4f51d2ec266d2b2"
+    },
+    "cave-21-move-8.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-8.png",
+      "bytes": 44501,
+      "sha256": "ba9b57730cfd35d05390479ec0b66c2b075dda6924b4a7d5db930b8705cbb924"
+    },
+    "cave-21-move-9.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-21-move-9.png",
+      "bytes": 44783,
+      "sha256": "7bbbfe74e10a2a4bd0e395ba06467cc7251b5460634404e33ab8f98f9b46312a"
+    },
+    "cave-30-award-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-award-entry.png",
+      "bytes": 46101,
+      "sha256": "2133b1126bd58e2f1cc7478351fa6c36d50773e9089ec6e2ce645aeed4fb3134"
+    },
+    "cave-30-award-ready.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-award-ready.png",
+      "bytes": 19156,
+      "sha256": "931f2fbadc5c0f7a90bc25ebe889b6aec4b96c1dcd8b5d2ff05f9d6de87169d7"
+    },
+    "cave-30-move-0.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-move-0.png",
+      "bytes": 42631,
+      "sha256": "e30b9777968523b7193cc941c7607aca2ffd1ddf4e4079983cc36953900027cc"
+    },
+    "cave-30-move-1.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-move-1.png",
+      "bytes": 43456,
+      "sha256": "4ec4c6b420324c91aeaad2252558de5eed8eeab3c328bb341096230866fa0951"
+    },
+    "cave-30-move-2.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-move-2.png",
+      "bytes": 42975,
+      "sha256": "59efe2aef246e55d0f829dad289e9e210a14600e417c1709a2acb792ab1b5abe"
+    },
+    "cave-30-move-3.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-move-3.png",
+      "bytes": 42996,
+      "sha256": "f24317bd6ac4e903e1e633bca593fb223ff798573f69f6522aa79ee35212c01f"
+    },
+    "cave-30-move-4.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-move-4.png",
+      "bytes": 44290,
+      "sha256": "2f6dcb0647c6750618fb6c1fa6d1fb01a16d2a066feb009baa77d95aa534decd"
+    },
+    "cave-30-move-5.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-move-5.png",
+      "bytes": 44222,
+      "sha256": "2dfc11af6ddd5f8a1a01325f6a8e3eb2a62b90b20393bcde737c366ce76d3a36"
+    },
+    "cave-30-move-6.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-move-6.png",
+      "bytes": 44427,
+      "sha256": "af4068ecc624d75667df121a4cb25edd6209a16576807b388271488f9abda045"
+    },
+    "cave-30-move-7.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-move-7.png",
+      "bytes": 44539,
+      "sha256": "441a4d7d39608ba09d2a69bfb251e8c53772aa0e4d8328051aa139b89c3782b4"
+    },
+    "cave-30-move-8.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-30-move-8.png",
+      "bytes": 44507,
+      "sha256": "03ede5e89a84e16d0d89008afbee45c8ebda899a2d9ee2c876b903df287131a6"
+    },
+    "cave-9-award-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-award-entry.png",
+      "bytes": 43543,
+      "sha256": "c24587c7c0c96a3a717df0b5a5b91a21fb204173ce4f6134fbd3816c2b2208fd"
+    },
+    "cave-9-award-ready.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-award-ready.png",
+      "bytes": 19126,
+      "sha256": "9db63592a7479ab6f3baddccd6e933e1258a2cddcbaeffdfd8e06afb13507dc2"
+    },
+    "cave-9-move-0.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-0.png",
+      "bytes": 42231,
+      "sha256": "d4c63923552c9e41697d40b81705fefa9476b05428724fd64bb3f2b7fb4052ad"
+    },
+    "cave-9-move-1.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-1.png",
+      "bytes": 43527,
+      "sha256": "0e0f71da4f89755d9e2b268c8f64439c0167c969bf58d8b116fef589eb45e420"
+    },
+    "cave-9-move-2.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-2.png",
+      "bytes": 43601,
+      "sha256": "5744cb5174fdc63198dbced1bfa98c6cd77a6a85b4eba0e6f450a639db29c2fd"
+    },
+    "cave-9-move-3.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-3.png",
+      "bytes": 44269,
+      "sha256": "d5ee99742b1a2088ea858287279feb7f340b889bae53759b020774ac6a790753"
+    },
+    "cave-9-move-4.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-4.png",
+      "bytes": 43751,
+      "sha256": "ca959c3d5b49d69acd848a5e3526fb643001900ebd6970325a4498b38172fe5d"
+    },
+    "cave-9-move-5.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-5.png",
+      "bytes": 44671,
+      "sha256": "bdd6e9531f16d40a00a5026e721e7c38b06bba616274855c6286d3a5ce882855"
+    },
+    "cave-9-move-6.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-6.png",
+      "bytes": 42744,
+      "sha256": "1802a6047a642f31d7e4c56f38cd3619742f276803d77a9262d42fbbdb4a8bef"
+    },
+    "cave-9-move-7.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-7.png",
+      "bytes": 44220,
+      "sha256": "693138c84115c1653ff744354e8af1d1afcaf5f60ab81a26d8c44770fe22e8d8"
+    },
+    "cave-9-move-8.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-8.png",
+      "bytes": 43360,
+      "sha256": "75dc7a1bc530cc1e9826d2e86e1f1d7bb28c20d73573c59429db8a2511b3f620"
+    },
+    "cave-9-move-9.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-9-move-9.png",
+      "bytes": 44441,
+      "sha256": "79fc218487b93033ba226a5fd38383750ed539dda336b70dc67f910e53db4483"
+    },
+    "cave-entry-21.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-entry-21.png",
+      "bytes": 20658,
+      "sha256": "050524c010ef0fb1a83e3c1c9fc997647046ae1e85cc71f44b497e6710c5b9b0"
+    },
+    "cave-entry-30.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-entry-30.png",
+      "bytes": 20658,
+      "sha256": "050524c010ef0fb1a83e3c1c9fc997647046ae1e85cc71f44b497e6710c5b9b0"
+    },
+    "cave-entry-9.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-entry-9.png",
+      "bytes": 20408,
+      "sha256": "02ab567761be80e3a9f061c8307a43dde38a9bf0fd94202045a1a264db901662"
+    },
+    "cave-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-entry.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "cave-player-plan.json": {
+      "path": ".local/cave-initialization-winning-browser-01/cave-player-plan.json",
+      "bytes": 1277,
+      "sha256": "761e9b3d6f1e6ee376a973eb66993e11003491754be118d52efb13aa9954b9f7"
+    },
+    "closed.png": {
+      "path": ".local/cave-initialization-winning-browser-01/closed.png",
+      "bytes": 5764,
+      "sha256": "98892744d82ce3be83cee60efe8e9a267f1a3ea24230260908cfea625190b530"
+    },
+    "credit-0.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-0.png",
+      "bytes": 7041,
+      "sha256": "09cf167266413595b73ca42378a0f5e421d588fff3293a85dd6541d913c16a73"
+    },
+    "credit-1.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-1.png",
+      "bytes": 7086,
+      "sha256": "f70ad60dc5675ff5ee05c335c6af8f0c7481be4f68cf9739772b6de6c38942df"
+    },
+    "credit-10.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-10.png",
+      "bytes": 7081,
+      "sha256": "f902c6c63799828e94f1d69fd25b066b8526de27dcac4219d485fe653c7b0b77"
+    },
+    "credit-11.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-11.png",
+      "bytes": 7096,
+      "sha256": "3b2e3e8d8abe7eec2289fa271050329561b59452d1e387cf56b53cf3c7879289"
+    },
+    "credit-12.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-12.png",
+      "bytes": 7160,
+      "sha256": "fb67f94ced7121dddb2f1dc09bc731bb7eb660b53da990308ccf96a5acb9f101"
+    },
+    "credit-13.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-13.png",
+      "bytes": 7006,
+      "sha256": "9e1b46200564cb7f4b77136d90a003c219e6ff9d2d48ee4e9df346a41ac894c4"
+    },
+    "credit-14.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-14.png",
+      "bytes": 7092,
+      "sha256": "4e4c9d3e36bed7d4a1f8a35c85569c0a542e44e078b863ecc6f99d541ad0aaab"
+    },
+    "credit-15.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-15.png",
+      "bytes": 7048,
+      "sha256": "586b83e6cf87a1a6856e2d08320329704a1744f273c98f7a188041221a474318"
+    },
+    "credit-16.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-16.png",
+      "bytes": 7180,
+      "sha256": "3e7d471cc506f6147d92ba321f9eb9ea462e16785ae5ca6c916594a6f3a23f9f"
+    },
+    "credit-17.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-17.png",
+      "bytes": 7199,
+      "sha256": "c9a088de475e6287ec64cafef283cbf9370f984c94677e7b65ed19cee607d4d1"
+    },
+    "credit-18.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-18.png",
+      "bytes": 7045,
+      "sha256": "efb96a68e8f050a784c160f67ffeef6236969a97e82ea335191368db71cd38c5"
+    },
+    "credit-19.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-19.png",
+      "bytes": 7112,
+      "sha256": "e3ed9e901c7fcfd6a6163ecd92c9482ab9371f7cbe4a5a258f5341aab2a8052b"
+    },
+    "credit-2.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-2.png",
+      "bytes": 7129,
+      "sha256": "07d0bbe429a862ee8ae0fb35f6cb4ae49ebbb11028ee86380f16fe131963d851"
+    },
+    "credit-20.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-20.png",
+      "bytes": 7004,
+      "sha256": "01b5e9e76e5b9661c4c4a0b5329d520ef9b8c01c42c099f4b96712d483fc5d1f"
+    },
+    "credit-21.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-21.png",
+      "bytes": 7222,
+      "sha256": "a86de406a81002d26b16aa9dbdc6b682e653ae82147bc5c74910d15d22ba65ec"
+    },
+    "credit-22.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-22.png",
+      "bytes": 7072,
+      "sha256": "1e1da71cb0a7fa1bfbe3e4f726ab41382a1c5ba44d329c743787b9d832259ec3"
+    },
+    "credit-23.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-23.png",
+      "bytes": 7152,
+      "sha256": "614de5435b7254f8824123f09ec988e137d9b0e140da0fd0425a431a34aca143"
+    },
+    "credit-24.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-24.png",
+      "bytes": 7257,
+      "sha256": "b36c48b915351bd8d604a00e40b78ae025f6e47766cb1edab6623794b5d807e4"
+    },
+    "credit-25.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-25.png",
+      "bytes": 6951,
+      "sha256": "27ac012b30c2db4536acb1a2ce610e4de7e54b8c075c4f448755c300f03a47a5"
+    },
+    "credit-3.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-3.png",
+      "bytes": 7083,
+      "sha256": "50725e8ae4f85bc54a97bb063afca1a942964eb011b706c4395591e8dcbbe905"
+    },
+    "credit-4.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-4.png",
+      "bytes": 7082,
+      "sha256": "b7d53c4e0fc7485e60d6a87cf1c26a18dddf22791fabc36f9d1737c667ce8579"
+    },
+    "credit-5.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-5.png",
+      "bytes": 7143,
+      "sha256": "de86f649044fd00370b4645ca6a08b864905f513d5df670403a1954ee5dde773"
+    },
+    "credit-6.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-6.png",
+      "bytes": 7076,
+      "sha256": "baa7df7906fc47a2ca1983a878461253ea9d113ff094955b9677751392b7bd07"
+    },
+    "credit-7.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-7.png",
+      "bytes": 7090,
+      "sha256": "2af2d7e19e9957f26eafe5a049d85ce3dc027325eb65a27aa53400a0d0c7d5f1"
+    },
+    "credit-8.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-8.png",
+      "bytes": 7160,
+      "sha256": "fb67f94ced7121dddb2f1dc09bc731bb7eb660b53da990308ccf96a5acb9f101"
+    },
+    "credit-9.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credit-9.png",
+      "bytes": 7079,
+      "sha256": "8f0fbf5e9f12de14b4b42e9d5e9348d4912a3d410a18de797643c13de60f6b0a"
+    },
+    "credits-title.png": {
+      "path": ".local/cave-initialization-winning-browser-01/credits-title.png",
+      "bytes": 6740,
+      "sha256": "ba11276c541079141031cf1ce78c72470b5f55eb1d09bb8a84ea5c98271091ba"
+    },
+    "departure-10.png": {
+      "path": ".local/cave-initialization-winning-browser-01/departure-10.png",
+      "bytes": 28917,
+      "sha256": "19f1432e1a076bae8e9d98b78e80943822083c0011ef241532a2639fe6b7a2df"
+    },
+    "departure-19.png": {
+      "path": ".local/cave-initialization-winning-browser-01/departure-19.png",
+      "bytes": 29026,
+      "sha256": "7e251a0ea89afd4a9f801384930f295759c879252f36b4bcf8f7ef2436333d66"
+    },
+    "departure-21.png": {
+      "path": ".local/cave-initialization-winning-browser-01/departure-21.png",
+      "bytes": 29151,
+      "sha256": "2964f8b874cd9f4352c3a652a4c7a7d8f303b930be0a6ef5ac33d7337ccc8963"
+    },
+    "departure-28.png": {
+      "path": ".local/cave-initialization-winning-browser-01/departure-28.png",
+      "bytes": 29102,
+      "sha256": "86d414d6cf83f529d68784b2499b8b464bc2b081bb04def227454b5dd865dde3"
+    },
+    "departure-30.png": {
+      "path": ".local/cave-initialization-winning-browser-01/departure-30.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "departure-9.png": {
+      "path": ".local/cave-initialization-winning-browser-01/departure-9.png",
+      "bytes": 29338,
+      "sha256": "5338c06e9b88a10e0ccd0aea8517aa10ff81624038cc48b6eb38f1edaf7ce527"
+    },
+    "departure.png": {
+      "path": ".local/cave-initialization-winning-browser-01/departure.png",
+      "bytes": 12792,
+      "sha256": "ae4cfb4f64eff8539019af6fd1b017ebcf7943b0b36fd1b36f373772e6f47037"
+    },
+    "dialogue-110.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-110.png",
+      "bytes": 19156,
+      "sha256": "931f2fbadc5c0f7a90bc25ebe889b6aec4b96c1dcd8b5d2ff05f9d6de87169d7"
+    },
+    "dialogue-126.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-126.png",
+      "bytes": 19108,
+      "sha256": "f1b83f6aed302aca50aed9d640ebc72df7be3ea6988e29561cc8822ab01ca257"
+    },
+    "dialogue-127.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-127.png",
+      "bytes": 15581,
+      "sha256": "4f0874d8cfdd1a7ed46ee8ef75a7260c57176dc747b10bed752d1899cde9e6da"
+    },
+    "dialogue-146.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-146.png",
+      "bytes": 19169,
+      "sha256": "7bd0e1e47878c467358b2edeb38707ebb56e2b1551f74fd2f095d674da63e950"
+    },
+    "dialogue-16.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-16.png",
+      "bytes": 19099,
+      "sha256": "2614769fc257b64a339567207388eb93c339ca44f507fdf186b4082516212ac4"
+    },
+    "dialogue-17.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-17.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    },
+    "dialogue-18.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-18.png",
+      "bytes": 15495,
+      "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+    },
+    "dialogue-21.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-21.png",
+      "bytes": 15709,
+      "sha256": "8aeb77b045929260e11c6fbdc29d8805944538d3d0bd55efb7814e044e725262"
+    },
+    "dialogue-25.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-25.png",
+      "bytes": 15779,
+      "sha256": "169accf80e4305e81a62e2549e763cbed31db2367e63d3a6a050a4f9500901af"
+    },
+    "dialogue-32.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-32.png",
+      "bytes": 15451,
+      "sha256": "2fdd5cb9ed0cbadc671253a5a34e96a6fee628fd73fba2f65199ffcea75fdb7a"
+    },
+    "dialogue-52.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-52.png",
+      "bytes": 19127,
+      "sha256": "78a586d4caabcf2856361fd6539c8e6307eee278a27e675ab7cfd35ee7015566"
+    },
+    "dialogue-76.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-76.png",
+      "bytes": 19084,
+      "sha256": "8b17e4eae5db9faf78fd9ae8885485bf940a5a86b69c3f27a346d0ec1b69dc6e"
+    },
+    "dialogue-77.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-77.png",
+      "bytes": 15612,
+      "sha256": "c8aa1d20f3e2255039b924ad570f665f605e6c7bc191c5dc7cec5c3591b29ee9"
+    },
+    "dialogue-94.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-94.png",
+      "bytes": 19126,
+      "sha256": "9db63592a7479ab6f3baddccd6e933e1258a2cddcbaeffdfd8e06afb13507dc2"
+    },
+    "dialogue-95.png": {
+      "path": ".local/cave-initialization-winning-browser-01/dialogue-95.png",
+      "bytes": 15418,
+      "sha256": "e14cf3138370b1ec3725f412c1ef39dcad1760efd162b3d06aa3943888746f67"
+    },
+    "environment": {
+      "path": ".local/cave-initialization-winning-browser-01/environment.json",
+      "bytes": 335,
+      "sha256": "21cab566aa9b1b6d3656d5f73e3aa77f5c25252b9435712b19c2c13389947494"
+    },
+    "capture-status": {
+      "path": ".local/cave-initialization-winning-browser-01/exploration-status.json",
+      "bytes": 494,
+      "sha256": "b6d86d4119e98f824b5e365c393cce16ff0b1b5c6127fc769bc3bede5d84ee2f"
+    },
+    "farewell.png": {
+      "path": ".local/cave-initialization-winning-browser-01/farewell.png",
+      "bytes": 5764,
+      "sha256": "98892744d82ce3be83cee60efe8e9a267f1a3ea24230260908cfea625190b530"
+    },
+    "flight-10.json": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-10.json",
+      "bytes": 149152,
+      "sha256": "7ff700013b90c7ca1f8916e9b3101374905138ecd280386dc484ba05b8ef754e"
+    },
+    "flight-19.json": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-19.json",
+      "bytes": 200520,
+      "sha256": "dc05c3f23bbfad1e0658f6aaf79001e96f2af1c0894b06339663f09b08e41ef0"
+    },
+    "flight-21.json": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-21.json",
+      "bytes": 82284,
+      "sha256": "9696a22f12d58b9197d7c46cf7b8ed39d76fe56cd1520750286f72277f3cd1d2"
+    },
+    "flight-28.json": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-28.json",
+      "bytes": 84628,
+      "sha256": "84d4cb494a79af68a6d2b563f39eb233e39d9d163f1a154ab76a63e704447543"
+    },
+    "flight-30.json": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-30.json",
+      "bytes": 88648,
+      "sha256": "d6ad871c487f6f04de1d783d97f808372ebe588cca75832d6d99591bfdc0cd72"
+    },
+    "flight-9.json": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-9.json",
+      "bytes": 155647,
+      "sha256": "08a3243cf05006bce1c1c58a380cfc8418a653f6c11e2a92d49c8fef3ac42878"
+    },
+    "flight-controls.json": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-controls.json",
+      "bytes": 200753,
+      "sha256": "93c2988f96d204fb96485671da1df720c69d9de94d90612ef21692e21d50ad67"
+    },
+    "flight-return-10.png": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-return-10.png",
+      "bytes": 20341,
+      "sha256": "4353e5fc7388409b408dbad8da348f29bd76cebe26bc0b93eea4e739be459e11"
+    },
+    "flight-return-19.png": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-return-19.png",
+      "bytes": 20338,
+      "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+    },
+    "flight-return-21.png": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-return-21.png",
+      "bytes": 20658,
+      "sha256": "050524c010ef0fb1a83e3c1c9fc997647046ae1e85cc71f44b497e6710c5b9b0"
+    },
+    "flight-return-28.png": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-return-28.png",
+      "bytes": 20469,
+      "sha256": "3c4f4f29903c4b8170a1d7bedbcf05fbd2a0de458adea7dd89f0c68f2f19580f"
+    },
+    "flight-return-30.png": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-return-30.png",
+      "bytes": 20658,
+      "sha256": "050524c010ef0fb1a83e3c1c9fc997647046ae1e85cc71f44b497e6710c5b9b0"
+    },
+    "flight-return-9.png": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-return-9.png",
+      "bytes": 20408,
+      "sha256": "02ab567761be80e3a9f061c8307a43dde38a9bf0fd94202045a1a264db901662"
+    },
+    "flight-return.png": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-return.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "flight-start.png": {
+      "path": ".local/cave-initialization-winning-browser-01/flight-start.png",
+      "bytes": 9956,
+      "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
+    },
+    "jungle-award-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-award-entry.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "jungle-award-ready.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-award-ready.png",
+      "bytes": 19127,
+      "sha256": "78a586d4caabcf2856361fd6539c8e6307eee278a27e675ab7cfd35ee7015566"
+    },
+    "jungle-controls-complete.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-controls-complete.png",
+      "bytes": 32814,
+      "sha256": "7312377b1e3eab77fe7d20183dc222dd3ac29dd8cccc663661760636f83f3fc4"
+    },
+    "jungle-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-entry.png",
+      "bytes": 20365,
+      "sha256": "90a7c78d63da3b8bd308081c89a65010f47766e4a2d0ff0d21a830f9668350eb"
+    },
+    "jungle-input-120.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-120.png",
+      "bytes": 37332,
+      "sha256": "bab14e64b9b174eb097149038a54cbc36abe156f63ad85a19f1c62d9a9cfce6f"
+    },
+    "jungle-input-160.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-160.png",
+      "bytes": 36433,
+      "sha256": "127be9eab91c03e1f4e8075e20737c3be18af2c2cb8595db3d4c1da6b3ee6716"
+    },
+    "jungle-input-200.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-200.png",
+      "bytes": 32902,
+      "sha256": "63b841e08b472f7cd7047b0a4476e08d579b785c249f6fd6775a938a10c7f507"
+    },
+    "jungle-input-240.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-240.png",
+      "bytes": 33033,
+      "sha256": "5a0aea7b7c9df740bb53add19437986b208db4bc9ecb59b630d48f88dbdd110e"
+    },
+    "jungle-input-280.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-280.png",
+      "bytes": 36590,
+      "sha256": "4c998bffb8298a0b4963d397d308a5b870489c426cb8d3a4747e46550879b56f"
+    },
+    "jungle-input-320.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-320.png",
+      "bytes": 37971,
+      "sha256": "4b50eb59c00a98150f32e9786132a55267f4f111fcc8314157319803cc141b78"
+    },
+    "jungle-input-360.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-360.png",
+      "bytes": 37779,
+      "sha256": "66d8f783157133c81833bfd5a505223fa7de1bc478997bced928d9ecf1d99111"
+    },
+    "jungle-input-40.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-40.png",
+      "bytes": 35206,
+      "sha256": "324ef6168730d5fd9c275e1898975242a691a8edf47cdfdecea2130a29ff8870"
+    },
+    "jungle-input-400.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-400.png",
+      "bytes": 36059,
+      "sha256": "4e32d2947a97c3c75cdd268fa92102189c749e008a32b1a581030530e42caef9"
+    },
+    "jungle-input-80.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-input-80.png",
+      "bytes": 34288,
+      "sha256": "806dc95a6ecf6cb4b697f9e252782ff72c101b2a96c5618a853dfcfd32567995"
+    },
+    "jungle-map.png": {
+      "path": ".local/cave-initialization-winning-browser-01/jungle-map.png",
+      "bytes": 27791,
+      "sha256": "8460e6c5e9f8f593237fe4d38e3e8b41012f8f47e5e7d4d95f6bc748c6e5e163"
+    },
+    "map-after-bank.png": {
+      "path": ".local/cave-initialization-winning-browser-01/map-after-bank.png",
+      "bytes": 27591,
+      "sha256": "50d6ceeda01800c4597e229e81cbf5d8b79dcdc3772925c6ba1b2f6f91239acc"
+    },
+    "map-after-cave.png": {
+      "path": ".local/cave-initialization-winning-browser-01/map-after-cave.png",
+      "bytes": 27540,
+      "sha256": "86be55a96982777c03579862cea6b415b928c7381351a9c3db0bd88d7b1b5191"
+    },
+    "map-after-lost-race-0.png": {
+      "path": ".local/cave-initialization-winning-browser-01/map-after-lost-race-0.png",
+      "bytes": 27627,
+      "sha256": "a87e332a3bc2cb35c779cd2afdd7d9c4209d1a3e3a0a16a9063a77d3c47da933"
+    },
+    "map-after-safari-bank.png": {
+      "path": ".local/cave-initialization-winning-browser-01/map-after-safari-bank.png",
+      "bytes": 27624,
+      "sha256": "ea1e06f4e30f6d9dc55969ba93bbb4640fe91bccbb3ef562eaab7f4dd4284c2f"
+    },
+    "map-after-safari.png": {
+      "path": ".local/cave-initialization-winning-browser-01/map-after-safari.png",
+      "bytes": 27797,
+      "sha256": "dd5e4b10d10aa3e21d5ece2b55ee3ffd584dcbd8a9792e886537c76906852fa9"
+    },
+    "mountain-award-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-award-entry.png",
+      "bytes": 25333,
+      "sha256": "8b80318a4f01db8e3ab4b03ef9603050aa743f8834a378798537ad14bf3dde1b"
+    },
+    "mountain-award-ready.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-award-ready.png",
+      "bytes": 19084,
+      "sha256": "8b17e4eae5db9faf78fd9ae8885485bf940a5a86b69c3f27a346d0ec1b69dc6e"
+    },
+    "mountain-controls-complete.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-controls-complete.png",
+      "bytes": 27059,
+      "sha256": "bc285a7199e608a829f081e981320461b713262d115a2984f795e93cb6bd204a"
+    },
+    "mountain-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-entry.png",
+      "bytes": 20338,
+      "sha256": "0820a43eb3d1b178e10cc7179b382e990bddbac1170cc0e12cd3d365f6a246c0"
+    },
+    "mountain-input-120.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-120.png",
+      "bytes": 28249,
+      "sha256": "5a8009d637e30b68839fa85bf3cbf207ca279a60fb20ea232fe3b00db942905c"
+    },
+    "mountain-input-160.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-160.png",
+      "bytes": 27303,
+      "sha256": "f1a2413b9cdf9b4bc2f8a1e9e555df5d626c40d0aabf4e293f1c1fb8ef0105e1"
+    },
+    "mountain-input-200.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-200.png",
+      "bytes": 27192,
+      "sha256": "ef4e2bb439d9b6efc7272fa9a3c2dcf238c7812084de770d8dddb2ecedc00bb2"
+    },
+    "mountain-input-240.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-240.png",
+      "bytes": 27292,
+      "sha256": "77a13a2972cca54971b41566a01c674b06f0c243f4528c39780ed5f6ff06a388"
+    },
+    "mountain-input-280.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-280.png",
+      "bytes": 27965,
+      "sha256": "7abb62ce9c32be2fca4faa404df0bcc4de633a31e6586550f79c5b9d492cb57d"
+    },
+    "mountain-input-320.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-320.png",
+      "bytes": 28566,
+      "sha256": "59c7d581c3127884e815341a73294ff9c1b20dcdbced454dbc5e82b45d1d103f"
+    },
+    "mountain-input-360.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-360.png",
+      "bytes": 28206,
+      "sha256": "8ea3ef3431689ac8f2d9d223394ecec3f5271bed37995c3f9b9028379c8a9409"
+    },
+    "mountain-input-40.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-40.png",
+      "bytes": 27948,
+      "sha256": "9343adee9f2af134e247a59b39b051cdfdecbe5291f8612ba21b951174ca17c2"
+    },
+    "mountain-input-400.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-400.png",
+      "bytes": 27985,
+      "sha256": "2d4b3dd2161ba2ee04b65eeae18a38d9c0a418593bb0f2a21259139ae809a42d"
+    },
+    "mountain-input-440.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-440.png",
+      "bytes": 28199,
+      "sha256": "bf707c0a6d088fc063f625948118701d1f517ab174a019b590c7a77433f8b88c"
+    },
+    "mountain-input-480.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-480.png",
+      "bytes": 28143,
+      "sha256": "88eac3b957c371c283fbfa02dbf4e1e1d30aa57939b2805093b58d26db04f51f"
+    },
+    "mountain-input-520.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-520.png",
+      "bytes": 28098,
+      "sha256": "104ee7536dedb160b3766e7cbbee9a76225cd253324ae82263d30790e896e02d"
+    },
+    "mountain-input-560.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-560.png",
+      "bytes": 28857,
+      "sha256": "e71d00a4e3279f3f895c12de1511b8b212e0b46f63345e6cd062326a4a65c774"
+    },
+    "mountain-input-600.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-600.png",
+      "bytes": 27700,
+      "sha256": "39a45b202120c65a7fd99d0edcbce647e3aa27721241b00beacd466d77bcca50"
+    },
+    "mountain-input-640.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-640.png",
+      "bytes": 28459,
+      "sha256": "08ba3d4eb2bb67139692ccc6052dd3d44a6e68ddb550e6e94404eb3f47fc3034"
+    },
+    "mountain-input-80.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-input-80.png",
+      "bytes": 27870,
+      "sha256": "45c21f1d1696c1a16e43d57f7028f0bf21674cacd7288a633e5a772d5d9f99ef"
+    },
+    "mountain-map.png": {
+      "path": ".local/cave-initialization-winning-browser-01/mountain-map.png",
+      "bytes": 27624,
+      "sha256": "a03b5a7653c2f185e63d9e46e4601fd4f8b8bd7042c55a6cc934d28b9f51ddb2"
+    },
+    "novay-mountain-award-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-award-entry.png",
+      "bytes": 26271,
+      "sha256": "1f9c967f50713647cb7cad1b3c07abc2a6637601483128298b57f6997d652013"
+    },
+    "novay-mountain-award-ready.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-award-ready.png",
+      "bytes": 19169,
+      "sha256": "7bd0e1e47878c467358b2edeb38707ebb56e2b1551f74fd2f095d674da63e950"
+    },
+    "novay-mountain-controls-complete.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-controls-complete.png",
+      "bytes": 26300,
+      "sha256": "e1b32c5827622643f381419b45b41821a003e0b97227b82ebd0019aaec8cb87a"
+    },
+    "novay-mountain-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-entry.png",
+      "bytes": 20341,
+      "sha256": "4353e5fc7388409b408dbad8da348f29bd76cebe26bc0b93eea4e739be459e11"
+    },
+    "novay-mountain-input-120.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-120.png",
+      "bytes": 28080,
+      "sha256": "f89ae726ca009ba33322d71c4d43cd8af29eafc866eaa616c4f8a246f40f11da"
+    },
+    "novay-mountain-input-160.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-160.png",
+      "bytes": 27764,
+      "sha256": "e85c6650f371b34f77168849d86eb7af519112a1fe01dd3a427d6ffb129c2a0c"
+    },
+    "novay-mountain-input-200.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-200.png",
+      "bytes": 27824,
+      "sha256": "83c67a493935d527d210d0907189d7b2da7fca3a8192da6a5a2e48ce508f424e"
+    },
+    "novay-mountain-input-240.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-240.png",
+      "bytes": 27552,
+      "sha256": "e46ec367d13fa2f73d02a365820b635d044041a9b359aa34bc90bcc52cec00d8"
+    },
+    "novay-mountain-input-280.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-280.png",
+      "bytes": 28422,
+      "sha256": "2dc28d12e191fea1e9d72d99d21a52bf79b5f21aa7ac6b426f9ba8fe9ffdf386"
+    },
+    "novay-mountain-input-320.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-320.png",
+      "bytes": 28886,
+      "sha256": "76f2e4c0d358c6837c48b12fa135f3fce2f5bf12665526da97da72774b1578ee"
+    },
+    "novay-mountain-input-360.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-360.png",
+      "bytes": 28719,
+      "sha256": "8c38afb52ce61f36505f99b1de0a3ba94417cb6cc4bebea3c5d7808ef6eb17ad"
+    },
+    "novay-mountain-input-40.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-40.png",
+      "bytes": 26725,
+      "sha256": "440077d5bf03e7bf6c9d5b885ea7e247c79822de3401c31cb117983bb3dc7328"
+    },
+    "novay-mountain-input-400.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-400.png",
+      "bytes": 28053,
+      "sha256": "000b1b286fb76ca4e602b830b8d4eb113a0ba861501a671c4a0d692e829ac781"
+    },
+    "novay-mountain-input-440.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-440.png",
+      "bytes": 28425,
+      "sha256": "fff337c7882737439295a0537af05b96b41734350753558c77eb8bdc9514aa13"
+    },
+    "novay-mountain-input-480.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-480.png",
+      "bytes": 27482,
+      "sha256": "921a9d9f323b88a86d8854c4f141fe99cc6cb92aba733283f0443d1b95d962e5"
+    },
+    "novay-mountain-input-80.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-input-80.png",
+      "bytes": 28536,
+      "sha256": "d3237614832f1b9c36466c2924ab44cfe965cfd1d750c474598f397ae9dacc8a"
+    },
+    "novay-mountain-map.png": {
+      "path": ".local/cave-initialization-winning-browser-01/novay-mountain-map.png",
+      "bytes": 27575,
+      "sha256": "f313877b2a3da42c99f7fd7eb7bca416937390fc6f6ca61223b8c5483f63dcac"
+    },
+    "office.png": {
+      "path": ".local/cave-initialization-winning-browser-01/office.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "replay-no.png": {
+      "path": ".local/cave-initialization-winning-browser-01/replay-no.png",
+      "bytes": 2900,
+      "sha256": "b2597e90dc1e5cb701483b2232720136e4be47e47c5f23a6f700a93c0deb9fd8"
+    },
+    "replay-yes.png": {
+      "path": ".local/cave-initialization-winning-browser-01/replay-yes.png",
+      "bytes": 2896,
+      "sha256": "324512c9020ac3aad3d0c91f107ac4a3dc5a533f30e6377f3ba7d58558ef0b67"
+    },
+    "room-10.png": {
+      "path": ".local/cave-initialization-winning-browser-01/room-10.png",
+      "bytes": 42911,
+      "sha256": "5f9fc690156383b3fe5e19763ebb322a1d9fa6462e0d0e21fcc30c37e3bae738"
+    },
+    "room-11.png": {
+      "path": ".local/cave-initialization-winning-browser-01/room-11.png",
+      "bytes": 45773,
+      "sha256": "b7b8e46a8326684c3a190a3744e8696682eb7f9c6a4ac574711177b833c1d7c3"
+    },
+    "room-12.png": {
+      "path": ".local/cave-initialization-winning-browser-01/room-12.png",
+      "bytes": 45279,
+      "sha256": "249f42732342256a3b98948fd5d4cdf5b6fea24ce9dc3c285114fafa7973c27e"
+    },
+    "room-13.png": {
+      "path": ".local/cave-initialization-winning-browser-01/room-13.png",
+      "bytes": 44368,
+      "sha256": "5da4625896ae58600c8b13d53786be6f4425d26652a4144840910b95d47cf68e"
+    },
+    "room-14.png": {
+      "path": ".local/cave-initialization-winning-browser-01/room-14.png",
+      "bytes": 44468,
+      "sha256": "eae0c4066f6ed7a7b2a861bb7e31f9c28864e70564b105abd83fae53af480df0"
+    },
+    "room-18.png": {
+      "path": ".local/cave-initialization-winning-browser-01/room-18.png",
+      "bytes": 43791,
+      "sha256": "97366d04e2d59cf6be201acb2dbe8cd9e712dfc1f70d7346c9ee337ec8899104"
+    },
+    "room-19.png": {
+      "path": ".local/cave-initialization-winning-browser-01/room-19.png",
+      "bytes": 43537,
+      "sha256": "325c30eedd2fdc1d5eac224c6619e7f9b3ca4e5e305abc9e5d9dc479c344599c"
+    },
+    "room-26.png": {
+      "path": ".local/cave-initialization-winning-browser-01/room-26.png",
+      "bytes": 43782,
+      "sha256": "401ce3c64c75844ae4430b21849c2cbcb7a0dc8ff42240b25342d1dc1efed350"
+    },
+    "room-27.png": {
+      "path": ".local/cave-initialization-winning-browser-01/room-27.png",
+      "bytes": 44004,
+      "sha256": "f2d24e0c5bf7fd08ece89274eb685f81ccfb1357d7fe90752a69923b2b216f00"
+    },
+    "safari-banked.png": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-banked.png",
+      "bytes": 29054,
+      "sha256": "c5f6dfaa83be12f9694f37f02c95e85d2773e54e2fc90f8364d652db33944d8d"
+    },
+    "safari-departure-0.png": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-departure-0.png",
+      "bytes": 29034,
+      "sha256": "1b8214dfe4ae83b557027adea95af5bff7ed9062a63a184b9c45278aac87e901"
+    },
+    "safari-departure-1.png": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-departure-1.png",
+      "bytes": 29113,
+      "sha256": "0a8a93e690a7e2d24f6ad2e4d068b3f0cbdb85923106b2516d7a7c7fed9afec7"
+    },
+    "safari-entry.png": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-entry.png",
+      "bytes": 36856,
+      "sha256": "83ddf1746636465737d4785a14cb57cea6ed715ce3b19d06ecc677d8a3487556"
+    },
+    "safari-flight-controls-0.json": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-flight-controls-0.json",
+      "bytes": 456281,
+      "sha256": "3bd5d78842b0706b32347175c79caf14264a02ab45b73d74da32838e4457a7e3"
+    },
+    "safari-flight-controls-1.json": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-flight-controls-1.json",
+      "bytes": 495491,
+      "sha256": "e406db7e73908a50f7e8f7555aadf23bc9505763530e13e1059759e483e51a26"
+    },
+    "safari-flight-return-0.png": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-flight-return-0.png",
+      "bytes": 8882,
+      "sha256": "28d237c779526088ae9cadcb6ce7fc0929395d8e489441af74d59e2dec61f745"
+    },
+    "safari-flight-return-1.png": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-flight-return-1.png",
+      "bytes": 20576,
+      "sha256": "5b4df8925dcc85a0b4578a4ae75c8bc319709c8bd3eae59f9a0e53df3d5a6d6e"
+    },
+    "safari-results.png": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-results.png",
+      "bytes": 33799,
+      "sha256": "bb1ec80aa1a7fd16227cad81efe1904a34db89bc12d984762b31920190305ed4"
+    },
+    "safari-shot-0.png": {
+      "path": ".local/cave-initialization-winning-browser-01/safari-shot-0.png",
+      "bytes": 35557,
+      "sha256": "d2da26d08c4a116d3ea18a32b7bd9c1a7a6cd764a6e3f1bc54acf67c0ccaf3c6"
+    },
+    "source-revision.json": {
+      "path": ".local/cave-initialization-winning-browser-01/source-revision.json",
+      "bytes": 130394,
+      "sha256": "dcd4b1b50b54929199657c4419273631130ac53c11eaf3fb001d541ccd4b17e8"
+    },
+    "sources.zip": {
+      "path": ".local/cave-initialization-winning-browser-01/sources.zip",
+      "bytes": 3328158,
+      "sha256": "24cc526fab5d8869766ad7bfbd16a8f3594cd2108415b004de9c238e657e62dd"
+    },
+    "standard-choice.png": {
+      "path": ".local/cave-initialization-winning-browser-01/standard-choice.png",
+      "bytes": 14258,
+      "sha256": "4c23903a174872221c8b17410f542161681e90c73092133b12189dc0c0e5e5b2"
+    },
+    "timeline": {
+      "path": ".local/cave-initialization-winning-browser-01/timeline.json",
+      "bytes": 16598,
+      "sha256": "d59a9c6eef29be9aad72262aa8c109f7b1f291533d2ac20e2962b164527a07fc"
+    },
+    "winner-celebration.png": {
+      "path": ".local/cave-initialization-winning-browser-01/winner-celebration.png",
+      "bytes": 34879,
+      "sha256": "b2209000a639f1775f16e89504e3fb79e6799460d25794cf9afef272b92e2788"
+    },
+    "winning-ending.png": {
+      "path": ".local/cave-initialization-winning-browser-01/winning-ending.png",
+      "bytes": 19007,
+      "sha256": "6008ae1d70b6f4241c5be5b5b91a38ba46d04827b194949dbdbbca6d296a4e57"
+    }
+  },
+  "verify": "node scripts/verify-standard-wages-route.js --manifest=reference/cave-initialization-winning-route.json --output=.local/winning-replay-FRESH",
+  "knownLimitations": [
+    "Cave treasure presentation omitted opening wipe/background load and repeated composition15 times instead of2;source-corrected successor required before current acceptance"
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "kind": "photography-hud-acceptance",
+  "producer": ".local/safari-hud-acceptance-01",
+  "sourceCommit": "83a1748d6462141da9156e8d0d2a1fb5ee8022ea",
+  "completed": true,
+  "accepted": true,
+  "nativeWholeTimingComparison": false,
+  "scope": "Current Safari source work,closed-loop component regression and adaptive browser input/audio. Conditional host20ms/Game16ms speech;not native elapsed-time/waveform parity or full-campaign acceptance.",
+  "expectedSteps": 8,
+  "expectedSourcePlans": 28,
+  "expectedComponentCases": 22,
+  "expectedInputBoundaries": 899,
+  "expectedPictures": 2234,
+  "expectedUnitCases": 218,
+  "expectedBrowserCases": 2,
+  "expectedBrowserNegatives": 2,
+  "comparison": {
+    "componentClockBytes": [
+      [
+        8737,
+        8745
+      ],
+      [
+        10232,
+        10236
+      ]
+    ],
+    "imageExclusions": [],
+    "clockExpectations": "reference/photography-hud-drawing-time.json",
+    "inputs": "Unchanged independent schedules in reference/photography-runtime.json;browser controller code in archived tests/browser/photography*.spec.js;explicit host20ms/Game16ms real-device loop. Browser scenario is adaptive,not strict fixed-input replay."
+  },
+  "artifacts": {
+    "result.json": {
+      "path": ".local/safari-hud-acceptance-01/result.json",
+      "bytes": 3625,
+      "sha256": "ccb496ef30d7d28f5c2a664424e284e16d9aa8ab15d6959aa35948d2b43e503c"
+    },
+    "source-revision.json": {
+      "path": ".local/safari-hud-acceptance-01/source-revision.json",
+      "bytes": 122210,
+      "sha256": "0369049e1dc190d92d41c5190393b0a1bc29e835581094eb6c10a6c04b3b69d3"
+    },
+    "sources.zip": {
+      "path": ".local/safari-hud-acceptance-01/sources.zip",
+      "bytes": 3098417,
+      "sha256": "ba8c9cb926b194dce6db8aaf3483c0d527834b872eccc01f58e0a5f6e4de5efa"
+    },
+    "originalLog": {
+      "path": ".local/safari-hud-acceptance-01/original.log",
+      "bytes": 199,
+      "sha256": "f22551a9c298db77fba0cff3560c292c853cdbda7a6bae1eca6d19bb7f304b7c"
+    },
+    "sourceLog": {
+      "path": ".local/safari-hud-acceptance-01/source.log",
+      "bytes": 1957,
+      "sha256": "3d6bfe4dd71c6e8c1a59e4cc0796d506106456e657c956877ea374c64ed23d42"
+    },
+    "runtimeLog": {
+      "path": ".local/safari-hud-acceptance-01/runtime.log",
+      "bytes": 627,
+      "sha256": "ade1bac98d56cce143172c057e64af3b70c25e23e3af9ffba4ff82d4b8a6fdf9"
+    },
+    "unitsLog": {
+      "path": ".local/safari-hud-acceptance-01/units.log",
+      "bytes": 19884,
+      "sha256": "9e257d6a6a1ddfd81f7c64722c0cde67cc3b18dbb181dfa9bf0676deab83d67c"
+    },
+    "browserLog": {
+      "path": ".local/safari-hud-acceptance-01/browser.log",
+      "bytes": 696,
+      "sha256": "bc8eaa78b046252539f3610d67fcdbe7a5a0fc30b8c0e56dad00194e92e3e5b3"
+    },
+    "work-negativeLog": {
+      "path": ".local/safari-hud-acceptance-01/work-negative.log",
+      "bytes": 91,
+      "sha256": "b492a7f9f0cdd1da721298473124ffa67e4be944f7cc81f54c9df784207d40c5"
+    },
+    "hud-negativeLog": {
+      "path": ".local/safari-hud-acceptance-01/hud-negative.log",
+      "bytes": 91,
+      "sha256": "b492a7f9f0cdd1da721298473124ffa67e4be944f7cc81f54c9df784207d40c5"
+    },
+    "buildLog": {
+      "path": ".local/safari-hud-acceptance-01/build.log",
+      "bytes": 914,
+      "sha256": "a3d306c04bf2fe4b2cd6a290b576f987319bc1be5b8c674d915a53d3d0b1d1a3"
+    },
+    "browserImage0": {
+      "path": ".local/safari-hud-acceptance-01/browser/photography-input-photogra-4d65e-use-pixels-and-resumes-quit/photography-input.png",
+      "bytes": 31296,
+      "sha256": "e065c53b60debc29aecdda02e598f711e413eaa50992763efc36d9eedc5473f3"
+    },
+    "browserImage1": {
+      "path": ".local/safari-hud-acceptance-01/browser/photography-photography-ke-b1fc1-return-and-collected-notice/photography-results.png",
+      "bytes": 9395,
+      "sha256": "3b4fb2d92e72247e23f682f59171a9ed1bb3e5d69058724d0f3d4ca911d5dea1"
+    },
+    "browserImage2": {
+      "path": ".local/safari-hud-acceptance-01/browser/photography-photography-ke-b1fc1-return-and-collected-notice/photography-shot.png",
+      "bytes": 32138,
+      "sha256": "deb8faedcb88384172fb4fb61f318da1a2d1741042649ed7ad2a6fc8b70e63cd"
+    }
+  },
+  "verify": "node scripts/verify-photography-hud-acceptance.js --output=.local/safari-hud-acceptance-FRESH"
+}

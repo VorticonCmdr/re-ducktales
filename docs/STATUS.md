@@ -1,24 +1,25 @@
 # Current port status
 
-Updated 2026-10-31. Safari HUD timing work is in progress on
-`codex/safari-hud-work`:source/native checks,22 carried component scenarios and
-two browser routes pass. The combined clean-source admission is next. The
-winning/report receipts below describe the prior3626200 runtime;they have not
-been refreshed for this HUD change. [Scope](photography-hud-timing.md).
+Updated 2026-10-31. **The whole game is incomplete.** Safari now charges its
+original HUD line/numeric work and preserves the signed film formatter. Its
+combined admission passes at83a1748:28 source plans,22 carried scenarios,
+899 input boundaries,2234 images,218 units,two browser cases,two browser negatives
+and production build. [Scope and receipt](photography-hud-timing.md).
 
- **The whole game is incomplete.** A complete Standard winning
-route is now independently browser-verified on the current port. Movement/timing,
-broader route/input/audio fidelity and deferred Hard campaigns remain open.
-Nothing has been pushed or deployed.
+The last full Standard winning/report receipts below belong to the prior3626200
+runtime. They have not been refreshed for this timing change;their current-runtime
+source guards intentionally reject the new build. Movement/timing,broader route/
+input/audio fidelity and deferred Hard campaigns remain open. Nothing has been
+pushed or deployed.
 
-## Current working route and acceptance
+## Last accepted full campaign route
 
 Startup/security/office → Too-Pei cave → naturally lost Safari race/forced claim
 → Kenya photography → Great Outback jungle → Lost World mountain → Atlantis,
 Klondike,Siberia caves → Novay mountain → banking → day31 victory,34650 vs28500 →
 celebration → replay-No → all26 credits → closed → Restart.
 
-The current runtime includes the source-ordered report restoration and the bank
+The prior accepted runtime includes the source-ordered report restoration and the bank
 copy correction introduced at179a307. Producer `.local/report-timed-winning-browser-03`
 and independent consumer `.local/report-timed-winning-replay-01` pass183 exact
 complete-state/decoded-RGBA checkpoints and7261 independent DOM inputs. All
@@ -40,7 +41,7 @@ private-emulator shutdown are checked;eight negatives reject corrupt/missing or
 unfinished/stale cases. Natural whole-bank timing and hidden-page aliasing remain
 unverified. [Bank correction and native recipe](bank-sparkle-copy.md).
 
-The combined current winning gate also passes218 unit cases,production build,
+That combined winning gate passed218 unit cases,production build,
 original ending/credits comparisons and the source proofs. There are no image
 exclusions,state restores,RNG/money patches or difficulty changes in this route.
 [Winning acceptance](../reference/current-winning-acceptance.json),
@@ -51,11 +52,11 @@ exclusions,state restores,RNG/money patches or difficulty changes in this route.
 Ordinary reports,forced claims and collected notices implement50 entry/75 total
 retraces,deferred variant RNG,original early-key flushes,6e before reveal and21/
 location publication after exit. Speech status reads have fresh device queries.
-All three current report replays pass85 exact checkpoints/2881 independent DOM
+All three report replays on that prior runtime passed85 exact checkpoints/2881 independent DOM
 inputs,all174 intermediate state/pixel/time comparisons,135 source stripe groups,
-three missing-Pause negatives and Restart. Fresh speaker/Tandy probes onf2cb091
+three missing-Pause negatives and Restart. Speaker/Tandy probes onf2cb091
 produce real nonzero audio output,fresh speech-status queries and completion.
-The combined acceptance also passes five setup negatives,218 unit cases,21
+Their combined acceptance also passed five setup negatives,218 unit cases,21
 reader-boundary cases and the production build. Old producer recordings remain
 immutable;current consumers establish compatibility with the bank correction.
 [Report implementation](report-presentation-implementation.md).
@@ -81,8 +82,8 @@ reused,always by fresh startup input replay. [History](status-history.md).
 
 ## Remaining work and supported build
 
-Next:validate expedition movement cadence against the original and broaden
-gameplay/input coverage. The current report/audio receipt refresh is complete.
+Next:refresh the full campaign after Safari HUD timing,then validate more
+expedition cadence and broaden gameplay/input coverage.
 Resource/text costs,remaining CPU/PIT phase and uninterrupted native whole-game
 timing are unverified. Other sound-call adaptations,cross-scene keys,modifier/
 BIOS behavior,mouse/joystick parity and arbitrary campaign finishability need
@@ -104,12 +105,11 @@ ignored `game/`;production users select their own files.
 ## Verification
 
 ```sh
-# Current saved winning evidence,fresh unit suite and production build:
-node scripts/verify-current-winning-acceptance.js
+# Fresh current Safari source/component/browser acceptance:
+node scripts/verify-photography-hud-acceptance.js --output=.local/safari-hud-acceptance-FRESH
 node scripts/verify-bank-copy-pixels.js
-node scripts/verify-report-presentation-acceptance.js
-# Fresh independent winning replay;clean source,new ignored output:
-node scripts/verify-standard-wages-route.js --manifest=reference/report-timed-winning-route.json --output=.local/current-winning-replay-FRESH
+# Fresh current winning candidate;independent acceptance follows separately:
+node scripts/standard-wages-explore.js --winning --bonus-novay --output=.local/safari-hud-winning-FRESH
 npm run dev
 ```
 

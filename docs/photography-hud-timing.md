@@ -63,3 +63,7 @@ clean source and checks loaded files again at completion. Missing/corrupt local
 artifacts,zero cases,unfinished input sequences and unsupported work fail setup
 or comparison. This is a scoped Safari admission;full campaign acceptance must
 be refreshed for the changed runtime before claiming it on this build.
+
+The combined clean-source run passes at83a1748. Its source archive,eight logs,
+result and browser images are pinned by [the admission receipt](../reference/photography-hud-acceptance.json).
+All218 units and both browser negatives finish with no skipped required cases.

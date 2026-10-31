@@ -3,6 +3,7 @@ import {
   loadCaveSprite,
   caveRandom,
   caveDistance,
+  caveTrapNearby,
   composeCaveRoom,
   drawCaveParty,
   CAVE_SPRITES,
@@ -65,6 +66,9 @@ export class Cave {
     this.audioEnabled = options.audioEnabled === true;
     this.audioToken = 0;
     this.audioBusy = false;
+    this.hasAudioDevice = options.hasAudioDevice ?? (() => this.audioToken > 0);
+    if (typeof this.hasAudioDevice !== "function")
+      throw Error("Invalid cave audio-device provider");
     this.controls = { fire: false, direction: null };
     this.readInputByte =
       options.readInput ??
@@ -121,15 +125,15 @@ export class Cave {
     this.controls = { ...controls };
   }
   sound(id) {
+    if (!this.audioEnabled) return;
     const token = `${this.options.audioScope ?? 0}:${++this.audioToken}`;
     this.activeAudioToken = token;
-    this.audioBusy = this.audioEnabled;
+    this.audioBusy = null;
     this.events.push({ type: "sound", id, token });
   }
   setAudioEnabled(enabled) {
     if (typeof enabled !== "boolean") throw Error("Invalid cave audio enable");
     this.audioEnabled = enabled;
-    if (!enabled) this.audioBusy = false;
   }
   setAudioStatus(token, busy) {
     if (typeof busy !== "boolean") throw Error("Invalid cave audio status");
@@ -139,10 +143,24 @@ export class Cave {
       retrace: this.retrace,
       audio: { token, busy },
     });
-    this.audioBusy = this.audioEnabled && busy;
+    this.audioBusy = busy;
   }
   *waitAudio() {
-    while (this.audioBusy) yield* this.delay(1);
+    // 125f/16a7/188c query the global driver, even when sound is disabled.
+    const present = this.hasAudioDevice();
+    if (typeof present !== "boolean")
+      throw Error("Invalid cave audio-device result");
+    if (!present) return; // An unused provider is initialized idle.
+    const token = `${this.options.audioScope ?? 0}:${++this.audioToken}`;
+    this.activeAudioToken = token;
+    this.audioBusy = null;
+    this.events.push({ type: "audio-query", token });
+    while (this.audioBusy !== false) yield { clock: "audio", remaining: 1 };
+  }
+  resumeAudioStatus() {
+    if (this.wait?.clock !== "audio" || this.audioBusy !== false)
+      throw Error("Cave audio resumed without an idle status");
+    this.resume();
   }
   drainEvents() {
     return this.events.splice(0);
@@ -155,7 +173,9 @@ export class Cave {
       this.phase = "complete";
     } else {
       if (
-        !["driver", "retrace", "input", "graphics"].includes(n.value.clock) ||
+        !["driver", "retrace", "input", "graphics", "audio"].includes(
+          n.value.clock,
+        ) ||
         !Number.isInteger(n.value.remaining) ||
         n.value.remaining < 1
       )
@@ -274,15 +294,39 @@ export class Cave {
       until: this.now() + work.milliseconds,
     };
   }
-  *scene() {
+  *scene(audible = false) {
     this.background = composeCaveRoom(this.memory, this.entries);
     const work = caveRoomCompositionWork(this.entries, this.background);
     this.lastRoomWork = work;
     this.lastDrawingWork = { kind: "room", ...work };
+    const end = this.now() + work.milliseconds;
+    if (audible) {
+      // 26bb emits the cue after overlays, before video->cache copying.
+      const before = caveRoomCompositionWork(this.entries, this.background, {
+        cacheResult: false,
+      });
+      yield {
+        clock: "graphics",
+        remaining: 1,
+        until: this.now() + before.milliseconds,
+      };
+      const distance = this.memory.i(0x4e08);
+      this.sound(
+        caveTrapNearby(this.memory, this.room)
+          ? 0x4d
+          : distance < 2
+            ? 0x51
+            : distance < 4
+              ? 0x50
+              : distance < 6
+                ? 0x4f
+                : 0x4e,
+      );
+    }
     yield {
       clock: "graphics",
       remaining: 1,
-      until: this.now() + work.milliseconds,
+      until: end,
     };
     return this.restoreBackground();
   }
@@ -352,7 +396,7 @@ export class Cave {
     this.progress = u16(this.progress + 1);
     if (this.cell & 64) m.b(0x546a, 1);
     for (let i = 0; i < 2; i++) {
-      let c = yield* this.scene();
+      let c = yield* this.scene(i === 0);
       if (!this.enteredFrom || m.b(0x5d2b)) c = yield* this.party(c);
       if (m.signedByte(0x8b54) > 1 && !(this.cell & 80))
         yield* this.draw(c, 43);
@@ -473,6 +517,7 @@ export class Cave {
       remaining: 1,
       until: this.now() + work.milliseconds,
     };
+    this.sound(0);
     let deadline = 0;
     while (true) {
       if (this.room === m.i(0x97b0))
@@ -555,6 +600,9 @@ export class Cave {
         ? { presentationTransition: { ...this.presentationTransition } }
         : {}),
       ...(this.wait?.clock === "input" ? { waitingForInputPoll: true } : {}),
+      ...(this.wait?.clock === "audio"
+        ? { waitingForAudio: true, audioBusy: this.audioBusy }
+        : {}),
       room: this.room,
       goal: m.i(0x97b0),
       enemy: m.i(0x6810),

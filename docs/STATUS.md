@@ -18,6 +18,14 @@ HTML/CSS/vanilla JS,npm/Vite. Original assets remain authoritative in ignored
 
 ## Latest completed behavior and current acceptance
 
+**Cave audio implementation under verification:** original global-status spins,
+guarded initial/pit/return resets, and one room-entry pit/proximity warning are
+implemented. Static correspondence covers 51 terminal-loop bytes plus 481 bytes
+of call/rule snippets. Focused component checks and the earlier conditional cave
+comparisons pass. Fresh browser audio cases and strict campaign replays are still
+pending; the atomic runtime receipt below remains historical after this change.
+[Cave audio evidence and commands](cave-audio.md).
+
 Atomic failure now queries real global sound status even while muted. Initial0
 is guarded,initial status is unknown until ACK/query,and disabling sound cannot
 invent completion. The untimed spin resumes at status consumption;unused fresh
@@ -78,9 +86,8 @@ winning browser route pass. [Repair evidence](repair-input.md),
 | Cave | All8 component layouts;Klondike,Carlsbad,Too-Pei browser routes | Too-Pei/7,Atlantis/3,Klondike/0,Siberia/4 treasures |
 | Safari | All6 variants complete in browser | Kenya target photograph |
 
-Next:restore cave terminal sound-status waits and guarded resets.51 original/
-prepared/Ghidra bytes confirm three untimed global-status loops and the common
-conditional0 exit;legacy cave masking/delay1 is not corrected yet. Continue
+Next:complete actual-browser cave audio verification and rerun the strict muted
+cave-failure and winning campaign comparisons on the changed runtime. Continue
 broader gameplay/input coverage afterward.
 Cross-scene queued keys,modifier/BIOS behavior and
 mouse/joystick parity need wider evidence. Broader destination/difficulty and

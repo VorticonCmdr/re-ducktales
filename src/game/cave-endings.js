@@ -81,7 +81,7 @@ export const caveEndings = {
     }
     this.load(35, 61, 54);
     this.load(36, 70, 42);
-    this.events.push({ type: "stopAudio" });
+    this.sound(0);
     for (let i = 0; i < 2; i++)
       yield* this.present(yield* this.party(this.back()));
     this.sound(0x48);
@@ -168,7 +168,7 @@ export const caveEndings = {
     else if (reason === "captured") yield* caveEndings.capture.call(this);
     else if (reason === "torch-expired") yield* caveEndings.expired.call(this);
     else throw Error(`Unsupported cave outcome ${reason}`);
-    this.events.push({ type: "stopAudio" });
+    this.sound(0);
     if (!this.memory.b(0x5d2b)) this.memory.b(0x54aa, 0);
     return {
       status: reason,

@@ -757,6 +757,15 @@ export class Game {
     }
     if (event.type === "audio-status") {
       this.cave?.setAudioStatus(event.token, event.busy);
+      if (
+        this.scene === "cave" &&
+        !this.systemOverlay &&
+        this.cave.wait?.clock === "audio" &&
+        this.cave.audioBusy === false
+      ) {
+        this.cave.resumeAudioStatus();
+        this.collectCave();
+      }
       this.visitNotice?.setAudioStatus(event.token, event.busy);
       this.rivalReport?.setAudioStatus(event.token, event.busy);
       this.claim?.setAudioStatus(event.token, event.busy);
@@ -2221,6 +2230,7 @@ export class Game {
     this.cave = new Cave(
       {
         ...this.expeditionResources,
+        hasAudioDevice: () => this.hasAudioDevice(),
         clock: this.simulationClock,
         variant: this.briefing.variant,
         difficulty: this.difficulty,

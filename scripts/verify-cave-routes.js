@@ -348,7 +348,7 @@ export async function verifyCaveRoutes(resources) {
   for (let i = 0; i < 1000; i++) {
     c.advanceTick();
     c.advanceRetrace();
-    for (const e of c.drainEvents()) if (e.type === "sound") token = e.token;
+    for (const e of c.drainEvents()) if (e.type === "audio-query") token = e.token;
   }
   assert.equal(c.phase, "captured");
   assert.equal(c.outcome, null);
@@ -356,7 +356,7 @@ export async function verifyCaveRoutes(resources) {
   c.advanceTick();
   assert.equal(c.outcome, null, "stale device event released wait");
   c.setAudioStatus(token, false);
-  c.advanceTick();
+  c.resumeAudioStatus();
   assert.equal(c.outcome.status, "captured");
   console.log(
     "Cave: four C-drive passage directions/revisit; 4 independent shortened-path outcomes; exact closed-loop input replays; all presentations rendered; outcome, omitted-movement and stale-audio negative controls. No original ending comparison claimed.",

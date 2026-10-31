@@ -147,5 +147,5 @@ test("capture sound follows both unpresented party work and the captor sprite", 
   assert.ok(
     c.game.drainEffects().some((e) => e.type === "sound" && e.id === 0x53),
   );
-  assert.equal(c.cave.audioBusy, true);
+  assert.equal(c.cave.audioBusy, null); // Unknown until the actual device ACK.
 });

@@ -39,7 +39,11 @@ function roomCopy(sourceVideo, destinationVideo) {
 
 // Original26bb..28ad: cache->video, door/room overlays, video->cache.
 // The one renderer copy command describes pixels; it is not the source call list.
-export function caveRoomCompositionWork(entries, commands) {
+export function caveRoomCompositionWork(
+  entries,
+  commands,
+  { cacheResult = true } = {},
+) {
   const c = commands[0];
   if (
     !c ||
@@ -53,10 +57,8 @@ export function caveRoomCompositionWork(entries, commands) {
     c.y !== 0
   )
     throw Error("Unsupported cave room composition");
-  const parts = [
-    egaSignedCopyWork(roomCopy(false, true)),
-    egaSignedCopyWork(roomCopy(true, false)),
-  ];
+  const parts = [egaSignedCopyWork(roomCopy(false, true))];
+  if (cacheResult) parts.push(egaSignedCopyWork(roomCopy(true, false)));
   for (const sprite of commands.slice(1)) {
     if (
       sprite.op !== "sprite" ||
@@ -65,7 +67,11 @@ export function caveRoomCompositionWork(entries, commands) {
       throw Error("Unsupported cave room overlay");
     parts.push(caveSpriteWork(entries, sprite));
   }
-  return { ...total(parts), copies: 2, sprites: commands.length - 1 };
+  return {
+    ...total(parts),
+    copies: cacheResult ? 2 : 1,
+    sprites: commands.length - 1,
+  };
 }
 
 // Original03bd..03d3 draws sprite37, then1cc8 builds and stores its map cache.

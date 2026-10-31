@@ -1,0 +1,314 @@
+{
+  "kind": "cave-audio-calls-static-source",
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "program": "CAVE_CODE.EXE",
+  "analysisExecutable": ".local/analysis/CAVE_CODE.EXE",
+  "analysisSha256": "d76272106a395bb9c40ebac1f0bd8ce50964a6ad053eee7a4236054135d5dca4",
+  "overlay": {
+    "fileOffset": 108544,
+    "bytes": 12078,
+    "sha256": "b50b7f3163c516c298569ab3ec301f2d0e31f456a623bfafe294d6077344713d",
+    "headerBytes": 1024,
+    "imageOffset": 49520
+  },
+  "ranges": [
+    {
+      "name": "guard-479",
+      "offset": 1135,
+      "length": 17,
+      "address": "1c17:046f",
+      "sha256": "e6bc8fc28b928f0ee70c2c4eb497d603f87a9707291100d4b3aee313bc9c4ad3",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-479.json",
+        "bytes": 278,
+        "sha256": "024e5e2f41b3e9e0337c778625ca448e2a2bd17d2de9eb3d0a15ec2a24cc1043"
+      }
+    },
+    {
+      "name": "guard-6b2",
+      "offset": 1703,
+      "length": 18,
+      "address": "1c17:06a7",
+      "sha256": "16936a9869b5a034946b78fcf9ad1d554010df9e5837e87debde83dff85144c0",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-6b2.json",
+        "bytes": 282,
+        "sha256": "ed77a3c7163bd5b9a9d83fa0845b9df64e6559ceed4e1ae029767b234c832ebd"
+      }
+    },
+    {
+      "name": "guard-990",
+      "offset": 2437,
+      "length": 18,
+      "address": "1c17:0985",
+      "sha256": "9f3779bf903d8bff028f63e92108f6ea70ac5851a979be707803ecc27096b6e1",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-990.json",
+        "bytes": 282,
+        "sha256": "a28ce19267ac4a9e298fc61f47972abff367ea3ade78b0c83ec1d0cfc64b2b48"
+      }
+    },
+    {
+      "name": "guard-a28",
+      "offset": 2589,
+      "length": 18,
+      "address": "1c17:0a1d",
+      "sha256": "e35f3c3d347eff5fe481fe722de80a2945d1f92bb1f0f2933a620088f96bc4c1",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-a28.json",
+        "bytes": 282,
+        "sha256": "f32fabaa2b415cc60088d15bd6f9e06e3f323c386b1e4813dcb4f39d351b1d3f"
+      }
+    },
+    {
+      "name": "guard-d3a",
+      "offset": 3375,
+      "length": 18,
+      "address": "1c17:0d2f",
+      "sha256": "43d68cd86be7114e52eda736f7e7b02c53abce35710256afc6f90438c3705848",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-d3a.json",
+        "bytes": 282,
+        "sha256": "50541a3bc4442e3936c682bcc9f140b2cb98faf099311e24553b4e95bdf98449"
+      }
+    },
+    {
+      "name": "guard-d98",
+      "offset": 3469,
+      "length": 18,
+      "address": "1c17:0d8d",
+      "sha256": "9f3779bf903d8bff028f63e92108f6ea70ac5851a979be707803ecc27096b6e1",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-d98.json",
+        "bytes": 282,
+        "sha256": "4025cbef21bb65d5218e7254bc22baa84961d7118b6eb5e84f713acd3503bb49"
+      }
+    },
+    {
+      "name": "guard-eef",
+      "offset": 3812,
+      "length": 18,
+      "address": "1c17:0ee4",
+      "sha256": "9f3779bf903d8bff028f63e92108f6ea70ac5851a979be707803ecc27096b6e1",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-eef.json",
+        "bytes": 282,
+        "sha256": "afe621727a15ef12dd59b76b816a5ec5caa3ee0cfe5eb7f7887389e8708e34bc"
+      }
+    },
+    {
+      "name": "guard-f81",
+      "offset": 3958,
+      "length": 18,
+      "address": "1c17:0f76",
+      "sha256": "9f3779bf903d8bff028f63e92108f6ea70ac5851a979be707803ecc27096b6e1",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-f81.json",
+        "bytes": 282,
+        "sha256": "dbc05bb072c37d72e023ef023f7ab86d9886ef81dbd9da50e29b299e1af1dd47"
+      }
+    },
+    {
+      "name": "guard-1013",
+      "offset": 4104,
+      "length": 18,
+      "address": "1c17:1008",
+      "sha256": "9f3779bf903d8bff028f63e92108f6ea70ac5851a979be707803ecc27096b6e1",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-1013.json",
+        "bytes": 282,
+        "sha256": "4f072df08ffc189dd923bbb17bb91ccc3064471b1a6a2ded674884b9ede69e63"
+      }
+    },
+    {
+      "name": "guard-114f",
+      "offset": 4420,
+      "length": 18,
+      "address": "1c17:1144",
+      "sha256": "11f69bb29da77c1028a2a13dedfe882ba9ba312cb0acbe771147eba2d052e3d2",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-114f.json",
+        "bytes": 282,
+        "sha256": "1ba020d4f5a92a105f1640603cc7fdce5bbe8cbbb5adda5b33fdd01e389dbeb9"
+      }
+    },
+    {
+      "name": "guard-1499",
+      "offset": 5263,
+      "length": 17,
+      "address": "1c17:148f",
+      "sha256": "e6bc8fc28b928f0ee70c2c4eb497d603f87a9707291100d4b3aee313bc9c4ad3",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-1499.json",
+        "bytes": 278,
+        "sha256": "060aa765238d69488ca0186f5d21b7bdf6f38d2ac0321ca8de5dd6875240ae8a"
+      }
+    },
+    {
+      "name": "guard-14e9",
+      "offset": 5342,
+      "length": 18,
+      "address": "1c17:14de",
+      "sha256": "5ac00d8ae5cfa3f966008e178ee4f5dbffa9d9be61b028075769058489ce0194",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-14e9.json",
+        "bytes": 282,
+        "sha256": "bcd3f7933cb77d74ecfb99a757cf1f7e7056f8f2cbce937530f46460db385d70"
+      }
+    },
+    {
+      "name": "guard-1601",
+      "offset": 5622,
+      "length": 18,
+      "address": "1c17:15f6",
+      "sha256": "2cbe9655f5a68a5d1ce46e5e751057cf55e53705b2437d754b4b0da0a85cbe20",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-1601.json",
+        "bytes": 282,
+        "sha256": "54d746aa786375bfa382b76e280aff15c1da04f518dabdf936ac9742aed84918"
+      }
+    },
+    {
+      "name": "guard-17d2",
+      "offset": 6087,
+      "length": 18,
+      "address": "1c17:17c7",
+      "sha256": "f2bfe088ec1b16df2184cac3289e8cea14a9b874afbbdab1fd93dbfb90c9d83f",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-17d2.json",
+        "bytes": 282,
+        "sha256": "4564e0c6a8dcf252804547bbfbacb01004b1880ffad5b6806084d72d85a8aeba"
+      }
+    },
+    {
+      "name": "guard-189e",
+      "offset": 6292,
+      "length": 17,
+      "address": "1c17:1894",
+      "sha256": "e6bc8fc28b928f0ee70c2c4eb497d603f87a9707291100d4b3aee313bc9c4ad3",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-189e.json",
+        "bytes": 278,
+        "sha256": "822dec5e1619de6d42362bde1fbacfe11660caf3cb526c1447fbb1df121fe4d1"
+      }
+    },
+    {
+      "name": "guard-1aab",
+      "offset": 6816,
+      "length": 18,
+      "address": "1c17:1aa0",
+      "sha256": "9f3779bf903d8bff028f63e92108f6ea70ac5851a979be707803ecc27096b6e1",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-1aab.json",
+        "bytes": 282,
+        "sha256": "51fd38637a460edf45cbe3c0fc750cadfe2fe54bd7a698d4bce996b157da91c7"
+      }
+    },
+    {
+      "name": "guard-2615",
+      "offset": 9738,
+      "length": 18,
+      "address": "1c17:260a",
+      "sha256": "16936a9869b5a034946b78fcf9ad1d554010df9e5837e87debde83dff85144c0",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-2615.json",
+        "bytes": 282,
+        "sha256": "4e5451276336efbd8ec70ac33edffc4d11297c9bbbff285fca01474e712f7fca"
+      }
+    },
+    {
+      "name": "guard-2868",
+      "offset": 10333,
+      "length": 18,
+      "address": "1c17:285d",
+      "sha256": "9f6fee8979f54096fb5542de2e6937c108168a5d8a7805898495af6e856a11a8",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-2868.json",
+        "bytes": 282,
+        "sha256": "331f6c043e7b74058f5c2934a995cee226300d13ef2998f3153bde0d5ccbf2b3"
+      }
+    },
+    {
+      "name": "guard-2aea",
+      "offset": 10975,
+      "length": 18,
+      "address": "1c17:2adf",
+      "sha256": "b34f11d880cb9f5d8a76ae0d9e7ececc5a44c64ad4251c744fb8b6666e51367d",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/guard-2aea.json",
+        "bytes": 285,
+        "sha256": "538c951db0d40d223dbfe490ca2bd25a7e3aea79aeebf0fb65157f76cdaa82cb"
+      }
+    },
+    {
+      "name": "distance-comparisons",
+      "offset": 6876,
+      "length": 74,
+      "address": "1c17:1adc",
+      "sha256": "c81ea9b290663a3a4d606112aaf5cd3a422b0633602d61bd1fb621e71545446f",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/distance-comparisons.json",
+        "bytes": 572,
+        "sha256": "f2a24c7e6ae328daec66aa6b7da27339318619a1dd034652c6da13d62cba3216"
+      }
+    },
+    {
+      "name": "entry-audible",
+      "offset": 1437,
+      "length": 14,
+      "address": "1c17:059d",
+      "sha256": "b69dd568c9a1fa98e058f11bcc3676c8a75f6e9ccb5be9d2394e3d41e4d4c506",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/entry-audible.json",
+        "bytes": 263,
+        "sha256": "12d9c200d3374e6c1f7c68778940a67c7879a60200c6bdf81ef058b81f1573de"
+      }
+    },
+    {
+      "name": "entry-silent",
+      "offset": 1517,
+      "length": 13,
+      "address": "1c17:05ed",
+      "sha256": "fe42e46518d81007e17d4b532063ecfbb41e69d9d456ba354aaded68789535b2",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/entry-silent.json",
+        "bytes": 261,
+        "sha256": "1e061e8285c861d466b182cf9a2e1704ab301b7b65e44ee4724992dc4a81c45e"
+      }
+    },
+    {
+      "name": "trap-audible",
+      "offset": 10327,
+      "length": 24,
+      "address": "1c17:2857",
+      "sha256": "aa1d75ffdcaf3750127ab75a3b547a39da990533073c6fd55ab542cdc106aa8a",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/trap-audible.json",
+        "bytes": 313,
+        "sha256": "fa394d39ff6e54cdc5d2b20e3738b6070ab753f1474a56c16d5f46802d811201"
+      }
+    },
+    {
+      "name": "distance-audible",
+      "offset": 10369,
+      "length": 17,
+      "address": "1c17:2881",
+      "sha256": "1400ebcb83414c32c5d12db9367e0aa1444ff65343410cc8c5c65866f9aac151",
+      "artifact": {
+        "path": ".local/cave-audio-calls-01/distance-audible.json",
+        "bytes": 278,
+        "sha256": "1c7cf91b72fb7d7bc068220063635e979183d9632d8ac3836ff97bb578a1d2cc"
+      }
+    }
+  ],
+  "claims": [
+    "All twenty sound-call sites are enabled-flag guarded, including initial, pit and common return resets.",
+    "Entry calls room composition with audible=1 once, then audible=0.",
+    "Audible room composition gives an adjacent accessible pit priority over signed enemy-distance thresholds 2/4/6."
+  ],
+  "scope": "Static original/prepared/Ghidra instruction correspondence. No live original execution or whole-game timing claim."
+}

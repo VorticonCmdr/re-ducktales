@@ -308,7 +308,19 @@
   "claims": [
     "All twenty sound-call sites are enabled-flag guarded, including initial, pit and common return resets.",
     "Entry calls room composition with audible=1 once, then audible=0.",
-    "Audible room composition gives an adjacent accessible pit priority over signed enemy-distance thresholds 2/4/6."
+    "Audible room composition gives an adjacent accessible pit priority over signed treasure-distance thresholds 2/4/6."
   ],
-  "scope": "Static original/prepared/Ghidra instruction correspondence. No live original execution or whole-game timing claim."
+  "scope": "Static original/prepared/Ghidra instruction correspondence. No live original execution or whole-game timing claim.",
+  "distanceOrigin": {
+    "name": "distance-origin",
+    "offset": 1195,
+    "length": 18,
+    "address": "1c17:04ab",
+    "sha256": "e22af32d0b9917c5998efd08f5d4641deb80e934e2b063b0430812429edc5590",
+    "artifact": {
+      "path": ".local/cave-audio-calls-01/distance-origin.json",
+      "bytes": 285,
+      "sha256": "730214ee86399a176ed52eeb63a912ceac74d37b4f9ec69eaf19ff83545d664d"
+    }
+  }
 }

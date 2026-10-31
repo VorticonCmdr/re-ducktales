@@ -21,7 +21,7 @@ still supplies the status rather than the checkbox value supplying it.
 
 Room composition 26bb has an audible argument. Entry calls it with 1 at 05a5,
 then 0 at 05f4; subsequent redraws use 0. An accessible adjacent pit takes
-priority and requests hex4d. Otherwise helper1ad2 compares the signed enemy
+priority and requests hex4d. Otherwise helper1ad2 compares the signed treasure
 distance: less than2 requests51, less than4 requests50, less than6 requests4f,
 and greater/equal6 requests4e. All calls are guarded by sound enabled. The cue
 occurs after room overlays and before the final video-to-cache copy. The port

@@ -1,0 +1,238 @@
+{
+  "kind": "report-presentation-browser-candidate",
+  "producer": ".local/report-rival-presentation-01",
+  "reason": "rival",
+  "captureToolRevision": "463b74c8f59935b6151e13922cf4ee7e684255bf",
+  "nativeComparison": false,
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "expectedCheckpointCount": 27,
+  "requiredEventCount": 543,
+  "checkpointNames": [
+    "standard-choice",
+    "office",
+    "departure",
+    "flight-start",
+    "flight-return",
+    "cave-entry",
+    "room-10",
+    "room-18",
+    "room-26",
+    "room-27",
+    "room-19",
+    "room-11",
+    "room-12",
+    "room-13",
+    "room-14",
+    "award",
+    "before-normal",
+    "normal-entry",
+    "normal-ready",
+    "normal-exit",
+    "normal-map",
+    "notice-entry",
+    "notice-ready",
+    "pause",
+    "resumed",
+    "notice-exit",
+    "map"
+  ],
+  "startingRecipe": "Fresh Standard startup,509 independent inputs/16 exact unchanged checkpoints through first cave award,then actual ordinary report,collected notice,early P/Q/S/Fire,Pause/resume,fresh Fire,map and Restart. Capture alone is not acceptance.",
+  "environment": {
+    "biosSeed": 0,
+    "clockOrigin": 1,
+    "displayMilliseconds": 8,
+    "timezone": "UTC",
+    "audioEnabled": false,
+    "difficulty": 1
+  },
+  "injections": [],
+  "fittedInputs": [],
+  "partialRestore": false,
+  "comparison": {
+    "state": "exact complete public snapshot",
+    "pixels": "exact decoded RGBA",
+    "exclusions": []
+  },
+  "artifacts": {
+    "award.png": {
+      "path": ".local/report-rival-presentation-01/award.png",
+      "bytes": 43543,
+      "sha256": "c24587c7c0c96a3a717df0b5a5b91a21fb204173ce4f6134fbd3816c2b2208fd"
+    },
+    "before-normal.png": {
+      "path": ".local/report-rival-presentation-01/before-normal.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    },
+    "campaign-checkpoints.json": {
+      "path": ".local/report-rival-presentation-01/campaign-checkpoints.json",
+      "bytes": 168361,
+      "sha256": "3b3f6f49dcca4e77d563838551deea4d447f4dc07f99220f08a085bf56437b65"
+    },
+    "captured-events.json": {
+      "path": ".local/report-rival-presentation-01/captured-events.json",
+      "bytes": 64479,
+      "sha256": "e376b6738424433e86eadb24b65f23978e6d650e01315ca4138d7c63cfb0ae88"
+    },
+    "cave-entry.png": {
+      "path": ".local/report-rival-presentation-01/cave-entry.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "departure.png": {
+      "path": ".local/report-rival-presentation-01/departure.png",
+      "bytes": 12792,
+      "sha256": "ae4cfb4f64eff8539019af6fd1b017ebcf7943b0b36fd1b36f373772e6f47037"
+    },
+    "environment.json": {
+      "path": ".local/report-rival-presentation-01/environment.json",
+      "bytes": 301,
+      "sha256": "9d6faf515cd104bd313e992a7a9b91a2c463126a0e1c61adae5532dafe2595bb"
+    },
+    "flight-return.png": {
+      "path": ".local/report-rival-presentation-01/flight-return.png",
+      "bytes": 20471,
+      "sha256": "b33ee310a953f5abb7bf768b49ce90feb806dcf166d390e9c85899eaaabf1da3"
+    },
+    "flight-start.png": {
+      "path": ".local/report-rival-presentation-01/flight-start.png",
+      "bytes": 9956,
+      "sha256": "aef4f576653d1d1d7707c4f87179de978ba12568c0c71f998149448cf768e61e"
+    },
+    "map.png": {
+      "path": ".local/report-rival-presentation-01/map.png",
+      "bytes": 27540,
+      "sha256": "86be55a96982777c03579862cea6b415b928c7381351a9c3db0bd88d7b1b5191"
+    },
+    "normal-entry.png": {
+      "path": ".local/report-rival-presentation-01/normal-entry.png",
+      "bytes": 19252,
+      "sha256": "8f52e3379d175abdf12404cc3b85f94338a82e67440d6d592e7e029b76caf5f4"
+    },
+    "normal-exit.png": {
+      "path": ".local/report-rival-presentation-01/normal-exit.png",
+      "bytes": 16342,
+      "sha256": "c58e2053cf521fcfb26f5983c41ae88542b6752a7d94c0e34f23ef16644278dd"
+    },
+    "normal-map.png": {
+      "path": ".local/report-rival-presentation-01/normal-map.png",
+      "bytes": 27540,
+      "sha256": "86be55a96982777c03579862cea6b415b928c7381351a9c3db0bd88d7b1b5191"
+    },
+    "normal-ready.png": {
+      "path": ".local/report-rival-presentation-01/normal-ready.png",
+      "bytes": 15495,
+      "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+    },
+    "notice-entry.png": {
+      "path": ".local/report-rival-presentation-01/notice-entry.png",
+      "bytes": 29134,
+      "sha256": "5a117d8ede5da4da3aa05589a2472bd2406dc540570fa8fc08125762b4702566"
+    },
+    "notice-exit.png": {
+      "path": ".local/report-rival-presentation-01/notice-exit.png",
+      "bytes": 15831,
+      "sha256": "de89b892c76de614614cd16a6ef4bb5c3d56dfc8b68849ec06b298c3b6bb7a34"
+    },
+    "notice-ready.png": {
+      "path": ".local/report-rival-presentation-01/notice-ready.png",
+      "bytes": 14964,
+      "sha256": "f1a494b4765e3642428f2c7f73332aa1eacf5f381e48c3de12ea972a17ea8779"
+    },
+    "office.png": {
+      "path": ".local/report-rival-presentation-01/office.png",
+      "bytes": 2149,
+      "sha256": "78853bd4402451053268092909a5f19910b4918da963564143a3721e54e86af0"
+    },
+    "pause.png": {
+      "path": ".local/report-rival-presentation-01/pause.png",
+      "bytes": 14461,
+      "sha256": "eaaabb808c74b01881e9303db02c27e1a5ec286cc611cdfac8ecb3ad6b69d156"
+    },
+    "presentations.json": {
+      "path": ".local/report-rival-presentation-01/presentations.json",
+      "bytes": 1231361,
+      "sha256": "a0e3e540d48c19d4bd2ccfe238638be36876daf9d15e10f37188c49b03c679d5"
+    },
+    "result.json": {
+      "path": ".local/report-rival-presentation-01/result.json",
+      "bytes": 270,
+      "sha256": "af7ff60870941ba73db6fae56a983beaef2a15f804b4d8e5fda6cd6a8ee13e58"
+    },
+    "resumed.png": {
+      "path": ".local/report-rival-presentation-01/resumed.png",
+      "bytes": 14964,
+      "sha256": "f1a494b4765e3642428f2c7f73332aa1eacf5f381e48c3de12ea972a17ea8779"
+    },
+    "room-10.png": {
+      "path": ".local/report-rival-presentation-01/room-10.png",
+      "bytes": 40335,
+      "sha256": "cccd709dba2258601bb864d553ce71d427dab0c82ec5f2835411fcd9b741c109"
+    },
+    "room-11.png": {
+      "path": ".local/report-rival-presentation-01/room-11.png",
+      "bytes": 43895,
+      "sha256": "8ecaa27d88476f62ee205ed7fb8e1af65895b17047a9313f9ed545b9aa3bf0e8"
+    },
+    "room-12.png": {
+      "path": ".local/report-rival-presentation-01/room-12.png",
+      "bytes": 43141,
+      "sha256": "cc506d9ddff96a021a78e7ddaac84f6cd1a2ea76ae99fb1f7a35f813791bc33c"
+    },
+    "room-13.png": {
+      "path": ".local/report-rival-presentation-01/room-13.png",
+      "bytes": 42368,
+      "sha256": "5b2bdc5f3adf416e8f1b4796284d0d6a9b32373aa9a4a5073d98c6a03dd909d8"
+    },
+    "room-14.png": {
+      "path": ".local/report-rival-presentation-01/room-14.png",
+      "bytes": 42765,
+      "sha256": "0edc1a3aeb5129c8087057d105ae1ef784970722b91f5c5216ec69e9af01c747"
+    },
+    "room-18.png": {
+      "path": ".local/report-rival-presentation-01/room-18.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-19.png": {
+      "path": ".local/report-rival-presentation-01/room-19.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-26.png": {
+      "path": ".local/report-rival-presentation-01/room-26.png",
+      "bytes": 41342,
+      "sha256": "7fecfe9f014afaa105cf3431ba45b5d66fa77c7c4cce55b39a2be629a3514d0b"
+    },
+    "room-27.png": {
+      "path": ".local/report-rival-presentation-01/room-27.png",
+      "bytes": 41329,
+      "sha256": "aa79312b8822265a12bc53328f88dccc1cb46349de63a5e00fc27eec979d3ca9"
+    },
+    "source-revision.json": {
+      "path": ".local/report-rival-presentation-01/source-revision.json",
+      "bytes": 117542,
+      "sha256": "2325e3852fa5eb6aa661b3b53727d8644d6546c6a66717739006465b4113d688"
+    },
+    "sources.zip": {
+      "path": ".local/report-rival-presentation-01/sources.zip",
+      "bytes": 3002000,
+      "sha256": "ef0553ca4d487f01cc74e3cbc03083d44609aa6e365d26bb7a8a8e971db7a66a"
+    },
+    "standard-choice.png": {
+      "path": ".local/report-rival-presentation-01/standard-choice.png",
+      "bytes": 14258,
+      "sha256": "4c23903a174872221c8b17410f542161681e90c73092133b12189dc0c0e5e5b2"
+    },
+    "timeline.json": {
+      "path": ".local/report-rival-presentation-01/timeline.json",
+      "bytes": 2320,
+      "sha256": "281132372bf52cc555e8f329cf6ff7741efa7bcb24d371022249fe540ce52a67"
+    }
+  },
+  "verify": "node scripts/replay-report-presentation-browser.js --manifest=reference/report-rival-browser.json --output=.local/report-rival-replay-FRESH"
+}

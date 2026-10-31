@@ -15,6 +15,7 @@ import { explorePhysicalFlight } from "../tests/browser/helpers/flight-policy.js
 import { planCaveVariant } from "./lib/easy-cave-variants.js";
 import { continueWinningCampaign } from "./lib/winning-browser-player.js";
 import { replayWinningPrefix } from "./lib/replay-winning-prefix.js";
+import { installReportFrameRecording } from "./lib/report-frame-recording.js";
 import {
   observeRecordedRoute,
   saveRecordedRoute,
@@ -24,10 +25,15 @@ const arg = (k) =>
   root = await fresh(arg("output")),
   source = await archiveSource(root);
 const winning = process.argv.includes("--winning");
-const safari = winning || process.argv.includes("--safari");
+const reportProbe = process.argv.includes("--forced-report");
+const safari = winning || reportProbe || process.argv.includes("--safari");
 const original = await originalGame();
 const prefixManifest = arg("prefix");
 assert.ok(!prefixManifest || winning, "Prefix continuation requires --winning");
+assert.ok(
+  !reportProbe || (!winning && !prefixManifest),
+  "Forced report exploration requires fresh startup",
+);
 let result = {
   completed: false,
   accepted: false,
@@ -38,6 +44,7 @@ try {
   result = await withCarlsbadBrowser(async (c) => {
     const { page, canvas, state, until, press } = c,
       points = [];
+    if (reportProbe) await installReportFrameRecording(page);
     if (winning)
       await page.evaluate(() => {
         window.campaignAwards = [];
@@ -95,6 +102,17 @@ try {
           ].includes(s.scene)
         )
           return;
+        if (s.reportPresentation && s.reportPresentation.phase !== "reading") {
+          await until(
+            (v) =>
+              !v.reportPresentation || v.reportPresentation.phase === "reading",
+          );
+          s = await state();
+          if (
+            !["rival-report", "rival-claim", "visit-notice"].includes(s.scene)
+          )
+            continue;
+        }
         if (s.expeditionResult?.presentation) {
           await until(
             (v) =>
@@ -271,11 +289,69 @@ try {
             await observe("safari-flight-return-" + attempt);
             if ((await state()).flight.outcome.status === "race-lost") {
               assert.equal((await state()).scene, "rival-claim");
+              if (reportProbe) {
+                await observe("forced-entry");
+                for (const key of ["p", "q", "s", "Space"])
+                  await page.keyboard.press(key);
+                await until((s) => s.reportPresentation?.phase === "reading");
+                assert.equal((await state()).systemOverlay, null);
+                assert.equal(await page.locator("#audio").isChecked(), false);
+                await observe("forced-ready");
+                await press("p");
+                await until((s) => s.systemOverlay?.kind === "pause");
+                await observe("pause");
+                await until((s) => s.systemOverlay.phase === "waiting");
+                await press("p");
+                await until((s) => !s.systemOverlay);
+                await observe("resumed");
+                await press("Space");
+                await until((s) => s.reportPresentation?.phase === "exit-wipe");
+                await observe("forced-exit");
+                await until((s) => s.scene !== "rival-claim");
+                await settle();
+                assert.equal((await state()).scene, "map");
+                await observe("map");
+                await writeFile(
+                  root + "/presentations.json",
+                  JSON.stringify(
+                    await page.evaluate(() => window.reportFrames),
+                    null,
+                    2,
+                  ) + "\n",
+                );
+                await saveRecordedRoute({
+                  page,
+                  root,
+                  observations: points,
+                  difficulty: 1,
+                  physical: true,
+                  scope:
+                    "EXPLORATORY actual forced claim after naturally lost Standard Safari race;graphics,early-key flush,Pause/resume,map and Restart;not acceptance",
+                });
+                await page.locator("#restart").click();
+                await until((s) => s.scene === "title");
+                assert.equal((await state()).campaign.banked, 0);
+                return {
+                  completed: true,
+                  accepted: false,
+                  reason: "forced",
+                  sourceCommit: source.commit,
+                  checkpoints: points.length,
+                  events: points.at(-1).eventCount,
+                  restart: true,
+                  nativeComparison: false,
+                };
+              }
               await settle();
               assert.equal((await state()).scene, "map");
               await observe("map-after-lost-race-" + attempt);
               continue;
             }
+            assert.equal(
+              reportProbe,
+              false,
+              "No forced-claim case executed;the player did not naturally lose this race",
+            );
             assert.equal(
               (await state()).flight.outcome.code,
               1,
@@ -436,6 +512,15 @@ try {
       };
     } catch (error) {
       await observe("failure");
+      if (reportProbe)
+        await writeFile(
+          root + "/presentations.json",
+          JSON.stringify(
+            await page.evaluate(() => window.reportFrames),
+            null,
+            2,
+          ) + "\n",
+        );
       if (winning)
         await writeFile(
           root + "/award-presentations.json",

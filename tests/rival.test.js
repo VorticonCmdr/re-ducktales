@@ -19,10 +19,21 @@ import {
   selectRivalDestination,
   RivalReport,
 } from "../src/game/rival.js";
+import {
+  reportResources,
+  advanceReportUntil,
+  finishReport,
+} from "./helpers/report-fixture.js";
+import { nextRandom } from "../src/game/integer.js";
 const locations = parseLocations(parseArchive(readFileSync("game/LOC.ARC")));
 const loot = parseLoot(parseArchive(readFileSync("game/LOOT.ARC")));
 function game() {
-  return new Game({ bankResources, locations, loot });
+  return new Game({
+    bankResources,
+    locations,
+    loot,
+    expeditionResources: reportResources,
+  });
 }
 
 test("rival policy keeps first ties, signed cash thresholds and difficulty strategies", () => {
@@ -109,16 +120,20 @@ test("exhausted rival preserves the flight-table alias and resumes the campaign 
   assert.equal(g.rivalReport.name.length, 50);
   assert.equal(g.rivalReport.name.charCodeAt(49), 17);
   assert.equal(c.rival.location, 0, "publish location after report");
-  assert.equal(g.seed, 29915);
+  assert.equal(
+    g.seed,
+    nextRandom(nextRandom(56)),
+    "Variant draw follows the portrait copy",
+  );
   assert.equal(c.rival.money, 0);
   assert.equal(m.b(0x4f49), 1);
   assert.equal(m.i(0x4f48), 511);
   assert.equal(c.locations.length, 35, "no invented treasure location");
-  for (let i = 0; i < 280; i++) g.advanceTick();
+  finishReport(g);
   assert.equal(g.scene, "map");
   assert.equal(c.rival.location, 35);
   g.completeCampaignAction({ type: "office" });
-  for (let i = 0; i < 280 && g.scene === "rival-report"; i++) g.advanceTick();
+  if (g.scene === "rival-report") finishReport(g);
   assert.equal(g.scene, "office");
   assert.equal(g.pendingCampaignAction, null);
   assert.equal(g.diagnostic, null);
@@ -144,8 +159,9 @@ test("a normal rival report suspends travel and rechecks the newly claimed desti
   assert.equal(c.rival.location, 35, "location is published after the report");
   assert.equal(c.locations[1].rivalCollected, true);
   assert.deepEqual(g.pendingCampaignAction, { type: "travel", target: 1 });
+  advanceReportUntil(g, () => g.reportPresentation.phase === "reading");
   g.input({ type: "fire" });
-  for (let i = 0; i < 7; i++) g.advanceTick();
+  finishReport(g);
   assert.equal(g.scene, "visit-notice");
   assert.equal(c.rival.location, 1);
   assert.equal(g.visitNotice.reason, "rival");
@@ -175,7 +191,7 @@ test("campaign idle time and map inspection never catch up rival turns", () => {
   assert.equal(g.seed, 56);
   g.completeCampaignAction({ type: "map" });
   assert.equal(g.scene, "rival-report");
-  for (let i = 0; i < 280; i++) g.advanceTick();
+  finishReport(g);
   const after = { ...c.rival },
     seed = g.seed;
   assert.equal(g.scene, "map");
@@ -237,7 +253,7 @@ test("exact day30 ending waits for rival cleanup and deposits each account once"
   assert.equal(c.banked, 1000);
   assert.equal(c.rival.banked, 5000);
   assert.equal(g.money, 0);
-  for (let i = 0; i < 280; i++) g.advanceTick();
+  finishReport(g);
   assert.equal(g.scene, "ending");
   assert.equal(g.ending.won, false);
   assert.equal(c.banked, 1000);

@@ -450,6 +450,10 @@ function frame() {
           game.scene === "departure" ||
           !!game.resultPresentation ||
           !!(
+            game.reportPresentation &&
+            game.reportPresentation.phase !== "reading"
+          ) ||
+          !!(
             game.scene === "map" &&
             game.campaign.destinationWaits &&
             !destinationInteractive
@@ -536,7 +540,7 @@ function frame() {
                               : game.scene === "expedition-result"
                                 ? `Expedition ${game.expeditionResult.phase === "failure" ? "failed" : game.expeditionResult.phase === "award" ? "treasure recovered" : "atomic transport unlocked"}${game.resultPresentation ? "" : " · Fire to continue"} · Cash $${game.money}`
                                 : game.scene === "visit-notice"
-                                  ? `${game.visitNotice.reason === "player" ? "This treasure is already collected" : "Glomgold has already taken this treasure"} · Fire to return to the map`
+                                  ? `${game.visitNotice.reason === "player" ? "This treasure is already collected" : "Glomgold has already taken this treasure"}${game.reportPresentation?.phase === "reading" ? " · Fire to return to the map" : ""}`
                                   : game.scene === "expedition-briefing"
                                     ? "The Junior Woodchuck Guide"
                                     : game.scene === "flight"
@@ -547,7 +551,7 @@ function frame() {
                                             "rival-claim",
                                             "rival-report",
                                           ].includes(game.scene)
-                                        ? `Glomgold has taken the treasure · Fire to continue`
+                                        ? `Glomgold has taken the treasure${game.reportPresentation?.phase === "reading" ? " · Fire to continue" : ""}`
                                         : game.scene === "money-bin"
                                           ? `Money bin · ${game.bin.phase} · Fire to dive`
                                           : game.scene === "map"

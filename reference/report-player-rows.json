@@ -1,0 +1,94 @@
+{
+  "kind": "report-presentation-row-candidate",
+  "producer": ".local/report-player-presentation-01",
+  "nativeComparison": false,
+  "scope": "Actual ordinary/collected-notice/cleanup report stripes,including prior exit's exact black page. Independent retained completed port targets;not original native transition screenshots or timing parity.",
+  "comparison": {
+    "exclusions": [],
+    "bandClock": "Five-retrace held bands at offsets0/25/50;strict browser replay compares exact captured clock values"
+  },
+  "expectedRowGroups": 45,
+  "targetProducers": [
+    ".local/current-winning-browser-03",
+    ".local/notice-player-controls-02"
+  ],
+  "artifacts": {
+    "presentations": {
+      "path": ".local/report-player-presentation-01/presentations.json",
+      "bytes": 1185710,
+      "sha256": "0964b4d8ae7d7d0e7ad150d103f4dd271b7b570f03a9b160635609a82fc8d5b3"
+    },
+    "originalSource": {
+      "path": "reference/report-presentation-source.json",
+      "bytes": 1871,
+      "sha256": "2a0c105a0a1f59152566ffb2fe762fcb63a113c06ffbb9f5ddb2763f46b74210"
+    },
+    "oldPoints": {
+      "path": ".local/current-winning-browser-03/campaign-checkpoints.json",
+      "bytes": 1290419,
+      "sha256": "f9c638653c48fae6feae32b7ba5d927f696c91e33ce8dc913450c5e1bc4b0ac1"
+    },
+    "oldNoticePoints": {
+      "path": ".local/notice-player-controls-02/campaign-checkpoints.json",
+      "bytes": 53985,
+      "sha256": "84b3ee2bac133bd17a0cb90cb3ef6d09fb58d9124e5c008892397b3efa6f1744"
+    },
+    "normal1": {
+      "path": ".local/current-winning-browser-03/dialogue-18.png",
+      "bytes": 15495,
+      "sha256": "f6a15050e62f4ac28aa135e85e751a208fff07c680defcd9fe9ccbdbd93b5ce0"
+    },
+    "normal3": {
+      "path": ".local/current-winning-browser-03/dialogue-21.png",
+      "bytes": 15709,
+      "sha256": "8aeb77b045929260e11c6fbdc29d8805944538d3d0bd55efb7814e044e725262"
+    },
+    "notice": {
+      "path": ".local/notice-player-controls-02/entry.png",
+      "bytes": 10841,
+      "sha256": "716f42c70d070075d5f7cd1db3ccff243bf9df10a7c72fb14bcd7809a19a54b8"
+    },
+    "beforeNormal": {
+      "path": ".local/report-player-presentation-01/before-normal.png",
+      "bytes": 18355,
+      "sha256": "4c4e2610fcb4a71ca2c2280b1652e0d41181ed9f9c29009ea34a9ee084aeedf1"
+    }
+  },
+  "cases": [
+    {
+      "key": "rival-report:1:rival",
+      "targetId": 1,
+      "variant": 1,
+      "target": "normal1",
+      "targetCheckpoints": "oldPoints",
+      "targetCheckpoint": "dialogue-18",
+      "incoming": {
+        "kind": "checkpoint",
+        "artifact": "beforeNormal"
+      }
+    },
+    {
+      "key": "visit-notice:24:player",
+      "targetId": 24,
+      "target": "notice",
+      "targetCheckpoints": "oldNoticePoints",
+      "targetCheckpoint": "entry",
+      "incoming": {
+        "kind": "clearing-page"
+      }
+    },
+    {
+      "key": "rival-report:3:rival",
+      "targetId": 3,
+      "variant": 0,
+      "target": "normal3",
+      "targetCheckpoints": "oldPoints",
+      "targetCheckpoint": "dialogue-21",
+      "incoming": {
+        "kind": "previous-exit",
+        "key": "visit-notice:24:player:publishing-exit:none"
+      }
+    }
+  ],
+  "verify": "node scripts/verify-report-presentation-rows.js --manifest=reference/report-player-rows.json"
+}

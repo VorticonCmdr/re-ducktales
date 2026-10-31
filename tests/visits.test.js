@@ -6,13 +6,18 @@ import { parseLocations } from "../src/game/campaign.js";
 import { Game } from "../src/game/application.js";
 import { CampaignVisitNotice } from "../src/game/campaign-visit.js";
 import { nextRandom } from "../src/game/integer.js";
+import {
+  reportResources,
+  advanceReportUntil,
+  finishReport,
+} from "./helpers/report-fixture.js";
 const locations = parseLocations(parseArchive(readFileSync("game/LOC.ARC")));
 const clues = parseArchive(readFileSync("game/CLUES.ARC"));
 
 test("collected-location dispatch precedes travel, clears only the coin latch and returns to the origin map", () => {
   for (const reason of ["player", "rival"])
     for (const origin of [1, 35]) {
-      const g = new Game({ locations });
+      const g = new Game({ locations, expeditionResources: reportResources });
       g.campaign.location = origin;
       g.campaign.day = 12;
       g.money = 1234;
@@ -33,6 +38,7 @@ test("collected-location dispatch precedes travel, clears only the coin latch an
         [g.seed, g.campaign.day, g.money, g.campaign.location],
         [seed, 12, 1234, origin],
       );
+      advanceReportUntil(g, () => g.reportPresentation.phase === "reading");
       g.advanceTick();
       g.input({ type: "fire" });
       for (let i = 0; i < 5; i++) g.advanceTick();
@@ -42,6 +48,8 @@ test("collected-location dispatch precedes travel, clears only the coin latch an
         "notice skipped before its seven-tick poll",
       );
       g.advanceTick();
+      assert.equal(g.reportPresentation.phase, "exit-wipe");
+      finishReport(g);
       assert.equal(g.scene, "map");
       assert.deepEqual(
         [g.seed, g.campaign.day, g.money, g.campaign.location],
@@ -128,25 +136,34 @@ test("original collected notices enforce their full waits and explicit sound com
 });
 
 test("notice device events are routed by token and remain isolated across restart", () => {
-  const g = new Game({ locations, audioEnabled: true });
+  const g = new Game({
+    locations,
+    audioEnabled: true,
+    hasAudioDevice: () => true,
+    expeditionResources: reportResources,
+  });
   g.campaign.locations[1].rivalCollected = true;
   g.travel(1);
   const n = g.visitNotice,
     token = n.token;
+  advanceReportUntil(g, () => g.reportPresentation.phase === "reveal");
   assert.ok(
     g
       .drainEffects()
       .some((e) => e.type === "sound" && e.id === 0x6e && e.token === token),
   );
-  for (let i = 0; i < 50; i++) g.advanceTick();
+  advanceReportUntil(g, () => g.reportPresentation.phase === "reading");
+  const query = g.drainEffects().find((e) => e.type === "audio-query");
   assert.equal(g.scene, "visit-notice");
   g.input({ type: "audio-status", token: "stale", busy: false });
   assert.equal(n.busy, null);
-  g.input({ type: "audio-status", token, busy: true });
+  g.input({ type: "audio-status", token: query.token, busy: true });
   g.input({ type: "audio-enabled", enabled: false });
   assert.equal(n.busy, true, "Mute is not a device completion");
-  g.input({ type: "audio-status", token, busy: false });
-  for (let i = 0; i < 7 && g.scene === "visit-notice"; i++) g.advanceTick();
+  advanceReportUntil(g, () => n.waitingForAudio);
+  const next = g.drainEffects().find((e) => e.type === "audio-query");
+  g.input({ type: "audio-status", token: next.token, busy: false });
+  finishReport(g);
   assert.equal(g.scene, "map");
   g.input({ type: "restart" });
   g.input({ type: "audio-enabled", enabled: true });

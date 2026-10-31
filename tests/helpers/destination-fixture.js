@@ -1,17 +1,33 @@
 import assert from "node:assert/strict";
+import { Scheduler } from "../../src/game/scheduler.js";
+export const destinationFixtureClocks = new WeakMap();
 
-// Unit-fixture clock provider: one driver tick then one retrace per step.
+// Unit-fixture clock provider:independent scheduler driver/retrace boundaries.
 // Tests here exercise campaign continuation, not native wall-clock alignment.
 function advance(game, done) {
   let steps = 0;
-  while (!done() && steps++ < 200) {
-    game.advanceTick();
-    game.advanceRetrace();
+  let clock = destinationFixtureClocks.get(game);
+  if (!clock) {
+    clock = new Scheduler(game);
+    destinationFixtureClocks.set(game, clock);
+  }
+  while (!done() && steps++ < 1000) {
+    const wake = game.nextSimulationWake();
+    clock.advanceTo(
+      Math.min(
+        clock.tickAt,
+        clock.retraceAt,
+        wake === null
+          ? Infinity
+          : wake + clock.origin + clock.pausedMilliseconds,
+      ),
+    );
     assert.equal(game.diagnostic, null);
   }
   assert.ok(done(), "Unfinished destination fixture");
   return steps;
 }
+export const advanceFixtureUntil = advance;
 export function destinationReady(game) {
   assert.equal(game.scene, "map");
   assert.ok(game.campaign.destinationWaits, "Destination must enter naturally");

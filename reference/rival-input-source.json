@@ -1,0 +1,51 @@
+{
+  "kind": "rival-input-static-source",
+  "buildManifest": "reference/build.json",
+  "program": "INVESTMENT_CODE.EXE",
+  "language": "x86:LE:16:Real Mode",
+  "analysisExecutable": ".local/analysis/INVESTMENT_CODE.EXE",
+  "analysisSha256": "4d1ceb7227d4f0d77abca186f931edc16b3773b47f0cef9720536de8755ef611",
+  "ranges": [
+    {
+      "key": "dialogue",
+      "offset": 10535,
+      "length": 148,
+      "address": "126b:0277",
+      "sha256": "da6136bed7e33066e3fe144bfc56f3ddb7307b4a11e30c531d41791b4619ecab",
+      "relocations": [
+        10671,
+        10659,
+        10602,
+        10578,
+        10560
+      ],
+      "artifact": {
+        "path": ".local/rival-input-source-01/dialogue.json",
+        "bytes": 869,
+        "sha256": "0cdc324ff536a64ea42f089d098fe7d65d0e446f501161863e82fa976ff32ce1"
+      }
+    },
+    {
+      "key": "location",
+      "offset": 10706,
+      "length": 6,
+      "address": "126b:0322",
+      "sha256": "f373068d5dd1786e58feab6299a39dbff6e8c2c7ea2390b1222413cd3713f603",
+      "relocations": [],
+      "artifact": {
+        "path": ".local/rival-input-source-01/location.json",
+        "bytes": 118,
+        "sha256": "c5c345d1ef3af3c51a95aee50429f64296534f5c3f901a0f8dfd1fcccd7c5548"
+      }
+    }
+  ],
+  "claims": [
+    "126b0277 guards sound6e with enabled03be;028d flushes input.",
+    "0297 checks global sound status immediately;busy speech uses raw joystick,14-tick waits and flag1;no global P/Q/S reader in that loop.",
+    "Only first status already idle enters shared09f5(40),with conditional enabled click24 on consumed Fire.",
+    "02d5 invokes graphics wipe,not audio reset;02d9 guards sound21.",
+    "0322 writes rival location after the entire report. Forced and ordinary claims share this routine."
+  ],
+  "limitations": "Static source only;native presentation/audio phase not newly captured. Browser controls and actual audio-device acknowledgements require separate verification.",
+  "verify": "node scripts/verify-rival-input-source.js"
+}

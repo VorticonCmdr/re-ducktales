@@ -191,6 +191,7 @@ test("rival report consumes explicit sound completion at fourteen-tick polls and
     audioEnabled: true,
     token: "rival:1",
   });
+  r.setAudioStatus("rival:1", true); // Explicit initial device acknowledgement.
   r.advanceTick();
   assert.equal(r.polledBusy, true);
   r.setAudioStatus("old", false);

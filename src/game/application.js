@@ -98,6 +98,7 @@ export class Game {
     this.marketMemory = null;
     this.pendingCampaignAction = null;
     this.rivalReport = null;
+    this.claim = null;
     this.atomicTransport = null;
     this.systemOverlay = null;
     this.pendingBinSystemKeys = new Map();
@@ -116,6 +117,7 @@ export class Game {
     this.pendingAtomicSystemKeys = new Map();
     this.pendingBriefingSystemKeys = new Map();
     this.pendingResultSystemKeys = new Map();
+    this.pendingRivalSystemKeys = new Map();
     this.exiting = false;
     if (readBiosSeed !== null && typeof readBiosSeed !== "function")
       throw Error("Invalid BIOS seed provider");
@@ -534,15 +536,17 @@ export class Game {
           ...result.report,
           audioEnabled: this.audioEnabled,
           token: `rival:${++this.audioScope}`,
+          pollInput: () => this.pollSystemInput(this.pendingRivalSystemKeys),
+          flushInput: () => this.flushRivalInput(),
         });
         this.scene = "rival-report";
-        this.effects.push({ type: "stopAudio" });
         if (this.audioEnabled)
           this.effects.push({
             type: "sound",
             id: 0x6e,
             token: this.rivalReport.token,
           });
+        this.rivalReport.begin();
         return;
       }
     }
@@ -631,6 +635,8 @@ export class Game {
         "photography",
         "atomic-transport",
         "expedition-briefing",
+        "rival-report",
+        "rival-claim",
         ...(this.resultWait ? ["expedition-result"] : []),
         "ending",
         "bank",
@@ -665,19 +671,21 @@ export class Game {
                         ? this.pendingJungleSystemKeys
                         : this.scene === "photography"
                           ? this.pendingPhotographySystemKeys
-                          : this.scene === "expedition-result"
-                            ? this.pendingResultSystemKeys
-                            : this.scene === "expedition-briefing"
-                              ? this.pendingBriefingSystemKeys
-                              : this.scene === "atomic-transport"
-                                ? this.pendingAtomicSystemKeys
-                                : this.scene === "ending"
-                                  ? this.pendingEndingSystemKeys
-                                  : this.scene === "bank"
-                                    ? this.pendingBankSystemKeys
-                                    : this.scene === "map"
-                                      ? this.pendingDestinationSystemKeys
-                                      : this.pendingBinSystemKeys;
+                          : ["rival-report", "rival-claim"].includes(this.scene)
+                            ? this.pendingRivalSystemKeys
+                            : this.scene === "expedition-result"
+                              ? this.pendingResultSystemKeys
+                              : this.scene === "expedition-briefing"
+                                ? this.pendingBriefingSystemKeys
+                                : this.scene === "atomic-transport"
+                                  ? this.pendingAtomicSystemKeys
+                                  : this.scene === "ending"
+                                    ? this.pendingEndingSystemKeys
+                                    : this.scene === "bank"
+                                      ? this.pendingBankSystemKeys
+                                      : this.scene === "map"
+                                        ? this.pendingDestinationSystemKeys
+                                        : this.pendingBinSystemKeys;
       keys.set(
         event.scanCode ??
           { quit: 0x10, pause: 0x19, "toggle-sound": 0x1f }[event.type],
@@ -707,6 +715,8 @@ export class Game {
       this.photography?.setAudioEnabled(event.enabled);
       this.visitNotice?.setAudioEnabled(event.enabled);
       this.rivalReport?.setAudioEnabled(event.enabled);
+      this.claim?.setAudioEnabled(event.enabled);
+      this.resumeRivalAudio();
       this.atomicTransport?.setAudioEnabled(event.enabled);
       this.ending?.setAudioEnabled(event.enabled);
       this.bank?.setAudioEnabled(event.enabled);
@@ -717,6 +727,8 @@ export class Game {
       this.cave?.setAudioStatus(event.token, event.busy);
       this.visitNotice?.setAudioStatus(event.token, event.busy);
       this.rivalReport?.setAudioStatus(event.token, event.busy);
+      this.claim?.setAudioStatus(event.token, event.busy);
+      this.resumeRivalAudio();
       this.atomicTransport?.setAudioStatus(event.token, event.busy);
       return;
     }
@@ -746,6 +758,7 @@ export class Game {
       this.ending = null;
       this.visitNotice = null;
       this.rivalReport = null;
+      this.claim = null;
       this.atomicTransport = null;
       this.systemOverlay = null;
       this.pendingBinSystemKeys.clear();
@@ -764,6 +777,7 @@ export class Game {
       this.pendingAtomicSystemKeys.clear();
       this.pendingBriefingSystemKeys.clear();
       this.pendingResultSystemKeys.clear();
+      this.pendingRivalSystemKeys.clear();
       this.resultWait = null;
       this.bank = null;
       this.exiting = false;
@@ -1285,19 +1299,9 @@ export class Game {
       this.collectAtomicTransport();
       return;
     }
-    if (this.scene === "rival-report") {
-      if (this.rivalReport.advanceTick()) {
-        const r = this.rivalReport,
-          action = this.pendingCampaignAction;
-        this.campaign.rival.location = r.target;
-        this.rivalReport = null;
-        this.pendingCampaignAction = null;
-        this.effects.push({ type: "stopAudio" });
-        if (this.audioEnabled && r.phase === "dialogue" && r.skipRequested)
-          this.effects.push({ type: "sound", id: 0x24 });
-        if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x21 });
-        this.finishCampaignAction(action);
-      }
+    if (["rival-report", "rival-claim"].includes(this.scene)) {
+      this.activeRivalDialogue().advanceTick();
+      this.collectRivalDialogue();
       return;
     }
     if (this.scene === "ending") {
@@ -1358,10 +1362,6 @@ export class Game {
     if (this.scene === "flight") {
       this.flight.advanceTick();
       this.collectFlight();
-      return;
-    }
-    if (this.scene === "rival-claim" && this.advanceDialogue(this.claim)) {
-      this.finishRivalClaim();
       return;
     }
     if (this.scene === "crash-repairs" && this.advanceDialogue(this.repairs)) {
@@ -1506,13 +1506,18 @@ export class Game {
       rival.money = u32(rival.money + treasure.value);
       this.seed = nextRandom(this.seed);
       c.seed = this.seed;
-      rival.location = this.departure.target;
-      this.claim = {
+      this.claim = new RivalReport({
+        target: this.departure.target,
         variant: this.seed & 1,
-        remaining: 40 * 7,
-        skipRequested: false,
-      };
+        audioEnabled: this.audioEnabled,
+        token: `claim:${++this.audioScope}`,
+        pollInput: () => this.pollSystemInput(this.pendingRivalSystemKeys),
+        flushInput: () => this.flushRivalInput(),
+      });
       this.scene = "rival-claim";
+      if (this.audioEnabled)
+        this.effects.push({ type: "sound", id: 0x6e, token: this.claim.token });
+      this.claim.begin();
       return;
     }
     if (result.code === 0) {
@@ -1567,6 +1572,7 @@ export class Game {
     this.pendingAtomicSystemKeys.clear();
     this.pendingBriefingSystemKeys.clear();
     this.pendingResultSystemKeys.clear();
+    this.pendingRivalSystemKeys.clear();
     if (this.bin) this.bin.inputQueue.length = 0;
     // Original19a5 clears the BIOS input queue and128-byte key table.
     if (this.scene === "title" && this.opening) this.opening.flushInput();
@@ -1589,6 +1595,8 @@ export class Game {
     else if (this.scene === "expedition-briefing") this.briefing.flushInput();
     else if (this.scene === "expedition-result" && this.resultWait)
       this.resultWait.flushInput();
+    else if (this.activeRivalDialogue())
+      this.activeRivalDialogue().flushInput();
     else if (this.scene === "ending") this.ending.flushInput();
     else if (this.scene === "bank") this.bank.flushInput(true);
     else {
@@ -1655,6 +1663,13 @@ export class Game {
     if (result === "resume" && this.scene === "bank") {
       this.bank.resumeInputPoll();
       this.collectBank();
+    }
+    if (
+      result === "resume" &&
+      this.activeRivalDialogue()?.waitingForInputPoll
+    ) {
+      this.activeRivalDialogue().resumeInputPoll();
+      this.collectRivalDialogue();
     }
     if (result === "resume" && this.scene === "ending") {
       this.ending.resumeInputPoll();
@@ -1914,7 +1929,9 @@ export class Game {
     this.beginResultWait();
   }
   beginResultWait() {
-    const count = { failure: 20, award: 40, atomic: 100 }[this.expeditionResult?.phase];
+    const count = { failure: 20, award: 40, atomic: 100 }[
+      this.expeditionResult?.phase
+    ];
     this.resultWait = new ResultInputWait({
       state: this.expeditionResult,
       count,
@@ -2135,8 +2152,45 @@ export class Game {
       this.beginEnding();
       return;
     }
-    this.effects.push({ type: "stopAudio" });
     this.completeCampaignAction({ type: "map" });
+  }
+  activeRivalDialogue() {
+    return this.scene === "rival-report"
+      ? this.rivalReport
+      : this.scene === "rival-claim"
+        ? this.claim
+        : null;
+  }
+  flushRivalInput() {
+    this.pendingRivalSystemKeys.clear();
+    this.flushExpeditionKeyboard();
+    this.handleInput({ type: "controls", fire: false, direction: null });
+    this.effects.push({ type: "flushControls" });
+  }
+  resumeRivalAudio() {
+    const r = this.activeRivalDialogue();
+    if (!this.systemOverlay && r?.waitingForAudio && r.statusKnown) {
+      r.resumeAudioStatus();
+      this.collectRivalDialogue();
+    }
+  }
+  collectRivalDialogue() {
+    const r = this.activeRivalDialogue();
+    if (!r?.complete) return;
+    this.pendingRivalSystemKeys.clear();
+    if (r.skipped && this.audioEnabled)
+      this.effects.push({ type: "sound", id: 0x24 });
+    if (this.audioEnabled) this.effects.push({ type: "sound", id: 0x21 });
+    this.campaign.rival.location = r.target; //126b0322,after all report controls.
+    if (this.scene === "rival-report") {
+      const action = this.pendingCampaignAction;
+      this.rivalReport = null;
+      this.pendingCampaignAction = null;
+      this.finishCampaignAction(action);
+    } else {
+      this.claim = null;
+      this.finishRivalClaim();
+    }
   }
   collectEffects() {
     for (const event of this.bin.drainEvents()) {
@@ -2380,6 +2434,7 @@ export class Game {
           }
         : {}),
       rivalReport: this.rivalReport?.snapshot() ?? null,
+      ...(this.scene === "rival-claim" ? { claim: this.claim.snapshot() } : {}),
       atomicTransport: this.atomicTransport?.snapshot() ?? null,
       ...(this.pendingMountainSystemKeys.size
         ? {

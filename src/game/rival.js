@@ -1,5 +1,6 @@
 import { nextRandom, s16, u8, u16, u32 } from "./integer.js";
 import { OFFICE, travelDays } from "./campaign.js";
+import { ResultInputWait } from "./result-input-wait.js";
 
 const signedByte = (n) => (n << 24) >> 24;
 export const RIVAL_UNLOCK = Object.freeze({
@@ -9,44 +10,129 @@ export const RIVAL_UNLOCK = Object.freeze({
   photography: 8,
 });
 
-// Resident126b:0297..02ed: an observed busy sound bypasses the extra40x7
-// fallback wait. Audio status is provided by the host, never inferred from time.
+// Shared original126b claim dialogue:global sound-status/raw Fire loop,then
+// optional09f5(40). The host supplies initial status and completion explicitly.
 export class RivalReport {
-  constructor({ target, variant, name, audioEnabled = false, token }) {
-    Object.assign(this, { target, variant, audioEnabled, token });
+  constructor({
+    target,
+    variant,
+    name,
+    audioEnabled = false,
+    token,
+    pollInput = () => true,
+    flushInput = () => {},
+  }) {
+    if (
+      typeof audioEnabled !== "boolean" ||
+      typeof pollInput !== "function" ||
+      typeof flushInput !== "function"
+    )
+      throw Error("Invalid rival input environment");
+    Object.assign(this, { target, variant, audioEnabled, token, pollInput });
     if (name !== undefined) this.name = name;
-    this.busy = audioEnabled;
+    this.onFlushInput = flushInput;
+    this.busy = audioEnabled ? null : false;
+    this.statusKnown = !audioEnabled;
+    this.waitingForAudio = false;
     this.phase = audioEnabled ? "speech" : "dialogue";
     this.polledBusy = false;
     this.pollRemaining = 0;
     this.remaining = 40 * 7;
     this.skipRequested = false;
     this.complete = false;
+    this.started = false;
+    this.wait = null;
   }
   setAudioEnabled(enabled) {
+    if (typeof enabled !== "boolean") throw Error("Invalid rival audio enable");
     this.audioEnabled = enabled;
-    if (!enabled) this.busy = false;
+    if (!enabled) {
+      this.busy = false;
+      this.statusKnown = true;
+    }
   }
   setAudioStatus(token, busy) {
-    if (token === this.token) this.busy = this.audioEnabled && busy;
+    if (token !== this.token) return;
+    if (typeof busy !== "boolean") throw Error("Invalid rival audio status");
+    this.busy = this.audioEnabled && busy;
+    this.statusKnown = true;
   }
-  advanceTick() {
-    if (this.complete) return true;
-    if (this.phase === "dialogue") {
-      this.remaining--;
-      return (this.complete =
-        this.remaining === 0 ||
-        (this.remaining % 7 === 0 && this.skipRequested));
+  begin() {
+    if (this.started) throw Error("Rival dialogue already started");
+    this.started = true;
+    this.flushInput(); //126b028d:19a5,also before the raw sound-status loop.
+    this.readSpeech();
+  }
+  flushInput() {
+    if (this.wait) this.wait.flushInput();
+    else {
+      this.skipRequested = false;
+      this.onFlushInput();
     }
-    if (this.pollRemaining > 0 && --this.pollRemaining > 0) return false;
+  }
+  readSpeech() {
+    if (!this.statusKnown) {
+      this.waitingForAudio = true;
+      return;
+    }
+    this.waitingForAudio = false;
     if (!this.busy) {
       if (this.polledBusy) this.complete = true;
-      else this.phase = "dialogue";
-    } else if (this.skipRequested) this.complete = true;
-    else {
+      else {
+        this.phase = "dialogue";
+        this.wait = new ResultInputWait({
+          state: this,
+          count: 40,
+          pollInput: this.pollInput,
+          flushInput: this.onFlushInput,
+        });
+        this.wait.begin();
+        this.complete = this.wait.complete;
+      }
+    } else if (this.skipRequested) {
+      // Raw Fire exits speech without the fallback's click24.
+      this.skipRequested = false;
+      this.complete = true;
+    } else {
       this.polledBusy = true;
       this.pollRemaining = 14;
     }
+  }
+  resumeAudioStatus() {
+    if (
+      !this.started ||
+      !this.waitingForAudio ||
+      !this.statusKnown ||
+      this.complete
+    )
+      throw Error("Rival audio resumed outside status boundary");
+    this.readSpeech();
+  }
+  get waitingForInputPoll() {
+    return this.wait?.waitingForInputPoll === true;
+  }
+  get skipped() {
+    return this.wait?.skipped === true;
+  }
+  resumeInputPoll() {
+    if (!this.waitingForInputPoll)
+      throw Error("Rival resumed outside input reader");
+    this.wait.resumeInputPoll();
+    this.complete = this.wait.complete;
+  }
+  advanceTick() {
+    if (!this.started) {
+      this.begin();
+      return this.complete;
+    }
+    if (this.complete) return true;
+    if (this.waitingForAudio) return false;
+    if (this.phase === "dialogue") {
+      this.complete = this.wait.advanceTick();
+      return this.complete;
+    }
+    if (this.pollRemaining > 0 && --this.pollRemaining > 0) return false;
+    this.readSpeech();
     return this.complete;
   }
   snapshot() {
@@ -59,6 +145,8 @@ export class RivalReport {
       busy: this.busy,
       pollRemaining: this.pollRemaining,
       complete: this.complete,
+      ...(this.waitingForAudio ? { waitingForAudio: true } : {}),
+      ...(this.waitingForInputPoll ? { waitingForInputPoll: true } : {}),
     };
   }
 }

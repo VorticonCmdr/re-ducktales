@@ -1,13 +1,14 @@
 # Current port status
 
-Updated2026-10-31. **The whole game is incomplete.** The new cave passage-order
-fix passes focused native/source/component/browser checks,218 units and build.
-The fresh Standard browser campaign and independent replay pass victory,all26
-credits and Restart. Report/audio receipts remain from before the cave change.
-Cave timing,broader route/input
-fidelity and deferred Hard campaigns remain open. Nothing is pushed or deployed.
+Updated2026-10-31. **The whole game is incomplete.** Cave entry now restores
+both original wipe call sites and the second-page striped reveal. Focused browser
+and timing checks pass; original loading work is still absent from gameplay.
+The last full Standard campaign/replay passed before this transition change.
+Its strict combined gate now correctly rejects the changed runtime; a fresh
+whole-campaign admission remains required. Hard campaigns remain deferred.
+Nothing is pushed or deployed.
 
-## Working route and current acceptance
+## Last accepted full route (before entry-transition change)
 
 Startup/security/office → Too-Pei cave → naturally lost Safari race/forced claim
 → Kenya photography → Great Outback jungle → Lost World mountain → Atlantis,
@@ -23,7 +24,7 @@ six retained completed pages and original source composition provide independent
 targets. Jungle and both mountain climbs finish with3 lives. No state restore,
 RNG/money/difficulty patch or image exclusion is used.
 
-The current combined winning gate also passes original ending/credits/source
+The retained pre-transition combined winning gate passes original ending/credits/source
 proofs,218 unit cases and production build. The old Safari-HUD capture is retained
 unchanged;the new capture/replay admit the corrected intermediate cave state order.
 [Acceptance](../reference/current-winning-acceptance.json),
@@ -113,21 +114,28 @@ negatives pass. This is conditional walking evidence,not whole-level/browser
 timing acceptance. [Scope](mountain-phase.md).
 The new natural cave reference passes480 uninterrupted samples and all four
 Right+Fire/release events. Its strict port probe currently fails on stage/timing
-differences:the port awards50 at3.67s while the original still has0 at6.83s.
+differences:the current port awards50 at4.37s while the original still has0 at6.83s.
 The source-confirmed room/entry ordering is now corrected and passes all four
 directions/revisit plus an old-class negative and the actual browser cave case.
-[Ordering fix](cave-passage-order.md). No timing correction is accepted yet.
+[Ordering fix](cave-passage-order.md). Entry page waits are now restored;whole-cave timing still fails.
 [Evidence and failing probe](cave-native-cadence.md).
 The first natural cave sprite10 load is now measured separately:84 conditional
 driver counts (about1.15s),with exact38080-byte native planar output. This cost is
 currently omitted by synchronous browser loading. Original585-byte loader,
 302-byte caller and222-byte converter correspondence pass with three negatives;
 the owned emulator is closed. [Loading evidence](cave-loader-work.md).
-The isolated loading-work prototype passes source counts/decoded output for all46
-cave sprites and reproduces the native sprite10 planes. It is not yet wired into
-gameplay;picture loading and remaining loader/environment work need admission.
-Next:measure background loading,complete the counted load boundary and refresh
-browser acceptance;do not fit delays from observed clocks.
+The natural background0 load now passes85 conditional driver counts and all32000
+original planar bytes,with three negatives. [Background](cave-background-load.md).
+The isolated work prototype covers46 sprites plus the picture;it remains outside
+the gameplay runtime. Original DOS/interrupt/allocator work is not fully admitted.
+Cave entry now executes initial and per-room wipes,each five bands/five retraces,
+and reveals the second room page without swapping page roles. The existing actual
+browser cave scenario passes;focused tests check50 first-entry wipe retraces and25
+reveal retraces,no input/RNG during reveal,and unchanged page roles.
+[Transition scope](cave-entry-transitions.md). The old full-campaign gate rejects
+this changed runtime as required;it has not been refreshed.
+Next:integrate counted loading at original call boundaries,review cache/draw-call
+placement,then refresh browser campaign acceptance. Do not fit observed delays.
 Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability

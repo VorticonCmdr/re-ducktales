@@ -58,7 +58,12 @@ export function compareCave(
   );
   // Align with the original after-party boundary; instruction work precedes
   // the first pending page and is not supplied by an expected timer value.
-  for (let i = 0; i < 500 && !cave.pending; i++) cave.advanceTick();
+  for (let i = 0; i < 1000 && !cave.pending; i++) {
+    cave.advanceTick();
+    // Entry now executes the original two25-retrace wipes. Do not inject
+    // their completion or derive elapsed time from the expected checkpoint.
+    if (!cave.pending && cave.wait?.clock === "retrace") cave.advanceRetrace();
+  }
   assert.ok(cave.pending, "unfinished first cave party draw");
   assert.deepEqual(cave.wait, { clock: "retrace", remaining: 1 });
   const m = cave.memory;

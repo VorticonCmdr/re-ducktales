@@ -153,7 +153,7 @@ test("digital providers remain separate and invalid raw source bytes stop", () =
     const x = fresh(activity, { provider: "digital" });
     x.p.readInputByte = () => 256;
     assert.throws(
-      () => x.clock.advanceTo(2000),
+      () => x.clock.advanceTo(10000),
       /Invalid .* input-byte provider/,
     );
   }

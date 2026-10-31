@@ -69,6 +69,7 @@ function run(resources, scenario, events = null) {
   cave.present = function* (commands, options) {
     if (this.phase === scenario.status) terminalCounts.presentations++;
     yield* present.call(this, commands, options);
+    observe();
   };
   cave.party = function (...args) {
     if (this.phase === scenario.status) terminalCounts.partyDraws++;
@@ -77,12 +78,7 @@ function run(resources, scenario, events = null) {
   const frames = [],
     checkpoints = [];
   let lastPresentation = 0;
-  // Watchdog only: source clocks and input ordinals are unchanged. With room
-  // drawing charged, the expiry scenario reaches its terminal delay near the
-  // old10000-step limit; allow that original delay to finish without skipping it.
-  for (let step = 0; step < 15000 && !cave.outcome; step++) {
-    cave.advanceTick();
-    cave.advanceRetrace();
+  const observe = () => {
     if (cave.presentations !== lastPresentation) {
       assert.equal(
         cave.presentations,
@@ -100,6 +96,14 @@ function run(resources, scenario, events = null) {
       frames.push(cave.phase);
       lastPresentation = cave.presentations;
     }
+  };
+  // Watchdog only; every publication is observed,including flip-to-wipe
+  // transitions within the same callback. No input or clock is skipped.
+  for (let step = 0; step < 15000 && !cave.outcome; step++) {
+    cave.advanceTick();
+    observe();
+    cave.advanceRetrace();
+    observe();
     checkpoints.push(cave.snapshot());
   }
   assert.ok(
@@ -136,7 +140,15 @@ function check(actual, scenario) {
   );
 }
 export function verifyFullPassages(resources, CaveClass = Cave) {
-  const c = new CaveClass({
+  class ObservedCave extends CaveClass {
+    *present(commands, options) {
+      yield* super.present(commands, options);
+      // The last exit flip and the first entry wipe can publish in the same
+      // retrace callback. Observe the completed flip before its caller resumes.
+      observe();
+    }
+  }
+  const c = new ObservedCave({
     ...resources,
     currentDrive: 2,
     variant: 0,
@@ -150,7 +162,11 @@ export function verifyFullPassages(resources, CaveClass = Cave) {
     assert.ok(++steps < 3000, "unfinished C-drive passage sequence");
     assert.equal(c.outcome, null, "unexpected C-drive terminal path");
     c.advanceTick();
+    observe();
     c.advanceRetrace();
+    observe();
+  };
+  const observe = () => {
     if (c.presentations !== shown) {
       assert.equal(c.presentations, shown + 1);
       renderFlightPixels(

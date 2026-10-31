@@ -509,21 +509,27 @@ export class Renderer {
       return;
     }
     if (game.scene === "cave") {
-      if (game.cave.current)
-        this.ctx.putImageData(
-          new ImageData(
-            renderFlightPixels(
-              game.cave.current,
-              this.resources.archives.get("EXP.ARC"),
-              this.font,
-              "EXP.ARC",
-            ),
-            320,
-            200,
-          ),
-          0,
-          0,
+      const cave = game.cave;
+      if (cave.current) {
+        let pixels = renderFlightPixels(
+          cave.current,
+          this.resources.archives.get("EXP.ARC"),
+          this.font,
+          "EXP.ARC",
         );
+        if (cave.presentationMode === "overlay") {
+          if (this.caveWipeGame !== cave || this.caveWipeToken !== cave.wipeToken) {
+            this.caveWipeGame = cave;
+            this.caveWipeToken = cave.wipeToken;
+            this.caveWipeSource = this.ctx.getImageData(0, 0, 320, 200).data;
+          }
+          const composite = Uint8ClampedArray.from(this.caveWipeSource);
+          for (let i = 0; i < pixels.length; i += 4)
+            if (pixels[i + 3]) composite.set(pixels.subarray(i, i + 4), i);
+          pixels = composite;
+        }
+        this.ctx.putImageData(new ImageData(pixels, 320, 200), 0, 0);
+      }
       return;
     }
     if (game.scene === "flight") {

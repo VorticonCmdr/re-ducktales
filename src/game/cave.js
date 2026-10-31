@@ -60,6 +60,8 @@ export class Cave {
     this.presentations = 0;
     this.phase = "entering";
     this.current = null;
+    this.presentationMode = "replace";
+    this.wipeToken = 0;
     this.background = [];
     this.buffers = [[], []];
     this.drawIndex = 0;
@@ -223,12 +225,14 @@ export class Cave {
       return;
     if (this.pending) {
       this.current = this.pending;
+      this.presentationMode = "replace";
       this.pending = null;
       this.presentations++;
     }
     this.resume();
   }
   *present(commands, { striped = false } = {}) {
+    this.presentationMode = "replace";
     this.buffers[this.drawIndex] = commands;
     if (striped) {
       // EGA0101 copies the draw page into the visible page in five groups
@@ -388,6 +392,23 @@ export class Cave {
       m.i(0x4e28, 16);
     }
   }
+  *wipe() {
+    // EGA0155: black rows band,band+5,...,band+195; five retraces/band.
+    // Transparent rows preserve the incoming screen in the renderer only.
+    this.wipeToken++;
+    for (let band = 0; band < 5; band++) {
+      this.current = [];
+      for (let y = 0; y < 200; y++)
+        if (y % 5 <= band)
+          this.current.push({ op: "fill", x: 0, y, width: 320, height: 1, color: 0 });
+      this.presentationMode = "overlay";
+      this.presentationTransition = { kind: "wipe", band };
+      this.buffers[1 - this.drawIndex] = this.current;
+      this.presentations++;
+      yield { clock: "retrace", remaining: 5 };
+    }
+    this.presentationTransition = null;
+  }
   *enter() {
     const m = this.memory;
     this.phase = "entering";
@@ -395,12 +416,13 @@ export class Cave {
     this.updateTorch();
     this.progress = u16(this.progress + 1);
     if (this.cell & 64) m.b(0x546a, 1);
+    yield* this.wipe(); // Overlay057e, before background loading/composition.
     for (let i = 0; i < 2; i++) {
       let c = yield* this.scene(i === 0);
       if (!this.enteredFrom || m.b(0x5d2b)) c = yield* this.party(c);
       if (m.signedByte(0x8b54) > 1 && !(this.cell & 80))
         yield* this.draw(c, 43);
-      yield* this.present(c);
+      yield* this.present(c, { striped: i === 1 }); // 05e9 flip;0638 reveal.
     }
     m.i(0x8eb2, 0);
     if (!m.b(0x5d2b)) {
@@ -517,6 +539,7 @@ export class Cave {
       remaining: 1,
       until: this.now() + work.milliseconds,
     };
+    yield* this.wipe(); // Overlay0491; the first room also executes057e.
     this.sound(0);
     let deadline = 0;
     while (true) {

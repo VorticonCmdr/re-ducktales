@@ -37,11 +37,11 @@ function directionTo(cave, target) {
   }
   throw Error(`No ${target} route`);
 }
-function run(resources, scenario, events = null) {
+export function runCaveRoute(resources, scenario, events = null, CaveClass = Cave) {
   let cave,
     consumed = 0;
   const stream = [];
-  cave = new Cave({
+  cave = new CaveClass({
     ...resources,
     ...scenario.start,
     pollInput: () => {
@@ -253,10 +253,10 @@ export async function verifyCaveRoutes(resources) {
     "required cave cases",
   );
   for (const scenario of scenarios) {
-    const actual = run(resources, scenario);
+    const actual = runCaveRoute(resources, scenario);
     check(actual, scenario);
     // Replay only the independent input stream from the same initial state.
-    const replay = run(resources, scenario, actual.stream);
+    const replay = runCaveRoute(resources, scenario, actual.stream);
     check(replay, scenario);
     assert.deepEqual(
       replay.checkpoints,
@@ -300,7 +300,7 @@ export async function verifyCaveRoutes(resources) {
         controls: { direction: null, fire: false },
       }));
       assert.throws(
-        () => check(run(resources, scenario, altered), scenario),
+        () => check(runCaveRoute(resources, scenario, altered), scenario),
         /Unfinished cave source input/,
       );
     }

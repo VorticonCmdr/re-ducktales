@@ -1,0 +1,22 @@
+{
+  "kind": "original-cave-treasure-order",
+  "expectedCases": 1,
+  "sourceInstructions": 144,
+  "sourceBytes": 371,
+  "source": {
+    "path": ".local/cave-treasure-order-source-01/treasure.json",
+    "bytes": 15992,
+    "sha256": "b720e797a820dac5b828dae7807f5946a052d013ec91097d4bad5d5b417c2eae"
+  },
+  "nativeParent": {
+    "path": "reference/cave-native-cadence.json",
+    "bytes": 50446,
+    "sha256": "2c03871b329c819e0097fcac017ad2bd0915597014863386abd0ef056ee91e75"
+  },
+  "expectedCompositions": 2,
+  "expectedCallerCopies": 13,
+  "expectedPartyCalls": 15,
+  "expectedPresentationCalls": 15,
+  "expectedRequestedRetraces": 64,
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_cave_treasure_source.py"
+}

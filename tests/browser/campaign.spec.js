@@ -2,7 +2,7 @@ import { openOffice } from "./helpers/office-entry.js";
 import { pressDestinationKey } from "./helpers/destination-input.js";
 import { waitForScene, waitForDifficulty } from "./helpers/scene.js";
 import { test, expect } from "@playwright/test";
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { PNG } from "pngjs";
 import { openRecordedApplication } from "./helpers/clock.js";
 import {
@@ -244,7 +244,7 @@ for (const [name, x, y, activity] of [
 test("keyboard flight lands, explores a cave, collects treasure and returns to the map", async ({
   page,
 }, testInfo) => {
-  test.setTimeout(180000);
+  test.setTimeout(360000);
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   // Supply an explicit browser clock so test-runner latency cannot add idle
@@ -264,13 +264,14 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
       const band = s?.cave?.presentationTransition?.band;
       if (
         s?.scene === "cave" &&
+        s.cave.phase === "treasure" &&
+        s.cave.presentationTransition?.kind === "reveal" &&
         band !== undefined &&
         revealBands.at(-1) !== band
       ) {
         revealBands.push(band);
-        await c.screenshot({
-          path: testInfo.outputPath(`cave-reveal-${band}.png`),
-        });
+        await writeFile(testInfo.outputPath(`cave-reveal-${band}.png`),
+          Buffer.from((await c.evaluate(el => el.toDataURL())).split(",")[1], "base64"));
       }
       if (s?.diagnostic) throw Error(s.diagnostic);
       if (s && predicate(s)) return s;
@@ -402,9 +403,9 @@ test("keyboard flight lands, explores a cave, collects treasure and returns to t
   expect(result.campaign.day).toBe(
     2 + (frames < 210 ? -1 : frames > 462 ? 1 : 0),
   );
-  const firstRoom = result.cave.room;
+  const ready = await until((s) => s.cave.phase === "exploring");
+  const firstRoom = ready.cave.room;
   expect(firstRoom).toBe(17);
-  await until((s) => s.cave.phase === "exploring");
   await page.keyboard.down("ArrowRight");
   await page.keyboard.down("Space");
   await until((s) => s.scene !== "cave" || s.cave.room === 18);

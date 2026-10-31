@@ -6,16 +6,16 @@ the cached room in the normal input loop without extra composition. Focused brow
 and source/component checks pass; runtime loading now charges counted resident decode/conversion work.
 Initial map/sprite loading is now staged and charged;parser CPU and remaining
 loader/system costs are still omitted.
-The source-pinned12-check initialization gate passes,including221 units,55
-resource work cases,16 carried initial segments,actual browser controls and a
-loading-only negative. Whole-cave timing still fails. [Scope](cave-initialization.md),
-[receipt](../reference/cave-initialization-admission.json).
+The initialization gate passed12 checks before the treasure-order correction.
+The corrected treasure now restores its wipe/background,2 compositions and13
+extra caller copies. The new15-check gate and fresh campaign replay are pending.
+Whole-cave timing still fails. [Treasure scope](cave-treasure-order.md).
 The last full Standard campaign/replay passed before these cave changes.
 Its strict combined gate now correctly rejects the changed runtime; a fresh
 whole-campaign admission remains required. Hard campaigns remain deferred.
 Nothing is pushed or deployed.
 
-## Last accepted full route (before entry-transition change)
+## Last accepted full route (before cave presentation changes)
 
 Startup/security/office → Too-Pei cave → naturally lost Safari race/forced claim
 → Kenya photography → Great Outback jungle → Lost World mountain → Atlantis,
@@ -159,8 +159,11 @@ now precedes loading. Exact263-byte/86-instruction source proof and focused
 conditional tests pass. Initial map and sprite loading is now staged;enemy RNG
 occurs after minimap completion. All8 maps/default and optional load paths pass
 16 carried component cases. [Initialization](cave-initialization.md).
-Next:refresh the complete Standard winning browser campaign and independent
-replay before further residual loader/system timing work. Do not fit delays.
+A fresh pre-treasure-fix candidate completed the same full win/all26 credits/
+Restart with183 checkpoints and7261 inputs. It is historical and unaccepted;the
+new treasure source check identified15 compositions where the original has2.
+Next:verify the restored treasure,then capture/replay a fresh Standard win before
+further residual timing work. Do not fit delays.
 Resource/text costs,remaining
 CPU/PIT phase and uninterrupted whole-game timing remain open. Cross-scene keys,
 modifier/BIOS behavior,mouse/joystick parity and arbitrary campaign finishability

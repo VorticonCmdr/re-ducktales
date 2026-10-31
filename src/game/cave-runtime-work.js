@@ -37,6 +37,11 @@ function roomCopy(sourceVideo, destinationVideo) {
   };
 }
 
+// Explicit caller copies,additional to the restore inside party20b8.
+export function caveBackgroundRestoreWork() {
+  return { ...total([egaSignedCopyWork(roomCopy(false, true))]), copies: 1 };
+}
+
 // Original26bb..28ad: cache->video, door/room overlays, video->cache.
 // The one renderer copy command describes pixels; it is not the source call list.
 export function caveRoomCompositionWork(

@@ -15,6 +15,7 @@ import {
   caveRoomCompositionWork,
   caveInitialMinimapWork,
   caveRuntimePartyWork,
+  caveBackgroundRestoreWork,
 } from "./cave-runtime-work.js";
 import { caveEndings } from "./cave-endings.js";
 import { caveTransition } from "./cave-transitions.js";
@@ -392,6 +393,12 @@ export class Cave {
   }
   back() {
     return [...this.buffers[this.drawIndex]];
+  }
+  *copyBackground() {
+    const commands = this.restoreBackground(), work = caveBackgroundRestoreWork();
+    this.lastDrawingWork = { kind: "background-restore", ...work };
+    yield { clock: "graphics", remaining: 1, until: this.now() + work.milliseconds };
+    return commands;
   }
   restoreBackground(region = { x: 0, y: 0, width: 320, height: 200 }) {
     const { x, y, width, height } = region;

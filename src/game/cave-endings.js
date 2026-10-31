@@ -7,16 +7,25 @@ export const caveEndings = {
     m.b(0x546a, 1);
     yield* this.load(44);
     yield* this.load(45, 96, 94);
-    for (let i = 0; i < 5; i++) {
+    yield* this.wipe(); // Main16fb,before rebuilding the goal-room cache.
+    yield* this.loadWork(0); // Main1706.
+    for (let i = 0; i < 2; i++) {
       const c = yield* this.party(yield* this.scene());
       yield* this.draw(c, 45);
       yield* this.draw(c, 22);
       yield* this.present(c, { striped: i === 0 });
     }
+    // Main1778..17c2 restores the cached room for three ordinary flips.
+    for (let i = 0; i < 3; i++) {
+      const c = yield* this.party(yield* this.copyBackground());
+      yield* this.draw(c, 45);
+      yield* this.draw(c, 22);
+      yield* this.present(c);
+    }
     m.b(0x546a, 2);
     this.sound(0x49);
     for (let i = 0; i < 10; i++) {
-      const c = yield* this.party(yield* this.scene(), { asset: 44 });
+      const c = yield* this.party(yield* this.copyBackground(), { asset: 44 });
       yield* this.draw(c, 45);
       yield* this.draw(c, 22);
       yield* this.present(c);

@@ -35,7 +35,7 @@ test("cave input polls pause actors while clocks run and room entry flushes unre
         body = await response.text();
       const wait =
         /yield\s*\{\s*clock: "graphics",\s*remaining: 1,\s*until:[^}]+\};/g;
-      expect(body.match(wait)?.length, "SETUP: cave graphics hooks").toBe(7);
+      expect(body.match(wait)?.length, "SETUP: cave graphics hooks").toBe(8);
       await route.fulfill({
         response,
         body: body.replace(wait, "/* isolated browser graphics-work bypass */"),

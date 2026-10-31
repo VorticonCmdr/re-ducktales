@@ -59,6 +59,17 @@ for (const p of paths) {
     assert.doesNotMatch(historical.toString(), /\bimport\b/);
     historicalModules.set("./" + p.split("/").at(-1),
       `data:text/javascript;base64,${historical.toString("base64")}`);
+    if (p === "src/game/cave-endings.js") {
+      // The independently source-checked treasure method changed. Keep the
+      // old class paired with its old method;all other endings stay pinned.
+      const pattern = /\*treasure\(\) \{[\s\S]*?\n  \},\n  \*capture\(/;
+      assert.ok(pattern.test(current.toString()) && pattern.test(historical.toString()));
+      current = Buffer.from(current.toString().replace(pattern, historical.toString().match(pattern)[0]));
+    }
+  }
+  if (p === "src/game/cave-runtime-work.js") {
+    current = Buffer.from(current.toString().replace(
+      "\n// Explicit caller copies,additional to the restore inside party20b8.\nexport function caveBackgroundRestoreWork() {\n  return { ...total([egaSignedCopyWork(roomCopy(false, true))]), copies: 1 };\n}\n", ""));
   }
   if (p === "src/assets.js") {
     // The decoder is unchanged;the parser additionally retains an independent

@@ -184,8 +184,9 @@ try {
       await observe("bank-deposited");
       assert.equal((await state()).money, 0);
       assert.ok((await state()).campaign.banked > 0);
-      await press("Space");
+      await page.keyboard.down("Space");
       await until((s) => s.scene !== "bank");
+      await page.keyboard.up("Space");
       await settle();
       assert.equal((await state()).scene, "map");
       await observe("map-after-bank");

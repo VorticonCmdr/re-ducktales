@@ -100,3 +100,24 @@ life-loss frame). This establishes a working browser route,not quantitative
 speed acceptance. An attempted concurrent DOM timing sampler could not access
 `performance.now` in the browser tool's read-only evaluation scope;it yielded no
 timing evidence and is excluded. No alternate clock or fitted result was used.
+
+The isolated `codex/loader-environment` experiment at1dfbd20 now applies original
+source-counted sound IRQ instruction work against this main Cave implementation.
+Its control and work runs both exit1,as required for the remaining native timing
+mismatch. Source/fixture preflights pass. It initializes the captured sound state
+at the first-input boundary;it is conditional evidence,not complete replay from
+ENTRY. The instruction subtotal adds36.451667ms to active graphics waits over5974
+IRQs. Torch and entry-clear phases still land at2782.296/5379.106ms,so the first
+timing difference remains. Final party pose matches with IRQ work;final RNG
+still differs. No elapsed-time residual was used as an input. [Local log hashes
+and source identities](../reference/cave-source-irq-movement.json).
+
+Reproduce from `/private/tmp/ducktales-loader-environment` at1dfbd20 with
+`DUCKTALES_MOVEMENT_RUNTIME_ROOT` set to this main checkout,using
+`node scripts/explore-cave-irq-cadence.js --control` and
+`node scripts/explore-cave-irq-cadence.js`. Both are exploratory failures,not
+acceptance commands. Chained BIOS,hardware/port budgets,masked intervals and
+remaining DOS/allocator/caller work are excluded;precomputed multi-part drawing
+deadlines can absorb an earlier extension. These limits must be resolved before
+integrating interrupt CPU work into playable movement. The next timing target
+is the remaining loader/caller and scheduling boundary,not a global slowdown.

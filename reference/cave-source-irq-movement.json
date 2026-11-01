@@ -1,0 +1,24 @@
+{
+  "kind": "conditional-cave-irq-movement-experiment",
+  "accepted": false,
+  "analysisCommit": "1dfbd20",
+  "runtimeCommit": "7b92a8c",
+  "runtimeCaveSHA256": "1b181ded7f805697bcbd96913a7bd3c96b05d0d151560df8c7b29d4095b28b2d",
+  "artifacts": {
+    "control.log": {
+      "path": ".local/cave-source-irq-movement-01/control.log",
+      "bytes": 8910,
+      "sha256": "773cd6b99a0aab415cb9bfab291a4fdd481471d3e02e311896103c026be44e78"
+    },
+    "work.log": {
+      "path": ".local/cave-source-irq-movement-01/work.log",
+      "bytes": 11092,
+      "sha256": "8ea4b30b195e6e8f3691507df00944f84429dc1f6b74b5e7e674e07c31323528"
+    }
+  },
+  "expectedExitCodes": {
+    "control": 1,
+    "work": 1
+  },
+  "scope": "Independent physical stream;captured sound initialization at first input;source IRQ instruction subtotal only. Both native timing comparisons fail. No playable runtime change."
+}

@@ -1,5 +1,9 @@
 # Current port status
 
+Public deployment: [play on GitHub Pages](https://www.decompile.tools/re-ducktales/).
+Select your own original game folder;original assets remain local to the browser.
+Pushes to `main` build and deploy the application automatically.
+
 **Movement speed accepted by the user (2026-11-01).** The current build at
 localhost:5187 feels right;keep its pace. Other integration/backlog work below
 remains deferred. See [measurements and remaining fidelity limits](movement-speed.md).

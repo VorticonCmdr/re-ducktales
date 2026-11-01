@@ -86,8 +86,14 @@ npm run preview
 Git. Original files are never overwritten or bundled in the build. Keep asset
 exports and diagnostic dumps in `.local/` or outside the repository.
 
-`dist/` uses relative URLs for eventual GitHub Pages hosting. No remote, push,
-publication or deployment is configured by this milestone.
+Play the hosted port at [GitHub Pages](https://www.decompile.tools/re-ducktales/).
+Select your own original game folder to begin; files are read locally in your
+browser and are not uploaded. The asset explorer is available on the same site.
+
+Pushes to `main` build and deploy `dist/` through `.github/workflows/pages.yml`.
+The build uses relative URLs for the repository path, and the publication check
+allows only the two application pages and compiled JavaScript/CSS assets.
+Original game files, captures and analysis dumps are excluded.
 
 Campaign travel: Right+Space in the office opens the map. Select Macaroon to bank
 cash, then select the office to return. See [campaign evidence and limits](docs/campaign-travel.md).

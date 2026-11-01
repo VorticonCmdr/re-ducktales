@@ -33,6 +33,7 @@ parser.add_argument('--mountain-page-observer', action='store_true', help='Obser
 parser.add_argument('--safari-page-observer', action='store_true', help='Natural Safari entry and non-stopping timer/page observations in a private portable session')
 parser.add_argument('--jungle-page-observer', action='store_true', help='Natural swamp entry and uninterrupted movement observations in a private portable session')
 parser.add_argument('--jungle-motion-profile', choices=['walk', 'jump'], default='walk', help='Independent fixed movement schedule for the jungle observer')
+parser.add_argument('--native-machine', choices=['svga_s3', 'ega'], default='svga_s3', help='Private jungle movement experiment video hardware')
 parser.add_argument('--cave-page-observer', action='store_true', help='Natural Carlsbad entry and uninterrupted passage/reward observations in a private portable session')
 parser.add_argument('--cave-loader-profile', action='store_true', help='Measure the first natural cave transition resource load instead of a frame observer')
 parser.add_argument('--cave-loader-resource', choices=['sprite10', 'background0'], default='sprite10')
@@ -40,6 +41,8 @@ parser.add_argument('--cave-treasure-profile', action='store_true', help='Reach 
 args = parser.parse_args()
 if args.jungle_motion_profile != 'walk' and not args.jungle_page_observer:
     parser.error('--jungle-motion-profile requires --jungle-page-observer')
+if args.native_machine != 'svga_s3' and not args.jungle_page_observer:
+    parser.error('--native-machine ega is scoped to --jungle-page-observer')
 if args.cave_treasure_profile and (not args.cave_page_observer or args.cave_loader_profile):
     parser.error('--cave-treasure-profile requires --cave-page-observer and excludes loader profiling')
 if args.cave_loader_resource != 'sprite10' and not args.cave_loader_profile:
@@ -104,7 +107,7 @@ if (args.safari_page_observer or args.jungle_page_observer or args.cave_page_obs
     from native_portable_session import PortableSession
     subprocess.run(['node', '--input-type=module', '-e',
         "import{archiveSource}from'./scripts/lib/local-scenario-source.js';await archiveSource(process.argv[1]);", str(out)], cwd=ROOT, check=True)
-    manager = PortableSession(cfg, attach, out, ROOT/'game')
+    manager = PortableSession(cfg, attach, out, ROOT/'game', machine=args.native_machine)
 else:
     manager = InstanceManager(cfg, attach=attach)
 owned = set()
@@ -226,7 +229,7 @@ try:
         commands += 'config -get dosbox vmem_delay\n'
     commands += 'config -get dosbox machine\n'
     client.post('/api/v1/input/type', json={'text': commands, 'cps': 200})
-    config_screen = wait_until(lambda: client.get('/api/v1/video/text'), lambda v: 'svga_s3' in json.dumps(v))
+    config_screen = wait_until(lambda: client.get('/api/v1/video/text'), lambda v: args.native_machine in json.dumps(v))
     save('configuration', {'commands': commands, 'screen': config_screen, 'argv': manager.build_argv()})
     client.post('/api/v1/input/type', json={'text': 'c:\nducktale\n', 'cps': 100})
     wait_until(lambda: client.get('/api/v1/status'), lambda v: v.get('program') == 'DUCKTALE')

@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import struct
 import subprocess
+import sys
 from capture_safari_cadence import relocated_overlay
 from verify_safari_fpu_source import verify_source
 
@@ -26,11 +27,15 @@ def samples_ok(samples, m):
         # Resident IRQ keyboard table: make/held80h,break40h,cleared00h.
         # Original flushes can clear a held key before keyboard repeat restores it.
         assert row['page'] in [0, 1] and row['right'] in [0, 64, 128]
+        if 'fire' in row: assert row['fire'] in [0, 64, 128]
         if i:
             assert row['clock'] >= samples[i-1]['clock']
             if any(row[k] != samples[i-1][k] for k in ['x', 'y', 'action']):
                 changes.append(row['index'])
     assert changes == m['expectedMotionChangeIndices']
+    if m['kind'] == 'original-jungle-jump-observation':
+        motion = [row for i,row in enumerate(samples) if not i or row['index'] in changes]
+        assert motion == m['expectedMotionSamples'], 'Changed jungle jump motion sample'
     assert samples[-1]['frame']-samples[0]['frame'] == m['expectedFrameSpan'] == 119
     assert samples[-1]['clock']-samples[0]['clock'] == m['expectedClockSpan'] == 123
     assert abs(119/70.086-123*16380/1193182) <= 16380/1193182
@@ -39,16 +44,19 @@ def samples_ok(samples, m):
 
 
 def inputs_ok(value, replay, m):
-    assert value['events'] == m['events'] == [
+    expected = ([{'type':'key','key':key,'pressed':pressed,'frame':frame}
+        for pressed,frame in [(True,0),(False,40)] for key in ['KBD_right','KBD_space']]
+        if m['kind'] == 'original-jungle-jump-observation' else [
         {'type': 'key', 'key': 'KBD_right', 'pressed': True, 'frame': 0},
-        {'type': 'key', 'key': 'KBD_right', 'pressed': False, 'frame': 40}]
-    assert value['scheduled']['events_scheduled'] == 2
-    assert not replay['active'] and replay['remaining'] == 0 and replay['dispatched'] == 2
+        {'type': 'key', 'key': 'KBD_right', 'pressed': False, 'frame': 40}])
+    assert value['events'] == m['events'] == expected
+    assert value['scheduled']['events_scheduled'] == len(expected)
+    assert not replay['active'] and replay['remaining'] == 0 and replay['dispatched'] == len(expected)
 
 
-def verify():
-    m = json.loads((ROOT/'reference/jungle-native-cadence.json').read_text())
-    assert m['kind'] == 'original-jungle-cadence-observation'
+def verify(manifest='reference/jungle-native-cadence.json'):
+    m = json.loads((ROOT/manifest).read_text())
+    assert m['kind'] in ['original-jungle-cadence-observation','original-jungle-jump-observation']
     assert m['nativeObservation'] and not m['portTimingAcceptance']
     assert m['injections'] == [] and not m['partialRestore']
     objects = {}
@@ -116,8 +124,21 @@ def verify():
     for role, count in [('startup-inputs.json', 10), ('jungle-flight-setup-completed.json', 4)]:
         value = objects[role]; receipt = value['receipt'] if role == 'startup-inputs.json' else value
         assert not receipt['active'] and receipt['remaining'] == 0 and receipt['dispatched'] == count
-    values = result['output']['samples']
-    samples = sorted(values.values() if isinstance(values, dict) else values, key=lambda r: r['index'])
+    if m['kind'] == 'original-jungle-jump-observation':
+        assert observation['motionProfile'] == 'jump'
+        profile = m['inputProfile']; data = (ROOT/profile['path']).read_bytes()
+        assert len(data) == profile['bytes'] and sha(data) == profile['sha256']
+        assert json.loads(data) == objects['jungle-motion-input-contract.json']
+        assert json.loads(data)['events'] == m['events']
+        columns = ['index','frame','clock','page','x','y','action','actorFrame','lostLives','column','row','scroll','outcome','right','fire','seed']
+        samples = []
+        for line in result['output']['samplesCSV'].splitlines():
+            values = line.split(','); assert len(values) == len(columns)
+            assert all(v.isdigit() for v in values)
+            samples.append(dict(zip(columns,map(int,values))))
+    else:
+        values = result['output']['samples']
+        samples = sorted(values.values() if isinstance(values, dict) else values, key=lambda r: r['index'])
     samples_ok(samples, m)
     negatives = 0
     for kind in ['missing', 'frame', 'motion']:
@@ -135,7 +156,9 @@ def verify():
     wrong = bytearray(live); wrong[0] ^= 1
     assert wrong != expected; negatives += 1
     assert negatives == 5
-    print('Original jungle:120 consecutive callback samples,119 frame intervals,123 driver counts;fixed Right/release consumed,full relocated flight/jungle identity,three EGA code ranges,closed owned session,5 negatives. Not port timing acceptance or exact flip counts.')
+    print('Original jungle:120 consecutive callback samples,119 frame intervals,123 driver counts;fixed '+('Right+Fire/release' if m['kind']=='original-jungle-jump-observation' else 'Right/release')+' consumed,full relocated flight/jungle identity,three EGA code ranges,closed owned session,5 negatives. Not port timing acceptance or exact flip counts.')
 
 
-if __name__ == '__main__': verify()
+if __name__ == '__main__':
+    assert len(sys.argv)<=2
+    verify(sys.argv[1] if len(sys.argv)==2 else 'reference/jungle-native-cadence.json')

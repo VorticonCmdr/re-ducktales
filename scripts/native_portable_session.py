@@ -11,7 +11,8 @@ import time
 
 
 class PortableSession:
-    def __init__(self, config, attach, output, mount_root):
+    def __init__(self, config, attach, output, mount_root, *, machine='svga_s3'):
+        assert machine in ['svga_s3', 'ega']
         self.config = config
         self.attach = attach
         self.output = Path(output)
@@ -28,7 +29,7 @@ class PortableSession:
                 'webserver_osd = false\nwebserver_port = ' + str(config.port) + '\n'
                 'mount_allowed_bases = ' + mount_root + '\n'
                 '[debug]\ndebugger_window = false\n'
-                '[dosbox]\nmachine = svga_s3\nmemsize = 16\nvmem_delay = off\n'
+                '[dosbox]\nmachine = ' + machine + '\nmemsize = 16\nvmem_delay = off\n'
                 '[cpu]\ncore = normal\ncpu_cycles = 3000\n')
         (self.directory / 'dosbox-automation.conf').write_text(text)
         self.process = None

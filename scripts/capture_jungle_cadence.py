@@ -89,4 +89,4 @@ def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
     save('jungle-cadence', {'completed': True, 'expectedSamples': 120, 'motionProfile': motion_profile,
          'initialStopId': stop['stop_id'], 'finalStopId': final['stop_id'],
          'injections': [], 'partialRestore': False,
-         'scope': 'Natural original swamp movement,120 consecutive render callbacks and fixed Right/release schedule. No intermediate debugger stops; not exact input/flip timestamps or port timing acceptance.'})
+         'scope': 'Natural original swamp movement,120 consecutive render callbacks and fixed '+('Right+Fire/release' if contract else 'Right/release')+' schedule. No intermediate debugger stops; not exact input/flip timestamps or port timing acceptance.'})

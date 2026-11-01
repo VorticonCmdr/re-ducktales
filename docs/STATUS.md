@@ -1,5 +1,8 @@
 # Current port status
 
+**Active priority:movement speed.** Other integration/backlog work below is
+deferred. See [current measurements and next experiment](movement-speed.md).
+
 Updated2026-11-01. **The whole game is incomplete.** The supported Standard
 campaign has a complete playable route through all four expedition families,
 victory,all26 credits,closed and Restart. A fresh independent browser replay now

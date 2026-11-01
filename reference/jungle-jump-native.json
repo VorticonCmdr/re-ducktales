@@ -1,0 +1,1429 @@
+{
+  "kind": "original-jungle-jump-observation",
+  "producer": ".local/jungle-jump-native-01",
+  "nativeObservation": true,
+  "portTimingAcceptance": false,
+  "expectedSamples": 120,
+  "expectedFrameSpan": 119,
+  "expectedClockSpan": 123,
+  "engineBinarySHA256": "3580a642599ad27fd76265d9f59fd408679aa6d189149af176bde322a3b8c256",
+  "buildManifestSHA256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "configuration": {
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "machine": "svga_s3",
+    "memsize": 16,
+    "vmem_delay": "off"
+  },
+  "setup": "Fresh read-only original launch;natural security/map to64,73,Okeefadokie Swamp;campaign slot shuffled. Naturally nonracing flight and authored crash controls;actual full flight and jungle bodies checked. Start after both opening page reveals. No writes or restores.",
+  "events": [
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": true,
+      "frame": 0
+    },
+    {
+      "type": "key",
+      "key": "KBD_space",
+      "pressed": true,
+      "frame": 0
+    },
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": false,
+      "frame": 40
+    },
+    {
+      "type": "key",
+      "key": "KBD_space",
+      "pressed": false,
+      "frame": 40
+    }
+  ],
+  "expectedFirstSample": {
+    "index": 1,
+    "frame": 4965,
+    "clock": 4938,
+    "page": 1,
+    "x": 8,
+    "y": 16,
+    "action": 5,
+    "actorFrame": 0,
+    "lostLives": 1,
+    "column": 0,
+    "row": 0,
+    "scroll": 0,
+    "outcome": 0,
+    "right": 0,
+    "fire": 0,
+    "seed": 51610
+  },
+  "expectedLastSample": {
+    "index": 120,
+    "frame": 5084,
+    "clock": 5061,
+    "page": 1,
+    "x": 8,
+    "y": 16,
+    "action": 5,
+    "actorFrame": 0,
+    "lostLives": 1,
+    "column": 0,
+    "row": 0,
+    "scroll": 0,
+    "outcome": 0,
+    "right": 0,
+    "fire": 0,
+    "seed": 1753
+  },
+  "expectedMotionChangeIndices": [
+    39,
+    42,
+    45,
+    71,
+    74,
+    76
+  ],
+  "comparison": "Exact artifact identities,120 consecutive callbacks and complete two-event schedule;page changes are sampled lower bounds,not an exact flip/update count. No port timing claim.",
+  "exclusions": [
+    "No exact CPU or scanout timestamps. Original IRQ/retrace phase and input latency not reconstructed.",
+    "Only EGA flip/wait/sprite code ranges compared here;mutable copy operands and other driver code not admitted as exact.",
+    "No whole-level/browser/audio timing comparison. Setup stops are allowed;measurement has no debugger stops."
+  ],
+  "injections": [],
+  "partialRestore": false,
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_jungle_cadence.py reference/jungle-jump-native.json",
+  "artifacts": {
+    "capture.json": {
+      "path": ".local/jungle-jump-native-01/capture.json",
+      "bytes": 378,
+      "sha256": "cc42939045557882e6e0f9d8018f770a15d762068a1a185a37db8030b98c2d3d"
+    },
+    "configuration.json": {
+      "path": ".local/jungle-jump-native-01/configuration.json",
+      "bytes": 2580,
+      "sha256": "097e1412f1af179379722b19b88986dbdfb56e2abda7aa1b9863320d3ef7fdb2"
+    },
+    "emulator.log": {
+      "path": ".local/jungle-jump-native-01/emulator.log",
+      "bytes": 34494,
+      "sha256": "fe0426e832ef0393a1652cc3d85a8cb5f3d8579387b93abb763fc018c30f7370"
+    },
+    "engine.json": {
+      "path": ".local/jungle-jump-native-01/engine.json",
+      "bytes": 4518,
+      "sha256": "36826bee8af4dd1cb69158e7a1a533c66dabb1e526118ee3092fce3d663cde43"
+    },
+    "entry.json": {
+      "path": ".local/jungle-jump-native-01/entry.json",
+      "bytes": 88774,
+      "sha256": "34e205f1ffa3781774f42b442ef10e8da4a459ae1b392ed60058f874b70e3e93"
+    },
+    "entry.png": {
+      "path": ".local/jungle-jump-native-01/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/jungle-jump-native-01/fire-first.json",
+      "bytes": 88769,
+      "sha256": "14d20083618450c7bfed1ce347587ca7b880221250ca2ed025781ea763d7ea38"
+    },
+    "first-result.json": {
+      "path": ".local/jungle-jump-native-01/first-result.json",
+      "bytes": 88768,
+      "sha256": "358f3df3d54a56f58662003821a4776b05d8aaf3049e730fa61a9bd29fb5f262"
+    },
+    "first-result.png": {
+      "path": ".local/jungle-jump-native-01/first-result.png",
+      "bytes": 4862,
+      "sha256": "3b8495cf155f37a9b68cdb249e742eacb43d443d4ceb7ad66a60dd8d3c86386f"
+    },
+    "generated.json": {
+      "path": ".local/jungle-jump-native-01/generated.json",
+      "bytes": 88773,
+      "sha256": "49f7111ec4bf8ea81c3cb4750cd7ef3141d8c3ca94a3331614a9672a85bfc09a"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/jungle-jump-native-01/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "1eff51528a72be3596aa6a98cc0d2718da20beea503622368de1bbe8c1b0cb28"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/jungle-jump-native-01/initial-poll-0.png",
+      "bytes": 4830,
+      "sha256": "edb26e704fbb774dc0195e7d73214e014376157886763df8cf8356bc77e819d7"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/jungle-jump-native-01/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "ac4506cd7ae3013b574e1a191ec587007448cf42c1746f27844e62fe7d92ac8f"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/jungle-jump-native-01/initial-poll-1.png",
+      "bytes": 4830,
+      "sha256": "edb26e704fbb774dc0195e7d73214e014376157886763df8cf8356bc77e819d7"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/jungle-jump-native-01/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "1e21fb2140af0602496abb5f93536b6ad3918eeac64f6279afd085656e1f9a6d"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/jungle-jump-native-01/initial-poll-2.png",
+      "bytes": 4862,
+      "sha256": "3b8495cf155f37a9b68cdb249e742eacb43d443d4ceb7ad66a60dd8d3c86386f"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/jungle-jump-native-01/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "9ff32ea78a5fd714bbe8d7a9774ef43db961e6c110dd78524743a0d0d6d21631"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/jungle-jump-native-01/initial-poll-3.png",
+      "bytes": 4862,
+      "sha256": "3b8495cf155f37a9b68cdb249e742eacb43d443d4ceb7ad66a60dd8d3c86386f"
+    },
+    "inputs.json": {
+      "path": ".local/jungle-jump-native-01/inputs.json",
+      "bytes": 31649,
+      "sha256": "05e0cb61388e1587474cb24272393ca194ad962e5bc0bdebd34cae7f6a3391a1"
+    },
+    "jungle-cadence.json": {
+      "path": ".local/jungle-jump-native-01/jungle-cadence.json",
+      "bytes": 374,
+      "sha256": "db760c31d437145e6029c1c687e78dff46fda674423f39cd8e2cebc78d773e1c"
+    },
+    "jungle-code.json": {
+      "path": ".local/jungle-jump-native-01/jungle-code.json",
+      "bytes": 32297,
+      "sha256": "d05f00cb7c0bb6a16a64c1cfbee34609602f995a6bf0b295a33c0c469b231f03"
+    },
+    "jungle-driver.json": {
+      "path": ".local/jungle-jump-native-01/jungle-driver.json",
+      "bytes": 3662,
+      "sha256": "888b0bc9df08636c61a34757df6a1ef2c8fc5b57afe54d190914b0ba8987e171"
+    },
+    "jungle-entry-contract.json": {
+      "path": ".local/jungle-jump-native-01/jungle-entry-contract.json",
+      "bytes": 97,
+      "sha256": "6d351979070fdd296e0edbdaf7b24f7a37869f6adefb3719b3c40139aac26c84"
+    },
+    "jungle-entry.json": {
+      "path": ".local/jungle-jump-native-01/jungle-entry.json",
+      "bytes": 88764,
+      "sha256": "4f11e1acf6561a60150c3652ca4dea8d60157d0c2ae6106f729631881ba7e2a3"
+    },
+    "jungle-entry.png": {
+      "path": ".local/jungle-jump-native-01/jungle-entry.png",
+      "bytes": 10648,
+      "sha256": "23ec9f4654e7f86dddefa4a74180a69cc97fcbdce900db8a753e1b187f6ce3f7"
+    },
+    "jungle-first-input.json": {
+      "path": ".local/jungle-jump-native-01/jungle-first-input.json",
+      "bytes": 88773,
+      "sha256": "c22c4f4edbe8890761aedf4f3883b79705f1cc6cedcbc1779f85f0a6ecdd1a32"
+    },
+    "jungle-first-input.png": {
+      "path": ".local/jungle-jump-native-01/jungle-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "jungle-first-presentation.json": {
+      "path": ".local/jungle-jump-native-01/jungle-first-presentation.json",
+      "bytes": 88775,
+      "sha256": "94b5672efee5cf0352ad491d2dfa739dda8f5384f0fb8e49660226524f5277a2"
+    },
+    "jungle-first-presentation.png": {
+      "path": ".local/jungle-jump-native-01/jungle-first-presentation.png",
+      "bytes": 19079,
+      "sha256": "94c632cdae4b52285b43ef092ebeb2024c6e9b6169dacde74a3aea6bb55ed88e"
+    },
+    "jungle-flight-setup-completed.json": {
+      "path": ".local/jungle-jump-native-01/jungle-flight-setup-completed.json",
+      "bytes": 169,
+      "sha256": "c27177167a4c9c8c2e26b77a99aa2facd379d7273367579fc7fd78d8724fc7fd"
+    },
+    "jungle-motion-input-contract.json": {
+      "path": ".local/jungle-jump-native-01/jungle-motion-input-contract.json",
+      "bytes": 732,
+      "sha256": "a7970287716e9665959907d49230c05f581992e551c8fa2b1d1952769a217b7b"
+    },
+    "jungle-observer-final.json": {
+      "path": ".local/jungle-jump-native-01/jungle-observer-final.json",
+      "bytes": 88533,
+      "sha256": "88657d95614cb12f540340581785fcc65dfa0a14521a8d296a5da7765cb7826e"
+    },
+    "jungle-observer-final.png": {
+      "path": ".local/jungle-jump-native-01/jungle-observer-final.png",
+      "bytes": 18636,
+      "sha256": "64793f826238fb8afa1745205942cc93e0d62010a47ed77b1be6c642b9ba6c2c"
+    },
+    "jungle-observer-inputs.json": {
+      "path": ".local/jungle-jump-native-01/jungle-observer-inputs.json",
+      "bytes": 493,
+      "sha256": "497c29b20d1fc7aa3f2787d3360631dc01f4beb84d12001c957d3dd82ad749f7"
+    },
+    "jungle-observer-loaded.json": {
+      "path": ".local/jungle-jump-native-01/jungle-observer-loaded.json",
+      "bytes": 124,
+      "sha256": "2f8bc88477621e505b0b30d23c2af8af26da2a82cc046d5fa0860485c94fc633"
+    },
+    "jungle-observer-replay.json": {
+      "path": ".local/jungle-jump-native-01/jungle-observer-replay.json",
+      "bytes": 173,
+      "sha256": "d7a5c5472126490e6bd1dbdf0e6b2aa398804473a294d82160465a0c48cacfa7"
+    },
+    "jungle-observer-result.json": {
+      "path": ".local/jungle-jump-native-01/jungle-observer-result.json",
+      "bytes": 5890,
+      "sha256": "ff559bb05b3b453f04aaeb86dba0e41ecafc9397cc584c2f7e959029362a7cc9"
+    },
+    "jungle-observer-script.json": {
+      "path": ".local/jungle-jump-native-01/jungle-observer-script.json",
+      "bytes": 1025,
+      "sha256": "626b85629200977727e1c02ebde0d03f811ecf27ccdba3bfad72a4edc3c26d71"
+    },
+    "lifecycle.json": {
+      "path": ".local/jungle-jump-native-01/lifecycle.json",
+      "bytes": 123,
+      "sha256": "ebeb9a2d2d227adcf6f3b3d09c71920bc0392ca0cc477a18c1a6823e4805bc7b"
+    },
+    "live-overlay.json": {
+      "path": ".local/jungle-jump-native-01/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "8613747122faa5079c77afaa8cc2d6ba46e5101dd3f1ec51e1104ccbc4d03d13"
+    },
+    "office-confirm.json": {
+      "path": ".local/jungle-jump-native-01/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "12055e2a82ddcc9bcfe8f4b59a1d663eecaf1f79a7e18b57f15fc8d3f865a5fd"
+    },
+    "office-input.json": {
+      "path": ".local/jungle-jump-native-01/office-input.json",
+      "bytes": 88775,
+      "sha256": "d7e86e9f4677d52804731a047bb5d947cae5ab78ad54b0ab1e6331c9f66c9aa8"
+    },
+    "office-input.png": {
+      "path": ".local/jungle-jump-native-01/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "portable/dosbox-automation.conf": {
+      "path": ".local/jungle-jump-native-01/portable/dosbox-automation.conf",
+      "bytes": 413,
+      "sha256": "6dc35219483845bfbf928ec1d706f2945e13c653fddbb9a7127099cd9678aab0"
+    },
+    "portable/dosbox_with_debugger": {
+      "path": ".local/jungle-jump-native-01/portable/dosbox_with_debugger",
+      "bytes": 46391224,
+      "sha256": "3580a642599ad27fd76265d9f59fd408679aa6d189149af176bde322a3b8c256"
+    },
+    "portable/shell_history.txt": {
+      "path": ".local/jungle-jump-native-01/portable/shell_history.txt",
+      "bytes": 144,
+      "sha256": "6123f2f67cf35bed3ba33d24c35041b6650ddc942f68b0a4c08f4bb4924ac8ad"
+    },
+    "profile-tool-identity.json": {
+      "path": ".local/jungle-jump-native-01/profile-tool-identity.json",
+      "bytes": 501,
+      "sha256": "bc36e415aa332ca978007e70e94a9525b67696747e1b26278a9abffc51669537"
+    },
+    "return.json": {
+      "path": ".local/jungle-jump-native-01/return.json",
+      "bytes": 88770,
+      "sha256": "f619aa813792de460031e69ac93cf953a6883ebcd710f354b4432e9d7ee1ef94"
+    },
+    "return.png": {
+      "path": ".local/jungle-jump-native-01/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/jungle-jump-native-01/rng-consumption.json",
+      "bytes": 56909,
+      "sha256": "e90847021f7d89901df794301fa4d3e0f58e4ed6a73d14cc1cab9addcd6f43b3"
+    },
+    "safari-flight-code-observed.json": {
+      "path": ".local/jungle-jump-native-01/safari-flight-code-observed.json",
+      "bytes": 24051,
+      "sha256": "1b2f8e02bc7c7391bf36fe89f6f6ba53db3d26d863eea85c31b3960068744cf6"
+    },
+    "safari-flight-code.json": {
+      "path": ".local/jungle-jump-native-01/safari-flight-code.json",
+      "bytes": 25160,
+      "sha256": "6ba7e81790881b77d37088d93c46057b01fa18c094275980984a4ad9bb10220b"
+    },
+    "source-revision.json": {
+      "path": ".local/jungle-jump-native-01/source-revision.json",
+      "bytes": 134286,
+      "sha256": "37b4d691b72212ca623eeaeab103a5654c90d0120ab60229dcfb4343ed356137"
+    },
+    "sources.zip": {
+      "path": ".local/jungle-jump-native-01/sources.zip",
+      "bytes": 3441746,
+      "sha256": "e93d65d829767f0d28064dc36f34d3bcce6f9bc3b45d75d6ba07198776f4c8a2"
+    },
+    "startup-inputs.json": {
+      "path": ".local/jungle-jump-native-01/startup-inputs.json",
+      "bytes": 1222,
+      "sha256": "585b521ab2471033391e16090dc3f151675fe8f8d034998a905b929fcde0ab92"
+    },
+    "timing-destination-confirm-flush.json": {
+      "path": ".local/jungle-jump-native-01/timing-destination-confirm-flush.json",
+      "bytes": 88773,
+      "sha256": "a41b252f1b2449daab175be45fd39668f6fff7ef4452bb6b27f9cc3f70679a83"
+    },
+    "timing-destination-confirm-read.json": {
+      "path": ".local/jungle-jump-native-01/timing-destination-confirm-read.json",
+      "bytes": 88775,
+      "sha256": "235680296c1c35fcf021ad979e3402ac67a1f76fb91f9fe85deb9a6ccac9c921"
+    },
+    "timing-destination-confirm-read.png": {
+      "path": ".local/jungle-jump-native-01/timing-destination-confirm-read.png",
+      "bytes": 6615,
+      "sha256": "ea1985cb7e40cfbc8c1f0eaf0af9496f4371666335e6c77db6803f4e2940f66e"
+    },
+    "timing-destination-entry.json": {
+      "path": ".local/jungle-jump-native-01/timing-destination-entry.json",
+      "bytes": 88787,
+      "sha256": "d40d3d40669ce2f367dc8c80490834f2fe0af7f0a10838c5d4070308e4c4ade9"
+    },
+    "timing-destination-entry.png": {
+      "path": ".local/jungle-jump-native-01/timing-destination-entry.png",
+      "bytes": 16122,
+      "sha256": "8bae5d38da263e8dcbf20b658a79f701905d759b8b58d1090011bd45b093a50b"
+    },
+    "timing-destination-return.json": {
+      "path": ".local/jungle-jump-native-01/timing-destination-return.json",
+      "bytes": 88775,
+      "sha256": "81b0ce8bdc0b4eb617428f13fbe9b2d812d94acff738a786215d0f6e92515795"
+    },
+    "timing-destination-return.png": {
+      "path": ".local/jungle-jump-native-01/timing-destination-return.png",
+      "bytes": 6615,
+      "sha256": "ea1985cb7e40cfbc8c1f0eaf0af9496f4371666335e6c77db6803f4e2940f66e"
+    },
+    "timing-destination-travel-flush.json": {
+      "path": ".local/jungle-jump-native-01/timing-destination-travel-flush.json",
+      "bytes": 88775,
+      "sha256": "fda56d4f55bb9d8aace4f50ff923a6c1c5b62da8b3416c92a5d4bdd573eef989"
+    },
+    "timing-destination-travel-read.json": {
+      "path": ".local/jungle-jump-native-01/timing-destination-travel-read.json",
+      "bytes": 88771,
+      "sha256": "e80d5e1f0bc6026bbd6358bba56b379f0fe946b8121d77d04961b6588e7f7d6c"
+    },
+    "timing-destination-travel-read.png": {
+      "path": ".local/jungle-jump-native-01/timing-destination-travel-read.png",
+      "bytes": 6621,
+      "sha256": "117ce0188d4c663f420c2e6deea65e880d579e97bc04b83fc8bbc671725fedf4"
+    },
+    "timing-flight-contract.json": {
+      "path": ".local/jungle-jump-native-01/timing-flight-contract.json",
+      "bytes": 150,
+      "sha256": "8b091376aaf022fe056eface72f42a64bb2cabd5eace2f95e4bdf7aa7ebea697"
+    },
+    "timing-flight-first-input.json": {
+      "path": ".local/jungle-jump-native-01/timing-flight-first-input.json",
+      "bytes": 88778,
+      "sha256": "e926c6547649d35cd832ca6156c39607521a477e3f3478024d69b458e1ded668"
+    },
+    "timing-flight-first-input.png": {
+      "path": ".local/jungle-jump-native-01/timing-flight-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "timing-map-entry.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-entry.json",
+      "bytes": 88794,
+      "sha256": "e81237a13c2e62b86373395d85058d33587fee8bf06980e38795b04c5bc1dd49"
+    },
+    "timing-map-entry.png": {
+      "path": ".local/jungle-jump-native-01/timing-map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "timing-map-step-000.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-000.json",
+      "bytes": 88784,
+      "sha256": "abd7b40b5ae808d88cea61266e7f1b7fa3d7f9d807bae6bd660b9e528918e73f"
+    },
+    "timing-map-step-001.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-001.json",
+      "bytes": 88784,
+      "sha256": "8a924b252ce13870ced29bd8c3f5ee58b34795b01ed7092ba27e6e173f567a76"
+    },
+    "timing-map-step-002.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-002.json",
+      "bytes": 88784,
+      "sha256": "eb528f839e7a8c0bb4ce4b1c85bd042d50a550de538bc09b188e17d99c91e1e9"
+    },
+    "timing-map-step-003.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-003.json",
+      "bytes": 88784,
+      "sha256": "635ad50767c24e0c37fee89a387b5f257850dea20556c8d3f328c5b874d1f903"
+    },
+    "timing-map-step-004.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-004.json",
+      "bytes": 88784,
+      "sha256": "d64a58ac352161baae0930fdd21a69c9fb288898a632f6f062010299e2449044"
+    },
+    "timing-map-step-005.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-005.json",
+      "bytes": 88784,
+      "sha256": "9cc288bfd795402e942cdf61f6a40d65eb6386adf4ae3f78dc6dc0c305bbd865"
+    },
+    "timing-map-step-006.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-006.json",
+      "bytes": 88784,
+      "sha256": "c0ef6406022dceef9ddcf3d64b7453664bf755e0a4a19fdbabb3e51e44fc2ce3"
+    },
+    "timing-map-step-007.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-007.json",
+      "bytes": 88784,
+      "sha256": "185b2fc5785bad7bbfe3086d305f2a61e8903f6632dfd2a81623ea94dd451f1b"
+    },
+    "timing-map-step-008.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-008.json",
+      "bytes": 88784,
+      "sha256": "62316ef805928b3c2d4241f387d1be8d53c5aee54f713d6ecc85f8c3da1c8dc3"
+    },
+    "timing-map-step-009.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-009.json",
+      "bytes": 88785,
+      "sha256": "40ce758a37b606d8f8555cf7c3ddef9fdc2ac5e58ca16fc7e61be1a4b806d8df"
+    },
+    "timing-map-step-010.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-010.json",
+      "bytes": 88785,
+      "sha256": "360f81bbd861e1e8deea2e5f7a91a8386e05fbf519646136545841526913d92c"
+    },
+    "timing-map-step-011.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-011.json",
+      "bytes": 88785,
+      "sha256": "09e954721e160bf92c46c586b410a4e76963cdd298d5a79221fea1ced6e2ffb3"
+    },
+    "timing-map-step-012.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-012.json",
+      "bytes": 88785,
+      "sha256": "2ad587df00fc4108beb28841201cd33c9f6119db4429af4389da00a2e22b5341"
+    },
+    "timing-map-step-013.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-013.json",
+      "bytes": 88785,
+      "sha256": "b476cb6acf79d608f631a6db55ace3ee6a133dc7b6f942ea812d54f1d0392f8f"
+    },
+    "timing-map-step-014.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-014.json",
+      "bytes": 88785,
+      "sha256": "d24e3ded38b32e6968a1f4b988f83705c68f93b892d92898ec1834237904abba"
+    },
+    "timing-map-step-015.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-015.json",
+      "bytes": 88785,
+      "sha256": "60b111dd146714a800fa244b98c8cd7ba26b3b9a1804d249bea20a28b3d600f3"
+    },
+    "timing-map-step-016.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-016.json",
+      "bytes": 88785,
+      "sha256": "96a23a1590f45ead18f35279f9d05d6e2a7c1c259584c76036567df7e574c959"
+    },
+    "timing-map-step-017.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-017.json",
+      "bytes": 88785,
+      "sha256": "5dbd7cbc0ae9e7e88b61121bd605429dab78e725fa59dd92591a1cb13df5e9a5"
+    },
+    "timing-map-step-018.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-018.json",
+      "bytes": 88785,
+      "sha256": "dc67b43eae327e8cbb9690623f49f4e11dee2726093dbd1641231ed1de6db44d"
+    },
+    "timing-map-step-019.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-019.json",
+      "bytes": 88785,
+      "sha256": "46fedc3d5071a3b468aa98b4db5e3a273e6120908f9f332415f15e024f79fec8"
+    },
+    "timing-map-step-020.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-020.json",
+      "bytes": 88785,
+      "sha256": "f5fef9177de20a1c5fc90cb9f3dfc0fd2ce3da4b0c920c5a6daad03f7492854a"
+    },
+    "timing-map-step-021.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-021.json",
+      "bytes": 88785,
+      "sha256": "c8b6cd2860d36a835993592b52326f681a581b25c320611e2ac86b1a95b5ccc1"
+    },
+    "timing-map-step-022.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-022.json",
+      "bytes": 88785,
+      "sha256": "2004757c45a8d6ff37d095174731174e4d980fff1a7b090debf00e9f2648f553"
+    },
+    "timing-map-step-023.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-023.json",
+      "bytes": 88785,
+      "sha256": "b3da851ac4bc14de33346382dc45e9bb9fd7bbd0b3317a5f968fc45d32d7fa85"
+    },
+    "timing-map-step-024.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-024.json",
+      "bytes": 88785,
+      "sha256": "33c9202e2fcebb673d036eeee318a8485f259c15e7031457200f79e4bf0e96e5"
+    },
+    "timing-map-step-025.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-025.json",
+      "bytes": 88785,
+      "sha256": "52ccff13f0f9b49fdffa543979d67cfec21ff371a00f52bd71bdaac07456019f"
+    },
+    "timing-map-step-026.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-026.json",
+      "bytes": 88785,
+      "sha256": "ace1613235ee284dfccc36ad9bded78fa20e532013015f112f5657e82477d74f"
+    },
+    "timing-map-step-027.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-027.json",
+      "bytes": 88785,
+      "sha256": "765b0c20c1fa45b2ac4e6ee73a0cc196c7e6699a2f29656f749a5f9e08d33b62"
+    },
+    "timing-map-step-028.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-028.json",
+      "bytes": 88785,
+      "sha256": "284714e907aa970b17902e7228b85a362da3fca81b6d6cdefd69678222e0bd16"
+    },
+    "timing-map-step-029.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-029.json",
+      "bytes": 88785,
+      "sha256": "d7dc623c84546f1050feb35fcfad939c4af22c25d9fa3890c73ca75b5d09599e"
+    },
+    "timing-map-step-030.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-030.json",
+      "bytes": 88785,
+      "sha256": "b1098422a7b48c37bba3f5721a6463e507017ce9278362a89a9f8652cedc0dd0"
+    },
+    "timing-map-step-031.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-031.json",
+      "bytes": 88785,
+      "sha256": "2fd2310a207270f16b194ffa09a02c3af8d2fac6802af13a86058a83b8f5bfa5"
+    },
+    "timing-map-step-032.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-032.json",
+      "bytes": 88785,
+      "sha256": "432f2515414a773e5a7e29dc5fb6819a1af072b1390a5a571518f46914b4bf13"
+    },
+    "timing-map-step-033.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-033.json",
+      "bytes": 88785,
+      "sha256": "558012e62b618ecbc259a23063202ae6c1da83e6865358a69874169a3e25b088"
+    },
+    "timing-map-step-034.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-034.json",
+      "bytes": 88785,
+      "sha256": "0c38b12942bcaebcc9d8e1c4f9039d66f3d07785c480fab66706843aa8760cc0"
+    },
+    "timing-map-step-035.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-035.json",
+      "bytes": 88785,
+      "sha256": "2c12dad5fe38b5895a1b0faedebbe870664fc008c336af4744e10462de6505cb"
+    },
+    "timing-map-step-036.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-036.json",
+      "bytes": 88785,
+      "sha256": "0d96ccc1089358d94ad22cb3c790417377d6ba52db34c160bf9d940b76059c72"
+    },
+    "timing-map-step-037.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-037.json",
+      "bytes": 88785,
+      "sha256": "e4eaf9bec73974777f8fb2600fcb824051915aa29dd93bebf736fe76e435b6e9"
+    },
+    "timing-map-step-038.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-038.json",
+      "bytes": 88786,
+      "sha256": "5907c0087bdf6b188aab8f08572de36e684c3d8fa8795d6873134e9fd624095f"
+    },
+    "timing-map-step-039.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-039.json",
+      "bytes": 88786,
+      "sha256": "e0c5810ee08557cd32ab3f418db8e05b508b7a0c5b3834b23e7dff4d0657697f"
+    },
+    "timing-map-step-040.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-040.json",
+      "bytes": 88786,
+      "sha256": "293e493d01b0567027ee82cb23e36cdbd68532fbd124f570d957b7797de3c4d0"
+    },
+    "timing-map-step-041.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-041.json",
+      "bytes": 88786,
+      "sha256": "983fa49a6d34ecb7459d208efe8c1dc7bfa1c6fbea742657cc11d25a3b4cf78e"
+    },
+    "timing-map-step-042.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-042.json",
+      "bytes": 88786,
+      "sha256": "5b5e941b4cafecee3d5b0d119025deee52833bcc10dd6caffc94dc0ca2997be5"
+    },
+    "timing-map-step-043.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-043.json",
+      "bytes": 88786,
+      "sha256": "2c7957be9b761f62fe4b796ec667cce3eb64d64f4dac0f3de83c3ad8f9b23219"
+    },
+    "timing-map-step-044.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-044.json",
+      "bytes": 88786,
+      "sha256": "43e788dfb7d0f59780f7d1accd5b95994994130cbb1d6adfba77fb8b0f8a6039"
+    },
+    "timing-map-step-045.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-045.json",
+      "bytes": 88786,
+      "sha256": "3461ecc819d02cf19ea2aafb9afd9871cc6507f2aee2275f762b4d3778088ae2"
+    },
+    "timing-map-step-046.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-046.json",
+      "bytes": 88786,
+      "sha256": "a74092e1e10d4799f0895ad956dec5fbb910c6b82afb258c584bcab2d3e9114d"
+    },
+    "timing-map-step-047.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-047.json",
+      "bytes": 88786,
+      "sha256": "0088d85a28bc28b5f71fdd661debd14be91c9fa3d0c2131fa15879aeb658c87c"
+    },
+    "timing-map-step-048.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-048.json",
+      "bytes": 88786,
+      "sha256": "d8d83902b5200c83b1b843935c6cd2a386e30d7aa48ba832f484ab604f82fb24"
+    },
+    "timing-map-step-049.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-049.json",
+      "bytes": 88786,
+      "sha256": "fe7d2fa157c21a7e6a6c8707db52bd7f2f583871f8ea92d57aaeda2b8f9b3668"
+    },
+    "timing-map-step-050.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-050.json",
+      "bytes": 88786,
+      "sha256": "e33c62ff7ddf3b7f7bb3ec03e450295b3543635f9b595157a81a624bbb907b5f"
+    },
+    "timing-map-step-051.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-051.json",
+      "bytes": 88786,
+      "sha256": "f13d624e88e821d39a63bbf974d3c7037e586e1f77502817519a15851f02b00e"
+    },
+    "timing-map-step-052.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-052.json",
+      "bytes": 88786,
+      "sha256": "c749d9aaff38bc88709d542ed5d0d939f5ae167cb1bdee662bc8b58e792d3bbc"
+    },
+    "timing-map-step-053.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-053.json",
+      "bytes": 88786,
+      "sha256": "c28504fbe03a4d7b5106acad82dcb2986e597ba0bc37227ce2065c644cd069b4"
+    },
+    "timing-map-step-054.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-054.json",
+      "bytes": 88786,
+      "sha256": "d90c92cd0495c2800b5beca135513650c0c4823500197dcc7a3f3eb2492fbe56"
+    },
+    "timing-map-step-055.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-055.json",
+      "bytes": 88786,
+      "sha256": "a1a01b74e1e2840e8a0c83571da7f6403383a62c7a31850d32c50895d35bdf7f"
+    },
+    "timing-map-step-056.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-056.json",
+      "bytes": 88786,
+      "sha256": "93290593da7c581401cb9b6b79b03d671e8523957b23cb5ed60425fafb5c9cda"
+    },
+    "timing-map-step-057.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-057.json",
+      "bytes": 88786,
+      "sha256": "eb025b979d52b8fd71faf16de9325053dad3d1378e962dfe9b18aced047e2b9f"
+    },
+    "timing-map-step-058.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-058.json",
+      "bytes": 88786,
+      "sha256": "f30ca327c80d60b98e4de27274dd12cd265fcba47089355c0cf6c2af9ccfbb64"
+    },
+    "timing-map-step-059.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-059.json",
+      "bytes": 88786,
+      "sha256": "a7278e70889a3370e29e49dab11e2da621937299ed1e90f6170243eeb47d4f9c"
+    },
+    "timing-map-step-060.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-060.json",
+      "bytes": 88786,
+      "sha256": "aeb5380bfdfea5e9e628c282f16548d913ca3cedc258d8d2a40142a56a9dbc00"
+    },
+    "timing-map-step-061.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-061.json",
+      "bytes": 88786,
+      "sha256": "456688de0393714899e5a3adb47764552bc388956f7a6795f23dd6373ca8cf20"
+    },
+    "timing-map-step-062.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-062.json",
+      "bytes": 88786,
+      "sha256": "bb6f08f8ebfbd36d46a54d621979f2354186b06ac7351f5983eaaa18a203e740"
+    },
+    "timing-map-step-063.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-063.json",
+      "bytes": 88786,
+      "sha256": "d60f17eedc63d9429434985c90db403c4e36422d51d9146e19999c523a939864"
+    },
+    "timing-map-step-064.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-064.json",
+      "bytes": 88786,
+      "sha256": "ab017dfca0c43a5970dbae6677c26949b5a140580718ee7d761903c41177aaf7"
+    },
+    "timing-map-step-065.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-065.json",
+      "bytes": 88786,
+      "sha256": "7d686c73364a9fcab53b3b66726cd8383594c70345e8807f907b9b15c946e5ca"
+    },
+    "timing-map-step-066.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-066.json",
+      "bytes": 88786,
+      "sha256": "deb1ef7f4b6adc7e89407b367e48a26f0ce9a3d96440ff8f639836e78ed19c6b"
+    },
+    "timing-map-step-067.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-067.json",
+      "bytes": 88786,
+      "sha256": "6474aad2bf899554feeac74e6de2cefc6eb3df52bd115b25243e5c91943493a5"
+    },
+    "timing-map-step-068.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-068.json",
+      "bytes": 88786,
+      "sha256": "3cd5c3aa122ad6f8b74345e08adc6e173a4effb907f861264892400754b08955"
+    },
+    "timing-map-step-069.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-069.json",
+      "bytes": 88786,
+      "sha256": "a652a0272f405cd9181995d342b13042562264b16026ac4ce179a9b946915874"
+    },
+    "timing-map-step-070.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-070.json",
+      "bytes": 88786,
+      "sha256": "b380c0c9de1759509b0886302a5c5c32c15cb00ff115bec3b71e7dea046c893b"
+    },
+    "timing-map-step-071.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-071.json",
+      "bytes": 88786,
+      "sha256": "26a769e8e0224594167a7e6ddf618a2cea89a039cced9e6ff832e4a00bb47340"
+    },
+    "timing-map-step-072.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-072.json",
+      "bytes": 88786,
+      "sha256": "d45836200d1cff5fb4ad82a8f9b96d1750be9ca96d6903dcf8511be1f7b3bc17"
+    },
+    "timing-map-step-073.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-073.json",
+      "bytes": 88786,
+      "sha256": "5ad50c9285723c0da162ddfbd71263febe0df18e040fed72eca8fc2e0b593795"
+    },
+    "timing-map-step-074.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-074.json",
+      "bytes": 88786,
+      "sha256": "25def30fb35bdce84d0c9a3be4467b81941b9851e53cb2273e2a6ba590bcff3a"
+    },
+    "timing-map-step-075.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-075.json",
+      "bytes": 88786,
+      "sha256": "c55c12ee60f65f6fdfd2556bec9373be6b964835dcffac019c5c9daeae043044"
+    },
+    "timing-map-step-076.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-076.json",
+      "bytes": 88786,
+      "sha256": "faee192175a871ea32896dec0893e2a94f2387f0a8723a7406aaab1ff95b4e5e"
+    },
+    "timing-map-step-077.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-077.json",
+      "bytes": 88786,
+      "sha256": "ae20f5639aff35d6e00592c964a82665dc6572b6fb745ac883ae27a56a4cebe6"
+    },
+    "timing-map-step-078.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-078.json",
+      "bytes": 88786,
+      "sha256": "1857fbe6d0edd9e8da60a1be67b4baf90765b57c270cbb10da1767cd11e51bb6"
+    },
+    "timing-map-step-079.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-079.json",
+      "bytes": 88786,
+      "sha256": "0a15025e68b850d7389cdbc77c1daffa2f71b67c46e6056d75611428e3a29d70"
+    },
+    "timing-map-step-080.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-080.json",
+      "bytes": 88786,
+      "sha256": "56f15a083cd4df62d74d7df68b029a3ea5f2d1890a70dddfab8e103ff996840e"
+    },
+    "timing-map-step-081.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-081.json",
+      "bytes": 88786,
+      "sha256": "61f661ea5949209f5d6aa6e8ef0e79ab34d57ebff4df83bc86e9bc716129339a"
+    },
+    "timing-map-step-082.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-082.json",
+      "bytes": 88786,
+      "sha256": "27758d8c5833d2de2d6dc374b81e67a1a83d608bb589b23d99779519e380f12b"
+    },
+    "timing-map-step-083.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-083.json",
+      "bytes": 88786,
+      "sha256": "9d0a643243a5d1da905b5f70cdd2ddc1e3a804640ec42dfe6288a42703b027e2"
+    },
+    "timing-map-step-084.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-084.json",
+      "bytes": 88786,
+      "sha256": "8acc0723ed477721d9041cbd84d10a816c4fb6e7c9fb5f1f2cf515264933fd99"
+    },
+    "timing-map-step-085.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-085.json",
+      "bytes": 88786,
+      "sha256": "7dedba7b0a77028ca4bc91e47cfa0d39df49dbbfd54d5cdd4256d9d2cde2f958"
+    },
+    "timing-map-step-086.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-086.json",
+      "bytes": 88786,
+      "sha256": "31f98f4ec432f94bcb3df59b62864668b1ed8c0df32047f21b70509d223db282"
+    },
+    "timing-map-step-087.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-087.json",
+      "bytes": 88786,
+      "sha256": "3aa46fe316455ce2f854bd2e098d8ddce1dd087aaa9ba3a41f23f330104ae42f"
+    },
+    "timing-map-step-088.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-088.json",
+      "bytes": 88786,
+      "sha256": "c6518a7280d4a6a49de75f8fb64dc60c5d8e2a914c077e739247d8fb48ade167"
+    },
+    "timing-map-step-089.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-089.json",
+      "bytes": 88786,
+      "sha256": "9d853b9a0e4f2e4d1ea0e2087444f7feba17b5200d2f283b990c1de7a3e56b40"
+    },
+    "timing-map-step-090.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-090.json",
+      "bytes": 88786,
+      "sha256": "4b8a1a363505dd26ac1c7927f8ca74d4137435f752b51b0098ce8c1f7050085d"
+    },
+    "timing-map-step-091.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-091.json",
+      "bytes": 88786,
+      "sha256": "08ec15935cecbbf6517ca70410c6556de4de821b58cc85f0e0df62493a035333"
+    },
+    "timing-map-step-092.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-092.json",
+      "bytes": 88786,
+      "sha256": "39ad1ea85b80e86755c8aba4995b032456a1e3c43d4f904e0f494b1a2121da6a"
+    },
+    "timing-map-step-093.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-093.json",
+      "bytes": 88786,
+      "sha256": "2a7e4feaf397975d37ed9dafc7bdc56a76e16ef5a8ae5a847e3fc2eff31ea48b"
+    },
+    "timing-map-step-094.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-094.json",
+      "bytes": 88786,
+      "sha256": "f8bce3a386f0b281fd93dc71db9be4d1606011863c985b08fe9e94cf30421755"
+    },
+    "timing-map-step-095.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-095.json",
+      "bytes": 88786,
+      "sha256": "a0be5052b5b143c04a453cf442e288536277c07a78f10afe8e117aa1fb29c631"
+    },
+    "timing-map-step-096.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-096.json",
+      "bytes": 88786,
+      "sha256": "45f0d4da740afe9bfae0af0000586c09ca0f12b3077a73285787e31f893752fb"
+    },
+    "timing-map-step-097.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-097.json",
+      "bytes": 88786,
+      "sha256": "a291327445d0a1d5b97fb30d5593a5018948ea6c110c640a5e23e25eb8ed7db2"
+    },
+    "timing-map-step-098.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-098.json",
+      "bytes": 88786,
+      "sha256": "ac3030b3d108a8e211a376ee03495e00bc74cc6cee3f95868652daad5a96bf3b"
+    },
+    "timing-map-step-099.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-099.json",
+      "bytes": 88787,
+      "sha256": "704ed974520c8a78f3abf7aa46b22cc21912da7cc64ca7d8cb37fca7834aeb7c"
+    },
+    "timing-map-step-100.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-100.json",
+      "bytes": 88787,
+      "sha256": "601fb8f215b039a8a36c6827ffe3db6b73684b1aa6de8bf1678a7fa7d1b5bd8d"
+    },
+    "timing-map-step-101.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-101.json",
+      "bytes": 88787,
+      "sha256": "e3070e1cbd55d33167ada015dca99ea165d0681ecb62b6e4cf8d606825964d7d"
+    },
+    "timing-map-step-102.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-102.json",
+      "bytes": 88787,
+      "sha256": "12ddf9a17332bed0d38adaa40de08315613e7c034fcf47a2e3c2799607ac6c56"
+    },
+    "timing-map-step-103.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-103.json",
+      "bytes": 88787,
+      "sha256": "b6f32dec24cfc63a352a02ebe1d7556f2c89379f8466986ee7ee9ed6da341c18"
+    },
+    "timing-map-step-104.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-104.json",
+      "bytes": 88787,
+      "sha256": "43f68aa76e5d437463291f61f483c1ffc3a8dda02e2c41f7522af6fe31bdce58"
+    },
+    "timing-map-step-105.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-105.json",
+      "bytes": 88787,
+      "sha256": "910f47f88f36726a7aec23f3b2b1076c35110d47beb8f4247dff1013cc75a014"
+    },
+    "timing-map-step-106.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-106.json",
+      "bytes": 88787,
+      "sha256": "3822a67afb92845db6d92747d2c7b7cd3bda3e5c93cc319790492948cffaf7f0"
+    },
+    "timing-map-step-107.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-107.json",
+      "bytes": 88787,
+      "sha256": "d39f258cec754d630166e291df7359802150ad9078578e441505865831bb2ea9"
+    },
+    "timing-map-step-108.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-108.json",
+      "bytes": 88787,
+      "sha256": "a65e74c61ae958975da2453d440ede57bce0b4965ee11e9f9f9d705e62a91754"
+    },
+    "timing-map-step-109.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-109.json",
+      "bytes": 88787,
+      "sha256": "7c25e98cca2fdf3cbdeee0f847f89e44497a24311c24567bf5aede7bf78b5d9a"
+    },
+    "timing-map-step-110.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-110.json",
+      "bytes": 88787,
+      "sha256": "891fc3eb2bcd8d40637b8b6470121bd6ad6be5d39b0bb48ae1285fb1a6b26ac9"
+    },
+    "timing-map-step-111.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-111.json",
+      "bytes": 88787,
+      "sha256": "49d9c0f67937dc43591f9688535fb27df8690917ed5c590b448d3ba4fa8ef6ba"
+    },
+    "timing-map-step-112.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-112.json",
+      "bytes": 88787,
+      "sha256": "2b26f3135d41f31189466eb2f54563a3ef61d7d6e683a87c038e30af2cefbdc2"
+    },
+    "timing-map-step-113.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-113.json",
+      "bytes": 88787,
+      "sha256": "2dc17daf59b703016e15ddd2c709a8a939244b18aa36f0cf2a5108b06c192f5d"
+    },
+    "timing-map-step-114.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-114.json",
+      "bytes": 88787,
+      "sha256": "f169d455e3f5b912c6eb5d57ef04006a4bd522f39474279bdb69299f70abf4ae"
+    },
+    "timing-map-step-115.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-115.json",
+      "bytes": 88787,
+      "sha256": "95a622b554899980f9497f34e0b2a2959dbd08edc4d3780c43c582fa8393a928"
+    },
+    "timing-map-step-116.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-116.json",
+      "bytes": 88787,
+      "sha256": "52fed624ec4ae5b56f379dbcbcd5755fe4504c23b860d59ce8831f1fc2268207"
+    },
+    "timing-map-step-117.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-117.json",
+      "bytes": 88787,
+      "sha256": "122bff400533b3cd8cba9d919b5fc3995a5e5d8cc122b5bd8bf4881d59200002"
+    },
+    "timing-map-step-118.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-118.json",
+      "bytes": 88787,
+      "sha256": "b0c00d2c72a46bf23a624e8b8dde51b906213651c9112e125059f1e324d80421"
+    },
+    "timing-map-step-119.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-119.json",
+      "bytes": 88787,
+      "sha256": "d7e70464cdf711c2987c097dc6e9b0b497d5459706835935209b702912eb4814"
+    },
+    "timing-map-step-120.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-120.json",
+      "bytes": 88787,
+      "sha256": "17dc5d88d1b7e626b1b504e688a0b7f0a2887738bfc15107600ece4b68792e86"
+    },
+    "timing-map-step-121.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-121.json",
+      "bytes": 88787,
+      "sha256": "b578dd844fcbc67391bbd2a6436c59b25ec90e18710a82b0967ccc1b916492f5"
+    },
+    "timing-map-step-122.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-122.json",
+      "bytes": 88787,
+      "sha256": "9c8f96410f8b47966112101539de054aaa74ae3613e664ff4e36f52eaba29b2d"
+    },
+    "timing-map-step-123.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-123.json",
+      "bytes": 88787,
+      "sha256": "5762a601297576b3d07f5220ef70894370669b1a5ebab4ac2dcb864e220c1edf"
+    },
+    "timing-map-step-124.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-124.json",
+      "bytes": 88787,
+      "sha256": "d86a24fde1cd2f65ae1a29a7c4dffaf8ed186ca90c04dbce5f87f0049873af36"
+    },
+    "timing-map-step-125.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-125.json",
+      "bytes": 88787,
+      "sha256": "c3f85537aef728afebeaf0d9f43913962539dd8bad0094bcb3e4cfb8005d19b7"
+    },
+    "timing-map-step-126.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-126.json",
+      "bytes": 88787,
+      "sha256": "7e26259a234c0b717d1095011b0f7ea3c17ec7b7ebd61e63854de87e8e72e795"
+    },
+    "timing-map-step-127.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-127.json",
+      "bytes": 88787,
+      "sha256": "bab814b7048d82fe4fbbb66bd8a5aa2c37cb7a7c93918d273e75922c1684b4c2"
+    },
+    "timing-map-step-128.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-128.json",
+      "bytes": 88787,
+      "sha256": "0a1b0e3874397257d2edf1fbef7ed91a800ccd22964111a5c82b9b481685dcaa"
+    },
+    "timing-map-step-129.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-129.json",
+      "bytes": 88787,
+      "sha256": "67ccd98d4642cb8825a9c180dad95415f3b05899ecc7d0c42f174dcb31cdd03c"
+    },
+    "timing-map-step-130.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-130.json",
+      "bytes": 88787,
+      "sha256": "a0b8a0031535b5cb459825d2ef63bc19cade6d5627d189a5c94b452fe24a9ee5"
+    },
+    "timing-map-step-131.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-131.json",
+      "bytes": 88787,
+      "sha256": "512080538eee57e911ccac34b3535a1ee78c7d2c3d2f476e519915f39c23d334"
+    },
+    "timing-map-step-132.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-132.json",
+      "bytes": 88787,
+      "sha256": "05514bb6437325c01213306b7838c740689a9381d3b189a881ff9760a1dbf49b"
+    },
+    "timing-map-step-133.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-133.json",
+      "bytes": 88787,
+      "sha256": "1192cd3bb5c4dbb9c4e86475e3ca049356ab8ea2d3ed66ed24477d022c69eb98"
+    },
+    "timing-map-step-134.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-134.json",
+      "bytes": 88787,
+      "sha256": "140035b73cbc65b97ab732ecb6c4867ec71b63506eb4736566b1bd4e8814b17c"
+    },
+    "timing-map-step-135.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-135.json",
+      "bytes": 88787,
+      "sha256": "56470b773be8ef4066db8d597e57429d630a2fa0fd1b9d09e34c2280c0be5df3"
+    },
+    "timing-map-step-136.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-136.json",
+      "bytes": 88787,
+      "sha256": "8f67c1a010af9adb12a577d5dc9723744d19088207b36bac4a1817e24a732001"
+    },
+    "timing-map-step-137.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-137.json",
+      "bytes": 88787,
+      "sha256": "31066cfd6affad1aa8550bd4c4b9745fde38f0d31533e8c859a34019bbe3bae8"
+    },
+    "timing-map-step-138.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-138.json",
+      "bytes": 88787,
+      "sha256": "c466d103bca8cb4888153b74e8c4907ef17e978f05bd0e1aabce1956ab3b28a4"
+    },
+    "timing-map-step-139.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-139.json",
+      "bytes": 88787,
+      "sha256": "86d166f300f6ab60ed5dbf2448e45a0620482426bbf935fe65091524da7ad024"
+    },
+    "timing-map-step-140.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-140.json",
+      "bytes": 88787,
+      "sha256": "59a3f88b0ea9dd1908ef48eb5c60b92072f9109fb17e82074d0170d578a49c68"
+    },
+    "timing-map-step-141.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-141.json",
+      "bytes": 88787,
+      "sha256": "d98171a77de24836afb74464ca3946afdd6f693671832248178c67bc121973f9"
+    },
+    "timing-map-step-142.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-142.json",
+      "bytes": 88787,
+      "sha256": "40246059be669e5c310e231ac2ad397c775b9828cb3e919ec063375ec67bcc42"
+    },
+    "timing-map-step-143.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-143.json",
+      "bytes": 88787,
+      "sha256": "89b5913f5dfc16a226bdf2542ccbc8e7bf203a7031fdf3172a9c314e8e59b80d"
+    },
+    "timing-map-step-144.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-144.json",
+      "bytes": 88787,
+      "sha256": "4db4a99309eff3ca37f7a969534b9401e449d545d813b5d431c2e453c7226f04"
+    },
+    "timing-map-step-145.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-145.json",
+      "bytes": 88787,
+      "sha256": "bf352cd13db13b9c121eb1ec2a9b26ad93625227815da5af8724cb7f826f3c23"
+    },
+    "timing-map-step-146.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-146.json",
+      "bytes": 88787,
+      "sha256": "4d8392346be111bb77e59ed08c44f30a872f63a601df121a83b5613fdb68821d"
+    },
+    "timing-map-step-147.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-147.json",
+      "bytes": 88787,
+      "sha256": "c0d31bc07b73eb242268028611f0ed2b1e6d1e28c653d34df0f4311468ea3501"
+    },
+    "timing-map-step-148.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-148.json",
+      "bytes": 88787,
+      "sha256": "64d70db2f33691560bf0c079345ea082722df9aefbb3b1c12442723228777418"
+    },
+    "timing-map-step-149.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-149.json",
+      "bytes": 88787,
+      "sha256": "cf229b99f3866a4d64f8439c71876db193e0723826cbf2d22ecd3bdc996b3f67"
+    },
+    "timing-map-step-150.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-150.json",
+      "bytes": 88787,
+      "sha256": "386b27a57b180ff751a18c2175f6deafae90cc2a4211d3e846dde8d82b38b2d9"
+    },
+    "timing-map-step-151.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-151.json",
+      "bytes": 88787,
+      "sha256": "af0480e58b75efd0d3d34574cb85cb8f05378c6bce6b82688964e2a54c78ee2f"
+    },
+    "timing-map-step-152.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-152.json",
+      "bytes": 88787,
+      "sha256": "f81c2056a5e98a9d8b65710b93ca23a4a4af0987da28fc2e2668fb13fb66a12f"
+    },
+    "timing-map-step-153.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-153.json",
+      "bytes": 88787,
+      "sha256": "e2e8a3e3e87c81ba1409020b36d4f81480e2716798f9e3b5f3f8be4e6bbdfc57"
+    },
+    "timing-map-step-154.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-154.json",
+      "bytes": 88787,
+      "sha256": "20100f211859e7f90e9bba55d861e13f52b0c848c68b8f6feaf09f0298e41d37"
+    },
+    "timing-map-step-155.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-155.json",
+      "bytes": 88787,
+      "sha256": "d93d1ff193c3595f60b8d2288ea8ddf164d0082a7071c8628de7305e6e1dd7cc"
+    },
+    "timing-map-step-156.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-156.json",
+      "bytes": 88787,
+      "sha256": "a5f19262448070ccc34a7b80a367eb8e1b560e8c2f4c46679bcc1facc2b13805"
+    },
+    "timing-map-step-157.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-157.json",
+      "bytes": 88787,
+      "sha256": "aa513ccc16fe4d848968439989a5ffb1bcf3a830b80224a5963d1dac81da218e"
+    },
+    "timing-map-step-158.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-158.json",
+      "bytes": 88787,
+      "sha256": "0d69359227afe18e8e3e5a9ceab305b175949daac09b6e5c6f754cb7b3abdff8"
+    },
+    "timing-map-step-159.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-159.json",
+      "bytes": 88787,
+      "sha256": "a73a7cf12c96e776a14e0a47fd45ae680c38256b286df0b1481aa457f75b6ded"
+    },
+    "timing-map-step-160.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-160.json",
+      "bytes": 88787,
+      "sha256": "95891461dc24ea1c2d8577950f87ffd6121b2614f73387d1e5fb69f938757c52"
+    },
+    "timing-map-step-161.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-161.json",
+      "bytes": 88787,
+      "sha256": "89669d296c0573be9d017db122c69626cd1bdc19c81fa69fdfad03288d19a006"
+    },
+    "timing-map-step-162.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-162.json",
+      "bytes": 88787,
+      "sha256": "3af301fc7f8c4e15115a385276a51c85f88a73c9671450907c1079dd3afb507e"
+    },
+    "timing-map-step-163.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-163.json",
+      "bytes": 88787,
+      "sha256": "996bbf838e62923854ec32f4612856d73e572f2d603d5e450d823630a7c2325d"
+    },
+    "timing-map-step-164.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-164.json",
+      "bytes": 88787,
+      "sha256": "59e2993847c431ab2e8fe0f9132c8c53d27502ab0c689698eb7567d32eedd50a"
+    },
+    "timing-map-step-165.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-165.json",
+      "bytes": 88787,
+      "sha256": "4c09155d80245a5daa209e933008b4e0e864be5e7f7f746629345212a6f048f3"
+    },
+    "timing-map-step-166.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-166.json",
+      "bytes": 88787,
+      "sha256": "a838e8ed9647d2ef6d888409000ebf7c6407bfe85a3e99a02b830b55d59d2006"
+    },
+    "timing-map-step-167.json": {
+      "path": ".local/jungle-jump-native-01/timing-map-step-167.json",
+      "bytes": 88787,
+      "sha256": "e2d987b9a82863bf5a61bda5b5cfbfb2cbd29ee527e4b97091abb952f786bf11"
+    }
+  },
+  "inputProfile": {
+    "path": "reference/jungle-jump-inputs.json",
+    "bytes": 620,
+    "sha256": "1b129f2e827abd4d1eef87d482209faf32f4364dc7aa7ba04f7812226c80a91e"
+  },
+  "expectedMotionSamples": [
+    {
+      "index": 1,
+      "frame": 4965,
+      "clock": 4938,
+      "page": 1,
+      "x": 8,
+      "y": 16,
+      "action": 5,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 51610
+    },
+    {
+      "index": 39,
+      "frame": 5003,
+      "clock": 4977,
+      "page": 1,
+      "x": 22,
+      "y": 16,
+      "action": 18,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 14558
+    },
+    {
+      "index": 42,
+      "frame": 5006,
+      "clock": 4980,
+      "page": 0,
+      "x": 14,
+      "y": 16,
+      "action": 18,
+      "actorFrame": 1,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 14558
+    },
+    {
+      "index": 45,
+      "frame": 5009,
+      "clock": 4983,
+      "page": 1,
+      "x": 6,
+      "y": 65528,
+      "action": 18,
+      "actorFrame": 2,
+      "lostLives": 1,
+      "column": 0,
+      "row": 65535,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 36213
+    },
+    {
+      "index": 71,
+      "frame": 5035,
+      "clock": 5010,
+      "page": 0,
+      "x": 14,
+      "y": 16,
+      "action": 18,
+      "actorFrame": 3,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 31671
+    },
+    {
+      "index": 74,
+      "frame": 5038,
+      "clock": 5014,
+      "page": 1,
+      "x": 22,
+      "y": 16,
+      "action": 18,
+      "actorFrame": 4,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 61056
+    },
+    {
+      "index": 76,
+      "frame": 5040,
+      "clock": 5016,
+      "page": 0,
+      "x": 8,
+      "y": 16,
+      "action": 5,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 61056
+    }
+  ],
+  "scope": "Natural original jungle jump profile,independent Right+Fire hold/release,120 uninterrupted render samples. No guest writes/restores,fitted inputs or port timing admission.",
+  "engineReport": {
+    "version": "0.84.0-vc1 (baf7b)",
+    "protocol": "1.15",
+    "scope": "New configured engine identity;full live original flight/jungle/EGA code revalidated at this launch."
+  }
+}

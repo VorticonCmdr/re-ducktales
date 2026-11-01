@@ -1,0 +1,21 @@
+{
+  "kind": "live-browser-movement-clock",
+  "producer": ".local/movement-browser-clock-01",
+  "expectedCases": 1,
+  "nativeTimingAcceptance": false,
+  "artifact": {
+    "path": ".local/movement-browser-clock-01/recording.json",
+    "bytes": 1354,
+    "sha256": "e2041bd849e68ec0fc82c59e32f924363ce7aaeec8c48a4c30158156924c65b7"
+  },
+  "captureTool": "cua_repl native input plus read-only DOM state/timing;host Date.now brackets DOM reads",
+  "setup": "Fresh current Vite5187 build;natural BIOS seed;opening/difficulty/office/security target YQVA row7;map64,73 Okeefadokie Swamp;Travel;real Space throttle/Return landing;Jungle with2 lives at sample. No simulation clock override or state injection.",
+  "schedule": "Read published data-state and data-timing together;native Right hold1000ms;read both again. Host Date.now sampled before/after each DOM read.",
+  "comparison": "Exact game timer floor and component driver/retrace deltas from consumed frame time;wall/simulation elapsed equality with1e-7ms floating subtraction allowance;browser wall delta must fit independent host-read interval. Position only proves actual movement occurred;no native pose or speed parity claim.",
+  "limitations": [
+    "Single browser interval,1.049s;no whole-level timing or native phase comparison.",
+    "Native input action declares1000ms hold;host typematic/repeat delivery is not assumed to reproduce emulator input.",
+    "Clock instrumentation is read-only and development-only. No simulation state or expected output supplies inputs."
+  ],
+  "verify": "node scripts/verify-movement-browser-clock.js"
+}

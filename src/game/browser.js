@@ -561,6 +561,16 @@ function frame() {
       $("game").dataset.scene = game.scene;
       $("game").dataset.overlay = overlay?.kind ?? "";
       $("game").dataset.state = JSON.stringify(game.snapshot());
+      // Read-only development observation of the clock consumed by this frame.
+      // Publish alongside state so browser timing checks do not infer frame
+      // timestamps from automation round trips. This never feeds simulation.
+      if (import.meta.env.DEV)
+        $("game").dataset.timing = JSON.stringify({
+          wallMilliseconds: now,
+          simulationMilliseconds: scheduler.elapsed,
+          originMilliseconds: scheduler.origin,
+          pausedMilliseconds: scheduler.pausedMilliseconds,
+        });
     }
   } catch (e) {
     fatal(e);

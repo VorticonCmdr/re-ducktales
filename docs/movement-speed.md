@@ -176,3 +176,25 @@ PYTHONDONTWRITEBYTECODE=1 DUCKTALES_DOSBOX_MCP_ROOT=/Users/valentin.pletzer/proj
  /Users/valentin.pletzer/projects/emulator/dosbox-mcp/.venv/bin/python scripts/capture-security.py \
  --jungle-page-observer --jungle-motion-profile walk-hold --port 8414 --output .local/jungle-walk-hold-native-FRESH
 ```
+
+A fresh real-browser clock measurement now uses development-only `data-timing`,
+published beside `data-state` after rendering. It records the actual frame's
+performance.now input,simulation elapsed time,origin and hidden-page pause total.
+It never supplies simulation inputs. Resetting the browser tool session restored
+the previously unavailable browser connection;no alternate UI mechanism was used.
+
+Normal controls again reached the jungle via security,map and flight. An actual
+Right hold1000ms changed X8→24 and advanced26 simulation frames. The two published
+snapshots span1048.8ms of browser wall/simulation time,77 driver ticks and74
+retraces. Both global tick counts equal the exact timer floor;component tick and
+retrace deltas follow the same clock. Independent host read brackets are
+1018..1078ms,containing the browser interval. No browser errors were reported.
+This verifies the real browser consumes time at1x in this interval;it does not
+claim that synthetic native key holds emit the same typematic stream as DOSBox.
+
+`node scripts/verify-movement-browser-clock.js` verifies the saved local recording,
+archived/current runtime identities,all22 originals,one completed actual movement
+case and five negatives (altered tick,simulation time,wall time,missing input and
+zero cases). The1e-7ms allowance covers only floating-point origin subtraction.
+No native timing exclusion or presentation tolerance is added. This clock check
+is distinct from the remaining strict native timing failures.

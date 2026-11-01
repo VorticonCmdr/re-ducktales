@@ -33,7 +33,7 @@ def samples_ok(samples, m):
             if any(row[k] != samples[i-1][k] for k in ['x', 'y', 'action']):
                 changes.append(row['index'])
     assert changes == m['expectedMotionChangeIndices']
-    if m['kind'] == 'original-jungle-jump-observation':
+    if m['kind'] != 'original-jungle-cadence-observation':
         motion = [row for i,row in enumerate(samples) if not i or row['index'] in changes]
         assert motion == m['expectedMotionSamples'], 'Changed jungle jump motion sample'
     assert samples[-1]['frame']-samples[0]['frame'] == m['expectedFrameSpan'] == 119
@@ -41,8 +41,9 @@ def samples_ok(samples, m):
     hz = m.get('retraceHz',70.086)
     assert m['expectedClockSpan'] == (144 if m['configuration']['machine']=='ega' else 123)
     assert abs(119/hz-m['expectedClockSpan']*16380/1193182) <= 16380/1193182
-    assert any(row['right'] == 128 for row in samples[:40])
-    assert all(row['right'] == 0 for row in samples[41:])
+    release = 80 if m['kind']=='original-jungle-walk-hold-observation' else 40
+    assert any(row['right'] == 128 for row in samples[:release])
+    assert all(row['right'] == 0 for row in samples[release+1:])
 
 
 def inputs_ok(value, replay, m):
@@ -50,7 +51,7 @@ def inputs_ok(value, replay, m):
         for pressed,frame in [(True,0),(False,40)] for key in ['KBD_right','KBD_space']]
         if m['kind'] == 'original-jungle-jump-observation' else [
         {'type': 'key', 'key': 'KBD_right', 'pressed': True, 'frame': 0},
-        {'type': 'key', 'key': 'KBD_right', 'pressed': False, 'frame': 40}])
+        {'type': 'key', 'key': 'KBD_right', 'pressed': False, 'frame': 80 if m['kind']=='original-jungle-walk-hold-observation' else 40}])
     assert value['events'] == m['events'] == expected
     assert value['scheduled']['events_scheduled'] == len(expected)
     assert not replay['active'] and replay['remaining'] == 0 and replay['dispatched'] == len(expected)
@@ -58,7 +59,7 @@ def inputs_ok(value, replay, m):
 
 def verify(manifest='reference/jungle-native-cadence.json'):
     m = json.loads((ROOT/manifest).read_text())
-    assert m['kind'] in ['original-jungle-cadence-observation','original-jungle-jump-observation']
+    assert m['kind'] in ['original-jungle-cadence-observation','original-jungle-jump-observation','original-jungle-walk-hold-observation']
     assert m['nativeObservation'] and not m['portTimingAcceptance']
     assert m['injections'] == [] and not m['partialRestore']
     objects = {}
@@ -129,8 +130,8 @@ def verify(manifest='reference/jungle-native-cadence.json'):
     for role, count in [('startup-inputs.json', 10), ('jungle-flight-setup-completed.json', 4)]:
         value = objects[role]; receipt = value['receipt'] if role == 'startup-inputs.json' else value
         assert not receipt['active'] and receipt['remaining'] == 0 and receipt['dispatched'] == count
-    if m['kind'] == 'original-jungle-jump-observation':
-        assert observation['motionProfile'] == 'jump'
+    if m['kind'] != 'original-jungle-cadence-observation':
+        assert observation['motionProfile'] == ('walk-hold' if m['kind']=='original-jungle-walk-hold-observation' else 'jump')
         profile = m['inputProfile']; data = (ROOT/profile['path']).read_bytes()
         assert len(data) == profile['bytes'] and sha(data) == profile['sha256']
         assert json.loads(data) == objects['jungle-motion-input-contract.json']

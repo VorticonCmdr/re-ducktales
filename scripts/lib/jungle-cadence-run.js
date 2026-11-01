@@ -16,7 +16,8 @@ export const jungleCadenceState = (m) => ({
   seed: m.i(0x2229) & 65535,
 });
 const state=jungleCadenceState;
-export function runJungleCadence({ entryBytes, contract, resources, provider, scans = [0x4d], omitRepeat = false, omitRelease = false, retraceHz = RETRACE_HZ }) {
+export function runJungleCadence({ entryBytes, contract, resources, provider, scans = [0x4d], omitRepeat = false, omitRelease = false, retraceHz = RETRACE_HZ, releaseFrame = 40 }) {
+  assert.ok(Number.isInteger(releaseFrame) && releaseFrame > 0 && releaseFrame < 119);
   assert.ok(Number.isFinite(retraceHz) && retraceHz > 0);
   const frameMs = 1000 / retraceHz;
   const keyboard = new OrdinaryKeyboard(0),
@@ -66,7 +67,7 @@ export function runJungleCadence({ entryBytes, contract, resources, provider, sc
   for (let steps = 0; steps < 10000; steps++) {
     const tick = ((ticks + 1) * 1000) / DRIVER_HZ;
     const retrace = (retraces + 1) * frameMs;
-    const releaseAt = anchor === null ? Infinity : anchor + 40 * frameMs;
+    const releaseAt = anchor === null ? Infinity : anchor + releaseFrame * frameMs;
     const event =
       anchor === null
         ? Infinity

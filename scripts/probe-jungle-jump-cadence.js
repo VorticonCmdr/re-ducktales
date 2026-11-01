@@ -21,9 +21,17 @@ async function artifact(name) {
 const entry=await artifact("jungle-entry.json"),contract=await artifact("jungle-entry-contract.json");
 const provider=JSON.parse(await readFile("reference/jungle-keyboard-provider.json"));
 assert.equal(provider.initialRepeatMilliseconds,500);assert.equal(provider.repeatMilliseconds,33);
+const profileSpec=m.inputProfile;
+const profileBytes=await readFile(profileSpec.path);
+assert.equal(createHash("sha256").update(profileBytes).digest("hex"),profileSpec.sha256);
+const profile=JSON.parse(profileBytes);
+const walkHold=profile.kind==="original-jungle-walk-hold-physical-inputs";
+assert.ok(walkHold || profile.kind==="original-jungle-jump-physical-inputs");
+const scans=walkHold?[0x4d]:[0x4d,0x39];
+const releaseFrame=walkHold?80:40;
 const actual=runJungleCadence({
   entryBytes:Buffer.from(entry.state.results[1].data,"base64"),contract,
-  resources:await jungleComponentResources(),provider,scans:[0x4d,0x39],
+  resources:await jungleComponentResources(),provider,scans,releaseFrame,
   retraceHz:m.retraceHz ?? RETRACE_HZ,
 });
 // Expected states are first read after the independent input stream finishes.
@@ -49,12 +57,13 @@ if(!firstDifference)for(let i=0;i<Math.max(actual.motion.length,native.length);i
   catch {firstDifference={index:i,kind:"state-or-time",port:p,native:{state:projection(n),bracketMs:bracket}};break;}
 }
 let finalMatches=true;try{assert.deepEqual(actual.final,projection(samples.at(-1)));}catch{finalMatches=false;}
-const repeats = Math.max(0, Math.ceil((40*frameMs-provider.initialRepeatMilliseconds)/provider.repeatMilliseconds));
+const repeats = Math.max(0, Math.ceil((releaseFrame*frameMs-provider.initialRepeatMilliseconds)/provider.repeatMilliseconds));
 assert.deepEqual(actual.events.map(e=>e.kind),["make",...Array(repeats).fill("repeat"),"break"]);
-assert.equal(actual.events.reduce((n,e)=>n+e.scans.length,0),4+repeats);
+assert.equal(actual.events.reduce((n,e)=>n+e.scans.length,0),scans.length*2+repeats);
 const passed=!firstDifference&&finalMatches;
-console.log(JSON.stringify({kind:"exploratory-jungle-jump-cadence",accepted:false,comparisonPassed:passed,
-  environment:"Native ENTRY memory;zero-phase driver/retrace;independent Right+Fire make0/break40-frame schedule;500/33ms repeats only last physical key Space;immediate IRQ delivery,no browser or i8042 phase.",
+console.log(JSON.stringify({kind:walkHold?"exploratory-jungle-walk-hold-cadence":"exploratory-jungle-jump-cadence",accepted:false,comparisonPassed:passed,
+  environment:"Native ENTRY memory;zero-phase driver/retrace;independent physical input profile;500/33ms repeats only last physical key;immediate IRQ delivery,no browser or i8042 phase.",
+  inputProfile:profile,
   consumedReads:actual.inputs.length,events:actual.events,firstDifference,finalMatches,
   portMotion:actual.motion,nativeMotion:native.map(s=>({state:projection(s),bracketMs:[Math.max(0,s.index-2)*frameMs,(s.index-1)*frameMs]})),
   final:actual.final,nativeFinal:projection(samples.at(-1))},null,2));

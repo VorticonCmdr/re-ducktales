@@ -1,0 +1,172 @@
+{
+  "kind": "exploratory-jungle-pic-clock",
+  "producer": ".local/jungle-pic-clock-native-04",
+  "expectedCheckpointCount": 120,
+  "expectedFrameSpan": 119,
+  "expectedInputEvents": 2,
+  "accepted": false,
+  "nativeTimingAcceptance": false,
+  "inputProfile": {
+    "path": "reference/jungle-walk-hold-inputs.json",
+    "bytes": 500,
+    "sha256": "629b8495b6648f27c166766574666f2e8ecf7633f514ae314ff04b5f04870887"
+  },
+  "build": {
+    "path": "reference/build.json",
+    "bytes": 3003,
+    "sha256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb"
+  },
+  "calibration": {
+    "path": "reference/native-clock-calibration.json",
+    "bytes": 2702,
+    "sha256": "13e5f2d83a86af286c2e8fcea1a91d30170173022918458bee923c57a7a39201"
+  },
+  "analysis": {
+    "path": ".local/native-clock-phase-analysis-01/result.json",
+    "bytes": 713,
+    "sha256": "6548b7f8ec789da341f65435a4a33cd49d469fdab3c6b920d93ce3a6f52dd7b1"
+  },
+  "analysisScriptSHA256": "ea2aef0022dcfca89eca349909857d1820cdc5419ed927b41bcbee7a784b5557",
+  "artifacts": {
+    "capture.json": {
+      "path": ".local/jungle-pic-clock-native-04/capture.json",
+      "bytes": 376,
+      "sha256": "65c1ab02ecff56f90694cc15e4d7556c0457756540596af9ef1a1b08cf6712ee"
+    },
+    "lifecycle.json": {
+      "path": ".local/jungle-pic-clock-native-04/lifecycle.json",
+      "bytes": 123,
+      "sha256": "1cf9b26cfb5681d8d8fdca1f5d98e0cdb98fa7953c9b4bf99f57b72a87971100"
+    },
+    "engine.json": {
+      "path": ".local/jungle-pic-clock-native-04/engine.json",
+      "bytes": 4519,
+      "sha256": "f91f5e2b41708b892e7af6601b5178ee20a5c2abc89954a5f9984dcb585ed5f3"
+    },
+    "clock-engine.json": {
+      "path": ".local/jungle-pic-clock-native-04/clock-engine.json",
+      "bytes": 1012,
+      "sha256": "9ae9e34795476dd3684577b678fd52730be700db55af5d0361a131b8f7086b89"
+    },
+    "configuration.json": {
+      "path": ".local/jungle-pic-clock-native-04/configuration.json",
+      "bytes": 2585,
+      "sha256": "85b0dc47a25fb66e11e2859d911e9855ab31bffb24dfb062d2c0d1578a37a78f"
+    },
+    "profile-tool-identity.json": {
+      "path": ".local/jungle-pic-clock-native-04/profile-tool-identity.json",
+      "bytes": 506,
+      "sha256": "405b3a41527ecf2fd2d09f8d652bfde637bff1b4278160b68d0ac41dc5fac74a"
+    },
+    "source-revision.json": {
+      "path": ".local/jungle-pic-clock-native-04/source-revision.json",
+      "bytes": 136842,
+      "sha256": "dddf8b2d5b475d00289d690c9e73c76d24f5c37c4fc85ef50d83f60e0dce05f5"
+    },
+    "sources.zip": {
+      "path": ".local/jungle-pic-clock-native-04/sources.zip",
+      "bytes": 3519852,
+      "sha256": "9d499daca3b54e467e24605cb6c87ac804220642ae35ce81b182e83feac314a5"
+    },
+    "jungle-entry.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-entry.json",
+      "bytes": 88803,
+      "sha256": "68476879cb52cca8a0f38f11acb69077a80e4a2347ccd900ab3398520c50cbf9"
+    },
+    "jungle-entry-clock.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-entry-clock.json",
+      "bytes": 575,
+      "sha256": "454fd19858367d725db4bd3bb0c36a58f677ee812515845b44f5e7db9aef91b8"
+    },
+    "jungle-entry-contract.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-entry-contract.json",
+      "bytes": 99,
+      "sha256": "e368d8cb072da7aa37b229738cb1c81252bf46241b09d1023331276868fed76e"
+    },
+    "jungle-code.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-code.json",
+      "bytes": 32297,
+      "sha256": "d05f00cb7c0bb6a16a64c1cfbee34609602f995a6bf0b295a33c0c469b231f03"
+    },
+    "safari-flight-code.json": {
+      "path": ".local/jungle-pic-clock-native-04/safari-flight-code.json",
+      "bytes": 25160,
+      "sha256": "6ba7e81790881b77d37088d93c46057b01fa18c094275980984a4ad9bb10220b"
+    },
+    "jungle-driver.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-driver.json",
+      "bytes": 3662,
+      "sha256": "888b0bc9df08636c61a34757df6a1ef2c8fc5b57afe54d190914b0ba8987e171"
+    },
+    "jungle-first-input.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-first-input.json",
+      "bytes": 88810,
+      "sha256": "5e81a1b5da047e06c4bffeece7f6a15eb49c6f6019b535f5b950c45f5c3d6383"
+    },
+    "jungle-first-presentation.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-first-presentation.json",
+      "bytes": 88812,
+      "sha256": "6e3c40f0341c7ea7473835fa8c78c8f3333b15c529d6c70bf07373690a8458c6"
+    },
+    "jungle-motion-input-contract.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-motion-input-contract.json",
+      "bytes": 500,
+      "sha256": "629b8495b6648f27c166766574666f2e8ecf7633f514ae314ff04b5f04870887"
+    },
+    "jungle-observer-script.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-observer-script.json",
+      "bytes": 1168,
+      "sha256": "7217755e3ea23e9e5dcc43f233c87733f132dd6715bcbf77253ae2f38790bafd"
+    },
+    "jungle-observer-inputs.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-observer-inputs.json",
+      "bytes": 291,
+      "sha256": "589c04d4ef0f775127dcf9b4aa37b3db8ea29390b5425b1abdaad3733c95de76"
+    },
+    "jungle-observer-replay.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-observer-replay.json",
+      "bytes": 175,
+      "sha256": "4924f077c083a4854ba2c1d10b743a70ea52e94dc7d83f18151afbb05b215bb2"
+    },
+    "jungle-observer-result.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-observer-result.json",
+      "bytes": 7705,
+      "sha256": "b5c23d4ac94a74871a9c648f85b735d9295c9a52d1e919e6b965a977162048d0"
+    },
+    "jungle-observer-final.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-observer-final.json",
+      "bytes": 88594,
+      "sha256": "8fc525ef56bddd2ebed72777ae1da544b76c244aa4f79900556ff61bc634e0f1"
+    },
+    "jungle-cadence.json": {
+      "path": ".local/jungle-pic-clock-native-04/jungle-cadence.json",
+      "bytes": 407,
+      "sha256": "c169e4e1fef4b3d8a99ff3e96ec1b22844d7eb2c19189c7ba44122605501dc61"
+    }
+  },
+  "setup": "Fresh private normal3000-cycle svga_s3 original22-file launch. Natural security/map/flight to swamp;no racing flag,state or code patch. Existing ENTRY stop supplies atomic PIC time. Then120 uninterrupted callbacks and authored Right make0/break80-frame schedule.",
+  "compare": "Clock-only constant-period hypothesis;PIC and driver-counter samples constrain phase without reading motion expectations. No movement or whole-timing acceptance.",
+  "injections": [],
+  "partialRestore": false,
+  "reproduceCapture": "scripts/capture-security.py --jungle-page-observer --jungle-motion-profile walk-hold --pic-clock-engine /private/tmp/ducktales-dos-io-engine/build-io/dosbox_with_debugger --pic-clock-source /private/tmp/ducktales-dos-io-engine --port 8422 --output .local/jungle-pic-clock-native-FRESH",
+  "verify": "python3 scripts/analyze-native-clock-phase.py .local/jungle-pic-clock-native-04",
+  "limitations": [
+    "Only the archived capture recipe recomputes full relocated original game identities. This saved analysis validates hashes,completion,inputs and clocks;it is not a second standalone code-byte or pose comparison.",
+    "Constant counter-period inference assumes zero IRQ service latency. No selected phase is injected into port replay.",
+    "Original loading/IRQ/phase differences remain fidelity research;the user accepted the current browser movement pace."
+  ],
+  "excludedAttempts": [
+    {
+      "path": ".local/jungle-pic-clock-native-01",
+      "reason": "Naturally racing flight;no timed jungle measurement;owned emulator closed0."
+    },
+    {
+      "path": ".local/jungle-pic-clock-native-02",
+      "reason": "ENTRY Lua script cannot run while debugger is paused;rejected before measurement;owned emulator closed0."
+    },
+    {
+      "path": ".local/jungle-pic-clock-native-03",
+      "reason": "Naturally racing flight;no timed jungle measurement;owned emulator closed0."
+    }
+  ]
+}

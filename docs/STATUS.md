@@ -1,7 +1,8 @@
 # Current port status
 
-**Active priority:movement speed.** Other integration/backlog work below is
-deferred. See [current measurements and next experiment](movement-speed.md).
+**Movement speed accepted by the user (2026-11-01).** The current build at
+localhost:5187 feels right;keep its pace. Other integration/backlog work below
+remains deferred. See [measurements and remaining fidelity limits](movement-speed.md).
 Current short walking checks match jungle/mountain reference brackets. A longer
 jungle walk/fall matches16 motion states and final state/RNG;its first strict
 timing miss is0.281ms and remains unaccepted. Cave exit poses

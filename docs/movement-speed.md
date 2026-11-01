@@ -1,7 +1,9 @@
 # Movement speed investigation
 
-Movement pacing is the current priority;other port work is deferred. The
-supported original remains the22-file pairing in `reference/build.json`.
+The user accepted the current browser pace on2026-11-01: “The current speed
+feels right.” Keep this pace;the movement-speed pass is complete. Other port work
+remains deferred. Detailed native phase/loading fidelity limits below remain open.
+The supported original remains the22-file pairing in `reference/build.json`.
 Measurements must distinguish action duration,input repeat,video refresh and
 CPU drawing cost. No global slowdown has been fitted.
 
@@ -214,3 +216,26 @@ provider. [Capture-tool correction and scope](native-clock-capture.md) records
 Jungle captures can explicitly select this private build and retain ENTRY time
 plus per-frame PIC milliseconds. No phase is fitted from sprite expectations.
 No new game timing acceptance follows from calibration alone.
+
+The final timed original capture completed at75adb7d in
+`.local/jungle-pic-clock-native-04`:120 uninterrupted17-field samples,119 frame
+intervals,124 driver counts and both independent physical events consumed.
+The existing recipe revalidated the original22-file pairing and live complete
+flight/jungle/executed EGA code before measurement. Owned emulator96151 closed0.
+[Clock-only manifest](../reference/jungle-pic-clock-native.json) retains identities,
+inputs,setup recipe,artifacts and the exploratory calculation command.
+
+Clock samples alone,without sprite expectations,admit a constant-period phase
+with the next driver tick5.576..5.714ms after the first sample. This confirms that
+a zero-phase component run is a different starting clock environment;it does not
+accept whole-game timing or repair the remaining comparison failures. No selected
+phase is injected into port replay. ENTRY to first sample is7582.852ms;complete
+initialization CPU timing remains outside the existing conditional movement checks.
+The raw capture and analysis are retained for future fidelity work.
+
+The user's pace confirmation is the acceptance for the practical movement-speed
+request. A final evidence audit confirms all120 runtime/configuration files match
+the source-tested allocation-clear correction:221 units/zero skips,one actual cave
+browser route and production build. All22 originals remain exact. All six emulator
+instances used in the timestamp investigation are closed,with HOME/shared sessions
+unchanged. Fine timing research stops here;no further speed changes are applied.

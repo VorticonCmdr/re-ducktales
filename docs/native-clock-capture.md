@@ -49,9 +49,9 @@ or partial machine restore is introduced. The added paused-state calibration
 is required before the new binary can be used.
 All original live flight/jungle/EGA identity checks still run after engine change.
 
-The timed game capture is the next experiment. Calibration alone accepts no game
-clock phase,movement timing,CPU equivalence or browser behavior. A new timed
-fixture needs its own manifest/checker before its data can support such a claim.
+The timed original capture has now completed;its clock-only analysis is below.
+Calibration and clock analysis accept no whole-game timing,CPU equivalence or
+browser behavior. Motion/cycle parity remains a separate fidelity investigation.
 
 The paused-state extension is now calibrated in `.local/native-clock-calibration-02`,
 capture source6f69815 and private engine source523e7d6c9. It adds three atomic
@@ -60,4 +60,26 @@ remain identical while paused. The current checker passes61 frame callbacks,
 three paused reads and five corruption controls. The original Lua-only calibration
 is preserved in `reference/native-clock-calibration-01.json`;the current manifest
 selects the new source/binary fingerprint. This validates the two observation
-boundaries only;the timed original game scenario is still pending.
+boundaries only.
+
+The completed original walk-hold capture04 uses source75adb7d and the corrected
+private engine. It contains120 samples across119 frames/124 driver counts,plus
+an atomic ENTRY timestamp. Full live original identities and input completion
+passed the capture recipe;owned emulator96151 closes0. Attempts01/03 naturally
+selected a race and02 exposed the paused-Lua limitation;all are excluded and
+closed0. [Timed record](../reference/jungle-pic-clock-native.json).
+
+```sh
+python3 scripts/analyze-native-clock-phase.py .local/jungle-pic-clock-native-04
+```
+
+This exploratory command checks artifact hashes,archived producer,closed owned
+session,complete events and120 consecutive clock rows. It reads only clock/time
+fields for the period hypothesis. It reports next-tick bounds5.576..5.714ms from
+the first sample,with no motion-derived input or selected injected phase.
+The hypothesis assumes zero IRQ service latency. It supplies no standalone
+second native code-byte comparison or native/port timing acceptance.
+
+The user subsequently confirmed the current browser movement pace feels right.
+The practical speed pass is complete;this evidence is retained for future fine
+fidelity work. No emulator from this investigation remains running.

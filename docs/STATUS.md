@@ -2,6 +2,10 @@
 
 **Active priority:movement speed.** Other integration/backlog work below is
 deferred. See [current measurements and next experiment](movement-speed.md).
+Current walking checks match jungle/mountain reference brackets. Cave exit poses
+and adjacent durations now match the sampled original;its animation starts early
+after resource loading. This does not accept whole-cave timing or final RNG.
+Focused command:`node scripts/compare-cave-passage-motion.js`.
 
 Updated2026-11-01. **The whole game is incomplete.** The supported Standard
 campaign has a complete playable route through all four expedition families,

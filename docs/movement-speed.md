@@ -121,3 +121,26 @@ remaining DOS/allocator/caller work are excluded;precomputed multi-part drawing
 deadlines can absorb an earlier extension. These limits must be resolved before
 integrating interrupt CPU work into playable movement. The next timing target
 is the remaining loader/caller and scheduling boundary,not a global slowdown.
+
+The cave probe now exposes a read-only pose trace in addition to its unchanged
+strict whole-window failure. `node scripts/compare-cave-passage-motion.js`
+passes12 exact exit poses and11 adjacent pose-duration brackets,with three
+negative controls (missing pose,changed coordinate,changed duration). The source
+boundary trace and independently sampled original callbacks have different RNG
+consumption boundaries inside party calls;this segment check explicitly compares
+coordinates/pose/room/torch/entry flag only. It claims no intermediate RNG parity.
+
+The exit animation span is1298.636ms;the independently sampled original span is
+1284.137..1312.673ms. The first pose starts at1383.783ms instead of the original
+1398.282..1412.550ms,after the sprite10 load. Later exit poses retain this same
+one-frame lead,without a growing movement-rate difference. Thus the demonstrated
+absolute gap occurs before the exit animation;slowing each pose would introduce
+a different error. Whole-cave timing,final RNG and entry timing remain failures.
+The paired enabled/disabled audio-environment check still passes its declared
+control result after adding diagnostics;neither mode accepts native timing.
+
+Browser follow-up in this turn could list the retained jungle tab but could not
+read or bind it (`browser.user is unavailable`). Rebinding through the documented
+API had the same result. No new browser speed evidence is claimed. A user retest
+of the current build is pending;work continues against the existing original
+reference platform without assuming their answer.

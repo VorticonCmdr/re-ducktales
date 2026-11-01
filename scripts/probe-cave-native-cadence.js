@@ -47,6 +47,9 @@ const state = (m) => ({
   partyFrame: m.b(0x550e),
   entering: m.i(0x8eb2),
 });
+const motionTrace = [];
+const motionKey = s => JSON.stringify([s.room,s.torch,s.partyX,s.partyY,s.partyFrame,s.entering]);
+let lastMotion = null;
 const keyboard = new OrdinaryKeyboard(0),
   inputs = [],
   events = [],
@@ -141,6 +144,10 @@ for (let steps = 0; steps < 20000; steps++) {
       current.money,
       current.entering,
     ]);
+  if (anchor !== null && motionKey(current) !== lastMotion) {
+    motionTrace.push({ ms: now - anchor, state: current });
+    lastMotion = motionKey(current);
+  }
   if (anchor !== null && key !== last) {
     changes.push({ ms: now - anchor, state: current });
     last = key;
@@ -255,6 +262,11 @@ console.log(
       events,
       firstDifference,
       portChanges: changes,
+      motionDiagnostic: {
+        scope:"Source-boundary port states versus sampled original states;unobserved short-lived states are not admitted as native mismatches. No alignment supplies simulation inputs.",
+        port: motionTrace,
+        native: samples.filter((s,i)=>!i||motionKey(s)!==motionKey(samples[i-1])).map(s=>({state:Object.fromEntries(Object.keys(first).map(k=>[k,s[k]])),bracketMs:[Math.max(0,s.index-2)*frameMs,(s.index-1)*frameMs]})),
+      },
       nativeChanges: expected,
       final,
       nativeFinal,

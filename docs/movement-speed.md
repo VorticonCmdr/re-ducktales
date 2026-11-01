@@ -84,3 +84,19 @@ matching scheduling paths,not actual browser timing acceptance.
 Next:verify the currently served browser build's movement timing and investigate
 the cave movement first divergence. Older project checkouts can lack the drawing
 work delays;do not treat their speed as a measurement of this worktree.
+
+Current main cave probe was rerun after the EGA control (source12a7f84).
+It still fails strictly at phase2:2782.296ms versus2796.564..2810.832ms,
+with the same room,torch,party pose and RNG. Final pose/RNG still differ.
+This confirms the remaining cave issue is present on the current runtime;
+the earlier passage-order correction alone is not timing acceptance.
+
+Manual browser exploration on the same source used actual controls from a fresh
+opening through security,world-map Okeefadokie Swamp selection,travel,throttle,
+flight completion and jungle entry. Right movement exercised the real adapter,
+rendering and a life-loss path,without state injection. Published jungle state
+reports counted drawing work (16.535ms at initial idle,24.7ms in the observed
+life-loss frame). This establishes a working browser route,not quantitative
+speed acceptance. An attempted concurrent DOM timing sampler could not access
+`performance.now` in the browser tool's read-only evaluation scope;it yielded no
+timing evidence and is excluded. No alternate clock or fitted result was used.

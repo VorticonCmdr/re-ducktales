@@ -4,7 +4,6 @@ import { Jungle } from "../../src/game/jungle.js";
 import { FlightMemory } from "../../src/game/flight-physics.js";
 import { OrdinaryKeyboard } from "../../src/game/ordinary-keyboard.js";
 import { DRIVER_HZ, RETRACE_HZ } from "../../src/game/timing.js";
-const frameMs=1000/RETRACE_HZ;
 export const jungleCadenceState = (m) => ({
   x: (m.i(0x5f46) & 65535),
   y: (m.i(0x6858) & 65535),
@@ -17,7 +16,9 @@ export const jungleCadenceState = (m) => ({
   seed: m.i(0x2229) & 65535,
 });
 const state=jungleCadenceState;
-export function runJungleCadence({ entryBytes, contract, resources, provider, scans = [0x4d], omitRepeat = false, omitRelease = false }) {
+export function runJungleCadence({ entryBytes, contract, resources, provider, scans = [0x4d], omitRepeat = false, omitRelease = false, retraceHz = RETRACE_HZ }) {
+  assert.ok(Number.isFinite(retraceHz) && retraceHz > 0);
+  const frameMs = 1000 / retraceHz;
   const keyboard = new OrdinaryKeyboard(0),
     inputs = [],
     motion = [],

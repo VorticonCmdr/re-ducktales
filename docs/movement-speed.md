@@ -53,9 +53,34 @@ completed inputs/owned shutdown and five corruption controls. The shared
 component runner retains all five earlier walking negatives. The jump probe
 reports its first difference and fails;it does not admit a new tolerance.
 
-Next:measure the same unchanged game on explicit EGA hardware,alongside the
-existing `svga_s3` VGA reference. Both video hardware selection and CPU throughput
-are external platform values. The private launcher now permits an explicit EGA
-jungle experiment;the shared emulator and original game files remain untouched.
-Do not change the browser's refresh rate merely to get a slower result before
-the hardware's actual timing and game behavior are measured.
+The explicit EGA control is now captured and strictly verified in
+`reference/jungle-jump-ega-native.json`:same original build,120 callbacks,
+119 frame intervals,144 driver counts,four physical events consumed,owned
+emulator closed. EGA mode0D refresh is source-derived as
+14318180/(8*114*262) =59.9227434Hz (use the exact expression,not this rounded text).
+The manifest records source revision and file hashes. This is a different
+hardware environment;the40-frame hold lasts667.526ms rather than570.727ms.
+It is not an identical wall-time input comparison.
+
+The EGA conditional component run also matches all seven motion states and
+final RNG/state. First motion530.883ms is within the native517.333..534.021ms
+bracket. The strict probe still fails:the fourth transition983.907ms precedes
+its984.601..1001.289ms bracket by0.695ms;the final return1066.274ms is also early.
+No tolerance has been enlarged. Neither hardware result supports a large
+universal slowdown. The browser retains the existing VGA reference clock.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_jungle_cadence.py reference/jungle-jump-ega-native.json
+# Known failing exploratory comparison;expected exit1:
+node scripts/probe-jungle-jump-cadence.js reference/jungle-jump-ega-native.json
+```
+
+The browser scheduler advances independent driver/retrace deadlines and catches
+up simulation steps after a slow render. Jungle graphics waits resume on those
+clocks in both the component comparison and real application;unlike mountain
+and cave,it has no separate application work wake. This inspection establishes
+matching scheduling paths,not actual browser timing acceptance.
+
+Next:verify the currently served browser build's movement timing and investigate
+the cave movement first divergence. Older project checkouts can lack the drawing
+work delays;do not treat their speed as a measurement of this worktree.

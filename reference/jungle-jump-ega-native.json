@@ -1,0 +1,1448 @@
+{
+  "kind": "original-jungle-jump-observation",
+  "producer": ".local/jungle-jump-ega-native-01",
+  "nativeObservation": true,
+  "portTimingAcceptance": false,
+  "expectedSamples": 120,
+  "expectedFrameSpan": 119,
+  "expectedClockSpan": 144,
+  "engineBinarySHA256": "3580a642599ad27fd76265d9f59fd408679aa6d189149af176bde322a3b8c256",
+  "buildManifestSHA256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "configuration": {
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "machine": "ega",
+    "memsize": 16,
+    "vmem_delay": "off"
+  },
+  "setup": "Fresh read-only original launch;natural security/map to64,73,Okeefadokie Swamp;campaign slot shuffled. Naturally nonracing flight and authored crash controls;actual full flight and jungle bodies checked. Start after both opening page reveals. No writes or restores.",
+  "events": [
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": true,
+      "frame": 0
+    },
+    {
+      "type": "key",
+      "key": "KBD_space",
+      "pressed": true,
+      "frame": 0
+    },
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": false,
+      "frame": 40
+    },
+    {
+      "type": "key",
+      "key": "KBD_space",
+      "pressed": false,
+      "frame": 40
+    }
+  ],
+  "expectedFirstSample": {
+    "index": 1,
+    "frame": 4898,
+    "clock": 5723,
+    "page": 1,
+    "x": 8,
+    "y": 16,
+    "action": 5,
+    "actorFrame": 0,
+    "lostLives": 1,
+    "column": 0,
+    "row": 0,
+    "scroll": 0,
+    "outcome": 0,
+    "right": 0,
+    "fire": 0,
+    "seed": 60516
+  },
+  "expectedLastSample": {
+    "index": 120,
+    "frame": 5017,
+    "clock": 5867,
+    "page": 0,
+    "x": 8,
+    "y": 16,
+    "action": 5,
+    "actorFrame": 0,
+    "lostLives": 1,
+    "column": 0,
+    "row": 0,
+    "scroll": 0,
+    "outcome": 0,
+    "right": 0,
+    "fire": 0,
+    "seed": 14138
+  },
+  "expectedMotionChangeIndices": [
+    33,
+    36,
+    38,
+    61,
+    63,
+    66
+  ],
+  "comparison": "Exact artifacts,120 consecutive callbacks and completed four-event schedule. EGA hardware control;40-frame hold differs in wall time from VGA. No port timing acceptance.",
+  "exclusions": [
+    "No exact CPU or scanout timestamps. Original IRQ/retrace phase and input latency not reconstructed.",
+    "Only EGA flip/wait/sprite code ranges compared here;mutable copy operands and other driver code not admitted as exact.",
+    "No whole-level/browser/audio timing comparison. Setup stops are allowed;measurement has no debugger stops."
+  ],
+  "injections": [],
+  "partialRestore": false,
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_jungle_cadence.py reference/jungle-jump-ega-native.json",
+  "artifacts": {
+    "capture.json": {
+      "path": ".local/jungle-jump-ega-native-01/capture.json",
+      "bytes": 377,
+      "sha256": "a3339fdbb52325c1fa500485924c1abef294f4266168c7afbd53ca47366db6b9"
+    },
+    "configuration.json": {
+      "path": ".local/jungle-jump-ega-native-01/configuration.json",
+      "bytes": 2584,
+      "sha256": "054e1045d2b89a0432591a36636fcc7092cfdc7e03a7addd9a97ab3750574348"
+    },
+    "emulator.log": {
+      "path": ".local/jungle-jump-ega-native-01/emulator.log",
+      "bytes": 34936,
+      "sha256": "1e7c4d71113ce4957612996a6c7fad98daaf5703e997bd7bf5524ae2af9f06ad"
+    },
+    "engine.json": {
+      "path": ".local/jungle-jump-ega-native-01/engine.json",
+      "bytes": 4520,
+      "sha256": "3cba13f659ab5d1718a968c953c26ff49fb98601393b085e134d55d6797f2bd8"
+    },
+    "entry.json": {
+      "path": ".local/jungle-jump-ega-native-01/entry.json",
+      "bytes": 88774,
+      "sha256": "511785fbc1bf245ecfea1329a9009f9e8f8131e38d1eaff5c3b108bb1fc2c2a7"
+    },
+    "entry.png": {
+      "path": ".local/jungle-jump-ega-native-01/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/jungle-jump-ega-native-01/fire-first.json",
+      "bytes": 88769,
+      "sha256": "6dbadd403718ef4df0883db79d0bc463b713773b0e9d1c44b62f3ffe12b0f501"
+    },
+    "first-result.json": {
+      "path": ".local/jungle-jump-ega-native-01/first-result.json",
+      "bytes": 88770,
+      "sha256": "f1d3f342b38e5d4f7f048460c2a4c1f318fd2850567a768ce3da195b636c14d5"
+    },
+    "first-result.png": {
+      "path": ".local/jungle-jump-ega-native-01/first-result.png",
+      "bytes": 5148,
+      "sha256": "88a780f22d0bafc6c068de32a20b3dd902fa346492eeeeaf565b21321ca9ff7d"
+    },
+    "generated.json": {
+      "path": ".local/jungle-jump-ega-native-01/generated.json",
+      "bytes": 88773,
+      "sha256": "5b24aaa0187905ba98c0766089a27181e9ed36c7d2be69130f667a3f0c3e7e2a"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/jungle-jump-ega-native-01/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "1d82a01fc0d1691d14359eede2d00eaa70604d7388197c2faffccabd492f9c80"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/jungle-jump-ega-native-01/initial-poll-0.png",
+      "bytes": 4798,
+      "sha256": "6e149572b6e9d8ab4605cd643423676f384e9b5f6d5cf29ac1bf9bef5fd982b6"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/jungle-jump-ega-native-01/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "aa66638760c624b595330a6939f451d00db7162811d00372cbc40efd2a4438c3"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/jungle-jump-ega-native-01/initial-poll-1.png",
+      "bytes": 4798,
+      "sha256": "6e149572b6e9d8ab4605cd643423676f384e9b5f6d5cf29ac1bf9bef5fd982b6"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/jungle-jump-ega-native-01/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "9569ec4b6faad9960de9cb81c45279e7bff8ebaf92492046ba7eed0048ce9a6d"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/jungle-jump-ega-native-01/initial-poll-2.png",
+      "bytes": 4823,
+      "sha256": "4e656b35c972a99f2b2116f87599e3c5d09fef1c2b3dc8602ba1c38c7b8a863d"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/jungle-jump-ega-native-01/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "6c0e3d25a57d42c5d1359801fa32e1c85a415074ae9bb94cd7f9de28bc0bfe62"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/jungle-jump-ega-native-01/initial-poll-3.png",
+      "bytes": 4823,
+      "sha256": "4e656b35c972a99f2b2116f87599e3c5d09fef1c2b3dc8602ba1c38c7b8a863d"
+    },
+    "inputs.json": {
+      "path": ".local/jungle-jump-ega-native-01/inputs.json",
+      "bytes": 32078,
+      "sha256": "5c59cbf5e00fece3e81448167a99574234db1678e9be60f5dfb7c9c3a56f596c"
+    },
+    "jungle-cadence.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-cadence.json",
+      "bytes": 379,
+      "sha256": "b45f20747cd22f0459902b9edca1737abbcc7eaf4cdb67928c207af060548c54"
+    },
+    "jungle-code.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-code.json",
+      "bytes": 32297,
+      "sha256": "d05f00cb7c0bb6a16a64c1cfbee34609602f995a6bf0b295a33c0c469b231f03"
+    },
+    "jungle-driver.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-driver.json",
+      "bytes": 3662,
+      "sha256": "888b0bc9df08636c61a34757df6a1ef2c8fc5b57afe54d190914b0ba8987e171"
+    },
+    "jungle-entry-contract.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-entry-contract.json",
+      "bytes": 97,
+      "sha256": "4c5e6b9d2dc59df777b8d4971d72e690c6361d7897089e5ad4b9b5e9f3986815"
+    },
+    "jungle-entry.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-entry.json",
+      "bytes": 88764,
+      "sha256": "1257b19f0448932a52ea77b6cd2412be01a03039655234cd44042e5d813fdb6a"
+    },
+    "jungle-entry.png": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-entry.png",
+      "bytes": 10731,
+      "sha256": "31451a31fe8427c2d043f92ca98594a56ea4c871a58fab2c363d68c19a9e3221"
+    },
+    "jungle-first-input.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-first-input.json",
+      "bytes": 88773,
+      "sha256": "577cdb86555d230bdf0ff564a9364e91380e495cf025e0ee8d14dc4611d09864"
+    },
+    "jungle-first-input.png": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "jungle-first-presentation.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-first-presentation.json",
+      "bytes": 88775,
+      "sha256": "e22c6bafe208933a1595045cae66492a3b1975f6e304e6d1b873842fc8028ebf"
+    },
+    "jungle-first-presentation.png": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-first-presentation.png",
+      "bytes": 18803,
+      "sha256": "b91bc67e49aae794afde49864f98af29ec7b258292268f87a4620dbd0f9cdf43"
+    },
+    "jungle-flight-setup-completed.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-flight-setup-completed.json",
+      "bytes": 175,
+      "sha256": "1c9197e986aa6994775bba4602ccd46b267ccc9e2031cc34186ae4030b44c119"
+    },
+    "jungle-motion-input-contract.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-motion-input-contract.json",
+      "bytes": 732,
+      "sha256": "a7970287716e9665959907d49230c05f581992e551c8fa2b1d1952769a217b7b"
+    },
+    "jungle-observer-final.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-observer-final.json",
+      "bytes": 88535,
+      "sha256": "75f3c4590de811107c68c106f348f5f539d3805bd752f42dc9757744d3f72a8e"
+    },
+    "jungle-observer-final.png": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-observer-final.png",
+      "bytes": 19240,
+      "sha256": "840ba547621dd06ec53e255f503823dbb8b9975e2c12d2d4e2ae6e68fead63df"
+    },
+    "jungle-observer-inputs.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-observer-inputs.json",
+      "bytes": 493,
+      "sha256": "497c29b20d1fc7aa3f2787d3360631dc01f4beb84d12001c957d3dd82ad749f7"
+    },
+    "jungle-observer-loaded.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-observer-loaded.json",
+      "bytes": 124,
+      "sha256": "2f8bc88477621e505b0b30d23c2af8af26da2a82cc046d5fa0860485c94fc633"
+    },
+    "jungle-observer-replay.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-observer-replay.json",
+      "bytes": 173,
+      "sha256": "7220d229e1569c5105cfb5ec567f1312539d0e1683a767a0cc8b732d18b20131"
+    },
+    "jungle-observer-result.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-observer-result.json",
+      "bytes": 5856,
+      "sha256": "ed81fa2b39d89131a053df1a1bdd8bfcc39c790abe5e55a4102d66c6c60ac0b4"
+    },
+    "jungle-observer-script.json": {
+      "path": ".local/jungle-jump-ega-native-01/jungle-observer-script.json",
+      "bytes": 1025,
+      "sha256": "626b85629200977727e1c02ebde0d03f811ecf27ccdba3bfad72a4edc3c26d71"
+    },
+    "lifecycle.json": {
+      "path": ".local/jungle-jump-ega-native-01/lifecycle.json",
+      "bytes": 123,
+      "sha256": "2f32de8174d502093498860496e757e8fc296cb37a4fa09dc910358ce481a846"
+    },
+    "live-overlay.json": {
+      "path": ".local/jungle-jump-ega-native-01/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "8613747122faa5079c77afaa8cc2d6ba46e5101dd3f1ec51e1104ccbc4d03d13"
+    },
+    "office-confirm.json": {
+      "path": ".local/jungle-jump-ega-native-01/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "ed25199aac93f5c28346cb07ba48ce58e9ac7baa2602abbbdc0f6857847cc9bd"
+    },
+    "office-input.json": {
+      "path": ".local/jungle-jump-ega-native-01/office-input.json",
+      "bytes": 88775,
+      "sha256": "c751132ae8c7e21cf19bd2a5256264c6e704dccc0c4bb6232ace29700f365d5f"
+    },
+    "office-input.png": {
+      "path": ".local/jungle-jump-ega-native-01/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "portable/dosbox-automation.conf": {
+      "path": ".local/jungle-jump-ega-native-01/portable/dosbox-automation.conf",
+      "bytes": 409,
+      "sha256": "df29095d581f2a8fcd32eda95e09c7e74afa57d5a467fbed6b95f07aab60b4e2"
+    },
+    "portable/dosbox_with_debugger": {
+      "path": ".local/jungle-jump-ega-native-01/portable/dosbox_with_debugger",
+      "bytes": 46391224,
+      "sha256": "3580a642599ad27fd76265d9f59fd408679aa6d189149af176bde322a3b8c256"
+    },
+    "portable/shell_history.txt": {
+      "path": ".local/jungle-jump-ega-native-01/portable/shell_history.txt",
+      "bytes": 144,
+      "sha256": "6123f2f67cf35bed3ba33d24c35041b6650ddc942f68b0a4c08f4bb4924ac8ad"
+    },
+    "profile-tool-identity.json": {
+      "path": ".local/jungle-jump-ega-native-01/profile-tool-identity.json",
+      "bytes": 505,
+      "sha256": "97009ab8c49eec5a4d4fae33c5a51078ac1f9334642de523843e714d677f5779"
+    },
+    "return.json": {
+      "path": ".local/jungle-jump-ega-native-01/return.json",
+      "bytes": 88770,
+      "sha256": "4bc0a62aa0eb68cd73a62c77522bd25d434c6e564f497c00b442629c57931f0f"
+    },
+    "return.png": {
+      "path": ".local/jungle-jump-ega-native-01/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/jungle-jump-ega-native-01/rng-consumption.json",
+      "bytes": 50838,
+      "sha256": "4f6d8a19a73ab43b62ca4dd5dab47efe9bd8c22d9c7bb819f8a835e751c77f43"
+    },
+    "safari-flight-code-observed.json": {
+      "path": ".local/jungle-jump-ega-native-01/safari-flight-code-observed.json",
+      "bytes": 24051,
+      "sha256": "1b2f8e02bc7c7391bf36fe89f6f6ba53db3d26d863eea85c31b3960068744cf6"
+    },
+    "safari-flight-code.json": {
+      "path": ".local/jungle-jump-ega-native-01/safari-flight-code.json",
+      "bytes": 25160,
+      "sha256": "6ba7e81790881b77d37088d93c46057b01fa18c094275980984a4ad9bb10220b"
+    },
+    "source-revision.json": {
+      "path": ".local/jungle-jump-ega-native-01/source-revision.json",
+      "bytes": 134714,
+      "sha256": "9238d3b452f0d755aaf63c5b27aba63971d20c1246076fa0249312d18e2926fb"
+    },
+    "sources.zip": {
+      "path": ".local/jungle-jump-ega-native-01/sources.zip",
+      "bytes": 3461236,
+      "sha256": "9e3f048b298324ded2ecf3ec7672ddf3292ba2936736a5d993b13ac4bd8ea6fc"
+    },
+    "startup-inputs.json": {
+      "path": ".local/jungle-jump-ega-native-01/startup-inputs.json",
+      "bytes": 1220,
+      "sha256": "1d2e3125af5311775bfa051454605570a136df99f03d1f6f15b73dca0501fb8c"
+    },
+    "timing-destination-confirm-flush.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-confirm-flush.json",
+      "bytes": 88773,
+      "sha256": "0e683e746bd9631dc7a60933faa754f9554e3c7f43ef1a2805dcd99f9e7ba0be"
+    },
+    "timing-destination-confirm-read.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-confirm-read.json",
+      "bytes": 88775,
+      "sha256": "8d2656fa49e077e06237a6f03d85f793e048e10aea95232ce8124cff43244bdc"
+    },
+    "timing-destination-confirm-read.png": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-confirm-read.png",
+      "bytes": 6615,
+      "sha256": "ea1985cb7e40cfbc8c1f0eaf0af9496f4371666335e6c77db6803f4e2940f66e"
+    },
+    "timing-destination-entry.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-entry.json",
+      "bytes": 88787,
+      "sha256": "0087978d07819b75407b4328171ec0d608f93524dc79a2f944bf3dae23b3ad34"
+    },
+    "timing-destination-entry.png": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-entry.png",
+      "bytes": 16122,
+      "sha256": "8bae5d38da263e8dcbf20b658a79f701905d759b8b58d1090011bd45b093a50b"
+    },
+    "timing-destination-return.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-return.json",
+      "bytes": 88775,
+      "sha256": "a127bd0dbfd51b1d6258631531876415a0a81717a4280f6d4ed1fe05523034ca"
+    },
+    "timing-destination-return.png": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-return.png",
+      "bytes": 6615,
+      "sha256": "ea1985cb7e40cfbc8c1f0eaf0af9496f4371666335e6c77db6803f4e2940f66e"
+    },
+    "timing-destination-travel-flush.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-travel-flush.json",
+      "bytes": 88775,
+      "sha256": "7767eeadd1845552d070cbfdf5be89ca4c14adf9b336945db92f31117f2640e5"
+    },
+    "timing-destination-travel-read.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-travel-read.json",
+      "bytes": 88771,
+      "sha256": "e40aa20b7581cc2b82a4d1207f119fc1dacde8e8d0d04773a4c7df42e244d79c"
+    },
+    "timing-destination-travel-read.png": {
+      "path": ".local/jungle-jump-ega-native-01/timing-destination-travel-read.png",
+      "bytes": 6621,
+      "sha256": "117ce0188d4c663f420c2e6deea65e880d579e97bc04b83fc8bbc671725fedf4"
+    },
+    "timing-flight-contract.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-flight-contract.json",
+      "bytes": 150,
+      "sha256": "8b091376aaf022fe056eface72f42a64bb2cabd5eace2f95e4bdf7aa7ebea697"
+    },
+    "timing-flight-first-input.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-flight-first-input.json",
+      "bytes": 88778,
+      "sha256": "c1ecb3eb05329ffe55e7412a79ba0553c8e360a2317fc488e13786549c170801"
+    },
+    "timing-flight-first-input.png": {
+      "path": ".local/jungle-jump-ega-native-01/timing-flight-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "timing-map-entry.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-entry.json",
+      "bytes": 88794,
+      "sha256": "c30f869246723d7eef8cb4e42bf707ff12c4f3431c47a02b07a3fb6758ce8000"
+    },
+    "timing-map-entry.png": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "timing-map-step-000.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-000.json",
+      "bytes": 88784,
+      "sha256": "aa4c5c6775f85e821d7005638c8d6c8d8794094acf40da32423521aed1db5be6"
+    },
+    "timing-map-step-001.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-001.json",
+      "bytes": 88784,
+      "sha256": "2b9983e196c7daa359567c33836e3cb266e16ae241b61bb658e455d28cfb7e6a"
+    },
+    "timing-map-step-002.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-002.json",
+      "bytes": 88784,
+      "sha256": "bce6c2fcd73d37f5260186f708e955529a37eb54225338bb29356beaf578edb1"
+    },
+    "timing-map-step-003.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-003.json",
+      "bytes": 88784,
+      "sha256": "55215ea60dee9393a12ce66be57d8cc110e67120d3278205708a8c0d9a408e32"
+    },
+    "timing-map-step-004.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-004.json",
+      "bytes": 88784,
+      "sha256": "28739119cf1575e93eaba70d806f975bca354ba33e5f1b50bf0a967303335f9b"
+    },
+    "timing-map-step-005.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-005.json",
+      "bytes": 88784,
+      "sha256": "57ae4253fa2f473caa0af939eb08348eb12e54363149b29e48a0eaed2fb3a2b7"
+    },
+    "timing-map-step-006.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-006.json",
+      "bytes": 88784,
+      "sha256": "ca2f29b3bbf9c2276a22c281e15277162f05a6ce33c53fd29447eadf70ca28c2"
+    },
+    "timing-map-step-007.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-007.json",
+      "bytes": 88784,
+      "sha256": "ca4144b704a98e976c2969c1abf56f7f23aa2072b313d985d9fcc9f12e19c005"
+    },
+    "timing-map-step-008.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-008.json",
+      "bytes": 88784,
+      "sha256": "cc4d25fdbf9842753ca7dd47913ca0105ed8bb2f6d60cb6ce025470fc5284990"
+    },
+    "timing-map-step-009.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-009.json",
+      "bytes": 88785,
+      "sha256": "e85dd604da967f5cfdf01542d2488f794538426f819fa6fc5e19b76a32342ccc"
+    },
+    "timing-map-step-010.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-010.json",
+      "bytes": 88785,
+      "sha256": "f627a62b3bd4923812d93ed5af96eb5b093e13e948ef2e36f904cd06c00061e3"
+    },
+    "timing-map-step-011.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-011.json",
+      "bytes": 88785,
+      "sha256": "87329853f123034d74651c33afa9ea4e83d1b08728b914657e283a78fe94694c"
+    },
+    "timing-map-step-012.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-012.json",
+      "bytes": 88785,
+      "sha256": "8b45c05800affef95c00a00c4d7ca463672ac6e888b2e11fa9a684db9e9ffad1"
+    },
+    "timing-map-step-013.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-013.json",
+      "bytes": 88785,
+      "sha256": "3e6ff0dcd20a4c94574fcb6b43c0ca0cd9694bb9eab6f70944d32f768536dbee"
+    },
+    "timing-map-step-014.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-014.json",
+      "bytes": 88785,
+      "sha256": "e0528d4105a14434d3c8f31cde9f6269c6989b1ccbb4ee08066e52ba4e6effcc"
+    },
+    "timing-map-step-015.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-015.json",
+      "bytes": 88785,
+      "sha256": "d4f062778b0cbe96b7ce5f8f3ca6ad9a25fe5a8acb25769fbe33de0ee358d88e"
+    },
+    "timing-map-step-016.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-016.json",
+      "bytes": 88785,
+      "sha256": "a226b2509af154ca81a0ad33c4d6b11488d6c25410974de36cdf1bef44018d7c"
+    },
+    "timing-map-step-017.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-017.json",
+      "bytes": 88785,
+      "sha256": "f99f84bf619617dc5bdfdc655b1ae61bac7daa9334c6cb12d53cd0552c2c2757"
+    },
+    "timing-map-step-018.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-018.json",
+      "bytes": 88785,
+      "sha256": "55e4360ec470d3dc71610b664025bc9aeb8362620c17c5083e84104b533a777c"
+    },
+    "timing-map-step-019.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-019.json",
+      "bytes": 88785,
+      "sha256": "c312399730402b185f5bea03c1d3cc9dcb6fc4dc0ffcc780593ae26ea26c649b"
+    },
+    "timing-map-step-020.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-020.json",
+      "bytes": 88785,
+      "sha256": "6c20b1023fdeff1fde90b64423f6a298c98cc6fccf77f4833a216d255eff7476"
+    },
+    "timing-map-step-021.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-021.json",
+      "bytes": 88785,
+      "sha256": "c01d1f31c7ff6fafff4ecbec73906ce0c43e156ebf566215290d21d7506def4d"
+    },
+    "timing-map-step-022.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-022.json",
+      "bytes": 88785,
+      "sha256": "3e223209c1ae877d6c1831bcfbc5f1653db4d756dcaa5fd472a8429e4f250d64"
+    },
+    "timing-map-step-023.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-023.json",
+      "bytes": 88785,
+      "sha256": "043fe1687e41d56493e7aa5f96968b255d081f366335bd45a9b0bdafe9f93acc"
+    },
+    "timing-map-step-024.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-024.json",
+      "bytes": 88785,
+      "sha256": "97d8298be300e2cc87fcc9a77e7f35aa15f603fd6ebd3d946842b669f2b61ef7"
+    },
+    "timing-map-step-025.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-025.json",
+      "bytes": 88785,
+      "sha256": "5003fa963acffc0a5401ac5a5425402af6165b26b38ad1c3eb54152705338518"
+    },
+    "timing-map-step-026.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-026.json",
+      "bytes": 88785,
+      "sha256": "4b07e2bab859375bfc73edc6cb313df03857b6df1664c12653c34090c9a07e46"
+    },
+    "timing-map-step-027.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-027.json",
+      "bytes": 88785,
+      "sha256": "2bb6086df616d0fa51beeb1ea0e7df327fc247e1754e53988341e27c087eb589"
+    },
+    "timing-map-step-028.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-028.json",
+      "bytes": 88785,
+      "sha256": "90912f913924b02fc2a8d27edd3c1598c212f5aa4dac7616c2b7b66218f18da4"
+    },
+    "timing-map-step-029.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-029.json",
+      "bytes": 88785,
+      "sha256": "836104d19a63f88c300d916af0d6589b63cb4188b9db91e55278d4d187b62696"
+    },
+    "timing-map-step-030.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-030.json",
+      "bytes": 88785,
+      "sha256": "b0a965f97faf457ae935eb68b737f803cabc740772c956b04318bcc0f7201adb"
+    },
+    "timing-map-step-031.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-031.json",
+      "bytes": 88785,
+      "sha256": "3a990185c6454478c1f34204cb5f6c9025d34886a6853022e595b9e72f519dec"
+    },
+    "timing-map-step-032.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-032.json",
+      "bytes": 88785,
+      "sha256": "904aa8e1950740a90de9381ea85850e2ab48fc3a3a6cd5767b51e137bcb0e202"
+    },
+    "timing-map-step-033.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-033.json",
+      "bytes": 88786,
+      "sha256": "2ffbdeb3db61dcace7733575171b1bc738befa5382e07166a6f4e7efd4fe59df"
+    },
+    "timing-map-step-034.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-034.json",
+      "bytes": 88786,
+      "sha256": "98f64cbd61ef225b9bff8c82697c15da777f1888d6c029c08adf7006baaeeb3e"
+    },
+    "timing-map-step-035.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-035.json",
+      "bytes": 88786,
+      "sha256": "64a40129b04c38785a7a40ea206e8e2d0c1c9d2a0b095b2fd7f2cd834962827c"
+    },
+    "timing-map-step-036.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-036.json",
+      "bytes": 88786,
+      "sha256": "4a00f00eed8f0d8d23a36735218425b6131a71cbda9fac7d063e2b3ac4e1bd78"
+    },
+    "timing-map-step-037.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-037.json",
+      "bytes": 88786,
+      "sha256": "0bba17e37ad2861f6e58cade5102925381e9d685471ac80c0a3e86917235c1b3"
+    },
+    "timing-map-step-038.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-038.json",
+      "bytes": 88786,
+      "sha256": "33539559634ee9e9fa1b1d0e81bf9e7fe620bf6ad2b83b8e2ffd28d6756da58a"
+    },
+    "timing-map-step-039.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-039.json",
+      "bytes": 88786,
+      "sha256": "f8dcfe4c8a0f9dfa1e28ac1d318df77d53704650e32d5a63185b9564e7299eed"
+    },
+    "timing-map-step-040.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-040.json",
+      "bytes": 88786,
+      "sha256": "b642e84eca98b5872717c2a23183dd81004b460ff53a2af3586b2ccb59f7142b"
+    },
+    "timing-map-step-041.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-041.json",
+      "bytes": 88786,
+      "sha256": "8bbeb9f28a15d6fffd1fca82297605f8ac9e35727be6288a5d2ab2bd5c935bdb"
+    },
+    "timing-map-step-042.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-042.json",
+      "bytes": 88786,
+      "sha256": "1a6f23859d8bfba3a18082e24f45113020f1a98c789777ad5fa8e1d283fcdda5"
+    },
+    "timing-map-step-043.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-043.json",
+      "bytes": 88786,
+      "sha256": "80311ad743066fdab61952310ed8a3cc0dd1acbbc64613800757ad938058f3dc"
+    },
+    "timing-map-step-044.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-044.json",
+      "bytes": 88786,
+      "sha256": "cb414ef2573563a2570f771e55cd203a8e60f67e9a6c0caf43b79735b2a112ad"
+    },
+    "timing-map-step-045.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-045.json",
+      "bytes": 88786,
+      "sha256": "70ca0f5dc529a9012c31901283743970583d0abf7334a36ba83e840ecca4c138"
+    },
+    "timing-map-step-046.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-046.json",
+      "bytes": 88786,
+      "sha256": "2e8ad732dc4d0caa4485ddf7c02e3fd7b8dc93a840593f424b8d8dde17b87182"
+    },
+    "timing-map-step-047.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-047.json",
+      "bytes": 88786,
+      "sha256": "b4bc3bab05b8b4ebc656cf960d2b32232774e29b35eaaa23b304a0408b2295b7"
+    },
+    "timing-map-step-048.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-048.json",
+      "bytes": 88786,
+      "sha256": "d5a2c7b91c6f797a7f56d74f0484fa1a44c35ca3472cf68e0ca4a7093cdca100"
+    },
+    "timing-map-step-049.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-049.json",
+      "bytes": 88786,
+      "sha256": "14830f0e605aa2f9267f04b5b49f8ce0373d13ae27615f379935835ba3aa27f7"
+    },
+    "timing-map-step-050.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-050.json",
+      "bytes": 88786,
+      "sha256": "15a9f211bd2687020a2ebf86488a9f7ea4ed32a9f7675d81fb2a27667e0cf4ae"
+    },
+    "timing-map-step-051.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-051.json",
+      "bytes": 88786,
+      "sha256": "e77114f90cdeb9b762ab66af224f1d1f26876f612d11f65093b3986017c4ba3d"
+    },
+    "timing-map-step-052.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-052.json",
+      "bytes": 88786,
+      "sha256": "f75ce9b7ab4e1461315b23cffe2ae6351c49b782a9f74f80899d566ff1c3edf3"
+    },
+    "timing-map-step-053.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-053.json",
+      "bytes": 88786,
+      "sha256": "f1caadc7ccd588b2fbd6342744b0c069b7d4716fa6ea75069350115215dbda13"
+    },
+    "timing-map-step-054.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-054.json",
+      "bytes": 88786,
+      "sha256": "c7483a25bcc243818c55dafbb392a29708c46649cedbd9e90992001eacfb963b"
+    },
+    "timing-map-step-055.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-055.json",
+      "bytes": 88786,
+      "sha256": "200fbd867221f05101fa93f6af8c3314299011d9b9d34617aa48e5149cb8aea9"
+    },
+    "timing-map-step-056.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-056.json",
+      "bytes": 88786,
+      "sha256": "730dc1614e4516c20295474ba674b90a777811b651bf0cf5a7511bb80279c374"
+    },
+    "timing-map-step-057.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-057.json",
+      "bytes": 88786,
+      "sha256": "ca39898ee31e76f970e8fd0e41e59c7d8adc28ca61b052bb7a888eed448ec3c6"
+    },
+    "timing-map-step-058.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-058.json",
+      "bytes": 88786,
+      "sha256": "c2ed088e57f9bcce9f3f372b73c110612148d7c155b38e800ab02473a569b751"
+    },
+    "timing-map-step-059.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-059.json",
+      "bytes": 88786,
+      "sha256": "c42b90a70b60f664d76b30081d86b375bfe5cb9f148a7b5a7fcf5022961f07bf"
+    },
+    "timing-map-step-060.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-060.json",
+      "bytes": 88786,
+      "sha256": "4fe132fdeb25902042c237c979f815cf5c05493aa703ceb3f19aecccd1137f22"
+    },
+    "timing-map-step-061.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-061.json",
+      "bytes": 88786,
+      "sha256": "14d4bd6853bcd9f8ab8c2e4dfeada33101d1cc4c1beb8b7a572d18ce51c3925b"
+    },
+    "timing-map-step-062.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-062.json",
+      "bytes": 88786,
+      "sha256": "64dd2f73a737b6830d32dfabd5e8940ec4088059e105e57f9e6ef76f87e59635"
+    },
+    "timing-map-step-063.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-063.json",
+      "bytes": 88786,
+      "sha256": "9a052d64d1a95b80800aaefc47b19a031d11bb19ddf275d792e7bad17c35a5e8"
+    },
+    "timing-map-step-064.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-064.json",
+      "bytes": 88786,
+      "sha256": "e4d44fe415fffbe45694df83c239ad237d768b9a0a421757504cba9879835fce"
+    },
+    "timing-map-step-065.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-065.json",
+      "bytes": 88786,
+      "sha256": "6c0278d0f4cc1df431a9f8268e3d5b68a9987226dcfddd31fdaeab022d0d20d5"
+    },
+    "timing-map-step-066.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-066.json",
+      "bytes": 88786,
+      "sha256": "26394cfafddebb72cbfcf04fd6dd87c2802d0e1e14c021f64c271fdc43b27069"
+    },
+    "timing-map-step-067.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-067.json",
+      "bytes": 88786,
+      "sha256": "589c9f05f1c060cb3247182fd8a183e34095b1b96f263e8fff86f501ac866c57"
+    },
+    "timing-map-step-068.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-068.json",
+      "bytes": 88786,
+      "sha256": "db2ed7d2d6cbb9edf409e9f8f40fa2d65f9f730b73b6f5e228454df03f44d292"
+    },
+    "timing-map-step-069.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-069.json",
+      "bytes": 88786,
+      "sha256": "a5b4ef6084dac9a1c6bf094dfafeb76800434ce05da9ef4d7de6eac17b093ac0"
+    },
+    "timing-map-step-070.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-070.json",
+      "bytes": 88786,
+      "sha256": "b7f38797d52b8438252a7439df11b0146ed44b347c935da5a146d665d638c47b"
+    },
+    "timing-map-step-071.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-071.json",
+      "bytes": 88786,
+      "sha256": "66ab0f8eec13d611c5da80a5e488ecbb580beae70074844b9ba2769603305750"
+    },
+    "timing-map-step-072.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-072.json",
+      "bytes": 88786,
+      "sha256": "61106a44bd3c6fdf909c35f7604f887ef78b3a02079da30b80228407831830e1"
+    },
+    "timing-map-step-073.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-073.json",
+      "bytes": 88786,
+      "sha256": "356f1067976d54419c91dc84daa676585f89feedbbdae37c3b9c401563d4f3c9"
+    },
+    "timing-map-step-074.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-074.json",
+      "bytes": 88786,
+      "sha256": "1cb3ee04031868039f968e614b4daf8cc50f91ca5fdad10a1b0990725271c23f"
+    },
+    "timing-map-step-075.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-075.json",
+      "bytes": 88786,
+      "sha256": "a6cf950dbd7fd097d94d2c23aecd40bae120643803df7ccd09b8ec50dc87cd98"
+    },
+    "timing-map-step-076.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-076.json",
+      "bytes": 88786,
+      "sha256": "d0033f018e6eed18c0e3863829ad787465a36cc0ea0cebdb8d4cc0c617a09f08"
+    },
+    "timing-map-step-077.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-077.json",
+      "bytes": 88786,
+      "sha256": "4e38913a9c6de2971b34106ef826c31ca036fa91996173d7156e4185b89c7a5a"
+    },
+    "timing-map-step-078.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-078.json",
+      "bytes": 88786,
+      "sha256": "c0b8f28372d9653652d0f1fa8cc2ac7c633db331edfa07371bd35c4afe32d951"
+    },
+    "timing-map-step-079.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-079.json",
+      "bytes": 88786,
+      "sha256": "1407700e844e2d53114c1484705cc2fdecb908a6579238341b3577030d85fbf0"
+    },
+    "timing-map-step-080.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-080.json",
+      "bytes": 88786,
+      "sha256": "edcd9a0b6fe51555cae6d62c22db426ca56ae4b963ed5d896cec508dcd8d2137"
+    },
+    "timing-map-step-081.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-081.json",
+      "bytes": 88786,
+      "sha256": "2c4a8ec92128575b697594ce59ff36ba533c0dcedfdb529ec8b3c8edf849187e"
+    },
+    "timing-map-step-082.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-082.json",
+      "bytes": 88786,
+      "sha256": "25966fccf7ce49e28994db56b86f191329f12ddb429fc33fe1a1bad30ca26550"
+    },
+    "timing-map-step-083.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-083.json",
+      "bytes": 88786,
+      "sha256": "9338f4ca1640202312d9f71d36c0ff18570e60529d8d6f0b455c43aa0c4633dc"
+    },
+    "timing-map-step-084.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-084.json",
+      "bytes": 88786,
+      "sha256": "ffd298ee3bd3fbd921e704a498403ac280a6579c1c8a6d0c0b7365e5b8eb99a1"
+    },
+    "timing-map-step-085.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-085.json",
+      "bytes": 88786,
+      "sha256": "39caac1ffa2d7dbd065bf3c7e6e0527685ff2d5adf4f262e452bdc488b475197"
+    },
+    "timing-map-step-086.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-086.json",
+      "bytes": 88786,
+      "sha256": "8f72694e690be5674548815985bd796dcd74feec28bdafdb92adb6d91e6c2826"
+    },
+    "timing-map-step-087.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-087.json",
+      "bytes": 88786,
+      "sha256": "22a925e1f7556a3f86691e48046ff037997546e3f0058e02abdba8941ef8484b"
+    },
+    "timing-map-step-088.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-088.json",
+      "bytes": 88786,
+      "sha256": "5d2470cb3d68fedf4c0635dddf71aa1ca7a0b6ff049b85b5de668250f55142cb"
+    },
+    "timing-map-step-089.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-089.json",
+      "bytes": 88786,
+      "sha256": "789b87614d527bd5227a2cfd9ad54435d9d9ca8ca327eaab6656c308df535619"
+    },
+    "timing-map-step-090.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-090.json",
+      "bytes": 88786,
+      "sha256": "f6d016e7ba2b6e6ab32c0316c55fed61f2f2f0c02d8f1e5de0ea652df8441833"
+    },
+    "timing-map-step-091.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-091.json",
+      "bytes": 88786,
+      "sha256": "7410fc77508a025fb157c01c35b937b62d7302501ce4ed985d0a707f1863f060"
+    },
+    "timing-map-step-092.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-092.json",
+      "bytes": 88786,
+      "sha256": "df1008910a6a07664ecedd89bf8cbd67a96dc91189da5bd9e7896ae8be6a1ee7"
+    },
+    "timing-map-step-093.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-093.json",
+      "bytes": 88786,
+      "sha256": "af8d16706dfa2e501eece387f398b16cd95a141485566722ff340e8c397a367e"
+    },
+    "timing-map-step-094.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-094.json",
+      "bytes": 88786,
+      "sha256": "057a9709f55d0401256e449141265942d94d474294a3eec297961a16ea937478"
+    },
+    "timing-map-step-095.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-095.json",
+      "bytes": 88786,
+      "sha256": "f600da79e61ecb85e71778522729021b86c6d95f1a02974e646fcc82b880a5b2"
+    },
+    "timing-map-step-096.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-096.json",
+      "bytes": 88786,
+      "sha256": "b0cf1e8f214641b5d36d51eef2e4fcb7114d7833c4e62f627b68c695954935ea"
+    },
+    "timing-map-step-097.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-097.json",
+      "bytes": 88786,
+      "sha256": "fcf66688697494b6cc04277a28a9c0028592c6ee76deffacaaa89eab2a9dd4ca"
+    },
+    "timing-map-step-098.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-098.json",
+      "bytes": 88786,
+      "sha256": "1dff6c1b12ec45c5c2c8121e782861f69132f77cf4b84253ee37f2500803dfd4"
+    },
+    "timing-map-step-099.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-099.json",
+      "bytes": 88787,
+      "sha256": "244048bdd219a268443671249b7ea850b3a930a09f85f604786465dd44eeba24"
+    },
+    "timing-map-step-100.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-100.json",
+      "bytes": 88787,
+      "sha256": "b262e8f7225c178aa908ba1ef09be3142ed7085e5f818346ec86b02ea718ee26"
+    },
+    "timing-map-step-101.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-101.json",
+      "bytes": 88787,
+      "sha256": "450e23b2270c2d9adb676fe30ccb2a79a4f8a7d4ca7f05209ee397eb96c2db5c"
+    },
+    "timing-map-step-102.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-102.json",
+      "bytes": 88787,
+      "sha256": "e073c594315fb28a87a20682a257af4c8a1bc40dca33db828545e5344c058bd0"
+    },
+    "timing-map-step-103.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-103.json",
+      "bytes": 88787,
+      "sha256": "2d9c6ec63dda335ff4039e3ad62f0da1502ed17307cf333b75a40be6e6050413"
+    },
+    "timing-map-step-104.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-104.json",
+      "bytes": 88787,
+      "sha256": "87c1ce5db60b5d141a50d4a8a934d67440b9dd4e907f4677d2a3d73339904de8"
+    },
+    "timing-map-step-105.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-105.json",
+      "bytes": 88787,
+      "sha256": "d65da74d7f0b86a1577e84a22934fc3173e2de93fa0b5bdf3bdcf31309ab11b5"
+    },
+    "timing-map-step-106.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-106.json",
+      "bytes": 88787,
+      "sha256": "9df0cc3769b96a99cc5003027bb134b9612afade35e6f57c99e5bc76e7cb615d"
+    },
+    "timing-map-step-107.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-107.json",
+      "bytes": 88787,
+      "sha256": "a38b80357dbdfb376d7ab4c7de0dfaffb35790eabc87b385324be50e33a20c01"
+    },
+    "timing-map-step-108.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-108.json",
+      "bytes": 88787,
+      "sha256": "3e68bc643a2904a6d04c9a61a37f922ee6afcaa2c77ef7679d871ff084c13dc4"
+    },
+    "timing-map-step-109.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-109.json",
+      "bytes": 88787,
+      "sha256": "b114164c6d2c050af813be5e5794da9d4164a0cee3d50204aae4a1fdd197182f"
+    },
+    "timing-map-step-110.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-110.json",
+      "bytes": 88787,
+      "sha256": "6bf5e5131ce69b292766918d7371c33a773d6d34c5bc2661c12ba4f1b293a8be"
+    },
+    "timing-map-step-111.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-111.json",
+      "bytes": 88787,
+      "sha256": "f710bba43d7ac8a06328bde03bf41425f635c6c14f10948f33e662192b103126"
+    },
+    "timing-map-step-112.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-112.json",
+      "bytes": 88787,
+      "sha256": "de17bc794587e919f20a0cab9a0b0b351188529f3304d07a90965e8dd49a7837"
+    },
+    "timing-map-step-113.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-113.json",
+      "bytes": 88787,
+      "sha256": "b25d3338f879caaba8085211e6afc73241e6d8bb3fe4bed86e1f1e10641ed30d"
+    },
+    "timing-map-step-114.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-114.json",
+      "bytes": 88787,
+      "sha256": "5b4d727de539c3289f410257854d890fea7776a7f00b93f20063e9e3dac13022"
+    },
+    "timing-map-step-115.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-115.json",
+      "bytes": 88787,
+      "sha256": "3f0ba8cfac2563fb9994b92214a8070f8948624e495174032ee4ff5222527651"
+    },
+    "timing-map-step-116.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-116.json",
+      "bytes": 88787,
+      "sha256": "434361a1d32fbba1f921aa9f727a97c2f33b3ac8159b1cf2614317d11cc9edd6"
+    },
+    "timing-map-step-117.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-117.json",
+      "bytes": 88787,
+      "sha256": "2e166ae674d2e96055d312789a38111b9b0b19be27e4a958c75bdb3818ec48a3"
+    },
+    "timing-map-step-118.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-118.json",
+      "bytes": 88787,
+      "sha256": "3c6ec625d950c743ebec805a01f1e28879926b01b542ee0d223d8d565cd19bf6"
+    },
+    "timing-map-step-119.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-119.json",
+      "bytes": 88787,
+      "sha256": "2c074093f7eb131d89ed76707a807f5f968f09807d5c0dc15df7e8708239709e"
+    },
+    "timing-map-step-120.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-120.json",
+      "bytes": 88787,
+      "sha256": "85c410b57ab1b6f624dbb0f7324ad8b9289c461f7371fee6f0d71f5e730ec52d"
+    },
+    "timing-map-step-121.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-121.json",
+      "bytes": 88787,
+      "sha256": "c0e812414b82c59fe025d3649dbc2213c8f7788a0b9667bc5cd83083c2ce4bed"
+    },
+    "timing-map-step-122.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-122.json",
+      "bytes": 88787,
+      "sha256": "58899d62a4862a48b327544bbd7e39171ea0411113bc0386356db740c739278d"
+    },
+    "timing-map-step-123.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-123.json",
+      "bytes": 88787,
+      "sha256": "8cfd90ab6e6909a2130cc8e1127cd4b26d4d83cd429d1ef8381ca04f470d56e2"
+    },
+    "timing-map-step-124.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-124.json",
+      "bytes": 88787,
+      "sha256": "846deabddc6aff0d5369846b708933f9a92a096e5c8bfbf114c70b61de757185"
+    },
+    "timing-map-step-125.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-125.json",
+      "bytes": 88787,
+      "sha256": "7872444e4996e5df7e86f2e0ad2c6505ce1ba695e7a1cb5c747400110ac6cc82"
+    },
+    "timing-map-step-126.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-126.json",
+      "bytes": 88787,
+      "sha256": "90ffb44ae02289895ab3fda53cc24c422655cf7a7a3e4d809d0dda86145c6d26"
+    },
+    "timing-map-step-127.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-127.json",
+      "bytes": 88787,
+      "sha256": "1ab91e83d29bca22d5d0360789a8903f89cc9400ea1baa7d3a833f0ed0635699"
+    },
+    "timing-map-step-128.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-128.json",
+      "bytes": 88787,
+      "sha256": "50cae84bd45506d03599e051c621ab8ebafac8e8ab8ac04bed50f81678802391"
+    },
+    "timing-map-step-129.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-129.json",
+      "bytes": 88787,
+      "sha256": "dff66fae0ef50e732fc8f986324234594fbce7f3f586d1205d8d7343dad7b94c"
+    },
+    "timing-map-step-130.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-130.json",
+      "bytes": 88787,
+      "sha256": "32f1431d37c167052f5537bbfc1cf0f4c814158db8a2f342e71084b42af2f07e"
+    },
+    "timing-map-step-131.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-131.json",
+      "bytes": 88787,
+      "sha256": "dd5e138bc935b2d686b5046169add705bcc6f4548cc28383775dff2310386169"
+    },
+    "timing-map-step-132.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-132.json",
+      "bytes": 88787,
+      "sha256": "482b3150dbfe8ac933208baed8288af6c8f922fc7a6bf92b8c0ce891878b88ff"
+    },
+    "timing-map-step-133.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-133.json",
+      "bytes": 88787,
+      "sha256": "f6eeedb9645ec98b26e18779245720a68bdebd2f6c0c4e38144fca4d3d4c920e"
+    },
+    "timing-map-step-134.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-134.json",
+      "bytes": 88787,
+      "sha256": "eaf963784c95767e4da522c3c4fff575e16e4cc580478752d2947ca452a71106"
+    },
+    "timing-map-step-135.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-135.json",
+      "bytes": 88787,
+      "sha256": "c9f98666dca7d39b33c57bb5e4f8da716ae9f876b86f13666e898fbae0300ef7"
+    },
+    "timing-map-step-136.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-136.json",
+      "bytes": 88787,
+      "sha256": "ba74a187e51ec1ee7dcd062943474c0b36015777f66044efc4a8d565a71c755a"
+    },
+    "timing-map-step-137.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-137.json",
+      "bytes": 88787,
+      "sha256": "cd16903f9a33af9a71798c7d779e070c9a73d7daa16a8d4075cc9770eaacb42d"
+    },
+    "timing-map-step-138.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-138.json",
+      "bytes": 88787,
+      "sha256": "01d56cc90378526ff51219dcf3eecc487b78f69097246ffd40ea754098e5c8f1"
+    },
+    "timing-map-step-139.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-139.json",
+      "bytes": 88787,
+      "sha256": "1b151be468270a7b28f08d094e56452895e04cbd93374444c21c9660436e9d1e"
+    },
+    "timing-map-step-140.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-140.json",
+      "bytes": 88787,
+      "sha256": "6243135526d1e63c215c384d31956b48e26a394ba1bf7c8674555c0e90f1a640"
+    },
+    "timing-map-step-141.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-141.json",
+      "bytes": 88787,
+      "sha256": "ea95e774e2c22019c69eff455eb668a248040b793235c20d3ab76c976facec81"
+    },
+    "timing-map-step-142.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-142.json",
+      "bytes": 88787,
+      "sha256": "a2f1999676bdf6e47d395026249b266265d5de8c13b32a619d317e310be05506"
+    },
+    "timing-map-step-143.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-143.json",
+      "bytes": 88787,
+      "sha256": "743867505ad53b7746296655f198adf986a69893119c0162df50769456271441"
+    },
+    "timing-map-step-144.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-144.json",
+      "bytes": 88787,
+      "sha256": "ea6dcba71717b31d4644b9ae9048fd46016ab4c73f61d0f369e7240239cf2534"
+    },
+    "timing-map-step-145.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-145.json",
+      "bytes": 88787,
+      "sha256": "cc996b46c9a7a674fe2fea4bc6f1567be2a486ba0096d54eee5135f3fd203f2c"
+    },
+    "timing-map-step-146.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-146.json",
+      "bytes": 88787,
+      "sha256": "49045d0182b54a0c5aed5b84551d119921049a232a8b8d5c9cc89007098c47b7"
+    },
+    "timing-map-step-147.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-147.json",
+      "bytes": 88787,
+      "sha256": "e14c70ee64c25643d451c1f078806bbcf26c3afcebedaa29e58614eb64d59c2f"
+    },
+    "timing-map-step-148.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-148.json",
+      "bytes": 88787,
+      "sha256": "388c0b3b0a1a4a0e9f54ce62ddb1ec7b913bc3ed88f7fb21689037c71675c5bd"
+    },
+    "timing-map-step-149.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-149.json",
+      "bytes": 88787,
+      "sha256": "3bd44e0a9e41f5fb5eeac558c705a8a68ac90252555e12452b241175fb1ad255"
+    },
+    "timing-map-step-150.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-150.json",
+      "bytes": 88787,
+      "sha256": "a7220fd3cae10f2e06804959084234a0d1cae64889e22b52c64602d4d9d759d3"
+    },
+    "timing-map-step-151.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-151.json",
+      "bytes": 88787,
+      "sha256": "4c30b487d113dccdcd4a1c01a1e5f3aea807d9685e51bca4af8d754cb786c6b0"
+    },
+    "timing-map-step-152.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-152.json",
+      "bytes": 88787,
+      "sha256": "731e3b0937f8c811d5c8464cb52d64c11a369e33ea7515e58062e47bf1db9b52"
+    },
+    "timing-map-step-153.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-153.json",
+      "bytes": 88787,
+      "sha256": "c405c85b90df74428d06c328baa14cb8f45a5d5c3ce931646330a799f893d139"
+    },
+    "timing-map-step-154.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-154.json",
+      "bytes": 88787,
+      "sha256": "7ee7fbcf94bcecb5035cbaff635daad9d592e5ac450e622bfa2b508ae8a09c9d"
+    },
+    "timing-map-step-155.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-155.json",
+      "bytes": 88787,
+      "sha256": "6b419cab3403985b646094eabfed7026eb9397b67ba56e3642c64608be038989"
+    },
+    "timing-map-step-156.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-156.json",
+      "bytes": 88787,
+      "sha256": "dca8cf826bc8327e61aa4f69e0a2266a169814a8907f063cd8a169c735821d08"
+    },
+    "timing-map-step-157.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-157.json",
+      "bytes": 88787,
+      "sha256": "2853e3cca64630655f62f0e3594b0e2cc1d7f5e9f3dc966e39e98ce9d757c81c"
+    },
+    "timing-map-step-158.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-158.json",
+      "bytes": 88787,
+      "sha256": "0a4d4bf9a91e439b274a2208b17ae49c995de537ae3a19b02336acdc71de13b1"
+    },
+    "timing-map-step-159.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-159.json",
+      "bytes": 88787,
+      "sha256": "76c4a3874f4231ba67f13d5dcd78b83287395c43eee15ea0a8a3fbcf91bc3daa"
+    },
+    "timing-map-step-160.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-160.json",
+      "bytes": 88787,
+      "sha256": "3128d816dbc3d2b36db4e7465e3428dd7f38ff7525cc9274b144d28f982382d9"
+    },
+    "timing-map-step-161.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-161.json",
+      "bytes": 88787,
+      "sha256": "42437f34a741161ac0a56ad71f9b1defb3edc1a15ec2bbb104c1abccc49984c2"
+    },
+    "timing-map-step-162.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-162.json",
+      "bytes": 88787,
+      "sha256": "70a27e808812e692a12a8965272eedfd5c8c49c17e546624ad906ca3e69c9a55"
+    },
+    "timing-map-step-163.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-163.json",
+      "bytes": 88787,
+      "sha256": "264b9c372be0e7ca1c1c7ab18d2f9ba1e6b3eeedc9c7e482befdcf672f69c5b7"
+    },
+    "timing-map-step-164.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-164.json",
+      "bytes": 88787,
+      "sha256": "9fbb364332b8b2c9fc44e7b6ddc9dbd873cde8bda5ebee7f01cc220fd6f90a3a"
+    },
+    "timing-map-step-165.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-165.json",
+      "bytes": 88787,
+      "sha256": "1555b1940b97104a8a6b128aabce6f22c7d3dd5afb9e9fd31ec72dd32a1f9838"
+    },
+    "timing-map-step-166.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-166.json",
+      "bytes": 88787,
+      "sha256": "be890dc95edb5332128fa03b025b13c841e39f3d0df20b1cb6668744b5719c0e"
+    },
+    "timing-map-step-167.json": {
+      "path": ".local/jungle-jump-ega-native-01/timing-map-step-167.json",
+      "bytes": 88787,
+      "sha256": "774f578befee0a865a56d63b6783e876b523100f18f712be89108e38d3f4cea5"
+    }
+  },
+  "inputProfile": {
+    "path": "reference/jungle-jump-inputs.json",
+    "bytes": 620,
+    "sha256": "1b129f2e827abd4d1eef87d482209faf32f4364dc7aa7ba04f7812226c80a91e"
+  },
+  "expectedMotionSamples": [
+    {
+      "index": 1,
+      "frame": 4898,
+      "clock": 5723,
+      "page": 1,
+      "x": 8,
+      "y": 16,
+      "action": 5,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 60516
+    },
+    {
+      "index": 33,
+      "frame": 4930,
+      "clock": 5762,
+      "page": 1,
+      "x": 22,
+      "y": 16,
+      "action": 18,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 41358
+    },
+    {
+      "index": 36,
+      "frame": 4933,
+      "clock": 5765,
+      "page": 0,
+      "x": 14,
+      "y": 16,
+      "action": 18,
+      "actorFrame": 1,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 41358
+    },
+    {
+      "index": 38,
+      "frame": 4935,
+      "clock": 5768,
+      "page": 1,
+      "x": 6,
+      "y": 65528,
+      "action": 18,
+      "actorFrame": 2,
+      "lostLives": 1,
+      "column": 0,
+      "row": 65535,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 19224
+    },
+    {
+      "index": 61,
+      "frame": 4958,
+      "clock": 5796,
+      "page": 0,
+      "x": 14,
+      "y": 16,
+      "action": 18,
+      "actorFrame": 3,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 2037
+    },
+    {
+      "index": 63,
+      "frame": 4960,
+      "clock": 5798,
+      "page": 1,
+      "x": 22,
+      "y": 16,
+      "action": 18,
+      "actorFrame": 4,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 59569
+    },
+    {
+      "index": 66,
+      "frame": 4963,
+      "clock": 5802,
+      "page": 0,
+      "x": 8,
+      "y": 16,
+      "action": 5,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 59569
+    }
+  ],
+  "scope": "Natural original jungle jump profile,independent Right+Fire hold/release,120 uninterrupted render samples. No guest writes/restores,fitted inputs or port timing admission.",
+  "engineReport": {
+    "version": "0.84.0-vc1 (baf7b)",
+    "protocol": "1.15",
+    "scope": "New configured engine identity;full live original flight/jungle/EGA code revalidated at this launch."
+  },
+  "retraceHz": 59.92274340431231,
+  "refreshEvidence": {
+    "sourceRevision": "baf7bdfcae6507293cbd2cf7492a2787e3e155e6",
+    "mode": "EGA BIOS 0x0d",
+    "pixelClockHz": 14318180,
+    "characterPixels": 8,
+    "horizontalCharacters": 114,
+    "verticalLines": 262,
+    "sources": [
+      "src/ints/int10_modes.cpp:ModeList_EGA mode0x0d htotal60 vtotal262;CRTC htotal subtract5",
+      "src/hardware/video/vga_draw.cpp:EGA htotal adds2;half-clock doubles horizontal total;clock divided8",
+      "src/hardware/video/vga.h:CgaPixelClockHz"
+    ],
+    "sourceFiles": {
+      "src/ints/int10_modes.cpp": "4b7f96bab13e6222e60698b34dea554d459490e64d36f35025a3b765d3945ed4",
+      "src/hardware/video/vga_draw.cpp": "90bb9248cf8e3d981549434d49f91bd09e8e6d5c2fb9f138c0a608c168ac8578",
+      "src/hardware/video/vga.h": "fd91125ca4b656b55d59d622672a31c601c03cd153f8413eb231a1b03f0f7190"
+    }
+  }
+}

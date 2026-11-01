@@ -37,8 +37,10 @@ def samples_ok(samples, m):
         motion = [row for i,row in enumerate(samples) if not i or row['index'] in changes]
         assert motion == m['expectedMotionSamples'], 'Changed jungle jump motion sample'
     assert samples[-1]['frame']-samples[0]['frame'] == m['expectedFrameSpan'] == 119
-    assert samples[-1]['clock']-samples[0]['clock'] == m['expectedClockSpan'] == 123
-    assert abs(119/70.086-123*16380/1193182) <= 16380/1193182
+    assert samples[-1]['clock']-samples[0]['clock'] == m['expectedClockSpan']
+    hz = m.get('retraceHz',70.086)
+    assert m['expectedClockSpan'] == (144 if m['configuration']['machine']=='ega' else 123)
+    assert abs(119/hz-m['expectedClockSpan']*16380/1193182) <= 16380/1193182
     assert any(row['right'] == 128 for row in samples[:40])
     assert all(row['right'] == 0 for row in samples[41:])
 
@@ -78,8 +80,11 @@ def verify(manifest='reference/jungle-native-cadence.json'):
     assert capture['instanceId'] == engine['instance_id']
     tool = objects['profile-tool-identity.json']
     assert sha(Path(tool['executable']).read_bytes()) == tool['executableSha256'] == m['engineBinarySHA256']
+    machine = m['configuration']['machine']
+    assert machine in ['svga_s3','ega']
+    assert m.get('retraceHz',70.086) == (14318180/(8*114*262) if machine=='ega' else 70.086)
     text = '\n'.join(x.rstrip() for x in objects['configuration.json']['screen']['text'].splitlines())
-    for name, value in [('cpu cpu_cycles', '3000'), ('cpu core', 'normal'), ('dosbox memsize', '16'), ('dosbox vmem_delay', 'off'), ('dosbox machine', 'svga_s3')]:
+    for name, value in [('cpu cpu_cycles', '3000'), ('cpu core', 'normal'), ('dosbox memsize', '16'), ('dosbox vmem_delay', 'off'), ('dosbox machine', machine)]:
         assert 'config -get '+name+'\n'+value in text
     build_bytes = (ROOT/'reference/build.json').read_bytes()
     assert sha(build_bytes) == m['buildManifestSHA256']
@@ -156,7 +161,7 @@ def verify(manifest='reference/jungle-native-cadence.json'):
     wrong = bytearray(live); wrong[0] ^= 1
     assert wrong != expected; negatives += 1
     assert negatives == 5
-    print('Original jungle:120 consecutive callback samples,119 frame intervals,123 driver counts;fixed '+('Right+Fire/release' if m['kind']=='original-jungle-jump-observation' else 'Right/release')+' consumed,full relocated flight/jungle identity,three EGA code ranges,closed owned session,5 negatives. Not port timing acceptance or exact flip counts.')
+    print('Original jungle:120 consecutive callback samples,119 frame intervals,'+str(m['expectedClockSpan'])+' driver counts;fixed '+('Right+Fire/release' if m['kind']=='original-jungle-jump-observation' else 'Right/release')+' consumed,full relocated flight/jungle identity,three EGA code ranges,closed owned session,5 negatives. Not port timing acceptance or exact flip counts.')
 
 
 if __name__ == '__main__':

@@ -7,7 +7,8 @@ import { FlightMemory } from "../src/game/flight-physics.js";
 import { jungleComponentResources } from "./jungle-component-replay.js";
 import { jungleCadenceState as state, runJungleCadence } from "./lib/jungle-cadence-run.js";
 import { RETRACE_HZ } from "../src/game/timing.js";
-const manifestPath="reference/jungle-jump-native.json";
+assert.ok(process.argv.length <= 3);
+const manifestPath=process.argv[2] ?? "reference/jungle-jump-native.json";
 execFileSync("python3",["scripts/verify_jungle_cadence.py",manifestPath],{
   env:{...process.env,PYTHONDONTWRITEBYTECODE:"1"},stdio:"inherit",
 });
@@ -23,6 +24,7 @@ assert.equal(provider.initialRepeatMilliseconds,500);assert.equal(provider.repea
 const actual=runJungleCadence({
   entryBytes:Buffer.from(entry.state.results[1].data,"base64"),contract,
   resources:await jungleComponentResources(),provider,scans:[0x4d,0x39],
+  retraceHz:m.retraceHz ?? RETRACE_HZ,
 });
 // Expected states are first read after the independent input stream finishes.
 const expectedState=async name=>state(new FlightMemory(Buffer.from((await artifact(name)).state.results[1].data,"base64")));
@@ -34,7 +36,7 @@ const samples=(await artifact("jungle-observer-result.json")).output.samplesCSV.
 assert.equal(samples.length,120);
 const projection=s=>Object.fromEntries(Object.keys(actual.first).map(k=>[k,s[k]]));
 const native=samples.filter((s,i)=>!i||["x","y","action"].some(k=>s[k]!==samples[i-1][k]));
-const frameMs=1000/RETRACE_HZ;
+const frameMs=1000/(m.retraceHz ?? RETRACE_HZ);
 let firstDifference=null;
 try {
   assert.deepEqual(actual.first,nativeFirst);assert.deepEqual(actual.opening,nativeOpening);
@@ -47,8 +49,9 @@ if(!firstDifference)for(let i=0;i<Math.max(actual.motion.length,native.length);i
   catch {firstDifference={index:i,kind:"state-or-time",port:p,native:{state:projection(n),bracketMs:bracket}};break;}
 }
 let finalMatches=true;try{assert.deepEqual(actual.final,projection(samples.at(-1)));}catch{finalMatches=false;}
-assert.deepEqual(actual.events.map(e=>e.kind),["make","repeat","repeat","repeat","break"]);
-assert.equal(actual.events.reduce((n,e)=>n+e.scans.length,0),7);
+const repeats = Math.max(0, Math.ceil((40*frameMs-provider.initialRepeatMilliseconds)/provider.repeatMilliseconds));
+assert.deepEqual(actual.events.map(e=>e.kind),["make",...Array(repeats).fill("repeat"),"break"]);
+assert.equal(actual.events.reduce((n,e)=>n+e.scans.length,0),4+repeats);
 const passed=!firstDifference&&finalMatches;
 console.log(JSON.stringify({kind:"exploratory-jungle-jump-cadence",accepted:false,comparisonPassed:passed,
   environment:"Native ENTRY memory;zero-phase driver/retrace;independent Right+Fire make0/break40-frame schedule;500/33ms repeats only last physical key Space;immediate IRQ delivery,no browser or i8042 phase.",

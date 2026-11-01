@@ -43,7 +43,14 @@ def samples_ok(samples, m):
     assert abs(119/hz-m['expectedClockSpan']*16380/1193182) <= 16380/1193182
     release = 80 if m['kind']=='original-jungle-walk-hold-observation' else 40
     assert any(row['right'] == 128 for row in samples[:release])
-    assert all(row['right'] == 0 for row in samples[release+1:])
+    if m['kind']=='original-jungle-walk-hold-observation':
+        # IRQ break64h persists until the game consumes it;it is not held80h.
+        assert all(row['right'] in [0,64] for row in samples[release+1:])
+        assert samples[-1]['right']==0
+        flags=[{'index':row['index'],'right':row['right']} for i,row in enumerate(samples) if not i or row['right']!=samples[i-1]['right']]
+        assert flags==m['expectedRightTransitions']
+    else:
+        assert all(row['right'] == 0 for row in samples[release+1:])
 
 
 def inputs_ok(value, replay, m):
@@ -161,8 +168,13 @@ def verify(manifest='reference/jungle-native-cadence.json'):
     else: raise AssertionError('Accepted missing release')
     wrong = bytearray(live); wrong[0] ^= 1
     assert wrong != expected; negatives += 1
-    assert negatives == 5
-    print('Original jungle:120 consecutive callback samples,119 frame intervals,'+str(m['expectedClockSpan'])+' driver counts;fixed '+('Right+Fire/release' if m['kind']=='original-jungle-jump-observation' else 'Right/release')+' consumed,full relocated flight/jungle identity,three EGA code ranges,closed owned session,5 negatives. Not port timing acceptance or exact flip counts.')
+    if m['kind']=='original-jungle-walk-hold-observation':
+        bad=copy.deepcopy(samples);bad[90]['right']=128
+        try:samples_ok(bad,m)
+        except AssertionError:negatives+=1
+        else:raise AssertionError('Accepted held key after required release')
+    assert negatives == (6 if m['kind']=='original-jungle-walk-hold-observation' else 5)
+    print('Original jungle:120 consecutive callback samples,119 frame intervals,'+str(m['expectedClockSpan'])+' driver counts;fixed '+('Right+Fire/release' if m['kind']=='original-jungle-jump-observation' else 'Right/release')+' consumed,full relocated flight/jungle identity,three EGA code ranges,closed owned session,'+str(negatives)+' negatives. Not port timing acceptance or exact flip counts.')
 
 
 if __name__ == '__main__':

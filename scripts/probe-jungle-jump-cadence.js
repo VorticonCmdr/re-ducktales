@@ -1,5 +1,6 @@
 // Exploratory strict comparison;any state/timing divergence exits1.
 import assert from "node:assert/strict";
+import { isDeepStrictEqual } from "node:util";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -44,6 +45,7 @@ const samples=(await artifact("jungle-observer-result.json")).output.samplesCSV.
 assert.equal(samples.length,120);
 const projection=s=>Object.fromEntries(Object.keys(actual.first).map(k=>[k,s[k]]));
 const native=samples.filter((s,i)=>!i||["x","y","action"].some(k=>s[k]!==samples[i-1][k]));
+const allMotionStatesMatch=actual.motion.length===native.length && actual.motion.every((p,i)=>isDeepStrictEqual(p.state,projection(native[i])));
 const frameMs=1000/(m.retraceHz ?? RETRACE_HZ);
 let firstDifference=null;
 try {
@@ -64,7 +66,7 @@ const passed=!firstDifference&&finalMatches;
 console.log(JSON.stringify({kind:walkHold?"exploratory-jungle-walk-hold-cadence":"exploratory-jungle-jump-cadence",accepted:false,comparisonPassed:passed,
   environment:"Native ENTRY memory;zero-phase driver/retrace;independent physical input profile;500/33ms repeats only last physical key;immediate IRQ delivery,no browser or i8042 phase.",
   inputProfile:profile,
-  consumedReads:actual.inputs.length,events:actual.events,firstDifference,finalMatches,
+  consumedReads:actual.inputs.length,events:actual.events,firstDifference,finalMatches,allMotionStatesMatch,motionStatesCompared:Math.min(actual.motion.length,native.length),
   portMotion:actual.motion,nativeMotion:native.map(s=>({state:projection(s),bracketMs:[Math.max(0,s.index-2)*frameMs,(s.index-1)*frameMs]})),
   final:actual.final,nativeFinal:projection(samples.at(-1))},null,2));
 if(!passed)process.exitCode=1;

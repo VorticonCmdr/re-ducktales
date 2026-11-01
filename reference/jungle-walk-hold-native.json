@@ -1,0 +1,1724 @@
+{
+  "kind": "original-jungle-walk-hold-observation",
+  "producer": ".local/jungle-walk-hold-native-04",
+  "nativeObservation": true,
+  "portTimingAcceptance": false,
+  "expectedSamples": 120,
+  "expectedFrameSpan": 119,
+  "expectedClockSpan": 123,
+  "engineBinarySHA256": "3580a642599ad27fd76265d9f59fd408679aa6d189149af176bde322a3b8c256",
+  "buildManifestSHA256": "bfa061efe5f0889e3ff9fdb99110a624cc153ef7f1e2e6fe38809b61615624eb",
+  "configuration": {
+    "core": "normal",
+    "cpu_cycles": 3000,
+    "machine": "svga_s3",
+    "memsize": 16,
+    "vmem_delay": "off"
+  },
+  "setup": "Fresh read-only original launch;natural security/map to64,73,Okeefadokie Swamp;campaign slot shuffled. Naturally nonracing flight and authored crash controls;actual full flight and jungle bodies checked. Start after both opening page reveals. No writes or restores.",
+  "events": [
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": true,
+      "frame": 0
+    },
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": false,
+      "frame": 80
+    }
+  ],
+  "expectedFirstSample": {
+    "index": 1,
+    "frame": 5218,
+    "clock": 5201,
+    "page": 1,
+    "x": 8,
+    "y": 16,
+    "action": 5,
+    "actorFrame": 0,
+    "lostLives": 1,
+    "column": 0,
+    "row": 0,
+    "scroll": 0,
+    "outcome": 0,
+    "right": 0,
+    "fire": 0,
+    "seed": 45289
+  },
+  "expectedLastSample": {
+    "index": 120,
+    "frame": 5337,
+    "clock": 5324,
+    "page": 0,
+    "x": 76,
+    "y": 48,
+    "action": 5,
+    "actorFrame": 0,
+    "lostLives": 1,
+    "column": 1,
+    "row": 1,
+    "scroll": 0,
+    "outcome": 0,
+    "right": 0,
+    "fire": 0,
+    "seed": 51439
+  },
+  "expectedMotionChangeIndices": [
+    14,
+    37,
+    40,
+    54,
+    57,
+    60,
+    63,
+    66,
+    69,
+    72,
+    75,
+    77,
+    80,
+    84,
+    98
+  ],
+  "comparison": "Exact artifact identities,120 consecutive samples,completed two-event physical schedule and all declared motion samples. Unknown CPU/IRQ/input phase;no whole-game timing acceptance.",
+  "exclusions": [
+    "No exact CPU or scanout timestamps. Original IRQ/retrace phase and input latency not reconstructed.",
+    "Only EGA flip/wait/sprite code ranges compared here;mutable copy operands and other driver code not admitted as exact.",
+    "No whole-level/browser/audio timing comparison. Setup stops are allowed;measurement has no debugger stops."
+  ],
+  "injections": [],
+  "partialRestore": false,
+  "verify": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_jungle_cadence.py reference/jungle-walk-hold-native.json",
+  "artifacts": {
+    "capture.json": {
+      "path": ".local/jungle-walk-hold-native-04/capture.json",
+      "bytes": 377,
+      "sha256": "90e492df74560b7e3dbb24a670cf97a26cd5c654f0d3b410c72eed30f68fb9b8"
+    },
+    "configuration.json": {
+      "path": ".local/jungle-walk-hold-native-04/configuration.json",
+      "bytes": 2585,
+      "sha256": "aa1e8be310a93d88b05e62b80bf0c1524758f0d67898b68babd13f5ea794630c"
+    },
+    "emulator.log": {
+      "path": ".local/jungle-walk-hold-native-04/emulator.log",
+      "bytes": 35032,
+      "sha256": "ce922b9be7db522e02fef673bf8aec10b140b94d11c7cbf7c5a33a537bd212f9"
+    },
+    "engine.json": {
+      "path": ".local/jungle-walk-hold-native-04/engine.json",
+      "bytes": 4518,
+      "sha256": "fcf0551b4e6f844790a03160769e4da8e41e6d9202e12cd20934e44c73b76794"
+    },
+    "entry.json": {
+      "path": ".local/jungle-walk-hold-native-04/entry.json",
+      "bytes": 88774,
+      "sha256": "1f23c41f24f911bcf1148c0519b9061bbb2fd159cc393c59d714c5886a8bf92a"
+    },
+    "entry.png": {
+      "path": ".local/jungle-walk-hold-native-04/entry.png",
+      "bytes": 17937,
+      "sha256": "8d0e368db96fa5e2380cb5b71fc176d10e5c12be9166a89cebbf894293086f9e"
+    },
+    "fire-first.json": {
+      "path": ".local/jungle-walk-hold-native-04/fire-first.json",
+      "bytes": 88769,
+      "sha256": "c252889adfa3900839de7de5ebbdb6be096411e174f929d1b828a986f3593a98"
+    },
+    "first-result.json": {
+      "path": ".local/jungle-walk-hold-native-04/first-result.json",
+      "bytes": 88770,
+      "sha256": "382b1ddf77fc1cf3900448124c06d0e6a4edf72c8042542e96fd84a4f5480ce1"
+    },
+    "first-result.png": {
+      "path": ".local/jungle-walk-hold-native-04/first-result.png",
+      "bytes": 5200,
+      "sha256": "b6a7e527900632a72a6b29c53f0edb901b6a7e8b765e323e7bccf1eb2976e0b5"
+    },
+    "generated.json": {
+      "path": ".local/jungle-walk-hold-native-04/generated.json",
+      "bytes": 88773,
+      "sha256": "2b10702035107534db0b72fe62b48f1e34f81f7803b6483cfc22c0895855c0fe"
+    },
+    "initial-poll-0.json": {
+      "path": ".local/jungle-walk-hold-native-04/initial-poll-0.json",
+      "bytes": 88773,
+      "sha256": "24d47ed148b24fcffd96955396a336d4f678e4b70bccca549e21ba65ba28834d"
+    },
+    "initial-poll-0.png": {
+      "path": ".local/jungle-walk-hold-native-04/initial-poll-0.png",
+      "bytes": 4850,
+      "sha256": "de898c46d58804ff45bcbef07afba87d0d53c35ba5e3f358c7330fcfdda2692d"
+    },
+    "initial-poll-1.json": {
+      "path": ".local/jungle-walk-hold-native-04/initial-poll-1.json",
+      "bytes": 88771,
+      "sha256": "d4dc4e49518cf7931ad1645e976c856cd627a4dae5a5b954bf0ef4bff1bb75a5"
+    },
+    "initial-poll-1.png": {
+      "path": ".local/jungle-walk-hold-native-04/initial-poll-1.png",
+      "bytes": 4850,
+      "sha256": "de898c46d58804ff45bcbef07afba87d0d53c35ba5e3f358c7330fcfdda2692d"
+    },
+    "initial-poll-2.json": {
+      "path": ".local/jungle-walk-hold-native-04/initial-poll-2.json",
+      "bytes": 88771,
+      "sha256": "f15bc6b32d0e26accd558c1a2ac68ef529e069752062c89b84d7ed8ff562f8da"
+    },
+    "initial-poll-2.png": {
+      "path": ".local/jungle-walk-hold-native-04/initial-poll-2.png",
+      "bytes": 4875,
+      "sha256": "79f54ecf60efc318c35d5322fb82fb90577948136d71b5dc8266ce79d51d09f9"
+    },
+    "initial-poll-3.json": {
+      "path": ".local/jungle-walk-hold-native-04/initial-poll-3.json",
+      "bytes": 88771,
+      "sha256": "c64a8f9eaa1ab630b9cfdc70ce02e938ddbc69dac0e46d9166d155759110b176"
+    },
+    "initial-poll-3.png": {
+      "path": ".local/jungle-walk-hold-native-04/initial-poll-3.png",
+      "bytes": 4875,
+      "sha256": "79f54ecf60efc318c35d5322fb82fb90577948136d71b5dc8266ce79d51d09f9"
+    },
+    "inputs.json": {
+      "path": ".local/jungle-walk-hold-native-04/inputs.json",
+      "bytes": 31852,
+      "sha256": "df9c9e44381e72e53183d211bb1fafa290e4dc0cd11d493dfc415db90f91241f"
+    },
+    "jungle-cadence.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-cadence.json",
+      "bytes": 379,
+      "sha256": "fba485f236e1c59c808810a0a202d0a8c0a9a94baa3b473579a512906f9cc82a"
+    },
+    "jungle-code.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-code.json",
+      "bytes": 32297,
+      "sha256": "d05f00cb7c0bb6a16a64c1cfbee34609602f995a6bf0b295a33c0c469b231f03"
+    },
+    "jungle-driver.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-driver.json",
+      "bytes": 3662,
+      "sha256": "888b0bc9df08636c61a34757df6a1ef2c8fc5b57afe54d190914b0ba8987e171"
+    },
+    "jungle-entry-contract.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-entry-contract.json",
+      "bytes": 99,
+      "sha256": "c2829ea38260e30f175d12516f4ff64d10896b331d87abdd5a140ff348390756"
+    },
+    "jungle-entry.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-entry.json",
+      "bytes": 88766,
+      "sha256": "d2262a90912e5ebe151f2ce72f5c8a81aa2bb649f21ea5e3f898abca53b9bb9e"
+    },
+    "jungle-entry.png": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-entry.png",
+      "bytes": 10648,
+      "sha256": "23ec9f4654e7f86dddefa4a74180a69cc97fcbdce900db8a753e1b187f6ce3f7"
+    },
+    "jungle-first-input.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-first-input.json",
+      "bytes": 88773,
+      "sha256": "8daf673d2b12a53f0115a2dccecff4d0baf806a56927a67a464f18417ea9de3d"
+    },
+    "jungle-first-input.png": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "jungle-first-presentation.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-first-presentation.json",
+      "bytes": 88775,
+      "sha256": "1ea2fc56c3acd91f1986480ab57260720d763e82ba0c45f46afa90a425f25daa"
+    },
+    "jungle-first-presentation.png": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-first-presentation.png",
+      "bytes": 18314,
+      "sha256": "8e88fc0bc9e1232ddd9ddd20172f486a9263e1b157bd42669a8e9be72ffcde09"
+    },
+    "jungle-flight-setup-completed.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-flight-setup-completed.json",
+      "bytes": 175,
+      "sha256": "44575620f7f39012f09fefc3904c1dcdf8e416e57748db13aa17598b3f70349d"
+    },
+    "jungle-motion-input-contract.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-motion-input-contract.json",
+      "bytes": 500,
+      "sha256": "629b8495b6648f27c166766574666f2e8ecf7633f514ae314ff04b5f04870887"
+    },
+    "jungle-observer-final.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-observer-final.json",
+      "bytes": 88546,
+      "sha256": "5bbf40b26f2d150d0cfe7ecc004a07f47271f732059fdaa78d9a849ec345ff09"
+    },
+    "jungle-observer-final.png": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-observer-final.png",
+      "bytes": 18519,
+      "sha256": "da573725a07f510224d3b53f39b56caadd6c308bde9c7727ba758f8f1c188a6b"
+    },
+    "jungle-observer-inputs.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-observer-inputs.json",
+      "bytes": 291,
+      "sha256": "589c04d4ef0f775127dcf9b4aa37b3db8ea29390b5425b1abdaad3733c95de76"
+    },
+    "jungle-observer-loaded.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-observer-loaded.json",
+      "bytes": 124,
+      "sha256": "2f8bc88477621e505b0b30d23c2af8af26da2a82cc046d5fa0860485c94fc633"
+    },
+    "jungle-observer-replay.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-observer-replay.json",
+      "bytes": 175,
+      "sha256": "3f165ecef2708041913c54ef61a3f9d0b7977e1c09f550e1545d24e49fe28605"
+    },
+    "jungle-observer-result.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-observer-result.json",
+      "bytes": 5795,
+      "sha256": "b9e7c7666f5e23dff26b7e18f9c6887980dc6e6d8c9ec5b52e016d8c73a473c9"
+    },
+    "jungle-observer-script.json": {
+      "path": ".local/jungle-walk-hold-native-04/jungle-observer-script.json",
+      "bytes": 1025,
+      "sha256": "626b85629200977727e1c02ebde0d03f811ecf27ccdba3bfad72a4edc3c26d71"
+    },
+    "lifecycle.json": {
+      "path": ".local/jungle-walk-hold-native-04/lifecycle.json",
+      "bytes": 123,
+      "sha256": "bf13e63b3a26512b76bdca4fe26015ae417fd6e646e7fea87e23da61e6dd9f33"
+    },
+    "live-overlay.json": {
+      "path": ".local/jungle-walk-hold-native-04/live-overlay.json",
+      "bytes": 11406,
+      "sha256": "8613747122faa5079c77afaa8cc2d6ba46e5101dd3f1ec51e1104ccbc4d03d13"
+    },
+    "office-confirm.json": {
+      "path": ".local/jungle-walk-hold-native-04/office-confirm.json",
+      "bytes": 88775,
+      "sha256": "3cf9dc8cd88fac5dcbb68f89e9ee6cbd45e7f2c11dba3d1a10d0c8853a5a2133"
+    },
+    "office-input.json": {
+      "path": ".local/jungle-walk-hold-native-04/office-input.json",
+      "bytes": 88775,
+      "sha256": "22422cc507bf6f3e35809293607eccc6a942c61ce953cd1f451ddfbc0503c65a"
+    },
+    "office-input.png": {
+      "path": ".local/jungle-walk-hold-native-04/office-input.png",
+      "bytes": 16841,
+      "sha256": "ca0fd207b469e04b987f7fc5b5c58c6357c1c258dba50a54fa9e52809c300b72"
+    },
+    "portable/dosbox-automation.conf": {
+      "path": ".local/jungle-walk-hold-native-04/portable/dosbox-automation.conf",
+      "bytes": 413,
+      "sha256": "788aa108cf5aa0b0fd7b4749285a9d4e3795980226e60c538a8d4a5f4cb497a0"
+    },
+    "portable/dosbox_with_debugger": {
+      "path": ".local/jungle-walk-hold-native-04/portable/dosbox_with_debugger",
+      "bytes": 46391224,
+      "sha256": "3580a642599ad27fd76265d9f59fd408679aa6d189149af176bde322a3b8c256"
+    },
+    "portable/shell_history.txt": {
+      "path": ".local/jungle-walk-hold-native-04/portable/shell_history.txt",
+      "bytes": 144,
+      "sha256": "6123f2f67cf35bed3ba33d24c35041b6650ddc942f68b0a4c08f4bb4924ac8ad"
+    },
+    "profile-tool-identity.json": {
+      "path": ".local/jungle-walk-hold-native-04/profile-tool-identity.json",
+      "bytes": 506,
+      "sha256": "f0ca33ce1bdfa0917bea19670fa119a1857b3d0ed41a54a911a5151d8be60294"
+    },
+    "return.json": {
+      "path": ".local/jungle-walk-hold-native-04/return.json",
+      "bytes": 88770,
+      "sha256": "f109bf417ada96636af83036944ddbe58f86c05339817feae110505e6179a2d1"
+    },
+    "return.png": {
+      "path": ".local/jungle-walk-hold-native-04/return.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "rng-consumption.json": {
+      "path": ".local/jungle-walk-hold-native-04/rng-consumption.json",
+      "bytes": 50840,
+      "sha256": "0f20c44dcfed20aebac5eed32dafdd5aa478fd08130c1ad3555fca102d7e7baf"
+    },
+    "safari-flight-code-observed.json": {
+      "path": ".local/jungle-walk-hold-native-04/safari-flight-code-observed.json",
+      "bytes": 24051,
+      "sha256": "1b2f8e02bc7c7391bf36fe89f6f6ba53db3d26d863eea85c31b3960068744cf6"
+    },
+    "safari-flight-code.json": {
+      "path": ".local/jungle-walk-hold-native-04/safari-flight-code.json",
+      "bytes": 25160,
+      "sha256": "6ba7e81790881b77d37088d93c46057b01fa18c094275980984a4ad9bb10220b"
+    },
+    "source-revision.json": {
+      "path": ".local/jungle-walk-hold-native-04/source-revision.json",
+      "bytes": 135170,
+      "sha256": "59fdbce447a25e76350125b152b2ef1d5fb21c597d7c2608369dc4a57d9c09cf"
+    },
+    "sources.zip": {
+      "path": ".local/jungle-walk-hold-native-04/sources.zip",
+      "bytes": 3481839,
+      "sha256": "3bf096fbd8ca0ed2e25a9680a65d6417b4d5096c3ae5575d1598971f2b5016ec"
+    },
+    "startup-inputs.json": {
+      "path": ".local/jungle-walk-hold-native-04/startup-inputs.json",
+      "bytes": 1220,
+      "sha256": "86b69694c61f886ef17c3cc4457fc520d5940643cc571bfb19f27f89818e3cfe"
+    },
+    "timing-destination-confirm-flush.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-confirm-flush.json",
+      "bytes": 88773,
+      "sha256": "73816a305b9a7a7ecce90709c397aa8d681bbe2babc032af6cd6fd5d02ccf6de"
+    },
+    "timing-destination-confirm-read.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-confirm-read.json",
+      "bytes": 88775,
+      "sha256": "2b3e69991901a44c174bcb7073aef199842f2ac6c77ac92f57d50d4aac677c56"
+    },
+    "timing-destination-confirm-read.png": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-confirm-read.png",
+      "bytes": 6615,
+      "sha256": "ea1985cb7e40cfbc8c1f0eaf0af9496f4371666335e6c77db6803f4e2940f66e"
+    },
+    "timing-destination-entry.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-entry.json",
+      "bytes": 88787,
+      "sha256": "b30c07c8d22dfe32efcbc197af3f38a4287107904d0d31d60447a861b42005b9"
+    },
+    "timing-destination-entry.png": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-entry.png",
+      "bytes": 16122,
+      "sha256": "8bae5d38da263e8dcbf20b658a79f701905d759b8b58d1090011bd45b093a50b"
+    },
+    "timing-destination-return.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-return.json",
+      "bytes": 88775,
+      "sha256": "dc96b6a6f983d872de7b8baa78adc818391f768193167d31c0d9ecad027d0ba6"
+    },
+    "timing-destination-return.png": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-return.png",
+      "bytes": 6615,
+      "sha256": "ea1985cb7e40cfbc8c1f0eaf0af9496f4371666335e6c77db6803f4e2940f66e"
+    },
+    "timing-destination-travel-flush.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-travel-flush.json",
+      "bytes": 88775,
+      "sha256": "a5b07c7b54412e3a1063a23f43ef1065acd061200bf0af998f17c4012a9052df"
+    },
+    "timing-destination-travel-read.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-travel-read.json",
+      "bytes": 88771,
+      "sha256": "704dfc2ee66b2cfe979bb01c7a2174dd893dd636a191d1f919cece7d81b9093f"
+    },
+    "timing-destination-travel-read.png": {
+      "path": ".local/jungle-walk-hold-native-04/timing-destination-travel-read.png",
+      "bytes": 6621,
+      "sha256": "117ce0188d4c663f420c2e6deea65e880d579e97bc04b83fc8bbc671725fedf4"
+    },
+    "timing-flight-contract.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-flight-contract.json",
+      "bytes": 150,
+      "sha256": "8b091376aaf022fe056eface72f42a64bb2cabd5eace2f95e4bdf7aa7ebea697"
+    },
+    "timing-flight-first-input.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-flight-first-input.json",
+      "bytes": 88778,
+      "sha256": "1d481308a2904457125833c50151fd3a6d60d1df3a19e8a42b6dcebfabdf41bb"
+    },
+    "timing-flight-first-input.png": {
+      "path": ".local/jungle-walk-hold-native-04/timing-flight-first-input.png",
+      "bytes": 265,
+      "sha256": "12584dd631965ce24404c87f727f96bc1a9e484115e30f355563c8e425ff3851"
+    },
+    "timing-map-entry.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-entry.json",
+      "bytes": 88794,
+      "sha256": "71338897517539ff9b634b468829e7051aee07b3e0117486a66639eebba8a410"
+    },
+    "timing-map-entry.png": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-entry.png",
+      "bytes": 15784,
+      "sha256": "4e4897a2bea83d6879a80a369534e210f7c3ae9a9f228a9f275959e63d72a827"
+    },
+    "timing-map-step-000.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-000.json",
+      "bytes": 88784,
+      "sha256": "66d5ffe610f7e401a8e460d5cf54a80e4c3be700b0073ebf49cd874fafb043ef"
+    },
+    "timing-map-step-001.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-001.json",
+      "bytes": 88784,
+      "sha256": "e9d186fc62e5729778cefb1859fe2abc6e248660251423f25f29df738ca7e97e"
+    },
+    "timing-map-step-002.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-002.json",
+      "bytes": 88784,
+      "sha256": "29ff741914368e2aae6828203b05fc8566d348d1fdac631e100e9e38e2d4ec71"
+    },
+    "timing-map-step-003.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-003.json",
+      "bytes": 88784,
+      "sha256": "93bafe1c6ae935e8ef0182db982994c50b431576d995b8f407a18895cf9a90ed"
+    },
+    "timing-map-step-004.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-004.json",
+      "bytes": 88784,
+      "sha256": "94bea2e2f92038d6c35419a8482cd22fb23538d499870e7b272bf687ed92cd1c"
+    },
+    "timing-map-step-005.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-005.json",
+      "bytes": 88784,
+      "sha256": "e11219621d73a8604b54ecc9242d5bbe41193c47848c3fd2b7dd0f22e192fc22"
+    },
+    "timing-map-step-006.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-006.json",
+      "bytes": 88784,
+      "sha256": "d6e195dcf5dc40453803228f4da76467bf9b0a589c8dece77f57f1b839323487"
+    },
+    "timing-map-step-007.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-007.json",
+      "bytes": 88784,
+      "sha256": "b1944dc80c16586b15ea1f4f4458b0570691be42e46350004b81b4d48a63b687"
+    },
+    "timing-map-step-008.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-008.json",
+      "bytes": 88784,
+      "sha256": "f420ada90b0862a6a21cc3ee9b4bddd94d01d89d3cb8639920ec42ebe09a200f"
+    },
+    "timing-map-step-009.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-009.json",
+      "bytes": 88785,
+      "sha256": "cea9bec9e12caad9286d7548d60b521c9cb2730b4904f58a4a6b48101a91434d"
+    },
+    "timing-map-step-010.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-010.json",
+      "bytes": 88785,
+      "sha256": "3cc9ea4c65473a25d47a5dad0cd10337b3f6d9b26153db1135316f7b4338e03e"
+    },
+    "timing-map-step-011.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-011.json",
+      "bytes": 88785,
+      "sha256": "0bd16527f511198d4bda462ca577baf8e3969c89420dac0565c26e4e71e5ceef"
+    },
+    "timing-map-step-012.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-012.json",
+      "bytes": 88785,
+      "sha256": "c5acc92eeb2326fa39ee3c2865237fceb7b6e98ec35fc7a47c3291ab3c9a5748"
+    },
+    "timing-map-step-013.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-013.json",
+      "bytes": 88785,
+      "sha256": "cc17e7b402e7b5150e49867af0657e1ba14d39631909d594bd014ae0d8ad5936"
+    },
+    "timing-map-step-014.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-014.json",
+      "bytes": 88785,
+      "sha256": "f97c902cb52b6e3474845664ef8df4bbcf2cce7e4726b823fde067d05d7ab83d"
+    },
+    "timing-map-step-015.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-015.json",
+      "bytes": 88785,
+      "sha256": "e410851cd16d62c588dfcdda6b626ed4ad5803ed9452be0912391c541c0fe845"
+    },
+    "timing-map-step-016.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-016.json",
+      "bytes": 88785,
+      "sha256": "62eb6c3721ffca6333dcc57f08fb2a551468a8e0468e49cd930bdd354d96f213"
+    },
+    "timing-map-step-017.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-017.json",
+      "bytes": 88785,
+      "sha256": "877b6f65fb8b23ef277e48e1dabaded1a227c5e06a902db95357b9d95a6fef28"
+    },
+    "timing-map-step-018.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-018.json",
+      "bytes": 88785,
+      "sha256": "0f3e2f7d3a734d500d8ca00b3bebf176f7fff3f27849c31974c561e326b15b9d"
+    },
+    "timing-map-step-019.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-019.json",
+      "bytes": 88785,
+      "sha256": "430aa07527720d8b69e83482f93f2acc8734d92442233b40569aec0bf3cd10c7"
+    },
+    "timing-map-step-020.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-020.json",
+      "bytes": 88785,
+      "sha256": "eba10a7219f483582d89a038fd67f9d2e585be5e7604b108523b7a4884a78007"
+    },
+    "timing-map-step-021.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-021.json",
+      "bytes": 88785,
+      "sha256": "e610d853c23e4905af1b8639790becf6fab4e769f3f7957beeba7422cd308433"
+    },
+    "timing-map-step-022.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-022.json",
+      "bytes": 88785,
+      "sha256": "b3f630124538223a54714674d63cf4b830c734d0893aa7efee01ff462bff5671"
+    },
+    "timing-map-step-023.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-023.json",
+      "bytes": 88785,
+      "sha256": "527bd1b9d8ac4f132bf8ccefc09c6ca73ceaa3d37a624e3cdbc349fb4b6025c8"
+    },
+    "timing-map-step-024.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-024.json",
+      "bytes": 88785,
+      "sha256": "79d3fb37e7671a181d5bd7934396ee524d70c555904293b79465225c6c92d524"
+    },
+    "timing-map-step-025.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-025.json",
+      "bytes": 88785,
+      "sha256": "10436bb7709e2489014f66322609624b5da8d2bbbfb55c4983572cf0412f5415"
+    },
+    "timing-map-step-026.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-026.json",
+      "bytes": 88785,
+      "sha256": "b9b89637cde91ce2db1f4728d7ffb48701f962cf11e145b4b8afc4d3fe8c98e9"
+    },
+    "timing-map-step-027.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-027.json",
+      "bytes": 88785,
+      "sha256": "c36e4b2e0fe4a7d97dfc4e834160fb3f0c48401dbb1fa6b1364923e681b95f1c"
+    },
+    "timing-map-step-028.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-028.json",
+      "bytes": 88785,
+      "sha256": "a7341883d7b82f274ce45cb209eae372dec789b8cbcd30567fd8ef0367c22110"
+    },
+    "timing-map-step-029.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-029.json",
+      "bytes": 88785,
+      "sha256": "b32471e1023f0afba51206eff2161436f40d1259e4013cdca7e379af5d1c5661"
+    },
+    "timing-map-step-030.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-030.json",
+      "bytes": 88785,
+      "sha256": "34b819dc27cef5313915834000d9036f5f35f66bc65e64c05481123d0accc81a"
+    },
+    "timing-map-step-031.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-031.json",
+      "bytes": 88785,
+      "sha256": "d60525d388e7ec2664ed11b8438ae4416c73506be3e9503e1954b74d97688dcb"
+    },
+    "timing-map-step-032.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-032.json",
+      "bytes": 88785,
+      "sha256": "d16b12a8d2fb245a694e0a635ef4bd76796ad3543c455cb90237678b8b563e9e"
+    },
+    "timing-map-step-033.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-033.json",
+      "bytes": 88786,
+      "sha256": "6d692507c64e133b7de98aeec1b7f4c9ba0948efe420694dc83746d535f52c39"
+    },
+    "timing-map-step-034.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-034.json",
+      "bytes": 88786,
+      "sha256": "d3cb4a443c5a51ce4b94eb3a09e921cb51e65c2766184858215c6d741990a4c0"
+    },
+    "timing-map-step-035.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-035.json",
+      "bytes": 88786,
+      "sha256": "b2bd3635f0f710c59f3633ef4bff1c544577f109b7d5a226be77b0f6f5fa3557"
+    },
+    "timing-map-step-036.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-036.json",
+      "bytes": 88786,
+      "sha256": "d5c235f6b7f9f87242bc098c8d55da4929ea15584eb5b7fc359fc4502036bb2a"
+    },
+    "timing-map-step-037.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-037.json",
+      "bytes": 88786,
+      "sha256": "9fb292291eb0b82795f21f7b79eb5baf4907cfe79f485ea4cac2adadb69ce715"
+    },
+    "timing-map-step-038.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-038.json",
+      "bytes": 88786,
+      "sha256": "fbefa445d104f49f74bac3eafbc7f74635d72f36e9f01d50fd7034dac98ef273"
+    },
+    "timing-map-step-039.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-039.json",
+      "bytes": 88786,
+      "sha256": "580d6b306c62e21058765aeabd6c663a0d7e7a4334e20e7832ace57be3aaae47"
+    },
+    "timing-map-step-040.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-040.json",
+      "bytes": 88786,
+      "sha256": "be910ff0b96ef8edf7c5dcbb8c87108f1e147ad1f37786a5b261e6f113fd139f"
+    },
+    "timing-map-step-041.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-041.json",
+      "bytes": 88786,
+      "sha256": "7b35ed76713cf6e2c2da3f93df37ced2cf27a281954425d78d472b872049f6a2"
+    },
+    "timing-map-step-042.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-042.json",
+      "bytes": 88786,
+      "sha256": "641e7119c76a0b3f6ca7415d0ec3abc3a1ce6a6498e3d0cb73ba9480d9291239"
+    },
+    "timing-map-step-043.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-043.json",
+      "bytes": 88786,
+      "sha256": "937a4f90f3c9c4f3eb5ff3b9530074e7e25a9ea3225f23170df0ce3b1c6d3ffe"
+    },
+    "timing-map-step-044.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-044.json",
+      "bytes": 88786,
+      "sha256": "bc7b690ecae577ce8567a6fcb99ce8b2bc7113313aba869354977041cb77a878"
+    },
+    "timing-map-step-045.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-045.json",
+      "bytes": 88786,
+      "sha256": "ebc85f752676dc7c533cb93a6d37683a30e860fa8ce5dcd4aef30c566f94cfc7"
+    },
+    "timing-map-step-046.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-046.json",
+      "bytes": 88786,
+      "sha256": "d88ec1a2548961208d0cb29070e5bc90e5ffafd03274bb700cd767ff57ea14c4"
+    },
+    "timing-map-step-047.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-047.json",
+      "bytes": 88786,
+      "sha256": "382b844d55454609414b11270ade7e5be6036643163396c0615f3bcb3adf149e"
+    },
+    "timing-map-step-048.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-048.json",
+      "bytes": 88786,
+      "sha256": "7e3e4f6d68069d728ed93542a50838c9ad9ddc1063e1f34635369943397289be"
+    },
+    "timing-map-step-049.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-049.json",
+      "bytes": 88786,
+      "sha256": "bc4a1d0f93f0cf9f0432654eb11415f127fee2ff26e46af9429d93ec4b4c0f37"
+    },
+    "timing-map-step-050.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-050.json",
+      "bytes": 88786,
+      "sha256": "7cececde8a0d59bed16182bc2253b83b5316bc302e86267e84ddc99effb9a22f"
+    },
+    "timing-map-step-051.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-051.json",
+      "bytes": 88786,
+      "sha256": "574a95c28fd8001203f692d235bf17b51d06be434b9d7a11efd08ccb82caf701"
+    },
+    "timing-map-step-052.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-052.json",
+      "bytes": 88786,
+      "sha256": "11df2bd0f4a1d41c3cfca0bbb1d6f1fba89966d83fc70b5598a12b38edffaa32"
+    },
+    "timing-map-step-053.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-053.json",
+      "bytes": 88786,
+      "sha256": "dbfddb33523f64f6eef85e4514975ce572fff3a0521ee3c488a19b1c2701b93f"
+    },
+    "timing-map-step-054.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-054.json",
+      "bytes": 88786,
+      "sha256": "ebccaa9d8c67bc7310ecba2eec90232d9270d63d8d2e830c963ee0a8bdd7d7d8"
+    },
+    "timing-map-step-055.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-055.json",
+      "bytes": 88786,
+      "sha256": "209d4fd95b7b4d74b019717935a252ab5b841c7df83e5285476be65533f77307"
+    },
+    "timing-map-step-056.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-056.json",
+      "bytes": 88786,
+      "sha256": "6c53149782ffe051605dbeba847e7a4396900d8c68a1565bbacfd441526a1830"
+    },
+    "timing-map-step-057.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-057.json",
+      "bytes": 88786,
+      "sha256": "7ec93fb21674dac8734b5b8c085b88a1bf9942a940636d8705fa23956753c429"
+    },
+    "timing-map-step-058.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-058.json",
+      "bytes": 88786,
+      "sha256": "0e0411fd1d69b27465cad46e1f1d4efb6e73d17eb0ae29ed37c0e10ae319c62d"
+    },
+    "timing-map-step-059.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-059.json",
+      "bytes": 88786,
+      "sha256": "4da842c69e4457fb2d04195e4c5a437f9eedad6be7c91bb69299d06eff6c4cac"
+    },
+    "timing-map-step-060.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-060.json",
+      "bytes": 88786,
+      "sha256": "e9e6ef7b98ffcc943231a56aff05b73881e5b3418ae70f1da976a1eddb8d904d"
+    },
+    "timing-map-step-061.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-061.json",
+      "bytes": 88786,
+      "sha256": "24f83808ebd0f95ff20163aead0b6d56a70ab448c527da658e50cbae09175694"
+    },
+    "timing-map-step-062.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-062.json",
+      "bytes": 88786,
+      "sha256": "12e836dff48c3617588cdb1ba0f7f51974a7d7245d1a76bd79333c0948bf511f"
+    },
+    "timing-map-step-063.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-063.json",
+      "bytes": 88786,
+      "sha256": "1d930596c1542b897d7975c9d577f53248059241d4bb410ffcb9ffa3487dbde7"
+    },
+    "timing-map-step-064.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-064.json",
+      "bytes": 88786,
+      "sha256": "f005ca6fb6d002731ef40f9900b6d57104053c3ef6a8fd9cf2d286312e249987"
+    },
+    "timing-map-step-065.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-065.json",
+      "bytes": 88786,
+      "sha256": "f5ad738adbc88afac550a6dcdf2c5af0584fa394547160576a386db6180bb68e"
+    },
+    "timing-map-step-066.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-066.json",
+      "bytes": 88786,
+      "sha256": "1e0d3497bf904b4ac05afb16010790338a78ba7dc8e2d3934053701154d80521"
+    },
+    "timing-map-step-067.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-067.json",
+      "bytes": 88786,
+      "sha256": "78a4eff4e62cda251e79eef5e90602dc14b07321089732a295c24cdd7b251d72"
+    },
+    "timing-map-step-068.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-068.json",
+      "bytes": 88786,
+      "sha256": "93965ac3a5972cdb9252408b2638efca3d74c49317f038fa349c9da8bec7ac4e"
+    },
+    "timing-map-step-069.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-069.json",
+      "bytes": 88786,
+      "sha256": "2d5c654d003610447fa32dab87baeeb6d73e133c9b10007bbca1c0ad22258501"
+    },
+    "timing-map-step-070.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-070.json",
+      "bytes": 88786,
+      "sha256": "b1c4e388decf15b56095856c3bb70d657dcfb3a6791c46ccd976a76c1f7256a6"
+    },
+    "timing-map-step-071.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-071.json",
+      "bytes": 88786,
+      "sha256": "98cfdbf237cc209c3a3668e840b47b57632eaccebd3eff92db93eeaae19a4e1d"
+    },
+    "timing-map-step-072.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-072.json",
+      "bytes": 88786,
+      "sha256": "fe000f76628b28d1d0a440e50308aa0b4b5b4276d981022ef1eec4175e90c142"
+    },
+    "timing-map-step-073.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-073.json",
+      "bytes": 88786,
+      "sha256": "7161f84fd50694bc27c88f69df74086ab87b493a0920fd30d2e2abc3fb1774b7"
+    },
+    "timing-map-step-074.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-074.json",
+      "bytes": 88786,
+      "sha256": "5732e1ff673ed0faff1d90e2f4e8bb43a06abd8c0161e44a1a729f95fe1d1275"
+    },
+    "timing-map-step-075.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-075.json",
+      "bytes": 88786,
+      "sha256": "a2ba4c38818f42b00b05bb0fa697a7c380497b7f11ae5316f5d9e968a3c33649"
+    },
+    "timing-map-step-076.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-076.json",
+      "bytes": 88786,
+      "sha256": "b4266738fdd79c561d41a66fdba3ba0f20631d42f771c1510107f510aba35b75"
+    },
+    "timing-map-step-077.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-077.json",
+      "bytes": 88786,
+      "sha256": "6d2d3950ff4088ff96b4e156675ec71e9a724c3530a991d5f3135f11c331958e"
+    },
+    "timing-map-step-078.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-078.json",
+      "bytes": 88786,
+      "sha256": "56c3037372810e422276b8301671abc8a03b91ca12fd1a4b44255b9e358a1c76"
+    },
+    "timing-map-step-079.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-079.json",
+      "bytes": 88786,
+      "sha256": "1a49fa0a11a998a1cc1f17a891e2f56281b71cc2524c6d09f2c0d9061a2c6038"
+    },
+    "timing-map-step-080.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-080.json",
+      "bytes": 88786,
+      "sha256": "1f866f803dc5275a2835a6d7c066dab19d96b49f5cf9464c3d703c7c9188ed82"
+    },
+    "timing-map-step-081.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-081.json",
+      "bytes": 88786,
+      "sha256": "58d32b055d7d68177b0974e29cc87ec3e26418d2ee9dcd8cd1841703c39115e6"
+    },
+    "timing-map-step-082.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-082.json",
+      "bytes": 88786,
+      "sha256": "0633a5de8cbb2442718bcd7018cace1f43539396435d7fc57a4b8218ae3ff1ed"
+    },
+    "timing-map-step-083.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-083.json",
+      "bytes": 88786,
+      "sha256": "fb0a90fd94416ab95b92a621d043024b876ebd8c22caee0a1970ec03aee7df5d"
+    },
+    "timing-map-step-084.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-084.json",
+      "bytes": 88786,
+      "sha256": "4ede5634115fa7a3732f672e12a73024c152aec05e14b556db3a0be11c16370d"
+    },
+    "timing-map-step-085.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-085.json",
+      "bytes": 88786,
+      "sha256": "8d8ca25e00a98c3a25bbc0316680b35bd5719e04515b213d94122299b54d3d71"
+    },
+    "timing-map-step-086.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-086.json",
+      "bytes": 88786,
+      "sha256": "7aa7800c9cb314bdd08e08308f550ee7daf1bf985b5c5f441074cf9ab49b092c"
+    },
+    "timing-map-step-087.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-087.json",
+      "bytes": 88786,
+      "sha256": "83333484e941de2bc1d0a812c6ccbe7562a64e321210d79661275082f6b718f1"
+    },
+    "timing-map-step-088.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-088.json",
+      "bytes": 88786,
+      "sha256": "2989f147b981548d7187a2b6a951864b0c63b9555a98bda5e2862cdbadcd0dab"
+    },
+    "timing-map-step-089.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-089.json",
+      "bytes": 88786,
+      "sha256": "cfb25218bf8028705c1a8a05ae2780815df8413f3d184de0259204f31b40490c"
+    },
+    "timing-map-step-090.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-090.json",
+      "bytes": 88786,
+      "sha256": "cdb728163d0b103433b3e4145e5696c689a9ee730de9369b6f9612bd57f48351"
+    },
+    "timing-map-step-091.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-091.json",
+      "bytes": 88786,
+      "sha256": "dfd0cc14f2b5e12b74df7452fb0b8bd2f8b6c1ee55f2ab2638e231370fc283ac"
+    },
+    "timing-map-step-092.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-092.json",
+      "bytes": 88786,
+      "sha256": "055c83adb446ad380ddf719bef737b4358c89789ca128e1b36ade9d54403ff50"
+    },
+    "timing-map-step-093.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-093.json",
+      "bytes": 88786,
+      "sha256": "4752cb62f24bbcc329dd4924bccc28f1eeb4f92e24fb6d317e4f544c6d3ff4dc"
+    },
+    "timing-map-step-094.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-094.json",
+      "bytes": 88786,
+      "sha256": "ec0e2107766ff530ac224e7b39297dcff79d76cab999916f9f887f33d5d5886c"
+    },
+    "timing-map-step-095.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-095.json",
+      "bytes": 88786,
+      "sha256": "1c36275688fed3a9162066a2f3d980df2c1dc2a9ccd8abda4996eaf6b3b1bb5f"
+    },
+    "timing-map-step-096.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-096.json",
+      "bytes": 88786,
+      "sha256": "8f3b1ff7142e6e6c5e6c72a9513829707ae78dfb6e65e9fea02a920809ce97cf"
+    },
+    "timing-map-step-097.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-097.json",
+      "bytes": 88786,
+      "sha256": "6d7d65be0fa9d4854693a7bd28e35ad50d71ba28026a88d9f8ccff23be17ba50"
+    },
+    "timing-map-step-098.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-098.json",
+      "bytes": 88786,
+      "sha256": "5a72a68508ac53f1eedc9e1a9d09a7215cb83258c73b3871aee3e2c94d59ccf2"
+    },
+    "timing-map-step-099.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-099.json",
+      "bytes": 88787,
+      "sha256": "5f0a8afc9bfc5607dc939f8a24a5933d2237c3cbed203f7af1dbc0c0339b81d7"
+    },
+    "timing-map-step-100.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-100.json",
+      "bytes": 88787,
+      "sha256": "29c1c41f19e744ec9cacfa7a7a59f7b5107b6e77f12c99d7c60f688cf4a3953c"
+    },
+    "timing-map-step-101.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-101.json",
+      "bytes": 88787,
+      "sha256": "2bc7bb8b36acde07ceba974ed18ae8ee6ff7e79ba4d90e3d86ecc9b51f65a12f"
+    },
+    "timing-map-step-102.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-102.json",
+      "bytes": 88787,
+      "sha256": "7bfef05326b77a4bc6f7cc9c978b741ac578a384c02ac2b1f945f1f812c75613"
+    },
+    "timing-map-step-103.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-103.json",
+      "bytes": 88787,
+      "sha256": "257683cb38a57aeab5c2624e199579a7b6ec0201318fc0d97949e6a25f07f5ec"
+    },
+    "timing-map-step-104.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-104.json",
+      "bytes": 88787,
+      "sha256": "8e8f60af9481240da66e3ce889eb7caf9c5f1f2485c73d89a399b17a9f8d5a98"
+    },
+    "timing-map-step-105.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-105.json",
+      "bytes": 88787,
+      "sha256": "a9bd8e13c43ce1dc9d999cf2876ebd1aea35faf46a2b493c29975d5097203d6a"
+    },
+    "timing-map-step-106.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-106.json",
+      "bytes": 88787,
+      "sha256": "27a8f0820c9002984ea3c4f939023b72ffaa1d3a6c6837b70f4f1ac7335a63c3"
+    },
+    "timing-map-step-107.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-107.json",
+      "bytes": 88787,
+      "sha256": "f9a3d6f11d868b4d78293441ff3ecbfb50296bc559ee99d941332e8e56841ca5"
+    },
+    "timing-map-step-108.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-108.json",
+      "bytes": 88787,
+      "sha256": "83e1afd63439f8e34ab8b6a7a23790dadf2668a9468ab1751de94e8174e02f51"
+    },
+    "timing-map-step-109.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-109.json",
+      "bytes": 88787,
+      "sha256": "83f8e2795bfa535a6ab9b7ed00bf9369cab91bfb700230408e6c6c30e1df79b8"
+    },
+    "timing-map-step-110.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-110.json",
+      "bytes": 88787,
+      "sha256": "aaedf42342c008b88ed3db84a210fc12e9a5e398d5c647c89d14994a0e92ffed"
+    },
+    "timing-map-step-111.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-111.json",
+      "bytes": 88787,
+      "sha256": "0b210f775db5720dc70579aa8e6295e5b8d16e339eba23a2b7776f558d0f26ef"
+    },
+    "timing-map-step-112.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-112.json",
+      "bytes": 88787,
+      "sha256": "d07c6e05f6fabe0f40a45c6a4edf5ae034f8b3bd2607f7eb9fc2fc621cf3f81a"
+    },
+    "timing-map-step-113.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-113.json",
+      "bytes": 88787,
+      "sha256": "77bc3af98d4f5a941076d749917067ae379ba39d56faa60e47410060a880fdf0"
+    },
+    "timing-map-step-114.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-114.json",
+      "bytes": 88787,
+      "sha256": "6957e7dff64ff3cb42d5911ae6798e8e7e139a40fe916b3c901458bed423c3dc"
+    },
+    "timing-map-step-115.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-115.json",
+      "bytes": 88787,
+      "sha256": "6f1e46a5477f6dbce8439ce213dd879859f251182a1e06e538a3fb109b4dc179"
+    },
+    "timing-map-step-116.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-116.json",
+      "bytes": 88787,
+      "sha256": "39e115b26291c31a39cbc0753e3c2f10e91d58fb1d26eac1d9a985ed18e698d1"
+    },
+    "timing-map-step-117.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-117.json",
+      "bytes": 88787,
+      "sha256": "21473fb798f4180c69a4cd538a7db4e1328bda60fc471a62580c858105067d86"
+    },
+    "timing-map-step-118.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-118.json",
+      "bytes": 88787,
+      "sha256": "daad305a2c1ab664da9ce870e3d89f5b44d4e6af52d588193e2df29602a2dcd1"
+    },
+    "timing-map-step-119.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-119.json",
+      "bytes": 88787,
+      "sha256": "0e4f32ce966c45f4b9b0b7f3b31c57869f73bfbe7b097c8e84834f0092707edd"
+    },
+    "timing-map-step-120.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-120.json",
+      "bytes": 88787,
+      "sha256": "5b76196a0a977751cd0fd282c5eb9800fa3bd0934d4a5bb871bdf6046828b62b"
+    },
+    "timing-map-step-121.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-121.json",
+      "bytes": 88787,
+      "sha256": "72cdf4d6f5d712f3013da8d9794da24cf164415f74589d7901b36b31cca64281"
+    },
+    "timing-map-step-122.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-122.json",
+      "bytes": 88787,
+      "sha256": "df2ccbd20b33d0a992d7a5662831ee5702bc2bfca35a67d8fa0c8086a597116c"
+    },
+    "timing-map-step-123.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-123.json",
+      "bytes": 88787,
+      "sha256": "368e17d03f001b136a3718754862e38e1e2a80fe11548624fd06f6cf84abfea7"
+    },
+    "timing-map-step-124.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-124.json",
+      "bytes": 88787,
+      "sha256": "4bbae499bc9b765132b240408e904d22e063fe64fc337a039286d57177ab905d"
+    },
+    "timing-map-step-125.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-125.json",
+      "bytes": 88787,
+      "sha256": "8b1370094c81bf0f91b4fb3c0912c3dfb07a35a29fd5acc9729ed31a9bb7ac3b"
+    },
+    "timing-map-step-126.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-126.json",
+      "bytes": 88787,
+      "sha256": "2a9658338550fb9e742729c5f922335f0edd3c434529d0629df2318cb7855c9f"
+    },
+    "timing-map-step-127.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-127.json",
+      "bytes": 88787,
+      "sha256": "846990f73ef7655b18165b1e8af26d56a304d59eb4659369ad3eb32699c19613"
+    },
+    "timing-map-step-128.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-128.json",
+      "bytes": 88787,
+      "sha256": "d9fc8867297b823c07cf04086647859e93b2298f3e4e8ac44551dc6a6715c8f5"
+    },
+    "timing-map-step-129.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-129.json",
+      "bytes": 88787,
+      "sha256": "94a60434ba8b5fe414ffb8656618888740c36ef4157e1cc327791df83d6710c0"
+    },
+    "timing-map-step-130.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-130.json",
+      "bytes": 88787,
+      "sha256": "73ab1db8761446b7b33e833b324a293f951ae58cb26d59630fe34c79fb7b7498"
+    },
+    "timing-map-step-131.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-131.json",
+      "bytes": 88787,
+      "sha256": "42089839b98d6a2c7c4b45625b5049a5708f92f47069faef41d40fc4f4c23714"
+    },
+    "timing-map-step-132.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-132.json",
+      "bytes": 88787,
+      "sha256": "ae2b470ee7dd351ce4116e9da1fc7bb230b2a3b3f0f38bab028baa708033859c"
+    },
+    "timing-map-step-133.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-133.json",
+      "bytes": 88787,
+      "sha256": "11c94c1250391b46c3ea887e91a55f431b7f638672ab9596247e630b408e147e"
+    },
+    "timing-map-step-134.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-134.json",
+      "bytes": 88787,
+      "sha256": "ae174c4907e3b04cbe82c9c5c49ee903057389c615c4a3529bba4c850eca8382"
+    },
+    "timing-map-step-135.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-135.json",
+      "bytes": 88787,
+      "sha256": "6a411824b5fa3f64e25925cade03a549f8751d260fd5d7572eef2d4bf0296ec4"
+    },
+    "timing-map-step-136.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-136.json",
+      "bytes": 88787,
+      "sha256": "930de5e0c171ee2728914df16fdf2ebaeaed1c404bd1d616d09a63d0deefb8e8"
+    },
+    "timing-map-step-137.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-137.json",
+      "bytes": 88787,
+      "sha256": "872543d34217be31b8e663f69b20d4017355b7202834c685a6fe82c4d2bbbc78"
+    },
+    "timing-map-step-138.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-138.json",
+      "bytes": 88787,
+      "sha256": "42b19bcc755f7bf80eede86610ba421fa99025a55110bdf32344e918a566c776"
+    },
+    "timing-map-step-139.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-139.json",
+      "bytes": 88787,
+      "sha256": "f498d9706e099f9e562845597bcae05d32c4cc00daaf8a50f12ff3208e36fd92"
+    },
+    "timing-map-step-140.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-140.json",
+      "bytes": 88787,
+      "sha256": "254e2a29e11409972f7ded007b838009df876a7fd05914a6030750dd6d041cd4"
+    },
+    "timing-map-step-141.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-141.json",
+      "bytes": 88787,
+      "sha256": "9860270277728ab8dae98b7c1dcd6a1757a8151246bdf3d8f55f8c0f111e1d79"
+    },
+    "timing-map-step-142.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-142.json",
+      "bytes": 88787,
+      "sha256": "b14b0bc2d862aa2a95f6ee89095128565aeaeb325f991180595f29f837b9bf9e"
+    },
+    "timing-map-step-143.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-143.json",
+      "bytes": 88787,
+      "sha256": "b03a778176c0ea75125e849cbd0e3579bd8fa21c9dc0d016e5112a6f20e889e7"
+    },
+    "timing-map-step-144.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-144.json",
+      "bytes": 88787,
+      "sha256": "6839d64aab9b2f9acace5b38a02ec21b5f290847fbfe584b727f7ce781d919f1"
+    },
+    "timing-map-step-145.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-145.json",
+      "bytes": 88787,
+      "sha256": "4dd13734f30992bedd17461c1e3b3bd7a246db3e34eed5880a0e7b76e37e9598"
+    },
+    "timing-map-step-146.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-146.json",
+      "bytes": 88787,
+      "sha256": "b3035ae8cbc0407ffe6f6f5001508bde401e369e30d2e67748b6849442e923d6"
+    },
+    "timing-map-step-147.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-147.json",
+      "bytes": 88787,
+      "sha256": "0ce3e05cbc17eea736c5dd568d74b2977272693878c7a9c2681781dc5f266503"
+    },
+    "timing-map-step-148.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-148.json",
+      "bytes": 88787,
+      "sha256": "dbe8984a2f592ab9374d5851b0eeb50452d37c4ce8452c262ba8cab1ef8be7ec"
+    },
+    "timing-map-step-149.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-149.json",
+      "bytes": 88787,
+      "sha256": "6a1bd89d7562e99d6ec1018684f418cc454d2754e7ed9ca23c183e32e37b9460"
+    },
+    "timing-map-step-150.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-150.json",
+      "bytes": 88787,
+      "sha256": "b989ba1efc8f892ba388f61a4ac1440c4677008c99bd2a7801eb353ff27edef6"
+    },
+    "timing-map-step-151.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-151.json",
+      "bytes": 88787,
+      "sha256": "3c70e1e0a1fdb36d5b530f5deb6c4d221005c282dbe936c33e7781a3838b5a04"
+    },
+    "timing-map-step-152.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-152.json",
+      "bytes": 88787,
+      "sha256": "4897fafe10eb9e539d52fbe9ff5cee51f282ca6abb07dcae2f8f3e7a4324b4a2"
+    },
+    "timing-map-step-153.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-153.json",
+      "bytes": 88787,
+      "sha256": "01ca01262400913dae47776fa6a24ae136319e55764c5f67a14e1927527f27b7"
+    },
+    "timing-map-step-154.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-154.json",
+      "bytes": 88787,
+      "sha256": "d42c10177fbb96dbe89a5fe163e1d6c223562e2e7dc37aa3263941c86293f4ef"
+    },
+    "timing-map-step-155.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-155.json",
+      "bytes": 88787,
+      "sha256": "e782c0ce81d50d497c927f7ee1fe893657f15893e531005ae77fc91b91858cf3"
+    },
+    "timing-map-step-156.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-156.json",
+      "bytes": 88787,
+      "sha256": "1333e4d7244326d5cdf7c3f3ac296393065a8cf07a683a846049da55f04707b1"
+    },
+    "timing-map-step-157.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-157.json",
+      "bytes": 88787,
+      "sha256": "a3352f1fb117e4ae5ea7dc48750e432f236248d90d9f28a7856b4896f9174fae"
+    },
+    "timing-map-step-158.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-158.json",
+      "bytes": 88787,
+      "sha256": "5009a68422925e27e190e106fa0545a0b74f237f265f8cb2a9de221689e608cd"
+    },
+    "timing-map-step-159.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-159.json",
+      "bytes": 88787,
+      "sha256": "a47fad3f47802d3ebdd327318dac96479f222fc196082103ae9417ef46ceefc9"
+    },
+    "timing-map-step-160.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-160.json",
+      "bytes": 88787,
+      "sha256": "83d152e86c8717b9e4d40ec26ad4585791727a4cb81bf9066ca337be8e8a2c4a"
+    },
+    "timing-map-step-161.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-161.json",
+      "bytes": 88787,
+      "sha256": "97cde70c7a9acf5d9de7bdaa004334e633a661f079b92f00cdd1226d45567d66"
+    },
+    "timing-map-step-162.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-162.json",
+      "bytes": 88787,
+      "sha256": "32640dce93098b21a0a12ecef4b7bdc60319e771fedb38e1416b6dd45a78adf6"
+    },
+    "timing-map-step-163.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-163.json",
+      "bytes": 88787,
+      "sha256": "94925ba268c93c9d53c3ddd814ea634d5013fd64534f16f951fb79b9d3fd371c"
+    },
+    "timing-map-step-164.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-164.json",
+      "bytes": 88787,
+      "sha256": "90a6011a866bf23b6c0fb9ec00f0b23e4b09b344da72b8f37307ae8526e32aaa"
+    },
+    "timing-map-step-165.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-165.json",
+      "bytes": 88787,
+      "sha256": "98fe91bcb62573d09cc58119e8bd3a9f4332ff02340f3982a299c4695b60c562"
+    },
+    "timing-map-step-166.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-166.json",
+      "bytes": 88787,
+      "sha256": "2933f08ad448b0bf4e9c6211c06ce6b2d271ddd3ec03f746df4fa5529212d043"
+    },
+    "timing-map-step-167.json": {
+      "path": ".local/jungle-walk-hold-native-04/timing-map-step-167.json",
+      "bytes": 88787,
+      "sha256": "e20359b2bb93543a41d8a647331cb040875aed8f34248e106c6abe943c9f256e"
+    },
+    "port-probe.log": {
+      "path": ".local/jungle-walk-hold-port-01/probe.log",
+      "bytes": 13360,
+      "sha256": "82ab8a3a0fe2859fbdf87e6e839764a518d81a3e27e07ae26881eb6745db9535"
+    }
+  },
+  "inputProfile": {
+    "path": "reference/jungle-walk-hold-inputs.json",
+    "bytes": 500,
+    "sha256": "629b8495b6648f27c166766574666f2e8ecf7633f514ae314ff04b5f04870887"
+  },
+  "expectedMotionSamples": [
+    {
+      "index": 1,
+      "frame": 5218,
+      "clock": 5201,
+      "page": 1,
+      "x": 8,
+      "y": 16,
+      "action": 5,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 45289
+    },
+    {
+      "index": 14,
+      "frame": 5231,
+      "clock": 5214,
+      "page": 0,
+      "x": 24,
+      "y": 16,
+      "action": 1,
+      "actorFrame": 5,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 45289
+    },
+    {
+      "index": 37,
+      "frame": 5254,
+      "clock": 5238,
+      "page": 1,
+      "x": 24,
+      "y": 16,
+      "action": 5,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 20804
+    },
+    {
+      "index": 40,
+      "frame": 5257,
+      "clock": 5241,
+      "page": 0,
+      "x": 40,
+      "y": 16,
+      "action": 1,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 20804
+    },
+    {
+      "index": 54,
+      "frame": 5271,
+      "clock": 5256,
+      "page": 1,
+      "x": 40,
+      "y": 16,
+      "action": 5,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 0,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 32710
+    },
+    {
+      "index": 57,
+      "frame": 5274,
+      "clock": 5259,
+      "page": 0,
+      "x": 50,
+      "y": 16,
+      "action": 4,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 1,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 128,
+      "fire": 0,
+      "seed": 32710
+    },
+    {
+      "index": 60,
+      "frame": 5277,
+      "clock": 5262,
+      "page": 1,
+      "x": 52,
+      "y": 4,
+      "action": 4,
+      "actorFrame": 1,
+      "lostLives": 1,
+      "column": 1,
+      "row": 65535,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 14235
+    },
+    {
+      "index": 63,
+      "frame": 5280,
+      "clock": 5265,
+      "page": 0,
+      "x": 54,
+      "y": 16,
+      "action": 4,
+      "actorFrame": 2,
+      "lostLives": 1,
+      "column": 1,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 14235
+    },
+    {
+      "index": 66,
+      "frame": 5283,
+      "clock": 5268,
+      "page": 1,
+      "x": 56,
+      "y": 24,
+      "action": 4,
+      "actorFrame": 3,
+      "lostLives": 1,
+      "column": 1,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 631
+    },
+    {
+      "index": 69,
+      "frame": 5286,
+      "clock": 5271,
+      "page": 0,
+      "x": 58,
+      "y": 34,
+      "action": 4,
+      "actorFrame": 4,
+      "lostLives": 1,
+      "column": 1,
+      "row": 0,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 128,
+      "fire": 0,
+      "seed": 631
+    },
+    {
+      "index": 72,
+      "frame": 5289,
+      "clock": 5274,
+      "page": 1,
+      "x": 60,
+      "y": 48,
+      "action": 4,
+      "actorFrame": 5,
+      "lostLives": 1,
+      "column": 1,
+      "row": 1,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 28764
+    },
+    {
+      "index": 75,
+      "frame": 5292,
+      "clock": 5278,
+      "page": 0,
+      "x": 70,
+      "y": 48,
+      "action": 4,
+      "actorFrame": 6,
+      "lostLives": 1,
+      "column": 1,
+      "row": 1,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 28764
+    },
+    {
+      "index": 77,
+      "frame": 5294,
+      "clock": 5280,
+      "page": 1,
+      "x": 60,
+      "y": 48,
+      "action": 4,
+      "actorFrame": 7,
+      "lostLives": 1,
+      "column": 1,
+      "row": 1,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 25235
+    },
+    {
+      "index": 80,
+      "frame": 5297,
+      "clock": 5283,
+      "page": 0,
+      "x": 60,
+      "y": 48,
+      "action": 5,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 1,
+      "row": 1,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 128,
+      "fire": 0,
+      "seed": 25235
+    },
+    {
+      "index": 84,
+      "frame": 5301,
+      "clock": 5287,
+      "page": 1,
+      "x": 76,
+      "y": 48,
+      "action": 1,
+      "actorFrame": 5,
+      "lostLives": 1,
+      "column": 1,
+      "row": 1,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 40588
+    },
+    {
+      "index": 98,
+      "frame": 5315,
+      "clock": 5301,
+      "page": 0,
+      "x": 76,
+      "y": 48,
+      "action": 5,
+      "actorFrame": 0,
+      "lostLives": 1,
+      "column": 1,
+      "row": 1,
+      "scroll": 0,
+      "outcome": 0,
+      "right": 0,
+      "fire": 0,
+      "seed": 36264
+    }
+  ],
+  "scope": "Original sustained Right hold/release;120 uninterrupted render callbacks,walking and ledge fall. No guest writes/restores or fitted inputs. No port timing admission.",
+  "engineReport": {
+    "version": "0.84.0-vc1 (baf7b)",
+    "protocol": "1.15",
+    "scope": "New configured engine identity;full live original flight/jungle/EGA code revalidated at this launch."
+  },
+  "excludedAttempts": [
+    {
+      "path": ".local/jungle-walk-hold-native-01",
+      "reason": "Naturally racing flight;no jungle measurement;owned72853 closed0"
+    },
+    {
+      "path": ".local/jungle-walk-hold-native-02",
+      "reason": "Naturally racing flight;no jungle measurement;owned74399 closed0"
+    },
+    {
+      "path": ".local/jungle-walk-hold-native-03",
+      "reason": "Port preflight rejected before emulator launch;no measurement"
+    }
+  ],
+  "expectedRightTransitions": [
+    {
+      "index": 1,
+      "right": 0
+    },
+    {
+      "index": 2,
+      "right": 128
+    },
+    {
+      "index": 14,
+      "right": 0
+    },
+    {
+      "index": 39,
+      "right": 128
+    },
+    {
+      "index": 40,
+      "right": 0
+    },
+    {
+      "index": 41,
+      "right": 128
+    },
+    {
+      "index": 49,
+      "right": 0
+    },
+    {
+      "index": 50,
+      "right": 128
+    },
+    {
+      "index": 51,
+      "right": 0
+    },
+    {
+      "index": 53,
+      "right": 128
+    },
+    {
+      "index": 54,
+      "right": 0
+    },
+    {
+      "index": 55,
+      "right": 128
+    },
+    {
+      "index": 60,
+      "right": 0
+    },
+    {
+      "index": 62,
+      "right": 128
+    },
+    {
+      "index": 63,
+      "right": 0
+    },
+    {
+      "index": 64,
+      "right": 128
+    },
+    {
+      "index": 66,
+      "right": 0
+    },
+    {
+      "index": 67,
+      "right": 128
+    },
+    {
+      "index": 72,
+      "right": 0
+    },
+    {
+      "index": 74,
+      "right": 128
+    },
+    {
+      "index": 75,
+      "right": 0
+    },
+    {
+      "index": 76,
+      "right": 128
+    },
+    {
+      "index": 77,
+      "right": 0
+    },
+    {
+      "index": 78,
+      "right": 128
+    },
+    {
+      "index": 81,
+      "right": 64
+    },
+    {
+      "index": 84,
+      "right": 0
+    }
+  ],
+  "portProbe": {
+    "path": ".local/jungle-walk-hold-port-01/probe.log",
+    "bytes": 13360,
+    "sha256": "82ab8a3a0fe2859fbdf87e6e839764a518d81a3e27e07ae26881eb6745db9535",
+    "expectedExitCode": 1,
+    "accepted": false,
+    "allMotionStatesMatch": true,
+    "motionStatesCompared": 16,
+    "finalMatches": true,
+    "scriptSHA256": "6425616d122852d21ed9b9cfbc8cdbf7dad9b459d0b4fc9aa981a7f46b746ef7"
+  }
+}

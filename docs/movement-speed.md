@@ -144,3 +144,35 @@ read or bind it (`browser.user is unavailable`). Rebinding through the documente
 API had the same result. No new browser speed evidence is claimed. A user retest
 of the current build is pending;work continues against the existing original
 reference platform without assuming their answer.
+
+The independent sustained jungle walk is captured in
+`reference/jungle-walk-hold-native.json`,source4b598e6. Right is held for80
+rendered intervals (twice the earlier walking profile),then released;120 samples
+span119 frames/123 driver counts. All22 originals,full relocated flight/jungle
+bodies and executed EGA ranges are verified. Both physical events finish;owned
+emulator74698 closes0. Two naturally racing setup launches were excluded and
+closed0;another port-preflight rejection launched no emulator. No flags or game
+state were patched to obtain a nonracing setup.
+
+All16 motion states match exactly,including the walk over the ledge and fall;
+final compared state/RNG also match. The first strict timing difference is fall
+frame4 at955.687774ms,just before955.968382..970.236567ms. The0.280608ms miss is
+still a failure;no tolerance or speed multiplier was introduced. Later offsets
+vary within roughly one sampled frame rather than accumulating a large speed
+error. This remains zero-phase conditional component evidence,not quantitative
+browser/native timing acceptance. The saved port result is hashed in the manifest.
+
+This scenario also confirms original IRQ break64h survives samples81..83 until
+the reader clears it at84. The checker requires these exact flag transitions;
+held80h after the release is rejected by an additional negative. Earlier walking
+and jumping fixtures retain their existing stricter zero-flag expectations.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_jungle_cadence.py reference/jungle-walk-hold-native.json
+# Strict exploratory comparison;currently exits1:
+node scripts/probe-jungle-jump-cadence.js reference/jungle-walk-hold-native.json
+# Fresh original capture recipe (use a new local output directory/private port):
+PYTHONDONTWRITEBYTECODE=1 DUCKTALES_DOSBOX_MCP_ROOT=/Users/valentin.pletzer/projects/emulator/dosbox-mcp \
+ /Users/valentin.pletzer/projects/emulator/dosbox-mcp/.venv/bin/python scripts/capture-security.py \
+ --jungle-page-observer --jungle-motion-profile walk-hold --port 8414 --output .local/jungle-walk-hold-native-FRESH
+```

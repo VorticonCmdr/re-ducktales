@@ -2,7 +2,9 @@
 
 **Active priority:movement speed.** Other integration/backlog work below is
 deferred. See [current measurements and next experiment](movement-speed.md).
-Current walking checks match jungle/mountain reference brackets. Cave exit poses
+Current short walking checks match jungle/mountain reference brackets. A longer
+jungle walk/fall matches16 motion states and final state/RNG;its first strict
+timing miss is0.281ms and remains unaccepted. Cave exit poses
 and adjacent durations now match the sampled original;its animation starts early
 after resource loading. This does not accept whole-cave timing or final RNG.
 Focused command:`node scripts/compare-cave-passage-motion.js`.

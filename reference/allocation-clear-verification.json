@@ -1,0 +1,59 @@
+{
+  "kind": "allocation-clear-verification-log-index",
+  "nativeTimingAcceptance": false,
+  "results": {
+    "source": 0,
+    "decoder": 0,
+    "units": 0,
+    "unitCases": 221,
+    "unitSkipped": 0,
+    "motion": 0,
+    "exitPoses": 12,
+    "poseIntervals": 11,
+    "browser": 0,
+    "browserCases": 1,
+    "browserSeconds": 44.6,
+    "build": 0,
+    "nativeProbe": 1
+  },
+  "browserCountProvenance": "Existing Playwright terminal result:1 test,1 passed (45.7s);count transcribed from exec session42192. Original .last-run.json retained separately.",
+  "artifacts": {
+    "source.log": {
+      "path": ".local/allocation-clear-verification-01/source.log",
+      "bytes": 154,
+      "sha256": "7f9740c912dc74f06024ab3d8092fef0f5a93a2332fa89d07978c9b14bb7da7a"
+    },
+    "decoder.log": {
+      "path": ".local/allocation-clear-verification-01/decoder.log",
+      "bytes": 1580,
+      "sha256": "0d40bd35fe797d03fc63b4e238fe48619c8618238aee539be5e41cbccc5714e8"
+    },
+    "units.log": {
+      "path": ".local/allocation-clear-verification-01/units.log",
+      "bytes": 20149,
+      "sha256": "18ff693530e3874611dacceebf9d8c533cbf09a04aa95c1a9f3300401c672f67"
+    },
+    "native-probe.log": {
+      "path": ".local/allocation-clear-verification-01/native-probe.log",
+      "bytes": 16450,
+      "sha256": "8d58aa57e27544dfc086f45b17d268415cda06ebbc7f4bdded4b36e120f9c52c"
+    },
+    "motion.log": {
+      "path": ".local/allocation-clear-verification-01/motion.log",
+      "bytes": 1240,
+      "sha256": "0dd5d6e85bb9bd29f8cfe775216f11f16481a5ebd10f3ea2a6fa1a3e281bec8f"
+    },
+    "build.log": {
+      "path": ".local/allocation-clear-verification-01/build.log",
+      "bytes": 914,
+      "sha256": "4061b08bd0dc57b31697476bdd0f0dc35f581ca8796deead5219418f3215edd1"
+    },
+    "browser-last-run.json": {
+      "path": ".local/allocation-clear-verification-01/browser-last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    }
+  },
+  "scope": "Saved logs for this source-based runtime correction;not full native timing or current-campaign acceptance. Source archive is captured after the verified commit.",
+  "producer": ".local/allocation-clear-verification-01"
+}

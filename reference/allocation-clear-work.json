@@ -1,0 +1,79 @@
+{
+  "kind": "original-required-allocation-payload-clear",
+  "source": {
+    "loader": {
+      "path": ".local/allocation-clear-source-01/loader.json",
+      "bytes": 25803,
+      "sha256": "69cc25dff3da8d10bd3e4457723249ac1010db2bb2b2063e655d2f56c20d2932"
+    },
+    "allocation": {
+      "path": ".local/allocation-clear-source-01/allocation.json",
+      "bytes": 18535,
+      "sha256": "e80f5e8424c5e110ea31fd7534675e3b41a18a37eaebacc86cb90c157e0d0b1b"
+    },
+    "far-calloc": {
+      "path": ".local/allocation-clear-source-01/far-calloc.json",
+      "bytes": 14535,
+      "sha256": "d73daa42ace4e4472b58706f7079bb05f69341041738def63bac7f873754e4d8"
+    }
+  },
+  "ranges": {
+    "loader": [
+      5980,
+      6565
+    ],
+    "allocation": [
+      1103,
+      1223
+    ],
+    "far-calloc": [
+      16498,
+      16655
+    ]
+  },
+  "expectedResources": 55,
+  "nativeExamples": {
+    "sprite10": {
+      "path": "reference/cave-loader-native.json",
+      "payloadBytes": 38080,
+      "wordStores": 19040,
+      "bytes": 48993,
+      "sha256": "5bea106197d11e570481e629377b52d7407bbb1213a97a348a90db3d995b3a40"
+    },
+    "picture0": {
+      "path": "reference/cave-background-load-native.json",
+      "payloadBytes": 32000,
+      "wordStores": 16000,
+      "bytes": 50462,
+      "sha256": "73b45806f637f020f7a42c4498386d2e1525899d20ba732b76fda34ef5d02315"
+    }
+  },
+  "scope": "Count guaranteed payload-zeroing work before decode on successful near/far allocations. Exact clear iterations for native16-byte-aligned buffers;payload lower bound for unobserved near/far padding paths. No allocator traversal,wrapper,DOS or IRQ cost admitted.",
+  "nativeTimingAcceptance": false,
+  "verify": "node scripts/verify-allocation-clear-work.js",
+  "expectedSourceInstructions": 360,
+  "expectedSourceBytes": 862,
+  "captureRecipe": {
+    "tool": "Ghidra MCP disassemble_bytes",
+    "program": "CAVE_CODE.EXE",
+    "analysisBias": 4096,
+    "requests": [
+      {
+        "start_address": "140e:175c",
+        "length": 585,
+        "max_instructions": 300
+      },
+      {
+        "start_address": "140e:044f",
+        "length": 368,
+        "max_instructions": 220
+      },
+      {
+        "start_address": "140e:4072",
+        "length": 272,
+        "max_instructions": 180
+      }
+    ],
+    "validation": "All selected instruction bytes independently matched unpacked original EXEPACK image with original relocation table and analysis bias1000. Listing text is not authoritative for segment MOV operands."
+  }
+}

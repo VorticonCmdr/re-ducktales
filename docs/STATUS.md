@@ -8,10 +8,13 @@ timing miss is0.281ms and remains unaccepted. Cave exit poses
 and adjacent durations now match the sampled original;its animation starts early
 after resource loading. This does not accept whole-cave timing or final RNG.
 Focused command:`node scripts/compare-cave-passage-motion.js`.
-The real-browser jungle clock case now passes:1048.8ms,77 driver ticks,74
-retraces and actual Right movement. Read-only development timestamps verify
+The prior real-browser jungle clock case passed:1048.8ms,77 driver ticks,74
+retraces and actual Right movement. The current cave now counts original
+allocation payload clearing;221 units,source checks,the cave browser case and
+build pass. See [allocation work](allocation-clear-work.md). Read-only development timestamps verify
 clock consumption;five negatives reject altered clocks/input/zero cases.
-Command:`node scripts/verify-movement-browser-clock.js`. Native jump/fall phase
+Command:`node scripts/verify-movement-browser-clock.js` (historical until a fresh
+capture after the allocation-clear correction;source guard retained). Native jump/fall phase
 and cave loading/entry gaps remain unaccepted;this is not full timing parity.
 
 Updated2026-11-01. **The whole game is incomplete.** The supported Standard

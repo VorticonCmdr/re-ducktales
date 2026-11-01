@@ -1,6 +1,6 @@
-// Counted resident decoder/converter work. Original timer observations are
+// Counted resident payload-clear/decoder/converter work. Original timer observations are
 // comparison outputs,never inputs to this budget. DOS/IRQ/allocator work is
-// still outside this subtotal;see docs/cave-loader-work.md.
+// still outside this subtotal except required payload zeroing;see docs/cave-loader-work.md.
 import {
   lzwGraphicsLoadWork,
   lzwByteLoadWork,
@@ -8,6 +8,7 @@ import {
 } from "./sprite-load-work.js";
 import { normalCoreGraphicsMilliseconds } from "./ega-work.js";
 import { ORIGINAL_GRAPHICS_TIMING } from "./timing.js";
+import { allocationPayloadClearWork } from "./allocation-clear-work.js";
 
 export function graphicsLoadWork(entry) {
   if (
@@ -20,11 +21,12 @@ export function graphicsLoadWork(entry) {
   if (decoded.decoded.some((value, at) => value !== entry.data[at]))
     throw Error("Original graphics load payload differs from decoded asset");
   const converted = egaGraphicsConversionWork(entry);
+  const clear = allocationPayloadClearWork(converted.planes.length);
   const work = {
-    instructions: decoded.instructions + converted.instructions,
+    instructions: decoded.instructions + converted.instructions + clear.instructions,
     portWrites: 0,
-    repeatOpcodes: decoded.repeatOpcodes,
-    repeatIterations: decoded.repeatIterations,
+    repeatOpcodes: decoded.repeatOpcodes + clear.repeatOpcodes,
+    repeatIterations: decoded.repeatIterations + clear.repeatIterations,
   };
   return {
     ...work,
@@ -37,7 +39,8 @@ export function graphicsLoadWork(entry) {
     decodedBytes: entry.data.length,
     planarBytes: converted.planes.length,
     fileReads: decoded.fileReads,
-    scope: "resident-lzw-and-mode1-ram-conversion",
+    clearedPayloadBytes: clear.clearedPayloadBytes,
+    scope: "resident-lzw-mode1-ram-conversion-and-payload-clear",
   };
 }
 
@@ -55,16 +58,24 @@ export function byteLoadWork(entry) {
   );
   if (decoded.some((value, at) => value !== entry.data[at]))
     throw Error("Original byte load payload differs from decoded resource");
-  return {
+  const clear = allocationPayloadClearWork(decoded.length);
+  const combined = {
     ...work,
+    instructions: work.instructions + clear.instructions,
+    repeatOpcodes: work.repeatOpcodes + clear.repeatOpcodes,
+    repeatIterations: work.repeatIterations + clear.repeatIterations,
+  };
+  return {
+    ...combined,
     milliseconds: normalCoreGraphicsMilliseconds(
-      work,
+      combined,
       ORIGINAL_GRAPHICS_TIMING.cyclesPerMillisecond,
     ),
     resource: entry.index,
     archive: entry.archive,
     decodedBytes: decoded.length,
     planarBytes: 0,
-    scope: "resident-lzw-byte-output",
+    clearedPayloadBytes: clear.clearedPayloadBytes,
+    scope: "resident-lzw-byte-output-and-payload-clear",
   };
 }

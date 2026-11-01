@@ -198,3 +198,12 @@ case and five negatives (altered tick,simulation time,wall time,missing input an
 zero cases). The1e-7ms allowance covers only floating-point origin subtraction.
 No native timing exclusion or presentation tolerance is added. This clock check
 is distinct from the remaining strict native timing failures.
+
+A concrete missing cost is now corrected:original allocation payload zeroing.
+[Source proof and verification](allocation-clear-work.md) covers360 instructions/
+862 bytes and55 resources. Native sprite10 requires19040 word stores,picture0
+16000. Their budgets come from original clear loops,not elapsed-time fitting.
+The first cave exit pose moves6.347ms later;the full native probe still fails.
+221 units,the resource oracle,exit-pose segment,actual cave browser route and
+build pass. Prior natural-clock browser evidence is historical until recaptured
+on this changed runtime;its source guard is retained.

@@ -91,7 +91,8 @@ test("cave drawing completes at its source budget before the following retrace",
   assert.equal(cave.lastLoadingWork?.resource, 0);
   assert.equal(cave.retrace - beforeWipes, 50);
   assert.equal(cave.presentations, 10);
-  assert.equal(cave.lastLoadingWork.milliseconds, 1149.859);
+  // Picture0 also clears32000 allocation bytes before decoding.
+  assert.equal(cave.lastLoadingWork.milliseconds, (3449577 + 16000) / 3000);
   assert.equal(cave.inputs.length, 0);
   for (let i = 0; i < 1000 && cave.lastDrawingWork.kind !== "room"; i++)
     next(entry);
@@ -254,7 +255,7 @@ test("initial map,sprites,coordinates,minimap and enemy RNG advance at original 
   for (const currentDrive of [2, 0]) {
     const c = fresh({ currentDrive }),
       m = c.cave.memory;
-    assert.equal(c.cave.lastLoadingWork.scope, "resident-lzw-byte-output");
+    assert.equal(c.cave.lastLoadingWork.scope, "resident-lzw-byte-output-and-payload-clear");
     assert.equal(c.cave.lastLoadingWork.resource, 0);
     assert.equal(c.cave.initialDrawingWork, null);
     assert.ok(c.cave.snapshot().rooms.every((value) => value === 0));
@@ -262,15 +263,15 @@ test("initial map,sprites,coordinates,minimap and enemy RNG advance at original 
     for (let i = 0; i < 32 && !c.cave.initialDrawingWork; i++) {
       const load = c.cave.lastLoadingWork;
       loads.push([
-        load.scope === "resident-lzw-byte-output" ? "map" : "sprite",
+        load.scope === "resident-lzw-byte-output-and-payload-clear" ? "map" : "sprite",
         load.resource,
       ]);
       assert.equal(c.cave.inputs.length, 0);
       assert.equal(m.i(0x2229), 0, "enemy RNG advanced before minimap work");
       assert.equal(c.cave.current, null);
-      if (load.scope !== "resident-lzw-byte-output")
+      if (load.scope !== "resident-lzw-byte-output-and-payload-clear")
         assert.deepEqual(c.cave.snapshot().rooms, [...resources.maps[0]]);
-      if (load.resource === 17 && load.scope !== "resident-lzw-byte-output")
+      if (load.resource === 17 && load.scope !== "resident-lzw-byte-output-and-payload-clear")
         assert.deepEqual(
           [m.i(0x79de), m.i(0x79e0)],
           [0, 0],

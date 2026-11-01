@@ -281,9 +281,9 @@ for (const entry of archives.get("EXP.ARC")) {
     "Original packed bytes retained",
   );
   const runtime = graphicsLoadWork(entry);
-  assert.equal(runtime.instructions, lzw.instructions + expectedCount);
-  assert.equal(runtime.repeatOpcodes, lzw.repeatOpcodes);
-  assert.equal(runtime.repeatIterations, lzw.repeatIterations);
+  assert.equal(runtime.instructions, lzw.instructions + expectedCount + 1);
+  assert.equal(runtime.repeatOpcodes, lzw.repeatOpcodes + 1);
+  assert.equal(runtime.repeatIterations, lzw.repeatIterations + Math.ceil(converted.planes.length / 2));
   assert.equal(runtime.planarBytes, converted.planes.length);
   compareCount(converted.instructions, expectedCount);
   if (entry.type === 2) cases++;
@@ -359,7 +359,7 @@ for (const entry of archives.get("CAVEMAPS.ARC")) {
   for (const [field, value] of Object.entries(expected))
     assert.equal(actual[field], value, "Map byte LZW " + field);
   const runtime = byteLoadWork(entry);
-  assert.equal(runtime.instructions, expected.instructions);
+  assert.equal(runtime.instructions, expected.instructions + 1);
   assert.equal(runtime.planarBytes, 0);
   maps++;
 }

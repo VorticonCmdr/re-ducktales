@@ -1,0 +1,19 @@
+{
+  "kind": "original-jungle-walk-hold-physical-inputs",
+  "expectedSamples": 120,
+  "events": [
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": true,
+      "frame": 0
+    },
+    {
+      "type": "key",
+      "key": "KBD_right",
+      "pressed": false,
+      "frame": 80
+    }
+  ],
+  "scope": "Independent Right hold for80 rendered intervals after opening reveals,then release. Original hardware owns repeat and input consumption. No expected motion or output-derived inputs."
+}

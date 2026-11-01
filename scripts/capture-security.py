@@ -32,7 +32,7 @@ parser.add_argument('--mountain-profile', action='store_true', help='Observe ori
 parser.add_argument('--mountain-page-observer', action='store_true', help='Observe80 rendered-frame samples of the original page byte without execution breakpoints during measurement')
 parser.add_argument('--safari-page-observer', action='store_true', help='Natural Safari entry and non-stopping timer/page observations in a private portable session')
 parser.add_argument('--jungle-page-observer', action='store_true', help='Natural swamp entry and uninterrupted movement observations in a private portable session')
-parser.add_argument('--jungle-motion-profile', choices=['walk', 'jump'], default='walk', help='Independent fixed movement schedule for the jungle observer')
+parser.add_argument('--jungle-motion-profile', choices=['walk', 'jump', 'walk-hold'], default='walk', help='Independent fixed movement schedule for the jungle observer')
 parser.add_argument('--native-machine', choices=['svga_s3', 'ega'], default='svga_s3', help='Private jungle movement experiment video hardware')
 parser.add_argument('--cave-page-observer', action='store_true', help='Natural Carlsbad entry and uninterrupted passage/reward observations in a private portable session')
 parser.add_argument('--cave-loader-profile', action='store_true', help='Measure the first natural cave transition resource load instead of a frame observer')

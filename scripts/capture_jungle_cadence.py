@@ -9,7 +9,7 @@ from capture_safari_cadence import relocated_overlay
 
 def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
                            remove, resume, state, sequence, wait_until, save, root, motion_profile='walk'):
-    assert motion_profile in ['walk', 'jump']
+    assert motion_profile in ['walk', 'jump', 'walk-hold']
     data = state('jungle-entry', stop)
     assert stop['registers']['cs'] == overlay and stop['registers']['eip'] == 0
     exe = (root/'game/DUCKTALE.EXE').read_bytes()
@@ -54,9 +54,9 @@ def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
         assert driver[low:high] == original[low:high]
     assert client.get('/api/v1/debug/breakpoints')['breakpoints'] == []
     contract = None
-    if motion_profile == 'jump':
-        contract = json.loads((root/'reference/jungle-jump-inputs.json').read_text())
-        assert contract['kind'] == 'original-jungle-jump-physical-inputs' and contract['expectedSamples'] == 120
+    if motion_profile in ['jump', 'walk-hold']:
+        contract = json.loads((root/('reference/jungle-'+motion_profile+'-inputs.json')).read_text())
+        assert contract['kind'] == 'original-jungle-'+motion_profile+'-physical-inputs' and contract['expectedSamples'] == 120
         save('jungle-motion-input-contract', contract)
     template = (root/('scripts/jungle-jump-observer.lua' if contract else 'scripts/jungle-cadence-observer.lua')).read_text()
     lua = template.replace('__DS__', str(ds)).replace('__EGA__', str(ega))
@@ -89,4 +89,4 @@ def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
     save('jungle-cadence', {'completed': True, 'expectedSamples': 120, 'motionProfile': motion_profile,
          'initialStopId': stop['stop_id'], 'finalStopId': final['stop_id'],
          'injections': [], 'partialRestore': False,
-         'scope': 'Natural original swamp movement,120 consecutive render callbacks and fixed '+('Right+Fire/release' if contract else 'Right/release')+' schedule. No intermediate debugger stops; not exact input/flip timestamps or port timing acceptance.'})
+         'scope': 'Natural original swamp movement,120 consecutive render callbacks and fixed '+('Right+Fire/release' if motion_profile=='jump' else 'Right/release')+' schedule. No intermediate debugger stops; not exact input/flip timestamps or port timing acceptance.'})

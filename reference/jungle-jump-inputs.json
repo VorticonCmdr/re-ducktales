@@ -1,0 +1,11 @@
+{
+  "kind": "original-jungle-jump-physical-inputs",
+  "expectedSamples": 120,
+  "events": [
+    { "type": "key", "key": "KBD_right", "pressed": true, "frame": 0 },
+    { "type": "key", "key": "KBD_space", "pressed": true, "frame": 0 },
+    { "type": "key", "key": "KBD_right", "pressed": false, "frame": 40 },
+    { "type": "key", "key": "KBD_space", "pressed": false, "frame": 40 }
+  ],
+  "scope": "Independent physical Right+Fire hold for40 rendered intervals after the opening reveals,then release both. Original hardware owns repeat and game input consumption. No expected position,timer or output-derived input."
+}

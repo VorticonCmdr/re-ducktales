@@ -8,6 +8,11 @@ timing miss is0.281ms and remains unaccepted. Cave exit poses
 and adjacent durations now match the sampled original;its animation starts early
 after resource loading. This does not accept whole-cave timing or final RNG.
 Focused command:`node scripts/compare-cave-passage-motion.js`.
+The real-browser jungle clock case now passes:1048.8ms,77 driver ticks,74
+retraces and actual Right movement. Read-only development timestamps verify
+clock consumption;five negatives reject altered clocks/input/zero cases.
+Command:`node scripts/verify-movement-browser-clock.js`. Native jump/fall phase
+and cave loading/entry gaps remain unaccepted;this is not full timing parity.
 
 Updated2026-11-01. **The whole game is incomplete.** The supported Standard
 campaign has a complete playable route through all four expedition families,

@@ -1,6 +1,6 @@
 {
   "kind": "read-only-native-clock-calibration",
-  "producer": ".local/native-clock-calibration-01",
+  "producer": ".local/native-clock-calibration-02",
   "expectedSamples": 61,
   "expectedFrameSpan": 60,
   "expectedFirstSample": [
@@ -15,53 +15,59 @@
   ],
   "artifacts": {
     "observer-engine.json": {
-      "path": ".local/native-clock-calibration-01/observer-engine.json",
-      "bytes": 808,
-      "sha256": "e0d685938b56b73c3395f33ab532488d5a0c6137211859392890886f8884f718"
+      "path": ".local/native-clock-calibration-02/observer-engine.json",
+      "bytes": 1012,
+      "sha256": "9ae9e34795476dd3684577b678fd52730be700db55af5d0361a131b8f7086b89"
     },
     "engine.json": {
-      "path": ".local/native-clock-calibration-01/engine.json",
+      "path": ".local/native-clock-calibration-02/engine.json",
       "bytes": 4519,
-      "sha256": "04e711eb2c492660c3bd8de6039437569dd96d705791e2b8bb5b922e36740f01"
+      "sha256": "c234961b70f3d86422f38beb777738ff099b2acebd43c1fba44f4c4cc9667a01"
     },
     "frame-info.json": {
-      "path": ".local/native-clock-calibration-01/frame-info.json",
+      "path": ".local/native-clock-calibration-02/frame-info.json",
       "bytes": 448,
       "sha256": "c4187c00118f7e36dfd701ac1fbd6ba13e501a6a5be11dbc8b1d8888d185cc47"
     },
     "script.json": {
-      "path": ".local/native-clock-calibration-01/script.json",
+      "path": ".local/native-clock-calibration-02/script.json",
       "bytes": 679,
       "sha256": "f4c710b198450c2df484ba99173ab484e93ec74eeb43b71ce05afb28b5ea40e1"
     },
     "load.json": {
-      "path": ".local/native-clock-calibration-01/load.json",
+      "path": ".local/native-clock-calibration-02/load.json",
       "bytes": 63,
       "sha256": "7af9a6987afe6ffc18e5c56dbd93828a3f1bf9fc45b2c184320b8765a8c607c0"
     },
     "start.json": {
-      "path": ".local/native-clock-calibration-01/start.json",
+      "path": ".local/native-clock-calibration-02/start.json",
       "bytes": 26,
       "sha256": "8f37cfa1a90b03090bfe73fdf8992b9e3cb492e18eaea53e4c4c8fe4af4cf4ea"
     },
     "result.json": {
-      "path": ".local/native-clock-calibration-01/result.json",
+      "path": ".local/native-clock-calibration-02/result.json",
       "bytes": 1432,
       "sha256": "67e4083e91dbfc6d419bf8267a1bdaa0370b5d5a43aab52111ec74cd3a534759"
     },
     "capture.json": {
-      "path": ".local/native-clock-calibration-01/capture.json",
+      "path": ".local/native-clock-calibration-02/capture.json",
       "bytes": 241,
       "sha256": "4bb33045f9d00905e2efe3a3aa4c604b29de788df33607741ff9e41b1e5572e6"
     },
     "lifecycle.json": {
-      "path": ".local/native-clock-calibration-01/lifecycle.json",
+      "path": ".local/native-clock-calibration-02/lifecycle.json",
       "bytes": 123,
-      "sha256": "44828a92d349b2666892f755c2bd07f5624d2c469dfafece8972e06622756630"
+      "sha256": "f110822ccb3b2a8151f01d40fb354720ab13a87fae890527b08bd3d3dc1594a2"
+    },
+    "atomic-clock.json": {
+      "path": ".local/native-clock-calibration-02/atomic-clock.json",
+      "bytes": 2100,
+      "sha256": "4c6d8469aa3e2d001657d13633f2d24ff2d81855eae314f5faba876d629c5f1a"
     }
   },
-  "engineRevision": "dd93dd60a",
+  "engineRevision": "523e7d6c9",
   "nativeTimingAcceptance": false,
-  "scope": "Shell-only observer calibration;no game launch,guest writes or restored state. Same-sample duplicate reads assert equality;61 consecutive callbacks expose actual PIC time. This is a capture-tool correction,not game timing acceptance.",
-  "verify": "node scripts/verify-native-clock.js"
+  "scope": "Shell-only read-only clock calibration:61 frame callbacks and3 atomic CPU reads while paused. No game launch,guest writes or restore;both read paths must leave clock/register state unchanged. Not game phase or cadence acceptance.",
+  "verify": "node scripts/verify-native-clock.js",
+  "atomicClockObserved": true
 }

@@ -52,3 +52,12 @@ All original live flight/jungle/EGA identity checks still run after engine chang
 The timed game capture is the next experiment. Calibration alone accepts no game
 clock phase,movement timing,CPU equivalence or browser behavior. A new timed
 fixture needs its own manifest/checker before its data can support such a claim.
+
+The paused-state extension is now calibrated in `.local/native-clock-calibration-02`,
+capture source6f69815 and private engine source523e7d6c9. It adds three atomic
+CPU reads across two requests at one setup stop. All registers and PIC timestamps
+remain identical while paused. The current checker passes61 frame callbacks,
+three paused reads and five corruption controls. The original Lua-only calibration
+is preserved in `reference/native-clock-calibration-01.json`;the current manifest
+selects the new source/binary fingerprint. This validates the two observation
+boundaries only;the timed original game scenario is still pending.

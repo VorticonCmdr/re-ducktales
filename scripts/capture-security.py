@@ -101,7 +101,8 @@ if args.pic_clock_engine:
     clock_root=Path(args.pic_clock_source).resolve()
     assert not subprocess.check_output(['git','status','--porcelain','--untracked-files=no'],cwd=clock_root), 'Clock engine tracked source must be clean'
     cfg=replace(cfg,binary=Path(args.pic_clock_engine).resolve())
-    calibrated=json.loads((ROOT/'.local/native-clock-calibration-01/observer-engine.json').read_text())
+    calibration=json.loads((ROOT/'reference/native-clock-calibration.json').read_text())
+    calibrated=json.loads((ROOT/calibration['artifacts']['observer-engine.json']['path']).read_text())
     assert sha(cfg.binary.read_bytes())==calibrated['binarySHA256'], 'Uncalibrated PIC clock engine'
     assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=clock_root,text=True).strip()==calibrated['revision']
     for name,value in calibrated['files'].items():assert sha((clock_root/name).read_bytes())==value

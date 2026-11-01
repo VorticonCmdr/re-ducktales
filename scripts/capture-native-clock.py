@@ -34,7 +34,8 @@ sha=lambda b:hashlib.sha256(b).hexdigest()
 def save(name,value):(out/(name+'.json')).write_text(json.dumps(value,indent=2)+'\n')
 files={name:sha((engine_root/name).read_bytes()) for name in [
     'src/lua/lua_api.cpp','src/hardware/pic.h','src/cpu/core_normal.cpp',
-    'src/cpu/core_normal/string.h','src/hardware/timer.cpp']}
+    'src/cpu/core_normal/string.h','src/hardware/timer.cpp',
+    'src/webserver/batch.cpp','src/webserver/private/batch.h']}
 save('observer-engine',{'revision':subprocess.check_output(['git','rev-parse','HEAD'],cwd=engine_root,text=True).strip(),
     'sourceRoot':str(engine_root),'files':files,'binarySHA256':sha(cfg.binary.read_bytes()),
     'scope':'Private read-only PIC timestamp observer. No shared instance/configuration changes.'})
@@ -71,6 +72,15 @@ try:
         if i:
             assert int(row[1])==int(rows[i-1][1])+1
             assert float(row[2])>float(rows[i-1][2])
+    stop=c.post('/api/v1/debug/pause')['stop']
+    first=c.post('/api/v1/batch',json={'ops':[{'op':'cpu_read'},{'op':'cpu_read'}]})
+    second=c.post('/api/v1/batch',json={'ops':[{'op':'cpu_read'}]})
+    save('atomic-clock',{'stop':stop,'first':first,'second':second})
+    values=first['results']+second['results']
+    assert not first['aborted'] and not second['aborted'] and len(values)==3
+    assert all(v['status']=='ok' and v['registers']==stop['registers'] for v in values)
+    assert all(isinstance(v.get('emulated_time_ms'),(int,float)) for v in values)
+    assert len(set(v['emulated_time_ms'] for v in values))==1
     save('capture',{'completed':True,'expectedSamples':61,'expectedFrameSpan':60,'inputs':[],
         'guestWrites':[],'partialRestore':False,'scope':'Shell-only read-only timestamp calibration;not game clock phase or cadence acceptance.'})
 finally:

@@ -4,7 +4,8 @@ import { readFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { json,sha } from './lib/local-scenario-source.js';
 import { validateProducerArchive } from './lib/consumer-provenance.js';
-const m=await json('reference/native-clock-calibration.json');
+assert.ok(process.argv.length<=3);
+const m=await json(process.argv[2]??'reference/native-clock-calibration.json');
 assert.equal(m.kind,'read-only-native-clock-calibration');assert.equal(m.nativeTimingAcceptance,false);
 await validateProducerArchive(m.producer);
 const objects={};
@@ -49,9 +50,28 @@ for(const kind of ['missing','frame','backwards','last']) {
   else bad.at(-1)[2]=String(Number(bad.at(-1)[2])+1);
   assert.throws(()=>check(bad),undefined,`Accepted altered ${kind}`);negatives++;
 }
-assert.equal(negatives,4);
+if(m.atomicClockObserved) {
+  const batch=execFileSync('git',['show',`${engine.revision}:src/webserver/batch.cpp`],{cwd:engine.sourceRoot,encoding:'utf8'});
+  assert.ok(batch.includes('result.emulated_time_ms = PIC_FullIndex();'));
+  function atomic(capture) {
+    assert.equal(capture.first.aborted,false);assert.equal(capture.second.aborted,false);
+    assert.equal(capture.first.results.length,2);assert.equal(capture.second.results.length,1);
+    const values=capture.first.results.concat(capture.second.results);
+    for(const v of values) {
+      assert.equal(v.op,'cpu_read');assert.equal(v.status,'ok');
+      assert.deepEqual(v.registers,capture.stop.registers);
+      assert.ok(Number.isFinite(v.emulated_time_ms));
+      assert.equal(v.emulated_time_ms,values[0].emulated_time_ms,'Paused clock advanced during read');
+      assert.ok(v.emulated_time_ms>=Number(rows.at(-1)[2]));
+    }
+  }
+  atomic(objects['atomic-clock.json']);
+  const bad=structuredClone(objects['atomic-clock.json']);bad.second.results[0].emulated_time_ms++;
+  assert.throws(()=>atomic(bad));negatives++;
+}
+assert.equal(negatives,m.atomicClockObserved?5:4);
 const life=objects['lifecycle.json'],info=objects['engine.json'],capture=objects['capture.json'];
 assert.ok(life.terminal);assert.equal(life.returnCode,0);assert.equal(life.ownedPID,info.pid);
 assert.equal(life.homeOverridden,false);assert.equal(life.sharedSessionChanged,false);
 assert.equal(capture.completed,true);assert.deepEqual(capture.inputs,[]);assert.deepEqual(capture.guestWrites,[]);assert.equal(capture.partialRestore,false);
-console.log('Private PIC clock:61 complete callbacks/60 intervals;equal duplicate reads;source/binary identities;closed owned session;4 corruption controls. No game timing acceptance.');
+console.log(`Private PIC clock:61 complete callbacks/60 intervals;equal duplicate reads;source/binary identities;closed owned session;${negatives} corruption controls;paused atomic clock:${!!m.atomicClockObserved}. No game timing acceptance.`);

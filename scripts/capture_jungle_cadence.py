@@ -4,7 +4,6 @@ import hashlib
 import json
 import struct
 import subprocess
-import time
 from capture_safari_cadence import relocated_overlay
 
 
@@ -12,18 +11,15 @@ def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
                            remove, resume, state, sequence, wait_until, save, root, motion_profile='walk', clock_observer=False):
     assert motion_profile in ['walk', 'jump', 'walk-hold']
     data = state('jungle-entry', stop)
-    clock_load_started=None
     if clock_observer:
         assert motion_profile in ['jump','walk-hold']
-        # Existing ENTRY setup stop only. No guest execution/write/restore.
-        code="assert(type(dosbox.emulated_time_ms)=='function');dosbox.output.emulatedMs=dosbox.emulated_time_ms();dosbox.output.completed=true"
-        clock_load_started=time.monotonic()
-        loaded=client.post_text('/api/v1/script/load',code,params={'name':'jungle-entry-clock'})
-        started=client.post('/api/v1/script/start')
-        result=client.get('/api/v1/script/status')
-        save('jungle-entry-clock',{'load':loaded,'start':started,'result':result})
-        assert result['state']=='completed' and result['output']['completed'] and not result['output_truncated']
-
+        # Atomic setup snapshot while paused;Lua runs only on frame callbacks.
+        read=client.post('/api/v1/batch',json={'ops':[{'op':'cpu_read'}]})
+        assert not read['aborted'] and read['results'][0]['status']=='ok'
+        result=read['results'][0]
+        assert result['registers']==stop['registers']
+        assert isinstance(result.get('emulated_time_ms'),(float,int))
+        save('jungle-entry-clock',{'read':read,'emulatedMs':result['emulated_time_ms']})
     assert stop['registers']['cs'] == overlay and stop['registers']['eip'] == 0
     exe = (root/'game/DUCKTALE.EXE').read_bytes()
     expected = relocated_overlay(exe, 0x1fa00, load, 8, 24056, 436)
@@ -72,9 +68,6 @@ def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
         assert contract['kind'] == 'original-jungle-'+motion_profile+'-physical-inputs' and contract['expectedSamples'] == 120
         save('jungle-motion-input-contract', contract)
     template = (root/('scripts/jungle-clock-observer.lua' if clock_observer else 'scripts/jungle-jump-observer.lua' if contract else 'scripts/jungle-cadence-observer.lua')).read_text()
-    if clock_load_started is not None:
-        # Respect API load rate while the existing setup stop holds guest time.
-        time.sleep(max(0,2.01-(time.monotonic()-clock_load_started)))
     lua = template.replace('__DS__', str(ds)).replace('__EGA__', str(ega))
     save('jungle-observer-script', {'source': lua, 'templateSHA256': hashlib.sha256(template.encode()).hexdigest(), 'ds': ds, 'ega': ega})
     loaded = client.post_text('/api/v1/script/load', lua, params={'name': 'jungle-cadence-observer'})

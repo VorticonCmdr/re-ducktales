@@ -9,7 +9,7 @@ independent environment provider.
 A focused private tool correction adds Lua `dosbox.emulated_time_ms()`. It reads
 PIC_FullIndex() on the existing emulation thread and returns a number. It neither
 advances guest execution nor writes memory,schedules events,changes clocks or
-charges guest cycles. Source commitdd93dd60a is on the existing private
+charges guest cycles. Lua source commitdd93dd60a and paused CPU-read extension523e7d6c9 are on the existing private
 `codex/dos-io-budget-observer` branch in `/private/tmp/ducktales-dos-io-engine`.
 The shared engine/configuration,HOME and originals are unchanged.
 
@@ -39,11 +39,14 @@ The jungle recipe now accepts an explicitly calibrated private engine through
 `--pic-clock-engine` and `--pic-clock-source`,only with jump/walk-hold observers.
 It requires the calibration check and exact source/binary identities before
 launch. Default recipes remain on the user's configured engine. At the existing
-ENTRY setup stop it records emulated milliseconds with a one-read script. The
+ENTRY setup stop it records emulated milliseconds in an atomic CPU-read result. The
 uninterrupted observer adds PIC milliseconds as its17th CSV field;original
 position/RNG/counter fields and the independently authored inputs stay separate.
-The script-load rate limit is respected while the existing setup stop holds
-emulated time;no measurement stop or partial machine restore is introduced.
+Lua runs only at frame callbacks,so the first ENTRY attempt using a one-read
+script while paused was correctly rejected and excluded. Atomic CPU reads now
+carry a timestamp from that same emulation-thread boundary. No measurement stop
+or partial machine restore is introduced. The added paused-state calibration
+is required before the new binary can be used.
 All original live flight/jungle/EGA identity checks still run after engine change.
 
 The timed game capture is the next experiment. Calibration alone accepts no game

@@ -33,12 +33,18 @@ parser.add_argument('--mountain-page-observer', action='store_true', help='Obser
 parser.add_argument('--safari-page-observer', action='store_true', help='Natural Safari entry and non-stopping timer/page observations in a private portable session')
 parser.add_argument('--jungle-page-observer', action='store_true', help='Natural swamp entry and uninterrupted movement observations in a private portable session')
 parser.add_argument('--jungle-motion-profile', choices=['walk', 'jump', 'walk-hold'], default='walk', help='Independent fixed movement schedule for the jungle observer')
+parser.add_argument('--pic-clock-engine', help='Explicit calibrated private engine with read-only Lua PIC time;only jungle observations')
+parser.add_argument('--pic-clock-source', help='Source checkout for the explicitly selected PIC clock engine')
 parser.add_argument('--native-machine', choices=['svga_s3', 'ega'], default='svga_s3', help='Private jungle movement experiment video hardware')
 parser.add_argument('--cave-page-observer', action='store_true', help='Natural Carlsbad entry and uninterrupted passage/reward observations in a private portable session')
 parser.add_argument('--cave-loader-profile', action='store_true', help='Measure the first natural cave transition resource load instead of a frame observer')
 parser.add_argument('--cave-loader-resource', choices=['sprite10', 'background0'], default='sprite10')
 parser.add_argument('--cave-treasure-profile', action='store_true', help='Reach a natural cave treasure with debugger-bounded hardware inputs;not elapsed-time evidence')
 args = parser.parse_args()
+if bool(args.pic_clock_engine) != bool(args.pic_clock_source):
+    parser.error('--pic-clock-engine and --pic-clock-source must be supplied together')
+if args.pic_clock_engine and (not args.jungle_page_observer or args.jungle_motion_profile=='walk'):
+    parser.error('PIC clock capture requires jungle jump or walk-hold profile')
 if args.jungle_motion_profile != 'walk' and not args.jungle_page_observer:
     parser.error('--jungle-motion-profile requires --jungle-page-observer')
 if args.native_machine != 'svga_s3' and not args.jungle_page_observer:
@@ -90,6 +96,16 @@ assert header[13] == 2 and header[3] == 180
 body = source[header[4]*16:]
 assert len(body) == 8368
 cfg = replace(Config.load(), port=args.port, base_url=f'http://127.0.0.1:{args.port}', headless=True, mute=True)
+if args.pic_clock_engine:
+    subprocess.run(['node','scripts/verify-native-clock.js'],cwd=ROOT,check=True)
+    clock_root=Path(args.pic_clock_source).resolve()
+    assert not subprocess.check_output(['git','status','--porcelain','--untracked-files=no'],cwd=clock_root), 'Clock engine tracked source must be clean'
+    cfg=replace(cfg,binary=Path(args.pic_clock_engine).resolve())
+    calibrated=json.loads((ROOT/'.local/native-clock-calibration-01/observer-engine.json').read_text())
+    assert sha(cfg.binary.read_bytes())==calibrated['binarySHA256'], 'Uncalibrated PIC clock engine'
+    assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=clock_root,text=True).strip()==calibrated['revision']
+    for name,value in calibrated['files'].items():assert sha((clock_root/name).read_bytes())==value
+    save('clock-engine',calibrated)
 assert args.port != 8386, 'Never attach this recipe to the unrelated live endpoint'
 with socket.socket() as check:
     check.bind(('127.0.0.1', args.port))
@@ -389,7 +405,7 @@ try:
                                sequence=sequence, wait_until=wait_until,
                                save=save, root=ROOT,
                                target=(45, 68) if args.cave_page_observer else (64, 73) if args.jungle_page_observer else (46, 56),
-                               entry_callback=(lambda **kwargs: capture_cave_cadence(loader_profile=args.cave_loader_resource, **kwargs)) if args.cave_loader_profile else (lambda **kwargs: capture_cave_cadence(treasure_profile=True, **kwargs)) if args.cave_treasure_profile else capture_cave_cadence if args.cave_page_observer else (lambda **kwargs: capture_jungle_cadence(motion_profile=args.jungle_motion_profile, **kwargs)) if args.jungle_page_observer else None)
+                               entry_callback=(lambda **kwargs: capture_cave_cadence(loader_profile=args.cave_loader_resource, **kwargs)) if args.cave_loader_profile else (lambda **kwargs: capture_cave_cadence(treasure_profile=True, **kwargs)) if args.cave_treasure_profile else capture_cave_cadence if args.cave_page_observer else (lambda **kwargs: capture_jungle_cadence(motion_profile=args.jungle_motion_profile, clock_observer=bool(args.pic_clock_engine), **kwargs)) if args.jungle_page_observer else None)
     if args.mountain_timing:
         from capture_mountain_timing import capture_mountain_timing
         capture_mountain_timing(client=client, stop=stop, load=load, ds=ds,

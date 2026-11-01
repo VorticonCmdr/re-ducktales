@@ -4,13 +4,26 @@ import hashlib
 import json
 import struct
 import subprocess
+import time
 from capture_safari_cadence import relocated_overlay
 
 
 def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
-                           remove, resume, state, sequence, wait_until, save, root, motion_profile='walk'):
+                           remove, resume, state, sequence, wait_until, save, root, motion_profile='walk', clock_observer=False):
     assert motion_profile in ['walk', 'jump', 'walk-hold']
     data = state('jungle-entry', stop)
+    clock_load_started=None
+    if clock_observer:
+        assert motion_profile in ['jump','walk-hold']
+        # Existing ENTRY setup stop only. No guest execution/write/restore.
+        code="assert(type(dosbox.emulated_time_ms)=='function');dosbox.output.emulatedMs=dosbox.emulated_time_ms();dosbox.output.completed=true"
+        clock_load_started=time.monotonic()
+        loaded=client.post_text('/api/v1/script/load',code,params={'name':'jungle-entry-clock'})
+        started=client.post('/api/v1/script/start')
+        result=client.get('/api/v1/script/status')
+        save('jungle-entry-clock',{'load':loaded,'start':started,'result':result})
+        assert result['state']=='completed' and result['output']['completed'] and not result['output_truncated']
+
     assert stop['registers']['cs'] == overlay and stop['registers']['eip'] == 0
     exe = (root/'game/DUCKTALE.EXE').read_bytes()
     expected = relocated_overlay(exe, 0x1fa00, load, 8, 24056, 436)
@@ -58,7 +71,10 @@ def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
         contract = json.loads((root/('reference/jungle-'+motion_profile+'-inputs.json')).read_text())
         assert contract['kind'] == 'original-jungle-'+motion_profile+'-physical-inputs' and contract['expectedSamples'] == 120
         save('jungle-motion-input-contract', contract)
-    template = (root/('scripts/jungle-jump-observer.lua' if contract else 'scripts/jungle-cadence-observer.lua')).read_text()
+    template = (root/('scripts/jungle-clock-observer.lua' if clock_observer else 'scripts/jungle-jump-observer.lua' if contract else 'scripts/jungle-cadence-observer.lua')).read_text()
+    if clock_load_started is not None:
+        # Respect API load rate while the existing setup stop holds guest time.
+        time.sleep(max(0,2.01-(time.monotonic()-clock_load_started)))
     lua = template.replace('__DS__', str(ds)).replace('__EGA__', str(ega))
     save('jungle-observer-script', {'source': lua, 'templateSHA256': hashlib.sha256(template.encode()).hexdigest(), 'ds': ds, 'ega': ega})
     loaded = client.post_text('/api/v1/script/load', lua, params={'name': 'jungle-cadence-observer'})
@@ -77,7 +93,7 @@ def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
     assert result['output']['completed'] is True
     if contract:
         rows = result['output']['samplesCSV'].splitlines()
-        assert len(rows) == 120 and all(len(row.split(',')) == 16 for row in rows)
+        assert len(rows) == 120 and all(len(row.split(',')) == (17 if clock_observer else 16) for row in rows)
     else:
         assert len(result['output']['samples']) == 120
     replay = client.get('/api/v1/input/replay/status')
@@ -86,7 +102,7 @@ def capture_jungle_cadence(*, client, stop, load, ds, overlay, entry, add,
     final = client.post('/api/v1/debug/pause')['stop']
     assert final['stop_id'] == stop['stop_id'] + 1
     state('jungle-observer-final', final)
-    save('jungle-cadence', {'completed': True, 'expectedSamples': 120, 'motionProfile': motion_profile,
+    save('jungle-cadence', {'completed': True, 'expectedSamples': 120, 'motionProfile': motion_profile, 'picClockObserved': clock_observer,
          'initialStopId': stop['stop_id'], 'finalStopId': final['stop_id'],
          'injections': [], 'partialRestore': False,
          'scope': 'Natural original swamp movement,120 consecutive render callbacks and fixed '+('Right+Fire/release' if motion_profile=='jump' else 'Right/release')+' schedule. No intermediate debugger stops; not exact input/flip timestamps or port timing acceptance.'})

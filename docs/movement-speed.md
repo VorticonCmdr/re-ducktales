@@ -207,3 +207,10 @@ The first cave exit pose moves6.347ms later;the full native probe still fails.
 221 units,the resource oracle,exit-pose segment,actual cave browser route and
 build pass. Prior natural-clock browser evidence is historical until recaptured
 on this changed runtime;its source guard is retained.
+
+The remaining phase investigation now has a calibrated read-only PIC timestamp
+provider. [Capture-tool correction and scope](native-clock-capture.md) records
+61 shell-only samples,source/binary identities,owned shutdown and four negatives.
+Jungle captures can explicitly select this private build and retain ENTRY time
+plus per-frame PIC milliseconds. No phase is fitted from sprite expectations.
+No new game timing acceptance follows from calibration alone.
